@@ -1,8 +1,69 @@
 /* 10 functions from 0x001D6600 to 0x001D73E0, found by Ghidra. */
 #include "common.h"
 
+#include <xmmintrin.h>
+
 extern int D_0028F644;
 extern int D_002A83E0;
+
+extern float D_00275460, D_002755E4, D_002F0B90, D_002ABDD0, D_002ABDD4, D_002ABE5C;
+extern int D_002ABDCC;
+
+struct Scale_001D6600 { char pad0[8]; int f8; int fC; };
+struct Owner_001D6600 { Scale_001D6600 *func_0018C070(void); };
+struct Glyph_001D6600 {
+    char pad0[4];
+    float f4;
+    float f8;
+    float fC;
+    float f10;
+    short s14;
+    short s16;
+    short s18;
+    short s1A;
+    int f1C;
+};
+struct Vertex_001D6600 { float x; float y; int z; int color; float u; float v; };
+__declspec(align(16)) struct Mat_001D6600 { float m[16]; };
+struct Draw_001D6600 { void func_001446B0(void *, int, int); };
+struct Stream_001D6600 {
+    char pad0[0xc];
+    int count;
+    char pad10[4];
+    void *buf;
+    char pad18[8];
+    Mat_001D6600 mat;
+};
+struct Display_001D6600 { char pad0[0x1e0]; unsigned int w; unsigned int h; };
+struct Gfx_001D6600 { int f0; Display_001D6600 *f4; };
+extern Gfx_001D6600 *D_002EFDB8;
+void *__stdcall func_001FF410(void *buffer, int flags);
+
+struct C_001D6600 {
+    unsigned char *f0;
+    float x4;
+    float y8;
+    char padC[8];
+    float x14;
+    float y18;
+    char pad1C[0x18];
+    float f34;
+    char pad38[4];
+    int f3C;
+    Owner_001D6600 *f40;
+    char pad44[4];
+    int f48;
+    char pad4C[2];
+    unsigned char f4E;
+    char pad4F;
+    unsigned char f50;
+    char pad51[3];
+    Glyph_001D6600 **f54;
+    Stream_001D6600 *f58;
+    void *f5C;
+    void func_001D6440(void);
+    void func_001D6600(void);
+};
 
 int __cdecl func_001B2910(int a0);
 unsigned int __stdcall func_00201100(void *p);
@@ -311,7 +372,8 @@ void *func_001D6E20(char *name, int arg2, unsigned int flags)
         if (((S_001D6E20_Res *)obj)->slot23(name, arg2, flags & ~0x20)) {
             D_002BEAAC->func_0013AC40(buf, 0, -1, 0, &key, 0);
             D_002BEAAC->func_0013B1F0(key, obj);
-            D_002BEAAC->func_0013C110(key);
+            S_001D7190_Pack *pk = D_002BEAAC;
+            pk->func_0013C110(key);
             return obj;
         }
         ((S_001D6E20_Res *)obj)->slot2();
@@ -342,13 +404,14 @@ void *func_001D6E20(char *name, int arg2, unsigned int flags)
         S_001D6E20_Obj20 *p = (S_001D6E20_Obj20 *)func_001E8A44(0x20);
         obj = p ? p->func_0001C520() : 0;
         ((S_001D6E20_Obj20 *)obj)->func_0001C2E0(buf, key);
+        ok = 1;
     } else {
         if (hasB) {
             info = func_001B3560(key, 0);
             if (info == 0)
                 return 0;
-            height = info->h;
             width = info->w;
+            height = info->h;
         }
         XboxTextureMap *p = (XboxTextureMap *)func_001E8A44(0x110);
         obj = p ? p->func_001D6AD0((void *)1) : 0;
@@ -368,12 +431,9 @@ void *func_001D6E20(char *name, int arg2, unsigned int flags)
         }
         if (hasA)
             ok = ((XboxTextureMap *)obj)->func_001D7190(key, (int)name, flags);
-        if (!ok) {
-            D_002BEAAC->func_0013C110(key);
-            return obj;
-        }
     }
-    D_002BEAAC->func_0013B1F0(key, obj);
+    if (ok)
+        D_002BEAAC->func_0013B1F0(key, obj);
     D_002BEAAC->func_0013C110(key);
     return obj;
 }
