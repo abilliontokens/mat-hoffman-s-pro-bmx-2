@@ -237,7 +237,8 @@ struct Sc_67DA0 {
 
 struct G67DA0_E2E8 { char pad0[4]; void *f4; };
 struct G67DA0_E2E0 { char pad0[4]; int f4; };
-struct G67DA0_2A4 { char pad0[0x64]; char *f64; };
+struct P67_TBL { char pad0[0x4e0]; void *tbl; };
+struct G67DA0_2A4 { char pad0[0x64]; P67_TBL *f64; };
 struct G67DA0_8490 {
     char pad0[0x2a4];
     G67DA0_2A4 *f2A4;
