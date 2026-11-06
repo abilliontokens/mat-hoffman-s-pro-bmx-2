@@ -1,5 +1,6 @@
 /* 10 functions from 0x0009E680 to 0x0009F620, found by Ghidra. */
 #include "common.h"
+#include "asm_helpers.h"
 
 extern int D_0027AC78;
 extern int D_002A5558;
@@ -120,6 +121,138 @@ struct C_0009EDB0 {
     void func_0009F4C0(char param_1);
 };
 
+int C_0009EDF0::func_0009E680(C_0009EDF0 *arg)
+{
+    float diff[4];
+    float norm[4];
+    float up[4];
+    float side[4];
+    float fwd[4];
+    float len;
+    float dot;
+    float t;
+    int count;
+    int i;
+
+    if (D_002A8490->f124 != 0)
+        return 0;
+    if ((f1cc & 2) == 0)
+        return 0;
+    if (f1cc & 1) {
+        f1cc &= 0xfe;
+        arg->v34 = arg->v24;
+        return 1;
+    }
+
+    diff[0] = v34.x - v24.x;
+    diff[1] = v34.y - v24.y;
+    diff[2] = v34.z - v24.z;
+    diff[3] = 1.0f;
+    len = func_00011170(diff);
+    norm[0] = diff[0];
+    norm[1] = diff[1];
+    norm[2] = diff[2];
+    norm[3] = len;
+    func_0009DA90(norm, diff);
+    dot = len * arg->f204 + norm[1] * arg->f200 + norm[0] * arg->f1fc;
+    dot = func_0014F7E0(dot);
+    if (dot < D_00277F40)
+        return 0;
+
+    up[0] = 0.0f;
+    up[1] = 0.0f;
+    up[2] = 0.0f;
+    up[3] = 1.0f;
+    func_0001EAB0(up, (float *)&arg->f1fc, up);
+    func_0009DA90(up, up);
+    t = D_002A24DC * up[1];
+    func_00158390(*(Vec4f *)&arg->f1fc, *(Vec4f *)up, t, (void *)&arg->f1fc);
+    func_0009DA90((float *)&arg->f1fc, (float *)&arg->f1fc);
+
+    side[0] = 0.0f;
+    side[1] = 0.0f;
+    side[2] = 0.0f;
+    side[3] = 1.0f;
+    fwd[0] = 0.0f;
+    fwd[1] = 0.0f;
+    fwd[2] = 0.0f;
+    fwd[3] = 1.0f;
+    {
+        Vec4f a = *(Vec4f *)&D_002A2528;
+        Vec4f b = *(Vec4f *)norm;
+        side[0] = a.y * b.z - a.z * b.y;
+        side[1] = a.z * b.x - a.x * b.z;
+        side[2] = a.x * b.y - a.y * b.x;
+        side[3] = b.w;
+    }
+    func_0009DA90(side, side);
+    {
+        Vec4f a = *(Vec4f *)side;
+        Vec4f b = *(Vec4f *)up;
+        fwd[0] = a.y * b.z - a.z * b.y;
+        fwd[1] = a.z * b.x - a.x * b.z;
+        fwd[2] = a.x * b.y - a.y * b.x;
+        fwd[3] = b.w;
+    }
+    {
+        Vec4f a = *(Vec4f *)&arg->f1fc;
+        Vec4f b = *(Vec4f *)side;
+        up[0] = a.y * b.z - a.z * b.y;
+        up[1] = a.z * b.x - a.x * b.z;
+        up[2] = a.x * b.y - a.y * b.x;
+        up[3] = b.w;
+    }
+    func_0009DA90(up, side);
+
+    t = len / ((float *)this)[0xe8 / 4];
+    if (t < D_002756DC)
+        return 0;
+
+    arg->f1f0 = t * arg->f17c;
+    count = (int)(t * arg->f1f0);
+    if (count < 1)
+        return 0;
+
+    {
+        Vec4f *base = func_0009DA50((float *)&arg->f64, norm, (float)count / len);
+        Vec4f start = *base;
+        for (i = 0; i < count; i++) {
+            Pool9E *pool = arg->f64;
+            Particle9E *p;
+            float r1, r2, r3;
+            if (pool->count11C >= pool->cap124)
+                continue;
+            r1 = (float)func_001E8833() * D_002754B0;
+            p = (Particle9E *)pool->arr12C[pool->count11C];
+            r1 = r1 * arg->f218 + arg->f20c;
+            p->v10.x = start.x + side[0] * r1;
+            p->v10.y = start.y + side[1] * r1;
+            p->v10.z = start.z + side[2] * r1;
+            r2 = (float)func_001E8833() * D_002754B0;
+            r2 = arg->f210 * D_002755E8 - r2 * arg->f210;
+            p->f38 = (r2 + p->v10.x) ;
+            r3 = (float)func_001E8833() * D_002754B0;
+            p->f2C = arg->f170 * D_002755E8 * r3;
+            p->v10.x += arg->v34.x;
+            p->v10.y += arg->v34.y;
+            p->v10.z += arg->v34.z;
+            p->f28 = arg->f188;
+            p->f38 = (r3 + D_00275460) * arg->f178;
+            p->f40 = arg->f174;
+            p->f48 = (int)arg;
+            p->f30 = arg->f170;
+            p->f34 = D_00275460 / arg->f170;
+            p->f44 = arg->f190;
+            pool->count11C++;
+            arg->f188++;
+            if (arg->f188 >= arg->f1ac)
+                arg->f188 = arg->f1a8;
+        }
+    }
+    arg->f1f8 = (int)t;
+    return 1;
+}
+
 void C_0009EDB0::func_0009EDB0(char param_1) {
     if (!(b1)) {
         v34 = v24;
@@ -156,6 +289,23 @@ C_0009EDF0 *C_0009EDF0::func_0009EDF0(int a) {
     f210 = 6.0f;
     f214 = 0.8f;
     func_001ADCC0(f6c, 0x104, &D_0027AC78, &D_002A5558);
+    return this;
+}
+
+C_0009EDF0 *C_0009EDF0::func_0009EF00(int a, int b, int c)
+{
+    char *p;
+    char *q;
+
+    func_0016A1D0(a, b, c);
+    p = *(char **)((char *)f64 + 0x134);
+    q = p ? p + 0x24 : 0;
+    if (q) {
+        f1ac = *(int *)(q + 8);
+        f1a8 = *(int *)(q + 4);
+        f188 = f1a8;
+        func_0016A330(f6c);
+    }
     return this;
 }
 
@@ -201,5 +351,9 @@ void *C_0009F580::func_0009F580(int flags) {
         func_001E891B(this);
     }
     return this;
+}
+
+void func_0009F5B0(float *out, float *in) {
+    AsmVec3Normalize(out, in);
 }
 
