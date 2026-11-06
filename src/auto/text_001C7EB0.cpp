@@ -14,8 +14,6 @@ struct Vec4W {
     Vec4W operator-(const Vec4W &b) const { Vec4W r; r.x = x - b.x; r.y = y - b.y; r.z = z - b.z; r.w = 1.0f; return r; }
     Vec4W operator+(const Vec4W &b) const { Vec4W r; r.x = x + b.x; r.y = y + b.y; r.z = z + b.z; r.w = 1.0f; return r; }
 };
-inline Vec4W operator-(const Vec4W &a, const Vec4W &b) { Vec4W r; r.x = a.x - b.x; r.y = a.y - b.y; r.z = a.z - b.z; r.w = 1.0f; return r; }
-inline Vec4W operator+(const Vec4W &a, const Vec4W &b) { Vec4W r; r.x = a.x + b.x; r.y = a.y + b.y; r.z = a.z + b.z; r.w = 1.0f; return r; }
 struct __declspec(align(16)) MatW { float m[16]; };
 extern float D_00275544;
 MatW func_00026960();
