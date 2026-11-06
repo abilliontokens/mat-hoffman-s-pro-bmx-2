@@ -57,7 +57,7 @@ extern float D_00275994;
 extern char D_00279144[];
 extern char D_00279138[];
 extern char D_00279130[];
-static inline void Round_00082250(int *out, float value) { *out = _mm_cvtss_si32(*(__m128 *)&value); }
+static __forceinline void Round_00082250(int * volatile out, float value) { *out = _mm_cvtss_si32(*(__m128 *)&value); }
 
 struct C_000823C0 {
     char pad0[0x14];
@@ -74,6 +74,45 @@ struct C_000831C0 {
     int func_000831C0(void);
 };
 
+
+extern "C" int abs(int);
+void func_00082250(char *out, float value, int fractions)
+{
+    const char *text;
+    float t;
+    int * volatile p;
+    int n;
+    int a;
+
+    if (value != D_00275544 && !(value > D_00279150)) {
+        t = *(volatile float *)&value * D_00275994;
+        p = (int *)&value;
+        *p = _mm_cvtss_si32(*(__m128 *)&t);
+        if (*(int *)&value < 0) {
+            *out++ = '-';
+        }
+        a = *(int *)&value;
+        a = -a > 0 ? -a : a;
+        n = *(volatile int *)&a;
+        out[0] = n / 60000 + '0';
+        out[1] = n / 6000 % 10 + '0';
+        out[2] = ':';
+        out[3] = n / 100 % 60 / 10 + '0';
+        out[4] = n / 100 % 10 + '0';
+        if (fractions) {
+            out[5] = '.';
+            out[6] = n % 100 / 10 + '0';
+            out[7] = n % 10 + '0';
+            out[8] = 0;
+        } else {
+            out[5] = 0;
+        }
+        return;
+    }
+    if (value == D_00275544) text = D_00279144;
+    else text = fractions ? D_00279138 : D_00279130;
+    while ((*out++ = *text++) != 0) ;
+}
 
 void C_000823C0::func_000823C0(int param_1, int param_2)
 {
@@ -301,6 +340,7 @@ void BmxInGameOverlays::func_00082790()
     fr.ini.func_00168280();
     func_001ADCC0(fr.buf, 0x104, D_0027953C, &D_002A5348);
     if (fr.ini.sub.func_00169490(fr.buf, 0) == 0) {
+        fr.ini.func_001691E0();
         return;
     }
     val = *(int *)(*(int *)(D_002A8490 + 0x2e0) + 8);
@@ -539,8 +579,13 @@ void BmxInGameOverlays::func_00082790()
         if ((float)*(int *)&fr.s.f[5] != *(float *)((char *)sub + 0x28)) {
             *(float *)((char *)sub + 0x28) = (float)*(int *)&fr.s.f[5];
             *((char *)sub + 0x58) |= 1;
+            fr.ini.func_001691E0();
+        } else {
+            fr.ini.func_001691E0();
         }
+        return;
     }
+    fr.ini.func_001691E0();
 }
 
 int C_000831C0::func_000831C0(void)
