@@ -222,7 +222,7 @@ struct M_67DA0 {
     void func_001B1980(void);
     void func_001B2270(int color);
     void func_001B19C0(int a, int b, int c);
-    void func_001B1860(int a1, float a2, int a3, float a4, int a5, int a6, float a7, int a8, int a9, float a10, int a11, float a12, int a13);
+    void func_001B1860(int a1, float a2, int a3, float a4, int a5, int a6, float a7, int a8, float a9, int a10, int a11, float a12, int a13);
 };
 
 struct R_67DA0 {
