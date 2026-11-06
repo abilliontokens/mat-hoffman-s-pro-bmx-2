@@ -79,6 +79,9 @@ struct S_002B91AC {
 extern S_002B91AC *D_002B91AC;
 
 struct S_000D5B90_Widget {
+    S_000D5B90_Widget *func_001B12C0(int a);
+    void func_001B13A0(char *a, char *b, int c, int d);
+    void func_001B2270(unsigned int c);
     void func_001B1980();
     void func_001B17D0(char *s);
     void func_001B1A30(float a, float b, float c);
