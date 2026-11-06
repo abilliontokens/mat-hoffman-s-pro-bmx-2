@@ -223,6 +223,7 @@ struct C_001B73C0_Line {
 struct C_001B73C0_Holder {
     char pad0[0x28];
     C_001B73C0_Line **f28;
+    C_001B73C0_Line *GetLine(u32 i) { return f28[i]; }
 };
 
 struct C_001B73C0_Arg {
@@ -331,13 +332,13 @@ struct C_001B6E70 {
 
 int C_6A70::func_001B6A70(C_6A70_Cfg *cfg, int a1, int a2, C_6A70_Src *a3, int a4)
 {
+    int r = 0;
+    int flag;
+    int i;
     char buf1[0x104];
     char buf2[0x104];
     char buf3[0x104];
     char buf4[0x104];
-    char flag;
-    int i;
-    int r = 0;
     C_6A70_Data *d;
     C_6A70_Obj *o;
 
@@ -357,9 +358,9 @@ int C_6A70::func_001B6A70(C_6A70_Cfg *cfg, int a1, int a2, C_6A70_Src *a3, int a
     o = (C_6A70_Obj *)func_001E8A44(0x2f0);
     o = o ? o->func_001BB680(1) : 0;
     f4 = o;
-    o->func_001BC040(d->f0, d->f10, d->f20, d->f30, d->f4c, f8, f14, a4);
-    cfg->func_00168C20(D_0028CE4C, 0, (int *)&flag);
-    ((S_6A70_Bits *)&f4->b2EC)->b3 = flag;
+    o->func_001BC040(f108->f0, f108->f10, f108->f20, f108->f30, f108->f4c, f8, f14, a4);
+    cfg->func_00168C20(D_0028CE4C, 0, &flag);
+    ((S_6A70_Bits *)&f4->b2EC)->b3 = (char)flag;
     strcpy(f4->fD4, buf1);
     strcpy(f4->f1D8, buf3);
     if (f10 == 0)
@@ -393,6 +394,57 @@ C_001B6E70 *C_001B6E70::func_001B6E70(void *param) {
     f28 = 0;
     vtbl = (void *)&D_0028CE6C;
     return this;
+}
+
+int C_001B6E70::func_001B6EA0(void *a, C_00169710 *param, void *b, void *c)
+{
+    char buf[0x104];
+    int count;
+    int start;
+    int total;
+    int i;
+    int n;
+
+    if (param->func_00169710(D_0028CF08) == 0) {
+        return 0;
+    }
+    param->func_00168C20(D_0028CEF4, 0, &count);
+    if (count > 0) {
+        total = count;
+        if (f28 != 0) {
+            start = f24;
+            total += start;
+            f24 = total;
+            f28 = (C_001B7370_item **)func_001E83E8(f28, total * 4);
+        } else {
+            start = 0;
+            f24 = count;
+            f28 = (C_001B7370_item **)func_001E8A44(count * 4);
+        }
+        i = start;
+        n = 1;
+        while (i < total) {
+            func_001ADCC0(buf, 0x104, D_0028CEE8, n);
+            if (param->func_00169710(buf)) {
+                C_001B7370_item *obj = (C_001B7370_item *)func_001E8A44(0x110);
+                if (obj) {
+                    *(void **)obj = &D_0028CDE4;
+                    *(int *)((char *)obj + 0x4) = 0;
+                    *(int *)((char *)obj + 0x108) = 0;
+                    *(int *)((char *)obj + 0x8) = 0;
+                    *(int *)((char *)obj + 0x10c) = 0;
+                    *(int *)((char *)obj + 0x10) = 1;
+                } else {
+                    obj = 0;
+                }
+                f28[i] = obj;
+                f28[i]->vf0(param, a, n, b, c);
+            }
+            i++;
+            n++;
+        }
+    }
+    return 1;
 }
 
 void C_001B6E70::func_001B7010(C_001B7010_arg *arg) {
@@ -502,8 +554,9 @@ void C_001B6E70::func_001B73C0(C_001B73C0_Arg *arg) {
         }
         for (j = 0; j < f28[i]->f8; j++) {
             C_001B73C0_Node *node = f28[i]->f10C[j];
+            u32 idx = node->f10C;
             if (node->f4 == 4) {
-                C_001B73C0_Line *line = arg->f3AC->f28[node->f10C];
+                C_001B73C0_Line *line = arg->f3AC->f28[idx];
                 line->f1A4->v7();
             }
         }
