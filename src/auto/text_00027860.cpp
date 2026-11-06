@@ -239,6 +239,8 @@ static __forceinline float Max_E(float a,float b) { float r; _mm_store_ss(&r,_mm
 static __forceinline float Min_E(float a,float b) { float r; _mm_store_ss(&r,_mm_min_ss(*(__m128 *)&a,*(__m128 *)&b)); return r; }
 static __forceinline float MaxE_27E40(float a, float b) { return a > b ? a : b; }
 static __forceinline float MinE_27E40(float a, float b) { return a < b ? a : b; }
+static __forceinline float MaxL_27E40(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
+static __forceinline float MinL_27E40(float a, float b) { float r; _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
 struct E_Vec { char p0[0x14]; char *name; char p18[0x28]; float x, y, z; };
 struct E_Mid { char p0[0x14]; char *name; char p18[0x18]; E_Vec *vec; void func_00012140(); };
 struct E_Phys { char p0[0x238]; float x, y, z; };
@@ -257,7 +259,7 @@ void C_00027860::func_00027860(float dt)
 {
     C_00027860 *self = this;
     S_V4_27860 t;
-    S_V4_27860 m[4];
+    float m[16];
 
     t.z = 0.0f;
     if (self->f1E8->f68 != 0) {
@@ -274,8 +276,8 @@ void C_00027860::func_00027860(float dt)
         v.y = 0.0f;
         v.z = 0.0f;
         v.w = 0.0f;
-        func_000265C0(&m[0].x, &v.x, &v2.x, self->f1E8->f1A0, 0, 1);
-        t = func_00026880(self->f748, &m[0].x);
+        func_000265C0(m, &v.x, &v2.x, self->f1E8->f1A0, 0, 1);
+        t = func_00026880(self->f748, m);
         s = Min_27860(Max_27860(t.z * D_002756DC, -1.0f), 1.0f);
         neg = -(Max_27860(self->f5CC, 0.0f) * self->f5D4);
         tmp = Min_27860(self->f59C - self->f744, 0.0f);
@@ -283,7 +285,7 @@ void C_00027860::func_00027860(float dt)
         v.x = 0.0f;
         v.y = 0.0f;
         v.z = (tmp * D_002A1150 + neg - self->f5D0) * self->f1E0->f210 * s * D_00275BF8 * self->f1E8->f80;
-        S_V4_27860 r = func_000267F0(&v.x, &m[0].x);
+        S_V4_27860 r = func_000267F0(&v.x, m);
         float *p = self->f1E0->f130;
         p[0] += r.x;
         p[1] += r.y;
