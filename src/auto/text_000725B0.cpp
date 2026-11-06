@@ -52,6 +52,7 @@ struct C_00072C90 {
     Res_72C90 *aB8[5];
     C_00072C90 *func_00072C90(int flags);
     void func_00072D30();
+    C_00072C90* func_00072E70(int);
     void func_00157660();
 };
 
