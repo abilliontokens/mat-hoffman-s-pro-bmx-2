@@ -3,6 +3,32 @@
 struct S_1472_Config {
  void func_00168C20(const void *, int, int *);
  void func_00168BE0(const char *, const void *, char *, int);
+ void func_00168C50(const void *, int, int *);
+};
+extern int D_002862D4, D_002862C4, D_00286264, D_0028624C, D_00286234, D_00286224, D_00286214;
+extern int D_00286204, D_002861F4, D_002861E4, D_002861D8, D_002861C0, D_002861B4, D_002861A4;
+extern int D_00286194, D_0028618C, D_00286184;
+int func_00144BF0(char *, int, int, int);
+extern "C" int func_001EA426(const char *, const char *);
+
+/* DXRenderPrologue */
+struct C_00146E50 {
+ void *vtbl;
+ int f4;
+ int f8;
+ char padC[4];
+ int f10;
+ int f14;
+ char pad18[4];
+ int f1C;
+ int f20;
+ int f24;
+ int f28;
+ unsigned int bit0 : 1;
+ unsigned int rest2C : 31;
+ int f30;
+ void D_00011420(struct S_1472_Config *cfg);
+ int func_00146E50(struct S_1472_Config *cfg);
 };
 struct S_1472_Object {
  char pad[0xec]; void *fEC;
