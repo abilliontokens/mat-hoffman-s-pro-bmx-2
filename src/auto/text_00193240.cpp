@@ -222,9 +222,9 @@ extern Root_00193240 *D_002A8490;
 extern int D_002A9868;
 extern char D_0028ACB4[];
 extern char D_0028AC8C[];
-extern const f32 D_0028AC88;
-extern const f32 D_00275460;
-extern const f32 D_00278788;
+extern f32 D_0028AC88;
+extern f32 D_00275460;
+extern f32 D_00278788;
 extern u16 D_002EFE50;
 extern u16 D_002EFE54;
 extern int D_002EFE48;
@@ -422,6 +422,61 @@ struct C_00194130 {
     C_00194130 *func_00194130(int a0);
 };
 
+
+int Owner_00193240::func_00193240(Args_00193240 *arg)
+{
+    Link2_00193240 *n = f24;
+    V8_00193240 a[4];
+    V8_00193240 b[4];
+    int i;
+    for (i = 0; i < 4; i++) a[i].func_001D3F50();
+    for (i = 0; i < 4; i++) b[i].func_001D3F50();
+    D_002EFE50++;
+    f90 = D_002EFE50;
+    f40 = -1.0f;
+    f44 = 1.0f;
+    f48 = -1.0f;
+    f4c = 1.0f;
+    if (D_002A8490->f18) {
+        if (D_002A9868 < 0) {
+            int t = D_002A8490->f18->f1934;
+            D_002A8490->f18->f1934 = t + 1;
+            D_002A9868 = t;
+        }
+        func_0013E260(D_002A8490->f18, D_002A9868, D_0028ACB4);
+        func_0013E1F0(D_002A8490->f18, D_002A9868, D_0028AC8C, f3c + 1,
+                      (int)((f40 + D_00275460) * D_00278788),
+                      (int)(D_0028AC88 - f4c * D_0028AC88),
+                      (int)((f44 + D_00275460) * D_00278788),
+                      (int)(D_0028AC88 - f48 * D_0028AC88));
+    }
+    D_002EFE48 = 0;
+    for (; n; n = n->next) {
+        if (n->sub->func_00179B40(a, *(int *)(D_002EFDB8 + 4)) &&
+            func_0017C060(D_002EFD38, a, b)) {
+            int cnt = arg->f34;
+            int j = 0;
+            int found = 0;
+            if (cnt > 0) {
+                for (; j < cnt; j++) {
+                    if (arg->f30[j] == n->item->f3c) { found = 1; break; }
+                }
+            }
+            if (!found) n->item->func_00192CC0(b);
+        }
+    }
+    func_00192C00(f40, f44, f48, f4c, f50);
+    D_002EFE54++;
+    f92 = D_002EFE54;
+    if (f28) f28->v15();
+    if (f2c && f2c != f28) f2c->v15();
+    for (Link2_00193240 *p = f24; p; p = p->next) p->item->func_001930F0();
+    if (f38 && D_002EFE4C && D_002EFE50 != D_002EFE4C->f90) {
+        D_002EFE4C->f90 = D_002EFE50;
+        D_002EFE4C->f28->v15();
+    }
+    return 1;
+}
 
 Node_00193240 *Node_00193240::func_00193490(void)
 {
