@@ -69,6 +69,12 @@ struct Sub2D {
     int *f18;
 };
 struct Obj44D { char pad0[0x5c]; MidD *f5C; };
+struct RetD {
+    char pad0[8];
+    NodeD *f8;
+    char padC[4];
+    void *f10;
+};
 struct A530D { void func_0015A250(int a); void func_0015A180(int a); };
 struct Obj64D { char pad0[0x530]; A530D *f530; };
 struct ArrObjD { void func_000377F0(int a); };
