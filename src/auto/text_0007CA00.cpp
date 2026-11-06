@@ -138,7 +138,7 @@ struct BmxEditorMenu {
     virtual void v14();
     virtual void v15();
     virtual int func_0007CF00();
-    char pad44[0x13C - 0x44];
+    char pad4[0x13C - 0x4];
     Obj13C *f13C;
     char pad140[0x170 - 0x140];
     int f170;
