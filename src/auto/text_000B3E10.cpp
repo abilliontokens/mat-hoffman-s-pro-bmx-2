@@ -167,7 +167,8 @@ inline void B3E10_Copy(char *dst, const char *src, int max)
 {
     volatile int length = strlen(src);
     volatile int limit = max;
-    int n = limit > length ? length : limit;
+    volatile int size = limit > length ? length : limit;
+    int n = size;
     func_001E8920(dst, src, n);
     dst[n] = 0;
 }
