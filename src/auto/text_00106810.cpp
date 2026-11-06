@@ -98,7 +98,7 @@ struct C_00107070 {
     float f1fa0;
     void func_00107070(float dt);
 };
-static inline float abs_106B20(float v) { int bits = *(int *)&v & 0x7fffffff; return *(float *)&bits; }
+static inline float abs_106B20(float v) { volatile int bits = *(int *)&v & 0x7fffffff; return *(volatile float *)&bits; }
 struct Vec_106B20 { int x,y,z,w; };
 struct Obj_106B20 {
  char pad0[0x1cc]; unsigned char flags;
