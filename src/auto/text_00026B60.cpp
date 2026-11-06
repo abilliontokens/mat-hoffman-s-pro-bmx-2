@@ -177,6 +177,18 @@ struct Obj20C_26 {
     char pad28[0x94 - 0x28]; void *f94; void *f98;
     Obj20C_26 *func_000B8B60(int); void func_000B8C80(void *);
 };
+struct Obj1EC_26 {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4();
+    virtual void v5(); virtual void v6(); virtual void v7(); virtual void v8(); virtual void v9();
+    virtual void v10();
+    void func_00030C00(int); void func_00030CD0(void *);
+};
+struct Obj40_26 { Obj40_26 *func_00025E10(); };
+struct Obj210_26 { Obj210_26 *func_0005DA30(void *); };
+struct Obj214_26 { Obj214_26 *func_000B50B0(int); void func_000B6050(void *); };
+struct Obj218_26 { Obj218_26 *func_000B5990(int); void func_000B6050(void *); };
+struct Obj21C_26 { Obj21C_26 *func_0011A440(int); void func_0011AB90(void *); };
+void func_001A7FE0();
 extern int D_002BA148;
 extern int D_002BA15C;
 extern int D_002BA154;
