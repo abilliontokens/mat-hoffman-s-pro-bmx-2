@@ -3,7 +3,8 @@
 
 #define AT(T, p, o) (*(T *)((char *)(p) + (o)))
 
-extern char *D_002B91AC;
+struct S_002B91AC;
+extern S_002B91AC *D_002B91AC;
 void __stdcall func_000BF860(int a, int b, int c, int d);
 struct C_000301D0 { int func_000301D0(void); };
 struct C_0005E840 { void func_0005E840(int a); void func_001D6600(void); };
