@@ -2,6 +2,7 @@
 #include "common.h"
 #include <xmmintrin.h>
 #include <math.h>
+static __forceinline void Sqrt_00021AB0(float *dst, float square) { _mm_store_ss(dst, _mm_sqrt_ss(*(__m128 *)&square)); }
 
 extern float D_002760D0, D_002760C0, D_002760B0;
 extern float D_00275544;
@@ -572,6 +573,7 @@ float func_00021AB0(V4_000212A0 *v, float maxLen)
 int func_00021B90(void *self, float dt, int a2, int a3, int a4, int a5, float a6)
 {
     V4_000212A0 v;
+    V4_000212A0 v74;
     float len;
 
     *(float *)((char *)self + 0x40) += dt;
@@ -589,6 +591,10 @@ int func_00021B90(void *self, float dt, int a2, int a3, int a4, int a5, float a6
     }
     if (*(float *)(*(char **)((char *)self + 0x50) + 0x1c) * 2.0f != len)
         return 0;
+    func_000212C0(&v74, &v74);
+    v.y += v74.w * D_00275AEC;
+    v.z += v74.z * D_00275AEC;
+    v.w += v74.z * D_00275AEC;
     return 0;
 }
 
