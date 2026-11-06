@@ -42,6 +42,14 @@ struct V4_001A8B80 {
     float x, y, z, w;
 };
 
+static __forceinline void SetV4_001A9430(V4_001A8B80 *v, float x, float y, float z, float w)
+{
+    v->x = x;
+    v->y = y;
+    v->z = z;
+    v->w = w;
+}
+
 /* first of the four consecutive floats (D_002AA248..D_002AA254) copied by func_001A9680 */
 extern V4_001A8B80 D_002AA248;
 
@@ -349,8 +357,7 @@ void C_001A8B80::func_001A9240(V4_001A8B80 v, int a, int b, float c)
         int found = 0;
         int i;
         for (i = 0; i < f80; i++) {
-            S_001A9240_Item *it = &((S_001A9240_Item *)f84)[i];
-            if (v.x == it->pos.x && v.y == it->pos.y && v.z == it->pos.z && b == it->f40) {
+            if (v.x == ((S_001A9240_Item *)f84)[i].pos.x && v.y == ((S_001A9240_Item *)f84)[i].pos.y && v.z == ((S_001A9240_Item *)f84)[i].pos.z && b == ((S_001A9240_Item *)f84)[i].f40) {
                 found = 1;
             }
         }
@@ -413,9 +420,11 @@ void C_001A8B80::func_001A9430(S_001A9430_Obj *obj, int a, int b)
         func_001A93A0(obj->fF0, &tree, a, b);
         break;
     }
-    case 5:
-        func_001A9240(obj->fA8, a, b, *(float *)&obj->f100);
+    case 5: {
+        V4_001A8B80 w = obj->fA8;
+        func_001A9240(w, a, b, *(float *)&obj->f100);
         break;
+    }
     }
 }
 
