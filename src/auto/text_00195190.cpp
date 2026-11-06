@@ -119,8 +119,38 @@ struct STV_1959E0 {
     float f78;
     int func_001959E0(float dt, float *pos, Vec4_195D40 *out);
 };
-int func_00134DE0(float *a, int b, float *c, float *d, int e, int f);
+int func_00134DE0(V4f_001956F0 *seg, V4f_001956F0 *hitPos, V4f_001956F0 *hitNormal, int a, int b, int c, int d, int e, int f);
 int func_001E8833();
+
+#include <xmmintrin.h>
+extern float D_0028AF10, D_0028AF00, D_0028AEF0, D_002754B0, D_00275994;
+
+static __forceinline float Rand01_001959E0(void)
+{
+    return (float)func_001E8833() * D_002754B0;
+}
+
+static __forceinline void Sqrt_001959E0(float *d, float square)
+{
+    _mm_store_ss(d, _mm_sqrt_ss(*(__m128 *)&square));
+}
+
+static __forceinline void Normalize_001959E0(float *volatile outArg, const float *volatile inArg)
+{
+    const float *in = inArg;
+    float *out = outArg;
+    __m128 v = _mm_loadu_ps(in), sq = _mm_mul_ps(v, v);
+    __m128 len = _mm_add_ss(_mm_movehl_ps(sq, sq), sq);
+    len = _mm_add_ss(len, _mm_shuffle_ps(sq, sq, 0xe1));
+    __m128 minv = _mm_load_ss(&D_0028AF10);
+    __m128 cmp = _mm_cmplt_ss(len, minv);
+    len = _mm_add_ss(len, _mm_and_ps(cmp, minv));
+    __m128 r = _mm_rsqrt_ss(len);
+    __m128 t = _mm_mul_ss(_mm_mul_ss(len, r), r);
+    __m128 scale = _mm_mul_ss(_mm_mul_ss(r, _mm_load_ss(&D_0028AEF0)), _mm_sub_ss(_mm_load_ss(&D_0028AF00), t));
+    scale = _mm_shuffle_ps(scale, scale, 0);
+    _mm_storeu_ps(out, _mm_mul_ps(scale, v));
+}
 
 int C_001955D0::func_001955D0(int a0, int a1) {
     unk70 = a0;
@@ -270,5 +300,30 @@ void SimpleVCR::func_00195E70(void)
     if (p[0xb8 / 4]) func_001E891B(p[0xb8 / 4]);
     if (p[0xbc / 4]) func_001E891B(p[0xbc / 4]);
     func_00157660();
+}
+
+int C_00196000::func_00196000(float param_1, int param_2, int param_3, int param_4, float param_5, float param_6, int param_7)
+{
+    int n;
+
+    n = f70;
+    f70 = n + 1;
+    if (param_1 > D_00275544 && f74 < f6c && (fc0 & 0x10) == 0) {
+        f78[f74] = param_2;
+        if (param_3 != 0) {
+            f7c[f74] = param_3;
+        } else {
+            f7c[f74] = param_2;
+        }
+        f80[f74] = 0;
+        f84[f74] = param_7;
+        f88[f74] = param_4;
+        f90[f74] = param_1;
+        f94[f74] = D_00275460 / param_1;
+        fa4[f74] = param_5;
+        fa8[f74] = param_6;
+        return ++f74 - 1;
+    }
+    return -1;
 }
 
