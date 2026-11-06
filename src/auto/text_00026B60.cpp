@@ -120,7 +120,7 @@ struct ObjE4_26 {
     virtual void v15(); virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
     virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23(); virtual void v24();
     virtual void v25(); virtual void v26(); virtual void v27(void *); virtual void v28(void *);
-    void func_00194130(int);
+    ObjE4_26 *func_00194130(int);
 };
 struct ObjF0_26 {
     char pad0[0x24]; int f24; int f28;
