@@ -257,6 +257,7 @@ unsigned long func_001E93CD(const char *nptr, const char **endptr, int ibase, in
     unsigned int digval;
     unsigned long maxval;
     unsigned long maxrem;
+    const char **ep;
 
     p = nptr;
     number = 0;
@@ -287,11 +288,11 @@ unsigned long func_001E93CD(const char *nptr, const char **endptr, int ibase, in
         return 0;
     } else if (ibase == 0) {
         if (c != '0') {
-            ibase = 10;
+            *(volatile int *)&ibase = 10;
         } else if (*p == 'x' || *p == 'X') {
-            ibase = 16;
+            *(volatile int *)&ibase = 16;
         } else {
-            ibase = 8;
+            *(volatile int *)&ibase = 8;
         }
     }
     if (ibase == 16) {
@@ -340,8 +341,9 @@ unsigned long func_001E93CD(const char *nptr, const char **endptr, int ibase, in
             number = 0x7fffffffUL;
         }
     }
-    if (endptr != 0) {
-        *endptr = p;
+    ep = *(const char ** volatile *)&endptr;
+    if (ep != 0) {
+        *ep = p;
     }
     if (flags & 2) {
         number = (unsigned long)(-(long)number);
