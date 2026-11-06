@@ -39,6 +39,19 @@ struct Gfx_001D6600 { int f0; Display_001D6600 *f4; };
 extern Gfx_001D6600 *D_002EFDB8;
 void *__stdcall func_001FF410(void *buffer, int flags);
 
+static __forceinline void Identity_001D6600(Mat_001D6600 *&p)
+{
+    Mat_001D6600 *q = p;
+    _mm_store_ps(&q->m[0], _mm_setzero_ps());
+    _mm_store_ps(&q->m[4], _mm_setzero_ps());
+    _mm_store_ps(&q->m[8], _mm_setzero_ps());
+    _mm_store_ps(&q->m[12], _mm_setzero_ps());
+    q->m[0] = 1.0f;
+    q->m[5] = 1.0f;
+    q->m[10] = 1.0f;
+    q->m[15] = 1.0f;
+}
+
 struct C_001D6600 {
     unsigned char *f0;
     float x4;
@@ -217,6 +230,142 @@ struct XboxTextureMapVtbl {
     virtual void slot7();
     virtual int slot8(int a1, int a2, int a3, int a4, int a5, int a6, int a7, int a8, int a9);
 };
+
+void C_001D6600::func_001D6600(void)
+{
+    Vertex_001D6600 *verts = 0;
+    int i;
+
+    if (f4E & 2) {
+        func_001D6440();
+    }
+    if (f4E & 0xd) {
+        verts = (Vertex_001D6600 *)func_001FF410(f58->buf, 0);
+    }
+    if (f4E & 5) {
+        Scale_001D6600 *sc = f40->func_0018C070();
+        float fw = (float)sc->f8;
+        float fh = (float)sc->fC;
+        float x = x14;
+        float y = y18;
+        int z;
+
+        if (f4E & 0x10) {
+            f4E &= ~0x10;
+            float r = D_00275460 / f34;
+            x = x * r;
+            y = y * r;
+        }
+        z = f3C;
+        for (i = 0; i < f50; i++) {
+            Glyph_001D6600 *e = f54[f0[i]];
+            Vertex_001D6600 *v = &verts[i * 6];
+
+            if (e == 0) {
+                e = f54[0];
+                if (e == 0) {
+                    continue;
+                }
+            }
+            if (e->f1C != 0) {
+                float left, right, top, bottom;
+                float u0, u1, v0, v1;
+                float fwm, fhm, a, b, c, d, invw, invh;
+
+                x += (float)e->s14;
+                left = x - D_002F0B90;
+                right = (float)e->s16 + left;
+                top = y - D_002F0B90;
+                bottom = (float)e->s1A + top;
+                v[0].z = z; v[1].z = z; v[2].z = z;
+                v[3].z = z; v[4].z = z; v[5].z = z;
+                v[0].x = left * D_002ABDD0;
+                v[0].y = D_002ABDD4 * bottom;
+                v[1].x = v[0].x;
+                v[1].y = D_002ABDD4 * top;
+                v[2].x = D_002ABDD0 * right;
+                v[2].y = v[1].y;
+                v[3].x = v[2].x;
+                v[3].y = v[1].y;
+                v[4].x = v[2].x;
+                v[4].y = v[0].y;
+                v[5].x = v[0].x;
+                v[5].y = v[0].y;
+                fwm = fw - D_00275460;
+                a = (float)(int)(fwm * e->f4 + D_002ABE5C);
+                fhm = fh - D_00275460;
+                b = (float)(int)(fhm * e->fC + D_002ABE5C);
+                invw = D_00275460 / fw;
+                u0 = a * invw;
+                c = (float)(int)(fwm * e->f8 + D_002ABE5C);
+                u1 = c * invw;
+                invh = D_00275460 / fh;
+                v0 = b * invh;
+                d = (float)(int)(fhm * e->f10 + D_002ABE5C);
+                v1 = d * invh;
+                v[0].u = u0; v[0].v = v1;
+                v[1].u = u0; v[1].v = v0;
+                v[2].u = u1; v[2].v = v0;
+                v[3].u = u1; v[3].v = v0;
+                v[4].u = u1; v[4].v = v1;
+                v[5].u = u0; v[5].v = v1;
+                x += (float)e->s18;
+            } else {
+                float right = (e->f8 - e->f4) * fw + x;
+                float bottom = (e->f10 - e->fC) * fh + y;
+
+                v[0].z = z; v[1].z = z; v[2].z = z;
+                v[3].z = z; v[4].z = z; v[5].z = z;
+                v[0].x = x * D_002ABDD0;
+                v[0].y = D_002ABDD4 * bottom;
+                v[1].x = v[0].x;
+                v[1].y = D_002ABDD4 * y;
+                v[2].x = D_002ABDD0 * right;
+                v[2].y = v[1].y;
+                v[3].x = v[2].x;
+                v[3].y = v[1].y;
+                v[4].x = v[2].x;
+                v[4].y = v[0].y;
+                v[5].x = v[0].x;
+                v[5].y = v[0].y;
+                v[0].u = e->f4; v[0].v = e->f10;
+                v[1].u = e->f4; v[1].v = e->fC;
+                v[2].u = e->f8; v[2].v = e->fC;
+                v[3].u = e->f8; v[3].v = e->fC;
+                v[4].u = e->f8; v[4].v = e->f10;
+                v[5].u = e->f4; v[5].v = e->f10;
+                x = right;
+            }
+        }
+        f4E &= ~4;
+        f4E &= ~1;
+    }
+    if (f4E & 8) {
+        for (i = 0; i < f50 * 6; i++) {
+            verts[i].color = f48;
+        }
+        f4E &= ~8;
+    }
+    f58->count = f50 * 6;
+    {
+        Mat_001D6600 *p = &f58->mat;
+        _mm_store_ps(&p->m[0], _mm_setzero_ps());
+        _mm_store_ps(&p->m[4], _mm_setzero_ps());
+        _mm_store_ps(&p->m[8], _mm_setzero_ps());
+        _mm_store_ps(&p->m[12], _mm_setzero_ps());
+        p->m[0] = 1.0f;
+        p->m[5] = 1.0f;
+        p->m[10] = 1.0f;
+        p->m[15] = 1.0f;
+    }
+    f58->mat.m[3] = (float)D_002EFDB8->f4->w;
+    f58->mat.m[7] = (float)D_002EFDB8->f4->h;
+    f58->mat.m[0] = f34;
+    f58->mat.m[5] = f34;
+    if (D_002ABDCC != 0) {
+        ((Draw_001D6600 *)f5C)->func_001446B0(f58, 0, -1);
+    }
+}
 
 XboxTextureMap *XboxTextureMap::func_001D6AD0(void *param)
 {
