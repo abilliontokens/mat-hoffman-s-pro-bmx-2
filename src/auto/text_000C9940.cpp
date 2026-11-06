@@ -6,11 +6,11 @@ struct ElemC9 {
     void func_001B1860(int a1, float a2, int a3, float a4, int a5, int a6, float a7, int a8, float a9, int a10, float a11, int a12, int a13);
     void func_001B1B30(float a, int b);
 };
-static __forceinline void setupC9(ElemC9 *o, unsigned int color, float a, float b)
-{
-    o->func_001B2270(color);
-    o->func_001B1860(0, -1.0f, 0xff, a, 0, 0, 0.0f, 0, b, 0, 0.25f, 0, 0);
-}
+#define SETC9(o, color, a, b) \
+    do { \
+        (o)->func_001B2270(color); \
+        (o)->func_001B1860(0, -1.0f, 0xff, a, 0, 0, 0.0f, 0, b, 0, 0.25f, 0, 0); \
+    } while (0)
 
 struct C_000C9940 {
     char pad0[0x2a4];
