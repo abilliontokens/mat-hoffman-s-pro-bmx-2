@@ -43,10 +43,102 @@ struct S_000D1980_Group {
     S_000D1980_List **f3A8;
 };
 
+/* the camera/view object at +0x270 of the page's owner */
+struct S_000D1050_View {
+    char pad0[0x34];
+    int f34;
+    int f38;
+    void func_000BC4C0(float a, float b);
+    void func_000BC4A0(float a, float b);
+    void func_00093280(float a);
+};
+
 struct S_000D1980_Mgr {
     char pad0[0x150];
     S_000D1980_Group *f150;
+    char pad154[0x270 - 0x154];
+    S_000D1050_View *f270;
 };
+
+/* per-profile save record: two arrays of 8 flags */
+struct S_000D1050_Save {
+    int f0;
+    int f4;
+    char pad8[0x5EC - 0x8];
+    int f5EC[8];
+    int f60C[8];
+};
+
+struct S_000D1050_Progress {
+    S_000D1050_Save *func_0005C020(int a);
+    int func_0005C120(int a);
+};
+
+struct S_000D1050_Music {
+    int func_00094EE0();
+    void func_00094C60();
+    void func_00094E40(int a, int b, int c);
+};
+
+struct S_000D1050_Game {
+    int f0;
+    int f4;
+    char pad8[0x2C0 - 0x8];
+    S_000D1050_Progress *f2C0;
+    char pad2C4[0x2D8 - 0x2C4];
+    int f2D8;
+    int f2DC;
+    int f2E0, f2E4, f2E8, f2EC, f2F0, f2F4, f2F8;
+    S_000D1050_Music *f2FC;
+};
+
+struct S_000D1050_Strings {
+    char pad0[0x7C8];
+    int f7C8;
+    char pad7CC[0x838 - 0x7CC];
+    int f838;
+    char pad83C[0x958 - 0x83C];
+    int f958;
+    int f95C;
+    int f960;
+};
+
+struct S_000D1050_StringsHolder {
+    int f0;
+    S_000D1050_Strings *f4;
+};
+
+struct S_000D1050_Root {
+    char pad0[0x2E0];
+    S_000D1050_Game *f2E0;
+    int f2E4;
+    S_000D1050_StringsHolder *f2E8;
+};
+
+struct S_000D1050_Text {
+    void func_0005E840(int a);
+};
+
+struct S_000D1050_Hud {
+    char pad0[0x34];
+    S_000D1050_Text *f34;
+    S_000D1050_Text *f38;
+    S_000D1050_Text *f3C;
+    S_000D1050_Text *f40;
+    S_000D1050_Text *f44;
+    S_000D1050_Text *f48;
+    void func_000BF860(int a, int b, int c, int d);
+};
+
+extern S_000D1050_Root *D_002A8490;
+extern S_000D1050_Hud *D_002B91AC;
+extern float D_0027DE70;
+extern float D_0027ED00;
+extern char D_002A64D0[];
+extern char D_00275678[];
+extern char D_0027ECF0[], D_0027ECE4[], D_0027ECD8[], D_0027ECCC[], D_0027ECBC[], D_0027ECB0[], D_0027ECA0[], D_0027EC94[];
+extern char D_0027EC84[], D_0027EC78[], D_0027EC68[], D_0027EC5C[], D_0027EC50[], D_0027EC44[], D_0027EC38[], D_0027EC2C[];
+int func_001ADCC0(char *dst, int size, const char *fmt, ...);
 
 /* the 10 bytes of "marquee08" */
 struct S_000D1980_Str10 {
