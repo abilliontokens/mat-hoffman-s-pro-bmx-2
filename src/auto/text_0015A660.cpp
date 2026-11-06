@@ -399,6 +399,27 @@ struct JoystickDevice {
 };
 
 
+void *C_0015A660::func_0015A660()
+{
+    unsigned __int64 freq, prev, cur, total;
+    unsigned __int64 t0, t1;
+    func_001D3F50();
+    if (func_001DD128(&freq) == 0)
+        return 0;
+    total = 0;
+    func_001DD117(&prev);
+    t0 = __rdtsc();
+    while ((__int64)freq > 0 && total < freq) {
+        func_001DD117(&cur);
+        total += cur - prev;
+        prev = cur;
+    }
+    t1 = __rdtsc();
+    t1 -= t0;
+    f28 = D_00276278 / (__int64)t1;
+    return this;
+}
+
 void C_0015A740::func_0015A740(void)
 {
     for (int i = 0; i < 150; i++) {
@@ -415,6 +436,43 @@ void C_0015A740::func_0015A740(void)
     }
     f2C = 0;
     f30 = 0;
+}
+
+int HiResMeterX::func_0015A780()
+{
+ extern HMGame *D_002A8490;
+ HMGame *g=D_002A8490;
+ if(g->f274==g->f270-1) {
+ HMOwner *o=g->f18;
+ if(o) {
+ if(id<0) { int t=o->cnt; o->cnt=t+1; id=t; }
+ o=D_002A8490->f18;
+ int cur=o->cur;
+ if(cur==id) func_0013E260(o,id,D_002875D8);
+ int i=0;
+ if(count>0) {
+ int *key=&recs[0].f48;
+ do {
+ int id2=*key;
+ if(id2==-1) id2=id;
+ if(((float *)key)[-16]>D_00275544) {
+ if(id2!=cur) {
+ ((float *)key)[-16]=0; ((float *)key)[-15]=0; key[-18]=0; key[-17]=0;
+ ((float *)key)[-14]=0; ((float *)key)[-13]=0; ((float *)key)[-12]=0; ((float *)key)[-11]=0; ((float *)key)[-9]=0;
+ } else {
+ float v[3]; v[0]=((float *)key)[-15]/((float *)key)[-16];
+ v[1]=((float *)key)[-11]; v[1]+=D_00275460; ((float *)key)[-11]=v[1];
+ v[2]=(((float *)key)[-12]+=((float *)key)[-13]); v[2]/=v[1];
+ func_0013E1F0(D_002A8490->f18,id2,D_002875A0,(char *)(key-8),((float *)key)[-14],((float *)key)[-13],v[2],((float *)key)[-9],v[0]);
+ }
+ }
+ ++i; key+=20;
+ }while(i<count);
+ }
+ }
+ for(int j=0;j<count;++j) {recs[j].f10=0;recs[j].f14=0;}
+ }
+ return 1;
 }
 
 void *C_0015A8E0::func_0015A8E0(int flags) {
@@ -523,13 +581,13 @@ int C_0015A9B0::func_0015A9B0(int a0, int a1, int a2)
 
 int C_0015AB70::func_0015AB70(unsigned int idx)
 {
-    if (idx < f8) {
-        if (f18 == 0) {
-            return 0;
-        }
-        return f18[idx * 0xc] & 2;
+    if (idx >= f8) {
+        return 0;
     }
-    return 0;
+    if (f18 == 0) {
+        return 0;
+    }
+    return f18[idx * 0xc] & 2;
 }
 
 undefined4 C_0015ABF0::func_0015ABF0(int param_1)
