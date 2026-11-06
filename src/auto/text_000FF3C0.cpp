@@ -129,6 +129,12 @@ struct C_000FFF70 {
     void func_000FFF70();
 };
 
+struct C_000FF590 {
+    char pad0[0x28c];
+    int f28c, f290;
+    void func_000FF590(float dt);
+};
+
 struct C_000FF3C0 {
     undefined4 func_000FF3C0(byte param_1);
 };
