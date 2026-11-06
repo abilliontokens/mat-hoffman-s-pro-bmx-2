@@ -26,13 +26,13 @@ struct S_DD1B0_Text {
 /* the text sprite object (0x64 bytes) */
 struct S_DD1B0_Sprite {
     char pad0[0x28];
-    float f28;
+    int f28;
     char pad2C[0x0c];
     int f38;
-    float f3C;
+    int f3C;
     int f40;
     int f44;
-    float f48;
+    int f48;
     char pad4C[0x0c];
     unsigned char f58;
     S_DD1B0_Sprite *func_001D5760(void);
