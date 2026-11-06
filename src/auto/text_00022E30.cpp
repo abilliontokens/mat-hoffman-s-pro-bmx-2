@@ -96,11 +96,27 @@ struct func_000212A0 {
 struct W4_000235C0 {
     u32 x, y, z, w;
     W4_000235C0 *func_000212A0(u32 *p);
+    inline void Set(u32 *p)
+    {
+        x = p[0];
+        y = p[1];
+        z = p[2];
+        w = 0x3f800000;
+    }
+};
+
+struct S_000235C0_V3 {
+    float x, y, z;
 };
 
 struct S_000235C0_Elem {
     float px, py, pz;
-    float dx, dy, dz;
+    union {
+        S_000235C0_V3 d;
+        struct {
+            float dx, dy, dz;
+        };
+    };
 };
 
 struct S_000235C0_Tbl {
