@@ -139,6 +139,7 @@ struct BestScoreOverlay_Text {
         }
     }
     BestScoreOverlay_Text *func_001D5E90(void);
+    void func_0005E960(int a, int b);
     void func_001D5FA0(int font, void *name, int a, int b);
     void func_001D6410(void);
     void func_001D6600(void);
