@@ -235,6 +235,8 @@ struct C_00028070 {
 };
 
 
+static __forceinline float Max_E(float a,float b) { float r; _mm_store_ss(&r,_mm_max_ss(*(__m128 *)&a,*(__m128 *)&b)); return r; }
+static __forceinline float Min_E(float a,float b) { float r; _mm_store_ss(&r,_mm_min_ss(*(__m128 *)&a,*(__m128 *)&b)); return r; }
 struct E_Vec { char p0[0x14]; char *name; char p18[0x28]; float x, y, z; };
 struct E_Mid { char p0[0x14]; char *name; char p18[0x18]; E_Vec *vec; void func_00012140(); };
 struct E_Phys { char p0[0x238]; float x, y, z; };
