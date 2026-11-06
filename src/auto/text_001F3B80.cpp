@@ -27,7 +27,7 @@ void *func_001E8AA5(int size);
 int func_001F4F45(unsigned short *pwc, const unsigned char *s, unsigned int n);
 unsigned __int64 __stdcall func_001F58E0(unsigned __int64 dividend, unsigned __int64 divisor);
 int func_001F46F0(int a, int b, int c);
-short func_001F59DC(int a, void *b);
+short func_001F59DC(unsigned short a, void *b);
 
 struct F3Obj {
     char pad_00[0x8];
