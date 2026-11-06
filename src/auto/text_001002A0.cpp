@@ -85,7 +85,8 @@ struct C_00101010 {
     void v70(int a, int b);
 };
 
-struct C_00100CF0 : VP_101010 {
+struct C_00100CF0 {
+ void **vtbl;
  char pad0[0x120];
  O_101010 *owner;
  char pad128[0x20];
@@ -609,7 +610,7 @@ void C_00100CF0::func_00100CF0(float dt) {
   f28c += dt;
   if (f28c >= D_0027DE74) {
    if (f290 && p->f2A4) { f290=0; f2a8=0; }
-   else { ((VP_101010*)this)->v70((f298=1, f288), f284); f28c=0; }
+   else { *(volatile int *)&f298=1; ((VP_101010*)this)->v70(f288, f284); f28c=0; }
   }
  }
  if (f2b8 && !f2b0) {
