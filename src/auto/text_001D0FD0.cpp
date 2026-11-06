@@ -225,6 +225,7 @@ struct S_15D0_Pad {
     int f726;
     int func_001D15D0(int *out);
 };
+struct S_15D0_Pkt { int id; unsigned short buttons; unsigned char a[8]; short lx, ly, rx, ry; };
 int XboxGame::func_001D0FD0(int param_1)
 {
     int saved = 0;
