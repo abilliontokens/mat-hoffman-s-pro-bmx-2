@@ -299,6 +299,25 @@ void C_0011C3F0::func_0011C3F0(float *m, float dt)
     }
 }
 
+void C_0011C900::func_0011C900(S_0011CA20_V4 a, S_0011CA20_V4 b, S_0011CA20_V4 c, int d)
+{
+    f5C = b;
+    f6C = c;
+    f7C = d;
+    fBC = 1;
+    f48 = a;
+    f34 = a;
+    f12C = 1;
+    f44 = 1;
+    fB8 = 0x40400000;
+    f84->f18 = 0;
+    f84->func_00166C80(fC4, 0);
+    f88->func_00199A70(0, &f24);
+    *f84->f204 = D_002A3BBC;
+    f8C = 0;
+    f188 = f24;
+}
+
 void C_0011CA20::func_0011CA20()
 {
     unk5C = D_002A3BBC;
