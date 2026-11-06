@@ -314,7 +314,8 @@ struct C_535C0 {
     char pad1CC[0xC0];
     int unk28C;
     char pad290[0x28];
-    int unk2B8, unk2BC, unk2C0, unk2C4, unk2C8, unk2CC, unk2D0, unk2D4;
+    float unk2B8, unk2BC, unk2C0, unk2C4;
+    int unk2C8, unk2CC, unk2D0, unk2D4;
     void func_000533E0();
     void func_00051A00();
     void func_00034090();
