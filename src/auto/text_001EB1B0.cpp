@@ -361,11 +361,9 @@ char *__cdecl func_001EB5A0(double *pvalue, char *buf, int ndec, int caps)
     typedef S_StrFlt *(__cdecl *Fltout2Fn)(S_CrtDouble, S_StrFlt *, char *);
     char resultstr[24];
     S_StrFlt flt;
-    int off;
 
     ((Fltout2Fn)func_001F4A07)(*(S_CrtDouble *)pvalue, &flt, resultstr);
-    off = (flt.sign == '-') + (ndec > 0);
-    func_001F48CE(buf + off, ndec + 1, &flt);
+    func_001F48CE(&buf[flt.sign == '-'] + (ndec > 0), ndec + 1, &flt);
     func_001EB4F7(buf, ndec, caps, &flt, 0);
     return buf;
 }
