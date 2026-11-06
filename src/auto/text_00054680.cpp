@@ -41,6 +41,12 @@ float func_0014FBA0(float a, float b);
 extern float D_00277240;
 extern float D_002755EC;
 
+struct C_000549F0 {
+    char pad0[0x1f4]; int f1f4;
+    void func_000549F0(float dt);
+};
+void func_00157A00(float dt);
+
 struct C_000549C0 {
     void *vtbl;
     void *func_000549C0(int flags);
