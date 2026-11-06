@@ -2,7 +2,7 @@
 #include "common.h"
 
 extern int D_00278690, D_002786A0, D_00278678;
-struct S_C5EA0_Clamp { float f10, f14; };
+struct S_C5EA0_Clamp { char pad0[0x10]; float f10, f14; };
 struct S_C5EA0_Inner { S_C5EA0_Clamp *func_0018C070(); };
 struct S_C5EA0_Obj { S_C5EA0_Inner *f0; };
 struct S_C5EA0_Disp { S_C5EA0_Obj *func_0018C160(int id); };
@@ -437,6 +437,23 @@ void __fastcall func_000C5E40(BmxUIPageParkEditor *self)
     D_002B91AC->f80->func_001D6600();
     D_002B91AC->f84->func_001D6600();
     D_002B91AC->f34->func_001D6600();
+}
+
+void BmxUIPageParkEditor::func_000C5EA0(void)
+{
+    int ids[3];
+    ids[0] = D_00278690;
+    ids[1] = D_002786A0;
+    ids[2] = D_00278678;
+    for (int i = 0; i < 3; i++) {
+        S_C5EA0_Obj *o = ((S_C5EA0_Mgr *)D_002A8490)->f2ec->func_0018C160(ids[i]);
+        if (o && o->f0) {
+            S_C5EA0_Clamp *c = o->f0->func_0018C070();
+            if (D_00275AEC > c->f10) c->f10 = 10.0f;
+            if (D_00275AEC < c->f14) c->f14 = 10.0f;
+            else if (c->f14 > c->f10) c->f14 = 10.0f;
+        }
+    }
 }
 
 void BmxUIPageParkEditor::func_000C6420()
