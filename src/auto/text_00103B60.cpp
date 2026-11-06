@@ -1,6 +1,7 @@
 /* 17 functions from 0x00103B60 to 0x00104B00, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+#include "asm_helpers.h"
 extern char D_0027DE5C[];
 extern char D_0027DE38[];
 extern char D_0027DE2C[];
@@ -411,5 +412,9 @@ void func_00104A00(V4_00104A00 *out, V3_00104A00 *src)
     r.z = fabs_00104A00(src->z);
     r.w = 1.0f;
     *out = r;
+}
+
+void func_00104A90(float *out, float *in) {
+    AsmVec3Normalize(out, in);
 }
 
