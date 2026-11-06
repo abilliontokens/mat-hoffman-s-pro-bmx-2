@@ -2,6 +2,7 @@
 #include "common.h"
 #include <xmmintrin.h>
 static __forceinline void FloatToInt_16EC80(int *out, float f) { int * volatile p = out; *p = _mm_cvttss_si32(*(__m128 *)&f); }
+struct L_16EC80 { int * volatile p; float t; };
 
 struct Anim { int unk_0; int unk_4; int unk_8; };
 struct Owner { char pad[0x1b0]; int idx; float unk_1b4; float unk_1b8; };
@@ -154,6 +155,81 @@ int C_0016E320::func_0016E320(float dt)
     f184 = f178;
     f194 = 0.0f;
     return 1;
+}
+
+void func_0016EC80(Table *t, Body *b, float dt)
+{
+    float v[4];
+    int k;
+    int *pk = &k;
+    unsigned f = b->flags & 0x47c;
+    if (f & 8) {
+        float d = dt * b->scale;
+        b->gravity_acc += d;
+        b->y += d;
+        f &= ~8u;
+    }
+    if (f == 0) return;
+    if (f & 4) {
+        float ny;
+        v[0] = dt * b->vx;
+        v[1] = dt * b->vy;
+        v[2] = dt * b->vz;
+        f &= ~4u;
+        b->x += v[0];
+        ny = v[1] + b->y;
+        b->y = ny;
+        b->z += v[2];
+        if (D_002A8910 == 1 && (f & 0x10)) {
+            double y2 = ny;
+            if (ny >= ny && b->cur > D_00286D4C) {
+                b->flags &= 0xffffff8b;
+                if (!(D_002EFC90 & 1)) {
+                    D_002EFC90 |= 1;
+                    D_002EFC8C = D_00275460 / D_002A890C;
+                }
+                b->flags |= 2;
+                if (b->len - b->cur < D_002A890C) {
+                    b->len = D_002A890C;
+                    b->rate = D_002EFC8C;
+                }
+            } else {
+                b->y = y2;
+            }
+        }
+    }
+    if (f == 0) return;
+    if (f & 0x10) {
+        f &= ~0x10u;
+        v[0] = dt * t->ax;
+        v[1] = dt * t->ay;
+        v[2] = dt * t->az;
+        b->vx += v[0];
+        b->vy += v[1];
+        b->vz += v[2];
+    }
+    if (f == 0) return;
+    if (f & 0x20) {
+        f &= ~0x20u;
+        b->vy -= dt * 96.6000061f;
+    }
+    if (f == 0) return;
+    if (f & 0x400) {
+        Anim *a = t->anims;
+        Owner *o = b->owner;
+        if (a) {
+            Anim *an = &a[o->idx];
+            if (an) {
+                int base = an->unk_4;
+                int n = (int)*(volatile float *)&o->unk_1b4;
+                k = b->frame - base;
+                int m = (int)((float)k * o->unk_1b8);
+                FloatToInt_16EC80(pk, b->cur / (b->len * o->unk_1b8));
+                if (k > 0)
+                    b->frame = m * n + (k - 1) + base;
+            }
+        }
+    }
 }
 
 int C_0016EEA0::func_0016EEA0(float dt)
