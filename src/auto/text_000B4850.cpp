@@ -84,6 +84,81 @@ struct BmxStallConstraint {
     void func_000B51C0(void);
 };
 
+extern char D_0027D364[], D_0027D350[], D_0027D348[], D_0027D334[], D_0027D324[], D_0027D314[];
+extern char D_0027D300[], D_0027D2F0[], D_0027D2E8[], D_0027D2D0[], D_0027D2BC[], D_0027D2A8[];
+extern char D_002764A8[], D_0027649C[], D_00276490[], D_00276488[], D_0027D29C[], D_0027D290[];
+extern char D_0027D280[], D_0027D26C[], D_0027CF7C[], D_00276980[], D_0027CED0[];
+extern int D_0027CEFC;
+extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
+int func_001EA426(void *a, void *b);
+void *func_001E8A44(int size);
+void *func_001E83E8(void *p, int size);
+
+struct GRootB4850 {
+    int f0;
+};
+struct GHolderB4850 {
+    char pad0[0x2E0];
+    GRootB4850 *p2E0;
+};
+extern GHolderB4850 *D_002A8490;
+
+struct ParserB4850 {
+    int func_00169710(char *s);
+    void func_00168C20(char *s, int a, int *out);
+    void func_00168C50(char *s, float a, float *out);
+    void func_00168BE0(char *a, char *b, char *c, int d);
+};
+
+struct ObjB1EE0 {
+    ObjB1EE0 *func_000B1EE0(int a);
+    void func_000B4300(char *buf, ParserB4850 *p);
+};
+
+struct BigObjB4850 {
+    void *vtbl;
+    char pad4[0x3C - 4];
+    void *f3C;
+    int f40;
+    int f44;
+    int f48;
+    int f4C;
+    int f50;
+    int f54;
+    char pad58[4];
+    int f5C;
+    int f60;
+    void func_0018C7B0(int a);
+    void *func_000B1860();
+    void func_000B31F0(int a);
+    void func_000B2ED0();
+};
+
+struct Obj14B4850 {
+    int f0;
+    int f4;
+    int f8;
+    int fC;
+    int f10;
+};
+
+struct StopLight {
+    char pad0[0x24];
+    float f24;
+    float f28;
+    int f2C;
+    int f30;
+    int f34;
+    int f38;
+    int f3C;
+    void **f40;
+    void **f44;
+    void **f48;
+    void **f4C;
+    void **f50;
+    void func_000B4850(ParserB4850 *p);
+};
+
 int C_000B5020::func_000B5020(void)
 {
     int i;
@@ -148,11 +223,6 @@ void BmxStallConstraint::func_000B51C0(void)
     v.w = 1.0f;
     C_00198330 *obj = f30->func_00198330(&D_0027D3FC);
     obj->func_00199A70(f30, &v);
-    Vec4 t;
-    t.x = 0.0f;
-    t.y = -obj->f144 + v.y;
-    t.z = v.z;
-    t.w = 1.0f;
-    f44 = t;
+    f44 = Vec4(0.0f, -obj->f144 + v.y, v.z, 1.0f);
 }
 
