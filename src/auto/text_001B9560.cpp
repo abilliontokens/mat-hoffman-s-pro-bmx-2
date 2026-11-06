@@ -7,6 +7,7 @@ extern int D_0028D11C;
 void *func_001E8A44(int size);
 void func_001E891B(void *p);
 
+template <class T> inline const T &Min_001B9C70(const T &a, const T &b) { return (a > b) ? b : a; }
 struct C_001B9C70 {
     int *data;
     int size;
