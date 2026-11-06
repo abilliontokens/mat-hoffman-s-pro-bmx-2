@@ -167,6 +167,7 @@ struct C_0001EDE0 {
     Vec4 unk104;
     void func_0001EDE0(int a0, int a1);
     Vec4 *func_0001EE00(Vec4 *out);
+    Vec4 *func_0001EDE0(Vec4 *out);
 };
 
 struct C_0001EDC0 {
