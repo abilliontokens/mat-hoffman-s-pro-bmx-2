@@ -1,6 +1,7 @@
 /* 7 functions from 0x00027860 to 0x00028130, found by Ghidra. */
 #include "common.h"
 #include <xmmintrin.h>
+extern float D_00275544;
 
 struct S_V4_27860 {
     float x;
