@@ -79,12 +79,7 @@ template <class T> inline const T &min_ref2(const T &a, const T &b)
 
 template <class T> inline T min_val(const T &a, const T &b)
 {
-    return b < a ? b : a;
-}
-
-inline int min_lv(int &a, int &b)
-{
-    return b < a ? b : a;
+    return a > b ? b : a;
 }
 
 inline void str_copy(char *dst, const char *src, int size)
