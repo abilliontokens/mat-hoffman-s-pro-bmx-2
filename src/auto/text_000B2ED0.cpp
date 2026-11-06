@@ -188,6 +188,20 @@ struct C_001884D0 { C_001884D0 *func_001884D0(); };
 struct C_00188700 { C_00188700 *func_00188700(); };
 void *func_001E8920(void *, const void *, unsigned int);
 
+extern char D_0027C588[], D_0027D170[], D_002A5EA0[], D_002A60B0[], D_002A4C10[], D_002A48F8[], D_002A46E8[], D_00275630[], D_002A45E0[], D_00275678[], D_002A47F0[], D_002A2DC4[];
+extern int D_0027D004;
+extern char *D_002B9120;
+struct C_000B3410 {
+    char data[0x2a8];
+    void func_000B3410(int a);
+    void func_000B1F70();
+};
+struct C_0012EF30 { C_0012EF30 *func_0012EF30(int a); };
+struct C_001B4B70 { void func_001B4B70(); };
+struct C_0019ABA0 { void func_0019ABA0(int a,int b); };
+struct C_00133140 { void func_00133140(int a,int b); };
+struct C_001577A0 { void func_001577A0(void *a,int b); };
+struct C_001A2A10 { void func_001A2A10(int a); };
 struct C_000B3DF0 {
     undefined4 func_000B3DF0(byte param_1);
 };
