@@ -82,6 +82,9 @@ struct BmxUIPageHOF4D {
     DelObjHOF4 *arr2FC[2];
     DelObjHOF4 *arr304[2];
     S_000D8A40_Widget *arr30C[5];
+    BmxUIPageHOF4D *func_000D7BF0(int a, int b, int c);
+    void func_001BE4F0(int a, int b, int c);
+    void func_001577A0(void *p, int index);
     void func_001BE3F0();
     void func_000D7B70();
     void func_000D85C0();
