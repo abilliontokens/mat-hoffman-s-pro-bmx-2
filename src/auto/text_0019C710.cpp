@@ -111,6 +111,18 @@ struct S_19CCE0_Frame {
     char ta[12];
     char B[16];
 };
+static __forceinline void Identity_19C710(float *m)
+{
+    __m128 z = _mm_setzero_ps();
+    _mm_store_ps(m, z);
+    _mm_store_ps(m + 4, z);
+    _mm_store_ps(m + 8, z);
+    _mm_store_ps(m + 12, z);
+    m[0] = 1.0f;
+    m[5] = 1.0f;
+    m[10] = 1.0f;
+    m[15] = 1.0f;
+}
 static __forceinline void Set3_19CCE0(S_19CCE0_Vec3 *dst, S_19CCE0_Vec3 src)
 {
     *dst = src;
@@ -173,6 +185,50 @@ struct SoultreeCollisionObject {
 
 extern "C" void __stdcall func_0019BBD0(unsigned short param_1, int *param_2, int param_3, char *param_4, char *param_5);
 extern "C" void __stdcall func_0019BD20(unsigned short param_1, int *param_2, char *param_3, char *param_4, int param_5);
+
+void SoultreeCollisionObject::func_0019C710(float *src, int a2, short a3, int n)
+{
+    void *func_001E8AA5(int size);
+    void func_00129510(int *, int *, float *, float *, int, short, int);
+    struct V3 { float x, y, z; };
+    char *b = (char *)this;
+    int i, j;
+    ((VObj_0019C710 *)this)->v1b();
+    for (j = 0; j < 4; j++) {
+        float *m = (float *)(b + 0xb0 + j * 0x40);
+        for (i = 0; i < 16; i++) m[i] = 0.0f;
+        m[0] = 1.0f; m[5] = 1.0f; m[10] = 1.0f; m[15] = 1.0f;
+    }
+    *(short *)(b + 0x1bc) = 0;
+    *(int *)(b + 0x1c0) = 0;
+    *(int *)(b + 0x1c4) = 0;
+    *(int *)(b + 0x1c8) = 0;
+    *(short *)(b + 0x1cc) = (short)n;
+    char *o = (char *)func_001E8AA5(0x80);
+    *(char **)(b + 0x1d4) = o;
+    *(short *)(b + 0x1ce) = a3;
+    *(int *)(b + 0x1b8) = 0;
+    V3 *v = (V3 *)func_001E8A44(n * 12);
+    if (v) {
+        for (i = 0; i < n; i++) { v[i].x = 0; v[i].y = 0; v[i].z = 0; }
+    }
+    *(V3 **)(b + 0x1b0) = v;
+    *(int *)(b + 0x1b4) = 0;
+    V3 *dst = *(V3 **)(b + 0x1b0);
+    for (i = 0; i < n; i++) dst[i] = *(V3 *)((char *)src + i * 16);
+    func_00129510((int *)(b + 0x1c4), (int *)(b + 0x1c8), (float *)(b + 0xf0), src, a2, a3, n);
+    o = *(char **)(b + 0x1d4);
+    *(int *)o = 0;
+    *(short *)(o + 8) = *(short *)(b + 0x1cc);
+    *(short *)(o + 0xa) = *(short *)(b + 0x1ce);
+    *(int *)(o + 0xc) = *(int *)(b + 0x1c4);
+    *(int *)(o + 0x10) = *(int *)(b + 0x1c8);
+    *(short *)(o + 0x20) = 0;
+    *(int *)(o + 0x70) = 1;
+    *(V3 *)(o + 0x14) = *(V3 *)(b + 0x1b0);
+    float *p = (float *)(*(int *)(b + 0x1c4) + *(unsigned short *)(b + 0x1bc) * 36 + 0x18);
+    *(float *)(b + 0x1d0) = sqrtf(p[0] * p[0] + p[1] * p[1] + p[2] * p[2]);
+}
 
 void SoultreeCollisionObject::func_0019CB00(void)
 {
@@ -387,15 +443,17 @@ void *SoultreeCollisionObject::func_0019D650(int flags)
 
 int SoultreeCollisionObject::func_0019D680(void *param_1)
 {
-    unsigned int result;
+    int result;
+
     if (((int *)param_1)[0x14] != 6) {
         return 0;
     }
-    result = (unsigned int)func_0019BB80(param_1);
+    result = func_0019BB80(param_1);
     if (result != 0) {
-        func_0019BA70();
-        func_0019B890();
+        SoultreeCollisionObject *p = this;
+        p->func_0019BA70();
+        p->func_0019B890();
     }
-    return (int)result;
+    return result;
 }
 
