@@ -172,7 +172,7 @@ static __forceinline S_1561_State *Init1561C(void *p) { S_1561_State *s = (S_156
 static __forceinline S_1561_State *Init1561D(void *p) { S_1561_State *s = (S_1561_State *)p; s->vtbl = &D_00286E84; s->kind = 4; s->owner = 0; return s; }
 static __forceinline S_1561_State *Init1561E(void *p) { S_1561_State *s = (S_1561_State *)p; s->vtbl = &D_00286E94; s->kind = 5; s->owner = 0; return s; }
 template <class T> inline T min_1561(T a, T b) { return a > b ? b : a; }
-#define CopyPath1561(dst, src, len, lim, res) { int ma, mb, n; len = strlen(src); lim = 0x103; ma = lim; mb = len; res = min_1561(ma, mb); n = res; func_001E8920(dst, src, n); (dst)[n] = 0; }
+#define CopyPath1561(dst, src, len, lim, res) { int ma, mb, n, r; len = strlen(src); lim = 0x103; ma = lim; mb = len; r = ma; if (r > mb) r = mb; res = r; n = res; func_001E8920(dst, src, n); (dst)[n] = 0; }
 struct C_1561 {
     char pad0[0x3c];
     S_1561_F3C *unk3C;
@@ -227,12 +227,14 @@ void C_1561::func_001561A0(S_1561_Stream * volatile stream, S_1561_Arg1 * volati
     struct { C_1561 * volatile self; volatile int s0; volatile int s1; volatile int s2; } t;
     void *mem;
     C_1561 *p;
+    S_1561_Arg1Sub *sub;
     t.self = this;
     arg1->func_00150900(&V.a, &V.b);
-    if (arg1->unk2C == 0) {
+    sub = arg1->unk2C;
+    if (sub == 0) {
         V.c = D_002A79B8;
     } else {
-        ((S_1561_1A4Out *)arg1->unk2C->unk1A4)->unk4->func_00199B00(&V.c, 0);
+        ((S_1561_1A4Out *)sub->unk1A4)->unk4->func_00199B00(&V.c, 0);
     }
     stream->func_00168BE0(D_00275AE4, D_00275630, L.buf, 0x104);
     t.self->unk39C = arg1;
