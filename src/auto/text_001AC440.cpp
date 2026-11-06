@@ -465,25 +465,29 @@ char *func_001ACD40(int ndec, char fmt, double value, int alt, int *sign, char *
     return buf;
 }
 
-void __fastcall func_001ACF30(unsigned int value, int unused, char fmt, int *outlen)
-{
- char *end; register int shift;
- char *p = end;
- unsigned int mask = (1U << shift) - 1;
- char *digits = fmt == 'X' ? D_0028C12C : D_0028C118;
- do { char c = digits[value & mask]; --p; *p = c; value = value >> shift; } while (value != 0);
- *outlen = end - p;
-}
-
-void __fastcall func_001ACF80(int shift, int value, char fmt, int *outlen)
+void __cdecl func_001ACF30(char fmt, int *outlen)
 {
     char *end;
+    unsigned int value;
+    int shift;
+    char *p = end;
+    unsigned int mask = (1U << shift) - 1;
+    char *digits = fmt == 'X' ? D_0028C12C : D_0028C118;
+    do { char c = digits[value & mask]; --p; *p = c; value = value >> shift; } while (value != 0);
+    *outlen = end - p;
+}
+
+void __cdecl func_001ACF80(char fmt, int *outlen)
+{
+    char *end;
+    int value;
+    int shift;
     register char *p = end;
     register int mask = (1 << shift) - 1;
     register char *digits = fmt == 'X' ? D_0028C154 : D_0028C140;
 
     if ((unsigned int)value > 0xffffffff) {
-        func_001ACF30(value, 0, fmt, outlen);
+        func_001ACF30(fmt, outlen);
         return;
     }
     do {
