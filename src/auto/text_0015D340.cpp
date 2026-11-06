@@ -20,7 +20,7 @@ static __forceinline void Normalize_DD80(float *volatile outArg, const float *vo
 }
 static __forceinline float Min_DD80(float a, float b) {
  float r;
- _mm_store_ss(&r,_mm_min_ss(_mm_load_ss(&a),_mm_load_ss(&b)));
+ _mm_store_ss(&r,_mm_min_ss(_mm_set_ss(a),_mm_set_ss(b)));
  return r;
 }
 static __forceinline void Xform_DD80(float *volatile outArg,float *volatile inArg,float *volatile mArg) {
