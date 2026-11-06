@@ -61,7 +61,7 @@ struct Model_107AE0 {
  char p4[0x50];
  char *f54;
  char p58[0x4c];
- unsigned int fa4;
+ unsigned char fa4[4];
  void func_00180E00(int,Vec_107AE0*,int,int);
  float func_00133F10(int);
 };
