@@ -71,6 +71,65 @@ struct S_002EFDB8 {
 };
 extern S_002EFDB8 *D_002EFDB8;
 
+struct R146_Call { void func_0014A650(int); void func_00142D00(int); };
+struct R146_Entry { int a; int value; int c,d; };
+struct R146_Table { char pad[0x14]; R146_Entry *entries; };
+extern R146_Table *D_002A751C, *D_002A6D84, *D_002AA6C0;
+struct R146_Vector { int x,y,z,w; };
+struct R146_Constant { int index; R146_Vector value; };
+struct R146_State { int stage,state; unsigned value; };
+struct R146_Pair { int state; unsigned value; };
+struct R146_Texture { virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual R146_Texture *v4(int); char pad[0xb4]; int texture, palette; };
+struct C_001467A0 {
+ char pad[0xa]; unsigned char count; char padb[0xd]; short textures[4];
+ char colors[4]; short pad24, id26,id28,pad2a;
+ R146_State *states; R146_Pair *render; R146_Constant *constants;
+ int stateCount,renderCount,constantCount,save44,save48;
+ int func_001AFF80(int);
+ void func_001467A0();
+};
+void func_0014A8A0(); void func_00142D20();
+void __stdcall func_00200510(int,int);
+void __stdcall func_001FD8E0(int,unsigned);
+void __stdcall func_001FDA60(int,unsigned);
+void __stdcall func_001FDAA0(int,unsigned);
+void __stdcall func_001FD9F0(int,int,unsigned);
+void __fastcall func_001FD020(int,unsigned);
+void __fastcall func_001FEC30(int,R146_Vector *);
+void __fastcall func_001FEBD0(int,R146_Vector *);
+extern unsigned D_0020C6DC,D_0020C6E0[],D_0020C710[],D_002751E8[],D_002752F0[],D_0020C8E0[];
+extern unsigned __imp__PsCreateSystemThreadEx[];
+void __stdcall func_001FCFF0(unsigned);
+void __stdcall func_001FD890(unsigned);
+void __stdcall func_001FD400(unsigned);
+void __stdcall func_001FD770(unsigned);
+void __stdcall func_001FD7C0(unsigned);
+void __stdcall func_001FD820(unsigned);
+void __stdcall func_001FD500(unsigned);
+void __stdcall func_001FE490(unsigned);
+void __stdcall func_001FE520(unsigned);
+void __stdcall func_001FE5B0(unsigned);
+void __stdcall func_001FD450(unsigned);
+void __stdcall func_001FD4C0(unsigned);
+void __stdcall func_001FD540(unsigned);
+void __stdcall func_001FD690(unsigned);
+void __stdcall func_001FD710(unsigned);
+void __stdcall func_001FD380(unsigned);
+void __stdcall func_001FE810(unsigned);
+void __stdcall func_001FE890(unsigned);
+void __stdcall func_001FE790(unsigned);
+void __stdcall func_001FE7D0(unsigned);
+void __stdcall func_001FD3C0(unsigned);
+void __stdcall func_001FD5A0(unsigned);
+void __stdcall func_001FE8E0(unsigned);
+void __stdcall func_001FD610(unsigned);
+void __stdcall func_001FE620(unsigned);
+void __stdcall func_001FE650(unsigned);
+void __stdcall func_001FE6C0(unsigned);
+void __stdcall func_001FE730(unsigned);
+void __stdcall func_001FE750(unsigned);
+void __stdcall func_001FE770(unsigned);
+
 struct C_00147490 {
     void *vtbl;
     C_00147490 *func_00147490();
@@ -171,6 +230,71 @@ C_00146E20 *C_00146E20::func_00146E20()
     vtbl2 = (void *)&D_00286170;
     unk18 = 0;
     return this;
+}
+
+int C_00146E50::func_00146E50(S_1472_Config *cfg)
+{
+    int v10 = 0;
+    int v3c = 0;
+    int v38 = 6;
+    int v48 = 0;
+    int v20 = 0x2e;
+    int v44 = 1;
+    int v28 = 1;
+    int v40 = 0;
+    int v0c = 0;
+    int v14 = 0;
+    int v30 = 0;
+    int v1c;
+    int v4c = 0;
+    int v24;
+    int v2c;
+    int v34;
+    int v18 = 0;
+    char bufB[0x80];
+    char bufA[0x80];
+
+    D_00011420(cfg);
+    v24 = ((unsigned char *)D_002EFDB8)[0x2e];
+    v2c = ((unsigned char *)D_002EFDB8)[0x2d];
+    v34 = D_002EFDB8->f2C & 0xff;
+    v1c = D_002EFDB8->f28;
+    cfg->func_00168BE0((const char *)&D_002862D4, &D_00275630, bufA, -1);
+    cfg->func_00168BE0((const char *)&D_002862C4, &D_00275630, bufB, -1);
+    cfg->func_00168C20(&D_002862B0, v10, &v10);
+    cfg->func_00168C20(&D_0028629C, v3c, &v3c);
+    cfg->func_00168C20(&D_00286280, v38, &v38);
+    cfg->func_00168C20(&D_00286264, v48, &v48);
+    cfg->func_00168C20(&D_0028624C, v20, &v20);
+    cfg->func_00168C20(&D_00286234, v44, &v44);
+    cfg->func_00168C20(&D_00286224, v28, &v28);
+    cfg->func_00168C20(&D_00286214, v40, &v40);
+    cfg->func_00168C20(&D_00286204, v0c, &v0c);
+    cfg->func_00168C20(&D_002861F4, v14, &v14);
+    cfg->func_00168C20(&D_002861E4, v30, &v30);
+    cfg->func_00168C50(&D_002861D8, v1c, &v1c);
+    cfg->func_00168C20(&D_002861C0, v4c, &v4c);
+    cfg->func_00168C20(&D_002861B4, v24, &v24);
+    cfg->func_00168C20(&D_002861A4, v2c, &v2c);
+    cfg->func_00168C20(&D_00286194, v34, &v34);
+    cfg->func_00168C20(&D_0028618C, v18, &v18);
+    bit0 = v18;
+    f4 = v10;
+    f8 = v3c;
+    if (bufA[0] == '&') {
+        f10 = func_00144AE0(bufA, v10, v3c, v38);
+    }
+    if (bufB[0] == '&') {
+        f14 = func_00144BF0(bufB, f4, f8, v20);
+    } else if (func_001EA426(bufB, (const char *)&D_00286184) == 0) {
+        f14 = 0;
+    }
+    f1C = (v44 != 0 ? 0xf0 : 0) | (v28 != 0 ? 3 : 0);
+    f20 = ((((v40 & 0xff) | (v30 << 8)) << 8 | (v0c & 0xff)) << 8) | (v14 & 0xff);
+    f28 = 0;
+    f24 = v1c;
+    f30 = (((unsigned char)v24 << 8 | (unsigned char)v2c) << 8) | (v34 & 0xff);
+    return 1;
 }
 
 C_00147280 *C_00147280::func_00147280()
