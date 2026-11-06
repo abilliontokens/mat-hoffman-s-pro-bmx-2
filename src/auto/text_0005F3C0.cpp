@@ -55,9 +55,11 @@ struct S_0005F3C0_2E0 {
 struct S_0005F3C0_8490 {
     char pad0[0x2E0];
     S_0005F3C0_2E0 *f2E0;
-    char pad2E4[0x8];
+    char pad2E4[0x4];
+    struct S_0005F3C0_2E8 *f2E8;
     struct Lookup_5F *f2EC;
 };
+struct S_0005F3C0_2E8 { int f0; int *f4; };
 struct Mid_5F { S_0005FBD0_Obj *func_0018C070(); };
 struct Lookup_5F { int *func_0018C160(int); };
 extern int D_002786A0, D_00278690, D_00278678;
@@ -251,6 +253,72 @@ void BmxInGameMenu::func_0005FBD0(void)
     }
 }
 
+int BmxInGameMenu::func_0005FC30(void)
+{
+    int a = GAT(int, 0x270);
+    if (GAT(int, 0x274) >= a - 1) {
+        Obj_5FC *p = *(Obj_5FC **)((char *)D_002EFDB8 + 4);
+        S6_5FC s;
+        S6_5FC u;
+        int i;
+        if (a > 1) {
+            s = *(S6_5FC *)((char *)p + 0x1e0);
+            s.r[0] = 0; s.r[1] = 0; s.r[2] = 0x280; s.r[3] = 0x1c0;
+            p->func_0012B2B0(&s, &u);
+        }
+        if (AT(int, 0x12c)) {
+            char buf[50];
+            char *q = *(char **)(*(char **)((char *)D_002A8490 + 0x2e8) + 4);
+            func_001ADCC0(buf, 0x32, D_002786BC, *(int *)(q + 0x1028), AT(int, 0x11c) + 1, *(int *)(q + 0x1100));
+            (*(Obj_5FC **)((char *)this + 0xec))->func_0005E840((int)buf);
+        } else {
+            int v;
+            if (AT(int, 0x120)) {
+                AT(Obj_5FC *, 0x124)->func_001D6600();
+                if (*(int *)(*(char **)((char *)D_002A8490 + 0x2e0) + 4) != 0)
+                    v = *(int *)(*(char **)(*(char **)((char *)D_002A8490 + 0x2e8) + 4) + 0xec0);
+                else
+                    v = *(int *)(*(char **)(*(char **)((char *)D_002A8490 + 0x2e8) + 4) + 0xfb8);
+            } else {
+                char *q = *(char **)(*(char **)((char *)D_002A8490 + 0x2e8) + 4);
+                v = *(int *)(q + 0xe98);
+            }
+            AT(Obj_5FC *, 0xec)->func_0005E840(v);
+        }
+        AT(Obj_5FC *, 0xec)->func_001D6600();
+        vf32();
+        if (unk110) {
+            vf30();
+            unk110 = 0;
+        } else if (unk120) {
+            if (*(int *)(*(char **)((char *)D_002A8490 + 0x2e0) + 4) != 0) {
+                Obj_5FC **e = &AT(Obj_5FC *, 0x84);
+                for (i = 4; i; i--, e++) (*e)->func_001B1980();
+                vf29();
+            }
+        }
+        if (unk120) {
+            char *q = *(char **)(*(char **)((char *)D_002A8490 + 0x2e8) + 4);
+            Obj_5FC **e = &AT(Obj_5FC *, 0xe4);
+            (*e)->func_0005E840(*(int *)(q + 0x7b8));
+            q = *(char **)(*(char **)((char *)D_002A8490 + 0x2e8) + 4);
+            AT(Obj_5FC *, 0xe8)->func_0005E840(*(int *)(q + 0x7c0));
+            for (i = 2; i; i--, e++) (*e)->func_001D6600();
+        } else {
+            char *q = *(char **)(*(char **)((char *)D_002A8490 + 0x2e8) + 4);
+            AT(Obj_5FC *, 0xe4)->func_0005E840(*(int *)(q + 0x7c8));
+            AT(Obj_5FC *, 0xe4)->func_001D6600();
+            q = *(char **)(*(char **)((char *)D_002A8490 + 0x2e8) + 4);
+            AT(Obj_5FC *, 0xe8)->func_0005E840(*(int *)(q + 0x808));
+            AT(Obj_5FC *, 0xe8)->func_001D6600();
+        }
+        ((Obj_5FC *)this)->func_00157960();
+        if (GAT(int, 0x270) > 1)
+            p->func_0012B2B0(&u, 0);
+    }
+    return 1;
+}
+
 int BmxInGameMenu::func_00060110(void)
 {
     int i;
@@ -323,21 +391,24 @@ void BmxInGameMenu::func_00060220(void)
 
 void BmxInGameMenu::func_000602B0(void)
 {
-    if (unk130 != 0) {
-        *(volatile int *)&D_002A8490->f2E0->f4;
-        unk100 = 0;
-        unk110 = 1;
-        unk130 = 0;
-        unkF4 = 0;
-        vf6();
-        unk104->v35();
-        unk104->unk1F4 = 1;
-        unk108 = 1;
-        vf18(0);
-        unk104->unk21 &= 0xfb;
-        unkFC = 1;
-        unk128 = 1;
+    if (unk130 == 0) {
+        unk118 = 0;
+        unk114 = -1;
+        return;
     }
+    *(volatile int *)&D_002A8490->f2E0->f4;
+    unk100 = 0;
+    unk110 = 1;
+    unk130 = 0;
+    unkF4 = 0;
+    vf6();
+    unk104->v35();
+    unk104->unk1F4 = 1;
+    unk108 = 1;
+    vf18(0);
+    unk104->unk21 &= 0xfb;
+    unkFC = 1;
+    unk128 = 1;
     unk118 = 0;
     unk114 = -1;
 }
