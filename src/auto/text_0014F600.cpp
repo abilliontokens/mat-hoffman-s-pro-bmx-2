@@ -356,9 +356,11 @@ float func_0014FB30(float v)
     float ax;
     float r;
     float sq;
+    int bits;
 
     s.x = v;
-    s.tmp = *(int *)&s.x & 0x7fffffff;
+    bits = *(volatile int *)&s.x;
+    s.tmp = bits & 0x7fffffff;
     ax = *(float *)&s.tmp;
     if (ax > D_00275460) {
         sq = ax * ax;
@@ -367,7 +369,7 @@ float func_0014FB30(float v)
         sq = ax * ax;
         r = ax / (sq * D_00286AC0 + D_00275460);
     }
-    if (*(volatile float *)&v < D_00275544) {
+    if (v < D_00275544) {
         r = -r;
     }
     return r;
