@@ -3,6 +3,7 @@
 #include "ghidra.h"
 #include <math.h>
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 struct C_001AEBB0 {
     undefined4 func_001AEBB0(byte param_1);
 };
@@ -623,8 +624,9 @@ float C_1AE570::func_001AE530(float x, float y)
     extern float D_0028AC88;
     float dx = x - D_00278788;
     float dy = y - D_0028AC88;
+    float s = dx * dx + dy * dy;
 
-    return sqrtf(dx * dx + dy * dy);
+    return AsmSqrtF(s);
 }
 
 int C_1AE570::func_001AE570(void)
