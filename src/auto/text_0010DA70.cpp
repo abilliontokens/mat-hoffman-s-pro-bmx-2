@@ -247,7 +247,6 @@ struct C_0010DED0 {
  void func_00108E30(int,int);
  void func_0010DED0(int,int);
    int func_0010E030(int,int);
-  int *CountSlot(int mode, int slot) { return &cntE20[mode * 16 + slot]; }
  };
 
 struct C_0010E260 {
