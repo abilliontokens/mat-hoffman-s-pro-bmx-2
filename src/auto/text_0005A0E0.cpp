@@ -39,7 +39,7 @@ struct C_Ini {
     void func_001691E0(void);
 };
 struct C_Tex { char pad[0x40]; int cnt; };
-struct C_Mgr { C_Tex *func_00163DC0(char *a, char *b); };
+struct C_Mgr { C_Tex *func_00163DC0(C_Ini *ini, char *a, char *b); };
 extern C_Dev *D_002BEAAC;
 extern C_Mgr *D_002EF7D0;
 extern char D_00276C90[], D_002780CC[], D_002A4A00[], D_002780C0[], D_00277298[], D_00277288[], D_00277268[], D_00276C08[], D_002780AC[], D_002780A0[], D_002A5660[];
