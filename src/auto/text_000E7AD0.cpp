@@ -11,7 +11,7 @@ struct C_001B1980 {
     void func_001B17D0(void *a);
 };
 
-extern char D_0027E83C[0x11];
+extern const char D_0027E83C[0x11];
 extern char D_00281A48[];
 extern "C" int __cdecl memcmp(const void *a, const void *b, unsigned int n);
 
