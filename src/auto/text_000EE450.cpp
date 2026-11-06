@@ -1,5 +1,6 @@
 /* 1 function from 0x000EE450 to 0x000F029C, found by Ghidra. */
 #include "common.h"
+#include "asm_helpers.h"
 #include <xmmintrin.h>
 struct Lookup_EE { void *func_0018C160(int id); };
 struct Root_EE { char pad0[0x2EC]; Lookup_EE *f2EC; };
@@ -57,65 +58,72 @@ static __forceinline void Round_EE(int * volatile out, float f) { *out = _mm_cvt
 
 C_000EDF00 *C_000EDF00::func_000EE450(int a0, int a1, int a2)
 {
+    C_000EDF00 * volatile self = this;
+#define AT(T, off) (*(T *)((off) + (int)self))
     int i;
+    float y;
+    int off;
+    int off2;
     func_001BE4F0(a0, a1, a2);
     D_002A8490->f2EC->func_0018C160((int)D_00278690);
     D_002A8490->f2EC->func_0018C160((int)D_002786A0);
     D_002A8490->f2EC->func_0018C160((int)D_00278678);
-    for (i = 0; i < 4; i++) {
+    for (off = 0x680; off < 0x690; off += 4) {
         Img_EE *o = (Img_EE *)func_001E8A44(0x64);
-        f680[i] = o ? o->func_001D5760() : 0;
+        AT(Img_EE *, off) = o ? o->func_001D5760() : 0;
     }
-    f680[0]->func_001D5810(D_002786B0, 100.0f, 90.0f, 0);
-    width_EE(f680[0], 0x435d0000);
-    color_EE(f680[0]);
-    f680[1]->func_001D5810(D_002786B0, 321.0f, 90.0f, 0);
-    width_EE(f680[1], 0x435d0000);
-    color_EE(f680[1]);
-    uv_EE(f680[1]);
-    f680[2]->func_001D5810(D_002786B0, 321.0f, 360.0f, 0);
-    width_EE(f680[2], 0x435d0000);
-    color_EE(f680[2]);
-    pos_EE(f680[2], 0x43a08000, 0x43b48000);
-    rot_EE(f680[2], 0x40490fd9);
-    uv_EE(f680[2]);
-    f680[3]->func_001D5810(D_002786B0, 542.0f, 360.0f, 0);
-    width_EE(f680[3], 0x435d0000);
-    color_EE(f680[3]);
-    pos_EE(f680[3], 0x44078000, 0x43b48000);
-    rot_EE(f680[3], 0x40490fd9);
+    self->f680[0]->func_001D5810(D_002786B0, 100.0f, 90.0f, 0);
+    width_EE(self->f680[0], 0x435d0000);
+    color_EE(self->f680[0]);
+    self->f680[1]->func_001D5810(D_002786B0, 321.0f, 90.0f, 0);
+    width_EE(self->f680[1], 0x435d0000);
+    color_EE(self->f680[1]);
+    uv_EE(self->f680[1]);
+    self->f680[2]->func_001D5810(D_002786B0, 321.0f, 360.0f, 0);
+    width_EE(self->f680[2], 0x435d0000);
+    color_EE(self->f680[2]);
+    pos_EE(self->f680[2], 0x43a08000, 0x43b48000);
+    rot_EE(self->f680[2], 0x40490fd9);
+    uv_EE(self->f680[2]);
+    self->f680[3]->func_001D5810(D_002786B0, 542.0f, 360.0f, 0);
+    width_EE(self->f680[3], 0x435d0000);
+    color_EE(self->f680[3]);
+    pos_EE(self->f680[3], 0x44078000, 0x43b48000);
+    rot_EE(self->f680[3], 0x40490fd9);
     for (i = 0; i < 2; i++) {
         Img_EE *o = (Img_EE *)func_001E8A44(0x64);
-        f690[i] = o ? o->func_001D5760() : 0;
+        self->f690[i] = o ? o->func_001D5760() : 0;
         if (i == 0)
-            f690[0]->func_001D5810(D_0027E328, 309.0f, 82.0f, 0);
+            self->f690[0]->func_001D5810(D_0027E328, 309.0f, 82.0f, 0);
         else
-            f690[i]->func_001D5810(D_0027E31C, 309.0f, 350.0f, 0);
-        color_EE(f690[i]);
+            self->f690[i]->func_001D5810(D_0027E31C, 309.0f, 350.0f, 0);
+        color_EE(self->f690[i]);
     }
-    for (i = 0; i < 9; i++) {
+    off2 = 0x4b0;
+    for (i = 0, off = 0x614; off2 < 0x540; i++, off += 4, off2 += 0x10) {
         Img_EE *o = (Img_EE *)func_001E8A44(0x64);
-        float y;
-        f698[i] = o ? o->func_001D5760() : 0;
+        AT(Img_EE *, off + 0x84) = o ? o->func_001D5760() : 0;
         y = i * D_002757F0 + D_0027F978;
-        f698[i]->func_001D5810(D_00281DC0, 150.0f, y, 0);
-        f614[i] = y;
-        Round_EE(&f4B0[i * 4], f614[i]);
-        Round_EE(&f540[i * 4], f614[i]);
-        f420[i * 4] = f4B0[i * 4];
+        AT(Img_EE *, off + 0x84)->func_001D5810(D_00281DC0, 150.0f, y, 0);
+        AT(float, off) = y;
+        Round_EE(&AT(int, off2), AT(float, off));
+        Round_EE(&AT(int, off2 + 0x90), AT(float, off));
+        AT(int, off2 - 0x90) = AT(int, off2);
         o = (Img_EE *)func_001E8A44(0x64);
-        f6BC[i] = o ? o->func_001D5760() : 0;
-        f6BC[i]->func_001D5810(D_00281DB4, 150.0f, y, 0);
+        AT(Img_EE *, off + 0xa8) = o ? o->func_001D5760() : 0;
+        AT(Img_EE *, off + 0xa8)->func_001D5810(D_00281DB4, 150.0f, y, 0);
     }
-    for (i = 0; i < 9; i++) {
+    off2 = 0x76;
+    for (off = 0x638; off < 0x65c; off += 4, off2 += 0x28) {
         Text_EE *t = (Text_EE *)func_001E8A44(0x184);
-        f638[i] = t ? t->func_001B12C0(1) : 0;
-        f638[i]->func_001B13A0(D_002786A0, D_0027F6F4, 0, 0x1e);
-        f65C[i] = 0x76 + i * 0x28;
-        f638[i]->func_001B19C0(200, f65C[i], 0);
-        f638[i]->func_001B2270(0xffcccccc);
-        f638[i]->func_001B1C10(D_0028F5DC);
-        func_001577A0(f638[i], -1);
+        AT(Text_EE *, off) = t ? t->func_001B12C0(1) : 0;
+        AT(Text_EE *, off)->func_001B13A0(D_002786A0, D_0027F6F4, 0, 0x1e);
+        AT(int, off + 0x24) = off2;
+        AT(Text_EE *, off)->func_001B19C0(200, AT(int, off + 0x24), 0);
+        AT(Text_EE *, off)->func_001B2270(0xffcccccc);
+        AT(Text_EE *, off)->func_001B1C10(D_0028F5DC);
+        self->func_001577A0(AT(Text_EE *, off), -1);
     }
-    return this;
+    return self;
+#undef AT
 }
