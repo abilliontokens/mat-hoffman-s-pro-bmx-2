@@ -1,5 +1,6 @@
 /* 9 functions from 0x00150480 to 0x00151130, found by Ghidra. */
 #include "common.h"
+#include "asm_helpers.h"
 extern int D_002B911C, D_002B9110;
 static inline float abs_150970(float v) { volatile float t = v; int bits = *(volatile int *)&t & 0x7fffffff; return *(float *)&bits; }
 struct C_00150F60 {
@@ -162,6 +163,18 @@ static __forceinline void ResetVec_150F80(int *p) {
     p[0]=D_002A789C; p[1]=D_002A78A0; p[2]=D_002A78A4; p[3]=D_002A78A8;
 }
 
+int C_00150480::func_00150480()
+{
+    if ((unk21 & 1) && unk3C != 0) {
+        D_0020C6DC |= 0x2000;
+        D_0020CA50 = 1;
+        func_001FD400(unk24);
+        D_0020C6DC |= 0x2000;
+        D_0020CA54 = 0;
+    }
+    return 1;
+}
+
 void *C_001507E0::func_001507E0(int flags) {
     vtbl = (void *)&D_00286B04;
     func_00157660();
@@ -187,6 +200,10 @@ C_00150810 *C_00150810::func_00150810(int a0, float a1, float a2, float a3, floa
     D_002EFDB8->unk2C = a0;
     unk50 = 1;
     return this;
+}
+
+void func_00150890(float *out, float *in) {
+    AsmVec3Normalize(out, in);
 }
 
 void C_00150900::func_00150900(Vec4_150900 *a0, Vec4_150900 *a1) {
