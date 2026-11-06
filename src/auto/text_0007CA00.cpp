@@ -35,15 +35,16 @@ struct Menu {
 };
 struct BmxSprite {
     char pad0[0x28];
-    float w;
-    float h;
+    int w;
+    int h;
     char pad30[0x8];
     unsigned int color;
     float u0, v0, u1, v1;
     float sx, sy;
     char pad54[4];
     unsigned char flags;
-    void Init(const char* name, float a, float b, int c);
+    BmxSprite* func_001D5760();
+    void func_001D5810(char* name, float x, float y, int z);
 };
 struct BmxMenu {
     char pad0[0x80];
@@ -55,15 +56,16 @@ struct BmxMenu {
     char padc0[8];
     BmxSprite* sc8;
     BmxSprite* scc;
-    char padd0[0x1c];
-    BmxSprite* sec[5];
+    char padd0[8];
+    BmxSprite* sec[5][2];
     BmxSprite* s100[14];
     BmxSprite* s138;
     char pad13c[0x10];
     int* s14c;
     char pad150[0x28];
     int s178;
-    BmxMenu* func_0007CA00(int a);
+    BmxMenu* func_0007CA00(void* a0);
+    void func_000689E0();
 };
 struct C_0007D6D0 {
     undefined4 func_0007D6D0(byte param_1);
@@ -149,6 +151,30 @@ struct BmxEditorMenu {
     int func_00157960();
 };
 
+
+int BmxEditorMenu::func_0007CF00()
+{
+    char buf[0x32];
+
+    if ((D_002B9050 & 1) == 0) {
+        D_002B9050 |= 1;
+        D_002B904C = D_002A7CB8->func_00026500(D_00278AF0, 0);
+    }
+    if (D_002A8490->f274 > 0)
+        return 1;
+    D_002EFDB8->v8();
+    D_002EFDB8->v7(1);
+    if (f174 != 0) {
+        func_001ADCC0(buf, 0x32, D_002786BC, D_002A8490->f2E8->f4->f1028, f170 + 1, D_002A8490->f2E8->f4->f1100);
+        f13C->func_0005E840(buf);
+    } else {
+        f13C->func_0005E840(D_002A8490->f2E8->f4->fE98);
+    }
+    f178->func_00093120();
+    func_00069AB0();
+    func_00069340();
+    return func_00157960();
+}
 
 undefined4 C_0007D6D0::func_0007D6D0(byte param_1)
 {
