@@ -7,43 +7,6 @@ extern char D_0000FFF8[];
 extern char D_0000F81F[];
 extern char D_0000FFFC[];
 
-static __forceinline void Accumulate555(unsigned int &sum, unsigned int pair)
-{
-    unsigned int a = pair & (unsigned int)D_0000FFFF;
-    unsigned int b = pair >> 16;
-    sum += (b << 15) & 0x1f00000;
-    sum += (a & 0x3e0) << 15;
-    sum += b & 0x7c1f;
-    sum += a & 0x7c1f;
-}
-
-static __forceinline void Downsample555Row(unsigned int *src, unsigned short *dst, int count, int srcPitch)
-{
-    do {
-        unsigned int sum = 0;
-        unsigned int a;
-        unsigned int b;
-        a = *src & (unsigned int)D_0000FFFF;
-        b = *src >> 16;
-        sum += (b * 0x8000) & 0x1f00000;
-        sum += (a & 0x3e0) << 15;
-        sum += b & 0x7c1f;
-        sum += a & 0x7c1f;
-        src = (unsigned int *)((unsigned short *)src + srcPitch);
-        a = *src & (unsigned int)D_0000FFFF;
-        b = *src >> 16;
-        sum += (b * 0x8000) & 0x1f00000;
-        sum += (a & 0x3e0) << 15;
-        sum += b & 0x7c1f;
-        sum += a & 0x7c1f;
-        src = (unsigned int *)((unsigned short *)src - srcPitch);
-        sum >>= 2;
-        *dst = (unsigned short)((sum & 0x7c1f) + ((sum >> 15) & 0x3e0));
-        src++;
-        dst++;
-    } while (--count);
-}
-
 #pragma optimize("y", on)
 int _func_001755A0(unsigned int flag, unsigned short* src, int w, int h, int dstride, int sstride)
 {
