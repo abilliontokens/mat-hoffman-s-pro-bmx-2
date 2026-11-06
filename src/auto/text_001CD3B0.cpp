@@ -59,6 +59,22 @@ struct C_001CD590 {
     int func_001CD590(int a, int b);
 };
 
+extern "C" void __stdcall D_00220AE0(void *obj, int arg);
+
+/* XboxMusic (slot 18 pause/resume handler) */
+struct C_001CD510 {
+    char pad0[0xa0];
+    unsigned char fa0;
+    char pada1[0x17];
+    void *fb8;
+    void *fbc;
+    char padc0[8];
+    int fc8;
+    int fcc;
+    int func_001CD510(int a);
+    int func_001CB6D0(void);
+};
+
 extern int D_0028F004;
 void *func_001E8A44(int size);
 
