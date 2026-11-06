@@ -53,14 +53,23 @@ static __forceinline void Cross_1B8920(V4_1B8920 * volatile out, V4_1B8920 * vol
 struct Item_1B8920 {
     char pad0[0x18c];
     void *f18C;
+    char pad190[0x190];
     void func_00197E70(float *out);
     void func_001994C0(int flags, float *axis, float *v2);
+    void func_00199110(int a1, float *a2, float *a3, int a4, int a5, int a6);
+    void func_00198390(void);
+    void func_001983A0(void);
+    void func_00182530(float t);
+    void func_0019AC50(void);
 };
 
 struct Sub_1B8920 {
     char pad0[0x104];
     int f104;
-    char pad108[0x118 - 0x108];
+    char pad108[0x10C - 0x108];
+    float f10C;
+    float f110;
+    float f114;
     V4_1B8920 f118;
     char pad128[0x158 - 0x128];
     Item_1B8920 **f158;
@@ -71,7 +80,11 @@ struct C_1B8920_Mgr {
     int f24;
     Sub_1B8920 **f28;
     void func_001B8920(void);
+    void func_001578D0(void);
 };
+
+extern "C" int func_001E8858(float x);
+extern float D_00275544;
 
 struct S_001B9460_Quat {
     u32 x;
@@ -113,6 +126,79 @@ static inline void set_str(C_001B9460 * volatile *pself, int off, const char *sr
     n = *pcount;
     func_001E8920((char *)*pself + off, (const char *)&D_00275630, n);
     ((char *)*pself)[off + n] = 0;
+}
+
+void C_1B8920_Mgr::func_001B8920(void)
+{
+    C_1B8920_Mgr * volatile self = this;
+    V4_1B8920 P = {0, 0, 0, 1.0f};
+    V4_1B8920 c2 = {0, 0, 0, 1.0f};
+    V4_1B8920 axis = {0, 0, 0, 1.0f};
+    V4_1B8920 v2 = {0, 0, 0, 1.0f};
+    V4_1B8920 rot = {0, 0, 0, 1.0f};
+    V4_1B8920 pos = {0, 0, 0, 1.0f};
+    V4_1B8920 c3 = {0, 0, 0, 1.0f};
+    V4_1B8920 q = {0, 0, 0, 1.0f};
+    float len;
+    float angle;
+    V4_1B8920 cam;
+    V4_1B8920 B;
+    int i;
+    int j;
+
+    cam = *(V4_1B8920 *)(*(char **)((char *)*(void **)&D_002EFDB8 + 4) + 0x170);
+    for (i = 0; i < self->f24; i++) {
+        Sub_1B8920 *sub = self->f28[i];
+        if (sub->f158 == 0)
+            continue;
+        for (j = 0; j < sub->f104; j++) {
+            Item_1B8920 *obj = sub->f158[j];
+            if (obj == 0)
+                continue;
+            void *t = obj->f18C;
+            if (t != 0 && *(unsigned short *)((char *)*(void **)((char *)t + 4) + 0x90) != D_002EFE50)
+                continue;
+            obj->func_00197E70(&pos.x);
+            float dz = pos.z - cam.z;
+            float dy = pos.y - cam.y;
+            float dx = pos.x - cam.x;
+            P.x = dx;
+            P.y = dy;
+            P.z = dz;
+            P.w = 1.0f;
+            float sq = dx * dx + dy * dy + dz * dz;
+            _mm_store_ss(&len, _mm_sqrt_ss(_mm_set_ss(sq)));
+            norm_1B8920(&P.x, &P.x);
+            q = sub->f118;
+            if (q.x == *(float *)&D_002AA9F4.x || q.y == *(float *)&D_002AA9F4.y || q.z == *(float *)&D_002AA9F4.z) {
+                obj->func_001994C0(0, &axis.x, &v2.x);
+                float d = q.y * axis.y + q.x * axis.x + q.z * axis.z;
+                B = axis;
+                axis.x -= q.x * d;
+                axis.y -= q.y * d;
+                axis.z -= q.z * d;
+                axis.w = 1.0f;
+                norm_1B8920(&axis.x, &axis.x);
+                float d2 = q.y * P.y + q.x * P.x + q.z * P.z;
+                P.x -= q.x * d2;
+                P.y -= q.y * d2;
+                P.z -= q.z * d2;
+                P.w = 1.0f;
+                norm_1B8920(&P.x, &P.x);
+                angle = func_0014F890(axis.x * P.x + axis.y * P.y + axis.z * P.z);
+                Cross_1B8920(&q, &axis, &P);
+                norm_1B8920(&q.x, &q.x);
+                func_00158390(angle, B, q, &rot);
+                norm_1B8920(&rot.x, &rot.x);
+            } else {
+                rot = P;
+                Cross_1B8920(&c3, &rot, &D_002AAA14);
+                norm_1B8920(&c3.x, &c3.x);
+                Cross_1B8920(&c2, &c3, &rot);
+                norm_1B8920(&c2.x, &c2.x);
+            }
+        }
+    }
 }
 
 C_001B9460 *C_001B9460::func_001B9460(void) {
