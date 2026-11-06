@@ -78,7 +78,8 @@ extern float D_00275544;
 struct S_107070_Vec { float x, y, z, w; };
 struct S_107070_Obj { void func_001994C0(int a, S_107070_Vec *b, S_107070_Vec *c); };
 struct S_107070_Ptr { int pad0; S_107070_Obj *f4; };
-extern float D_00276288, D_002756DC, D_002755E8, D_00275460, D_00282A70, D_00276DD4;
+extern float D_00276288, D_002756DC, D_002755E8, D_00275460, D_00282A70;
+extern const float D_00276DD4;
 int func_00011260(int a, int b);
 struct C_00107070 {
     char pad0[0x744];
@@ -216,7 +217,6 @@ void __fastcall func_00106B20(C_00106B20 * volatile self) {
     int active;
     float amount;
     float ratio;
-    int bits;
     float strength;
     float rate;
     if (D_002A8490->f2a4->f1c8 == 0) {
@@ -248,8 +248,8 @@ void __fastcall func_00106B20(C_00106B20 * volatile self) {
     q = self;
     if (*(int *)(q->f1e8 + 0x54) == 1 && active) {
         ratio = q->f744 / *(float *)(q->f1ec + 0x3c);
-        bits = *(int *)&ratio & 0x7fffffff;
-        strength = *(float *)&bits * amount;
+        *(int *)&strength = *(int *)&ratio & 0x7fffffff;
+        strength = strength * amount;
         rate = .1f;
         q = self;
         if (q->f1598 || *(int *)(*(char **)((char *)D_002A8490 + 0x2e0) + 0x190 + q->fa28 * 4) == 12) {
@@ -377,7 +377,7 @@ void C_00107070::func_00107070(float dt)
         if (f1648 == 0x3f666666) f1648 = 0;
     }
     if (f1fa0 > D_00275544) {
-        if (l.b.y * f74c + l.b.x * f748 + l.b.z * f750 > D_00275544) {
+        if (l.b.x * f748 + l.b.y * f74c + l.b.z * f750 > D_00275544) {
             t = f744 * f1654 * dt;
             if (t > D_00282A70) t = D_00282A70;
             v = t * f1fa0 + f163c;
@@ -389,8 +389,8 @@ void C_00107070::func_00107070(float dt)
         f1644 -= dt;
         if (f1644 < *(float *)&f1648) f1644 = *(float *)&f1648;
     } else {
-        if (f1648 == 0x3f666666) f1644 += dt * D_00276DD4;
-        else f1644 += dt * D_002755E8;
+        if (f1648 == 0x3f666666) f1644 += dt * 4.0f;
+        else f1644 += dt * 0.5f;
         if (f1644 > *(float *)&f1648) {
             f1644 = *(float *)&f1648;
             if (f1648 == 0x3f666666) f1648 = 0;
