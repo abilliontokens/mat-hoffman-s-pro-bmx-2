@@ -25,6 +25,8 @@ struct C_0005E9F0 {
 
 void func_001E891B(void *p);
 
+static inline const int &imin(const int &a, const int &b) { return b < a ? b : a; }
+
 extern "C" unsigned int strlen(const char *s);
 extern "C" int strcmp(const char *a, const char *b);
 char *func_001E8920(char *dst, const char *src, int n);
