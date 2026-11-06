@@ -63,17 +63,16 @@ struct S_0005F3C0_8490 {
 struct S_0005F3C0_2E8 { int f0; int *f4; };
 struct Label_5F3 {
     char pad0[0x28];
-    float f28;
+    int w28;
     char pad2C[0x10];
-    float f3C;
-    float f40;
-    float f44;
-    float f48;
+    float a3C;
+    float b40;
+    float c44;
+    float d48;
     char pad4C[0xC];
-    u8 f58_0 : 1;
-    u8 f58_1 : 1;
-    u8 f58_2 : 1;
-    void SetF28(float v) { if (v != f28) { f58_0 = 1; f28 = v; } }
+    u8 flags;
+    void SetW() { if (w28 != 0x435d0000) { w28 = 0x435d0000; flags |= 1; } }
+    void SetQuad() { unsigned char f = flags | 4; a3C = 1.0f; b40 = 0.0f; c44 = 0.0f; d48 = 1.0f; flags = f; }
     Label_5F3 *func_001D5760(void);
     void func_001D5810(char *font, float x, float y, int a);
     void func_001D5810(const char *font, float x, float y, int a);
