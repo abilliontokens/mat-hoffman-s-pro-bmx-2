@@ -17,14 +17,14 @@ struct C_000CB6B0_Widget {
 
 struct C_001D5760 {
     char pad0[0x28];
-    float f28;
-    float f2C;
+    unsigned int f28;
+    unsigned int f2C;
     char pad30[0xb];
     unsigned char f3B;
-    float f3C;
-    float f40;
-    float f44;
-    float f48;
+    unsigned int f3C;
+    unsigned int f40;
+    unsigned int f44;
+    unsigned int f48;
     char pad4C[0xc];
     unsigned char f58;
     C_001D5760 *func_001D5760();
