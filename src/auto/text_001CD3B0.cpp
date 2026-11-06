@@ -4,7 +4,7 @@
 struct C_001CDC20;
 struct S_001CD3B0_Sub { char pad0[0x28]; int f28; };
 struct S_001CD3B0_IdList { int count; int *ids; };
-struct S_001CD3B0_Entry { char pad0[0xc]; union { S_001CD3B0_IdList list; struct { int count; int *ids; }; }; char pad14[0x30]; };
+struct S_001CD3B0_Entry { char pad0[0xc]; S_001CD3B0_IdList list; char pad14[0x30]; };
 struct C_001CD3B0 {
     virtual void v0();  virtual void v1();  virtual void v2();  virtual void v3();
     virtual void v4();  virtual void v5();  virtual void v6();  virtual void v7();
