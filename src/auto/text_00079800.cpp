@@ -30,7 +30,7 @@ struct FPSSave_Mem {
     void func_00094960(int a0);
     void func_000949B0(float a0, float a1, int a2);
 };
-struct FPSSave_Opt { void func_0005C390(); int func_0005C310(int a0, int a1); };
+struct FPSSave_Opt { void func_0005C390(); int func_0005C310(float a0, int a1); };
 struct S_InGameObj {
     char pad0[0xA40]; int fA40; char padA44[0xA4C - 0xA44]; float fA4C;
     char padA50[0xA54 - 0xA50]; float fA54; int fA58; int fA5C;
@@ -101,6 +101,148 @@ struct C_0007A0D0 {
     undefined4 func_0007A0D0(byte param_1);
 };
 
+
+int BmxSinglePlayerInGameMenu::func_00079800(float dt)
+{
+    int i;
+    int id;
+    S_SelectObj *obj;
+    for (i = 0; i < unk104->f90; i++) {
+        id = D_002A8490->p2E0->f300[i];
+        obj = D_002A8490->p8->objs[id];
+        if (unk12C == 0) {
+            if (obj->v16() == 0) {
+                unk11C = id;
+                unk128 = 1;
+                unk12C = 1;
+            }
+        }
+        if (unk12C != 0) {
+            if (obj->v16() != 0) {
+                unk12C = 0;
+            }
+        }
+    }
+    if (unk104->f1C0->func_00097FD0() != 0 && unk104->f1C0->func_000976A0() == 2 && D_002A8490->p2E0->f48 == 7) {
+        D_002A8490->p2E0->p2C0->func_0005C390();
+        unk184 = 1;
+    } else {
+        unk184 = 0;
+    }
+    if (unkF4 != 0 || unkF8 != 0) {
+        unkF0 += dt;
+        if (unkF0 >= D_00278500 && unkF4 != 0) {
+            switch (unk100) {
+            case 0:
+                unk104->f64->p4C0->v31(0, 1);
+                if (unk104->f64->f594 != 0 && unk104->f118 != 0) {
+                    D_002A8490->p2E0->p2FC->v18(0);
+                    func_00060220();
+                } else {
+                    D_002A8490->p2E0->p2FC->v18(0);
+                    func_00060220();
+                }
+                break;
+            case 2:
+                unkFC = 0;
+                unk130 = 1;
+                vf4();
+                unk104->f194->func_0006DF20(D_002A8490->p2E0->f300[0]);
+                return 1;
+            case 3:
+                unkFC = 0;
+                unk130 = 1;
+                vf4();
+                unk104->f1A0->func_000717E0();
+                D_002A8490->p2E0->p2FC->v18(0);
+                D_002A8490->p2E0->p2FC->func_000949B0(100.0f, 1.0f, 0);
+                break;
+            case 1:
+                if (unk184 != 0) {
+                    int v;
+                    D_002A8490->p2E0->p2FC->func_00094960(0);
+                    D_002A8490->p2A4->p64->p4C0->v31(0, 1);
+                    D_002A8490->p2E0->p2FC->v18(0);
+                    D_002A8490->p2A4->f154 = 1;
+                    D_002A8490->p2F0->func_0001EDC0(11);
+                    switch (D_002A8490->p2E0->f190) {
+                    case 0: v = 0; break;
+                    case 2: v = 1; break;
+                    case 4: v = 2; break;
+                    case 5: v = 3; break;
+                    case 7: v = 4; break;
+                    case 9: v = 5; break;
+                    case 10: v = 6; break;
+                    case 11: v = 7; break;
+                    case 13: v = 8; break;
+                    case 14: v = 9; break;
+                    default: v = 0; break;
+                    }
+                    D_002A8490->p2E0->p2C0->func_0005C310((int)dt, 8);
+                    unk184 = 0;
+                    return 1;
+                }
+                for (i = 0; i < unk104->f64->p4E0->f24; i++) {
+                    unk104->f64->p4E0->arr1a8[i]->func_001067B0();
+                }
+                unk104->f64->p4C0->v31(0, 1);
+                if (unk104->f64->f594 != 0 && unk104->f118 != 0)
+                    D_002A8490->p2E0->p2FC->v18(0);
+                unk104->func_00032720();
+                unk104->v39();
+                unk104->func_00032740();
+                unk104->f1C0->func_000999B0();
+                func_00060220();
+                if (unk104->f90 == 1) {
+                    if (unk104->f68->func_0005B960(3, (float)unk104->f64->p4E0->arr1a8[0]->fA58) != 0) goto fail1;
+                    if (unk104->f68->func_0005B960(1, unk104->f64->p4E0->arr1a8[0]->fA4C) != 0) goto fail1;
+                    if (unk104->f68->func_0005B960(5, (float)unk104->f64->p4E0->arr1a8[0]->fA5C) != 0) goto fail1;
+                    if (unk104->f68->func_0005B960(4, (float)unk104->f64->p4E0->arr1a8[0]->fA40) != 0) goto fail1;
+                    if (unk104->f68->func_0005B960(2, unk104->f64->p4E0->arr1a8[0]->f1058) != 0) goto fail1;
+                    if (unk104->f68->func_0005B960(0, unk104->f64->p4E0->arr1a8[0]->fA54) != 0) goto fail1;
+                }
+                unk104->f16C->f64 = 0;
+                D_002A8490->f124 = 0;
+                unk104->f16C->func_00064A40();
+                unk104->v39();
+                return 1;
+            fail1:
+                unk104->f164->fFC = 1;
+                unk104->f164->func_0006E970(0);
+                return 1;
+            case 4:
+                func_00060220();
+                unk104->f1C4->func_001041C0();
+                unk104->func_00032530();
+                unk104->f64->p4C0->v31(0, 1);
+                if (unk104->f64->f594 != 0 && unk104->f118 != 0)
+                    D_002A8490->p2E0->p2FC->v18(0);
+                if (unk104->f90 == 1) {
+                    if (unk104->f68->func_0005B960(3, (float)unk104->f64->p4E0->arr1a8[0]->fA58) != 0) goto fail4;
+                    if (unk104->f68->func_0005B960(1, unk104->f64->p4E0->arr1a8[0]->fA4C) != 0) goto fail4;
+                    if (unk104->f68->func_0005B960(5, (float)unk104->f64->p4E0->arr1a8[0]->fA5C) != 0) goto fail4;
+                    if (unk104->f68->func_0005B960(4, (float)unk104->f64->p4E0->arr1a8[0]->fA40) != 0) goto fail4;
+                    if (unk104->f68->func_0005B960(2, unk104->f64->p4E0->arr1a8[0]->f1058) != 0) goto fail4;
+                    if (unk104->f68->func_0005B960(0, unk104->f64->p4E0->arr1a8[0]->fA54) != 0) goto fail4;
+                }
+                unk104->f16C->f64 = 1;
+                D_002A8490->f124 = 0;
+                unk104->f16C->func_00064A40();
+                unk104->v39();
+                break;
+            fail4:
+                unk104->f164->fFC = 0;
+                unk104->f164->func_0006E970(0);
+                break;
+            }
+            unkF4 = 0;
+            unkF0 = 0;
+        }
+        D_002A8490->p2E0->p2FC->v18(0);
+        func_00060220();
+    }
+    return func_0005EA10(dt);
+}
 
 undefined4 C_0007A0D0::func_0007A0D0(byte param_1)
 {
