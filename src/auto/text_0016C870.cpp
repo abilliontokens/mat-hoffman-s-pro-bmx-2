@@ -144,6 +144,11 @@ extern float D_002755E8;
 extern float D_0027AA20;
 extern float D_00275460;
 extern float D_00275544;
+extern float D_002756CC;
+extern float D_0027AB80;
+extern float D_0027AB84;
+extern float D_002886C0;
+extern int D_002EFB68;
 extern "C" int __cdecl func_001E8833(void);
 extern "C" int __cdecl func_00011260(int a, int b);
 
