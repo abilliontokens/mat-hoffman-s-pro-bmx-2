@@ -53,16 +53,22 @@ extern float D_002EFD9C, D_002AB30C;
 void *func_001E8A44(int size);
 void __stdcall func_00011FF0(void *p, int stride, int count, void *ctor);
 extern int func_00128910;
-extern void *D_002BEAAC;
 struct Reader180600 {
     void func_0013C8A0(int handle, void *dst, int size, int count);
     int func_0013C960(int handle, void *dst, int size);
 };
+extern Reader180600 *D_002BEAAC;
 struct Rec180600 {
-    char pad0[4];
+    int f0;
     float f4;
-    float f8, fC, f10, f14, f18, f1C, f20;
+    short s8, sA;
+    float fC, f10, f14, f18, f1C, f20;
 };
+struct Pair180600 {
+    float f0, f4, f8, fC, f10, f14, f18, f1C;
+};
+extern "C" void func_00104A00(float *dst, float *src);
+static __forceinline float Sqrt180600(float x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(*(__m128 *)&x)); return r; }
 struct C_00180600 {
     virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7(); virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11(); virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15(); virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19(); virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23(); virtual void v24(); virtual void v25(); virtual void v26(); virtual void func_000EBE90v();
     char pad4[0xAC];
@@ -83,13 +89,9 @@ C_001804F0 *C_001804F0::func_001804F0(float *p) {
     float f0 = D_002F0798 * p[0];
     float f1 = D_002F0798 * p[1];
     float f2 = D_002F0798 * p[2];
-    int tmp;
-    FloatToInt(&tmp, D_002891BC * f0);
-    unk0 = (short)tmp;
-    FloatToInt(&tmp, D_002891BC * f1);
-    unk2 = (short)tmp;
-    FloatToInt(&tmp, D_002891BC * f2);
-    unk4 = (short)tmp;
+    unk0 = (short)(D_002891BC * f0);
+    unk2 = (short)(D_002891BC * f1);
+    unk4 = (short)(D_002891BC * f2);
     return this;
 }
 
@@ -110,6 +112,60 @@ void C_001805F0::func_001805F0(void) {
     int func_0017F550(...);
     D_002B9344 = unk104;
     func_0017F550();
+}
+
+extern float D_00275460;
+void C_00180600::func_00180600(int a0, int handle)
+{
+    Reader180600 *reader = (Reader180600 *)D_002BEAAC;
+    int count;
+    if (handle == -1)
+        return;
+    func_000EBE90v();
+    fF4 = a0;
+    reader->func_0013C8A0(handle, &mB0, 4, 1);
+    reader->func_0013C8A0(handle, &mC0, 4, 1);
+    reader->func_0013C8A0(handle, &mD0, 4, 1);
+    reader->func_0013C8A0(handle, &mE0, 4, 1);
+    reader->func_0013C8A0(handle, &mB4, 4, 1);
+    reader->func_0013C8A0(handle, &mC4, 4, 1);
+    reader->func_0013C8A0(handle, &mD4, 4, 1);
+    reader->func_0013C8A0(handle, &mE4, 4, 1);
+    reader->func_0013C8A0(handle, &mB8, 4, 1);
+    reader->func_0013C8A0(handle, &mC8, 4, 1);
+    reader->func_0013C8A0(handle, &mD8, 4, 1);
+    reader->func_0013C8A0(handle, &mE8, 4, 1);
+    reader->func_0013C8A0(handle, &mBC, 4, 1);
+    reader->func_0013C8A0(handle, &mCC, 4, 1);
+    reader->func_0013C8A0(handle, &mDC, 4, 1);
+    reader->func_0013C8A0(handle, &mEC, 4, 1);
+    reader->func_0013C8A0(handle, &fF8, 4, 1);
+    reader->func_0013C960(handle, &count, 4);
+    {
+        void *mem = func_001E8A44(count * 0x24);
+        if (mem != 0)
+            func_00011FF0(mem, 0x24, count, &func_00128910);
+        fFC = (Rec180600 *)mem;
+    }
+    if (count > 0) {
+        int i;
+        float tmp[4];
+        for (i = 0; i < count; i++) {
+            Rec180600 *rec = (Rec180600 *)((char *)fFC + i * 0x24);
+            float v[4];
+            reader->func_0013C8A0(handle, rec, 4, 1);
+            reader->func_0013C8A0(handle, &tmp[0], 4, 1);
+            reader->func_0013C8A0(handle, &tmp[1], 4, 1);
+            reader->func_0013C8A0(handle, &tmp[2], 4, 1);
+            v[0] = tmp[0]; v[1] = tmp[1]; v[2] = tmp[2]; v[3] = 1.0f;
+            {
+                C_001804F0 *s = ((C_001804F0 *)((char *)tmp + 0x40))->func_001804F0(v);
+                rec->f14 = (float)s->unk4 * D_002EFD9C * D_002AB30C;
+                rec->fC = (float)s->unk0 * D_002EFD9C * D_002AB30C;
+                rec->f10 = (float)s->unk2 * D_002EFD9C * D_002AB30C;
+            }
+        }
+    }
 }
 
 void *C_00180DD0::func_00180DD0(unsigned int flags) {
