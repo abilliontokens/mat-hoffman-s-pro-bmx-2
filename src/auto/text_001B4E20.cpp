@@ -142,7 +142,25 @@ struct C_001B5000 {
     char pad44[8];
     int f4C;
     S_00186EF0 **f50;
+    void *f54;
+    int f58;
+    char **f5C;
+    int f60;
+    int *f64;
+    int **f68;
+    int **f6C;
+    int *f70;
+    char pad74[4];
+    int *f78;
+    char **f7C;
+    char pad80[0x14];
+    int *f94;
+    char pad98[8];
+    char fA0[0x104];
+    char pad1A4[4];
+    struct C_001B5240_Obj *f1A8;
     int func_001B5000(S_001B5000_Stream *s);
+    void func_001B5240(S_001B5000_Stream *s);
 };
 
 struct C_001B5D30 {
