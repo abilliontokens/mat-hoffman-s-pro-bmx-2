@@ -308,7 +308,7 @@ struct S_0018B990_B {
     void func_00157600(int a);
     S_0018B990_B *init() { func_00157600(1); vtbl = &D_0028983C; f24 = 0; f2c = 0; f30 = 0; f34 = 0; return this; }
 };
-struct S_0018B990_Z4 { int a, b, c, d; void set(int v) { a = v; b = v; c = v; d = v; } };
+struct S_0018B990_Z4 { float a, b, c, d; void set(float v) { a = v; b = v; c = v; d = v; } };
 struct S_0018B990_BV {
     virtual void v00(); virtual void v04(); virtual void v08(); virtual void v0C();
     virtual void v10(); virtual void v14(); virtual void v18(); virtual void v1C();
