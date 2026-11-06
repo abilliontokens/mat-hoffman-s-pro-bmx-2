@@ -109,6 +109,15 @@ struct C_001B13A0 { static void func_001B13A0(char *a, char *b, int c, int d); }
 struct C_001C01E0 { void func_001C01E0(char *s); };
 struct C_001577A0 { void func_001577A0(C_001B1980 *o, int a); };
 struct C_001B17D0 { void func_001B17D0(char *s); };
+struct S_00103_Btn {
+    void func_001B1860(int a, int b, int c, int d, int e, int f, int g, int h, int i, int j, int k, int l, int m);
+    void func_001B2270(int c);
+    void func_001B19C0(int a, int b, int c);
+    void func_001B1B80(float f, S_00103_Vec4 v, int c);
+    void func_001B1AB0(int a, int b);
+    void func_001B1BF0(int a);
+    void func_001B19A0(int a);
+};
 struct C_00103450 {
     void *vtbl;
     char pad4[0x24];
@@ -365,11 +374,13 @@ C_001033D0 *C_001033D0::func_001033D0(void *a, void *b)
 
 C_00103450 *C_00103450::func_00103450(S_Cfg *cfg, int a)
 {
-    S_00103_Vec4 v34, v4c, v14, v24;
+    S_00103_Vec4 v34, v4c, v14, v24, v40;
+    char buf[0x190];
+    int c0, c1, c2;
 
+    ((C_001BF600 *)this)->func_001BF600(cfg);
     v34.x = v34.y = v34.z = 0.0f; v34.w = 1.0f;
     v4c.x = v4c.y = v4c.z = 0.0f; v4c.w = 1.0f;
-    ((C_001BF600 *)this)->func_001BF600(cfg);
     cfg->func_00168550(D_0027DE5C, unk1B8, 0x104);
     cfg->func_00168BE0(D_0027DE4C, unk1B8, unkF0, 0x80);
     cfg->func_00168C20(D_0027DE38, 0, &unk3C4);
@@ -387,7 +398,35 @@ C_00103450 *C_00103450::func_00103450(S_Cfg *cfg, int a)
     unk3EC = *(int *)&v24.x;
     unk3E8 = *(int *)&v34.z;
     unk3F4 = *(int *)&v24.y;
-    (void)a;
+    v14.x = 40.0f; v14.y = 40.0f; v14.z = 40.0f; v14.w = 1.0f;
+    cfg->func_00168CB0(D_0027DE44, &v14, &v24);
+    c0 = func_001E8858(v24.y);
+    c1 = func_001E8858(v24.z);
+    c2 = func_001E8858(v24.w);
+    unk3C0 = ((c0 | 0xffffff00) << 8 | (c1 & 0xff)) << 8 | (c2 & 0xff);
+    v14.x = 255.0f; v14.y = 255.0f; v14.z = 255.0f; v14.w = 1.0f;
+    if (cfg->func_00168CB0(D_0028282C, &v14, &v40))
+        unk3CC = 1;
+    c0 = func_001E8858(v40.x);
+    c1 = func_001E8858(v40.y);
+    c2 = func_001E8858(v40.z);
+    unk3D0 = ((c0 | 0xffffff00) << 8 | (c1 & 0xff)) << 8 | (c2 & 0xff);
+    cfg->func_00168C20(D_00282824, 0, &unk190);
+    unk28 = a;
+    if (memcmp(buf, D_0028281C, 6) == 0)
+        unk178 = D_0028F5EC;
+    else if (memcmp(buf, D_00282810, 0xb) == 0)
+        unk178 = D_0028F5E8;
+    else if (memcmp(buf, D_00282800, 0xf) == 0)
+        unk178 = D_0028F5E4;
+    else if (memcmp(buf, D_002827EC, 0x11) == 0)
+        unk178 = D_0028F5E0;
+    else
+        unk178 = D_0028F5DC;
+    cfg->func_00168550(D_0027C294, buf, 0x190);
+    if (unk190 != 0) {
+        ((C_001C01E0 *)this)->func_001C01E0(buf);
+    }
     return this;
 }
 
