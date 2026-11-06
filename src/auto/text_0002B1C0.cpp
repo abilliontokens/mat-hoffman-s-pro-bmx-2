@@ -49,45 +49,54 @@ struct V4_0002B1C0 {
 
 #define V4_AT(off) ((V4_0002B1C0 *)((char *)p + (off)))
 #define V4_CPY(off, src) (*V4_AT(off) = *(V4_0002B1C0 *)&(src))
+#define V4_COPY4(off, s0, s1, s2, s3) { unsigned int *dst_ = (unsigned int *)((char *)p + (off)); dst_[0] = s0; dst_[1] = s1; dst_[2] = s2; dst_[3] = s3; }
+#define V4_CPY_A(off) V4_COPY4(off, D_002A10F0, D_002A10F4, D_002A10F8, D_002A10FC)
+#define V4_CPY_B(off) V4_COPY4(off, D_002A1120, D_002A1124, D_002A1128, D_002A112C)
+#define V4_CPY_C(off) V4_COPY4(off, D_002A1110, D_002A1114, D_002A1118, D_002A111C)
+
+static __forceinline void Identity_0002B1C0(S_0002B1C0_Mat *m)
+{
+    m->r0 = _mm_setzero_ps(); m->r1 = _mm_setzero_ps(); m->r2 = _mm_setzero_ps(); m->r3 = _mm_setzero_ps();
+    ((float *)m)[0] = 1.0f; ((float *)m)[5] = 1.0f; ((float *)m)[10] = 1.0f; ((float *)m)[15] = 1.0f;
+}
 
 void *C_0002C100::func_0002B1C0(int param)
 {
     unsigned int * volatile p = (unsigned int *)this;
-    unsigned int *q;
     V4_0002B1C0 *q4;
     int i;
     S_0002B1C0_Mat mat1;
     S_0002B1C0_Mat mat2;
     func_00157600(param);
     p[0] = (unsigned int)&D_0027661C;
-    new ((char *)p + 0x2c) V4_0002B1C0;
-    new ((char *)p + 0x3c) V4_0002B1C0;
-    q4 = (V4_0002B1C0 *)((char *)p + 0x4c); i = 3;
-    do { new (q4) V4_0002B1C0; q4 = q4 + 1; i = i - 1; } while (i != 0);
-    new ((char *)p + 0x7c) V4_0002B1C0;
-    new ((char *)p + 0x8c) V4_0002B1C0;
-    new ((char *)p + 0x9c) V4_0002B1C0;
-    new ((char *)p + 0xac) V4_0002B1C0;
-    new ((char *)p + 0xbc) V4_0002B1C0;
-    new ((char *)p + 0xcc) V4_0002B1C0;
-    new ((char *)p + 0xdc) V4_0002B1C0;
-    new ((char *)p + 0xec) V4_0002B1C0;
-    new ((char *)p + 0xfc) V4_0002B1C0;
-    new ((char *)p + 0x10c) V4_0002B1C0;
-    new ((char *)p + 0x11c) V4_0002B1C0;
-    new ((char *)p + 0x12c) V4_0002B1C0;
-    q4 = (V4_0002B1C0 *)((char *)p + 0x13c); i = 2;
-    do { new (q4) V4_0002B1C0; q4 = q4 + 1; i = i - 1; } while (i != 0);
-    new ((char *)p + 0x53c) V4_0002B1C0;
-    new ((char *)p + 0x54c) V4_0002B1C0;
-    new ((char *)p + 0x55c) V4_0002B1C0;
-    new ((char *)p + 0x570) V4_0002B1C0;
-    new ((char *)p + 0x688) V4_0002B1C0;
-    new ((char *)p + 0x6cc) V4_0002B1C0;
-    new ((char *)p + 0x6dc) V4_0002B1C0;
-    new ((char *)p + 0x748) V4_0002B1C0;
-    new ((char *)p + 0x758) V4_0002B1C0;
-    new ((char *)p + 0x768) V4_0002B1C0;
+    V4_AT(0x2c)->Init();
+    V4_AT(0x3c)->Init();
+    q4 = V4_AT(0x4c); i = 3;
+    do { q4->Init(); q4 = q4 + 1; i = i - 1; } while (i != 0);
+    V4_AT(0x7c)->Init();
+    V4_AT(0x8c)->Init();
+    V4_AT(0x9c)->Init();
+    V4_AT(0xac)->Init();
+    V4_AT(0xbc)->Init();
+    V4_AT(0xcc)->Init();
+    V4_AT(0xdc)->Init();
+    V4_AT(0xec)->Init();
+    V4_AT(0xfc)->Init();
+    V4_AT(0x10c)->Init();
+    V4_AT(0x11c)->Init();
+    V4_AT(0x12c)->Init();
+    q4 = V4_AT(0x13c); i = 2;
+    do { q4->Init(); q4 = q4 + 1; i = i - 1; } while (i != 0);
+    V4_AT(0x53c)->Init();
+    V4_AT(0x54c)->Init();
+    V4_AT(0x55c)->Init();
+    V4_AT(0x570)->Init();
+    V4_AT(0x688)->Init();
+    V4_AT(0x6cc)->Init();
+    V4_AT(0x6dc)->Init();
+    V4_AT(0x748)->Init();
+    V4_AT(0x758)->Init();
+    V4_AT(0x768)->Init();
     p[0x1de] = 0; p[0x1df] = 0; p[0x1e0] = 0; p[0x1e2] = 0; p[0x1e1] = 0;
     p[0x82] = 0; p[0xce] = 0xffffffff; p[0x10f] = 0; p[0x110] = 0; p[0x111] = 0;
     p[0x11a] = 0; p[0x11b] = 0; p[0x1a8] = 0; p[0x11c] = 0; p[0x11e] = 1; p[0x120] = 0;
@@ -101,8 +110,8 @@ void *C_0002C100::func_0002B1C0(int param)
     p[0x33] = 0x447a0000; p[0x34] = 0x447a0000; p[0x35] = 0x447a0000; p[0x37] = 0x447a0000; p[0x38] = 0x447a0000; p[0x39] = 0x447a0000;
     p[0x143] = 0; p[0x144] = 0; p[0x145] = 0; p[0x146] = 0; p[0x147] = 0; p[0x167] = 0; p[0x148] = 0; p[0x149] = 0; p[0x14a] = 0; p[0x14b] = 0; p[0x14c] = 0;
     p[0x14d] = 0x3dcccccd; p[0x14e] = 0; p[0x13d] = 0; p[0x13e] = 0; p[0x13f] = 0;
-    p[0x14f] = D_002A10F0; p[0x150] = D_002A10F4; p[0x151] = D_002A10F8; p[0x152] = D_002A10FC;
-    p[0x153] = D_002A10F0; p[0x154] = D_002A10F4; p[0x155] = D_002A10F8; p[0x156] = D_002A10FC;
+    V4_CPY(0x53c, D_002A10F0);
+    V4_CPY(0x54c, D_002A10F0);
     p[0x15b] = 0; p[0x162] = 0; p[0x160] = 0; p[0x15c] = 0; p[0x15d] = 0; p[0x15e] = 0x459c4000; p[0x15f] = 0x3f800000; p[0x161] = 0x3e4ccccd;
     p[0x184] = 0x3f060a91; p[0x187] = 0x418ba057; p[0x186] = 0x418ba057; p[0x188] = 0x41200000; p[0x189] = 0; p[0x18a] = 0; p[0x18b] = 0;
     p[0x18c] = 0x40400000; p[0x18d] = 0; p[0x18e] = 0x3f060a91; p[400] = 0; p[0x191] = 0; p[0x192] = 0; p[0x185] = 0x3f490fd9;
@@ -112,14 +121,14 @@ void *C_0002C100::func_0002B1C0(int param)
     D_002A1030 = 1;
     p[0x17b] = 0; p[0x17c] = 0; p[0x17d] = 0; p[0x17a] = 0; p[0x17e] = 0; p[0x17f] = 0; p[0x1c6] = 7; p[0x1c7] = 7;
     p[0x195] = 0; p[0x196] = 0; p[0x197] = 0; p[0x198] = 0;
-    p[0x3b] = D_002A10F0; p[0x3c] = D_002A10F4; p[0x3d] = D_002A10F8; p[0x3e] = D_002A10FC;
-    p[0x3f] = D_002A10F0; p[0x40] = D_002A10F4; p[0x41] = D_002A10F8; p[0x42] = D_002A10FC;
-    p[0x13] = D_002A10F0; p[0x14] = D_002A10F4; p[0x15] = D_002A10F8; p[0x16] = D_002A10FC;
-    p[0x17] = D_002A10F0; p[0x18] = D_002A10F4; p[0x19] = D_002A10F8; p[0x1a] = D_002A10FC;
-    p[0x1b] = D_002A10F0; p[0x1c] = D_002A10F4; p[0x1d] = D_002A10F8; p[0x1e] = D_002A10FC;
-    p[0x43] = D_002A1120; p[0x44] = D_002A1124; p[0x45] = D_002A1128; p[0x46] = D_002A112C;
-    p[0x47] = D_002A1110; p[0x48] = D_002A1114; p[0x49] = D_002A1118; p[0x4a] = D_002A111C;
-    p[0x4b] = D_002A1110; p[0x4c] = D_002A1114; p[0x4d] = D_002A1118; p[0x4e] = D_002A111C;
+    V4_CPY(0xec, D_002A10F0);
+    V4_CPY(0xfc, D_002A10F0);
+    V4_CPY(0x4c, D_002A10F0);
+    V4_CPY(0x5c, D_002A10F0);
+    V4_CPY(0x6c, D_002A10F0);
+    V4_CPY(0x10c, D_002A1120);
+    V4_CPY(0x11c, D_002A1110);
+    V4_CPY(0x12c, D_002A1110);
     mat1.r0 = _mm_setzero_ps(); mat1.r1 = _mm_setzero_ps(); mat1.r2 = _mm_setzero_ps(); mat1.r3 = _mm_setzero_ps();
     ((float *)&mat1)[0] = 1.0f; ((float *)&mat1)[5] = 1.0f; ((float *)&mat1)[10] = 1.0f; ((float *)&mat1)[15] = 1.0f;
     mat2 = mat1;
@@ -128,22 +137,22 @@ void *C_0002C100::func_0002B1C0(int param)
     ((float *)&mat2)[0] = 1.0f; ((float *)&mat2)[5] = 1.0f; ((float *)&mat2)[10] = 1.0f; ((float *)&mat2)[15] = 1.0f;
     mat1 = mat2;
     ((C_000264C0 *)((char *)this + 0x1a0))->func_000264C0(&mat1);
-    ((unsigned int *)((char *)this + 0x688))[0] = D_002A10F0; ((unsigned int *)((char *)this + 0x688))[1] = D_002A10F4; ((unsigned int *)((char *)this + 0x688))[2] = D_002A10F8; ((unsigned int *)((char *)this + 0x688))[3] = D_002A10FC;
-    ((unsigned int *)((char *)this + 0x7c))[0] = D_002A10F0; ((unsigned int *)((char *)this + 0x7c))[1] = D_002A10F4; ((unsigned int *)((char *)this + 0x7c))[2] = D_002A10F8; ((unsigned int *)((char *)this + 0x7c))[3] = D_002A10FC;
+    V4_CPY(0x688, D_002A10F0);
+    V4_CPY(0x7c, D_002A10F0);
     p[0x67c/4] = 0; p[0x680/4] = 0; p[0x684/4] = 0; p[0x490/4] = 0; p[0x5c8/4] = 0; p[0x698/4] = 0;
     *(unsigned short *)((char *)this + 0x500) = D_002BA160;
     p[0x504/4] = 0; p[0x508/4] = 0x3f800000; p[0x6ac/4] = 0x3f800000; p[0x6b0/4] = 0x3f400000; p[0x6b4/4] = 0x3f000000; p[0x6b8/4] = 0x3dcccccd; p[0x6bc/4] = 0x3f000000; p[0x6c0/4] = 0x3dcccccd; p[0x6c8/4] = 0; p[0x6c4/4] = 1; p[0x69c/4] = 0; p[0x6a4/4] = 0; p[0x6a8/4] = 0;
-    ((unsigned int *)((char *)this + 0x6cc))[0] = D_002A10F0; ((unsigned int *)((char *)this + 0x6cc))[1] = D_002A10F4; ((unsigned int *)((char *)this + 0x6cc))[2] = D_002A10F8; ((unsigned int *)((char *)this + 0x6cc))[3] = D_002A10FC;
-    ((unsigned int *)((char *)this + 0x6dc))[0] = D_002A10F0; ((unsigned int *)((char *)this + 0x6dc))[1] = D_002A10F4; ((unsigned int *)((char *)this + 0x6dc))[2] = D_002A10F8; ((unsigned int *)((char *)this + 0x6dc))[3] = D_002A10FC;
+    V4_CPY(0x6cc, D_002A10F0);
+    V4_CPY(0x6dc, D_002A10F0);
     p[0x6ec/4] = 0x3f000000; p[0x6f0/4] = 0x3f000000; p[0x704/4] = 0; p[0x714/4] = 1; p[0x70c/4] = 0; p[0x6f4/4] = 0; p[0x6f8/4] = 0x3f800000; p[0x6fc/4] = 0; p[0x700/4] = 0x3f800000;
     p[0x724/4] = 0; p[0x720/4] = 0; p[0x72c/4] = 0x3e4ccccd; p[0x730/4] = 0; p[0x728/4] = 0x3f800000; p[0x734/4] = 0x3e4ccccd; p[0x738/4] = 0; p[0x740/4] = 0; p[0x73c/4] = 0;
     p[0x484/4] = 0; p[0x488/4] = 0; p[0x48c/4] = 0; p[0x744/4] = 0;
-    ((unsigned int *)((char *)this + 0x748))[0] = D_002A10F0; ((unsigned int *)((char *)this + 0x748))[1] = D_002A10F4; ((unsigned int *)((char *)this + 0x748))[2] = D_002A10F8; ((unsigned int *)((char *)this + 0x748))[3] = D_002A10FC;
-    ((unsigned int *)((char *)this + 0x768))[0] = D_002A10F0; ((unsigned int *)((char *)this + 0x768))[1] = D_002A10F4; ((unsigned int *)((char *)this + 0x768))[2] = D_002A10F8; ((unsigned int *)((char *)this + 0x768))[3] = D_002A10FC;
-    ((unsigned int *)((char *)this + 0x758))[0] = D_002A10F0; ((unsigned int *)((char *)this + 0x758))[1] = D_002A10F4; ((unsigned int *)((char *)this + 0x758))[2] = D_002A10F8; ((unsigned int *)((char *)this + 0x758))[3] = D_002A10FC;
-    ((unsigned int *)((char *)this + 0x55c))[0] = D_002A10F0; ((unsigned int *)((char *)this + 0x55c))[1] = D_002A10F4; ((unsigned int *)((char *)this + 0x55c))[2] = D_002A10F8; ((unsigned int *)((char *)this + 0x55c))[3] = D_002A10FC;
-    ((unsigned int *)((char *)this + 0x13c))[0] = D_002A10F0; ((unsigned int *)((char *)this + 0x13c))[1] = D_002A10F4; ((unsigned int *)((char *)this + 0x13c))[2] = D_002A10F8; ((unsigned int *)((char *)this + 0x13c))[3] = D_002A10FC;
-    ((unsigned int *)((char *)this + 0x14c))[0] = D_002A10F0; ((unsigned int *)((char *)this + 0x14c))[1] = D_002A10F4; ((unsigned int *)((char *)this + 0x14c))[2] = D_002A10F8; ((unsigned int *)((char *)this + 0x14c))[3] = D_002A10FC;
+    V4_CPY(0x748, D_002A10F0);
+    V4_CPY(0x768, D_002A10F0);
+    V4_CPY(0x758, D_002A10F0);
+    V4_CPY(0x55c, D_002A10F0);
+    V4_CPY(0x13c, D_002A10F0);
+    V4_CPY(0x14c, D_002A10F0);
     p[0x214/4] = 0; p[0x218/4] = 0; p[0x210/4] = 0; p[0x78c/4] = 0;
     return this;
 }
