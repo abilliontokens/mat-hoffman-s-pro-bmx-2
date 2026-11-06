@@ -124,7 +124,6 @@ struct C_001D4200 {
     unsigned func_001D4060(int a);
     int func_001D40E0(int a);
     int func_001D4170(int a);
-    void Reset_001D4170() { memset(unk4, 0, sizeof(unk4)); unk0 = -1; }
     int func_001D41D0(int a);
     int func_001D4200(char *out);
     int func_001D4300(unsigned a);
@@ -669,6 +668,7 @@ int C_001D4200::func_001D40E0(int a)
     return 0;
 }
 
+#pragma auto_inline(off)
 int C_001D4200::func_001D4170(int a)
 {
     if (a == 8) {
@@ -683,7 +683,7 @@ int C_001D4200::func_001D4170(int a)
     }
     return 0;
 }
-
+#pragma auto_inline(on)
 int C_001D4200::func_001D41D0(int a)
 {
     int r;
