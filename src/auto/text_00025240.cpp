@@ -285,6 +285,7 @@ extern float D_00275994, D_0027599C, D_002760D0, D_002760C0, D_002760B0, D_002B7
 extern Vec4_257E0 D_002A0F94;
 extern "C" void func_00158390(float f, Vec4_257E0 a, Vec4_257E0 b, Vec4_257E0 *out);
 extern "C" float func_00161F80(float x);
+static __forceinline float Sqrt_000255D0(float x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(*(__m128 *)&x)); return r; }
 
 static __forceinline float Rand01_00025980(void)
 {
@@ -371,11 +372,14 @@ void C_000255D0::func_000255D0(Vec4_257E0 *pos, float radius, float t, int chanc
 #pragma intrinsic(sqrt)
 int AmbientBird::func_000257E0(volatile int a0)
 {
+    C_002A8490 *g = D_002A8490;
     AmbientBird *volatile self = this;
-    if (D_002A8490->unk124 == 0) {
+    AmbientBird *p;
+    if (g->unk124 == 0) {
         func_00157A00(a0);
-        AmbientBird *p = self;
+        p = self;
         if (p->unk79 == 1) {
+            struct { volatile float sum; volatile float root; } t;
             Vec4_257E0 v;
             p->unk28->unk1A4->unk4->func_00199B00(&v, 0);
             self->unk5C = v;
@@ -383,8 +387,9 @@ int AmbientBird::func_000257E0(volatile int a0)
             float dx = p->unk4C - p->unk5C.x;
             float dy = p->unk50 - p->unk5C.y;
             float dz = p->unk54 - p->unk5C.z;
-            float d = (float)sqrt(dx * dx + dy * dy + dz * dz);
-            if (d < D_00275600) {
+            t.sum = dx * dx + dy * dy + dz * dz;
+            t.root = (float)sqrt(t.sum);
+            if (t.root < D_00275600) {
                 p = self;
                 if (p->unk78 != 2) {
                     p->func_00023340();
