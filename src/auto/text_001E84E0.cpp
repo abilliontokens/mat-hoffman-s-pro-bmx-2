@@ -2,6 +2,9 @@
 #include "common.h"
 #include "ghidra.h"
 
+extern char D_000343FD[];
+extern char D_00269EC3[];
+
 static void swap_bytes(char *p, char *q, unsigned int width)
 {
     char dummy;
@@ -138,18 +141,25 @@ recurse:
 void func_001E87E0(void) {
 }
 
+#pragma optimize("g", off)
+#pragma optimize("y", on)
 void func_001E87E1(void)
 {
     int func_001EB786(...);
-    extern void (*D_002AEA14[6])(void);
-    D_002AEA14[0] = (void (*)(void))func_001EB786;
-    D_002AEA14[1] = 0;
-    D_002AEA14[2] = 0;
-    D_002AEA14[3] = 0;
-    D_002AEA14[4] = 0;
-    D_002AEA14[5] = (void (*)(void))func_001EB786;
+    extern int D_002AEA14;
+    extern int D_002AEA18;
+    extern int D_002AEA1C;
+    extern int D_002AEA20;
+    extern int D_002AEA24;
+    extern int D_002AEA28;
+    D_002AEA14 = (int)func_001EB786;
+    D_002AEA18 = 0;
+    D_002AEA1C = 0;
+    D_002AEA20 = 0;
+    D_002AEA24 = 0;
+    D_002AEA28 = (int)func_001EB786;
 }
-#pragma optimize("", on)
+#pragma optimize("g", on)
 
 void func_001E8819(void)
 {
