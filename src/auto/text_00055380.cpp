@@ -305,10 +305,7 @@ struct QuatV_00055380 : S_00056100_Quat {
 
 struct S_00055380_PodQuat { float x, y, z, w; };
 
-struct Quat_00055380 : S_00056100_Quat {
-    Quat_00055380() { z = 0; y = 0; x = 0; w = 1.0f; }
-    void operator=(const S_00056100_Quat &q) { *(S_00056100_Quat *)this = q; }
-};
+struct Quat_00055380 { float x, y, z, w; };
 
 struct func_00055380 : CameraBehavior_00055380 {
     void *vtbl_dummy_unused_pad;
