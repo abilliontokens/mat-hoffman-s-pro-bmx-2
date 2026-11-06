@@ -68,6 +68,7 @@ struct C_0011EDF0 {
     float z;
     float w;
     C_0011EDF0 *func_0011EDF0(s16 *p);
+    C_0011EDF0 *set_0011F210(s16 *p);
 };
 
 extern float D_00275544;
@@ -130,25 +131,24 @@ C_0011EDF0 *C_0011EDF0::func_0011EDF0(s16 *p)
 
 V4_0011EE50 *func_0011EE50(V4_0011EE50 *out, V4_0011EE50 *in)
 {
-    volatile float v;
-    volatile int tmp;
-    v = in->x; tmp = *(volatile int *)&v & 0x7fffffff; _ReadWriteBarrier(); in->x = *(volatile float *)&tmp;
-    v = in->y; tmp = *(volatile int *)&v & 0x7fffffff; _ReadWriteBarrier(); in->y = *(volatile float *)&tmp;
-    v = in->z; tmp = *(volatile int *)&v & 0x7fffffff; _ReadWriteBarrier(); in->z = *(volatile float *)&tmp;
-    v = in->w; tmp = *(volatile int *)&v & 0x7fffffff; _ReadWriteBarrier(); in->w = *(volatile float *)&tmp;
-    *out = *in;
-    return out;
+ volatile float v; volatile int tmp;
+ v=in->x; tmp=*(volatile int *)&v & 0x7fffffff; _ReadWriteBarrier(); in->x=*(float *)&tmp;
+ v=in->y; tmp=*(volatile int *)&v & 0x7fffffff; _ReadWriteBarrier(); in->y=*(float *)&tmp;
+ v=in->z; tmp=*(volatile int *)&v & 0x7fffffff; _ReadWriteBarrier(); in->z=*(float *)&tmp;
+ v=in->w; tmp=*(volatile int *)&v & 0x7fffffff; _ReadWriteBarrier(); in->w=*(float *)&tmp;
+ *out=*in; return out;
 }
 
 V4_0011EE50 *func_0011EEE0(V4_0011EE50 *out, V4_0011EE50 *a, V4_0011EE50 *b)
 {
-    V4_0011EE50 t;
-    _mm_store_ss(&t.x, _mm_min_ss(_mm_set_ss(a->x), _mm_set_ss(b->x)));
-    _mm_store_ss(&t.y, _mm_min_ss(_mm_set_ss(a->y), _mm_set_ss(b->y)));
-    _mm_store_ss(&t.z, _mm_min_ss(_mm_set_ss(a->z), _mm_set_ss(b->z)));
-    t.w = 1.0f;
-    *out = t;
-    return out;
+ V4_0011EE50 t;
+ volatile float r;
+ t.w=1.0f;
+ _ReadWriteBarrier();
+ _mm_store_ss((float *)&r,_mm_min_ss(_mm_set_ss(a->x),_mm_set_ss(b->x))); t.x=r; _ReadWriteBarrier();
+ _mm_store_ss((float *)&r,_mm_min_ss(_mm_set_ss(a->y),_mm_set_ss(b->y))); t.y=r; _ReadWriteBarrier();
+ _mm_store_ss((float *)&r,_mm_min_ss(_mm_set_ss(a->z),_mm_set_ss(b->z))); t.z=r;
+ *out=t; return out;
 }
 
 void func_0011F010(int a0, float x, float y, float z, float s, float c)
