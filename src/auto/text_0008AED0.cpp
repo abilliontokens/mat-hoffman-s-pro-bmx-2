@@ -3,6 +3,28 @@
 #include <string.h>
 
 extern int *D_002A8490;
+extern int D_00278664, D_00278668, D_0027866C, D_00278670;
+extern char D_00278674;
+extern int D_002A60B0, D_002A60B4, D_002A60B8, D_002A60BC;
+extern char D_002A60C0;
+extern char D_00279DD0[], D_00279DC0[], D_00279DA8[], D_0027958C[];
+extern int D_0028F5E0;
+struct Sprite_8AED0 {
+    char pad0[0x28];
+    int f28;
+    int f2c;
+    char pad30[4];
+    int f34;
+    int f38;
+    float f3c;
+    float f40;
+    float f44;
+    float f48;
+    char pad4c[0xC];
+    unsigned char b58;
+    Sprite_8AED0 *func_001D5760();
+    void func_001D5810(int a0, float a1, float a2, int a3);
+};
 extern int D_00275630;
 extern int D_00279DEC;
 extern int D_00279E74;
@@ -292,19 +314,24 @@ void C_0008B6F0::func_0008B6F0(void) {
 
 void C_0008B710::func_0008B710()
 {
+    int w;
+    float x;
+    float y;
+    float cx;
     if (unk54 == 0) {
         if (unk4c && (int)strlen(unk24->str) < 40) {
-            int w = unk24->func_001D6290();
-            float x = unk24->x;
-            double y = unk24->y;
+            w = unk24->func_001D6290();
+            x = unk24->x;
+            y = unk24->y;
+            cx = x + (float)(w / 2);
             C_0008B710_Item *p = unk28;
-            p->func_0005E920(x + (float)(w / 2), (float)y);
+            p->func_0005E920(cx, y);
             p = unk28;
             if (p->unk44 != D_0028F5DC) {
                 p->unk44 = D_0028F5DC;
                 p->unk4e |= 6;
             }
-            unk2c->func_0005E920(x + (float)(w / 2), (float)y);
+            unk2c->func_0005E920(x + (float)(w / 2), y);
             p = unk2c;
             if (p->unk44 != D_0028F5DC) {
                 p->unk44 = D_0028F5DC;
