@@ -64,7 +64,8 @@ extern "C" __declspec(dllimport) long __stdcall NtAllocateVirtualMemory(void *ba
 extern "C" long (__stdcall *__imp__NtAllocateVirtualMemory)(void *baseAddress, unsigned int zeroBits, unsigned int *size, unsigned int allocType, unsigned int protect);
 extern "C" long (__stdcall *__imp__NtFreeVirtualMemory)(void **baseAddress, unsigned int *size, unsigned int freeType);
 unsigned char *__stdcall func_001DF7FA(S_HeapRoot *root, S_HeapBlock *blk, unsigned int *size, int a3);
-unsigned char *__stdcall func_001DF985(S_HeapRoot *root, unsigned char *entry, unsigned int *size, char a3);
+typedef char HeapFlag;
+unsigned char *__stdcall func_001DF985(S_HeapRoot *root, unsigned char *entry, unsigned int *size, HeapFlag a3);
 extern char D_0000FF00;
 extern char D_0000FF01;
 extern "C" unsigned long (__stdcall *_imp__RtlCompareMemoryUlong)(void *source, unsigned long length, unsigned long pattern);
@@ -224,7 +225,7 @@ unsigned char *__stdcall func_001DF985(S_HeapRoot *root, unsigned char *entry, u
         if (a3) {
             FreeUnlink_001DF985(root, cur);
             root->freeTotal -= cur->size;
-            a3 = 0;
+            a3 &= 0;
         }
         FreeUnlink_001DF985(root, prev);
         prev->flags = cur->flags & 0x10;
@@ -264,26 +265,23 @@ unsigned char *__stdcall func_001DF985(S_HeapRoot *root, unsigned char *entry, u
 
 #pragma optimize("sy", on)
 #pragma optimize("y", off)
-void __stdcall func_001DFC2A(S_HeapRoot *root, unsigned char *blk, int granules)
+void __stdcall func_001DFC2A(S_HeapRoot *root, unsigned char *blk, unsigned int n)
 {
     S_HeapEntry *e = (S_HeapEntry *)blk;
     unsigned char bucket = e->bucket;
     unsigned short prev = e->prevSize;
     S_HeapBlock *pool = (S_HeapBlock *)root->bucket[bucket];
     unsigned char flags = e->flags;
-    unsigned int n = granules;
     unsigned int sz;
 
     root->freeTotal += n;
     while (n != 0) {
         if (n > (unsigned int)&D_0000FF00) {
+            sz = (unsigned int)&D_0000FF00;
             if (n == (unsigned int)&D_0000FF01) {
-                sz = (unsigned int)&D_0000FF00 - 0x10;
-                e->flags = 0;
-            } else {
-                sz = (unsigned int)&D_0000FF00;
-                e->flags = flags;
+                sz = (unsigned int)&((unsigned char *)sz)[-16];
             }
+            e->flags = 0;
         } else {
             sz = n;
             e->flags = flags;
@@ -304,8 +302,6 @@ void __stdcall func_001DFC2A(S_HeapRoot *root, unsigned char *blk, int granules)
         e->prevSize = prev;
     }
 }
-
-#pragma optimize("sy", on)
 
 #pragma optimize("sy", on)
 
