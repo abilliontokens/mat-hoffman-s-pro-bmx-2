@@ -85,6 +85,7 @@ struct C_000D0DD0 {
     void func_000D0DD0(void);
     void func_000D0D20(void);
     void func_000D0D60(void);
+    void func_000D0110(void);
 };
 
 
