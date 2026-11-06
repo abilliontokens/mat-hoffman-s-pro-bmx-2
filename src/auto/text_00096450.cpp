@@ -22,7 +22,15 @@ struct Q_P64 { char pad0[0x3ac]; Q_List *f3AC; char pad3B0[0xd4]; Q_Sub *f484; }
 struct Q_Mgr { char pad0[0x64]; Q_P64 *f64; char pad68[0x160]; int f1C8; };
 struct Q_Vec { float x, y, z, w; };
 struct Q_Actor {
-    void **vtbl;
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(int n); virtual void v6(); virtual void v7();
+    virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11();
+    virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15();
+    virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
+    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23();
+    virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27();
+    virtual void v28(); virtual void v29(); virtual void v30(); virtual void v31();
+    virtual void v32();
     void func_001A2A10(int n);
 };
 struct Q_Lookup { Q_Actor *func_0001D450(char *name); };
