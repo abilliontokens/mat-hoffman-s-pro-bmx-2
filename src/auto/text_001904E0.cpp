@@ -8,6 +8,7 @@ struct C_000264C0 {
 extern "C" int memcmp(const void *a, const void *b, unsigned int n);
 extern char D_0028AA74[8];
 void *func_001E8AA5(int size);
+void *func_001E8920(void *, const void *, int);
 
 /* node of the per-entry list, linked through +0x2C, 8-byte tag at +0 */
 struct S_1904E0_Rec {
