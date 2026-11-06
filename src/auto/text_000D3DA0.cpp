@@ -5,6 +5,11 @@ struct C_001B1860 {
     void func_001B1860(int, float, int, float, int, int, float, int, float, int, int, int, int);
 };
 
+struct C_D3DA0_Range { char pad[0x10]; float f10, f14; };
+struct C_D3DA0_Item { C_D3DA0_Range* func_0018C070(); };
+struct C_D3DA0_Manager { C_D3DA0_Item** func_0018C160(const char*); };
+extern char D_00278690[], D_002786A0[], D_00278678[];
+extern float D_00275AEC;
 struct C_001D5AD0 {
     char pad0[0x38];
     unsigned int f38;
