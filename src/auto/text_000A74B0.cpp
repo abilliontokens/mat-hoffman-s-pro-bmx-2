@@ -225,6 +225,7 @@ struct Obj_000A79E0 {
     char f6d;
     char pad6e[0x32];
     void (*fA0)();
+    void func_00133140(int a, int b);
 };
 struct Data_000A79E0 {
     int f0;
