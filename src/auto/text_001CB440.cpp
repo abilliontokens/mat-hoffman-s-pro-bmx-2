@@ -72,7 +72,9 @@ struct C_001CBD40 : Base_001CBD40 {
     int f138;
     int f13C;
     void func_0001C9F0();
-    C_001CBD40 *func_001CBD40();
+};
+struct func_001CBD40 : C_001CBD40 {
+    func_001CBD40();
 };
 
 struct C_001CB440 {
@@ -751,13 +753,9 @@ int C_001CBCF0::func_001CBCF0(int value)
     return 0;
 }
 
-C_001CBD40 *C_001CBD40::func_001CBD40()
+C_001CBD40::C_001CBD40()
 {
-    extern int D_0028EE8C;
     int *p;
-    func_0001C9F0();
-    vtbl = (void *)&D_0028EE8C;
-    f34.init();
     p = fF8; p[2] = 0; p[1] = 0; p[0] = 0; p[3] = 0x3f800000;
     p = f108; p[2] = 0; p[1] = 0; p[0] = 0; p[3] = 0x3f800000;
     p = f118; p[2] = 0; p[1] = 0; p[0] = 0; p[3] = 0x3f800000;
@@ -776,7 +774,6 @@ C_001CBD40 *C_001CBD40::func_001CBD40()
     fF4 = 0x3f800000;
     fF0 = 0x3f800000;
     fEC = 0x3e9c0ebf;
-    return this;
 }
 
 int __stdcall func_001CBEE0(int a0, int a1, int a2, int a3, int a4) {
