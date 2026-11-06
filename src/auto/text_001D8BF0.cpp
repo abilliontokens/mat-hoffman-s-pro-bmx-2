@@ -5,6 +5,18 @@ struct C_001D9950 {
     undefined4 func_001D9950(byte param_1);
 };
 
+struct S_001D8BF0_Arg {
+    char pad0[0xC];
+    unsigned char fC;
+    char padD[3];
+    void *f10;
+};
+struct XboxWater_1D8BF0 {
+    char pad0[0x2F0];
+    void *f2F0;
+    void func_001D8BF0(S_001D8BF0_Arg *a);
+};
+
 extern int D_00284E94;
 void func_001E891B(void *p);
 extern "C" void *__cdecl memset(void *dst, int val, unsigned int size);
