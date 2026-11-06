@@ -191,12 +191,9 @@ int C_00147890::func_00147890(char *name)
     void func_00141D70(void *, char *, int, int *);
     void func_00141E10(void *, char *, int, int *);
     void func_00141EC0(void *, char *, int, int *);
-    C_00147890_Ini ini;
-    char buf170[0x6c];
     char buf[0x104];
-    int tmpv[16];
-    int tk;
-    int *tmpPtr;
+    char buf170[0x40];
+    C_00147890_Ini ini;
     char c;
     char *src;
     char *dst;
@@ -224,9 +221,7 @@ int C_00147890::func_00147890(char *name)
         w[0x80 / 4] = 1;
     }
     ini.func_00168C20(D_00286704, w[0x84 / 4], &w[0x84 / 4]);
-    tmpPtr = (int *)w[0x84 / 4];
-    tk = 0;
-#define BIND(fn, key, off) fn(&tmpv[(tk++ & 3) * 4], key, w[off / 4], &w[off / 4])
+#define BIND(fn, key, off) fn(&ini, key, w[off / 4], &w[off / 4])
     BIND(func_00140DF0, D_002866EC, 0x88);
     BIND(func_00140F30, D_002866E0, 0x98);
     BIND(func_00140F30, D_002866D4, 0xa8);
