@@ -508,12 +508,13 @@ void C_00157810::func_00157D40(void *file, int a, int b)
         }
     }
     strcat(line, "\r\n");
-    src = line;
-    while (*src++) {
-    }
-    func_0014FE80(line, 1, src - (line + 1), file);
-    for (c = f10; c != 0; c = c->fC) {
-        ((C_00157810 *)c)->func_00157D40(file, a, b + 1);
+    func_0014FE80(line, 1, strlen(line), file);
+    c = f10;
+    if (c != 0) {
+        do {
+            ((C_00157810 *)c)->func_00157D40(file, a, b + 1);
+            c = c->fC;
+        } while (c != 0);
     }
 }
 
