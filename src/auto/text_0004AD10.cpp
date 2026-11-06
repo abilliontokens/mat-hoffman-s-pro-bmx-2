@@ -13,6 +13,8 @@ struct C_0004BAB0 {
 
 #include <xmmintrin.h>
 #include <string.h>
+#define D9120 ((char *)D_002B9120)
+#define D8490 ((char *)D_002A8490)
 struct Vec16 { int v[4]; };
 struct __declspec(align(16)) Mtx {
     float m[16];
@@ -165,6 +167,31 @@ void func_001670C0(char *a, float b, int c, int d);
 void func_0019AC50(void *a);
 void func_000788D0(void *a);
 
+
+void BmxEventFPS::func_0004B760(float dt)
+{
+    char *m = (char *)this;
+
+    if (*(int *)(m + 0x2d4) == 1) {
+        if (*(int *)(*(char **)(m + 0x2cc) + 0x34) == 0) {
+            ((Obj *)*(char **)(m + 0x2e4))->func_001670C0(dt, 0, 0);
+            ((Obj *)*(char **)(*(char **)(m + 0x2e4) + 4))->func_0019AC50();
+            ((Obj *)*(char **)(m + 0x2e8))->func_001670C0(dt, 0, 0);
+            ((Obj *)*(char **)(*(char **)(m + 0x2e8) + 4))->func_0019AC50();
+            goto L;
+        }
+        *(int *)(m + 0x2d4) = 0;
+        ((V8Bmx *)*(char **)(m + 0x2cc))->b2();
+        ((V45Bmx *)this)->g3();
+        func_0004A590();
+        ((V45Bmx *)this)->i2();
+        ((V45Bmx *)this)->j3();
+        func_00031260(0.0f);
+        return;
+    }
+L:
+    func_00031260(dt);
+}
 
 undefined4 C_0004BA90::func_0004BA90(byte param_1)
 {
