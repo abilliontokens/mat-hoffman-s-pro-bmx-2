@@ -165,7 +165,7 @@ struct Obj208_26 {
     virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23(); virtual void v24();
     virtual void v25(); virtual void v26(); virtual void v27(void *); virtual void v28(void *);
     char pad4[0x30 - 4]; int f30;
-    void func_0001EBB0(int);
+    Obj208_26 *func_0001EBB0(int);
 };
 struct ObjE8_26 {
     char pad0[0x94]; void *f94; void *f98;
