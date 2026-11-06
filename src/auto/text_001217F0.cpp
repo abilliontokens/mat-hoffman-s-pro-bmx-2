@@ -44,14 +44,6 @@ static __forceinline void xform_00122090(float *out, const float *in, const floa
     _mm_storeu_ps(out, r0);
     out[3] = 1.0f;
 }
-/* 4x3 matrix * (in.xyz,in.w) as one nested expression: no named __m128, so no aligned frame. */
-#define XF_V(in, o)   _mm_loadh_pi(_mm_loadu_ps(in), (__m64 *)((o) + 2))
-#define XF_R(m, k, v) _mm_mul_ps(_mm_load_ps((m) + 4 * (k)), v)
-#define XF_T(m, v)    _mm_unpackhi_ps(XF_R(m, 0, v), XF_R(m, 1, v))
-#define XF_A(m, v)    _mm_add_ps(_mm_unpacklo_ps(XF_R(m, 0, v), XF_R(m, 1, v)), XF_T(m, v))
-#define XF_B(m, v)    _mm_add_ps(XF_R(m, 2, v), _mm_movehl_ps(XF_R(m, 2, v), XF_R(m, 2, v)))
-#define XF_RES(m, v)  _mm_add_ps(_mm_movelh_ps(XF_A(m, v), XF_B(m, v)), _mm_shuffle_ps(_mm_movehl_ps(XF_T(m, v), XF_A(m, v)), XF_B(m, v), 0x14))
-
 V4_001225C0 func_00104A00(const V4_001225C0 &v);
 extern "C" V4_001225C0 *func_0011EE50(V4_001225C0 *out, V4_001225C0 *in);
 extern "C" V4_001225C0 *func_0011EEE0(V4_001225C0 *out, V4_001225C0 *a, V4_001225C0 *b);
