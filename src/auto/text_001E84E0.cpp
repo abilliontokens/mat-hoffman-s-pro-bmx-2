@@ -142,6 +142,10 @@ void func_001E87E0(void) {
 void func_001E87E1(void)
 {
     int func_001EB786(...);
+    int cropzeros_x(...);
+    int fassign_x(...);
+    int forcdecpt_x(...);
+    int positive_x(...);
     extern int D_002AEA14;
     extern int D_002AEA18;
     extern int D_002AEA1C;
@@ -149,10 +153,10 @@ void func_001E87E1(void)
     extern int D_002AEA24;
     extern int D_002AEA28;
     D_002AEA14 = (int)func_001EB786;
-    D_002AEA18 = 0;
-    D_002AEA1C = 0;
-    D_002AEA20 = 0;
-    D_002AEA24 = 0;
+    D_002AEA18 = (int)cropzeros_x;
+    D_002AEA1C = (int)fassign_x;
+    D_002AEA20 = (int)forcdecpt_x;
+    D_002AEA24 = (int)positive_x;
     D_002AEA28 = (int)func_001EB786;
 }
 #pragma optimize("g", on)
