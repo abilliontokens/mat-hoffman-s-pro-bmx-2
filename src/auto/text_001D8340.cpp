@@ -2,6 +2,7 @@
 #include "common.h"
 #include "ghidra.h"
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 
 extern int D_002F0BB8;
 extern int D_0028F7FC;
@@ -212,28 +213,21 @@ void C_001D8340::func_001D8340(int amount)
         func_001FF960(2, ramp);
     } else {
         unsigned int t0 = func_001DC974();
-        int * volatile pr = &tmp;
-        int * volatile pg = &tmp;
-        int * volatile pb = &tmp;
         do {
             unsigned int t1 = func_001DC974();
             float d = (float)(t1 - t0);
             if (d > scale) {
                 acc += (int)(d / scale);
                 t0 = t1;
-                acc = Max_001D8340(acc, 0);
+                acc = AsmMaxI(acc, 0);
             }
             float k = D_00275460 - (float)acc * D_00284758;
             for (int i = 0; i < 0x100; i++) {
-                float t;
-                t = (float)r[i] * k;
-                *pr = _mm_cvtss_si32(*(__m128 *)&t);
+                AsmFloatToIntRound((float)r[i] * k, &tmp);
                 ramp[i] = (unsigned char)tmp;
-                t = (float)g[i] * k;
-                *pg = _mm_cvtss_si32(*(__m128 *)&t);
+                AsmFloatToIntRound((float)g[i] * k, &tmp);
                 ramp[0x100 + i] = (unsigned char)tmp;
-                t = (float)b[i] * k;
-                *pb = _mm_cvtss_si32(*(__m128 *)&t);
+                AsmFloatToIntRound((float)b[i] * k, &tmp);
                 ramp[0x200 + i] = (unsigned char)tmp;
             }
             func_001FF960(2, ramp);
