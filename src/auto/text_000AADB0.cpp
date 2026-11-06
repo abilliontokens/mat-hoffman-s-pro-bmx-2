@@ -127,14 +127,47 @@ struct C_000AB340_Cam {
     C_000AB340_Vec f190;
 };
 
+/* the 0x1e0-byte object in f110[]: vtable, name at +0x28 */
 struct C_000ABBC0_Sub {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
+    virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11();
+    virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15();
+    virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
+    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23();
+    virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27();
+    virtual void v28(); virtual void v29(); virtual void v30(); virtual void v31();
+    virtual void v32(); virtual void v33(); virtual void v34();
+    virtual int v35(char *name, int a, int b);
+    char pad04[0x20];
+    char name[0x80];
     void func_00199650(C_000AB340_Vec *a);
     void func_00198F50(C_000AB340_Vec *a, C_000AB340_Vec *b, int c, int d, int e);
+    void func_0019ABA0(int a, int b);
     void func_0019AC50();
 };
 
+struct C_00143580_000AB790 {
+    C_000ABBC0_Sub *func_00143580(int a);
+};
+
+struct S_000AB790_Owner {
+    void func_001577A0(C_000ABBC0_Sub *item, int a);
+};
+
+struct S_000AB790_Global {
+    char pad0[0x3A8];
+    S_000AB790_Owner **f3A8;
+    char pad3AC[0xFC];
+    int *f4A8;
+};
+
+extern char D_002A60B0[], D_002A5FA8[], D_002A5348[], D_002A5870[], D_002A5D98[], D_002A5EA0[], D_00275678[], D_0027C588[];
+extern C_000AB340_Vec D_002A2734, D_002A2754, D_002A2764;
+extern S_000AB790_Global *D_002B9120;
+
 struct C_000ABBC0_Obj {
-    char pad0[0x104];
+    char name[0x104];
     int f104;
           int f108;
     int f10C;
