@@ -10,17 +10,11 @@ struct Vec_19FD20 {
 
 static inline void Cross_19FD20(Vec_19FD20 &out, const Vec_19FD20 &a, const Vec_19FD20 &b)
 {
-    const Vec_19FD20 *pa = &a, *pb = &b;
-    __m128 va = _mm_loadu_ps(&pa->x);
-    __m128 vb = _mm_loadu_ps(&pb->x);
-    __m128 sa = va, sb = vb;
-    sa = _mm_shuffle_ps(sa, sa, 0xc9);
-    sb = _mm_shuffle_ps(sb, sb, 0xc9);
-    vb = _mm_mul_ps(vb, sa);
-    va = _mm_mul_ps(va, sb);
-    va = _mm_sub_ps(va, vb);
-    va = _mm_shuffle_ps(va, va, 0xc9);
-    _mm_storeu_ps(&out.x, va);
+    _mm_storeu_ps(&out.x, _mm_shuffle_ps(
+        _mm_sub_ps(_mm_mul_ps(_mm_loadu_ps(&a.x), _mm_shuffle_ps(_mm_loadu_ps(&b.x), _mm_loadu_ps(&b.x), 0xc9)),
+                   _mm_mul_ps(_mm_loadu_ps(&b.x), _mm_shuffle_ps(_mm_loadu_ps(&a.x), _mm_loadu_ps(&a.x), 0xc9))),
+        _mm_sub_ps(_mm_mul_ps(_mm_loadu_ps(&a.x), _mm_shuffle_ps(_mm_loadu_ps(&b.x), _mm_loadu_ps(&b.x), 0xc9)),
+                   _mm_mul_ps(_mm_loadu_ps(&b.x), _mm_shuffle_ps(_mm_loadu_ps(&a.x), _mm_loadu_ps(&a.x), 0xc9))), 0xc9));
 }
 
 static __forceinline float Sqrt_19FD20(float x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(_mm_load_ss(&x))); return r; }
