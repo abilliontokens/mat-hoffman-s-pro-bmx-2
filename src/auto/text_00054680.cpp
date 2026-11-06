@@ -52,11 +52,71 @@ float func_0014FBA0(float a, float b);
 extern float D_00277240;
 extern float D_002755EC;
 
-struct C_000549F0 {
-    char pad0[0x1f4]; int f1f4;
-    void func_000549F0(float dt);
+struct V549 { float x, y, z, w; };
+struct Item549 {
+    char pad0[0x5c8]; int f5c8;
+    char pad5cc[0x834 - 0x5cc]; V549 f834;
+    char pad844[0xa00 - 0x844]; struct SubA00549 *fa00;
+    char pada04[0xa3c - 0xa04]; int fa3c; int fa40;
+    char pada44[8]; int fa4c; char pada50[4]; int fa54;
+    char pada58[0x1058 - 0xa58]; int f1058;
+    char pad105c[0x11b0 - 0x105c]; int f11b0;
+    char pad11b4[0x1584 - 0x11b4]; int f1584;
+    int func_00108660(); void func_001084E0(); void func_001092D0(float);
 };
-void func_00157A00(float dt);
+struct SubA00549 { void *pad0; struct Obj983549 *f4; };
+struct Obj983549 {
+    void *func_00198330(const char *);
+    void func_00197E70(V549 *);
+    V549 *func_00197F70(V549 *, V549 *);
+};
+struct Items549 { char pad0[0x24]; int count24; char pad28[0x1a8 - 0x28]; Item549 *items[16]; };
+struct List549 { char pad0[0x28]; void **items; };
+struct Lookup549 { int func_0001B3C0(const char *); void func_0001B820(void *); void func_0001B8A0(void *); };
+struct Ctx549 {
+    char pad0[0x3ac]; List549 *f3ac; List549 *f3b4;
+    char pad3b8[0x484 - 0x3b8]; Lookup549 *f484;
+    char pad488[0x4e0 - 0x488]; Items549 *f4e0;
+};
+struct Entry549 { int pad0; struct Obj2E8549 *f4; };
+struct Obj2E8549 { char pad0[0x2e8]; int f2e8; unsigned char flags2ec; };
+struct TagObj549 { void func_00199600(V549); void func_0019AC50(); };
+struct Bx549 { char pad0[0x1a4]; TagObj549 *f1a4arr[2]; };
+struct Rules549 { int func_0005B960(int, float); int func_0005B960(int, int); };
+struct Sub190549 { char pad0[0x168]; int f168; void func_00067D60(int, int); void func_000684B0(); };
+struct Obj8BB549 { void func_0008BB50(int); };
+struct Obj831549 { int func_000831C0(); };
+struct Glob2A4549 { char pad0[0x170]; Obj831549 *arr[16]; };
+struct GlobInfo549 { int f0; char pad4[0xc]; float f10; char pad14[0xc]; int f20; };
+struct Glob549 { char pad0[0x2a4]; Glob2A4549 *f2a4; char pad2a8[0x2e0 - 0x2a8]; GlobInfo549 *f2e0; };
+extern Glob549 *D_002A8490;
+extern char D_00277C9C;
+extern char D_00277CA4;
+extern V549 D_002A1988;
+extern float D_00275544;
+int func_00011260(int, int);
+struct CtxF54430 { void func_00054430(); };
+struct Vt549 {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
+    virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11();
+    virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15();
+    virtual void v16(); virtual void v17(); virtual void v18(int);
+};
+struct C_000549F0 {
+    char pad0[0x64]; Ctx549 *f64; Rules549 *f68;
+    char pad6c[0x24]; int f90;
+    char pad94[0x90]; float f124; float f128; int f12c;
+    char pad130[0x60]; Sub190549 *f190;
+    char pad194[0x60]; int f1f4;
+    char pad1f8[0x8c]; Obj8BB549 *f284[16];
+    int f2c4; int f2c8; float f2cc; int f2d0;
+    char pad2d4[0xc]; float f2e0; float f2e4; int f2e8;
+    void func_000549F0(float dt);
+    void func_00157A00(float dt);
+    void func_00031260(float dt);
+    void func_00054680();
+};
 
 struct C_000549C0 {
     void *vtbl;
