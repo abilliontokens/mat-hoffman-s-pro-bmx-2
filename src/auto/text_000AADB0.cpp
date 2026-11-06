@@ -83,7 +83,9 @@ struct S_000AB030_ListB {
     S_000AB030_ObjB **items;
 };
 struct S_000AB030_Arg {
-    char pad0[0x3A8];
+    char pad0[0x348];
+    int f348;
+    char pad34C[0x5C];
     S_000AB030_ListB **f3A8;
     S_000AB030_ListA *f3AC;
 };
@@ -208,6 +210,71 @@ void C_000AADB0::func_000AADB0(C_000AADB0_Parser *p)
  }
  }
  }
+}
+
+void C_000AADB0::func_000AB030(S_000AB030_Arg *arg)
+{
+    C_000AADB0 * volatile self = this;
+    int i;
+    struct {
+        volatile int len;
+        volatile int res;
+        volatile int lim;
+    } t;
+    char buf[260];
+    int k;
+    int j;
+    int n;
+
+    if (f24 != 0) {
+        for (i = 0; i < arg->f3AC->count; i++) {
+            S_000AB030_ObjA *obj = arg->f3AC->items[i];
+            if (obj != 0 && obj->f4 == 1) {
+                func_0014FF00(obj->f1A4->f4->name, 0, 0, buf, 0);
+                for (j = 0; j < self->f24; j++) {
+                    for (k = 0; k < self->f28[j].f18; k++) {
+                        char *nm = self->f28[j].f1C[k];
+                        if (nm != 0 && func_001EA426(buf, nm) == 0) {
+                            self->f28[j].f20[k] = (int)obj->f1A4->f4;
+                            func_001E891B(self->f28[j].f1C[k]);
+                            self->f28[j].f1C[k] = 0;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        for (i = 0; i < (*arg->f3A8)->count; i++) {
+            S_000AB030_ObjB *obj = (*arg->f3A8)->items[i];
+            if (obj != 0 && obj->f4 == 1 && obj->f8 != 0) {
+                t.len = strlen(obj->f8->name);
+                t.lim = 0x103;
+                t.res = t.lim > t.len ? t.len : t.lim;
+                n = t.res;
+                func_001E8920(buf, obj->f8->name, n);
+                buf[n] = 0;
+                char *dot = func_001E8AC0(buf, '.');
+                if (dot != 0) {
+                    memset(dot, 0, strlen(dot));
+                }
+                for (j = 0; j < self->f24; j++) {
+                    for (k = 0; k < self->f28[j].f18; k++) {
+                        char *nm = self->f28[j].f1C[k];
+                        if (nm != 0 && func_001EA426(buf, nm) == 0) {
+                            self->f28[j].f20[k] = (int)obj->f8;
+                            func_001E891B(self->f28[j].f1C[k]);
+                            self->f28[j].f1C[k] = 0;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        for (j = 0; j < self->f24; j++) {
+            func_001E891B(self->f28[j].f1C);
+            self->f28[j].f1C = 0;
+        }
+    }
 }
 
 void C_000AB340::func_000AB340(void)
