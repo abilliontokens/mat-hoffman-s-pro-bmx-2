@@ -1,6 +1,7 @@
 /* 10 functions from 0x0012E380 to 0x0012F0F0, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+#include "asm_helpers.h"
 
 void *func_001E8A44(int size);
 
@@ -186,36 +187,35 @@ struct C_0012E6F0 {
 
 float C_0012EF30::func_0012E380(float time, float dist)
 {
-    C_0012EF30 *self = this;
-    float t = time * self->f4c0;
+    float t = time * f4c0;
     u32 i;
-    for (i = self->f4b8 + 1; i < (u32)self->f414->count && t > ((K_0012E380 *)self->f414->arr)[i].t; i++)
-        self->f4b8++;
-    for (; self->f4b8 > 0 && t < ((K_0012E380 *)self->f414->arr)[self->f4b8].t; i--)
-        self->f4b8--;
+    for (i = f4b8 + 1; i < (u32)f414->count && t > ((K_0012E380 *)f414->arr)[i].t; i++)
+        f4b8++;
+    for (; f4b8 > 0 && t < ((K_0012E380 *)f414->arr)[f4b8].t; i--)
+        f4b8--;
     if (dist > D_00275544) {
-        int j = self->f4b8;
-        float v = (t - ((K_0012E380 *)self->f414->arr)[j].t) / (((K_0012E380 *)self->f414->arr)[i].t - ((K_0012E380 *)self->f414->arr)[j].t) * ((K_0012E380 *)self->f414->arr)[j].len;
+        int j = f4b8;
+        float v = (t - ((K_0012E380 *)f414->arr)[j].t) / (((K_0012E380 *)f414->arr)[i].t - ((K_0012E380 *)f414->arr)[j].t) * ((K_0012E380 *)f414->arr)[j].len;
         while (v < dist) {
             j--;
             if (j < 0)
-                j += self->f414->count;
-            v += ((K_0012E380 *)self->f414->arr)[j].len;
+                j += f414->count;
+            v += ((K_0012E380 *)f414->arr)[j].len;
         }
-        K_0012E380 *kj = &((K_0012E380 *)self->f414->arr)[j];
+        K_0012E380 *kj = &((K_0012E380 *)f414->arr)[j];
         if (kj->len != D_00275544)
-            return ((((K_0012E380 *)self->f414->arr)[(j + 1) % (u32)self->f414->count].t - kj->t) * ((v - dist) / kj->len) + kj->t) * self->f4c4;
+            return ((((K_0012E380 *)f414->arr)[(j + 1) % (u32)f414->count].t - kj->t) * ((v - dist) / kj->len) + kj->t) * f4c4;
     } else {
-        u32 j = self->f4b8;
-        float w = (((K_0012E380 *)self->f414->arr)[i].t - t) / (((K_0012E380 *)self->f414->arr)[i].t - ((K_0012E380 *)self->f414->arr)[j].t) * ((K_0012E380 *)self->f414->arr)[j].len;
+        u32 j = f4b8;
+        float w = (((K_0012E380 *)f414->arr)[i].t - t) / (((K_0012E380 *)f414->arr)[i].t - ((K_0012E380 *)f414->arr)[j].t) * ((K_0012E380 *)f414->arr)[j].len;
         while (w < Abs_0012E380(dist)) {
-            j = (j + 1) % (u32)self->f414->count;
-            w += ((K_0012E380 *)self->f414->arr)[j].len;
+            j = (j + 1) % (u32)f414->count;
+            w += ((K_0012E380 *)f414->arr)[j].len;
         }
-        K_0012E380 *kj = &((K_0012E380 *)self->f414->arr)[j];
+        K_0012E380 *kj = &((K_0012E380 *)f414->arr)[j];
         if (kj->len != D_00275544) {
-            K_0012E380 *n = &((K_0012E380 *)self->f414->arr)[(j + 1) % (u32)self->f414->count];
-            return ((D_00275460 - (w + dist) / kj->len) * (n->t - kj->t) + n->t) * self->f4c4;
+            K_0012E380 *n = &((K_0012E380 *)f414->arr)[(j + 1) % (u32)f414->count];
+            return ((D_00275460 - (w + dist) / kj->len) * (n->t - kj->t) + n->t) * f4c4;
         }
     }
     return D_00275544;
@@ -338,6 +338,10 @@ tail:
         return 1;
     }
     return 0;
+}
+
+void func_0012EEC0(float *out, float *in) {
+    AsmVec3Normalize(out, in);
 }
 
 C_0012EF30 *C_0012EF30::func_0012EF30(int a)
