@@ -57,6 +57,21 @@ struct S_0012F0F0_Key {
 };
 
 extern V4_0012FCF0 D_002A4130;
+struct S_12F670_Spline {
+    unsigned int count;
+    int f4;
+    S_0012F0F0_Key *keys;
+};
+struct C_0012F670 {
+    char pad0[0x4B8];
+    unsigned int idx;
+    char pad4BC[4];
+    f32 f4C0;
+    f32 f4C4;
+    char pad4C8[0x50];
+    S_12F670_Spline *f518;
+    f32 func_0012F670(f32 a, f32 b);
+};
 
 static inline void Swap_0012FCF0(S_0012F518 *&a, S_0012F518 *&b)
 {
@@ -167,77 +182,81 @@ struct C_0012FE30 {
 V4_0012FCF0 C_CarProceduralExtended::func_0012F0F0(f32 t)
 {
     S_0012F518 *ar = f518;
-    u32 n = ar->count;
-    S_0012F0F0_Key *keys;
-    S_0012F0F0_Key *k0;
-    S_0012F0F0_Key *k1;
     V4_0012FCF0 out;
-    double r;
+    f32 r;
     f32 x;
-    f32 u;
-    f32 h00, h01, h10;
-    u32 j;
-    u32 cur;
-    V4W_0012F0F0 d1;
-    V4W_0012F0F0 t0;
-    V4W_0012F0F0 t1;
 
-    x = ((S_0012F0F0_Key *)ar->arr)[n - 1].time * f4C4;
-    r = fmod(t, x);
+    x = ((S_0012F0F0_Key *)ar->arr)[ar->count - 1].time * f4C4;
+    r = (f32)fmod(t, x);
     if (r < D_00275544) {
         r += x;
     }
-    if (n == 0) {
-        out = D_002A4130;
+    if (ar->count > 0) {
+        S_0012F0F0_Key *keys;
+        S_0012F0F0_Key *k0;
+        S_0012F0F0_Key *k1;
+        f32 u;
+        f32 h00, h01, h10;
+        u32 j;
+        u32 cur;
+        V4_0012FCF0 d1;
+        V4_0012FCF0 t0;
+        V4_0012FCF0 t1;
+
+        r *= f4C0;
+        j = f4B8 + 1;
+        if (j < ar->count) {
+            do {
+                if (r <= ((S_0012F0F0_Key *)ar->arr)[j].time) {
+                    break;
+                }
+                f4B8++;
+                j++;
+            } while (j < f518->count);
+        }
+        while (f4B8 != 0 && r < ((S_0012F0F0_Key *)ar->arr)[f4B8].time) {
+            f4B8--;
+            j--;
+        }
+        k0 = &((S_0012F0F0_Key *)ar->arr)[f4B8];
+        k1 = &((S_0012F0F0_Key *)ar->arr)[j];
+        u = (r - k0->time) / (k1->time - k0->time);
+        func_0012E5A0(u, &h00, &h01, &h10, &t);
+        ar = f518;
+        cur = f4B8;
+        keys = (S_0012F0F0_Key *)ar->arr;
+        k1 = &keys[j];
+        k0 = &keys[cur];
+        d1.w = 1.0f;
+        d1.x = k1->pos.x - k0->pos.x;
+        d1.y = k1->pos.y - k0->pos.y;
+        d1.z = k1->pos.z - k0->pos.z;
+        if (cur == 0) {
+            t0 = d1;
+        } else {
+            f32 k = (k1->time - k0->time) / (k1->time - k0[-1].time);
+            t0.x = (k0->pos.x - k0[-1].pos.x) + d1.x;
+            t0.y = (k0->pos.y - k0[-1].pos.y) + d1.y;
+            t0.z = (k0->pos.z - k0[-1].pos.z) + d1.z;
+            t0 = V4C_0012F0F0(t0.x * k, t0.y * k, t0.z * k, 1.0f);
+        }
+        if (j != ar->count - 1) {
+            f32 k = (k1->time - k0->time) / (k1[1].time - k0->time);
+            t1.x = (k1[1].pos.x - k1->pos.x) + d1.x;
+            t1.y = (k1[1].pos.y - k1->pos.y) + d1.y;
+            t1.z = (k1[1].pos.z - k1->pos.z) + d1.z;
+            d1.x = t1.x * k;
+            d1.y = t1.y * k;
+            d1.z = t1.z * k;
+        }
+        t1 = d1;
+        out.w = 1.0f;
+        out.x = h00 * k0->pos.x + h01 * k1->pos.x + t0.x * h10 + t1.x * t;
+        out.y = h00 * k0->pos.y + h01 * k1->pos.y + t0.y * h10 + t1.y * t;
+        out.z = h00 * k0->pos.z + h01 * k1->pos.z + t0.z * h10 + t1.z * t;
         return out;
     }
-    r *= f4C0;
-    j = f4B8 + 1;
-    if (j < ar->count) {
-        do {
-            if (r <= ((S_0012F0F0_Key *)ar->arr)[j].time) {
-                break;
-            }
-            f4B8++;
-            j++;
-        } while (j < f518->count);
-    }
-    while (f4B8 != 0 && r < ((S_0012F0F0_Key *)ar->arr)[f4B8].time) {
-        f4B8--;
-        j--;
-    }
-    k0 = &((S_0012F0F0_Key *)ar->arr)[f4B8];
-    k1 = &((S_0012F0F0_Key *)ar->arr)[j];
-    u = (r - k0->time) / (k1->time - k0->time);
-    func_0012E5A0(u, &h00, &h01, &h10, &t);
-    ar = f518;
-    cur = f4B8;
-    keys = (S_0012F0F0_Key *)ar->arr;
-    k1 = &keys[j];
-    k0 = &keys[cur];
-    d1.x = k1->pos.x - k0->pos.x;
-    d1.y = k1->pos.y - k0->pos.y;
-    d1.z = k1->pos.z - k0->pos.z;
-    if (cur == 0) {
-        t0 = d1;
-    } else {
-        f32 k = (k1->time - k0->time) / (k1->time - k0[-1].time);
-        t0 = V4W_0012F0F0();
-        t0.x = ((k0->pos.x - k0[-1].pos.x) + d1.x) * k;
-        t0.y = ((k0->pos.y - k0[-1].pos.y) + d1.y) * k;
-        t0.z = ((k0->pos.z - k0[-1].pos.z) + d1.z) * k;
-    }
-    if (j != ar->count - 1) {
-        f32 k = (k1->time - k0->time) / (k1[1].time - k0->time);
-        d1.x = ((k1[1].pos.x - k1->pos.x) + d1.x) * k;
-        d1.y = ((k1[1].pos.y - k1->pos.y) + d1.y) * k;
-        d1.z = ((k1[1].pos.z - k1->pos.z) + d1.z) * k;
-    }
-    t1 = d1;
-    out.w = 1.0f;
-    out.x = h00 * k0->pos.x + h01 * k1->pos.x + t0.x * h10 + t1.x * t;
-    out.y = h00 * k0->pos.y + h01 * k1->pos.y + t0.y * h10 + t1.y * t;
-    out.z = h00 * k0->pos.z + h01 * k1->pos.z + t0.z * h10 + t1.z * t;
+    out = D_002A4130;
     return out;
 }
 
