@@ -142,6 +142,7 @@ struct UIPage {
     void func_001BEB90(int idx);
     void func_001BEC10(int idx);
     void func_001BEC90(int idx, int target);
+    void func_001BEE50(int target, int arg, int idx);
     void func_001BEE30(int idx, int arg);
     void func_001BEF20(int idx);
     void func_001BEF50(int idx, int n);
