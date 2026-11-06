@@ -355,6 +355,20 @@ BmxUIMain *BmxUIMain::func_000BA360(int a)
 void __stdcall func_000BA430(int a0, int a1, int a2, int a3) {
 }
 
+void *BA440_Manager::func_000BA440(BA440_Reader *reader, const char *name) {
+ int flag, index; char path[260], full[260]; void *m; BA440_Obj *obj;
+ if (!strcmp(name,"Global")) { if(reader->func_00168C20(D_0027D8BC,0,&index)) return (*(void ***)(f24+0x2c))[index-1]; return 0; }
+if(!strcmp(name,"Soultree")){reader->func_00168550(D_00276310,path,260);m=func_001E8A44(364); obj=m ? ((BA440_Obj *)m)->func_001BF6F0(this,1):0; return obj->func_001BF7C0(1,path,reader);}
+if(!strcmp(name,"Soultree_Lightweight")){reader->func_00168550(D_00276310,path,260);m=func_001E8A44(364); obj=m ? ((BA440_Obj *)m)->func_001BFA70(this,1):0; return obj->func_001BFB40(2,path,reader);}
+if(!strcmp(name,"Soultree_Character")){ reader->func_00168550(D_0027D880,path,260); func_001ADCC0(full,260,D_00275678,D_002A46E8,path); m=func_001E8A44(0x3a4); obj=m?((BA440_Obj*)m)->func_001BFDB0(this,1):0; return obj->vf38(3,full,reader); }
+if(!strcmp(name,"Bmx_Overlay_Text")){m=func_001E8A44(1280); obj=m ? ((BA440_Obj *)m)->func_00102B30(this,1):0; return obj->func_00103B60(4,reader);}
+if(!strcmp(name,"BmxRotate_Overlay_Text")){m=func_001E8A44(1016); obj=m ? ((BA440_Obj *)m)->func_001033D0(this,1):0; return obj->func_00103450(4,reader);}
+if(!strcmp(name,"Overlay_Text")){m=func_001E8A44(432); obj=m ? ((BA440_Obj *)m)->func_001C0110(this,1):0; return obj->func_001C26B0(4,reader);}
+if(!strcmp(name,"Icon")){m=func_001E8A44(112); obj=m ? ((BA440_Obj *)m)->func_001C14D0(this,1):0; return obj->func_001C1520(5,reader,this);}
+if(!strcmp(name,"Movement_Control")){m=func_001E8A44(172); obj=m ? ((BA440_Obj *)m)->func_001C0C50(this,1):0; return obj->func_001C0CB0(9,reader,this);}
+if(!strcmp(name,"Movement_Group")){m=func_001E8A44(168); obj=m ? ((BA440_Obj *)m)->func_001C0EC0(this,1):0; return obj->func_001C0F20(10,reader,this);}
+if(!strcmp(name,"User_Rotate")){reader->func_00168C20(D_0027D800,0,&flag); reader->func_00168550(D_00276310,path,260); if(flag){m=func_001E8A44(592); obj=m ? ((BA440_Obj *)m)->func_001C1150(this,1):0; return obj->func_001C11E0(11,path,reader);} else {m=func_001E8A44(184); obj=m ? ((BA440_Obj *)m)->func_001C0730(this,1):0; return obj->func_001C0820(11,path,reader);} } return 0; }
+
 undefined4 C_000BA9B0::func_000BA9B0(int param_1)
 {
   int in_ECX = (int)this;
