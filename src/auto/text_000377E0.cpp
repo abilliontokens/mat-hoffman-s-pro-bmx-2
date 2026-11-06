@@ -57,6 +57,7 @@ struct V4_378D0 {
     void init2() { w = 1.0f; x = y = z = 0.0f; }
     void identity();
 };
+inline void *operator new[](unsigned int, V4_378D0 *p) { return p; }
 extern float D_002A14D4, D_002A14D8, D_002A14DC, D_002A14E0;
 inline void V4_378D0::identity() { x = D_002A14D4; y = D_002A14D8; z = D_002A14DC; w = D_002A14E0; }
 extern int D_00276CA4;
