@@ -41,6 +41,7 @@ struct S_7C690_Global {
     S_7C690_Mgr *f2e8;
 };
 extern S_7C690_Global *D_002A8490;
+extern char D_00275630[], D_00275678[], D_00279030[];
 
 struct S_7C690_Obj90 { char pad0[0x90]; int f90; };
 struct S_7C690_Text {
