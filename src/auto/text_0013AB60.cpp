@@ -16,6 +16,7 @@ struct C_0013AFD0 {
 #include <string.h>
 
 static inline int Min_0013B530(int a, int b) { return a < b ? a : b; }
+template <class T> inline const T &MinRef_0013B530(const T &a, const T &b) { return b < a ? b : a; }
 template <class T> inline const T &Max_0013AC40(const T &a, const T &b) { return a < b ? b : a; }
 
 extern "C" int func_0014FF00(const char *path, char *drive, char *dir, char *fname, char *ext);
@@ -367,7 +368,7 @@ void C_0013AEC0::func_0013B280(int keep)
     S_0013B340_Buf *first;
     S_0013B340_Buf *p;
     int count;
-    unsigned int idx;
+    int idx;
 
     if (fE0 != -1) {
         ((S_0013B340_Buf *)((char *)this + 0x80) + fE0)->f4 = -1;
@@ -379,7 +380,7 @@ void C_0013AEC0::func_0013B280(int keep)
     p = (S_0013B340_Buf *)((char *)this + 0x80);
     do {
         idx = p->f4;
-        if (idx != -2 && (idx == -1 || (fE8[idx].f18 & 4) == 0)) {
+        if (idx != -2 && (idx == -1 || (*(unsigned char *)(*(int *)((int)this + 0xe8) + 0x18 + idx * 0x20) & 4) == 0)) {
             p->f8 = -0x6000;
             p->f4 = -1;
             count++;
