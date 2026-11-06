@@ -1,6 +1,59 @@
 /* 9 functions from 0x00155890 to 0x00156880, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+#include <xmmintrin.h>
+struct S_1558_V4 { float x, y, z, w; };
+struct S_1558_Vec4 : S_1558_V4 { S_1558_Vec4() { x = y = z = 0; w = 1; } };
+struct S_1558_V4c : S_1558_V4 { S_1558_V4c(float x0, float y0, float z0, float w0) { x = x0; y = y0; z = z0; w = w0; } };
+struct S_1558_Node {
+    S_1558_Node *func_00198330(void *name);
+    void func_00199CF0(S_1558_V4 v, float f);
+    S_1558_V4 *func_00198120(S_1558_V4 *out, S_1558_V4 *in);
+    void func_00199600(S_1558_V4 v);
+    void func_00198F50(S_1558_V4 *a, S_1558_V4 *b, int c, int d, int e);
+    void func_0019AC50();
+};
+struct S_1558_F3C { char pad0[4]; S_1558_Node *unk4; };
+struct S_1558_Cfg {
+    char pad0[0x34]; float unk34;
+    char pad38[0x10]; float unk48;
+    char pad4C[0x108 - 0x4C]; int unk108;
+    char pad10C[0x584 - 0x10C]; int unk584;
+    S_1558_V4 *func_00016E40(S_1558_V4 *out);
+    void func_00150900(S_1558_V4 *a, S_1558_V4 *b);
+};
+struct S_1558_Sub {
+    virtual void s0(); virtual void s1(); virtual void s2(); virtual void s3();
+    virtual void s4(); virtual void s5(); virtual void s6(); virtual void s7();
+    virtual void s8(); virtual void s9(); virtual void s10(); virtual void s11();
+    virtual void s12(float a);
+};
+struct S_1558_Glob { char pad0[0x124]; int unk124; };
+extern S_1558_Glob *D_002A8490;
+extern char D_00282A10[];
+void func_001553E0(S_1558_V4 *a, S_1558_V4 *b);
+static __forceinline void Cross1558(S_1558_V4 *out, S_1558_V4 *a, S_1558_V4 *b)
+{
+    __m128 va = _mm_loadu_ps(&a->x);
+    __m128 vb = _mm_loadu_ps(&b->x);
+    __m128 sa = _mm_shuffle_ps(va, va, 0xc9);
+    __m128 sb = _mm_shuffle_ps(vb, vb, 0xc9);
+    __m128 r = _mm_sub_ps(_mm_mul_ps(va, sb), _mm_mul_ps(vb, sa));
+    _mm_storeu_ps(&out->x, _mm_shuffle_ps(r, r, 0xc9));
+}
+struct C_1558 {
+    char pad0[0x3c];
+    S_1558_F3C *unk3C;
+    char pad40[0x384 - 0x40];
+    S_1558_Sub *unk384;
+    char pad388[0x39c - 0x388];
+    S_1558_Cfg *unk39C;
+    char pad3A0[0x3e0 - 0x3a0];
+    int unk3E0;
+    float unk3E4;
+    void func_001C7EB0(float a);
+    int func_00155890(float a);
+};
 struct C_001567E0 {
     undefined4 func_001567E0(byte param_1);
 };
