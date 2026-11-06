@@ -104,6 +104,25 @@ static __declspec(noreturn) void __stdcall reboot_1E148B(int a)
     __debugbreak();
 }
 
+int __stdcall func_001E148B(int heap, unsigned int flags, void *p, unsigned int size)
+{
+    __try {
+        if (p == 0)
+            return 0;
+        flags |= *(unsigned int *)(heap + 0x18);
+        if (size > 0x7fffffff)
+            return 0;
+        if (size == 0)
+            size = 1;
+        size = (size + *(unsigned int *)(heap + 0x50) + 1) & *(unsigned int *)(heap + 0x54);
+        if ((flags & 0x3c000100) == 0 && *(int *)(heap + 0x17c) == 0 && (*(unsigned char *)((char *)p - 0xb) & 2) == 0)
+            size += 0x10;
+        return 1;
+    } __except (1) {
+        return 0;
+    }
+}
+
 long __stdcall func_001E1BD7(S_AnsiString_1E148B *name, int size)
 {
     S_FsSizeInfo_1E148B fsi;
@@ -162,13 +181,119 @@ long __stdcall func_001E1C4F(int a1, char *path, int size, const char *name)
     return st;
 }
 
-void __stdcall func_001E206A(int a1, int a2)
+#pragma optimize("t", off)
+int __stdcall func_001E1D36(void *a0, S_AnsiString_1E148B *a1, const char *a2, int a3, const char *a4, int a5)
+{
+    int st;
+    void *h;
+    S_ObjectAttributes_1E148B oa;
+    S_IoStatusBlock_1E148B iosb;
+    int h1;
+    S_AnsiString_1E148B as;
+    S_AnsiString_1E148B as2;
+    char path[0x104];
+    u16 text[0x8e];
+
+    oa.RootDirectory = 0;
+    oa.Attributes = 0x40;
+    oa.ObjectName = a1;
+    st = _imp__NtCreateFile(&h, (u32)D_00100001, &oa, &iosb, 0, 0x80, 3, 3, 0x4021);
+    if (st >= 0)
+        _imp__NtClose(h);
+    else if (st == 0xC0000103)
+        st = 0;
+    if (st < 0)
+        return st;
+
+    {
+        const char *s = a1->Buffer;
+        char *d = path;
+        while ((*d++ = *s++) != 0) {}
+    }
+    {
+        char *p = path + a1->Length;
+        if (p[-1] != '\\')
+            *p = '\\';
+        else
+            a1->Length--;
+    }
+    {
+        const char *s = a2;
+        char *d = path + a1->Length + 1;
+        while ((*d++ = *s++) != 0) {}
+    }
+
+    _imp__RtlInitAnsiString(&as, path);
+    oa.ObjectName = &as;
+    oa.RootDirectory = 0;
+    oa.Attributes = 0x40;
+    st = _imp__NtCreateFile(&h, (u32)D_00120117, &oa, &iosb, 0, 0x80, 3, (a3 != 0) + (a3 != 0) + 1, 0x4021);
+    if (st < 0)
+        return st;
+    if (a5) {
+        s64 fbi[5];
+        memset(fbi, 0, 0x28);
+        _imp__KeQuerySystemTime(&fbi[2]);
+        _imp__NtSetInformationFile(h, &iosb, fbi, 0x28, 4);
+    }
+    if (a4) {
+        int h2, h3;
+        h2 = func_001E2774(D_0028FF5C);
+        h3 = func_001E2774(D_0028FF50);
+        h1 = func_001E2774(D_0028FF44);
+        if (h2 != -1 || *(u16 *)a4 != 0) {
+            void *hf;
+            unsigned int len = strlen(path);
+            char *end = path + len;
+            func_001DF4E1(end, D_0028FE78, 0x104 - len);
+            _imp__RtlInitAnsiString(&as2, path);
+            oa.ObjectName = &as2;
+            oa.RootDirectory = 0;
+            oa.Attributes = 0x40;
+            st = _imp__NtCreateFile(&hf, 0x40100000, &oa, &iosb, 0, 4, 1, 3, 0x22);
+            *end = 0;
+            if (st >= 0) {
+                S_FileNetworkOpenInfo_1E148B info;
+                st = _imp__NtQueryInformationFile(hf, &iosb, &info, 0x38, 0x22);
+                if (st >= 0 && info.EndOfFileLow == 0 && info.EndOfFileHigh == 0) {
+                    void *buf = 0;
+                    if (h2 != -1)
+                        buf = func_001E27DB(h2);
+                    if (buf) {
+                        st = _imp__NtWriteFile(hf, 0, 0, 0, &iosb, buf, func_001E2850(h2), 0);
+                        func_001E27FC(h2);
+                    } else {
+                        int n = func_001EAA6D(text, 0x8e, D_0028FBB0, D_0000FEFF, D_0028FED8, 0x3d, a4, D_0028FF1C);
+                        st = _imp__NtWriteFile(hf, 0, 0, 0, &iosb, text, n * 2, 0);
+                    }
+                }
+                _imp__NtClose(hf);
+            } else if (st == 0xC0000035)
+                st = 0;
+        }
+        if (st >= 0) {
+            if (h3 != -1)
+                st = func_001E1C4F(h3, path, 0x104, D_0028FE8C);
+            if (st >= 0 && h1 != -1)
+                st = func_001E1C4F(h1, path, 0x104, D_0028FEA0);
+        }
+    }
+    _imp__NtClose(h);
+    if (st >= 0)
+        st = _imp__IoCreateSymbolicLink(a0, &as);
+    return st;
+}
+#pragma optimize("", on)
+long __stdcall func_001E206A(int a1, int a2)
 {
     char local[12];
+    long st;
 
     func_001EA4E1(local, D_0028FD4C, a1);
-    if (func_001E1D36(D_002ACBFC, D_002ACC04, local, 1, 0, 0) >= 0)
-        func_001E1D36(D_002ACC0C, D_002ACC14, local, 1, a2, 0);
+    st = func_001E1D36(D_002ACBFC, D_002ACC04, local, 1, 0, 0);
+    if (st >= 0)
+        st = func_001E1D36(D_002ACC0C, D_002ACC14, local, 1, a2, 0);
+    return st;
 }
 
 void __stdcall func_001E20BF(int a1, int a2, int a3)
@@ -241,4 +366,34 @@ long __stdcall func_001E2202(S_AnsiString_1E148B *name)
 {
     return func_001E1BD7(name, 0x4000);
 }
+
+extern "C" void __cdecl func_001E2703(void);
+extern "C" int __stdcall func_001E06BC(int a1, int a2, int a3, int a4, int a5, void *a6);
+extern int D_00010134, D_00010138, D_002F6BB4;
+extern unsigned int D_00010124;
+extern char D_002ACBE4[], D_002ACBF4[];
+extern "C" void *__imp__XboxHardwareInfo;
+void __stdcall func_001E2213(void)
+{
+    int local[12];
+    int st;
+
+    func_001E2703();
+    memset(local, 0, sizeof(local));
+    local[0] = 0x30;
+    st = func_001E06BC(2, 0, D_00010134, D_00010138, 0, local);
+    D_002F6BB4 = st;
+    if (st == 0) {
+        func_001E20BF(1, 1, 0);
+        return;
+    }
+    if (!(D_00010124 & 8)) {
+        st = (int)func_001E2202((S_AnsiString_1E148B *)D_002ACBF4);
+        if (st >= 0)
+            st = (int)_imp__IoCreateSymbolicLink(D_002ACBE4, (S_AnsiString_1E148B *)D_002ACBEC);
+    }
+    if (__imp__XboxHardwareInfo != 0)
+        st = 0;
+}
+
 #pragma optimize("", on)
