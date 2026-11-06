@@ -68,7 +68,6 @@ struct C_0011EDF0 {
     float z;
     float w;
     C_0011EDF0 *func_0011EDF0(s16 *p);
-    C_0011EDF0 *set_0011F210(s16 *p);
 };
 
 extern float D_00275544;
