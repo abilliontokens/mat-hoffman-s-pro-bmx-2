@@ -82,6 +82,7 @@ struct Entry549 { int pad0; struct Obj2E8549 *f4; };
 struct Obj2E8549 { char pad0[0x2e8]; int f2e8; unsigned char flags2ec; };
 struct TagObj549 { void func_00199600(V549); void func_0019AC50(); };
 struct Bx549 { char pad0[0x1a4]; TagObj549 *f1a4arr[2]; };
+struct BxSub549 { void *pad0; TagObj549 *f4; };
 struct Rules549 { int func_0005B960(int, float); int func_0005B960(int, int); };
 struct Sub190549 { char pad0[0x168]; int f168; void func_00067D60(int, int); void func_000684B0(); };
 struct Obj8BB549 { void func_0008BB50(int); };
