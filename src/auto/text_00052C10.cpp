@@ -314,8 +314,7 @@ struct C_535C0 {
     char pad1CC[0xC0];
     int unk28C;
     char pad290[0x28];
-    float unk2B8, unk2BC, unk2C0, unk2C4;
-    int unk2C8, unk2CC, unk2D0, unk2D4;
+    int unk2B8, unk2BC, unk2C0, unk2C4, unk2C8, unk2CC, unk2D0, unk2D4;
     void func_000533E0();
     void func_00051A00();
     void func_00034090();
@@ -707,6 +706,30 @@ int C_53460::func_00053460()
         unk1C0->func_000981D0(unk64->f3B4, unk64->f534, unk1C8);
     func_000518A0();
     unk44->func_0002F6C0();
+    return 1;
+}
+
+int C_535C0::func_000535C0()
+{
+    func_000533E0();
+    unk44->func_0002F8A0();
+    func_00051A00();
+    if (unk1C0 != 0) {
+        unk1C0->func_000988B0(unk64->f3B4, unk64->f534);
+        unk1C0->func_00098EE0(unk64->f3B4, unk64->f534);
+    }
+    unk28C = 0;
+    func_00034090();
+    if (unk1C0 != 0)
+        unk1C0->func_000981D0(unk64->f3B4, unk64->f534, unk1C8);
+    if (unk16C->f274 != 0) {
+        *(double *)&unk2B8 = 0.0;
+        *(double *)&unk2C0 = 0.0;
+    }
+    unk2D0 = 0;
+    unk2C8 = 0;
+    unk2CC = 0;
+    unk2D4 = 0;
     return 1;
 }
 
