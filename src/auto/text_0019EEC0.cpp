@@ -227,28 +227,3 @@ struct C_0019EEC0 {
     int func_0019EEC0(int *out);
 };
 
-extern "C" unsigned __int64 __rdtsc();
-#pragma intrinsic(__rdtsc)
-extern float D_00275460;
-extern float D_0028B320;
-
-/* one 0x50-byte timer record */
-struct S_0019FC80_Timer {
-    unsigned __int64 start;
-    float f8;
-    float fC;
-    float f10;
-    float f14;
-    char pad18[8];
-    float f20;
-    float f24;
-    char pad28[0x50 - 0x28];
-};
-
-struct C_0019FC80 {
-    char pad0[0x28];
-    float f28;
-    char pad2C[0x38 - 0x2C];
-    S_0019FC80_Timer timers[8];
-    void func_0019FC80(int i);
-};
