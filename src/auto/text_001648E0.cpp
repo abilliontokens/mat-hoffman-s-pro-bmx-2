@@ -4,8 +4,8 @@
 struct Vec4_165EF0 {
  float x,y,z,w;
  __forceinline Vec4_165EF0 operator-(const Vec4_165EF0 &b) const { Vec4_165EF0 r; r.x=x-b.x; r.y=y-b.y; r.z=z-b.z; r.w=1.0f; return r; }
- Vec4_165EF0 operator*(float s) const { Vec4_165EF0 r; r.x=x*s; r.y=y*s; r.z=z*s; r.w=1.0f; return r; }
- Vec4_165EF0 operator+(const Vec4_165EF0 &b) const { Vec4_165EF0 r; r.x=x+b.x; r.y=y+b.y; r.z=z+b.z; r.w=1.0f; return r; }
+ __forceinline Vec4_165EF0 operator*(float s) const { Vec4_165EF0 r; r.x=x*s; r.y=y*s; r.z=z*s; r.w=1.0f; return r; }
+ __forceinline Vec4_165EF0 operator+(const Vec4_165EF0 &b) const { Vec4_165EF0 r; r.x=x+b.x; r.y=y+b.y; r.z=z+b.z; r.w=1.0f; return r; }
 };
 struct C_001648E0_Item {
  virtual void v0();
@@ -151,6 +151,60 @@ void C_001648E0::func_00164BA0(C_001648E0_Arg *a, C_001648E0_Arg *b, float time,
             pa = pa + (pb - pa) * t2;
         }
         f1EC[idx].f34->func_00199650(&pa);
+    }
+}
+
+void C_001648E0::func_00164F80(C_001648E0_Arg *a, C_001648E0_Arg *b, float s0, float s1, float t, int flag, int *mask, float w)
+{
+    int i, idx;
+    float k0, k1;
+    f18 = 0;
+    k1 = s0 * a->f38;
+    k0 = s1 * b->f38;
+    for (i = 0; i < a->f20; i++) {
+        Vec4_165EF0 v[2];
+        a->f18[i]->v2(k1, &v[0]);
+        b->f18[i]->v2(k0, &v[1]);
+        if (mask && mask[b->f18[i]->f4]) {
+            v[1] = v[0];
+        } else {
+            func_0015C7D0(&v[1], &v[0], &v[1], t);
+        }
+        if (flag) {
+            float y = v[1].y, z = v[1].z, ww = v[1].w;
+            if (fC == 0) y = -y;
+            else if (fC == 1) z = -z;
+            else if (fC == 2) ww = -ww;
+            v[1].y = -y; v[1].z = -z; v[1].w = -ww;
+            idx = f1F0[a->f18[i]->f4];
+        } else {
+            idx = a->f18[i]->f4;
+        }
+        if (w > D_00275544 && f200) {
+            v[0] = f200[idx];
+            func_0015C7D0(&v[1], &v[0], &v[1], w);
+        }
+        f1EC[idx].f34->func_00199300(&v[1]);
+    }
+    for (i = 0; i < a->f1C; i++) {
+        Vec4_165EF0 v[2];
+        v[0].x = v[0].y = v[0].z = 0.0f; v[0].w = 1.0f;
+        v[1].x = v[1].y = v[1].z = 0.0f; v[1].w = 1.0f;
+        a->f14[i]->v3(k1, &v[0]);
+        b->f14[i]->v3(k0, &v[1]);
+        if (!(mask && mask[b->f14[i]->f4]))
+            v[0] = v[1] - (v[1] - v[0]) * t;
+        if (flag) {
+            func_001640D0(f4, f1EC[f1F0[a->f14[i]->f4]].f34->f170, (void *)fC, &v[0]);
+            idx = f1F0[a->f14[i]->f4];
+        } else {
+            idx = a->f14[i]->f4;
+        }
+        if (w > D_00275544 && f204) {
+            v[1] = f204[idx];
+            v[0] = v[0] + (v[1] - v[0]) * w;
+        }
+        f1EC[idx].f34->func_00199650(&v[0]);
     }
 }
 
