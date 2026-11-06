@@ -40,19 +40,17 @@ struct C_0009C770 {
 
 static __forceinline void Free_0009C770(S_0009C770_E2 *e)
 {
-    S_0009C770_Child **p = e->f4880;
-    int n = 12;
+    int k;
     S_0009C770_Child *c;
 
-    do {
-        c = *p;
+    for (k = 0; k < 12; k++) {
+        c = e->f4880[k];
         if (c != 0) {
             c->func_00012140();
             func_001E891B(c);
-            *p = 0;
+            e->f4880[k] = 0;
         }
-        p++;
-    } while (--n != 0);
+    }
     func_001E891B(e);
 }
 
@@ -61,8 +59,11 @@ void C_0009C770::func_0009C770(void)
     int i;
     int j;
     int n;
+    struct {
+        int e2;
+        int dummy;
+    } t;
     S_0009C770_E1 *e1;
-    S_0009C770_E2 *e2;
     S_0009C770_Child *c;
     S_0009C770_Child **p;
 
@@ -86,8 +87,8 @@ void C_0009C770::func_0009C770(void)
                     e1->func_00096700();
                     func_001E891B(e1);
                 }
+                arr0[i] = 0;
             }
-            arr0[i] = 0;
         }
         func_001E891B(arr0);
         arr0 = 0;
@@ -107,10 +108,10 @@ void C_0009C770::func_0009C770(void)
                     func_001E891B(arr4[i]->f1c8);
                     arr4[i]->f1c8 = 0;
                 }
-                e2 = arr4[i];
-                if (e2 != 0) {
+                t.e2 = (int)arr4[i];
+                if (t.e2 != 0) {
+                    p = ((S_0009C770_E2 *)t.e2)->f4880;
                     n = 12;
-                    p = e2->f4880;
                     do {
                         c = *p;
                         if (c != 0) {
@@ -120,10 +121,10 @@ void C_0009C770::func_0009C770(void)
                         }
                         p++;
                     } while (--n != 0);
-                    func_001E891B(e2);
+                    func_001E891B((void *)t.e2);
                 }
+                arr4[i] = 0;
             }
-            arr4[i] = 0;
         }
         func_001E891B(arr4);
         arr4 = 0;
@@ -143,10 +144,10 @@ void C_0009C770::func_0009C770(void)
                     func_001E891B(arr8[i]->f1c8);
                     arr8[i]->f1c8 = 0;
                 }
-                e2 = arr8[i];
-                if (e2 != 0) {
+                t.e2 = (int)arr8[i];
+                if (t.e2 != 0) {
+                    p = ((S_0009C770_E2 *)t.e2)->f4880;
                     n = 12;
-                    p = e2->f4880;
                     do {
                         c = *p;
                         if (c != 0) {
@@ -156,10 +157,10 @@ void C_0009C770::func_0009C770(void)
                         }
                         p++;
                     } while (--n != 0);
-                    func_001E891B(e2);
+                    func_001E891B((void *)t.e2);
                 }
+                arr8[i] = 0;
             }
-            arr8[i] = 0;
         }
         func_001E891B(arr8);
         arr8 = 0;
