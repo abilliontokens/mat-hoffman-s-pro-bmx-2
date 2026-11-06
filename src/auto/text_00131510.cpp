@@ -40,7 +40,7 @@ struct C_00131510 {
     float f60;
     int f64;
     int f68;
-    int f6C;
+    S_Sub_00131510 *f6C;
     int f70;
     int f74;
     int f78;
