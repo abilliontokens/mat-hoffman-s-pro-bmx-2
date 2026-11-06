@@ -138,6 +138,7 @@ struct C_5E40_B {
 struct C_5E40_A {
     char pad0[0x25C];
     C_5E40_B *f25C;
+    C_5E40_B *getB() { return f25C; }
 };
 
 struct C_5E40_Dst {
