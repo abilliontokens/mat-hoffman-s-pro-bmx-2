@@ -298,6 +298,36 @@ void C_00198B70::func_00198F50(float *a, float *b, int c, int d, int e)
     }
 }
 
+void C_00198B70::func_00199110(C_00198B70 *other, float *a, float *b, int c, int d, int e)
+{
+ C_00198B70 * volatile self=this;
+ S_00198B70_V4 * volatile p;
+ volatile S_00198B70_V4 t;
+ volatile S_00198B70_V4 cross;
+ __declspec(align(16)) float m[16];
+ t.x=((int*)fB0.m)[3]; t.y=((int*)fB0.m)[7]; t.z=((int*)fB0.m)[11]; t.w=0x3f800000;
+ if(!c && e) {
+ cross.z=0; cross.y=0; cross.x=0; cross.w=0x3f800000;
+ p=(S_00198B70_V4*)&cross;
+ __m128 v=_mm_loadu_ps(b), w=_mm_loadu_ps(a);
+ __m128 v1=_mm_shuffle_ps(v,v,0xc9), w1=_mm_shuffle_ps(w,w,0xc9);
+ __m128 r=_mm_sub_ps(_mm_mul_ps(v,w1),_mm_mul_ps(w,v1));
+ _mm_storeu_ps((float*)p,_mm_shuffle_ps(r,r,0xc9));
+ ((int*)m)[0]=cross.x; ((int*)m)[4]=cross.y; ((int*)m)[8]=cross.z; m[12]=0;
+ ((int*)m)[1]=((int*)b)[0]; ((int*)m)[5]=((int*)b)[1]; ((int*)m)[9]=((int*)b)[2]; m[13]=0;
+ ((int*)m)[2]=((int*)a)[0]; ((int*)m)[6]=((int*)a)[1]; ((int*)m)[10]=((int*)a)[2]; m[14]=0;
+ ((int*)m)[3]=t.x; ((int*)m)[7]=t.y; ((int*)m)[11]=t.z; m[15]=1;
+ } else func_000265C0(m,(float*)&t,a,b,c,d);
+ if(other==self) func_0011ACC0(&self->fB0,m,self->fB0.m);
+ else {
+ if(other) { other->func_00197AA0(); func_0011ACC0(m,m,other->fF0.m); }
+ func_00198EF0(&self->fB0,self,m);
+ self->fB0.m[3]=((float*)&t)[0]; self->fB0.m[7]=((float*)&t)[1]; self->fB0.m[11]=((float*)&t)[2];
+ }
+ self->func_001982F0();
+ if(self->f180&1) { self->f180&=0xfe; if(self->f174) self->f174->func_00197B10(); }
+}
+
 void C_00198B70::func_00199300(float *q)
 {
     float d=q[3], c=q[2], b=q[1], a=q[0];
