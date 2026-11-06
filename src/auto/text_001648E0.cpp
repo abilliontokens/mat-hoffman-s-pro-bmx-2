@@ -6,6 +6,13 @@ struct Vec4_165EF0 {
  __forceinline Vec4_165EF0 operator-(const Vec4_165EF0 &b) const { Vec4_165EF0 r; r.x=x-b.x; r.y=y-b.y; r.z=z-b.z; r.w=1.0f; return r; }
  Vec4_165EF0 operator*(float s) const { Vec4_165EF0 r; r.x=x*s; r.y=y*s; r.z=z*s; r.w=1.0f; return r; }
  Vec4_165EF0 operator+(const Vec4_165EF0 &b) const { Vec4_165EF0 r; r.x=x+b.x; r.y=y+b.y; r.z=z+b.z; r.w=1.0f; return r; }
+ __forceinline void Mirror(int mode) {
+  float z = this->z, w = this->w, y = this->y;
+  if (mode == 0) y = -y;
+  else if (mode == 1) z = -z;
+  else if (mode == 2) w = -w;
+  this->y = -y; this->z = -z; this->w = -w;
+ }
 };
 struct C_001648E0_Item {
  virtual void v0();
@@ -58,5 +65,99 @@ static __forceinline Vec4_165EF0 Blend_1648E0(const Vec4_165EF0 &a, const Vec4_1
  r.w=1.0f;
  r.x=x*t+a.x; r.y=y*t+a.y; r.z=z*t+a.z;
  return r;
+}
+
+void C_001648E0::func_001648E0(C_001648E0_Arg *a1, float time, int transform, int *mask, float blend)
+{
+ Vec4_165EF0 pos;
+ int i, idx;
+ f18 = 0;
+ time *= a1->f38;
+ for (i=0;i<a1->f20;i++) {
+  if (mask && mask[a1->f18[i]->f4]) continue;
+  Vec4_165EF0 quat;
+  a1->f18[i]->v2(time,&quat);
+  if (transform) {
+   func_001641B0((void *)fC,&quat);
+   idx=f1F0[a1->f18[i]->f4];
+  } else idx=a1->f18[i]->f4;
+  if (blend>D_00275544 && f200) {
+   Vec4_165EF0 old;
+   old = f200[idx];
+   func_0015C7D0(&quat,&old,&quat,blend);
+  }
+  f1EC[idx].f34->func_00199300(&quat);
+ }
+ for (i=0;i<a1->f1C;i++) {
+  if (mask && mask[a1->f14[i]->f4]) continue;
+  pos.x=pos.y=pos.z=0.0f; pos.w=1.0f;
+  a1->f14[i]->v3(time,&pos);
+  if (transform) {
+   func_001640D0(f4,f1EC[f1F0[a1->f14[i]->f4]].f34->f170,(void *)fC,&pos);
+   idx=f1F0[a1->f14[i]->f4];
+  } else idx=a1->f14[i]->f4;
+  if (blend>D_00275544 && f204) {
+   Vec4_165EF0 old;
+   old = f204[idx];
+   pos = (old-pos)*blend+pos;
+
+  }
+  f1EC[idx].f34->func_00199650(&pos);
+ }
+}
+
+void C_001648E0::func_00164BA0(C_001648E0_Arg *a, C_001648E0_Arg *b, float time, float blend, int flag, float t2)
+{
+    int i;
+    int idx;
+    float ft;
+    f18 = 0;
+    ft = time * a->f38;
+    for (i = 0; i < a->f20; i++) {
+        Vec4_165EF0 pa;
+        Vec4_165EF0 pb;
+        a->f18[i]->v2(ft, &pa);
+        b->f18[i]->v2(ft, &pb);
+        func_0015C7D0(&pb, &pa, &pb, blend);
+        if (flag) {
+            int mode = (int)fC;
+            float y = pb.z;
+            float z = pb.w;
+            if (mode == 0) pb.y = -pb.y;
+            else if (mode == 1) y = -y;
+            else if (mode == 2) z = -z;
+            pb.y = -pb.y;
+            pb.z = -y;
+            pb.w = -z;
+            idx = f1F0[a->f18[i]->f4];
+        } else {
+            idx = a->f18[i]->f4;
+        }
+        if (t2 > D_00275544 && f200) {
+            pa = f200[idx];
+            func_0015C7D0(&pb, &pa, &pb, t2);
+        }
+        f1EC[idx].f34->func_00199300(&pb);
+    }
+    for (i = 0; i < a->f1C; i++) {
+        Vec4_165EF0 pa;
+        Vec4_165EF0 pb;
+        pa.x = 0.0f; pa.y = 0.0f; pa.z = 0.0f; pa.w = 1.0f;
+        a->f14[i]->v3(ft, &pa);
+        pb.x = 0.0f; pb.y = 0.0f; pb.z = 0.0f; pb.w = 1.0f;
+        b->f14[i]->v3(ft, &pb);
+        pa = pb - (pb - pa) * blend;
+        if (flag) {
+            func_001640D0(f4, f1EC[f1F0[a->f14[i]->f4]].f34->f170, (void *)fC, &pa);
+            idx = f1F0[a->f14[i]->f4];
+        } else {
+            idx = a->f14[i]->f4;
+        }
+        if (t2 > D_00275544 && f204) {
+            pb = f204[idx];
+            pa = pa + (pb - pa) * t2;
+        }
+        f1EC[idx].f34->func_00199650(&pa);
+    }
 }
 
