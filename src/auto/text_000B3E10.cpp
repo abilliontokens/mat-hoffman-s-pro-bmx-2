@@ -163,7 +163,7 @@ inline T B3E10_Min(T a, T b)
     return a > b ? b : a;
 }
 
-inline void B3E10_Copy(char *dst, const char *src, int max)
+__forceinline void B3E10_Copy(char *dst, const char *src, int max)
 {
     volatile int length = strlen(src);
     volatile int limit = max;
