@@ -79,7 +79,6 @@ struct CutScene {
     void func_00139360(int oldIndex, int index);
     void func_001395D0();
     int func_001396D0(float dt);
-    CsChild *Child(int i) { return f80[i]; }
 };
 struct C_00139B30 {
     undefined4 func_00139B30(byte param_1);
@@ -117,10 +116,8 @@ int CutScene::func_001396D0(float dt)
                         v = &f40[f24].values[i];
                         if (v->time < D_00275544) {
                             id = v->id;
-                            if (id >= 0 && f80[id] != 0) {
-                                if (!f80[id]->v7()) {
-                                    f80[id]->v5(0);
-                                }
+                            if (id >= 0 && f80[id] != 0 && !f80[id]->v7()) {
+                                f80[id]->v5(0);
                             }
                             f40[f24].values[i].time = 0;
                         }
