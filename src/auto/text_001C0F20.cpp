@@ -382,8 +382,11 @@ struct S_001C1520_Sprite {
         f48 = y1 * f50;
     }
     void SetUV(float x0, float x1, float y0, float y1) {
+        unsigned char *fp = (unsigned char *)this + 0x58;
+        unsigned char fl = *fp;
         float t = x0 * f4c;
-        rectSet = 1;
+        fl |= 4;
+        *fp = fl;
         f3c = t;
         f40 = x1 * f4c;
         f44 = y0 * f50;
