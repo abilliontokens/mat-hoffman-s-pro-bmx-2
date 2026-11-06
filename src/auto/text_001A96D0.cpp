@@ -89,8 +89,11 @@ void func_0011F540(V4_001A96D0 *out, V4_001A96D0 v, float *m);
 
 static __forceinline void cross_001A96D0(float *out, float *a, float *b)
 {
-    __m128 va = _mm_loadu_ps(a);
-    __m128 vb = _mm_loadu_ps(b);
+    float * volatile pa = a;
+    float * volatile pb = b;
+    float * volatile po = out;
+    __m128 va = _mm_loadu_ps(pa);
+    __m128 vb = _mm_loadu_ps(pb);
     __m128 sa = va;
     __m128 sb = vb;
 
@@ -100,7 +103,7 @@ static __forceinline void cross_001A96D0(float *out, float *a, float *b)
     va = _mm_mul_ps(va, sb);
     va = _mm_sub_ps(va, vb);
     va = _mm_shuffle_ps(va, va, 0xc9);
-    _mm_storeu_ps(out, va);
+    _mm_storeu_ps(po, va);
 }
 
 static __forceinline float Min_001A9FA0(float a, float b) { float r; _mm_store_ss(&r, _mm_min_ss(*(__m128 *)&a, *(__m128 *)&b)); return r; }
@@ -248,6 +251,45 @@ void This_001A96D0::func_001A9990(V4_001A96D0 p, Other_001A9990 *other)
         f.y = t.y - d.y;
         f.z = t.z - d.z;
         self->f124 = f;
+    }
+}
+
+void This_001A9D20::func_001A9D20(float s, V4_001A96D0 v, V4_001A96D0 q, Obj_001A9D20 *other, unsigned mask)
+{
+    float f8;
+    float a, b;
+    if (f4c) {
+        if (other == 0) {
+            a = fA0;
+            b = fA4;
+        } else if (f50 == 0) {
+            a = fA8;
+            b = fAC;
+        }
+    }
+    if (other)
+        *(volatile float *)&f8 = f24->f210 > other->f210 ? f24->f214 * other->f210 : other->f214 * f24->f210;
+    else
+        *(volatile float *)&f8 = 1.0f;
+    float m = s < f94 ? s : f94;
+    float d = v.y * f128 + v.x * f124 + v.z * f12c;
+    float dd = d > -f98 ? d : -f98;
+    dd = dd < f98 ? dd : f98;
+    float k = m * a - dd * b;
+    k = k > 0.0f ? k : 0.0f;
+    k = k * f8;
+    V4_001A96D0 w;
+    w.x = v.x * k;
+    w.y = v.y * k;
+    w.z = v.z * k;
+    if (!(f24->f204 & mask))
+        func_001A96D0(f24, w, q, fb8);
+    if (other && !(f7c & other->f204)) {
+        V4_001A96D0 nw;
+        nw.x = -w.x;
+        nw.y = -w.y;
+        nw.z = -w.z;
+        func_001A96D0(other, nw, q, fb8);
     }
 }
 
