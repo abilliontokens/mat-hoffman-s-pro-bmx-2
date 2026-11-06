@@ -111,7 +111,6 @@ struct S_000235C0_Tbl {
     int f14;
     S_000235C0_Elem *elems;
     float f1c[4];
-    unsigned char pad2c[4];
     unsigned char f2c;
     unsigned char f2d;
     unsigned char f2e;
