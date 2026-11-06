@@ -37,7 +37,7 @@ extern char D_002782B4[];
 template <class T> inline const T &MinRef_5CBD0(const T &a, const T &b) { return b < a ? b : a; }
 extern "C" unsigned int strlen(const char *s);
 char *func_001E8920(char *dst, const char *src, int n);
-static inline void CopyName_5CBD0(char *dst, const char *src, int len) { volatile int n = MinRef_5CBD0(15, len); func_001E8920(dst, src, n); dst[n] = 0; }
+static inline void CopyName_5CBD0(char *dst, const char *src, int len, int n = 15) { int k = AsmMinI(n, len); func_001E8920(dst, src, k); dst[k] = 0; }
 struct S_5CBD0_GroupF { float s[5]; char n[5][16]; };
 struct S_5CBD0_GroupI { int s[5]; char n[5][16]; };
 struct C_0005CBD0 {
