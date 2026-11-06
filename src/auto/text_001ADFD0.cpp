@@ -608,6 +608,7 @@ struct C_001AE890 {
     void func_001ADFD0(void *, int, int, int, int, int);
 };
 struct S_001AE890_View { int v[6]; };
+static inline void setint_1AE890(int *out, float f) { *out = (int)f; }
 void func_001ADD80(void *);
 void __stdcall func_001FF940(void *, void *);
 void __stdcall func_00200230(void *);
