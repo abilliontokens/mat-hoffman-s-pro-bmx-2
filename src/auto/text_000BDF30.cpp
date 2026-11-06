@@ -424,7 +424,7 @@ struct C_000BEDC0 {
     int f84;
     int f88[2];
     int f90[2];
-    void func_00157600(void *param);
+    C_000BEDC0 *func_00157600(void *param);
     C_000BEDC0 *func_000BEDC0(void *param);
 };
 
@@ -564,13 +564,51 @@ void C_000BBE30::func_000BE540()
 
 void C_000BE640::func_000BE640(char *a, char *b, int c)
 {
+    char buf[0x104];
+    int cap;
+    int n;
+    void *p;
+    C_001D1BB0 *ac;
+
+    cap = 0x103;
     D_002A8490->f234 = 1;
-    if (*(int *)((char *)D_002A8490->f2EC + 0x1dc) != 0) {
-        func_001ADCC0((char *)0, 0, 0);
+    if (D_002A8490->f2F0->f1DC) {
+        ac = (C_001D1BB0 *)func_001E8A44(0x54);
+        if (ac) {
+            ac = ((C_001D0FD0 *)ac)->func_001D1BB0();
+        } else {
+            ac = 0;
+        }
+        f2ac = ac;
+        if (ac) {
+            ac->v0((int)D_00276C90, 0);
+            ac->v5();
+        }
     }
-    func_001BCC90(b);
+    D_002BEAAC->func_0013C1D0(0x100000);
+    func_001ADCC0(D_002A60B0, 0x104, D_00275678, D_002A5348, D_002A5FA8);
+    {
+        char *d = f154;
+        char *s = a;
+        char ch;
+        do {
+            ch = *s++;
+            *d++ = ch;
+        } while (ch);
+    }
+    func_001BCC90((void *)c);
     func_000BADB0();
-    *(int *)((char *)D_002EFDB8 + 0x30) = 1;
+    D_002EFDB8->f30 = 1;
+    if (func_001E8AF0(a, D_0027D68C)) {
+        func_001ADCC0(buf, 0x104, D_0027DE0C, D_002A64D0);
+    } else {
+        func_001ADCC0(buf, 0x104, D_0027DDFC, D_002A64D0);
+    }
+    if (D_002BEAAC->func_0013D780(buf, 1, 0, 0, 0, 0, 0, 0) != 0) {
+        D_002BEAAC->func_0013B260(1);
+    }
+    p = 0;
+    n = cap;
 }
 
 undefined4 C_000BEDA0::func_000BEDA0(byte param_1)
