@@ -1,16 +1,6 @@
 /* 19 functions from 0x00142F30 to 0x00143C00, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
-#define F143660_INT 1
-#if F143660_INT
-#define F143660_RET int
-#define F143660_VAL 1
-#define F143660_TAIL return
-#else
-#define F143660_RET void
-#define F143660_VAL
-#define F143660_TAIL
-#endif
 struct WaveBuffer {
  virtual void v0();
  virtual void v1();
