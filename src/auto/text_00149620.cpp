@@ -87,6 +87,12 @@ union U_149ED0 {
     Vec4f_149620 t;
 };
 
+struct V_149ED0B {
+    Vec4f_149620 pos;
+    float u;
+    float v;
+};
+
 struct C_0014A3A0 : C_0001DFE0 {
     int unk8[8];
     int unk28[8];
@@ -256,9 +262,8 @@ int C_0014A3A0::func_00149ED0(int param_1, int param_2)
     int h1;
     Vec4f_149620 m[4];
     int h2;
-    Vec4f_149620 v;
+    Vec4f_149620 v0;
     V_149ED0 vtx2;
-    Vec4f_149620 t;
     int i;
     unsigned int *p;
     float f1;
@@ -294,8 +299,8 @@ int C_0014A3A0::func_00149ED0(int param_1, int param_2)
     m[3].x *= f1; m[3].y *= f2;
     func_001FEFE0(1);
 
-    v.x = 0; v.y = 0; v.z = 0; v.w = 1.0f;
-    func_001FEBD0(0, &v);
+    v0.x = 0; v0.y = 0; v0.z = 0; v0.w = 1.0f;
+    func_001FEBD0(0, &v0);
     for (i = 0; i < 4; i++)
         func_001FEBD0(0x22 + i, &m[i]);
 
@@ -303,6 +308,7 @@ int C_0014A3A0::func_00149ED0(int param_1, int param_2)
     D_002EFDB8->f70->func_00142D00(unkEC);
 
     if (param_2 != 0) {
+        Vec4f_149620 t;
         Vec4f_149620 *q = (Vec4f_149620 *)func_001FF410((void *)unkE4, 0x10);
         t.x = 0; t.y = 0; t.z = 0; t.w = 1.0f; q[1] = t;
         t.x = (float)unk50; t.y = 0; t.z = 0; t.w = 1.0f; q[3] = t;
@@ -313,25 +319,20 @@ int C_0014A3A0::func_00149ED0(int param_1, int param_2)
         func_001FEE00(0, (void *)unkDC, 0x20);
     }
 
-    {
-        int *q;
-        unsigned int flags = D_0020C6DC;
-        for (i = 0, q = &D_0020C720; q < &D_0020C920; i++, q += 0x20) {
-            q[-0x10] = 3;
-            q[-0xf] = 3;
-            q[-0xd] = 2;
-            q[-0xc] = 2;
-            q[-0xb] = 1;
-            q[-9] = 0;
-            q[-7] = 0;
-            q[-6] = 0;
-            q[-5] = 0;
-            q[-4] = 1;
-            q[0] = 1;
-            q[5] = 0;
-            flags |= (1 << i) | 0xc00;
-        }
-        D_0020C6DC = flags;
+    for (i = 0; i < 4; i++) {
+        (&D_0020C720)[i * 0x20 - 0x10] = 3;
+        (&D_0020C720)[i * 0x20 - 0xf] = 3;
+        (&D_0020C720)[i * 0x20 - 0xd] = 2;
+        (&D_0020C720)[i * 0x20 - 0xc] = 2;
+        (&D_0020C720)[i * 0x20 - 0xb] = 1;
+        (&D_0020C720)[i * 0x20 - 9] = 0;
+        (&D_0020C720)[i * 0x20 - 7] = 0;
+        (&D_0020C720)[i * 0x20 - 6] = 0;
+        (&D_0020C720)[i * 0x20 - 5] = 0;
+        (&D_0020C720)[i * 0x20 - 4] = 1;
+        (&D_0020C720)[i * 0x20] = 1;
+        (&D_0020C720)[i * 0x20 + 5] = 0;
+        D_0020C6DC |= (1 << i) | 0xc00;
     }
 
     if (param_1 == -1)
