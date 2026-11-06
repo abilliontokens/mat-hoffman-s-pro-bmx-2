@@ -326,6 +326,72 @@ void C_0019BBD0::func_0019BBD0(unsigned short idx, S_0019BBD0_Tree *tree, int de
     func_00030AC0((float *)&out[2], &c.x, m);
 }
 
+extern float D_002EFF1C, D_00283F50, D_002755EC;
+void func_0011F210(void *a, void *b, float *v1, float *v2, float *v3);
+void C_0019BBD0::func_0019BD20(unsigned short idx, S_0019BBD0_Tree *tree, void *p, float *m, int depth)
+{
+    char *node;
+
+    if (idx & 0x8000)
+        return;
+    do {
+        node = tree->nodes + idx * 36;
+        func_0019BD20(*(unsigned short *)(node + 8), tree, p, m, depth);
+        idx = *(unsigned short *)(node + 0xa);
+    } while (!(idx & 0x8000));
+
+    char *leaf = tree->leaves + (idx & 0x7fff) * 20;
+    S_0019BBD0_V4 a, b, c;
+    a.x = (float)*(short *)(leaf + 0xc) * D_002EFF1C;
+    a.y = (float)*(short *)(leaf + 0xe) * D_002EFF1C;
+    a.z = (float)*(short *)(leaf + 0x10) * D_002EFF1C;
+    func_0011F0E0((S_0019BBD0_Vec *)&a, (S_0019BBD0_Vec *)&b, (S_0019BBD0_Vec *)&c, leaf, p);
+    S_0019BBD0_Vec centre;
+    centre.x = (a.x + b.x + c.x) * D_00283F50;
+    centre.y = (a.y + b.y + c.y) * D_00283F50;
+    centre.z = (a.z + b.z + c.z) * D_00283F50;
+    centre.w = 1.0f;
+    S_0019BBD0_Vec v;
+    v.x = a.x * D_002755EC;
+    v.y = a.y * D_002755EC;
+    v.z = a.z * D_002755EC;
+    v.w = 1.0f;
+    func_0001C680((S_0019C350_V4 *)&c, *(S_0019C350_V4 *)&v, m);
+    func_00030AC0(&b.x, &centre.x, m);
+    func_00030AC0(&centre.x, &a.x, m);
+    func_00030AC0(&a.x, &b.x, m);
+    if (*(int *)((char *)p + 4) != 0) {
+        func_0011F210(p, leaf, &a.x, &b.x, &c.x);
+        func_0001C680((S_0019C350_V4 *)&a, *(S_0019C350_V4 *)&a, m);
+        func_0001C680((S_0019C350_V4 *)&b, *(S_0019C350_V4 *)&b, m);
+        func_0001C680((S_0019C350_V4 *)&c, *(S_0019C350_V4 *)&c, m);
+    }
+}
+
+void SoultreeCollisionObject::func_0019C0E0(S_Matrix16 *m)
+{
+    char *p = (char *)this;
+    S_0019BBD0_Vec v;
+    float *d;
+    float x, y, z;
+
+    ((C_000264C0 *)(p + 0x170))->func_000264C0(m);
+    ((C_000264C0 *)(p + 0x130))->func_000264C0(m);
+    func_0011ACC0(p + 0xb0, p + 0xf0, m);
+    v.x = m->m[3];
+    v.y = m->m[7];
+    v.z = m->m[11];
+    v.w = 1.0f;
+    *(S_0019BBD0_Vec *)(p + 0x28) = v;
+    d = (float *)(*(char **)(p + 0x1c4) + 0x18);
+    x = d[0];
+    y = d[1];
+    z = d[2];
+    *(float *)(p + 0x48) = sqrtf(z * z + y * y + x * x);
+    func_00030AC0((float *)(p + 0x28), (float *)(p + 0x28), (float *)m);
+    ((C_0019C2F0_VT *)this)->v31(m);
+}
+
 void SoultreeCollisionObject::func_0019C1E0(void)
 {
     S_Matrix16 m;
@@ -334,22 +400,43 @@ void SoultreeCollisionObject::func_0019C1E0(void)
     func_0019C0E0(&m);
 }
 
-void SoultreeCollisionObject::func_0019C210(S_Matrix16 *m)
+static __forceinline void SetPoint_0019C210(float *d, const float *s)
 {
+    d[0] = s[0];
+    d[1] = s[1];
+    d[2] = s[2];
+    d[3] = 1.0f;
+}
+
+void SoultreeCollisionObject::func_0019C210(S_Matrix16 * volatile m)
+{
+    SoultreeCollisionObject * volatile self = this;
+    SoultreeCollisionObject *s;
+    float *src;
+    float *dst;
     float *v;
     float x, y, z;
 
     ((C_000264C0 *)((char *)this + 0x170))->func_000264C0((char *)this + 0x130);
-    ((C_000264C0 *)((char *)this + 0x130))->func_000264C0(m);
-    func_0011ACC0(fB0, fF0, m);
-    *(S_0019C690_V3 *)((char *)this + 0x28) = *(S_0019C690_V3 *)((char *)f1C4 + 0xc);
-    *(int *)((char *)this + 0x34) = 0x3f800000;
-    v = (float *)((char *)f1C4 + 0x18);
+    ((C_000264C0 *)((char *)self + 0x130))->func_000264C0(m);
+    s = self;
+    func_0011ACC0((float *)((char *)s + 0xb0), (float *)((char *)s + 0xf0), m);
+    s = self;
+    src = (float *)((char *)s->f1C4 + 0xc);
+    dst = (float *)((char *)s + 0x28);
+    dst[0] = src[0];
+    dst[1] = src[1];
+    dst[2] = src[2];
+    dst[3] = 1.0f;
+    s = self;
+    v = (float *)((char *)s->f1C4 + 0x18);
     x = v[0];
     y = v[1];
     z = v[2];
-    *(float *)((char *)this + 0x48) = sqrtf(x * x + y * y + z * z);
-    func_00030AC0((float *)((char *)this + 0x28), (float *)((char *)this + 0x28), (float *)m);
+    s = self;
+    *(float *)((char *)s + 0x48) = sqrtf(x * x + y * y + z * z);
+    s = self;
+    func_00030AC0((float *)((char *)s + 0x28), (float *)((char *)s + 0x28), (float *)m);
 }
 
 void SoultreeCollisionObject::func_0019C2F0(void)
