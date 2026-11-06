@@ -482,9 +482,15 @@ void RenderableObjectData::func_00181440(void)
     func_0001DFF0();
 }
 
+extern "C" void _ReadWriteBarrier(void);
+#pragma intrinsic(_ReadWriteBarrier)
 RenderableObject *RenderableObject::func_001814B0(int a)
 {
     func_00197820(a);
+    vtbl = &D_0028926C;
+    unk27 = 3;
+    unk181 = 0;
+    unk1A1 = 0xff;
     unk1A2 = 0;
     unk1A4 = 0;
     unk1A8 = 0;
@@ -493,18 +499,13 @@ RenderableObject *RenderableObject::func_001814B0(int a)
     unk1B4 = 0;
     unk1B8 = 0;
     unk1BC = 0;
-    unk1A2 |= 0x800;
+    unk1A3 |= 8;
     unk1C0 = 1.0f;
     unk1C4 = 1.0f;
     unk1C8 = 1.0f;
     unk1CC = 1.0f;
-    vtbl = &D_0028926C;
-    unk27 |= 3;
-    unk181 &= 0xfe;
-    unk1A1 = 0xff;
     return this;
 }
-
 void RenderableObject::func_00181540(void)
 {
     int i;
