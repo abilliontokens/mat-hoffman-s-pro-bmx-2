@@ -132,6 +132,14 @@ struct This_001A9FA0 {
 void func_001A8DC0(V4_001A96D0 *out, V4_001A96D0 *in);
 extern float D_002755E8, D_00275BF8;
 
+/* the two vectors func_001A9FA0 passes by address, next to the object they
+   belong to, so all three live on the stack together */
+struct Home_001A9FA0 {
+    This_001A9FA0 *self;
+    V4_001A96D0 a;
+    V4_001A96D0 b;
+};
+
 struct V4 { float x, y, z, w; };
 struct Other { char pad[0x204]; unsigned flags; char pad2[8]; float a; float b; };
 struct Body {
