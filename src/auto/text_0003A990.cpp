@@ -90,7 +90,7 @@ struct S_3AE40_List {
 struct C_3AE40 {
     char pad0[0x484]; int f484; char pad488[0x5A0-0x488]; S_3AE40_List list;
     unsigned short func_00038A70(void *p, int *o);
-    void func_0003AE40(S_3AE40_Rec * volatile dst);
+    void func_0003AE40(S_3AE40_Rec *dst);
 };
 extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
 extern char D_00276EEC[];
@@ -204,3 +204,47 @@ void C_0003AD50::func_0003AD50(void)
         f550->func_0008A040(s388);
     }
 }
+
+void C_3AE40::func_0003AE40(S_3AE40_Rec * volatile dst)
+{
+    int n = 0;
+    int i;
+    for (i = f484; i < list.count; i++, n++) {
+        S_3AE40_Ent *e = list.at(i);
+        int tmp;
+        dst[n].idx = n;
+        dst[n].kind = e->kind + 1;
+        switch (dst[n].kind - 1) {
+        case 1:
+            dst[n].v30 = e->f10->v24;
+            dst[n].f40 = e->f10->f58;
+            dst[n].f44 = e->f10->f68;
+            dst[n].f48 = e->f10->f78;
+            dst[n].v50 = e->f10->v34;
+            break;
+        case 2: {
+            int len = strlen(e->f4->name0);
+            int m = Min(0x13, len);
+            func_001E8920(dst[n].name0, e->f4->name0, m);
+            dst[n].name0[m] = 0;
+            len = strlen(e->f4->name1);
+            m = Min(0x13, len);
+            func_001E8920(dst[n].name1, e->f4->name1, m);
+            dst[n].name1[m] = 0;
+            dst[n].f60 = e->f4->fDC;
+            dst[n].f62 = n - 2;
+            dst[n].f64 = n - 1;
+            break;
+        }
+        case 0:
+        case 3:
+        case 4:
+        case 5:
+            dst[n].f4 = func_00038A70((char *)e->f8 + 0x28, &tmp);
+            e->f8->func_00197E70(&dst[n].v30.x);
+            e->f8->func_00197B40(&dst[n].f40, D_002A14F4);
+            break;
+        }
+    }
+}
+
