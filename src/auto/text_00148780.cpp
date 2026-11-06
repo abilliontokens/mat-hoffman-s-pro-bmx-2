@@ -55,6 +55,7 @@ extern void __cdecl func_0014A7B0(char *, const char *);
 extern void *__cdecl func_001E8A44(unsigned int);
 extern "C" void *__cdecl memcpy(void *dst, const void *src, unsigned int size);
 extern "C" int __cdecl memcmp(const void *a, const void *b, unsigned int size);
+extern "C" int __cdecl strcmp(const char *a, const char *b);
 struct C_001488F0 {
     undefined4 func_001488F0(byte param_1);
 };
@@ -477,6 +478,21 @@ int DXShaderDescriptor::func_00148910(int a0, Parser_00148910 *p, int id, int id
                 *out = -3;
             } else if (func_001EA426(bufA, D_0028678C) == 0) {
                 *out = -4;
+            } else {
+                func_001ADCC0(path, 0x104, D_00275678, a0, bufA);
+                *out = D_002AA6C0->Create(path, 0);
+                val = sd->f84;
+                func_001ADCC0(loopName, 0x40, D_002867E8, D_00286784, i + 1);
+                p->func_00168C20(loopName, val, &val);
+                switch (val) {
+                case 0:
+                    x = 0;
+                    break;
+                case 1:
+                    x = 2;
+                    break;
+                }
+                D_002AA6C0->Set(*out, x);
             }
             func_00145370(p, sd, i, &items[count1], &count1);
             func_001ADCC0(loopName, 0x40, D_002867E8, D_0028676C, i + 1);
@@ -485,6 +501,22 @@ int DXShaderDescriptor::func_00148910(int a0, Parser_00148910 *p, int id, int id
             out++;
         }
     }
+    f2C = (Item12_00148910 *)func_001E8A44(count1 * 12);
+    memcpy(f2C, items, count1 * 12);
+    f38 = count1;
+    fl0 = (fA == 2);
+    func_001458E0(p, sd, (Entry8_00148910 *)items, &count2);
+    f30 = (Entry8_00148910 *)func_001E8A44(count2 * 8);
+    memcpy(f30, items, count2 * 8);
+    f3C = count2;
+    for (i = 0; i < f3C; i++) {
+        if (f30[i].id == 0x8f)
+            break;
+    }
+    fl3 = (f30[i].val == 2);
+    func_00146540(p);
+    func_001B0D00(p);
+    f8 = func_001B0710(p);
     return 1;
 }
 
