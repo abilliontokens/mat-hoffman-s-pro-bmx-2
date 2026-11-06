@@ -1,6 +1,8 @@
 /* 14 functions from 0x0011EDF0 to 0x0011FDF0, found by Ghidra. */
 #include "common.h"
+#pragma pack(push, 4)
 #include <xmmintrin.h>
+#pragma pack(pop)
 
 float func_0014F510(float x);
 float func_0014F550(float x);
