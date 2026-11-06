@@ -404,6 +404,7 @@ struct BmxGame {
     int func_00059E10(int a, int b);
     int func_00059950(GameEvent *e, int b);
     int func_00059A00(void);
+    int func_00059A05(char *a, char *b);
     void func_00059F50(void);
     void func_0005A0B0(void);
     int func_00059CC0(void);
@@ -413,22 +414,21 @@ struct BmxGame {
 
 int Screen_000597B0::func_000590F0(int a)
 {
-    Screen_000597B0 *self = this;
     File_000590F0 f;
     char buf[0x100];
-    if (self->f4C == 0)
+    if (f4C == 0)
         return 0;
     f.func_00168280();
-    if (!f.func_00169490(self->f4C, 0)) {
+    if (!f.func_00169490(f4C, 0)) {
         f.func_001691E0();
         return 0;
     }
     switch (a) {
-    case 0: { volatile int max = 0x103; volatile int n = max > 14 ? 14 : max; int k = n; func_001E8920(buf, D_00277FA0, k); buf[k] = 0; break; }
-    case 1: { volatile int max = 0x103; volatile int n = max > 18 ? 18 : max; int k = n; func_001E8920(buf, D_00277F8C, k); buf[k] = 0; break; }
-    case 2: { volatile int max = 0x103; volatile int n = max > 16 ? 16 : max; int k = n; func_001E8920(buf, D_00277F78, k); buf[k] = 0; break; }
-    case 3: { volatile int max = 0x103; volatile int n = max > 19 ? 19 : max; int k = n; func_001E8920(buf, D_00277F64, k); buf[k] = 0; break; }
-    case 4: { volatile int max = 0x103; volatile int n = max > 18 ? 18 : max; int k = n; func_001E8920(buf, D_00277F50, k); buf[k] = 0; break; }
+    case 0: { volatile int max = 0x103; int k = max > 14 ? 14 : max; func_001E8920(buf, D_00277FA0, k); buf[k] = 0; break; }
+    case 1: { volatile int max = 0x103; int k = max > 18 ? 18 : max; func_001E8920(buf, D_00277F8C, k); buf[k] = 0; break; }
+    case 2: { volatile int max = 0x103; int k = max > 16 ? 16 : max; func_001E8920(buf, D_00277F78, k); buf[k] = 0; break; }
+    case 3: { volatile int max = 0x103; int k = max > 19 ? 19 : max; func_001E8920(buf, D_00277F64, k); buf[k] = 0; break; }
+    case 4: { volatile int max = 0x103; int k = max > 18 ? 18 : max; func_001E8920(buf, D_00277F50, k); buf[k] = 0; break; }
     }
     f.func_00169710(buf);
     func_00055D10(&f);
