@@ -72,10 +72,10 @@ struct V4_0011F8E0 {
 };
 
 void func_0011EFA0(float *out, float *in);
-V4_0011F8E0 func_0001C5E0(float t, float *dir, float *org);
-V4_0011F8E0 func_000110E0(const V4_0011F8E0 &a);
-V4_0011F8E0 func_00011110(const V4_0011F8E0 &a, const V4_0011F8E0 &b);
-float func_00011170(const V4_0011F8E0 &a);
+V4_0011F8E0 *func_0001C5E0(V4_0011F8E0 *out, float t, float *dir);
+V4_0011F8E0 *func_000110E0(V4_0011F8E0 *out, V4_0011F8E0 *a, float *b);
+V4_0011F8E0 *func_00011110(V4_0011F8E0 *out, V4_0011F8E0 *a, V4_0011F8E0 *b);
+float func_00011170(V4_0011F8E0 *a);
 
 static __forceinline void Cross_0011F8E0(float * volatile out, float *a, float *b)
 {
