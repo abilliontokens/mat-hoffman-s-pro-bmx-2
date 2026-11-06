@@ -348,9 +348,9 @@ C_0016D6A0 *C_0016D6A0::func_0016D6A0(void *a, char *name, void *b, u32 *c)
     return this;
 }
 
-void C_0016D8A0::func_0016D8A0(int a, int b, int c, int d)
+void C_0016D8A0::func_0016D8A0(C_IntQuad v)
 {
-    f54.Set(a, b, c, d);
+    f54 = v;
 }
 
 int C_0016D8D0::func_0016D8D0(S_0016D8D0_Stream *stream)
