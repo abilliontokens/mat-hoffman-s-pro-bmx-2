@@ -109,6 +109,7 @@ template <class T> inline const T &min_102370(const T &a, const T &b) { return b
 extern "C" unsigned int strlen(const char *);
 extern "C" void *memset(void *, int, unsigned int);
 #pragma intrinsic(strlen, memset)
+template <class T> inline const T &min_(const T &a, const T &b) { return b < a ? b : a; }
 extern float D_0027DE74, D_00278C48;
 extern char D_002790F4[];
 extern "C" int func_001ADCC0(char *buf, int n, char *fmt, ...);
