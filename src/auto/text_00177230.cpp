@@ -10,6 +10,10 @@ struct C_00135420 {
     int func_00135420(void);
 };
 #include <string.h>
+/* palette lookup table object: table at +0x8710 (same layout as C_00135420) */
+struct C_00135410 {
+    int func_00135410(void);
+};
 int func_00135410(void);
 u32 func_00175840(u8 *dst, u8 *src, int width, int height, int dstPitch, int srcPitch);
 u32 func_00175A10(u8 *dst, u8 *src, int width, int height, int dstPitch, int srcPitch, int a7, int key);
@@ -204,20 +208,18 @@ u32 func_00177860(u8 *dst, u8 *src, int width, int height, int dstPitch, int src
   u8 *d;
   u8 *s;
   u8 *p;
-  u8 *a;
   u8 *q;
   int x;
   int y;
   s = src;
   d = dst;
   for (y = height; y > 0; y--) {
-    for (p = d, a = d + 3, q = s, x = width; x > 0; x--) {
+    for (p = d, q = s, x = width; x > 0; x--) {
       p[2] = (*(u16 *)q >> 7) & 0xf8;
       p[1] = (*(u16 *)q >> 2) & 0xf8;
       p[0] = q[0] << 3;
-      *a = (*(u16 *)q & 0x8000) ? 0xff : 0;
+      p[3] = (*(u16 *)q & 0x8000) ? 0xff : 0;
       p += 4;
-      a += 4;
       q += 2;
     }
     s += srcPitch * 2;
@@ -289,6 +291,32 @@ int func_00177AB0(unsigned short* dst, unsigned char* src, int width, int height
         }
         srow += srcPitch * 3;
         row += dstPitch;
+    }
+    return 1;
+}
+
+int func_00177BA0(unsigned char* dst, unsigned char* src, int width, int height, int dstPitch, int srcPitch, int a7, int a8)
+{
+    if (a7 && a8) {
+        func_00176630(src, 0x378, width, height, srcPitch, dstPitch, 0, 0, 0, dst, a8);
+        return 1;
+    }
+    unsigned char* row = src;
+    unsigned char* out = dst;
+    unsigned char* tbl = (u8 *)func_00135410();
+    for (int y = height; y > 0; y--) {
+        unsigned char* d = out;
+        unsigned char* s = row;
+        for (int x = width; x > 0; x--) {
+            unsigned short r = s[2];
+            unsigned short g = s[1];
+            unsigned short b = s[0];
+            unsigned short t = (((r & 0xFFF8) << 5) | g) & 0xFFF8;
+            *d++ = tbl[(unsigned short)(t << 2) | (b >> 3)];
+            s += 3;
+        }
+        row += srcPitch * 3;
+        out += dstPitch;
     }
     return 1;
 }
