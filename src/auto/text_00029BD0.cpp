@@ -8,7 +8,7 @@ struct V4_00029BD0 {
  V4_00029BD0 &operator=(const V4_00029BD0 &v) { q[0]=v.q[0]; q[1]=v.q[1]; return *this; }
 };
 struct __declspec(align(16)) M4_00029BD0 { float m[16]; };
-struct Sub_00029BD0 { char pad[0x1a0]; V4_00029BD0 v; };
+struct Sub_00029BD0 { char pad[0x1a0]; V4_00029BD0 v; const V4_00029BD0 &GetPos() const { return v; } };
 struct Data_00029BD0 { char pad[0x78]; V4_00029BD0 *v; };
 struct Obj_00029BD0 {
  char pad[0x54]; Data_00029BD0 *data;
