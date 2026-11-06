@@ -173,6 +173,16 @@ struct C_001D5FA0Obj {
     char pad18[0x4c];
     int f64;
     char pad68[8];
+    static void *operator new(unsigned int size) { return func_001E8A44(size); }
+    C_001D5FA0Obj()
+    {
+        vtbl = &D_0028F5F4;
+        f8 = 0;
+        fC = 0;
+        f64 = 0;
+        f10 = 6;
+        f14 = 0;
+    }
     void func_001D5660(int a, int b);
 };
 
@@ -425,8 +435,7 @@ Ldone:
     f4 = b;
     f8 = c;
     f50 = D_00275460 / w;
-    p = (C_001D5FA0Obj *)func_001E8A44(0x70);
-    if (p != 0) {
+    if ((p = (C_001D5FA0Obj *)func_001E8A44(0x70)) != 0) {
         p->vtbl = &D_0028F5F4;
         p->f8 = 0;
         p->fC = 0;
@@ -442,7 +451,7 @@ Ldone:
     f58 = f58 | 7;
     f54 = d;
     if (d != 0) {
-        f24 = f24 * D_002755E8;
+        f24 = f24 * 0.5f;
     }
     return this;
 }
@@ -522,7 +531,6 @@ void C_001D6190::func_001D5FA0(int a, int b, int c, int d)
     struct { volatile int max, len, n; } l;
     C_001D5FA0Obj *o;
     char *p;
-    int *pd;
     DXVSStreams_001D5760 *s;
 
     self->f4e |= 0x20;
@@ -547,13 +555,12 @@ void C_001D6190::func_001D5FA0(int a, int b, int c, int d)
     } else {
         self->func_001D5F00(b);
     }
-    pd = &d;
-    if (*pd != 0) {
-        l.len = strlen((const char *)*pd);
+    if (d != 0) {
+        l.len = strlen((const char *)d);
         l.max = self->f4f;
         l.n = l.len < l.max ? l.len : l.max;
         self->f50 = (unsigned char)l.n;
-        func_001E8920(self->f0, (const char *)*pd, self->f50);
+        func_001E8920(self->f0, (const char *)d, self->f50);
         self->f0[self->f50] = 0;
     } else {
         self->f50 = 0;
