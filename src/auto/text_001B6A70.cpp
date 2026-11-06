@@ -88,22 +88,72 @@ static inline const int &min_ref(const int &a, const int &b) {
     return (b < a) ? b : a;
 }
 
+struct C_6A70_V4 { float x, y, z, w; };
+
+struct C_6A70_Item {
+    virtual void v0(void *cfg, int a);
+    int f4;
+};
+
+struct C_6A70_Src {
+    virtual void v0(int *out, C_6A70_Item **slot);
+    virtual int v1(char *name);
+};
+
+struct C_6A70_Data {
+    C_6A70_V4 f0;
+    C_6A70_V4 f10;
+    C_6A70_V4 f20;
+    C_6A70_V4 f30;
+    int f4c;
+    C_6A70_Data *func_001B6850(void);
+    void func_001B6930(void *cfg, int a);
+};
+
+struct S_6A70_Bits {
+    u8 b0 : 1, b1 : 1, b2 : 1, b3 : 1, b4 : 1, b5 : 1, b6 : 1, b7 : 1;
+};
+
+struct C_6A70_Obj {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    char pad14[0xbc - 0x14];
+    int *fBC;
+    int *fC0;
+    int *fC4;
+    char padC8[0xd4 - 0xc8];
+    char fD4[0x104];
+    char f1D8[0x104];
+    char pad2DC[0x2ec - 0x2dc];
+    u8 b2EC;
+    C_6A70_Obj *func_001BB680(int a);
+    void func_001BC040(C_6A70_V4 a, C_6A70_V4 b, C_6A70_V4 c, C_6A70_V4 d, int e, int f, int g, int h);
+};
+
 struct C_6A70_Cfg {
     void func_00168BE0(const void *key, const void *fmt, void *buf, int size);
     void func_00168C20(const void *key, int def, int *out);
+    void func_00168C50(const void *key, int def, int *out);
+    int func_00169710(char *name);
 };
 struct C_6A70 {
     void *vtbl;
-    void *f4;
+    C_6A70_Obj *f4;
     int f8;
     int fC;
     int f10;
     int f14;
     char f18[0x78];
-    char pad90[0x78];
-    char pad108[4];
-    void func_001B6A70(C_6A70_Cfg *cfg, void *a, void *b, void *c);
+    char f90[0x78];
+    C_6A70_Data *f108;
+    C_6A70_Item **f10C;
+    int func_001B6A70(C_6A70_Cfg *cfg, int a1, int a2, C_6A70_Src *a3, int a4);
 };
+extern char D_0027CC48[], D_0027CC38[], D_0028CE4C[], D_0028CE38[], D_0027CAD4[], D_0028CE20[], D_0028CE04[], D_0028CDEC[];
+void func_00012140(void);
 extern char D_00275630[], D_00276980[], D_0027A84C[], D_00284B7C[], D_0028CE58[], D_0027B0AC[], D_00289948[];
 
 /* ParticleEmitterTempData */
@@ -313,7 +363,7 @@ void C_001B6E70::func_001B70D0(S_001B70D0_Arg *arg) {
                             int id = mgr->f4->func_00198330(
                                 ((S_001B70D0_Obj *)((C_001B7370_item * volatile *)f28)[i]->f4)->f1D8);
                             int k = 0;
-                            while (1) {
+                            do {
                                 if (k >= mgr->f284)
                                     break;
                                 if (mgr->f280[k]->f1C0 == id) {
@@ -322,8 +372,8 @@ void C_001B6E70::func_001B70D0(S_001B70D0_Arg *arg) {
                                     found = 1;
                                     break;
                                 }
-                                ++k;
-                            }
+                                k++;
+                            } while (1);
                         }
                     } else {
                         S_001B70D0_Entry *p = arg->f28[j];
@@ -388,11 +438,50 @@ void C_001B6E70::func_001B73C0(C_001B73C0_Arg *arg) {
         for (j = 0; j < f28[i]->f8; j++) {
             C_001B73C0_Node *node = f28[i]->f10C[j];
             if (node->f4 == 4) {
-                C_001B73C0_Line **arr = arg->f3AC->f28;
-                C_001B73C0_Line *line = arr[node->f10C];
+                C_001B73C0_Line *line = arg->f3AC->f28[node->f10C];
                 line->f1A4->v7();
             }
         }
     }
+}
+
+C_001B7480 *C_001B7480::func_001B7480(void) {
+    C_001B7480 * volatile self = this;
+    volatile int tmp[2];
+    int lim;
+    int n;
+
+    vtbl = (void *)&D_0028CF30;
+    {
+        S_001B7480_Quat *q = &self->f318;
+        q->z = 0;
+        q->y = 0;
+        q->x = 0;
+        q->w = 0x3f800000;
+    }
+    tmp[0] = sizeof(fC) - 1;
+    lim = tmp[0];
+    if (lim > 4) {
+        lim = 4;
+    }
+    tmp[1] = lim;
+    n = tmp[1];
+    func_001E8920(self->fC, (const char *)&D_002764F0, n);
+    self->fC[n] = 0;
+
+    tmp[1] = sizeof(f214) - 1;
+    lim = tmp[1];
+    if (lim > 4) {
+        lim = 4;
+    }
+    tmp[0] = lim;
+    n = tmp[0];
+    func_001E8920(self->f214, (const char *)&D_002764F0, n);
+    self->f214[n] = 0;
+
+    self->f4 = 0;
+    self->f8 = 0;
+    self->f318 = D_002AA9F4;
+    return self;
 }
 
