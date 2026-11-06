@@ -5,6 +5,32 @@ extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
 char *func_001E8AF0(const char *s, const char *pat);
 void *func_001E8A44(unsigned int size);
 
+/* typed accessors for the render-state entries (ctx, name, value, &value) */
+extern "C" {
+void func_00141340(int ctx, const char *name, int value, int *out);
+void func_00140900(int ctx, const char *name, int value, int *out);
+void func_001409A0(int ctx, const char *name, int value, int *out);
+void func_001414A0(int ctx, const char *name, int value, int *out);
+void func_001416E0(int ctx, const char *name, int value, int *out);
+void func_00140CD0(int ctx, const char *name, int value, int *out);
+void func_00141C10(int ctx, const char *name, int value, int *out);
+void func_00141780(int ctx, const char *name, int value, int *out);
+void func_001418C0(int ctx, const char *name, int value, int *out);
+void func_00140820(int ctx, const char *name, int value, int *out);
+void func_00141A00(int ctx, const char *name, int value, int *out);
+void func_00141AA0(int ctx, const char *name, int value, int *out);
+void func_00141B60(int ctx, const char *name, int value, int *out);
+void func_00141D70(int ctx, const char *name, int value, int *out);
+void func_00141E10(int ctx, const char *name, int value, int *out);
+void func_00141EC0(int ctx, const char *name, int value, int *out);
+}
+
+/* object holding the 57 render-state values (0x188..0x268) */
+struct S_001458E0_Obj {
+    char pad0[0x188];
+    int rs[57];
+};
+
 /* (0, 0, 0, 1) vector, stored z, y, x, w */
 struct V4_00146540 {
     float x, y, z, w;
