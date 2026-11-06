@@ -272,6 +272,8 @@ void BmxUIPageParkLevel::func_000C6CA0()
     }
 }
 
+extern "C" void _ReadWriteBarrier(void);
+#pragma intrinsic(_ReadWriteBarrier)
 void BmxUIPageParkLevel::func_000C6D70()
 {
     S_000C6550_Mgr *s;
@@ -300,4 +302,3 @@ void BmxUIPageParkLevel::func_000C6D70()
         m2f0[i]->func_001D5AD0();
     }
 }
-
