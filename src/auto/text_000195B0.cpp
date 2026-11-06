@@ -302,10 +302,7 @@ struct C_198E0 {
     C_198E0 *func_000198E0(S_198E0_Stream * volatile stream, S_198E0_Cam *cam);
 };
 
-static __forceinline void Call76B0_198E0(C_198E0 *s, char *buf)
-{
-    s->func_001C76B0(buf, 0, &s->f4F8, 0, 0, D_002A0728, D_002A0728);
-}
+static __forceinline void Touch_198E0(void *) {}
 
 void C_00019790::func_00019790(void)
 {
