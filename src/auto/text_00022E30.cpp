@@ -17,6 +17,7 @@ void func_001E891B(void *p);
 struct V4_00023340 {
     float x, y, z, w;
     V4_00023340() { x = y = z = 0; w = 1.0f; }
+    V4_00023340(float a, float b, float c) { x=a; y=b; z=c; w=1.0f; }
 };
 
 void func_000212C0(V4_00023340 *out, V4_00023340 *in);
