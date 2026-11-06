@@ -298,16 +298,16 @@ void C_001425B0::func_00142180(int buffer, int dst, int src, int count, int clea
     int s = src + 1;
 
 #define COPY_00142180(D, S) \
-    out[D].x = ((int *)f10)[(S) * 11 + 0]; \
-    out[D].y = ((int *)f10)[(S) * 11 + 1]; \
-    out[D].z = ((int *)f10)[(S) * 11 + 2]; \
-    out[D].a = *(float *)&f58 - ((float *)f10)[(S) * 11 + 6]; \
-    out[D].b = ((int *)f10)[(S) * 11 + 3]; \
-    out[D].c = ((int *)f10)[(S) * 11 + 4]; \
-    out[D].d = ((int *)f10)[(S) * 11 + 5]; \
-    out[D].e = ((int *)f10)[(S) * 11 + 10]; \
-    out[D].f = ((float *)f10)[(S) * 11 + 9] * 2.0f; \
-    out[D].g = ((int *)f10)[(S) * 11 + 7]; \
+    out[D].x = ((Particle_00142180 *)f10)[S].x; \
+    out[D].y = ((Particle_00142180 *)f10)[S].y; \
+    out[D].z = ((Particle_00142180 *)f10)[S].z; \
+    out[D].a = *(float *)&f58 - ((Particle_00142180 *)f10)[S].d; \
+    out[D].b = ((Particle_00142180 *)f10)[S].a; \
+    out[D].c = ((Particle_00142180 *)f10)[S].b; \
+    out[D].d = ((Particle_00142180 *)f10)[S].c; \
+    out[D].e = ((Particle_00142180 *)f10)[S].h; \
+    out[D].f = ((Particle_00142180 *)f10)[S].g * 2.0f; \
+    out[D].g = ((Particle_00142180 *)f10)[S].e; \
     out[D].l = fEC; \
     out[D].h = f64.y; \
     out[D].i = f70.y; \
@@ -317,7 +317,7 @@ void C_001425B0::func_00142180(int buffer, int dst, int src, int count, int clea
     if (count >= 4) {
         do {
             COPY_00142180(dst + i, s - 1)
-            COPY_00142180(dst + i + 1, s)
+            COPY_00142180(dst + i + 1, (src + 1) + i)
             COPY_00142180(dst + i + 2, s + 1)
             COPY_00142180(dst + i + 3, s + 2)
             i += 4;
@@ -772,19 +772,16 @@ void *C_00142E60::func_00142E60(int flags)
 
 C_00142E90::C_00142E90(int a0) {
     vtbl = &D_002859C4;
-    unk150 = unk154 = unk158 = 0;
-    unk15C = 1.0f;
-    unk160 = unk164 = unk168 = 0;
-    unk16C = 1.0f;
-    unk170 = unk174 = unk178 = 0;
-    unk17C = 1.0f;
-    unk180 = unk184 = unk188 = 0;
-    unk18C = 1.0f;
-    unk4 = a0;
-    f32 *c = (f32 *)&unk160;
-    c[0] = 1.0f;
-    c[1] = 1.0f;
-    c[2] = 1.0f;
-    c[3] = 1.0f;
+    u32 *p = (u32 *)&unk150;
+    p[2]=0; p[1]=0; p[0]=0; p[3]=0x3f800000;
+    p = (u32 *)&unk160;
+    p[2]=0; p[1]=0; p[0]=0; p[3]=0x3f800000;
+    p = (u32 *)&unk170;
+    p[2]=0; p[1]=0; p[0]=0; p[3]=0x3f800000;
+    p = (u32 *)&unk180;
+    p[2]=0; p[1]=0; p[0]=0; p[3]=0x3f800000;
+    unk4=a0;
+    p=(u32 *)&unk160;
+    p[0]=0x3f800000; p[1]=0x3f800000; p[2]=0x3f800000; p[3]=0x3f800000;
 }
 
