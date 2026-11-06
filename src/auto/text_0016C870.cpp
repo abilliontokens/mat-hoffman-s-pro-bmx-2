@@ -157,8 +157,9 @@ struct Parent_0016D140 {
     Ref_0016D140 *f18C;
 };
 
-static inline void RoundToInt(float f, int *out) { *out = _mm_cvtss_si32(_mm_set_ss(f)); }
-static inline void TruncToInt(float f, int *out) { *out = _mm_cvttss_si32(_mm_set_ss(f)); }
+static inline void RoundToInt(float f, int *out) { *out = _mm_cvtss_si32(*(__m128 *)&f); }
+static inline void TruncToInt(float f, int *out) { *out = _mm_cvttss_si32(*(__m128 *)&f); }
+static __forceinline float Max_0016D140(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(*(__m128 *)&a, *(__m128 *)&b)); return r; }
 
 struct C_0016D140 {
     void *vtbl;
@@ -253,6 +254,87 @@ C_0016CF10 *C_0016CF10::func_0016CF10(void *a, char *name, void *b, u32 *c)
     f1C8 = 1;
     f1B4 = 7.0f;
     return this;
+}
+
+int C_0016D140::func_0016D140(float dt)
+{
+    Ref_0016D140 *ref;
+    int n;
+    int i;
+    float f;
+
+    if (func_00169E10(dt))
+        return 1;
+    ref = f68 ? f68->f18C : 0;
+    if (ref && ref->f4->f90 != D_002EFE50)
+        return 1;
+    RoundToInt(dt * f17C, &n);
+    n = n < 1 ? 1 : n;
+    _mm_store_ss(&f, _mm_max_ss(_mm_set_ss(f180), _mm_set_ss((float)n)));
+    TruncToInt(f, &n);
+    for (i = 0; i < n; i++) {
+        Pool_0016D140 *pool = f64;
+        float r0, r1, r2, x, z;
+        int idx, k;
+        Particle_0016D140 *p;
+        if (pool->count >= pool->max)
+            break;
+        D_002EFB6C++;
+        r0 = func_001E8833() * D_002754B0;
+        r1 = func_001E8833() * D_002754B0;
+        r2 = func_001E8833() * D_002754B0;
+        idx = 0;
+        x = (f200[0] - f1F0[0]) * r0 + f1F0[0];
+        z = (f200[2] - f1F0[2]) * r2 + f1F0[2];
+        if (r2 > D_002755E8)
+            idx = 1;
+        if (f1BC) {
+            int found = 0;
+            int *a = f1BC;
+            for (k = f1C0; k > 0; k--) {
+                if (idx == *a)
+                    found = 1;
+                a++;
+            }
+            if (!found) {
+                int j;
+                RoundToInt((float)(f1C0 - 1) * r2, &j);
+                idx = f1BC[j];
+            }
+        }
+        p = f64->items[f64->count];
+        p->pos = f24;
+        p->pos.a += x;
+        p->pos.c += z;
+        p->f38 = f178;
+        p->f3C = f178;
+        p->f48 = this;
+        p->f30 = f170 - (float)(D_002EFB6C & 3) * f170 * D_0027AA20;
+        p->f2C = f198;
+        if (f190 & 0x400)
+            p->f28 = (int)((float)idx * f1B4 + f1A8);
+        else
+            p->f28 = func_00011260(f1A8, f1AC);
+        p->f34 = D_00275460 / p->f30;
+        p->f40 = f174;
+        if (f174 != D_00275544)
+            p->f44 &= ~8;
+        p->f4C = f18C;
+        p->f44 = f190;
+        if (r0 > D_002755E8 && f1C4)
+            p->f44 |= 0x4000;
+        else
+            p->f44 &= ~0x4000;
+        if (r1 > D_002755E8 && f1C8)
+            p->f44 |= 0x8000;
+        else
+            p->f44 &= ~0x8000;
+        p->f10 = f54;
+        if (f214)
+            p->f10.b += r1 * f210;
+        f64->count++;
+    }
+    return 1;
 }
 
 C_0016D620 *C_0016D620::func_0016D620(void *param)
