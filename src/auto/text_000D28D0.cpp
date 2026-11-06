@@ -20,7 +20,7 @@ struct Obj_D28 {
 };
 struct Rec_D28 {
     char pad0[0x608];
-    int f608;
+    int f608, f60C, f610, f614, f618, f61C;
 };
 struct Unlocks_D28 {
     Rec_D28 *func_0005C020(int idx);
