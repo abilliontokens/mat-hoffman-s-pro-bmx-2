@@ -21,18 +21,23 @@ extern V4_1B8920 D_002AAA14;
 extern "C" void func_00158390(float f, V4_1B8920 a, V4_1B8920 b, V4_1B8920 *out);
 extern "C" float func_0014F890(float x);
 
+static __forceinline float vld_1B8920(const volatile float *p)
+{
+    return *p;
+}
+
 static __forceinline void norm_1B8920(float * volatile out, float * volatile in)
 {
     __m128 v = _mm_loadu_ps(in);
     __m128 sq = _mm_mul_ps(v, v);
     __m128 len = _mm_add_ss(_mm_movehl_ps(sq, sq), sq);
     len = _mm_add_ss(len, _mm_shuffle_ps(sq, sq, 0xe1));
-    __m128 minv = _mm_load_ss(&D_0028CA50);
+    __m128 minv = _mm_set_ss(vld_1B8920(&D_0028CA50));
     __m128 cmp = _mm_cmplt_ss(len, minv);
     len = _mm_add_ss(len, _mm_and_ps(cmp, minv));
     __m128 r = _mm_rsqrt_ss(len);
     __m128 t = _mm_mul_ss(_mm_mul_ss(len, r), r);
-    __m128 scale = _mm_mul_ss(_mm_mul_ss(r, _mm_load_ss(&D_0028CA30)), _mm_sub_ss(_mm_load_ss(&D_0028CA40), t));
+    __m128 scale = _mm_mul_ss(_mm_mul_ss(r, _mm_set_ss(vld_1B8920(&D_0028CA30))), _mm_sub_ss(_mm_set_ss(vld_1B8920(&D_0028CA40)), t));
     scale = _mm_shuffle_ps(scale, scale, 0);
     _mm_storeu_ps(out, _mm_mul_ps(scale, v));
 }
@@ -130,7 +135,7 @@ static inline void set_str(C_001B9460 * volatile *pself, int off, const char *sr
 
 void C_1B8920_Mgr::func_001B8920(void)
 {
-    C_1B8920_Mgr * volatile self = this;
+    C_1B8920_Mgr *self = this;
     V4_1B8920 P = {0, 0, 0, 1.0f};
     V4_1B8920 c2 = {0, 0, 0, 1.0f};
     V4_1B8920 axis = {0, 0, 0, 1.0f};
@@ -140,64 +145,93 @@ void C_1B8920_Mgr::func_001B8920(void)
     V4_1B8920 c3 = {0, 0, 0, 1.0f};
     V4_1B8920 q = {0, 0, 0, 1.0f};
     float len;
-    float angle;
     V4_1B8920 cam;
     V4_1B8920 B;
     int i;
     int j;
 
     cam = *(V4_1B8920 *)(*(char **)((char *)*(void **)&D_002EFDB8 + 4) + 0x170);
-    for (i = 0; i < self->f24; i++) {
-        Sub_1B8920 *sub = self->f28[i];
-        if (sub->f158 == 0)
-            continue;
-        for (j = 0; j < sub->f104; j++) {
-            Item_1B8920 *obj = sub->f158[j];
-            if (obj == 0)
+    if (self->f24 > 0) {
+        for (i = 0; i < self->f24; i++) {
+            Sub_1B8920 *sub = self->f28[i];
+            if (sub->f158 == 0)
                 continue;
-            void *t = obj->f18C;
-            if (t != 0 && *(unsigned short *)((char *)*(void **)((char *)t + 4) + 0x90) != D_002EFE50)
-                continue;
-            obj->func_00197E70(&pos.x);
-            float dz = pos.z - cam.z;
-            float dy = pos.y - cam.y;
-            float dx = pos.x - cam.x;
-            P.x = dx;
-            P.y = dy;
-            P.z = dz;
-            P.w = 1.0f;
-            float sq = dx * dx + dy * dy + dz * dz;
-            _mm_store_ss(&len, _mm_sqrt_ss(_mm_set_ss(sq)));
-            norm_1B8920(&P.x, &P.x);
-            q = sub->f118;
-            if (q.x == *(float *)&D_002AA9F4.x || q.y == *(float *)&D_002AA9F4.y || q.z == *(float *)&D_002AA9F4.z) {
-                obj->func_001994C0(0, &axis.x, &v2.x);
-                float d = q.y * axis.y + q.x * axis.x + q.z * axis.z;
-                B = axis;
-                axis.x -= q.x * d;
-                axis.y -= q.y * d;
-                axis.z -= q.z * d;
-                axis.w = 1.0f;
-                norm_1B8920(&axis.x, &axis.x);
-                float d2 = q.y * P.y + q.x * P.x + q.z * P.z;
-                P.x -= q.x * d2;
-                P.y -= q.y * d2;
-                P.z -= q.z * d2;
+            for (j = 0; j < sub->f104; j++) {
+                Item_1B8920 *obj = sub->f158[j];
+                if (obj == 0)
+                    continue;
+                void *t = obj->f18C;
+                if (t != 0 && *(unsigned short *)((char *)*(void **)((char *)t + 4) + 0x90) != D_002EFE50)
+                    continue;
+                obj->func_00197E70(&pos.x);
+                float dx = pos.x - cam.x;
+                float dy = pos.y - cam.y;
+                float dz = pos.z - cam.z;
+                P.x = dx;
                 P.w = 1.0f;
+                P.y = dy;
+                P.z = dz;
+                float sq = dx * dx + dy * dy + dz * dz;
+                len = sqrtf(sq);
                 norm_1B8920(&P.x, &P.x);
-                angle = func_0014F890(axis.x * P.x + axis.y * P.y + axis.z * P.z);
-                Cross_1B8920(&q, &axis, &P);
-                norm_1B8920(&q.x, &q.x);
-                func_00158390(angle, B, q, &rot);
-                norm_1B8920(&rot.x, &rot.x);
-            } else {
-                rot = P;
-                Cross_1B8920(&c3, &rot, &D_002AAA14);
-                norm_1B8920(&c3.x, &c3.x);
-                Cross_1B8920(&c2, &c3, &rot);
-                norm_1B8920(&c2.x, &c2.x);
+                q = sub->f118;
+                if (q.x != *(float *)&D_002AA9F4.x && q.y != *(float *)&D_002AA9F8 && q.z != *(float *)&D_002AA9FC) {
+                    rot = P;
+                    Cross_1B8920(&c3, &rot, &D_002AAA14);
+                    norm_1B8920(&c3.x, &c3.x);
+                    Cross_1B8920(&c2, &c3, &rot);
+                    norm_1B8920(&c2.x, &c2.x);
+                    Cross_1B8920(&c2, &c3, &rot);
+                    norm_1B8920(&c2.x, &c2.x);
+                } else {
+                    obj->func_001994C0(0, &axis.x, &v2.x);
+                    float d = q.y * axis.y + q.x * axis.x + q.z * axis.z;
+                    B = axis;
+                    axis.x -= q.x * d;
+                    axis.y -= q.y * d;
+                    axis.z -= q.z * d;
+                    axis.w = 1.0f;
+                    norm_1B8920(&axis.x, &axis.x);
+                    float d2 = q.y * P.y + q.x * P.x + q.z * P.z;
+                    P.x -= q.x * d2;
+                    P.y -= q.y * d2;
+                    P.z -= q.z * d2;
+                    P.w = 1.0f;
+                    norm_1B8920(&P.x, &P.x);
+                    float angle = func_0014F890(axis.x * P.x + axis.y * P.y + axis.z * P.z);
+                    Cross_1B8920(&q, &axis, &P);
+                    norm_1B8920(&q.x, &q.x);
+                    func_00158390(angle, B, q, &rot);
+                    norm_1B8920(&rot.x, &rot.x);
+                }
+                obj->func_00199110(0, &rot.x, &c2.x, 0, 1, 0);
+                int i0 = func_001E8858(sub->f10C);
+                int i1 = func_001E8858(sub->f110);
+                int i2 = func_001E8858(sub->f114);
+                float t0 = (float)i0;
+                if (t0 > 0.0f) {
+                    if (len < t0) {
+                        obj->func_001983A0();
+                        if ((float)(i0 + i2) > len)
+                            obj->func_00182530((len - t0) / i2);
+                    } else {
+                        obj->func_00198390();
+                    }
+                }
+                float t1 = (float)i1;
+                if (t1 > 0.0f) {
+                    if (len <= t1) {
+                        obj->func_001983A0();
+                        if ((float)(i1 - i2) >= len)
+                            obj->func_00182530((t1 - len) / i2);
+                    } else {
+                        obj->func_00198390();
+                    }
+                }
+                obj->func_0019AC50();
             }
         }
+        self->func_001578D0();
     }
 }
 
