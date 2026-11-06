@@ -323,7 +323,7 @@ void C_001C65E0::func_001C65E0(S_001C64A0_Node *obj)
     }
 }
 
-void C_001C67C0::func_001C67C0(Vec4 *out, int param_2)
+Vec4 C_001C67C0::func_001C67C0(int param_2)
 {
     Vec4 local;
     local.z = 0;
@@ -331,10 +331,7 @@ void C_001C67C0::func_001C67C0(Vec4 *out, int param_2)
     local.x = 0;
     local.w = 1.0f;
     this->obj10->func_vtbl3(param_2, &local);
-    ((u32 *)out)[0] = ((u32 *)&local)[0];
-    ((u32 *)out)[1] = ((u32 *)&local)[1];
-    ((u32 *)out)[2] = ((u32 *)&local)[2];
-    ((u32 *)out)[3] = ((u32 *)&local)[3];
+    return local;
 }
 
 int C_001C6820::func_001C6820(f32 param_1)
