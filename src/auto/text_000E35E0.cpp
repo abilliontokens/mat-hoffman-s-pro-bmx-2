@@ -152,6 +152,38 @@ void C_000E35E0::func_000E35E0(int param_1) {
     }
 }
 
+extern "C" void *memset(void *, int, unsigned int);
+void C_000E35E0::func_000E3640(void) {
+    int list[8];
+    int count;
+    int i, j, k;
+
+    memset(list, 0, sizeof(list));
+    count = 0;
+    for (i = 0; i < 8; i++) {
+        S_000E35E0_Obj *obj = D_002A8490->f8[i + 5];
+        if (obj != 0 && obj->v16() == 1) {
+            list[count] = i;
+            count++;
+        }
+    }
+    f290 = count;
+    if (count == 0) {
+        for (i = 0; i < 8; i++) {
+            f2E0[8 + i]->func_001B17D0(D_0027FC6C);
+        }
+        return;
+    }
+    j = 0;
+    for (k = 0; k < 8; k++) {
+        f420[k] = list[j];
+        if (j >= f290 - 1)
+            j = 0;
+        else
+            j++;
+    }
+}
+
 void C_000E35E0::func_000E3790(void) {
     char dest[0x40];
     char buf[4];
