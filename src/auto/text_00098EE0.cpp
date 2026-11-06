@@ -431,7 +431,7 @@ void C_00097FD0::func_00099A60(S_00099A60_arg *arg) {
     int j;
     int m;
     char buf1[0x104];
-    char buf2[0xfc];
+    char buf2[0x104];
 
     for (i = 0; i < arg->f24; i++) {
         S_00099A60_ent *e = arg->f28[i];
@@ -484,21 +484,20 @@ void C_00097FD0::func_00099A60(S_00099A60_arg *arg) {
                 }
             }
             for (m = 0; m < list[j]->f1b8; m++) {
-                C_00096870 *sub = list[j]->f1c8[m];
-                if (sub->f0 != 1)
+                if (list[j]->f1c8[m]->f0 != 1)
                     continue;
-                for (int n = 0; n < sub->f2554; n++) {
-                    strcpy(buf1, (char *)sub + 0x5578 + n * 0x78);
-                    strcpy(buf2, (char *)sub + 0x50c8 + n * 0x78);
+                for (int n = 0; n < list[j]->f1c8[m]->f2554; n++) {
+                    strcpy(buf1, (char *)list[j]->f1c8[m] + 0x5578 + n * 0x78);
+                    strcpy(buf2, (char *)list[j]->f1c8[m] + 0x50c8 + n * 0x78);
                     if (buf2[0] != 0 && buf1[0] != 0) {
-                        ((S_001B65E0_obj *)*(void **)((char *)sub + 0x63d8 + n * 4))->func_001B65E0();
-                        ((S_001B65E0_obj *)*(void **)((char *)sub + 0x63d8 + n * 4))->func_001B65F0();
+                        ((S_001B65E0_obj *)*(void **)((char *)list[j]->f1c8[m] + 0x63d8 + n * 4))->func_001B65E0();
+                        ((S_001B65E0_obj *)*(void **)((char *)list[j]->f1c8[m] + 0x63d8 + n * 4))->func_001B65F0();
                     }
-                    strcpy(buf1, (char *)sub + 0x5ed8 + n * 0x78);
-                    strcpy(buf2, (char *)sub + 0x5a28 + n * 0x78);
+                    strcpy(buf1, (char *)list[j]->f1c8[m] + 0x5ed8 + n * 0x78);
+                    strcpy(buf2, (char *)list[j]->f1c8[m] + 0x5a28 + n * 0x78);
                     if (buf1[0] != 0 && buf2[0] != 0) {
-                        ((S_001B65E0_obj *)*(void **)((char *)sub + 0x6400 + n * 4))->func_001B65E0();
-                        ((S_001B65E0_obj *)*(void **)((char *)sub + 0x6400 + n * 4))->func_001B65F0();
+                        ((S_001B65E0_obj *)*(void **)((char *)list[j]->f1c8[m] + 0x6400 + n * 4))->func_001B65E0();
+                        ((S_001B65E0_obj *)*(void **)((char *)list[j]->f1c8[m] + 0x6400 + n * 4))->func_001B65F0();
                     }
                 }
             }
