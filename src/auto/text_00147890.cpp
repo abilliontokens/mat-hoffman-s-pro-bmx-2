@@ -22,14 +22,17 @@ struct S_00147890_Frame {
     char buf[0x104];
 };
 
-struct C_001490A0 {
-    int pad;
-    void func_001490A0(unsigned int flags);
-};
-
 struct C_00148740 {
     int pad;
     void func_00148740(unsigned int flags);
+};
+
+struct C_001490A0_Base {
+    int pad;
+};
+
+struct C_001490A0 : C_001490A0_Base, C_00148740 {
+    void func_001490A0(unsigned int flags);
 };
 
 extern char D_00286764[];
@@ -349,6 +352,6 @@ int C_00147890::func_00147890(char *name)
 
 void C_00148740::func_00148740(unsigned int flags)
 {
-    int idx = -1;
-    (&((C_001490A0 *)this)[idx])->func_001490A0(flags);
+    int off = 4;
+    ((C_001490A0 *)((int)this - off))->func_001490A0(flags);
 }
