@@ -91,7 +91,7 @@ extern "C" float func_0014F550(float x);
 extern float D_00275544, D_002755E4, D_00276098;
 extern S_001AF530_Tbl *D_002AA6C0;
 extern S_001AF530_Time *D_002A8490;
-extern "C" float func_001E9092(float a, float b);
+extern "C" double func_001E9092(double a, double b);
 struct C_001AF530 {
     float f0;
     unsigned char f4;
@@ -235,8 +235,10 @@ int C_001AED80::func_001AED80(void)
         return 0;
     }
     if ((f84 & 1) == 0 && f54->f64 == 0) {
-        f54->f3C = f2C;
-        f54->f40 = f2C;
+        C_001AED80 *p = self;
+        float t = p->f2C;
+        p->f54->f3C = t;
+        p->f54->f40 = t;
     } else {
         {
             C_001AED80 *p = self;
@@ -568,4 +570,36 @@ int C_001AFB00::func_001AFB00(void)
     }
     return f30;
 }
+
+void C_001AFB00::func_001AFB60(float *a, float *b, float *c)
+{
+    float s;
+    if (f38 & 4) {
+        s = -D_002A8490->f244;
+    } else {
+        s = D_002A8490->f244;
+    }
+    float ang = s * f2C + f20;
+    if (ang > D_002756D0) {
+        ang -= D_002756B8;
+    } else if (ang < D_002756E8) {
+        ang += D_002756B8;
+    }
+    f20 = ang;
+    float cs = func_0014F510(ang);
+    float sn = func_0014F550(f20);
+    f0 = (float)fmod(s * f24 + f0, D_002766B8);
+    f4 = (float)fmod(s * f28 + f4, D_002766B8);
+    a[0] = cs * f18 - sn * f14;
+    a[1] = cs * f10 - sn * f1C;
+    a[2] = 0.0f;
+    b[0] = sn * f18 + cs * f14;
+    b[1] = sn * f10 + cs * f1C;
+    b[2] = 0.0f;
+    c[0] = (cs - f18) * f8 - sn * fC - f0;
+    c[1] = (cs - f1C) * fC + sn * f8 - f4;
+    c[2] = 0.0f;
+    func_001AFB00();
+}
+
 #include <xmmintrin.h>
