@@ -205,7 +205,7 @@ struct Hud_0010A3B0 {
         } \
     }
 #define NAME_LOOP5(i0, chk, ld) \
-    for (j = 0, i = i0; i < i0 + 8; j++, i++) { \
+    for (i = i0, j = 0; i < i0 + 8; j++, i++) { \
         const char *src = f24->f52c + j * 0x32 + chk; \
         char *dst = name; \
         char c; \
