@@ -59,10 +59,6 @@ static __forceinline void ClearInt_001D3F60(int *p)
     *p = 0;
 }
 
-static __forceinline int IsLowerSlot_001D40E0(int a)
-{
-    return a >= 4;
-}
 
 inline void *operator new(unsigned int, void *p) { return p; }
 
