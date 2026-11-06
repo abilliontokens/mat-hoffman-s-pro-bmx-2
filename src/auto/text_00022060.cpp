@@ -364,7 +364,7 @@ int C_000223B0::func_000223B0(Vec4_000223B0 pos, float dy)
     f2C->func_001983A0();
     s = f30;
     s->f1c = 0;
-    s->v = D_002A0F74;
+    s->v = *(S_Vec4i_00022320 *)&D_002A0F74;
     s->f40 = 0;
     s->f10 = 1;
     z = f34;
