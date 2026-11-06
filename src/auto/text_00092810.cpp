@@ -138,6 +138,17 @@ struct C_001B12C0 {
 
 extern S_00092A10_Root *D_002A8490;
 extern int D_0027A0C4;
+extern float D_00275AEC;
+
+struct S_000929A0_Clamp {
+    char pad0[0x10];
+    float f10;
+    float f14;
+};
+
+struct S_000929A0_Mid {
+    S_000929A0_Clamp *func_0018C070(void);
+};
 
 struct C_00092890 {
     void *vtbl;
