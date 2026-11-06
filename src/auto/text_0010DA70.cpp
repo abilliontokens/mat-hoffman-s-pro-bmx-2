@@ -159,7 +159,7 @@ static __forceinline void identity_ref_10E2A0(Mat44_10E2A0 * volatile &p)
     q->m[15] = 1.0f;
 }
 
-struct C_10E2A0_Mat { void func_00199BE0(void *m); };
+struct C_10E2A0_Mat { void func_00199BE0(void *m); void func_00199BE0(const Mat44_10E2A0 &m); };
 struct C_10E2A0_230 { char pad0[0x174]; C_10E2A0_Mat *f174; };
 struct C_10E2A0_950 {
     char pad0[0x88];
@@ -523,9 +523,9 @@ void C_0010E260::func_0010E260(void)
 void BmxVehicle_10DA70::func_0010E2A0(void)
 {
     BmxVehicle_10DA70 * volatile self = this;
-    Mat44_10E2A0 m1;
-    Mat44_10E2A0 *pm;
     Mat44_10E2A0 m2;
+    Mat44_10E2A0 m1;
+    Mat44_10E2A0 * volatile pm;
     Vec4 a;
     Vec4 b;
     Vec4 c;
@@ -533,6 +533,8 @@ void BmxVehicle_10DA70::func_0010E2A0(void)
     float len;
     C_0010E810Slot *slot;
     Vec4 *v;
+    int t;
+    int r;
 
     *(int *)((char *)this + 0x2084) = 0;
     MEMBER_10E2A0(int, 0x2088) = -1;
@@ -574,21 +576,37 @@ void BmxVehicle_10DA70::func_0010E2A0(void)
     func_0001E9E0(&c, (Vec4 *)((char *)MEMBER_10E2A0(char *, 0x1E0) + 0x258));
     v = (Vec4 *)((char *)MEMBER_10E2A0(char *, 0x1E0) + 0x258);
     lenSq = v->x * v->x + v->y * v->y + v->z * v->z;
-    len = sqrtf(lenSq);
-    MEMBER_10E2A0(C_10E2A0_950 *, 0x950)->func_0011C900(b, *(Vec4 *)((char *)MEMBER_10E2A0(char *, 0x1E0) + 0x238), c, len);
-    ((void (__stdcall *)(void *))(*(void ***)MEMBER_10E2A0(char *, 0x1E0))[0x74 / 4])((char *)self + 0x8D0);
-    MEMBER_10E2A0(int, 0x1F0 + 0) = MEMBER_10E2A0(int, 0x1F0);
+    _mm_store_ss(&len, _mm_sqrt_ss(*(__m128 *)&lenSq));
+    {
+        BmxVehicle_10DA70 *p = self;
+        ((C_10E2A0_950 *)*(char **)((char *)p + 0x950))->func_0011C900(b, *(Vec4 *)(*(char **)((char *)p + 0x1E0) + 0x238), c, len);
+    }
+    {
+        BmxVehicle_10DA70 *p = self;
+        ((void (__stdcall *)(void *))(*(void ***)*(char **)((char *)p + 0x1E0))[0x74 / 4])((char *)p + 0x8D0);
+    }
     *(int *)(MEMBER_10E2A0(char *, 0x1F0) + 0xC8) = D_002A3A9C;
     *(int *)(MEMBER_10E2A0(char *, 0x1F0) + 0xB4) = D_002A3A98;
-    *(int *)(MEMBER_10E2A0(char *, 0x1F0) + 0xBC) = D_002B91FC;
-    *(int *)(MEMBER_10E2A0(char *, 0x1F0) + 0xC0) = D_002B91FC;
-    *(int *)(MEMBER_10E2A0(char *, 0x1F0) + 0xC4) = D_002B91FC;
+    t = D_002B91FC;
+    *(int *)(MEMBER_10E2A0(char *, 0x1F0) + 0xBC) = t;
+    *(int *)(MEMBER_10E2A0(char *, 0x1F0) + 0xC0) = t;
+    *(int *)(MEMBER_10E2A0(char *, 0x1F0) + 0xC4) = t;
     *(int *)(MEMBER_10E2A0(char *, 0x1F0) + 0xD0) = 0x3be56042;
-    *(Vec4 *)(MEMBER_10E2A0(char *, 0x1E0) + 0x190) = *(Vec4 *)((char *)self + 0xFC);
+    {
+        BmxVehicle_10DA70 *p = self;
+        *(Vec4 *)(*(char **)((char *)p + 0x1E0) + 0x190) = *(Vec4 *)((char *)p + 0xFC);
+    }
     MEMBER_10E2A0(int, 0x11CC) = MEMBER_10E2A0(float, 0x878) < D_00275544;
-    MEMBER_10E2A0(C_10E2A0_A04 *, 0xA04)->func_001648E0(MEMBER_10E2A0(int, 0x1800), 1.0f, 0, 0, 0);
-    MEMBER_10E2A0(C_10E2A0_A04 *, 0xA04)->func_00164820(MEMBER_10E2A0(int, 0x1800));
-    MEMBER_10E2A0(C_10E2A0_15A8 *, 0x15A8)->func_001A4100(func_00011260(1, MEMBER_10E2A0(C_10E2A0_15A8 *, 0x15A8)->f1C4), 0, 0);
+    {
+        BmxVehicle_10DA70 *p = self;
+        ((C_10E2A0_A04 *)*(char **)((char *)p + 0xA04))->func_001648E0(*(int *)((char *)p + 0x1800), 1.0f, 0, 0, 0);
+    }
+    {
+        BmxVehicle_10DA70 *p = self;
+        ((C_10E2A0_A04 *)*(char **)((char *)p + 0xA04))->func_00164820(*(int *)((char *)p + 0x1800));
+    }
+    r = func_00011260(1, MEMBER_10E2A0(C_10E2A0_15A8 *, 0x15A8)->f1C4);
+    MEMBER_10E2A0(C_10E2A0_15A8 *, 0x15A8)->func_001A4100(r, 0, 0);
 }
 
 void C_10E6D0::func_0010E6D0(void)
