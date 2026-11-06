@@ -472,7 +472,7 @@ int DXRenderableObject::func_00143660(void)
     piece = &f1a4->pieces[f1a0];
     for (i = 0; i < piece->count; i++)
         piece->items[i].func_001446B0((int)f1d0, (int)this, f1b8[piece->items[i].f4]);
-    F143660_TAIL func_00157960();
+    return func_00157960();
 }
 
 void *DXRenderableObjectData::func_00143770(int flags)
