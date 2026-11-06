@@ -278,6 +278,28 @@ int Game::func_00156880(void)
     return p != 0;
 }
 
+int Game::func_001568A0(int a, int b, int c, int d)
+{
+    f260 = a;
+    f264 = b;
+    f268 = c;
+    f26c = d;
+    *(volatile int *)&f270 = 0;
+    if (f260 != 0) {
+        f270 = 1;
+    }
+    if (f264 != 0) {
+        f270++;
+    }
+    if (f268 != 0) {
+        f270++;
+    }
+    if (f26c != 0) {
+        f270++;
+    }
+    return 1;
+}
+
 void Game::func_00156920(int *out)
 {
     out[0] = f260;
