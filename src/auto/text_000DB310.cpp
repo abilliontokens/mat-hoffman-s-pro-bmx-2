@@ -29,6 +29,16 @@ struct C_000DB4B0 {
 
 extern char D_0027F7D4[];
 
+struct C_Lim { char pad0[0x10]; float f10; float f14; };
+struct C_Lst { C_Lim *func_0018C160(char *name); };
+struct C_Ptr { C_Lim *func_0018C070(); };
+struct C_Obj2 { C_Lim *func_001D5AA0(); };
+struct C_G { char pad0[0x2ec]; C_Lst *f2ec; };
+struct C_Pg { char pad0[0x29c]; C_Obj2 *f29c; void func_001578D0(); void func_000DBE00(); };
+extern C_G *D_002A8490;
+extern float D_00275AEC;
+extern char D_002786A0[], D_00278690[], D_00278678[];
+
 struct C_001BE360 { void func_001BE360(int a); };
 extern int D_0027F724;
 struct C_000DB5B0 {
