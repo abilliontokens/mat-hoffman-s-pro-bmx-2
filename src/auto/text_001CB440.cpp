@@ -55,9 +55,10 @@ struct C_001CBD40 : Base_001CBD40 {
         char pad11[0x7f];
         struct VecP {
             int v[4];
+            VecP() { v[0] = 0; v[1] = 0; v[2] = 0; v[3] = 0; }
             void init() { v[0] = 0; v[1] = 0; v[2] = 0; v[3] = 0; }
         } b;
-        Sub() : a() { f10 = 0; b.init(); }
+        Sub() : a(), b() { f10 = 0; }
         void init() { a.init(); f10 = 0; b.init(); }
     } f34;
     int fD4;
