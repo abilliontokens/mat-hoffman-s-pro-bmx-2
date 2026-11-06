@@ -253,8 +253,6 @@ int __stdcall func_001FCE40(void *a, int b, Size_001D5810 *out);
 void func_00030F30(char *dst, const char *src);
 
 struct C_001D6190 {
-    char pad0[0x4e];
-    unsigned char f4e;
     void func_001D5FA0(int a, int b, int c, int d);
     void func_001D6190(int a, const char *s, int b);
 };
