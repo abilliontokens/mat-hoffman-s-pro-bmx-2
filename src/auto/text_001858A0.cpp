@@ -455,6 +455,7 @@ void C_00185D00::func_00185D00(void)
     }
 }
 
+char *func_001E8AC0(const char *s, int c);
 int C_00185BF0::func_00185D60(S_Stream3 *stream, int count)
 {
     char buf2[0x104];
@@ -493,7 +494,7 @@ int C_00185BF0::func_00185D60(S_Stream3 *stream, int count)
     char *name = (char *)this + 0x31c;
     stream->func_00168BE0(&D_002897AC, &D_002764F0, name, -1);
     if (strcmp(name, "none")) {
-        char *dot = strchr(name, '.');
+        char *dot = func_001E8AC0(name, '.');
         if (dot)
             memset(dot, 0, strlen(dot));
         strcpy(buf2, name);
