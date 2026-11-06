@@ -464,7 +464,7 @@ int __stdcall func_001DF26F(int a, int b)
     obj = (int *)func_001DF5B9(0, 0x7c);
     if (obj == 0) {
         func_001DD62B(8);
-        return -1;
+        goto fail;
     }
     obj[0] = a;
     if (img->titleId != b) {
@@ -479,6 +479,7 @@ int __stdcall func_001DF26F(int a, int b)
         if (i >= 0x40) {
 badkey:
             func_001DD62B(5);
+fail:
             return -1;
         }
         obj[1] = (int)_imp__XboxAlternateSignatureKeys[i];
