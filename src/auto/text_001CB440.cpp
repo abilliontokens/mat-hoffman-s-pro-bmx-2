@@ -49,6 +49,7 @@ struct C_001CBD40 : Base_001CBD40 {
         Vec() { v[0] = 0; v[1] = 0; v[2] = 0; v[3] = 0; }
         void init() { v[0] = 0; v[1] = 0; v[2] = 0; v[3] = 0; }
     };
+    #pragma optimize("g", off)
     struct Sub {
         Vec a;
         unsigned char f10;
