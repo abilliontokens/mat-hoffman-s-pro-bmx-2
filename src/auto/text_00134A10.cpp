@@ -227,6 +227,9 @@ extern unsigned char D_002A4331;
 int func_00134A10(V4_00134DE0 *seg, void *obj, V4_00134DE0 *out, void *hit);
 
 extern V4_00134DE0 D_002A4340;
+extern int D_002A4344;
+extern int D_002A4348;
+extern int D_002A434C;
 struct CollisionResult {
     V4_00134DE0 a, b, normal;
     char pad30[0x40];
@@ -264,6 +267,59 @@ struct C_00135400 {
     int func_00135400(void);
 };
 
+
+int func_00134A10(V4_00134DE0 *seg, void *obj, V4_00134DE0 *out, void *hit) {
+    if (!(*(unsigned char *)((char *)obj+0x21)&1)) return 0;
+    char *o = (char *)obj;
+    V4_00134DE0 *end = seg+1;
+    if (!(func_0011FDF0(o+0x28, seg, end) < *(float *)(o+0x48))) return 0;
+    CollisionResult result;
+    result.func_00134980();
+    result.a = D_002A4340;
+    result.b = D_002A4340;
+    V4_00134DE0 zero = {0.0f,0.0f,0.0f,1.0f};
+    result.normal = zero;
+    result.fraction=1.0f;
+    result.f80=0; result.f90=0; result.f70=0; result.f8C=0;
+    result.f74=0; result.f84=0; result.f88=0; result.f78=0;
+    CollisionMatrix matrix;
+    V4_00134DE0 a,b,c,d,e,f;
+    int bounds[2];
+    switch (*(int *)(o+0x50)) {
+    case 0: {
+        void *transform=o+0xb0;
+        D_002B92EC=&result;
+        matrix.func_000264C0(transform);
+        func_0011AC30(&matrix,&matrix);
+        bounds[0]=*(int *)(o+0x1c4); bounds[1]=*(int *)(o+0x1c8);
+        int found=func_001294E0(seg,0,bounds,&matrix,o+0x1b0);
+        if (found) {
+            *out=*func_000110E0(&c,func_00011140(&b,func_00011110(&a,end,seg),result.fraction),seg);
+            func_0001C680(hit,result.normal,transform);
+        }
+        return found;
+    }
+    case 1:
+        D_002B92EC=&result;
+        matrix.func_000264C0(o+0x130);
+        func_0011AC30(&matrix,&matrix);
+        if (!func_00122090(o+0xa8,o+0xb8,seg,0,&matrix)) break;
+        for(int i=0;i<*(int *)(o+0x190);++i) {
+            char *child=(*(char ***)(o+0x1a0))[i];
+            matrix.func_000264C0(child+0xb0);
+            func_0011AC30(&matrix,&matrix);
+            bounds[1]=*(int *)(child+0x1c8); bounds[0]=*(int *)(child+0x1c4);
+            if (func_001294E0(seg,0,bounds,&matrix,child+0x1b0)) {
+                *out=*func_000110E0(&f,func_00011140(&e,func_00011110(&d,end,seg),result.fraction),seg);
+                func_0001C680(hit,result.normal,child+0xb0);
+                return 1;
+            }
+        }
+        break;
+    case 2: case 3: return 0;
+    }
+    return 0;
+}
 
 int func_00134DE0(V4_00134DE0 *seg, V4_00134DE0 *out, void *hit, int noSub, int count, void **skip, int mask, int a7, int mode)
 {
@@ -351,6 +407,58 @@ void C_00135020::func_00135020(void)
         tab555[i + 3] = ((t & 0xFFF8) << 2) | d;
         tab565[i + 3] = ((t & 0xFFFC) << 3) | d;
     }
+}
+
+ColorMapper *ColorMapper::func_00135150(int f)
+{
+    int compressed;
+
+    func_0001DFE0();
+    vtbl = &D_0028472C;
+    if (D_002BEAAC->func_0013C8A0(f, &f8, 4, 1) != 1) goto out;
+    if (D_002BEAAC->func_0013C8A0(f, &fC, 4, 1) != 1) goto out;
+    if (D_002BEAAC->func_0013C8A0(f, &compressed, 4, 1) != 1) goto out;
+    if (compressed) {
+        int size;
+        void *buf = func_001E8AA5((unsigned int)&D_00010000);
+        if (buf == 0) goto out;
+        if (D_002BEAAC->func_0013C8A0(f, &size, 4, 1) != 1) goto out;
+        if (size == 0x300) {
+            if (D_002BEAAC->func_0013C8A0(f, pal, size, 1) != 1) goto out;
+        } else {
+            if (D_002BEAAC->func_0013C8A0(f, buf, size, 1) != 1) goto out;
+            func_001611C0(pal, buf, 0x300);
+        }
+        if (D_002BEAAC->func_0013C8A0(f, &size, 4, 1) != 1) goto out;
+        if (size == 0x8000) {
+            if (D_002BEAAC->func_0013C8A0(f, map555, size, 1) != 1) goto out;
+        } else {
+            if (D_002BEAAC->func_0013C8A0(f, buf, size, 1) != 1) goto out;
+            func_001611C0(map555, buf, 0x8000);
+        }
+        if (D_002BEAAC->func_0013C8A0(f, &size, 4, 1) != 1) goto out;
+        if (size == 0x10000) {
+            if (D_002BEAAC->func_0013C8A0(f, map565, size, 1) != 1) goto out;
+        } else {
+            if (D_002BEAAC->func_0013C8A0(f, buf, size, 1) != 1) goto out;
+            func_001611C0(map565, buf, (int)&D_00010000);
+        }
+        func_001E8390(buf);
+    } else {
+        if (D_002BEAAC->func_0013C8A0(f, pal, 0x300, 1) != 1) goto out;
+        if (D_002BEAAC->func_0013C8A0(f, map555, 0x8000, 1) != 1) goto out;
+        if (D_002BEAAC->func_0013C8A0(f, map565, (int)&D_00010000, 1) != 1) goto out;
+    }
+    if (fC != 0x100) {
+        pal[fC + f8][2] = 0xff;
+        pal[fC + f8][1] = 0;
+        pal[fC + f8][0] = 0xff;
+        ((unsigned char *)this)[(int)&D_00017F2F] = map555[0x7c1f] = (unsigned char)(fC + f8);
+        fC++;
+    }
+    ((C_00135020 *)this)->func_00135020();
+out:
+    return this;
 }
 
 int C_00135400::func_00135400(void) {
