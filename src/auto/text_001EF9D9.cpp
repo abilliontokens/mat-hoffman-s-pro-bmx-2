@@ -9,6 +9,10 @@ struct S_002F6A38 {
 extern S_002F6A38 D_002F6A38;
 extern int D_00295C04;
 extern int D_002955B8[];
+/* Copy of the real func_001EEE49 (src/auto/text_001EEA34.cpp, undname.c UScore). It only
+ * exists here because MSVC emits `add esp,4` instead of `pop ecx` after calls to a callee whose
+ * body it has already compiled in the same translation unit; remove it once these files are
+ * merged into one undname translation unit with the callee first. */
 extern "C" char *func_001EEE49(int n)
 {
     volatile int *gp = (volatile int *)&D_002F6A38;
