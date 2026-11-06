@@ -170,3 +170,35 @@ int C_00108270::func_00108270(int a, int b)
 void C_00108360::func_00108360(void) {
     unk1FC0 = 1;
 }
+extern float D_00282A78, D_002755E8;
+struct Vec_107AE0 {
+ float x,y,z,w;
+ Vec_107AE0() { z=y=x=0; w=1; }
+ Vec_107AE0(float a,float b,float c) { x=a;y=b;z=c;w=1; }
+};
+struct Mat_107AE0 { float m[16]; };
+struct Obj_107AE0 {
+ char pad[8];
+ Obj_107AE0 *f8;
+ void func_00199A70(int,Vec_107AE0*);
+ void func_001994C0(int,Vec_107AE0*,Vec_107AE0*);
+ void func_00199110(int,Vec_107AE0*,Vec_107AE0*,int,int,int);
+ void func_001A0C90(Vec_107AE0);
+};
+struct Model_107AE0 {
+ void **vt;
+ char p4[0x50];
+ char *f54;
+ char p58[0x4c];
+ unsigned int fa4;
+ void func_00180E00(int,Vec_107AE0*,int,int);
+ float func_00133F10(int);
+};
+struct C_107AE0 {
+ char p0[0x1e8]; char *f1e8;
+ char p1ec[0x11c0-0x1ec]; Model_107AE0 *f11c0;
+ char p11c4[0x2054-0x11c4]; Obj_107AE0 *f2054,*f2058;
+ char p205c[0x207c-0x205c]; Obj_107AE0 *f207c,*f2080;
+ char p2084[0x2094-0x2084]; int f2094,f2098;
+ void func_00107AE0();
+};
