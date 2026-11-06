@@ -387,11 +387,6 @@ struct BmxEventEditor {
     int func_00038B10(void *obj, S_41F00_V4 va, S_41F00_V4 vb, int *ox, int *oy, int *oz, int flag);
     void func_00038A70(void *p, void **out);
     int func_0003D7B0(S_41F00_V4 v);
-    __forceinline void FindBlock(void *p, void **out)
-    {
-        *out = 0;
-        func_00038A70(p, out);
-    }
     __forceinline void FindBlock(void **out, void *p)
     {
         *out = 0;
@@ -427,7 +422,7 @@ int BmxEventEditor::func_00041560()
     flag = 1;
     if (func_00038B10(&f564->obj->f28, a, b, &px, &py, &pz, 1) == 0)
         return -1;
-    FindBlock(&f564->obj->f28, &blk);
+    FindBlock(&blk, &f564->obj->f28);
     if (blk == 0)
         return -1;
     w = ((S_41560_Block *)blk)->w;
