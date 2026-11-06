@@ -248,6 +248,7 @@ double func_001E931E(char *str, char **endptr) {
     }
     return v;
 }
+#pragma optimize("e", off)
 unsigned long func_001E93CD(const char *nptr, const char **endptr, int ibase, int flags)
 {
     const char *p;
@@ -876,16 +877,17 @@ double func_001EA0D3(double x) {
                 return x;
             }
         }
-        return func_001F38F6(8, 0xb, x, D_002766B8 + x, cw);
+        return func_001F38F6(8, 0xb, x, x + D_002766B8, cw);
     }
     r = func_001F3996(x);
     if (r == x) {
-done:
         func_001F3AFB(cw, (int)&D_0000FFFF);
         return r;
     }
-    if (cw & 0x20)
-        goto done;
+    if (cw & 0x20) {
+        func_001F3AFB(cw, (int)&D_0000FFFF);
+        return r;
+    }
     return func_001F38F6(0x10, 0xb, x, r, cw);
 }
 
