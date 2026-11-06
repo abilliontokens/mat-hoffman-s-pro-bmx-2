@@ -214,6 +214,25 @@ static __forceinline void mirror_165A20(Vec4_165EF0 *v, int mode)
     v->w = -w;
 }
 
+/* inlined copy of func_001641B0 */
+static __forceinline void mirror2_165A20(int mode, float *v)
+{
+    float x = v[1];
+    float y = v[2];
+    float z = v[3];
+
+    if (mode == 0) {
+        x = -x;
+    } else if (mode == 1) {
+        y = -y;
+    } else if (mode == 2) {
+        z = -z;
+    }
+    v[1] = -x;
+    v[2] = -y;
+    v[3] = -z;
+}
+
 struct C_00165F70_Elem {
     char name[0x38];
     int f38;
