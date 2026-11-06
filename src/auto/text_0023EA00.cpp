@@ -725,10 +725,10 @@ int __stdcall func_0023F23E(S_0023F3F7_Obj *pobj, int a0, int a1, int a2, int a3
         return (func_001DD603() & (int)&D_0000FFFF) | 0x80070000;
     }
     sz = 0x2000;
-    if ((unsigned int)a3 >= 0x2000u) {
-        sz = a3 + a3;
-        obj->f94 = sz;
-    }
+    if (*(volatile unsigned int *)&a3 >= 0x2000u)
+        sz = a3;
+    sz += sz;
+    obj->f94 = sz;
     obj->f34 = (char *)func_001E8A44(sz);
     if (obj->f34 == 0)
         return 0x8007000e;
@@ -759,15 +759,18 @@ int __stdcall func_0023F23E(S_0023F3F7_Obj *pobj, int a0, int a1, int a2, int a3
                 i++;
             } while (i < obj->f98);
         }
+        obj->f88 = func_001DE8C7(0, 0x2000, (void *)func_0023F160, obj, 0, &obj->f68);
+        if (obj->f88 == 0)
+            return 0x8007000e;
+        if ((obj->f4C = func_001DDBC7(0, 0, 0, 0)) == 0)
+            return 0x8007000e;
+        if ((obj->f64 = func_001DDBC7(0, 0, 0, 0)) == 0)
+            return 0x8007000e;
     }
-    obj->f88 = func_001DE8C7(0, 0x2000, (void *)func_0023F160, obj, 0, &obj->f68);
-    if (obj->f88 && (obj->f4C = func_001DDBC7(0, 0, 0, 0)) != 0 && (obj->f64 = func_001DDBC7(0, 0, 0, 0)) != 0) {
-        hr = obj->vtbl->v6(obj);
-        if (hr >= 0 && a6)
-            func_0023F119((S_0023F119_Src *)obj, (S_0023F119_Wfx *)a6);
-        return hr;
-    }
-    return 0x8007000e;
+    hr = obj->vtbl->v6(obj);
+    if (hr >= 0 && a6)
+        func_0023F119((S_0023F119_Src *)obj, (S_0023F119_Wfx *)a6);
+    return hr;
 }
 
 int __stdcall func_0023F3F7(int a0, int a1, int a2, int a3, int a4, int a5, int a6, int a7)
