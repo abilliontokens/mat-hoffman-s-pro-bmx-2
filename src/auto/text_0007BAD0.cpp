@@ -87,10 +87,29 @@ struct ResultsScreen {
     int func_0007C690();
 };
 
-struct S_7C2C0_W { char pad0[0x48]; int color; char pad4c[2]; u8 flags; void func_0005E840(char *s); void func_001D6600(); };
+struct S_7C2C0_W {
+    char pad0[0x48];
+    int color;
+    char pad4c[2];
+    u8 flags;
+    void func_0005E840(char *s);
+    void func_001D6600();
+    inline void SetColorVar(int c) { if (color != c) { flags |= 8; color = ((color ^ c) & 0xffffff) ^ color; } }
+    inline void SetColorConst(unsigned c) { if ((unsigned)color != c) { flags |= 8; color = (color & c) | (c & 0xffffff); } }
+};
 struct S_7C2C0_T { char pad0[0x24]; int count; char **names; };
 struct S_7C2C0_U { char pad0[0x534]; S_7C2C0_T *f534; char pad538[0x30]; int f568; char **f56c; };
-struct S_7C2C0_V { char pad0[0x64]; S_7C2C0_U *f64; };
+struct S_7BAD0_Player {
+    char name[0x1a8];
+    int f1a8;
+    int func_00096740();
+};
+struct S_7BAD0_Grp {
+    int func_00097710(int g);
+    S_7BAD0_Player **func_00097740(int g);
+    int func_000976A0();
+};
+struct S_7C2C0_V { char pad0[0x64]; S_7C2C0_U *f64; char pad68[0x1c0 - 0x68]; S_7BAD0_Grp *f1c0; };
 int func_001ADCC0(char *buf, int n, char *fmt, ...);
 
 struct C_0007C2C0 {
@@ -106,6 +125,17 @@ struct C_0007C2C0 {
     int f24c;
     int func_00064580(int a, char *s, int c);
     undefined4 func_0007C2C0();
+    void func_0007BAD0();
+    inline int AddLine(int si, char *text, unsigned color)
+    {
+        if (si >= 0 && si < 0x10) {
+            S_7C2C0_W *w = f13c[si];
+            w->func_0005E840(text);
+            w->SetColorConst(color);
+            w->func_001D6600();
+        }
+        return si + 1;
+    }
 };
 
 struct C_0007C670 {
