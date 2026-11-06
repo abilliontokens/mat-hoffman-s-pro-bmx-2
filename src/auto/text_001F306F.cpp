@@ -278,11 +278,10 @@ C_001F325D *C_001F325D::func_001F31D2(int param_1) {
     extern int D_00295F00;
     char *func_001E8AA5(int);
     unk0 = (int)&D_00295F00;
-    unk8 = *(int *)(param_1 + 8);
-    char *src = *(char **)(param_1 + 4);
     int n = *(int *)(param_1 + 8);
+    unk8 = n;
     if (n != 0) {
-        char *p = src;
+        char *p = *(char **)(param_1 + 4);
         char *base = p + 1;
         char c;
         do {
@@ -302,7 +301,7 @@ C_001F325D *C_001F325D::func_001F31D2(int param_1) {
             } while (ch != 0);
         }
     } else {
-        unk4 = src;
+        unk4 = *(char **)(param_1 + 4);
     }
     return this;
 }
