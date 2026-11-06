@@ -340,6 +340,7 @@ struct C_001B08B0 {
     void *func_001B08B0(unsigned int flags);
     C_001B08B0 *func_001B08F0(C_001B08B0 *src);
     C_001B08B0 *func_001B08F0(const C_001B08B0 &src);
+    C_001B08B0(const C_001B08B0 &src);
     void func_001B0970(void);
 };
 
@@ -770,18 +771,18 @@ void *C_001B08B0::func_001B08B0(unsigned int flags)
     return this;
 }
 
-C_001B08B0 *C_001B08B0::func_001B08F0(C_001B08B0 *src)
+C_001B08B0 *C_001B08B0::func_001B08F0(const C_001B08B0 &src)
 {
     extern int D_0028C444;
     int i;
 
     vtbl = (void *)&D_0028C444;
-    unk4 = src->unk4;
-    unk8 = src->unk8;
+    unk4 = src.unk4;
+    unk8 = src.unk8;
     for (i = 0; i < 4; i++) {
         items[i] = 0;
-        if (src->items[i] != 0) {
-            items[i] = new S_001B08F0_Item(*src->items[i]);
+        if (src.items[i] != 0) {
+            items[i] = new S_001B08F0_Item(*src.items[i]);
         }
     }
     return this;
