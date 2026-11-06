@@ -117,7 +117,7 @@ struct S_12CD10 { /* self; vtable slots 2, 27, 29 and 47 used */
     virtual void v45();virtual void v46();
     virtual int slot47(char *path, void *a);
     virtual void v48();virtual void v49();virtual void v50();virtual void v51();virtual void v52();
-    char padD4[0x210 - 0xd4];
+    char pad04[0x210 - 4];
     float f210;
     char pad214[0x22c - 0x214];
     M_12CD10 *f22c;
