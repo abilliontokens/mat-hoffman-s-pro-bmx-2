@@ -571,8 +571,8 @@ int Coll_000A79E0::func_000A79E0(Game_000A79E0 *g)
         }
         if (fC->f14c > 0) {
             D_002B7E18->func_000216F0(buf, fC->f14c, f8);
+            f8->fA0 = func_00024360;
         }
-        f8->fA0 = func_00024360;
         {
             __declspec(align(16)) float m[16];
             Pt_000A79E0 *p = (Pt_000A79E0 *)g->f3b0[g->f348];
