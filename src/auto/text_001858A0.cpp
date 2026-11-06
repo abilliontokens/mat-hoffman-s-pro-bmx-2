@@ -119,7 +119,7 @@ struct C_00185BF0 {
     int fc;
     char f10[0x104];
     char f114[0x410];
-    float f524, f528, f52c, f530, f534, f538, f53c, f540, f544;
+    int f524, f528, f52c, f530, f534, f538, f53c, f540, f544;
     C_00185BF0 *func_00185BF0(void);
     int func_00185D60(struct S_Stream3 *stream, int count);
 };
