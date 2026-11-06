@@ -237,6 +237,48 @@ struct C_001729D0_Obj {
     float func_00133F10(int a); int func_00134770(int a, int b);
 };
 extern float D_002A8BA0, D_002A8BA4, D_002A8BA8, D_002A8BE8;
+extern float D_002A8BE0, D_002A8BE4;
+extern float D_00288D00, D_00288D10, D_00288D20;
+
+struct C_001724B0_C4 {
+    char pad0[0x28];
+    float f28;
+    char pad2C[0x200];
+    C_001729D0_Cam *f22c;
+    char pad230[0x8];
+    float f238;
+    float f23c;
+    float f240;
+    char pad244[0x24];
+    float f268;
+    float f26c;
+    float f270;
+};
+
+static __forceinline void Cross_001724B0(float *out, const float *a, const float *b)
+{
+    __m128 va = _mm_loadu_ps(a), vb = _mm_loadu_ps(b);
+    __m128 r = _mm_sub_ps(_mm_mul_ps(va, _mm_shuffle_ps(vb, vb, 0xc9)),
+                          _mm_mul_ps(vb, _mm_shuffle_ps(va, va, 0xc9)));
+    _mm_storeu_ps(out, _mm_shuffle_ps(r, r, 0xc9));
+}
+
+static __forceinline void Normalize_001724B0(float *volatile outArg, const float *volatile inArg)
+{
+    const float *in = inArg;
+    float *out = outArg;
+    __m128 v = _mm_loadu_ps(in), sq = _mm_mul_ps(v, v);
+    __m128 len = _mm_add_ss(_mm_movehl_ps(sq, sq), sq);
+    len = _mm_add_ss(len, _mm_shuffle_ps(sq, sq, 0xe1));
+    __m128 minv = _mm_load_ss(&D_00288D20);
+    __m128 cmp = _mm_cmplt_ss(len, minv);
+    len = _mm_add_ss(len, _mm_and_ps(cmp, minv));
+    __m128 r = _mm_rsqrt_ss(len);
+    __m128 t = _mm_mul_ss(_mm_mul_ss(len, r), r);
+    __m128 scale = _mm_mul_ss(_mm_mul_ss(r, _mm_load_ss(&D_00288D00)), _mm_sub_ss(_mm_load_ss(&D_00288D10), t));
+    scale = _mm_shuffle_ps(scale, scale, 0);
+    _mm_storeu_ps(out, _mm_mul_ps(scale, v));
+}
 
 struct S_00171F10_F60 {
     char pad0[0x28];
