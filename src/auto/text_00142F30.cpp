@@ -145,6 +145,7 @@ struct C_00197AA0 {
     void func_00197AA0(void);
 };
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 struct C_1432Light {
  void func_0015F880(int, Vec4_143660, int, void *, void *, int);
  void func_0015E420(void *, void *, int);
@@ -235,14 +236,20 @@ struct DXShadowCaster {
 
 struct DXRenderableObject {
     void *vtbl;
-    char pad4[0x17D];
+    char pad4[0xF0 - 4];
+    Mat_1432B0 f0;             /* 0xF0 */
+    char pad130[0x181 - 0x130];
     unsigned char f181;        /* 0x181 */
-    char pad182[0x1A0 - 0x182];
+    char pad182[0x190 - 0x182];
+    int f190;                  /* 0x190 */
+    char pad194[0x1A0 - 0x194];
     unsigned char f1a0;        /* 0x1A0 */
     char pad1a1[2];
     unsigned char f1a3 : 1;
     ShadowPieceTable *f1a4;
-    char pad1a8[0x10];
+    char pad1a8[0x1AC - 0x1A8];
+    C_00197AA0 **f1ac;         /* 0x1AC */
+    char pad1b0[0x1B8 - 0x1B0];
     int *f1b8;                 /* 0x1B8 */
     char pad1bc[4];
     Vec4_143660 f1c0;          /* 0x1C0 */
@@ -395,6 +402,70 @@ void Alloc190::func_00142F30(int a)
     }
     ((Vec4_143660 *)((char *)self + 0x170))->SetRef(*(Vec4_143660 *)(a + 0x170));
     ((Vec4_143660 *)((char *)self + 0x180))->SetRef(*(Vec4_143660 *)((char *)D_002EFDB8 + 0x74));
+}
+
+void Alloc190::func_001432B0()
+{
+    Mat_1432B0 m;
+    int n;
+    int i;
+    int r;
+
+    func_001FEC30(0x10, (char *)this + 0x50);
+    func_001FEC30(0x18, (char *)this + 0x90);
+    func_001FEC30(0x1c, (char *)this->f4 + 0xf0);
+    func_001FEBD0(2, (char *)this + 0x150);
+    func_001FEC30(4, (char *)this + 0xd0);
+    func_001FEC30(8, (char *)this + 0x110);
+    func_001FEC30(0x14, (char *)this + 0x10);
+    func_001FEBD0(0x20, (char *)this + 0x160);
+    func_001FEBD0(0x21, (char *)this + 0x170);
+    func_001FEBD0(3, (char *)this + 0x180);
+    if (D_002BECB8) {
+        D_002BECB4 = D_002A6E80 + D_002BECB4;
+        if (D_002BECB4 > D_00275AEC) {
+            D_002A6E80 = -0.3f;
+            D_002BECB4 = 0.0f;
+        } else if (D_002BECB4 < D_00275F60) {
+            D_002A6E80 = 0.3f;
+            D_002BECB4 = 0.0f;
+        }
+        if (*(int *)((char *)this->f4 + 0x190) < 1) {
+            AsmCopyMatrix(&m, (char *)this->f4 + 0xf0);
+            for (i = 0; i < D_002A6E7C; i++) {
+                m.m[3] += D_002BECB4;
+                func_001FEDC0(0x60 + i * 3, &m, 0xc);
+            }
+        }
+    } else {
+        char *o = (char *)this->f4;
+
+        n = *(int *)(o + 0x190);
+        if (n > 1) {
+            i = 0;
+            if (i < n) {
+                r = 0x60;
+                do {
+                    C_00197AA0 *p = (*(C_00197AA0 ***)(o + 0x1ac))[i];
+                    if (p && r - 0x5d < 0x60) {
+                        p->func_00197AA0();
+                        func_001FEDC0(r, &p->ff0, 0xc);
+                    }
+                    o = (char *)this->f4;
+                    n = *(int *)(o + 0x190);
+                    i++;
+                    r += 3;
+                } while (i < n);
+            }
+            if (D_002BECB0) {
+                for (i = *(int *)((char *)this->f4 + 0x190); i < 31; i++) {
+                    r = 0x60 + 3 * i;
+                    if (r - 0x5d < 0x60)
+                        func_001FEDC0(r, (char *)this->f4 + 0xf0, 0xc);
+                }
+            }
+        }
+    }
 }
 
 DXRenderableObjectData *DXRenderableObjectData::func_00143520(void)
