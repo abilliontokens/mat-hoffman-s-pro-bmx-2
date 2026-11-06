@@ -70,8 +70,8 @@ S_V4_27860 func_00026880(float *v, float *m);
 S_V4_27860 func_000267F0(float *v, float *m);
 void func_0014FD80(float *p);
 
-static __forceinline float Max_27860(float a, float b) { float r; __m128 x = _mm_load_ss(&a); __m128 y = _mm_load_ss(&b); _mm_store_ss(&r, _mm_max_ss(x, y)); return r; }
-static __forceinline float Min_27860(float a, float b) { float r; __m128 x = _mm_load_ss(&a); __m128 y = _mm_load_ss(&b); _mm_store_ss(&r, _mm_min_ss(x, y)); return r; }
+static __forceinline float Max_27860(volatile float a, volatile float b) { float r; __m128 x = _mm_load_ss((float *)&a); __m128 y = _mm_load_ss((float *)&b); _mm_store_ss(&r, _mm_max_ss(x, y)); return r; }
+static __forceinline float Min_27860(volatile float a, volatile float b) { float r; __m128 x = _mm_load_ss((float *)&a); __m128 y = _mm_load_ss((float *)&b); _mm_store_ss(&r, _mm_min_ss(x, y)); return r; }
 inline void Cross_27860(float *out, float *a, float *b)
 {
     _mm_storeu_ps(out, _mm_shuffle_ps(
