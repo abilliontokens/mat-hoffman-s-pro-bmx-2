@@ -5,6 +5,19 @@ extern int D_0027E28C;
 
 struct S_000C7_Obj {
     virtual void destroying(int flag);
+    char pad4[0x24];
+    u32 unk28;
+    char pad2C[12];
+    u32 unk38;
+    float unk3C, unk40, unk44, unk48;
+    char pad4C[12];
+    unsigned char flags;
+    S_000C7_Obj *func_001D5760();
+    void func_001D5810(const char *, float, float, int);
+    void depth(u32 v) { if (unk28 != v) { unk28 = v; flags |= 1; } }
+    void color() { unk38 = (unk38 & 0xffbfa35a) | 0xbfa35a; flags |= 2; }
+    void coords(float a,float b,float c,float d) { unk3C=a; unk40=b; unk44=c; unk48=d; flags |= 4; }
+
 };
 
 struct BmxUIPageTwoPlayer {
