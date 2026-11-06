@@ -117,6 +117,7 @@ struct S_00103_Btn {
     void func_001B1AB0(int a, int b);
     void func_001B1BF0(int a);
     void func_001B19A0(int a);
+    void func_001B17D0(char *s);
 };
 struct C_00103450 {
     void *vtbl;
