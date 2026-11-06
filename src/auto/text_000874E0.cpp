@@ -107,16 +107,72 @@ struct MidObj_874E0 {
     ClampObj_874E0 *func_0018C070();
 };
 
+struct Spr_87760 {
+    char pad0[0x28];
+    unsigned f28;
+    char pad2C[8];
+    unsigned f34;
+    char pad38[4];
+    unsigned f3C, f40, f44, f48;
+    char pad4C[0xC];
+    unsigned char f58;
+    char pad59[0x64 - 0x59];
+    Spr_87760 *func_001D5760();
+    void func_001D5810(void *a, unsigned x, unsigned y, int z);
+    inline void SetF28(unsigned v) { if (f28 != v) { f28 = v; f58 |= 1; } }
+    inline void SetF34(unsigned v) { if (f34 != v) { f34 = v; f58 |= 1; } }
+};
+
+struct Txt_87760 {
+    char pad0[4];
+    unsigned f4;
+    unsigned f8;
+    char padC[0x44 - 0xC];
+    unsigned f44;
+    unsigned f48;
+    char pad4C[2];
+    unsigned char f4e;
+    char pad4F[0x60 - 0x4F];
+    Txt_87760 *func_001D5E90();
+    void func_001D5FA0(int font, char *name, int a, int b);
+    void func_0005E840(int a);
+    void func_0005E960(int x, int y);
+    inline void SetPos(unsigned x, unsigned y) { if (f4 != x || f8 != y) { f4 = x; f8 = y; f4e |= 6; } }
+    inline void SetColor(unsigned c) { if (f48 != c) { f4e |= 8; f48 = (c & 0xffffff) | (f48 & c); } }
+    inline void SetFont(unsigned v) { if (f44 != v) { f44 = v; f4e |= 6; } }
+};
+
+struct Menu_87760 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4(char *name, int a1, int a2, int a3, int a4);
+    Menu_87760 *func_001CF740(int a0, int a1, int a2);
+};
+
+struct Owner_87760 {
+    char pad0[0x64];
+    struct Owner2_87760 *f64;
+};
+
+struct Owner2_87760 {
+    char pad0[0x4c0];
+    int f4C0;
+};
+
 struct C_00087760 {
-    char pad0[0x2c];
-    int *f2C;
-    int *f30;
-    int f34;
+    char pad0[0x24];
+    Txt_87760 *f24;
+    Txt_87760 *f28;
+    Spr_87760 *f2C;
+    Spr_87760 *f30;
+    Owner_87760 *f34;
     char pad38[0x8];
-    int f40;
+    Menu_87760 *f40;
     char pad44[0x80];
     int fC4;
-    C_00087760 *func_00087760(int a, int b);
+    C_00087760 *func_00087760(int a, Owner_87760 *b, int c);
 };
 
 /* BestScoreOverlay */
