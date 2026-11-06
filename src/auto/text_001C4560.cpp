@@ -183,6 +183,15 @@ struct C_00157600 {
 };
 
 extern int D_0028E554;
+
+struct S_001C4560_This {
+    char pad0[0x24];
+    void *f24;
+    char pad28[8];
+    float f30;
+    int f34;
+    int func_001C4560();
+};
 void *func_001E8A44(int size);
 
 /* one 0x38-byte CrossFade layer */
