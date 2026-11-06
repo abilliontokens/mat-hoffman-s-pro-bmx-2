@@ -75,8 +75,6 @@ struct SndBank_1CB290 {
     int f10;
     SndEntry_1CB2D0 *f14;
     SndBank_1CB290 *func_001AC3A0(void);
-    SndBank_1CB290();
-    void *operator new(unsigned int n) { return func_001E8A44(n); }
 };
 
 struct XboxSndIf_1CB290 {
