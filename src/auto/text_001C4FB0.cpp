@@ -65,6 +65,19 @@ extern S_1C4FB0_Cull *D_002AB66C;
         } \
     }
 
+/* last child of a path: the calls are in tail position */
+#define QN_VISIT_LAST(i, EX, EZ) \
+    if (f4[i]) { \
+        ctr.y = f4[i]->fC; \
+        ext2.y = f4[i]->f10; \
+        ctr.x = EX; \
+        ctr.z = EZ; \
+        if (D_002AB66C->func_001C5DE0(f + 0xf0, &ctr, &ext2, &res)) { \
+            if (res == 0) return f4[i]->vf1(a, b, c, d, e); \
+            else return f4[i]->func_001C4FB0(a, b, c, d, e, f); \
+        } \
+    }
+
 /* VisibilityQuadTree */
 struct C_001C5AA0 {
     char pad0[0x890];
@@ -100,11 +113,13 @@ void C_001C4FB0::func_001C4FB0(int a, int b, volatile int c, volatile int d, int
                 QN_VISIT(1, cx - ext, ext + cy)
                 QN_VISIT(2, ext + cx, cy - ext)
                 QN_VISIT(3, ext + cx, ext + cy)
+                return;
             } else {
                 QN_VISIT(1, cx - ext, ext + cy)
                 QN_VISIT(0, cx - ext, cy - ext)
                 QN_VISIT(3, ext + cx, ext + cy)
                 QN_VISIT(2, ext + cx, cy - ext)
+                return;
             }
         } else {
             if (b >= bottom) {
@@ -112,6 +127,7 @@ void C_001C4FB0::func_001C4FB0(int a, int b, volatile int c, volatile int d, int
                 QN_VISIT(3, ext + cx, ext + cy)
                 QN_VISIT(0, cx - ext, cy - ext)
                 QN_VISIT(1, cx - ext, ext + cy)
+                return;
             } else {
                 QN_VISIT(3, ext + cx, ext + cy)
                 QN_VISIT(2, ext + cx, cy - ext)
