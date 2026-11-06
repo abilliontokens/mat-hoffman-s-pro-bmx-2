@@ -8,9 +8,65 @@ struct C_001AEBB0 {
 };
 
 extern float D_002AA2E8, D_002AA2EC;
+
+__declspec(align(16)) struct S_ADFD0_Mat {
+    float m[16];
+    __forceinline void identity(void)
+    {
+        __m128 z = _mm_setzero_ps();
+        ((__m128 *)m)[0] = z;
+        ((__m128 *)m)[1] = z;
+        ((__m128 *)m)[2] = z;
+        ((__m128 *)m)[3] = z;
+        m[0] = 1.0f;
+        m[5] = 1.0f;
+        m[10] = 1.0f;
+        m[15] = 1.0f;
+    }
+};
+
+struct S_ADFD0_Tex {
+    char pad0[8];
+    int f8;
+    int fC;
+    char pad10[0x94];
+    int fA4;
+    char padA8[0x10];
+    int fB8;
+};
+
+struct S_ADFD0_Vtx {
+    int x, y, z;
+    int color;
+    float u, v;
+};
+
+struct S_ADFD0_Slot6C { void func_0014A650(void *p); };
+struct S_ADFD0_Slot70 { void func_00142D00(void *p); };
+
+extern int D_0020C6E0, D_0020C6E4, D_0020C6DC, D_0020C6EC, D_0020C6F0, D_0020CA50;
+extern int D_00040300, D_00040304, D_00040344, D_00040348, D_00040354;
+void __fastcall func_001FD020(void *p, int v);
+void __fastcall func_001FEC30(int n, void *p);
+void __stdcall func_001FE490(int a);
+void __stdcall func_00200390(int index, int value);
+void *__stdcall func_001FF410(void *buffer, int flags);
+void __stdcall func_001FEE00(int stream, void *data, int stride);
+void __stdcall func_00200A90(int a, int b, int c);
+
 struct C_001ADFD0 {
-    char pad0[0x24];
-    void func_001ADFD0(int *a, int *b, int *c, int d, int e, int f);
+    char pad0[0x10];
+    void *f10;
+    void *f14;
+    char pad18[0xC];
+    unsigned char f24, f25, f26;
+    char pad27[1];
+    void *f28;
+    char pad2C[0x38];
+    unsigned char f64;
+    char pad65[3];
+    int f68;
+    void func_001ADFD0(float *src, S_ADFD0_Tex *tex, int *rect, int a4, int a5, int a6);
 };
 extern int D_0028C214;
 extern int D_0028C208;
@@ -406,6 +462,58 @@ float C_1AE570::func_001AE530(float x, float y)
     float dy = y - D_0028AC88;
 
     return sqrtf(dx * dx + dy * dy);
+}
+
+int C_1AE570::func_001AE570(void)
+{
+    float a[4];
+    float b[4];
+    float t;
+    float out;
+    C_1AE570_Cam *cam;
+    float *p;
+    float x, y, z;
+    int flag;
+
+    if (D_002F00D0) {
+        return 0;
+    }
+    flag = D_002AA3EC;
+    f7C = 320.0f;
+    f80 = 100.0f;
+    if (flag) {
+        a[2] = 0.0f;
+        a[1] = 0.0f;
+        a[0] = 0.0f;
+        a[3] = 1.0f;
+        p = D_002EFDB8->cam->pos;
+        z = p[2] - f48;
+        y = p[1] - f44;
+        x = p[0] - f40;
+        b[3] = 1.0f;
+        b[0] = x;
+        b[1] = y;
+        b[2] = z;
+        cam = D_002EFDB8->cam;
+        f84_0 = D_002AB66C->func_001C5C50(cam, cam->mat, b, a, &out);
+        f7C = a[0];
+        t = (float)D_002EFDB8->cam->f1EC - a[1];
+        f80 = t;
+        {
+            float *d = D_002EFDB8->cam->dir;
+            float dot = -f40 * d[0];
+            dot += -f44 * d[1];
+            dot += -f48 * d[2];
+            if (dot > D_00275544) {
+                f30 = D_00275460 - D_0028C280 * func_001AE530(a[0], t);
+            } else {
+                f30 = 0.0f;
+            }
+        }
+    } else {
+        f84_0 = 1;
+    }
+    return func_001578D0();
 }
 
 void C_001AE700::func_001AE700(void)
