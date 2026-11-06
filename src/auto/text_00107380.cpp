@@ -74,6 +74,14 @@ struct C_107AE0 {
  void func_00107AE0();
 };
 
+struct C_107380 {
+    char p0[0xa00];
+    Obj_107AE0 *fa00;
+    char pa04[4];
+    Obj_107AE0 *fa08, *fa0c, *fa10, *fa14;
+    void func_00107380();
+};
+
 struct V_00107A40 {
     virtual void vf0();
     virtual void vf1();
