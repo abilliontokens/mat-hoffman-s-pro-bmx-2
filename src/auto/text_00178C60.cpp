@@ -4,6 +4,36 @@
 #include <xmmintrin.h>
 
 extern int D_00288ED4;
+int func_001B2CB0(int a);
+void *func_001E8A44(int size);
+unsigned int func_00177370(void *a, void *b, int c, int d, int e, int f, int g, int h);
+unsigned int func_00178180(void *a, void *b, int c, int d, int e, int f);
+unsigned int func_00177CA0(void *a, void *b, int c, int d, int e, int f, int g, int h);
+unsigned int func_00176CD0(void *a, void *b, int c, int d, int e, int f);
+unsigned int func_00177780(void *a, void *b, int c, int d, int e, int f, int g);
+unsigned int func_00178AE0(void *a, void *b, int c, int d, int e, int f, int g);
+unsigned int func_001780F0(void *a, void *b, int c, int d, int e, int f);
+unsigned int func_001774E0(void *a, void *b, int c, int d, int e, int f, int g, int h);
+unsigned int func_00177E50(void *a, void *b, int c, int d, int e, int f, int g, int h);
+unsigned int func_00178040(void *a, void *b, int c, int d, int e, int f);
+unsigned int func_00177F50(void *a, void *b, int c, int d, int e, int f, int g);
+unsigned int func_00178990(void *a, void *b, int c, int d, int e, int f, int g);
+unsigned int func_00178330(void *a, void *b, int c, int d, int e, int f, int g);
+unsigned int func_00177650(void *a, void *b, int c, int d, int e, int f, int g, int h);
+unsigned int func_001782B0(void *a, void *b, int c, int d, int e, int f, int g);
+unsigned int func_00178210(void *a, void *b, int c, int d, int e, int f, int g);
+unsigned int func_001779C0(void *a, void *b, int c, int d, int e, int f, int g);
+unsigned int func_00177AB0(void *a, void *b, int c, int d, int e, int f, int g);
+unsigned int func_00177BA0(void *a, void *b, int c, int d, int e, int f, int g, int h);
+unsigned int func_00176630(void *a, int b, int c, int d, int e, int f, void *g, int h, int i, int j, int k);
+unsigned int func_00176D60(void *a, void *b, int c, int d, int e, int f);
+unsigned int func_00177000(void *a, void *b, int c, int d, int e, int f, int g);
+unsigned int func_001785C0(void *a, void *b, int c, int d, int e, int f, int g);
+unsigned int func_00178470(void *a, void *b, int c, int d, int e, int f, int g);
+unsigned int func_00178540(void *a, void *b, int c, int d, int e, int f);
+unsigned int func_001783B0(void *a, void *b, int c, int d, int e, int f);
+unsigned int func_00176EA0(void *a, void *b, int c, int d, int e, int f, int g);
+unsigned int func_00178890(void *a, void *b, int c, int d, int e, int f, int g, int h);
 
 struct C_00157600 {
     void func_00157600(int a0);
@@ -94,6 +124,14 @@ static __forceinline int edge_1793E0(Vec4 *p, Vec4 *q, Vec4 *r, Vec4 *n)
         0xc9));
     float d = c.y * n->y + c.x * n->x + c.z * n->z;
     return *(int *)&d >= 0;
+}
+
+int func_001793E0(Vec4 *a0, Vec4 *a1, Vec4 *a2, Vec4 *a3, Vec4 *a4, Vec4 *a5)
+{
+    if (!edge_1793E0(a2, a3, a0, a1)) return 0;
+    if (!edge_1793E0(a3, a4, a0, a1)) return 0;
+    if (!edge_1793E0(a4, a5, a0, a1)) return 0;
+    return edge_1793E0(a5, a2, a0, a1);
 }
 
 C_00179820 *C_00179820::func_00179820(int a0) {
