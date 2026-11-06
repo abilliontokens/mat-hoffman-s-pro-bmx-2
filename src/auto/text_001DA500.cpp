@@ -40,6 +40,15 @@ struct S_001DAAD0_Dev {
 
 extern S_001DAAD0_Dev *D_002EFDB8;
 
+struct C_001DB080 {
+    char pad0[0xD4];
+    int cur;
+    char pad1[0x210 - 0xD8];
+    int cnt;
+    int idx;
+    void func_001DB080();
+};
+
 struct C_001DAAD0 {
     char pad0[0xEC];
     int fEC;
