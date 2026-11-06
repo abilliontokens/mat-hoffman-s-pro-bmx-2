@@ -74,6 +74,8 @@ extern float D_002A0718f[4];
 extern float D_002757FC;
 int __stdcall func_00017AD0(void *a, void *b, void *c, int d);
 double __cdecl sqrt(double);
+#include <xmmintrin.h>
+static __forceinline float Sqrt_000192D0(float x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(*(__m128 *)&x)); return r; }
 struct C_000192D0 {
     char pad0[0x398];
     S_000192D0_Slot *f398;
