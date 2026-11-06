@@ -137,6 +137,14 @@ struct C_00085520 {
     C_001D6410 *f94;
     C_001D6410 *f98;
     C_001D6410 *f9C;
+    int fA0;
+    int aA4[8];
+    int fC4, fC8, fCC, fD0;
+    unsigned char fD4;
+    char padD5[0x13];
+    int fE8, fEC, fF0, fF4;
+    C_00085520 *func_00085470(int a);
+    void func_00157600(int a);
     void func_00157660();
     void func_00085520();
 };
