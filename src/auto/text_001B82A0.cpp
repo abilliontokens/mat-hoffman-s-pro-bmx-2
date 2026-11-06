@@ -12,7 +12,7 @@ extern char D_0028D020[];
 extern char D_0028D00C[];
 extern int D_0028CF84;
 
-void func_001E83E8(void *p, int size);
+void *func_001E83E8(void *p, int size);
 void *func_001E8A44(int size);
 int func_001ADCC0(char *buf, int size, const char *fmt, ...);
 
@@ -235,4 +235,86 @@ C_001B84E0 *C_001B84E0::func_001B84E0(void) {
     return this;
 }
 
+void C_001B8550::func_001B8550(Arg_001B8550 *arg)
+{
+    C_001B8550 *volatile self = this;
+    char buf[0x104];
+    int i, j, k, m, len, n;
+    Voice_001B8550 *voice;
+    Entry1_001B8550 *e;
+    Entry2_001B8550 *e2;
+    char *dot;
+    void *mem;
+
+    if (this->f24 != 0) {
+        for (i = 0; i < self->f24; i++) {
+            k = 0;
+            if (self->f28[i]->f104 == 0) {
+                func_001ADCC0(buf, 0x104, D_0027C588, self->f28[i]);
+                mem = func_001E8A44(0x1e0);
+                voice = mem ? (Voice_001B8550 *)((Ctor_001B8550 *)mem)->func_00143580(1) : 0;
+                self->f28[i]->f158[0] = voice;
+                voice = (Voice_001B8550 *)self->f28[i]->f158[0];
+                if (voice->v35(buf, 0, 1) == 0) {
+                    continue;
+                }
+                len = strlen(buf);
+                n = 0x7f;
+                if (len < n) {
+                    n = len;
+                }
+                func_001E8920(voice->name, buf, n);
+                voice->name[n] = 0;
+                voice->func_00199600(self->f28[i]->f128);
+                voice->func_00198F50(&self->f28[i]->f138, &self->f28[i]->f148, 1, 0, 0);
+                voice->func_0019ABA0(arg->f4A8[arg->f348], 1);
+                arg->f3A8[arg->f348]->func_001577A0(voice, 0);
+                self->f28[i]->f104 = 1;
+            } else {
+                for (j = 0; j < arg->f3AC->f24; j++) {
+                    e = (Entry1_001B8550 *)arg->f3AC->f28[j];
+                    if (e == 0 || e->f4 != 1) {
+                        continue;
+                    }
+                    func_0014FF00(0, (char *)e->f1A4->f4 + 0x28, 0, buf, 0);
+                    if (func_001EA426(buf, (char *)self->f28[i]) != 0) {
+                        continue;
+                    }
+                    self->f28[i]->f158[k] = e->f1A4->f4;
+                    k++;
+                    if (k >= self->f28[i]->f104) {
+                        break;
+                    }
+                }
+                if (k != 0) {
+                    continue;
+                }
+                for (m = 0; m < ((List_001B8550 *)arg->f3A8[0])->f24; m++) {
+                    e2 = (Entry2_001B8550 *)((List_001B8550 *)arg->f3A8[0])->f28[m];
+                    if (e2 == 0 || e2->f4 != 1 || e2->f8 == 0) {
+                        continue;
+                    }
+                    len = strlen((char *)e2->f8 + 0x28);
+                    n = 0x103;
+                    if (len < n) {
+                        n = len;
+                    }
+                    func_001E8920((char *)e2->f8 + 0x28, buf, n);
+                    buf[n] = 0;
+                    dot = func_001E8AC0(buf, '.');
+                    if (dot != 0) {
+                        memset(dot, 0, strlen(dot));
+                    }
+                    if (func_001EA426(buf, (char *)self->f28[i]) == 0) {
+                        self->f28[i]->f158[k] = e2->f8;
+                        k++;
+                        if (k >= self->f28[i]->f104) {
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
 
