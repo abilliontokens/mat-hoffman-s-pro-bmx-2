@@ -44,7 +44,7 @@ struct Reader1D1BD0 {
     int func_00169710(const char *);
     void func_001691E0();
     int func_00168C20(const char *, int, int *);
-    int func_00168C50(const char *, int, float *);
+    int func_00168C50(const char *, float, float *);
     void func_00168BE0(const char *, const char *, char *, int);
 };
 
