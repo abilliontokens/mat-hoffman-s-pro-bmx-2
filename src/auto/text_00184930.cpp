@@ -259,8 +259,6 @@ struct C_00184930 {
 
 struct S_00185610_Vec4 {
     float x, y, z, w;
-    S_00185610_Vec4() {}
-    S_00185610_Vec4(const S_00185610_Vec4 &o) : x(o.x), y(o.y), z(o.z), w(o.w) {}
 };
 
 struct S_00185610_Elem {
