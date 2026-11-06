@@ -151,7 +151,7 @@ struct func_0009F7F0 : CameraBehavior_0009F7F0 {
     int unk50, unk54;
     V4_0009F7F0 v58, v68, v78;
     float unk88; int unk8C, unk90;
-    V4_0009F7F0 v94;
+    V4_000A00A0 v94;
     int unkA4, unkA8, unkAC, unkB0; float unkB4; int unkB8;
     V4_0009F7F0 vBC, vCC;
     func_0009F7F0();
@@ -217,7 +217,6 @@ struct C_000A00A0 {
 
 func_0009F7F0::func_0009F7F0()
 {
-    vtbl = &D_0027AD64;
     unk8 = 0;
     unkC = 0;
     unk10 = 0;
@@ -300,6 +299,40 @@ void C_0009FAD0::func_0009FAD0(int a0, int a1, float a2)
     unk50 = a2 * 1.46666f;
     unk54 = a1;
 }
+
+int C_0009FB00::func_0009FB00(V4_0009FB00 a0, V4_0009FB00 a1, V4_0009FB00 a2, V4_0009FB00 a3, int a4)
+{
+    C_0009FB00 *self = this;
+    V4_0009FB00 v[2];
+    V4_0009FB00 d;
+    v[0] = a1;
+    v[1] = self->v58;
+    self->unkB8 = 0;
+    self->unk10->func_001A4AE0(&self->v58, 0);
+    self->unk10->func_00133ED0();
+    self->unk14->func_0014AC30(v, 0);
+    self->unk14->func_00133ED0();
+    self->unk14->func_00133F10(0);
+    if (self->unkB8 == 0)
+        self->unk10->func_00133F10(0);
+    if (self->unkB8 != 0) {
+        self->v58 = self->vBC + self->vCC * self->unkB4;
+        d = a1 - self->v58;
+        float len = d.Length();
+        func_0009F5B0(&d, &d);
+        self->v58 = a1 - self->v68 * len;
+    }
+    return 1;
+}
+
+#pragma optimize("t", off)
+void C_0009FD60::func_0009FD60(int a0, float a1, float a2, float a3) {
+    unk8C = a0;
+    unk90 = a1;
+    unk4C = Min(15.0f, Max(a2, 7.0f));
+    unk3C = Min(110.0f, Max(a3, 60.0f));
+}
+#pragma optimize("", on)
 
 void C_0009FE40::func_0009FE40(undefined4 *param_1, undefined4 *param_2, undefined4 *param_3, undefined4 *param_4)
 {
