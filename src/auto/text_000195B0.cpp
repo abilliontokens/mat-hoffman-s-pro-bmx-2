@@ -12,7 +12,7 @@ struct S_1A400_Pos {
     float w;
     void func_0011CA60(S_1A400_Vec4 v);
 };
-struct S_1A400_Arg { S_1A400_Pos *p; char pad[4]; float f8; char pad2[0xC]; float f18, f1C, f20; };
+struct S_1A400_Arg { S_1A400_Pos *p; char pad[4]; float f8; int fC; int f10, f14; float f18, f1C, f20; };
 struct C_1A400 { void func_0001A400(S_1A400_Arg *a, float t); void func_00017D20(int); void func_0001A060(float*,int); };
 struct S_1A400_Cam { void func_00199B00(S_1A400_Vec4*,int); };
 struct S_1A400_Link { char pad[4]; S_1A400_Cam *p; };
