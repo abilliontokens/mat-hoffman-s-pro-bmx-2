@@ -1,5 +1,6 @@
 /* 8 functions from 0x0004F5E0 to 0x0004FE60, found by Ghidra. */
 #include "common.h"
+#include <string.h>
 
 struct V4_4F5E0 { int a, b, c, d; };
 struct C_0012B410 { void func_0012B410(int a, int b, int c); };
@@ -254,7 +255,7 @@ void C_0004F6E0::func_0004F6E0()
 {
     if (f284 == 9) {
         D_002A8490->v15(f24, 0, 0, 0);
-        func_0012B190(0, 0, f24->f204, f24->f208);
+        f24->func_0012B190(0, 0, f24->f204, f24->f208);
         unk1DC = f24->f1E0;
         return;
     }
@@ -337,10 +338,11 @@ void C_0004FE30::func_0004FA60(int id)
     func_000324E0(id);
 }
 
+extern "C" void *memset(void *dst, int c, unsigned int n);
+extern "C" void __stosd(unsigned long *dest, unsigned long value, unsigned long count);
+#pragma intrinsic(__stosd)
 void C_0004FE30::func_0004FAC0(void)
 {
-    int i;
-
     f64->f4E0->objs[f120]->v5();
     do {
         if (++f120 >= f90) {
@@ -357,27 +359,28 @@ void C_0004FE30::func_0004FAC0(void)
         f170->func_000847A0();
     }
     f2B0 = 1;
-    for (i = 0; i < 8; i++) {
-        (&f288)[i] = 0;
-    }
+    __stosd((unsigned long *)&f288, 0, 8);
     f2AC = 0;
-    f128 = ((G_4F5E0 *)D_002A8490)->f2E0->f10;
     f124 = 0;
+    f128 = ((G_4F5E0 *)D_002A8490)->f2E0->f10;
 }
-
 int C_0004FC20::func_0004FC20(int *a, int b)
 {
-    P_4FC20_2D8 *p;
-
     if (func_001361E0(23, 2, a, 0x80000000)) {
         if (((G_4FC20 *)D_002A8490)->f2E0->f4) {
-            p = f2D8;
-            if (p && p->fCC == 1) return 0;
+            if (f2D8 && f2D8->fCC == 1) return 0;
             if (!f15C->fFC && !f190->f168 && !f1A0->f13C) {
-                if (p && !p->fCC) {
-                    ResetRiders();
+                int i;
+                if (f2D8 && !f2D8->fCC) {
+                    f64->f4C0->v31(1, 1);
+                    ((G_4FC20 *)D_002A8490)->f2E0->f2FC->v18(1);
+                    for (i = 0; i < f90; ++i)
+                        f64->f4E0->f1A8[i]->f958 = 0.5f;
                 } else {
-                    ResetRiders();
+                    f64->f4C0->v31(1, 1);
+                    ((G_4FC20 *)D_002A8490)->f2E0->f2FC->v18(1);
+                    for (i = 0; i < f90; ++i)
+                        f64->f4E0->f1A8[i]->f958 = 0.5f;
                 }
                 func_00032A20();
                 f15C->func_000602B0();
