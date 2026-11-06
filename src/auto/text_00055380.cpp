@@ -323,7 +323,6 @@ void func_00055140(S_00056100_Quat *,S_00056100_Quat *);
 void C_000559E0_unused();
 func_00055380::func_00055380()
 {
-    vtbl_dummy_unused_pad = &D_00277CF4;
     unkC = 0;
     unk10 = 0;
     unk14 = 0;
