@@ -101,6 +101,10 @@ struct S_000D1050_Strings {
     int f958;
     int f95C;
     int f960;
+    char pad964[0x978 - 0x964];
+    int f978;
+    char pad97C[0x1258 - 0x97C];
+    int f1258;
 };
 
 struct S_000D1050_StringsHolder {
