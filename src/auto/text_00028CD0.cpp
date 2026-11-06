@@ -32,8 +32,8 @@ struct C_28CD0_Call { void func_0005DA40(void *); void func_0005DA80(int); int f
 static __forceinline float abs_28CD0(float v)
 {
     volatile float t = v;
-    unsigned int u = *(volatile unsigned int *)&t & 0x7fffffff;
-    return *(float *)&u;
+    volatile unsigned int u = *(volatile unsigned int *)&t & 0x7fffffff;
+    return *(volatile float *)&u;
 }
 struct S_28CD0_Arg {
     char pad0[8];
@@ -169,55 +169,99 @@ struct C_000298F0 {
 };
 
 
-void C_28CD0::func_00028CD0(void *arg)
+void C_28CD0::func_00028CD0(void *arg0)
 {
- char * volatile self=data;
-#define I(o) (*(int *)(self+(o)))
-#define F(o) (*(float *)(self+(o)))
-#define P(o) (*(C_28CD0_Call **)(self+(o)))
- Q_292C0 a,b,c,d,e,f,g,h,up;
- a.z=a.y=a.x=0; a.w=1; b.z=b.y=b.x=0; b.w=1;
- c.z=c.y=c.x=0; c.w=1; d.z=d.y=d.x=0; d.w=1;
- e.z=e.y=e.x=0; e.w=1; f.z=f.y=f.x=0; f.w=1;
- g.z=g.y=g.x=0; g.w=1; h.z=h.y=h.x=0; h.w=1;
- up.x=0; up.y=1; up.z=0; up.w=1;
- if(!I(0x478)) return;
- if(F(0x760)<=D_00275544 && !*(int *)((char *)arg+8)) { I(0x470)=0; return; }
- (*(Q_292C0_Orient **)(self+0x230))->func_00197B40(&a,&b);
- f=a; f.y=0; func_00026340(&f,&f);
- c=*(Q_292C0 *)(*(char **)(self+0x1e0)+0x238);
- e=c; e.y=0; func_00026340(&e,&e);
- func_00026340(&d,&up);
- g=*(Q_292C0 *)((char *)arg+0x40); func_00026340(&g,&g);
- float absY=g.y; *(unsigned int *)&absY &= 0x7fffffff;
- if(absY>D_002756DC) { I(0x470)=0; return; }
- h=g; h.y=0; func_00026340(&h,&h);
- Q_292C0 temp,temp2,neg;
- neg=*func_0001E9E0(&temp2,func_0001C610(&temp,&h,&up));
- up.x=neg.x*D_00275F58; up.y=neg.y*D_00275F58; up.z=neg.z*D_00275F58;
- float dot=g.x*d.x+d.y*g.y+g.z*d.z;
- *(unsigned int *)&dot &= 0x7fffffff;
- if(func_0014F510((float)(D_00276698-F(0x4ac)))>=dot) { I(0x470)=0; return; }
- P(0x210)->func_0005DA40(arg); P(0x210)->func_0005DA80(2);
- if(P(0x1e8)->func_00026A70(D_002B9108) || I(0x680)) {
- I(0x480)=0; P(0x218)->func_000B6080(P(0x210));
- } else if(!*(int *)((char *)arg+0x10)) {
- I(0x480)=1; P(0x214)->func_000B6080(P(0x210));
- } else {
- I(0x480)=(I(0x684)!=0)+2;
- if(*(int *)((char *)arg+0x10)==1) {
- if(neg.x*e.x+neg.y*e.y+neg.z*e.z>=D_00275544) { I(0x470)=0; return; }
- } else {
- if(up.x*e.x+up.y*e.y+up.z*e.z>=D_00275544) { I(0x470)=0; return; }
- }
- P(0x214)->func_000B6080(P(0x210)); P(0x5f4)->func_00026130();
- I(0x484)=0; I(0x488)=0;
- }
- I(0x468)=1; I(0x470)=1; func_00027C30(); I(0x47c)=1; I(0x738)=0; I(0x740)=0;
- *(Q_292C0 *)(*(char **)(self+0x1e0)+0x238)=D_002A10F0;
-#undef I
-#undef F
-#undef P
+    S_28CD0 *self = (S_28CD0 *)this;
+    V4_000298F0 a, b, c, d, e, f, g, h, up;
+    V4_000298F0 neg, cross;
+    V4_000298F0 *p;
+#define THIS ((S_28CD0 *)this)
+#define SELF (*(S_28CD0 *volatile *)&self)
+#define ARG (*(S_28CD0_Arg *volatile *)&arg0)
+
+    a.z = a.y = a.x = 0; a.w = 1;
+    b.z = b.y = b.x = 0; b.w = 1;
+    c.z = c.y = c.x = 0; c.w = 1;
+    d.z = d.y = d.x = 0; d.w = 1;
+    e.z = e.y = e.x = 0; e.w = 1;
+    f.z = f.y = f.x = 0; f.w = 1;
+    g.z = g.y = g.x = 0; g.w = 1;
+    h.z = h.y = h.x = 0; h.w = 1;
+    up.x = 0; up.y = 1; up.z = 0; up.w = 1;
+    if (THIS->f478 == 0) {
+        return;
+    }
+    if (THIS->f760 < D_00275544 || ARG->f8 == 0) {
+        THIS->f470 = 0;
+        return;
+    }
+    THIS->f230->func_00197B40((Q_292C0 *)&a, (Q_292C0 *)&b);
+    f = a;
+    f.y = 0;
+    func_00026340((Q_292C0 *)&f, (Q_292C0 *)&f);
+    p = (V4_000298F0 *)&SELF->f1e0->f238;
+    c = *p;
+    e = c;
+    e.y = 0;
+    func_00026340((Q_292C0 *)&e, (Q_292C0 *)&e);
+    func_00026340((Q_292C0 *)&d, (Q_292C0 *)&c);
+    p = (V4_000298F0 *)&ARG->f40;
+    g = *p;
+    func_00026340((Q_292C0 *)&g, (Q_292C0 *)&g);
+    if (abs_28CD0(g.y) > D_002756DC) {
+        SELF->f470 = 0;
+        return;
+    }
+    h = g;
+    h.y = 0;
+    func_00026340((Q_292C0 *)&h, (Q_292C0 *)&h);
+    neg = *(V4_000298F0 *)func_0001E9E0((Q_292C0 *)&up,
+        func_0001C610((Q_292C0 *)&cross, (Q_292C0 *)&h, (Q_292C0 *)&up));
+    up.x = neg.x * D_00275F58;
+    up.y = neg.y * D_00275F58;
+    up.z = neg.z * D_00275F58;
+    if (func_0014F510((float)(D_00276698 - SELF->f4ac)) < abs_28CD0(g.x * d.x + d.y * g.y + g.z * d.z)) {
+        SELF->f470 = 0;
+        return;
+    }
+    SELF->f210->func_0005DA40(ARG);
+    SELF->f210->func_0005DA80(2);
+    if (SELF->f1e8->func_00026A70(D_002B9108) != 0 || SELF->f680 != 0) {
+        SELF->f480 = 0;
+        SELF->f218->func_000B6080(SELF->f210);
+    } else {
+        if (ARG->f10 == 0) {
+            SELF->f480 = 1;
+        } else {
+            SELF->f480 = (SELF->f684 != 0) + 2;
+            if (ARG->f10 == 1) {
+                if (neg.x * e.x + neg.y * e.y + neg.z * e.z >= D_00275544) {
+                    SELF->f470 = 0;
+                    return;
+                }
+            } else {
+                if (up.x * e.x + up.y * e.y + up.z * e.z >= D_00275544) {
+                    SELF->f470 = 0;
+                    return;
+                }
+            }
+        }
+        SELF->f214->func_000B6080(SELF->f210);
+        SELF->f5f4->func_00026130();
+        SELF->f484 = 0;
+        SELF->f488 = 0;
+    }
+    SELF->f468 = 1;
+    SELF->f470 = 1;
+    func_00027C30();
+    SELF->f47c = 1;
+    SELF->f738 = 0;
+    SELF->f740 = 0;
+    p = (V4_000298F0 *)&SELF->f1e0->f238;
+    *p = *(V4_000298F0 *)&D_002A10F0;
+#undef THIS
+#undef SELF
+#undef ARG
 }
 
 undefined4 C_00029290::func_00029290(void)
