@@ -30,6 +30,23 @@ struct Obj_72C90 {
     Obj_72C90* func_001D5760();void func_001D5810(char*,float,float,int);
 };
 
+
+struct Font_72 { float func_0018C210(); };
+struct Lookup_72 { Font_72** func_0018C160(int); };
+struct Data_72 { int x; char* p; };
+struct Root_72 { char pad[0x2e8]; Data_72* data; Lookup_72* lookup; };
+extern Root_72* D_002A8490;
+extern int D_00278678,D_00278690,D_0028F5E0;
+extern char D_002A5FA8[],D_002A5348[],D_00275678[],D_002A60B0[],D_002A63C8[],D_00278658[],D_00278638[],D_00278608[];
+extern float D_00278D40,D_00278654,D_00275544,D_0027653C,D_00278650;
+void* func_001E8A44(int);
+extern "C" int func_001ADCC0(char*,int,const char*,...);
+static __forceinline void pos72(Res_72C90* p,int x,int y){if(p->x!=x||p->y!=y){p->y=y;p->x=x;p->flags|=6;}}
+static __forceinline void align72(Res_72C90* p,int a){if(p->align!=a){p->align=a;p->flags|=6;}}
+static __forceinline void color72(Res_72C90* p,unsigned int c){if(p->color!=c){p->flags|=8;p->color=(p->color & (c|0xff000000))|(c&0xffffff);}}
+static __forceinline void uv72(Obj_72C90* p){p->a=p->w*D_00278654;p->b=p->w*D_00275544;p->c=p->h*D_0027653C;p->d=p->h*D_00275544;p->flags|=4;}
+static __forceinline void size72(Obj_72C90* p){if(p->width!=0x44200000){p->width=0x44200000;p->flags|=1;}if(p->height!=0x42480000){p->height=0x42480000;p->flags|=1;}}
+
 /* BmxMenu-derived menu (RunResultsMenu) */
 struct C_00072C90 {
     void *vtbl;
