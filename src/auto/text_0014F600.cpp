@@ -30,7 +30,7 @@ static float clampf(float x)
 extern float D_00275544;
 extern "C" unsigned int strlen(const char *);
 void *func_001E8920(void *d, const void *s, int n);
-static inline int min_0014FF00(int a, int b) { return a > b ? b : a; }
+static int min_0014FF00(int a, int b) { return a > b ? b : a; }
 /* Truncate towards zero into *out; inlined into its callers. */
 static void storeftoi(int * volatile out, float f)
 {
@@ -530,103 +530,75 @@ void func_0014FED0(void)
     func_001E9B9B();
 }
 
-void func_0014FF00(char *param_1, undefined1 *param_2, undefined1 *param_3, int param_4, undefined1 *param_5)
+void func_0014FF00(char *path, char *drive, char *dir, char *fname, char *ext)
 {
-  int func_001E8920(...);
-  char cVar1;
-  char *pcVar2;
-  int iVar3;
-  char *pcVar4;
-  char *pcVar5;
-  char *local_c;
-  
-  pcVar4 = (char *)0x0;
-  local_c = (char *)0x0;
-  pcVar2 = param_1;
-  do {
-    cVar1 = *pcVar2;
-    pcVar2 = pcVar2 + 1;
-  } while (cVar1 != '\0');
-  if ((pcVar2 == param_1 + 1) || (param_1[1] != ':')) {
-    pcVar2 = param_1;
-    if (param_2 != (undefined1 *)0x0) {
-      *param_2 = 0;
-    }
-  }
-  else {
-    if (param_2 != (undefined1 *)0x0) {
-      func_001E8920(param_2,param_1,2);
-      param_2[2] = 0;
-    }
-    pcVar2 = param_1 + 3;
-  }
-  cVar1 = *pcVar2;
-  param_1 = (char *)0x0;
-  pcVar5 = pcVar2;
-  if (cVar1 != '\0') {
-    do {
-      if ((cVar1 == '/') || (cVar1 == '\\')) {
-        param_1 = pcVar5 + 1;
-      }
-      else if (cVar1 == '.') {
-        pcVar4 = pcVar5;
-        local_c = pcVar5;
-      }
-      cVar1 = pcVar5[1];
-      pcVar5 = pcVar5 + 1;
-    } while (cVar1 != '\0');
-    if (param_1 != (char *)0x0) {
-      if (param_3 != (undefined1 *)0x0) {
-        iVar3 = (int)param_1 - (int)pcVar2;
-        if (0xff < iVar3) {
-          iVar3 = 0xff;
+    char *p;
+    char *dot;
+    char *dot2;
+    char *slash;
+    unsigned int len;
+    int l;
+    int n;
+    char c;
+
+    dot = 0;
+    dot2 = 0;
+    len = strlen(path);
+    if (len >= 1 && path[1] == ':') {
+        if (drive) {
+            func_001E8920(drive, path, 2);
+            drive[2] = 0;
         }
-        func_001E8920(param_3,pcVar2,iVar3);
-        param_3[iVar3] = 0;
-        pcVar4 = local_c;
-      }
-      goto LAB_000029d5;
+        p = path + 3;
+    } else {
+        if (drive) *drive = 0;
+        p = path;
     }
-  }
-  param_1 = pcVar2;
-  if (param_3 != (undefined1 *)0x0) {
-    *param_3 = 0;
-  }
-LAB_000029d5:
-  if ((pcVar4 == (char *)0x0) || (pcVar4 < param_1)) {
-    if (param_4 != 0) {
-      iVar3 = (int)pcVar5 - (int)param_1;
-      if (0xff < iVar3) {
-        iVar3 = 0xff;
-      }
-      func_001E8920(param_4,param_1,iVar3);
-      *(undefined1 *)(iVar3 + param_4) = 0;
+    slash = 0;
+    c = *p;
+    if (c) {
+        do {
+            if (c == '/' || c == '\\') {
+                slash = p + 1;
+            } else if (c == '.') {
+                dot2 = p;
+                dot = p;
+            }
+            c = p[1];
+            p++;
+        } while (c);
     }
-    if (param_5 != (undefined1 *)0x0) {
-      *param_5 = 0;
+    if (slash) {
+        if (dir) {
+            l = (int)(slash - path);
+            n = min_0014FF00(l, 0xff);
+            func_001E8920(dir, path, n);
+            dir[n] = 0;
+        }
+        path = slash;
+    } else {
+        if (dir) *dir = 0;
     }
-  }
-  else {
-    if (param_4 != 0) {
-      iVar3 = (int)pcVar4 - (int)param_1;
-      if (0xff < iVar3) {
-        iVar3 = 0xff;
-      }
-      func_001E8920(param_4,param_1,iVar3);
-      *(undefined1 *)(param_4 + iVar3) = 0;
-      pcVar4 = local_c;
+    if (dot && dot >= path && fname) {
+        l = (int)(dot - path);
+        n = min_0014FF00(l, 0xff);
+        func_001E8920(fname, path, n);
+        fname[n] = 0;
+        if (ext) {
+            l = (int)(p - dot);
+            n = min_0014FF00(l, 0xff);
+            func_001E8920(ext, dot, n);
+            ext[n] = 0;
+        }
+    } else {
+        if (fname) {
+            l = (int)(p - path);
+            n = min_0014FF00(l, 0xff);
+            func_001E8920(fname, path, n);
+            fname[n] = 0;
+        }
+        if (ext) *ext = 0;
     }
-    if (param_5 != (undefined1 *)0x0) {
-      iVar3 = (int)pcVar5 - (int)pcVar4;
-      if (0xff < iVar3) {
-        iVar3 = 0xff;
-      }
-      func_001E8920(param_5,pcVar4,iVar3);
-      param_5[iVar3] = 0;
-      return;
-    }
-  }
-  return;
 }
 
 C_001500A0 *C_001500A0::func_001500A0(void)
