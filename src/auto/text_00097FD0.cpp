@@ -38,6 +38,27 @@ struct S_00098080_Global {
 extern S_00098080_Global *D_002A8490;
 int func_001EA426(const char *a, const char *b);
 
+class C_000988B0_Obj {
+public:
+    virtual void v00();
+    virtual void v04();
+    virtual void v08();
+    virtual void v0c();
+    virtual void v10();
+    virtual void v14();
+    virtual void v18();
+};
+
+struct S_000988B0 {
+    char **arr[3];
+    int cnt[3];
+    int unk18;
+    int unk1c;
+    char pad20[0x198 - 0x20];
+    char *unk198;
+    int func_000988B0(char *a, char *b);
+};
+
 struct C_000831E0 {
     void func_00083A70(const char *name);
 };
