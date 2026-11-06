@@ -385,10 +385,6 @@ void C_0018E250::func_0018E250(const char * volatile name, unsigned int flags)
     }
 }
 
-union Slot_0018E3E0 {
-    volatile int v[4];
-    int n[4];
-};
 void Node_0018EA50::func_0018E3E0(int a, int b)
 {
     volatile int slot[1];
