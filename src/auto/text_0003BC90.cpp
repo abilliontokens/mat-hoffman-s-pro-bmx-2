@@ -44,6 +44,8 @@ virtual void vf34();
  void func_00198F50(V4*,V4*,int,int,int);
  void func_0019ABA0(int,int);
  void func_00198390();
+ void func_00199650(V4*);
+ void func_00199B00(V4*,int);
 };
 struct ListBC {
  int count; NodeBC **data; int grow,capacity;
