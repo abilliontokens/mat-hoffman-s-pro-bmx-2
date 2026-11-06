@@ -173,13 +173,16 @@ struct C_001BC6E0 {
 };
 extern C_001BC6E0 *D_002AAEC8;
 
-struct __declspec(align(16)) S_00197820_Mat {
+struct S_00197820_Mat {
     float m[16];
 };
 
 static inline void S_00197820_Identity(S_00197820_Mat *m)
 {
-    memset(m, 0, 0x40);
+    _mm_storeu_ps(&m->m[0], _mm_setzero_ps());
+    _mm_storeu_ps(&m->m[4], _mm_setzero_ps());
+    _mm_storeu_ps(&m->m[8], _mm_setzero_ps());
+    _mm_storeu_ps(&m->m[12], _mm_setzero_ps());
     m->m[0] = 1.0f;
     m->m[5] = 1.0f;
     m->m[10] = 1.0f;
@@ -188,7 +191,10 @@ static inline void S_00197820_Identity(S_00197820_Mat *m)
 
 static inline void S_00197820_Zero(S_00197820_Mat *m)
 {
-    memset(m, 0, 0x40);
+    _mm_storeu_ps(&m->m[0], _mm_setzero_ps());
+    _mm_storeu_ps(&m->m[4], _mm_setzero_ps());
+    _mm_storeu_ps(&m->m[8], _mm_setzero_ps());
+    _mm_storeu_ps(&m->m[12], _mm_setzero_ps());
 }
 
 static inline S_00197700_Vec4 *S_00197820_VecInit(S_00197700_Vec4 *v)
