@@ -36,7 +36,7 @@ static __forceinline int FtoI_001C4240(float x)
     return _mm_cvtss_si32(_mm_set_ss(x));
 }
 
-static void FtoI2_001C4240(int *dst, float src)
+static void FtoI2_001C4240(int *dst, const float &src)
 {
     *dst = _mm_cvtss_si32(_mm_load_ss(&src));
 }
