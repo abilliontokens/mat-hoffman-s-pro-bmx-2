@@ -198,19 +198,20 @@ static inline int min_165F70(const int &a, const int &b) { return a > b ? b : a;
 /* axis mirror used by func_00165A20: flip one of y/z/w by mode, then negate all three */
 static __forceinline void mirror_165A20(Vec4_165EF0 *v, int mode)
 {
-    float t = v->y;
+    float t = v->x;
+    float z = v->z;
     float w = v->w;
 
     if (mode == 0) {
         t = -t;
     } else if (mode == 1) {
-        v->z = -v->z;
+        z = -z;
     } else if (mode == 2) {
         w = -w;
     }
     v->y = -t;
-    v->w = -v->z;
-    v->z = -w;
+    v->z = -z;
+    v->w = -w;
 }
 
 struct C_00165F70_Elem {
@@ -370,6 +371,49 @@ Vec4_165EF0 C_00165EF0::func_00165EF0(C_00165EF0_Arg1 *a1, f32 a2, int a3, void 
     a1->f18[idx]->v2(t, &v);
     if (a4) func_001641B0(fC, &v);
     return v;
+}
+
+void C_00165F70::func_00165F70(void)
+{
+    C_00165F70 * volatile self = this;
+    char buf[0x104];
+    int id;
+    int idx;
+    char *p;
+    char *tok;
+    int n;
+
+    if (this->f1FC == 0) {
+        int l = strlen(this->f190), m = 0xff;
+        n = min_165F70(m, l);
+        func_001E8920(buf, self->f190, n);
+        buf[n] = 0;
+        strcat(buf, self->f98);
+        id = D_002BEAAC->func_0013C9F0(buf, &D_00276274);
+        if (id != -1) {
+            while (D_002BEAAC->func_0013C6E0(id, buf, 0xFF)) {
+                func_001EA1EE(buf);
+                idx = func_00164650(func_001E95A4(buf, D_00287E50));
+                if (idx != 0xff) {
+                    tok = func_001E95A4(0, D_00287E48);
+                    int l2 = strlen(tok), m2 = 0x31;
+                    n = min_165F70(m2, l2);
+                    func_001E8920(self->f1EC[idx].name, tok, n);
+                    self->f1EC[idx].name[n] = 0;
+                    self->f1EC[idx].f38 = 0;
+                    self->f1EC[idx].f3C = 1;
+                    p = func_001E95A4(0, D_00287E40);
+                    if (p) {
+                        func_001EA1EE(p);
+                        if (*p == 'T')
+                            self->f1EC[idx].f38 = 1;
+                    }
+                }
+            }
+            D_002BEAAC->func_0013C110(id);
+        }
+        self->f1FC = 1;
+    }
 }
 
 void C_00166190::func_00166190(void)
