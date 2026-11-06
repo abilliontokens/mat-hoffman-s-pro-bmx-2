@@ -88,6 +88,7 @@ struct XboxVideoCard_001D7D50 {
     int a6D4[0xC0];
     union {
         u8 f9D4;
+        volatile u8 f9D4v;
         volatile struct {
             u8 b01 : 2;
             u8 rest : 6;
@@ -370,9 +371,13 @@ int func_001D7D40()
 
 XboxVideoCard_001D7D50 *XboxVideoCard_001D7D50::func_001D7D50(void)
 {
+    int i;
+
     ((C_001C3D90 *)this)->func_001C3D90();
     vtbl = (void *)&D_0028F774;
-    memset(a5B4, 0, 0x100);
+    for (i = 0; i < 0x40; i++) {
+        a5B4[i] = 0;
+    }
     D_002F0BB8 = 0;
     f6BC = 0;
     f6C = -1;
@@ -382,7 +387,9 @@ XboxVideoCard_001D7D50 *XboxVideoCard_001D7D50::func_001D7D50(void)
     f6C8 = 0;
     f6CC = 0;
     f6D0 = 0;
-    memset(a6D4, 0, 0x300);
+    for (i = 0; i < 0xC0; i++) {
+        a6D4[i] = 0;
+    }
     return this;
 }
 
