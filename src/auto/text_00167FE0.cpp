@@ -96,6 +96,7 @@ struct C_00168280 {
     C_00168280 *func_00168280(void);
     int func_00168300(const char *name);
     int func_00168550(const char *name, char *dst, int size);
+    int func_00168A10(const char *name, int *out);
     int func_00168BE0(const char *name, const char *src, char *dst, int d);
     int func_00168C50(const char *name, float def, float *out);
     int func_00168CB0(const char *name, const float *def, float *out);
@@ -416,6 +417,23 @@ copy:
     memcpy(dst, s, n);
     dst[n] = 0;
     return 1;
+}
+
+int __stdcall func_00168A10(void *a0, int *out)
+{
+    char *end;
+    char buf[1024];
+    if (func_00168550(a0, buf, -1)) {
+        if (!func_001F6570(buf, D_00288024, 1)) { *out = 1; return 1; }
+        if (!func_001F6570(buf, D_00288020, 1)) { *out = 0; return 1; }
+        if (!func_001EA426(buf, D_0028801C)) { *out = 1; return 1; }
+        if (!func_001EA426(buf, D_00288018)) { *out = 0; return 1; }
+        if (!func_001F6570(buf, D_00288014, 1)) { *out = 1; return 1; }
+        if (!func_001F6570(buf, D_00288010, 1)) { *out = 0; return 1; }
+        *out = func_001E9576(buf, &end, 0);
+        return 1;
+    }
+    return 0;
 }
 
 int __stdcall func_00168B90(float a, float *out)
