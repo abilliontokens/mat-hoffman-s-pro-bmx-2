@@ -16,7 +16,6 @@ struct CinematographerCam {
 
 struct C_00132540 {
     void func_00132540();
-    C_00132540 *func_00132540(int);
 };
 
 struct C_00157600_1328F0 {
