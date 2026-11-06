@@ -198,8 +198,9 @@ static inline f32 Fabs_001A53C0(f32 x)
     return *(f32 *)&i;
 }
 
-static inline void SetIdentity(f32 *m)
+static __forceinline void SetIdentity(f32 *volatile arg)
 {
+    f32 *m = arg;
     __m128 z = _mm_setzero_ps();
     _mm_store_ps(m, z);
     _mm_store_ps(m + 4, z);
@@ -291,7 +292,9 @@ void C_001A52C0::func_001A52C0(void)
 void C_SphereCollisionObject::func_001A52D0(void *a)
 {
     if (a == 0) {
-        memset(matrix, 0, 0x40);
+        for (int i = 0; i < 16; i++) {
+            matrix[i] = 0.0f;
+        }
         matrix[0] = 1.0f;
         matrix[5] = 1.0f;
         matrix[10] = 1.0f;
