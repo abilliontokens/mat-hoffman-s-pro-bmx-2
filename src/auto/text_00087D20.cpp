@@ -240,7 +240,7 @@ void C_00087D20::func_00087D20()
 {
     S_00087D20_Frame fr;
     int val;
-    S_00087D20_Sprite *o;
+    S_00087D20_Label *p;
 
     fr.vLabel1.z = 0.0f;
     fr.vLabel1.y = 0.0f;
@@ -277,18 +277,10 @@ void C_00087D20::func_00087D20()
     fr.cfg.func_00168CB0(D_00279418, &D_002A2034, &fr.vSprite1);
     fr.cfg.func_00168CB0(D_00279408, &D_002A2034, &fr.vSprite2);
     fr.cfg.func_00168C20(D_002793F8, 0, &fr.count);
-    o = f2C;
-    o->SetPos(fr.vSprite1.x, fr.vSprite1.y);
-    if ((float)fr.count != o->f28) {
-        o->f28 = (float)fr.count;
-        o->b58 |= 1;
-    }
-    o = f30;
-    o->SetPos(fr.vSprite2.x, fr.vSprite2.y);
-    if ((float)fr.count != o->f28) {
-        o->f28 = (float)fr.count;
-        o->b58 |= 1;
-    }
+    f2C->SetPos(fr.vSprite1.x, fr.vSprite1.y);
+    f2C->SetF28((float)fr.count);
+    f30->SetPos(fr.vSprite2.x, fr.vSprite2.y);
+    f30->SetF28((float)fr.count);
     f24->SetPos(fr.vLabel1.x, fr.vLabel1.y);
     f28->SetPos(fr.vLabel2.x, fr.vLabel2.y);
     switch (fr.c1[0]) {
@@ -307,9 +299,10 @@ void C_00087D20::func_00087D20()
     default:
         goto second;
     }
-    if (val != f24->f44) {
-        f24->f44 = val;
-        f24->b4e |= 6;
+    p = f24;
+    if (p->f44 != val) {
+        p->f44 = val;
+        p->b4e |= 6;
     }
 second:
     switch (fr.c2[0]) {
@@ -328,9 +321,10 @@ second:
     default:
         goto done;
     }
-    if (val != f28->f44) {
-        f28->f44 = val;
-        f28->b4e |= 6;
+    p = f28;
+    if (p->f44 != val) {
+        p->f44 = val;
+        p->b4e |= 6;
     }
 done:
     fr.cfg.func_001691E0();
@@ -348,61 +342,25 @@ SplitScreenSeparator *SplitScreenSeparator::func_00088530(int param_1)
 
 C_00088570 *C_00088570::func_00088570(int mode)
 {
-    int w;
-    int h;
-    volatile int w2 = 0;
-    volatile int h2 = 0;
-    Sub_00088530 *s;
-
-    fEC = mode;
-    if (mode == 0) {
-        v2();
-        return 0;
-    }
-    if (mode == 1) {
-        w = 0x280;
-        h = 2;
-        fF0 = 0xe0;
-    } else {
-        w = 2;
-        if (mode == 2) {
-            h = 0x1c0;
-            fF0 = 0x140;
-        } else {
-            h = 0xe0;
-        }
-    }
-    w2 = 0x140;
-    h2 = 2;
-    func_001ADCC0(D_002A60B0, 0x104, D_00275678, D_002A5348, D_002A5FA8);
-    s = &sub24;
-    s->func_001D5810(D_00279920, 0, 0, 0);
-    if (s->f28 != w) {
-        s->f28 = w;
-        s->b58 |= 1;
-    }
-    if (s->f2c != h) {
-        s->f2c = h;
-        s->b58 |= 1;
-    }
-    s->f38 &= 0xff000000;
-    s->b58 |= 2;
-    if (fEC == 3 || fEC == 4) {
-        s = &sub88;
-        s->func_001D5810(D_00279920, 0, 0, 0);
-        if (s->f28 != w2) {
-            s->f28 = w2;
-            s->b58 |= 1;
-        }
-        if (s->f2c != h2) {
-            s->f2c = h2;
-            s->b58 |= 1;
-        }
-        s->f38 &= 0xff000000;
-        s->b58 |= 2;
-    }
-    func_001ADCC0(D_002A60B0, 0x104, D_00275678, D_002A5870, D_002A5FA8);
-    return this;
+ int h; int w2=0; int h2=0; Sub_00088530 *s;
+ fEC=mode;
+ if(!mode){v2();return 0;}
+ if(mode==1){mode=0x280;h=2;fF0=0xe0;}
+ else {int m=mode;mode=2;if(m==2){h=0x1c0;fF0=0x140;}else{h=0xe0;w2=0x140;h2=2;}}
+ func_001ADCC0(D_002A60B0,0x104,D_00275678,D_002A5348,D_002A5FA8);
+ s=&sub24;
+ s->func_001D5810(D_00279920,0,0,0);
+ if(s->f28!=mode){s->f28=mode;s->b58|=1;}
+ if(s->f2c!=h){s->f2c=h;s->b58|=1;}
+ s->f38&=0xff000000;s->b58|=2;
+ if(fEC==3||fEC==4){
+ s=&sub88;s->func_001D5810(D_00279920,0,0,0);
+ if(s->f28!=w2){s->f28=w2;s->b58|=1;}
+ if(s->f2c!=h2){s->f2c=h2;s->b58|=1;}
+ s->f38&=0xff000000;s->b58|=2;
+ }
+ func_001ADCC0(D_002A60B0,0x104,D_00275678,D_002A5870,D_002A5FA8);
+ return this;
 }
 
 void SplitScreenSeparator::func_00088720(void)
