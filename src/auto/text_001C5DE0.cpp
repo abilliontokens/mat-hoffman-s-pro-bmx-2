@@ -217,9 +217,97 @@ struct C_001C65E0 {
     void func_001C65E0(S_001C64A0_Node *obj);
 };
 
+extern __m128 D_0028E6F0;
+extern __m128 D_0028E6E0;
+extern __m128 D_0028E6D0;
+extern __m128 D_002F0870;
+extern __m128 D_002F0860;
+extern __m128 D_002F0850;
+extern __m128 D_002F0840;
+extern __m128 D_002F0830;
+extern __m128 D_002F0820;
+
+static __forceinline int sign_test_1C5DE0(__m128 v, __m128 ref)
+{
+    __m128 a = _mm_add_ps(v, ref);
+    __m128 b = _mm_sub_ps(ref, v);
+    return _mm_movemask_ps(_mm_unpacklo_ps(b, a)) |
+           ((_mm_movemask_ps(_mm_unpackhi_ps(b, a)) << 4) & 0x30);
+}
+
+static __forceinline __m128 bcast_1C5DE0(const float *p)
+{
+    __m128 s = _mm_load_ss(p);
+    return _mm_shuffle_ps(s, s, 0);
+}
+
 int __stdcall func_001C5DE0(float *m, float *a, float *b, int *out)
 {
-    return 0;
+    __m128 sign = D_0028E6F0;
+    int andMask = -1;
+    int orMask = 0;
+    __m128 p0, p1, p2, p3;
+    __m128 d0, d1, d2, d3;
+    int k1, k2, k3, k4;
+
+    if (out == 0) {
+        __m128 av = _mm_loadu_ps(a);
+        __m128 r0 = _mm_mul_ps(_mm_load_ps(m), av);
+        __m128 r1 = _mm_mul_ps(_mm_load_ps(m + 4), av);
+        __m128 r2 = _mm_mul_ps(_mm_load_ps(m + 8), av);
+        __m128 r3 = _mm_mul_ps(_mm_load_ps(m + 12), av);
+        __m128 s0 = _mm_add_ps(_mm_unpacklo_ps(r0, r1), _mm_unpackhi_ps(r0, r1));
+        __m128 s1 = _mm_add_ps(_mm_unpacklo_ps(r2, r3), _mm_unpackhi_ps(r2, r3));
+        __m128 v = _mm_add_ps(_mm_movelh_ps(s0, s1), _mm_movehl_ps(s1, s0));
+        __m128 sg = _mm_and_ps(_mm_shuffle_ps(_mm_movehl_ps(v, v), _mm_movehl_ps(v, v), 0x55), sign);
+        if (sign_test_1C5DE0(v, sg) == 0) {
+            return 1;
+        }
+    }
+
+    {
+        __m128 av = _mm_loadu_ps(a);
+        __m128 bv = _mm_loadu_ps(b);
+        p0 = _mm_sub_ps(_mm_shuffle_ps(av, av, 0x00), _mm_shuffle_ps(bv, bv, 0x00));
+        p1 = _mm_sub_ps(_mm_shuffle_ps(av, av, 0x55), _mm_shuffle_ps(bv, bv, 0x55));
+        p2 = _mm_add_ps(_mm_shuffle_ps(av, av, 0xaa), _mm_shuffle_ps(bv, bv, 0xaa));
+        p3 = _mm_sub_ps(_mm_shuffle_ps(av, av, 0xaa), _mm_shuffle_ps(bv, bv, 0xaa));
+        _mm_stream_ps((float *)&D_002F0870, p0);
+        _mm_stream_ps((float *)&D_002F0860, p1);
+        _mm_stream_ps((float *)&D_002F0850, p2);
+        _mm_stream_ps((float *)&D_002F0840, p3);
+    }
+
+    d3 = _mm_and_ps(_mm_add_ps(_mm_add_ps(_mm_mul_ps(p0, bcast_1C5DE0(&m[12])), _mm_mul_ps(p1, bcast_1C5DE0(&m[13]))),
+                               _mm_add_ps(_mm_mul_ps(p2, bcast_1C5DE0(&m[14])), _mm_mul_ps(p3, bcast_1C5DE0(&m[15])))),
+                    sign);
+    d0 = _mm_add_ps(_mm_add_ps(_mm_mul_ps(p0, bcast_1C5DE0(&m[0])), _mm_mul_ps(p1, bcast_1C5DE0(&m[1]))),
+                    _mm_add_ps(_mm_mul_ps(p2, bcast_1C5DE0(&m[2])), _mm_mul_ps(p3, bcast_1C5DE0(&m[3]))));
+    _mm_stream_ps((float *)&D_002F0830, d0);
+    d1 = _mm_add_ps(_mm_add_ps(_mm_mul_ps(p0, bcast_1C5DE0(&m[4])), _mm_mul_ps(p1, bcast_1C5DE0(&m[5]))),
+                    _mm_add_ps(_mm_mul_ps(p2, bcast_1C5DE0(&m[6])), _mm_mul_ps(p3, bcast_1C5DE0(&m[7]))));
+    _mm_stream_ps((float *)&D_002F0820, d1);
+    d2 = _mm_add_ps(_mm_add_ps(_mm_mul_ps(p0, bcast_1C5DE0(&m[8])), _mm_mul_ps(p1, bcast_1C5DE0(&m[9]))),
+                    _mm_add_ps(_mm_mul_ps(p2, bcast_1C5DE0(&m[10])), _mm_mul_ps(p3, bcast_1C5DE0(&m[11]))));
+
+    k1 = sign_test_1C5DE0(d2, d3);
+    k2 = sign_test_1C5DE0(d0, d3);
+    k3 = sign_test_1C5DE0(d1, d3);
+    k4 = sign_test_1C5DE0(d2, d3);
+
+    if (out == 0) {
+        if (k1 == 0) return 1;
+        if (k2 == 0) return 1;
+    }
+
+    andMask &= k1 & k2 & k3 & k4;
+    orMask |= k1 | k2 | k3 | k4;
+
+    if (out != 0) {
+        *out = orMask;
+        return andMask == 0;
+    }
+    return andMask == 0;
 }
 
 void func_001C63F0(Vec4 *out, Vec4 *vin, f32 *m)
@@ -272,23 +360,19 @@ void func_001C64A0(S_001C64A0_Node *obj)
     a.x = 0;
     a.w = 1.0f;
     root->v5(0, &a, 0, 0, 0);
-    a = vec3_neg(&a);
+    a = vec3_neg3(a.x, a.y, a.z);
     a.y = 0;
     for (i = 0; i < root->fC; i++) {
         Vec4 b;
-        Vec4 *pa = &a;
-        Vec4 *pb = &b;
         b.z = 0;
         b.y = 0;
         b.x = 0;
         b.w = 1.0f;
-        root->v5(i, pb, 0, 0, 0);
-        float *fa = &pa->x;
-        float *fb = &pb->x;
-        fb[0] = fa[0] + fb[0];
-        fb[1] = fb[1] + fa[1];
-        fb[2] = fb[2] + fa[2];
-        root->v4(i, pb, 0, 0, 0);
+        root->v5(i, &b, 0, 0, 0);
+        b.x = *(volatile float *)&a.x + b.x;
+        b.y = b.y + a.y;
+        b.z = b.z + a.z;
+        root->v4(i, &b, 0, 0, 0);
     }
 }
 
@@ -296,9 +380,13 @@ void C_001C65E0::func_001C65E0(S_001C64A0_Node *obj)
 {
     Vec4 a;
     int i;
-    S_001C64A0_Node *root = find_root(obj);
+    S_001C64A0_Node *root = obj;
     S_001C64A0_Node *node;
 
+    for (i = 0; i < obj->f1C; i++) {
+        if (obj->f14[i]->f4 == 0)
+            root = obj->f14[i];
+    }
     if (obj->f2C == 0) {
         void *mem = func_001E8A44(0x18);
         node = mem ? ((C_0015B660 *)mem)->func_0015B660() : 0;
