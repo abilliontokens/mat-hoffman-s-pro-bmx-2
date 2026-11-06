@@ -40,8 +40,8 @@ struct Text_75170 {
     void func_001B1860(float, float, int, float, float, float, float, int, float, float, float, float, float);
 };
 struct Mode_75170 { char pad0[0x90]; int f90; };
-struct Player_75170 { char pad0[0x6CC]; int f6CC, f6D0, f6D4, f6D8; };
-struct Shared_75170 { char pad0[0x76C]; int f76C, f770, f774, f778; };
+struct Player_75170 { char pad0[0x6CC]; int f6CC, f6D0; long f6D4; int f6D8; };
+struct Shared_75170 { char pad0[0x76C]; int f76C, f770; long f774; int f778; };
 struct Root_75170 { char pad0[0x4E4]; Player_75170 *f4E4[17]; Shared_75170 *f528; };
 extern Root_75170 *D_002B9120;
 extern char D_00278DE4[], D_00278DD8[], D_00277038[], D_00278DD0[];
