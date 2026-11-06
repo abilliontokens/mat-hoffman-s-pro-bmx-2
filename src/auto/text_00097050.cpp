@@ -77,6 +77,11 @@ template <class T> inline const T &min_ref2(const T &a, const T &b)
     return a < b ? a : b;
 }
 
+template <class T> inline T min_val(const T &a, const T &b)
+{
+    return b < a ? b : a;
+}
+
 inline void str_copy(char *dst, const char *src, int size)
 {
     int n = min_ref((int)strlen(src), size - 1);
@@ -279,6 +284,33 @@ undefined4 C_00097740::func_00097740(int param_1)
     return in_ECX[2];
   }
   return 0;
+}
+
+void __stdcall func_00097890(const char *name)
+{
+    C_00097770_2A4 *a = D_002A8490->f2A4;
+    if (a == 0 || a->f64 == 0)
+        return;
+    C_00097770_List *list = a->f64->f3A8->f0;
+    int i;
+    for (i = 0; i < list->count; i++) {
+        C_00097770_Entry *&e = list->items[i];
+        if (e->f4 == 2) {
+            C_00097770_Obj *obj = e->f8;
+            char buf[0x104];
+            const char *src = obj->f14C->name;
+            int n = min_ref2((int)strlen(src), (int)sizeof(buf) - 1);
+            func_001E8920(buf, src, n);
+            buf[n] = 0;
+            char *ext = func_001E8AC0(buf, '.');
+            if (ext != 0) {
+                memset(ext, 0, strlen(ext));
+            }
+            if (func_001EA426(name, buf) == 0) {
+                obj->v3();
+            }
+        }
+    }
 }
 
 int C_000979C0::func_000979C0(undefined4 key, undefined4 *out)
