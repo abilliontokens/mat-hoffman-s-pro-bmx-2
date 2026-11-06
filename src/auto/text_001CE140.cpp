@@ -5,6 +5,7 @@
 
 extern int D_0028EF54;
 extern float D_00275544;
+extern float D_002755E4;
 
 void func_001E891B(void *p);
 int __stdcall func_001DDC28(int a);
@@ -406,7 +407,6 @@ int XboxSound::func_001CE660(float dt)
 int Voice::func_001CE770(int buf)
 {
     int handle = -1;
-    int p;
 
     if (f144 == 0) {
         handle = D_002BEAAC->func_0013C9F0(path, &D_00275FB4);
@@ -425,31 +425,22 @@ int Voice::func_001CE770(int buf)
             }
         }
     }
-    short fmt = f16c;
-    if (fmt == 0x69) {
+    if (f16c == 0x69) {
         f118 = f190;
     } else {
         f118 = f180;
     }
     f11c = (float)f118 / (float)f174;
-    p = buf;
     if ((f10c & 0x100) && f150) {
         f19c = f170;
         f1a0 = f170;
-        if (func_001CCAC0(p, handle, 0, f118)) {
-            if (handle != -1) {
-                D_002BEAAC->func_0013C110(handle);
-            }
+        if (Load_001CE770(this, buf, handle)) {
             return 1;
         }
     } else {
-        if (func_001CCC50(&f13c, 0, f170, f17a, f178, fmt, (flags >> 1) & 1,
+        if (func_001CCC50(&f13c, 0, f170, f17a, f178, f16c, (flags >> 1) & 1,
                           (f10c & 8) == 8, 1, f110)) {
-            p = f13c;
-            if (func_001CCAC0(p, handle, 0, f118)) {
-                if (handle != -1) {
-                    D_002BEAAC->func_0013C110(handle);
-                }
+            if (Load_001CE770(this, f13c, handle)) {
                 return 1;
             }
         }
