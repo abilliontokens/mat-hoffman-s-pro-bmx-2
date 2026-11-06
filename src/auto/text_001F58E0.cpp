@@ -194,13 +194,12 @@ int func_001F5AC2(S_U12 *a, S_U12 *b)
 
 void func_001F5B20(S_U12 *p)
 {
-    unsigned int l0 = p->l[0];
-    unsigned int n0 = l0 << 1;
-    unsigned int l1 = p->l[1];
+    unsigned int c0 = p->l[0] >> 31;
+    unsigned int c1 = p->l[1] >> 31;
 
-    p->l[0] = n0;
-    p->l[1] = (l1 << 1) | (l0 >> 31);
-    p->l[2] = (p->l[2] << 1) | (l1 >> 31);
+    p->l[0] += p->l[0];
+    p->l[1] = (p->l[1] << 1) | c0;
+    p->l[2] = (p->l[2] << 1) | c1;
 }
 
 void func_001F5B4E(S_U12 *p)
@@ -214,18 +213,21 @@ void func_001F5B4E(S_U12 *p)
 }
 
 #pragma optimize("s", on)
+#pragma optimize("t", off)
 #pragma optimize("y", off)
 int __cdecl func_001F5C49(unsigned long lo, unsigned long hi, unsigned long se, int ndigits, unsigned int flags, S_I10_Fos *fos)
 {
     unsigned char tenth[12] = { 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xfb, 0x3f };
     S_I10_Ld12 ld12;
     S_U12 tmp;
+    unsigned long *plo = &lo;
     char *p;
     char *r;
     char *man;
+    char c;
     int retval;
     int e;
-    unsigned int n;
+    int n;
     int cnt;
     short decexp;
     unsigned short sign;
@@ -239,16 +241,16 @@ int __cdecl func_001F5C49(unsigned long lo, unsigned long hi, unsigned long se, 
     } else {
         fos->sign = ' ';
     }
-    if (expn == 0 && hi == 0 && lo == 0) {
+    if (expn == 0 && hi == 0 && *plo == 0) {
         goto zero_digit;
     }
     if (expn == 0x7fff) {
         fos->exp = 1;
-        if ((hi == 0x80000000 && lo == 0) || (hi & 0x40000000)) {
-            if (sign && hi == 0xc0000000 && lo == 0) {
+        if ((hi == 0x80000000 && *plo == 0) || (hi & 0x40000000)) {
+            if (sign && hi == 0xc0000000 && *plo == 0) {
                 strcpy(fos->man, "1#IND");
                 fos->manlen = 5;
-            } else if (hi == 0x80000000 && lo == 0) {
+            } else if (hi == 0x80000000 && *plo == 0) {
                 strcpy(fos->man, "1#INF");
                 fos->manlen = 5;
             } else {
@@ -262,7 +264,7 @@ int __cdecl func_001F5C49(unsigned long lo, unsigned long hi, unsigned long se, 
         retval = 0;
     } else {
         ld12.w0 = 0;
-        ld12.lo = lo;
+        ld12.lo = *plo;
         ld12.hi = hi;
         ld12.exp = expn;
         decexp = (short)(((((expn >> 8) + (int)(hi >> 24) * 2) * 0x4d) + expn * 0x4d10 - 0x134312f4) >> 16);
@@ -291,13 +293,13 @@ zero_digit:
         } while (--cnt);
         if (e < 0) {
             n = -e & 0xff;
-            while (n != 0) {
+            while (n > 0) {
                 func_001F5B4E((S_U12 *)&ld12);
                 n--;
             }
         }
-        p = fos->man;
         cnt = ndigits + 1;
+        p = fos->man;
         if (cnt > 0) {
             do {
                 tmp = *(S_U12 *)&ld12;
@@ -310,9 +312,15 @@ zero_digit:
             } while (--cnt);
         }
         man = fos->man;
-        r = p - 2;
-        if (*(p - 1) >= '5') {
-            while (r >= man && *r == '9') {
+        r = p;
+        r--;
+        c = *r;
+        r--;
+        if (c >= '5') {
+            while (r >= man) {
+                if (*r != '9') {
+                    break;
+                }
                 *r = '0';
                 r--;
             }
@@ -322,7 +330,10 @@ zero_digit:
             }
             (*r)++;
         } else {
-            while (r >= man && *r == '0') {
+            while (r >= man) {
+                if (*r != '0') {
+                    break;
+                }
                 r--;
             }
             if (r < man) {
@@ -342,6 +353,7 @@ zero_tail:
     return 1;
 }
 #pragma optimize("y", on)
+#pragma optimize("t", on)
 
 #pragma optimize("s", on)
 void __cdecl func_001F5EC0(S_Ld12_001F60E2 *px, S_Ld12_001F60E2 *py)
