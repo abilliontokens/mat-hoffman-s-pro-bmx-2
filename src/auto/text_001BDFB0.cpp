@@ -11,6 +11,29 @@ struct C_00157600 {
     void func_00157600(int a);
 };
 
+struct UIPageParser {
+    char data[0x4cc];
+    void func_00168280();
+    int func_00169490(char *, int);
+    void func_001691E0();
+    int func_00169710(char *);
+    void func_00168BE0(char *, char *, char *, int);
+    void func_00168C20(char *, int, void *);
+};
+struct UIPageLoaderObject {
+    void *func_001BF3A0(int);
+    void *func_001BF430(void *, void *);
+    void func_001BF490(void *);
+    void *func_001BD9C0(int);
+    void *func_001BD980(int);
+};
+extern "C" void *func_001E8A44(unsigned int);
+extern "C" void *func_001E8AA5(unsigned int);
+extern "C" int func_001ADCC0(char *, int, char *, ...);
+extern char D_0028D768[], D_0028D75C[], D_0028D750[], D_0028D73C[], D_0028D734[];
+extern char D_0028D71C[], D_0028D708[], D_0028D6F8[], D_0028D6EC[], D_0027D8FC[], D_0028D6E0[];
+extern char D_0028D6D4[], D_0028D6C8[], D_0028D6B0[], D_0028D6A0[], D_0028D694[];
+
 struct UIStick {
     char pad00[0x24];
     f32 value;
