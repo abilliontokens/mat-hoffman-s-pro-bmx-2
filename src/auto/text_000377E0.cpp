@@ -49,6 +49,51 @@ extern int D_002A8490;
 void func_001E891B(void *p);
 void __stdcall func_00035300(void *a, int b);
 
+void *func_001E8A44(int size);
+struct V4_378D0 {
+    float x, y, z, w;
+    void init() { x = y = z = 0.0f; w = 1.0f; }
+    void init2() { w = 1.0f; x = y = z = 0.0f; }
+};
+extern V4_378D0 D_002A14D4;
+extern int D_00276CA4;
+struct Arr_378D0 {
+    int count; void *data; int grow; int cap; unsigned char flags;
+    void init() { data = 0; count = 0; grow = 0; cap = 0; flags &= ~1; }
+    void alloc(int n) { data = func_001E8A44(n * 4); grow = 16; cap = n; flags |= 1; }
+};
+struct C_378D0_Sub {
+    void *vtbl; int pad4[8];
+    int f24, f28, f2C, f30, f34, f38, f3C, f40;
+    void func_00157600(int a);
+};
+struct C_000378D0 {
+    void *vtbl;
+    char pad4[0x280];
+    int f284; unsigned char f288; int f28C; int f290;
+    V4_378D0 v294[3];
+    int f2C4;
+    int f2C8[0x12];
+    int pad310[2];
+    int f318, f31C, f320;
+    char s324[50], s356[50], s388[50], s3BA[50];
+    char pad3EC[0x34];
+    int f420, f424;
+    int f428[0x13];
+    int f474, f478, f47C, f480, f484, f488, f48C, f490, f494, f498, f49C, f4A0, f4A4, f4A8;
+    V4_378D0 v4AC[9];
+    int f53C;
+    C_378D0_Sub *f540;
+    int f544, f548, f54C, f550, f554, f558, f55C, f560, f564, f568, f56C, f570, f574, f578, f57C, f580, f584, f588, f58C, f590, f594, f598, f59C;
+    Arr_378D0 arr[4];
+    V4_378D0 v5F0[50];
+    int f910, f914, f918, f91C, f920, f924;
+    V4_378D0 v928, v938;
+    int f948;
+    void func_00030F90(int a);
+    C_000378D0 *func_000378D0(int a);
+};
+
 struct C_000378A0 {
     int unk0;
     void func_00157660();
