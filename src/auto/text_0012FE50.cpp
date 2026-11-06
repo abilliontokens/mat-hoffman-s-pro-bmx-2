@@ -165,7 +165,8 @@ struct C_0012FE50 {
     float f4e8;
     char pad4ec[0x4f0 - 0x4ec];
     float f4f0;
-    char pad4f4[0x4fc - 0x4f4];
+    float f4f4;
+    float f4f8;
     Attach_0012FE50 *f4fc;
     Node_0012FE50 **f500;
     char pad504[0x510 - 0x504];
