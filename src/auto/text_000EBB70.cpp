@@ -20,6 +20,8 @@ struct S_EC320_Mgr {
 struct S_EC320_Global {
     char pad0[0x2E0];
     S_EC320_Mgr *f2E0;
+    char pad2E4[4];
+    struct S_EBE90_Sel *f2E8;
 };
 extern S_EC320_Global *D_002A8490;
 
