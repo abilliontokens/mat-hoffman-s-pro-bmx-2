@@ -14,6 +14,8 @@ extern u32 D_002A0F74;
 extern u32 D_002A0F78;
 extern u32 D_002A0F7C;
 extern u32 D_002A0F80;
+extern char *D_002A8490;
+extern float D_002755EC;
 
 extern u32 D_002761A4;
 extern char D_0027618C;
@@ -438,25 +440,16 @@ C_00021720* C_00021720::func_00021720(void) {
 void C_00021740::func_00021740(S_Stream_000212A0 *stream, int base)
 {
     int a;
-    unsigned b;
+    int b;
 
     stream->func_00168CB0(&D_0027618C, &D_002A0F74, &f10);
     stream->func_00168C20(&D_00276180, 0, &f8);
     stream->func_00168C20(&D_00276174, -1, &a);
-    fC = a - 1;
-    if (fC < 0) {
-        fC = 0;
-    }
-    stream->func_00168C20(&D_00276164, 0, (int *)&b);
-    f0 = base + b - 1;
-    if (f0 < 0) {
-        f0 = 0;
-    }
-    stream->func_00168C20(&D_00276150, 1, (int *)&b);
-    f4 = b - 1;
-    if (f4 < 0) {
-        f4 = 0;
-    }
+    SetClamped_00021740(&fC, a - 1);
+    stream->func_00168C20(&D_00276164, 0, &b);
+    SetClamped_00021740(&f0, base + b - 1);
+    stream->func_00168C20(&D_00276150, 1, &b);
+    SetClamped_00021740(&f4, b - 1);
 }
 
 C_000217F0 *C_000217F0::func_000217F0(int a)
