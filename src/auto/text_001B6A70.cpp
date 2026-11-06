@@ -472,7 +472,6 @@ void C_001B6E70::func_001B70D0(S_001B70D0_Arg *arg) {
     char name[0x40];
     char buf[0x40];
     int i;
-    int k;
 
     for (i = 0; i < f24; i++) {
         if (((S_001B70D0_Obj *)((C_001B7370_item * volatile *)f28)[i]->f4)->fD4[0] != 0) {
@@ -488,14 +487,8 @@ void C_001B6E70::func_001B70D0(S_001B70D0_Arg *arg) {
                             S_001B70D0_Mgr *mgr = e->f1A4;
                             int id = mgr->f4->func_00198330(
                                 ((S_001B70D0_Obj *)((C_001B7370_item * volatile *)f28)[i]->f4)->f1D8);
-                            for (k = 0; mgr->f284 > k; k++) {
-                                if (mgr->f280[k]->f1C0 == id) {
-                                    ((S_001B70D0_Obj *)((C_001B7370_item * volatile *)f28)[i]->f4)->f2DC =
-                                        mgr->f280[k]->f64->f22C;
-                                    found = 1;
-                                    break;
-                                }
-                            }
+                            if (ResolveSlot_001B70D0(this, i, mgr, id))
+                                found = 1;
                         }
                     } else {
                         S_001B70D0_Entry *p = arg->f28[j];
@@ -558,9 +551,8 @@ void C_001B6E70::func_001B73C0(C_001B73C0_Arg *arg) {
             f28[i]->f4->v4();
         }
         for (j = 0; j < f28[i]->f8; j++) {
-            C_001B73C0_Node *node = f28[i]->f10C[j];
-            if (node->f4 == 4) {
-                C_001B73C0_Line *line = arg->f3AC->f28[node->f10C];
+            if (f28[i]->f10C[j]->f4 == 4) {
+                C_001B73C0_Line *line = arg->f3AC->f28[f28[i]->f10C[j]->f10C];
                 line->f1A4->v7();
             }
         }
