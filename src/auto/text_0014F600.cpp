@@ -225,16 +225,17 @@ void func_0014F670(float x, float *num, float *den)
 
 void func_0014F6E0(float a, float *s, float *c)
 {
-    extern float D_002756D0;
-    extern float D_002DF870;
-    extern float D_002DF874;
-    float func_00016D60(float);
-    int i;
-    float v = (func_00016D60(a) + D_002756D0) * D_002DF870;
-    storeftoi(&i, v);
-    float f = (v - (float)i) * D_002DF874;
-    *s = f * D_002CF6B4[i].a + D_002CF6B4[i].b;
-    *c = D_002CF6B4[i].a - f * D_002CF6B4[i].b;
+ extern float D_002756D0, D_002DF870, D_002DF874;
+ float func_00016D60(float);
+ float v=(func_00016D60(a)+D_002756D0)*D_002DF870;
+ int * volatile p=(int *)&a;
+ volatile float t=v;
+ *p=_mm_cvttss_si32(*(__m128 *)&t);
+ float f=((float)*(int *)&a);
+ f=(v-f)*D_002DF874;
+ int i=*(int *)&a;
+ *s=f*D_002CF6B4[i].a+D_002CF6B4[i].b;
+ *c=D_002CF6B4[i].a-f*D_002CF6B4[i].b;
 }
 
 void func_0014F760(float x, float *num, float *den, float *q)
@@ -257,24 +258,15 @@ void func_0014F760(float x, float *num, float *den, float *q)
 
 float func_0014F7E0(float x)
 {
-    extern float D_00275460;
-    extern float D_00275F58;
     extern float D_002DF86C;
     int i;
-    float t;
-    int * volatile p = &i;
-    float v;
-    float f;
-
-    v = x;
-    if (x > D_00275460) {
-        v = D_00275460;
-    } else if (x < D_00275F58) {
-        v = D_00275F58;
-    }
-    v = (v + D_00275460) * D_002DF86C;
-    t = v;
-    *p = _mm_cvttss_si32(*(__m128 *)&t);
+    float v, f;
+    if (x > D_00275460)
+        x = D_00275460;
+    else if (x < D_00275F58)
+        x = D_00275F58;
+    v = (x + D_00275460) * D_002DF86C;
+    i = (int)v;
     f = v - (float)i;
     return (D_00275460 - f) * D_002DF87C[i] + f * D_002DF87C[i + 1];
 }
@@ -311,6 +303,8 @@ void func_0014F9A0(void)
     }
 }
 
+static __forceinline float Sqrt_0014F9F0(float x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(*(__m128 *)&x)); return r; }
+
 void func_0014F9F0(void)
 {
     unsigned int i;
@@ -329,7 +323,8 @@ void func_0014FA70(void)
     int i;
     for (i = 0; i < 0x80; i++) {
         unsigned int a = (i | 0x1f80) << 17;
-        float r = D_00275460 / sqrtf(*(float *)&a);
+        float root = sqrtf(*(float *)&a);
+        float r = D_00275460 / root;
         D_002CF6B8[i] = (*(unsigned int *)&r + 0x2000) >> 15;
     }
     D_002CF6F8 = 0xff;
@@ -453,7 +448,7 @@ void func_0014FD80(float *p)
     if (*p > D_002756D0) {
         *p = *p - D_002756B8;
     } else if (*p < D_002756E8) {
-        *p = D_002756B8 + *p;
+        *p = *p + D_002756B8;
     }
 }
 
@@ -675,10 +670,10 @@ void C_00150360::func_001503E0(float a, float b, float c)
     double s;
     double t;
 
-    f30 = (float)(s = f30);
     f44 = a;
-    f34 = (float)(t = f34);
     f48 = b;
+    f30 = (float)(s = f30);
+    f34 = (float)(t = f34);
     f4C = c;
     f2C = (a - b) * s + b;
     f28 = (D_00275460 - t) * (f2C - c);
