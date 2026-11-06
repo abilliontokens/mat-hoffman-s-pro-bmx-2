@@ -311,6 +311,10 @@ struct C_00142DE0 {
     void func_00142DE0();
 };
 
+struct Res_142D00 {
+    void *p;
+};
+
 struct C_00142D00 {
     void *unk0;
     void func_00142D00(void *a0);
@@ -464,6 +468,7 @@ void C_00142D90::func_00142D90(int param_1)
 void C_00142D00::func_00142D00(void *a0)
 {
     if (a0 != unk0) {
+        func_00201350(a0);
         func_00201350(a0);
         unk0 = a0;
     }
