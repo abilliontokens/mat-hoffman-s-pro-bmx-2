@@ -39,7 +39,7 @@ struct S_EAC_Input { int func_00136170(int, int, int); };
 struct S_EAC_Sound { void func_00094E40(int, int, int); };
 extern int D_00281B18, D_00281B04;
 struct S_000EB1F0_Mgr { char pad0[0x24]; S_EAC_Action *f24; char pad28[0x134-0x28]; int f134, f138; char pad13C[0x25C-0x13C]; S_000EB1F0_Owner *f25C; void func_000BB380(int *); };
-struct S_000EB1F0_Page { int f0; int pad4[11]; int f30; };
+struct S_000EB1F0_Page { int f0; int pad4[11]; int f30; void func_001BDE90(int); void func_001BDF00(int); };
 struct S_000EB1F0_Sel { int f0; S_000EB1F0_Page *f4; };
 extern C_NumHorse_Root *D_002A8490;
 
