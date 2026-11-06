@@ -175,8 +175,7 @@ void func_001E7D20(int n, float *a, int y, float *z)
 void func_001E7DC0(int n, float *a, int y, float *z)
 {
     int q = n >> 2;
-    float *w = z + (y - n);
-    func_001E59B0(n, a, w);
+    func_001E59B0(n, a, z + (y - n));
     while (n > 0x200) {
         func_001E7D20(q, a, y, z);
         func_001E7DC0(q, a + q, y, z);
@@ -274,6 +273,11 @@ void __stdcall func_001E80C0(int n, int sign, int a2, int *h, int *d) {
 }
 
 void __fastcall func_001E7230(int, int);
+void __fastcall func_001E30E0(int, int *);
+void __fastcall func_001E7F90(float *, float *, int, int *, int);
+void __fastcall func_001E7E60(float *, float *, int, int *, int);
+void __fastcall func_001E7170(float *, float *, int, int);
+void __fastcall func_001E70B0(float *, float *, int, int);
 void __stdcall func_001E8200(int n, int isgn, float *a, int *ip, float *w) {
     int j;
     float xr;
@@ -291,10 +295,10 @@ void __stdcall func_001E8200(int n, int isgn, float *a, int *ip, float *w) {
         xr = a[n - 1];
         for (j = n - 2; j >= 2; j -= 2) {
             a[j + 1] = a[j] - a[j - 1];
-            a[j] += a[j - 1];
+            a[j] = a[j - 1] + a[j];
         }
         a[1] = a[0] - xr;
-        a[0] += xr;
+        a[0] = xr + a[0];
         if (n > 4) {
             func_001E7170((int)(w + nw), n);
             func_001E7F90(n, (int)a, (int)(ip + 2), nw);
@@ -311,10 +315,10 @@ void __stdcall func_001E8200(int n, int isgn, float *a, int *ip, float *w) {
             func_001E7E60(4, (int)a, (int)(ip + 2), nw);
         }
         xr = a[0] - a[1];
-        a[0] += a[1];
+        a[0] = a[1] + a[0];
         for (j = 2; j < n; j += 2) {
             a[j - 1] = a[j] - a[j + 1];
-            a[j] += a[j + 1];
+            a[j] = a[j + 1] + a[j];
         }
         a[n - 1] = xr;
     }
