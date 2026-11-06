@@ -15,16 +15,13 @@ inline void cross_000265C0(S_000265C0_V4 *out, S_000265C0_V4 *a, S_000265C0_V4 *
 {
     __m128 vb = _mm_loadu_ps(&b->x);
     __m128 va = _mm_loadu_ps(&a->x);
-    __m128 sb = vb;
-    __m128 sa = va;
+    __m128 sb = _mm_shuffle_ps(vb, vb, 0xc9);
+    __m128 sa = _mm_shuffle_ps(va, va, 0xc9);
 
-    sb = _mm_shuffle_ps(sb, sb, 0xc9);
-    sa = _mm_shuffle_ps(sa, sa, 0xc9);
-    va = _mm_mul_ps(va, sb);
     vb = _mm_mul_ps(vb, sa);
+    va = _mm_mul_ps(va, sb);
     vb = _mm_sub_ps(vb, va);
-    vb = _mm_shuffle_ps(vb, vb, 0xc9);
-    _mm_storeu_ps(&out->x, vb);
+    _mm_storeu_ps(&out->x, _mm_shuffle_ps(vb, vb, 0xc9));
 }
 
 static __forceinline float clamp_max_000261F0(float a, float b)
