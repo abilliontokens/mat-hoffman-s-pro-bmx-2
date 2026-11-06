@@ -36,6 +36,16 @@ static __forceinline Vec4 MakeVec4_0011A4B0(f32 a, f32 b, f32 c, f32 d)
     return r;
 }
 
+static __forceinline Vec4 PlantPos_0011A4B0(const Vec4 &v, f32 h)
+{
+    Vec4 r;
+    r.x = 0.0f;
+    r.y = v.y;
+    r.z = v.z + h;
+    r.w = 1.0f;
+    return r;
+}
+
 struct C_00157600 {
     void func_00157600(int a0);
 };
@@ -267,10 +277,11 @@ void BmxWallPlantConstraint::func_0011A4B0()
     v.w = 1.0f;
     C_00198330 *obj = f28->func_00198330(&D_0027D3F0);
     obj->func_00199A70(f28, &v);
+    f32 h = obj->f144;
     Vec4 t;
+    t.z = h;
     double dy = v.y;
     t.y = (float)dy;
-    f32 h = obj->f144;
     t.x = 0.0f;
     t.z = v.z + h;
     t.w = 1.0f;
