@@ -1,6 +1,7 @@
 /* 9 functions from 0x0019EEC0 to 0x0019FD20, found by Ghidra. */
 #include "common.h"
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 
 extern int D_0028B25C;
 
@@ -190,40 +191,39 @@ struct S_0019B700 { void func_0019B700(int a); };
 struct S_00129920 { void func_00129920(int a); };
 int __fastcall func_0019EEC0(char *self, int, int *out)
 {
-    int count = *(int *)(self + 0x190);
     char **arr;
     int res = 0;
-    unsigned char f = *(unsigned char *)(self + 0xa7);
-    char **srcs = *(char ***)(self + 0x1a0);
+    unsigned char f;
     int i;
 
-    *out = count;
-    arr = (char **)func_001E8AA5(count * 4);
+    *out = *(int *)(self + 0x190);
+    arr = (char **)func_001E8AA5(*(int *)(self + 0x190) * 4);
+    f = *(unsigned char *)(self + 0xa7);
     if (f & 4) res = 4;
     if (f & 2) res |= 2;
     if (f & 8) res |= 8;
-    if (count <= 0) return res;
+    if (*(int *)(self + 0x190) <= 0) return res;
 
-    for (i = 0; i < count; i++) {
+    for (i = 0; i < *(int *)(self + 0x190); i++) {
         char *o = (char *)func_001E8A44(0x1e0);
         char *s;
         int n;
         int k;
 
         if (o) {
-            func_0019B700(o, 1);
+            ((S_0019B700 *)o)->func_0019B700(1);
         } else {
             o = 0;
         }
         arr[i] = o;
-        func_00129920(o, i);
+        ((S_00129920 *)o)->func_00129920(i);
         (*(void (__fastcall **)(char *))(*(int *)o + 0x6c))(o);
         *(int *)(o + 0x50) = 0;
-        s = srcs[i];
-        func_000264C0(o + 0xb0, s + 0xb0);
-        func_000264C0(o + 0xf0, s + 0xf0);
-        func_000264C0(o + 0x130, s + 0x130);
-        func_000264C0(o + 0x170, s + 0x170);
+        s = ((char **)*(void **)(self + 0x1a0))[i];
+        ((M_F780 *)(o + 0xb0))->func_000264C0(s + 0xb0);
+        ((M_F780 *)(o + 0xf0))->func_000264C0(s + 0xf0);
+        ((M_F780 *)(o + 0x130))->func_000264C0(s + 0x130);
+        ((M_F780 *)(o + 0x170))->func_000264C0(s + 0x170);
         *(unsigned short *)(o + 0x1bc) = *(unsigned short *)(s + 0x1bc);
         *(int *)(o + 0x1c0) = *(int *)(s + 0x1c0);
         *(int *)(o + 0x1c4) = 0;
@@ -495,6 +495,10 @@ void *SoultreeHierarchyCollisionObject::func_0019FBA0(int flags)
         func_001E891B(this);
     }
     return this;
+}
+
+void func_0019FBD0(float *out, float *in) {
+    AsmVec3Normalize(out, in);
 }
 
 unsigned __int64 __rdtsc(void);
