@@ -139,7 +139,7 @@ struct C_000ABBC0_Sub {
     virtual void v28(); virtual void v29(); virtual void v30(); virtual void v31();
     virtual void v32(); virtual void v33(); virtual void v34();
     virtual int v35(char *name, int a, int b);
-    char pad04[0x20];
+    char pad04[0x24];
     char name[0x80];
     void func_00199650(C_000AB340_Vec *a);
     void func_00198F50(C_000AB340_Vec *a, C_000AB340_Vec *b, int c, int d, int e);
@@ -351,6 +351,93 @@ void C_000AB490::func_000AB490(void)
         func_001E891B(f28);
     }
     ((C_00157660 *)this)->func_00157660();
+}
+
+void C_000ABBC0::func_000AB790(S_000AB030_Arg *arg)
+{
+    C_000ABBC0 * volatile self = this;
+    int i;
+    int j;
+    int k;
+    int n;
+    char buf[260];
+
+    if (f24 != 0) {
+        for (i = 0; i < f24; i++) {
+            C_000ABBC0_Obj *obj = f28[i];
+            k = 0;
+            if (obj->f104 == 0) {
+                struct {
+                    volatile int lim;
+                    volatile int len;
+                    volatile int res;
+                } t;
+                if (obj->f108 != 0) {
+                    func_001ADCC0(D_002A60B0, 0x104, D_00275678, D_002A5348, D_002A5FA8);
+                    func_001ADCC0(D_002A5EA0, 0x104, D_00275678, D_002A5348, D_002A5D98);
+                } else {
+                    func_001ADCC0(D_002A60B0, 0x104, D_00275678, D_002A5870, D_002A5FA8);
+                    func_001ADCC0(D_002A5EA0, 0x104, D_00275678, D_002A5870, D_002A5D98);
+                }
+                func_001ADCC0(buf, 0x104, D_0027C588, self->f28[i]);
+                void *m = func_001E8A44(0x1e0);
+                self->f28[i]->f110[0] = m ? ((C_00143580_000AB790 *)m)->func_00143580(1) : 0;
+                C_000ABBC0_Sub *s = (C_000ABBC0_Sub *)self->f28[i]->f110[0];
+                if (s->v35(buf, 0, 1)) {
+                    t.len = strlen(buf);
+                    t.lim = 0x7f;
+                    t.res = t.lim > t.len ? t.len : t.lim;
+                    n = t.res;
+                    func_001E8920(s->name, buf, n);
+                    s->name[n] = 0;
+                    s->func_00199650(&D_002A2734);
+                    s->func_00198F50(&D_002A2764, &D_002A2754, 1, 0, 0);
+                    s->func_0019ABA0(D_002B9120->f4A8[arg->f348], 1);
+                    D_002B9120->f3A8[arg->f348]->func_001577A0(s, 0);
+                    self->f28[i]->f104 = 1;
+                }
+            } else {
+                for (j = 0; j < arg->f3AC->count; j++) {
+                    S_000AB030_ObjA *o = arg->f3AC->items[j];
+                    if (o != 0 && o->f4 == 1) {
+                        func_0014FF00(o->f1A4->f4->name, 0, 0, buf, 0);
+                        if (func_001EA426(buf, (char *)self->f28[i]) == 0) {
+                            self->f28[i]->f110[k] = o->f1A4->f4;
+                            k++;
+                            if (k >= self->f28[i]->f104) break;
+                        }
+                    }
+                }
+                if (k == 0) {
+                    struct {
+                        volatile int lim;
+                        volatile int res;
+                        volatile int len;
+                    } t;
+                    for (j = 0; j < (*arg->f3A8)->count; j++) {
+                        S_000AB030_ObjB *o = (*arg->f3A8)->items[j];
+                        if (o != 0 && o->f4 == 1 && o->f8 != 0) {
+                            t.len = strlen(o->f8->name);
+                            t.lim = 0x103;
+                            t.res = t.lim > t.len ? t.len : t.lim;
+                            n = t.res;
+                            func_001E8920(buf, o->f8->name, n);
+                            buf[n] = 0;
+                            char *dot = func_001E8AC0(buf, '.');
+                            if (dot != 0) {
+                                memset(dot, 0, strlen(dot));
+                            }
+                            if (func_001EA426(buf, (char *)self->f28[i]) == 0) {
+                                self->f28[i]->f110[k] = o->f8;
+                                k++;
+                                if (k >= self->f28[i]->f104) break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 C_000ABD60 *C_000ABD60::func_000ABD60()
