@@ -103,6 +103,14 @@ struct C_001D6410 {
             flags |= 6;
         }
     }
+    inline void setPosYX(unsigned b, unsigned a)
+    {
+        if (x != a || yi != b) {
+            yi = b;
+            x = a;
+            flags |= 6;
+        }
+    }
     inline void setPosF(unsigned a, float b)
     {
         if (x != a || yf != b) {
@@ -440,7 +448,7 @@ void C_001A6D30::func_001A6D30()
 
 void C_001A6E90::func_001A6E90(float dt)
 {
-    float tt[1];
+    float t;
     S_001A6E90_Msg msg;
     float sum;
     int s;
@@ -506,9 +514,9 @@ void C_001A6E90::func_001A6E90(float dt)
     }
 after_draw:
     if (f5C != 0 || f60 != 0) {
-        tt[0] = dt + f64;
-        f64 = tt[0];
-        if (tt[0] >= D_002755E8) {
+        t = dt + f64;
+        f64 = t;
+        if (t >= D_002755E8) {
             if (f5C != 0) {
                 if (f6C == 3) {
                     if (f78->func_00092A10() == 0) {
@@ -521,7 +529,7 @@ after_draw:
                     f4C->f24 = 9;
                     f5C = 0;
                 }
-            } else if (f60 != 0 && tt[0] >= D_00278C48) {
+            } else if (f60 != 0 && t >= D_00278C48) {
                 if (f6C == 9) {
                     msg.type = 2;
                     msg.code = 0x55;
@@ -724,11 +732,12 @@ C_001A7260 *C_001A7260::func_001A7320(C_Holder24 *owner)
         D_002EFDB8->v4(0, f28, 0, 0);
     }
     if (D_002A8490->f2e0->f4 == 0xb) {
-        idx = func_00011260(0, f24->f1d8 - 1);
-        func_001ADCC0(bufB, 0x104, D_00276F28, f24->f1d4[idx]);
+        i = func_00011260(0, f24->f1d8 - 1);
+        func_001ADCC0(bufB, 0x104, D_00276F28, f24->f1d4[i]);
         func_001A5C30(bufB, f34, 0x1e, 8);
     } else {
-        func_001ADCC0(bufB, 0x104, D_00276F28, f24->f1cc[func_00011260(0, f24->f1d0 - 1)]);
+        idx = func_00011260(0, f24->f1d0 - 1);
+        func_001ADCC0(bufB, 0x104, D_00276F28, f24->f1cc[idx]);
         func_001A5C30(bufB, f34, 0x1e, 8);
     }
     f2c = 0;
