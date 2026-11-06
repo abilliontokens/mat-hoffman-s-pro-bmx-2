@@ -374,22 +374,17 @@ void C_0004FE30::func_0004FAC0(void)
 
 int C_0004FC20::func_0004FC20(int *a, int b)
 {
-    int i;
+    P_4FC20_2D8 *p;
 
     if (func_001361E0(23, 2, a, 0x80000000)) {
         if (((G_4FC20 *)D_002A8490)->f2E0->f4) {
-            if (f2D8 && f2D8->fCC == 1) return 0;
+            p = f2D8;
+            if (p && p->fCC == 1) return 0;
             if (!f15C->fFC && !f190->f168 && !f1A0->f13C) {
-                if (f2D8 && !f2D8->fCC) {
-                    f64->f4C0->v31(1, 1);
-                    ((G_4FC20 *)D_002A8490)->f2E0->f2FC->v18(1);
-                    for (i = 0; i < f90; ++i)
-                        f64->f4E0->f1A8[i]->f958 = 0.5f;
+                if (p && !p->fCC) {
+                    ResetRiders();
                 } else {
-                    f64->f4C0->v31(1, 1);
-                    ((G_4FC20 *)D_002A8490)->f2E0->f2FC->v18(1);
-                    for (i = 0; i < f90; ++i)
-                        f64->f4E0->f1A8[i]->f958 = 0.5f;
+                    ResetRiders();
                 }
                 func_00032A20();
                 f15C->func_000602B0();
