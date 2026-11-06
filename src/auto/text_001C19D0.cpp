@@ -36,6 +36,41 @@ struct UIWidgetSoultreeCharacter {
  void func_001577A0(void *,int);
  UIWidgetSoultreeCharacter *func_001C22C0(int,char *,Config1C22C0 *);
 };
+extern char D_0028D75C[], D_0028D998[], D_0028E1D4[], D_0028E1C4[], D_0028E1B0[], D_0028E19C[], D_0028E18C[], D_0028E17C[], D_0028E16C[], D_0028E15C[], D_0028E14C[], D_0028E138[], D_0028E120[], D_0028E10C[], D_0028E0F8[], D_0028E0E4[], D_0028E0D4[], D_0028E0C0[], D_0028E0AC[], D_0028E09C[], D_0028E08C[], D_0028E07C[], D_0027DE44[];
+extern float D_00275544;
+extern int D_002F07B8[];
+char *func_001E8AC0(char *, int);
+int func_001E8858(float);
+struct Cfg19D0 {
+    void func_00168BE0(char *, char *, char *, int);
+    int func_00168E70(char *, int *, int *);
+    int func_00168C50(char *, int, float *);
+    int func_00168C20(char *, int, int *);
+    void func_00168CB0(char *, float *, float *);
+};
+struct Sub19D0 {
+    char pad0[4];
+    float f04, f08;
+    char padC[8];
+    float f14, f18;
+    char pad1C[0xc];
+    float f28, f2c, f30, f34;
+    int f38;
+    float f3c, f40, f44, f48, f4c, f50;
+    char pad54[4];
+    unsigned char f58;
+    void func_001D5810(int *, int, int, int);
+};
+struct C_001C19D0 {
+    char pad0[0x28];
+    int f28;
+    char pad2C[0x3c];
+    Sub19D0 f68;
+    char padCC0[0x64 - 0x5c];
+    Sub19D0 fCC;
+    void func_001BF600(Cfg19D0 *);
+    void *func_001C19D0(int, int);
+};
 struct C_001C22A0 {
     undefined4 func_001C22A0(byte param_1);
 };
@@ -169,7 +204,7 @@ void C_001C21F0::func_001C21F0(int a0) {
 }
 
 void C_001C2210::func_001C2210() {
-    unk2C = 1;
+    *(volatile u32 *)&unk2C = 1;
     if (unk30 == 0 || unk34 == 0) {
         if (unk30 != 0) {
             ((VCall8 *)this)->v7();
@@ -182,11 +217,11 @@ void C_001C2210::func_001C2210() {
 
 void C_001C2250::func_001C2250() {
     unk2C = 0;
-    if (!(unk38 && unk3C)) {
-        if (unk38) {
+    if (unk38 == 0 || unk3C == 0) {
+        if (unk38 != 0) {
             ((VCall8 *)this)->v7();
         }
-        if (unk3C) {
+        if (unk3C != 0) {
             ((VCall8 *)this)->v5();
         }
     }
