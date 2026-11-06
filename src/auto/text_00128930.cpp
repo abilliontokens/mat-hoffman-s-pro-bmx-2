@@ -1,6 +1,7 @@
 /* 10 functions from 0x00128930 to 0x00129930, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+#include <xmmintrin.h>
 struct C_00129900 {
     void func_00129900(void);
 };
