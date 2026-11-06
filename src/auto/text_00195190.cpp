@@ -50,6 +50,12 @@ struct Vec4_195D40 {
     int x, y, z, w;
 };
 
+/* by-value Vec4 built from four ints, returned through the hidden pointer */
+struct Vec4Ret_195D40 {
+    int x, y, z, w;
+    Vec4Ret_195D40(int a, int b, int c, int d) { x = a; y = b; z = c; w = d; }
+};
+
 struct Item_001955F0 {
     Vec4_195D40 a;
     Vec4_195D40 b;
@@ -223,9 +229,74 @@ int C_001956F0::func_001956F0(const char *name)
     return 1;
 }
 
-void func_00195D40(Vec4_195D40 *out, Vec4_195D40 v)
+int STV_1959E0::func_001959E0(float dt, float *pos, Vec4_195D40 *out)
 {
-    *out = v;
+    V4f_001956F0 seg[2];
+    V4f_001956F0 d;
+    V4f_001956F0 n;
+    V4f_001956F0 hitPos;
+    V4f_001956F0 hitNormal;
+    float best;
+    int bestIdx;
+    float len;
+    int i;
+    int hit;
+
+    best = 3.4028235e38f;
+    bestIdx = cur;
+    for (i = 0; i < count; i++) {
+        hit = 0;
+        if (f70) {
+            d = *(V4f_001956F0 *)pos - *(V4f_001956F0 *)&items[i];
+            Normalize_001959E0(&n.x, &d.x);
+            Sqrt_001959E0(&len, d.y * d.y + d.z * d.z + d.x * d.x);
+            n.x *= len;
+            n.y *= len;
+            n.z *= len;
+            seg[0] = *(V4f_001956F0 *)&items[i];
+            seg[1] = seg[0] + n;
+            if (func_00134DE0(seg, &hitPos, &hitNormal, 1, 0, 0, -1, 0, 1)) {
+                hit = 1;
+            }
+        }
+        float dx = pos[0] - ((float *)&items[i])[0];
+        float dy = pos[1] - ((float *)&items[i])[1];
+        float dz = pos[2] - ((float *)&items[i])[2];
+        float dd = dx * dx + dy * dy + dz * dz;
+        if (best > dd && !hit) {
+            best = dd;
+            bestIdx = i;
+        }
+    }
+    if (bestIdx != cur) {
+        if (f74 < f78 && cur != -1) {
+            f74 = dt + f74;
+        } else {
+            cur = bestIdx;
+            f74 = 0;
+        }
+    }
+    *out = items[cur].a;
+    if (cur != prev) {
+        prev = cur;
+        if (Rand01_001959E0() * D_00275994 < items[cur].f30) {
+            f6c = 1;
+        } else {
+            f6c = 0;
+        }
+        return 1;
+    }
+    return 0;
+}
+
+Vec4_195D40 *func_00195D40(Vec4_195D40 *out, int x, int y, int z, int w)
+{
+    Vec4_195D40 v = {x, y, z, w};
+    out->x = *(volatile int *)&v.x;
+    out->y = *(volatile int *)&v.y;
+    out->z = *(volatile int *)&v.z;
+    out->w = *(volatile int *)&v.w;
+    return out;
 }
 
 SimpleVCR *SimpleVCR::func_00195D90(void)
