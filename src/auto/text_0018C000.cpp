@@ -344,11 +344,14 @@ void C_0018C120::func_0018C120(void) {
 C_0018C120_Node *C_0018C120::func_0018C160(const char *name)
 {
     C_0018C120_Node *n = head;
-    while (n != 0) {
-        if (strcmp(name, ((C_0018C000 *)n->value)->unk4) == 0) {
-            break;
+
+    if (n != 0) {
+        while (n != 0) {
+            if (strcmp(name, ((C_0018C000 *)n->value)->unk4) == 0) {
+                break;
+            }
+            n = n->next;
         }
-        n = n->next;
     }
     return n;
 }
@@ -403,7 +406,8 @@ int C_0018C000::func_0018C2D0(char *a, char *b, int c)
     int h;
     unsigned int count = 0;
     unsigned int i;
-    int A, B, C, D, E;
+    int A;
+    float B, C, D, E;
     int G, H, I, J, K, L;
     int j;
 
@@ -429,7 +433,7 @@ int C_0018C000::func_0018C2D0(char *a, char *b, int c)
         if (!D_002BEAAC->func_0013C8A0(h, &D, 4, 1)) break;
         if (!D_002BEAAC->func_0013C8A0(h, &E, 4, 1)) break;
         mem = func_001E8A44(0x20);
-        it = mem != 0 ? ((C_0018C000_Item *)mem)->func_0018BFC0(A, B, C, D, E) : 0;
+        it = mem != 0 ? ((C_0018C000_Item *)mem)->func_0018BFC0(A, *(int *)&B, *(int *)&C, *(int *)&D, *(int *)&E) : 0;
         unk58[A] = it;
     }
     G = 0;
@@ -463,12 +467,8 @@ int C_0018C000::func_0018C2D0(char *a, char *b, int c)
     {
         char *src = name;
         char *dst = (char *)this + 8;
-        char ch;
-        do {
-            ch = *src;
-            dst[src - name] = ch;
-            src++;
-        } while (ch != 0);
+        while ((*dst++ = *src++) != 0) {
+        }
     }
     unk458 = D_002AA6C0->v7((int)name, 0);
     D_002AA6C0->v6(unk458, 0);
@@ -779,7 +779,8 @@ int C_0018CE00::func_0018CE00(int id, char *name)
         }
     }
     entries[slot].id = id;
-    n = Min_0018CE00(strlen(name), 0x3f);
+    n = strlen(name);
+    if (n > 0x3f) n = 0x3f;
     func_001E8920(entries[slot].name, name, n);
     entries[slot].name[n] = 0;
     entries[slot].f54 = 0;
