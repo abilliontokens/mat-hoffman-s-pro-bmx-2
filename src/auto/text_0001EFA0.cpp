@@ -22,6 +22,7 @@ struct BmxAirborneControlModel {
  int func_0001EFA0(float);
 };
 extern AirVec D_002A0E84,D_002B7DF8,D_002B7DE8,D_002B7DD8,D_002B7DC8;
+extern float D_002A0E88, D_002A0E8C, D_002A0E90;
 extern int D_002B7E08,D_002A0E70;
 extern float D_002755F4;
 AirVec *func_0001E9E0(AirVec*,AirVec*);
@@ -40,3 +41,133 @@ float func_00011000(float);
 float func_0014F550(float);
 float func_0014F510(float);
 AirVec *func_000110E0(AirVec*,AirVec*,AirVec*);
+
+int BmxAirborneControlModel::func_0001EFA0(float dt) {
+ AirVec v={0,0,0,1},w={0,0,0,1};
+ int zero=0, one=1;
+ f54=zero; f124=D_002A0E84;
+ if(active) {
+ body->motion->func_00197B40(&v,&w);
+ if(f38) {
+ AirBody *p=body;
+ float delta[3];
+ delta[0]=D_002A0E78*p->velocity.x;
+ delta[1]=D_002A0E78*p->velocity.y;
+ delta[2]=D_002A0E78*p->velocity.z;
+ p->position.x+=delta[0]; p->position.y+=delta[1]; p->position.z+=delta[2];
+ f98=zero; f118=zero; ff8=zero;
+ return one;
+ }
+ if(f34 && !f50) {
+ if(fe0) { fdc=one; fe4=one; fec=0; ff0=0; }
+ f98=zero; ff4=zero; ff8=zero; ffc=zero; f118=zero;
+ return one;
+ }
+ AirVec force=D_002A0E84;
+ volatile float multiplier=1;
+ if(f48) {
+ force.x=(f78*body->speed-body->velocity.x)*f7c*D_00275994;
+ force.y=0;force.z=0;
+ float speed=body->speed; *(u32*)&speed &= 0x7fffffff;
+ if(speed>D_002760A0) {
+ AirVec tmp,scaled;
+ func_000110B0(&tmp,&normal);
+ body->func_0001C710(*func_0001C5E0(&scaled,f84,&tmp));
+ }
+ float dot=body->direction.y*normal.y+body->direction.x*normal.x+body->direction.z*normal.z;
+ volatile float x=dot*normal.x,z=dot*normal.z;
+ AirVec damping;
+ damping.x=(body->direction.x-x)*D_002A0E74;
+ damping.y=D_002A0E74*D_00275544;
+ damping.z=(body->direction.z-z)*D_002A0E74; damping.w=1;
+ body->func_0001C710(damping);
+ }
+ else if(f50) {
+ if(!(D_002B7E08&1)) { D_002B7E08|=1;D_002B7DF8=D_002A0E84; }
+ if(f34) {
+ ffc=zero;
+ if(fe0) { fdc=one; fec=0; }
+ rider->f490=zero;
+ if(ff8) { rider->func_00027C50(0.5f);ff8=zero; }
+ AirVec src=*(AirVec*)(rider->matrix+0x190),out;
+ AirVec direction=*func_0001E9E0(&out,&src);
+ if(direction.y>=D_002755F4 && direction.y>D_00275F64) { D_002B7DF8=direction;ff4=one; }
+ } else {
+ if(!(D_002B7E08&2)) { D_002B7E08|=2;D_002B7DE8.x=D_002B7DE8.y=D_002B7DE8.z=0;D_002B7DE8.w=1; }
+ if(!(D_002B7E08&4)) { D_002B7E08|=4;D_002B7DD8.x=D_002B7DD8.y=D_002B7DD8.z=0;D_002B7DD8.w=1; }
+ if(!(D_002B7E08&8)) { D_002B7E08|=8;D_002B7DC8.x=D_002B7DC8.y=D_002B7DC8.z=0;D_002B7DC8.w=1; }
+ if(ff4) {
+ if(ffc<D_002A0E70) ++ffc;
+ if(ffc>=D_002A0E70) {
+ ff4=zero;
+ AirVec t0,t1,t2,t3;
+ D_002B7DE8=*func_0001E9E0(&t1,func_0001C610(&t0,&D_002A0EA4,&D_002B7DF8));
+ D_002B7DD8=*func_0001E9E0(&t3,func_0001C610(&t2,&D_002A0EA4,&D_002B7DE8));
+ AirVec velocity=body->direction;
+ float dot=velocity.y*D_002B7DE8.y+velocity.x*D_002B7DE8.x+velocity.z*D_002B7DE8.z;
+ velocity.func_0001C5B0(func_0001C5E0(&t0,dot,&D_002B7DE8));
+ AirVec dir=*func_0001E9E0(&t1,&velocity);
+ float angle=func_0014F7E0(D_002A0EA4.x*dir.x+D_002A0EA4.y*dir.y+D_002A0EA4.z*dir.z);
+ if(angle<=D_002A0E6C) {
+ AirVec b={0,0,0,1},c={0,0,0,1};
+ body->motion->func_00197B40(&b,&c);
+ b=*func_0001E9E0(&t1,&b);
+ dot=b.y*D_002B7DE8.y+b.x*D_002B7DE8.x+b.z*D_002B7DE8.z;
+ b.func_0001C5B0(func_0001C5E0(&t0,dot,&D_002B7DE8));
+ angle=func_0014F7E0(D_002A0EA4.x*b.x+D_002A0EA4.y*b.y+D_002A0EA4.z*b.z);
+ if(angle<=D_002A0E68) {
+ D_002B7DC4=func_00011170(&velocity);
+ if(D_002B7DC4<=D_002A0E64) D_002B7DC4=D_002A0E64;
+ if(rider->f4f8||rider->f4f4) D_002B7DC4*=D_002A0E60;
+ D_002B7DC8=*func_000110E0(&t2,func_0001C5E0(&t0,func_0014F510(D_002A0E5C),&D_002B7DD8),func_0001C5E0(&t1,func_0014F550(D_002A0E5C),&D_002A0EA4));
+ body->direction=*func_0001C5E0(&t3,D_002B7DC4,&D_002B7DC8);
+ D_002B7DC0=func_0014F7E0(D_002A0EA4.x*velocity.x+D_002A0EA4.y*velocity.y+D_002A0EA4.z*velocity.z);
+ float g=rider->physics->f2c;
+ float side=body->direction.y*D_002B7DD8.y+body->direction.x*D_002B7DD8.x;
+ float back=body->direction.z*D_002B7DD8.z;
+ float vertical=body->direction.y;
+ D_002B7DBC=(func_00011000((2*g*D_002A0E58)/(vertical*vertical)+D_00275460)+D_00275460)*(vertical/g);
+ f100=0;ff8=one;rider->f490=one;body->f258=D_002A0E84;
+ D_002B7DB8=((body->f210+side)*D_002B7DBC-D_002A0E54)*g*D_002755EC/(D_002B7DBC*D_002B7DBC*D_002B7DBC);
+ }
+ }
+ }
+ }
+ }
+ }
+ if(!f48&&!fac) {
+ if(!f4c&&!f50) {
+ if(f40) { force.y-=f90*f64; if(fe0) fdc=zero; }
+ else if(f44) { force.y+=f90*f64; if(fe0) fdc=zero; }
+ else {
+ float abs5c=f5c; *(u32*)&abs5c &= 0x7fffffff;
+ if(abs5c>D_002756DC) ff0+=dt; else ff0=0;
+ if(ff0>D_00275F64) fe4=zero;
+ if(fe4 && body->speed>D_00275544)
+ force.x+=(f78*body->speed-body->velocity.x)*f7c*D_00275994;
+ else force.x-=f6c*f5c;
+ float abs58=f58; *(u32*)&abs58 &= 0x7fffffff;
+ if(abs58>D_002A0E34&&!f98) f98=f58>D_00275544?2:1;
+ }
+ } else {
+ if(f40) { force.y-=f90*f68; if(fe0) fdc=zero; }
+ else if(f44) { force.y+=f90*f68; if(fe0) fdc=zero; }
+ else force.y+=f68*f58;
+ }
+ }
+
+ float scale=multiplier*((f4c||f50)&&!fdc?f74:f70);
+ AirVec velocity;
+ velocity.x=scale*body->velocity.x;velocity.y=scale*body->velocity.y;velocity.z=scale*body->velocity.z;
+ force.x+=velocity.x;force.y+=velocity.y;force.z+=velocity.z;
+ body->position.x+=force.x;body->position.y+=force.y;body->position.z+=force.z;
+ float abs58=f58; *(u32*)&abs58 &= 0x7fffffff;
+ float absX=v.x; *(u32*)&absX &= 0x7fffffff;
+ if(((abs58<=D_002756DC&&absX<=D_00276080)&&(f4c||ff8))||f48||fac) {
+ AirBody *p=body;
+ float z=(p->f94*f78-p->velocity.z)*f7c*D_00275994;
+ p->position.z+=z;
+ }
+ }
+ return 1;
+}
