@@ -135,13 +135,6 @@ struct C_001C2210 {
     void func_001C2210();
 };
 
-static __forceinline void C_001C2210_Rel30(C_001C2210 *p)
-{
-    if (p->unk30 != 0) {
-        ((VCall8 *)p)->v7();
-    }
-}
-
 struct C_001C21F0 {
     void func_001C21F0(int a0);
     void func_001BFD00(int a0);
@@ -330,7 +323,7 @@ void C_001C21F0::func_001C21F0(int a0) {
 
 void C_001C2210::func_001C2210() {
     unk2C = 1;
-    if ((unk30 != 0 ? unk34 : 0) == 0) {
+    if (unk30 == 0 || unk34 == 0) {
         if (unk30 != 0) {
             ((VCall8 *)this)->v7();
         }
