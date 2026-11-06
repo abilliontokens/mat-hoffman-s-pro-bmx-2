@@ -1,5 +1,6 @@
 /* 7 functions from 0x000CEFC0 to 0x000CFF30, found by Ghidra. */
 #include "common.h"
+#include "asm_helpers.h"
 
 extern const char D_0027EB6C[];
 extern const char D_0027EB60[];
@@ -9,7 +10,7 @@ extern char D_0027DB68[], D_0027DB80[], D_0027E914[], D_0027E904[], D_0027E8F8[]
 extern char D_0027E8E4[], D_0027E8D8[], D_0027E8C8[], D_0027E8BC[], D_0027E8B0[], D_0027E8A0[];
 extern char D_0027E894[], D_0027E888[], D_0027E878[], D_0027E86C[], D_0027E85C[], D_0027E850[];
 extern char D_0027E83C[], D_0027E830[], D_0027E824[];
-extern char D_0027E7E0[], D_0027E7EC[], D_0027E7F8[], D_0027E7D4[];
+extern char D_0027E7E0[], D_0027E7EC[], D_0027E7F8[], D_0027E7D4[], D_0027E7C8[];
 extern char D_0027EB58[], D_0027EB50[];
 
 struct S_000CEFC0_Obj30000 {
@@ -138,90 +139,110 @@ struct BmxUIPageGameOptions {
 void BmxUIPageGameOptions::func_000CEFC0()
 {
     S_000CEFC0_124 *p = unk124;
-    S_000CEFC0_Record *rec = D_002A8490->f2e0;
-    int *e = rec->f2c0->func_0005C020(rec->f2d8);
-    int idx = *(int *)((char *)this + 0x490);
+    int *e = D_002A8490->f2e0->f2c0->func_0005C020(D_002A8490->f2e0->f2d8);
     char tmp[260];
     int val;
 
-    *(int *)((char *)rec + 0x234 + idx * 4) = p->func_000BC180();
-    *(int *)((char *)rec + 0x1b0 + idx * 4) = p->func_000BC0B0();
+    *(int *)((char *)D_002A8490->f2e0 + 0x234 + *(int *)((char *)this + 0x490) * 4) = p->func_000BC180();
+    *(int *)((char *)D_002A8490->f2e0 + 0x1b0 + *(int *)((char *)this + 0x490) * 4) = p->func_000BC0B0();
     val = func_001BF050(1);
     switch (val) {
     case 1:
-        *(int *)((char *)rec + 0x190 + idx * 4) = 0;
-        if (rec->f4 == 0) *(int *)((char *)e + 0x5cc) = 0;
-        { int n = 0x103; if (n > 11) n = 11; func_001E8920((char *)this + 0x28c, D_0027DB68, n); ((char *)this + 0x28c)[n] = 0; }
-        { int n = 0x103; if (n > 9) n = 9; func_001E8920(tmp, D_0027DB80, n); tmp[n] = 0; }
+        *(int *)((char *)D_002A8490->f2e0 + 0x190 + *(int *)((char *)this + 0x490) * 4) = 0;
+        if (D_002A8490->f2e0->f4 == 0) *(int *)((char *)e + 0x5cc) = 0;
+        { int n = 0x103; n = AsmMinI(n, 11); func_001E8920((char *)this + 0x28c, D_0027DB68, n); ((char *)this + 0x28c)[n] = 0; }
+        { int n = 0x103; n = AsmMinI(n, 9); func_001E8920(tmp, D_0027DB80, n); tmp[n] = 0; }
         break;
     case 2:
-        *(int *)((char *)rec + 0x190 + idx * 4) = 1;
-        if (rec->f4 == 0) *(int *)((char *)e + 0x5cc) = 1;
-        { int n = 0x103; if (n > 4) n = 4; func_001E8920((char *)this + 0x28c, D_0027E914, n); ((char *)this + 0x28c)[n] = 0; }
+        *(int *)((char *)D_002A8490->f2e0 + 0x190 + *(int *)((char *)this + 0x490) * 4) = 1;
+        if (D_002A8490->f2e0->f4 == 0) *(int *)((char *)e + 0x5cc) = 1;
+        { int n = 0x103; n = AsmMinI(n, 4); func_001E8920((char *)this + 0x28c, D_0027E914, n); ((char *)this + 0x28c)[n] = 0; }
         break;
     case 3:
-        *(int *)((char *)rec + 0x190 + idx * 4) = 2;
-        if (rec->f4 == 0) *(int *)((char *)e + 0x5cc) = 2;
-        { int n = 0x103; if (n > 12) n = 12; func_001E8920((char *)this + 0x28c, D_0027E904, n); ((char *)this + 0x28c)[n] = 0; }
-        { int n = 0x103; if (n > 9) n = 9; func_001E8920(tmp, D_0027E8F8, n); tmp[n] = 0; }
+        *(int *)((char *)D_002A8490->f2e0 + 0x190 + *(int *)((char *)this + 0x490) * 4) = 2;
+        if (D_002A8490->f2e0->f4 == 0) *(int *)((char *)e + 0x5cc) = 2;
+        { int n = 0x103; n = AsmMinI(n, 12); func_001E8920((char *)this + 0x28c, D_0027E904, n); ((char *)this + 0x28c)[n] = 0; }
+        { int n = 0x103; n = AsmMinI(n, 9); func_001E8920(tmp, D_0027E8F8, n); tmp[n] = 0; }
         break;
     case 4:
-        *(int *)((char *)rec + 0x190 + idx * 4) = 3;
-        if (rec->f4 == 0) *(int *)((char *)e + 0x5cc) = 3;
-        { int n = 0x103; if (n > 4) n = 4; func_001E8920((char *)this + 0x28c, D_0027E8F0, n); ((char *)this + 0x28c)[n] = 0; }
+        *(int *)((char *)D_002A8490->f2e0 + 0x190 + *(int *)((char *)this + 0x490) * 4) = 3;
+        if (D_002A8490->f2e0->f4 == 0) *(int *)((char *)e + 0x5cc) = 3;
+        { int n = 0x103; n = AsmMinI(n, 4); func_001E8920((char *)this + 0x28c, D_0027E8F0, n); ((char *)this + 0x28c)[n] = 0; }
         break;
     case 5:
-        *(int *)((char *)rec + 0x190 + idx * 4) = 4;
-        if (rec->f4 == 0) *(int *)((char *)e + 0x5cc) = 4;
-        { int n = 0x103; if (n > 11) n = 11; func_001E8920((char *)this + 0x28c, D_0027E8E4, n); ((char *)this + 0x28c)[n] = 0; }
-        { int n = 0x103; if (n > 10) n = 10; func_001E8920(tmp, D_0027E8D8, n); tmp[n] = 0; }
+        *(int *)((char *)D_002A8490->f2e0 + 0x190 + *(int *)((char *)this + 0x490) * 4) = 4;
+        if (D_002A8490->f2e0->f4 == 0) *(int *)((char *)e + 0x5cc) = 4;
+        { int n = 0x103; n = AsmMinI(n, 11); func_001E8920((char *)this + 0x28c, D_0027E8E4, n); ((char *)this + 0x28c)[n] = 0; }
+        { int n = 0x103; n = AsmMinI(n, 10); func_001E8920(tmp, D_0027E8D8, n); tmp[n] = 0; }
         break;
     case 6:
-        *(int *)((char *)rec + 0x190 + idx * 4) = 5;
-        if (rec->f4 == 0) *(int *)((char *)e + 0x5cc) = 5;
-        { int n = 0x103; if (n > 14) n = 14; func_001E8920((char *)this + 0x28c, D_0027E8C8, n); ((char *)this + 0x28c)[n] = 0; }
-        { int n = 0x103; if (n > 10) n = 10; func_001E8920(tmp, D_0027E8BC, n); tmp[n] = 0; }
+        *(int *)((char *)D_002A8490->f2e0 + 0x190 + *(int *)((char *)this + 0x490) * 4) = 5;
+        if (D_002A8490->f2e0->f4 == 0) *(int *)((char *)e + 0x5cc) = 5;
+        { int n = 0x103; n = AsmMinI(n, 14); func_001E8920((char *)this + 0x28c, D_0027E8C8, n); ((char *)this + 0x28c)[n] = 0; }
+        { int n = 0x103; n = AsmMinI(n, 10); func_001E8920(tmp, D_0027E8BC, n); tmp[n] = 0; }
         break;
     case 7:
-        *(int *)((char *)rec + 0x190 + idx * 4) = 6;
-        if (rec->f4 == 0) *(int *)((char *)e + 0x5cc) = 6;
-        { int n = 0x103; if (n > 9) n = 9; func_001E8920((char *)this + 0x28c, D_0027E8B0, n); ((char *)this + 0x28c)[n] = 0; }
+        *(int *)((char *)D_002A8490->f2e0 + 0x190 + *(int *)((char *)this + 0x490) * 4) = 6;
+        if (D_002A8490->f2e0->f4 == 0) *(int *)((char *)e + 0x5cc) = 6;
+        { int n = 0x103; n = AsmMinI(n, 9); func_001E8920((char *)this + 0x28c, D_0027E8B0, n); ((char *)this + 0x28c)[n] = 0; }
         break;
     case 8:
-        *(int *)((char *)rec + 0x190 + idx * 4) = 7;
-        if (rec->f4 == 0) *(int *)((char *)e + 0x5cc) = 7;
-        { int n = 0x103; if (n > 12) n = 12; func_001E8920((char *)this + 0x28c, D_0027E8A0, n); ((char *)this + 0x28c)[n] = 0; }
-        { int n = 0x103; if (n > 11) n = 11; func_001E8920(tmp, D_0027E894, n); tmp[n] = 0; }
+        *(int *)((char *)D_002A8490->f2e0 + 0x190 + *(int *)((char *)this + 0x490) * 4) = 7;
+        if (D_002A8490->f2e0->f4 == 0) *(int *)((char *)e + 0x5cc) = 7;
+        { int n = 0x103; n = AsmMinI(n, 12); func_001E8920((char *)this + 0x28c, D_0027E8A0, n); ((char *)this + 0x28c)[n] = 0; }
+        { int n = 0x103; n = AsmMinI(n, 11); func_001E8920(tmp, D_0027E894, n); tmp[n] = 0; }
         break;
     case 9:
-        *(int *)((char *)rec + 0x190 + idx * 4) = 8;
-        if (rec->f4 == 0) *(int *)((char *)e + 0x5cc) = 8;
-        { int n = 0x103; if (n > 8) n = 8; func_001E8920((char *)this + 0x28c, D_0027E888, n); ((char *)this + 0x28c)[n] = 0; }
+        *(int *)((char *)D_002A8490->f2e0 + 0x190 + *(int *)((char *)this + 0x490) * 4) = 8;
+        if (D_002A8490->f2e0->f4 == 0) *(int *)((char *)e + 0x5cc) = 8;
+        { int n = 0x103; n = AsmMinI(n, 8); func_001E8920((char *)this + 0x28c, D_0027E888, n); ((char *)this + 0x28c)[n] = 0; }
         break;
     case 10:
-        *(int *)((char *)rec + 0x190 + idx * 4) = 9;
-        if (rec->f4 == 0) *(int *)((char *)e + 0x5cc) = 9;
-        { int n = 0x103; if (n > 14) n = 14; func_001E8920((char *)this + 0x28c, D_0027E878, n); ((char *)this + 0x28c)[n] = 0; }
-        { int n = 0x103; if (n > 11) n = 11; func_001E8920(tmp, D_0027E86C, n); tmp[n] = 0; }
+        *(int *)((char *)D_002A8490->f2e0 + 0x190 + *(int *)((char *)this + 0x490) * 4) = 9;
+        if (D_002A8490->f2e0->f4 == 0) *(int *)((char *)e + 0x5cc) = 9;
+        { int n = 0x103; n = AsmMinI(n, 14); func_001E8920((char *)this + 0x28c, D_0027E878, n); ((char *)this + 0x28c)[n] = 0; }
+        { int n = 0x103; n = AsmMinI(n, 11); func_001E8920(tmp, D_0027E86C, n); tmp[n] = 0; }
         break;
     case 11:
-        *(int *)((char *)rec + 0x190 + idx * 4) = 10;
-        if (rec->f4 == 0) *(int *)((char *)e + 0x5cc) = 10;
-        { int n = 0x103; if (n > 13) n = 13; func_001E8920((char *)this + 0x28c, D_0027E85C, n); ((char *)this + 0x28c)[n] = 0; }
-        { int n = 0x103; if (n > 10) n = 10; func_001E8920(tmp, D_0027E850, n); tmp[n] = 0; }
+        *(int *)((char *)D_002A8490->f2e0 + 0x190 + *(int *)((char *)this + 0x490) * 4) = 10;
+        if (D_002A8490->f2e0->f4 == 0) *(int *)((char *)e + 0x5cc) = 10;
+        { int n = 0x103; n = AsmMinI(n, 13); func_001E8920((char *)this + 0x28c, D_0027E85C, n); ((char *)this + 0x28c)[n] = 0; }
+        { int n = 0x103; n = AsmMinI(n, 10); func_001E8920(tmp, D_0027E850, n); tmp[n] = 0; }
         break;
     case 12:
-        *(int *)((char *)rec + 0x190 + idx * 4) = 11;
-        if (rec->f4 == 0) *(int *)((char *)e + 0x5cc) = 11;
-        { int n = 0x103; if (n > 16) n = 16; func_001E8920((char *)this + 0x28c, D_0027E83C, n); ((char *)this + 0x28c)[n] = 0; }
-        { int n = 0x103; if (n > 11) n = 11; func_001E8920(tmp, D_0027E830, n); tmp[n] = 0; }
+        *(int *)((char *)D_002A8490->f2e0 + 0x190 + *(int *)((char *)this + 0x490) * 4) = 11;
+        if (D_002A8490->f2e0->f4 == 0) *(int *)((char *)e + 0x5cc) = 11;
+        { int n = 0x103; n = AsmMinI(n, 16); func_001E8920((char *)this + 0x28c, D_0027E83C, n); ((char *)this + 0x28c)[n] = 0; }
+        { int n = 0x103; n = AsmMinI(n, 11); func_001E8920(tmp, D_0027E830, n); tmp[n] = 0; }
         break;
     case 13:
-        *(int *)((char *)rec + 0x190 + idx * 4) = 12;
-        if (rec->f4 == 0) *(int *)((char *)e + 0x5cc) = 12;
-        { int n = 0x103; if (n > 8) n = 8; func_001E8920((char *)this + 0x28c, D_0027E824, n); ((char *)this + 0x28c)[n] = 0; }
+        *(int *)((char *)D_002A8490->f2e0 + 0x190 + *(int *)((char *)this + 0x490) * 4) = 12;
+        if (D_002A8490->f2e0->f4 == 0) *(int *)((char *)e + 0x5cc) = 12;
+        { int n = 0x103; n = AsmMinI(n, 8); func_001E8920((char *)this + 0x28c, D_0027E824, n); ((char *)this + 0x28c)[n] = 0; }
         break;
+    case 14:
+        *(int *)((char *)D_002A8490->f2e0 + 0x190 + *(int *)((char *)this + 0x490) * 4) = 13;
+        if (D_002A8490->f2e0->f4 == 0) *(int *)((char *)e + 0x5cc) = 13;
+        { int n = 0x103; n = AsmMinI(n, 14); func_001E8920((char *)this + 0x28c, D_0027E7F8, n); ((char *)this + 0x28c)[n] = 0; }
+        { int n = 0x103; n = AsmMinI(n, 10); func_001E8920(tmp, D_0027E7EC, n); tmp[n] = 0; }
+        break;
+    case 15:
+        *(int *)((char *)D_002A8490->f2e0 + 0x190 + *(int *)((char *)this + 0x490) * 4) = 14;
+        if (D_002A8490->f2e0->f4 == 0) *(int *)((char *)e + 0x5cc) = 14;
+        { int n = 0x103; n = AsmMinI(n, 11); func_001E8920((char *)this + 0x28c, D_0027E7E0, n); ((char *)this + 0x28c)[n] = 0; }
+        { int n = 0x103; n = AsmMinI(n, 10); func_001E8920(tmp, D_0027E7D4, n); tmp[n] = 0; }
+        break;
+    default:
+        return;
     }
+    if (*(int *)((char *)this + 0x288) == 0) {
+        return;
+    }
+    if (val == 2 || val == 4 || val == 7 || val == 9 || val == 13 || val == 16) {
+        return;
+    }
+    p->f150->f484->func_0001BD60((char *)this + 0x28c, D_0027EB58);
+    p->f150->f484->func_0001BC50((char *)this + 0x28c, D_0027EB50, 1);
 }
 
 void BmxUIPageGameOptions::func_000CFAC0()
