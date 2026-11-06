@@ -189,7 +189,7 @@ struct C_0011C900 {
 
 extern float D_002756DC, D_002755E8, D_00278C48;
 extern V4_0011C3F0 D_002A3BCC;
-static __forceinline void Cross_0011BBB0(V4_0011C3F0 *out, const V4_0011C3F0 *a, const V4_0011C3F0 *b)
+static inline void Cross_0011BBB0(V4_0011C3F0 *out, const V4_0011C3F0 *a, const V4_0011C3F0 *b)
 {
     __m128 vb = _mm_loadu_ps(&b->x);
     __m128 va = _mm_loadu_ps(&a->x);
