@@ -60,6 +60,48 @@ struct S_0005F3C0_8490 {
     struct Lookup_5F *f2EC;
 };
 struct S_0005F3C0_2E8 { int f0; int *f4; };
+struct Label_5F3 {
+    char pad0[0x28];
+    int f28;
+    char pad2C[0x10];
+    float f3C;
+    float f40;
+    float f44;
+    float f48;
+    char pad4C[0xC];
+    u8 f58;
+    Label_5F3 *func_001D5760(void);
+    void func_001D5810(void *font, float x, float y, int a);
+};
+struct Widget_5F3 {
+    Widget_5F3 *func_001B12C0(int a);
+    void func_001B1580(void *a, void *b, int text, int c);
+    void func_001B13A0(void *a, void *b, int c, int d);
+    void func_001B19C0(int x, int y, int a);
+    void func_001B2270(u32 color);
+    void func_001B19A0(int a);
+    void func_001B17D0(int text);
+};
+struct Text_5F3 {
+    int f0;
+    int f4;
+    int f8;
+    char padC[0x28];
+    int f34;
+    char pad38[0x10];
+    u32 f48;
+    char pad4C[0x2];
+    u8 f4E;
+    Text_5F3 *func_001D5E90(void);
+    void func_001D6190(int font, int text, void *a);
+};
+void *func_001E8A44(unsigned int size);
+extern char D_002A60B0[];
+extern char D_002A5FA8[];
+extern char D_002A5870[];
+extern char D_00275678[];
+extern char D_002786B0[];
+extern int D_0028F5E0;
 struct Mid_5F { S_0005FBD0_Obj *func_0018C070(); };
 struct Lookup_5F { int *func_0018C160(int); };
 extern int D_002786A0, D_00278690, D_00278678;
