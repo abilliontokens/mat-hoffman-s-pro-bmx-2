@@ -56,6 +56,7 @@ struct C_001C26B0 {
     void func_00168C50(const char *key, int def, void *dst);
     int func_00168CB0(const char *key, void *def, void *dst);
     void func_000979C0(char *text, int *out);
+    void func_000979C0(char *text, int &out);
     void func_001C01E0(char *text);
     C_001C26B0 *func_001B12C0(int a);
     void func_001B13A0(char *a, char *b, int c, int d);
