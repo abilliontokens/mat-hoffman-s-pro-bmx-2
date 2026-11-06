@@ -1,6 +1,7 @@
 /* 10 functions from 0x000C5580 to 0x000C6550, found by Ghidra. */
 #include "common.h"
 
+extern int D_00278690, D_002786A0, D_00278678;
 struct S_C5EA0_Clamp { float f10, f14; };
 struct S_C5EA0_Inner { S_C5EA0_Clamp *func_0018C070(); };
 struct S_C5EA0_Obj { S_C5EA0_Inner *f0; };
