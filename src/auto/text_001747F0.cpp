@@ -138,41 +138,49 @@ u32 func_00175250(u8 *dst, u8 *src, int width, int height, int dstPitch, int src
     return 1;
 }
 
-int func_00175340(u8 *dst, u8 *src, int height, int width, int pitch, int dstStep, int unused)
+int func_00175340(u8 *dst, u8 *src, int width, int height, int dstPitch, int srcPitch, int unused)
 {
-    int y, x, r, g, b, a, n;
+    u8 *srow;
+    u8 *drow;
+    u8 *s;
+    u8 *d;
+    int x;
+    int y;
+    int r, g, b, a, n;
+
+    srow = src;
+    drow = dst;
     for (y = height; y > 0; y--) {
-        u8 *s = src;
-        u8 *d = dst;
+        s = srow;
+        d = drow;
         for (x = width; x > 0; x--) {
-            r = 0; g = 0; b = 0; a = 0;
-            n = 0;
-            if (s[3]) { r += s[0]; g += s[1]; b += s[2]; a += s[3]; n++; }
-            if (s[7]) { r += s[4]; g += s[5]; b += s[6]; a += s[7]; n++; }
-            if (s[pitch * 4 + 3]) { r += s[pitch * 4 + 0]; g += s[pitch * 4 + 1]; b += s[pitch * 4 + 2]; a += s[pitch * 4 + 3]; n++; }
-            if (s[pitch * 4 + 7]) { r += s[pitch * 4 + 4]; g += s[pitch * 4 + 5]; b += s[pitch * 4 + 6]; a += s[pitch * 4 + 7]; n++; }
+            a = r = g = b = n = 0;
+            if (s[3]) { b += s[2]; g += s[1]; r += s[0]; a += s[3]; n++; }
+            if (s[7]) { b += s[6]; g += s[5]; r += s[4]; a += s[7]; n++; }
+            if (s[srcPitch * 4 + 3]) { b += s[srcPitch * 4 + 2]; g += s[srcPitch * 4 + 1]; r += s[srcPitch * 4]; a += s[srcPitch * 4 + 3]; n++; }
+            if (s[srcPitch * 4 + 7]) { b += s[srcPitch * 4 + 6]; g += s[srcPitch * 4 + 5]; r += s[srcPitch * 4 + 4]; a += s[srcPitch * 4 + 3]; n++; }
             switch (n) {
             case 0:
-                d[0] = 0; d[1] = 0; d[2] = 0; d[3] = 0;
+                d[2] = 0; d[1] = 0; d[0] = 0; d[3] = 0;
                 break;
             case 1:
-                d[0] = r; d[1] = g; d[2] = b; d[3] = a;
+                d[2] = b; d[1] = g; d[0] = r; d[3] = a;
                 break;
             case 2:
-                d[0] = r >> 1; d[1] = g >> 1; d[2] = b >> 1; d[3] = a >> 1;
+                d[2] = b >> 1; d[1] = g >> 1; d[0] = r >> 1; d[3] = a >> 1;
                 break;
             case 3:
-                d[0] = r / 3; d[1] = g / 3; d[2] = b / 3; d[3] = a / 3;
+                d[2] = b / 3; d[1] = g / 3; d[0] = r / 3; d[3] = a / 3;
                 break;
             case 4:
-                d[0] = r >> 2; d[1] = g >> 2; d[2] = b >> 2; d[3] = a >> 2;
+                d[2] = b >> 2; d[1] = g >> 2; d[0] = r >> 2; d[3] = a >> 2;
                 break;
             }
             d += 4;
             s += 8;
         }
-        src += pitch * 8;
-        dst += dstStep;
+        srow += srcPitch * 8;
+        drow += dstPitch * 4;
     }
     return 1;
 }
