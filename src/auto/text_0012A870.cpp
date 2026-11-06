@@ -130,6 +130,18 @@ struct C_0012AAE0 {
     int func_0012B3D0(void);
 };
 
+/* The object's vtable: slot 29 (+0x74) takes the two clamped floats. */
+struct C_0012AAE0_VCall {
+    virtual void v00(); virtual void v01(); virtual void v02(); virtual void v03();
+    virtual void v04(); virtual void v05(); virtual void v06(); virtual void v07();
+    virtual void v08(); virtual void v09(); virtual void v10(); virtual void v11();
+    virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15();
+    virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
+    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23();
+    virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27();
+    virtual void v28(); virtual void v29(float a, float b);
+};
+
 struct C_0012AB70 {
     char pad0[0x170];
     int f170[4];
@@ -490,10 +502,9 @@ void C_0012AEC0::func_0012AEC0(void)
 
 void C_0012B000::func_0012B000(float param1, float param2)
 {
-    f1fc = *(int *)&param1;
-    float q = param1 / param2;
-    f200 = *(int *)&param2;
-    float f = D_00275460 / (D_00275460 - q);
+    f1fc = param1;
+    f200 = param2;
+    float f = D_00275460 / (D_00275460 - param1 / param2);
     f98 = f;
     f9c = -(f * param1);
     func_000263B0(ff0, fb0, f70);
