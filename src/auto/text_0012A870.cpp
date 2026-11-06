@@ -192,8 +192,8 @@ struct C_0012B000 {
     char pada0[0x10];
     char fb0[0x40];
     char ff0[0x10c];
-    int f1fc;
-    int f200;
+    float f1fc;
+    float f200;
     void func_0012B000(float param1, float param2);
 };
 
@@ -490,13 +490,13 @@ void C_0012AEC0::func_0012AEC0(void)
 
 void C_0012B000::func_0012B000(float param1, float param2)
 {
-    f1fc = param1;
-    float *a70 = (float *)f70;
-    *(volatile float *)&f200 = param2;
-    float f = D_00275460 / (D_00275460 - param1 / param2);
+    f1fc = *(int *)&param1;
+    float q = param1 / param2;
+    f200 = *(int *)&param2;
+    float f = D_00275460 / (D_00275460 - q);
     f98 = f;
     f9c = -(f * param1);
-    func_000263B0(&ff0, &fb0, a70);
+    func_000263B0(ff0, fb0, f70);
 }
 
 void Camera::func_0012B060(void)
