@@ -259,7 +259,7 @@ void __declspec(noinline) func_001E7410(int n, float *a, float *b, int k)
         return;
     }
     func_001E6B50(a, b + k - 0x10);
-    func_001E6D40(a + 0x10, b);
+    func_001E6D40(a + 0x10);
     func_001E6B50(a + 0x20, b);
     func_001E6B50(a + 0x30, b);
 }
