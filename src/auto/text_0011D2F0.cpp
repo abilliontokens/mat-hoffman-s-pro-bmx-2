@@ -66,8 +66,7 @@ struct C_0011D2F0 {
     Body_0011D2F0 *f84;
     Node_0011D2F0 *f88;
     char pad8C[0xb8 - 0x8c];
-    float fB8;
-    int fBC;
+    float fB8;    int fBC;
     int fC0;
     int fC4;
     int *fC8;
@@ -87,79 +86,128 @@ struct C_0011D2F0 {
     void func_0011D2F0(float dt);
 };
 
+#pragma optimize("y", off)
 void C_0011D2F0::func_0011D2F0(float dt)
 {
+    C_0011D2F0 * volatile self = this;
+    __declspec(align(16)) V4_0011D2F0 v0;
     fC0 = fBC;
     if (D_002A8490->f2a4->f1c8 != 0) {
-        if (fBC == 0) {
-            if (f12C == 1) {
-                f84->func_00164820(fC4);
-                f84->node->func_001996A0(0, f134);
-                f84->node->func_00199300(&f144);
-                f84->func_001670C0(dt, 0, 0);
-            } else if (f12C == 2) {
+        if (self->fBC == 0) {
+            if (self->f12C == 1) {
+                self->f84->func_00164820(self->fC4);
+                self->f84->node->func_001996A0(0, self->f134);
+                self->f84->node->func_00199300(&self->f144);
+                self->f84->func_001670C0(dt, 0, 0);
+            } else if (self->f12C == 2) {
                 M4_0011D2F0 mA, mB, mC, mE;
                 V4_0011D2F0 vD, ra, rb;
-                f84->node->func_001996A0(0, f134);
-                f84->node->func_00199300(&f144);
-                f84->f18 = 0;
-                f84->func_00166C80(fC8[f130], 0);
-                f84->node->func_00197EA0(&mA);
-                f88->func_00199C20(0, &mB);
+                self->f84->node->func_001996A0(0, self->f134);
+                self->f84->node->func_00199300(&self->f144);
+                self->f84->f18 = 0;
+                self->f84->func_00166C80(self->fC8[self->f130], 0);
+                self->f84->node->func_00197EA0(&mA);
+                self->f88->func_00199C20(0, &mB);
                 func_0011ADA0(&mC, &mB, &mA);
                 ra = *func_00026910(&vD, &mC, 3);
                 rb = *func_0011ADD0(&vD, &mC);
-                *f84->f204 = ra;
-                *f84->f200 = rb;
+                *self->f84->f204 = ra;
+                *self->f84->f200 = rb;
             }
-        } else if (fBC == 1) {
-            f84->func_001670C0(dt, 0, 0);
-            if (f12C == 1) {
-                f84->node->func_001996A0(0, f134);
-                f84->node->func_00199300(&f144);
-            } else if (f12C == 2) {
+        } else if (self->fBC == 1) {
+            self->f84->func_001670C0(dt, 0, 0);
+            if (self->f12C == 1) {
+                self->f84->node->func_001996A0(0, self->f134);
+                self->f84->node->func_00199300(&self->f144);
+            } else if (self->f12C == 2) {
                 M4_0011D2F0 mA, mB, mC, mE;
                 V4_0011D2F0 vD, ra, rb;
-                f84->node->func_001996A0(0, f134);
-                f84->node->func_00199300(&f144);
-                f84->f18 = 0;
-                f84->func_00166C80(fC8[f130], 0);
-                f84->node->func_00197EA0(&mA);
-                f88->func_00199C20(0, &mB);
+                self->f84->node->func_001996A0(0, self->f134);
+                self->f84->node->func_00199300(&self->f144);
+                self->f84->f18 = 0;
+                self->f84->func_00166C80(self->fC8[self->f130], 0);
+                self->f84->node->func_00197EA0(&mA);
+                self->f88->func_00199C20(0, &mB);
                 func_0011ADA0(&mC, &mB, &mA);
                 ra = *func_00026910(&vD, &mC, 3);
                 rb = *func_0011ADD0(&vD, &mC);
-                *f84->f204 = ra;
-                *f84->f200 = rb;
+                *self->f84->f204 = ra;
+                *self->f84->f200 = rb;
             }
-        } else if (fBC == 2) {
-            if (f12C == 1) {
+        } else if (self->fBC == 2) {
+            if (self->f12C == 1) {
                 M4_0011D2F0 mA, mD;
                 V4_0011D2F0 vZ, vY;
-                f84->f18 = 0;
-                f84->func_00166C80(fC4, 0);
-                f88->func_00199A70(0, &f24);
-                *f84->f204 = D_002A3BBC;
+                self->f84->f18 = 0;
+                self->f84->func_00166C80(self->fC4, 0);
+                self->f88->func_00199A70(0, &self->f24);
+                *self->f84->f204 = D_002A3BBC;
                 func_00026960(&mA);
-                *f84->f200 = *(V4_0011D2F0 *)func_0011ADA0(&mD, &mA, 0);
+                *self->f84->f200 = *(V4_0011D2F0 *)func_0011ADA0(&mD, &mA, 0);
                 vZ.x = vZ.y = vZ.z = 0.0f; vZ.w = 1.0f;
                 vY.x = vY.y = vY.z = 0.0f; vY.w = 1.0f;
-                f88->func_001994C0(0, &vZ, &vY);
-                f84->node->func_00199110(0, &vZ, &vY, 0, 1, 0);
+                self->f88->func_001994C0(0, &vZ, &vY);
+                self->f84->node->func_00199110(0, &vZ, &vY, 0, 1, 0);
             } else {
                 V4_0011D2F0 v;
-                f84->node->func_001996A0(0, f134);
-                f84->node->func_00199300(&f144);
-                if (f84->f10 == 0) {
-                    f84->func_001670C0(dt, 0, 0);
+                self->f84->node->func_001996A0(0, self->f134);
+                self->f84->node->func_00199300(&self->f144);
+                if (self->f84->f10 == 0) {
+                    self->f84->func_001670C0(dt, 0, 0);
                 }
                 v.x = v.y = v.z = 0.0f; v.w = 1.0f;
-                f84->node->func_001994C0(0, 0, &v);
+                self->f84->node->func_001994C0(0, 0, &v);
                 func_0011BBB0(v);
             }
         }
-        fBC = f12C;
-        func_00157A00(dt);
+        self->fBC = self->f12C;
+        self->func_00157A00(dt);
         return;
     }
+    {
+        V4_0011D2F0 hit, nrm;
+        V4_0011D2F0 from, to;
+        v0.z = 0.0f;
+        v0.y = 0.0f;
+        v0.x = 0.0f;
+        v0.w = 1.0f;
+        if (self->fBC == 1 || self->fBC == 2) {
+            if (self->fBC == 2) {
+                self->fB8 -= dt;
+            }
+            if (self->fB8 <= D_00275544) {
+                self->fBC = 3;
+            }
+        }
+        self->f12C = self->fBC;
+        self->f1AC = 0;
+        if (self->fBC == 1) {
+            self->f60 -= dt * D_00283F14;
+            self->f24.x += dt * self->f5C;
+            self->f24.y += dt * self->f60;
+            self->f24.z += dt * self->f64;
+            self->f130 = 0;
+            func_00011FF0(&to, 0x10, 2, func_00011060);
+            hit.z = 0.0f;
+            hit.y = 0.0f;
+            hit.x = 0.0f;
+            hit.w = 1.0f;
+            nrm.z = 0.0f;
+            nrm.y = 0.0f;
+            nrm.x = 0.0f;
+            nrm.w = 1.0f;
+            from = self->f34;
+            to = self->f24;
+            if (func_00134DE0(&from, &nrm, &hit, 0, self->fF4, self->fF0, -1, 0, 1)) {
+                self->f24.x = hit.x + (self->f34.x - hit.x) * D_00276538;
+                self->f24.y = hit.y + (self->f34.y - hit.y) * D_00276538;
+                self->f24.z = hit.z + (self->f34.z - hit.z) * D_00276538;
+                self->f24.w = 1.0f;
+                self->f198 = hit;
+                self->f44 = 0;
+                self->f34 = self->f24;
+            }
+        }
+    }
 }
+#pragma optimize("", on)
