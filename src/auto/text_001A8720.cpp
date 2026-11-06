@@ -16,6 +16,25 @@ extern int D_0028BF14;
 void func_001E891B(void *p);
 void *func_001E8AA5(int size);
 
+struct S_001A8BC0_Mesh {
+    char pad0[0x60];
+    int f60, f64, f68;
+    char pad6C[0x30];
+    void *f9C;
+    S_001A8BC0_Mesh *func_0017F050(int);
+    S_001A8BC0_Mesh *func_0014AB30(int);
+    void func_0017F0A0(int);
+    void func_00129920(int);
+    void func_0014C1C0(int, int, int);
+    void func_00180E00(int, void *, int, void *);
+    void func_00133140(int, int);
+    void func_001334E0(int);
+};
+void *func_001E8A44(int);
+void __stdcall func_00011FF0(void *, int, int, void *);
+void func_00011060();
+void func_001A7FE0();
+extern int D_002BA15C;
 struct C_001A8BC0 {
     char pad0[0x24];
     int f24;
