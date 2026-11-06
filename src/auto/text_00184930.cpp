@@ -425,16 +425,18 @@ static __forceinline int CmpN_00185110(const char *a, const char *b, int n)
 {
     return memcmp(a, b, n);
 }
+extern "C" int strcmp(const char *a, const char *b);
 int C_00184930::func_00184FC0(void)
 {
+    S_00184D10_Info *info = f388;
     void *mem;
     C_0014E3E0 *obj;
 
-    if (f388 == 0) {
+    if (info == 0) {
         return 1;
     }
-    if (memcmp(f388->f31c, D_002764F0, 5) == 0) {
-        func_001ADCC0(f388->f31c, 0x104, D_002895A0, f30, f134);
+    if (strcmp(info->f31c, "none") == 0) {
+        func_001ADCC0(info->f31c, 0x104, D_002895A0, f30, f134);
     }
     mem = func_001E8A44(0x2208);
     if (mem != 0) {
@@ -451,15 +453,17 @@ int C_00184930::func_00184FC0(void)
             } else {
                 D_002F07E8 = 0;
             }
-            D_002F07E8->func_001C4F70(f388->f538, 0xff7fffff, f388->f540, f388->f53c,
-                                      0x7f7fffff, f388->f544, 0x42c00000);
+            info = f388;
+            D_002F07E8->func_001C4F70(info->f538, 0xff7fffff, info->f540, info->f53c,
+                                      0x7f7fffff, info->f544, 0x42c00000);
             D_002F07E8->func_001C4FA0(5000);
         } else {
             f350 = 1;
             ((S_00184DD0_Vt *)this)->v65();
         }
     }
-    if (f3f0->func_0014ECD0(f3e4, f388->f31c, 0x115c, 1, 9, f388->f54c, f388->f550, 0) == 0) {
+    info = f388;
+    if (f3f0->func_0014ECD0(f3e4, info->f31c, 0x115c, 1, 9, info->f54c, info->f550, 0) == 0) {
         f3f0 = 0;
         return 0;
     }
@@ -468,12 +472,13 @@ int C_00184930::func_00184FC0(void)
 
 int C_00184930::func_00185110(int a)
 {
+    unsigned int n = 5;
     if (!f388) return 1;
     if (!f388->f4) return 1;
     f3e0 = (S_00185110_Obj **)func_001E8A44(f388->f4 * 4);
     int i = 0;
     while (i < f388->f4) {
-        if (Cmp5_00185110(f388->f8[i], D_002764F0) != 0) {
+        if (memcmp(f388->f8[i], D_002764F0, n) != 0) {
             S_00185110_Obj *p = (S_00185110_Obj *)func_001E8A44(0x7e0);
             f3e0[i] = p ? p->func_00197680(1) : 0;
             if (!f3e0[i]->func_001976A0(f388->f8[i], 1024.0f)) {
