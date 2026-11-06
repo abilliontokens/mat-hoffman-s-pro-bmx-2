@@ -139,13 +139,16 @@ void func_001E87E0(void) {
 }
 
 #pragma optimize("g", on)
+/* CRT _cfltcvt_init: fills the float-conversion dispatch table (D_002AEA14..28).
+   Slots 1-4 hold the addresses of optional formatting helpers (_cropzeros, _fassign,
+   _forcdecpt, _positive) that were not linked into this build, so they resolve to 0. */
 void func_001E87E1(void)
 {
     int func_001EB786(...);
-    int cropzeros_x(...);
-    int fassign_x(...);
-    int forcdecpt_x(...);
-    int positive_x(...);
+    int cropzeros_unlinked(...);
+    int fassign_unlinked(...);
+    int forcdecpt_unlinked(...);
+    int positive_unlinked(...);
     extern int D_002AEA14;
     extern int D_002AEA18;
     extern int D_002AEA1C;
@@ -153,10 +156,10 @@ void func_001E87E1(void)
     extern int D_002AEA24;
     extern int D_002AEA28;
     D_002AEA14 = (int)func_001EB786;
-    D_002AEA18 = (int)cropzeros_x;
-    D_002AEA1C = (int)fassign_x;
-    D_002AEA20 = (int)forcdecpt_x;
-    D_002AEA24 = (int)positive_x;
+    D_002AEA18 = (int)cropzeros_unlinked;
+    D_002AEA1C = (int)fassign_unlinked;
+    D_002AEA20 = (int)forcdecpt_unlinked;
+    D_002AEA24 = (int)positive_unlinked;
     D_002AEA28 = (int)func_001EB786;
 }
 #pragma optimize("g", on)
