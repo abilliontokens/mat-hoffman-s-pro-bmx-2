@@ -93,6 +93,8 @@ void func_unused_001EDD36(void *, void *);
 extern "C" unsigned int strlen(const char *s);
 #pragma intrinsic(strlen)
 
+#pragma optimize("s", on)
+
 /* write_char / write_multi_char / write_string. In the original they sit at the end of the
    previous unit (text_001ED0FC.cpp, where they are matched); these copies give _output the
    same register-based calls until the two units can be one file. */
