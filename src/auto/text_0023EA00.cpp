@@ -163,7 +163,7 @@ struct C_0023EC0D {
 struct S_0023F119_Wfx {
     unsigned short wFormatTag;
     unsigned short nChannels;
-    unsigned int nSamplesPerSec;
+    volatile unsigned int nSamplesPerSec;
     unsigned int nAvgBytesPerSec;
     unsigned short nBlockAlign;
     unsigned short wBitsPerSample;
