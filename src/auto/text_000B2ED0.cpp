@@ -19,7 +19,11 @@ struct S_2ED0_Own {
 };
 struct S_2ED0_Item {
     int f0;
-    char pad[0x14];
+    float f4;
+    int f8;
+    int fC;
+    int f10;
+    float f14;
 };
 struct C_000B2ED0 {
     char pad0[0x3C];
