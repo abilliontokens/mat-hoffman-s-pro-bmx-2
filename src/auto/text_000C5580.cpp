@@ -96,25 +96,6 @@ struct BmxUIPageMain {
     void func_001BF000(void);
 };
 
-static inline void S5580_Highlight(BmxUIPageMain *page, int count, int n)
-{
-    int i;
-    E_000C5710 *e;
-
-    for (i = 0; i < count; i++) {
-        if (n * 2 == i || n * 2 + 1 == i) {
-            e = page->f2F8[i];
-            e->f38 = (e->f38 & 0xffbfa35a) | 0xbfa35a;
-            e->b58 |= 2;
-            page->f2F8[i]->func_001D5AD0();
-        } else {
-            e = page->f2F8[i];
-            e->f38 = (e->f38 & 0xffcccccc) | 0xcccccc;
-            e->b58 |= 2;
-        }
-    }
-}
-
 void BmxUIPageMain::func_000C5580()
 {
     S5580_Elem *m;
