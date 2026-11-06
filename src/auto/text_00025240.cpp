@@ -2,8 +2,12 @@
 #include "common.h"
 
 /* func_00025240: ambient object spawn over the manager's tracks and entries */
-struct S_25240_V4 { float x, y, z, w; };
 struct S_25240_Pt { float x, y, z, pad[3]; };
+struct S_25240_V4 {
+    float x, y, z, w;
+    S_25240_V4() {}
+    S_25240_V4(const S_25240_Pt *p) { x = p->x; y = p->y; z = p->z; w = 1.0f; }
+};
 struct S_25240_Track { char pad0[4]; int f4; char pad8[0x10]; S_25240_Pt *f18; };
 struct S_25240_Entry { int f0; int f4; };
 struct S_25240_Obj { void func_00199600(S_25240_V4 v); };
@@ -362,6 +366,92 @@ static __forceinline void Normalize_00025980(float *volatile outArg, const float
     __m128 scale = _mm_mul_ss(_mm_mul_ss(r, _mm_load_ss(&D_002760B0)), _mm_sub_ss(_mm_load_ss(&D_002760C0), t));
     scale = _mm_shuffle_ps(scale, scale, 0);
     _mm_storeu_ps(out, _mm_mul_ps(scale, v));
+}
+
+int C_00025240::func_00025240(void)
+{
+    int i, j, k, m;
+    int acc, n1, n2, cnt, lim;
+
+    if (f30 <= 0)
+        return 0;
+    for (i = 0; i < f34; i++)
+        func_00022730((char *)f64[i] + 0x30, i);
+    for (i = 0; i < f30; i++)
+        f60[i]->func_00022E30();
+    for (i = 0; i < f3c; i++) {
+        S_25240_Entry *e = &f6c[i];
+        float rate = (float)e->f4 * D_0027651C;
+        n1 = (int)((float)f64[e->f0]->f4 / rate);
+        n2 = (int)(rate + D_00275460);
+        acc = 0;
+        j = 0;
+        for (m = 0; m < n2; m++, acc += n1) {
+            if (j >= e->f4)
+                break;
+            lim = func_00011260(3, 4);
+            cnt = 0;
+            k = 0;
+            if (f30 > 0 && cnt < lim && j < e->f4) {
+                for (; k < f30; k++) {
+                    S_25240_Item *it = f60[k];
+                    if (it->f7a == 1) {
+                        it->f30 = e->f0;
+                        it->f3c = it->f30;
+                        it->f2c = f64[it->f30];
+                        it->f34 = acc;
+                        it->f40 = it->f34;
+                        it->f38 = it->f34 + 1;
+                        it->f4c.x = it->f2c->f18[it->f38].x;
+                        it->f4c.y = it->f2c->f18[it->f38].y;
+                        it->f4c.z = it->f2c->f18[it->f38].z;
+                        it->f4c.w = 1.0f;
+                        S_25240_V4 v;
+                        v.x = it->f2c->f18[it->f34].x;
+                        v.y = it->f2c->f18[it->f34].y;
+                        v.z = it->f2c->f18[it->f34].z;
+                        v.w = 1.0f;
+                        it->f28->f1a4->f4->func_00199600(v);
+                        if (it->f28->f1a4->f10 != 0)
+                            it->f28->f1a4->func_00164820((int)it->f28->f1ac->f8);
+                        else
+                            func_00166C80(it->f28->f1ac->f8, 1);
+                    }
+                    it->f7a = 0;
+                    cnt++;
+                    j++;
+                }
+            }
+        }
+    }
+    f60[0]->f6c = *(f32 *)D_002A0F74;
+    f60[0]->f70 = D_002A0F78;
+    f60[0]->f74 = D_002A0F7C;
+    int cx = 0;
+    int cz = 1;
+    for (i = 0; i < f30 - 1; i++) {
+        int q = i % 8;
+        int a = (q >= 2) ? (i % 2) : 0;
+        float v1 = (float)((q >= 2) * cx);
+        if (a == 1)
+            v1 *= D_00275F58;
+        int b = (q < 2 || q >= 4);
+        float v2 = (float)(b * cz);
+        if (q == 1)
+            v2 *= D_00275F58;
+        f60[i + 1]->f6c = v1;
+        f60[i + 1]->f70 = v2;
+        f60[i + 1]->f74 = 0;
+        if (q == 0)
+            cx++;
+        if (q == 7)
+            cz++;
+    }
+    if (f6c != 0) {
+        func_001E891B(f6c);
+        f6c = 0;
+    }
+    return 1;
 }
 
 void C_000255D0::func_000255D0(Vec4_257E0 * volatile pos, float radius, float t, int chance)
