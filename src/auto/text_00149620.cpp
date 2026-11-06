@@ -4,6 +4,8 @@
 #include "ghidra.h"
 extern int D_0028684C;
 extern int D_00275FB4;
+extern int D_002BF0E0;
+extern int D_00286830;
 
 int __stdcall func_00201100(int param_1);
 int __stdcall func_001FCE50(int param_1, int param_2);
