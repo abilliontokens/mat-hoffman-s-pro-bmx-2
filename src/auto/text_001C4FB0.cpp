@@ -110,7 +110,7 @@ struct C_001C5AC0 {
     C_001C5AC0 *func_001C5AC0(unsigned int flags);
 };
 
-void C_001C4FB0::func_001C4FB0(int a, int b, volatile int c, volatile int d, int e, volatile int f)
+void C_001C4FB0::func_001C4FB0(int a, int b, int c, int d, int e, volatile int f)
 {
     int right = c + e;
     int bottom = d + e;
@@ -125,30 +125,27 @@ void C_001C4FB0::func_001C4FB0(int a, int b, volatile int c, volatile int d, int
     if (f4) {
         if (a >= right) {
             if (b >= bottom) {
-                QN_VISIT(0, cx - ext, cy - ext)
-                QN_VISIT(1, cx - ext, ext + cy)
-                QN_VISIT(2, ext + cx, cy - ext)
-                QN_VISIT(3, ext + cx, ext + cy)
-                return;
+                QN_VISIT2(0, cx - ext, cy - ext, c, d)
+                QN_VISIT2(1, cx - ext, ext + cy, c, bottom)
+                QN_VISIT2(2, ext + cx, cy - ext, right, d)
+                QN_VISIT2(3, ext + cx, ext + cy, right, bottom)
             } else {
-                QN_VISIT(1, cx - ext, ext + cy)
-                QN_VISIT(0, cx - ext, cy - ext)
-                QN_VISIT(3, ext + cx, ext + cy)
-                QN_VISIT(2, ext + cx, cy - ext)
-                return;
+                QN_VISIT2(1, cx - ext, ext + cy, c, bottom)
+                QN_VISIT2(0, cx - ext, cy - ext, c, d)
+                QN_VISIT2(3, ext + cx, ext + cy, right, bottom)
+                QN_VISIT2(2, ext + cx, cy - ext, right, d)
             }
         } else {
             if (b >= bottom) {
-                QN_VISIT(2, ext + cx, cy - ext)
-                QN_VISIT(3, ext + cx, ext + cy)
-                QN_VISIT(0, cx - ext, cy - ext)
-                QN_VISIT(1, cx - ext, ext + cy)
-                return;
+                QN_VISIT2(2, ext + cx, cy - ext, right, d)
+                QN_VISIT2(3, ext + cx, ext + cy, right, bottom)
+                QN_VISIT2(0, cx - ext, cy - ext, c, d)
+                QN_VISIT2(1, cx - ext, ext + cy, c, bottom)
             } else {
-                QN_VISIT(3, ext + cx, ext + cy)
-                QN_VISIT(2, ext + cx, cy - ext)
-                QN_VISIT(1, cx - ext, ext + cy)
-                QN_VISIT(0, cx - ext, cy - ext)
+                QN_VISIT2(3, ext + cx, ext + cy, right, bottom)
+                QN_VISIT2(2, ext + cx, cy - ext, right, d)
+                QN_VISIT2(1, cx - ext, ext + cy, c, bottom)
+                QN_VISIT2(0, cx - ext, cy - ext, c, d)
             }
         }
     }
