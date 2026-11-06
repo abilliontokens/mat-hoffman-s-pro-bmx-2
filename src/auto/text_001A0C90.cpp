@@ -573,7 +573,7 @@ void C_001A1930::func_001A1930(int count, N_001A1930 **nodes)
   }
  }else if((distance>=1.2f*unk4C)) return;
  state |=2;
- O_001A1930 *vo=*(O_001A1930 * volatile *)&nearest->obj;
+ O_001A1930 *vo=((NV_001A1930*)nearest)->obj;
  if(vo){velocity.x=vo->vel.x;velocity.y=vo->vel.y;velocity.z=vo->vel.z;}
  GetPos_001A1930(nearest,&position);
  { Q_001A1930 t;
@@ -584,29 +584,5 @@ void C_001A1930::func_001A1930(int count, N_001A1930 **nodes)
  Q_001A1930 delta;
  delta.x=vel.x-velocity.x;delta.y=vel.y-velocity.y;delta.z=vel.z-velocity.z;delta.w=1;
  emitter->v21(delta);
-}
-
-int C_001A1C70::func_001A1B60(S_001A1C70_Obj *obj)
-{
-    if (obj != 0 && unk1BC != obj) {
-        obj->func_001CB560(unk1BC);
-    }
-    unk1BC = obj;
-    return 1;
-}
-
-int C_001A1B90::func_001A1B90()
-{
-    if (f1BC == 0)
-        return 0;
-    if (f1B4 != 0)
-        return 1;
-    return f1BC->v7();
-}
-
-int C_001A1C70::func_001A1C70(int a)
-{
-    if (unk1BC == 0) return 0;
-    return unk1BC->v8(a);
 }
 
