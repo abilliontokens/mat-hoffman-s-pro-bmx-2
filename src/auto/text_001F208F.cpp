@@ -2,7 +2,8 @@
 #include "common.h"
 
 struct Obj { char pad[0x90]; Obj(int a, int b, int c, int d, unsigned short e); ~Obj(); int run(); };
-struct T { int a; int b; int func_001EF1E7(); void func_001EF734(int); void func_001EF935(T*); void func_001EFB18(int); T* func_001EF170(int); void func_001EEEE6(T*); void func_001EF9B2(char*); };
+struct T { int a; int b; int func_001EF1E7(); void func_001EF734(int); void func_001EF935(T*); void func_001EFB18(int); T* func_001EF170(int); void func_001EEEE6(T*); void func_001EF9B2(char*);
+    T* func_001EEF4F(T*); T* func_001EF2FE(T*); T* func_001EF613(int); T* func_001EFD3B(T*, char); T* func_001EFD7A(T*, char*); T* func_001EFAB5(T*, T*); };
 extern char* D_002F6A28;
 T* func_001F208F(T*, T*);
 T* func_001F23B8(T*, T*, int, T*, int);
@@ -112,6 +113,69 @@ void func_001F2BC3(void) {
 
 T *func_001F2F3F(T *a1, T *a2)
 {
-    return a1;
+    T local;
+    char *p = D_002F6A28;
+    int c = *p;
+
+    local.a = 0;
+    local.b &= 0xfffffe00;
+    switch (c) {
+    case 'B':
+        local.func_001EF9B2(D_00295E74);
+        if (a2->func_001EF1E7() == 0) {
+            local.func_001EFB18(0x20);
+        }
+        /* fall through */
+    case 'A': {
+        T t;
+        t.func_001EEEE6(a2);
+        p++;
+        D_002F6A28 = p;
+        t.b |= 0x10;
+        return func_001F2A1C(a1, &local, &t, 0x26);
+    }
+    case 0:
+        goto zero;
+    case '$':
+        if (p[1] != '$') {
+            if (p[1] != 0) {
+                goto dodefault;
+            }
+        } else {
+            goto dollars;
+        }
+zero:
+        func_001EFCF7(a1, 2, a2);
+        return a1;
+dollars:
+        p += 2;
+        D_002F6A28 = p;
+        switch (*p) {
+        case 'C': {
+            T t;
+            T pos;
+            t.a = 0;
+            t.b &= 0xfffffe00;
+            p++;
+            D_002F6A28 = p;
+            return func_001F2BCC(a1, func_001F23B8(&pos, a2, 0, &t, 0));
+        }
+        case 'B':
+            p++;
+            D_002F6A28 = p;
+            func_001F062A(a1, a2, 1);
+            return a1;
+        case 'A':
+            p++;
+            D_002F6A28 = p;
+            return func_001F208F(a1, a2);
+        case 0:
+            goto zero;
+        }
+dodefault:
+        return a1->func_001EF170(1);
+    default:
+        return func_001F2BCC(a1, a2);
+    }
 }
 
