@@ -187,6 +187,8 @@ extern "C" int func_001ADCC0(char *buf, int n, const char *fmt, ...);
 extern char D_002786BC[];
 #define AT(t, o) (*(t *)((char *)this + (o)))
 #define GAT(t, o) (*(t *)((char *)D_002A8490 + (o)))
+#define AT(t, o) (*(t *)((char *)this + (o)))
+#define GAT(t, o) (*(t *)((char *)D_002A8490 + (o)))
 
 
 void BmxInGameMenu::func_0005F960(void)
