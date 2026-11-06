@@ -33,6 +33,7 @@ extern "C" char* D_002A8490;
 extern "C" char* D_002B91AC;
 extern "C" char D_0027DDEC;
 #define LST ((X_any*)P(P(D_002A8490,0x2e0),0x2c0))
+extern char* D_002A8490;
 struct C_000F3C50 {
     undefined4 func_000F3C50(byte param_1);
 };
