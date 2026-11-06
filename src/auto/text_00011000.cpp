@@ -199,6 +199,10 @@ static __forceinline float dist2_119D0(const float *a, const float *b) {
     float square = z*z+y*y+x*x;
     return sqrt_119D0(square);
 }
+static __forceinline void dist3_119D0(float *d, const float *a, const float *b) {
+    float x = a[0]-b[0], y = a[1]-b[1], z = a[2]-b[2];
+    _mm_store_ss(d, _mm_sqrt_ss(_mm_set_ss(z*z+y*y+x*x)));
+}
 struct C_000119D0 {
     char pad[0x3b0];
     int f3B0;
@@ -545,7 +549,7 @@ int C_00011D30::func_00011D30(void)
 
 C_00017680_Vec C_00011E30::func_00011E30(void)
 {
- C_00017680_Vec ret, pos, tmp, a;
+ C_00017680_Vec pos, tmp, a, ret;
  int idx; volatile int cur;
  float distance;
  f3C->f4->func_00199B00(&pos,0);
