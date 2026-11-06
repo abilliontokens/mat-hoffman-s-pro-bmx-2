@@ -154,7 +154,7 @@ static __forceinline void XformV_0013E9B0(float *volatile outArg, float *volatil
 
 static __forceinline void Trunc_0013E9B0(int *volatile out, float f)
 {
-    *out = _mm_cvttss_si32(_mm_load_ss(&f));
+    *out = _mm_cvttss_si32(*(__m128 *)&f);
 }
 
 static __forceinline int Min_0013E9B0(volatile int a, int b)
