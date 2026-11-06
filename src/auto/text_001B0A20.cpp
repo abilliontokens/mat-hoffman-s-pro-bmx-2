@@ -1107,11 +1107,11 @@ void C_001B1860::func_001B1860(int a1, float a2, int a3, float a4, int a5, int a
 {
     if (fC0 != 0) return;
     fC0 = a6;
-    f6C = a1;
-    f70 = a1;
     f64 = 1;
     f74 = 1;
-    if (a2 >= D_00275544) {
+    f6C = a1;
+    f70 = a1;
+    if (a2 >= 0.0f) {
         f78 = *(int *)&a2;
         f7C = 0;
     } else {
@@ -1127,7 +1127,7 @@ void C_001B1860::func_001B1860(int a1, float a2, int a3, float a4, int a5, int a
     f178 = 1;
     f17C = 1;
     f180 = 1;
-    if (a7 > D_00275F58) {
+    if (a7 > -1.0f) {
         fC8 = a8;
         f94 = *(int *)&a11;
         fCC = *(int *)&a9;
