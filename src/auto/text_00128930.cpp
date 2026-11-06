@@ -232,7 +232,7 @@ static inline void Xform_00128930(S_00129050_Vec4 *out, const S_00128930_Mat *ma
     out->w = 1.0f;
 }
 
-static inline float Sqrt_00128930(float x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(*(__m128 *)&x)); return r; }
+static inline float Sqrt_00128930(float x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(_mm_load_ss(&x))); return r; }
 static __forceinline float Min_00128930(float a, float b) { float r; _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
 static __forceinline float Max_00128930(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
 
@@ -471,7 +471,7 @@ void func_001294E0(int a0, int a1, int a2, int a3, int a4) {
     func_001293F0(a0, a1, a2, a3);
 }
 
-void func_00129510(S_00129510_Node **a0, S_00129510_Leaf **a1, S_00129510_M44 *m, S_00129510_V4 *verts, int *tris, int ntri, int nverts)
+void func_00129510(S_00129510_Node **a0, S_00129510_Leaf **a1, S_00129510_M44 * volatile m, S_00129510_V4 *verts, int *tris, int ntri, int nverts)
 {
     S_00129510_Tri *t;
     S_00129510_M44 inv;
@@ -480,6 +480,9 @@ void func_00129510(S_00129510_Node **a0, S_00129510_Leaf **a1, S_00129510_M44 *m
     S_00129510_V4 s;
     S_00129510_V4 r;
     S_00129510_V4 a;
+    S_00129510_V4 * volatile vin;
+    S_00129510_V4 * volatile vout;
+    S_00129510_M44 * volatile vm;
     int idx;
     int i;
 
@@ -493,8 +496,11 @@ void func_00129510(S_00129510_Node **a0, S_00129510_Leaf **a1, S_00129510_M44 *m
     Identity_00129510(m);
     inv = *m;
     func_0011AC30(&inv, &inv);
+    vm = &inv;
     for (i = 0; i < nverts; i++) {
-        Xform_00129510(&verts[i], &inv, &verts[i]);
+        vin = &verts[i];
+        vout = &verts[i];
+        Xform_00129510(vout, vm, vin);
     }
     r.w = 1.0f;
     for (i = 0; i < ntri; i++) {
