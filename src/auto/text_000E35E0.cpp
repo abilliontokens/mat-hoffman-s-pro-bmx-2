@@ -93,6 +93,11 @@ struct C_000E3D30_Item {
     unsigned char flags;
     void func_00051120(unsigned short v);
     void func_001D5AD0();
+    /* func_00051120's body, which the compiler inlines into the first calls */
+    void setAlpha(short a) {
+        w38 = ((int)a << 24) | (w38 & 0xffffff);
+        flags |= 2;
+    }
 };
 
 struct C_000E3D30_Btn {
