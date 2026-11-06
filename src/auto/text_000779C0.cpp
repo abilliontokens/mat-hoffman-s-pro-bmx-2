@@ -59,7 +59,7 @@ struct Wid_779C0 {
     float f3c, f40, f44, f48, f4c, f50;
     char pad54[4];
     unsigned char b58;
-    __forceinline void SetRGB(unsigned int rgb) { b58 |= 2; color = (color & 0xff000000) | rgb; }
+    __forceinline void SetRGB(unsigned int rgb) { unsigned int c = color & 0xff000000; b58 |= 2; color = c | rgb; }
     __forceinline void SetAlpha(unsigned int al)
     {
         unsigned char dirty = (unsigned char)(b58 | 2);
@@ -256,11 +256,11 @@ struct C_000788D0 {
 
 Cnt_779C0 *Cnt_779C0::func_000779C0(void *a)
 {
-    Wid_779C0 *w;
-    Txt_779C0 *t;
-    void *p;
-    int v2, v1, *r;
     int i;
+    int v2, v1, *r;
+    void *p;
+    Txt_779C0 *t;
+    Wid_779C0 *w;
     fC8 = *(int *)((char *)a + 0x1d0);
     fD8 = (int)a;
     D_002A8490->p2EC->func_0018C160((int)&D_002786A0);
