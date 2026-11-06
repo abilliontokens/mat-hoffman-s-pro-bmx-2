@@ -60,6 +60,7 @@ struct C_001CBD40 : Base_001CBD40 {
         __forceinline Sub() : a() { f10 = 0; b.init(); }
         void init() { a.init(); f10 = 0; b.init(); }
     } f34;
+    #pragma optimize("", on)
     int fD4;
     char padD8[0x10];
     int fE8;
