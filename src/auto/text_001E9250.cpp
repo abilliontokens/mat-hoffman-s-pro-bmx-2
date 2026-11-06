@@ -126,8 +126,8 @@ struct S_001E97B1_File {
     int bufsiz;
 };
 
-int __fastcall func_001E9250(int param_1, int param_2) {
-    return param_2 - 1;
+char * __fastcall func_001E9250(int param_1, char *p) {
+    return p - 1;
 }
 
 char *func_001E9260(char *str, int ch) {
@@ -196,6 +196,8 @@ char *func_001E9260(char *str, int ch) {
     }
 }
 
+#pragma optimize("s", on)
+#pragma optimize("y", off)
 double func_001E931E(char *str, char **endptr) {
     extern int D_002AEA38;
     extern unsigned short *D_002AEA30;
@@ -208,58 +210,44 @@ double func_001E931E(char *str, char **endptr) {
         int off;
         char pad8[8];
         double val;
-        char pad18[8];
     };
     char *p = str;
-    char *s;
     struct Res res;
     double v;
     for (;;) {
+        int c = (int)(unsigned char)*p;
         unsigned int t;
         if (D_002AEA38 > 1) {
-            t = func_001EC5F1(*(unsigned char *)p, 8);
+            t = func_001EC5F1(c, 8);
         } else {
-            t = D_002AEA30[*(unsigned char *)p] & 8;
+            t = D_002AEA30[c] & 8;
         }
         if (t == 0) {
             break;
         }
         p++;
     }
-    s = p;
-    while (*s != 0) {
-        s++;
-    }
-    void *r = func_001ED0FC(&res, p, (int)(s - p), 0, 0);
+    Res *r = (Res *)func_001ED0FC(&res, p, (int)strlen(p), 0, 0);
     if (endptr != 0) {
-        *endptr = p + *(int *)((char *)r + 4);
+        *endptr = p + r->off;
     }
-    unsigned int flags = *(unsigned int *)r;
+    int flags = r->flags;
     if ((flags & 0x240) != 0) {
         v = 0.0;
         if (endptr != 0) {
             *endptr = str;
         }
-        return v;
-    }
-    if ((flags & 0x81) == 0) {
-        if ((flags & 0x100) == 0) {
-            return *(double *)((char *)r + 0x10);
-        }
+    } else if ((flags & 0x81) != 0) {
+        v = (*p == '-') ? -D_002AEC38 : D_002AEC38;
+        *func_001ED075() = 0x22;
+    } else if ((flags & 0x100) != 0) {
         v = 0.0;
+        *func_001ED075() = 0x22;
     } else {
-        v = D_002AEC38;
-        if (*p == '-') {
-            v = -v;
-        }
+        v = r->val;
     }
-    int *err = func_001ED075();
-    *err = 0x22;
     return v;
 }
-
-#pragma optimize("s", on)
-#pragma optimize("y", off)
 unsigned long func_001E93CD(const char *nptr, const char **endptr, int ibase, int flags)
 {
     const char *p;
@@ -826,11 +814,10 @@ const char *S_001E9FA2_TypeInfo::func_001E9FA2(void)
         if (und == 0) {
             return 0;
         }
-        tail = und + strlen(und);
-        tail--;
+        tail = und - 1;
+        tail += strlen(und);
         while (*tail == ' ') {
-            *tail = 0;
-            tail--;
+            *tail-- = 0;
         }
         func_001EB390(0xe);
         dst = _m_data = (char *)func_001E8AA5(strlen(und) + 1);
@@ -866,6 +853,42 @@ void *func_001EA038(void *inptr)
         func_001F32E8(&e, D_0029F4AC);
     }
 }
+
+double func_001EA0D3(double x) {
+    extern unsigned int D_002AE658;
+    extern double D_002766B8;
+    extern char D_0000FFFF;
+    unsigned int func_001F3AFB(unsigned int, int);
+    int func_001F39D3(double);
+    double func_001F3996(double);
+    double func_001F38A3(int, double, unsigned int);
+    double func_001F38F6(int, int, double, double, unsigned int);
+    unsigned int cw = func_001F3AFB(D_002AE658, (int)&D_0000FFFF);
+    double r;
+    if ((((unsigned short *)&x)[3] & 0x7ff0) == 0x7ff0) {
+        int t = func_001F39D3(x);
+        if (t > 0) {
+            if (t > 2) {
+                if (t == 3)
+                    return func_001F38A3(0xb, x, cw);
+            } else {
+                func_001F3AFB(cw, (int)&D_0000FFFF);
+                return x;
+            }
+        }
+        return func_001F38F6(8, 0xb, x, D_002766B8 + x, cw);
+    }
+    r = func_001F3996(x);
+    if (r == x) {
+done:
+        func_001F3AFB(cw, (int)&D_0000FFFF);
+        return r;
+    }
+    if (cw & 0x20)
+        goto done;
+    return func_001F38F6(0x10, 0xb, x, r, cw);
+}
+
 void *func_001EA1A1(unsigned int num, unsigned int size)
 {
     unsigned int total = num * size;
