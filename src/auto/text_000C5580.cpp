@@ -164,13 +164,6 @@ struct C_6420_Elem {
     void dim() { f38 = (f38 & 0xffcccccc) | 0xcccccc; b58 |= 2; }
 };
 
-struct C_6420_Elem2 {
-    char pad0[0x38];
-    unsigned int f38;
-    char pad3C[0x1C];
-    unsigned char b58;
-};
-
 struct C_5E40_G {
     char pad0[0x24];
     C_6420_Elem *f24;
