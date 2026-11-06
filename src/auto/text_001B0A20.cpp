@@ -131,8 +131,8 @@ extern int *D_002EFDB8;
 extern char D_0004035C;
 void __fastcall func_001FD020(void *, int);
 void __stdcall func_001FE490(int);
-extern const float D_00275544 = 0.0f;
-extern const float D_00275F58 = -1.0f;
+extern const float D_00275544;
+extern const float D_00275F58;
 
 struct C_001B1840 {
     char pad0[0x64];
