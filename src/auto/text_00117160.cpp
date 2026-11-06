@@ -1,6 +1,8 @@
 /* 1 function from 0x00117160 to 0x00118380, found by Ghidra. */
 #include "common.h"
 
+extern float D_00276094;
+
 extern float D_00275544;
 extern float D_00276094;
 extern "C" float func_0001C870(float, float, float, float, float);
