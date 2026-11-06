@@ -53,4 +53,69 @@ static __forceinline void color_EE(Img_EE *p) { p->color = (p->color & 0xffbfa35
 static __forceinline void pos_EE(Img_EE *p, int x, int y) { if (p->x != x || p->y != y) { p->x = x; p->y = y; p->flags |= 1; } }
 static __forceinline void rot_EE(Img_EE *p, int r) { if (p->rot != r) { p->rot = r; p->flags |= 1; } }
 static __forceinline void uv_EE(Img_EE *p) { p->flags |= 4; p->a = 1.0f; p->b = 0; p->c = 0; p->d = 1.0f; }
-static __forceinline void Round_EE(int *out, float f) { *out = _mm_cvtss_si32(_mm_load_ss(&f)); }
+static __forceinline void Round_EE(int * volatile out, float f) { *out = _mm_cvtss_si32(*(__m128 *)&f); }
+
+C_000EDF00 *C_000EDF00::func_000EE450(int a0, int a1, int a2)
+{
+    int i;
+    func_001BE4F0(a0, a1, a2);
+    D_002A8490->f2EC->func_0018C160((int)D_00278690);
+    D_002A8490->f2EC->func_0018C160((int)D_002786A0);
+    D_002A8490->f2EC->func_0018C160((int)D_00278678);
+    for (i = 0; i < 4; i++) {
+        Img_EE *o = (Img_EE *)func_001E8A44(0x64);
+        f680[i] = o ? o->func_001D5760() : 0;
+    }
+    f680[0]->func_001D5810(D_002786B0, 100.0f, 90.0f, 0);
+    width_EE(f680[0], 0x435d0000);
+    color_EE(f680[0]);
+    f680[1]->func_001D5810(D_002786B0, 321.0f, 90.0f, 0);
+    width_EE(f680[1], 0x435d0000);
+    color_EE(f680[1]);
+    uv_EE(f680[1]);
+    f680[2]->func_001D5810(D_002786B0, 321.0f, 360.0f, 0);
+    width_EE(f680[2], 0x435d0000);
+    color_EE(f680[2]);
+    pos_EE(f680[2], 0x43a08000, 0x43b48000);
+    rot_EE(f680[2], 0x40490fd9);
+    uv_EE(f680[2]);
+    f680[3]->func_001D5810(D_002786B0, 542.0f, 360.0f, 0);
+    width_EE(f680[3], 0x435d0000);
+    color_EE(f680[3]);
+    pos_EE(f680[3], 0x44078000, 0x43b48000);
+    rot_EE(f680[3], 0x40490fd9);
+    for (i = 0; i < 2; i++) {
+        Img_EE *o = (Img_EE *)func_001E8A44(0x64);
+        f690[i] = o ? o->func_001D5760() : 0;
+        if (i == 0)
+            f690[0]->func_001D5810(D_0027E328, 309.0f, 82.0f, 0);
+        else
+            f690[i]->func_001D5810(D_0027E31C, 309.0f, 350.0f, 0);
+        color_EE(f690[i]);
+    }
+    for (i = 0; i < 9; i++) {
+        Img_EE *o = (Img_EE *)func_001E8A44(0x64);
+        float y;
+        f698[i] = o ? o->func_001D5760() : 0;
+        y = i * D_002757F0 + D_0027F978;
+        f698[i]->func_001D5810(D_00281DC0, 150.0f, y, 0);
+        f614[i] = y;
+        Round_EE(&f4B0[i * 4], f614[i]);
+        Round_EE(&f540[i * 4], f614[i]);
+        f420[i * 4] = f4B0[i * 4];
+        o = (Img_EE *)func_001E8A44(0x64);
+        f6BC[i] = o ? o->func_001D5760() : 0;
+        f6BC[i]->func_001D5810(D_00281DB4, 150.0f, y, 0);
+    }
+    for (i = 0; i < 9; i++) {
+        Text_EE *t = (Text_EE *)func_001E8A44(0x184);
+        f638[i] = t ? t->func_001B12C0(1) : 0;
+        f638[i]->func_001B13A0(D_002786A0, D_0027F6F4, 0, 0x1e);
+        f65C[i] = 0x76 + i * 0x28;
+        f638[i]->func_001B19C0(200, f65C[i], 0);
+        f638[i]->func_001B2270(0xffcccccc);
+        f638[i]->func_001B1C10(D_0028F5DC);
+        func_001577A0(f638[i], -1);
+    }
+    return this;
+}
