@@ -568,6 +568,63 @@ void *C_0001D690::func_0001D690(unsigned char param_1)
   return this;
 }
 
+extern "C" void func_0013E260(int, int, const void *);
+extern "C" void func_0013E1F0(int, int, const void *, ...);
+extern char *D_002A8490;
+extern char D_00275F04[], D_00275EF8[], D_00275630[], D_00275EE0[], D_00275ED4[], D_00275EC4[], D_00275EB8[], D_00275EAC[], D_00275EA0[], D_00275E90[], D_00275E80[], D_00275E68[];
+void C_0001DA00::func_0001DA00(int a)
+{
+    if (unk5C != 0) {
+        func_0001D6B0();
+    }
+    char *g = *(char **)(D_002A8490 + 0x18);
+    if (g != 0) {
+        if (unkAC < 0) {
+            int id = *(int *)(g + 0x1934);
+            *(int *)(g + 0x1934) = id + 1;
+            unkAC = id;
+        }
+        func_0013E260(*(int *)(D_002A8490 + 0x18), unkAC, D_00275F04);
+        func_0013E1F0(*(int *)(D_002A8490 + 0x18), unkAC, D_00275EF8);
+        func_0013E1F0(*(int *)(D_002A8490 + 0x18), unkAC, D_00275630);
+        int total = 0;
+        int active = 0;
+        int sum = 0;
+        for (int i = 0; i < unkB4->list.n; i++) {
+            C_0001DA00_Item *item = unkB4->list.at(i);
+            if (item) {
+                total++;
+                if (item->virt7()) {
+                    active++;
+                }
+                sum += item->unk118;
+            }
+        }
+        func_0013E1F0(*(int *)(D_002A8490 + 0x18), unkAC, D_00275EE0, total, active);
+        func_0013E1F0(*(int *)(D_002A8490 + 0x18), unkAC, D_00275630);
+        func_0013E1F0(*(int *)(D_002A8490 + 0x18), unkAC, D_00275ED4);
+        func_0013E1F0(*(int *)(D_002A8490 + 0x18), unkAC, D_00275EC4, l70.n);
+        func_0013E1F0(*(int *)(D_002A8490 + 0x18), unkAC, D_00275EB8, unk84);
+        int count = 0;
+        for (int j = 0; j < l70.n; j++) {
+            if (l70.at(j)->virt28()) {
+                count++;
+            }
+        }
+        func_0013E1F0(*(int *)(D_002A8490 + 0x18), unkAC, D_00275EAC, count);
+        func_0013E1F0(*(int *)(D_002A8490 + 0x18), unkAC, D_00275EA0, unk98);
+        func_0013E1F0(*(int *)(D_002A8490 + 0x18), unkAC, D_00275630);
+        func_0013E1F0(*(int *)(D_002A8490 + 0x18), unkAC, D_00275E90, 0);
+        func_0013E1F0(*(int *)(D_002A8490 + 0x18), unkAC, D_00275E80, 0);
+        func_0013E1F0(*(int *)(D_002A8490 + 0x18), unkAC, D_00275630);
+        func_0013E1F0(*(int *)(D_002A8490 + 0x18), unkAC, D_00275E68, sum);
+    }
+    for (int k = 0; k < l30.n; k++) {
+        l30.at(k)->virt12(a);
+    }
+    func_00157A00(a);
+}
+
 int C_0001DF80::func_0001DF80(int param_1, int param_2)
 {
   C_0001DF80_Arr *a;
