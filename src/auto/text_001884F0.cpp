@@ -385,6 +385,7 @@ void C_00188700::func_00188750(void)
     q->v1();
 }
 
+extern "C" int strcmp(const char *a, const char *b);
 int C_001887A0::func_001887A0(S_001887A0_Arg *p) {
     char buf[0x108];
     M_001887A0 mat;
@@ -393,7 +394,7 @@ int C_001887A0::func_001887A0(S_001887A0_Arg *p) {
         unkC = 0;
         return 0;
     }
-    if (memcmp(D_002764F0, unkC->name, 5) == 0)
+    if (strcmp(unkC->name, "none") == 0)
         return 0;
     strcpy(buf, unkC->name);
     unk8 = func_00133750(0, buf, 0xd);
@@ -417,7 +418,6 @@ void C_00188700::func_001888F0(void)
 {
     C_001888F0_Obj *p;
     C_001888F0_Obj *q;
-    void (__fastcall *f)(void *);
 
     p = (C_001888F0_Obj *)func_001E8A44(0x280);
     if (p != 0) {
@@ -426,8 +426,7 @@ void C_00188700::func_001888F0(void)
         q = 0;
     }
     unkC = (int)q;
-    f = *(void (__fastcall **)(void *))*(void **)q;
-    f(q);
+    q->v0();
 }
 
 void C_00188920::func_00188920(void)
