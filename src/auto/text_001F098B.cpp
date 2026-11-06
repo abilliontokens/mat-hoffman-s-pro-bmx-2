@@ -79,7 +79,7 @@ void *func_001F098B(S_001EF734 *out, bool update)
     int n = c - '0';
     if (n >= 0 && n <= 9) {
         D_002F6A28++;
-        D_002F6A20->func_001EEFBA(n);
+        out->func_001EEEE6(D_002F6A20->func_001EEFBA(n));
         return out;
     }
     S_001EF734 zName;
@@ -126,7 +126,7 @@ void *func_001F098B(S_001EF734 *out, bool update)
 done:
     if (update && D_002F6A20->count != 9)
         D_002F6A20->func_001EF3D2(&zName);
-    CopyName(&zName, out);
+    out->func_001EEEE6(&zName);
     return out;
 }
 
