@@ -22,8 +22,8 @@ struct Spr_849F0 {
     Spr_849F0 *func_001D5760();
     void func_001D5810(void *a, unsigned x, unsigned y, int z);
     void func_00051140(unsigned v);
-    inline void SetF28(unsigned v) { if (f28 != v) { f58 |= 1; f28 = v; } }
-    inline void SetF34(unsigned v) { if (f34 != v) { f58 |= 1; f34 = v; } }
+    inline void SetF28(unsigned v) { if (f28 != v) { f28 = v; f58 |= 1; } }
+    inline void SetF34(unsigned v) { if (f34 != v) { f34 = v; f58 |= 1; } }
 };
 struct Txt_849F0 {
     char pad0[4];
