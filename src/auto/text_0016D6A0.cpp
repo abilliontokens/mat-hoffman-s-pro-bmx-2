@@ -188,8 +188,8 @@ struct C_0016D6A0 {
     char pad194[0x14];
     u32 f1A8, f1AC;
     char pad1B0[0x60];
-    float f210[4];
-    float f220[4];
+    V4f f210;
+    V4f f220;
     C_0016D6A0 *func_0016D6A0(void *a, char *name, void *b, u32 *c);
 };
 
@@ -333,8 +333,6 @@ struct C_0016DAC0 {
 
 C_0016D6A0 *C_0016D6A0::func_0016D6A0(void *a, char *name, void *b, u32 *c)
 {
-    volatile float tmp[4];
-
     ((C_001D3F50 *)this)->func_001D3F50();
     f64 = a;
     if (b) {
@@ -345,23 +343,8 @@ C_0016D6A0 *C_0016D6A0::func_0016D6A0(void *a, char *name, void *b, u32 *c)
         f1AC = 0x68;
         f1A8 = 0x68;
         f188 = 0x68;
-        tmp[1] = 0.0f;
-        float y = tmp[1];
-        tmp[0] = -1.0f;
-        f210[0] = tmp[0];
-        f210[1] = y;
-        tmp[2] = -1.0f;
-        f210[2] = tmp[2];
-        tmp[3] = 1.0f;
-        f210[3] = tmp[3];
-        tmp[0] = 1.0f;
-        f220[0] = tmp[0];
-        tmp[1] = 0.0f;
-        f220[1] = tmp[1];
-        tmp[2] = 1.0f;
-        f220[2] = tmp[2];
-        tmp[3] = 1.0f;
-        f220[3] = tmp[3];
+        *(V4f *)&f210 = V4f(-1.0f, 0.0f, -1.0f, 1.0f);
+        *(V4f *)&f220 = V4f(1.0f, 0.0f, 1.0f, 1.0f);
     } else {
         f64 = a;
         strcpy(&f6C, D_002A5558);
@@ -371,23 +354,8 @@ C_0016D6A0 *C_0016D6A0::func_0016D6A0(void *a, char *name, void *b, u32 *c)
         }
         strcat(&f6C, name);
         if (((C_0016A330 *)this)->func_0016A330(&f6C)) return this;
-        tmp[1] = 0.0f;
-        float y = tmp[1];
-        tmp[0] = -1.0f;
-        f210[0] = tmp[0];
-        f210[1] = y;
-        tmp[2] = -1.0f;
-        f210[2] = tmp[2];
-        tmp[3] = 1.0f;
-        f210[3] = tmp[3];
-        tmp[0] = 1.0f;
-        f220[0] = tmp[0];
-        tmp[1] = 0.0f;
-        f220[1] = tmp[1];
-        tmp[2] = 1.0f;
-        f220[2] = tmp[2];
-        tmp[3] = 1.0f;
-        f220[3] = tmp[3];
+        *(V4f *)&f210 = V4f(-1.0f, 0.0f, -1.0f, 1.0f);
+        *(V4f *)&f220 = V4f(1.0f, 0.0f, 1.0f, 1.0f);
     }
     f170 = 5000.0f;
     f174 = 0.0f;
@@ -403,7 +371,6 @@ void C_0016D8A0::func_0016D8A0(C_IntQuad v)
 
 int C_0016D8D0::func_0016D8D0(S_0016D8D0_Stream *stream)
 {
-    S_0016D8D0_Elem *base;
     S_0016D8D0_Elem *e;
     int v;
 
@@ -420,16 +387,15 @@ int C_0016D8D0::func_0016D8D0(S_0016D8D0_Stream *stream)
         stream->func_00168CB0(D_00288600, D_002A8754, f220);
         stream->func_00168C20(D_00288618, 0, &f20C);
         ((C_0016A1D0 *)this)->func_0016A3A0(stream);
-        base = f64->f134;
-        if (base != 0 && (e = base + f1B0) != 0) {
+        e = CurElem();
+        if (e != 0) {
             f1AC = e->f8;
             v = e->f4;
         } else {
             f1AC = 0x2f;
             v = 0x20;
         }
-        f1A8 = v;
-        f188 = v;
+        f188 = f1A8 = v;
         return 1;
     }
     return 0;
@@ -452,6 +418,52 @@ C_0016DA40 *C_0016DA40::func_0016DA40(void *param)
     p[0] = 0;
     f34 = f24;
     f194 = 0;
+    return this;
+}
+
+C_0016DAC0 *C_0016DAC0::func_0016DAC0(void *a, char *name, C_0016DAC0_Ref *b, V4u_0016D6A0 *c)
+{
+    ((C_001D3F50 *)this)->func_001D3F50();
+    f64 = a;
+    if (b) {
+        f68 = b;
+        if (c) {
+            C_Quad t;
+            Copy_0016DAC0(&f44, c);
+            b->func_00199A70(0, &f24);
+            AddTo_0016DAC0(&f24, f68->func_00197EC0(&t, &f44));
+            Copy_0016DAC0(&f34, &f24);
+        } else {
+            Copy_0016DAC0(&f24, c);
+            Copy_0016DAC0(&f34, c);
+        }
+    }
+    if (!a) {
+        f1A8 = 0x55;
+        f188 = 0x55;
+        f1F0 = V4(-1.0f, 0.0f, -1.0f, 1.0f);
+        f1AC = 100;
+        f200 = V4(1.0f, 0.0f, 1.0f, 1.0f);
+    } else {
+        f64 = a;
+        strcpy(&f6C, D_002A5558);
+        if (!name) {
+            ((ParticleEmitterResetVT *)this)->v2();
+            return 0;
+        }
+        strcat(&f6C, name);
+        if (((C_0016A330 *)this)->func_0016A330(&f6C)) return this;
+        f1F0 = V4(-1.0f, 0.0f, -1.0f, 1.0f);
+        f200 = V4(1.0f, 0.0f, 1.0f, 1.0f);
+    }
+    f170 = 750.0f;
+    f178 = 1.0f;
+    f17C = 350.0f;
+    f1C4 = 1;
+    f1C8 = 1;
+    f218 = 40000.0f;
+    f21C = -1.0f;
+    f220 = 100.0f;
     return this;
 }
 
