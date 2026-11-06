@@ -264,6 +264,138 @@ struct C_0018B090 {
     undefined4 func_0018B090(byte param_1);
 };
 
+extern char D_0027B1FC[];
+extern char D_0028A748[];
+extern char D_0028A73C[];
+extern char D_0028A730[];
+extern char D_0028A71C[];
+extern int D_002898FC;
+extern char D_002897EC[];
+extern char D_0028A6FC[];
+extern char D_0028A6E0[];
+extern char D_0028A6C0[];
+extern char D_0028A6A4[];
+extern char D_0028A688[];
+extern char D_0027C494[];
+extern float D_002755E8;
+
+struct S_0018B990_Parser {
+    int func_00169710(char *name);
+    void func_00168550(const char *key, void *dst, int n);
+    int func_00168C20(const char *key, int def, int *dst);
+    int func_00168C50(const char *key, int def, void *dst);
+    int func_00168BE0(const char *k1, const char *k2, char *dst, int size);
+};
+
+struct S_0018B990_Vec4 { float x, y, z, w; };
+S_0018B990_Vec4 func_00182980(char *s);
+
+struct S_0018B990_A {
+    virtual int v0(S_0018B990_Parser *p, int n);
+    S_0018B990_A();
+    ~S_0018B990_A();
+    char pad[0x550];
+};
+
+struct S_0018B990_B {
+    void *vtbl;
+    char pad4[0x20];
+    int f24;
+    int f28;
+    int f2c;
+    int f30;
+    int f34;
+    void func_00157600(int a);
+};
+struct S_0018B990_BV {
+    virtual void v00(); virtual void v04(); virtual void v08(); virtual void v0C();
+    virtual void v10(); virtual void v14(); virtual void v18(); virtual void v1C();
+    virtual void v20(); virtual void v24(); virtual void v28(); virtual void v2C();
+    virtual void v30(); virtual void v34(); virtual void v38(); virtual void v3C();
+    virtual void v40(); virtual void v44(); virtual void v48(); virtual void v4C();
+    virtual void v50(); virtual void v54(); virtual void v58(); virtual void v5C();
+    virtual void v60(); virtual void v64(); virtual void v68();
+    virtual void v6C(int n);
+    virtual int v70(S_0018B990_Parser *p);
+};
+
+struct S_0018B990_C {
+    void *vtbl;
+    int f4, f8, fc, f10;
+    float f14, f18;
+};
+struct S_0018B990_CV { virtual int v0(S_0018B990_Parser *p); };
+
+struct S_0018B990_D {
+    S_0018B990_D();
+    virtual ~S_0018B990_D();
+    char pad[0x15C];
+};
+struct S_0018B990_DV { virtual int v0(void *scene, S_0018B990_Parser *p, int i); };
+
+struct S_0018B990_E {
+    S_0018B990_E();
+    char pad[0x4C];
+};
+struct S_0018B990_EV { virtual int v0(S_0018B990_Parser *p, int i); };
+
+struct S_0018B990_F {
+    int a, b, c, d;
+    void func_00188D20(int n);
+};
+
+struct S_0018B990_G {
+    float a, b, c, d, e;
+};
+
+struct BmxScene_0018B990 {
+    virtual void v00(); virtual void v04(); virtual void v08(); virtual void v0C();
+    virtual void v10(); virtual void v14(); virtual void v18(); virtual void v1C();
+    virtual void v20(); virtual void v24(); virtual void v28(); virtual void v2C();
+    virtual void v30(); virtual void v34(); virtual void v38(); virtual void v3C();
+    virtual void v40(); virtual void v44(); virtual void v48(); virtual void v4C();
+    virtual void v50(); virtual void v54(); virtual void v58(); virtual void v5C();
+    virtual void v60(); virtual void v64(); virtual void v68(); virtual void v6C();
+    virtual void v70(); virtual void v74(); virtual void v78(); virtual void v7C();
+    virtual void v80(); virtual void v84(); virtual void v88(); virtual void v8C();
+    virtual void v90(); virtual void v94(); virtual void v98(); virtual void v9C();
+    virtual void vA0(); virtual void vA4(); virtual void vA8(); virtual void vAC();
+    virtual void vB0(); virtual void vB4(); virtual void vB8(); virtual void vBC();
+    virtual void vC0(); virtual void vC4(); virtual void vC8(); virtual void vCC();
+    virtual void vD0(); virtual void vD4(); virtual void vD8(); virtual void vDC();
+    virtual void vE0(); virtual void vE4(); virtual void vE8(); virtual void vEC();
+    virtual void vF0(); virtual void vF4(); virtual void vF8(); virtual void vFC();
+    char pad4[0x24];
+    S_0018B990_Parser *f28;
+    char pad2c[0x238 - 0x2C];
+    char f238[0x340 - 0x238];
+    int f340;
+    S_0018B990_D *f344;
+    char pad348[4];
+    int f34c;
+    int f350;
+    int f354;
+    int f358;
+    int f35c;
+    int f360;
+    int f364;
+    int f368;
+    int f36c;
+    float f370, f374, f378, f37c;
+    unsigned char f380;
+    char pad381[3];
+    S_0018B990_E *f384;
+    S_0018B990_A *f388;
+    S_0018B990_B *f38c;
+    S_0018B990_C *f390;
+    char pad394[0x3B8 - 0x394];
+    S_0018B990_F *f3b8;
+    char pad3bc[0x4C4 - 0x3BC];
+    S_0018B990_G *f4c4, *f4c8, *f4cc, *f4d0, *f4d4;
+    unsigned char f4d8;
+    int func_0018B990();
+};
+
 struct C_0018BF80 {
     undefined4 func_0018BF80(byte param_1);
 };
