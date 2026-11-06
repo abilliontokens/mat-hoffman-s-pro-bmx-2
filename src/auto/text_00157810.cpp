@@ -556,6 +556,35 @@ void *C_00158360::func_00158360(int flags)
     return this;
 }
 
+int func_00158390(float angle, S_00158390_Vec4 axis, S_00158390_Vec4 v, S_00158390_Vec4 *out)
+{
+    float s;
+    float c;
+    S_00158390_Vec4 p;
+    S_00158390_Vec4 kd;
+    S_00158390_Vec4 cr;
+    float d;
+
+    if (out == 0) {
+        return 0;
+    }
+    func_0014F6E0(angle, &s, &c);
+    d = axis.z * v.z + axis.x * v.x + axis.y * v.y;
+    kd.x = axis.x * d;
+    kd.y = axis.y * d;
+    kd.z = axis.z * d;
+    p.x = v.x - kd.x;
+    p.y = v.y - kd.y;
+    p.z = v.z - kd.z;
+    cr.x = p.z * axis.y - p.y * axis.z;
+    cr.y = p.x * axis.z - p.z * axis.x;
+    cr.z = p.y * axis.x - p.x * axis.y;
+    out->x = p.x * c + cr.x * s + kd.x;
+    out->y = cr.y * s + p.y * c + kd.y;
+    out->z = cr.z * s + p.z * c + kd.z;
+    return 1;
+}
+
 void func_00158510(S_00158510_Arg0 *a, S_00158510_Arg1 *b)
 {
     int v = b->f68;
