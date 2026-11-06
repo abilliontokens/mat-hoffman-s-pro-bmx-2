@@ -51,6 +51,7 @@ struct C_001975A0 {
     int func_00197610(f32 dt);
 };
 #include <string.h>
+#include "asm_helpers.h"
 extern "C" void *func_001E8A44(unsigned size);
 
 struct C_001972B0 {
@@ -465,5 +466,9 @@ void C_00197700::func_00197780()
         D_002EFDB8->f4->func_0012B3D0();
     }
     func_00137F90();
+}
+
+void func_001977B0(float *out, float *in) {
+    AsmVec3Normalize(out, in);
 }
 
