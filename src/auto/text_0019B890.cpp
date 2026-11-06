@@ -4,6 +4,13 @@
 #include <math.h>
 #include <xmmintrin.h>
 
+static __forceinline float Sqrt_0019C0E0(float x)
+{
+    float r;
+    _mm_store_ss(&r, _mm_sqrt_ss(*(__m128 *)&x));
+    return r;
+}
+
 extern int D_002B92F0, D_002B92E0;
 extern float D_002B9448[];
 extern float D_0028B1B0, D_0028B1A0, D_0028B190;
@@ -296,6 +303,31 @@ void C_0019C320::func_0019C320(undefined4 *param_1)
   param_1[1] = *(undefined4 *)(in_ECX + 0x14c);
   param_1[2] = *(undefined4 *)(in_ECX + 0x15c);
   return;
+}
+
+void SoultreeCollisionObject::func_0019C350(S_0019C350_V4 *centre, float *extent)
+{
+    S_0019C350_Shape *s = (S_0019C350_Shape *)f1C4;
+    float ex = s->ex;
+    float ey = s->ey;
+    float ez = s->ez;
+    S_0019C350_V4 c;
+    S_0019C350_V4 axes[3];
+
+    c.x = s->cx;
+    c.y = s->cy;
+    c.z = s->cz;
+    c.w = 1.0f;
+    axes[0] = S_0019C350_V4(ex, 0.0f, 0.0f, 1.0f);
+    axes[1] = S_0019C350_V4(0.0f, ey, 0.0f, 1.0f);
+    axes[2] = S_0019C350_V4(0.0f, 0.0f, ez, 1.0f);
+    Xform_0019C350(centre, (S_0019C350_M *)fB0, &c.x);
+    func_0001C680(&axes[0], axes[0], (float *)fB0);
+    func_0001C680(&axes[1], axes[1], (float *)fB0);
+    func_0001C680(&axes[2], axes[2], (float *)fB0);
+    extent[0] = Abs_0019C350(axes[2].x) + Abs_0019C350(axes[1].x) + Abs_0019C350(axes[0].x);
+    extent[1] = Abs_0019C350(axes[2].y) + Abs_0019C350(axes[1].y) + Abs_0019C350(axes[0].y);
+    extent[2] = Abs_0019C350(axes[2].z) + Abs_0019C350(axes[1].z) + Abs_0019C350(axes[0].z);
 }
 
 void SoultreeCollisionObject::func_0019C690(int a1, S_0019C690_Arg *a2)
