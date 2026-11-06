@@ -169,6 +169,7 @@ extern S_137F90_G *D_002EFDB8;
 extern int D_00040300, D_00040304, D_00040354, D_0004035C;
 extern int D_0020C6DC, D_0020C710, D_0020C718, D_0020C720, D_0020CA50;
 extern S_137F90_RS D_0020C6E0[];
+extern int D_0020C6E4[];
 extern int D_002BEA90;
 extern S_137F90_Quad D_002BA728[];
 
@@ -507,6 +508,95 @@ void DrawableCube::func_00138390(void)
         func_001E891B(f3c);
     }
     func_00157660();
+}
+
+DrawableCube *DrawableCube::func_00138480(int a)
+{
+    int n;
+    int i;
+    int j;
+    int v;
+    int x;
+    int h;
+    int zero = 0;
+    CubeSub *p;
+    CubeSub2 *q;
+    CubeSub3 *r;
+
+    func_001D3F50();
+    h = D_002BEAAC->func_0013C9F0(a, D_00275FB4);
+    if (h == -1) {
+        ((DrawableCubeVirt *)this)->v2();
+        return 0;
+    }
+    if (D_002BEAAC->func_0013C8A0(h, &n, 4, 1) != 1) {
+        goto done;
+    }
+    if (D_002BEAAC->func_0013C8A0(h, &f7c8, 4, 1) != 1) {
+        goto done;
+    }
+    for (i = 0; i < n; i++) {
+        if (D_002BEAAC->func_0013C8A0(h, &v, 4, 1) != 1) {
+            goto done;
+        }
+        x = D_002BEAAC->func_0013AFD0(h);
+        if (D_002BEAAC->func_0013AFF0(h, v, zero) != 0) {
+            goto done;
+        }
+        if (f7c0 != 0) {
+            f7c0->v2();
+        }
+        p = (CubeSub *)func_001E8A44((int)D_00018B10);
+        f7c0 = (DrawableCubeVirt *)(p ? ((CubeSub4 *)p)->func_00135150(h) : 0);
+        if (D_002BEAAC->func_0013AFF0(h, x, zero) != 0) {
+            goto done;
+        }
+    }
+    f30 = 0;
+    f2c = (DrawableCubeVirt **)func_001E8A44(f7c8 * 4);
+    for (j = 0; j < f7c8; j++) {
+        if (D_002BEAAC->func_0013C8A0(h, &v, 4, 1) != 1) {
+            goto done;
+        }
+        x = D_002BEAAC->func_0013AFD0(h);
+        if (D_002BEAAC->func_0013AFF0(h, v, zero) != 0) {
+            goto done;
+        }
+        p = (CubeSub *)func_001E8A44(0x630);
+        p = p ? p->func_00136AD0() : 0;
+        f2c[j] = (DrawableCubeVirt *)p->func_001365B0(h, 0);
+        if (f2c[j] == 0) {
+            goto done;
+        }
+        if (D_002BEAAC->func_0013AFF0(h, x, zero) != 0) {
+            goto done;
+        }
+    }
+    for (j = 0; j < f7c8; j++) {
+        func_001376B0(f2c[j]);
+    }
+    f30 = 0;
+    f28 = (S_137F90_Src *)f2c[0];
+    func_0014A7B0(D_002BDD28, D_002A67B4);
+    q = (CubeSub2 *)func_001E8A44(0xc);
+    if (q != 0) {
+        q->func_0014A520(D_002BDD28);
+    }
+    ((DrawableCubeVirt *)this)->v2();
+    return 0;
+done:
+    f7d0 = 0;
+    ((CubeSub2 *)f7d0)->func_0014A560(D_0028499C, 0);
+    r = (CubeSub3 *)func_001E8A44(0xf0);
+    f7d4 = r ? (C_00012140 *)r->func_00142C70() : 0;
+    ((CubeSub3 *)f7d4)->func_00142C80(D_00284990, 0);
+    f7d8 = func_001FF3C0(0x3600);
+    func_00136FE0();
+    ((DrawableCubeVirt *)f7c0)->v2();
+    f7c0 = 0;
+    D_002BEAAC->func_0013C110(h);
+    func_00136BE0(a);
+    return this;
 }
 
 undefined4 C_00138790::func_00138790(byte param_1)
