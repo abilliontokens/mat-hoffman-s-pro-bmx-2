@@ -83,6 +83,7 @@ int DynamicStringTable::func_001AC440(const char *name)
     char path[260];
     int size, unused;
     int j, k;
+    int bound;
     if (entries) func_001E891B(entries);
     if (unk10) func_001E8390((void *)unk10);
     strcpy(path, name);
@@ -120,24 +121,25 @@ int DynamicStringTable::func_001AC440(const char *name)
             }
         }
     }
+    bound = *(volatile int *)&unk1C;
     capacity = count;
     j = 0;
-    while (j < unk1C) {
-        k = 0;
-        while (k < count) {
-            const char *other = ((StringTableEntry *)unk18)[j].name;
-            const char *current = entries[k].name;
-            if (!func_001EA426(current, other)) {
-                StringTableEntry *src = &((StringTableEntry *)unk18)[j];
-                StringTableEntry *dst = &entries[k];
-                dst->name = src->name;
-                dst->value = src->value;
-                dst->data = src->data;
-                dst->refCount = src->refCount;
+    if (bound > 0) {
+        do {
+            k = 0;
+            while (k < count) {
+                if (!func_001EA426(entries[k].name, ((StringTableEntry *)unk18)[j].name)) {
+                    StringTableEntry *src = &((StringTableEntry *)unk18)[j];
+                    StringTableEntry *dst = &entries[k];
+                    dst->name = src->name;
+                    dst->value = src->value;
+                    dst->data = src->data;
+                    dst->refCount = src->refCount;
+                }
+                k++;
             }
-            k++;
-        }
-        j++;
+            j++;
+        } while (j < unk1C);
     }
     return count;
 }
@@ -368,8 +370,11 @@ char *func_001ACB40(double value, int digits, char *out, int alternate)
         *s++ = (char)last + '0';
     }
 finish:
-    if (s[-1] == '.' && !alternate) s[-1] = 0;
-    else *s = 0;
+    if (s[-1] == '.' && !*(volatile int *)&alternate) {
+        s[-1] = 0;
+    } else {
+        *s = 0;
+    }
     return out;
 }
 
