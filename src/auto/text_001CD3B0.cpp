@@ -47,9 +47,9 @@ extern char D_0028F09C, D_0028EECC;
 int __stdcall func_0021FBC1(int);
 void func_0021FB99();
 int __stdcall func_002228B1(int, void **, int);
-int __stdcall func_00222353(void *, int, int, int, int);
-int __stdcall func_00222309(void *, int, int, int, int, int, int, int);
-int __stdcall func_002223AC(void *, int, int, int, int);
+int __stdcall func_00222353(void *, float, float, float, int);
+int __stdcall func_00222309(void *, float, float, float, float, float, float, int);
+int __stdcall func_002223AC(void *, float, float, float, int);
 int __stdcall func_0022195C(void *);
 void func_001CBC10(int, const char *, int);
 struct XboxSoundInterface {
@@ -749,28 +749,28 @@ int XboxSoundInterface::func_001CDF30(int a, int b)
     f108 = D_002ABA64;
     {
         void **dev = &f30;
-        int r1 = func_00222353(*dev, 0, 0, 0, 1);
-        if (r1 < 0) {
-            func_001CBC10(r1, &D_0028EECC, 0xa2);
+        int r = func_00222353(*dev, 0, 0, 0, 1);
+        if (r < 0) {
+            func_001CBC10(r, &D_0028EECC, 0xa2);
             goto fail;
         }
-        int r2 = func_00222309(*dev, 0, 0, 1.0f, 0, 1.0f, 0, 1);
-        if (r2 < 0) {
-            func_001CBC10(r2, &D_0028EECC, 0xab);
+        r = func_00222309(*dev, 0, 0, 0x3f800000, 0, 0x3f800000, 0, 1);
+        if (r < 0) {
+            func_001CBC10(r, &D_0028EECC, 0xab);
             goto fail;
         }
-        int r3 = func_002223AC(*dev, 0, 0, 0, 1);
-        if (r3 < 0) {
-            func_001CBC10(r3, &D_0028EECC, 0xb3);
+        r = func_002223AC(*dev, 0, 0, 0, 1);
+        if (r < 0) {
+            func_001CBC10(r, &D_0028EECC, 0xb3);
             goto fail;
         }
         func_001CC0C0(1.0f);
         {
             void *device = *dev;
-            int r4 = func_0022195C(device);
-            if (r4 >= 0)
+            r = func_0022195C(device);
+            if (r >= 0)
                 goto done;
-            func_001CBC10(r4, &D_0028EECC, 0xbc);
+            func_001CBC10(r, &D_0028EECC, 0xbc);
         }
     }
 fail:
