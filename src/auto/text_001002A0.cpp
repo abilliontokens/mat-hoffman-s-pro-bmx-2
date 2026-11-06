@@ -98,9 +98,10 @@ struct C_00100CF0 : VP_101010 {
  int f2b8, f2bc, f2c0, f2c4;
  float f2c8, f2cc;
  M_101010 *f2d0;
- void func_00100CF0(float dt);
- void func_001BEE50(int, int, int);
- void func_001BED00(float);
+   __forceinline void Fire(void) { f298 = 1; v70(f288, f284); }
+  void func_00100CF0(float dt);
+  void func_001BEE50(int, int, int);
+  void func_001BED00(float);
 };
 struct C_00094E40 { void func_00094E40(int, int, int); };
 
@@ -594,6 +595,51 @@ void *C_00100CD0::func_00100CD0(unsigned int flags) {
     if (flags & 1)
         func_001E891B(this);
     return this;
+}
+
+void C_00100CF0::func_00100CF0(float dt) {
+ O_101010 *p = owner;
+ if (f29c || f2a0) { for(int i=0;i<8;i++) clear148[i]=0; }
+ if (f2bc != f2d0->b3B) {
+  if (f2c8 >= f2cc) f2c4 = f2bc;
+  else { float delta = (float)(f2bc-f2c0); f2c4 = (int)(delta*(f2c8/f2cc))+f2c0; f2c8 += dt; }
+ }
+ if (f290 || f2a0 || f29c) {
+  f28c += dt;
+  if (f28c >= D_0027DE74) {
+   if (f290 && p->f2A4) { f290=0; f2a8=0; }
+   else { v70(f288, (f298=1, f284)); f28c=0; }
+  }
+ }
+ if (f2b8 && !f2b0) {
+  f2b4 += dt;
+  if (f2b4 >= D_00278C48) {
+   f2b0=1; f2b8=0;
+
+  }
+ }
+ if(f2a4) (*(C_00094E40 **)(*(char **)(D_002A8490+0x2e0)+0x2fc))->func_00094E40(2,1,500);
+ if (f2a4 && !p->p25C->p74->func_000301D0()) {
+  f2b8=1; f2b4=0;
+  p->func_000BA9B0(35)->func_00103260(0);
+p->func_000BA9B0(36)->func_00103260(0);
+p->func_000BA9B0(37)->func_00103260(0);
+p->func_000BA9B0(38)->func_00103260(0);
+p->func_000BA9B0(39)->func_00103260(0);
+p->func_000BA9B0(40)->func_00103260(0);
+  func_001BEE50(1,f2ac,0);
+  f2bc=255; f2c0=0; f2c4=0; f2c8=0; f2cc=.25f; f2a4=0;
+ }
+ if(f2a8) {
+  p->func_000BA9B0(35)->func_00103350();
+p->func_000BA9B0(36)->func_00103350();
+p->func_000BA9B0(37)->func_00103350();
+p->func_000BA9B0(38)->func_00103350();
+p->func_000BA9B0(39)->func_00103350();
+p->func_000BA9B0(40)->func_00103350();
+  f2bc=0; f2c0=255; f2c4=255; f2c8=0; f2cc=.25f; f2a8=0;
+ }
+ func_001BED00(dt);
 }
 
 undefined4 C_00100FF0::func_00100FF0(byte param_1)
