@@ -60,6 +60,13 @@ extern char D_00295C38[];
 extern char D_00295C2C[];
 extern int D_00278798;
 extern int D_0027D1D8;
+struct C_001F0209_L {
+    S_001EF734 a20;
+    S_001EF734 a18;
+    S_001EF734 b16;
+    S_001EF734 local;
+};
+
 void *_func_001EFBEE(S_001EF734 *o);
 struct C_Lex {
     int kind;
@@ -558,6 +565,54 @@ void *_func_001F01D8(S_001EF734 *o)
     S_001EF734 tmp;
     ((S_001EF734 *)_func_001EFCD5(&tmp, '`', _func_001EFDB9(&local, 0)))->func_001EFD3B(o, '\'');
     return o;
+}
+
+extern int __cdecl func_001EF0B4(void *out);
+extern void *__cdecl func_001F1DF5(void *a, void *b, int c);
+extern char D_00295C70[];
+extern char D_00295C6C[];
+void *_func_001F0209(S_001EF734 *out, S_001EF734 *in)
+{
+    S_001EF734 local;
+    S_001EF734 a18;
+    S_001EF734 a20;
+    S_001EF734 b16;
+    char volatile *p;
+
+    local.func_001EEEE6(in);
+    if (local.func_001EF1D0() != 0 && *D_002F6A28 != 0) {
+        do {
+            func_001EF0B4(&b16);
+            local.func_001EEF4F((int)((S_001EF734 *)b16.func_001EFD3B(&a20, ' '))->func_001EFAB5(&a18, &local));
+            if (local.func_001EF1D0() != 0) {
+                p = D_002F6A28;
+                if (*p != '@') {
+                    local.func_001EF935(D_00295C70);
+                } else if (*p != 0 && *p != '@') {
+                    local.func_001EF935(((S_001EF734 *)_func_001EFCD5(&b16, '`', func_001F1DF5(&a18, &a20, 0x27)))->func_001EFD3B(&a20, 0x27));
+                }
+                if (*D_002F6A28 == '@') {
+                    D_002F6A28++;
+                }
+                if (local.func_001EF1D0() != 0 && *D_002F6A28 != '@') {
+                    local.func_001EFB82(D_00295C6C);
+                }
+            }
+        } while (local.func_001EF1D0() != 0);
+    }
+    if (local.func_001EF1D0() == 0 || *D_002F6A28 == 0) {
+        local.func_001EF613(2);
+        local.func_001EFB18('}');
+        if (*D_002F6A28 == '@') {
+            D_002F6A28++;
+        }
+    } else {
+        if (local.func_001EF1D0() != 0) {
+            local.func_001EEF4F((int)_func_001EFCF7(&a20, 2, &local));
+        }
+    }
+    out->func_001EEEE6(&local);
+    return out;
 }
 
 void *_func_001F037A(S_001EF734 *o, void *p)
