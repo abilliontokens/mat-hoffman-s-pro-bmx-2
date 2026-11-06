@@ -31,7 +31,7 @@ struct Vec4_587F0 {
     Vec4_587F0() {}
     Vec4_587F0(float ax, float ay, float az, float aw = 1.0f) { x = ax; y = ay; z = az; w = aw; }
     Vec4_587F0 operator*(float s) const { return Vec4_587F0(x * s, y * s, z * s); }
-    Vec4_587F0 operator+(const Vec4_587F0 &o) const { return Vec4_587F0(x + o.x, y + o.y, z + o.z); }
+    Vec4_587F0 operator+(const Vec4_587F0 &o) const { Vec4_587F0 r; r.x = x + o.x; r.y = y + o.y; r.z = z + o.z; r.w = 1.0f; return r; }
     Vec4_587F0 operator-(const Vec4_587F0 &o) const { return Vec4_587F0(x - o.x, y - o.y, z - o.z); }
 };
 struct S_R {
@@ -212,7 +212,8 @@ void C_001587F0::func_001587F0(int a0, Vec4_587F0 pos, Vec4_587F0 dir)
     unk28->func_0011CA60(unk5c + v * unk48);
     unk2c->v30();
     unk2c->func_0011CA60(unk5c - v * unk48);
-    unk6c = unk5c + v * unk48;
+    Vec4_587F0 &dst = unk6c;
+    dst = unk5c + v * unk48;
     unk34->v31();
     unk34->v32();
     unk38->v31();
