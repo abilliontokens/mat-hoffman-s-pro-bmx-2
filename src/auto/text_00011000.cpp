@@ -280,16 +280,7 @@ float func_00011170(float *v) {
 }
 
 void func_000111B0(float *out, float *in) {
-    __m128 v = _mm_loadu_ps(in);
-    __m128 sq = _mm_mul_ps(v, v);
-    __m128 len = _mm_add_ss(_mm_movehl_ps(sq, sq), sq);
-    len = _mm_add_ss(len, _mm_shuffle_ps(sq, sq, 0xe1));
-    __m128 cmp = _mm_cmplt_ss(len, _mm_load_ss(&D_002754A0));
-    len = _mm_add_ss(len, _mm_and_ps(cmp, _mm_load_ss(&D_002754A0)));
-    __m128 r = _mm_rsqrt_ss(len);
-    __m128 scale = _mm_mul_ss(_mm_mul_ss(r, _mm_load_ss(&D_00275480)), _mm_sub_ss(_mm_load_ss(&D_00275490), _mm_mul_ss(_mm_mul_ss(len, r), r)));
-    scale = _mm_shuffle_ps(scale, scale, 0);
-    _mm_storeu_ps(out, _mm_mul_ps(scale, v));
+    AsmVec3Normalize(out, in);
 }
 
 float func_00011220(float *a, float *b)
