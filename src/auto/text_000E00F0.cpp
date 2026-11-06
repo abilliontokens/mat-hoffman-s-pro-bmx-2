@@ -3,6 +3,21 @@
 
 extern int D_0027FA0C;
 
+extern float D_0027988C;
+extern float D_0027DE74;
+extern float D_00275544;
+
+/* thiscall helpers called from the playlist input handler */
+struct E00F0_Input { int func_000301D0(int a); };
+struct E00F0_Buttons { int func_00136170(int a, int b, int c); };
+struct E00F0_Sound { void func_000B9A80(int a, int b); };
+struct E00F0_Page { char pad0[0x134]; int f134; int f138; char *f25C; };
+struct E00F0_Mgr8 { char pad0[4]; E00F0_Buttons *f8; };
+struct E00F0_Game { char pad0[8]; E00F0_Mgr8 *f8obj; char padC[0x2E0 - 0xC]; struct E00F0_Lvl *f2E0; };
+struct E00F0_Lvl { char pad0[0x2FC]; void *f2FC; };
+struct E00F0_SongList { int func_00095250(int a); int func_000952A0(int a); void func_00094D90(int a); void func_00095490(int a); void func_00094E40(int a, int b, int c); void func_00094960(int a); void func_00094C60(void); };
+struct E00F0_Self { char pad0[0x124]; E00F0_Page *f124; int func_000DFC90(void); };
+
 struct DelObjTime {
     virtual void Destroy(int a0);
     char pad4[0x24];
@@ -135,6 +150,105 @@ extern int D_002786A0;
 extern int D_00278678;
 extern int D_002786B0;
 extern float D_0027E140;
+
+extern int __fastcall func_00095250(void *,int,int);
+extern int __fastcall func_000952A0(void *,int,int);
+extern void __fastcall func_00094D90(void *,int,int);
+extern void __fastcall func_00095490(void *,int,int);
+extern void __fastcall func_00094E40(void *,int,int,int,int);
+extern void __fastcall func_00094960(void *,int,int);
+extern void __fastcall func_00094C60(void *,int);
+extern void __fastcall func_000DFC90(void *,int);
+extern int __fastcall func_000301D0(void *,int);
+extern int __fastcall func_00136170(void *,int,int,int,int);
+extern void __fastcall func_000B9A80(void *,int,int,int);
+int __fastcall func_000E00F0(char * volatile self,int unused,int a,volatile int b)
+{
+ char *page=*(char **)(self+0x124);
+ void *volatile sound=*(void **)(page+0x24);
+ if(func_000301D0(*(void **)(*(char **)(page+0x25c)+0x74),0)) return 0;
+ if(*(int *)(page+0x138)==4 || *(int *)(page+0x138)==3) return 0;
+ if(!*(int *)(self+0x2e4) || *(int *)(self+0x2ac)) return 0;
+ if((*(int *)(self+0x294)||*(int *)(self+0x298)||*(int *)(self+0x2a0))&&!*(int *)(self+0x29c)) return 0;
+if(b==func_00136170(*(void **)((char *)D_002A8490+8),0,5,2,0)||b==func_00136170(*(void **)((char *)D_002A8490+8),0,24,2,0)){
+ if(!(*(int *)(self+0x298))){
+ func_000B9A80(sound,0,1,1);
+ func_00094E40(*(void **)(*(char **)((char *)D_002A8490+0x2e0)+0x2fc),0,2,1,500);
+ (*(int *)(self+0x298))=1;(*(int *)(self+0x290))=0;(*(int *)(self+0x288))=b;(*(int *)(self+0x28c))=a;
+ }
+ if(!(*(int *)(self+0x29c)))return 0;
+ func_00094960(*(void **)(*(char **)((char *)D_002A8490+0x2e0)+0x2fc),0,0);
+ func_00094C60(*(void **)(*(char **)((char *)D_002A8490+0x2e0)+0x2fc),0);
+ func_000DFC90(self,0);
+ *(int *)(*(char **)(self+0x124)+0x138)=7;
+ *(int *)(*(char **)(self+0x124)+0x134)=24;
+ return 1;
+}
+ if(b==func_00136170(*(void **)((char *)D_002A8490+8),0,2,2,0)){
+ if(*(int *)(self+0x280)==1){*(int *)(self+0x2a8)=1;return 1;}
+ func_000B9A80(sound,0,2,1);
+ *(int *)(self+0x2c8)=1;
+ if(*(int *)(self+0x280)>=1){*(int *)(self+0x2e8)=*(int *)(self+0x280);--*(int *)(self+0x280);}
+ if(*(int *)(self+0x2b4)==*(int *)(self+0x280)){
+ *(int *)(self+0x2a4)=0;
+ *(int *)(self+0x2b4)=*(int *)(self+0x280)-1;
+ --*(int *)(self+0x2b0);
+if(!(*(int *)(self+0x2a8))){for(int i=0;i<18;i++){
+ (*(int *)(self+0x2ac))=1;
+ (*(volatile float *)(self+0x384+i*4)) += D_0027988C;
+ (*(volatile float *)(self+0x3cc+i*4)) += D_0027988C;
+ (*(int *)(self+0x2cc))=1;
+ (*(volatile float *)(self+0x84c+i*4))=0.5f;
+ (*(int *)(self+0x804+i*4))=0;
+ (*(int *)(self+0x5c8+i*16))=(int)(*(volatile float *)(self+0x45c+i*4));
+ (*(volatile float *)(self+0x45c+i*4))+=D_0027988C;
+ (*(int *)(self+0x6e8+i*16))=(int)(*(volatile float *)(self+0x45c+i*4));
+ if((*(int *)(self+0x280))==1)(*(int *)(self+0x2a8))=1;
+}}
+ }
+ return 1;
+ }
+ if(b==func_00136170(*(void **)((char *)D_002A8490+8),0,3,2,0)){
+ if((*(int *)(self+0x280))==18){(*(int *)(self+0x2a4))=1;return 1;}
+ func_000B9A80(sound,0,2,1);(*(int *)(self+0x2c8))=1;
+ if((*(int *)(self+0x280))==18){(*(int *)(self+0x2e8))=-1;(*(int *)(self+0x2c8))=0;}
+ if((*(int *)(self+0x280))<18){(*(int *)(self+0x2e8))=(*(int *)(self+0x280));++(*(int *)(self+0x280));}
+ if((*(int *)(self+0x280))>3 && (*(int *)(self+0x280))<=19 && (*(int *)(self+0x2b0))==(*(int *)(self+0x280))){
+ ++(*(int *)(self+0x2b4));(*(int *)(self+0x2b0))=(*(int *)(self+0x280))+1;(*(int *)(self+0x2a8))=0;
+ if(!(*(int *)(self+0x2a4))){for(int i=0;i<18;i++){
+ (*(int *)(self+0x2ac))=1;
+ (*(volatile float *)(self+0x384+i*4)) -= D_0027988C;
+ (*(volatile float *)(self+0x3cc+i*4)) -= D_0027988C;
+ (*(int *)(self+0x2cc))=1;
+ (*(volatile float *)(self+0x84c+i*4))=0.5f;
+ (*(int *)(self+0x804+i*4))=0;
+ (*(int *)(self+0x5c8+i*16))=(int)(*(volatile float *)(self+0x45c+i*4));
+ (*(volatile float *)(self+0x45c+i*4))-=D_0027988C;
+ (*(int *)(self+0x6e8+i*16))=(int)(*(volatile float *)(self+0x45c+i*4));
+ if((*(int *)(self+0x280))==19)(*(int *)(self+0x2a4))=1;
+}}
+ }
+ return 1;
+ }
+
+ if(b==func_00136170(*(void **)((char *)D_002A8490+8),0,7,2,0)){
+ if((*(int *)(self+0x2bc)))return 0;
+ if((*(int *)(self+0x2f0+*(int *)(self+0x280)*4)))return 1;
+ if(!(*(int *)(self+0x2a0))){func_000B9A80(sound,0,4,1);(*(int *)(self+0x2a0))=1;(*(int *)(self+0x290))=0;(*(int *)(self+0x288))=b;(*(int *)(self+0x28c))=a;}
+ if((*(int *)(self+0x29c))){(*(int *)(self+0x338+*(int *)(self+0x280)*4))=(*(int *)(self+0x338+*(int *)(self+0x280)*4))!=1;(*(int *)(self+0x2b8))=1;(*(int *)(self+0x2a0))=0;(*(int *)(self+0x29c))=0;}
+ return 1;
+ }
+ if(b==func_00136170(*(void **)((char *)D_002A8490+8),0,6,2,0)){
+ if((*(int *)(self+0x2f0+*(int *)(self+0x280)*4)))return 1;
+ if(!(*(int *)(self+0x2bc)))func_000B9A80(sound,0,4,1);
+ if(!(*(int *)(self+0x29c))){(*(int *)(self+0x2bc))=1;(*(int *)(self+0x290))=0;(*(int *)(self+0x288))=b;(*(int *)(self+0x28c))=a;return 0;}
+if(!func_00095250(*(void **)(*(char **)((char *)D_002A8490+0x2e0)+0x2fc),0,*(int *)(self+0x280))&&func_000952A0(*(void **)(*(char **)((char *)D_002A8490+0x2e0)+0x2fc),0,*(int *)(self+0x280))){
+func_00094D90(*(void **)(*(char **)((char *)D_002A8490+0x2e0)+0x2fc),0,250);
+func_00095490(*(void **)(*(char **)((char *)D_002A8490+0x2e0)+0x2fc),0,*(int *)(self+0x280));
+} (*(int *)(self+0x2bc))=0;(*(int *)(self+0x29c))=0;return 1;
+ }
+ return 1;
+}
 
 C_000E0D50 *C_000E0D50::func_000E0D50(int a)
 {
