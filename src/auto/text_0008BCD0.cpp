@@ -48,6 +48,12 @@ struct Elem_0008BCD0 {
             flags |= 1;
         }
     }
+    void SetX(int nx) {
+        if (x != nx) {
+            x = nx;
+            flags |= 1;
+        }
+    }
     void SetF34(float v) {
         if (f34 != v) {
             f34 = v;
