@@ -307,7 +307,8 @@ struct BmxEventEditor {
     char pad68[0x284 - 0x68];
     int f284;
     char f288;
-    char pad289[0x290 - 0x289];
+    char pad289[3];
+    int f28C;
     int f290;
     char f294[0x10];
     char f2a4[0x10];
