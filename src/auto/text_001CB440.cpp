@@ -192,13 +192,6 @@ struct S_001CB610_Entry {
     unsigned char f40;
     char pad41[3];
     unsigned char Flags() { return f40; }
-    __forceinline int Open(int idx, char *path) {
-        if (f40 & 1) {
-            func_001ADCC0(path, 0x104, D_0028ED6C, D_002A48F8, f0[idx].name);
-            return func_001DCC3C(path, 0x80000000, 1, 0, 3, 0x80, 0);
-        }
-        return func_001DDAEE(f0[idx].f10, 0);
-    }
 };
 int __stdcall func_0023F469(int a0, int handle, int a2, int *a3, int a4, int a5,
                             int *desc, S_001CB7D0_Com **out);
@@ -566,6 +559,7 @@ int C_001CB610::func_001CB7D0(void)
     return 0;
 }
 
+#pragma auto_inline(off)
 int C_001CB610::func_001CB810(int idx)
 {
     char path[0x104];
@@ -577,7 +571,7 @@ int C_001CB610::func_001CB810(int idx)
     }
     return func_001DDAEE(e->f0[idx].f10, 0);
 }
-
+#pragma auto_inline()
 unsigned int C_001CB610::func_001CB8A0(void)
 {
     int desc[5];
