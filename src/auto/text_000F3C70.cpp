@@ -47,9 +47,14 @@ struct GData_000F3C70 {
     char pad4C[0x144];
     int f190;
     char pad194[0x12c];
-    void *p2C0;
+    struct Obj2C0_000F3C70 *p2C0;
     void func_0005B220();
+};
+struct Obj2C0_000F3C70 {
     int func_0005C0F0();
+};
+struct Obj136_000F3C70 {
+    int func_00136170(int a, int b, int c);
 };
 
 struct Owner_000F3C70 {
