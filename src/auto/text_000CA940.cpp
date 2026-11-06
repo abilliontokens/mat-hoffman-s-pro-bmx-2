@@ -190,8 +190,16 @@ struct S_000CB3B0_B {
     S_000CB3B0_Obj301D0 *f74;
 };
 
+struct Holder150_CA { char pad0[0x4C0]; VObj78_CA *f4C0; };
 struct S_000CB3B0_A {
-    char pad0[0x25C];
+    char pad0[0x24];
+    UiObj_CA *f24;
+    char pad28[0x134 - 0x28];
+    int f134;
+    int f138;
+    char pad13C[0x150 - 0x13C];
+    Holder150_CA *f150;
+    char pad154[0x25C - 0x154];
     S_000CB3B0_B *f25C;
 };
 
