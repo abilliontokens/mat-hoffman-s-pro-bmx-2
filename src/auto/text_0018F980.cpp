@@ -143,9 +143,9 @@ void *func_001E8AA5(unsigned int size);
 template <class T> inline T min0018F980(const T &a, const T &b) { return a < b ? a : b; }
 struct C_0018F980_Obj {
     char pad0[8];
-    int f8;
+    volatile int f8;
     char padC[4];
-    int f10;
+    volatile int f10;
     char pad14[0x12c];
     int f140;
     int f144;
