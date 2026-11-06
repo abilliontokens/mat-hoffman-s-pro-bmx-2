@@ -57,7 +57,7 @@ static __forceinline void Round_00038850(int *out, float value)
     int rounded;
     c.out = out;
     c.v = value;
-    rounded = _mm_cvtss_si32(*(__m128 *)&c.v);
+    rounded = (int)c.v;
     _ReadWriteBarrier();
     *(*(int * volatile *)&c.out) = rounded;
 }
@@ -158,22 +158,23 @@ extern "C" void _ReadWriteBarrier(void);
 #pragma intrinsic(_ReadWriteBarrier)
 C_00038850_Item *C_00038760::func_00038850(void * volatile owner, float x, float y, float z, int unused, volatile int allow)
 {
-    C_00038760 * volatile self = this;
     S_00038760_Arr *a = &arr3;
+    C_00038760 * volatile self = this;
     int ix, iy, iz;
     float v[4];
-    int i;
 
     v[2] = 0.0f;
     v[1] = 0.0f;
     v[0] = 0.0f;
     v[3] = 1.0f;
     _ReadWriteBarrier();
-    for (i = 0; i < a->count; i++, a = &self->arr3) {
+    for (int i = 0; i < a->count; i++, a = &self->arr3) {
         C_00038850_Item *e = (C_00038850_Item *)a->at(i);
         e->func_0019C320(v);
         Round_00038850(&ix, v[0]);
+        _ReadWriteBarrier();
         Round_00038850(&iy, v[1]);
+        _ReadWriteBarrier();
         Round_00038850(&iz, v[2]);
         _ReadWriteBarrier();
         v[0] = (float)ix;
