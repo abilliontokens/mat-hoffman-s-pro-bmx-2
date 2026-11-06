@@ -121,7 +121,7 @@ struct __declspec(align(16)) S_001401C0_Mat {
     }
 };
 
-static __forceinline void Mat_Copy_0013FD50(S_001401C0_Mat *dst, const S_001401C0_Mat *src)
+static void Mat_Copy_0013FD50(S_001401C0_Mat *dst, const S_001401C0_Mat *src)
 {
     __m128 a = _mm_load_ps(&src->m[0]);
     __m128 b = _mm_load_ps(&src->m[4]);
@@ -717,6 +717,42 @@ void C_0013FCF0::func_0013FCF0()
   func_00200B30(f0c, f8, f20);
 }
 
+void C_0013FF50::func_0013FF50(int a0)
+{
+    C_0013FF50 * volatile self = this;
+    S_001401C0_Mat m;
+    S_001401C0_Mat t;
+    S_001401C0_Mat * volatile p;
+    S_001401C0_Mat * volatile q;
+
+    p = &m;
+    p->identity();
+    p = &t;
+    p->transpose(&m);
+    if (self->f1A0->f4C == 0) {
+        func_000263B0((float *)self->f90, (float *)&m, (float *)(a0 + 0x250));
+    } else {
+        func_000263B0((float *)self->f90, (float *)&m, (float *)(a0 + 0x290));
+    }
+    self->f190[0] = *(float *)(a0 + 0x170) - m.m[3];
+    self->f190[1] = *(float *)(a0 + 0x174) - m.m[7];
+    self->f190[2] = *(float *)(a0 + 0x178) - m.m[11];
+    p = &t;
+    p->xform(self->f190, self->f190);
+    if (self->f1A0->f30 == 0) {
+        func_00030AC0((float *)self->f150, (float *)self->fD0, (float *)&t);
+    } else if (self->f1A0->f39 & 1) {
+        q = (S_001401C0_Mat *)self->f110;
+        q->zero();
+        ((float *)self->f110)[3] = self->f1A0->f50;
+        ((float *)self->f110)[7] = self->f1A0->f54;
+        ((float *)self->f110)[11] = self->f1A0->f58;
+        ((float *)self->f110)[15] = self->f1A0->f5C;
+        self->f1A0->f39 &= 0xfe;
+    }
+    func_0011ACC0(self->f10, &m, (void *)(a0 + 0xb0));
+}
+
 void C_001402C0::func_001402C0(int arg1, int arg2)
 {
     if (a != 0) {
@@ -788,6 +824,19 @@ void C_00140480::func_00140480(unsigned int color)
     f54 = (float)(color >> 8 & 0xff) * D_00284758;
     f58 = (float)(color & 0xff) * D_00284758;
     f5C = (float)(color >> 24) * D_00284758;
+}
+
+void C_00140390::func_00140520(int i, int j, int *v)
+{
+    if (i < f40) {
+        int *o = (int *)f3C[i].f4;
+        if (j < o[9]) {
+            void *buf = (void *)o[4];
+            V3_00140520 *p = (V3_00140520 *)func_001FF410(buf, 0x10) + j;
+            if (p)
+                *p = *(V3_00140520 *)v;
+        }
+    }
 }
 
 undefined4 C_00140660::func_00140660(byte param_1)
