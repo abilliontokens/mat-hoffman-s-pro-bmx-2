@@ -181,8 +181,8 @@ void C_00196290::func_001963D0(void)
     int header[2];
     u32 i;
     if ((u32)(f5c + f68 + 8) < fc8) {
-        header[1] = f64 | 0x80000000;
         header[0] = f24;
+        header[1] = f64 | 0x80000000;
         f64 = 0;
         func_00196360((u8 *)header);
         for (i = 0; i < f74; ++i) {
@@ -192,8 +192,8 @@ void C_00196290::func_001963D0(void)
                 f54[1] = p[1];
                 f54[2] = p[2];
                 f54[3] = p[3];
-                f68 += 4;
                 f54 += 4;
+                f68 += 4;
                 f64 += 4;
                 f98[i] = *(int *)f78[i];
             } else if (f80[i] == 1) {
@@ -202,8 +202,8 @@ void C_00196290::func_001963D0(void)
                 f54[1] = p[1];
                 f54[2] = p[2];
                 f54[3] = p[3];
-                f68 += 4;
                 f54 += 4;
+                f68 += 4;
                 f64 += 4;
                 fac[i] = *(int *)f78[i];
             } else if (f80[i] == 2) {
@@ -213,10 +213,10 @@ void C_00196290::func_001963D0(void)
                 f64++;
             }
         }
-        *(float *)&header[0] = -999.0f;
-        header[1] = f64 | 0x80000000;
-        ((int *)f54)[0] = header[0];
-        ((int *)f54)[1] = header[1];
+        S_001968C0_Hdr h;
+        h.a = -999.0f;
+        h.b = f64 | 0x80000000;
+        *(S_001968C0_Hdr *)f54 = h;
     } else if (!(fc0 & 0x80)) {
         fc0 |= 0x80;
     }
