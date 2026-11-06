@@ -155,9 +155,10 @@ static __forceinline void Trunc_0013E9B0(int *volatile out, float f)
     *out = _mm_cvttss_si32(*(__m128 *)&f);
 }
 
-static __forceinline int Min_0013E9B0(int a, int b)
+static __forceinline int Min_0013E9B0(volatile int a, int b)
 {
-    return a > b ? b : a;
+    volatile int r = a > b ? b : a;
+    return r;
 }
 
 struct S_0013E9B0_Arg {
@@ -214,6 +215,47 @@ void func_0013E990(void)
 {
     func_001FD020(&D_0004035C, 0);
     func_001FD020(&D_00040340, 1);
+}
+
+int C_0013E9B0::func_0013E9B0(S_0013E9B0_Arg *arg)
+{
+    S_0013E9B0_Mat m;
+    S_0013E9B0_Mat mat;
+    S_0013E9B0_Obj *obj = D_002BF250->f54[fE];
+    float s = obj->func_0014C860(f11) * obj->f1D0 * D_002BEB34;
+    float t = obj->func_0014C830(f10) * obj->f1CC;
+    float a = f14 * s;
+    float b = f16 * s;
+    m.m[0] = a;
+    m.m[1] = 0.0f;
+    m.m[2] = -b;
+    m.m[3] = f8 * D_002BF250->f578;
+    m.m[4] = 0.0f;
+    m.m[5] = t;
+    m.m[6] = 0.0f;
+    m.m[7] = fA * D_002BF250->f578;
+    m.m[8] = b;
+    m.m[9] = 0.0f;
+    m.m[10] = a;
+    m.m[11] = fC * D_002BF250->f578;
+    m.m[12] = 0.0f;
+    m.m[13] = 0.0f;
+    m.m[14] = 0.0f;
+    m.m[15] = 1.0f;
+    float r = D_0027988C - (fF - 16) * D_00284ED0;
+    if (r > D_0027988C)
+        r = 64.0f;
+    Trunc_0013E9B0(&arg->fE0, r);
+    arg->fE0 = Min_0013E9B0(arg->fE0, 0xff);
+    char *base = D_002EFDB8->f4;
+    func_000263B0(arg->f10, &m, base + 0x250);
+    func_0011AC30(&mat, &m);
+    Xform_0013E9B0((float *)(base + 0x170), &mat, arg->fD0);
+    D_002E2930->func_0015E420(arg->f50, arg->f90, 0);
+    Xform_0013E9B0(arg->f50, &mat, arg->f50);
+    arg->fCC = r * D_00284ECC;
+    obj->f200->func_00149310(obj->f204, (int)arg, 0, 0);
+    return 1;
 }
 
 void C_0013ECA0::func_0013ECA0(void)
