@@ -3,6 +3,7 @@
 
 struct C_001B1980 {
     void func_001B1980(void);
+    void func_001B17D0(char *s);
     void func_001B1860(int a1, float a2, int a3, float a4, int a5, int a6,
                        float a7, int a8, float a9, int a10, float a11, int a12, int a13);
 };
