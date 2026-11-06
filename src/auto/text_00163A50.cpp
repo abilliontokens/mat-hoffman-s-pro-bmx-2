@@ -118,8 +118,8 @@ struct C_00163A50 {
     void *func_00163A50(void *a, void *b);
     void func_00162A80(void *p);
     S_00163DC0_Res *func_00162B20(const char *name, int a);
-    int func_00163780(const char *path, S_00163DC0_Res *res);
-    int func_00162FB0(S_00163A50_Arg *a1, const char *path, S_00163DC0_Res *res);
+    S_00163DC0_Res *func_00163780(const char *path, S_00163DC0_Res *res);
+    S_00163DC0_Res *func_00162FB0(S_00163A50_Arg *a1, const char *path, S_00163DC0_Res *res);
     void func_00162B70(const char *path, S_00163DC0_Res *res);
     void *func_00163DC0(C_00163DC0_Parser *parser, const char *section, const char *prefix);
 };
@@ -235,7 +235,6 @@ void *C_00163A50::func_00163A50(void *a, void *b)
     char file[0x104];
     S_00163DC0_Res *res;
     S_00163DC0_Res *obj;
-    int loaded = 0;
 
     a1->f8->func_00169710(section);
     a1->f8->func_00168BE0(D_00276980, D_00284A98, name, -1);
@@ -284,11 +283,9 @@ void *C_00163A50::func_00163A50(void *a, void *b)
         res->f2C = a1->f2C;
     }
     func_00030F30(path, D_00287D28);
-    loaded = func_00163780(path, res);
-    if (loaded == 0) {
+    if (0 == func_00163780(path, res)) {
         func_00030F30(path, D_00287D20);
-        loaded = func_00162FB0(a1, path, res) != 0;
-        if (loaded != 0) {
+        if (0 != func_00162FB0(a1, path, res)) {
             func_00030F30(path, D_00287D28);
             func_00162B70(path, res);
         }
