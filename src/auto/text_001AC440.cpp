@@ -247,6 +247,10 @@ void *DynamicStringTable::func_001AC920(int flags)
 }
 
 double func_001EA2BA(double value, double *ipart);
+static __forceinline char *IndexPtr_001AC940(int n, char *base)
+{
+    return base + n;
+}
 static __declspec(noinline) char *func_001AC940(int *sign, char *buf, double arg, int ndigits, int *decpt, int eflag)
 {
     char *p;
@@ -395,17 +399,20 @@ static __declspec(noinline) char *func_001ACCF0(int flag, int *sign, unsigned va
 }
 
 int func_001EA211(int c);
-char *func_001ACD40(int ndec, char fmt, double value, int alt, int *sign, char *buf, int *outlen)
+static __declspec(noinline) char *func_001ACD40(int ndec, char fmt, double value, int alt, int *sign, char *buf, int *outlen)
 {
     int decpt;
     char expbuf[10];
     char digits[0x50];
     char *src;
-    char *p;
+    char *p = buf;
     int esign;
     int len;
 
-    src = func_001AC940(sign, digits, value, fmt == 'f' ? ndec : ndec + 1, &decpt, fmt != 'f');
+    if (fmt == 'f')
+        src = func_001AC940(sign, digits, value, ndec, &decpt, 0);
+    else
+        src = func_001AC940(sign, digits, value, ndec + 1, &decpt, 1);
     if (func_001EA211(*src)) {
         strcpy(buf, src);
         *outlen = strlen(buf);
@@ -413,17 +420,7 @@ char *func_001ACD40(int ndec, char fmt, double value, int alt, int *sign, char *
         return buf;
     }
     if (fmt == 'f') {
-        if (decpt > 0) {
-            int n = decpt;
-            p = buf;
-            do {
-                *p++ = *src++;
-            } while (--n);
-            decpt = -1;
-            if (ndec > 0 || alt)
-                *p++ = '.';
-        } else {
-            p = buf;
+        if (decpt <= 0) {
             *p++ = '0';
             if (ndec > 0) {
                 *p++ = '.';
@@ -437,9 +434,16 @@ char *func_001ACD40(int ndec, char fmt, double value, int alt, int *sign, char *
             } else if (alt) {
                 *p++ = '.';
             }
+        } else {
+            int n = decpt;
+            do {
+                *p++ = *src++;
+            } while (--n);
+            decpt = -1;
+            if (ndec > 0 || alt)
+                *p++ = '.';
         }
     } else {
-        p = buf;
         *p++ = *src++;
         if (ndec > 0 || alt)
             *p++ = '.';
