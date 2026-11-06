@@ -2,6 +2,7 @@
 #include "common.h"
 #include <math.h>
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 
 extern float D_00275544;
 extern float D_00275BF8;
@@ -262,7 +263,7 @@ void func_001E891B(void *);
 
 void C_001A8BC0::func_001A8BC0(int a, int b, int c, int d, int e, int f, int g, int h, int i)
 {
-    S_001A8BC0_Mesh *&mesh = *(S_001A8BC0_Mesh **)&b;
+    S_001A8BC0_Mesh *mesh;
     V4_001A8B80 *verts;
     int n;
 
@@ -314,5 +315,9 @@ void C_001A8BC0::func_001A8BC0(int a, int b, int c, int d, int e, int f, int g, 
     f2C->f64 = *(int *)(f24 + 0x24);
     f2C->func_001334E0(1);
     func_001D3F50();
+}
+
+void func_001A8DC0(float *out, float *in) {
+    AsmVec3Normalize(out, in);
 }
 
