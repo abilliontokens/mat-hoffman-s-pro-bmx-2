@@ -40,32 +40,6 @@ struct Gfx_001D6600 { int f0; Display_001D6600 *f4; };
 extern Gfx_001D6600 *D_002EFDB8;
 void *__stdcall func_001FF410(void *buffer, int flags);
 
-static __forceinline float QuadUV_001D6600(Vertex_001D6600 *v, int z, Glyph_001D6600 *e, float x, float y, float fw, float fh)
-{
-    float right = (e->f8 - e->f4) * fw + x;
-    float bottom = (e->f10 - e->fC) * fh + y;
-    float lx = x * D_002ABDD0;
-    float by = D_002ABDD4 * bottom;
-    float ty = D_002ABDD4 * y;
-    float rx = D_002ABDD0 * right;
-
-    v[0].z = z; v[1].z = z; v[2].z = z;
-    v[3].z = z; v[4].z = z; v[5].z = z;
-    v[0].x = lx; v[0].y = by;
-    v[1].x = lx; v[1].y = ty;
-    v[2].x = rx; v[2].y = ty;
-    v[3].x = rx; v[3].y = ty;
-    v[4].x = rx; v[4].y = by;
-    v[5].x = lx; v[5].y = by;
-    v[0].u = e->f4; v[0].v = e->f10;
-    v[1].u = e->f4; v[1].v = e->fC;
-    v[2].u = e->f8; v[2].v = e->fC;
-    v[3].u = e->f8; v[3].v = e->fC;
-    v[4].u = e->f8; v[4].v = e->f10;
-    v[5].u = e->f4; v[5].v = e->f10;
-    return right;
-}
-
 static __forceinline void Identity_001D6600(Mat_001D6600 *&p)
 {
     Mat_001D6600 *q = p;
