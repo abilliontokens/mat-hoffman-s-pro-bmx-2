@@ -382,15 +382,15 @@ int __stdcall func_00163780(int name, P163780 *p)
                 D_002BEAAC->func_0013C8A0(h, p->listB[i]->data, p->listB[i]->count * 12, 1);
             }
         } else {
-            int a, b, c, d, e;
-            int *pe = &e;
+            int a;
+            int v[4];
             for (k = 0; k < p->listB[i]->count; k++) {
                 D_002BEAAC->func_0013C960(h, &a, 4);
-                D_002BEAAC->func_0013C960(h, &b, 4);
-                D_002BEAAC->func_0013C960(h, &c, 4);
-                D_002BEAAC->func_0013C960(h, &d, 4);
-                D_002BEAAC->func_0013C960(h, &e, 4);
-                ((It163780V *)p->listB[i])->v4(k, &a, &e);
+                D_002BEAAC->func_0013C960(h, &v[1], 4);
+                D_002BEAAC->func_0013C960(h, &v[2], 4);
+                D_002BEAAC->func_0013C960(h, &v[3], 4);
+                D_002BEAAC->func_0013C960(h, &v[0], 4);
+                ((It163780V *)p->listB[i])->v4(k, &a, &v[0]);
             }
         }
     }
