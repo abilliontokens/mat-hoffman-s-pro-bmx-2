@@ -1,6 +1,7 @@
 /* 9 functions from 0x000B2ED0 to 0x000B3E10, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+static inline int vehicle_min(const int &a, const int &b) { return a > b ? b : a; }
 
 extern int D_0027CF8C;
 struct S_2ED0_Rd {
