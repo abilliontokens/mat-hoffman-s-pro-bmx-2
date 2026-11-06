@@ -115,6 +115,9 @@ struct BmxUIPageHOF2 {
     void func_001BE3F0();
     void func_001BF000();
     BmxUIPageHOF2 *func_000D5D40(int a0);
+    BmxUIPageHOF2 *func_000D5E80(int a, int b, int c);
+    void func_001BE4F0(int a, int b, int c);
+    void func_001577A0(S_000D6A60_Widget *w, int a);
     void func_000D5E00();
     void func_000D6B40();
     void func_000D6A60();
