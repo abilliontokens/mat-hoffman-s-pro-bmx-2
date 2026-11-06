@@ -72,9 +72,10 @@ struct BmxUIPageHOFTitle {
     S_000EB1F0_Mgr *f124;
     char pad128[0x140 - 0x128];
     S_000EB1F0_Sel *f140;
-    char pad144[0x290 - 0x144];
+    char pad144[0x284 - 0x144];
+    int f284, f288, f28C;
     int f290;
-    char pad294[0x29C - 0x294];
+    int f294, f298;
     int f29C;
     int f2A0;
     char pad2A4[0x2C4 - 0x2A4];
