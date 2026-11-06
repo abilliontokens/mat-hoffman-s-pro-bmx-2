@@ -89,8 +89,7 @@ struct C_000B6640 {
     void func_000B6840(float a0, float a1, C_000B6840_Arg *a2);
     void Box(V4_000B6840 *dst, V4_000B6840 *src)
     {
-        float y = (0.0f - f7C) + src->y;
-        *dst = V4Init_000B6840(src->x, y, src->z, 1.0f);
+        *dst = V4Init_000B6840(src->x, (0.0f - f7C) + src->y, src->z, 1.0f);
     }
 };
 
@@ -163,14 +162,34 @@ C_000B6640 *C_000B6640::func_000B6640(int a0, int a1)
 
 void C_000B67C0::func_000B67C0(void)
 {
-    int a = unk50;
-    unk64 = (a != 0 && unk54 != 0);
-    unk68 = (a != 0 || unk54 != 0);
-    if (a == 0) {
-        unk6C = (unk54 != 0);
-    } else {
-        unk6C = (unk54 == 0);
-    }
+  int in_ECX = (int)this;
+  int iVar1;
+  
+  iVar1 = *(int *)(in_ECX + 0x50);
+  if ((iVar1 == 0) || (*(int *)(in_ECX + 0x54) == 0)) {
+    *(int *)(in_ECX + 100) = 0;
+  }
+  else {
+    *(int *)(in_ECX + 100) = 1;
+  }
+  if ((iVar1 == 0) && (*(int *)(in_ECX + 0x54) == 0)) {
+    *(int *)(in_ECX + 0x68) = 0;
+  }
+  else {
+    *(int *)(in_ECX + 0x68) = 1;
+  }
+  if (iVar1 != 0) {
+    if (*(int *)(in_ECX + 0x54) == 0) goto LAB_00002681;
+    if (iVar1 != 0) goto LAB_00002689;
+  }
+  if (*(int *)(in_ECX + 0x54) == 0) {
+LAB_00002689:
+    *(int *)(in_ECX + 0x6c) = 0;
+    return;
+  }
+LAB_00002681:
+  *(int *)(in_ECX + 0x6c) = 1;
+  return;
 }
 
 void *C_000B6810::func_000B6810(int flags)
