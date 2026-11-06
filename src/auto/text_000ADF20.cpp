@@ -37,6 +37,13 @@ struct Vec4_000AEC90 {
     Vec4_000AEC90() { x = y = z = 0; w = 1; }
 };
 
+struct WaterParseLocals {
+    int n, total;
+    float v2[4], v1[4];
+    int count;
+    char buf[0x104];
+};
+
 struct C_000AEC90Parser {
     int func_00169710(void *name);
     int func_00168C20(void *name, int def, void *out);
@@ -126,16 +133,9 @@ struct C_000AE740 {
 
 void __stdcall func_000ADF20(int *param_1, C_000ADF20_Obj **param_2)
 {
-    C_000ADF20_Obj *obj = (C_000ADF20_Obj *)func_001E8A44(0x10);
-    if (obj != 0) {
-        obj->func_00188700();
-    }
-    C_000ADF20_Obj *result = obj;
-    if (obj != 0) {
-        obj->vtbl = &D_0027C12C;
-    }
-    *param_2 = result;
-    result->f4 = *param_1;
+    C_000ADF20_Obj *p = new C_000ADF20_Obj;
+    *param_2 = p;
+    p->f4 = *param_1;
 }
 
 void Grinds::func_000AE6E0() {
