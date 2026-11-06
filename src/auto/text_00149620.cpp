@@ -324,6 +324,7 @@ C_0014A520* C_0014A520::func_0014A520(int a0) {
     unk8 = 0;
     return this;
 }
+#pragma auto_inline(on)
 
 #pragma auto_inline(off)
 void C_0014A540::func_0014A540(void)
