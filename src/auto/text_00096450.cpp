@@ -73,9 +73,6 @@ struct C_00096AB0 {
     int f1cc;
     void func_00096AB0(void);
 };
-#define EE ((char*)this+0x830+i*120)
-#define SS ((char*)this+0x48b0+i*4)
-#define VV ((Q_Vec*)((char*)this+0x4100+i*16))
 
 struct C_00096700 {
     char pad0[0x4880];
