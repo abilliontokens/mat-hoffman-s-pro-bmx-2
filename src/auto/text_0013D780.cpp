@@ -10,6 +10,15 @@ extern "C" int strcmp(const char *s1, const char *s2);
 char *func_001E8920(char *dst, const char *src, int n);
 int func_001ADD20(char *buf, int count, int a3, void *a4);
 
+struct S_0013D780_Ent { int f0; void *name; int f8; unsigned char flagsC; char padD[0x1B]; };
+struct S_0013D780_Slot { int id; int f88; int f8C; };
+struct C_0013D780 {
+    char pad0[8]; int cur; S_0013D780_Ent *ents; int count;
+    char pad14[0x70]; S_0013D780_Slot slots[8]; int active;
+    int func_0013D780(char *name, int a2, int a3, int *a4, void *a5, int a6, int *a7, int a8);
+    void func_0013C5D0(S_0013D780_Ent *e, int a);
+};
+
 struct C_0013E170 {
     void func_0013E170(int index, char *name, int value);
 };
