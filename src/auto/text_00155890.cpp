@@ -172,7 +172,7 @@ static __forceinline S_1561_State *Init1561C(void *p) { S_1561_State *s = (S_156
 static __forceinline S_1561_State *Init1561D(void *p) { S_1561_State *s = (S_1561_State *)p; s->vtbl = &D_00286E84; s->kind = 4; s->owner = 0; return s; }
 static __forceinline S_1561_State *Init1561E(void *p) { S_1561_State *s = (S_1561_State *)p; s->vtbl = &D_00286E94; s->kind = 5; s->owner = 0; return s; }
 template <class T> inline T min_1561(T a, T b) { return a > b ? b : a; }
-#define CopyPath1561(dst, src, len, lim, res) { int ma, mb, n; len = strlen(src); lim = 0x103; ma = lim; mb = len; res = ma > mb ? mb : ma; n = res; func_001E8920(dst, src, n); (dst)[n] = 0; }
+#define CopyPath1561(dst, src, len, lim, res) { int ma, mb, n; len = strlen(src); lim = 0x103; ma = lim; mb = len; res = min_1561(ma, mb); n = res; func_001E8920(dst, src, n); (dst)[n] = 0; }
 struct C_1561 {
     char pad0[0x3c];
     S_1561_F3C *unk3C;
@@ -220,20 +220,19 @@ void TikiPlayerFlinchState::func_001560A0(void)
     unk8->Flinch();
 }
 
-void C_1561::func_001561A0(S_1561_Stream *stream, S_1561_Arg1 *arg1)
+void C_1561::func_001561A0(S_1561_Stream * volatile stream, S_1561_Arg1 * volatile arg1)
 {
     struct { char save1[0x104]; char save2[0x104]; char buf[0x104]; } L;
-    S_1561_Vec4 vA;
-    S_1561_V4 vC;
-    S_1561_Vec4 vB;
+    S_1561_Vecs V;
     struct { C_1561 * volatile self; volatile int s0; volatile int s1; volatile int s2; } t;
     void *mem;
+    C_1561 *p;
     t.self = this;
-    arg1->func_00150900(&vA, &vB);
+    arg1->func_00150900(&V.a, &V.b);
     if (arg1->unk2C == 0) {
-        vC = D_002A79B8;
+        V.c = D_002A79B8;
     } else {
-        vC = arg1->unk2C->unk1A4->unk4->func_00199B00(0);
+        ((S_1561_1A4Out *)arg1->unk2C->unk1A4)->unk4->func_00199B00(&V.c, 0);
     }
     stream->func_00168BE0(D_00275AE4, D_00275630, L.buf, 0x104);
     t.self->unk39C = arg1;
@@ -241,26 +240,32 @@ void C_1561::func_001561A0(S_1561_Stream *stream, S_1561_Arg1 *arg1)
     CopyPath1561(L.save2, D_002A60B0, t.s2, t.s1, t.s0);
     func_001ADCC0(D_002A5EA0, 0x104, D_00275678, D_002A5870, D_002A45E0);
     func_001ADCC0(D_002A60B0, 0x104, D_00275678, D_002A5870, D_002A5FA8);
-    t.self->func_001C76B0(L.buf, 0, &vB, 0, 0, D_002A79C8, D_002A79C8);
-    t.self->unk3C->unk4->func_00199110(0, &vA, &D_002A79D8, 0, 1, 0);
+    t.self->func_001C76B0(L.buf, 0, &V.b, 0, 0, D_002A79C8, D_002A79C8);
+    t.self->unk3C->unk4->func_00199110(0, &V.a, &D_002A79D8, 0, 1, 0);
     mem = func_001E8A44(0x6c);
     t.self->unk384 = mem ? ((S_1561_Machine *)mem)->func_001AC080() : 0;
     mem = func_001E8A44(0x10);
     t.self->unk388 = mem ? Init1561A(mem) : 0;
-    t.self->unk388->owner = t.self;
+    p = t.self;
+    p->unk388->owner = p;
     mem = func_001E8A44(0xc);
     t.self->unk38C = mem ? Init1561B(mem) : 0;
-    t.self->unk38C->owner = t.self;
+    p = t.self;
+    p->unk38C->owner = p;
     mem = func_001E8A44(0xc);
     t.self->unk390 = mem ? Init1561C(mem) : 0;
-    t.self->unk390->owner = t.self;
+    p = t.self;
+    p->unk390->owner = p;
     mem = func_001E8A44(0xc);
     t.self->unk394 = mem ? Init1561D(mem) : 0;
-    t.self->unk394->owner = t.self;
+    p = t.self;
+    p->unk394->owner = p;
     mem = func_001E8A44(0xc);
     t.self->unk398 = mem ? Init1561E(mem) : 0;
-    t.self->unk398->owner = t.self;
-    t.self->unk384->func_001AC0A0(t.self->unk388, D_0027AEEC);
+    p = t.self;
+    p->unk398->owner = p;
+    p = t.self;
+    p->unk384->func_001AC0A0(p->unk388, D_0027AEEC);
     t.self->unk3BC[0] = t.self->func_001C6E30(D_00286F50);
     t.self->unkC0[0].unk54 = 1;
     t.self->unk3BC[1] = t.self->func_001C6E30(D_00286F40);
