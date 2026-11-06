@@ -201,7 +201,7 @@ static __forceinline float Abs_0019C350(float f)
     return *(float *)&u;
 }
 
-static __forceinline void Xform_0019C350(S_0019C350_V4 *out, const S_0019C350_M *mat, const float *v)
+static inline void Xform_0019C350(S_0019C350_V4 *out, const S_0019C350_M *mat, const float *v)
 {
     __m128 t = _mm_loadu_ps(v);
     _mm_storeh_pi((__m64 *)&out->z, t);
