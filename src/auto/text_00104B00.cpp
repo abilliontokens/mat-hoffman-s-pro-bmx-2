@@ -55,6 +55,8 @@ struct S_00104B00_Owner {
 struct S_00104B00_Fx {
     void func_001648E0(int a0, float a1, int a2, int a3, int a4);
     void func_00164820(int a0);
+    void func_00165980(int *a0, int a1);
+    void func_001659D0(int a0, char *a1, int a2);
 };
 
 struct S_00104B00_Cam {
