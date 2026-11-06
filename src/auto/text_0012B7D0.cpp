@@ -165,12 +165,12 @@ int C_0012B7D0::func_0012B7D0(void *id, int a1, int a2, S_0012B7D0_Vec *a3, S_00
 }
 
 C_0012B8F0 *C_0012B8F0::func_0012B8F0(void) {
-    int *p;
+    u32 *p;
 
     ((C_00157600 *)this)->func_00157600(1);
-    p = &f30;
-    p[2] = 0;
     vtbl = (void *)&D_00284194;
+    p = (u32 *)&f30;
+    p[2] = 0;
     p[1] = 0;
     p[0] = 0;
     p[3] = 0x3f800000;
@@ -179,10 +179,10 @@ C_0012B8F0 *C_0012B8F0::func_0012B8F0(void) {
     f2C = 0;
     f44 = 0;
     f40 = 0;
-    p[0] = D_002A3F00;
-    p[1] = D_002A3F04;
-    p[2] = D_002A3F08;
-    p[3] = D_002A3F0C;
+    f30 = D_002A3F00;
+    f34 = D_002A3F04;
+    f38 = D_002A3F08;
+    f3C = D_002A3F0C;
     return this;
 }
 
