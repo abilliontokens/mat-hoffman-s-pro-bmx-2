@@ -34,6 +34,7 @@ struct C_0006D100 {
     Sprite_6D *unkE0;
     int func_0006D100();
     void func_0006CC20();
+    C_0006D100 *func_0006C570(int);
     void func_001578D0();
 };
 extern int D_002789F4;
