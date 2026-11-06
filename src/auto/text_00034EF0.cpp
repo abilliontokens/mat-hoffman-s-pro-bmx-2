@@ -1,5 +1,64 @@
 /* 15 functions from 0x00034EF0 to 0x00035E80, found by Ghidra. */
 #include "common.h"
+#include <xmmintrin.h>
+
+/* PreviewPane (vtable 0x276CE4), virtual slot 12: swings the page's light around its anchor. */
+struct S_34EF0_V4 {
+    float x, y, z, w;
+    S_34EF0_V4() { x = y = z = 0.0f; w = 1.0f; }
+    S_34EF0_V4(float a, float b, float c, float d) { x = a; y = b; z = c; w = d; }
+};
+struct S_34EF0_Cam { void func_0019A8C0(S_34EF0_V4 *a, S_34EF0_V4 *b); };
+struct S_34EF0_Hold {
+    char pad0[4];
+    S_34EF0_Cam *f4;
+    char pad8[8];
+    int f10;
+    void func_00164820(void *node);
+};
+struct S_34EF0_Y { char pad0[4]; void *f4; };
+struct S_34EF0_Own {
+    char pad0[0x1a4];
+    S_34EF0_Hold *f1a4;
+    S_34EF0_Y *f1ac;
+};
+struct S_34EF0_Gfx {
+    void func_00194E90(S_34EF0_V4 *out);
+    void func_00194EB0(S_34EF0_V4 v);
+    void func_00194F60(S_34EF0_V4 v);
+    void func_00194E60(S_34EF0_V4 v);
+};
+struct S_34EF0_Owner { char pad0[0x5c]; S_34EF0_Gfx *f5c; };
+struct S_34EF0_Mgr { void func_0001B440(void *obj, int r); };
+struct S_34EF0_Global { char pad0[0x484]; S_34EF0_Mgr *f484; };
+extern S_34EF0_Global *D_002B9120;
+extern S_34EF0_V4 D_002A14F4;
+extern float D_00275548;
+int func_00011260(int lo, int hi);
+void func_00034820(float *out, const float *in);
+void func_00158390(float angle, S_34EF0_V4 axis, S_34EF0_V4 v, S_34EF0_V4 *out);
+
+static __forceinline void Cross_34EF0(S_34EF0_V4 *out, const S_34EF0_V4 *a, const S_34EF0_V4 *b)
+{
+    __m128 va = _mm_loadu_ps(&a->x);
+    __m128 vb = _mm_loadu_ps(&b->x);
+    __m128 r = _mm_sub_ps(_mm_mul_ps(va, _mm_shuffle_ps(vb, vb, 0xc9)),
+                          _mm_mul_ps(vb, _mm_shuffle_ps(va, va, 0xc9)));
+    _mm_storeu_ps(&out->x, _mm_shuffle_ps(r, r, 0xc9));
+}
+
+struct PreviewPane {
+    char pad0[0x24];
+    S_34EF0_Cam *f24;
+    S_34EF0_Own *f28;
+    char pad2c[8];
+    S_34EF0_Owner *f34;
+    float f38;
+    char pad3c[4];
+    float f40;
+    void func_00157A00(float dt);
+    void func_00034EF0(float dt);
+};
 extern "C" void *__cdecl memcpy(void *dst, const void *src, unsigned int size);
 extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
 extern "C" unsigned __int64 __ftol2(double x);
