@@ -129,6 +129,15 @@ C_0011EDF0 *C_0011EDF0::func_0011EDF0(s16 *p)
     return this;
 }
 
+C_0011EDF0 *C_0011EDF0::set_0011F210(s16 *p)
+{
+    x = (float)p[0] * D_002B9348;
+    y = (float)p[1] * D_002B9348;
+    z = (float)p[2] * D_002B9348;
+    w = 1.0f;
+    return this;
+}
+
 V4_0011EE50 *func_0011EE50(V4_0011EE50 *out, V4_0011EE50 *in)
 {
  volatile float v; volatile int tmp;
