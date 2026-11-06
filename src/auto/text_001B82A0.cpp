@@ -187,10 +187,15 @@ extern "C" char *func_001E8AC0(const char *s, int c);
 extern "C" int func_001EA426(const char *a, const char *b);
 extern "C" int strlen(const char *s);
 
-struct Clamp_001B8550 {
+struct ClampA_001B8550 {
     volatile int limit;
     volatile int len;
+};
+
+struct Clamp_001B8550 {
+    volatile int limit;
     volatile int n;
+    volatile int len;
 };
 extern "C" void *memset(void *dst, int c, unsigned int n);
 #pragma intrinsic(memset)
@@ -293,7 +298,7 @@ void C_001B8550::func_001B8550(Arg_001B8550 *arg)
     char buf[0x104];
     int i, j, k, m;
     volatile int limit, len, n;
-    volatile int limit2, n2, len2;
+    Clamp_001B8550 b;
     Voice_001B8550 *voice;
     Entry1_001B8550 *e;
     Entry2_001B8550 *e2;
@@ -346,11 +351,11 @@ void C_001B8550::func_001B8550(Arg_001B8550 *arg)
                     if (e2 == 0 || e2->f4 != 1 || e2->f8 == 0) {
                         continue;
                     }
-                    len2 = strlen((char *)e2->f8 + 0x28);
-                    limit2 = 0x103;
-                    n2 = Min_001B8550(limit2, len2);
-                    func_001E8920((char *)e2->f8 + 0x28, buf, n2);
-                    buf[n2] = 0;
+                    b.len = strlen((char *)e2->f8 + 0x28);
+                    b.limit = 0x103;
+                    b.n = Min_001B8550(b.limit, b.len);
+                    func_001E8920((char *)e2->f8 + 0x28, buf, b.n);
+                    buf[b.n] = 0;
                     dot = func_001E8AC0(buf, '.');
                     if (dot != 0) {
                         memset(dot, 0, strlen(dot));
