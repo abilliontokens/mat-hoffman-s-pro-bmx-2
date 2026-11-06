@@ -39,19 +39,50 @@ struct S_00100030_Item {
 
 struct S_00100030_Hud {
     void func_000BF860(int, int, int, int);
-    char pad0[0x34];
+    char pad0[0x24];
+    S_00100030_Item *f24;
+    S_00100030_Item *f28;
+    S_00100030_Item *f2C;
+    S_00100030_Item *f30;
     S_00100030_Item *f34;
     S_00100030_Item *f38;
     S_00100030_Item *f3C;
     char pad40[8];
     S_00100030_Item *f48;
     S_00100030_Item *f4C;
+    S_00100030_Item *f50;
+    S_00100030_Item *f54;
+    char pad58[0x10];
+    S_00100030_Item *f68;
+    S_00100030_Item *f6C;
+    char pad70[0x18];
+    S_00100030_Item *f88;
+    S_00100030_Item *f8C;
+    S_00100030_Item *f90;
+    S_00100030_Item *f94;
 };
 extern S_00100030_Hud *D_002B91AC;
+
+struct S_000FFC20_Sub {
+    char pad0[0x324];
+    int f324;
+};
 
 struct S_00100030_Root {
     char pad0[0x10];
     int f10;
+    char pad14[0x2cc];
+    S_000FFC20_Sub *f2E0;
+};
+
+struct S_000FFC20_Dev {
+    char pad0[0x74];
+    S_00100030_Item *f74;
+};
+
+struct S_000FFC20_Owner {
+    char pad0[0x25c];
+    S_000FFC20_Dev *f25c;
 };
 extern S_00100030_Root *D_002A8490;
 
