@@ -20,8 +20,6 @@ struct C_0017A700 {
     int fF4, fF8;
     void func_0017A700(DXRenderableObject *owner, int index);
 };
-static inline int ShadowMinV(int a, int b) { return a > b ? b : a; }
-static inline int ShadowMinR(int b, int a) { return a > b ? b : a; }
 struct C_0017B9E0 {
     int unk0, unk4;
     void func_001D3F50();
@@ -449,8 +447,9 @@ void C_0017A700::func_0017A700(DXRenderableObject *owner, int index)
     volatile C_0017A700 *s5 = L.self;
     DXShadowCaster *c = s5->fF0[s5->fF4];
     L.max = c->f4->f1a4->count - 1;
+    int i = *(volatile int *)&index;
     int m = L.max;
-    L.value = index > m ? m : index;
+    L.value = i > m ? m : i;
     c->f8 = L.value;
     ((C_0017A700 *)L.self)->fF4++;
 }
