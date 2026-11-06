@@ -91,9 +91,12 @@ struct C_000E3D30_Item {
     int w38;
     char pad3C[0x1C];
     unsigned char flags;
-    void func_00051120(unsigned short v);
+    /* defined in the class (the compiler inlines it into the first calls only) */
+    void func_00051120(short a) {
+        w38 = ((int)a << 24) | (w38 & 0xffffff);
+        flags |= 2;
+    }
     void func_001D5AD0();
-    /* func_00051120's body, which the compiler inlines into the first calls */
     void setAlpha(short a) {
         w38 = ((int)a << 24) | (w38 & 0xffffff);
         flags |= 2;
@@ -301,6 +304,44 @@ void C_000E35E0::func_000E3C90(void) {
             f2E0[i]->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0, 0, 1.15f, 0, 0.25f, 0.0f, 0);
         }
     }
+}
+
+void C_000E35E0::func_000E3D30(void) {
+    int i;
+    (f2A4 ? D_002B91AC->f68 : D_002B91AC->f50)->func_001D5AD0();
+    (f2A8 ? D_002B91AC->f6C : D_002B91AC->f54)->func_001D5AD0();
+    for (i = 0; i < f280; i++) {
+        if (i == 0) {
+            f320[0][f420[0]]->setAlpha(f2CC);
+            f320[0][f420[0]]->func_001D5AD0();
+        } else if (i == 1) {
+            f320[1][f420[1]]->setAlpha(f2CC);
+            f320[1][f420[1]]->func_001D5AD0();
+        } else if (i == 2) {
+            f320[2][f420[2]]->setAlpha(f2CC);
+            f320[2][f420[2]]->func_001D5AD0();
+        } else if (i == 3) {
+            f320[3][f420[3]]->setAlpha(f2CC);
+            f320[3][f420[3]]->func_001D5AD0();
+        } else if (i == 4) {
+            f320[4][f420[4]]->setAlpha(f2CC);
+            f320[4][f420[4]]->func_001D5AD0();
+        } else if (i == 5) {
+            f320[5][f420[5]]->setAlpha(f2CC);
+            f320[5][f420[5]]->func_001D5AD0();
+        } else if (i == 6) {
+            f320[6][f420[6]]->setAlpha(f2CC);
+            f320[6][f420[6]]->func_001D5AD0();
+        } else if (i == 7) {
+            f320[7][f420[7]]->setAlpha(f2CC);
+            f320[7][f420[7]]->func_001D5AD0();
+        }
+    }
+    S_002B91AC *g = D_002B91AC;
+    g->f24->func_001D5AD0();
+    g->f28->func_001D5AD0();
+    g->f2C->func_001D5AD0();
+    g->f30->func_001D5AD0();
 }
 
 void C_000E35E0::func_000E3FC0(void) {
