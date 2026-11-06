@@ -155,14 +155,13 @@ int C_0018D580::func_0018D580(unsigned int id)
     int i = 0;
 
     if (0 < idCount) {
-        unsigned short *p = (unsigned short *)ids;
-        p += 2;
+        unsigned short *p = (unsigned short *)((char *)ids + 4);
         do {
-            if (id == ((unsigned char *)p)[1]) {
+            if (id == (unsigned int)(*p >> 8)) {
                 return i;
             }
             i++;
-            p += 0x12;
+            p = (unsigned short *)((char *)p + 0x24);
         } while (i < idCount);
     }
     return 0;
