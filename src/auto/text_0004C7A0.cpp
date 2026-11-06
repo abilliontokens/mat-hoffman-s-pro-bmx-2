@@ -530,7 +530,7 @@ int func_0004CCE0(void) {
 }
 
 void func_00031400(void);
-int C_0004CED0::func_0004CEC0()
+int C_0004CED0::func_0004CED0()
 {
     G_0004CED0 *g = (G_0004CED0 *)D_002A8490;
     g->f230 |= 1;
