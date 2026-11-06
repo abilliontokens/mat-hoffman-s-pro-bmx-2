@@ -1,6 +1,7 @@
 /* 33 functions from 0x001B19C0 to 0x001B2910, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+#include <xmmintrin.h>
 struct C_001B2270 {
     void func_001B2270(undefined4 param_1);
 };
