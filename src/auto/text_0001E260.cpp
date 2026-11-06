@@ -189,6 +189,10 @@ extern float D_00275FC4;
 extern float D_00275FC8;
 float func_0001E960(float lengthSquared);
 
+static __forceinline float vec3_lengthSquared(float *v) {
+    return v[0] * v[0] + v[1] * v[1] + v[2] * v[2];
+}
+
 
 void GR_BitString::func_0001E3F0(u32 *a0, u32 a1, int a2) {
     unk18 = a2 ? -1 : 0;
@@ -466,17 +470,17 @@ void *C_0001E930::func_0001E930(unsigned int flags) {
 
 float func_0001E960(float lengthSquared)
 {
-    __m128 v;
+    __m128 v = _mm_load_ss(&lengthSquared);
     __m128 r;
-    __m128 eps;
+    __m128 t;
 
-    v = _mm_load_ss(&lengthSquared);
-    eps = _mm_load_ss(&D_00275FC8);
-    v = _mm_add_ss(v, _mm_and_ps(_mm_cmplt_ss(v, eps), eps));
-    r = _mm_rsqrt_ss(v);
-    r = _mm_mul_ss(_mm_mul_ss(r, _mm_load_ss(&D_00275FC0)),
-                   _mm_sub_ss(_mm_load_ss(&D_00275FC4), _mm_mul_ss(_mm_mul_ss(v, r), r)));
-    _mm_store_ss(&lengthSquared, r);
+    v = _mm_add_ss(v, _mm_and_ps(_mm_cmplt_ss(v, _mm_load_ss(&D_00275FC8)), _mm_load_ss(&D_00275FC8)));
+    r = _mm_rsqrt_ps(v);
+    t = _mm_mul_ss(v, r);
+    t = _mm_mul_ss(t, r);
+    t = _mm_sub_ss(_mm_load_ss(&D_00275FC4), t);
+    r = _mm_mul_ss(r, _mm_load_ss(&D_00275FC0));
+    _mm_store_ss(&lengthSquared, _mm_mul_ss(r, t));
     return lengthSquared;
 }
 
