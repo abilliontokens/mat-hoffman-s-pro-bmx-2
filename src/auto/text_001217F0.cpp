@@ -1,9 +1,22 @@
 /* 4 functions from 0x001217F0 to 0x00122730, found by Ghidra. */
 #include "common.h"
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 struct V4_001225C0 {
     float x, y, z, w;
 };
+
+struct V4s_001217F0 : V4_001225C0 {
+    V4s_001217F0() { z = 0.0f; y = 0.0f; x = 0.0f; w = 1.0f; }
+};
+
+extern float D_002B9348;
+extern void **D_002B92F4;
+extern V4_001225C0 D_002B9350[13];
+extern V4_001225C0 D_002A3C3C[3];
+void func_0011F0E0(void *a, void *b, void *c, void *indices, void **data);
+void func_0001C680(V4_001225C0 *out, V4_001225C0 v, float *m);
+void func_0011EFA0(float *out, float *in);
 
 extern float D_00275544;
 extern float D_002755E8;
@@ -81,11 +94,139 @@ V4_001225C0 func_00104A00(const V4_001225C0 &v);
 extern "C" V4_001225C0 *func_0011EE50(V4_001225C0 *out, V4_001225C0 *in);
 extern "C" V4_001225C0 *func_0011EEE0(V4_001225C0 *out, V4_001225C0 *a, V4_001225C0 *b);
 
+extern float D_002B9348;
+extern void **D_002B92F4;
+extern V4_001225C0 D_002B9350[13];
+extern V4_001225C0 D_002A3C3C[3];
+void func_0011F0E0(void *a, void *b, void *c, void *indices, void **data);
+void func_0001C680(V4_001225C0 *out, V4_001225C0 v, float *m);
+void func_0011EFA0(float *out, float *in);
+extern "C" int func_001217F0(int a0, int a1, short *tri, float *m, int a4, int a5, float *pos, float *ext)
+{
+    struct V4s {
+        float x, y, z, w;
+        V4s() { z = 0.0f; y = 0.0f; x = 0.0f; w = 1.0f; }
+    };
+    static V4s s0, s1, s2, s3, s4, s5, s6, s7, s8, s9;
+    V4_001225C0 t, r, n;
+    V4_001225C0 *ax;
+    float dx, dy, dz, proj, d;
+    int i;
+
+    func_0011F0E0(&s4, &s5, &s6, tri, D_002B92F4);
+    AsmTransformPoint(&s0.x, &s4.x, m);
+    AsmTransformPoint(&s1.x, &s5.x, m);
+    AsmTransformPoint(&s2.x, &s6.x, m);
+    n.x = (float)tri[6] * D_002B9348;
+    n.y = (float)tri[7] * D_002B9348;
+    n.z = (float)tri[8] * D_002B9348;
+    n.w = 1.0f;
+    func_0001C680((V4_001225C0 *)&s3, n, m);
+    dx = s0.x - pos[0];
+    dy = s0.y - pos[1];
+    dz = s0.z - pos[2];
+    ax = D_002B9350;
+    for (i = 0; i < 13; i++, ax++) {
+        switch (i) {
+        case 0:
+            *ax = *(V4_001225C0 *)&s3;
+            break;
+        case 1:
+            *ax = D_002A3C3C[0];
+            break;
+        case 2:
+            *ax = D_002A3C3C[1];
+            break;
+        case 3:
+            *ax = D_002A3C3C[2];
+            break;
+        case 4:
+            ax->y = -s7.z;
+            ax->z = s7.y;
+            break;
+        case 5:
+            ax->x = s7.z;
+            ax->z = -s7.x;
+            break;
+        case 6:
+            ax->y = s7.x;
+            ax->x = -s7.y;
+            break;
+        case 7:
+            ax->y = -s8.z;
+            ax->z = s8.y;
+            break;
+        case 8:
+            ax->x = s8.z;
+            ax->z = -s8.x;
+            break;
+        case 9:
+            ax->y = s8.x;
+            ax->x = -s8.y;
+            break;
+        case 10: {
+            V4_001225C0 e;
+            e.x = s2.x - s1.x;
+            e.y = s2.y - s1.y;
+            e.z = s2.z - s1.z;
+            e.w = 1.0f;
+            func_0011EFA0(&s9.x, &e.x);
+            ax->z = s9.y;
+            ax->y = -s9.z;
+            break;
+        }
+        case 11:
+            ax->x = s9.z;
+            ax->z = -s9.x;
+            break;
+        case 12:
+            ax->y = s9.x;
+            ax->x = -s9.y;
+            break;
+        }
+        t.x = ax->x * ext[0];
+        t.y = ax->y * ext[1];
+        t.z = ax->z * ext[2];
+        t.w = 1.0f;
+        func_0011EE50((V4_001225C0 *)&r, &t);
+        proj = t.z + t.y + t.x;
+        d = dx * ax->x + dy * ax->y + dz * ax->z;
+        if (i == 0) {
+            int bits = *(int *)&d & 0x7fffffff;
+            if (*(float *)&bits > proj)
+                return 0;
+            V4_001225C0 e1;
+            e1.x = s0.x - s1.x;
+            e1.y = s0.y - s1.y;
+            e1.z = s0.z - s1.z;
+            e1.w = 1.0f;
+            *(V4_001225C0 *)&s7 = e1;
+            V4_001225C0 e2;
+            e2.x = s0.x - s2.x;
+            e2.y = s0.y - s2.y;
+            e2.z = s0.z - s2.z;
+            e2.w = 1.0f;
+            *(V4_001225C0 *)&s8 = e2;
+        } else {
+            float p7 = d - (s7.x * ax->x + s7.y * ax->y + s7.z * ax->z);
+            float p8 = d - (s8.x * ax->x + s8.y * ax->y + s8.z * ax->z);
+            float lo = AsmMinF(p7, p8);
+            if (proj < AsmMinF(d, lo))
+                return 0;
+            float hi = AsmMaxF(p7, p8);
+            if (-proj > AsmMaxF(d, hi))
+                return 0;
+        }
+    }
+    return 1;
+}
+
 extern "C" int func_00122090(float *center, float *ext, float *p0, float *p1, float *m)
 {
     V4_001225C0 a = { 0.0f, 0.0f, 0.0f, 1.0f };
     V4_001225C0 b = { 0.0f, 0.0f, 0.0f, 1.0f };
     V4_001225C0 mid, d, ad, e;
+    float sx, sy, sz;
     float f;
     int i;
 
@@ -99,9 +240,12 @@ extern "C" int func_00122090(float *center, float *ext, float *p0, float *p1, fl
     b.x -= center[0];
     b.y -= center[1];
     b.z -= center[2];
-    mid.x = (b.x + a.x) * D_002755E8;
-    mid.y = (b.y + a.y) * D_002755E8;
-    mid.z = (b.z + a.z) * D_002755E8;
+    sx = b.x + a.x;
+    sy = b.y + a.y;
+    sz = b.z + a.z;
+    mid.x = sx * D_002755E8;
+    mid.y = sy * D_002755E8;
+    mid.z = sz * D_002755E8;
     d.x = mid.x - a.x;
     d.y = mid.y - a.y;
     d.z = mid.z - a.z;
