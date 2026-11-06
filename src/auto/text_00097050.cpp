@@ -82,6 +82,16 @@ template <class T> inline T min_val(const T &a, const T &b)
     return a > b ? b : a;
 }
 
+static __forceinline void str_copy_v(char *dst, const char *src, int max)
+{
+    volatile int len = strlen(src);
+    volatile int lim = max;
+    volatile int res = min_val((int)lim, (int)len);
+    int n = res;
+    func_001E8920(dst, src, n);
+    dst[n] = 0;
+}
+
 inline void str_copy(char *dst, const char *src, int size)
 {
     int n = min_ref((int)strlen(src), size - 1);
