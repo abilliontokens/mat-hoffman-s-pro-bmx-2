@@ -692,19 +692,9 @@ int C_0013E2D0::func_0013E2D0(void)
     return 1;
 }
 
-void func_0013E4A0(void *dst, void *src)
+void func_0013E4A0(float *dst, float *src)
 {
-    const __m64 *s = (const __m64 *)src;
-    __m128 *d = (__m128 *)dst;
-
-    d[0] = _mm_shuffle_ps(_mm_loadh_pi(_mm_loadl_pi(_mm_setzero_ps(), s + 0), s + 2),
-                          _mm_loadh_pi(_mm_loadl_pi(_mm_setzero_ps(), s + 4), s + 6), 0x88);
-    d[1] = _mm_shuffle_ps(_mm_loadh_pi(_mm_loadl_pi(_mm_setzero_ps(), s + 0), s + 2),
-                          _mm_loadh_pi(_mm_loadl_pi(_mm_setzero_ps(), s + 4), s + 6), 0xdd);
-    d[2] = _mm_shuffle_ps(_mm_loadh_pi(_mm_loadl_pi(_mm_setzero_ps(), s + 1), s + 3),
-                          _mm_loadh_pi(_mm_loadl_pi(_mm_setzero_ps(), s + 5), s + 7), 0x88);
-    d[3] = _mm_shuffle_ps(_mm_loadh_pi(_mm_loadl_pi(_mm_setzero_ps(), s + 1), s + 3),
-                          _mm_loadh_pi(_mm_loadl_pi(_mm_setzero_ps(), s + 5), s + 7), 0xdd);
+    AsmTransposeMatrix(dst, src);
 }
 
 #pragma optimize("y", on)
