@@ -33,6 +33,8 @@ struct Mgr162B70 {
 extern Mgr162B70 *D_002BEAAC;
 extern char D_00282960[];
 void func_001E891B(void *p);
+struct Elem162ED0 { void func_0015B990(); };
+struct C_00162ED0 { void *func_00162ED0(unsigned int flags); };
 extern "C" void *memcpy(void *, const void *, unsigned int);
 #pragma intrinsic(memcpy)
 
