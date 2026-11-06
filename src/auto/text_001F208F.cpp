@@ -52,6 +52,7 @@ struct AllocObj {
     int *field_c;
     int field_10;
     int func_001EEE62(int size, int flag);
+    void func_001EE9AB();
 };
 extern AllocObj D_002F6A04;
 
