@@ -179,10 +179,10 @@ struct S_00197820_Mat {
 
 static inline void S_00197820_Identity(S_00197820_Mat *m)
 {
-    _mm_storeu_ps(&m->m[0], _mm_setzero_ps());
-    _mm_storeu_ps(&m->m[4], _mm_setzero_ps());
-    _mm_storeu_ps(&m->m[8], _mm_setzero_ps());
-    _mm_storeu_ps(&m->m[12], _mm_setzero_ps());
+    _mm_store_ps(&m->m[0], _mm_setzero_ps());
+    _mm_store_ps(&m->m[4], _mm_setzero_ps());
+    _mm_store_ps(&m->m[8], _mm_setzero_ps());
+    _mm_store_ps(&m->m[12], _mm_setzero_ps());
     m->m[0] = 1.0f;
     m->m[5] = 1.0f;
     m->m[10] = 1.0f;
@@ -191,10 +191,10 @@ static inline void S_00197820_Identity(S_00197820_Mat *m)
 
 static inline void S_00197820_Zero(S_00197820_Mat *m)
 {
-    _mm_storeu_ps(&m->m[0], _mm_setzero_ps());
-    _mm_storeu_ps(&m->m[4], _mm_setzero_ps());
-    _mm_storeu_ps(&m->m[8], _mm_setzero_ps());
-    _mm_storeu_ps(&m->m[12], _mm_setzero_ps());
+    _mm_store_ps(&m->m[0], _mm_setzero_ps());
+    _mm_store_ps(&m->m[4], _mm_setzero_ps());
+    _mm_store_ps(&m->m[8], _mm_setzero_ps());
+    _mm_store_ps(&m->m[12], _mm_setzero_ps());
 }
 
 static inline S_00197700_Vec4 *S_00197820_VecInit(S_00197700_Vec4 *v)
