@@ -560,24 +560,19 @@ void func_001EDC7E(int a, S_001EDC7E *p) {
 }
 
 static void func_001EDCA8(char ch, S_001EDC7E *stream, int *pcnt) {
-    int c;
-    if ((stream->fC & 0x40) == 0 || stream->f8 != 0) {
-        if (--stream->f4 < 0) {
-            c = func_001ED8A7(ch, stream);
-        } else {
-            *(char *)stream->f0 = ch;
-            stream->f0++;
-            c = (unsigned char)ch;
-        }
-        if (c == -1) {
-            *pcnt = -1;
-            return;
-        }
+    if ((stream->fC & 0x40) && stream->f8 == 0) {
+        ++*pcnt;
+        return;
     }
-    (*pcnt)++;
+    if ((--stream->f4 >= 0 ? (unsigned char)(*(char *)stream->f0++ = ch)
+                           : func_001ED8A7(ch, stream)) == -1) {
+        *pcnt = -1;
+    } else {
+        ++*pcnt;
+    }
 }
 
-static void func_001EDCDB(int ch, int n, S_001EDC7E *stream, int *pcnt) {
+static void func_001EDCDB(char ch, int n, S_001EDC7E *stream, int *pcnt) {
     while (n > 0) {
         n--;
         func_001EDCA8(ch, stream, pcnt);
