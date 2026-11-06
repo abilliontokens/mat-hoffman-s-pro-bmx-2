@@ -38,6 +38,8 @@ struct S_HeapEntry {
     S_HeapLink link;            /* 0x08, free-list links */
 };
 
+struct S_HeapFlagBits { unsigned char bits : 8; };
+
 /* kernel heap block header (16-byte granules) */
 struct S_HeapBlock {
     unsigned short size;        /* 0x00, in granules */
@@ -225,7 +227,7 @@ unsigned char *__stdcall func_001DF985(S_HeapRoot *root, unsigned char *entry, u
         if (a3) {
             FreeUnlink_001DF985(root, cur);
             root->freeTotal -= cur->size;
-            a3 = 0;
+            a3 &= 0;
         }
         FreeUnlink_001DF985(root, prev);
         prev->flags = cur->flags & 0x10;
@@ -279,7 +281,7 @@ void __stdcall func_001DFC2A(S_HeapRoot *root, unsigned char *blk, unsigned int 
         if (n > (unsigned int)&D_0000FF00) {
             sz = (unsigned int)&D_0000FF00;
             if (n == (unsigned int)&D_0000FF01) {
-                sz = (unsigned int)&((unsigned char *)sz)[-16];
+                sz = (unsigned int)(&D_0000FF00 + -16);
             }
             e->flags = 0;
         } else {
