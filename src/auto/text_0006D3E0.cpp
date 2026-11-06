@@ -69,6 +69,7 @@ struct S_0006D750_Txt {
 
 struct S_002A60B0 { int f0, f4, f8, fC; unsigned char f10; };
 extern S_002A60B0 D_002A60B0, D_00278664;
+void *func_001E8A44(int size);
 extern float D_00275544, D_00278650, D_00278654, D_0027653C, D_00275800, D_00278AE8;
 extern char D_00278658[], D_00278638[], D_00278608[], D_00278600[];
 extern char D_00275678[], D_002A5870[], D_002A5FA8[];
@@ -303,6 +304,25 @@ void C_0006D590::func_0006D640()
         }
     }
     func_00157660();
+}
+
+C_0006D590 *C_0006D590::func_0006D750(C_0006E250_E8 *arg)
+{
+    int ids[3];
+    int *r;
+    int font1, font2;
+
+    unkE8 = arg;
+    ids[0] = (int)&D_00278690;
+    ids[1] = (int)&D_002786A0;
+    ids[2] = (int)&D_00278678;
+    D_002A8490->p2EC->func_0018C780(3, ids, 0);
+    D_002A8490->p2EC->func_0018C160((int)&D_002786A0);
+    r = D_002A8490->p2EC->func_0018C160((int)&D_00278690);
+    font1 = r ? *r : 0;
+    r = D_002A8490->p2EC->func_0018C160((int)&D_00278678);
+    font2 = r ? *r : 0;
+    return this;
 }
 
 void C_0006D590::func_0006DD40() {
