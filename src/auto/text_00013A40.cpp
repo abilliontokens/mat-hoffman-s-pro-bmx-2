@@ -121,7 +121,9 @@ struct S_00014850_Track {
 };
 
 struct S_00014850_Globals {
-    char pad0[0x588];
+    char pad0[0x4C0];
+    int f4c0;
+    char pad4c4[0x588 - 0x4C4];
     S_00014850_Track **f588;
 };
 
