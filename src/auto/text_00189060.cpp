@@ -134,7 +134,7 @@ struct E_189D40 {
     E_189D40 *func_001732E0(int a);
     void func_001740B0(int a, int b, int c, int d, int e, int f);
 };
-struct W_189D40 { char pad4[0x4]; int kind; E_189D40 *obj; };
+struct W_189D40 { char *vtbl; int kind; E_189D40 *obj; int pad; };
 struct X_189D40 { virtual void v0(int f); };
 struct G_189D40 { char pad[0x24]; int count; W_189D40 **items; char pad2[0]; };
 struct R_189D40 { char pad0[0x24]; int cnt; char pad28[0]; };
