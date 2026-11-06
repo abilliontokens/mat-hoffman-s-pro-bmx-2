@@ -375,6 +375,20 @@ static __forceinline void clear_bit0_0001C9F0(unsigned char *p) {
     *p &= 0xfe;
 }
 
+static __forceinline void init_0001C9F0(C_0001CA30 *p) {
+    p->f8 = 0;
+    p->f4 = 0;
+    p->fC = 0;
+    p->f10 = 0;
+    clear_bit0_0001C9F0(&p->f14);
+    p->f1C = 0;
+    p->f18 = 0;
+    p->f20 = 0;
+    p->f24 = 0;
+    clear_bit0_0001C9F0(&p->f28);
+    clear_bit0_0001C9F0(&p->f2C);
+}
+
 static __forceinline float vec3_abs(float x) {
     int i = *(int *)&x & 0x7fffffff;
     return *(float *)&i;
@@ -692,37 +706,40 @@ void *C_0001CD90::func_0001CD90(int arg)
 
 int C_0001CE80::func_0001CE80(Obj_1CE80 *obj, float *p, float *q, int unused, float maxd)
 {
-    V4_1CE80 best = {0, 0, 0, 1.0f};
-    V4_1CE80 tmp = {0, 0, 0, 1.0f};
-    V4_1CE80 m2 = {0, 0, 0, 1.0f};
-    V4_1CE80 m1 = {0, 0, 0, 1.0f};
-    V4_1CE80 m0 = {0, 0, 0, 1.0f};
+    V4C_1CE80 best;
+    V4C_1CE80 tmp;
+    V4C_1CE80 m2;
+    V4C_1CE80 m1;
+    V4C_1CE80 m0;
     float bestd;
-    int bi = 0;
+    int closest;
     int i;
-    if (count <= 0) return 0;
-    bestd = 3.4028235e38f;
-    for (i = 0; i < count; i++) {
-        float d;
-        nodes[i]->func_001A15C0(&tmp);
-        d = func_0001CAF0(&tmp, *(float * volatile *)&p);
-        if (d < bestd) {
-            bestd = d;
-            best = tmp;
-            bi = i;
+    if (count > 0) {
+        closest = 0;
+        bestd = 3.4028235e38f;
+        for (i = 0; i < count; i++) {
+            float d;
+            nodes[i]->func_001A15C0(&tmp);
+            d = func_0001CAF0(&tmp, *(float * volatile *)&p);
+            if (d < bestd) {
+                bestd = d;
+                best = tmp;
+                closest = i;
+            }
+        }
+        nodes[closest]->func_001A1540(&m2, &m1);
+        nodes[closest]->func_001A1620(&m0);
+        V4C_1CE80 r;
+        r.x = p[0] - best.x; r.y = p[1] - best.y; r.z = p[2] - best.z; r.w = 1.0f;
+        if (obj != 0 && bestd < maxd) {
+            obj->SetA(r);
+            V4C_1CE80 s;
+            s.x = q[0] - m0.x; s.y = q[1] - m0.y; s.z = q[2] - m0.z; s.w = 1.0f;
+            obj->SetB(s);
+            return 1;
         }
     }
-    nodes[bi]->func_001A1540(&m2, &m1);
-    nodes[bi]->func_001A1620(&m0);
-    V4_1CE80 r;
-    r.x = p[0] - best.x; r.y = p[1] - best.y; r.z = p[2] - best.z; r.w = 1.0f;
-    if (obj == 0) return 0;
-    if (!(bestd < maxd)) return 0;
-    obj->SetA(r);
-    V4_1CE80 s;
-    s.x = q[0] - m0.x; s.y = q[1] - m0.y; s.z = q[2] - m0.z; s.w = 1.0f;
-    obj->SetB(s);
-    return 1;
+    return 0;
 }
 
 int C_0001D0B0::func_0001D0B0(int count, int p2)
