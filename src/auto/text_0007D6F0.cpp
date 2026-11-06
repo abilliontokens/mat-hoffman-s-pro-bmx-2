@@ -209,8 +209,8 @@ struct Icon_7D {
     float f40;
     float f44;
     float f48;
-    float f4c;
-    float f50;
+    volatile float f4c;
+    volatile float f50;
     void *f54;
     u8 f58;
     char pad59[0xb];
@@ -300,8 +300,7 @@ C_0007D6F0 *C_0007D6F0::func_0007D6F0(C_Arg_7D *arg)
 {
     Icon_7D *w;
     int i, j, y;
-    char bufA[12];
-    char bufB[8];
+    char buf[0x14];
 
     {
         void *fonts[2];
@@ -400,8 +399,8 @@ C_0007D6F0 *C_0007D6F0::func_0007D6F0(C_Arg_7D *arg)
         SetterObj_7E *t;
 
         i++;
-        func_001ADCC0(bufA, 0x104, (char *)&D_00277038, i);
-        func_001AC330(bufB, D_002A8490->p2E8->p4->fED0, bufA);
+        func_001ADCC0(buf, 0x104, (char *)&D_00277038, i);
+        func_001AC330(&buf[0xC], D_002A8490->p2E8->p4->fED0, buf);
         t = (SetterObj_7E *)func_001E8A44(0x184);
         if (t != 0) {
             t = (SetterObj_7E *)t->func_001B12C0(1);
@@ -414,7 +413,7 @@ C_0007D6F0 *C_0007D6F0::func_0007D6F0(C_Arg_7D *arg)
         texts[i - 1]->func_001B19C0(0x140, y, 0);
         texts[i - 1]->func_001B19A0(D_0028F5E0);
         func_001577A0(texts[i - 1], -1);
-        texts[i - 1]->func_001B17D0(bufB);
+        texts[i - 1]->func_001B17D0(&buf[0xC]);
     }
 
     w = (Icon_7D *)func_001E8A44(0x64);
