@@ -163,6 +163,8 @@ struct S_0004C320_World {
     S_0004C320_Scene *f3ac;
 };
 
+static __forceinline void LoopBody_0004C130(int) {}
+
 struct C_0004C560Block {
     int used;
     int vals[50];
@@ -277,6 +279,48 @@ void C_0004BF00::func_0004BF00() {
         p = (C_0004BF00_Object *)func_001E8A44(0x44);
         f1248[i] = p ? p->func_00088DA0(1) : 0;
         f1248[i]->func_00088DD0(D_002A8490->f2e0->f8, i, this);
+    }
+}
+
+extern char D_002774C0[], D_002774B0[], D_002774A0[];
+int func_001ADCC0(char *, int, const char *, ...);
+int func_001EA426(const char *, const char *);
+extern "C" void *memset(void *, int, unsigned int);
+void C_0004C560::func_0004C130(void)
+{
+    int cnt[8];
+    char buf[0x104];
+    char buf2[0x104];
+    int i, j, n = 0, m, k;
+
+    memset(cnt, 0, sizeof(cnt));
+    for (i = 0; i < *(int *)((char *)f64->f3ac + 0x24); i++) {
+        char *name = (char *)f64->f3ac->f28[i] + 0xa0;
+        for (j = 0; j < 8; j++) {
+            func_001ADCC0(buf, 0x104, D_002774C0, j + 1, cnt[j] + 1);
+            if (!func_001EA426(buf, name)) {
+                f284[j + 1][cnt[j]] = i;
+                cnt[j]++;
+            }
+        }
+        func_001ADCC0(buf, 0x104, D_002774B0, n + 1);
+        if (!func_001EA426(buf, name)) {
+            f284[0][n] = i;
+            n++;
+        }
+    }
+    k = 0;
+    while (k < f90)
+        k++;
+    f1250 = n;
+    m = 0;
+    for (i = 0; i < *(int *)(*(char **)((char *)f64 + 0x3b4) + 0x24); i++) {
+        char *o = *(char **)(*(char **)(*(char **)((char *)f64 + 0x3b4) + 0x28) + i * 4);
+        func_001ADCC0(buf2, 0x104, D_002774A0, m + 1);
+        if (!func_001EA426(buf2, o + 0x18)) {
+            f98c[m] = i;
+            m++;
+        }
     }
 }
 
