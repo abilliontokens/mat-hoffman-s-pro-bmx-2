@@ -147,8 +147,8 @@ int C_0005A0E0::func_0005A0E0(void)
         o = o ? o->func_00160C00() : 0;
         unk_2E8 = o;
         o->func_00160D30(D_00278064, -1, 1);
-        unk_2E8->func_00161040(0);
     }
+    unk_2E8->func_00161040(0);
     if (unk_2AC)
         ((C_001BC7F0 *)unk_2AC)->func_001BC7F0(0);
     return result;
