@@ -205,6 +205,7 @@ struct C_001CC3C0_154 {
     virtual int v7();
 };
 
+struct S_Vec_001CC4B0;
 struct C_001CC3C0 {
     virtual void v0();
     virtual void v1();
@@ -336,6 +337,82 @@ int C_001CC3C0::func_001CC460(int param_1)
     return 1;
 }
 
+int C_001CC3C0::func_001CC4B0(int *a, int *b, int *c, int *d)
+{
+    S_3DParams_001CC4B0 *p = (S_3DParams_001CC4B0 *)a;
+    int e;
+    if (!(f10C & 8))
+        return 1;
+    p->minDist = Max_001CC4B0(p->minDist, 1.0f);
+    p->maxDist = Max_001CC4B0(p->maxDist, p->minDist * D_0028EF4C);
+    if (f140 != 0) {
+        if (b != 0) {
+            S_Vec_001CC4B0 v = *(S_Vec_001CC4B0 *)b;
+            e = func_00221B90(f140->fC, v.x, v.y, v.z, 1);
+            if (e < 0) { func_001CBC10(e, &D_0028EECC, 0x8a4); return 0; }
+        }
+        if (c != 0) {
+            S_Vec_001CC4B0 v = *(S_Vec_001CC4B0 *)c;
+            e = func_00221BB9(f140->fC, v.x, v.y, v.z, 1);
+            if (e < 0) { func_001CBC10(e, &D_0028EECC, 0x8ad); return 0; }
+        }
+        e = func_00221B73(f140->fC, p->minDist, 1);
+        if (e < 0) { func_001CBC10(e, &D_0028EECC, 0x8b2); return 0; }
+        e = func_00221B5B(f140->fC, p->maxDist, 1);
+        if (e < 0) { func_001CBC10(e, &D_0028EECC, 0x8b3); return 0; }
+        if ((f10C & 0x10) && p->insideCone != 0x168) {
+            e = D_00221B51(f140->fC, p->insideCone, p->outsideCone, 1);
+            if (e < 0) { func_001CBC10(e, &D_0028EECC, 0x8b6); return 0; }
+            e = D_00221B56(f140->fC, p->coneVolume, 1);
+            if (e < 0) { func_001CBC10(e, &D_0028EECC, 0x8b7); return 0; }
+            return 1;
+        }
+        e = func_00221BE2(f140->fC, p->f18, 1);
+        if (e < 0) { func_001CBC10(e, &D_0028EECC, 0x8c5); return 0; }
+        e = func_00221C12(f140->fC, p->f1C, 1);
+        if (e < 0) { func_001CBC10(e, &D_0028EECC, 0x8c6); return 0; }
+        e = func_00221BFA(f140->fC, p->f20, 1);
+        if (e < 0) { func_001CBC10(e, &D_0028EECC, 0x8c7); return 0; }
+        e = func_00221B8B(f140->fC, p->mode, 1);
+        if (e < 0) { func_001CBC10(e, &D_0028EECC, 0x8c8); return 0; }
+    } else if (f13C != 0) {
+        if (b != 0) {
+            S_Vec_001CC4B0 v = *(S_Vec_001CC4B0 *)b;
+            e = func_00221A71(f13C, v.x, v.y, v.z, 1);
+            if (e < 0) { func_001CBC10(e, &D_0028EECC, 0x8d1); return 0; }
+        }
+        if (c != 0) {
+            S_Vec_001CC4B0 v = *(S_Vec_001CC4B0 *)c;
+            e = func_00221AA6(f13C, v.x, v.y, v.z, 1);
+            if (e < 0) { func_001CBC10(e, &D_0028EECC, 0x8da); return 0; }
+        }
+        e = func_00221A2D(f13C, Max_001CC4B0(p->minDist, 1.0f), 1);
+        if (e < 0) { func_001CBC10(e, &D_0028EECC, 0x8e0); return 0; }
+        e = func_00221A09(f13C, p->maxDist, 1);
+        if (e < 0) { func_001CBC10(e, &D_0028EECC, 0x8e1); return 0; }
+        if ((f10C & 0x10) && p->insideCone != 0x168) {
+            e = func_00221990(f13C, p->insideCone, p->outsideCone, 1);
+            if (e < 0) { func_001CBC10(e, &D_0028EECC, 0x8e4); return 0; }
+            e = func_002219E9(f13C, p->coneVolume, 1);
+            if (e < 0) { func_001CBC10(e, &D_0028EECC, 0x8e8); return 0; }
+            if (d != 0) {
+                S_Vec_001CC4B0 v = *(S_Vec_001CC4B0 *)d;
+                e = func_002219B4(f13C, v.x, v.y, v.z, 1);
+                if (e < 0) { func_001CBC10(e, &D_0028EECC, 0x8ed); return 0; }
+            }
+        }
+        e = func_00221ADB(f13C, p->f18, 1);
+        if (e < 0) { func_001CBC10(e, &D_0028EECC, 0x8f3); return 0; }
+        e = func_00221B23(f13C, p->f1C, 1);
+        if (e < 0) { func_001CBC10(e, &D_0028EECC, 0x8f4); return 0; }
+        e = func_00221AFF(f13C, p->f20, 1);
+        if (e < 0) { func_001CBC10(e, &D_0028EECC, 0x8f5); return 0; }
+        e = func_00221A51(f13C, p->mode, 1);
+        if (e < 0) { func_001CBC10(e, &D_0028EECC, 0x8f6); return 0; }
+    }
+    return 1;
+}
+
 int C_001CC3C0::func_001CCA10(void)
 {
     if ((int)f154 != -1 && f154->v7() != 0)
@@ -449,6 +526,30 @@ int C_001CCC50::func_001CCC50(int *out, u32 bytes, u32 rate, u16 bits, u32 align
         *out = 0;
         return 0;
     }
+    return 1;
+}
+
+int C_001CC3C0::func_001CCE10(int a, int b, int c, int d)
+{
+    if (*(u8 *)((char *)this + 0x10c) & 8) {
+        if (f13C != 0) {
+            int e = func_00221A71(f13C, a, b, c, 1);
+            if (e < 0) {
+                func_001CBC10(e, &D_0028EECC, 0xa89);
+                return 0;
+            }
+        } else if (f140 != 0) {
+            int e = func_00221B90(f140->fC, a, b, c, 1);
+            if (e < 0) {
+                func_001CBC10(e, &D_0028EECC, 0xa8f);
+                return 0;
+            }
+        }
+    }
+    f1E8 = a;
+    *(int *)((char *)this + 0x1ec) = b;
+    *(int *)((char *)this + 0x1f0) = c;
+    *(int *)((char *)this + 0x1f4) = d;
     return 1;
 }
 
