@@ -50,6 +50,11 @@ float func_0014FBA0(float a, float b);
 extern float D_00277240;
 extern float D_002755EC;
 
+static __forceinline void NormInPlace_00054680(S_00054430_V4 *p)
+{
+    func_00053CB0(p, p);
+}
+
 static __forceinline float Sqrt549(float f) { float r; _mm_store_ss(&r, _mm_sqrt_ss(*(__m128 *)&f)); return r; }
 struct V549 { float x, y, z, w; };
 struct Item549 {
@@ -155,9 +160,9 @@ void C_00054680::func_00054680()
 
     q = &f64->f4e0->f1a8[1]->f834;
     pos = &f64->f4e0->f1a8[0]->f834;
-    S_00054430_V4 *pa = &a;
+    S_00054430_V4 &ra = a;
     a = S_00054430_V4(pos->x - q->x, pos->y - q->y, pos->z - q->z, 1.0f);
-    func_00053CB0(&a, pa);
+    func_00053CB0(&a, &ra);
     a = f64->f4e0->f1a8[1]->f230->func_00198040(&a);
     ang = func_0014FBA0(a.x, a.z);
     b = f64->f4e0->f1a8[0]->f834;
@@ -340,5 +345,23 @@ void C_000549F0::func_000549F0(float dt)
     }
     func_00054210(dt);
     func_00031260(dt);
+}
+
+void func_000551B0(int *a, int *b)
+{
+    if (b[0x68/4] == D_002BA160 || b[0x68/4] == D_002B9118 || b[0x68/4] == D_002B9108 || b[0x68/4] == D_002B9114 || b[0x68/4] == D_002B9110) {
+        int *d = (int *)a[0x54/4];
+        int *s = (int *)a[0x60/4];
+        V_000551B0 *p = (V_000551B0 *)(s + 0x11c/4);
+        *p = D_002A1A64;
+        V_000551B0 *q = (V_000551B0 *)(s + 0x10c/4);
+        *q = D_002A1A64;
+        if (d[1] > 0) {
+            *q = *(V_000551B0 *)(d + 0x54/4);
+            V_000551B0 &v = *(V_000551B0 *)(d + 0x24/4);
+            p->x=v.x; p->y=v.y; p->z=v.z; p->w=v.w;
+        }
+        s[0x12c/4] = 1;
+    }
 }
 
