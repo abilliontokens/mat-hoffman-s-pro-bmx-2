@@ -61,6 +61,8 @@ float func_00011170(float *v);
 extern Vec4 D_002EF740;
 extern Vec4 D_002A8C18;
 static __forceinline void Zero3(int *p) { p[0]=0; p[1]=0; p[2]=0; }
+static __forceinline void ZeroVec3(int *p) { int i; for (i = 0; i < 3; i++) p[i] = 0; }
+static __forceinline void CopyVec4(int *d, const int *s) { int i; for (i = 0; i < 4; i++) d[i] = s[i]; }
 
 struct __declspec(align(16)) Mat4_001741C0 {
     float m[16];
@@ -208,24 +210,22 @@ PhysicsRigidBody *PhysicsRigidBody::func_001740B0(C_00198330 *a0, int a1, int a2
     return this;
 }
 
-Vec4 *func_00174110(Vec4 *dst, Vec4 *src)
-{
-    Vec4 r;
-    float sum = LengthSq(src->x, src->y, src->z, src->w);
-    if (sum != D_00275544) {
-        float inv = D_00275460 / sqrtf(sum);
-        r.x = inv * src->x;
-        r.y = inv * src->y;
-        r.z = inv * src->z;
-        r.w = inv * src->w;
-    } else {
-        r.x = 0.0f;
-        r.y = 0.0f;
-        r.z = 0.0f;
-        r.w = 0.0f;
-    }
-    *dst = r;
-    return dst;
+Vec4 func_00174110(Vec4 *src) {
+Vec4 r;
+Vec4 *dst=&r;
+int w,z,y,x;
+float sum=LengthSq(src->x,src->y,src->z,src->w);
+if(sum!=D_00275544) {
+float root=sqrtf(sum);
+volatile float *rootp=&root;
+float inv=D_00275460/ *rootp;
+float a=inv*src->x; x=*(int*)&a;
+float b=inv*src->y; y=*(int*)&b;
+float c=inv*src->z; z=*(int*)&c;
+float d=inv*src->w; w=*(int*)&d;
+} else { w=0; x=w; y=w; z=w; }
+((int*)dst)[0]=x; ((int*)dst)[1]=y; ((int*)dst)[2]=z; ((int*)dst)[3]=w;
+return r;
 }
 
 Mat4_001741C0 func_001741C0(const float *q)
@@ -327,5 +327,17 @@ void PhysicsRigidBody::func_00174580()
     *(Vec4 *)((char *)this + 0x268) = D_002A8C18;
     *(int *)((char *)this + 0x28) = 0;
     ((C_00198330 *)this)->vA0();
+}
+
+void PhysicsRigidBody::func_001746D0()
+{
+    int i;
+
+    for (i = 0; i < 2; i++) {
+        Zero3(f298[i]);
+        f2C8[i] = D_002EF740;
+        Zero3(f2B0[i]);
+        Zero3(f2E8[i]);
+    }
 }
 
