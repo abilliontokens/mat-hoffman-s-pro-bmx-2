@@ -7,6 +7,7 @@ extern float D_00276E9C, D_00276E98;
 void *func_001E8A44(unsigned int size);
 void func_001E891B(void *p);
 struct S_0003AC20_Vec { float x,y,z,w; };
+struct S_0003AC20_Arg { float x,y,z,w; S_0003AC20_Arg(float a,float b,float c,float d){x=a;y=b;z=c;w=d;} };
 struct S_3A990_Blk { char pad[0x358]; int width, height; };
 struct S_3A990_Owner { char pad[8]; char *object; };
 struct C_3A990 {
@@ -207,10 +208,11 @@ void C_0003AD50::func_0003AD50(void)
 
 void C_3AE40::func_0003AE40(S_3AE40_Rec * volatile dst)
 {
+    S_3AE40_List *l = &list;
     int n = 0;
     int i;
-    for (i = f484; i < list.count; i++, n++) {
-        S_3AE40_Ent *e = list.at(i);
+    for (i = f484; i < this->list.count; i++, n++) {
+        S_3AE40_Ent *e = l->at(i);
         int tmp;
         dst[n].idx = n;
         dst[n].kind = e->kind + 1;
@@ -223,14 +225,17 @@ void C_3AE40::func_0003AE40(S_3AE40_Rec * volatile dst)
             dst[n].v50 = e->f10->v34;
             break;
         case 2: {
-            int len = strlen(e->f4->name0);
-            int m = Min(0x13, len);
-            func_001E8920(dst[n].name0, e->f4->name0, m);
-            dst[n].name0[m] = 0;
-            len = strlen(e->f4->name1);
-            m = Min(0x13, len);
-            func_001E8920(dst[n].name1, e->f4->name1, m);
-            dst[n].name1[m] = 0;
+            struct { volatile int len; volatile int lim; volatile int cnt; } t;
+            t.len = strlen(e->f4->name0);
+            t.lim = 0x13;
+            t.cnt = t.lim > t.len ? t.len : t.lim;
+            func_001E8920(dst[n].name0, e->f4->name0, t.cnt);
+            dst[n].name0[t.cnt] = 0;
+            t.len = strlen(e->f4->name1);
+            t.lim = 0x13;
+            t.cnt = t.lim > t.len ? t.len : t.lim;
+            func_001E8920(dst[n].name1, e->f4->name1, t.cnt);
+            dst[n].name1[t.cnt] = 0;
             dst[n].f60 = e->f4->fDC;
             dst[n].f62 = n - 2;
             dst[n].f64 = n - 1;
