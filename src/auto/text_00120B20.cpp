@@ -16,5 +16,5 @@ void func_0011F0E0(void *a, void *b, void *c, void *indices, void **data);
 void func_0011F540(S_0011F4B0_V4 *out, S_0011F4B0_V4 pos, float *m);
 void func_00030A30(S_0011F4B0_V4 *out, S_0011F4B0_V4 v, float *m);
 int func_0011FF30(S_0011F4B0_V4 *p, void *tri);
-float func_0011F8E0(float *a, float *b, float *c, float *d);
+float func_0011F8E0(S_0011F4B0_V4 *a, S_0011F4B0_V4 *b, S_0011F4B0_V4 *c, S_0011F4B0_V4 *d);
 
