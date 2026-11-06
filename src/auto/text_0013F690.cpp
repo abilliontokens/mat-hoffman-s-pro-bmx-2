@@ -171,6 +171,8 @@ struct C_0013FC00 {
 
 extern int D_00284F70;
 extern int D_00284F8C;
+extern int D_00284E94;
+extern int D_00284F7C;
 extern int D_002AA46C;
 void *func_001E8A44(int size);
 
