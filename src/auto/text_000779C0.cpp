@@ -71,7 +71,8 @@ struct Wid_779C0 {
     __forceinline void Scale()
     {
         float left = *(volatile float *)&f4c * D_00278654;
-        b58 |= 4;
+        unsigned char dirty = (unsigned char)(b58 | 4);
+        b58 = dirty;
         f3c = left;
         f40 = *(volatile float *)&f4c * D_00275544;
         f44 = *(volatile float *)&f50 * D_0027653C;
@@ -256,11 +257,11 @@ struct C_000788D0 {
 
 Cnt_779C0 *Cnt_779C0::func_000779C0(void *a)
 {
-    int i;
-    int v2, v1, *r;
-    void *p;
-    Txt_779C0 *t;
     Wid_779C0 *w;
+    Txt_779C0 *t;
+    void *p;
+    int v2, v1, *r;
+    int i;
     fC8 = *(int *)((char *)a + 0x1d0);
     fD8 = (int)a;
     D_002A8490->p2EC->func_0018C160((int)&D_002786A0);
