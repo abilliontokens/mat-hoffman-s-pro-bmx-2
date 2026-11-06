@@ -2,7 +2,7 @@
 #include "common.h"
 
 struct C_00147890_Ini {
-    char pad[0x4cd];
+    char pad[0x4cc];
     void func_00168280();
     void func_001691E0();
     int func_00169490(char *name, int zero);
