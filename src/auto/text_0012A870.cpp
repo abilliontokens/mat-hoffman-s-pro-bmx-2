@@ -102,14 +102,15 @@ struct S_0012AB70Vec {
 struct C_0012AB70R {
     char pad0[0x170];
     S_0012AB70Vec f170;
-    int f180[4];
-    int f190[4];
+    S_0012AB70Vec f180;
+    S_0012AB70Vec f190;
     char pad1a0[0x30];
     float f1d0;
     int f1d4;
     char pad1d8[0x38];
     int f210;
     void func_0012AB70(S_0012AB70Vec *param1, int param2, int param3, int *param4, float *param5);
+    void func_0012AB70(S_0012AB70Vec *param1, S_0012AB70Vec *param2, S_0012AB70Vec *param3, int *param4, float *param5);
 };
 
 struct C_0012B510 {
@@ -593,29 +594,12 @@ void C_0012B1D0::func_0012B1D0(undefined4 *param_1)
   return;
 }
 
-void C_0012B210::func_0012B210(int *out)
-{
-    C_0012B210 * volatile self = this;
-    int * volatile p;
-    float f;
-    float t;
-
-    out[0] = 0;
-    p = &out[2];
-    t = (float)(int)self->f1e8;
-    if ((int)self->f1e8 < 0) {
-        t += D_002755E4;
-    }
-    f = t / D_002A3E34;
-    *p = _mm_cvttss_si32(*(__m128 *)&f);
-    out[1] = 0;
-    p = &out[3];
-    t = (float)(int)self->f1ec;
-    if ((int)self->f1ec < 0) {
-        t += D_002755E4;
-    }
-    f = t / D_002A3E38;
-    *p = _mm_cvttss_si32(*(__m128 *)&f);
+void C_0012B210::func_0012B210(int *out) {
+ C_0012B210 * volatile self=this;
+ out[0]=0;
+ { int *p=out+2; float t=(float)(int)self->f1e8; if((int)self->f1e8<0)t+=D_002755E4; float f=t/D_002A3E34; *p=_mm_cvttss_si32(*(__m128 const *)&f); }
+ out[1]=0;
+ { int *p=out+3; float t=(float)(int)self->f1ec; if((int)self->f1ec<0)t+=D_002755E4; float f=t/D_002A3E38; *p=_mm_cvttss_si32(*(__m128 const *)&f); }
 }
 
 void C_0012B2B0::func_0012B2B0(S_0012B2B0_Rect *in, S_0012B2B0_Rect *out)
