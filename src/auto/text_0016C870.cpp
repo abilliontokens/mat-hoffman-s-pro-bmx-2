@@ -100,8 +100,8 @@ struct C_0016CF10 {
     char pad1B8[0xC];
     u32 f1C4, f1C8;
     char pad1CC[0x24];
-    float f1F0[4];
-    float f200[4];
+    V4f f1F0;
+    V4f f200;
     float f210;
     C_0016CF10 *func_0016CF10(void *a, char *name, void *b, u32 *c);
 };
