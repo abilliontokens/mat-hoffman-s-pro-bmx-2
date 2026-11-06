@@ -1,29 +1,7 @@
 /* 42 functions from 0x0005B8D0 to 0x0005C720, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
-/* 0x1f98-byte record, ten of them at this+0xd80 */
-struct S_0005C3A0_Rec {
-    int f0, f4, f8;
-    int grid[8][3][15];
-    int g[8];
-    int f5cc, f5d0;
-    int tag;
-    int pad5d8;
-    char name[8];
-    int f5e4;
-    int z0;
-    int z[8];
-    int oh1[8];
-    int oh2[3];
-    int oh3[8];
-    int c[8];
-    int d[8][100];
-    int e[8];
-    int f[8][100];
-};
 struct C_0005C3A0 {
-    char pad0[0xd80];
-    S_0005C3A0_Rec recs[10];
     void func_0005C3A0(int idx);
 };
 extern int D_002782AC;
