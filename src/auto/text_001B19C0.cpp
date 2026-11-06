@@ -242,6 +242,92 @@ struct C_001B1AB0 {
     void func_001B1AB0(int a1, int a2);
 };
 
+struct C_001B1C30_View {
+    void func_0012B210(int *out);
+};
+
+struct C_001B1C30_Obj {
+    char pad0[0x34];
+    float f34;
+    float f38;
+    char pad3C[0x10];
+    short s4C;
+    float getF34() { return f34; }
+    float getF38() { return f38; }
+    void func_0005E840(char *s);
+};
+
+/* TextOverlay */
+struct C_001B1C30 {
+    char pad0[0x24];
+    C_001B1C30_Obj *f24;
+    char pad28[0x4];
+    int f2C;
+    int f30;
+    int f34;
+    int f38;
+    int f3C;
+    int f40;
+    char pad44[0x8];
+    int f4C;
+    int f50;
+    int f54;
+    int f58;
+    float f5C;
+    float f60;
+    int f64;
+    char pad68[0x4];
+    float f6C;
+    float f70;
+    int f74;
+    float f78;
+    int f7C;
+    C_001B1C30_View *f80;
+    int f84;
+    int f88;
+    int f8C;
+    float f90;
+    float f94;
+    float f98;
+    float f9C;
+    float fA0;
+    float fA4;
+    float fA8;
+    float fAC;
+    float fB0;
+    float fB4;
+    float fB8;
+    float fBC;
+    int fC0;
+    float fC4;
+    int fC8;
+    float fCC;
+    float fD0;
+    int fD4;
+    int fD8;
+    int fDC;
+    float fE0;
+    char fE4[0x40];
+    char f124[0x40];
+    char pad164[0x4];
+    float f168;
+    float f16C;
+    float f170;
+    int f174;
+    int f178;
+    int f17C;
+    int f180;
+    int func_001B1C30(float dt);
+};
+
+extern float D_00275544;
+extern float D_00277A00;
+extern float D_002779FC;
+extern char D_0028C860[];
+extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
+
+static __forceinline void Round_001B1C30(int * volatile out, float f) { *out = _mm_cvtss_si32(*(__m128 *)&f); }
+
 void C_001B19C0::func_001B19C0(float a1, float a2, float a3)
 {
     if (fC0 != 0) {
