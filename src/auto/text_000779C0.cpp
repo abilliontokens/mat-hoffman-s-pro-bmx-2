@@ -59,6 +59,8 @@ struct Wid_779C0 {
     float f3c, f40, f44, f48, f4c, f50;
     char pad54[4];
     unsigned char b58;
+    __forceinline void SetRGB(unsigned int rgb) { b58 |= 2; color = (color & 0xff000000) | rgb; }
+    __forceinline void SetAlpha(unsigned char al) { b58 |= 2; *((unsigned char *)&color + 3) = al; }
     __forceinline void SetW(float w) { if (f28 != w) { f28 = w; b58 |= 1; } }
     __forceinline void SetH(float h) { if (f2c != h) { f2c = h; b58 |= 1; } }
     __forceinline void Scale()
