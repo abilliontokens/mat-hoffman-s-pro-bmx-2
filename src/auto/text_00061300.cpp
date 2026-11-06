@@ -123,7 +123,7 @@ static __forceinline void set_00061B80(C_00061B80_Obj *o, float a, float b, floa
     float cc = (c) * D_00278784; \
     float bb = (b); \
     C_00061B80_Obj *q = (p); \
-    if (q->f4 != (a) || q->f8 != bb) { \
+    if (q->f4 != (a) || q->f8 != (b)) { \
         q->f4 = (a); \
         q->f8 = bb; \
         q->flags |= 1; \
