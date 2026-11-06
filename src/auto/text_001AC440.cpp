@@ -76,7 +76,7 @@ void *func_001E8AA5(unsigned int size);
 extern double D_002766A8, D_00286D30, D_0028C110, D_0028C108, D_0028C100, D_002766B8;
 double func_001EA2BA(double, double *);
 int func_001E8858(double);
-static __declspec(noinline) char *func_001AC940(int *sign, char *buf, double arg, int ndigits, int *decpt, int eflag);
+static __declspec(noinline) char *cvt_probe(int *sign, char *buf, double arg, int ndigits, int *decpt, int eflag);
 
 
 int DynamicStringTable::func_001AC440(const char *name)
