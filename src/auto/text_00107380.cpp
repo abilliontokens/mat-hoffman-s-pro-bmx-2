@@ -141,7 +141,7 @@ float func_0014FBA0(float a, float b);
 static __forceinline void length_00107FB0(float *d, float x, float y)
 {
     float square = y * y + x * x;
-    _mm_store_ss(d, _mm_sqrt_ss(*(__m128 *)&square));
+    _mm_store_ss(d, _mm_sqrt_ss(_mm_load_ss(&square)));
 }
 
 struct C_00107FB0 {
