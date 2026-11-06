@@ -60,7 +60,7 @@ struct StringBC {
 struct DataBC {
  char pad0[0x3a8]; void *f3A8; char pad3AC[0xfc];
  int *f4A8; char pad4AC[0xf4];
- int count; EntryBC *entries; int stringCount; char **strings;
+ int count; EntryBC *entries; int stringCount; StringBC **strings;
 };
 struct C_0003BC90 {
  char pad0[0x64]; DataBC *f64; char pad68[0x3c0];
