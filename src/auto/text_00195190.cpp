@@ -19,15 +19,7 @@ struct SimpleVCR {
     int *fAC, *fB0, *fB4;
     unsigned char *fB8;
     char padBC[4];
-    union {
-        unsigned char fC0;
-        struct {
-            unsigned char b0 : 1;
-            unsigned char mid : 5;
-            unsigned char b6 : 1;
-            unsigned char b7 : 1;
-        } fl;
-    };
+    unsigned char fC0;
     char padC1[3];
     int fC4, fC8, fCC;
     void func_00157600(int a);
