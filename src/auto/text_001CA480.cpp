@@ -105,7 +105,7 @@ struct Quat_1CAF20 {
 };
 
 struct Plane_001CA480;
-typedef bool Ret_001CA480;
+typedef int Ret_001CA480;
 
 struct WaterDisplacement {
     void *vtbl;
@@ -257,6 +257,7 @@ Ret_001CA480 WaterDisplacement::func_001CA480(Plane_001CA480 *plane, void *arg1)
     Vec3_001CA480 V = *(Vec3_001CA480 *)&unk54 * tr;
     Vec3_001CA480 t;
     float s;
+    float l1, l2;
 
     t = U + P;
     B[0] = Vec4_001CA480(t.x, t.y, t.z, 1.0f);
@@ -297,10 +298,8 @@ Ret_001CA480 WaterDisplacement::func_001CA480(Plane_001CA480 *plane, void *arg1)
     if (r3) {
         Vec3_001CA480 e1 = B1 - cam->pos;
         Vec3_001CA480 e2 = *(Vec3_001CA480 *)&A[2] - cam->pos;
-        float n2 = e2.z * e2.z + e2.y * e2.y + e2.x * e2.x;
-        float l2 = Sqrt_001CA480(n2);
-        float n1 = e1.z * e1.z + e1.y * e1.y + e1.x * e1.x;
-        float l1 = Sqrt_001CA480(n1);
+        _mm_store_ss(&l2, _mm_sqrt_ss(_mm_set_ss(e2.z * e2.z + e2.y * e2.y + e2.x * e2.x)));
+        _mm_store_ss(&l1, _mm_sqrt_ss(_mm_set_ss(e1.z * e1.z + e1.y * e1.y + e1.x * e1.x)));
         Vec3_001CA480 w = V2 * (l2 / l1);
         *(Vec4_001CA480 *)&unk74[flip != 0] = Vec4_001CA480(A[2].x - w.x, A[2].y - w.y, A[2].z - w.z, 1.0f);
         *(Vec4_001CA480 *)&unk74[(flip != 0) + 2] = Vec4_001CA480(A[2].x + w.x, A[2].y + w.y, A[2].z + w.z, 1.0f);
@@ -309,10 +308,8 @@ Ret_001CA480 WaterDisplacement::func_001CA480(Plane_001CA480 *plane, void *arg1)
     if (r4) {
         Vec3_001CA480 e1 = C1 - cam->pos;
         Vec3_001CA480 e2 = *(Vec3_001CA480 *)&A[3] - cam->pos;
-        float n2 = e2.z * e2.z + e2.y * e2.y + e2.x * e2.x;
-        float l2 = Sqrt_001CA480(n2);
-        float n1 = e1.z * e1.z + e1.y * e1.y + e1.x * e1.x;
-        float l1 = Sqrt_001CA480(n1);
+        _mm_store_ss(&l2, _mm_sqrt_ss(_mm_set_ss(e2.z * e2.z + e2.y * e2.y + e2.x * e2.x)));
+        _mm_store_ss(&l1, _mm_sqrt_ss(_mm_set_ss(e1.z * e1.z + e1.y * e1.y + e1.x * e1.x)));
         Vec3_001CA480 w = V2 * (l2 / l1);
         *(Vec4_001CA480 *)&unk74[!flip] = Vec4_001CA480(A[3].x - w.x, A[3].y - w.y, A[3].z - w.z, 1.0f);
         *(Vec4_001CA480 *)&unk74[3 - (flip != 0)] = Vec4_001CA480(A[3].x + w.x, A[3].y + w.y, A[3].z + w.z, 1.0f);
