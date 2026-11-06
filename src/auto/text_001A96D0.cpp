@@ -262,24 +262,3 @@ void This_001A9FA0::func_001A9FA0(float s, V4_001A96D0 v, V4_001A96D0 q, Obj_001
         func_001A96D0(other, nw, q, fc8);
     }
 }
-struct This_001A9D20 {
-    char pad0[0x24];
-    Obj_001A9D20 *f24;
-    char pad28[0x4c - 0x28];
-    int f4c;
-    int f50;
-    char pad54[0x7c - 0x54];
-    unsigned f7c;
-    char pad80[0x94 - 0x80];
-    float f94, f98;
-    char pad9C[0xA0 - 0x9C];
-    float fA0, fA4, fA8, fAC;
-    char padB0[0xB8 - 0xB0];
-    int fb8;
-    char padBC[0x124 - 0xBC];
-    float f124, f128, f12c;
-    void func_001A9D20(float s, V4_001A96D0 v, V4_001A96D0 q, Obj_001A9D20 *other, unsigned mask);
-};
-
-static __forceinline float Min_001A9D20(float a, float b) { float r; _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
-static __forceinline float Max_001A9D20(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
