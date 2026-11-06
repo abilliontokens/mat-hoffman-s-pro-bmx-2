@@ -93,6 +93,67 @@ extern int D_002A8BA8;
 extern int D_002A8BAC;
 extern int D_00288D34;
 
+struct Q4_00173580 { int x, y, z, w; };
+
+struct G_00173580 {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
+    virtual void v8(); virtual void v9(); virtual void v10();
+    virtual void v11(); virtual void v12(); virtual void v13(); virtual void v14();
+    virtual void v15(); virtual void v16(); virtual void v17(); virtual void v18();
+    virtual void v19(); virtual void v20(); virtual void v21(); virtual void v22();
+    virtual void v23(); virtual void v24(); virtual void v25(); virtual void v26();
+    virtual void v27(int a); virtual void v28(G_00173580 *a);
+    virtual void v29(); virtual void v30(); virtual void v31(); virtual void v32();
+    virtual void v33(); virtual void v34(int a);
+    G_00173580 *func_00175110(int a);
+    G_00173580 *func_00194130(int a);
+    G_00173580 *func_0017F050(int a);
+    void func_0017F0A0(int a);
+    void func_00181140(int a, char *b, int c);
+    void func_001A52C0();
+    G_00173580 *func_001A8E30(int a);
+    void func_001A9070(int a);
+    void func_0001EDC0(G_00173580 *a);
+    void func_001A9430(G_00173580 *a, int b, int c);
+    G_00173580 *func_001A8630(int a);
+    void func_001A8BC0(G_00173580 *a, int b, int c, int d, Q4_00173580 e, int f);
+    void func_001A86D0(G_00173580 *a);
+    G_00173580 *func_0019B700(int a);
+    void func_00129920(int a);
+    void func_0019D7B0(int a, char *b);
+    void func_0019C1E0();
+    G_00173580 *func_0014AB30(int a);
+    void func_0014C1C0(int a, int b, int c);
+    void func_00086C20(int a);
+    void func_00133660(int a);
+    void func_001334E0(int a);
+    void func_001334F0(G_00173580 *a);
+};
+
+struct C_00173580 {
+    char pad0[0x27];
+    unsigned char f27;
+    char pad28[0xa8 - 0x28];
+    int fa8, fac;
+    char padb0[0xc4 - 0xb0];
+    G_00173580 *fc4, *fc8, *fcc, *fd0, *fd4, *fd8, *fdc;
+    char pade0[0x14c - 0xe0];
+    int f14c;
+    void func_001D3F50();
+    void func_001577A0(G_00173580 *a, int b);
+    void func_00171F50(int a, int b);
+    void func_00173580(int a1, int a2, const char *name, int a4, int a5);
+};
+
+void *func_001E8A44(int size);
+char *func_001E8AC0(char *s, int c);
+void func_00171F10();
+extern int D_002BA15C;
+extern int D_002BA148;
+
+#define F_00173580(p, off, T) (*(T *)((char *)(p) + (off)))
+
 struct C_001732E0 {
     void func_00192370(int a0);
     C_001732E0 *func_001732E0(int a0);
