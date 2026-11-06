@@ -3,7 +3,7 @@
 
 struct Anim { int unk_0; int unk_4; int unk_8; };
 struct Owner { char pad[0x1b0]; int idx; float unk_1b4; float unk_1b8; };
-struct Table { char pad[0x34]; float ax, ay, az; char pad2[0xf8]; Anim *anims; };
+struct Table { char pad[0x34]; float ax, ay, az; char pad2[0xf4]; Anim *anims; };
 struct Body {
     float x, y, z, pad0c;
     float vx, vy, vz, pad1c;
@@ -113,6 +113,46 @@ extern const char D_002889C4[];
 void func_0016EC80(C_0016EEA0 *self, Body *p, float dt);
 void func_0013E260(S_16EEA0_Log *log, int id, const char *fmt, ...);
 void func_0013E1F0(S_16EEA0_Log *log, int id, const char *fmt, ...);
+
+int C_0016E320::func_0016E320(float dt)
+{
+    float acc;
+    float r1, r2, r3;
+    float px, py, pz;
+
+    if (func_00169E10(dt) != 0) {
+        f184 = f178;
+        f194 = 0.0f;
+        return 1;
+    }
+    if (!(f194 < D_00278C48)) {
+        f34 = f24;
+        f38 = f28;
+        f3c = f2c;
+        f40 = f30;
+        return 1;
+    }
+    acc = dt * f17c;
+    if (f20c != 0) {
+        float d = func_00011170(&f54);
+        if (d > D_002A8898) {
+            acc = acc / D_002A8898;
+        }
+    }
+    acc = acc > f180 ? acc : f180;
+    r1 = (float)func_001E8833() * D_002754B0;
+    r2 = (float)func_001E8833() * D_002754B0;
+    r3 = (float)func_001E8833() * D_002754B0;
+    px = (f220 - f210) * r1 + f210;
+    py = (f224 - f214) * r2 + f214;
+    pz = (f228 - f218) * r3 + f218;
+    f34 = px + f54;
+    f38 = py + f58;
+    f3c = pz + f5c;
+    f184 = f178;
+    f194 = 0.0f;
+    return 1;
+}
 
 int C_0016EEA0::func_0016EEA0(float dt)
 {
