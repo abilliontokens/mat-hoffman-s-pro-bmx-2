@@ -210,7 +210,7 @@ struct C_001D5760 {
     unsigned int f38;
     int f3C;
     int f40;
-    int f44;
+    f32 f44;
     f32 f48;
     char pad4C[0xC];
     u8 b58;
@@ -918,7 +918,11 @@ CrossFade_001C44A0 *CrossFade_001C44A0::func_001C44A0(int a0)
     p = (C_001D5760 *)func_001E8A44(0x64);
     p = p != 0 ? p->func_001D5760() : 0;
     unk24 = p;
-    p->func_001D5810(a0 != -1 ? &D_0028E5C4 : &D_0028E5CC, 0, 0, 0);
+    if (a0 == -1) {
+        p->func_001D5810(&D_0028E5CC, 0, 0, 0);
+    } else {
+        p->func_001D5810(&D_0028E5C4, 0, 0, 0);
+    }
     o = unk24;
     if (o->f28 != 0x44200000) {
         o->f28 = 0x44200000;
@@ -930,7 +934,7 @@ CrossFade_001C44A0 *CrossFade_001C44A0::func_001C44A0(int a0)
         o->b58 |= 1;
     }
     o = unk24;
-    t = D_0028E3CC + D_002779FC;
+    t = D_002779FC + D_0028E3CC;
     o->f44 = *(int *)&D_0028E3CC;
     o->b58 |= 4;
     o->f3C = 0;
