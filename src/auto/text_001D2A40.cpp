@@ -70,35 +70,35 @@ static __forceinline int Min_001D2A40(int a, int b) { return a > b ? b : a; }
 
 /* step one channel k of track i; M = done/dir bit, FM = repeat bit and PM = ping-pong bit of flags */
 #define TRACK_CHANNEL(k, LO, HI, M, FM, PM) \
-    if (!(f10[i].done & (M))) { \
-        if (!(f10[i].dir & (M))) { \
-            f10[i].val[k] = f10[i].step[k] + f10[i].val[k]; \
-            if (f10[i].val[k] >= (float)f10[i].HI) { \
-                if (f10[i].flags & (FM)) { \
-                    if (f10[i].flags & (PM)) { \
-                        f10[i].dir |= (M); \
-                        f10[i].val[k] = (float)f10[i].HI; \
+    if (!(self->f10[i].done & (M))) { \
+        if (!(self->f10[i].dir & (M))) { \
+            self->f10[i].val[k] = self->f10[i].step[k] + self->f10[i].val[k]; \
+            if (self->f10[i].val[k] >= (float)self->f10[i].HI) { \
+                if (self->f10[i].flags & (FM)) { \
+                    if (self->f10[i].flags & (PM)) { \
+                        self->f10[i].dir |= (M); \
+                        self->f10[i].val[k] = (float)self->f10[i].HI; \
                     } else { \
-                        f10[i].val[k] = (float)f10[i].LO; \
+                        self->f10[i].val[k] = (float)self->f10[i].LO; \
                     } \
                 } else { \
-                    f10[i].done |= (M); \
-                    f10[i].val[k] = (float)f10[i].HI; \
+                    self->f10[i].done |= (M); \
+                    self->f10[i].val[k] = (float)self->f10[i].HI; \
                 } \
             } \
         } else { \
-            f10[i].val[k] = f10[i].val[k] - f10[i].step[k]; \
-            if (f10[i].val[k] <= (float)f10[i].LO) { \
-                if (f10[i].flags & (FM)) { \
-                    if (f10[i].flags & (PM)) { \
-                        f10[i].dir &= ~(M); \
-                        f10[i].val[k] = (float)f10[i].LO; \
+            self->f10[i].val[k] = self->f10[i].val[k] - self->f10[i].step[k]; \
+            if (self->f10[i].val[k] <= (float)self->f10[i].LO) { \
+                if (self->f10[i].flags & (FM)) { \
+                    if (self->f10[i].flags & (PM)) { \
+                        self->f10[i].dir &= ~(M); \
+                        self->f10[i].val[k] = (float)self->f10[i].LO; \
                     } else { \
-                        f10[i].val[k] = (float)f10[i].HI; \
+                        self->f10[i].val[k] = (float)self->f10[i].HI; \
                     } \
                 } else { \
-                    f10[i].done |= (M); \
-                    f10[i].val[k] = (float)f10[i].LO; \
+                    self->f10[i].done |= (M); \
+                    self->f10[i].val[k] = (float)self->f10[i].LO; \
                 } \
             } \
         } \
