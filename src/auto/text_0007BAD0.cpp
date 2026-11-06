@@ -28,7 +28,26 @@ struct S_7C690_Device {
 };
 extern S_7C690_Device *D_002EFDB8;
 
-struct S_7C690_Data { char pad0[0x790]; int f790; char pad794[0x7b8 - 0x794]; int f7b8; char pad7bc[4]; int f7c0; char pad7c4[4]; int f7c8; char pad7cc[0xff8 - 0x7cc]; int ff8; };
+struct S_7C690_Data {
+    char pad0[0x6b8];
+    char *f6b8;
+    char pad6bc[0x6c8 - 0x6bc];
+    char *f6c8;
+    char pad6cc[0x6d8 - 0x6cc];
+    char *f6d8;
+    char pad6dc[0x790 - 0x6dc];
+    int f790;
+    char pad794[0x7b8 - 0x794];
+    int f7b8;
+    char pad7bc[4];
+    int f7c0;
+    char pad7c4[4];
+    int f7c8;
+    char pad7cc[0xff0 - 0x7cc];
+    char *ff0;
+    int pad_ff4;
+    int ff8;
+};
 struct S_7C690_Mgr { char pad0[4]; S_7C690_Data *f4; };
 struct S_7C690_C020 { int func_0005C020(void *a); };
 struct S_7C690_E { char pad0[0x48]; int f48; char pad4c[0x2c0 - 0x4c]; S_7C690_C020 *f2c0; char pad2c4[0x14]; void *f2d8; };
@@ -102,7 +121,7 @@ undefined4 C_0007C2C0::func_0007C2C0()
 {
     char buf[0x32];
     S_7C2C0_U *u;
-    int n, i, count, si, color, idx;
+    int n, j, count, si, color, idx;
     S_7C2C0_W *w;
 
     n = D_002A8490->f2e0->f2c0->func_0005C020(D_002A8490->f2e0->f2d8);
@@ -110,18 +129,18 @@ undefined4 C_0007C2C0::func_0007C2C0()
     count = u->f568;
     si = f244;
     func_001ADCC0(buf, 0x32, D_00275678, (char *)D_002A8490->f2e8->f4->f790, D_00279030);
-    i = func_00064580(si, buf, 0xffbfa35a);
-    si = func_00064580(i, D_00275630, 0xffcccccc);
-    for (i = 0; i < count; i++) {
-        idx = D_002A8490->f2e0->f48 * 100 + i;
+    j = func_00064580(si, buf, 0xffbfa35a);
+    si = func_00064580(j, D_00275630, 0xffcccccc);
+    for (j = 0; j < count; j++) {
+        idx = D_002A8490->f2e0->f48 * 100 + j;
         color = ((int *)((char *)n + 0x678))[idx];
         color = color ? 0xcccccc : 0xbfa35a;
-        if (strncmp(u->f56c[i] + 0x24, D_00275630, 1) == 0)
+        if (strncmp(u->f56c[j] + 0x24, D_00275630, 1) == 0)
             continue;
         if (si < 0 || si >= 0x10)
             continue;
         w = f13c[si];
-        w->func_0005E840(u->f56c[i] + 0x24);
+        w->func_0005E840(u->f56c[j] + 0x24);
         if (w->color != color) {
             w->flags |= 8;
             w->color = (w->color ^ color) & 0xffffff ^ w->color;
