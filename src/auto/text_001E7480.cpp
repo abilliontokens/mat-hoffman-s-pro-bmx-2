@@ -279,10 +279,14 @@ void __fastcall func_001E7F90(float *, float *, int, int *, int);
 void __fastcall func_001E7E60(float *, float *, int, int *, int);
 void __fastcall func_001E7170(float *, float *, int, int);
 void __fastcall func_001E70B0(float *, float *, int, int);
-void __stdcall func_001E8200(int n, int isgn, float *a, int *ip, float *w) {
+struct C_001E7170 { void func_001E7170(int n, int nc); };
+struct C_001E70B0 { void func_001E70B0(int n, int nc); };
+void __stdcall func_001E8200(int n0, int isgn, float *a, int *ip, float *w0) {
     int j;
     float xr;
+    float *w = w0;
     int nw = ip[0];
+    int n = n0;
     if (n > nw * 4) {
         nw = n >> 2;
         func_001E30E0(nw, ip);
@@ -307,7 +311,7 @@ void __stdcall func_001E8200(int n, int isgn, float *a, int *ip, float *w) {
             func_001E7F90(a, w, 4, ip + 2, nw);
         }
     }
-    func_001E7230(n, (int)a);
+    func_001E7230(n, a, nc);
     if (isgn >= 0) {
         if (n > 4) {
             func_001E7E60(a, w, n, ip + 2, nw);
