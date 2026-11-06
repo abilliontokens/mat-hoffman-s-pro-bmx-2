@@ -321,14 +321,16 @@ static __forceinline S_198E0_State *InitD_198E0(void *p)
 
 /* the original saves the three path buffers with a length-clamped copy, keeping the
    clamp's operands and result in three stack slots (len/limit/result) */
+template <class T> inline T min_198E0(T a, T b)
+{
+    return a > b ? b : a;
+}
 #define CopyPathV_198E0(dst, src, len, lim, res) \
     { \
-        int ma, mb, n; \
+        int n; \
         len = strlen(src); \
         lim = 0x103; \
-        ma = lim; \
-        mb = len; \
-        res = ma > mb ? mb : ma; \
+        res = min_198E0((int)lim, (int)len); \
         n = res; \
         func_001E8920(dst, src, n); \
         (dst)[n] = 0; \
@@ -578,7 +580,7 @@ void C_1A400::func_0001A400(S_1A400_Arg *a, float t)
  v->x+=x; v->y+=y; v->z+=z;
  a->p->func_0011CA60(*(S_1A400_Vec4*)&a->p->x);
  int hit=0;
- if(a->p->y < a->f8) hit=1;
+ if(a->p->y <= a->f8) hit=1;
  S_1A400_Vec4 p;
  S_1A400_Entity *e=D_002B9120->p->p;
  if(!e) p=*(S_1A400_Vec4*)&D_002A0718;
