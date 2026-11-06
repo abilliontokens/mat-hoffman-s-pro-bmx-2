@@ -2,6 +2,19 @@
 #include "common.h"
 #include "ghidra.h"
 struct C_001CDC20;
+struct S_001CD3B0_Sub { char pad0[0x28]; int f28; };
+struct C_001CD3B0 {
+    char pad0[0x2c];
+    S_001CD3B0_Sub *f2c;
+    char pad30[0x68];
+    int f98;
+    char pad9c[0x1c];
+    int fB8;
+    int fBC;
+    int func_001CD3B0(int param_1);
+};
+int func_001CB0A0(int x);
+int __stdcall func_00220AD6(int a, int b);
 inline void *operator new(unsigned int, void *p) { return p; }
 struct SoundVec4 { int x,y,z,w; };
 extern SoundVec4 D_002ABA44, D_002ABA74, D_002ABA64;
