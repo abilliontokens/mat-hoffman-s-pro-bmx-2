@@ -14,7 +14,7 @@ struct S_50D70_G { char pad0[0x2E0]; S_50D70_M *f2E0; };
 extern float D_00277910, D_00277900, D_00277914;
 extern double D_00277908;
 extern "C" double __cdecl pow(double, double);
-void __cdecl func_00157A00(int a);
+int __stdcall func_00157A00(int a);
 struct C_00050D70 {
     virtual void v00(); virtual void v04(); virtual void v08(); virtual void v0C();
     virtual void v10(); virtual void v14(); virtual void v18(); virtual void v1C();
@@ -416,6 +416,55 @@ struct C_00051A00 {
     int func_00051A00(void);
 };
 
+
+void C_00050D70::func_00050D70(int arg)
+{
+    int i, all, found, v;
+    if (f1F4) { func_00157A00(arg); return; }
+    if (((S_50D70_G *)D_002A8490)->f2E0->mode == 0 && f128 <= D_00275544) f298 = 1;
+    all = 1;
+    for (i = 0; i < f90; i++)
+        if (!f64->f4E0->items[i]->func_00108660()) all = 0;
+    if (f298) {
+        for (i = 0; i < f90; i++) f64->f4E0->items[i]->func_001084E0();
+    }
+    if (f298 && all && !f294) f284 = 1;
+    if (!f294) {
+        v = fE4->fF0;
+        if (v >= 600 || v <= 40) f284 = 1;
+    }
+    if (f284) {
+        v = f290 + fE4->fF0;
+        if (v == 320) { f294 = 1; f284 = 0; f134 = -1; }
+        else if (v > 320) { f134 = 0; f290 = 320; }
+        else { f134 = 1; f290 = -320; }
+    } else if (f294) {
+        v48(1);
+        found = 0; i = 0;
+        do {
+            if (f68->func_0005B960(3, (float)f12C) || f68->func_0005B960(1, f64->f4E0->items[i]->fa4c) ||
+                f68->func_0005B960(4, (float)f64->f4E0->items[i]->fa40) || f68->func_0005B960(2, f64->f4E0->items[i]->f1058) ||
+                f68->func_0005B960(0, f64->f4E0->items[i]->fa54)) found = 1;
+            i++;
+            if (i >= f64->f4E0->f24) break;
+        } while (!found);
+        f19C->func_0006D280();
+        f19C->fB8 = f134 + 1;
+    } else {
+        S_50D70_P *P = f64;
+        int a = P->f4E0->items[0]->fa40;
+        if (a > f288) {
+            f290 += (int)(pow((a - f288) * D_00277910, D_00277908) * D_00277900);
+            f288 = P->f4E0->items[0]->fa40;
+        }
+        a = P->f4E0->items[1]->fa40;
+        if (a > f28C) {
+            f290 += (int)(pow((a - f28C) * D_00277910, D_00277908) * D_00277914);
+            f28C = P->f4E0->items[1]->fa40;
+        }
+    }
+    func_00031260(arg);
+}
 
 void C_00051120::func_00051120(short param_1)
 {
