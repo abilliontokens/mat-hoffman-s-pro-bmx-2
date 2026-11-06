@@ -208,6 +208,9 @@ struct Icon86E60 {
     unsigned char flags;
     Icon86E60 *func_001D5760();
     void func_001D5810(char *name, float x, float y, int z);
+    void SetW() { if (w28 != 0x42c00000) { w28 = 0x42c00000; flags |= 1; } }
+    void SetH() { if (h34 != 0x40c00000) { h34 = 0x40c00000; flags |= 1; } }
+    void SetQuad() { flags |= 4; a3C = 1.0f; b40 = 0.0f; c44 = 0.0f; d48 = 1.0f; }
 };
 
 struct C_000874D0 {
@@ -424,6 +427,139 @@ void BestScoreOverlay::func_00086E00(void) {
         f30->Destroy(1);
     }
     ((C_00157660 *)this)->func_00157660();
+}
+
+BestScoreOverlay *BestScoreOverlay::func_00086E60(u32 a, int mode, int c)
+{
+    f34 = a;
+    f44 = c;
+    D_002A60B0.a = D_00278664.a;
+    D_002A60B0.b = D_00278664.b;
+    D_002A60B0.c = D_00278664.c;
+    D_002A60B0.d = D_00278664.d;
+    D_002A60B0.e = D_00278664.e;
+    void *mem = func_001E8A44(0x64);
+    Icon86E60 *v = mem ? ((Icon86E60 *)mem)->func_001D5760() : 0;
+    f2C = (BestScoreOverlay_Text *)v;
+    if (mode == 0) {
+        v->func_001D5810(D_002786B0, 428.0f, 47.0f, 0);
+    } else if (mode == 1) {
+        if (f44 == 0) {
+            v->func_001D5810(D_002786B0, 428.0f, 47.0f, 0);
+        } else {
+            v->func_001D5810(D_002786B0, 428.0f, 271.0f, 0);
+        }
+    } else if (mode == 2) {
+        if (c == 1) {
+            v->func_001D5810(D_002786B0, 340.0f, 47.0f, 0);
+        } else {
+            v->func_001D5810(D_002786B0, 109.0f, 47.0f, 0);
+        }
+    }
+    if (((Icon86E60 *)f2C)->w28 != 0x42c00000) {
+        ((Icon86E60 *)f2C)->w28 = 0x42c00000;
+        ((Icon86E60 *)f2C)->flags = ((Icon86E60 *)f2C)->flags | 1;
+    }
+    if (((Icon86E60 *)f2C)->h34 != 0x40c00000) {
+        ((Icon86E60 *)f2C)->h34 = 0x40c00000;
+        ((Icon86E60 *)f2C)->flags = ((Icon86E60 *)f2C)->flags | 1;
+    }
+    mem = func_001E8A44(0x64);
+    v = mem ? ((Icon86E60 *)mem)->func_001D5760() : 0;
+    f30 = (BestScoreOverlay_Text *)v;
+    if (mode == 0) {
+        v->func_001D5810(D_002786B0, 524.0f, 47.0f, 0);
+    } else if (mode == 1) {
+        if (f44 == 0) {
+            v->func_001D5810(D_002786B0, 524.0f, 47.0f, 0);
+        } else {
+            v->func_001D5810(D_002786B0, 524.0f, 271.0f, 0);
+        }
+    } else if (mode == 2) {
+        if (c == 1) {
+            v->func_001D5810(D_002786B0, 436.0f, 47.0f, 0);
+        } else {
+            v->func_001D5810(D_002786B0, 204.0f, 47.0f, 0);
+        }
+    }
+    if (((Icon86E60 *)f30)->w28 != 0x42c00000) {
+        ((Icon86E60 *)f30)->w28 = 0x42c00000;
+        ((Icon86E60 *)f30)->flags = ((Icon86E60 *)f30)->flags | 1;
+    }
+    ((Icon86E60 *)f30)->flags = ((Icon86E60 *)f30)->flags | 4;
+    ((Icon86E60 *)f30)->a3C = 1.0f;
+    ((Icon86E60 *)f30)->b40 = 0.0f;
+    ((Icon86E60 *)f30)->c44 = 0.0f;
+    ((Icon86E60 *)f30)->d48 = 1.0f;
+    if (((Icon86E60 *)f30)->h34 != 0x40c00000) {
+        ((Icon86E60 *)f30)->h34 = 0x40c00000;
+        ((Icon86E60 *)f30)->flags = ((Icon86E60 *)f30)->flags | 1;
+    }
+    int font;
+    int font2;
+    if (mode == 0) {
+        int *ids[2];
+        ids[0] = &D_00278690;
+        ids[1] = &D_0027958C;
+        D_002A8490->f2EC->func_0018C780(2, ids, 0);
+        int *res = D_002A8490->f2EC->func_0018C160((int)&D_00278690);
+        font = res ? *res : 0;
+        res = D_002A8490->f2EC->func_0018C160((int)&D_0027958C);
+        font2 = res ? *res : 0;
+    } else {
+        int *name = &D_002786A0;
+        D_002A8490->f2EC->func_0018C780(1, &name, 0);
+        int *res = D_002A8490->f2EC->func_0018C160((int)&D_002786A0);
+        font = res ? *res : 0;
+    }
+    mem = func_001E8A44(0x60);
+    f24 = mem ? ((BestScoreOverlay_Text *)mem)->func_001D5E90() : 0;
+    mem = func_001E8A44(0x60);
+    f28 = mem ? ((BestScoreOverlay_Text *)mem)->func_001D5E90() : 0;
+    if (mode == 0) {
+        f24->func_001D5FA0(font, &D_00278690, 0x28, 0);
+        f24->SetPos(0x4415c000, 0x41d00000);
+        f24->SetColor(D_0028F5EC);
+        f28->func_001D5FA0(font2, &D_0027958C, 0x28, 0);
+        f28->SetPos(0x4415c000, 0x42500000);
+    } else if (mode == 1) {
+        f24->func_001D5FA0(font, &D_002786A0, 0x28, 0);
+        f24->SetColor(D_0028F5EC);
+        f28->func_001D5FA0(font, &D_002786A0, 0x28, 0);
+        f28->SetColor(D_0028F5EC);
+        if (f44 == 0) {
+            f24->func_0005E960(0x257, 0x1a);
+            f28->func_0005E960(0x257, 0x34);
+        } else {
+            f24->func_0005E960(0x257, 0xfa);
+            f28->func_0005E960(0x257, 0x114);
+        }
+    } else if (mode == 2) {
+        if (c == 1) {
+            f24->func_001D5FA0(font, &D_002786A0, 0x28, 0);
+            f24->func_0005E960(0x168, 0x1a);
+            f24->SetColor(D_0028F5DC);
+            f28->func_001D5FA0(font, &D_002786A0, 0x28, 0);
+            f28->func_0005E960(0x168, 0x34);
+            f28->SetColor(D_0028F5DC);
+        } else {
+            f24->func_001D5FA0(font, &D_002786A0, 0x28, 0);
+            f24->func_0005E960(0x117, 0x1a);
+            f24->SetColor(D_0028F5EC);
+            f28->func_001D5FA0(font, &D_002786A0, 0x28, 0);
+            f28->func_0005E960(0x117, 0x34);
+            f28->SetColor(D_0028F5EC);
+        }
+    }
+    f24->SetArgb(0xffcccccc);
+    {
+        char *s = *(char **)((char *)D_002A8490->f2E8->f4 + 0x1060);
+        f24->func_0005E840(s);
+    }
+    f24->SetScale(0x40a00000);
+    f28->SetArgb(0xffbfa35a);
+    f28->SetScale(0x40a00000);
+    return this;
 }
 
 extern "C" unsigned int strlen(const char *);
