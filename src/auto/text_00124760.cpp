@@ -12,7 +12,7 @@ extern float D_00275460;
 void func_0011EFA0(Vec4 *out, Vec4 *in);
 
 static __forceinline float Fabs(float f);
-static inline void EdgeEval(Vec4 &P, Vec4 &N, float *v0, float *v1, float *n0, float *n1, float *n, float t);
+static __forceinline void EdgeEval(Vec4 &P, Vec4 &N, float *v0, float *v1, float *n0, float *n1, float *n, float t);
 
 static __forceinline void TriInterp(Vec4 *out, Vec4 *Q, Vec4 *R, float *p, float *n, float *a, float *b, float *c, float *na, float *nb, float *nc, int k, int cmp, int ja, int jb)
 {
