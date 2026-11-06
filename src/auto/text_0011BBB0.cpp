@@ -1,5 +1,6 @@
 /* 6 functions from 0x0011BBB0 to 0x0011CB40, found by Ghidra. */
 #include "common.h"
+#include <xmmintrin.h>
 
 struct S_0011CA20_V4 {
     int x;
