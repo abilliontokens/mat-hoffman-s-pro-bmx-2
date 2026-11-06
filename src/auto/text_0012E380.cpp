@@ -154,6 +154,7 @@ struct C_0012EF30 {
     void func_0012CCA0();
     void func_0012E5F0(int a);
     void func_0012E6B0(int a);
+    int func_0012E710(char *name, char *arg);
     float func_0012E380(float time, float dist);
 };
 
