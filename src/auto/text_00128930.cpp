@@ -47,6 +47,7 @@ extern S_002B92E8 *D_002B92E8;
 extern S_002B9290 *D_002B9290;
 
 struct S_001293F0_Vec4 { float x, y, z, w; };
+struct S_001293F0_Vec3 { float x, y, z; };
 
 /* tree node, 0x24 bytes, of D_002B92E8 / D_002B9290 ->nodes */
 struct S_00129110_Node {
@@ -441,7 +442,34 @@ void func_00129350(int a0, int a1, S_002B92E8 *a2, S_002B9290 *a3, int a4, int a
     D_002B9290 = a3;
     func_00129110(a0, a1);
 }
+
 #pragma optimize("y", on)
+int func_001293F0(int a0, unsigned short a1, S_002B92E8 *a2, int a3)
+{
+    int func_00128930(...);
+    int func_00122090(...);
+    if (a1 & 0x8000) {
+        S_00129050_Leaf20 *leaf = &((S_002B9290 *)a2)->leaves[a1 & 0x7fff];
+        return func_00128930(leaf, a0, 0, a3);
+    }
+    S_00129110_Node *node = &((S_00129110_Node *)a2->nodes)[a1];
+    S_001293F0_Vec4 l0, l1;
+    unsigned x = ((unsigned *)node->min)[0], y = ((unsigned *)node->min)[1], z = ((unsigned *)node->min)[2];
+    ((unsigned *)&l0)[0] = x;
+    l1.x = node->max[0];
+    ((unsigned *)&l0)[1] = y;
+    l1.y = node->max[1];
+    ((unsigned *)&l0)[2] = z;
+    l1.z = node->max[2];
+    l0.w = 1.0f;
+    l1.w = 1.0f;
+    if (func_00122090(&l0, &l1, a0, a0 + 16, a3)) {
+        int r = func_001293F0(a0, node->child0, a2, a3);
+        int r2 = func_001293F0(a0, node->child1, a2, a3);
+        return r2 ? 1 : r;
+    }
+    return 0;
+}
 
 void func_001294E0(int a0, int a1, int a2, int a3, int a4) {
     extern int D_002B92F4;
