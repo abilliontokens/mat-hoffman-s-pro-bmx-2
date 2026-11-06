@@ -91,6 +91,7 @@ extern int D_0028F5F4;
 extern int D_00284E94;
 
 void func_001E891B(void *p);
+char *func_001E8920(char *dst, const char *src, unsigned int n);
 void __stdcall func_00201100(void *p);
 
 struct C_001D5AA0 {
@@ -466,6 +467,82 @@ void C_001D5E90::func_001D5F00(int param)
     strcpy(D_002A60B0, buf);
 }
 
+void C_001D6190::func_001D5FA0(int a, int b, int c, int d)
+{
+    C_001D5E90 * volatile self = (C_001D5E90 *)this;
+    volatile int max;
+    volatile int len;
+    volatile int n;
+    C_001D5FA0Obj *o;
+
+    self->f4e |= 0x20;
+    char *p = self->f0;
+    if (p != 0) {
+        func_001E891B(p);
+    }
+    DXVSStreams_001D5760 *s = self->f5c;
+    if (s != 0) {
+        s->v0(1);
+    }
+    s = (DXVSStreams_001D5760 *)self->f58;
+    if (s != 0) {
+        s->v0(1);
+    }
+    self->f4f = (unsigned char)c;
+    self->f0 = 0;
+    self->f40 = (void *)a;
+    self->f54 = (int)self->f40 + 0x58;
+    if (b == 0) {
+        self->func_001D5F00(((int *)self->f40)[1]);
+    } else {
+        self->func_001D5F00(b);
+    }
+    if (d != 0) {
+        len = strlen((const char *)d);
+        max = self->f4f;
+        int l = len;
+        int m = max;
+        n = l > m ? m : l;
+        self->f50 = (unsigned char)n;
+        memcpy(self->f0, (const char *)d, self->f50);
+        self->f0[self->f50] = 0;
+    } else {
+        self->f50 = 0;
+        *self->f0 = 0;
+    }
+    self->v14.x = 0;
+    self->v14.y = 0;
+    self->v4.x = 0;
+    self->v4.y = 0;
+    self->f48 = -1;
+    self->f4c = 0xff;
+    self->f34 = 1.0f;
+    self->f38 = 0;
+    self->v24.x = 0;
+    self->v24.y = 0;
+    self->f3c = 0;
+    self->f44 = 0;
+    self->f4e |= 1;
+    self->f4e |= 2;
+    self->f4e |= 4;
+    self->f4e |= 8;
+    self->f4e &= ~0x10;
+    o = (C_001D5FA0Obj *)func_001E8A44(0x70);
+    if (o != 0) {
+        o->vtbl = &D_0028F5F4;
+        o->f8 = 0;
+        o->fC = 0;
+        o->f64 = 0;
+        o->f10 = 6;
+        o->f14 = 0;
+    } else {
+        o = 0;
+    }
+    self->f58 = (int)o;
+    ((int *)self->f5c)[4] = self->f58;
+    ((C_001D5FA0Obj *)self->f58)->func_001D5660(self->f4f * 6, 5);
+}
+
 C_001D5E90::C_001D5E90()
 {
     f34 = 1.0f;
@@ -589,3 +666,47 @@ void C_001D6410::func_001D6410(void)
         unk58->destroy(1);
     }
 }
+
+void C_001D5E90::func_001D6440(void)
+{
+    struct { int tmp; float w; float h; } l;
+    C_001D5E90 * volatile self = this;
+
+    if (this->f44 != 0 && *this->f0 != 0) {
+        l.w = (float)((C_001D6290 *)self)->func_001D6290();
+        l.h = (float)((C_001D61E0 *)self)->func_001D61E0();
+        switch (self->f44) {
+        case 0:
+            self->v14.x = self->v4.x;
+            self->v14.y = self->v4.y;
+            goto L2;
+        case 1:
+            FloatToInt(&l.tmp, self->v4.x - l.w * D_002755E8);
+            self->v14.x = (float)l.tmp;
+            break;
+        case 2:
+            self->v14.x = self->v4.x;
+            FloatToInt(&l.tmp, self->v4.y - l.h * D_002755E8);
+            self->v14.y = (float)l.tmp;
+            goto L2;
+        case 3:
+            FloatToInt(&l.tmp, self->v4.x - l.w * D_002755E8);
+            self->v14.x = (float)l.tmp;
+            FloatToInt(&l.tmp, self->v4.y - l.h * D_002755E8);
+            self->v14.y = (float)l.tmp;
+            goto L2;
+        default:
+            FloatToInt(&l.tmp, self->v4.x - l.w);
+            self->v14.x = (float)l.tmp;
+            break;
+        }
+    } else {
+        this->v14.x = this->v4.x;
+    }
+    self->v14.y = self->v4.y;
+    self->f4e |= 4;
+L2:
+    self->f4e &= ~2;
+    self->f4e |= 0x10;
+}
+
