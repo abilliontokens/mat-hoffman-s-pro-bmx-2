@@ -173,7 +173,7 @@ struct C_0018F980 {
     volatile int f140;
     volatile int f144;
     volatile int f148;
-    C_0018F980_Obj *volatile f14c;
+    C_0018F980_Obj *f14c;
     char pad150[8];
     void *volatile f158;
     volatile int f15c;
@@ -222,7 +222,7 @@ void C_0018F980::func_0018F980(int a1, char *volatile str)
     }
     n = t.r;
     func_001E8920((char *)self->name, str, n);
-    n[self->name] = 0;
+    self->name[n] = 0;
     self->f12c = 4;
     self->f130 = 4;
     self->f134 = 4;
