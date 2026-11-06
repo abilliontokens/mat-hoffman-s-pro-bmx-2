@@ -325,7 +325,7 @@ struct S_0018B990_C {
     void *vtbl;
     S_0018B990_Z4 f4;
     float f14, f18;
-    S_0018B990_C() { vtbl = &D_002898FC; f14 = 1.0f; f18 = 0.5f; }
+    S_0018B990_C() { vtbl = &D_002898FC; f4.set(0); f14 = 1.0f; f18 = 0.5f; }
 };
 struct S_0018B990_CV { virtual int v0(S_0018B990_Parser *p); };
 
