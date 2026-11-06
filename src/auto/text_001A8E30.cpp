@@ -344,12 +344,15 @@ void C_001A8B80::func_001A9240(V4_001A8B80 v, int a, int b, float c)
 {
     if (f80 < f8C) {
         int found = 0;
-        int i;
-        for (i = 0; i < f80; i++) {
-            float *pz = &((S_001A9240_Item *)f84)[i].pos.z;
-            if (v.x == pz[-2] && v.y == pz[-1] && v.z == pz[0] && b == *(int *)(pz + 10)) {
-                found = 1;
-            }
+        if (f80 > 0) {
+            char *p = (char *)f84 + 0x18;
+            int n = f80;
+            do {
+                if (v.x == *(float *)(p - 8) && v.y == *(float *)(p - 4) && v.z == *(float *)p && b == *(int *)(p + 0x28)) {
+                    found = 1;
+                }
+                p += 0x58;
+            } while (--n);
         }
         if (!found) {
             ((S_001A9240_Item *)f84)[f80].f40 = b;
@@ -397,8 +400,8 @@ void C_001A8B80::func_001A9430(S_001A9430_Obj *obj, int a, int b)
                 S_001A9430_V3 *p = (S_001A9430_V3 *)(e->f14 + i * 12);
                 v.x = p->x;
                 v.y = p->y;
-                v.w = 1.0f;
                 v.z = p->z;
+                v.w = 1.0f;
             }
             func_001A9240(v, a, b, 0.0f);
         }
@@ -410,11 +413,9 @@ void C_001A8B80::func_001A9430(S_001A9430_Obj *obj, int a, int b)
         func_001A93A0(obj->fF0, &tree, a, b);
         break;
     }
-    case 5: {
-        V4_001A8B80 w = obj->fA8;
-        func_001A9240(w, a, b, *(float *)&obj->f100);
+    case 5:
+        func_001A9240(obj->fA8, a, b, *(float *)&obj->f100);
         break;
-    }
     }
 }
 
