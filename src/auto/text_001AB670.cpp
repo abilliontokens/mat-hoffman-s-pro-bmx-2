@@ -183,11 +183,11 @@ struct C_001AC200 {
     C_001AC150 *field_10;
     C_001AC200() {}
     C_001AC200(char *buf, const char *fmt, C_001AC150 *a) {
-        field_0C = buf;
-        field_10 = a;
         field_00 = 0;
         field_04 = 0;
         field_08 = fmt;
+        field_0C = buf;
+        field_10 = a;
     }
     void func_001AC200(int n);
     void func_001AC240();
