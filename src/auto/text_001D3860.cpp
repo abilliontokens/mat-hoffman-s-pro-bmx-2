@@ -234,6 +234,44 @@ void __stdcall func_00258240(void (__stdcall *f)(int), int a);
 void *__stdcall func_001FF3C0(int size);
 void func_0014A7B0(char *dst, char *src);
 
+#include <xmmintrin.h>
+
+extern float D_002ABC88, D_002ABC8C;
+extern int D_0020C6E0, D_0020C6E4, D_0020C6DC, D_0020C6EC, D_0020C6F0, D_0020CA50;
+extern int D_00040300, D_00040304, D_00040344, D_00040348;
+
+struct S_001D3860_Slot6C { void func_0014A650(void *p); };
+struct S_001D3860_Slot70 { void func_00142D00(void *p); };
+struct S_001D3860_G {
+    char pad0[0x6c];
+    S_001D3860_Slot6C *f6c;
+    S_001D3860_Slot70 *f70;
+};
+extern S_001D3860_G *D_002EFDB8;
+
+void __fastcall func_001FD020(void *p, int v);
+void __fastcall func_001FEC30(int n, void *p);
+void __stdcall func_00200390(int index, int value);
+void *__stdcall func_001FF410(void *buffer, int flags);
+void __stdcall func_001FEE00(int stream, void *data, int stride);
+void __stdcall func_00200A90(int a, int b, int c);
+
+__declspec(align(16)) struct S_001D3860_Mat {
+    float m[16];
+    __forceinline void identity(void)
+    {
+        __m128 z = _mm_setzero_ps();
+        ((__m128 *)m)[0] = z;
+        ((__m128 *)m)[1] = z;
+        ((__m128 *)m)[2] = z;
+        ((__m128 *)m)[3] = z;
+        m[0] = 1.0f;
+        m[5] = 1.0f;
+        m[10] = 1.0f;
+        m[15] = 1.0f;
+    }
+};
+
 /* XboxMediaControl */
 struct C_001D3AB0 {
     void *vtbl;
