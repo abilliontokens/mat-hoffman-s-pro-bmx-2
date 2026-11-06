@@ -91,6 +91,14 @@ extern char D_00282AA8[];
 extern char D_00282A9C[];
 extern int D_0028464C;
 
+static __forceinline void set_collision_vector(float *out, float x, float y, float z, float w)
+{
+    ((int *)out)[0] = *(int *)&x;
+    ((int *)out)[1] = *(int *)&y;
+    ((int *)out)[2] = *(int *)&z;
+    ((int *)out)[3] = *(int *)&w;
+}
+
 struct C_00132EB0 {
     void *vtbl;
     char pad4[0x20];
