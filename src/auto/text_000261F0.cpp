@@ -20,6 +20,7 @@ struct C_000262B0 {
     char pad0[0x18];
     float f18;
     float f1C;
+    float GetF1C(void) { return f1C; }
     void func_000262B0(void);
 };
 
@@ -190,7 +191,7 @@ void *C_00026290::func_00026290(int flags) {
 }
 
 void C_000262B0::func_000262B0(void) {
-    *(volatile float *)&f18 = f1C;
+    f18 = f1C;
 }
 
 int func_000262C0(float *a, float *b)
@@ -207,6 +208,20 @@ undefined4 func_00026300(float *param_1, float *param_2)
     return 0;
   }
   return 1;
+}
+
+void func_000263B0(float *out, float *a, float *b)
+{
+    __m128 *A = (__m128 *)a;
+    __m128 *O = (__m128 *)out;
+    O[0] = _mm_add_ps(_mm_add_ps(_mm_mul_ps(_mm_load_ps1(&b[0]), A[0]), _mm_mul_ps(_mm_load_ps1(&b[1]), A[1])),
+                      _mm_add_ps(_mm_mul_ps(_mm_load_ps1(&b[2]), A[2]), _mm_mul_ps(_mm_load_ps1(&b[3]), A[3])));
+    O[1] = _mm_add_ps(_mm_add_ps(_mm_mul_ps(_mm_load_ps1(&b[4]), A[0]), _mm_mul_ps(_mm_load_ps1(&b[5]), A[1])),
+                      _mm_add_ps(_mm_mul_ps(_mm_load_ps1(&b[6]), A[2]), _mm_mul_ps(_mm_load_ps1(&b[7]), A[3])));
+    O[2] = _mm_add_ps(_mm_add_ps(_mm_mul_ps(_mm_load_ps1(&b[8]), A[0]), _mm_mul_ps(_mm_load_ps1(&b[9]), A[1])),
+                      _mm_add_ps(_mm_mul_ps(_mm_load_ps1(&b[10]), A[2]), _mm_mul_ps(_mm_load_ps1(&b[11]), A[3])));
+    O[3] = _mm_add_ps(_mm_add_ps(_mm_mul_ps(_mm_load_ps1(&b[12]), A[0]), _mm_mul_ps(_mm_load_ps1(&b[13]), A[1])),
+                      _mm_add_ps(_mm_mul_ps(_mm_load_ps1(&b[14]), A[2]), _mm_mul_ps(_mm_load_ps1(&b[15]), A[3])));
 }
 
 C_000264C0 *C_000264C0::func_000264C0(S_000264C0_Mat *src)
