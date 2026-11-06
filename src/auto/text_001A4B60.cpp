@@ -171,6 +171,27 @@ static inline void Xform_001A53C0(f32 *out, const __m128 *mat, const S_001A53C0_
     out[3] = 1.0f;
 }
 
+static __forceinline void Xform_001A4B60(f32 *volatile outArg, const __m128 *volatile matArg, const S_001A53C0_V4 *volatile vArg)
+{
+    const S_001A53C0_V4 *v=vArg;
+    const __m128 *mat=matArg;
+    f32 *out=outArg;
+    __m128 t=_mm_loadu_ps(&v->x);
+    __m128 r0=mat[0];
+    _mm_storeh_pi((__m64 *)&out[2],t);
+    __m128 r1=mat[1];
+    out[3]=1.0f;
+    __m128 r2=mat[2];
+    t=_mm_loadh_pi(t,(__m64 *)&out[2]);
+    r0=_mm_mul_ps(r0,t); r1=_mm_mul_ps(r1,t); r2=_mm_mul_ps(r2,t);
+    __m128 hi=r0;
+    r0=_mm_unpacklo_ps(r0,r1); hi=_mm_unpackhi_ps(hi,r1);
+    __m128 upper=_mm_movehl_ps(r2,r2);
+    r0=_mm_add_ps(r0,hi); r2=_mm_add_ps(r2,upper);
+    hi=_mm_movehl_ps(hi,r0); r0=_mm_movelh_ps(r0,r2); hi=_mm_shuffle_ps(hi,r2,0x14);
+    _mm_storeu_ps(out,_mm_add_ps(r0,hi)); out[3]=1.0f;
+}
+
 static inline f32 Fabs_001A53C0(f32 x)
 {
     int i = *(int *)&x & 0x7fffffff;
