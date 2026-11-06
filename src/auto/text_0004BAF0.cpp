@@ -306,7 +306,6 @@ void C_0004C560::func_0004C3F0(int idx, int sel, int mode)
     float v2[4];
     int j;
     S_0004C320_Obj *o;
-    S_0004C320_Base *b;
 
     o = f64->f3ac->f28[f284[0][idx]];
     o->f1a4->v5();
@@ -337,12 +336,11 @@ void C_0004C560::func_0004C3F0(int idx, int sel, int mode)
     }
     for (j = 0; j < f90; j++) {
         o = f64->f3ac->f28[f284[j + 1][idx]];
-        b = (S_0004C320_Base *)((char *)o->f1a4 + ((S_0004C320_PartRaw *)o->f1a4)->vbptr[1]);
         if (j == sel) {
-            b->v7();
+            ((S_0004C320_Base *)((char *)o->f1a4 + ((S_0004C320_PartRaw *)o->f1a4)->vbptr[1]))->v7();
             o->f1a4->f4->func_001824E0(v1, x, y, z);
         } else {
-            b->v5();
+            ((S_0004C320_Base *)((char *)o->f1a4 + ((S_0004C320_PartRaw *)o->f1a4)->vbptr[1]))->v5();
             o->f1a4->f4->func_001824E0(v2, 1.0f, 1.0f, 1.0f);
         }
     }
