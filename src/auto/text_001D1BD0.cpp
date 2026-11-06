@@ -30,6 +30,10 @@ extern char D_0028F430[], D_002769F8[], D_0028F420[], D_0028D1DC[], D_0028F410[]
 extern char D_002764F0[], D_002769A8[], D_00276974[], D_00276968[], D_0028F404[], D_0028F3F4[];
 extern char D_0028F3E0[], D_0028F3D0[], D_0028F3C8[], D_0028F3BC[], D_0028F3B4[], D_0028F3A8[];
 extern char D_0028F398[], D_0028F384[], D_0028F378[], D_0028F36C[], D_0028F360[];
+extern char D_0028F354[], D_0028F348[], D_0028F33C[], D_0028F328[], D_0028F318[], D_0028F30C[];
+extern char D_0028F300[], D_0028F2F4[], D_0028F2E0[], D_0028F2D0[], D_0028F2C4[], D_0028F2B8[];
+extern char D_0028F2AC[], D_0028F2A0[], D_0028F290[];
+extern float D_002755E0;
 void *func_001E8A44(int);
 int func_001ADCC0(char *, int, const char *, ...);
 
