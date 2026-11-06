@@ -41,7 +41,7 @@ struct C_00171980 {
 };
 
 struct V4_00171340 { float x, y, z, w; };
-struct Mat_00171340 { float m[16]; };
+__declspec(align(16)) struct Mat_00171340 { float m[16]; };
 
 struct C_00171340 {
     void *vtbl;
