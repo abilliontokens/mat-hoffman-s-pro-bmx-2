@@ -241,6 +241,46 @@ void C_000E6D00::func_000E5FF0(void)
         f5A0[17]->func_001B17D0(D_00280250);
         f3E4 = 0x12;
         break;
+    case 14:
+        f500->func_001B17D0(D_0027E7F8);
+        f5A0[0]->func_001B17D0(D_0028022C);
+        f5A0[1]->func_001B17D0(D_00280204);
+        f5A0[2]->func_001B17D0(D_002801DC);
+        f5A0[3]->func_001B17D0(D_002801B0);
+        f5A0[4]->func_001B17D0(D_00280184);
+        f5A0[5]->func_001B17D0(D_00280158);
+        f5A0[6]->func_001B17D0(D_0028012C);
+        f5A0[7]->func_001B17D0(D_00280104);
+        f5A0[8]->func_001B17D0(D_002800DC);
+        f5A0[9]->func_001B17D0(D_002800B4);
+        f5A0[10]->func_001B17D0(D_00280090);
+        f5A0[11]->func_001B17D0(D_00280068);
+        f5A0[12]->func_001B17D0(D_00280044);
+        f5A0[13]->func_001B17D0(D_00280038);
+        f3E4 = 0xe;
+        break;
+    case 12:
+        f500->func_001B17D0(D_00280020);
+        f5A0[0]->func_001B17D0(D_0027FFF8);
+        f5A0[1]->func_001B17D0(D_0027FFCC);
+        f5A0[2]->func_001B17D0(D_0027FFA0);
+        f5A0[3]->func_001B17D0(D_0027FF74);
+        f5A0[4]->func_001B17D0(D_0027FF4C);
+        f5A0[5]->func_001B17D0(D_0027FF20);
+        f5A0[6]->func_001B17D0(D_0027FEF4);
+        f5A0[7]->func_001B17D0(D_0027FECC);
+        f5A0[8]->func_001B17D0(D_0027FEA0);
+        f5A0[9]->func_001B17D0(D_0027FE78);
+        f5A0[10]->func_001B17D0(D_0027FE50);
+        f5A0[11]->func_001B17D0(D_0027FE2C);
+        f5A0[12]->func_001B17D0(D_0027FE04);
+        f5A0[13]->func_001B17D0(D_0027FDE0);
+        f5A0[14]->func_001B17D0(D_0027FDBC);
+        f5A0[15]->func_001B17D0(D_0027FD94);
+        f5A0[16]->func_001B17D0(D_0027FD70);
+        f5A0[17]->func_001B17D0(D_0027FD5C);
+        f3E4 = 0x12;
+        break;
     default:
         break;
     }
