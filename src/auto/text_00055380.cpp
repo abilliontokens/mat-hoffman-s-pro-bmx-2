@@ -306,7 +306,7 @@ struct func_00055380 : CameraBehavior_00055380 {
     u32 unk3C, unk40, unk44, unk48, unk4C, unk50, unk54, unk58;
     char pad5C[4];
     volatile u32 unk60; u32 unk64, unk68;
-    Quat_00055380 q6C, q7C, q8C, q9C, qAC, qBC, qCC, qDC, qEC, qFC, q10C, q11C;
+    S_00055380_PodQuat q6C, q7C, q8C, q9C, qAC, qBC, qCC, qDC, qEC, qFC, q10C, q11C;
     char pad12C[12];
     u32 unk138, unk13C, unk140, unk144, unk148, unk14C, unk150; volatile u32 unk154; u32 unk158, unk15C;
     u32 unk160; volatile u32 unk164, unk168; u32 unk16C, unk170; volatile u32 unk174; u32 unk178, unk17C, unk180, unk184;
