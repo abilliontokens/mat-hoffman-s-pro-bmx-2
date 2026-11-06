@@ -43,6 +43,22 @@ struct S_ObjectAttributes {
     u32 attributes;
 };
 
+/* stack frame of the file copy routine, in the order the original keeps it */
+struct S_001DCDC7_Frame {
+    u32 basic[10];
+    S_AnsiString str;
+    __int64 allocation;
+    S_ObjectAttributes oa;
+    u32 info[14];
+    S_IoStatusBlock ios;
+    void *buffer;
+    char pad4C[3];
+    char remove;
+    u32 input;
+    u32 output;
+    __int64 offset;
+};
+
 extern "C" int (__stdcall *_imp__NtWaitForSingleObjectEx)(void *a0, int a1, int a2, void *a3);
 extern "C" int (__stdcall *_imp__NtCreateEvent)(void **a0, S_ObjectAttributes *a1, int a2, int a3);
 extern "C" int (__stdcall *_imp__NtCreateMutant)(void **a0, S_ObjectAttributes *a1, int a2);
@@ -135,6 +151,80 @@ unsigned __int64 __rdtsc();
 #pragma optimize("y", on)
 #pragma optimize("s", on)
 int __stdcall func_001DCDC7(int, int, int, int, int, int);
+#pragma optimize("y", on)
+__declspec(noinline) int __stdcall func_001DCDC7(int a0,int a1,volatile int a2,int a3,int a4,int a5) {
+    typedef int (__stdcall *Progress)(__int64,__int64,__int64,__int64,u32,u32,u32,u32,int);
+    u32 basic[10];
+    S_AnsiString str;
+    __int64 allocation;
+    S_ObjectAttributes oa;
+    u32 info[14];
+    S_IoStatusBlock ios;
+    void *buffer;
+    char remove;
+    u32 output,input;
+    __int64 offset;
+    u32 size=(u32)&D_00010000;
+    oa.rootDirectory=(void *)-3; oa.attributes=0x40; oa.objectName=&str;
+    buffer=_imp__MmAllocateSystemMemory(size,4);
+    if(!buffer) {func_001DD62B(8);return 0;}
+    void (__stdcall *init)(S_AnsiString *,const char *)=_imp__RtlInitAnsiString;
+    init(&str,(const char *)a0);
+    a0=_imp__NtOpenFile(&input,0x80100000,&oa,&ios,1,0x60);
+    if(a0<0) { _imp__MmFreeSystemMemory(buffer,size); func_001DD659(a0); return 0; }
+    a0=_imp__NtQueryInformationFile((void *)input,&ios,info,0x38,0x22);
+    if(a0<0) { _imp__NtClose((void *)input); goto openFailed; }
+    init(&str,(const char *)a1);
+    int status;
+    status=_imp__NtCreateFile(&output,0x40100000,&oa,&ios,&info[10],0x80,0,(a5&1)?2:5,0x64);
+    if(status<0) { _imp__NtClose((void *)input); _imp__MmFreeSystemMemory(buffer,size); func_001DD659(status); return 0; }
+    offset=0;
+    if(a2) {
+        int result=((Progress)*(int *)&a2)(*(__int64 *)&info[10],0,*(__int64 *)&info[10],0,1,1,input,output,a3);
+        if(result==3) a2=0;
+        else if(result!=0) {status=0xc0000240;goto finish;}
+    }
+    allocation=*(__int64 *)&info[10];
+    status=_imp__NtSetInformationFile((void *)output,&ios,&allocation,8,0x14);
+    if(status<0) goto finish;
+    while(offset<*(__int64 *)&info[10]) {
+        status=_imp__NtReadFile((void *)input,0,0,0,&ios,buffer,size,&offset);
+        if(status<0) goto finish;
+        a0=ios.information;
+        status=_imp__NtWriteFile((void *)output,0,0,0,&ios,buffer,a0,&offset);
+        if(status<0) goto finish;
+        offset+=(u32)a0;
+        if(a2) {
+            int result=((Progress)*(int *)&a2)(*(__int64 *)&info[10],offset,*(__int64 *)&info[10],offset,1,0,input,output,a3);
+            if(result==3) a2=0;
+            else if(result!=0) {status=0xc0000240;break;}
+        }
+    }
+    if(status>=0) {
+        basic[0]=info[0]; basic[1]=info[1]; basic[2]=info[2]; basic[3]=info[3];
+        basic[4]=info[4]; basic[5]=info[5]; basic[6]=info[6]; basic[7]=info[7]; basic[8]=info[12];
+        status=_imp__NtSetInformationFile((void *)output,&ios,basic,0x28,4);
+    }
+finish:
+    _imp__MmFreeSystemMemory(buffer,size);
+    int (__stdcall *close)(void *)=_imp__NtClose;
+    close((void *)input);
+    int success=0;
+    if(status<0) {
+        remove=1;
+        _imp__NtSetInformationFile((void *)output,&ios,&remove,1,0xd);
+        func_001DD659(status);
+    } else success=1;
+    close((void *)output);
+    return success;
+openFailed:
+    _imp__MmFreeSystemMemory(buffer,size);
+    func_001DD659(a0);
+    return 0;
+}
+#pragma optimize("y", on)
+#pragma optimize("s", on)
+
 void __stdcall func_001DD0A9(int a0, int a1, int a2) {
     func_001DCDC7(a0, a1, 0, 0, 0, a2 != 0);
 }
@@ -159,13 +249,11 @@ void __stdcall func_001DD0C8(u32 *a0) {
     a0[0] = 0x20;
     a0[7] = 0x7ffe0000 - stats.c;
 }
-#pragma optimize("y", on)
-#pragma optimize("s", on)
+#pragma intrinsic(__rdtsc)
 int __stdcall func_001DD117(u64 *a0) {
     *a0 = __rdtsc();
     return 1;
 }
-
 int __stdcall func_001DD128(u32 *a0) {
     a0[1] = 0;
     a0[0] = 0x2bb5c755;
