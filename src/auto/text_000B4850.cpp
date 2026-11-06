@@ -110,8 +110,8 @@ struct ParserB4850 {
     void func_00168BE0(char *a, char *b, char *c, int d);
 };
 
-template <class T> inline T Min(T a, T b) { return a > b ? b : a; }
-template <class T> inline T Max(T a, T b) { return a < b ? b : a; }
+template <class T> inline const T &Min(const T &a, const T &b) { return b < a ? b : a; }
+template <class T> inline const T &Max(const T &a, const T &b) { return a < b ? b : a; }
 
 struct ObjB1EE0 {
     ObjB1EE0 *func_000B1EE0(int a);
@@ -271,28 +271,24 @@ void StopLight::func_000B4850(ParserB4850 * volatile p)
                 for (i = old; i < cnt; i++) {
                     int v;
                     float fl;
-                    volatile int cl;
-                    volatile int r1;
-                    volatile int r2;
-                    volatile int r3;
-                    volatile int r4;
+                    volatile int t[5];
                     self->t50[i] = (Obj14B4850 *)func_001E8A44(0x14);
                     func_001ADCC0(buf, 0x20, D_0027D2A8, i - old + 1);
                     p->func_00169710(buf);
                     p->func_00168C20(D_002764A8, 0, &v);
-                    cl = v - 1;
-                    r1 = n > cl ? cl : n;
-                    cl = r1;
-                    r2 = 0 < cl ? cl : 0;
-                    self->t50[i]->f0 = r2;
+                    t[0] = v - 1;
+                    t[4] = Min((int)*(volatile int *)&n, (int)t[0]);
+                    t[0] = t[4];
+                    t[3] = Max(0, (int)t[0]);
+                    self->t50[i]->f0 = t[3];
                     p->func_00168C20(D_0027649C, 0, &v);
                     self->t50[i]->f4 = v - 1;
                     p->func_00168C20(D_00276490, 0, &v);
-                    cl = v - 1;
-                    r3 = n > cl ? cl : n;
-                    cl = r3;
-                    r4 = 0 < cl ? cl : 0;
-                    self->t50[i]->f8 = r4;
+                    t[0] = v - 1;
+                    t[2] = Min((int)*(volatile int *)&n, (int)t[0]);
+                    t[0] = t[2];
+                    t[1] = 0 < t[0] ? t[0] : 0;
+                    self->t50[i]->f8 = t[1];
                     p->func_00168C20(D_00276488, 0, &v);
                     self->t50[i]->fC = v - 1;
                     p->func_00168C50(D_0027D29C, 0.0f, &fl);
@@ -306,9 +302,9 @@ void StopLight::func_000B4850(ParserB4850 * volatile p)
     {
         int nA;
         int nB;
-        int first = 0;
         p->func_00168C20(D_0027D280, 0, &nA);
         p->func_00168C20(D_0027D26C, 0, &nB);
+        volatile int first = 0;
         if (nB > 0) {
             if (self->t44 == 0) {
                 self->f34 = nB;
