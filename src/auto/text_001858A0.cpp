@@ -533,28 +533,20 @@ int C_00185BF0::func_00185D60(S_Stream3 *stream, int count)
 
 C_00186170 *C_00186170::func_00186170(void)
 {
-    u32 *p;
-    int i;
-
     vtbl = &D_002897FC;
     f4 = 4;
-    p = &f8.a;
-    for (i = 0; i < 4; i++) *p++ = 0;
-    f2c = (f2c & 0x84) | 4;
+    memset(&f8, 0, 16);
     f18 = 0;
     f1c = 0;
     f20 = 0;
     f28 = 0;
     f24 = 0;
+    f2c = (f2c & 0x84) | 4;
     fe8 = 1;
-    p = &f38.a;
-    *p++ = 0;
-    *(u8 *)p = 0;
-    p = &f40.a;
-    for (i = 0; i < 4; i++) *p++ = 0;
+    memset(&f38, 0, 5);
+    memset(&f40, 0, 16);
     f50 = 0x3f800000;
-    p = &f94.a;
-    for (i = 0; i < 4; i++) *p++ = 0;
+    memset(&f94, 0, 16);
     fa4 = 0x3f800000;
     f54 = 0;
     fec = -1;
