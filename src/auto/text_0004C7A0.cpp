@@ -162,6 +162,7 @@ extern float D_00275544;
 
 extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
 void *func_001E8A44(int size);
+void func_00031400(void);
 extern char D_002A5870[];
 extern char D_002775F0[];
 extern char D_002775E8[];
