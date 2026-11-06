@@ -120,7 +120,7 @@ struct C_0007C2C0 {
     char pad17c[0x1d0 - 0x17c];
     S_7C2C0_V *f1d0;
     char pad1d4[0x208 - 0x1d4];
-    int f208;
+    S_7C2C0_W *f208;
     char pad20c[0x244 - 0x20c];
     int f244;
     int f248;
