@@ -417,17 +417,13 @@ int C_00186C00::func_00186C00(C_00186AF0Param *param)
 
 C_00186C70 *C_00186C70::func_00186C70(void)
 {
-    C_00186C70 * volatile self = this;
-    volatile int limit;
-    int n;
-
     ((C_001867D0 *)this)->func_001867D0();
-    *(void * volatile *)self = (void *)&D_00289A60;
-    limit = sizeof(f168) - 1;
-    n = limit < 4 ? limit : 4;
-    func_001E8920(self->f168, (const char *)&D_00289A1C, n);
-    self->f168[n] = 0;
-    return self;
+    vtbl = (void *)&D_00289A60;
+    int limit = sizeof(f168) - 1;
+    int count = AsmMinI(limit, strlen("body"));
+    func_001E8920(f168, (const char *)&D_00289A1C, count);
+    f168[count] = 0;
+    return this;
 }
 
 int C_00186C00::func_00186CE0(C_00186AF0Param *param)
