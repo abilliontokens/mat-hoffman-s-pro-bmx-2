@@ -70,6 +70,11 @@ struct V4_00128120 {
     V4_00128120(float a, float b, float c, float d) { x = a; y = b; z = c; w = d; }
 };
 
+static inline V4_00128120 Scale_00128120(const S_00127DD0_V4 &s, float k)
+{
+    return V4_00128120(s.x * k, s.y * k, s.z * k, 1.0f);
+}
+
 struct __declspec(align(16)) M44_00128120 {
     __m128 m[4];
 };
@@ -101,27 +106,34 @@ static __forceinline void Xform_00128120(float *out, const M44_00128120 *mat, co
 
 void func_00128120(int a0, int a1, int a2, M44_00128120 *mat, S_00127DD0_Entry *e, int count)
 {
+    struct Q4 { float x, y, z, w; };
+    Q4 s;
+    Q4 t;
     V4_00128120 *mid;
     M44_00128120 m;
     float *p;
     int i;
     int n;
-    float sx, sy, sz;
 
     mid = (V4_00128120 *)func_001E8AA5(count << 4);
-    for (i = 0; i + 3 < count; i += 4) {
-        sx = e[i].a.x + e[i].b.x; sy = e[i].a.y + e[i].b.y; sz = e[i].a.z + e[i].b.z;
-        mid[i] = V4_00128120(sx * D_002755E8, sy * D_002755E8, sz * D_002755E8, 1.0f);
-        sx = e[i + 1].a.x + e[i + 1].b.x; sy = e[i + 1].a.y + e[i + 1].b.y; sz = e[i + 1].a.z + e[i + 1].b.z;
-        mid[i + 1] = V4_00128120(sx * D_002755E8, sy * D_002755E8, sz * D_002755E8, 1.0f);
-        sx = e[i + 2].a.x + e[i + 2].b.x; sy = e[i + 2].a.y + e[i + 2].b.y; sz = e[i + 2].a.z + e[i + 2].b.z;
-        mid[i + 2] = V4_00128120(sx * D_002755E8, sy * D_002755E8, sz * D_002755E8, 1.0f);
-        sx = e[i + 3].a.x + e[i + 3].b.x; sy = e[i + 3].a.y + e[i + 3].b.y; sz = e[i + 3].a.z + e[i + 3].b.z;
-        mid[i + 3] = V4_00128120(sx * D_002755E8, sy * D_002755E8, sz * D_002755E8, 1.0f);
+    for (i = 0; i + 4 <= count; i += 4) {
+        s.x = e[i].a.x + e[i].b.x; s.y = e[i].a.y + e[i].b.y; s.z = e[i].a.z + e[i].b.z;
+        t.x = s.x * D_002755E8; t.y = s.y * D_002755E8; t.z = s.z * D_002755E8; t.w = 1.0f;
+        *(Q4 *)&mid[i] = t;
+        s.x = e[i + 1].a.x + e[i + 1].b.x; s.y = e[i + 1].a.y + e[i + 1].b.y; s.z = e[i + 1].a.z + e[i + 1].b.z;
+        t.x = s.x * D_002755E8; t.y = s.y * D_002755E8; t.z = s.z * D_002755E8; t.w = 1.0f;
+        *(Q4 *)&mid[i + 1] = t;
+        s.x = e[i + 2].a.x + e[i + 2].b.x; s.y = e[i + 2].a.y + e[i + 2].b.y; s.z = e[i + 2].a.z + e[i + 2].b.z;
+        t.x = s.x * D_002755E8; t.y = s.y * D_002755E8; t.z = s.z * D_002755E8; t.w = 1.0f;
+        *(Q4 *)&mid[i + 2] = t;
+        s.x = e[i + 3].a.x + e[i + 3].b.x; s.y = e[i + 3].a.y + e[i + 3].b.y; s.z = e[i + 3].a.z + e[i + 3].b.z;
+        t.x = s.x * D_002755E8; t.y = s.y * D_002755E8; t.z = s.z * D_002755E8; t.w = 1.0f;
+        *(Q4 *)&mid[i + 3] = t;
     }
     for (; i < count; i++) {
-        sx = e[i].a.x + e[i].b.x; sy = e[i].a.y + e[i].b.y; sz = e[i].a.z + e[i].b.z;
-        mid[i] = V4_00128120(sx * D_002755E8, sy * D_002755E8, sz * D_002755E8, 1.0f);
+        s.x = e[i].a.x + e[i].b.x; s.y = e[i].a.y + e[i].b.y; s.z = e[i].a.z + e[i].b.z;
+        t.x = s.x * D_002755E8; t.y = s.y * D_002755E8; t.z = s.z * D_002755E8; t.w = 1.0f;
+        *(Q4 *)&mid[i] = t;
     }
     m = *mat;
     func_0011AC30(&m, &m);
@@ -201,7 +213,7 @@ again:
  by=*(int*)&b.y;
  node->c=az;
  bz=*(int*)&b.z;
- *(int*)&node->x=bx;*(int*)&node->z=bz;*(int*)&node->y=by;
+ *(int*)&node->x=bx;*(int*)&node->y=by;*(int*)&node->z=bz;
  float split;int axis;
  func_001271E0(entries,count,context,&split,&axis);
  int leftCount=0,rightCount=0;
