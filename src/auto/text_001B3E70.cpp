@@ -150,8 +150,12 @@ struct TireTrack {
     int f34;
     int f38;
     int f3c;
-    char pad40[0x60];
-    int fa0;
+    V4_3E70 v40; V4_3E70 v50; V4_3E70 v60; V4_3E70 v70; V4_3E70 v80; V4_3E70 v90;
+    float fa0;
+    float fa4;
+    unsigned char fa8; unsigned char fa9; unsigned char faa;
+    char padAB[0xC0 - 0xAB];
+    void func_001B3E70(V4_3E70 *a0, V4_3E70 *a1, float a2, int a3, float a4);
     void func_001B4970();
     void func_001B49B0();
     void func_001B4A20();
