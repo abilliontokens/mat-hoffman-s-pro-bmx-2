@@ -259,7 +259,7 @@ void C_00097FD0::func_000981D0(void *a, void *b, int c)
     }
 }
 
-static __forceinline void Refresh_000988B0(char *self, char *a, int m18)
+static __forceinline void Unused_Refresh_000988B0(char *self, char *a, int m18)
 {
     char **list;
     int count;
@@ -331,7 +331,6 @@ int __fastcall func_000988B0(char *self, int unused, char *a, char *b)
     char *e;
     char *mgr;
     char *o;
-    char *has;
 
     for (i = 0; i < 3; i++) {
         switch (i) {
@@ -405,7 +404,7 @@ int __fastcall func_000988B0(char *self, int unused, char *a, char *b)
     }
 
     if (*(int *)(self + 0x18) != 3) {
-        has = *(char **)(*(char **)(self + 0x198) + 0x1c8);
+        char *has = *(char **)(*(char **)(self + 0x198) + 0x1c8);
         switch (has ? *(int *)(self + 0x1c) : *(int *)(self + 0x18)) {
         case 0: list = *(char ***)(self + 0x0); break;
         case 1: list = *(char ***)(self + 0x4); break;
