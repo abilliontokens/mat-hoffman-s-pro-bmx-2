@@ -48,6 +48,16 @@ struct S_12B00_Obstacle { char pad[0x7c]; S_13910_Vec pos; };
 struct S_12B00_Obstacles { char pad[0x38]; int count; char pad2[0xc]; S_12B00_Obstacle **items; };
 extern S_12B00_Obstacles *D_002B9134;
 extern S_13910_Vec D_002A051C;
+struct S_12B00_L {
+    AIPedFightState *volatile self;
+    int next;
+    int a; int b;
+    float sq;
+    float speed;
+    S_13910_Vec offset; S_13910_Vec side; S_13910_Vec t; S_13910_Vec toSelf;
+    S_13910_Vec pos; S_13910_Vec target; S_13910_Vec forward; S_13910_Vec toTarget;
+    S_13910_Vec cross; S_13910_Vec dir; S_13910_Vec up; S_13910_Vec along2; S_13910_Vec d;
+};
 static __forceinline S_13910_Vec sub12(const S_13910_Vec &a, const S_13910_Vec &b) { return S_13910_Vec(a.x-b.x,a.y-b.y,a.z-b.z); }
 static __forceinline S_13910_Vec add12(const S_13910_Vec &a, const S_13910_Vec &b) { return S_13910_Vec(a.x+b.x,a.y+b.y,a.z+b.z); }
 static __forceinline S_13910_Vec mul12(const S_13910_Vec &a, float b) { return S_13910_Vec(a.x*b,a.y*b,a.z*b); }
@@ -57,20 +67,116 @@ static __forceinline float sqrt12(float f) { return _mm_sqrt_ss(*(__m128 *)&f).m
 
 void AIPedFightState::func_00012B00(int a0)
 {
-    int a, b;
-
-    f1c = D_002A8490->f238 + 0x177;
-    f8->func_00011BE0(&a, &b);
-    if (a != -1) {
-        S_13910_Vec pos;
-        pos.z = 0; pos.y = 0; pos.x = 0; pos.w = 1.0f;
-        if (D_002B9120->f4e0->ents[a]->f950->fbc != 0) {
-            S_13910_Vec t;
-            pos = *D_002B9120->f4e0->ents[a]->fa00->f4->func_00199B00(&t, 0);
-        } else {
-            pos = D_002B9120->f4e0->ents[a]->f834;
-        }
-    }
+ struct Fr { AIPedFightState *volatile self; int tmp; int a; int b; } fr;
+ fr.self = this;
+ fr.self->f1c=D_002A8490->f238+375;
+ fr.self->f8->func_00011BE0(&fr.a,&fr.b);
+ if(fr.a==-1) return;
+ S_13910_Row *row=D_002B9120->f588[fr.self->f8->f3b4];
+ S_13910_Vec pos=fr.self->f8->pos;
+ S_13910_Vec target;
+ int moving;
+ if(D_002B9120->f4e0->ents[fr.a]->f950->fbc) {
+  S_13910_Vec t;
+  target=*D_002B9120->f4e0->ents[fr.a]->fa00->f4->func_00199B00(&t,0);
+  moving=1;
+ } else {target=D_002B9120->f4e0->ents[fr.a]->f834; moving=0;}
+ S_13910_Vec forward,up;
+ forward.z=forward.y=forward.x=0; forward.w=1;
+ up.z=up.y=up.x=0; up.w=1;
+ (*(S_12B00_Motion **)((char *)D_002B9120->f4e0->ents[fr.a]+0x230))->func_00197B40(&forward,&up);
+ S_13910_Vec toSelf=sub12(pos,target); func_000111B0(&toSelf,&toSelf);
+ S_13910_Vec toTarget=sub12(target,pos); func_000111B0(&toTarget,&toTarget);
+ float speed=*(float *)((char *)D_002B9120->f4e0->ents[fr.a]+0x1194);
+ S_13910_Vec dir;
+ float distance;
+ if(!a0) {
+  int index=fr.self->f8->func_000119D0(&fr.self->f8->pos);
+  S_13910_Vec d=sub12(row->points[index],fr.self->f8->pos); func_000111B0(&d,&d);
+  int next=index+1; if(next>=row->count) next=0;
+  S_13910_Vec e=sub12(row->points[next],fr.self->f8->pos); func_000111B0(&e,&e);
+  if(e.y*d.y+e.x*d.x+e.z*d.z>0) {next=index; if(--index<0) index=row->count-1;}
+  else {
+   S_13910_Vec along=sub12(row->points[next],row->points[index]);func_000111B0(&along,&along);
+   S_13910_Vec offset=sub12(fr.self->f8->pos,row->points[index]);func_000111B0(&offset,&offset);
+   if(dot12(offset,along)<0.3535f){next=index;if(--index<0)index=row->count-1;}
+  }
+  S_13910_Vec along=sub12(row->points[next],row->points[index]);func_000111B0(&along,&along);
+  S_13910_Vec previous=sub12(*(S_13910_Vec *)((char *)fr.self+0xc),fr.self->f8->pos);func_000111B0(&previous,&previous);
+  int direction;
+  if(along.x*toSelf.x+along.y*toSelf.y+along.z*toSelf.z>0 && previous.y*toTarget.y+previous.x*toTarget.x+previous.z*toTarget.z<0.875f) {direction=1;index=next;}else direction=0;
+  S_13910_Vec delta=sub12(row->points[index],fr.self->f8->pos);
+  distance=sqrtf(delta.z*delta.z+delta.y*delta.y+delta.x*delta.x);
+  if(distance<2) {
+   if(direction==1){if(++index>=row->count)index=0;}
+   else if(--index<0)index=row->count-1;
+  }
+  dir=sub12(row->points[index],fr.self->f8->pos);func_000111B0(&dir,&dir);
+  fr.self->f8->func_00011440(dir);
+  if(speed>0.1f) {
+   distance=distance<row->f8?distance:row->f8;
+   distance=distance>2.0f?distance:2.0f;
+   *(S_13910_Vec *)((char *)fr.self+0xc)=add12(fr.self->f8->pos,mul12(dir,distance));
+  }else *(S_13910_Vec *)((char *)fr.self+0xc)=row->points[index];
+ } else {
+  S_13910_Vec side, cross;
+  side.z=side.y=side.x=0;side.w=1;
+  cross.z=cross.y=cross.x=0;cross.w=1;
+  cross12(&cross,&up,&forward);
+  int direction=dot12(cross,toSelf)>0?0:1;
+  int attempts=1;
+  for(;;++attempts) {
+   if(direction==1) {
+    cross12(&side,&D_002A051C,&toTarget);
+    distance=row->f8*0.8f;
+    S_13910_Vec candidate=add12(pos,mul12(side,distance));
+    if(fr.self->f8->func_00012510((int *)&candidate,fr.self->f8->f3b0)<=row->f8) {
+     if(dot12(toSelf,forward)>=0.85f) {if(attempts!=1)break;direction=0;}
+     else direction=-1;
+    }else {dir=side;break;}
+   }else if(direction==0) {
+    cross12(&side,&toTarget,&D_002A051C);
+    distance=row->f8*0.8f;
+    S_13910_Vec candidate=add12(pos,mul12(side,distance));
+    if(fr.self->f8->func_00012510((int *)&candidate,fr.self->f8->f3b0)<=row->f8) {
+     if(dot12(toSelf,forward)>=0.85f) {if(attempts!=1)break;direction=1;}
+     else direction=-1;
+    }else {dir=side;break;}
+   }else {
+    side=S_13910_Vec(-forward.x,-forward.y,-forward.z);
+    distance=row->f8*0.8f;
+    S_13910_Vec scaled,candidate;
+    func_000110E0(&candidate,&pos,func_00011140(&scaled,&side,distance));
+    if(fr.self->f8->func_00012510((int *)&candidate,fr.self->f8->f3b0)<=row->f8) {
+     if(!moving)goto stop;
+     fr.self->f8->func_00011440(side);
+     *(S_13910_Vec *)((char *)fr.self+0xc)=add12(fr.self->f8->pos,mul12(side,distance));
+     dir=side;
+     break;
+    }else {dir=side;break;}
+   }
+  }
+  if(!moving) {
+stop:
+   *(S_13910_Vec *)((char *)fr.self+0xc)=fr.self->f8->pos;
+   void *g=*(void **)((char *)D_002A8490+0x2a4);
+   if(g&&!*(int *)((char *)g+0x1c8)) {
+    *(int *)((char *)fr.self->f8+0x3bc)=8;
+    (*(S_12B00_Anim **)((char *)fr.self->f8+0x384))->func_0008AB90(*(int *)((char *)fr.self->f8+0x3a8));
+   }
+   return;
+  }
+ }
+ if(D_002B9134) {
+  for(int i=0;i<D_002B9134->count;i++) {
+   S_13910_Vec delta=sub12(D_002B9134->items[i]->pos,fr.self->f8->pos);
+   float len=sqrtf(delta.x*delta.x+delta.y*delta.y+delta.z*delta.z);
+   if(len<=12) {
+    func_000111B0(&delta,&delta);
+    if(delta.y*dir.y+delta.x*dir.x+delta.z*dir.z>0.7071f)goto stop;
+   }
+  }
+ }
 }
 
 void AIPedFightState::func_00013910()
