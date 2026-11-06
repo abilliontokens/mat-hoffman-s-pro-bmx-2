@@ -591,6 +591,7 @@ void func_001F4675(unsigned int *x, int n);
 
 #pragma optimize("s", on)
 #pragma optimize("y", off)
+#pragma optimize("w", on)
 int func_001F46F0(int a, int b, int c)
 {
  unsigned int x[3], saved[3];
