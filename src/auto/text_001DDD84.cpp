@@ -6,7 +6,7 @@ extern int D_0028FB38;
 extern char D_0028FAD0[];
 
 struct S_001DE0DD {
-    unsigned int flags;
+    volatile unsigned int flags;
     char pad4[0x28];
     char name[0x114];
     char path[0x104];
