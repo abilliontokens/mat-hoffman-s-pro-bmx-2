@@ -1,7 +1,34 @@
 /* 42 functions from 0x0005B8D0 to 0x0005C720, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+struct S_0005C3A0_Slot {
+    int f000;
+    int f004;
+    int f008;
+    int f00c[8][3][15];
+    int f5ac[8];
+    int f5cc;
+    int f5d0;
+    int f5d4;
+    int f5d8;
+    int f5dc;
+    short f5e0;
+    short f5e2;
+    int f5e4;
+    int f5e8;
+    int f5ec[8];
+    int f60c[8];
+    int f62c[3];
+    int f638[8];
+    int f658[8];
+    int f678[800];
+    int f12f8[8];
+    int f1318[800];
+};
+
 struct C_0005C3A0 {
+    char pad0[0xd80];
+    S_0005C3A0_Slot slots[11];
     void func_0005C3A0(int idx);
 };
 extern int D_002782AC;
@@ -581,6 +608,132 @@ int C_0005C380::func_0005C380(void) {
 
 void C_0005C390::func_0005C390(void) {
     unkCE4 = 1;
+}
+
+void C_0005C3A0::func_0005C3A0(int param_1)
+{
+  int in_ECX = (int)this;
+  int iVar1;
+  undefined4 *puVar2;
+  undefined4 *puVar3;
+  int iVar4;
+  undefined4 *puVar5;
+  undefined4 *puVar6;
+  int local_18;
+  undefined4 *local_14;
+  undefined4 *local_10;
+  int local_c;
+  int local_8;
+  
+  if ((-2 < param_1) && (param_1 < 0xb)) {
+    if (param_1 == -1) {
+      param_1 = 0;
+      local_8 = 10;
+    }
+    else {
+      local_8 = param_1 + 1;
+    }
+    if (param_1 < local_8) {
+      local_18 = param_1 * 0x7e6 + 0x4eb;
+      iVar1 = param_1 * 0x1f98;
+      puVar6 = (undefined4 *)(iVar1 + 0x1368 + in_ECX);
+      local_10 = (undefined4 *)(iVar1 + 0x2078 + in_ECX);
+      local_8 = local_8 - param_1;
+      param_1 = iVar1 + 0x13ac;
+      do {
+        puVar6[-0x17a] = 1;
+        *puVar6 = 0;
+        puVar5 = puVar6;
+        for (iVar1 = 8; puVar5 = puVar5 + 1, iVar1 != 0; iVar1 = iVar1 + -1) {
+          *puVar5 = 0;
+        }
+        puVar6[-0x179] = 0;
+        puVar6[-0x178] = 0;
+        puVar6[-7] = 0;
+        puVar6[-6] = 0;
+        puVar6[-5] = 0x74616d;
+        puVar6[-3] = D_002782AC;
+        *(undefined2 *)(puVar6 + -2) = D_002782B0;
+        puVar6[-1] = 0;
+        iVar1 = 0;
+        do {
+          if (iVar1 == 0) {
+            *(undefined4 *)(param_1 + -0x20 + in_ECX) = 1;
+          }
+          else {
+            *(undefined4 *)(in_ECX + (local_18 + -8 + iVar1) * 4) = 0;
+          }
+          iVar1 = iVar1 + 1;
+        } while (iVar1 < 8);
+        iVar1 = 0;
+        do {
+          if (iVar1 == 0) {
+            *(undefined4 *)(param_1 + in_ECX) = 1;
+          }
+          else {
+            *(undefined4 *)(in_ECX + (local_18 + iVar1) * 4) = 0;
+          }
+          iVar1 = iVar1 + 1;
+        } while (iVar1 < 3);
+        iVar1 = 0;
+        do {
+          if (iVar1 == 0) {
+            *(undefined4 *)(param_1 + 0xc + in_ECX) = 1;
+          }
+          else {
+            *(undefined4 *)(in_ECX + (local_18 + 3 + iVar1) * 4) = 0;
+          }
+          iVar1 = iVar1 + 1;
+        } while (iVar1 < 8);
+        local_14 = puVar6 + -0x177;
+        local_c = 0xf;
+        do {
+          iVar1 = 3;
+          puVar5 = local_14;
+          do {
+            iVar4 = 8;
+            puVar2 = local_10;
+            puVar3 = puVar5;
+            do {
+              *puVar3 = 0;
+              puVar2[-0x328] = 0;
+              *puVar2 = 0;
+              puVar2[-0x353] = 0;
+              puVar2 = puVar2 + 1;
+              puVar3 = puVar3 + 0x2d;
+              iVar4 = iVar4 + -1;
+            } while (iVar4 != 0);
+            puVar5 = puVar5 + 0xf;
+            iVar1 = iVar1 + -1;
+          } while (iVar1 != 0);
+          local_14 = local_14 + 1;
+          local_c = local_c + -1;
+        } while (local_c != 0);
+        iVar1 = 8;
+        puVar5 = puVar6 + 0x34c;
+        do {
+          puVar2 = puVar5 + -0x328;
+          for (iVar4 = 100; iVar4 != 0; iVar4 = iVar4 + -1) {
+            *puVar2 = 0;
+            puVar2 = puVar2 + 1;
+          }
+          iVar1 = iVar1 + -1;
+          puVar2 = puVar5;
+          for (iVar4 = 100; iVar4 != 0; iVar4 = iVar4 + -1) {
+            *puVar2 = 0;
+            puVar2 = puVar2 + 1;
+          }
+          puVar5 = puVar5 + 100;
+        } while (iVar1 != 0);
+        param_1 = param_1 + 0x1f98;
+        local_10 = local_10 + 0x7e6;
+        puVar6 = puVar6 + 0x7e6;
+        local_18 = local_18 + 0x7e6;
+        local_8 = local_8 + -1;
+      } while (local_8 != 0);
+    }
+  }
+  return;
 }
 
 undefined4 C_0005C5B0::func_0005C5B0(int param_1, int param_2)
