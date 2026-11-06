@@ -377,30 +377,23 @@ void C_CarProceduralExtended::func_0012FCB0(int param_1)
 int C_CarProceduralExtended::func_0012FCF0(u32 param_1, f32 param_2)
 {
     S_0012F518 *p = f51C;
-    if (p == 0) {
-        return 0;
-    }
-    if (param_1 != 0xffffffff) {
-        if (param_1 > p->count) {
-            return 0;
-        }
-    } else if (f4B8 > p->count) {
-        return 0;
-    }
+    if (!p) return 0;
+    if (param_1 != 0xffffffff) { if (param_1 > p->count) return 0; }
+    else if (f4B8 > p->count) return 0;
     f51C = f518;
     f518 = p;
     if (param_1 != 0xffffffff) {
-        f4B8 = param_1;
-        S_0012F518 *q = f51C;
         f510 = param_2;
+        f4B8 = param_1;
         f4AC = 1;
-        u32 t = q->f10;
-        p->f10 = t;
-        if (f4E8 > D_00275544) {
+        p->f10 = f51C->f10;
+        if (f4E8 > D_00275544)
             f510 = ((C_CarProceduralExtendedVT *)this)->func_0012F670(f510, f4E8);
-        }
-        f438 = ((C_CarProceduralExtendedVT *)this)->v52(f510);
-        f428 = ((C_CarProceduralExtendedVT *)this)->v52(f510 - D_00276544);
+        V4_0012FCF0 tmp;
+        V4_0012FCF0 *v = ((C_CarProceduralOutVT *)this)->v52(&tmp, f510);
+        double t = f510 - D_00276544;
+        f438 = *v;
+        f428 = *((C_CarProceduralOutVT *)this)->v52(&tmp, t);
         return 1;
     }
     p->f10 = f51C->f10;
