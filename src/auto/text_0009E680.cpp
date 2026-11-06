@@ -29,6 +29,9 @@ struct C_0009EDF0 {
     float f20c, f210, f214, f218;
     C_0009EDF0 *func_0009EDF0(int a);
     void func_00169C50(int a);
+    C_0009EDF0 *func_0009EF00(int a, int b, int c);
+    void func_0016A1D0(int a, int b, int c);
+    void func_0016A330(void *a);
 };
 
 struct C_0009F580 {
