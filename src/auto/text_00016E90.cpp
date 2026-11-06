@@ -275,6 +275,11 @@ extern unsigned char D_002A4330;
 extern int D_002BA148;
 int func_00134A10(V4_00017AD0 *seg, void *obj, V4_00017AD0 *out, V4_00017AD0 *hit);
 
+static __forceinline const int &Min_00016E90(const int &a, const int &b)
+{
+    return (b < a) ? b : a;
+}
+
 void C_00017600::func_00016E90()
 {
     C_00017600 * volatile self = this;
