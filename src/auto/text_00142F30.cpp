@@ -151,46 +151,16 @@ struct C_1432Light {
 };
 extern C_1432Light *D_002E2930;
 extern int D_002A6E78;
-static __forceinline void Transpose_1432(Mat_1432B0 *d, const float *s) {
- __m128 a;
- a = _mm_loadh_pi(_mm_loadl_pi(a, (const __m64*)s), (const __m64*)(s+4));
- __m128 b = _mm_loadh_pi(_mm_loadl_pi(_mm_setzero_ps(), (const __m64*)(s+2)), (const __m64*)(s+6));
- __m128 c = _mm_loadh_pi(_mm_loadl_pi(_mm_setzero_ps(), (const __m64*)(s+8)), (const __m64*)(s+12));
- __m128 e = _mm_loadh_pi(_mm_loadl_pi(_mm_setzero_ps(), (const __m64*)(s+10)), (const __m64*)(s+14));
- ((__m128*)d)[0] = _mm_shuffle_ps(a,c,0x88);
- ((__m128*)d)[1] = _mm_shuffle_ps(a,c,0xdd);
- ((__m128*)d)[2] = _mm_shuffle_ps(b,e,0x88);
- ((__m128*)d)[3] = _mm_shuffle_ps(b,e,0xdd);
-}
-static __forceinline void Transform_1432(float *d, const Mat_1432B0 *m, const float *s) {
- __m128 v = _mm_loadu_ps(s);
- _mm_storeh_pi((__m64*)(d+2),v);
- d[3]=1.0f;
- v=_mm_loadh_pi(v,(const __m64*)(d+2));
- __m128 a=_mm_mul_ps(((__m128*)m)[0],v);
- __m128 b=_mm_mul_ps(((__m128*)m)[1],v);
- __m128 c=_mm_mul_ps(((__m128*)m)[2],v);
- __m128 h=_mm_unpackhi_ps(a,b);
- a=_mm_unpacklo_ps(a,b);
- __m128 e=_mm_movehl_ps(c,c);
- a=_mm_add_ps(a,h);
- c=_mm_add_ps(c,e);
- h=_mm_movehl_ps(a,a);
- a=_mm_movelh_ps(a,c);
- h=_mm_shuffle_ps(h,c,0x14);
- _mm_storeu_ps(d,_mm_add_ps(a,h));
- d[3]=1.0f;
-}
-static __forceinline void Mat_Copy_1432B0(Mat_1432B0 *dst, const Mat_1432B0 *src)
+static void Mat_Copy_1432B0(Mat_1432B0 *dst, const Mat_1432B0 *src)
 {
-    __m128 a = ((__m128 *)src)[0];
-    __m128 b = ((__m128 *)src)[1];
-    __m128 c = ((__m128 *)src)[2];
-    __m128 d = ((__m128 *)src)[3];
-    ((__m128 *)dst)[0] = a;
-    ((__m128 *)dst)[1] = b;
-    ((__m128 *)dst)[2] = c;
-    ((__m128 *)dst)[3] = d;
+    __m128 a = _mm_load_ps(&src->m[0]);
+    __m128 b = _mm_load_ps(&src->m[4]);
+    __m128 c = _mm_load_ps(&src->m[8]);
+    __m128 d = _mm_load_ps(&src->m[12]);
+    _mm_store_ps(&dst->m[0], a);
+    _mm_store_ps(&dst->m[4], b);
+    _mm_store_ps(&dst->m[8], c);
+    _mm_store_ps(&dst->m[12], d);
 }
 void __fastcall func_001FEC30(int n, void *p);
 int __fastcall func_001FEBD0(int n, void *p);
