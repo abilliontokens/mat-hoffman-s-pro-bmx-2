@@ -69,6 +69,42 @@ static __forceinline void Round_001D2A40(int * volatile out, float f) { *out = _
 static __forceinline float Get_001D2A40(const volatile float *p) { return *p; }
 static __forceinline int Min_001D2A40(int a, int b) { return a > b ? b : a; }
 
+#define TRK (*(S_001D2A40_Track *)((char *)self->f10 + off))
+#define TRACK_CH2(k, LO, HI, M, FM, PM) \
+    if (!(TRK.done & (M))) { \
+        if (!(TRK.dir & (M))) { \
+            TRK.val[k] = TRK.step[k] + TRK.val[k]; \
+            if (TRK.val[k] >= (float)TRK.HI) { \
+                if (TRK.flags & (FM)) { \
+                    if (TRK.flags & (PM)) { \
+                        TRK.dir |= (M); \
+                        TRK.val[k] = (float)TRK.HI; \
+                    } else { \
+                        TRK.val[k] = (float)TRK.LO; \
+                    } \
+                } else { \
+                    TRK.done |= (M); \
+                    TRK.val[k] = (float)TRK.HI; \
+                } \
+            } \
+        } else { \
+            TRK.val[k] = TRK.val[k] - TRK.step[k]; \
+            if (TRK.val[k] <= (float)TRK.LO) { \
+                if (TRK.flags & (FM)) { \
+                    if (TRK.flags & (PM)) { \
+                        TRK.dir &= ~(M); \
+                        TRK.val[k] = (float)TRK.LO; \
+                    } else { \
+                        TRK.val[k] = (float)TRK.HI; \
+                    } \
+                } else { \
+                    TRK.done |= (M); \
+                    TRK.val[k] = (float)TRK.LO; \
+                } \
+            } \
+        } \
+    }
+
 /* step one channel k of track i; M = done/dir bit, FM = repeat bit and PM = ping-pong bit of flags */
 #define TRACK_CHANNEL(k, LO, HI, M, FM, PM) \
     if (!(self->f10[i].done & (M))) { \
