@@ -121,16 +121,18 @@ struct __declspec(align(16)) S_001401C0_Mat {
     }
 };
 
-static void Mat_Copy_0013FD50(S_001401C0_Mat *dst, const S_001401C0_Mat *src)
+static __forceinline void Mat_Copy_0013FD50(S_001401C0_Mat * volatile dst, const S_001401C0_Mat * volatile src)
 {
-    __m128 a = _mm_load_ps(&src->m[0]);
-    __m128 b = _mm_load_ps(&src->m[4]);
-    __m128 c = _mm_load_ps(&src->m[8]);
-    __m128 d = _mm_load_ps(&src->m[12]);
-    _mm_store_ps(&dst->m[0], a);
-    _mm_store_ps(&dst->m[4], b);
-    _mm_store_ps(&dst->m[8], c);
-    _mm_store_ps(&dst->m[12], d);
+    const S_001401C0_Mat *s = src;
+    S_001401C0_Mat *d = dst;
+    __m128 a = *(const __m128 *)&s->m[0];
+    __m128 b = *(const __m128 *)&s->m[4];
+    __m128 c = *(const __m128 *)&s->m[8];
+    __m128 e = *(const __m128 *)&s->m[12];
+    *(__m128 *)&d->m[0] = a;
+    *(__m128 *)&d->m[4] = b;
+    *(__m128 *)&d->m[8] = c;
+    *(__m128 *)&d->m[12] = e;
 }
 
 struct S_001401C0_Info {
@@ -632,6 +634,15 @@ void *C_0013FA90::func_0013FA90(int flags)
   return this;
 }
 
+void DXInstanceData::func_0013FAC0(int key)
+{
+    D_002BEAAC->func_0013C8A0(key, &count, 4, 1);
+    items = new C_001449B0[count];
+    for (int i = 0; i < count; ++i) {
+        items[i].load(key);
+    }
+}
+
 void *C_0013FBD0::func_0013FBD0(int flags)
 {
   extern int D_00284EF4;
@@ -721,27 +732,45 @@ void C_0013FCF0::func_0013FCF0()
 
 C_001401C0 *C_001401C0::func_0013FD50(S_001401C0_Info *info)
 {
-    S_001401C0_Mat m;
-    S_001401C0_Mat id;
-    int *p;
-
-    vtbl = (void *)&D_00284E94;
-    vtbl = (void *)&D_00284F7C;
-    p = (int *)f190;
-    p[2] = 0;
-    p[1] = 0;
-    p[0] = 0;
-    p[3] = 0x3f800000;
-    id.identity();
-    m = id;
-    f1A0 = info;
-    Mat_Copy_0013FD50((S_001401C0_Mat *)f10, &m);
-    Mat_Copy_0013FD50((S_001401C0_Mat *)f50, &m);
-    Mat_Copy_0013FD50((S_001401C0_Mat *)f90, &m);
-    Mat_Copy_0013FD50((S_001401C0_Mat *)(f90 + 0x40), &m);
-    Mat_Copy_0013FD50((S_001401C0_Mat *)f150, &m);
-    Mat_Copy_0013FD50((S_001401C0_Mat *)f110, &m);
-    return this;
+ S_001401C0_Mat id,m;
+ S_001401C0_Mat *volatile src;
+ S_001401C0_Mat *volatile dst;
+ C_001401C0 *volatile self=this;
+ vtbl=&D_00284E94; self->vtbl=&D_00284F7C;
+ unsigned int *p=(unsigned int *)self->f190;
+ p[2]=0;p[1]=0;p[0]=0;p[3]=0x3f800000;
+ src=&id;
+ __m128 z=_mm_setzero_ps();
+ S_001401C0_Mat *q=src;
+ *(__m128 *)(q->m)=z;*(__m128 *)(q->m+4)=z;*(__m128 *)(q->m+8)=z;*(__m128 *)(q->m+12)=z;
+ q->m[0]=1.0f;q->m[5]=1.0f;q->m[10]=1.0f;q->m[15]=1.0f;
+ m=id;
+ self->f1A0=info;
+dst=(S_001401C0_Mat *)(self->f10);src=&m;
+ {S_001401C0_Mat *s=src,*d=dst;
+ __m128 a=*(__m128 *)(s->m),b=*(__m128 *)(s->m+4),c=*(__m128 *)(s->m+8),e=*(__m128 *)(s->m+12);
+ *(__m128 *)(d->m)=a;*(__m128 *)(d->m+4)=b;*(__m128 *)(d->m+8)=c;*(__m128 *)(d->m+12)=e;}
+dst=(S_001401C0_Mat *)(self->f50);src=&m;
+ {S_001401C0_Mat *s=src,*d=dst;
+ __m128 a=*(__m128 *)(s->m),b=*(__m128 *)(s->m+4),c=*(__m128 *)(s->m+8),e=*(__m128 *)(s->m+12);
+ *(__m128 *)(d->m)=a;*(__m128 *)(d->m+4)=b;*(__m128 *)(d->m+8)=c;*(__m128 *)(d->m+12)=e;}
+dst=(S_001401C0_Mat *)(self->f90);src=&m;
+ {S_001401C0_Mat *s=src,*d=dst;
+ __m128 a=*(__m128 *)(s->m),b=*(__m128 *)(s->m+4),c=*(__m128 *)(s->m+8),e=*(__m128 *)(s->m+12);
+ *(__m128 *)(d->m)=a;*(__m128 *)(d->m+4)=b;*(__m128 *)(d->m+8)=c;*(__m128 *)(d->m+12)=e;}
+dst=(S_001401C0_Mat *)(self->f90 + 0x40);src=&m;
+ {S_001401C0_Mat *s=src,*d=dst;
+ __m128 a=*(__m128 *)(s->m),b=*(__m128 *)(s->m+4),c=*(__m128 *)(s->m+8),e=*(__m128 *)(s->m+12);
+ *(__m128 *)(d->m)=a;*(__m128 *)(d->m+4)=b;*(__m128 *)(d->m+8)=c;*(__m128 *)(d->m+12)=e;}
+dst=(S_001401C0_Mat *)(self->f150);src=&m;
+ {S_001401C0_Mat *s=src,*d=dst;
+ __m128 a=*(__m128 *)(s->m),b=*(__m128 *)(s->m+4),c=*(__m128 *)(s->m+8),e=*(__m128 *)(s->m+12);
+ *(__m128 *)(d->m)=a;*(__m128 *)(d->m+4)=b;*(__m128 *)(d->m+8)=c;*(__m128 *)(d->m+12)=e;}
+dst=(S_001401C0_Mat *)(self->f110);src=&m;
+ {S_001401C0_Mat *s=src,*d=dst;
+ __m128 a=*(__m128 *)(s->m),b=*(__m128 *)(s->m+4),c=*(__m128 *)(s->m+8),e=*(__m128 *)(s->m+12);
+ *(__m128 *)(d->m)=a;*(__m128 *)(d->m+4)=b;*(__m128 *)(d->m+8)=c;*(__m128 *)(d->m+12)=e;}
+return self;
 }
 
 void C_0013FF50::func_0013FF50(int a0)
@@ -780,6 +809,37 @@ void C_0013FF50::func_0013FF50(int a0)
     func_0011ACC0(self->f10, &m, (void *)(a0 + 0xb0));
 }
 
+extern "C" void _ReadWriteBarrier(void);
+#pragma intrinsic(_ReadWriteBarrier)
+void C_001401C0::func_001401C0(void)
+{
+    C_001401C0 * volatile self;
+    S_001401C0_Mat m;
+    S_001401C0_Mat * volatile q;
+    S_001401C0_Mat *pm = &m;
+    _ReadWriteBarrier();
+    self = this;
+    q = pm;
+    _ReadWriteBarrier();
+    __m128 z = _mm_setzero_ps();
+    _ReadWriteBarrier();
+    __m128 *v = (__m128 *)q;
+    v[0] = z; v[1] = z; v[2] = z; v[3] = z;
+    S_001401C0_Mat *p = (S_001401C0_Mat *)v;
+    p->m[0]=1.0f; p->m[5]=1.0f; p->m[10]=1.0f; p->m[15]=1.0f;
+    _ReadWriteBarrier();
+    S_001401C0_Mat m2 = m;
+    func_001FEC30(0x10, self->f50);
+    func_001FEC30(0x18, self->f90);
+    func_001FEC30(0x1c, &m2);
+    func_001FEBD0(2, self->f190);
+    func_001FEC30(0x14, self->f10);
+    C_001401C0 *obj = self;
+    switch (obj->f1A0->f30) {
+    case 0: func_001FEC30(4, obj->f150); func_001FEC30(8, self->f110); return;
+    case 2: func_001FEC30(8, obj->f110); return;
+    }
+}
 void C_001402C0::func_001402C0(int arg1, int arg2)
 {
     if (a != 0) {
