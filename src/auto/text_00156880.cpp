@@ -134,6 +134,7 @@ struct Game {
     int func_00156F30(int a, int b);
     void func_00156FC0(void);
     int func_00157030(void);
+    void func_00156920(int *out);
 };
 
 struct C_00157660 {
