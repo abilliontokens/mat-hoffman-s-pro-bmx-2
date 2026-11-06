@@ -138,12 +138,6 @@ static inline void FloatToIndex(int *out, float f) {
     *p = _mm_cvttss_si32(*(__m128 *)&f);
 }
 
-static inline void FloatToIndexRef(int *out, const float &f) {
-    int * volatile p = out;
-    float g = f;
-    *p = _mm_cvttss_si32(*(__m128 *)&g);
-}
-
 struct C_0014F170 {
     undefined4 func_0014F170(byte param_1);
 };
