@@ -59,7 +59,7 @@ struct C_00171340 {
     int f1e0;
     char pad1E4[0x20];
     int f204, f208, f20c, f210, f214;
-    float f218, f21c, f220, f224;
+    int f218, f21c, f220, f224;
     int f228, f22c, f230;
     void *f234;
     V4_00171340 f238, f248, f258, f268;
