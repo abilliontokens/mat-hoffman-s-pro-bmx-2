@@ -119,6 +119,7 @@ int func_001E8D25(int);
 void func_000347F0(char*);
 void func_001E891B(void*);
 extern "C" int __cdecl memcmp(const void*,const void*,unsigned int);
+extern "C" void *__cdecl memset(void*,int,unsigned int);
 static __forceinline StringBC *getStringBC(DataBC *d,int i) {
  return ((StringListBC*)&d->stringCount)->get(i);
 }
