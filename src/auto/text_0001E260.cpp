@@ -669,4 +669,3 @@ void *C_0001EF70::func_0001EF70(unsigned int flags)
     }
     return this;
 }
-extern u8 D_002A0B18[];
