@@ -466,7 +466,7 @@ void XboxSndIf_1CB290::func_001CB290(void)
     p = (SndBank_1CB290 *)func_001E8A44(0x20);
     p = p != 0 ? p->func_001AC3A0() : 0;
     f13C = p;
-    return p->v4();
+    p->v4();
 }
 
 void XboxSndIf_1CB290::func_001CB2D0(void)
