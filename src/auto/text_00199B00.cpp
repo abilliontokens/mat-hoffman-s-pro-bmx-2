@@ -2,6 +2,7 @@
 #include "common.h"
 #include <string.h>
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 
 void func_00198EF0(void *a, void *b, void *c);
 void func_0011F5A0(void *m, int a, int b, int c, int d, int e);
@@ -148,23 +149,12 @@ void C_00199BE0::func_00199BE0(void *m)
 #pragma optimize("y", on)
 void C_00199BE0::func_00199C20(C_00199BE0 *p, void *m)
 {
-    C_00199BE0 * volatile self = this;
-    float *f = (float *)m;
-
     if (p == this) {
-        __m128 *v = (__m128 *)m;
-        v[0] = _mm_setzero_ps();
-        v[1] = _mm_setzero_ps();
-        v[2] = _mm_setzero_ps();
-        v[3] = _mm_setzero_ps();
-        f[0] = 1.0f;
-        f[5] = 1.0f;
-        f[10] = 1.0f;
-        f[15] = 1.0f;
+        AsmIdentityMatrix(m);
         return;
     }
     func_00197AA0();
-    ((C_00199C20Mat *)m)->func_000264C0((char *)self + 0xf0);
+    ((C_00199C20Mat *)m)->func_000264C0((char *)this + 0xf0);
     if (p != 0) {
         func_00198EF0(m, p, m);
     }
@@ -365,9 +355,9 @@ void C_00199BE0::func_0019A2D0(void)
         f188 = radius;
     } else {
         func_00197AA0();
+        int flag = 0;
         S_0019A680_V4 a;
         S_0019A680_V4 b;
-        int flag = 0;
         C_00199BE0 *p;
 
         if (f180 & 4) {
@@ -380,7 +370,7 @@ void C_00199BE0::func_0019A2D0(void)
         }
         *(S_0019A680_V4 *)&f150 = Scale_0019A680(Add_0019A680(b, a), D_002755E8);
         *(S_0019A680_V4 *)&f160 = Scale_0019A680(Sub_0019A680(b, a), D_002755E8);
-        f188 = _mm_sqrt_ss(_mm_set_ss(f160.x * f160.x + f160.y * f160.y + f160.z * f160.z)).m128_f32[0];
+        f188 = sqrtf(f160.x * f160.x + f160.y * f160.y + f160.z * f160.z);
     }
     if (f188 > D_00275544) {
         f180 |= 0x40;
