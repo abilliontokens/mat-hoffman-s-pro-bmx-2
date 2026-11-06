@@ -520,13 +520,16 @@ void BmxUIManager::func_000BB3B0(const char *a, const char *b)
 
 int BmxUIManager::func_000BB3F0(const char *a, const char *b)
 {
-    if (f25c->f74->func_000300F0(a) == 0) {
+    if (!f25c->f74->func_000300F0(a)) {
         return 0;
     }
-    if (f25c->f74->func_00030120(b) == 0) {
+    if (!f25c->f74->func_00030120(b)) {
         return 0;
     }
-    return f25c->f74->func_000301D0() != 0 ? 1 : 0;
+    if (!f25c->f74->func_000301D0()) {
+        return 0;
+    }
+    return 1;
 }
 
 void BmxUIManager::func_000BB440(int type)
