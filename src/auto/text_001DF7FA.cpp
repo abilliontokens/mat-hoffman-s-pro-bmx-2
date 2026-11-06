@@ -64,7 +64,7 @@ extern "C" __declspec(dllimport) long __stdcall NtAllocateVirtualMemory(void *ba
 extern "C" long (__stdcall *__imp__NtAllocateVirtualMemory)(void *baseAddress, unsigned int zeroBits, unsigned int *size, unsigned int allocType, unsigned int protect);
 extern "C" long (__stdcall *__imp__NtFreeVirtualMemory)(void **baseAddress, unsigned int *size, unsigned int freeType);
 unsigned char *__stdcall func_001DF7FA(S_HeapRoot *root, S_HeapBlock *blk, unsigned int *size, int a3);
-typedef bool HeapFlag;
+typedef char HeapFlag;
 unsigned char *__stdcall func_001DF985(S_HeapRoot *root, unsigned char *entry, unsigned int *size, HeapFlag a3);
 extern char D_0000FF00;
 extern char D_0000FF01;
@@ -225,7 +225,7 @@ unsigned char *__stdcall func_001DF985(S_HeapRoot *root, unsigned char *entry, u
         if (a3) {
             FreeUnlink_001DF985(root, cur);
             root->freeTotal -= cur->size;
-            a3 = 0;
+            a3 = false;
         }
         FreeUnlink_001DF985(root, prev);
         prev->flags = cur->flags & 0x10;
