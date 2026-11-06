@@ -300,6 +300,7 @@ struct M44_001BC310 {
 struct S_001BC310_Xf {
     char pad0[0xb0];
     M44_001BC310 mat;
+    float *Mat() { return mat.m; }
 };
 
 struct S_001BC310_Node {
