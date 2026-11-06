@@ -233,14 +233,6 @@ struct C_0016C5B0 {
 
 extern "C" float __cdecl sqrtf(float);
 
-static __forceinline int BuildPath_0016BEC0(char *dst, char *name)
-{
-    strcpy(dst, D_002A5558);
-    if (!name) return 0;
-    strcat(dst, name);
-    return 1;
-}
-
 C_0016BEC0 *C_0016BEC0::func_0016BEC0(void *a, char *name, void *b, u32 *c)
 {
     ((C_001D3F50 *)this)->func_001D3F50();
