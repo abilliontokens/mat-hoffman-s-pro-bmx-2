@@ -270,7 +270,7 @@ void C_00076EF0::func_00076EF0()
     func_001ADCC0(buf, 0x104, D_00278DE4, mins, secs);
     unk114->func_0005E840(buf);
     unk114->func_001D6600();
-    n = 2 + (unk120->f90 == 1);
+    n = 2 + !(unk120->f90 - 1);
     if (unk1AC != 0) {
         for (i = 0; i < n; i++) {
             unk94[i]->func_001B1980();
