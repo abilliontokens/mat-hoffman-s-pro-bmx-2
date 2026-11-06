@@ -2,6 +2,14 @@
 #include "common.h"
 
 extern int D_00277FD4;
+extern float D_002755E8, D_002756D0, D_002756B8, D_002756E8, D_00277FBC, D_00275544, D_002756DC, D_00277FB8, D_00277FB4, D_00277FB0, D_00277D04;
+struct C_00059290 {
+    char pad0[0x58];
+    int f58;
+    char pad5c[0x190 - 0x5c];
+    float f190;
+    void func_00059290(float *a0, float *a1, float *a2);
+};
 
 void func_001E891B(void *p);
 
@@ -476,7 +484,7 @@ int BmxGame::func_00059AC0(void)
         default:
             goto done;
         }
-        f2A4 = (BmxGameObj2A4 *)f14->func_001577A0(obj->v10(), -1);
+        f2A4 = (BmxGameObj2A4 *)f14->func_001577A0(obj->v10(), ~0);
     }
 done:
     if (f2F0 != 0) {
