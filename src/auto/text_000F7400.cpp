@@ -183,7 +183,7 @@ struct S_F7690_VObj {
     virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
     virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23();
     virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27();
-    virtual void v28(); virtual void v29(int);
+    virtual void v28(); virtual void v29(); virtual void v30(int);
 };
 struct S_F7690_Obj5C020 { int *func_0005C020(int i); };
 struct S_F7690_Sub2FC { char pad0[0x28]; S_F7690_VObj *f28; };
