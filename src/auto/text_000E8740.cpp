@@ -3,7 +3,7 @@
 #include <xmmintrin.h>
 struct C_000E8740_UI {
  char pad0[0x28]; float alpha; char pad2C[0x2C]; unsigned char flags;
- void SetAlpha(float value) { if(alpha!=value) { alpha=value;flags|=1; } }
+ void SetAlpha(const float &value) { if(alpha!=value) { alpha=value;flags|=1; } }
  void func_0005E840(char *);
 };
 struct C_000E8740_Model {
