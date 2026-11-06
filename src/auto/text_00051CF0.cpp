@@ -4,6 +4,48 @@
 extern float D_00275544;
 extern float D_00277924;
 extern float D_002A8F40;
+extern float D_002756B8, D_002756D0, D_002756E8;
+extern float D_00277928, D_0027792C, D_002779FC, D_00277A00;
+extern char D_002769DC[], D_00277A24[], D_00277A30[], D_00277A38[], D_00277A44[];
+extern char D_00277A48[], D_00277A4C[], D_00277A54[], D_00277A5C[];
+extern char D_00275678[], D_002A5870[], D_002A5348[], D_002A5FA8[], D_002A60B0[];
+int func_001ADCC0(char *dst, int size, const char *fmt, ...);
+
+/* config file reader, 0x4CC bytes */
+struct C_00168280 {
+    char pad0[0x4CC];
+    C_00168280 *func_00168280(void);
+    int func_00169490(const char *path, int flags);
+    void func_001691E0(void);
+    void func_00169710(const char *name);
+    void func_00168C50(const char *key, float def, float *out);
+};
+
+/* photo-preset widget (0x64 bytes) */
+struct Img_51F {
+    char pad0[0x14];
+    float f14;
+    float f18;
+    char pad1C[0xC];
+    float f28;
+    float f2C;
+    float f30;
+    float f34;
+    union {
+        unsigned int color;
+        struct { unsigned int lo : 24; unsigned int hi : 8; } cb;
+    };
+    float f3C;
+    float f40;
+    float f44;
+    float f48;
+    char pad4C[0xC];
+    u8 f58_0 : 1;
+    u8 f58_1 : 1;
+    u8 f58_2 : 1;
+    Img_51F *func_001D5760(void);
+    void func_001D5810(const char *name, float x, float y, int z);
+};
 
 struct C_00051CF0_74 {
     int func_00030020(const char *name);
