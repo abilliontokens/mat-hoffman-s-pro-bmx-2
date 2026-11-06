@@ -11,7 +11,11 @@ struct C_0004BAB0 {
     void *func_0004BAB0(int param_1);
 };
 
+#include <xmmintrin.h>
+#include <string.h>
 struct Vec16 { int v[4]; };
+struct __declspec(align(16)) Mtx { float m[16]; };
+inline const int &Min(const int &a, const int &b) { return b < a ? b : a; }
 
 struct Obj {
     void func_00198390();
