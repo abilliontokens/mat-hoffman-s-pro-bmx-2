@@ -28,7 +28,7 @@ struct Img_FCB00 {
 
 struct Obj_FCB00 {
     char pad0[0x4];
-    int x, y;
+    float x, y;
     char padC[0x38];
     int f44, f48;
     char pad4C[2];
@@ -80,11 +80,14 @@ extern S_000FCB00_Mgr2 *D_002A8490;
 
 C_000FCB00 *C_000FCB00::func_000FCB00(int a, int b, int c)
 {
-    const char *names[3] = {D_00278678, D_002786A0, D_00278690};
+    const char *names[3];
     int v;
     void *p;
 
     func_001BE4F0(a, b, c);
+    names[0] = D_00278678;
+    names[1] = D_002786A0;
+    names[2] = D_00278690;
     D_002A8490->f2ec->func_0018C780(3, (void *)names, 0);
     p = D_002A8490->f2ec->func_0018C160((int)D_00278690);
     v = p ? *(int *)p : 0;
@@ -97,7 +100,7 @@ C_000FCB00 *C_000FCB00::func_000FCB00(int a, int b, int c)
         t = t ? t->func_001B12C0(1) : 0;
         f2a8 = (int)t;
         t->func_001B13A0(D_002786A0, D_002786A0, 0, 0x32);
-        ((Text_FCB00 *)f2a8)->func_001B1A30(540, 269, 0);
+        ((Text_FCB00 *)f2a8)->func_001B1A30(540.0f, 269.0f, 0);
         ((Text_FCB00 *)f2a8)->func_001B2270(0xffcccccc);
         ((Text_FCB00 *)f2a8)->func_001B19A0(D_0028F5EC);
         ((Text_FCB00 *)f2a8)->func_001B17D0(D_00282598);
@@ -108,7 +111,7 @@ C_000FCB00 *C_000FCB00::func_000FCB00(int a, int b, int c)
         t = t ? t->func_001B12C0(1) : 0;
         f202c = (int)t;
         t->func_001B13A0(D_002786A0, D_002786A0, 0, 0xa);
-        ((Text_FCB00 *)f202c)->func_001B1A30(605, 269, 0);
+        ((Text_FCB00 *)f202c)->func_001B1A30(605.0f, 269.0f, 0);
         ((Text_FCB00 *)f202c)->func_001B2270(0xffcccccc);
         ((Text_FCB00 *)f202c)->func_001B19A0(D_0028F5EC);
         func_001577A0((void *)f202c, -1);
@@ -118,7 +121,7 @@ C_000FCB00 *C_000FCB00::func_000FCB00(int a, int b, int c)
         t = t ? t->func_001B12C0(1) : 0;
         f2b0 = (int)t;
         t->func_001B13A0(D_002786A0, D_002786A0, 0, 0x32);
-        ((Text_FCB00 *)f2b0)->func_001B1A30(540, 293, 0);
+        ((Text_FCB00 *)f2b0)->func_001B1A30(540.0f, 293.0f, 0);
         ((Text_FCB00 *)f2b0)->func_001B2270(0xffcccccc);
         ((Text_FCB00 *)f2b0)->func_001B19A0(D_0028F5EC);
         ((Text_FCB00 *)f2b0)->func_001B17D0(D_00282580);
@@ -129,7 +132,7 @@ C_000FCB00 *C_000FCB00::func_000FCB00(int a, int b, int c)
         t = t ? t->func_001B12C0(1) : 0;
         f2030 = (int)t;
         t->func_001B13A0(D_002786A0, D_002786A0, 0, 0xa);
-        ((Text_FCB00 *)f2030)->func_001B1A30(605, 293, 0);
+        ((Text_FCB00 *)f2030)->func_001B1A30(605.0f, 293.0f, 0);
         ((Text_FCB00 *)f2030)->func_001B2270(0xffcccccc);
         ((Text_FCB00 *)f2030)->func_001B19A0(D_0028F5EC);
         func_001577A0((void *)f2030, -1);
@@ -139,7 +142,7 @@ C_000FCB00 *C_000FCB00::func_000FCB00(int a, int b, int c)
         t = t ? t->func_001B12C0(1) : 0;
         f2b4 = (int)t;
         t->func_001B13A0(D_002786A0, D_002786A0, 0, 0x32);
-        ((Text_FCB00 *)f2b4)->func_001B1A30(540, 317, 0);
+        ((Text_FCB00 *)f2b4)->func_001B1A30(540.0f, 317.0f, 0);
         ((Text_FCB00 *)f2b4)->func_001B2270(0xffcccccc);
         ((Text_FCB00 *)f2b4)->func_001B19A0(D_0028F5EC);
         ((Text_FCB00 *)f2b4)->func_001B17D0(D_00282568);
@@ -150,7 +153,7 @@ C_000FCB00 *C_000FCB00::func_000FCB00(int a, int b, int c)
         t = t ? t->func_001B12C0(1) : 0;
         f2034 = (int)t;
         t->func_001B13A0(D_002786A0, D_002786A0, 0, 0xa);
-        ((Text_FCB00 *)f2034)->func_001B1A30(605, 317, 0);
+        ((Text_FCB00 *)f2034)->func_001B1A30(605.0f, 317.0f, 0);
         ((Text_FCB00 *)f2034)->func_001B2270(0xffcccccc);
         ((Text_FCB00 *)f2034)->func_001B19A0(D_0028F5EC);
         func_001577A0((void *)f2034, -1);
@@ -160,9 +163,9 @@ C_000FCB00 *C_000FCB00::func_000FCB00(int a, int b, int c)
         t = t ? t->func_001B12C0(1) : 0;
         f2ac = (int)t;
         t->func_001B13A0(D_002786A0, D_002786A0, 0, 0x32);
-        ((Text_FCB00 *)f2ac)->func_001B1A30(540, 349, 0);
-        ((Text_FCB00 *)f2ac)->func_001B2270(0xffcccccc);
+        ((Text_FCB00 *)f2ac)->func_001B1A30(540.0f, 349.0f, 0);
         ((Text_FCB00 *)f2ac)->func_001B19A0(D_0028F5EC);
+        ((Text_FCB00 *)f2ac)->func_001B2270(0xffcccccc);
         ((Text_FCB00 *)f2ac)->func_001B17D0(D_00282550);
         func_001577A0((void *)f2ac, -1);
     }
@@ -171,9 +174,9 @@ C_000FCB00 *C_000FCB00::func_000FCB00(int a, int b, int c)
         t = t ? t->func_001B12C0(1) : 0;
         f2038 = (int)t;
         t->func_001B13A0(D_002786A0, D_002786A0, 0, 0xa);
-        ((Text_FCB00 *)f2038)->func_001B1A30(605, 349, 0);
-        ((Text_FCB00 *)f2038)->func_001B2270(0xffcccccc);
+        ((Text_FCB00 *)f2038)->func_001B1A30(605.0f, 349.0f, 0);
         ((Text_FCB00 *)f2038)->func_001B19A0(D_0028F5EC);
+        ((Text_FCB00 *)f2038)->func_001B2270(0xffcccccc);
         func_001577A0((void *)f2038, -1);
     }
 
