@@ -27,7 +27,7 @@ void func_001ADCC0(char *buf, int size, const char *fmt, ...);
 extern char D_002A45E0[], D_002A5348[], D_00275678[], D_002A5FA8[], D_002A47F0[], D_002A5870[];
 extern int D_002B9120;
 
-static __forceinline int min_22E30(const volatile int &a, const volatile int &b)
+static __forceinline int min_22E30(int a, int b)
 {
     return a > b ? b : a;
 }
@@ -314,20 +314,11 @@ struct C_00023BE0 {
 void C_00022E30::func_00022E30(void)
 {
     char a[0x104], c[0x104], b[0x104], d[0x104];
-    int len;
 
-    len = min_22E30(0x103, (int)strlen(D_002A5EA0));
-    func_001E8920(a, D_002A5EA0, len);
-    a[len] = 0;
-    len = min_22E30(0x103, (int)strlen(D_002A60B0));
-    func_001E8920(b, D_002A60B0, len);
-    b[len] = 0;
-    len = min_22E30(0x103, (int)strlen(D_002A48F8));
-    func_001E8920(c, D_002A48F8, len);
-    c[len] = 0;
-    len = min_22E30(0x103, (int)strlen(D_002A46E8));
-    func_001E8920(d, D_002A46E8, len);
-    d[len] = 0;
+    copy_22E30(a, D_002A5EA0, 0x103);
+    copy_22E30(b, D_002A60B0, 0x103);
+    copy_22E30(c, D_002A48F8, 0x103);
+    copy_22E30(d, D_002A46E8, 0x103);
 }
 
 void C_00023340::func_00023340()
