@@ -29,7 +29,7 @@ struct Sprite_8AED0 {
     void SetF2c(int v) { if (f2c != v) { f2c = v; b58 |= 1; } }
     void SetVec4(float a, float b, float c, float d) { f3c = a; f40 = b; f44 = c; f48 = d; b58 |= 4; }
     void SetAlphaMask() { b58 |= 2; f38 &= 0xff000000; }
-    void SetAlphaByte() { b58 |= 2; ((char *)&f38)[3] = (char)0x80; }
+    void SetAlphaByte() { int f = b58 | 2; ((char *)&f38)[3] = (char)0x80; b58 = f; }
 };
 extern int D_00275630;
 extern int D_00279DEC;
