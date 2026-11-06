@@ -56,6 +56,11 @@ struct E7_124 {
     int func_000BBDF0();
 };
 
+static __forceinline int E7_IsDefaultName(const char *s)
+{
+    return memcmp(s, D_0027E83C, sizeof(D_0027E83C)) == 0;
+}
+
 struct C_000E7AD0 {
     char pad0[0x124];
     E7_124 *f124;
@@ -113,35 +118,31 @@ void C_000E7AD0::func_000E7AD0()
     } else {
         D_002B91AC->f40->func_0005E840(D_002A8490->f2E8->f4->fA38);
     }
-    for (esi = 0x38; esi < 0x44; esi += 4) {
-        (*(E7_GObj **)&esi[(char *)D_002B91AC])->func_001D6600();
+    for (esi = 14; esi < 17; esi++) {
+        ((E7_GObj **)D_002B91AC)[esi]->func_001D6600();
     }
     if (f2AC != 0 && f508 == 0 && f284 == 1) {
         f500->func_001B1860(0, -1.0f, 0xff, 1.0f, 0, 0, -1.0f, 0xff, 1.0f, 0, 0, 0, 0);
         D_002B91AC->f44->func_0005E840(D_002A8490->f2E8->f4->f1120);
         D_002B91AC->f44->func_001D6600();
-        D_002B91AC->f34->func_001D6600();
     }
+    D_002B91AC->f34->func_001D6600();
     if (f4AC != 0) {
-        char *str;
         f340->func_001B1980();
-        str = saved->f27C + saved->f284 * 0x1A8;
-        if (memcmp(str, D_0027E83C, 0x11) == 0) {
+        if (memcmp(saved->f27C + saved->f284 * 0x1A8, D_0027E83C, sizeof(D_0027E83C)) == 0) {
             f340->func_001B17D0(D_00281A48);
         } else {
-            f340->func_001B17D0(str);
+            f340->func_001B17D0(saved->f27C + saved->f284 * 0x1A8);
         }
         f340->func_001B1860(0, -1.0f, 0, 1.0f, 0, 0, 0, 0xff, 1.0f, 0, 0.25f, 0, 0);
         f4AC = 0;
     }
     if (f4B0 != 0) {
-        char *str;
         f340->func_001B1980();
-        str = saved->f27C + saved->f284 * 0x1A8;
-        if (memcmp(str, D_0027E83C, 0x11) == 0) {
+        if (memcmp(saved->f27C + saved->f284 * 0x1A8, D_0027E83C, sizeof(D_0027E83C)) == 0) {
             f340->func_001B17D0(D_00281A48);
         } else {
-            f340->func_001B17D0(str);
+            f340->func_001B17D0(saved->f27C + saved->f284 * 0x1A8);
         }
         f340->func_001B1860(0, -1.0f, 0xff, 1.45f, 0, 0, 0, 0, 1.45f, 0, 0.1f, 0, 0);
         f4B0 = 0;
