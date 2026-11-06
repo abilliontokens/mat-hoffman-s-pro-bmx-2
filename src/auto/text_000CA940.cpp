@@ -28,10 +28,34 @@ struct GObj2E8_CA {
     GObj4_CA *p4;
 };
 
+struct VObj78_CA {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
+    virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11();
+    virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15();
+    virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
+    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23();
+    virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27();
+    virtual void v28(); virtual void v29(); virtual void v30(int a);
+};
+struct Holder2FC_CA { char pad0[0x28]; VObj78_CA *f28; };
+struct Obj15_CA { void func_0015ABF0(int a); };
+struct Input_CA {
+    char pad0[0x14];
+    Obj15_CA *arr14[8];
+    int func_00136170(int a, int b, int c);
+};
+struct UiObj_CA { void func_000B9A80(int a, int b); };
+
 struct GObj2E0_CA {
     char pad0[0xC];
     int fC;
-    char pad10[0x38C - 0x10];
+    char pad10[0x18 - 0x10];
+    int f18;
+    int f1C;
+    char pad20[0x2FC - 0x20];
+    Holder2FC_CA *f2FC;
+    char pad300[0x38C - 0x300];
     int f38C;
     char pad390[0x460 - 0x390];
     int f460;
@@ -39,7 +63,9 @@ struct GObj2E0_CA {
 };
 
 struct GObjRoot_CA {
-    char pad0[0x2E0];
+    char pad0[8];
+    Input_CA *f8;
+    char padC[0x2E0 - 0xC];
     GObj2E0_CA *p2E0;
     char pad2E4[4];
     GObj2E8_CA *p2E8;
@@ -312,6 +338,85 @@ void BmxUIPageGameOptions::func_000CB3B0()
     s->unk28->func_001D5AD0();
     s->unk2C->func_001D5AD0();
     s->unk30->func_001D5AD0();
+}
+
+C_000CB480 *C_000CB480::func_000CB480(int a0)
+{
+    int k;
+    u32 *q;
+    func_001BE360(a0);
+    at(0x2BC) = 0;
+    vtbl = (void *)&D_0027E49C;
+    at(0x2C4) = 0x3f000000;
+    at(0x2C0) = 1;
+    q = &at(0x298);
+    for (k = 0; k < 2; k++) {
+        q[k] = 0;
+    }
+    at(0x304) = -1;
+    at(0x308) = -1;
+    at(0x2CC) = 0;
+    at(0x2D8) = 0;
+    at(0x2E4) = 0;
+    at(0x2D0) = 0;
+    at(0x2D4) = 0;
+    at(0x290) = 0;
+    at(0x2DC) = 0;
+    at(0x2E0) = 0;
+    at(0x2F0) = 0;
+    at(0x2EC) = 0;
+    at(0x2F8) = 0;
+    at(0x2FC) = 0;
+    at(0x300) = 0;
+    at(0x280) = 0;
+    at(0x284) = 0;
+    at(0x288) = 0;
+    at(0x28C) = 0;
+    at(0x318) = 0;
+    at(0x31C) = 0;
+    at(0x348) = 0;
+    at(0x350) = 0;
+    at(0x394) = 0;
+    at(0x354) = 0;
+    at(0x358) = 0;
+    at(0x35C) = 0;
+    at(0x360) = 0;
+    at(0x364) = 0;
+    at(0x368) = 0;
+    at(0x374) = 0;
+    at(0x36C) = 0;
+    at(0x370) = 0;
+    at(0x378) = 0;
+    at(0x380) = 0;
+    at(0x37C) = 0;
+    at(0x34C) = 1;
+    for (k = 0; k < 4; k++) {
+        (&at(0x2A0))[k] = 0;
+    }
+    at(0x2B0) = 0;
+    at(0x398) = 0;
+    at(0x39C) = 0;
+    at(0x3A0) = 0;
+    at(0x3A4) = 0;
+    at(0x3A8) = 0;
+    at(0x2C8) = 0;
+    at(0x294) = 0;
+    at(0x384) = 0;
+    at(0x388) = 0;
+    at(0x38C) = 0;
+    at(0x2E8) = 0;
+    at(0x328) = 0;
+    at(0x3AC) = 0;
+    at(0x324) = 0;
+    at(0x32C) = 0;
+    at(0x330) = 0;
+    at(0x334) = 0;
+    at(0x338) = 0;
+    at(0x33C) = 0;
+    at(0x3B0) = 0;
+    at(0x390) = 0;
+    at(0x320) = 1;
+    return this;
 }
 
 void C_000CB650::func_000CB650()
