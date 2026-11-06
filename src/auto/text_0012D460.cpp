@@ -34,7 +34,8 @@ struct Cam_0012D620 {
 
 void func_00011FF0(void *arr, int size, int count, void *ctor);
 void func_00011060();
-double __cdecl fmod(double, double);
+extern "C" double __cdecl fmod(double, double);
+#pragma intrinsic(fmod)
 
 struct C_0012D620 {
     virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4();
@@ -74,3 +75,44 @@ struct C_0012D620 {
     int func_00171230(float dt);
     int func_0012D620(float dt);
 };
+
+int C_0012D620::func_0012D620(float dt)
+{
+    int ret = func_00171230(dt);
+    V4_0012D620 a;
+    V4_0012D620 b;
+    float t;
+
+    if (dt <= D_00275544) {
+        return ret;
+    }
+    if (f404) {
+        Anim_0012D620 *an;
+        float nt;
+        float lim;
+
+        f414->f14 = D_00275460 / dt;
+        an = f414;
+        nt = dt + an->fC;
+        lim = *(float *)(an->f8 + an->f0 * 24 - 0x18) * f4c4;
+        an->fC = (float)fmod((double)nt, (double)lim);
+    }
+    if (f4a4 == 0) {
+        float vv[8];
+        V4_0012D620 tmp;
+        unsigned int i;
+
+        func_00011FF0(vv, 0x10, 2, (void *)func_00011060);
+        vv[0] = D_002A3FD8; vv[1] = D_002A3FDC + f4d8; vv[2] = D_002A3FE0; vv[3] = D_002A3FE4;
+        vv[4] = D_002A3FD8; vv[5] = D_002A3FDC - f4d8; vv[6] = D_002A3FE0; vv[7] = D_002A3FE4;
+        f408->func_00180E00(1, (V4_0012D620 *)&vv[4], 0, 0);
+        for (i = 0; i < f4b4; i++) {
+            f500[i]->func_00197E70(&tmp);
+            if (tmp.z > D_00275544) {
+                f4e4 = tmp.z;
+            }
+        }
+        f4a4 = 1;
+    }
+    return ret;
+}
