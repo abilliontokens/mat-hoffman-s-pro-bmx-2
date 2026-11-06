@@ -69,7 +69,9 @@ struct Obj6F4 {
     int f6ec, f6f0;
 };
 struct Item90 { char pad0[8]; char name[0x78]; int f80; int pad84; int f88; int f8c; };
-struct SelE { int pad0; int f4; char s18[1]; };
+struct SelE { int pad0; int f4; char pad8[0x10]; char s18[1]; };
+struct EList { int cnt; char pad4[0x2fc]; int arr[8]; };
+#define ELIST ((EList *)((int **)((char *)D_002A8490 + 0x2e0))[0])
 struct Sel { char pad0[0x24]; int cnt; SelE **arr; };
 extern "C" int func_001EA426(const char *a, const char *b);
 extern char D_0027AFD8[], D_00277C7C[], D_00277C6C[], D_00277C5C[], D_00277C4C[], D_0027AFCC[], D_0027AFB8[];
