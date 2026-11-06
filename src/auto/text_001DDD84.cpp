@@ -70,12 +70,6 @@ static __forceinline unsigned int xstrlen(const char *str)
     }
     return eos - str - 1;
 }
-
-/* the object's flag byte: bit 0x10 set means it has a search path */
-static __forceinline unsigned char xflag10(unsigned int flags)
-{
-    return flags & 0x10;
-}
 extern "C" void (__stdcall *_imp__RtlInitAnsiString)(S_AnsiString *dst, const char *src);
 extern "C" int (__stdcall *_imp__NtCreateFile)(int *handle, unsigned int access, S_ObjAttr *oa, S_IoStatus *iosb, S_Large *alloc, unsigned int attrs, unsigned int share, unsigned int disp, unsigned int opts);
 extern "C" unsigned int (__stdcall *_imp__RtlNtStatusToDosError)(int status);
