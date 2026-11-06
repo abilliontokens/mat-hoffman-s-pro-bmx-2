@@ -223,6 +223,91 @@ void C_000A1920::func_000A1920(C_000A1920_Arg *a0) {
     }
 }
 
+C_000A1990 *C_000A1990::func_000A1990(void **list, int count)
+{
+    int i;
+    if (f598 == 0) {
+        S_000A1990_Group *p = (S_000A1990_Group *)func_001E8A44(0x24);
+        if (p != 0) {
+            p = p->func_00157600(1);
+        } else {
+            p = 0;
+        }
+        f598 = p;
+        func_001577A0(p, -1);
+    }
+    if (f4A4) f598->func_001577A0(f4A4, -1);
+    if (f38C) f598->func_001577A0(f38C, 2);
+    if (f3EC) f598->func_001577A0(f3EC, -1);
+    if (f558) f598->func_001577A0(f558, 8);
+    if (f3E0) {
+        if (f59C == 0) {
+            S_000A1990_Group *p = (S_000A1990_Group *)func_001E8A44(0x24);
+            if (p != 0) {
+                p = p->func_00157600(1);
+            } else {
+                p = 0;
+            }
+            f59C = p;
+            f598->func_001577A0(p, -1);
+        }
+        for (i = 0; i < f388->f4; i++) {
+            f59C->func_001577A0(f3E0[i], -1);
+        }
+    }
+    if (f3DC) f598->func_001577A0(f3DC, -1);
+    if (f538) f598->func_001577A0(f538, 2);
+    if (f53C) f598->func_001577A0(f53C, 0x1000);
+    if (f540) f598->func_001577A0(f540, 0x1000);
+    if (f548) f598->func_001577A0(f548, 0x1000);
+    if (f54C) f598->func_001577A0(f54C, 0x1000);
+    if (f3E4) f598->func_001577A0(f3E4, -1);
+    if (f3A8) {
+        for (i = 0; i < f340; i++) {
+            f598->func_001577A0(f3A8[i], 2);
+        }
+    }
+    if (f3B0) {
+        for (i = 0; i < f340; i++) {
+            f598->func_001577A0(f3B0[i], 0);
+        }
+    }
+    if (f484) f598->func_001577A0(f484, -1);
+    if (f3AC) f598->func_001577A0(f3AC, -1);
+    if (f4E0) f598->func_001577A0(f4E0, -1);
+    for (i = 0; i < 8; i++) {
+        if (a4E4[i]) f598->func_001577A0(a4E4[i], -1);
+        if (a504[i]) f598->func_001577A0(a504[i], -1);
+    }
+    if (f528) f598->func_001577A0(f528, -1);
+    if (f3C0) f598->func_001577A0(f3C0, 0x402);
+    if (f488) f598->func_001577A0(f488, -1);
+    for (i = 0; i < count; i++) {
+        f598->func_001577A0(list[i], -3);
+    }
+    if (f494 > 0) {
+        for (i = 0; i < f494; i++) {
+            if (a3F4[i]) f598->func_001577A0(a3F4[i], -1);
+            if (a424[i]) f598->func_001577A0(a424[i], -1);
+        }
+    }
+    for (i = 0; i < f490; i++) {
+        f598->func_001577A0(f48C[i], -1);
+    }
+    if (f3B4) f598->func_001577A0(f3B4, -1);
+    if (f4A0) f598->func_001577A0(f4A0, 2);
+    if (f3E8) f598->func_001577A0(f3E8, 0x402);
+    if (f3F0) f598->func_001577A0(f3F0, 0);
+    if (f398) f598->func_001577A0(f398, 2);
+    if (f39C) f598->func_001577A0(f39C, 2);
+    if (f3A0) f598->func_001577A0(f3A0, 0);
+    if (f3A4) f598->func_001577A0(f3A4, 0);
+    if (f530) f598->func_001577A0(f530, 2);
+    if (D_002B9134) f598->func_001577A0(D_002B9134, -1);
+    if (D_002B7E18) f598->func_001577A0(D_002B7E18, -1);
+    return this;
+}
+
 int C_000A1E60::func_000A1E60(void) {
     if (f530 != 0) {
         f530->func_001596C0(f3ac);
