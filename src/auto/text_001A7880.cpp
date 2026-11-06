@@ -7,7 +7,59 @@ extern float D_002AA140;
 extern float D_002AA144;
 extern float D_002AA148;
 extern float D_002AA14C;
-int func_001A7FE0();
+struct V4_001A7FE0 { float x,y,z,w; };
+struct Body_001A7FE0 {
+    void **vtbl;
+    char pad4[0x228];
+    char *f22c;
+};
+struct Contact_001A7FE0 {
+    char pad0[0x60];
+    char *f60;
+    Body_001A7FE0 *f64;
+    unsigned f68;
+};
+struct Model_001A7FE0 {
+    char pad0[0x154];
+    Contact_001A7FE0 *f154;
+    void func_001A95B0(V4_001A7FE0, V4_001A7FE0, V4_001A7FE0, V4_001A7FE0, unsigned, Body_001A7FE0 *, int, int);
+};
+struct Shape_001A7FE0 {
+    int f0, f4;
+    char pad8[0xc];
+    V4_001A7FE0 f14;
+    V4_001A7FE0 f24[1];
+};
+struct Mesh_001A7FE0 {
+    char pad0[0x70];
+    V4_001A7FE0 *f70, *f74, *f78;
+    int f7c, f80, f84;
+    int *f88;
+};
+struct State_001A7FE0 {
+    char pad0[0x50];
+    int f50;
+    void *f54;
+    char pad58[8];
+    Model_001A7FE0 *f60;
+    Body_001A7FE0 *f64;
+    char pad68[0x44];
+    int *fac;
+    char padb0[0xc];
+    float *fbc;
+    V4_001A7FE0 *fc0, *fc4;
+    char padc8[0x2c];
+    int ff4;
+    char padf8[8];
+    float f100;
+    char pad104[0xc];
+    int f110;
+};
+extern unsigned D_002BA154, D_002BA15C, D_002BA160;
+void func_0011F540(V4_001A7FE0 *, V4_001A7FE0, float *);
+char *func_001E9260(const char *, int);
+extern "C" unsigned int __cdecl strlen(const char *);
+void func_001A7FE0(State_001A7FE0 *, Contact_001A7FE0 *);
 
 struct C_00157600 {
     void func_00157600(int param);
