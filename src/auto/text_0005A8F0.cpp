@@ -76,6 +76,7 @@ extern char D_002A48F8[];
 extern char D_00276F28[];
 extern char D_002A47F0[];
 
+extern char D_002781D4[], D_002781C4[], D_002781B8[], D_002781A8[], D_00278198[], D_00278190[], D_00278188[], D_0027817C[], D_00278170[], D_00278164[], D_0027815C[], D_00278150[], D_00278148[], D_00278140[], D_00278138[], D_00278134[], D_0027812C[], D_00278124[], D_00276D7C[], D_0027811C[], D_00278118[], D_0027810C[], D_00278104[], D_002780F8[], D_002780F0[], D_002780E8[], D_002780E4[], D_002780DC[], D_00277830[];
 struct S_VObj {
     virtual void v0();
     virtual void v1();
@@ -210,7 +211,168 @@ struct C_0005B880 {
 };
 
 
-int func_0005A8F0(void) { return 0; }
+int BmxGame::func_0005A8F0()
+{
+    void *mem;
+    S_ModeObj *obj;
+    int r;
+    int n = -1;
+    int m = 0;
+
+    ((S_GGame *)D_002A8490)->f4->fB4->v7("AppStart\\AudioStr.txt");
+    D_002F07B8->func_001D7FB0(1.1f, 1.1f, 1.15f, 0);
+    if (((S_GGame *)D_002A8490)->f4->fB4->func_001CB170("XTalkAndLFE.bin", &n))
+        return 0;
+    func_001ADCC0(D_002A48F8, 0x104, D_00276F28, D_002A47F0);
+    func_0005A480(func_001EA426(name1, "buildmotres") == 0);
+    D_002AA46C->func_00147890("AppStart\\DfltMT");
+    D_002AA470->func_00147890("AppStart\\ScrnMT");
+    mem = func_001E8A44(8);
+    f2EC = mem ? ((S_Obj2EC *)mem)->func_001D5350() : 0;
+    f2EC = f2EC->func_001D3F50();
+    mem = func_001E8A44(0x46c);
+    f2E0 = mem ? ((S_LevelInfo *)mem)->func_0005D6A0() : 0;
+
+    if (!memcmp(name1, "miniui", 7) || !func_001EA426(name1, "buildui") || !func_001EA426(name1, "buildminiui"))
+        f2E0->f324 = 1;
+    else if (!func_001EA426(name1, "buildsplash"))
+        f2E0->f324 = 0;
+
+    if (!func_001EA426(name2, "roadtrip") || !func_001EA426(name2, "build")) {
+        if (!memcmp(name1, "daytona", 8) || !memcmp(name1, "austin", 7) || !memcmp(name1, "sf", 3) || !memcmp(name1, "london", 7))
+            f2E0->f4 = 1;
+        else if (!memcmp(name1, "halfpipe", 9)) {
+            f2E0->f4 = 8;
+            f2D8 = 2;
+        } else
+            f2E0->f4 = 0;
+    } else if (!memcmp(name2, "freeride", 9))
+        f2E0->f4 = 1;
+    else if (!memcmp(name2, "session", 8))
+        f2E0->f4 = 2;
+    else if (!memcmp(name2, "gwar", 5))
+        f2E0->f4 = 3;
+    else if (!memcmp(name2, "horse", 6))
+        f2E0->f4 = 4;
+    else if (!memcmp(name2, "tag", 4))
+        f2E0->f4 = 5;
+    else if (!memcmp(name2, "hunt", 5))
+        f2E0->f4 = 6;
+    else if (!memcmp(name2, "push", 5))
+        f2E0->f4 = 7;
+    else if (!memcmp(name2, "vert", 5))
+        f2E0->f4 = 8;
+    else if (!memcmp(name2, "verthot", 8))
+        f2E0->f4 = 9;
+    else if (!memcmp(name2, "fps", 4))
+        f2E0->f4 = 10;
+    else if (!memcmp(name2, "fpsbuild", 9) || !memcmp(name2, "editbuild", 10)) {
+        m = 14;
+        r = m < 5 ? m : 5;
+        func_001E8920(name2, "build", r);
+        name2[r] = 0;
+        f2E0->f4 = 10;
+    } else if (!memcmp(name2, "edit", 5))
+        f2E0->f4 = 11;
+
+    f2E0->f0 = f2D8;
+    if (f2E0->f0 == 1)
+        f2E0->f8 = 0;
+    else
+        f2E0->f8 = f2E0->fC;
+    if (f2E0->f4 == 4 || f2E0->f4 == 9)
+        f2E0->f8 = 0;
+
+    if (f2E0->f4 == 11) {
+        if (!memcmp(name1, "daytona", 8) || !memcmp(name1, "austin", 7) || !memcmp(name1, "sf", 3)) {
+            strcpy(f2E0->f4C, name1);
+            if (!memcmp(name1, "daytona", 8))
+                f2E0->f48 = 8;
+            if (!memcmp(name1, "austin", 7))
+                f2E0->f48 = 10;
+            if (!memcmp(name1, "sf", 3))
+                f2E0->f48 = 9;
+        }
+    }
+    if (f2E0->f4 == 10) {
+        strcpy(f2E0->f4C, name1);
+        f2E0->f48 = 7;
+    }
+
+    mem = func_001E8A44(0x1e0);
+    f2F0 = mem ? ((S_Obj2F0 *)mem)->func_001A58D0(1) : 0;
+    f2F0->v10();
+    if (f2E4 != 0) {
+        if (f2F0 != 0)
+            f14->func_001577A0(f2F0, -1);
+        ((S_LevelObj *)D_002A8490)->f2F0->func_0001EDC0(8);
+        ((S_LevelObj *)D_002A8490)->f2F0->fB8 = 1;
+        D_002EFDB8->f30 = 1;
+        return 1;
+    }
+
+    f2E0->arr300[0] = 0;
+    f2E0->arr300[1] = 1;
+    f2E0->arr300[2] = 2;
+    f2E0->arr300[3] = 3;
+    f2E0->arr300[4] = 4;
+    f2E0->arr300[5] = 5;
+    f2E0->arr300[6] = 6;
+    f2E0->arr300[7] = 7;
+    switch (f2E0->f4) {
+    case 0:
+        mem = func_001E8A44(0x360);
+        obj = mem ? ((S_ModeObj *)mem)->func_000511A0(1) : 0;
+        break;
+    case 1:
+        mem = func_001E8A44(0x2a4);
+        obj = mem ? ((S_ModeObj *)mem)->func_0004BAB0(1) : 0;
+        break;
+    case 2:
+        mem = func_001E8A44(0x28c);
+        obj = mem ? ((S_ModeObj *)mem)->func_000536A0(1) : 0;
+        break;
+    case 3:
+        mem = func_001E8A44(0x1254);
+        obj = mem ? ((S_ModeObj *)mem)->func_0004C610(1) : 0;
+        break;
+    case 4:
+        mem = func_001E8A44(0x788);
+        obj = mem ? ((S_ModeObj *)mem)->func_0004D930(1) : 0;
+        break;
+    case 5:
+        mem = func_001E8A44(0x2ec);
+        obj = mem ? ((S_ModeObj *)mem)->func_00053D20(1) : 0;
+        break;
+    case 6:
+        mem = func_001E8A44(0xd78);
+        obj = mem ? ((S_ModeObj *)mem)->func_0004ECC0(1) : 0;
+        break;
+    case 7:
+        mem = func_001E8A44(0x29c);
+        obj = mem ? ((S_ModeObj *)mem)->func_00050A10(1) : 0;
+        break;
+    case 8:
+    case 9:
+        mem = func_001E8A44(0x2e4);
+        obj = mem ? ((S_ModeObj *)mem)->func_0004F220(1) : 0;
+        break;
+    case 10:
+        mem = func_001E8A44(0x2ec);
+        obj = mem ? ((S_ModeObj *)mem)->func_00049C00(1) : 0;
+        break;
+    case 11:
+        mem = func_001E8A44(0x94c);
+        obj = mem ? ((S_ModeObj *)mem)->func_000378D0(1) : 0;
+        break;
+    default:
+        obj = 0;
+        break;
+    }
+    r = obj ? obj->v10() : 0;
+    f2A4 = f14->func_001577A0((void *)r, -1);
+    return 1;
+}
 
 void C_0005B220::func_0005B220(void)
 {
