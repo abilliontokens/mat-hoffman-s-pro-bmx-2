@@ -332,6 +332,196 @@ void C_000E4AB0::func_000E4AB0()
     func_001BE3F0();
 }
 
+void C_000E4BC0::func_000E4BC0()
+{
+    S_000E4BC0_Mgr *mgr = f124;
+    int i;
+    int j;
+    int t;
+    int v;
+
+    D_002A8490->f2EC->func_0018C160((int)&D_002786A0);
+    for (i = 0; i < 5; i++) {
+        a578[i]->func_001B1980();
+    }
+    f344->func_001B1980();
+    f348->func_001B1980();
+    f340->func_001B1980();
+    v = mgr->f264;
+    if (v != 0 && v != 1) {
+        if (v == 2) {
+            f280 = 1;
+        } else if (v == 3) {
+            f280 = 2;
+        } else if (v == 4) {
+            f280 = 3;
+        } else if (v == 5) {
+            f280 = 4;
+        } else if (v == 6) {
+            f280 = 5;
+        } else if (v == 7) {
+            f280 = 6;
+        } else if (v == 8) {
+            f280 = 7;
+        }
+    } else {
+        f280 = 0;
+    }
+    f284 = D_002A8490->f2E0->a190[f280] + 1;
+    f2A0 = 0;
+    f2A4 = 0;
+    f29C = 0;
+    f2AC = 0;
+    for (i = 0; i < 35; i++) {
+        a2B4[i] = 0;
+        a6F0[i] = 0xff;
+    }
+    f47C = 0;
+    f480 = 0;
+    f484 = 0;
+    f468 = 0;
+    f498 = 0;
+    f494 = 0;
+    f49C = 0;
+    f490 = 0;
+    f2A8 = 0;
+    f78C = 0;
+    f4D8 = 0;
+    f788 = 0;
+    f4DC = 0;
+    f4E0 = 0;
+    f4E8 = 0;
+    f4E4 = 0;
+    f4EC = 0;
+    f4A4 = 0;
+    f4A8 = 0;
+    f4AC = 0;
+    f4B0 = 0;
+    f4B4 = 0;
+    f4B8 = 0;
+    f50C = 0;
+    f4C8 = 0;
+    f4CC = 0;
+    f4C4 = 0;
+    switch (f284) {
+    case 1:
+        mgr->func_000BBF90(D_0027DB68);
+        break;
+    case 2:
+        mgr->func_000BBF90(D_0027E914);
+        break;
+    case 3:
+        mgr->func_000BBF90(D_0027E904);
+        break;
+    case 4:
+        mgr->func_000BBF90(D_0027E8F0);
+        break;
+    case 5:
+        mgr->func_000BBF90(D_0027E8E4);
+        break;
+    case 6:
+        mgr->func_000BBF90(D_0027E8C8);
+        break;
+    case 7:
+        mgr->func_000BBF90(D_0027E8B0);
+        break;
+    case 8:
+        mgr->func_000BBF90(D_0027E8A0);
+        break;
+    case 9:
+        mgr->func_000BBF90(D_0027E888);
+        break;
+    case 10:
+        mgr->func_000BBF90(D_0027E878);
+        break;
+    case 11:
+        mgr->func_000BBF90(D_0027E85C);
+        break;
+    case 12:
+        mgr->func_000BBF90(D_0027E83C);
+        break;
+    case 13:
+        mgr->func_000BBF90(D_0027E824);
+        break;
+    case 15:
+        mgr->func_000BBF90(D_0027E7E0);
+        break;
+    case 14:
+        mgr->func_000BBF90(D_0027E7F8);
+        break;
+    case 16:
+        mgr->func_000BBF90(D_0027E7C8);
+        break;
+    }
+    a3E8[mgr->f284] = mgr->func_000BC0B0();
+    a428[mgr->f284] = mgr->func_000BC1C0();
+    switch (mgr->f284) {
+    case 0:
+        t = 0;
+        break;
+    case 2:
+        t = 1;
+        break;
+    case 4:
+        t = 2;
+        break;
+    case 5:
+        t = 3;
+        break;
+    case 7:
+        t = 4;
+        break;
+    case 9:
+        t = 5;
+        break;
+    case 10:
+        t = 6;
+        break;
+    case 11:
+        t = 7;
+        break;
+    case 13:
+        t = 8;
+        break;
+    case 14:
+        t = 9;
+        break;
+    default:
+        goto tail;
+    }
+    for (j = 0; j < 8; j++) {
+        if (D_002A8490->f2E0->f2C0->func_0005C020(t)->f638[j] != 0) {
+            D_002A8490->f2E0->f2C0->func_0005C1B0(mgr->f284, j);
+        }
+    }
+    for (j = 0; j < 3; j++) {
+        if (D_002A8490->f2E0->f2C0->func_0005C020(t)->f62C[j] != 0) {
+            D_002A8490->f2E0->f2C0->func_0005C170(mgr->f284, j);
+        }
+    }
+tail:
+    f4D0 = mgr->f28C;
+    f4D4 = mgr->f288;
+    D_002B91AC->f34->func_0005E840(D_002A8490->f2E8->f4->f950);
+    D_002B91AC->func_000BF860(0, 0x1eb, 0x184, 0);
+    D_002B91AC->f38->func_0005E840(D_002A8490->f2E8->f4->f800);
+    D_002B91AC->func_000BF860(1, 0x17b, 0x184, 0);
+    D_002B91AC->f3C->func_0005E840(D_002A8490->f2E8->f4->f838);
+    D_002B91AC->func_000BF860(2, 0xc2, 0x184, 0);
+    D_002B91AC->f40->func_0005E840(D_002A8490->f2E8->f4->fF50);
+    f508 = 0;
+    f2AC = 0;
+    for (i = 0; i < 35; i++) {
+        a5A0[i]->func_001B1980();
+        a62C[i]->func_001B1980();
+        a2B4[i] = 0;
+        a358[i] = 0;
+        a6F0[i] = 0xff;
+    }
+    f500->func_001B1980();
+    f50C = 0;
+}
+
 int __stdcall func_000E5150(int index)
 {
     C_000E5150_Mgr *mgr = D_002A8490->f2E0;
