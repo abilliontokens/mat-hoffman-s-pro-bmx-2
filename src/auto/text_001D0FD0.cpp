@@ -209,14 +209,20 @@ struct C_001D1B70 {
 
 
 struct S_15D0_Btn { int mode; float val; int f8; int fc; int f10; int f14; };
+struct S_15D0_Rumble { unsigned short left; unsigned short right; };
 struct S_15D0_Pad {
     char pad0[8];
     int f8;
     char padC[0x314];
     int f320;
-    S_15D0_Btn analog[8];
-    S_15D0_Btn digital[8];
-    char pad4A4[0x180];
+    union {
+        S_15D0_Btn btn[32];
+        struct {
+            S_15D0_Btn analog[8];
+            S_15D0_Btn digital[8];
+            char pad4A4[0x180];
+        };
+    };
     float axis[6];
     char pad63C[0x7C];
     void *f6B8;
@@ -272,7 +278,6 @@ int XboxGame::func_001D0FD0(int param_1)
 int XboxGame::func_001D1060(void)
 {
     unsigned int i;
-    int *p;
 
     func_001FD890(0);
     func_001FD020(&D_00040310, 0);
@@ -291,11 +296,11 @@ int XboxGame::func_001D1060(void)
     D_0020C720 = 2;
     D_0020C728 = 2;
     func_001FD020(&D_0004037C, 0x1d01);
-    for (i = 0, p = &D_0020C6E4; i < *(unsigned int *)((char *)D_002F07B8 + 0x108); i++, p += 0x20) {
+    for (i = 0; i < *(unsigned int *)((char *)D_002F07B8 + 0x108); i++) {
         D_0020C6DC |= 1 << i;
-        p[-1] = 3;
-        p[0] = 3;
-        p[1] = 3;
+        ((volatile int *)&D_0020C6E4)[i * 0x20 - 1] = 3;
+        ((volatile int *)&D_0020C6E4)[i * 0x20] = 3;
+        ((volatile int *)&D_0020C6E4)[i * 0x20 + 1] = 3;
         func_00200390(i, 0);
     }
     func_001FD020(&D_00040354, 0x203);
