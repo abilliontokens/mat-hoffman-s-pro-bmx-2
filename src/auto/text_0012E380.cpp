@@ -58,6 +58,10 @@ struct S_0012EF60_Ref {
 };
 
 /* CarProceduralExtended vtable, up to slot 47 (offset 0xbc) */
+struct S_0012F000_Tail {
+    int a18, a19, a20;
+};
+
 struct C_0012EF30_Vtbl {
     virtual void v0();
     virtual void v1();
@@ -233,6 +237,7 @@ void C_0012EF30::func_0012EF60()
     func_0012CCA0();
 }
 
+extern "C" int strcmp(const char *a, const char *b);
 C_0012EF30 *C_0012EF30::func_0012F000(int a1, int a2, int a3, int a4, char *name, int a6, int a7,
                                    int a8, int a9, int a10, int a11, int a12, int a13, int a14,
                                    int a15, int a16, int a17, int a18, int a19, int a20)
@@ -242,16 +247,15 @@ C_0012EF30 *C_0012EF30::func_0012F000(int a1, int a2, int a3, int a4, char *name
         f518->f14 = a18;
         f518->f10 = 16.666667f;
     }
-    if (memcmp(name, D_002764F0, 5) != 0) {
+    if (strcmp(name, "none") != 0) {
         S_0012EF60_Ref *old = f518;
         ((C_0012EF30_Vtbl *)this)->v47(name, (char *)f400 + 0x28);
         f51c = f518;
         f518 = old;
         if (f51c) {
             f51c->f14 = a19;
-            f51c->f10 = 16.666667f;
-            int t = a20;
-            f514 = t;
+            *(int *)&f51c->f10 = 0x41855556;
+            f514 = a20;
         }
     }
     return this;
