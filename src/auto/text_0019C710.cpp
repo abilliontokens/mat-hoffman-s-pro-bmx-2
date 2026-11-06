@@ -52,6 +52,53 @@ struct VObj_0019C710 {
     virtual void v18(); virtual void v19(); virtual void v1a(); virtual void v1b();
 };
 
+/* the engine's file wrapper (D_002BEAAC): read(file, dst, size, count) */
+struct S_19CCE0_File {
+    void func_0013C8A0(int file, void *dst, int size, int count);
+};
+extern S_19CCE0_File *D_002BEAAC;
+void __stdcall func_00011FF0(void *p, int stride, int count, void (*ctor)());
+void func_0019B6F0(void);
+void D_00021290(void);
+
+/* 3 x u16 (the engine's 16-bit rgb), zeroed by its constructor */
+struct S_19CCE0_Rgb16 {
+    unsigned short f0, f2, f4;
+    S_19CCE0_Rgb16() { f4 = 0; f2 = 0; f0 = 0; }
+};
+/* the same without constructor */
+struct S_19CCE0_Raw16 {
+    unsigned short f0, f2, f4;
+};
+struct S_19CCE0_Vec3 {
+    float x, y, z;
+};
+struct S_19CCE0_V3z {
+    float x, y, z;
+    S_19CCE0_V3z() { z = 0; y = 0; x = 0; }
+    static void *operator new[](unsigned int n) { return func_001E8A44(n); }
+};
+struct S_19CCE0_Color {
+    short r, g, b;
+    S_19CCE0_Color *func_0001AF00(const void *v);
+};
+/* 0x24-byte record of the second table */
+struct S_19CCE0_Elem {
+    int f0;
+    float len;
+    unsigned short f8, fA;
+    S_19CCE0_V3z a;
+    S_19CCE0_V3z b;
+};
+/* 0x14-byte record of the third table */
+struct S_19CCE0_Rec {
+    unsigned short f0, f2, f4;
+    unsigned short pad6;
+    int f8;
+    S_19CCE0_Color col;
+    unsigned short pad12;
+};
+
 struct SoultreeCollisionObject {
     int vtbl;
     char pad_0[0x50];
@@ -61,16 +108,26 @@ struct SoultreeCollisionObject {
     unsigned char unkA6;
     unsigned char unkA7;
     char pad_A8[0xb0 - 0xa8];
-    char unkB0[0x100];
-    char unk1B0[0xc];
+    char unkB0[0x40];
+    float unkF0[4][4];
+    char pad_130[0x80];
+    union {
+        char unk1B0[0xc];
+        struct {
+            void *unk1B0p;
+            void *unk1B4p;
+            int unk1B8;
+        };
+    };
     unsigned short unk1BC;
     char pad_1BE[0x1c4 - 0x1be];
     int unk1C4;
     int unk1C8;
-    short unk1CC;
+    unsigned short unk1CC;
     short unk1CE;
     float unk1D0;
     char *unk1D4;
+    void func_0019CCE0(int file);
     void func_0019C710(float *src, int a2, short a3, int n);
     void func_0019CB00(void);
     void func_0019CCA0(int param_1);
