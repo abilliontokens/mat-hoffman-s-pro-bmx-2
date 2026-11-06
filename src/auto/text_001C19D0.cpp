@@ -354,17 +354,12 @@ void C_001C2290::func_001C2290(void) {
     unk2C = 0;
 }
 
-undefined4 C_001C22A0::func_001C22A0(byte param_1)
-{
-  int func_001BFE80(...);
-  int func_001E891B(...);
-  undefined4 in_ECX = (undefined4)this;
-  
-  func_001BFE80();
-  if ((param_1 & 1) != 0) {
-    func_001E891B(in_ECX);
-  }
-  return in_ECX;
+void *C_001C22A0::func_001C22A0(unsigned int flags) {
+    func_001BFE80();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
 }
 
 extern "C" void * __cdecl memcpy(void *,const void *,unsigned int);
