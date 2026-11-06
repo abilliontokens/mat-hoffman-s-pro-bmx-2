@@ -339,6 +339,7 @@ struct C_001B08B0 {
     S_001B0230_Owned *unk20;
     void *func_001B08B0(unsigned int flags);
     C_001B08B0 *func_001B08F0(C_001B08B0 *src);
+    C_001B08B0 *func_001B08F0(const C_001B08B0 &src);
     void func_001B0970(void);
 };
 
@@ -352,13 +353,11 @@ int C_001AFEC0::func_001AFEC0()
         return 1;
     }
     if (cb == 0 || cb(user, this) != 0) {
-        i = 0;
-        do {
-            if (items[i]) {
-                items[i]->func_001AF530(i);
+        for (i = 0; i < 4; i++) {
+            if (Item(i)) {
+                Item(i)->func_001AF530(i);
             }
-            i++;
-        } while (i < 4);
+        }
         if (unk1C) {
             unk1C->vf2();
         }
