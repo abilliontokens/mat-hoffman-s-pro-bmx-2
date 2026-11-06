@@ -289,13 +289,12 @@ void C_00135A80::func_00135A80(int count, int n1, int *p1, int n2, int *p2, int 
 
 int func_00135C70(int param_1, int param_2, int *param_3, int param_4)
 {
-    int __stdcall func_0015AC20(int);
     if ((*param_3 == param_1) && (param_3[1] == param_2)) {
         if (param_2 != 0) {
             return 1;
         }
-        if (*(int *)(*(int *)((char *)D_002A8490 + 8) + 0x38) != 0) {
-            if (func_0015AC20(param_4) != 0) {
+        if (D_002A8490->f8->f38 != 0) {
+            if (D_002A8490->f8->f38->func_0015AC20(param_4) != 0) {
                 return 1;
             }
         }
