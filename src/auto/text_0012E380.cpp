@@ -58,10 +58,6 @@ struct S_0012EF60_Ref {
 };
 
 /* CarProceduralExtended vtable, up to slot 47 (offset 0xbc) */
-struct S_0012F000_Tail {
-    int a18, a19, a20;
-};
-
 struct C_0012EF30_Vtbl {
     virtual void v0();
     virtual void v1();
