@@ -59,6 +59,30 @@ char *func_001E8920(char *dst, const char *src, int n);
 char *func_001E8AC0(const char *s, int c);
 int func_001EA426(const char *a, const char *b);
 
+struct S_000D1AE0_Str12 { char c[12]; };
+struct S_000D1AE0_Str11 { char c[11]; };
+struct S_000D1AE0_Str14 { char c[14]; };
+struct S_000D1AE0_Str10 { char c[10]; };
+struct S_000D1AE0_Str17 { char c[17]; };
+struct S_000D1AE0_Str16 { char c[16]; };
+struct S_000D1AE0_Str19 { char c[19]; };
+struct S_000D1AE0_Str15 { char c[15]; };
+extern S_000D1AE0_Str12 D_0027EE00;
+extern S_000D1AE0_Str11 D_0027EDF4;
+extern S_000D1AE0_Str14 D_0027EDE4;
+extern S_000D1AE0_Str12 D_0027EDD8;
+extern S_000D1AE0_Str14 D_0027EDC8;
+extern S_000D1AE0_Str12 D_0027EDBC;
+extern S_000D1AE0_Str10 D_0027EDB0;
+extern S_000D1AE0_Str10 D_0027EDA4;
+extern S_000D1AE0_Str17 D_0027ED90;
+extern S_000D1AE0_Str16 D_0027ED80;
+extern S_000D1AE0_Str19 D_0027ED6C;
+extern S_000D1AE0_Str17 D_0027ED58;
+extern S_000D1AE0_Str19 D_0027ED44;
+extern S_000D1AE0_Str17 D_0027ED30;
+extern S_000D1AE0_Str15 D_0027ED20;
+extern S_000D1AE0_Str15 D_0027ED10;
 /* BmxUIPageLevelSelection */
 struct C_000D2080 {
     char pad0[0x124];
@@ -228,10 +252,12 @@ void C_000D2080::func_000D2080(void)
 {
     char buf[0x104];
     S_000D2080_Mgr *mgr = f124;
-    int i;
+    int off;
+    int poff;
     int j;
-    volatile int t[2];
     volatile int len;
+    volatile int lim;
+    volatile int res;
 
     *(S_000D2080_Str23 *)names[0] = D_0027EEDC;
     *(S_000D2080_Str21 *)names[1] = D_0027EEC4;
@@ -243,30 +269,29 @@ void C_000D2080::func_000D2080(void)
     *(S_000D2080_Str22 *)names[7] = D_0027EE38;
     *(S_000D2080_Str21 *)names[8] = D_0027EE20;
     *(S_000D2080_Str18 *)names[9] = D_0027EE0C;
-    for (i = 0; i < 10; i++) {
-        for (j = 0; j < (*mgr->f150->f3A8)->count; (*(volatile int *)&j)++) {
+    poff = 0x2048;
+    for (off = 0x474; off < 0xE9C; off += 0x104) {
+        for (j = 0; j < (*mgr->f150->f3A8)->count; j++) {
             S_000D2080_Entry *e = (*mgr->f150->f3A8)->items[j];
             if (e != 0 && e->f4 == 1 && e->f8 != 0) {
                 len = strlen(e->f8->name);
-                t[0] = 0x103;
-                int a = t[0];
+                lim = 0x103;
+                int a = lim;
                 int b = len;
-                if (a > b) {
-                    a = b;
-                }
-                t[1] = a;
-                int n = t[1];
+                res = b < a ? b : a;
+                int n = res;
                 func_001E8920(buf, (*(S_000D2080_Item * volatile *)&e->f8)->name, n);
                 buf[n] = 0;
                 char *dot = func_001E8AC0(buf, '.');
                 if (dot != 0) {
                     memset(dot, 0, strlen(dot));
                 }
-                if (func_001EA426(buf, names[i]) == 0) {
-                    ptrs[i] = e->f8;
+                if (func_001EA426(buf, (char *)this + off) == 0) {
+                    *(S_000D2080_Item **)((char *)this + poff) = e->f8;
                 }
             }
         }
+        poff += 4;
     }
 }
 
