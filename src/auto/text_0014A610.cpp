@@ -1,6 +1,7 @@
 /* 15 functions from 0x0014A610 to 0x0014B260, found by Ghidra. */
 #include "common.h"
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 
 struct Vec4 {
     float x;
@@ -434,10 +435,10 @@ void *C_0014AA40::func_0014AA40(int flags) {
 Vec4 *func_0014AA70(Vec4 *out, Vec4 *a, Vec4 *b)
 {
     Vec4 t;
-    _mm_store_ss(&t.x, _mm_max_ss(_mm_set_ss(a->x), _mm_set_ss(b->x)));
-    _mm_store_ss(&t.y, _mm_max_ss(_mm_set_ss(a->y), _mm_set_ss(b->y)));
-    _mm_store_ss(&t.z, _mm_max_ss(_mm_set_ss(a->z), _mm_set_ss(b->z)));
     t.w = 1.0f;
+    t.x = AsmMaxF(a->x, b->x);
+    t.y = AsmMaxF(a->y, b->y);
+    t.z = AsmMaxF(a->z, b->z);
     *out = t;
     return out;
 }
