@@ -25,6 +25,19 @@ __declspec(align(16)) struct S_ADFD0_Mat {
     }
 };
 
+static __forceinline void Identity_001ADFD0(S_ADFD0_Mat *&p)
+{
+    S_ADFD0_Mat *q = p;
+    _mm_store_ps(&q->m[0], _mm_setzero_ps());
+    _mm_store_ps(&q->m[4], _mm_setzero_ps());
+    _mm_store_ps(&q->m[8], _mm_setzero_ps());
+    _mm_store_ps(&q->m[12], _mm_setzero_ps());
+    q->m[0] = 1.0f;
+    q->m[5] = 1.0f;
+    q->m[10] = 1.0f;
+    q->m[15] = 1.0f;
+}
+
 struct S_ADFD0_Tex {
     char pad0[8];
     int f8;
@@ -369,8 +382,9 @@ struct C_001AE810 {
 };
 
 
-void C_001ADFD0::func_001ADFD0(float *src, S_ADFD0_Tex *tex, int *rect, int a4, int a5, int a6)
+void C_001ADFD0::func_001ADFD0(float *srcf, S_ADFD0_Tex *tex, int *rect, int a4, int a5, int a6)
 {
+    int *src = (int *)srcf;
     S_ADFD0_Mat mat;
     S_ADFD0_Mat *pm = &mat;
     S_ADFD0_RootX *g = (S_ADFD0_RootX *)D_002EFDB8;
@@ -397,10 +411,10 @@ void C_001ADFD0::func_001ADFD0(float *src, S_ADFD0_Tex *tex, int *rect, int a4, 
         w = tex->fC;
     }
     if (src != 0) {
-        s0 = (int)(src[0] * D_002AA2E8);
-        s1 = (int)(src[1] * D_002AA2EC);
-        s2 = (int)(src[2] * D_002AA2E8);
-        s3 = (int)(src[3] * D_002AA2EC);
+        s0 = (int)((float)src[0] * D_002AA2E8);
+        s1 = (int)((float)src[1] * D_002AA2EC);
+        s2 = (int)((float)src[2] * D_002AA2E8);
+        s3 = (int)((float)src[3] * D_002AA2EC);
     } else {
         s0 = 0;
         s1 = 0;
@@ -464,26 +478,26 @@ void C_001ADFD0::func_001ADFD0(float *src, S_ADFD0_Tex *tex, int *rect, int a4, 
     cg = f25;
     cb = f26;
     p = (S_ADFD0_Vtx *)func_001FF410(f28, 0);
-    p[0].x = (int)fx;
-    p[0].y = (int)fw;
+    p[0].x = fx;
+    p[0].y = fw;
     p[0].z = f68;
     p[0].color = MakeColor_001AEBD0(f64, cb, cg, cr);
     p[0].u = u0;
     p[0].v = v1;
-    p[1].x = (int)fx;
-    p[1].y = (int)fy;
+    p[1].x = fx;
+    p[1].y = fy;
     p[1].z = f68;
     p[1].color = MakeColor_001AEBD0(f64, cb, cg, cr);
     p[1].u = u0;
     p[1].v = v0;
-    p[2].x = (int)fz;
-    p[2].y = (int)fw;
+    p[2].x = fz;
+    p[2].y = fw;
     p[2].z = f68;
     p[2].color = MakeColor_001AEBD0(f64, cb, cg, cr);
     p[2].u = u1;
     p[2].v = v1;
-    p[3].x = (int)fz;
-    p[3].y = (int)fy;
+    p[3].x = fz;
+    p[3].y = fy;
     p[3].z = f68;
     p[3].color = MakeColor_001AEBD0(f64, cb, cg, cr);
     p[3].u = u1;
