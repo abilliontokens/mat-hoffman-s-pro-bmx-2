@@ -22,7 +22,7 @@ extern int D_00010130;
 extern int D_002F6BC0;
 extern int D_002F6BB4;
 extern "C" long __stdcall ExQueryNonVolatileSetting(u32 valueIndex, u32 *type, void *value, u32 valueLength, u32 *resultLength);
-extern u8 D_002F41C8;
+extern u32 D_002F41C8;
 extern char D_0028FD54;
 
 extern "C" unsigned long __readfsdword(unsigned long Offset);
@@ -377,6 +377,9 @@ done:
 }
 #pragma optimize("", on)
 static __forceinline void ClearBits_1DED66(u8 *p, unsigned m) { *p &= ~m; }
+#pragma optimize("gsy", on)
+#pragma optimize("t", off)
+#pragma optimize("y", off)
 void __stdcall func_001DED66(char c)
 {
     char buf[260];
@@ -388,11 +391,11 @@ void __stdcall func_001DED66(char c)
     RtlInitAnsiString(&name, buf);
     status = IoDeleteSymbolicLink(&name);
     if (c == 'X' && status >= 0) {
-        D_002F41C8 &= (status < 0);
+        D_002F41C8 &= 0;
     }
     RtlNtStatusToDosError(status);
 }
-
+#pragma optimize("", on)
 struct S_001DEDC3_Out {
     char pad0[0x2c];
     signed char cFileName[260];
@@ -401,6 +404,7 @@ struct S_001DEDC3_Out {
 #pragma optimize("gsy", on)
 void __stdcall func_001DEDC3(void *info, char *out)
 {
+    S_001DEDC3_Out *w = (S_001DEDC3_Out *)out;
     *(u32 *)((char *)out) = *(u32 *)((char *)info + 0x38);
     *(u32 *)((char *)out + 4) = *(u32 *)((char *)info + 0x8);
     *(u32 *)((char *)out + 8) = *(u32 *)((char *)info + 0xc);
@@ -411,8 +415,8 @@ void __stdcall func_001DEDC3(void *info, char *out)
     *(u32 *)((char *)out + 0x1c) = *(u32 *)((char *)info + 0x2c);
     *(u32 *)((char *)out + 0x20) = *(u32 *)((char *)info + 0x28);
     memcpy(out + 0x2c, (char *)info + 0x40, *(u32 *)((char *)info + 0x3c));
-    out[0x2c + *(u32 *)((char *)info + 0x3c)] &= 0u;
-    out[0x130] &= 0u;
+    w->cFileName[*(u32 *)((char *)info + 0x3c)] &= 0;
+    w->cAlternateFileName[0] &= 0;
 }
 int __stdcall func_001DEE2F(const char *path, char *out)
 {
