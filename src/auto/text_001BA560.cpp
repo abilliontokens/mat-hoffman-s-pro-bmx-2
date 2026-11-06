@@ -1,6 +1,10 @@
 /* 18 functions from 0x001BA560 to 0x001BB4F0, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+#define C_001BBAA0_DEFINED
+struct C_001BBAA0 {
+    void func_001BBAA0(void *owner, void *fn);
+};
 struct S_9C0_Stream {
     int func_00169710(const char *name);
     void func_00168C20(const char *key, int def, int *dst);
@@ -365,19 +369,18 @@ int C_001BA560::func_001BA560(S_001BA560_arg *arg1, int arg2)
     int r = arg1->v96(&f10c);
     S_001BA560_Node *n;
 
-    if (arg2 != 0) {
+    if (arg2)
         func_001BBAA0(this, (void *)&func_001BA540);
-    }
-    if (r == 0)
+    if (!r)
         return 0;
     n = (S_001BA560_Node *)func_001E8A44(8);
-    if (n != 0) {
+    if (n) {
         n->f0 = f28c;
         n->f4 = r;
-        f288 = n;
-        return 1;
+    } else {
+        n = 0;
     }
-    f288 = 0;
+    f288 = n;
     return 1;
 }
 
