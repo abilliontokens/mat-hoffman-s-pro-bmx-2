@@ -59,11 +59,6 @@ struct S_00129110_Node {
     float max[3];
 };
 
-struct S_00129110_Vec4 {
-    S_001293F0_Vec3 v;
-    float w;
-};
-
 struct C_002B92A0 {
     void func_000264C0(int param_1);
 };
