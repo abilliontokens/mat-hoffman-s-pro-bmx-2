@@ -89,18 +89,6 @@ static __forceinline V4_001A7FE0 xform2_001A7FE0(const V4_001A7FE0 &v, float *m,
     func_0011F540(&r, v, m);
     return r;
 }
-struct Seg_001A7FE0 {
-    V4_001A7FE0 b, a;
-    __forceinline Seg_001A7FE0() : b(0), a(0) {}
-};
-static __forceinline Seg_001A7FE0 xform3_001A7FE0(V4_001A7FE0 v, float *m)
-{
-    Seg_001A7FE0 r;
-    r.a.Clear();
-    r.b.Clear();
-    func_0011F540(&r.a, v, m);
-    return r;
-}
 char *func_001E9260(const char *, int);
 extern "C" unsigned int __cdecl strlen(const char *);
 void func_001A7FE0(State_001A7FE0 *, Contact_001A7FE0 *);
