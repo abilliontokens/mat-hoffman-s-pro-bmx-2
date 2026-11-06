@@ -55,6 +55,11 @@ struct S_0002FA80_Entry {
 
     int func_0002FFD0(const char *subName);
     void func_0002FE10(C_00168280 *stream, int index);
+    S_0002FA80_Sub *CurSub30120(void)
+    {
+        int idx = curSub;
+        return &subs[idx];
+    }
 };
 
 struct C_000B5870 {
@@ -388,9 +393,11 @@ static __forceinline S_0002FA80_Sub *CurSub_00030120(C_0002FA80 *m)
 bool C_0002FA80::func_00030120(const char *subName)
 {
     int func_001EA426(...);
-    C_0002FA80 *self = this;
-    S_0002FA80_Entry *e = &self->entries[self->cur];
-    S_0002FA80_Sub *s = &e->subs[e->curSub];
+    int c = cur;
+    S_0002FA80_Entry *ents = *(S_0002FA80_Entry *volatile *)&entries;
+    S_0002FA80_Entry *e = ents + c;
+    int idx = e->curSub;
+    S_0002FA80_Sub *s = &e->subs[idx];
 
     return func_001EA426(subName, s->name) == 0;
 }
