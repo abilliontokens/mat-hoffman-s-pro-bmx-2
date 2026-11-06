@@ -24,6 +24,8 @@ struct C_000725B0 {
     int fAC, fB0, fB4, fB8, fBC, fC0, fC4, fC8;
     int func_000725B0(int a, int b);
     int func_00157BF0(int, int);
+    void func_00072280();
+    void func_000721D0();
 };
 struct C_00072E50 {
     void func_00072E50(void);
@@ -202,9 +204,8 @@ void C_00072E50::func_00072E50(void)
 }
 
 C_00072C90* C_00072C90::func_00072E70(int arg) {
-Font_72* font2;Font_72* font;Font_72** r;
-r=D_002A8490->lookup->func_0018C160((int)D_00278678);font=r?*r:0;
-r=D_002A8490->lookup->func_0018C160((int)D_00278690);font2=r?*r:0;f64=arg;
+Font_72** r=D_002A8490->lookup->func_0018C160((int)D_00278678);Font_72* font=r?*r:0;
+r=D_002A8490->lookup->func_0018C160((int)D_00278690);Font_72* font2=r?*r:0;f64=arg;
 Res_72C90* t=(Res_72C90*)func_001E8A44(0x60);f68=t?t->func_001D5E90():0;
 f68->func_001D6190(font,*(int*)(D_002A8490->data->p+0xf20),(int)D_00278678);f68->func_0005E840(*(int*)(D_002A8490->data->p+0xf20));
 pos72(f68,0x43a00000,0x42200000);align72(f68,D_0028F5E0);color72(f68,0xaaaaaaaa);
