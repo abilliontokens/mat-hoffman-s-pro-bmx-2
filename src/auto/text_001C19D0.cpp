@@ -86,7 +86,6 @@ struct C_001C19D0 {
 };
 struct C_001C22A0 {
     void func_001BFE80();
-    undefined4 func_001C22A0(byte param_1);
     void *func_001C22A0(unsigned int flags);
 };
 
