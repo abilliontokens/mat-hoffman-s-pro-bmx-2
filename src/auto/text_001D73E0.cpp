@@ -138,12 +138,6 @@ struct XboxVideoCard_001D8240 {
 void __stdcall func_002025D0(int a);
 void func_001FFBB0(void);
 
-struct LightValue_001D7FB0 {
-    int value;
-    LightValue_001D7FB0(int n) : value(n) {}
-    ~LightValue_001D7FB0() { value = 0; }
-};
-
 struct LightBufs_001D7FB0 {
     char a[0x100];
     char b[0x100];
