@@ -20,6 +20,7 @@ struct V4_0015D0A0 {
     float x, y, z, w;
     V4_0015D0A0() {}
     V4_0015D0A0(const V3_0015D0A0 &v, float d) { *(V3_0015D0A0 *)&x = v; w = d; }
+    void Set(const V3_0015D0A0 &v, float d) { *(V3_0015D0A0 *)&x = v; w = d; }
 };
 
 struct C_001938C0 {
@@ -489,6 +490,28 @@ void C_0015CD70::func_0015CD70(S_0015CD70_Vec4 *p)
     f24 = *p;
 }
 
+C_0015CE00 *C_0015CE00::func_0015CE00(int a0)
+{
+ func_00157600(a0);
+ f24=0; f26=255; f27 &= 0xf8;
+ int value=D_002E293C;
+ vtbl=&D_002878B4;
+ int *p=&u[27]; p[2]=0; p[1]=0; p[0]=0; p[3]=0x3f800000;
+ p=&u[31]; p[2]=0; p[1]=0; p[0]=0; p[3]=0x3f800000;
+ u[0]=0; u[35]=0; u[36]=0; u[41]=0; u[1]=3;
+ u[2]=0x3f800000; u[3]=0x3f800000; u[4]=0x3f800000; u[5]=0;
+ u[6]=0x3f800000; u[7]=0x3f800000; u[8]=0x3f800000; u[9]=0;
+ u[10]=0x3f800000; u[11]=0x3f800000; u[12]=0x3f800000; u[13]=0;
+ u[14]=0; u[15]=0; u[16]=0; u[17]=0x3f800000; u[18]=0; u[19]=0;
+ u[20]=value; u[21]=0x3f800000; u[22]=0x3f800000; u[23]=0; u[24]=0;
+ u[26]=0x3fc90fdb; u[25]=0x3f490fdb; u[38]=0xbf800000; u[37]=-1;
+ u[27]=D_002A801C; u[28]=D_002A8020; u[29]=D_002A8024; u[30]=D_002A8028;
+ u[39]=0; u[40]=0;
+ if(D_002A8010==255) D_002A8010=D_002AAEC8->func_001BC6E0(&D_002878A0);
+ f26=D_002A8010;
+ return this;
+}
+
 unsigned int C_0015CF60::func_0015CF60(void)
 {
     unsigned int r;
@@ -537,6 +560,43 @@ void C_0015D070::func_0015D070(float a0, float a1)
 {
     f8c = a0 * 0.017453290522098541259765625f;
     f90 = a1 * 0.017453290522098541259765625f;
+}
+
+void C_0015D0A0::func_0015D0A0(int a0, int a1)
+{
+    float w;
+    V3_0015D0A0 t;
+    V4_0015D0A0 scl;
+    V4_0015D0A0 pos;
+    float s;
+    C_001938C0 *obj;
+
+    s = f78 * D_002755E8;
+    pos = f94;
+    w = 1.0f;
+    if (f2c == 3) {
+        pos.x += s * f6c;
+        pos.y += s * f70;
+        pos.z += s * f74;
+        t.x = s;
+        t.y = s;
+        t.z = s;
+        scl = V4_0015D0A0(t, w);
+    } else {
+        t.x = f78;
+        t.y = f78;
+        t.z = f78;
+        scl = V4_0015D0A0(t, w);
+    }
+    obj = (C_001938C0 *)func_001E8A44(0x28);
+    if (obj != 0) {
+        obj = obj->func_00193490();
+    } else {
+        obj = 0;
+    }
+    fc8 = a0;
+    fc4 = obj;
+    obj->func_001938C0(f24, a0, a1, &pos, &scl, f78);
 }
 
 C_0015D1B0 *C_0015D1B0::func_0015D1B0(void)
