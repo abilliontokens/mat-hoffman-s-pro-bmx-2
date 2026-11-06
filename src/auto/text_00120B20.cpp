@@ -1,6 +1,7 @@
 /* 2 functions from 0x00120B20 to 0x001217F0, found by Ghidra. */
 #include "common.h"
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 
 static __forceinline float Min_00120B20(float a, float b) { float r; _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
 static __forceinline float Max_00120B20(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
@@ -9,6 +10,10 @@ extern float D_002B9348;
 extern void **D_002B92F4;
 
 struct S_0011F4B0_V4 { float x, y, z, w; };
+struct V4p_00120FF0 {
+    float x, y, z, w;
+    V4p_00120FF0(float a, float b, float c) { x = a; y = b; z = c; w = 1.0f; }
+};
 struct S_001206E0_Tri { int pad0[2]; float t; short x, y, z; };
 struct S_00120B20_Seg { S_0011F4B0_V4 a, b; };
 
@@ -115,6 +120,7 @@ int func_00120FF0(float *p0, float *extA, float *p1, float *extB, float *m)
 {
     S_0011F4B0_V4 rows[3];
     S_0011F4B0_V4 d;
+    S_0011F4B0_V4 t;
     S_0011F4B0_V4 *ax;
     float ea0, ea1, ea2;
     float dist, rA0, rA1, rA2, rB0, rB1, rB2;
@@ -136,18 +142,21 @@ int func_00120FF0(float *p0, float *extA, float *p1, float *extB, float *m)
     ea0 = extA[0];
     ea1 = extA[1];
     ea2 = extA[2];
-    rows[0].x = extB[0];
-    rows[0].y = 0.0f;
-    rows[0].z = 0.0f;
-    rows[0].w = 1.0f;
-    rows[1].x = 0.0f;
-    rows[1].y = extB[1];
-    rows[1].z = 0.0f;
-    rows[1].w = 1.0f;
-    rows[2].x = 0.0f;
-    rows[2].y = 0.0f;
-    rows[2].z = extB[2];
-    rows[2].w = 1.0f;
+    t.x = extB[0];
+    t.y = 0.0f;
+    t.z = 0.0f;
+    t.w = 1.0f;
+    rows[0] = t;
+    t.x = 0.0f;
+    t.y = extB[1];
+    t.z = 0.0f;
+    t.w = 1.0f;
+    rows[1] = t;
+    t.x = 0.0f;
+    t.y = 0.0f;
+    t.z = extB[2];
+    t.w = 1.0f;
+    rows[2] = t;
     func_0001C680(&rows[0], rows[0], m);
     func_0001C680(&rows[1], rows[1], m);
     func_0001C680(&rows[2], rows[2], m);
@@ -166,46 +175,46 @@ int func_00120FF0(float *p0, float *extA, float *p1, float *extB, float *m)
             D_002B9350[2] = D_002A3C3C[2];
             break;
         case 3: {
-            S_0011F4B0_V4 t = { m[0], m[4], m[8], 1.0f };
-            D_002B9350[3] = t;
+            S_0011F4B0_V4 t3 = { m[0], m[4], m[8], 1.0f };
+            D_002B9350[3] = t3;
             break;
         }
         case 4: {
-            S_0011F4B0_V4 t = { m[1], m[5], m[9], 1.0f };
-            D_002B9350[4] = t;
+            S_0011F4B0_V4 t4 = { m[1], m[5], m[9], 1.0f };
+            D_002B9350[4] = t4;
             break;
         }
         case 5: {
-            S_0011F4B0_V4 t = { m[2], m[6], m[10], 1.0f };
-            D_002B9350[5] = t;
+            S_0011F4B0_V4 t5 = { m[2], m[6], m[10], 1.0f };
+            D_002B9350[5] = t5;
             break;
         }
         case 6:
-            Cross_00120FF0(&D_002B9350[0], &D_002B9350[3], &D_002B9350[6]);
+            AsmVec3Cross(&D_002B9350[6].x, &D_002B9350[0].x, &D_002B9350[3].x);
             break;
         case 7:
-            Cross_00120FF0(&D_002B9350[0], &D_002B9350[4], &D_002B9350[7]);
+            AsmVec3Cross(&D_002B9350[7].x, &D_002B9350[0].x, &D_002B9350[4].x);
             break;
         case 8:
-            Cross_00120FF0(&D_002B9350[0], &D_002B9350[5], &D_002B9350[8]);
+            AsmVec3Cross(&D_002B9350[8].x, &D_002B9350[0].x, &D_002B9350[5].x);
             break;
         case 9:
-            Cross_00120FF0(&D_002B9350[1], &D_002B9350[3], &D_002B9350[9]);
+            AsmVec3Cross(&D_002B9350[9].x, &D_002B9350[1].x, &D_002B9350[3].x);
             break;
         case 10:
-            Cross_00120FF0(&D_002B9350[1], &D_002B9350[4], &D_002B9350[10]);
+            AsmVec3Cross(&D_002B9350[10].x, &D_002B9350[1].x, &D_002B9350[4].x);
             break;
         case 11:
-            Cross_00120FF0(&D_002B9350[1], &D_002B9350[5], &D_002B9350[11]);
+            AsmVec3Cross(&D_002B9350[11].x, &D_002B9350[1].x, &D_002B9350[5].x);
             break;
         case 12:
-            Cross_00120FF0(&D_002B9350[2], &D_002B9350[3], &D_002B9350[12]);
+            AsmVec3Cross(&D_002B9350[12].x, &D_002B9350[2].x, &D_002B9350[3].x);
             break;
         case 13:
-            Cross_00120FF0(&D_002B9350[2], &D_002B9350[4], &D_002B9350[13]);
+            AsmVec3Cross(&D_002B9350[13].x, &D_002B9350[2].x, &D_002B9350[4].x);
             break;
         case 14:
-            Cross_00120FF0(&D_002B9350[2], &D_002B9350[5], &D_002B9350[14]);
+            AsmVec3Cross(&D_002B9350[14].x, &D_002B9350[2].x, &D_002B9350[5].x);
             break;
         }
         ax = &D_002B9350[i];
