@@ -297,6 +297,7 @@ struct C_001AE3E0 : C_001AE3E0_Head {
     C_001AE3E0(int param_1);
     void func_001AE460(void);
     void func_001AE4D0(int a, int b, int c, int d, int e, int f, int g, int h, int idx);
+    void func_001AE4D0(C_001AE3E0_Vec4 a, C_001AE3E0_Vec4 b, int idx);
     C_001AE3E0 *func_001AEBD0(int a1, int a2, float *a3, int a4, float a5, int a6, int a7, int a8, float a9, float a10, float a11, int a12, char a13);
 };
 
@@ -392,7 +393,6 @@ void C_001ADFD0::func_001ADFD0(float *srcf, S_ADFD0_Tex *tex, int *rect, int a4,
     int s0, s1, s2, s3;
     float u0, v0, u1, v1;
     float fx, fy, fz, fw;
-    volatile float fq0, fq1;
     int b;
     int q0, q1;
     unsigned char cr, cg, cb;
@@ -461,8 +461,8 @@ void C_001ADFD0::func_001ADFD0(float *srcf, S_ADFD0_Tex *tex, int *rect, int a4,
             q1 = ((S_ADFD0_RootX *)D_002EFDB8)->cam->f1E4;
         }
     }
-    fq0 = (float)q0;
-    fq1 = (float)q1;
+    ((volatile float *)mat.m)[3] = (float)q0;
+    ((volatile float *)mat.m)[7] = (float)q1;
     if (b != 0) {
         u0 = (float)x;
         v0 = (float)y;
@@ -552,9 +552,20 @@ void C_001AE3E0::func_001AE460(void)
 
 void C_001AE3E0::func_001AE4D0(int a, int b, int c, int d, int e, int f, int g, int h, int idx)
 {
+    int off = idx << 4;
+    C_001AE3E0_Vec4 *p;
+
     f84 |= 2;
-    f38[idx].Set(a, b, c, d);
-    f3C[idx].Set(e, f, g, h);
+    p = (C_001AE3E0_Vec4 *)((char *)f38 + off);
+    p->x = a;
+    p->y = b;
+    p->z = c;
+    p->w = d;
+    p = (C_001AE3E0_Vec4 *)((char *)f3C + off);
+    p->x = e;
+    p->y = f;
+    p->z = g;
+    p->w = h;
 }
 
 struct C_1AE570_Cam {
@@ -616,7 +627,7 @@ void __stdcall func_001FF4E0(int, void *, int, int, int, int);
 void __stdcall func_00201210(void *, void *, int, int);
 void __stdcall func_002011F0(void *, void *);
 #pragma auto_inline(off)
-float C_1AE570::func_001AE530(float x, float y)
+float __stdcall func_001AE530(float x, float y)
 {
     extern float D_00278788;
     extern float D_0028AC88;
@@ -789,9 +800,9 @@ C_001AE3E0 *C_001AE3E0::func_001AEBD0(int a1, int a2, float *a3, int a4, float a
 {
     float tmp[4];
     void *mem;
-    S_001AEBD0_Ref *ref;
     unsigned int color;
-
+    unsigned char rgb[3];
+    C_001AE3E0_Sub *sub; S_001AEBD0_Ref *ref; C_001AE3E0_Entry *entry;
     f24 = a8;
     f40 = *(C_001AE3E0_Quat *)func_0001E9E0(tmp, a3);
     f28 = a4;
@@ -802,27 +813,28 @@ C_001AE3E0 *C_001AE3E0::func_001AEBD0(int a1, int a2, float *a3, int a4, float a
     f54->func_001ADF30(a1, (int)this);
     f54->SetScale(f2C);
     f54->SetAlpha(0);
-    color = MakeColor_001AEBD0(-1, (unsigned char)a9, (unsigned char)a10, (unsigned char)a11);
+    rgb[0] = (unsigned char)(int)a9;
+    rgb[1] = (unsigned char)(int)a10;
+    rgb[2] = (unsigned char)(int)a11;
+    color = MakeColor_001AEBD0(-1, rgb[0], rgb[1], rgb[2]);
     f54->col[0].rgba = color;
     f54->col[1].rgba = color;
     f54->col[2].rgba = color;
     f54->col[3].rgba = color;
-    f54->f34 = a6;
-    f54->f38 = a7;
-    f54->f2C = 0;
-    f54->f30 = 0;
-    f58.func_001D54B0(a2);
+    f54->SetSize(a6,a7);
+    f54->SetOffset(0,0);
+    sub=&f58;
+    sub->func_001D54B0(a2);
     ref = new S_001AEBD0_Ref;
-    f58.f8 = (C_001ADFD0_Virt *)ref;
-    ref->f4 = this;
-    f58.f4->fC &= 0xfe;
-    f58.f4->f10 = f58.f8;
+    sub->f8=(C_001ADFD0_Virt *)ref;
+    ref->f4=this;
+    entry=sub->f4;
+    entry->fC &= 0xfe;
+    entry->f10=sub->f8;
     f38 = (C_001AE3E0_Vec4 *)func_001E8A44(f24 << 4);
     f3C = (C_001AE3E0_Vec4 *)func_001E8A44(f24 << 4);
     f64 = func_001E8AA5(0x400);
-    if (D_002EFDB8 == 0 || D_002EFDB8->cam == 0) {
-        f34 = 0;
-    }
+    if (D_002EFDB8 == 0 || D_002EFDB8->cam == 0) f34 = 0;
     return this;
 }
 
