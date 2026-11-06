@@ -75,7 +75,7 @@ void func_001E7480(int n, float *a, int nw, float *w)
     }
 }
 
-void func_001E7880(int n, float *a, int nw, float *w)
+static __declspec(noinline) void func_001E7880(int n, float *a, int nw, float *w)
 {
     int h, j, k, m;
     float *tw;
@@ -155,6 +155,40 @@ void func_001E7880(int n, float *a, int nw, float *w)
     }
 }
 
+void func_001E7D20(int n, float *a, int y, float *z)
+{
+    int q;
+
+    func_001E55E0(n, a, z + (y - 2 * (n >> 2)));
+    while (n > 0x200) {
+        q = n >> 2;
+        func_001E7D20(q, a, y, z);
+        func_001E7DC0(q, a + q, y, z);
+        func_001E7D20(q, a + 2 * q, y, z);
+        a += 3 * q;
+        func_001E55E0(q, a, z + (y - 2 * (q >> 2)));
+        n = q;
+    }
+    func_001E7480(n, a, y, z);
+}
+
+void func_001E7DC0(int n, float *a, int y, float *z)
+{
+    int q = n >> 2;
+    float *w = z + (y - n);
+    func_001E59B0(n, a, w);
+    while (n > 0x200) {
+        func_001E7D20(q, a, y, z);
+        func_001E7DC0(q, a + q, y, z);
+        func_001E7D20(q, a + q * 2, y, z);
+        a += q * 3;
+        n = q;
+        q = n >> 2;
+        func_001E59B0(n, a, z + (y - n));
+    }
+    func_001E7880(n, a, y, z);
+}
+
 void __fastcall func_001E7E60(int n, int x3, int n2, int y, int z) {
     if (n > 0x20) {
         int q = n >> 2;
@@ -197,6 +231,95 @@ void __fastcall func_001E7E60(int n, int x3, int n2, int y, int z) {
     }
 }
 
+void __fastcall func_001E30E0(int *, int);
+void __fastcall func_001E3240(int *, int);
+void __fastcall func_001E7E60(int, int, int, int);
+void __fastcall func_001E7F90(int, int, int, int);
+void __fastcall func_001E70B0(int, int);
+void __fastcall func_001E7170(int, int);
+extern float D_002755E8;
+void __stdcall func_001E80C0(int n, int sign, int a2, int *h, int *d) {
+    float *f = (float *)h;
+    int q = h[0];
+    if (n > q * 4) {
+        q = n >> 2;
+        func_001E30E0(h, q);
+    }
+    int r = h[1];
+    if (n > r * 4) {
+        r = n >> 2;
+        func_001E3240(h, r);
+    }
+    if (sign >= 0) {
+        if (n > 4) {
+            func_001E7E60(n, (int)h, a2 + 8, q);
+            func_001E70B0((int)(d + q), n);
+        } else if (n == 4) {
+            func_001E7E60(4, (int)h, a2 + 8, q);
+        }
+        float t = f[0] - f[1];
+        f[0] = f[0] + f[1];
+        f[1] = t;
+    } else {
+        float t = (f[0] - f[1]) * D_002755E8;
+        f[1] = t;
+        f[0] = f[0] - t;
+        if (n > 4) {
+            func_001E7170((int)(d + q), n);
+            func_001E7F90(n, (int)h, a2 + 8, q);
+        } else if (n == 4) {
+            func_001E7F90(4, (int)h, a2 + 8, q);
+        }
+    }
+}
+
+void __fastcall func_001E7230(int, int);
+void __stdcall func_001E8200(int n, int isgn, float *a, int *ip, float *w) {
+    int j;
+    float xr;
+    int nw = ip[0];
+    if (n > nw * 4) {
+        nw = n >> 2;
+        func_001E30E0(ip, nw);
+    }
+    int nc = ip[1];
+    if (n > nc) {
+        nc = n;
+        func_001E3240(ip, nc);
+    }
+    if (isgn < 0) {
+        xr = a[n - 1];
+        for (j = n - 2; j >= 2; j -= 2) {
+            a[j + 1] = a[j] - a[j - 1];
+            a[j] += a[j - 1];
+        }
+        a[1] = a[0] - xr;
+        a[0] += xr;
+        if (n > 4) {
+            func_001E7170((int)(w + nw), n);
+            func_001E7F90(n, (int)a, (int)(ip + 2), nw);
+        } else if (n == 4) {
+            func_001E7F90(4, (int)a, (int)(ip + 2), nw);
+        }
+    }
+    func_001E7230(n, (int)a);
+    if (isgn >= 0) {
+        if (n > 4) {
+            func_001E7E60(n, (int)a, (int)(ip + 2), nw);
+            func_001E70B0((int)(w + nw), n);
+        } else if (n == 4) {
+            func_001E7E60(4, (int)a, (int)(ip + 2), nw);
+        }
+        xr = a[0] - a[1];
+        a[0] += a[1];
+        for (j = 2; j < n; j += 2) {
+            a[j - 1] = a[j] - a[j + 1];
+            a[j] += a[j + 1];
+        }
+        a[n - 1] = xr;
+    }
+}
+
 #pragma optimize("t", off)
 void func_001E8390(void *p)
 {
@@ -215,6 +338,11 @@ void func_001E8390(void *p)
     }
     func_001DF59C(func_001DF5B3(), 0, p);
 }
+#pragma optimize("", on)
+void func_001E83DD()
+{
+}
+
 #pragma optimize("", on)
 
 void func_001E83DF(void) {
