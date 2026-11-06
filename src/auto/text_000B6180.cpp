@@ -25,8 +25,6 @@ struct C_000B6180 : C_000B6180_Base {
     C_000B6180 *func_000B6180(int a0);
     void func_00157600(int a0);
 };
-#define VEC(o) f[((o)-0xa0)/4+2] = 0.0f; f[((o)-0xa0)/4+1] = 0.0f; f[((o)-0xa0)/4] = 0.0f; f[((o)-0xa0)/4+3] = 1.0f;
-#define CPY(o) f[((o)-0xa0)/4] = *(float *)&D_002A2FD8; f[((o)-0xa0)/4+1] = *(float *)&D_002A2FDC; f[((o)-0xa0)/4+2] = *(float *)&D_002A2FE0; f[((o)-0xa0)/4+3] = *(float *)&D_002A2FE4;
 
 struct C_000B6640_Obj {
     char pad0[0x60];
