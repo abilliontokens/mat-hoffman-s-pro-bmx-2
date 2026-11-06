@@ -192,7 +192,7 @@ struct S_001CB610_Entry {
     unsigned char f40;
     char pad41[3];
     unsigned char Flags() { return f40; }
-    int Open(int idx, char *path) {
+    __forceinline int Open(int idx, char *path) {
         if (f40 & 1) {
             func_001ADCC0(path, 0x104, D_0028ED6C, D_002A48F8, f0[idx].name);
             return func_001DCC3C(path, 0x80000000, 1, 0, 3, 0x80, 0);
