@@ -242,6 +242,37 @@ void C_001D8340::func_001D8340(int amount)
     flags |= 1;
 }
 
+void C_001D8340::func_001D8500(int amount)
+{
+    unsigned char ramp[0x300];
+    float scale = (float)amount * D_00284758;
+    int acc = 0;
+    if (amount == 0) {
+        func_001FF960(2, &r[0]);
+    } else {
+        unsigned int t0 = func_001DC974();
+        do {
+            unsigned int t1 = func_001DC974();
+            float d = (float)(t1 - t0);
+            if (d > scale) {
+                d /= scale;
+            }
+            acc += func_001E8858();
+            t0 = t1;
+            if (acc > 0xff) acc = 0xff;
+            float k = (float)acc * D_00284758;
+            for (int i = 0; i < 0x100; i++) {
+                ramp[i] = (unsigned char)(int)((float)r[i] * k);
+                ramp[0x100 + i] = (unsigned char)(int)((float)g[i] * k);
+                ramp[0x200 + i] = (unsigned char)(int)((float)b[i] * k);
+            }
+            func_001FF960(2, ramp);
+        } while (acc < 0xff);
+        func_001FF960(2, &r[0]);
+    }
+    flags &= 0xfe;
+}
+
 void func_001D86C0(char *buf, int size, int adapter)
 {
     S_AdapterIdentifier ident;
@@ -369,17 +400,6 @@ int XboxVideoCard::func_001D8A10(int a1, int a2, int a3, int a4, int a5, int a6,
     this->f4 = a3;
     this->f1C = a1;
     return 1;
-}
-
-void XboxVideoCard::func_001D8AA0(void *param_1)
-{
-    S_001D8AA0_Local local;
-    int r = this->func_001D8140(&local, param_1, this->f44);
-    if (r == 0) {
-        return;
-    }
-    this->func_001D8970(local.fC, local.f10, 0);
-    return;
 }
 
 C_001D8AE0::C_001D8AE0(int p1, int p2, int p3, int p4, int p5)
