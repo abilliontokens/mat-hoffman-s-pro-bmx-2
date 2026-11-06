@@ -803,6 +803,22 @@ void C_00094F10::func_00094F10(void)
 
 extern "C" void _ReadWriteBarrier(void);
 #pragma intrinsic(_ReadWriteBarrier)
+static __forceinline void ResetTracks_00094F40(C_00095060 *s)
+{
+    s->tracks.items = 0;
+    s->tracks.count = 0;
+    s->f5C = 0;
+    s->f60 = 0;
+    s->f64 &= 0xfe;
+}
+static __forceinline void ResetIds_00094F40(C_00095060 *s)
+{
+    s->ids.items = 0;
+    s->ids.count = 0;
+    s->f70 = 0;
+    s->f74 = 0;
+    s->f78 &= 0xfe;
+}
 void *C_00095060::func_00094F40(void *arg)
 {
     ((C_00157600 *)this)->func_00157600(1);
