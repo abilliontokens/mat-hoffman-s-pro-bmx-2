@@ -75,8 +75,8 @@ struct Elem_0008BCD0 {
         m48 = 1.0f;
     }
     void SetAlpha(unsigned char a) {
-        flags |= 2;
         ((unsigned char *)&argb)[3] = a;
+        flags |= 2;
     }
 };
 
@@ -258,3 +258,119 @@ void C_0008BCD0::func_0008BCD0()
     unk34->SetArgb(0xffbfa35a);
     unk34->Set3C(0x40a00000);
 }
+
+void C_0008BCD0::func_0008C480()
+{
+    void *mem;
+    char *names[2];
+    char buf[0x38];
+    int *r;
+    int fontA;
+    int fontB;
+    int px;
+
+    D_002A60B0.a[0] = D_00278664.a[0];
+    D_002A60B0.a[1] = D_00278664.a[1];
+    D_002A60B0.a[2] = D_00278664.a[2];
+    D_002A60B0.a[3] = D_00278664.a[3];
+    D_002A60B0.c = D_00278664.c;
+    mem = func_001E8A44(100);
+    unk40 = mem ? ((Elem_0008BCD0 *)mem)->func_001D5760() : 0;
+    mem = func_001E8A44(100);
+    unk48 = mem ? ((Elem_0008BCD0 *)mem)->func_001D5760() : 0;
+    mem = func_001E8A44(100);
+    unk4c = mem ? ((Elem_0008BCD0 *)mem)->func_001D5760() : 0;
+    mem = func_001E8A44(100);
+    unk44 = mem ? ((Elem_0008BCD0 *)mem)->func_001D5760() : 0;
+    mem = func_001E8A44(100);
+    unk38 = mem ? ((Elem_0008BCD0 *)mem)->func_001D5760() : 0;
+    mem = func_001E8A44(100);
+    unk50 = mem ? ((Elem_0008BCD0 *)mem)->func_001D5760() : 0;
+    mem = func_001E8A44(0x184);
+    unk54 = mem ? ((Win_0008BCD0 *)mem)->func_001B12C0(1) : 0;
+    unk54->func_001B13A0(D_00279F18, D_00279F18, 0, 0x1e);
+    unk54->func_001B2270(0xffcccccc);
+    unk54->func_001B19A0(D_0028F5E0);
+    unk54->func_001B1AB0(0, 0);
+    if (unk7c == 1) {
+        unk50->func_001D5810(D_00279F28, 0, 0, 0);
+        unk50->SetArgbRaw(0xffb73614);
+        unk50->SetAlpha(0);
+        unk54->func_001B19C0(0x1e0, 0xf0, 0);
+        unk44->func_001D5810(D_00279F44, 0, 252.0f, 0);
+        unk44->SetX(0x43a00000);
+        unk44->SetY(0x43800000);
+        unk40->func_001D5810(D_00279F10, 448.0f, 188.0f, 0);
+        unk38->func_001D5810(D_002786B0, 524.0f, 27.0f, 0);
+        unk48->func_001D5810(D_00279F08, 524.0f, 60.0f, 0);
+        unk4c->func_001D5810(D_00279EFC, 524.0f, 35.0f, 0);
+    } else {
+        unk50->func_001D5810(D_00279F28, 0, 0, 0);
+        unk50->SetArgbRaw(0xffb73614);
+        unk50->SetAlpha(0);
+        unk54->func_001B19C0(0xa0, 0xf0, 0);
+        unk44->func_001D5810(D_00279F44, 0, 252.0f, 0);
+        unk44->SetX(0x43a00000);
+        unk44->SetY(0x43800000);
+        unk40->func_001D5810(D_00279F10, 128.0f, 188.0f, 0);
+        unk38->func_001D5810(D_002786B0, 20.0f, 27.0f, 0);
+        unk48->func_001D5810(D_00279F08, 20.0f, 60.0f, 0);
+        unk4c->func_001D5810(D_00279EFC, 20.0f, 35.0f, 0);
+    }
+    unk50->SetX(0x43a00000);
+    unk50->SetY(0x43e00000);
+    unk54->func_001B17D0(*(int *)(*(int *)(((int *)D_002A8490)[0x2e8 / 4] + 4) + 0x10e0));
+    func_001577A0(unk54, -1);
+    unk38->SetX(0x42c00000);
+    unk38->SetY(0x42800000);
+    unk38->SetIdentity();
+    unk38->SetF34(5.0f);
+    unk4c->SetX(0x42000000);
+    unk4c->SetY(0x42000000);
+    unk48->SetX(0x42000000);
+    unk48->SetY(0x42000000);
+    unk44->SetF34((float)D_002F07B8[0x6b4 / 4]);
+    unk44->SetAlpha(0);
+    names[0] = D_00278690;
+    names[1] = D_0027958C;
+    ((Res_0008BCD0 *)((int *)D_002A8490)[0x2ec / 4])->func_0018C780(2, names, 0);
+    r = ((Res_0008BCD0 *)((int *)D_002A8490)[0x2ec / 4])->func_0018C160(D_00278690);
+    fontA = r ? *r : 0;
+    r = ((Res_0008BCD0 *)((int *)D_002A8490)[0x2ec / 4])->func_0018C160(D_0027958C);
+    fontB = r ? *r : 0;
+    mem = func_001E8A44(0x60);
+    unk24 = mem ? ((Text_0008BCD0 *)mem)->func_001D5E90() : 0;
+    unk24->func_001D5FA0(fontA, D_00278690, 0x28, 0);
+    mem = func_001E8A44(0x60);
+    unk28 = mem ? ((Text_0008BCD0 *)mem)->func_001D5E90() : 0;
+    unk28->func_001D5FA0(fontB, D_0027958C, 0x28, 0);
+    mem = func_001E8A44(0x60);
+    unk2c = mem ? ((Text_0008BCD0 *)mem)->func_001D5E90() : 0;
+    unk2c->func_001D5FA0(fontB, D_0027958C, 0x28, 0);
+    if (unk7c == 1) {
+        px = 0x441b0000;
+        unk24->SetPos(px, 0x41d80000);
+        unk24->SetArgb(0xffcccccc);
+        unk24->SetColor(D_0028F5EC);
+        func_001ADCC0(buf, 0x38, D_00279F3C, *(int *)(*(int *)(((int *)D_002A8490)[0x2e8 / 4] + 4) + 0x1018));
+        unk24->func_0005E840((int)buf);
+        unk28->SetColor(D_0028F5EC);
+    } else {
+        unk24->SetPos(0x41a00000, 0x41d80000);
+        unk24->SetArgb(0xffcccccc);
+        unk24->SetColor(D_0028F5DC);
+        func_001ADCC0(buf, 0x38, D_00279F34, *(int *)(*(int *)(((int *)D_002A8490)[0x2e8 / 4] + 4) + 0x1018));
+        unk24->func_0005E840((int)buf);
+        unk28->SetColor(D_0028F5EC);
+        px = 0x42e80000;
+    }
+    unk28->SetPos(px, 0x421c0000);
+    unk2c->SetColor(D_0028F5EC);
+    unk2c->SetPos(px, 0x427c0000);
+    unk24->Set3C(0x40a00000);
+    unk28->SetArgb(0xffbfa35a);
+    unk28->Set3C(0x40a00000);
+    unk2c->SetArgb(0xffbfa35a);
+    unk2c->Set3C(0x40a00000);
+}
+
