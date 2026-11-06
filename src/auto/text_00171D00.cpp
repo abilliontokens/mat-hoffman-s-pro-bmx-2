@@ -145,6 +145,8 @@ struct PhysicsBodyVT {
 struct C_00172090_D0 {
     void func_001A9110(int a, int b, int c, int d, int e, int f, int g, int h);
     void func_001A9220(int a, int b);
+    char pad0[0x30];
+    int f30;
 };
 
 extern float D_00275544;
