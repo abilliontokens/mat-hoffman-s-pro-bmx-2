@@ -16,6 +16,12 @@ struct C_00147890 {
     int func_00147890(char *name);
 };
 
+struct S_00147890_Frame {
+    C_00147890_Ini ini;
+    char buf170[0x3c];
+    char buf[0x104];
+};
+
 struct C_001490A0 {
     int pad;
     void func_001490A0(unsigned int flags);
