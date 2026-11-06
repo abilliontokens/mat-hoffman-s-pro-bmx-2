@@ -223,11 +223,6 @@ void AIPedFleeState::func_00014EA0()
     }
 }
 
-static __forceinline float Sqrt_14EF0(float square)
-{
-    return _mm_sqrt_ss(*(__m128 *)&square).m128_f32[0];
-}
-
 int AIPedFleeState::func_00014EF0(float dt)
 {
     struct {
@@ -237,6 +232,8 @@ int AIPedFleeState::func_00014EF0(float dt)
         volatile float sq;
         volatile float len;
     } L;
+    char *o;
+    char *ped;
 
     L.self = this;
     if (*(int *)(*(int *)((char *)D_002A8490 + 0x2a4) + 0x1c8) == 1)
@@ -250,10 +247,10 @@ int AIPedFleeState::func_00014EF0(float dt)
         if (*(int *)(*(int *)(*(char **)(*(char **)(D_002B9120 + 0x4e0) + L.idx * 4 + 0x1a8) + 0x950) + 0xbc) == 0)
             L.self->func_00012B00(1);
     } else {
-        float *o = (float *)((char *)L.self->owner + 0x3e4);
-        float dx = *(float *)((char *)L.self + 0xc) - o[0];
-        float dy = *(float *)((char *)L.self + 0x10) - o[1];
-        float dz = *(float *)((char *)L.self + 0x14) - o[2];
+        float *q = (float *)((char *)L.self->owner + 0x3e4);
+        float dx = *(float *)((char *)L.self + 0xc) - q[0];
+        float dy = *(float *)((char *)L.self + 0x10) - q[1];
+        float dz = *(float *)((char *)L.self + 0x14) - q[2];
         L.sq = dz * dz + dy * dy + dx * dx;
         L.len = sqrtf(L.sq);
         if (L.len < D_00275600) {
@@ -263,23 +260,28 @@ int AIPedFleeState::func_00014EF0(float dt)
         }
     }
     if (L.dist > D_002756C4) {
+        o = (char *)L.self->owner;
         if (IsLocal_151F0())
-            *(int *)((char *)L.self->owner + 0x3bc) = 4;
-        (*(PedAnim **)((char *)L.self->owner + 0x384))->func_0008AB90(*(int *)((char *)L.self->owner + 0x3a0));
+            *(int *)(o + 0x3bc) = 4;
+        (*(PedAnim **)(o + 0x384))->func_0008AB90(*(int *)(o + 0x3a0));
     }
     if (*(char *)((char *)L.self->owner + 0x3e2) == 2)
         return 1;
-    if (L.dist < D_002756BC &&
-        *(int *)(*(int *)(*(char **)(*(char **)(D_002B9120 + 0x4e0) + L.idx * 4 + 0x1a8) + 0x950) + 0xbc) == 0)
-        func_000149A0(L.idx, -13.0f);
+    if (L.dist < D_002756BC) {
+        ped = *(char **)(*(char **)(D_002B9120 + 0x4e0) + L.idx * 4 + 0x1a8);
+        if (*(int *)(*(char **)(ped + 0x950) + 0xbc) == 0)
+            func_000149A0(L.idx, -13.0f);
+    }
+    o = (char *)L.self->owner;
     if (IsLocal_151F0())
-        *(int *)((char *)L.self->owner + 0x3bc) = 6;
-    (*(PedAnim **)((char *)L.self->owner + 0x384))->func_0008AB90(*(int *)((char *)L.self->owner + 0x390));
+        *(int *)(o + 0x3bc) = 6;
+    (*(PedAnim **)(o + 0x384))->func_0008AB90(*(int *)(o + 0x390));
     *(float *)((char *)L.self->owner + 0x3d8) = dt + *(float *)((char *)L.self->owner + 0x3d8);
     if (*(float *)((char *)L.self->owner + 0x3d8) > D_00275548) {
+        o = (char *)L.self->owner;
         if (IsLocal_151F0())
-            *(int *)((char *)L.self->owner + 0x3bc) = 8;
-        (*(PedAnim **)((char *)L.self->owner + 0x384))->func_0008AB90(*(int *)((char *)L.self->owner + 0x3a8));
+            *(int *)(o + 0x3bc) = 8;
+        (*(PedAnim **)(o + 0x384))->func_0008AB90(*(int *)(o + 0x3a8));
     }
     return 1;
 }
