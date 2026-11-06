@@ -175,6 +175,7 @@ void func_001EA1EE(char *);
 void *func_001E8920(void *, const void *, unsigned int);
 extern "C" unsigned int __cdecl strlen(const char *);
 extern "C" char *__cdecl strcpy(char *, const char *);
+template <class T> inline T min_164270(T a, T b) { return a > b ? b : a; }
 
 
 /* 0x40-byte entry; the name is at +0 */
@@ -420,6 +421,37 @@ float func_00164220(float a, float b, float c)
     }
     t = (c - a) / (b - a);
     return (D_002755EC - (t + t)) * t * t;
+}
+
+int func_00164270(int index, S_00164650_Item *items, S_00164270_Node *node)
+{
+    items[index].f34 = (S_00164650_Obj *)node;
+    *(int *)items[index].pad38 = 0;
+    *(int *)(items[index].pad38 + 4) = 0;
+    func_001EA1EE(node->name);
+    volatile int lengths[2];
+    lengths[0] = strlen(node->name);
+    lengths[1] = 49;
+    int y = lengths[1];
+    int x = lengths[0];
+    int length = y <= x ? y : x;
+    func_001E8920(items[index].name, node->name, length);
+    items[index].name[length] = 0;
+    ++index;
+    S_00164270_Node *p;
+    for (p = node->f178; p; p = p->f178) {
+        items[index].f34 = (S_00164650_Obj *)p;
+        func_001EA1EE(p->name);
+        strcpy(items[index].name, p->name);
+        *(int *)items[index].pad38 = 0;
+        *(int *)(items[index].pad38 + 4) = 0;
+        ++index;
+    }
+    if (node->f174) index = func_00164270(index, items, node->f174);
+    for (p = node->f178; p; p = p->f178) {
+        if (p->f174) index = func_00164270(index, items, p->f174);
+    }
+    return index;
 }
 
 int C_001643A0::func_001643A0(void)
