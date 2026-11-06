@@ -133,6 +133,10 @@ int func_0013F7B0(void);
 extern "C" void func_001E8390(void*);
 extern "C" void* func_001E8AA5(int);
 
+static __forceinline void MaxScalar(float *out, const float *a, const float *b) {
+    _mm_store_ss(out, _mm_max_ss(_mm_load_ss(a), _mm_load_ss(b)));
+}
+
 static inline void FloatToIndex(int *out, float f) {
     int * volatile p = out;
     *p = _mm_cvttss_si32(*(__m128 *)&f);
