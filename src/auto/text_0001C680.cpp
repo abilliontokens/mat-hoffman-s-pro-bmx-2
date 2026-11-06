@@ -375,10 +375,6 @@ static __forceinline void clear_bit0_0001C9F0(unsigned char *p) {
     *p &= 0xfe;
 }
 
-static __forceinline void clear_bit0_volatile_0001C9F0(volatile unsigned char *p) {
-    *p &= 0xfe;
-}
-
 static __forceinline void init_0001C9F0(C_0001CA30 *p) {
     p->f8 = 0;
     p->f4 = 0;
