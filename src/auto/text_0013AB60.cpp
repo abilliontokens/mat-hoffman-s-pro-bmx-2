@@ -105,7 +105,7 @@ struct C_0013AEC0 {
     char padF4[4];
     int fF8;
     int fFC;
-    int func_0013AC40(const char *key, int a2, int a3, int a4, int *out, int grow);
+    int func_0013AC40(const char * volatile key, int a2, int a3, int a4, int *out, int grow);
     int func_0013AFB0(int idx);
     void func_0013B040(int id);
     int func_0013B1A0(const char *key);
@@ -165,6 +165,77 @@ void func_0013AC00(unsigned char *p, unsigned int n, unsigned char key)
         return;
     }
     *p = *p ^ key;
+}
+
+void *func_001E83E8(void *p, unsigned int size);
+int C_0013AEC0::func_0013AC40(const char *key, int a2, int a3, int a4, int *out, int grow)
+{
+    C_0013AEC0 * volatile self = this;
+    C_0013AEC0 *p = this;
+    int i;
+    int cap;
+    int idx;
+    int j;
+    S_0013AEC0_Slot *s;
+    char *buf;
+    int one = 1;
+
+    for (i = 0; i < p->fEC; i++, p = self) {
+        if (p->fE8[i].f8 != 0 && func_001EA426(key, (const char *)p->fE8[i].f8) == 0)
+            return 1;
+    }
+    if (p->fE4 == -1) {
+        int n = Max_0013AC40(grow, one);
+        cap = self->fEC + n;
+        self->fE8 = (S_0013AEC0_Slot *)func_001E83E8(self->fE8, cap * sizeof(S_0013AEC0_Slot));
+        if (self->fE8 == 0)
+            return 0;
+        self->fE4 = self->fEC;
+        do {
+            self->fE8[self->fEC].f18 = 1;
+            self->fE8[self->fEC].f8 = 0;
+            self->fE8[self->fEC].f0 = 0;
+            self->fE8[self->fEC].fC = 0;
+            self->fE8[self->fEC].f10 = 0;
+            self->fE8[self->fEC].f14 = 0;
+            self->fE8[self->fEC].f4 = 0;
+            self->fE8[self->fEC].f1C = 0;
+            self->fEC++;
+        } while (self->fEC != cap);
+    }
+    p = self;
+    idx = p->fE4;
+    p->fE4 = -1;
+    p = self;
+    if (p->fEC > 1) {
+        j = idx + 1;
+        if (j == p->fEC)
+            j = 0;
+        do {
+            if (p->fE8[j].f18 & 1) {
+                p->fE4 = j;
+                break;
+            }
+            j++;
+            if (j == p->fEC)
+                j = 0;
+        } while (j != idx);
+    }
+    p = self;
+    s = &p->fE8[idx];
+    s->f18 = 0;
+    buf = (char *)func_001E8AA5(strlen(key) + 1);
+    s->f8 = buf;
+    strcpy(buf, key);
+    s->f0 = a2;
+    s->fC = a3;
+    s->f10 = 0;
+    s->f14 = a4;
+    s->f4 = 0;
+    s->f1C = 0;
+    if (out != 0)
+        *out = idx;
+    return 1;
 }
 
 void C_0013AEC0::func_0013AEC0(int idx)
