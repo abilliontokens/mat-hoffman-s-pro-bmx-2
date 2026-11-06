@@ -65,7 +65,24 @@ struct ResultsScreen {
     int func_0007C690();
 };
 
+struct S_7C2C0_W { char pad0[0x48]; int color; char pad4c[2]; u8 flags; void func_0005E840(char *s); void func_001D6600(); };
+struct S_7C2C0_T { char pad0[0x24]; int count; char **names; };
+struct S_7C2C0_U { char pad0[0x534]; S_7C2C0_T *f534; char pad538[0x30]; int f568; char **f56c; };
+struct S_7C2C0_V { char pad0[0x64]; S_7C2C0_U *f64; };
+int func_001ADCC0(char *buf, int n, char *fmt, ...);
+
 struct C_0007C2C0 {
+    char pad0[0x13c];
+    S_7C2C0_W *f13c[0x10];
+    char pad17c[0x1d0 - 0x17c];
+    S_7C2C0_V *f1d0;
+    char pad1d4[0x208 - 0x1d4];
+    int f208;
+    char pad20c[0x244 - 0x20c];
+    int f244;
+    int f248;
+    int f24c;
+    int func_00064580(int a, char *s, int c);
     undefined4 func_0007C2C0();
 };
 
