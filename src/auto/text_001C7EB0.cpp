@@ -17,6 +17,7 @@ struct Vec4W {
     __forceinline Vec4W operator-(const Vec4W &b) const { return Vec4W(x - b.x, y - b.y, z - b.z); }
     __forceinline Vec4W operator+(const Vec4W &b) const { return Vec4W(x + b.x, y + b.y, z + b.z); }
 };
+static __forceinline void PushHistW(Vec4W *h, Vec4W v) { for (int i = 9; i > 0; i--) h[i] = h[i - 1]; h[0] = v; }
 struct __declspec(align(16)) MatW { float m[16]; };
 extern float D_00275544;
 MatW func_00026960();
