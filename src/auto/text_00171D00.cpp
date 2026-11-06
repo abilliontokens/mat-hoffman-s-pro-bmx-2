@@ -72,7 +72,7 @@ struct C_00171D00_C4VT {
     virtual void v10();
     virtual void v11();
     virtual void v12();
-    virtual void v13();
+    virtual void v13(int a);
     virtual void v14();
     virtual void v15();
     virtual void v16();
@@ -468,10 +468,8 @@ void PhysicsBody::func_001729D0(void)
     if (((C_001729D0_Obj *)fDC)->fA7 & 0x20) {
         C_001729D0_Node *n = ((C_001729D0_Obj *)fDC)->f54;
         W3_001729D0 *m = (W3_001729D0 *)((char *)n + 0x20);
-        W3_001729D0 &pos = *(W3_001729D0 *)((char *)n + 0x30);
         *(W3_001729D0 *)(p + 0x94) = *m;
-        W3_001729D0 w = *m * D_002A8BE8 + pos;
-        v = w;
+        v = *m * D_002A8BE8 + *(W3_001729D0 *)((char *)n + 0x30);
         ((C_001729D0_Cam *)f14C)->func_00199790(0, &v.x);
         ((C_001729D0_Cam *)f14C)->func_0019AC50();
         *dst = v;
