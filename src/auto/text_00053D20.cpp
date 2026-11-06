@@ -249,6 +249,24 @@ C_00053D20 *C_00053D20::func_00053D20(void *param)
     return this;
 }
 
+extern "C" int __cdecl memcmp(const void *, const void *, unsigned int);
+extern "C" int __cdecl strcmp(const char *, const char *);
+C_00053DB0 *C_00053DB0::func_00053DB0()
+{
+    int i;
+    func_000342C0();
+    for (i = 0; i < f64->f3b4->count; i++) {
+        C_00053DB0_List *list = f64->f3b4;
+        char **items = list->items;
+        if (memcmp(items[i] + 0x18, D_00277C28, 11) == 0)
+            f2c8 = i;
+    }
+    v40();
+    if (f1c0)
+        f1c0->func_00099D40(-1);
+    return this;
+}
+
 void C_00054430::func_00053F90()
 {
     S_00053F90_Obj *p;
