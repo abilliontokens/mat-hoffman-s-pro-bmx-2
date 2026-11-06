@@ -129,15 +129,6 @@ C_0011EDF0 *C_0011EDF0::func_0011EDF0(s16 *p)
     return this;
 }
 
-C_0011EDF0 *C_0011EDF0::set_0011F210(s16 *p)
-{
-    x = (float)p[0] * D_002B9348;
-    y = (float)p[1] * D_002B9348;
-    z = (float)p[2] * D_002B9348;
-    w = 1.0f;
-    return this;
-}
-
 V4_0011EE50 *func_0011EE50(V4_0011EE50 *out, V4_0011EE50 *in)
 {
  volatile float v; volatile int tmp;
@@ -218,9 +209,17 @@ void func_0011F210(C_0011EDF0 *a, C_0011EDF0 *b, C_0011EDF0 *c, unsigned short *
 {
     if (data[2]) {
         s16 *p = (s16 *)data[1];
-        *a = MakeV_0011F210(p + indices[0] * 3);
-        *b = MakeV_0011F210(p + indices[1] * 3);
-        *c = MakeV_0011F210(p + indices[2] * 3);
+        C_0011EDF0 t;
+        s16 *q;
+        q = p + indices[0] * 3;
+        t.w = 1.0f; t.x = (float)q[0] * D_002B9348; t.y = (float)q[1] * D_002B9348; t.z = (float)q[2] * D_002B9348;
+        *a = t;
+        q = p + indices[1] * 3;
+        t.w = 1.0f; t.x = (float)q[0] * D_002B9348; t.y = (float)q[1] * D_002B9348; t.z = (float)q[2] * D_002B9348;
+        *b = t;
+        q = p + indices[2] * 3;
+        t.w = 1.0f; t.x = (float)q[0] * D_002B9348; t.y = (float)q[1] * D_002B9348; t.z = (float)q[2] * D_002B9348;
+        *c = t;
     } else {
         S_0011F5A0_V3 *p = (S_0011F5A0_V3 *)data[1];
         int i0 = indices[0]; ((int *)a)[0] = p[i0].x; ((int *)a)[1] = p[i0].y; ((int *)a)[2] = p[i0].z; a->w = 1.0f;
