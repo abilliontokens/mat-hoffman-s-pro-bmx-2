@@ -12,6 +12,16 @@ struct Vec4_149A0 {
     float x, y, z, w;
 };
 
+static __forceinline Vec4_149A0 Scale_149A0(const Vec4_149A0 &v, float s)
+{
+    Vec4_149A0 r;
+    r.x = v.x * s;
+    r.y = v.y * s;
+    r.z = v.z * s;
+    r.w = 1.0f;
+    return r;
+}
+
 struct Obj197B40 {
     void func_00197B40(Vec4_149A0 *a, Vec4_149A0 *b);
 };
@@ -92,7 +102,7 @@ void AIPedestrian::func_000149A0(int idx, float scale)
             *(Vec4_149A0 *)(*(char **)(*(char **)(*(char **)(D_002B9120 + 0x4e0) + idx * 4 + 0x1a8) + 0x950) + 0x5c) = c;
             *(unsigned int *)((char *)this + 0x3c0) = *(unsigned int *)((char *)D_002A8490 + 0x238) + 5000;
             int snd = *(int *)(*(char **)(*(char **)(D_002B9120 + 0x4e0) + idx * 4 + 0x1a8) + 0x970);
-            (*(Sound149A0 **)(*(char **)((char *)D_002A8490 + 8) + snd * 4 + 0x14))->Play(0, scale * D_002756B4, 200);
+            (*(Sound149A0 **)(*(char **)((char *)D_002A8490 + 8) + snd * 4 + 0x14))->Play(0, scale * 0.015f, 200);
             if (*((char *)this + 0x3e1) == 0) {
                 D_002AF44C->func_00013F50(this, *(unsigned char *)((char *)this + 0x3e2), (char *)this + 0x3e4, *(int *)((char *)this + 0x3cc));
             }
