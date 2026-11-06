@@ -373,3 +373,38 @@ void C_0002A250::func_0002A250(float dt)
         ((V4i_0002A6B0 *)&f1e0->f180)->Set(D_002A10F0, D_002A10F4, D_002A10F8, D_002A10FC);
     }
 }
+
+void C_0002A6B0::func_0002A6B0(float dt)
+{
+    S_Cb_0002A6B0 *cb;
+    int done;
+
+    func_00027D60();
+    f1e8->func_000B8AD0(0, 0);
+    f13c = *(V4i_0002A6B0 *)&D_002A10F0;
+    if (f480 == 0) {
+        f218->v13(dt);
+    } else {
+        f214->v13(dt);
+    }
+    if (f47c == 2) {
+        f5f4->func_00025E50(dt);
+    }
+    done = f740;
+    if (done == 0) {
+        f738 = dt + f738;
+    }
+    if (f738 >= f734 && done == 0) {
+        if (f480 == 0) {
+            cb = f218->v27();
+        } else {
+            cb = f214->v27();
+        }
+        if (cb->f7c != 0) {
+            cb->f7c(*(int *)(f1f4 + 0x2c), cb, cb->f80, 1);
+        }
+        f740 = 1;
+    }
+    f484 += dt;
+}
+
