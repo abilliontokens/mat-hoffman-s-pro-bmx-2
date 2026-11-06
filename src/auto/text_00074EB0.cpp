@@ -347,7 +347,9 @@ void C_00075170::func_00075170()
                 if (D_002B9120->f528->f774 == 0) {
                     unk16C[1] = 0;
                 } else {
-                    unk16C[1] = (int)((float)D_002B9120->f4E4[0]->f6D8 * D_00275994 / (float)D_002B9120->f528->f774);
+                    float pct = (float)D_002B9120->f4E4[0]->f6D8 * D_00275994;
+                    float total = (float)D_002B9120->f528->f774;
+                    unk16C[1] = (int)(pct / total);
                 }
             } else {
                 func_001ADCC0(num, 0x104, D_00277038, i + 1);
@@ -358,7 +360,9 @@ void C_00075170::func_00075170()
                 if (D_002B9120->f4E4[i]->f6D4 == 0) {
                     unk16C[i] = 0;
                 } else {
-                    unk16C[i] = (int)((float)D_002B9120->f528->f778 * D_00275994 / (float)D_002B9120->f4E4[i]->f6D4);
+                    float pct = (float)D_002B9120->f528->f778 * D_00275994;
+                    float total = (float)D_002B9120->f4E4[i]->f6D4;
+                    unk16C[i] = (int)(pct / total);
                 }
             }
             SETUP_LABEL(unk64[i]);
