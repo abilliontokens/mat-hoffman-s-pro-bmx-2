@@ -501,42 +501,13 @@ fail:
 
 int C_0001D370::func_0001D370(void) {
     while (unk70 != 0) {
-        int idx = 0;
-        C_0001D370_Item *item;
-        if (unk70 > 0 && unk74 != 0 && idx < unk70) {
-            item = unk74[idx];
-        } else {
-            break;
+        C_0001D370_Item *item = itemAt70(0);
+        if (item != 0) {
+            remove30(item);
+            remove70(item);
+            item->func_00157810();
+            item->virt2();
         }
-        if (item == 0) {
-            break;
-        }
-        int nA = unk30;
-        if (nA > 0) {
-            int i = 0;
-            while (i < unk30) {
-                if (unk34[i] == item) {
-                    unk34[i] = unk34[nA - 1];
-                    unk30--;
-                    break;
-                }
-                i++;
-            }
-        }
-        int nB = unk70;
-        if (nB > 0) {
-            int j = 0;
-            while (j < unk70) {
-                if (unk74[j] == item) {
-                    unk74[j] = unk74[nB - 1];
-                    unk70--;
-                    break;
-                }
-                j++;
-            }
-        }
-        item->func_00157810();
-        item->virt2();
     }
     return 1;
 }
