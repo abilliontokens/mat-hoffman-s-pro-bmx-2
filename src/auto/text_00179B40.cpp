@@ -20,10 +20,7 @@ struct C_0017A700 {
     int fF4, fF8;
     void func_0017A700(DXRenderableObject *owner, int index);
 };
-static inline C_0017A700 *const &C_0017A700_Same(C_0017A700 *const &a, C_0017A700 *const &b)
-{
-    return a > b ? b : a;
-}
+static inline int ShadowMinV(int a, int b) { return a > b ? b : a; }
 struct C_0017B9E0 {
     int unk0, unk4;
     void func_001D3F50();
@@ -423,41 +420,36 @@ void C_0017A700::func_0017A700(DXRenderableObject *owner, int index)
     void *func_001E8AA5(int);
     void *func_001E83E8(void *, int);
     void *func_001E8A44(int);
-    C_0017A700 * volatile saved = this;
-    C_0017A700 *self = this;
-    if (!self->fF0) {
-        DXShadowCaster **items = (DXShadowCaster **)func_001E8AA5(4);
-        self = saved;
-        self->fF0 = items;
-        self = saved;
-        self->fF8 = 1;
-        self = saved;
-        self->fF0[self->fF4] = 0;
-    } else if (self->fF8 < self->fF4 + 1) {
-        DXShadowCaster **items = (DXShadowCaster **)func_001E83E8(self->fF0, self->fF4 * 4 + 4);
-        self = saved;
-        self->fF0 = items;
-        self = saved;
-        self->fF8 = self->fF4 + 1;
-        self = saved;
-        self->fF0[self->fF4] = 0;
+    volatile struct { C_0017A700 *self; int max; int value; } L;
+    L.self = this;
+    if (!fF0) {
+        L.self->fF0 = (DXShadowCaster **)func_001E8AA5(4);
+        L.self->fF8 = 1;
+        C_0017A700 *s = L.self;
+        s->fF0[s->fF4] = 0;
+    } else if (fF8 < fF4 + 1) {
+        L.self->fF0 = (DXShadowCaster **)func_001E83E8(fF0, fF4 * 4 + 4);
+        C_0017A700 *s1 = L.self;
+        s1->fF8 = s1->fF4 + 1;
+        C_0017A700 *s2 = L.self;
+        s2->fF0[s2->fF4] = 0;
     }
-    self = saved;
-    if (self->fF0[self->fF4]) self->fF0[self->fF4]->v2(owner);
+    C_0017A700 *s3 = L.self;
+    if (s3->fF0[s3->fF4]) s3->fF0[s3->fF4]->v2(owner);
     else {
         DXShadowCaster *p = (DXShadowCaster *)func_001E8A44(16);
         if (p) p = p->func_00143820(owner);
         else p = 0;
-        self = saved;
-        self->fF0[self->fF4] = p;
+        C_0017A700 *s4 = L.self;
+        s4->fF0[s4->fF4] = p;
     }
-    self = saved;
-    volatile int max = self->fF0[self->fF4]->f4->f1a4->count - 1;
-    volatile int value = index < max ? index : max;
-    self = saved;
-    self->fF0[self->fF4]->f8 = value;
-    self = saved;
-    self->fF4++;
+    C_0017A700 *s5 = L.self;
+    DXShadowCaster *c = s5->fF0[s5->fF4];
+    L.max = c->f4->f1a4->count - 1;
+    int m = L.max;
+    L.value = index > m ? m : index;
+    c->f8 = L.value;
+    L.self->fF4++;
 }
 
 void C_0017A850::func_0017A850(void) {
