@@ -38,6 +38,16 @@ struct S_00098080_Global {
 extern S_00098080_Global *D_002A8490;
 int func_001EA426(const char *a, const char *b);
 
+struct Vobj_000988B0 {
+    virtual void v00();
+    virtual void v04();
+    virtual void v08();
+    virtual void v0c();
+    virtual void v10();
+    virtual void v14();
+    virtual void v18();
+};
+
 class C_000988B0_Obj {
 public:
     virtual void v00();
