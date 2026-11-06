@@ -75,7 +75,7 @@ struct C_001703B0 {
     char pad4[0x20];
     u32 f24, f28, f2c, f30, f34, f38, f3c, f40;
     u32 vectors[4][4];
-    char pad84[0x10];
+    u32 f84, f88, f8c, f90;
     S_Light_0016FEE0 lights[3];
     char padF4[0x10];
     void *f104;
