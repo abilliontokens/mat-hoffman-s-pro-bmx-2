@@ -77,8 +77,44 @@ struct S_000E4BC0_Lookup {
     int *func_0018C160(int name);
 };
 
+struct S_000E4220_Input {
+    int func_000301D0();
+    int func_00136170(int a, int b, int c);
+};
+
+struct S_000E4220_Ui {
+    void func_000B9A80(int a, int b);
+};
+
+struct S_000E4220_Obj {
+    char pad0[0x304];
+    int f304;
+    char pad308[0x59C - 0x308];
+    int f59C;
+    int f5A0;
+};
+
+struct S_000E4220_Pad {
+    char pad0[0x74];
+    S_000E4220_Input *f74;
+};
+
+struct S_000E4220_Mgr {
+    char pad0[0x24];
+    S_000E4220_Ui *f24;
+    char pad28[0x134 - 0x28];
+    int f134;
+    int f138;
+    char pad13C[0x25C - 0x13C];
+    S_000E4220_Pad *f25C;
+    S_000E4220_Obj *func_000BA9D0(int a);
+    void func_000BB7C0(int a);
+};
+
 struct C_000E5150_Global {
-    char pad0[0x2E0];
+    char pad0[8];
+    S_000E4220_Input *f8;
+    char pad0C[0x2E0 - 0xC];
     C_000E5150_Mgr *f2E0;
     char pad2E4[4];
     S_000E4BC0_Text *f2E8;
