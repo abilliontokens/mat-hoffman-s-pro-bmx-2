@@ -2,6 +2,60 @@
 #include "common.h"
 #include "ghidra.h"
 
+void func_001ADCC0(char *buf, int size, const char *fmt, ...);
+void *func_001E8AA5(int size);
+extern char D_002A64D0[];
+extern char D_0028D4F0[];
+extern char D_0027D90C[];
+extern char D_002769F8[];
+extern char D_0027D8FC[];
+extern char D_0027D8F0[];
+extern char D_0027A604[];
+extern char D_0027D8D8[];
+
+struct BD080_Config {
+    void func_00168280();
+    void func_001691E0();
+    int func_00169490(const char *path, int b);
+    void func_00169710(const char *section);
+    void func_00168C20(const char *key, int def, int *out);
+    void func_00168550(const char *key, char *buf, int size);
+    char pad[0x4cc];
+};
+
+struct BD080_Obj {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    char pad4[0x40];
+    int f44[8];
+};
+
+struct BD080_View {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
+    virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11();
+    virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15();
+    virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
+    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23();
+    virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27();
+    virtual void v28(); virtual void v29(); virtual void v30(); virtual void v31();
+    virtual void v32(); virtual void v33(); virtual void v34(); virtual void v35();
+    virtual void v36(); virtual void v37();
+    virtual BD080_Obj *v38(BD080_Config *cfg, char *name);
+};
+
+struct C_001BD080 {
+    void *vtbl;
+    char pad4[0x11c];
+    void **f120;
+    int f124;
+    int func_001BD080();
+};
+
 extern int D_0028D58C;
 
 struct C_00157600 {
