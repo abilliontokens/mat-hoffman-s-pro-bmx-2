@@ -84,11 +84,6 @@ struct C_00139B30 {
     undefined4 func_00139B30(byte param_1);
 };
 
-static __forceinline float Scale_001396D0(float v)
-{
-    return v * D_002755E8 * D_00275994;
-}
-
 
 int CutScene::func_001396D0(float dt)
 {
