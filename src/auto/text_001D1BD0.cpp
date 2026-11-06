@@ -57,7 +57,8 @@ struct C_001D27F0_Obj {
 };
 
 struct C_001D27F0 {
-    char pad0[8];
+    char pad0[4];
+    int unk4;
     int count;
     int unkC;
     struct LoadingRecord *records;
