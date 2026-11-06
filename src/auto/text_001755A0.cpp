@@ -4,3 +4,5 @@
 extern char D_0000F0F0[];
 extern char D_0000FFFF[];
 extern char D_0000FFF8[];
+extern char D_0000F81F[];
+extern char D_0000FFFC[];
