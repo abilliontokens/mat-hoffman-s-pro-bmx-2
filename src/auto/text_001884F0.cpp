@@ -362,6 +362,34 @@ void C_00188700::func_00188750(void)
     q->v1();
 }
 
+int C_001887A0::func_001887A0(S_001887A0_Arg *p) {
+    char buf[0x108];
+    M_001887A0 mat;
+    if (unk4 == 2) {
+        func_001E891B(unkC);
+        unkC = 0;
+        return 0;
+    }
+    if (memcmp(D_002764F0, unkC->name, 5) == 0)
+        return 0;
+    strcpy(buf, unkC->name);
+    unk8 = func_00133750(0, buf, 0xd);
+    if (unk8) {
+        unk8->unk68 = D_002BA160;
+        if (unkC->unk148 > 0)
+            unk8->unk6D = (char)unkC->unk148;
+        unk8->unk6C = unkC->unk144;
+        p->scenes[p->idx]->func_001577A0(unk8, 0);
+        func_000265C0(&mat, unkC->v108, unkC->v118, unkC->v128, 0, 1);
+        unk8->v31(&mat);
+        unk8->v31(&mat);
+        unk8->func_00133140(p->unk4AC[p->idx], 1);
+    }
+    func_001E891B(unkC);
+    unkC = 0;
+    return 1;
+}
+
 void C_00188700::func_001888F0(void)
 {
     C_001888F0_Obj *p;
@@ -429,14 +457,15 @@ void __stdcall func_00188980(int *type, S_00188980_Model **out)
     p->f4 = *type;
 }
 
+extern "C" int __cdecl strcmp(const char *, const char *);
+#pragma intrinsic(strcmp)
 int C_00188A40::func_00188A40(char *name)
 {
-    if (memcmp(name, D_0028A024, 9) == 0) {
+    if (strcmp(name, "Standard") == 0) {
         return 1;
     }
-    return memcmp(name, D_0028A014, 14) == 0 ? 2 : 0;
+    return strcmp(name, "PhysicsObject") == 0 ? 2 : 0;
 }
-
 CollisionObjects *CollisionObjects::func_00188A80(int a0)
 {
     func_00157600(a0);
