@@ -74,6 +74,7 @@ struct DynamicRayCollisionObject {
     Vec4 *unkC0;
     Vec4 *unkC4;
     void func_0014BA40(int param_1);
+    void func_0014BA80(Vec4 *centre, float *extent);
     void func_0014B940();
     void func_00157A00(int param_1);
 };
