@@ -83,8 +83,15 @@ struct S_00191270_Owner {
 };
 
 struct C_00191270 {
-    char pad0[0x158];
+    char pad0[0x14c];
+    struct S_1904E0_Run *f14c;
+    char pad150[8];
     S_00191270_Entry *f158;
+    char pad15c[8];
+    void *f164;
+    int func_0018D580(unsigned int id);
+    int func_0018E7D0(int kind, char *name, int *out);
+    void func_0018EA50(unsigned int a, void *b);
     int func_0018CE00(S_00191270_Owner *owner, char *name);
     int func_0018FF10(int a, int b, int slot, int *out);
     void func_001904E0(S_00191270_Owner *owner, int slot, S_00191270_Node *node, int c, int d);
