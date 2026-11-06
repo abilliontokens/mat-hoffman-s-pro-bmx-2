@@ -12,8 +12,8 @@ extern float D_00275460;
 
 struct C_001B1980 {
     void func_001B1980(void);
-    void __stdcall func_001B1B30(float a, int b);
-    void __stdcall func_001B1AB0(int a, int b);
+    void func_001B1B30(float a, int b);
+    void func_001B1AB0(int a, int b);
 };
 
 struct C_00093120 {
