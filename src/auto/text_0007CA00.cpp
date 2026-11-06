@@ -57,10 +57,8 @@ struct BmxMenu {
     BmxSprite* sc8;
     BmxSprite* scc;
     char padd0[8];
-    union {
-        BmxSprite* sec[5][2];
-        struct { BmxSprite* secA[5]; BmxSprite* secB[5]; };
-    };
+    BmxSprite* secA[5];
+    BmxSprite* secB[5];
     BmxSprite* s100[14];
     BmxSprite* s138;
     char pad13c[0x10];
@@ -176,7 +174,6 @@ struct BmxEditorMenu {
 BmxMenu* BmxMenu::func_0007CA00(void* a0)
 {
     int ids[3];
-    int i;
     BmxSprite *o;
 
     ids[0] = (int)D_00278690;
@@ -204,18 +201,18 @@ BmxMenu* BmxMenu::func_0007CA00(void* a0)
     height7CA(s84, 0x42480000);
     uv7CA(s84);
 
-    for (i = 0; i < 5; i++) {
+    for (int i = 0; i < 5; i++) {
         float x;
         BmxSprite *n;
         o = (BmxSprite *)func_001E8A44(0x64);
         n = o ? o->func_001D5760() : 0;
         x = i * D_00278650;
-        sec[i][0] = n;
+        secA[i] = n;
         n->func_001D5810(D_00278658, x, 50.0f, 0);
         o = (BmxSprite *)func_001E8A44(0x64);
-        sec[i][1] = o ? o->func_001D5760() : 0;
-        sec[i][1]->func_001D5810(D_00278658, x, 366.0f, 0);
-        o = sec[i][1];
+        secB[i] = o ? o->func_001D5760() : 0;
+        secB[i]->func_001D5810(D_00278658, x, 366.0f, 0);
+        o = secB[i];
         o->u0 = 0;
         o->v0 = 1.0f;
         o->u1 = 0.99f;
@@ -223,20 +220,20 @@ BmxMenu* BmxMenu::func_0007CA00(void* a0)
         o->flags |= 4;
     }
 
-    for (i = 0; i < 14; i++) {
-        float x;
-        BmxSprite *n;
+    for (int i = 0; i < 14; i++) {
         o = (BmxSprite *)func_001E8A44(0x64);
-        n = o ? o->func_001D5760() : 0;
-        s100[i] = n;
-        x = (i / 2) * D_00275800 + D_00279034;
-        n->func_001D5810(D_002786B0, (i % 2) ? 321.0f : 100.0f, x, 0);
-        n->u0 = 1.0f;
-        n->v0 = 0;
-        n->u1 = 0;
-        n->v1 = 1.0f;
-        n->flags |= 4;
-        width7CA(n, 0x435d0000);
+        s100[i] = o ? o->func_001D5760() : 0;
+        if (i % 2 == 0)
+            s100[i]->func_001D5810(D_002786B0, 100.0f, (i / 2) * D_00275800 + D_00279034, 0);
+        else
+            s100[i]->func_001D5810(D_002786B0, 321.0f, (i / 2) * D_00275800 + D_00279034, 0);
+        o = s100[i];
+        o->u0 = 1.0f;
+        o->v0 = 0;
+        o->u1 = 0;
+        o->v1 = 1.0f;
+        o->flags |= 4;
+        width7CA(s100[i], 0x435d0000);
     }
 
     o = (BmxSprite *)func_001E8A44(0x64);
@@ -260,8 +257,9 @@ BmxMenu* BmxMenu::func_0007CA00(void* a0)
     s138->func_001D5810(D_00278600, 0, 0, 0);
     {
         BmxSprite *p = s138;
-        unsigned int c = p->color;
+        unsigned int c;
         p->flags |= 2;
+        c = p->color;
         p->color = c & 0xff000000;
     }
     {
