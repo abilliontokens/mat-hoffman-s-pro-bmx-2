@@ -81,7 +81,7 @@ static __forceinline V4_001A7FE0 xform_001A7FE0(V4_001A7FE0 v, float *m)
     func_0011F540(&r, v, m);
     return r;
 }
-static __forceinline V4_001A7FE0 xform_b_001A7FE0(V4_001A7FE0 v, float *m, V4_001A7FE0 &b)
+static __forceinline V4_001A7FE0 xform_b_001A7FE0(const V4_001A7FE0 &v, float *m, V4_001A7FE0 &b)
 {
     V4_001A7FE0 r;
     b.Clear();
