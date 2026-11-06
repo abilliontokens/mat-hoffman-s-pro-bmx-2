@@ -35,6 +35,11 @@ static __forceinline int FtoI_001C4240(float x)
 {
     return _mm_cvtss_si32(_mm_set_ss(x));
 }
+
+static __forceinline void FtoI2_001C4240(int *dst, float src)
+{
+    *dst = _mm_cvtss_si32(_mm_load_ss(&src));
+}
 struct C_001C3F10 {
     uint func_001C3F10(void);
 };
@@ -1086,38 +1091,28 @@ int FadeObj::func_001C4240(void)
 
 CrossFade_001C44A0 *CrossFade_001C44A0::func_001C44A0(int a0)
 {
-    C_001D5760 *o;
-    C_001D5760 *p;
-    f32 t;
-
-    f34 = a0;
-    func_001D3F50();
-    p = (C_001D5760 *)func_001E8A44(0x64);
-    p = p != 0 ? p->func_001D5760() : 0;
-    unk24 = p;
-    if (a0 == -1) {
-        p->func_001D5810(&D_0028E5CC, 0, 0, 0);
-    } else {
-        p->func_001D5810(&D_0028E5C4, 0, 0, 0);
-    }
-    o = unk24;
-    if (o->f28 != 0x44200000) {
-        o->f28 = 0x44200000;
-        o->b58 |= 1;
-    }
-    o = unk24;
-    if (o->f2C != 0x43e00000) {
-        o->f2C = 0x43e00000;
-        o->b58 |= 1;
-    }
-    o = unk24;
-    t = D_002779FC + D_0028E3CC;
-    o->b58 |= 4;
-    o->f3C = 0;
-    o->f44 = D_0028E3CC;
-    o->f40 = 0x44200000;
-    o->f48 = t;
-    v4();
-    return this;
+ C_001D5760 *o;
+ C_001D5760 *p;
+ f32 t;
+ f34=a0;
+ func_001D3F50();
+ p=(C_001D5760 *)func_001E8A44(0x64);
+ p=p!=0 ? p->func_001D5760() : 0;
+ unk24=p;
+ if(a0==-1) p->func_001D5810(&D_0028E5CC,0,0,0);
+ else p->func_001D5810(&D_0028E5C4,0,0,0);
+ o=unk24;
+ if(o->f28!=0x44200000) {o->f28=0x44200000; o->b58|=1;}
+ o=unk24;
+ if(o->f2C!=0x43e00000) {o->f2C=0x43e00000; o->b58|=1;}
+ volatile C_001D5760 *v=unk24;
+ t=D_002779FC+D_0028E3CC;
+ v->f44=D_0028E3CC;
+ v->b58|=4;
+ v->f3C=0;
+ v->f40=0x44200000;
+ v->f48=t;
+ v4();
+ return this;
 }
 
