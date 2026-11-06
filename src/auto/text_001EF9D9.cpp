@@ -207,6 +207,7 @@ S_001EF734 *S_001EF734::func_001EFAB5(void *ap, void *bp)
     return (S_001EF734 *)ap;
 }
 
+#pragma optimize("y", on)
 C_001EFB18 *C_001EFB18::func_001EFB18(char param_1)
 {
     S_001EFB18_Obj *o;
