@@ -69,8 +69,46 @@ struct C_001A6B70 {
     void func_001A6B70();
 };
 
+/* text label widget (0x60 bytes) */
 struct C_001D6410 {
+    char pad0[4];
+    unsigned x;
+    union {
+        unsigned yi;
+        float yf;
+    };
+    char padC[0x48 - 0xC];
+    unsigned color;
+    char pad4C[2];
+    unsigned char flags;
+    char pad4F[0x60 - 0x4F];
     void func_001D6410();
+    C_001D6410 *func_001D5E90();
+    void func_001D5FA0(int font, char *name, int a, int b);
+    void func_0005E840(int a);
+    inline void setPos(unsigned a, unsigned b)
+    {
+        if (x != a || yi != b) {
+            yi = b;
+            x = a;
+            flags |= 6;
+        }
+    }
+    inline void setPosF(unsigned a, float b)
+    {
+        if (x != a || yf != b) {
+            yf = b;
+            x = a;
+            flags |= 6;
+        }
+    }
+    inline void setColor(unsigned c)
+    {
+        if (color != c) {
+            flags |= 8;
+            color = (color & c) | (c & 0xffffff);
+        }
+    }
 };
 
 struct C_00160BF0Obj {
