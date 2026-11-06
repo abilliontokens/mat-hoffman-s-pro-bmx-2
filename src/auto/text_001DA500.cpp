@@ -2,7 +2,7 @@
 #include "common.h"
 extern float D_002F08AC,D_002EFEA0,D_00278650;
 extern float D_002F100C[],D_002F1014[];
-extern int D_0020CA7C,D_00040350,D_00040344,D_00040348;
+extern int D_0020CA7C,D_00040350,D_00040344,D_00040348,D_0020C8E4;
 extern int D_0020C6EC,D_0020C6F0,D_0020C6F4,D_002A99B0;
 extern char D_002AC7D4[];
 void __fastcall func_001FEC30(int,void*);
