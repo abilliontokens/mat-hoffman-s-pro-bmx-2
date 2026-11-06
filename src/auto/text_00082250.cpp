@@ -308,6 +308,36 @@ extern int D_002A5348;
 extern int D_0028F5DC;
 extern int D_0028F5EC;
 extern int D_0028F5E0;
+
+/* applies the L/R/C justification letter to the sprite at self+off */
+static __forceinline void SetJustify_00082790(char *self, int off, char c)
+{
+    int val;
+    int *sub;
+
+    switch (c) {
+    case 'L':
+    case 'l':
+        val = D_0028F5DC;
+        break;
+    case 'R':
+    case 'r':
+        val = D_0028F5EC;
+        break;
+    case 'C':
+    case 'c':
+        val = D_0028F5E0;
+        break;
+    default:
+        return;
+    }
+    sub = *(int **)(self + off);
+    if (*(int *)((char *)sub + 0x44) != val) {
+        *(int *)((char *)sub + 0x44) = val;
+        *((char *)sub + 0x4e) |= 6;
+    }
+}
+
 void BmxInGameOverlays::func_00082790()
 {
     int func_001ADCC0(char *, int, char *, ...);
