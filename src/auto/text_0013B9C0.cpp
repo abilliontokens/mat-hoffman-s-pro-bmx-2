@@ -23,6 +23,8 @@ int func_0014FE60(void *p, int size, void *file);
 void *func_001E83E8(void *p, int size);
 void *func_0014FDF0(const char *name, char *mode);
 extern short D_00284C50;
+extern "C" unsigned int strlen(const char *);
+extern "C" char *strcpy(char *, const char *);
 static inline int min_i(int a, int b) { return a > b ? b : a; }
 
 struct S_0013B9C0_Ent28 {
