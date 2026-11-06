@@ -171,6 +171,13 @@ struct S_001D7C50_desc {
     u32 h;
 };
 
+static __forceinline void LoadLevel_001D7C50(C_001D6D00 *self, void *p, int *dims, S_001D7C50_desc *desc)
+{
+    func_00201210(p, dims, 0, 0x80);
+    func_002011F0(p, desc);
+    self->func_001D6D00(desc, dims, 0);
+}
+
 struct S_001D7910_Rect {
     int pitch;
     void *bits;
@@ -526,11 +533,11 @@ int XboxTextureMap::func_001D7C50()
         return 1;
     unsigned count = func_001FCFE0(field_b8);
     for (unsigned i = 0; i < count; i++) {
-        void *p = func_001FCE50(field_b8, i);
-        if (p == 0)
-            return 0;
         int dims[2];
         S_001D7C50_desc desc;
+        void *p = func_001FCE50(field_b8, i);
+        if (!p)
+            return 0;
         func_00201210(p, dims, 0, 0x80);
         func_002011F0(p, &desc);
         ((C_001D6D00 *)this)->func_001D6D00(&desc, dims, 0);
@@ -604,6 +611,28 @@ void XboxVideoCard_001D7E30::func_001D7E30(void)
         D_002F0BB8 = 0;
     }
     ((C_00012140 *)this)->func_00012140();
+}
+
+extern "C" double __cdecl pow(double, double);
+void __cdecl func_001D7E60(float r, float g, float b, char *out)
+{
+    int i;
+    for (int j = 0; i < 0x100; i++, j++) {
+        float f = (float)j * D_00284758;
+        int lim, v, m;
+        lim = 0xff - (unsigned char)out[i];
+        v = (unsigned char)(int)(pow(f, r) * D_0027A060);
+        m = min_001D7E60(lim, v);
+        out[i] += (char)m;
+        lim = 0xff - (unsigned char)out[i + 0x100];
+        v = (unsigned char)(int)(pow(f, g) * D_0027A060);
+        m = min_001D7E60(lim, v);
+        out[i + 0x100] += (char)m;
+        lim = 0xff - (unsigned char)out[i + 0x200];
+        v = (unsigned char)(int)(pow(f, b) * D_0027A060);
+        m = min_001D7E60(lim, v);
+        out[i + 0x200] += (char)m;
+    }
 }
 
 int XboxVideoCard_001D7FB0::func_001D7FB0(float x, float y, float z, int w)
