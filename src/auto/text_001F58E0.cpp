@@ -209,20 +209,21 @@ void func_001F5B20(S_U12 *p)
     p->l[2] = (p->l[2] << 1) | c1;
 }
 
+#pragma optimize("t", on)
 void func_001F5B4E(S_U12 *p)
 {
     volatile unsigned int *l = p->l;
-    register unsigned int l1 = l[1];
+    unsigned int t = l[1];
     unsigned int l2 = l[2];
-    unsigned int c1 = l1 << 31;
+    unsigned int c1 = t << 31;
     unsigned int c2 = l2 << 31;
-    unsigned int n0;
-    l[1] = (l1 >> 1) | c2;
-    n0 = (l[0] >> 1) | c1;
+    t = (t >> 1) | c2;
+    l[1] = t;
+    t = (l[0] >> 1) | c1;
     l[2] = l2 >> 1;
-    l[0] = n0;
+    l[0] = t;
 }
-
+#pragma optimize("s", on)
 extern char D_0000FFF0[];
 void func_001F5B7B(char *s, unsigned int n, S_U12 *x)
 {
@@ -243,11 +244,20 @@ void func_001F5B7B(char *s, unsigned int n, S_U12 *x)
     *(unsigned short *)((char *)x + 10) = (unsigned short)exp;
 }
 
-#pragma optimize("s", on)
-#pragma optimize("t", off)
-#pragma optimize("y", off)
+#pragma optimize("a", on)
+/* x *= 10 on the 96-bit mantissa (inlined into func_001F5C49) */
+static __forceinline void Mul10_001F5C49(S_U12 *x)
+{
+    S_U12 t = *x;
+    func_001F5B20(x);
+    func_001F5B20(x);
+    func_001F5AC2(x, &t);
+    func_001F5B20(x);
+}
 int __cdecl func_001F5C49(unsigned long lo, unsigned long hi, unsigned long se, int ndigits, unsigned int flags, S_I10_Fos *fos)
 {
+    int retval;
+    int cnt;
     unsigned char tenth[12] = { 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xfb, 0x3f };
     S_I10_Ld12 ld12;
     S_U12 tmp;
@@ -256,10 +266,8 @@ int __cdecl func_001F5C49(unsigned long lo, unsigned long hi, unsigned long se, 
     char *r;
     char *man;
     char c;
-    int retval;
     int e;
     int n;
-    int cnt;
     short decexp;
     unsigned short sign;
     unsigned short expn;
@@ -279,17 +287,17 @@ int __cdecl func_001F5C49(unsigned long lo, unsigned long hi, unsigned long se, 
         fos->exp = 1;
         if ((hi == 0x80000000 && *plo == 0) || (hi & 0x40000000)) {
             if (sign && hi == 0xc0000000 && *plo == 0) {
-                strcpy(fos->man, "1#IND");
+                *(S_I10_Str6 *)fos->man = *(S_I10_Str6 *)D_00296344;
                 fos->manlen = 5;
             } else if (hi == 0x80000000 && *plo == 0) {
-                strcpy(fos->man, "1#INF");
+                *(S_I10_Str6 *)fos->man = *(S_I10_Str6 *)D_0029633C;
                 fos->manlen = 5;
             } else {
-                strcpy(fos->man, "1#QNAN");
+                *(S_I10_Str7 *)fos->man = *(S_I10_Str7 *)D_00296334;
                 fos->manlen = 6;
             }
         } else {
-            strcpy(fos->man, "1#SNAN");
+            *(S_I10_Str7 *)fos->man = *(S_I10_Str7 *)D_0029634C;
             fos->manlen = 6;
         }
         retval = 0;
@@ -342,31 +350,31 @@ zero_digit:
                 *((unsigned char *)&ld12 + 11) = 0;
             } while (--cnt);
         }
-        man = fos->man;
         r = p;
         r--;
         c = *r;
         r--;
+        man = fos->man;
         if (c >= '5') {
-            while (r >= man) {
+            do {
                 if (*r != '9') {
                     break;
                 }
                 *r = '0';
                 r--;
-            }
+            } while (r >= man);
             if (r < man) {
                 r++;
                 fos->exp++;
             }
             (*r)++;
         } else {
-            while (r >= man) {
+            do {
                 if (*r != '0') {
                     break;
                 }
                 r--;
-            }
+            } while (r >= man);
             if (r < man) {
                 *man = '0';
                 goto zero_tail;
@@ -383,22 +391,21 @@ zero_tail:
     fos->manlen = 1;
     return 1;
 }
-#pragma optimize("y", on)
-#pragma optimize("t", on)
+#pragma optimize("a", off)
 
-#pragma optimize("s", on)
+#pragma optimize("a", on)
 void __cdecl func_001F5EC0(S_Ld12_001F60E2 *px, S_Ld12_001F60E2 *py)
 {
-    unsigned short expsum;
+    unsigned int expsum;
     int i;
     unsigned short *q;
     unsigned short *pxs;
     unsigned short *pys;
-    int roffs;
     int sticky = 0;
+    int roffs;
     int j;
     unsigned int sign;
-    unsigned short expx, expy;
+    unsigned short expy, expx;
     unsigned int *px32 = (unsigned int *)px;
     unsigned int *py32 = (unsigned int *)py;
     unsigned char tm[12];
@@ -408,14 +415,15 @@ void __cdecl func_001F5EC0(S_Ld12_001F60E2 *px, S_Ld12_001F60E2 *py)
     *(unsigned int *)(tm + 8) = 0;
     expy = *(unsigned short *)((char *)py + 10);
     expx = *(unsigned short *)((char *)px + 10);
-    sign = (expy ^ expx) & 0x8000;
-    expx &= 0x7fff;
+    sign = ((unsigned int)expy ^ (unsigned int)expx);
     expy &= 0x7fff;
-    expsum = expx + expy;
-    if (expx >= 0x7fff || expy >= 0x7fff || expsum > 0xbffd) {
+    expx &= 0x7fff;
+    sign &= 0x8000;
+    expsum = (unsigned short)(expx + expy);
+    if (expx >= 0x7fff || expy >= 0x7fff || (unsigned short)expsum > 0xbffd) {
         goto overflow;
     }
-    if (expsum <= 0x3fbf) {
+    if ((unsigned short)expsum <= 0x3fbf) {
         px32[2] = 0;
         px32[1] = 0;
         px32[0] = 0;
@@ -424,8 +432,8 @@ void __cdecl func_001F5EC0(S_Ld12_001F60E2 *px, S_Ld12_001F60E2 *py)
     if (expx == 0) {
         expsum++;
         if (!(px32[2] & 0x7fffffff) && px32[1] == 0 && px32[0] == 0) {
-            *(unsigned short *)((char *)px + 10) = 0;
-            return;
+            expsum = 0;
+            goto store_sign;
         }
     }
     if (expy == 0) {
@@ -439,18 +447,22 @@ void __cdecl func_001F5EC0(S_Ld12_001F60E2 *px, S_Ld12_001F60E2 *py)
     }
     q = (unsigned short *)tm + 2;
     roffs = 0;
-    for (i = 5; i > 0; i--) {
+    i = 5;
+    while (i > 0) {
         pxs = (unsigned short *)((char *)px + roffs * 2);
         pys = (unsigned short *)((char *)py + 8);
-        for (j = i; j > 0; j--) {
+        j = i;
+        while (j > 0) {
             if (func_001F5AA1(*(unsigned int *)(q - 2), (unsigned int)*pxs * (unsigned int)*pys, (unsigned int *)(q - 2))) {
                 ++*q;
             }
             pxs++;
             pys--;
+            j--;
         }
         q++;
         roffs++;
+        i--;
     }
     expsum += 0xc002;
     while ((short)expsum > 0 && !(tm[11] & 0x80)) {
@@ -460,7 +472,7 @@ void __cdecl func_001F5EC0(S_Ld12_001F60E2 *px, S_Ld12_001F60E2 *py)
     if ((short)expsum <= 0) {
         expsum += (int)D_0000FFFF;
         if ((short)expsum < 0) {
-            unsigned short n = -expsum;
+            unsigned int n = (unsigned short)-expsum;
             expsum += n;
             do {
                 if (tm[0] & 1) {
@@ -491,12 +503,13 @@ void __cdecl func_001F5EC0(S_Ld12_001F60E2 *px, S_Ld12_001F60E2 *py)
             (*(unsigned int *)(tm + 2))++;
         }
     }
-    if (expsum >= 0x7fff) {
+    if ((unsigned short)expsum >= 0x7fff) {
         goto overflow;
     }
     *(unsigned short *)px = *(unsigned short *)(tm + 2);
     *(unsigned int *)((char *)px + 2) = *(unsigned int *)(tm + 4);
     *(unsigned int *)((char *)px + 6) = *(unsigned int *)(tm + 8);
+store_sign:
     *(unsigned short *)((char *)px + 10) = expsum | sign;
     return;
 overflow:
@@ -504,6 +517,7 @@ overflow:
     px32[0] = 0;
     px32[2] = (-(unsigned int)(sign != 0) & 0x80000000) + 0x7fff8000;
 }
+#pragma optimize("a", off)
 void __cdecl func_001F60E2(S_Ld12_001F60E2 *dst, int pow, unsigned int mult12)
 {
     S_Ld12_001F60E2 tmp;
