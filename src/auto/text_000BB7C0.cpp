@@ -210,9 +210,7 @@ struct C_000BC590 {
 
 static inline void FloatToInt(int *out, float f)
 {
-    int * volatile p = out;
-
-    *p = _mm_cvttss_si32(*(__m128 *)&f);
+    *out = (int)f;
 }
 
 struct S_000BC4C0_Sub {
@@ -571,8 +569,15 @@ int C_000BBE30::func_000BC0F0(int idx)
 
 undefined4 C_000BC180::func_000BC130(void)
 {
-    S_000BC180_Entry *e = cur();
-    e->f128 = e->f120[f288];
+    S_000BC180_Entry *e;
+    int *tbl;
+    if (D_002A8490->f2E0->f324 == 1) {
+        e = f27c;
+    } else {
+        e = &f27c[f284];
+    }
+    tbl = e->f120;
+    e->f128 = tbl[f288];
     return f288;
 }
 
