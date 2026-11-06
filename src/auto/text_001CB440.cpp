@@ -394,7 +394,7 @@ struct C_001CC0C0 {
     char pad2D[3];
     int f30;
     char pad34[0xc0];
-    int fF4;
+    float fF4;
     char padF8[0x14];
     unsigned int f10C;
     char pad110[0x2c];
@@ -869,11 +869,13 @@ int C_001CC0C0::func_001CC0C0(int v)
 {
     int r;
     int h;
+    int t;
 
     if (f2C & 1) {
+        t = v;
         fF4 = v;
         h = f30;
-        r = func_00222388(h, v, 1);
+        r = func_00222388(h, t, 1);
         if (r < 0) {
             func_001CBC10(r, &D_0028EECC, 0x284);
             return 0;
