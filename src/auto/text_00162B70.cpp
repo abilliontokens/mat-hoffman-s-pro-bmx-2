@@ -68,6 +68,51 @@ struct P163780 {
     int pad30, id0, id1;
 };
 
+extern char D_00276274[], D_002789B8[], D_0027626C[], D_00287D04[], D_00287D00[];
+struct Mgr162FB0 {
+    int func_0013C9F0(void *a, char *b);
+    int func_0013C6E0(int h, char *buf, int n);
+    void func_0013AFF0(int h, int a, int b);
+    void func_0013C110(int h);
+};
+extern Mgr162FB0 *D_002BEAAC_162;
+struct Entry162FB0 {
+    char pad0[0x34];
+    void *f34;
+    void *f38;
+    void *f3C;
+};
+struct Src162FB0 {
+    char pad0[4];
+    int f4;
+    char pad8[0x1E0];
+    int count1E8;
+    Entry162FB0 *entries1EC;
+    int func_00164650(char *s);
+};
+struct Obj162FB0 {
+    IVt163780 *vt;
+    int unk4;
+    int f8;
+};
+struct Pack162FB0 {
+    char pad0[0x14];
+    Obj162FB0 **listA;
+    Obj162FB0 **listB;
+    int countA, countB;
+    unsigned char kind24;
+    char pad25[7];
+    int f2C;
+    int f30;
+    int f34;
+    float f38;
+    void func_00162DF0(int n);
+    void func_001628C0(int n);
+};
+int func_001EA1EE(char *s);
+char *func_001E95A4(char *a, char *b);
+int func_001EA426(char *a, char *b);
+
 struct S_00162DF0_A {
     char pad0[0x18];
 };
