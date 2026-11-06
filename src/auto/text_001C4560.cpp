@@ -192,6 +192,25 @@ struct S_001C4560_This {
     int f34;
     int func_001C4560();
 };
+
+struct S_1C4560_G {
+    char pad0[0x10];
+    int f10;
+    char pad14[0x25c];
+    int f270;
+    int f274;
+};
+extern S_1C4560_G *D_002A8490;
+extern float D_00275818;
+struct S_1C4560_Mgr {
+    char pad0[4];
+    char *f4;
+};
+extern S_1C4560_Mgr *D_002EFDB8;
+struct S_1C4560_Call {
+    void func_00157920(void);
+    void func_00157960(void);
+};
 void *func_001E8A44(int size);
 
 /* one 0x38-byte CrossFade layer */
