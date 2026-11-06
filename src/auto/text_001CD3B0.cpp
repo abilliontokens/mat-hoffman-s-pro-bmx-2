@@ -352,6 +352,35 @@ int __stdcall func_00221B47(void *a, S_001CD940_Buf *b);
 int __stdcall func_002228F8(int *desc, void **out);
 int __stdcall func_001DDB7E(int a, int b, int c, int d);
 
+int C_001CD3B0::func_001CD3B0(int param_1)
+{
+    int v;
+    int r;
+    int e;
+    if (f98 == param_1)
+        return 1;
+    if (f2c != 0)
+        v = f2c->f28 * param_1 / 100;
+    else
+        v = param_1;
+    r = func_001CB0A0(v);
+    int h = fB8;
+    e = func_00220AD6(h, r);
+    if (e < 0) {
+        func_001CBC10(e, &D_0028EECC, 0xdb1);
+    } else {
+        h = fBC;
+        e = func_00220AD6(h, r);
+        if (e < 0) {
+            func_001CBC10(e, &D_0028EECC, 0xdb5);
+        } else {
+            f98 = param_1;
+            return 1;
+        }
+    }
+    return 0;
+}
+
 int C_001CD510::func_001CD510(int a)
 {
     if (!(fa0 & 1)) {
