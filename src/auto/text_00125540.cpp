@@ -10,6 +10,7 @@ extern int D_002B9344;
 struct V4_00125540 {
     float x, y, z, w;
     V4_00125540() { x = y = z = 0.0f; w = 1.0f; }
+    V4_00125540(float px, float py, float pz) { x = px; y = py; z = pz; w = 1.0f; }
     __forceinline V4_00125540 &operator=(const V4_00125540 &v) {
         ((int *)this)[0] = ((const volatile int *)&v)[0];
         ((int *)this)[1] = ((const volatile int *)&v)[1];
