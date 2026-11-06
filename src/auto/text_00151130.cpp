@@ -37,11 +37,16 @@ struct Reg_151130 {
     Ent_151130 *ents[1];
     int func_00135E80(void);
 };
+struct FB4_151130;
+struct F2E0_151130;
 struct G8490_151130 {
-    char pad0[8];
+    char pad0[4];
+    FB4_151130 *f4;
     Reg_151130 *f8;
     char padC[4];
     int f10;
+    char pad14[0x2e0 - 0x14];
+    F2E0_151130 *f2e0;
 };
 struct Node_151130 : VBase_151130 {
     Node_151130 *func_00143580(int);
