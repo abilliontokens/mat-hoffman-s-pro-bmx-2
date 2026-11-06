@@ -140,6 +140,17 @@ struct AmbientDebris {
 
 extern C_000229C0 *D_002B7E18;
 
+extern float D_0027628C, D_00276288, D_00276284, D_00276280;
+extern float D_002A0F94, D_002A0F98, D_002A0F9C;
+extern int D_002B9108, D_002B9114, D_002B9118, D_002BA160;
+void _func_00011060();
+void func_00011FF0(S_00024210_Vec *p, int a, int b, void *fn);
+int func_00134DE0(S_00024210_Vec *a, S_00024210_Vec *b, S_00024210_Vec *c, int d, int e, int f, int g, int h, int i);
+S_00024210_Vec *func_0001E9E0(S_00024210_Vec *a, S_00024210_Vec *b);
+float func_00011170(S_00024210_Vec *a);
+void func_00021330(C_00023C30 *a, C_00023C30 *b, S_00024210_Vec *c);
+S_00024210_Vec *func_00011140(S_00024210_Vec *a, C_00023C30 *b, float c);
+
 int C_00023C30::func_00023CB0(float a, S_00024210_Vec v, float len)
 {
     return 1;
