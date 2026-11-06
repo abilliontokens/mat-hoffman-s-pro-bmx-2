@@ -16,6 +16,8 @@ static inline void free_61590(int p) {
 struct C_00061300 {
     int w[0xBC];
     void func_00157600(int a0);
+    void func_00157660();
+    void func_00061590();
     C_00061300 *func_00061300(int a0);
 };
 
