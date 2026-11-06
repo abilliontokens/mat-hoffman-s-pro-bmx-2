@@ -105,6 +105,11 @@ struct C_0013B9C0 {
     int func_0013B4C0(void *a, int size, void *file);
 };
 
+static inline int Call_0013B4C0(C_0013B9C0 *t, int size, void *file)
+{
+ return t->func_0013B4C0((char *)t + 0x2c, size, file);
+}
+
 void __fastcall func_0013B9C0(C_0013B9C0 * volatile self, int dummy, S_0013B9C0_Ent28 * volatile p, int index)
 {
  volatile int size;
@@ -123,8 +128,8 @@ void __fastcall func_0013B9C0(C_0013B9C0 * volatile self, int dummy, S_0013B9C0_
   func_0014FED0(e->f10, ((int *)e)[7], 0);
   e = p;
   func_0014FE60(self->f7C, ((int *)e)[8], e->f10);
+  t = self;
  }
- t = self;
  if (extra) t->func_0013B480((char *)t + 0x2c);
  int offset = ((int *)p)[6];
  t = self;
@@ -148,11 +153,12 @@ void __fastcall func_0013B9C0(C_0013B9C0 * volatile self, int dummy, S_0013B9C0_
  int result;
  if (extra) {
   self->f100 = 1;
-  t = self;
-  result = t->func_0013B4C0((char *)t + 0x2c, size, p->f10);
+  result = self->func_0013B4C0((char *)self + 0x2c, size, p->f10);
  } else {
+  void *a = p->f10;
+  int b = size;
   t = self;
-  result = t->func_0013B4C0((char *)t + 0x2c, size, p->f10);
+  result = t->func_0013B4C0((char *)t + 0x2c, b, a);
  }
  self->f74 = *(volatile int *)&index;
  if (compressed) {
@@ -413,94 +419,39 @@ else if (minSize <= (unsigned int)D_00200000 && maxSize >= (unsigned int)D_00200
 
 int C_0013B9C0::func_0013C3D0(const char *name, char *mode, int a2)
 {
-    volatile int ok = 1;
-    char buf[12];
-    int idx;
-    S_0013B9C0_Ent28 *e;
-
-    if (f8 == -1) {
-        f10++;
-        fC = (S_0013B9C0_Ent28 *)func_001E83E8(fC, f10 * 40);
-        if (fC == 0) {
-            return 0;
-        }
-        idx = f10 - 1;
-        f8 = -1;
-        e = &fC[idx];
-        e->fC = 1;
-        e->f10 = 0;
-        e->f0 = idx;
-        e->f4 = 0;
-        e->f8 = 0;
-        e->f14 = 0;
-        ((char *)e)[0x24] = 0;
-    } else {
-        int i = f8;
-        idx = i;
-        f8 = -1;
-        if (f10 > 1) {
-            for (;;) {
-                i++;
-                if (i >= f10) {
-                    i = 0;
-                }
-                if (i == idx) {
-                    break;
-                }
-                if (!(fC[i].fC & 1)) {
-                    f8 = i;
-                    break;
-                }
-            }
-        }
-    }
-    char *d = buf;
-    const char *s = mode;
-    char c;
-    do {
-        c = *s;
-        d[s - mode] = c;
-        s++;
-    } while (c);
-    if (func_001E9260(buf, 'b') == 0) {
-        char *p = buf;
-        while (*p) {
-            p++;
-        }
-        *(short *)p = D_00284C50;
-    }
-    void *fp = func_0014FDF0(name, buf);
-    if (fp == 0) {
-        ok = 0;
-        func_0013B840(&fC[idx]);
-        f8 = idx;
-        return ok;
-    }
-    func_0014FED0(fp, 0, 2);
-    int sz = D_0014FEE0(fp);
-    if (!func_0013AC40((int)name, idx, 0, sz, a2, 5)) {
-        func_0014FE50(fp);
-        ok = 0;
-        func_0013B840(&fC[idx]);
-        f8 = idx;
-        return ok;
-    }
-    e = &fC[idx];
-    e->f10 = fp;
-    e->fC = 4;
-    e->f8 = 0;
-    e->f14 = (void *)a2;
-    e->f4 = (int)func_001E8AA5(strlen(name) + 1);
-    strcpy((char *)e->f4, name);
-    if (func_001E9260(mode, 'w') || func_001E9260(mode, 'a') || func_001E9260(mode, '+')) {
-        e->fC |= 0x10;
-    }
-    ((int *)e)[6] = 0;
-    ((int *)e)[8] = 0;
-    ((int *)e)[7] = 0;
-    ((char *)e)[0x24] = 0;
-    e->f0 = idx;
-    return ok;
+ S_0013B9C0_Ent28 *e; int idx; int n; char buf[12]; bool ok=true; int unusedSentinel=-1;
+ if(f8==unusedSentinel) {
+ f10++; idx=f10;
+ fC=(S_0013B9C0_Ent28*)func_001E83E8(fC,idx*40);
+ if(!fC) return 0;
+ idx=f10-1; f8=unusedSentinel; e=&fC[idx];
+ e->fC=1; e->f10=0; e->f0=idx; e->f4=0; e->f8=0; e->f14=0; ((char*)e)[0x24]=0;
+ } else {
+ int i=f8; idx=i; f8=unusedSentinel;
+ n=f10; if(n>1) {
+ do { if(++i>=n)i=0; if(i==idx)break; } while(!((e=&fC[i])->fC&1));
+ if(i!=idx)f8=i;
+ }
+ }
+ char *d=buf; const char *s=mode; char c;
+ do {c=*s; d[s-mode]=c; ++s;}while(c);
+ if(!func_001E9260(buf,'b')) {
+ char *p=buf; --p; while(*++p) {} *(short*)p=D_00284C50;
+ }
+ void *fp=func_0014FDF0(name,buf);
+ if(!fp) {ok=0; func_0013B840(&fC[idx]); f8=idx;} else {
+ func_0014FED0(fp,0,2);
+ int sz=D_0014FEE0(fp);
+ if(!func_0013AC40((int)name,idx,0,sz,a2,5)) {
+ ok=0; func_0014FE50(fp);
+ func_0013B840(&fC[idx]); f8=idx;
+ } else {
+ e=&fC[idx]; e->f10=fp; e->fC=4; e->f8=0; e->f14=(void*)sz;
+ const char *q=name; const char *start=q+1; while(*q++) {}
+ e->f4=(int)func_001E8AA5(q-start+1);
+ char *dd=(char*)e->f4; q=name; while((*dd++=*q++)!=0) {}
+ if(func_001E9260(mode,'w')||func_001E9260(mode,'a')||func_001E9260(mode,'+'))e->fC|=0x10;
+ ((int*)e)[6]=0; ((int*)e)[8]=0; ((int*)e)[7]=0; ((char*)e)[0x24]=0; e->f0=idx; } } return ok;
 }
 
 int C_0013B9C0::func_0013C5D0(S_0013B9C0_Ent28 *arg1, int arg2)
