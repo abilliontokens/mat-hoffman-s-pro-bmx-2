@@ -37,8 +37,18 @@ struct C_0013D780 {
     void func_0013B9C0(S_0013D780_Ent *e, int v);
 };
 
+/* One name/value slot of C_0013E170's table; 0x5c bytes apart. */
+struct Entry_0013E170 {
+    char name[0x50];
+    int value;
+    char pad54[8];
+};
+
 struct C_0013E170 {
-    char storage[64][0x5c];
+    char pad0[0x230];
+    Entry_0013E170 entries[64];
+    char pad1930[0xc];
+    int count;
     void func_0013E170(int index, char *name, int value);
 };
 
@@ -694,24 +704,24 @@ void DXCamera::func_0013E580(void)
 {
     DXCamera *volatile self = this;
     __declspec(align(16)) Mat4_0013E4F0 m;
-    __m128 *volatile p;
     DXCamera *c;
-    __m128 *q;
-    __m128 z;
     float s;
 
     func_0012AEC0();
     c = self;
     func_000263B0(&c->f250, (char *)c + 0xb0, (char *)c + 0x70);
-    p = (__m128 *)&m;
-    z = _mm_setzero_ps();
-    q = p;
-    q[0] = z;
-    q[1] = z;
-    q[2] = z;
-    q[3] = z;
+    {
+        __m128 *volatile p = (__m128 *)m.m;
+        __m128 z = _mm_setzero_ps();
+        __m128 *q = p;
+
+        q[0] = z;
+        q[1] = z;
+        q[2] = z;
+        q[3] = z;
+    }
     c = self;
-    s = D_00284DD8 / c->f200;
+    s = *(volatile float *)&D_00284DD8 / c->f200;
     m.m[15] = s;
     m.m[0] = s;
     m.m[5] = s;
