@@ -3,6 +3,7 @@
 #include "ghidra.h"
 #include <math.h>
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 struct C_000B6080 {
     void func_000B6080(int param_1);
 };
@@ -209,21 +210,32 @@ C_000B5990 *C_000B5990::func_000B5990(int param_1)
 int __fastcall func_000B59E0(char *thiz, int, float dt)
 {
     char * volatile self = thiz;
-    float len, ang, t, step, absang;
-    float m[16];
-    float V[4];
-    float d[4];
-    float w[4];
+    float len, ang, t, step, absang, sgn, dot, s;
     float ax[4];
+    float w[4];
+    float d[4];
+    float V[4];
+    float m[16];
+    float vec2[4];
     float *ap, *o;
+    V4_000B5260 fin;
     float *func_0001E9E0(float *out, float *v);
 
-    ((C_00197F70 *)*(int *)(self + 0x30))->func_00197F70(m + 12, (float *)(self + 0x44));
-    o = *(float **)(self + 0x28);
-    d[0] = (*(float *)(self + 0x54) * o[16] + o[8]) - m[12];
-    d[1] = (*(float *)(self + 0x54) * o[17] + o[9]) - m[13];
-    d[2] = (*(float *)(self + 0x54) * o[18] + o[10]) - m[14];
+    ((C_00197F70 *)*(int *)(thiz + 0x30))->func_00197F70(m + 12, (float *)(thiz + 0x44));
     d[3] = 1.0f;
+    o = *(float **)(self + 0x28);
+    s = *(float *)(self + 0x54);
+    {
+        float p0_ = s * o[16] + o[8];
+        float p1_ = s * o[17] + o[9];
+        float p2_ = s * o[18] + o[10];
+        d[0] = p0_ - m[12];
+        d[1] = p1_ - m[13];
+        d[2] = p2_ - m[14];
+    }
+    m[0] = 0.0f; m[1] = 1.0f; m[2] = 0.0f; m[3] = 1.0f;
+    m[4] = 0.0f; m[5] = 0.0f; m[6] = 0.0f; m[7] = 1.0f;
+    m[8] = 0.0f; m[9] = 0.0f; m[10] = 0.0f; m[11] = 1.0f;
     ap = func_0001E9E0(m + 13, m);
     m[0] = ap[0]; m[1] = ap[1]; m[2] = ap[2]; m[3] = ap[3];
     len = sqrtf(d[0] * d[0] + d[1] * d[1] + d[2] * d[2]);
@@ -241,12 +253,51 @@ int __fastcall func_000B59E0(char *thiz, int, float dt)
     V[3] = 1.0f;
     ((C_000B59E0_f30 *)*(int *)(self + 0x30))->func_00199900(V);
     ((C_000B59E0_f30 *)*(int *)(self + 0x30))->func_00197B40(m + 8, m + 4);
+    func_0001E9E0(d, ((C_000B59E0_f30 *)*(int *)(self + 0x30))->func_00198040(ax, m));
     func_0001E9E0(V, func_0001C610(ax, V, d));
     ang = func_0014F7E0(d[1] * D_00275544 + d[0] * D_00275544 + d[2]);
     len = ang;
     *(int *)&absang = *(int *)&ang & 0x7fffffff;
     if (absang > *(float *)(self + 0x64)) {
-        step = len;
+        if (absang < *(float *)(self + 0x5c)) {
+            step = ang;
+        } else {
+            sgn = ang < D_00275544 ? -1.0f : 1.0f;
+            *(int *)&len = *(int *)&ang & 0x7fffffff;
+            t = dt * *(float *)(self + 0x6c);
+            len = len < t ? len : t;
+            step = len * sgn;
+        }
+        ((C_000B59E0_f30 *)*(int *)(self + 0x30))->func_00199CF0(*(V4_000B5260 *)V, step);
+    }
+    ((C_000B59E0_f30 *)*(int *)(self + 0x30))->func_00197B40(m + 8, m + 4);
+    V[0] = 0.0f; V[1] = 0.0f; V[2] = 1.0f; V[3] = 1.0f;
+    w[0] = 0.0f; w[1] = 1.0f; w[2] = 0.0f; w[3] = 1.0f;
+    o = *(float **)(self + 0x28);
+    func_0001E9E0(vec2, func_0001C610(ax, o + 16, m));
+    dot = vec2[0] * m[4] + vec2[1] * m[5] + vec2[2] * m[6];
+    if (!(dot > D_00275544)) {
+        vec2[0] *= D_00275F58;
+        vec2[1] *= D_00275F58;
+        vec2[2] *= D_00275F58;
+    }
+    func_0001E9E0(V, ((C_000B59E0_f30 *)*(int *)(self + 0x30))->func_00198040(ax, vec2));
+    func_0001C610(ax, V, w);
+    fin = *(V4_000B5260 *)func_0001E9E0(w + 1, ax);
+    ang = func_0014F7E0(V[0] * D_00275544 + V[1] + V[2] * D_00275544);
+    len = ang;
+    *(int *)&absang = *(int *)&ang & 0x7fffffff;
+    if (absang > *(float *)(self + 0x64)) {
+        if (absang < *(float *)(self + 0x5c)) {
+            step = ang;
+        } else {
+            sgn = ang < D_00275544 ? -1.0f : 1.0f;
+            *(int *)&len = *(int *)&ang & 0x7fffffff;
+            t = dt * *(float *)(self + 0x6c);
+            len = len < t ? len : t;
+            step = len * sgn;
+        }
+        ((C_000B59E0_f30 *)*(int *)(self + 0x30))->func_00199CF0(fin, step);
     }
     return 1;
 }
@@ -284,6 +335,10 @@ void *C_000B60A0::func_000B60A0(int flags)
     func_001E891B(this);
   }
   return this;
+}
+
+void func_000B60D0(float *out, float *in) {
+    AsmVec3Normalize(out, in);
 }
 
 void func_000B6140(int param_1, int param_2)
