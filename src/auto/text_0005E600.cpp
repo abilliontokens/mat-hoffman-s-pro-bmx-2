@@ -304,7 +304,13 @@ struct Img_5ED {
     int width;
     int height;
     char pad30[8];
-    unsigned int color;
+    union {
+        unsigned int color;
+        struct {
+            unsigned int lo : 24;
+            unsigned int hi : 8;
+        } cb;
+    };
     float a, b, c, d;
     float w, h;
     char pad54[4];
@@ -674,6 +680,106 @@ C_0005ECA0 *C_0005ECA0::func_0005ECA0(int a0)
     unkF8 = 0;
     unk12C = 0;
     unk130 = 1;
+    return this;
+}
+
+C_0005EDC0 *C_0005EDC0::func_0005EDC0(void *a0)
+{
+    int ids[3];
+    int *r;
+    int font1;
+    int font2;
+    int i;
+    Img_5ED *o;
+    Txt_5ED *t;
+
+    unk104 = a0;
+    ids[0] = (int)D_002786A0;
+    ids[1] = (int)D_00278690;
+    ids[2] = (int)D_00278678;
+    D_002A8490->f2EC->func_0018C780(3, ids, 0);
+    D_002A8490->f2EC->func_0018C160((int)D_002786A0);
+    r = D_002A8490->f2EC->func_0018C160((int)D_00278690);
+    font1 = r ? *r : 0;
+    r = D_002A8490->f2EC->func_0018C160((int)D_00278678);
+    font2 = r ? *r : 0;
+    strcpy(D_002A60B0, "global\\textures\\");
+
+    o = (Img_5ED *)func_001E8A44(0x64);
+    unk94 = o ? o->func_001D5760() : 0;
+    unk94->func_001D5810(D_00278658, 0, 0, 0);
+    uv5ED(unk94);
+    height5ED(unk94, 0x42480000);
+    width5ED(unk94, 0x44200000);
+
+    o = (Img_5ED *)func_001E8A44(0x64);
+    unk98 = o ? o->func_001D5760() : 0;
+    unk98->func_001D5810(D_00278658, 0, 398.0f, 0);
+    width5ED(unk98, 0x44200000);
+    height5ED(unk98, 0x42480000);
+    uv5ED(unk98);
+
+    for (i = 0; i < 5; i++) {
+        float x;
+        o = (Img_5ED *)func_001E8A44(0x64);
+        unkAC[i] = o ? o->func_001D5760() : 0;
+        x = i * D_00278650;
+        unkAC[i]->func_001D5810(D_00278658, x, 50.0f, 0);
+        o = (Img_5ED *)func_001E8A44(0x64);
+        unkC0[i] = o ? o->func_001D5760() : 0;
+        unkC0[i]->func_001D5810(D_00278658, x, 366.0f, 0);
+        o = unkC0[i];
+        o->a = 0;
+        o->b = 1.0f;
+        o->c = 1.0f;
+        o->d = 0;
+        o->flags |= 4;
+    }
+
+    t = (Txt_5ED *)func_001E8A44(0x60);
+    unkEC = t ? t->func_001D5E90() : 0;
+    unkEC->func_001D5FA0(font2, D_00278678, 0x32, 0);
+    pos5ED(unkEC, 0x43a00000, 0x42200000);
+    color5ED(unkEC, 0xaaaaaaaa);
+    align5ED(unkEC, D_0028F5E0);
+    unkEC->func_0005E840(D_002A8490->f2E8->f4->fE98);
+
+    t = (Txt_5ED *)func_001E8A44(0x60);
+    unk124 = t ? t->func_001D5E90() : 0;
+    unk124->func_001D5FA0(font1, D_00278690, 0x28, 0);
+    pos5ED(unk124, 0x43a00000, 0x42ea0000);
+    align5ED(unk124, D_0028F5E0);
+    color5ED(unk124, 0xffcccccc);
+    unk124->func_0005E840(D_002A8490->f2E0->f4 != 0 ? D_002A8490->f2E8->f4->fAC8 : D_002A8490->f2E8->f4->fFC0);
+
+    o = (Img_5ED *)func_001E8A44(0x64);
+    unkD4 = o ? o->func_001D5760() : 0;
+    unkD4->func_001D5810(D_00278648, 490.0f, 388.0f, 0);
+
+    o = (Img_5ED *)func_001E8A44(0x64);
+    unkD8 = o ? o->func_001D5760() : 0;
+    unkD8->func_001D5810(D_00278638, 370.0f, 388.0f, 0);
+
+    o = (Img_5ED *)func_001E8A44(0x64);
+    unkDC = o ? o->func_001D5760() : 0;
+    unkDC->func_001D5810(D_00278624, 490.0f, 388.0f, 0);
+
+    o = (Img_5ED *)func_001E8A44(0x64);
+    unkE0 = o ? o->func_001D5760() : 0;
+    unkE0->func_001D5810(D_00278608, 370.0f, 388.0f, 0);
+
+    o = (Img_5ED *)func_001E8A44(0x64);
+    unk10C = o ? o->func_001D5760() : 0;
+    unk10C->func_001D5810(D_00278600, 0, 0, 0);
+    unk10C->flags |= 2;
+    unk10C->color &= 0xff000000;
+    unk10C->flags |= 2;
+    *((unsigned char *)&unk10C->color + 3) = 0x80;
+    height5ED(unk10C, 0x43e00000);
+    width5ED(unk10C, 0x44200000);
+
+    func_001ADCC0(D_002A60B0, 0x104, D_00275678, D_002A5870, D_002A5FA8);
+    v27();
     return this;
 }
 
