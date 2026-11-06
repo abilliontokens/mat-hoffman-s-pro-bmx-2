@@ -352,6 +352,7 @@ struct C_001C2290 {
         if (p != 0) { \
             memset(p, 0, strlen(p)); \
         } \
+        s = &F; \
         s->func_001D5810((int *)BUF, 0, 0, 0); \
         V[0] = 0; \
         V[2] = (int)F.f28; \
@@ -504,7 +505,10 @@ void *C_001C19D0::func_001C19D0(int a1, int a2)
 
     func_001BF600(cfg);
     f28 = a1;
-    float f1 = 0, f2 = 0, f3 = 0;
+    float f1, f3, f2;
+    f1 = 0;
+    f2 = 0;
+    f3 = 0;
     Col19D0 colOut;
     int V[4], A[4], W[4];
     int color;
@@ -513,10 +517,10 @@ void *C_001C19D0::func_001C19D0(int a1, int a2)
 
     cfg->func_00168BE0(D_0028D998, D_0028D75C, buf, 0x104);
     s = &f68;
-    LOAD_SUB_19D0(buf, D_0028E1D4, D_0028E1C4, D_0028E1B0, D_0028E19C, D_0028E18C, D_0028E17C, D_0028E16C, D_0028E15C, D_0028E14C, D_0027DE44);
+    LOAD_SUB2_19D0(f68, buf, D_0028E1D4, D_0028E1C4, D_0028E1B0, D_0028E19C, D_0028E18C, D_0028E17C, D_0028E16C, D_0028E15C, D_0028E14C, D_0027DE44, W[1] = (int)t;);
     cfg->func_00168BE0(D_0028E138, D_0028D75C, buf, 0x104);
     s = &fCC;
-    LOAD_SUB_19D0(buf, D_0028E120, D_0028E10C, D_0028E0F8, D_0028E0E4, D_0028E0D4, D_0028E0C0, D_0028E0AC, D_0028E09C, D_0028E08C, D_0028E07C);
+    LOAD_SUB2_19D0(fCC, buf, D_0028E120, D_0028E10C, D_0028E0F8, D_0028E0E4, D_0028E0D4, D_0028E0C0, D_0028E0AC, D_0028E09C, D_0028E08C, D_0028E07C, ;);
     return this;
 }
 
