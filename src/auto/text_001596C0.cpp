@@ -72,6 +72,8 @@ struct C_0015A640 {
 };
 
 #include <string.h>
+#include <xmmintrin.h>
+extern float D_002874A0, D_00287490, D_00287480;
 struct GLV { float x, y, z, w; };
 struct GLObj { GLObj *func_00193490(); };
 void *func_001E83E8(void *p, unsigned n);
@@ -240,7 +242,7 @@ void GrindLineManager::func_0015A180(void *arg)
     unk28--;
 }
 
-void GrindLineManager::func_0015A250(GrindLine *volatile a)
+void GrindLineManager::func_0015A250(GrindLine *a)
 {
     V4 center;
     V4 ext;
@@ -258,18 +260,9 @@ void GrindLineManager::func_0015A250(GrindLine *volatile a)
     ext.w = 1.0f;
     *(V4 *)&a->unk20 = *((Xf *)a->unk54)->func_00197F70(&tmp, (V4 *)&a->unk58);
     *(V4 *)&a->unk30 = *((Xf *)a->unk54)->func_00197F70(&tmp, (V4 *)&a->unk68);
-    a->unk40.x = a->unk30.x - a->unk20.x;
-    a->unk40.y = a->unk30.y - a->unk20.y;
-    a->unk40.z = a->unk30.z - a->unk20.z;
-    a->unk40.w = 1.0f;
-    center.x = (a->unk30.x + a->unk20.x) * D_002755E8;
-    center.y = (a->unk30.y + a->unk20.y) * D_002755E8;
-    center.z = (a->unk30.z + a->unk20.z) * D_002755E8;
-    center.w = 1.0f;
-    ext.x = a->unk40.x * D_002755E8;
-    ext.y = a->unk40.y * D_002755E8;
-    ext.z = a->unk40.z * D_002755E8;
-    ext.w = 1.0f;
+    *(V4 *)&a->unk40 = v4sub(*(V4 *)&a->unk30, *(V4 *)&a->unk20);
+    center = v4scale(v4add(*(V4 *)&a->unk30, *(V4 *)&a->unk20), D_002755E8);
+    ext = v4scale(*(V4 *)&a->unk40, D_002755E8);
     func_00159480((V4 *)&a->unk40, (V4 *)&a->unk40);
     ext.x = v3abs(ext.x);
     ext.y = v3abs(ext.y);
