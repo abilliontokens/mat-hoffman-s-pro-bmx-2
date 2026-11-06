@@ -26,7 +26,7 @@ struct ObjA0_186 {
     void func_00133140(void *a, int b);
 };
 struct Elem_186 { ObjC5_186 *a; ObjCE_186 *b; char pad8[0x20]; };
-struct G9120_186 { char pad0[0x348]; int f348; char pad34C[0x4A8 - 0x34C]; void **f4A8; void **f4AC; char pad4B0[0x4C0 - 0x4B0]; int f4C0; };
+struct G9120_186 { char pad0[0x348]; int f348; char pad34C[0x4A8 - 0x34C]; int *f4A8; int *f4AC; char pad4B0[0x4C0 - 0x4B0]; int f4C0; };
 struct FB4_186 { char pad0[0xB4]; void *fB4; };
 extern char D_002A48F8[];
 extern char D_002A5348[];
