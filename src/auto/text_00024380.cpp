@@ -102,6 +102,7 @@ struct AmbientDebris {
     Seg_24380 **f68;
     int (*f6C)[2];
     Obj138_24380 **f70;
+    AmbientDebris *func_00024140(int a, int b);
     void func_00024380(Ini_24380 *ini);
 };
 
