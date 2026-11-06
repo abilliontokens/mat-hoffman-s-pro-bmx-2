@@ -124,8 +124,9 @@ BmxUIPageHOF *BmxUIPageHOF::func_000D4D20(int a0)
         p[11] = 0;
         p++;
     }
-    arr2EC[0] = 0;
-    arr2EC[1] = 0;
+    for (int j = 0; j < 2; j++) {
+        arr2EC[j] = 0;
+    }
     unk280 = 0;
     unk290 = 0;
     unk284 = 0;
@@ -136,8 +137,9 @@ BmxUIPageHOF *BmxUIPageHOF::func_000D4D20(int a0)
     unk2AC = 0;
     unk2A8 = 0;
     unk29C = 1;
-    arr2FC[0] = 0;
-    arr2FC[1] = 0;
+    for (int k = 0; k < 2; k++) {
+        arr2FC[k] = 0;
+    }
     unk2B0 = 0;
     unk2B4 = 0;
     unk2B8 = 0;
