@@ -50,11 +50,11 @@ struct C_00075F30 {
     Img_75F30 *fDC[6];
     Img_75F30 *f4;
     char padF8[8];
-    int f100, f104, f108, f10C, f110, f114, f118;
+    Img_75F30 *f100, *f104, *f108, *f10C, *f110, *f114, *f118;
     char pad11C[4];
     int f120;
     char pad124[0x74];
-    int f198, f19C, f1A0, f1A4;
+    Img_75F30 *f198, *f19C, *f1A0, *f1A4;
     char pad1A8[0x14];
     int f1BC;
     int func_0018C210();
