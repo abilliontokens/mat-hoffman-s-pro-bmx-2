@@ -78,6 +78,11 @@ struct C_0016B8B0 {
     void func_0016B8B0(int a, int b, int c, int d, int e);
 };
 
+int func_0016AE10(float dt)
+{
+    return 1;
+}
+
 C_0016B770 *C_0016B770::func_0016B770(void *param)
 {
     ((C_00169C50 *)this)->func_00169C50(param);
@@ -142,7 +147,7 @@ struct AE_Pool {
 struct AE_Base {
     int func_00169E10(float dt);
 };
-struct SmokeParticleEmitter {
+struct C_0016AE10 {
     void *vtbl;
     char pad4[0x24 - 4];
     float f24, f28, f2C;
