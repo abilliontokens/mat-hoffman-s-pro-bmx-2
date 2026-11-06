@@ -48,7 +48,7 @@ struct C_001673B0_Found : virtual C_001673B0_Base {
 };
 
 struct C_001673B0 : virtual C_001673B0_Base {
-    char pad0[8];
+    char pad0[4];
     C_00168280 *f8;
     char padC[0x3c];
     char f48[0x50];
@@ -411,6 +411,12 @@ void C_001670C0::func_001670C0(float dt, int remap, int *mask)
  }
  if(f38>=f3C) { f30=0; f38=0; }
  if(finished) { f10=1; f34=0; f38=0; }
+}
+
+C_001673B0_Base *C_001673B0::func_001673B0(const char *name, const char *slt, void *unused, int id, int arg4)
+{
+    f1e0 = id;
+    return 0;
 }
 
 C_001676D0 *C_001676D0::func_001676D0(int n)
