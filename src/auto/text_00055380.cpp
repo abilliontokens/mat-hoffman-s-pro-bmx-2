@@ -283,7 +283,7 @@ struct VtblStore_00055380 {
 };
 
 struct CameraBehavior_00055380 {
-    __forceinline CameraBehavior_00055380() { ((C_00055380 *)this)->func_0012B510(); }
+    __forceinline CameraBehavior_00055380() { ((C_00055380 *)this)->func_0012B510(); *(u32 *)this = (u32)&D_00277CF4; }
 };
 
 struct QuatV_00055380 : S_00056100_Quat {
@@ -325,7 +325,7 @@ void func_00055140(S_00056100_Quat *,S_00056100_Quat *);
 void C_000559E0_unused();
 func_00055380::func_00055380()
 {
-    vtbl_dummy_unused_pad = &D_00277CF4;
+    *(void * volatile *)&vtbl_dummy_unused_pad = &D_00277CF4;
     unkC = 0;
     unk10 = 0;
     unk14 = 0;
