@@ -72,7 +72,7 @@ struct C_00171D00_C4VT {
     virtual void v10();
     virtual void v11();
     virtual void v12();
-    virtual void v13(int a);
+    virtual void v13(float a);
     virtual void v14();
     virtual void v15();
     virtual void v16();
