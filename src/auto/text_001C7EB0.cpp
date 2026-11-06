@@ -11,8 +11,10 @@ struct Water : WaterBase {
 };
 struct Vec4W {
     float x; float y; float z; float w;
-    __forceinline Vec4W operator-(const Vec4W &b) const { Vec4W r = { x - b.x, y - b.y, z - b.z, 1.0f }; return r; }
-    __forceinline Vec4W operator+(const Vec4W &b) const { Vec4W r = { x + b.x, y + b.y, z + b.z, 1.0f }; return r; }
+    __forceinline Vec4W() {}
+    __forceinline Vec4W(float ax, float ay, float az) { x = ax; y = ay; z = az; w = 1.0f; }
+    __forceinline Vec4W operator-(const Vec4W &b) const { return Vec4W(x - b.x, y - b.y, z - b.z); }
+    __forceinline Vec4W operator+(const Vec4W &b) const { return Vec4W(x + b.x, y + b.y, z + b.z); }
 };
 struct __declspec(align(16)) MatW { float m[16]; };
 extern float D_00275544;
