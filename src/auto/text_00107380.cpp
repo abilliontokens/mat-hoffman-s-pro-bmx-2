@@ -11,6 +11,15 @@ static __forceinline Vec_107AE0 scale_107AE0(const volatile Vec_107AE0 &v,const 
  Vec_107AE0 r;
  r.x=v.x*s;r.y=v.y*s;r.z=v.z*s;return r;
 }
+extern Vec_107AE0 D_002A3A4C, D_002A3A5C, D_002A3A6C;
+extern float D_00275544,D_002798A4,D_002755FC,D_002798A0,D_0027989C,D_00275AEC,D_00276524,D_00279054,D_00279898,D_00279894,D_00279890,D_0027E144,D_00282A74,D_0027A094;
+void func_00104A90(Vec_107AE0*,Vec_107AE0*);
+static __forceinline void cross_107380(Vec_107AE0 *d,Vec_107AE0 *a,Vec_107AE0 *b) {
+ __m128 x=_mm_loadu_ps(&a->x),y=_mm_loadu_ps(&b->x);
+ __m128 u=_mm_shuffle_ps(x,x,0xc9),v=_mm_shuffle_ps(y,y,0xc9);
+ x=_mm_sub_ps(_mm_mul_ps(x,v),_mm_mul_ps(y,u));
+ _mm_storeu_ps(&d->x,_mm_shuffle_ps(x,x,0xc9));
+}
 struct Mat_107AE0 { float m[16]; };
 static __forceinline void identity_107AE0(Mat_107AE0 *a) {
  __m128 *p=(__m128*)a;
