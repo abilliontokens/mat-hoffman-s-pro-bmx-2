@@ -301,7 +301,7 @@ struct func_00055380 : CameraBehavior_00055380 {
     void *vtbl_dummy_unused_pad;
     char pad4[4];
     u32 unk8, unkC, unk10, unk14, unk18;
-    Quat_00055380 q1C;
+    S_00055380_PodQuat q1C;
     Quat_00055380 q2C;
     u32 unk3C, unk40, unk44, unk48, unk4C, unk50, unk54, unk58;
     char pad5C[4];
