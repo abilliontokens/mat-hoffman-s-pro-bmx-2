@@ -180,6 +180,12 @@ struct C_0017A1D0 {
         int bits = *(volatile int *)&t & 0x7fffffff;
         return *(float *)&bits;
     }
+    __forceinline void StoreAbs(float *dst, float v)
+    {
+        volatile float t = v;
+        int bits = *(volatile int *)&t & 0x7fffffff;
+        *dst = *(float *)&bits;
+    }
     #pragma optimize("", on)
     int func_0017A1D0(float *p, float r, float *out);
     C_0017A1D0 *func_0017A310(C_0017A1D0_Vec4 *p);
