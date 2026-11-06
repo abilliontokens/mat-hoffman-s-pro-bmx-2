@@ -15,6 +15,13 @@ struct Owner_0010A3B0 {
 struct Hud_0010A3B0 {
     char pad0[0x24];
     Owner_0010A3B0 *f24;
+    char pad28[0x1658 - 0x28];
+    int f1658[103];
+    int f17f4[103];
+    int f1990[70];
+    int f1aa8[70];
+    int f1bc0[5][16];
+    int f1d00[5][16];
     void func_001056E0();
     void func_0010A3B0();
 };
