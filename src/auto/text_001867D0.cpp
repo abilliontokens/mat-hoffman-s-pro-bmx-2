@@ -1,5 +1,6 @@
 /* 19 functions from 0x001867D0 to 0x00187670, found by Ghidra. */
 #include "common.h"
+#include "asm_helpers.h"
 extern int D_002764F0, D_0027B168, D_00275AD4, D_00287DA0;
 extern int D_0028998C, D_00289978, D_00289970, D_0027A20C;
 extern int D_00289960, D_00289948, D_0027CB54, D_0027CB60, D_0028993C, D_00289930;
@@ -316,10 +317,7 @@ C_001867D0 *C_001867D0::func_001867D0()
     tmp[0] = sizeof(f4) - 1;
     lim = tmp[0];
     len = (int)strlen("none");
-    if (lim > len) {
-        lim = len;
-    }
-    tmp[1] = lim;
+    tmp[1] = (lim > len) ? len : lim;
     n = tmp[1];
     func_001E8920(self->f4, (const char *)&D_002764F0, n);
     self->f4[n] = 0;
@@ -396,22 +394,14 @@ int C_00186AF0::func_00186AF0(C_00186AF0Param *param)
 
 C_00186B90 *C_00186B90::func_00186B90()
 {
-    C_00186B90 *self;
-    int limit;
-    int count;
-    self = this;
-    ((C_001867D0 *)self)->func_001867D0();
-    self->vtbl = (void *)&D_00289A28;
-    limit = sizeof(f168) - 1;
-    if (limit > strlen("body")) {
-        count = strlen("body");
-    } else {
-        count = limit;
-    }
-    func_001E8920(self->f168, (const char *)&D_00289A1C, count);
-    self->f168[count] = 0;
-    self->f370 = 0;
-    return self;
+    ((C_001867D0 *)this)->func_001867D0();
+    vtbl = (void *)&D_00289A28;
+    int limit = sizeof(f168) - 1;
+    int count = AsmMinI(limit, strlen("body"));
+    func_001E8920(f168, (const char *)&D_00289A1C, count);
+    f168[count] = 0;
+    f370 = 0;
+    return this;
 }
 
 int C_00186C00::func_00186C00(C_00186AF0Param *param)
@@ -432,9 +422,9 @@ C_00186C70 *C_00186C70::func_00186C70(void)
     int n;
 
     ((C_001867D0 *)this)->func_001867D0();
-    self->vtbl = (void *)&D_00289A60;
+    *(void * volatile *)self = (void *)&D_00289A60;
     limit = sizeof(f168) - 1;
-    n = clamp_len_00186C70(limit, 4);
+    n = limit < 4 ? limit : 4;
     func_001E8920(self->f168, (const char *)&D_00289A1C, n);
     self->f168[n] = 0;
     return self;
@@ -456,6 +446,14 @@ int C_00186D20::func_00186D20(C_00186AF0Param *param)
     }
     param->func_00168C50((void *)&D_00289A6C, 0, &f168);
     return 1;
+}
+
+C_00186D60 *C_00186D60::func_00186D60(void)
+{
+    vtbl = (void *)&D_00289A7C;
+    f4 = 0;
+    f8 = 0;
+    return this;
 }
 
 C_00186EF0* C_00186EF0::func_00186EF0(void) {
@@ -493,6 +491,15 @@ int C_00186F80::func_00186F80(C_00186AF0Param *stream, int n)
     func_001ADCC0(buf, 0x3c, (const char *)&D_00289A8C, n + 1);
     stream->func_00168C50(buf, 0, &f108);
     return 1;
+}
+
+C_00187000 *C_00187000::func_00187000(void)
+{
+    vtbl = (void *)&D_00289AA4;
+    f4 = 0;
+    fC = 0;
+    f8 = 0;
+    return this;
 }
 
 int C_00187370::func_00187400(void *a)
