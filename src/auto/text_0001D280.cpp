@@ -563,7 +563,7 @@ C_0001D450_Item *C_0001D450::func_0001D450(const char *name)
     char key[0x104];
     int len = strlen(name);
     int lim = 0x103;
-    int n = minref(lim, len);
+    int n = *(lim > len ? &len : &lim);
     func_001E8920(key, name, n);
     key[n] = 0;
     char *p = func_001E8AC0(key, '.');
@@ -574,7 +574,7 @@ C_0001D450_Item *C_0001D450::func_0001D450(const char *name)
             const char *s = item->name;
             len = strlen(s);
             lim = 0x103;
-            n = minref(lim, len);
+            n = *(lim > len ? &len : &lim);
             func_001E8920(buf, s, n);
             buf[n] = 0;
             p = func_001E8AC0(buf, '.');
@@ -584,7 +584,7 @@ C_0001D450_Item *C_0001D450::func_0001D450(const char *name)
                 s = item->unk1BC->name;
                 len = strlen(s);
                 lim = 0x103;
-                n = minref(lim, len);
+                n = *(lim > len ? &len : &lim);
                 func_001E8920(buf, s, n);
                 buf[n] = 0;
                 p = func_001E8AC0(buf, '.');
@@ -607,6 +607,8 @@ void *C_0001D690::func_0001D690(unsigned char param_1)
   }
   return this;
 }
+
+void C_0001D6B0::func_0001D6B0(){float a[4],b[4];a[0]=a[1]=a[2]=0;a[3]=1;b[0]=b[1]=b[2]=0;b[3]=1;int counts[4];int i;if(unk2c<unk58)return;for(i=0;i<n;i++){C_0001D6B0_Item*p=at(i);p->func_001A1930(unk58,unk60);if(unk58>1)for(int j=0;j<unk58;j++)if(p->unk94==unk60[j])counts[j]++;}int best=0;if(unk58>1){int max=0;for(int j=0;j<unk58;j++)if(counts[j]>max){max=counts[j];best=j;}}if(unk58>0){((C_0001D6B0_Item*)unk60[best])->func_001A1540(a,b);b4->func_001CBFE0(a,b);}b4->func_001CBF60();memset(a84.arr,0,a84.n*4);*(volatile int*)&a84.n=0;memset(*(int*volatile*)&a98.arr,0,*(volatile int*)&a98.n*4);*(volatile int*)&a98.n=0;for(i=0;i<*(volatile int*)&n;i++){C_0001D6B0_Item*p=at(i);if(!p->unk1b8)continue;if(p->unk1a0&2){if(a84.n>=a84.cap){int cap=a84.n+a84.base;if(cap<=a84.cap)goto noadd;int*v=(int*)func_001E8A44(cap*4);if(!v)goto noadd;memcpy(v,a84.arr,a84.cap*4);int*old=a84.arr;a84.arr=v;func_001E891B(old);a84.cap=cap;}a84.arr[a84.n++]=(int)p;noadd:if(p->v27()){C_0001DF80_Arr*list=&a98;if(list->n<list->cap||list->func_0015ACA0(list->n+list->base))list->arr[list->n++]=(int)p;}else if(p->v34()){C_0001DF80_Arr*list=&a98;if(list->n<list->cap||list->func_0015ACA0(list->n+list->base))list->arr[list->n++]=(int)p;}}else if(p->v27()&&!(p->unk98&0x40))p->v33();}int needed=unk4c+unk48-unk54;if(needed<0){func_001E8550(arr,n,4,func_0001CBC0);for(int m=0;m<n;m++){C_0001D6B0_Item*p=at(m);if(!p->v27()){++needed;p->func_001A1E60();--unk54;if(needed<=0)break;}}}}
 
 extern "C" void func_0013E260(int, int, const void *);
 extern "C" void func_0013E1F0(int, int, const void *, ...);
