@@ -93,7 +93,7 @@ struct C_000E3D30_Item {
     unsigned char flags;
     /* defined in the class (the compiler inlines it into the first calls only) */
     void func_00051120(short a) {
-        w38 = (w38 & 0xffffff) | ((int)a << 24);
+        w38 = ((int)a << 24) | (w38 & 0xffffff);
         flags |= 2;
     }
     void func_001D5AD0();
