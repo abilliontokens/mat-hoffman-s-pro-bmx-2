@@ -158,15 +158,15 @@ struct S_00157600_Flags {
 };
 
 struct C_00157600 {
-    void *vtbl;
+    void *volatile vtbl;
     int pad4;
-    int f8;
-    int fC;
-    int f10;
-    int f14;
-    int f18;
-    int f1C;
-    unsigned char f20;
+    volatile int f8;
+    volatile int fC;
+    volatile int f10;
+    volatile int f14;
+    volatile int f18;
+    volatile int f1C;
+    volatile unsigned char f20;
     S_00157600_Flags f21;
     C_00157600 *func_00157600(unsigned char flags);
 };
@@ -505,12 +505,10 @@ C_00157600 *C_00157600::func_00157600(unsigned char flags)
 {
     int func_0001DFE0(...);
     extern int D_0028715C;
-    int n;
 
     func_0001DFE0();
     vtbl = (void *)&D_0028715C;
-    n = D_002DF94C + 1;
-    D_002DF94C = n;
+    D_002DF94C++;
     f20 = 0xff;
     f8 = 0;
     fC = 0;
