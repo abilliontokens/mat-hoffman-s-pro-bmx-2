@@ -7,7 +7,7 @@ struct SimpleVCR {
     float f24, f28, f2c, f30, f34, f38;
     float f3c, f40, f44;
     float f48;
-    float f4c;
+    union { float f4c; int f4c_i; };
     float f50, f54, f58, f5c, f60, f64, f68, f6c, f70, f74, f78, f7c, f80, f84, f88;
     char pad8C[4];
     float f90, f94, f98, f9c, fA0, fA4, fA8, fAC, fB0, fB4, fB8;
@@ -389,11 +389,9 @@ void SimpleVCR::func_00195E70(void)
 
 int C_00196000::func_00196000(float param_1, int param_2, int param_3, int param_4, float param_5, float param_6, int param_7)
 {
-    int n;
-
-    n = f70;
-    f70 = n + 1;
-    if (param_1 > D_00275544 && f74 < f6c && (fc0 & 0x10) == 0) {
+    float p = param_1;
+    f70++;
+    if (p > D_00275544 && f74 < f6c && (fc0 & 0x10) == 0) {
         f78[f74] = param_2;
         if (param_3 != 0) {
             f7c[f74] = param_3;
