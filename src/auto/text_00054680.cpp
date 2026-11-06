@@ -116,6 +116,7 @@ struct C_000549F0 {
     void func_000549F0(float dt);
     void func_00157A00(float dt);
     void func_00031260(float dt);
+    void func_00054210(float dt);
     void func_00054680();
 };
 
