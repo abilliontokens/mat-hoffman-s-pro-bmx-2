@@ -1,5 +1,6 @@
 /* 5 functions from 0x0014D720 to 0x0014E630, found by Ghidra. */
 #include "common.h"
+#include "asm_helpers.h"
 
 extern int D_002BF278;
 
@@ -263,8 +264,8 @@ int EcoSystem::func_0014E200(void)
         if (log != 0) {
             if (D_002A768C < 0) {
                 int t = log->unk1934;
-                log->unk1934 = t + 1;
                 D_002A768C = t;
+                log->unk1934 = t + 1;
             }
             func_0013E260(D_002A8490->unk18, D_002A768C, D_00286A00, unk3C);
             func_0013E1F0(D_002A8490->unk18, D_002A768C, D_002869E8, unk56C, unk570);
