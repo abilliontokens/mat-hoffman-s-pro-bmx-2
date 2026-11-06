@@ -1,5 +1,6 @@
 /* 3 functions from 0x00101CF0 to 0x00102BB0, found by Ghidra. */
 #include "common.h"
+#include <string.h>
 
 extern int D_002826B4;
 
@@ -402,6 +403,166 @@ void C_00101CF0::func_00101CF0(void)
         unk2FC++;
     }
     func_00157960();
+}
+
+void C_00102370::func_00102370(float dt)
+{
+    char buf[0x38];
+    Obj102370_Mgr2 *mgr;
+    f328 += dt;
+    if (f328 > D_00275460) {
+        if (f344->func_00092A10() == 1 && f348 == 0) {
+            func_000EC6F0();
+            f380 = 0;
+            f384 = 0xff;
+            f388 = f364;
+            f38C = 0;
+            f390 = 0x3e800000;
+            func_000EBE90();
+            f328 = 0;
+        } else {
+            if (f344->func_00092A10() == 0 && f348 == 1) {
+                func_000EC6F0();
+                func_000ECD90();
+                func_000EBE90();
+            }
+            f328 = 0;
+        }
+    }
+    if (f380 != (int)f2A0->b3B) {
+        if (f38C < f390) {
+            f388 = (int)((f380 - f384) * (f38C / f390)) + f384;
+        } else {
+            f388 = f380;
+        }
+        f38C += dt;
+    }
+    if (f334 != 0) {
+        f340 += dt;
+        if (f340 >= D_00275460) {
+            if (f344->func_000930D0() != 0) {
+                f35C = 0;
+                func_000EC320();
+                f34C = 1;
+                if (f394 != 0) {
+                    f344->func_00093120();
+                    f394 = 0;
+                }
+                f378 = 1;
+            } else {
+                f35C = 1;
+                f324 = 0;
+                f344->func_00093120();
+                f344->func_00094570(320.0f, 100.0f, D_0028F5E0, 0, 0, 0);
+            }
+            f334 = 0;
+            f340 = 0;
+            f330 = 0;
+        }
+    }
+    if (f30C != 0 || f310 != 0) {
+        f308 += dt;
+        if (f308 >= D_0027DE74) {
+            if (f30C != 0) {
+                if (f35C != 0) {
+                    f344->func_00093120();
+                    f378 = 1;
+                    f35C = 0;
+                    f124->f138 = 7;
+                    f124->f134 = 8;
+                } else if (f324 <= 0) {
+                    f124->f138 = 7;
+                    f124->f134 = 8;
+                } else {
+                    int idx;
+                    int nameIdx;
+                    char *entry;
+                    char *name2;
+                    int len;
+                    int n;
+                    void *mem;
+                    do {
+                        idx = func_00011260(0, 14);
+                    } while (D_002A8490->f2E0->f2C0->func_0005C1D0(idx) == 0);
+                    entry = (char *)f124 + idx * 0x1a8;
+                    nameIdx = **(int **)(entry + 0x120);
+                    mgr = D_002A8490->f2E0;
+                    mgr->f1F0 = mgr->f190;
+                    mgr->f190 = idx;
+                    *(int *)(entry + 0x124) = 0;
+                    len = 0;
+                    while (entry[0x104 + len] != 0) len++;
+                    n = len < 7 ? len : 7;
+                    func_001E8920(mgr->buf150, entry + 0x104, n);
+                    mgr->buf150[n] = 0;
+                    mgr->f1B0 = 0;
+                    name2 = (char *)f124->f280 + nameIdx * 0x120 + 0x104;
+                    len = 0;
+                    while (name2[len] != 0) len++;
+                    n = len < 7 ? len : 7;
+                    func_001E8920(mgr->buf1F4, name2, n);
+                    mgr->buf1F4[n] = 0;
+                    f124->func_000BC3E0(0);
+                    mem = func_001E8A44(0x41a0);
+                    mgr->f2C4 = mem ? (int *)((Obj102370_7E050 *)mem)->func_0007E050() : 0;
+                    {
+                        int k;
+                        for (k = 0; k < 0x1068; k++) mgr->f2C4[k] = 0;
+                    }
+                    if (f344->func_00092C70() != 0) {
+                        func_001ADCC0(buf, 0x37, D_002790F4, arr2E0[f33C] + 1);
+                        mgr->f2CC->func_001D4590(f344->func_000928E0(), buf, (int)mgr->f2C4, 0x41a0);
+                    }
+                    switch (*(unsigned char *)((char *)arr2E0[f33C] + mgr->f2C8 + 8)) {
+                    case 0:
+                        mgr->f48 = 8;
+                        mgr->func_0005B3F0();
+                        mgr->f4 = 0xb;
+                        f124->f138 = 8;
+                        break;
+                    case 1:
+                        mgr->f48 = 9;
+                        mgr->func_0005B3F0();
+                        mgr->f4 = 0xb;
+                        f124->f138 = 8;
+                        break;
+                    case 2:
+                        mgr->f48 = 10;
+                        mgr->func_0005B3F0();
+                        mgr->f4 = 0xb;
+                        f124->f138 = 8;
+                        break;
+                    }
+                }
+                f30C = 0;
+            }
+            if (f310 != 0) {
+                f32C = 1;
+                f344->func_00093120();
+                f124->f138 = 7;
+                f124->f134 = 8;
+                f310 = 0;
+            }
+            f308 = 0;
+        }
+    }
+    if (f360 != (int)f320->b3B) {
+        if (f36C < f370) {
+            f368 = (int)((f360 - f364) * (f36C / f370)) + f364;
+        } else {
+            f368 = f360;
+        }
+        f36C += dt;
+    }
+    f398 += dt;
+    if (f39C != 0 && f358 == 0) {
+        f398 += dt;
+        if (f398 >= D_00278C48) {
+            f358 = 1;
+            f39C = 0;
+        }
+    }
+    func_001BED00(dt);
 }
 
 C_00102B30 *C_00102B30::func_00102B30(void *a, void *b)
