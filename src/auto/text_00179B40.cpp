@@ -140,6 +140,10 @@ static inline void V3Add_0017A010(V3_0017A010 &r, const V3_0017A010 &a, const V3
     r.z = a.z + b.z;
 }
 int func_001793E0(C_0017A1D0_Vec4 *p, V3_0017A010 *n, V3_0017A010 *o, V3_0017A010 *a, V3_0017A010 *b, V3_0017A010 *c);
+struct V4Tmp_0017A010 {
+    float x, y, z, w;
+    V4Tmp_0017A010(const V3_0017A010 &v, float w_) { x = v.x; y = v.y; z = v.z; w = w_; }
+};
 struct C_0017A010 {
     char pad0[0x24];
     V3_0017A010 f24;
@@ -264,6 +268,37 @@ int C_00179B40::func_00179B40(C_0017BB10 *a0, char *a1)
     *(float *)&t[3].unk0 = minx; *(float *)&t[3].unk4 = maxy;
     a0->func_0017BB10(t);
     return 1;
+}
+
+int C_0017A010::func_0017A010(V3_0017A010 *a, V3_0017A010 *b, C_0017A1D0_Vec4 *out)
+{
+    V3_0017A010 va;
+    C_0017A1D0_Vec4 d;
+    V3_0017A010 &dv = *(V3_0017A010 *)&d;
+    V3Sub_0017A010(va, *a, f24);
+    V3Sub_0017A010(dv, *b, f24);
+    float da = V3Dot_0017A010(va, f64);
+    float db = V3Dot_0017A010(dv, f64);
+    int ia = *(int *)&da;
+    int ib = *(int *)&db;
+    if ((ib ^ ia) <= 0) {
+        V3Sub_0017A010(dv, *b, *a);
+        float c = -V3Dot_0017A010(f24, f64);
+        float t = -((c + V3Dot_0017A010(*a, f64)) / V3Dot_0017A010(dv, f64));
+        if (t >= D_00275544 && t <= D_00275460) {
+            C_0017A1D0_Vec4 pt;
+            d.w = 1.0f;
+            V3Scale_0017A010(*(V3_0017A010 *)&pt, dv, t);
+            V3Add_0017A010(dv, *(V3_0017A010 *)&pt, *a);
+            pt = d;
+            if (out) {
+                *out = d;
+            }
+            if (func_001793E0(&pt, &f64, &f24, &f34, &f44, &f54))
+                return 1;
+        }
+    }
+    return 0;
 }
 
 void *C_0017A2E0::func_0017A2E0(unsigned int flags)
