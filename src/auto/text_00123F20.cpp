@@ -9,7 +9,7 @@ struct Vec4 {
 };
 extern float D_00275460;
 void func_0011EFA0(Vec4 *,const Vec4 *);
-static __forceinline float Fabs(volatile float f){int i=*(volatile int*)&f&0x7fffffff;return *(float*)&i;}
+static __forceinline float Fabs(volatile float f){volatile int i=*(volatile int*)&f&0x7fffffff;return *(volatile float*)&i;}
 static __forceinline void Slice(Vec4 *P,Vec4 *N,const Vec4 *p,const Vec4 *a,const Vec4 *b,const Vec4 *c,const Vec4 *na,const Vec4 *nb,const Vec4 *nc,int k,const Vec4 **v,const Vec4 **vn){
  int count=0;
  const float *pa=&p->x,*va=&a->x,*vb=&b->x,*vc=&c->x;
