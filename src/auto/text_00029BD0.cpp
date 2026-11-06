@@ -304,7 +304,9 @@ struct C_0002A250 {
 };
 static __forceinline float Length_0002A250(V4_0002A250 *v)
 {
-    return sqrtf(v->x * v->x + v->y * v->y + v->z * v->z);
+    float r;
+    _mm_store_ss(&r, _mm_sqrt_ss(_mm_set_ss(v->x * v->x + v->y * v->y + v->z * v->z)));
+    return r;
 }
 struct Sub_00029E00 { char pad[0x50]; int f50; char pad54[0x64 - 0x54]; int f64; char pad68[4]; int f6c; char pad70[0x1a0 - 0x70]; V4_00029BD0 v1a0; };
 struct Obj1_00029E00 { char pad[0x23c]; float f23c; };
