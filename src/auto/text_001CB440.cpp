@@ -608,8 +608,6 @@ void C_001CB940::func_001CB960(void)
 void C_001CB940::func_001CB980(void)
 {
     func_00157680();
-    /* tail forwarder; the symbol also holds alignment padding and a second
-       forwarder at +0x10 that no C here can emit (boundary 0x1CB985). */
 }
 
 void C_001CB9A0::func_001CB9A0(void)
@@ -866,17 +864,15 @@ int C_001CBF20::func_001CBFE0(S_001CBF20_Vec4 *a, S_001CBF20_Vec4 *b)
     return 0;
 }
 
-int C_001CC0C0::func_001CC0C0(int v)
+int C_001CC0C0::func_001CC0C0(float v)
 {
     int r;
     int h;
-    int t;
 
     if (f2C & 1) {
-        t = v;
         fF4 = v;
         h = f30;
-        r = func_00222388(h, t, 1);
+        r = func_00222388(h, v, 1);
         if (r < 0) {
             func_001CBC10(r, &D_0028EECC, 0x284);
             return 0;
