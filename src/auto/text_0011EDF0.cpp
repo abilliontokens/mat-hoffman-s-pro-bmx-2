@@ -51,18 +51,6 @@ static __forceinline float fabs_0011EE50(volatile float v)
     return *(float *)&tmp;
 }
 
-static __forceinline float fabsT_0011EE50(float v, volatile int *tmp)
-{
-    *tmp = *(volatile int *)&v & 0x7fffffff;
-    return *(volatile float *)tmp;
-}
-
-static __forceinline float fabsN_0011EE50(float x)
-{
-    int i = *(int *)&x & 0x7fffffff;
-    return *(float *)&i;
-}
-
 struct V3_0011EEE0 {
     float x;
     float y;
@@ -142,12 +130,12 @@ C_0011EDF0 *C_0011EDF0::func_0011EDF0(s16 *p)
 
 V4_0011EE50 *func_0011EE50(V4_0011EE50 *out, V4_0011EE50 *in)
 {
-    float v;
+    volatile float v;
     volatile int tmp;
-    v = in->x; tmp = *(volatile int *)&v & 0x7fffffff; _ReadWriteBarrier(); in->x = *(float *)&tmp;
-    v = in->y; tmp = *(volatile int *)&v & 0x7fffffff; _ReadWriteBarrier(); in->y = *(float *)&tmp;
-    v = in->z; tmp = *(volatile int *)&v & 0x7fffffff; _ReadWriteBarrier(); in->z = *(float *)&tmp;
-    v = in->w; tmp = *(volatile int *)&v & 0x7fffffff; _ReadWriteBarrier(); in->w = *(float *)&tmp;
+    v = in->x; tmp = *(volatile int *)&v & 0x7fffffff; _ReadWriteBarrier(); in->x = *(volatile float *)&tmp;
+    v = in->y; tmp = *(volatile int *)&v & 0x7fffffff; _ReadWriteBarrier(); in->y = *(volatile float *)&tmp;
+    v = in->z; tmp = *(volatile int *)&v & 0x7fffffff; _ReadWriteBarrier(); in->z = *(volatile float *)&tmp;
+    v = in->w; tmp = *(volatile int *)&v & 0x7fffffff; _ReadWriteBarrier(); in->w = *(volatile float *)&tmp;
     *out = *in;
     return out;
 }
