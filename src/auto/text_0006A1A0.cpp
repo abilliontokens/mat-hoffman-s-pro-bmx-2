@@ -41,8 +41,8 @@ struct D_6A1A0 {
     inline void SetScale(unsigned v)
     {
         if (f34 != v) {
-            f4e |= 6;
             f34 = v;
+            f4e |= 6;
         }
     }
     inline void SetColor(unsigned c)
@@ -127,6 +127,77 @@ void C_0006A1A0::func_0006A1A0()
         if (unk10C[i]) { delete unk10C[i]; unk10C[i] = 0; }
     }
     func_00157660();
+}
+
+void C_0006A1A0::func_0006A360()
+{
+    int names;
+    int *r;
+    int fontA;
+    int fontB;
+    void *m;
+
+    names = (int)&D_00278678;
+    D_002A8490->p2EC->func_0018C780(1, &names, 0);
+    D_002A8490->p2EC->func_0018C160((int)&D_002786A0);
+    r = D_002A8490->p2EC->func_0018C160((int)&D_00278690);
+    fontA = r ? *r : 0;
+    r = D_002A8490->p2EC->func_0018C160((int)&D_00278678);
+    fontB = r ? *r : 0;
+
+    m = func_001E8A44(0x60);
+    unk1C0 = m ? ((D_6A1A0 *)m)->func_001D5E90() : 0;
+    unk1C0->func_001D5FA0(fontB, (int)&D_00278678, 0x18, 0);
+    unk1C0->SetPos(0x43a00000, 0x42200000);
+    unk1C0->SetColor(0xffcccccc);
+    unk1C0->SetFont(D_0028F5E0);
+
+    m = func_001E8A44(0x60);
+    unk84[0] = m ? ((D_6A1A0 *)m)->func_001D5E90() : 0;
+    unk84[0]->func_001D6190(fontA, D_002A8490->p2E8->f4->f1128, (int)&D_00278690);
+    unk84[0]->func_0005E840(D_002A8490->p2E8->f4->f7c8);
+    unk84[0]->SetPos(0x44048000, 0x43c48000);
+
+    m = func_001E8A44(0x60);
+    unk84[1] = m ? ((D_6A1A0 *)m)->func_001D5E90() : 0;
+    unk84[1]->func_001D6190(fontA, D_002A8490->p2E8->f4->f1248, (int)&D_00278690);
+    unk84[1]->SetPos(0x43cf8000, 0x43c48000);
+
+    m = func_001E8A44(0x60);
+    unk84[2] = m ? ((D_6A1A0 *)m)->func_001D5E90() : 0;
+    unk84[2]->func_001D6190(fontA, D_002A8490->p2E8->f4->f1248, (int)&D_00278690);
+    unk84[2]->SetPos(0x43870000, 0x43c48000);
+
+    m = func_001E8A44(0x60);
+    unk90[0] = m ? ((D_6A1A0 *)m)->func_001D5E90() : 0;
+    unk90[0]->func_001D6190(fontA, (int)&D_0027896C, (int)&D_00278690);
+    unk90[0]->SetPos(0x428c0000, 0x43c48000);
+
+    m = func_001E8A44(0x60);
+    unk90[1] = m ? ((D_6A1A0 *)m)->func_001D5E90() : 0;
+    unk90[1]->func_001D6190(fontA, (int)&D_0027895C, (int)&D_00278690);
+    unk90[1]->SetPos(0x43550000, 0x43c48000);
+
+    m = func_001E8A44(0x60);
+    unk174 = m ? ((D_6A1A0 *)m)->func_001D5E90() : 0;
+    unk174->func_001D5FA0(fontA, (int)&D_00278690, 0x19, 0);
+    unk174->SetScale(0x3fa66666);
+    unk174->SetColor(0xffbfa35a);
+    unk174->SetFont(D_0028F5E0);
+
+    m = func_001E8A44(0x60);
+    unk178 = m ? ((D_6A1A0 *)m)->func_001D5E90() : 0;
+    unk178->func_001D5FA0(fontA, (int)&D_00278690, 5, 0);
+    unk178->SetScale(0x3fa66666);
+    unk178->SetColor(0xffbfa35a);
+    unk178->SetFont(D_0028F5DC);
+
+    m = func_001E8A44(0x60);
+    unk17C = m ? ((D_6A1A0 *)m)->func_001D5E90() : 0;
+    unk17C->func_001D5FA0(fontA, (int)&D_00278690, 5, (int)&D_00278958);
+    unk17C->SetScale(0x3fa66666);
+    unk17C->SetColor(0xffbfa35a);
+    unk17C->SetFont(D_0028F5DC);
 }
 
 void C_0006A1A0::func_0006A820() {
