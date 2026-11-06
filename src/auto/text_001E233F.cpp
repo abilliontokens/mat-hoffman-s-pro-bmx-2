@@ -181,27 +181,21 @@ done:
 }
 #pragma optimize("", on)
 
+#pragma optimize("t", off)
 void func_001E2655(void) {
-    PVFV *p1;
-    PVFV *e1;
-    PVFV *p2;
-    PVFV *e2;
+    PVFV *p;
     if (D_002AE580 != 0) {
         D_002AE580();
     }
-    e1 = D_002A0424;
-    for (p1 = D_002A0410; p1 < e1; p1++) {
-        if (*p1 != 0 && (int)*p1 != -1) {
-            (**p1)();
+    for (p = D_002A0410; p < D_002A0424; p++) {
+        if (*p != 0 && (int)*p != -1) {
+            (*p)();
         }
     }
-    p2 = D_0029F4F0;
-    e2 = D_002A040C;
-    while (p2 < e2) {
-        if (*p2 != 0 && (int)*p2 != -1) {
-            (**p2)();
+    for (p = D_0029F4F0; p < D_002A040C; p++) {
+        if (*p != 0 && (int)*p != -1) {
+            (*p)();
         }
-        p2++;
     }
 }
 #pragma optimize("", on)
