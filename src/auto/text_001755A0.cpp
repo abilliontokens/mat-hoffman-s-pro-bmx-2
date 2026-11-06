@@ -41,7 +41,7 @@ static __forceinline void Shrink565Fast(unsigned short *dst, unsigned short *src
     }
 }
 
-static void Shrink565Keyed(unsigned short *dst, unsigned short *src, int width, int height, int dstPitch, int srcPitch, unsigned short key)
+static __forceinline void Shrink565Keyed(unsigned short *dst, unsigned short *src, int width, int height, int dstPitch, int srcPitch, unsigned short key)
 {
     int y;
     int x;
