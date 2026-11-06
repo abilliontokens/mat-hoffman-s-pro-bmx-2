@@ -337,7 +337,7 @@ struct C_00144960 {
     char padD[3];
     void *f10;
     void func_001AF100(int a0, int a1, int a2, int a3);
-    void func_00144960(int a0, int a1, int a2, int a3);
+    int func_00144960(int a0, int a1, int a2, int a3);
 };
 
 
