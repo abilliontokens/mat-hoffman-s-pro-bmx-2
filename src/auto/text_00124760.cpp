@@ -27,7 +27,7 @@ static __forceinline void TriInterp(Vec4 *out, Vec4 *Q, Vec4 *R, float *p, float
         v[0] = a; v[1] = b; vn[0] = na; vn[1] = nb;
         cnt = 2;
     }
-    if ((b[k] <= p[k] && c[k] >= p[k]) || (b[k] >= p[k] && c[k] <= p[k])) {
+    if ((b[k] <= p[k] && c[k] > p[k]) || (b[k] >= p[k] && c[k] < p[k])) {
         v[cnt] = b; v[cnt + 1] = c; vn[cnt] = nb; vn[cnt + 1] = nc;
         cnt += 2;
     }
