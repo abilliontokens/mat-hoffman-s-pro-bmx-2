@@ -78,6 +78,7 @@ extern S_1C4FB0_Cull *D_002AB66C;
             if (res == 0) f4[i]->vf1(a, b, X0, Y0, e); \
             else f4[i]->func_001C4FB0(a, b, X0, Y0, e, f); \
         } \
+        } \
     }
 
 /* last child of a path: the calls are in tail position */
