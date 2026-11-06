@@ -608,7 +608,7 @@ void C_00100CF0::func_00100CF0(float dt) {
   f28c += dt;
   if (f28c >= D_0027DE74) {
    if (f290 && p->f2A4) { f290=0; f2a8=0; }
-   else { v70(f288, (f298=1, f284)); f28c=0; }
+   else { f298=1; ((VP_101010*)this)->v70(f288,f284); f28c=0; }
   }
  }
  if (f2b8 && !f2b0) {
