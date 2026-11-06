@@ -6,6 +6,7 @@
 struct Q_001A1930 { float x,y,z,w; };
 static inline Q_001A1930 Sub_001A1930(const Q_001A1930 &a,const Q_001A1930 &b) { Q_001A1930 q; q.x=a.x-b.x;q.y=a.y-b.y;q.z=a.z-b.z;q.w=1;return q; }
 struct I3_001A1930 { float x,y,z; };
+struct QV_001A1930 { I3_001A1930 v; float w; };
 struct O_001A1930 { char pad[8]; I3_001A1930 pos; char pad14[0x24]; I3_001A1930 vel; I3_001A1930 GetPos() { return pos; } };
 struct N_001A1930 { int unk0; O_001A1930 *obj;
  void GetPosition(Q_001A1930 *p) {
@@ -571,7 +572,8 @@ void C_001A1930::func_001A1930(int count, N_001A1930 **nodes)
  state |=2;
  O_001A1930 *vo=*(O_001A1930 * volatile *)&nearest->obj;
  if(vo){velocity.x=vo->vel.x;velocity.y=vo->vel.y;velocity.z=vo->vel.z;}
- CopyPos_001A1930(nearest->obj,&position);
+ O_001A1930 *po=*(O_001A1930 * volatile *)&nearest->obj;
+ CopyPos_001A1930(po,&position);
  { Q_001A1930 t;
  t.x=pos.x-position.x;t.y=pos.y-position.y;t.z=pos.z-position.z;t.w=1;
  if(!emitter) return;
