@@ -3,6 +3,7 @@
 #include <math.h>
 #include <string.h>
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 static __forceinline float clamp_ordered_1C870(float r, float c, float e)
 {
     if (e > c) {
@@ -475,15 +476,14 @@ void C_0001C710::func_0001C710(float a0, float a1, float a2, int a3) {
 }
 
 void C_0001C750::func_0001C750(S_0001C610_V4 a, S_0001C610_V4 b) {
- C_0001C750 *volatile self=this;
- if(self->f22C) {
- S_0001C610_V4 v, d, c;
- self->f22C->func_00197EC0(&v,&a);
- Add3_1C750(self->f130,&v.x);
- c.z=c.y=c.x=0; c.w=1;
- vec3_set(&d.x,b.x-self->f190[0],b.y-self->f190[1],b.z-self->f190[2]);
- _mm_storeu_ps(&c.x,_mm_shuffle_ps(cross_1C750(&d.x,&a.x),cross_1C750(&d.x,&a.x),0xc9));
- Add3_1C750(self->f140,&c.x);
+ if(this->f22C) {
+ S_0001C610_V4 c, d, v;
+ this->f22C->func_00197EC0(&v,&a);
+ Add3_1C750(this->f130,&v.x);
+ c.z=0; c.y=0; c.x=0; c.w=1;
+ vec3_set(&d.x,b.x-this->f190[0],b.y-this->f190[1],b.z-this->f190[2]);
+ AsmVec3Cross(&c.x, &d.x, &a.x);
+ Add3_1C750(this->f140,&c.x);
  }
 }
 
