@@ -48,6 +48,7 @@ extern char D_002A7130[], D_002BED60[], D_002A7148[], D_002BEE60[];
 extern void __cdecl func_0014A7B0(char *, const char *);
 extern void *__cdecl func_001E8A44(unsigned int);
 extern "C" void *__cdecl memcpy(void *dst, const void *src, unsigned int size);
+extern "C" int __cdecl memcmp(const void *a, const void *b, unsigned int size);
 struct C_001488F0 {
     undefined4 func_001488F0(byte param_1);
 };
