@@ -76,7 +76,7 @@ static __forceinline void cross_001619D0(float *out, float *a, float *b)
 }
 
 /* same as cross_001619D0, but the pointer parameters are spilled to the stack (volatile) */
-static __forceinline void cross_00161AE0(float * volatile out, float * volatile a, float * volatile b)
+static __forceinline void cross_00161AE0(float * volatile b, float * volatile a, float * volatile out)
 {
     float *pa = a, *pb = b;
     __m128 va = _mm_loadu_ps(pa);
