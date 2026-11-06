@@ -30,4 +30,5 @@ struct C_000399A0 {
     float f948;
     int func_00038A70(int *, void **);
     int func_000395A0(S_000392B0_Vec4 pos);
+    int func_000399A0(int mode);
 };
