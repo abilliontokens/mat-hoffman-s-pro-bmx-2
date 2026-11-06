@@ -2,6 +2,7 @@
 #include "common.h"
 #include "ghidra.h"
 #include <math.h>
+#include <xmmintrin.h>
 struct C_000B6080 {
     void func_000B6080(int param_1);
 };
@@ -95,6 +96,23 @@ struct V4_000B5260 {
 };
 
 
+int C_000B5260::func_000B5260(float dt)
+{
+    float vec3[4];
+    float d[3];
+    float *m;
+
+    ((C_00197F70 *)*(int *)((char *)this + 0x30))->func_00197F70(vec3, (float *)((char *)this + 0x34));
+    m = (float *)*(int *)((char *)this + 0x24);
+    d[0] = unk54 * m[16] + m[8] - vec3[0];
+    d[1] = unk54 * m[17] + m[9] - vec3[1];
+    d[2] = unk54 * m[18] + m[10] - vec3[2];
+    unk54 = dt;
+    if (d[0] * d[0] + d[1] * d[1] + d[2] * d[2] > 0.0f)
+        return 1;
+    return 1;
+}
+
 int C_000B5870::func_000B5870(void) {
     return unk24;
 }
@@ -111,19 +129,25 @@ void C_000B58B0::func_000B58B0(void)
   float vec4[4];
   float vec3[4];
   float row[4];
-  float d[4];
-  int v;
+  V4_000B5260 d;
+  float *m;
+  V4_000B5260 *r;
+  float t;
   void func_0001E9E0(float *out, float *in);
 
-  v = (int)v27();
+  m = (float *)v27();
   v28(vec4);
   ((C_00197F70 *)*(int *)(in_ECX + 0x30))->func_00197F70(vec3, vec4);
-  d[0] = vec3[0] - *(float *)(v + 0x20);
-  d[1] = vec3[1] - *(float *)(v + 0x24);
-  d[2] = vec3[2] - *(float *)(v + 0x28);
-  *(V4_000B5260 *)row = *(V4_000B5260 *)(v + 0x40);
+  d.x = vec3[0] - m[8];
+  d.y = vec3[1] - m[9];
+  d.z = vec3[2] - m[10];
+  r = (V4_000B5260 *)(m + 16);
+  *(V4_000B5260 *)row = *r;
   func_0001E9E0(w, row);
-  *(float *)(in_ECX + 0x54) = d[0] * row[0] + d[1] * row[1] + d[2] * row[2];
+  t = d.y * r->y;
+  t += d.x * r->x;
+  t += d.z * r->z;
+  *(float *)(in_ECX + 0x54) = t;
 }
 
 int C_000B5950::func_000B5950(void)
@@ -156,6 +180,23 @@ C_000B5990 *C_000B5990::func_000B5990(int param_1)
   unk6c = 15.70796108245849609375f;
   unk68 = 10.0f;
   return this;
+}
+
+int __fastcall func_000B59E0(char *self, int, float dt)
+{
+    float p0[4];
+    float d[3];
+    float *o;
+
+    ((C_00197F70 *)*(int *)(self + 0x30))->func_00197F70((float *)(self + 0x44), p0);
+    o = *(float **)(self + 0x28);
+    d[0] = (*(float *)(self + 0x54) * o[0x10] + o[8]) - p0[0];
+    d[1] = (*(float *)(self + 0x54) * o[0x11] + o[9]) - p0[1];
+    d[2] = (*(float *)(self + 0x54) * o[0x12] + o[10]) - p0[2];
+    if (d[0] != 0.0f || d[1] != 0.0f || d[2] != 0.0f) {
+        *(float *)(self + 0x70) = d[0] + d[1] + d[2];
+    }
+    return 1;
 }
 
 void C_000B6050::func_000B6050(int param_1)
