@@ -1,23 +1,33 @@
 /* 24 functions from 0x00148780 to 0x00149620, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
-struct ShaderData_00148E80 { char pad[0x80]; int f80; int f84; };
+struct ShaderData_00148E80 { char name[0x40]; char name2[0x40]; int f80; int f84; };
 struct Manager_00148E80 {
  virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4(); virtual void v5();
  virtual void Set(int, const void *);
  virtual short Create(const void *, int);
 };
+struct Entry16_00148910 { int f0; int pad4[3]; };
 struct Resource_00148E80 {
+ char pad0[0x14];
+ Entry16_00148910 *f14;
  int func_001617F0(const char *, int);
  ShaderData_00148E80 *func_00161850(int);
 };
 struct Parser_00148910;
+struct Item12_00148910 { int a, b, c; };
+struct Entry8_00148910 { int id; int val; };
 struct DXShaderDescriptor {
  int func_00148910(int a0, Parser_00148910 *p, int id, int idx, int arg4);
- char pad0[0xA]; char fA; char padB[9]; int f14; short f18; char pad1A[6]; char f20; char pad21[3]; unsigned char f24; char pad25; short f26; short f28; short pad2A; void *f2C; void *f30; int f34; int f38; int f3C;
+ char pad0[8]; short f8; unsigned char fA; char padB[9]; int f14; short f18[4]; char f20[4];
+ unsigned char fl0 : 1; unsigned char fl1 : 1; unsigned char fl2 : 1; unsigned char fl3 : 1; unsigned char fl4 : 4;
+ char pad25; short f26; short f28; short pad2A; Item12_00148910 *f2C; Entry8_00148910 *f30; int f34; int f38; int f3C;
  int func_00148E80(const char *);
- void func_00145370(int, ShaderData_00148E80 *, int, void *, int *);
- void func_001458E0(int, ShaderData_00148E80 *, void *, int *);
+ void func_00145370(Parser_00148910 *, ShaderData_00148E80 *, int, Item12_00148910 *, int *);
+ void func_001458E0(Parser_00148910 *, ShaderData_00148E80 *, Entry8_00148910 *, int *);
+ void func_00146540(Parser_00148910 *);
+ short func_001B0D00(Parser_00148910 *);
+ short func_001B0710(Parser_00148910 *);
 };
 struct Parser_00148910 {
  void func_00169710(char *out);
@@ -26,6 +36,11 @@ struct Parser_00148910 {
 };
 void __cdecl func_001ADCC0(char *dst, int n, const char *fmt, ...);
 int __cdecl func_001EA426(const char *a, const char *b);
+void __cdecl func_0014FF00(int, int, int, char *, int);
+short __cdecl func_00144AE0(char *, int, int, int);
+extern char D_002867F0[], D_002867E8[], D_00286730[], D_0028671C[], D_00286710[], D_0028670C[], D_002867DC[], D_00286720[];
+extern char D_002867C8[], D_002867B4[], D_002867A8[], D_00275630[], D_0028679C[], D_0028678C[], D_00275678[], D_00286784[];
+extern char D_0028676C[], D_002A719C[], D_002BEF60[];
 extern Resource_00148E80 *D_002A829C;
 extern ShaderData_00148E80 *D_002AA470;
 extern Manager_00148E80 *D_002A751C, *D_002A6D84, *D_002AA6C0;
@@ -619,11 +634,12 @@ void C_00149480::func_00149480(void)
     void __fastcall func_0001E860(void *p);
     extern undefined4 D_002EFDB8;
     int i;
+    int one = 1;
     Item_00149480 *obj;
 
     D_002BF0AC = 0;
-    if (!(D_002BF0DC & 1)) {
-        D_002BF0DC |= 1;
+    if (!(D_002BF0DC & one)) {
+        D_002BF0DC |= one;
         D_002BF0D8 = unk4;
         D_002BF0B4 = 0;
         D_002BF0B8 = 0;
@@ -633,13 +649,13 @@ void C_00149480::func_00149480(void)
         {
             float v[8] = {0.0f, 0.0f, 0.0f, 1.0f, 0.5f, 0.5f, 0.5f, 0.5f};
             func_001FEBD0(0, &v[0]);
-            func_001FEBD0(1, &v[4]);
+            func_001FEBD0(one, &v[4]);
             func_001FEBD0(0x21, (void *)(*(int *)(D_002EFDB8 + 4) + 0x170));
             func_001FEBD0(3, (void *)(D_002EFDB8 + 0x74));
         }
     }
     for (i = 0; i < unk4; i++) {
-        obj = ((Item_00149480 **)this)[4 + i];
+        obj = items[i];
         if (obj == 0) continue;
         if (obj->f4 != 0 && obj->fC == 0)
             ((VObj_00148780 *)((char *)obj->f4 + 0xC))->f1();
