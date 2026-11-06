@@ -1,6 +1,13 @@
 /* 7 functions from 0x000186F0 to 0x000195B0, found by Ghidra. */
 #include "common.h"
 #include <xmmintrin.h>
+struct C_000186F0 {
+    char pad0[0x498];
+    int f498;
+    char pad49c[0x4e4 - 0x49c];
+    int f4e4;
+    void func_000186F0(void *p);
+};
 struct C_0004AAD0 {
     void func_0004AAD0();
 };
@@ -384,6 +391,51 @@ void C_00018EB0::func_00018EB0()
     f494->v31();
     f494->v32();
     f494->v4();
+}
+
+void C_00019070::func_00019070()
+{
+    C_00019070 * volatile self = this;
+    int n = 0;
+    int i;
+    int angle;
+    int first;
+    int step;
+    V4_00018EB0 pos;
+
+    if (self->f3a4[0].fc == 0) n++;
+    if (self->f3a4[1].fc == 0) n++;
+    if (self->f3a4[2].fc == 0) n++;
+    if (self->f3a4[3].fc == 0) n++;
+    if (self->f3a4[4].fc == 0) n++;
+    if (self->f3a4[5].fc == 0) n++;
+    if (n > 1) {
+        if (self->f398->f2c == 0) {
+            pos = *(V4_00018EB0 *)&D_002A0718;
+        } else {
+            self->f398->f2c->f1a4->f4->func_00199B00(&pos.x, 0);
+        }
+        pos.y = 500.0f;
+        angle = 0;
+        first = 1;
+        step = 360 / (n - 1);
+        for (i = 0; i < 6; i++) {
+            if (self->f3a4[i].fc != 1) {
+                if (first == 1) {
+                    first = 0;
+                    func_00017810(&self->f3a4[i], &pos.x);
+                    pos.x -= D_0027599C;
+                    pos.z -= D_0027599C;
+                } else {
+                    float rad = angle * D_00275998;
+                    pos.x = func_0014F510(wrap_angle_00016D60(rad)) * D_00275994 + pos.x;
+                    pos.z = func_0014F550(wrap_angle_00016D60(rad)) * D_00275994 + pos.z;
+                    func_00017810(&self->f3a4[i], &pos.x);
+                    angle += step;
+                }
+            }
+        }
+    }
 }
 
 void AiTikiGod::func_00019480()
