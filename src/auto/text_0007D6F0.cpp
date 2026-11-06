@@ -163,8 +163,10 @@ void func_001ADCC0(char *buf, int size, char *fmt, ...);
 void func_001AC330(char *dest, char *fmt, char *arg);
 
 void *func_001E8A44(int size);
-extern char D_00278664[];      /* "global\textures\" */
-extern char D_002A60B0[];
+extern int D_00278664, D_00278668, D_0027866C, D_00278670;
+extern u8 D_00278674;
+extern int D_002A60B0, D_002A60B4, D_002A60B8, D_002A60BC;
+extern u8 D_002A60C0;
 extern char D_002786A0[];      /* "nosebleedbold16" */
 extern char D_00278690[];      /* "nosebleedbold18" */
 extern char D_00278658[];      /* "letterbox" */
@@ -298,6 +300,7 @@ C_0007D6F0 *C_0007D6F0::func_0007D6F0(C_Arg_7D *arg)
     Icon_7D *w;
     SetterObj_7E *t;
     int i, k, y;
+    float fy;
 
     fonts[0] = D_002786A0;
     fonts[1] = D_00278690;
@@ -312,7 +315,7 @@ C_0007D6F0 *C_0007D6F0::func_0007D6F0(C_Arg_7D *arg)
         w = 0;
     }
     f98 = w;
-    w->func_001D5810((int)D_00278658, 0.0f, 0.0f, 0.0f);
+    w->func_001D5810((int)D_00278658, 0.0f, 0.0f, 0);
     f98->setW(640.0f);
     f98->setH(50.0f);
     f98->updateUV();
@@ -324,7 +327,7 @@ C_0007D6F0 *C_0007D6F0::func_0007D6F0(C_Arg_7D *arg)
         w = 0;
     }
     f9c = w;
-    w->func_001D5810((int)D_00278658, 0.0f, 398.0f, 0.0f);
+    w->func_001D5810((int)D_00278658, 0.0f, 398.0f, 0);
     f9c->setW(640.0f);
     f9c->setH(50.0f);
     f9c->updateUV();
@@ -337,7 +340,8 @@ C_0007D6F0 *C_0007D6F0::func_0007D6F0(C_Arg_7D *arg)
             w = 0;
         }
         fE4[i] = w;
-        w->func_001D5810((int)D_00278658, (float)i * D_00278650, 50.0f, 0.0f);
+        fy = (float)i * D_00278650;
+        w->func_001D5810((int)D_00278658, fy, 50.0f, 0);
         w = (Icon_7D *)func_001E8A44(0x64);
         if (w != 0) {
             w = w->func_001D5760();
@@ -345,14 +349,19 @@ C_0007D6F0 *C_0007D6F0::func_0007D6F0(C_Arg_7D *arg)
             w = 0;
         }
         fF8[i] = w;
-        w->func_001D5810((int)D_00278658, (float)i * D_00278650, 366.0f, 0.0f);
-        fF8[i]->f3c = 0.0f;
-        fF8[i]->f48 = 0.0f;
-        fF8[i]->f40 = 1.0f;
-        fF8[i]->f44 = 0.99f;
-        fF8[i]->f58 |= 4;
+        w->func_001D5810((int)D_00278658, fy, 366.0f, 0);
+        w = fF8[i];
+        w->f3c = 0.0f;
+        w->f48 = 0.0f;
+        {
+            u8 f = w->f58 | 4;
+            w->f40 = 1.0f;
+            w->f44 = 0.99f;
+            w->f58 = f;
+        }
     }
 
+    k = 0;
     for (i = 0; i < 16; i++) {
         w = (Icon_7D *)func_001E8A44(0x64);
         if (w != 0) {
@@ -362,23 +371,28 @@ C_0007D6F0 *C_0007D6F0::func_0007D6F0(C_Arg_7D *arg)
         }
         f10c[i] = w;
         if (i % 2 != 0) {
-            w->func_001D5810((int)D_002786B0, 100.0f, (float)((i / 2) * 0x23) + D_00279054, 0.0f);
+            w->func_001D5810((int)D_002786B0, 100.0f, (float)((i / 2) * 0x23) + D_00279054, k);
         } else {
-            w->func_001D5810((int)D_002786B0, 321.0f, (float)((i / 2) * 0x23) + D_00279054, 0.0f);
+            w->func_001D5810((int)D_002786B0, 321.0f, (float)((i / 2) * 0x23) + D_00279054, k);
         }
-        f10c[i]->f3c = 1.0f;
-        f10c[i]->f48 = 1.0f;
-        f10c[i]->f40 = 0.0f;
-        f10c[i]->f44 = 0.0f;
-        f10c[i]->f58 |= 4;
-        f10c[i]->setW(221.0f);
+        w = f10c[i];
+        w->f3c = 1.0f;
+        w->f48 = 1.0f;
+        {
+            u8 f = w->f58 | 4;
+            w->f40 = 0.0f;
+            w->f44 = 0.0f;
+            w->f58 = f;
+        }
+        w->setW(221.0f);
     }
 
-    for (k = 0, y = 92; y < 372; y += 35, k++) {
+    for (y = 92; y < 372; y += 35) {
         char bufA[12];
         char bufB[8];
 
-        func_001ADCC0(bufA, 0x104, (char *)&D_00277038, k + 1);
+        k++;
+        func_001ADCC0(bufA, 0x104, (char *)&D_00277038, k);
         func_001AC330(bufB, D_002A8490->p2E8->p4->fED0, bufA);
         t = (SetterObj_7E *)func_001E8A44(0x184);
         if (t != 0) {
@@ -386,13 +400,13 @@ C_0007D6F0 *C_0007D6F0::func_0007D6F0(C_Arg_7D *arg)
         } else {
             t = 0;
         }
-        texts[k] = t;
+        texts[k - 1] = t;
         t->func_001B13A0((int)D_00278690, (int)D_00278690, 0, 0x10);
-        texts[k]->func_001B19C0(0x140, y, 0);
-        ys[k] = y;
-        texts[k]->func_001B19A0(D_0028F5E0);
-        func_001577A0(texts[k], -1);
-        texts[k]->func_001B17D0(bufB);
+        ys[k - 1] = y;
+        texts[k - 1]->func_001B19C0(0x140, y, 0);
+        texts[k - 1]->func_001B19A0(D_0028F5E0);
+        func_001577A0(texts[k - 1], -1);
+        texts[k - 1]->func_001B17D0(bufB);
     }
 
     w = (Icon_7D *)func_001E8A44(0x64);
@@ -402,9 +416,12 @@ C_0007D6F0 *C_0007D6F0::func_0007D6F0(C_Arg_7D *arg)
         w = 0;
     }
     f14c = w;
-    w->func_001D5810((int)D_00278600, 0.0f, 0.0f, 0.0f);
-    f14c->f38 &= 0xff000000;
-    f14c->f58 |= 2;
+    w->func_001D5810((int)D_00278600, 0.0f, 0.0f, 0);
+    {
+        u8 f = f14c->f58;
+        f14c->f38 &= 0xff000000;
+        f14c->f58 = f | 2;
+    }
     f14c->f58 |= 2;
     ((u8 *)&f14c->f38)[3] = 0x80;
     f14c->setH(448.0f);
@@ -417,7 +434,7 @@ C_0007D6F0 *C_0007D6F0::func_0007D6F0(C_Arg_7D *arg)
         w = 0;
     }
     fa0 = w;
-    w->func_001D5810((int)D_00278648, 491.0f, 388.0f, 0.0f);
+    w->func_001D5810((int)D_00278648, 491.0f, 388.0f, 0);
 
     w = (Icon_7D *)func_001E8A44(0x64);
     if (w != 0) {
@@ -426,7 +443,7 @@ C_0007D6F0 *C_0007D6F0::func_0007D6F0(C_Arg_7D *arg)
         w = 0;
     }
     fac = w;
-    w->func_001D5810((int)D_00278624, 491.0f, 388.0f, 0.0f);
+    w->func_001D5810((int)D_00278624, 491.0f, 388.0f, 0);
 
     w = (Icon_7D *)func_001E8A44(0x64);
     if (w != 0) {
@@ -435,7 +452,7 @@ C_0007D6F0 *C_0007D6F0::func_0007D6F0(C_Arg_7D *arg)
         w = 0;
     }
     fa4 = w;
-    w->func_001D5810((int)D_00278638, 491.0f, 365.0f, 0.0f);
+    w->func_001D5810((int)D_00278638, 365.0f, 388.0f, 0);
 
     w = (Icon_7D *)func_001E8A44(0x64);
     if (w != 0) {
@@ -444,7 +461,7 @@ C_0007D6F0 *C_0007D6F0::func_0007D6F0(C_Arg_7D *arg)
         w = 0;
     }
     fb0 = w;
-    w->func_001D5810((int)D_00278608, 491.0f, 368.0f, 0.0f);
+    w->func_001D5810((int)D_00278608, 368.0f, 388.0f, 0);
 
     w = (Icon_7D *)func_001E8A44(0x64);
     if (w != 0) {
@@ -453,7 +470,7 @@ C_0007D6F0 *C_0007D6F0::func_0007D6F0(C_Arg_7D *arg)
         w = 0;
     }
     fa8 = w;
-    w->func_001D5810((int)D_00279008, 491.0f, 235.0f, 0.0f);
+    w->func_001D5810((int)D_00279008, 235.0f, 388.0f, 0);
 
     w = (Icon_7D *)func_001E8A44(0x64);
     if (w != 0) {
@@ -462,7 +479,7 @@ C_0007D6F0 *C_0007D6F0::func_0007D6F0(C_Arg_7D *arg)
         w = 0;
     }
     fb4 = w;
-    w->func_001D5810((int)D_00278FF0, 491.0f, 235.0f, 0.0f);
+    w->func_001D5810((int)D_00278FF0, 235.0f, 388.0f, 0);
 
     w = (Icon_7D *)func_001E8A44(0x64);
     if (w != 0) {
@@ -471,12 +488,13 @@ C_0007D6F0 *C_0007D6F0::func_0007D6F0(C_Arg_7D *arg)
         w = 0;
     }
     fb8 = w;
-    w->func_001D5810((int)D_00279044, 25.0f, 385.0f, 0.0f);
-    if (fb8->f24 != 0.65f) {
-        fb8->f24 = 0.65f;
-        if (fb8->f54 != 0) {
-            fb8->f24 = 0.325f;
-            fb8->f58 |= 1;
+    w->func_001D5810((int)D_00279044, 25.0f, 385.0f, 0);
+    w = fb8;
+    if (w->f24 != 0.65f) {
+        w->f24 = 0.65f;
+        if (w->f54 != 0) {
+            w->f24 = 0.325f;
+            w->f58 |= 1;
         }
     }
 
@@ -487,12 +505,13 @@ C_0007D6F0 *C_0007D6F0::func_0007D6F0(C_Arg_7D *arg)
         w = 0;
     }
     fbc = w;
-    w->func_001D5810((int)D_00279038, 168.0f, 385.0f, 0.0f);
-    if (fbc->f24 != 0.65f) {
-        fbc->f24 = 0.65f;
-        if (fbc->f54 != 0) {
-            fbc->f24 = 0.325f;
-            fbc->f58 |= 1;
+    w->func_001D5810((int)D_00279038, 168.0f, 385.0f, 0);
+    w = fbc;
+    if (w->f24 != 0.65f) {
+        w->f24 = 0.65f;
+        if (w->f54 != 0) {
+            w->f24 = 0.325f;
+            w->f58 |= 1;
         }
     }
 
