@@ -2,11 +2,8 @@
 #include "common.h"
 #include "ghidra.h"
 struct C_0015CE00 {
- void *vtbl; char pad4[0x20]; unsigned short f24; unsigned char f26;
-    union { unsigned char f27; struct { unsigned char f27lo : 3; unsigned char f27hi : 5; }; };
-    int u[42];
-    void func_00157600(int a0);
-    void InitFlags() { f26 = 0xff; f24 = 0; f27lo = 0; }
+ void *vtbl; char pad4[0x20]; unsigned short f24; unsigned char f26, f27; int u[42];
+   void func_00157600(int a0);
    C_0015CE00 *func_0015CE00(int a0);
 };
 struct C_001BC6E0 { unsigned char func_001BC6E0(void *p); };
@@ -504,7 +501,7 @@ void C_0015CD70::func_0015CD70(S_0015CD70_Vec4 *p)
 C_0015CE00 *C_0015CE00::func_0015CE00(int a0)
 {
  func_00157600(a0);
- InitFlags();
+ f24=0; f26=255; f27 &= 0xf8;
  int value=D_002E293C;
  vtbl=&D_002878B4;
  int *p=&u[27]; p[2]=0; p[1]=0; p[0]=0; p[3]=0x3f800000;
