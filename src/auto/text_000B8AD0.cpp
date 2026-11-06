@@ -30,6 +30,20 @@ struct C_000B9A80 {
     Obj1A4100 *unk30;
     void func_000B9A80(int a0, int a1);
 };
+/* BmxTireModel, vtable slot 13 (SIMD-heavy tire/contact update) */
+struct C_000B8C90 {
+    char pad0[0x28];
+    int f28;
+    int f2C;
+    int f30;
+    int f34;
+    float f38;
+    float f3C;
+    int f40;
+    float f44;
+    int func_000B8C90(void);
+};
+
 extern int D_0027D5FC;
 
 struct C_000B8B60 {
