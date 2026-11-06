@@ -16,6 +16,7 @@ struct C_001D5AD0 {
     char pad3C[0x58 - 0x3C];
     unsigned char f58;
     void func_001D5AD0();
+    C_D3DA0_Range* func_001D5AA0();
 };
 
 struct C_002B91AC {
