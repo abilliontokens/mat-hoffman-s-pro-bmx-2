@@ -71,6 +71,9 @@ struct S119_Obj {
     void func_00133ED0();
 };
 
+#define VF(off, T) (*(T *)((char *)self + (off)))
+#define VP(off) ((char *)self + (off))
+
 struct BmxVehicle {
     int func_00119810(int a);
     void func_00027D40();
