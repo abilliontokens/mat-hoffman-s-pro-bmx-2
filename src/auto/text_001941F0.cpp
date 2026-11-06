@@ -159,6 +159,15 @@ struct C_00157600 {
     void func_00157600(int a);
 };
 
+/* (0, 0, 0, 1) vector, zeroed z first */
+struct S_Vec4Unit {
+    float x, y, z, w;
+    S_Vec4Unit() {
+        x = y = z = 0.0f;
+        w = 1.0f;
+    }
+};
+
 extern float D_002EFEA0;
 extern float D_0027A060;
 extern float D_002AB85C;
