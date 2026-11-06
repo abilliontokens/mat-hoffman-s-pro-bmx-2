@@ -811,10 +811,6 @@ void func_001E9F99(void) {
 }
 
 #pragma optimize("t", off)
-static __forceinline char *func_001E9FA2_last(char *s)
-{
-    return s + strlen(s) - 1;
-}
 const char *S_001E9FA2_TypeInfo::func_001E9FA2(void)
 {
     void func_001EB390(int n);
