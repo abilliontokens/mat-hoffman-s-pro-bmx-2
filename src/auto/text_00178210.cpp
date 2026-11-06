@@ -10,11 +10,6 @@ extern char D_0000FFF8;
 extern char D_0000FFF0;
 extern char D_0000FFF0;
 
-static __forceinline u32 Red565_00178890(u32 key)
-{
-  return (key >> 8) & (u32)&D_0000F800;
-}
-
 u32 func_00178210(u8 *dst, u8 *src, int width, int height, int dstPitch, int srcPitch, int pal)
 {
   u8 *srow;
