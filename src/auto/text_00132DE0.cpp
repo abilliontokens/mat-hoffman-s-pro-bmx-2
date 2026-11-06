@@ -91,6 +91,11 @@ extern char D_00282AA8[];
 extern char D_00282A9C[];
 extern int D_0028464C;
 
+static __forceinline int collision_float_bits(const float &value)
+{
+    return *(const int *)&value;
+}
+
 static __forceinline void set_collision_vector(float *out, const float &x, const float &y, const float &z, const float &w)
 {
     ((int *)out)[0] = *(int *)&x;
