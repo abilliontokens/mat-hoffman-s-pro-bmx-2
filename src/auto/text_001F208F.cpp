@@ -2,7 +2,7 @@
 #include "common.h"
 
 struct Obj { char pad[0x90]; Obj(int a, int b, int c, int d, int e); ~Obj(); int run(); };
-struct T { int a; int b; T() {} int func_001EF1E7(); int func_001EF1D0(); void func_001EF734(char); void func_001EF935(T*); void func_001EFB18(int); T* func_001EF170(int); void func_001EEEE6(T*); void func_001EF9B2(char*);
+struct T { int a; int b; T() {} int func_001EF1E7(); int func_001EF1D0(); void func_001EF734(char); void func_001EF935(T*); void func_001EFB18(int); T* func_001EF170(int); void func_001EEEE6(T*); void func_001EF9B2(char*); void func_001EFB82(char*);
     T* func_001EEF4F(T*); T* func_001EF2FE(T*); T* func_001EF613(int); T* func_001EFD3B(T*, char); T* func_001EFD7A(T*, char*); T* func_001EFAB5(T*, T*);
     void func_001EF935(const T&); T* func_001EEF4F(const T&); T* func_001EF2FE(const T&);
     T func_001EFD3B(char); T func_001EFD7A(char*); T func_001EFAB5(const T&); T* func_001EFAB5(T*, const T&); };
