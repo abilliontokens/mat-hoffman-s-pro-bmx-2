@@ -468,7 +468,7 @@ C_001D3F60 *C_001D3F60::func_001D3F60(void)
     func_001D3F50();
     f8 = 0;
     f0 = -1;
-    ClearInt_001D3F60(&f4);
+    memset(&f4, 0, sizeof(f4));
     return this;
 }
 
