@@ -3,6 +3,18 @@
 
 struct S_00097FD0_owner;
 struct S_00098EE0_release { void func_0001B8A0(void *); };
+struct S_00098EE0_tbl {
+    char pad0[0x24];
+    int count;
+    char pad28[4];
+    void **arr;
+};
+struct S_00098EE0_mgr {
+    char pad0[0x3ac];
+    S_00098EE0_tbl *f3ac;
+    char pad3b0[0x484 - 0x3b0];
+    S_00098EE0_release *f484;
+};
 extern int func_001EA426(const char *, const char *);
 extern char D_0027A30C[];
 extern "C" int memcmp(const void *, const void *, unsigned int);
