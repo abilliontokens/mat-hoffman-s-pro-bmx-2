@@ -53,7 +53,7 @@ struct S_001D2A40_Track {
 
 /* 16-byte frame entry */
 struct S_001D2A40_Frame {
-    int f0;
+    void *f0;
     int w;
     int h;
     int fc;
