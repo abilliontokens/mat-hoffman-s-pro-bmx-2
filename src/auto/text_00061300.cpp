@@ -21,7 +21,8 @@ static inline void release_61590(int &p) {
  if(p) { ((C_61590_Obj *)p)->destroying(1); p=0; }
 }
 static inline void freez_61590(int &p) {
- if(p) { ((C_61590_Obj *)p)->func_001D6410(); func_001E891B((void *)p); p=0; }
+ C_61590_Obj *q = (C_61590_Obj *)p;
+ if(q) { q->func_001D6410(); func_001E891B((void *)q); p=0; }
 }
 struct C_00061300 {
     int w[0xBC];
