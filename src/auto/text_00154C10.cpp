@@ -3,6 +3,7 @@
 
 #include <string.h>
 #include <math.h>
+#include "asm_helpers.h"
 
 extern int D_00286DD4;
 
@@ -292,25 +293,16 @@ int C_00154C10::func_00154C10(float dt)
     L.self->func_001528D0(dt);
     L.self->func_00152300(dt);
     {
-        V4_154C10 pos;
         L.p[0].z = L.p[0].y = L.p[0].x = 0.0f;
         L.p[0].w = 1.0f;
-        pos = L.self->func_00016E40();
-        float ny = pos.y - L.self->f34;
-        L.v.x = pos.x;
+        L.v = L.self->func_00016E40();
+        float ny = L.v.y - L.self->f34;
         L.v.y = ny;
-        L.v.z = pos.z;
-        L.v.w = pos.w;
         L.self->func_001521D0(&L.v, &L.p[0]);
         L.self->fb4 = L.v;
         L.self->f108 = 0;
         if (ny <= L.v.y) {
-            V4_154C10 np;
-            np.x = pos.x;
-            np.y = L.v.y + L.self->f34;
-            np.z = pos.z;
-            np.w = pos.w;
-            L.self->f2c->f1a4->f4->func_00199600(np);
+            L.self->f2c->f1a4->f4->func_00199600(V4k_154C10(L.v.x, L.v.y + L.self->f34, L.v.z, L.v.w));
             L.self->f2c->f1a4->func_00132D20();
             L.self->fec = 0;
             L.self->f108 = 1;
@@ -355,14 +347,16 @@ int C_00154C10::func_00154C10(float dt)
     L.self->f2c->f1a4->f10 = 1;
     if (*D_002A8490->f2E0 > 1) {
         L.self->fc4 = 0;
-        L.self->f94.x = D_002A789C;
-        L.self->f94.y = D_002A78A0;
-        L.self->f94.z = D_002A78A4;
-        L.self->f94.w = D_002A78A8;
-        L.self->f84.x = D_002A789C;
-        L.self->f84.y = D_002A78A0;
-        L.self->f84.z = D_002A78A4;
-        L.self->f84.w = D_002A78A8;
+        V4_154C10 *d = &L.self->f94;
+        d->x = D_002A789C;
+        d->y = D_002A78A0;
+        d->z = D_002A78A4;
+        d->w = D_002A78A8;
+        d = &L.self->f84;
+        d->x = D_002A789C;
+        d->y = D_002A78A0;
+        d->z = D_002A78A4;
+        d->w = D_002A78A8;
         func_00011FF0(L.p, 0x10, 2, (void *)func_00011060);
         L.p[0] = L.self->func_00016E40();
         L.p[1] = ((S_154C10_Pos **)D_002B9120)[0x13a - L.self->f24]->func_00016E40();
@@ -385,6 +379,10 @@ int C_00154C10::func_00154C10(float dt)
         L.self->f120 = L.self->func_00016E40();
         L.self->func_00157A00(dt);
     }
+}
+
+void func_001553E0(float *out, float *in) {
+    AsmVec3Normalize(out, in);
 }
 
 C_00155450 *C_00155450::func_00155450(void *param)
