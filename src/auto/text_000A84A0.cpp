@@ -91,8 +91,6 @@ struct S_000A8D90_Mgr {
 /* BikeShutdownTriggerAction */
 struct C_000A8D90 {
     void *vtbl;
-    void Register(void *cb) { func_001BBAA0(this, cb); }
-    int func_000A8D90(void *a, int b);
     int func_000A8D90(void *a, S_000A8D90_Mgr *b);
 };
 
