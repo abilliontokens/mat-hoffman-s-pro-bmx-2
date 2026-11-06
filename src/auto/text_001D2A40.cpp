@@ -217,6 +217,8 @@ struct C_001D3700 {
 
 void C_001D2A40::func_001D2A40()
 {
+    C_001D2A40 *self = this;
+    C_001D2A40 **pself = &self;
     int i;
     if (f50 != 0) {
         int rc[4] = {0, 0, 0x280, 0x1c0};
@@ -251,6 +253,8 @@ void C_001D2A40::func_001D2A40()
             TRACK_CHANNEL(3, sizeLo[0], sizeHi[0], 8, 4, 0x40)
             TRACK_CHANNEL(4, sizeLo[1], sizeHi[1], 0x10, 4, 0x40)
             TRACK_CHANNEL(5, alphaLo, alphaHi, 0x20, 8, 0x80)
+            RtlLeaveCriticalSection(f30);
+            D_002EFDB8->v4(dst, q->f0, src, 0);
         }
     }
 }
