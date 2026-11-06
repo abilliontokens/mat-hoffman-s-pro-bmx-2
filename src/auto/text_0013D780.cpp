@@ -20,6 +20,7 @@ struct C_0013D780 {
 };
 
 struct C_0013E170 {
+    char storage[64][0x5c];
     void func_0013E170(int index, char *name, int value);
 };
 
