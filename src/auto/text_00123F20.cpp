@@ -22,8 +22,8 @@ static __forceinline void Slice(Vec4 *P,Vec4 *N,const Vec4 *p,const Vec4 *a,cons
  for(i=0;i<2;i++){
   t=(pa[k]-(&v[2*i]->x)[k])/((&v[2*i+1]->x)[k]-(&v[2*i]->x)[k]);
   s=D_00275460-t;
-  P[i]=*v[2*i+1]*t+*v[2*i]*s;
-  N[i]=*vn[2*i+1]*t+*vn[2*i]*s;
+  P[i]=*v[2*i]*s+*v[2*i+1]*t;
+  N[i]=*vn[2*i]*s+*vn[2*i+1]*t;
  }
  }
 #include <math.h>
