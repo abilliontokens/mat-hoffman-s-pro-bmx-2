@@ -144,24 +144,82 @@ struct C_001CA1C0 {
     void func_001CA1C0(void);
 };
 
+struct V16_001C9B10 { int a, b, c, d; };
+struct C_001C9B10_Tex {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
+    virtual void v8(int a0, int a1, int a2, int a3, int a4, int a5, int a6, int a7, int a8);
+    virtual void v9(); virtual void v10(); virtual void v11(); virtual void v12();
+    virtual void v13(); virtual void v14(); virtual void v15();
+    virtual int v16(int a0, int *a1, int a2);
+    virtual void v17(int a0);
+    C_001C9B10_Tex *func_001D6AD0(int a0);
+};
+struct C_001C9B10_Mgr {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5();
+    virtual void v6(int a0, int a1);
+    virtual int v7(char *name, C_001C9B10_Tex *t);
+    void func_001B2640(void);
+};
+struct C_001C9B10_Cam {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5();
+    virtual int v6(float *a0, float *a1, int a2);
+    virtual void v7(char *a0, int a1, float *a2, float *a3);
+    char pad4[0x3c];
+    float unk40;
+    float unk44;
+};
+struct C_001C9B10_Snd { void func_00161680(void); };
+struct C_001C9B10_VT {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
+    virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11();
+    virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15();
+    virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
+    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23();
+    virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27();
+    virtual void v28(char *entry, V16_001C9B10 v, int a);
+    void func_001D3F50(void);
+    int func_001C8960(int a0);
+};
+extern C_001C9B10_Mgr *D_002AA6C0;
+extern C_001C9B10_Cam *D_002F07E8;
+extern C_001C9B10_Snd *D_002A829C;
+extern float D_002755E8;
+extern float D_0028EBFC;
+extern char D_0028EC00[];
+extern char D_0028EBE8[];
+extern char D_0028EBD0[];
+extern char D_0028EBB8[];
+extern char D_0028E910[];
+extern char D_002A60B0[];
+extern int D_002AB80C;
+extern int D_002AB810;
+extern int D_002AB814;
+extern int D_002AB818;
+void *func_001E8A44(unsigned int size);
+void *func_001E8AA5(unsigned int size);
+void func_0014FF00(int a0, int a1, char *a2, int a3, int a4);
+
 
 void C_001C9920::func_001C9920(int a)
 {
     S_001C9920_arg *p = (S_001C9920_arg *)a;
-    C_001C9920_28 *s;
     int rate;
     int v;
     unkCC = p;
-    s = p->unk28;
-    if (s != 0) {
-        unk44 = s->v16(0, &a, 0x80);
-        rate = func_001B2910(p->unk28->unkA4);
-        v = (a << 3) / rate;
-        unk21C = rate;
-        unkB8 = v;
-        unkC4 = (float)v / D_002F0BCC;
-        p->unk28->v17(0);
+    if (p->unk28 == 0) {
+        return;
     }
+    unk44 = p->unk28->v16(0, &a, 0x80);
+    rate = func_001B2910(p->unk28->unkA4);
+    v = (a << 3) / rate;
+    unk21C = rate;
+    unkB8 = v;
+    unkC4 = (float)v / D_002F0BCC;
+    p->unk28->v17(0);
 }
 
 int C_001C99A0::func_001C99A0(int a0)
@@ -250,6 +308,30 @@ C_001CA1D0* C_001CA1D0::func_001CA1D0(int a0, int a1, int a2, int a3, int a4, in
     unk24 = a0;
     unk50 = a2;
     return this;
+}
+
+int C_001CA1F0::func_001CA1F0(float a0)
+{
+    float f;
+    int n[6];
+    C_001CA1F0_elem *e;
+    int i;
+    if (D_002A8490->unk124 != 0) {
+        return 1;
+    }
+    unk38 += a0;
+    f = unk38 * D_002F08BC->unk9C;
+    n[0] = (int)f;
+    unk3C = (float)fmod(f, D_002766B8);
+    unk40 = D_00275460 - unk3C;
+    e = unk44[0];
+    i = 0;
+    while (e != 0) {
+        i++;
+        e->func_00194520(a0, n);
+        e = unk44[i];
+    }
+    return func_00157A00(a0);
 }
 
 int func_001CA360(float *n, float *p, float *a, float *b, V4_001CA360 *out)
