@@ -261,6 +261,14 @@ struct C_00021720 {
 };
 
 
+static inline void SetClamped_00021740(int *dst, int v)
+{
+    *dst = v;
+    if (*dst < 0) {
+        *dst = 0;
+    }
+}
+
 W4_000212A0 *W4_000212A0::func_000212A0(u32 *p)
 {
     x = p[0];
@@ -430,7 +438,7 @@ C_00021720* C_00021720::func_00021720(void) {
 void C_00021740::func_00021740(S_Stream_000212A0 *stream, int base)
 {
     int a;
-    int b;
+    unsigned b;
 
     stream->func_00168CB0(&D_0027618C, &D_002A0F74, &f10);
     stream->func_00168C20(&D_00276180, 0, &f8);
@@ -439,12 +447,12 @@ void C_00021740::func_00021740(S_Stream_000212A0 *stream, int base)
     if (fC < 0) {
         fC = 0;
     }
-    stream->func_00168C20(&D_00276164, 0, &b);
+    stream->func_00168C20(&D_00276164, 0, (int *)&b);
     f0 = base + b - 1;
     if (f0 < 0) {
         f0 = 0;
     }
-    stream->func_00168C20(&D_00276150, 1, &b);
+    stream->func_00168C20(&D_00276150, 1, (int *)&b);
     f4 = b - 1;
     if (f4 < 0) {
         f4 = 0;
