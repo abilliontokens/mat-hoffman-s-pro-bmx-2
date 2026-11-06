@@ -94,7 +94,8 @@ struct S_6FF80_Data {
     char pad24[0x120 - 0x24]; int f120;
     char pad124[4]; int f128;
     char pad12c[0x188 - 0x12c]; int f188;
-    char pad18c[0x1198 - 0x18c]; int f1198;
+    char pad18c[0xf68 - 0x18c]; int fF68;
+    char padF6C[0x1198 - 0xF6C]; int f1198;
 };
 extern char D_00278C38[], D_00278C28[];
 struct S_0006FF80_Str { char pad0[0x18]; int f18; char pad1c[4]; int f20; char pad24[0x100]; int f124_; int f128; char pad12c[0x5c]; int f188; char pad18c[0xfc4 - 0x18c]; int f1198_dummy; };
