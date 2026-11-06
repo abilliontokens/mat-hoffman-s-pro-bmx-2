@@ -132,8 +132,15 @@ struct S_00014850_Player {
     int f1c8;
 };
 
+struct S_00013A40_Ctx {
+    char pad0[0xB4];
+    void *fb4;
+};
+
 struct S_00014850_Root {
-    char pad0[0x2A4];
+    char pad0[4];
+    S_00013A40_Ctx *f4;
+    char pad8[0x2A4 - 8];
     S_00014850_Player *f2a4;
 };
 
