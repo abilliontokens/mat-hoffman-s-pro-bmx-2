@@ -210,7 +210,7 @@ static inline void Xform_00129510(S_00129510_V4 *out, const S_00129510_M44 *mat,
     out->w = 1.0f;
 }
 
-static inline void Xform_00128930(S_00129050_Vec4 *out, const S_00128930_Mat *mat, const float *v)
+static __forceinline void Xform_00128930(S_00129050_Vec4 *out, const S_00128930_Mat *mat, const float *v)
 {
     __m128 t = _mm_loadu_ps(v);
     _mm_storeh_pi((__m64 *)&out->z, t);
@@ -256,7 +256,6 @@ int func_00128930(S_00128930_Leaf *leaf, float *seg, short id, S_00128930_Mat *m
     float k;
     int i;
     int found;
-
     sx = (float)leaf->sx * D_002B9348;
     sy = (float)leaf->sy * D_002B9348;
     sz = (float)leaf->sz * D_002B9348;
@@ -271,38 +270,22 @@ int func_00128930(S_00128930_Leaf *leaf, float *seg, short id, S_00128930_Mat *m
     dn.x = d.x * inv;
     dn.y = d.y * inv;
     dn.z = d.z * inv;
-    if (!func_00125540(leaf, dn, q[0], len, &hitB, &hitA, &t)) {
-        return 0;
-    }
-    if (h == 0) {
-        return 1;
-    }
+    if (!func_00125540(leaf, dn, q[0], len, &hitB, &hitA, &t)) return 0;
+    if (h == 0) return 1;
     if (h->f70 != 0) {
-        i = 0;
-        found = 0;
+        i = 0; found = 0;
         if (0 < h->count) {
             do {
-                if (found) {
-                    break;
-                }
-                if (h->f90[i] == id) {
-                    found = 1;
-                } else {
-                    i++;
-                }
+                if (found) break;
+                if (h->f90[i] == id) found = 1; else i++;
             } while (i < h->count);
         }
         if (found) {
             if (t < h->f8C[i]) {
-                h->f84[i] = 0;
-                h->f8C[i] = t;
-                h->f78[i] = hitB;
-                h->f74[i] = hitA;
+                h->f84[i] = 0; h->f8C[i] = t; h->f78[i] = hitB; h->f74[i] = hitA;
             }
         } else {
-            h->f84[h->count] = 0;
-            h->f8C[h->count] = t;
-            h->f90[h->count] = id;
+            h->f84[h->count] = 0; h->f8C[h->count] = t; h->f90[h->count] = id;
             h->f70[h->count][0] = *(S_00129050_Vec4 *)seg;
             h->f70[h->count][1] = *(S_00129050_Vec4 *)(seg + 4);
             h->f78[h->count] = hitB;
@@ -310,9 +293,7 @@ int func_00128930(S_00128930_Leaf *leaf, float *seg, short id, S_00128930_Mat *m
             h->f74[h->count] = hitA;
             h->count++;
             k = dn.z * len * u * sz + len * dn.x * u * sx + dn.y * len * u * sy;
-            sx = sx * k;
-            sy = sy * k;
-            sz = sz * k;
+            sx = sx * k; sy = sy * k; sz = sz * k;
             h->minv[0] = Min_00128930(sx, h->minv[0]);
             h->minv[1] = Min_00128930(sy, h->minv[1]);
             h->minv[2] = Min_00128930(sz, h->minv[2]);
@@ -321,18 +302,15 @@ int func_00128930(S_00128930_Leaf *leaf, float *seg, short id, S_00128930_Mat *m
             h->maxv[2] = Max_00128930(sz, h->maxv[2]);
         }
         if (t <= h->t) {
-            h->fl0 = 0;
-            h->t = t;
+            h->fl0 = 0; h->t = t;
             h->v0 = *(S_00129050_Vec4 *)seg;
             h->v1 = *(S_00129050_Vec4 *)(seg + 4);
-            h->v3 = hitB;
-            h->v2 = hitA;
+            h->v3 = hitB; h->v2 = hitA;
             h->fl1 = (*(int *)(D_002B92F4 + 4) != 0 && D_002B9344 != 0);
         }
     } else {
         if (t < h->t) {
-            h->t = t;
-            h->v2 = hitA;
+            h->t = t; h->v2 = hitA;
             h->fl1 = (*(int *)(D_002B92F4 + 4) != 0 && D_002B9344 != 0);
         }
     }
