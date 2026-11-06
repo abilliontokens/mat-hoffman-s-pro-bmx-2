@@ -99,6 +99,19 @@ struct Mat4_0013E4F0 {
     }
 };
 
+/* Clears a 16-byte aligned matrix with SSE stores. */
+static void ZeroMat4(Mat4_0013E4F0 *mat)
+{
+    __m128 *volatile p = (__m128 *)mat->m;
+    __m128 z = _mm_setzero_ps();
+    __m128 *q = p;
+
+    q[0] = z;
+    q[1] = z;
+    q[2] = z;
+    q[3] = z;
+}
+
 struct DXCamera {
     void *vtbl;
     char pad4[0x1FC];
@@ -508,7 +521,8 @@ void *C_0013E080::func_0013E140(unsigned int flags) {
 void C_0013E170::func_0013E170(int index, char *name, int value)
 {
     if (index < *(int *)((int)this + 0x193c)) {
-        char *base = (char *)this + index * 0x5c;
+        char *base = (char *)this;
+        base += index * 0x5c;
         char *buf = base + 0x230;
         if (strcmp(buf, name) != 0) {
             func_001E8920(buf, name, 0x4f);
@@ -654,17 +668,17 @@ int C_0013E2D0::func_0013E2D0(void)
 
 void func_0013E4A0(void *dst, void *src)
 {
-    float *d = (float *)dst;
-    float *s = (float *)src;
-    __m128 r0 = _mm_loadh_pi(_mm_loadl_pi(_mm_setzero_ps(), (__m64 *)&s[0]), (__m64 *)&s[4]);
-    __m128 r1 = _mm_loadh_pi(_mm_loadl_pi(_mm_setzero_ps(), (__m64 *)&s[2]), (__m64 *)&s[6]);
-    __m128 r2 = _mm_loadh_pi(_mm_loadl_pi(_mm_setzero_ps(), (__m64 *)&s[8]), (__m64 *)&s[12]);
-    __m128 r3 = _mm_loadh_pi(_mm_loadl_pi(_mm_setzero_ps(), (__m64 *)&s[10]), (__m64 *)&s[14]);
+    const __m64 *s = (const __m64 *)src;
+    __m128 *d = (__m128 *)dst;
 
-    *(__m128 *)&d[0] = _mm_shuffle_ps(r0, r2, 0x88);
-    *(__m128 *)&d[4] = _mm_shuffle_ps(r0, r2, 0xdd);
-    *(__m128 *)&d[8] = _mm_shuffle_ps(r1, r3, 0x88);
-    *(__m128 *)&d[12] = _mm_shuffle_ps(r1, r3, 0xdd);
+    d[0] = _mm_shuffle_ps(_mm_loadh_pi(_mm_loadl_pi(_mm_setzero_ps(), s + 0), s + 2),
+                          _mm_loadh_pi(_mm_loadl_pi(_mm_setzero_ps(), s + 4), s + 6), 0x88);
+    d[1] = _mm_shuffle_ps(_mm_loadh_pi(_mm_loadl_pi(_mm_setzero_ps(), s + 0), s + 2),
+                          _mm_loadh_pi(_mm_loadl_pi(_mm_setzero_ps(), s + 4), s + 6), 0xdd);
+    d[2] = _mm_shuffle_ps(_mm_loadh_pi(_mm_loadl_pi(_mm_setzero_ps(), s + 1), s + 3),
+                          _mm_loadh_pi(_mm_loadl_pi(_mm_setzero_ps(), s + 5), s + 7), 0x88);
+    d[3] = _mm_shuffle_ps(_mm_loadh_pi(_mm_loadl_pi(_mm_setzero_ps(), s + 1), s + 3),
+                          _mm_loadh_pi(_mm_loadl_pi(_mm_setzero_ps(), s + 5), s + 7), 0xdd);
 }
 
 DXCamera *DXCamera::func_0013E4F0(int a)
@@ -678,18 +692,31 @@ DXCamera *DXCamera::func_0013E4F0(int a)
 
 void DXCamera::func_0013E580(void)
 {
+    DXCamera *volatile self = this;
     __declspec(align(16)) Mat4_0013E4F0 m;
+    __m128 *volatile p;
+    DXCamera *c;
+    __m128 *q;
+    __m128 z;
     float s;
 
     func_0012AEC0();
-    func_000263B0(&f250, (char *)this + 0xb0, (char *)this + 0x70);
-    memset(&m, 0, sizeof(m));
-    s = D_00284DD8 / f200;
+    c = self;
+    func_000263B0(&c->f250, (char *)c + 0xb0, (char *)c + 0x70);
+    p = (__m128 *)&m;
+    z = _mm_setzero_ps();
+    q = p;
+    q[0] = z;
+    q[1] = z;
+    q[2] = z;
+    q[3] = z;
+    c = self;
+    s = D_00284DD8 / c->f200;
     m.m[15] = s;
     m.m[0] = s;
     m.m[5] = s;
     m.m[10] = s;
-    func_000263B0(&f290, &f250, &m);
+    func_000263B0(&c->f290, &c->f250, &m);
 }
 
 int DXCamera::func_0013E610(void)
