@@ -2,6 +2,7 @@
 #include "common.h"
 
 extern "C" int memcmp(const void *a, const void *b, unsigned int n);
+extern "C" int strcmp(const char *a, const char *b);
 void *func_001E8A44(int size);
 extern char D_002895F4[];
 extern char D_002895EC[];
@@ -414,6 +415,25 @@ int C_00184930::func_00184D10(void)
         return 0;
     }
     return 1;
+}
+
+int C_00184930::func_00184EF0(int a0, int a1)
+{
+    char buf[0x80];
+    S_00184EF0_Obj *obj;
+    void *mem;
+    unsigned int n = 5;
+
+    if (memcmp((char *)f388 + 0x114, D_002764F0, n) == 0) {
+        return 1;
+    }
+    func_001ADCC0(buf, 0x80, D_00289588, D_002A5A80);
+    mem = func_001E8A44(0x4d4);
+    obj = mem != 0 ? ((S_00184EF0_Obj *)mem)->func_001DA0E0() : 0;
+    obj->v30(f3e8, buf, D_002E2930, D_002A5870, a1, a0);
+    f3ec = obj;
+    f3e8->func_001C9920(obj);
+    return f3ec != 0;
 }
 
 #pragma intrinsic(memcmp)
