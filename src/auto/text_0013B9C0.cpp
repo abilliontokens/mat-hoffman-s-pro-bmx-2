@@ -23,7 +23,7 @@ int func_0014FE60(void *p, int size, void *file);
 void *func_001E83E8(void *p, int size);
 void *func_0014FDF0(const char *name, char *mode);
 extern short D_00284C50;
-static inline int min_i(const int &a, const int &b) { return a < b ? a : b; }
+static inline int min_i(int a, int b) { return a > b ? b : a; }
 
 struct S_0013B9C0_Ent28 {
     int f0;
@@ -283,8 +283,8 @@ char *C_0013B9C0::func_0013C6E0(int idx, char *buf, int size)
         return 0;
     }
     bound = ((int)e->f10 / 0x6000 + 1) * 0x6000 - (int)e->f10;
-    lim = min_i(remain, size - 2);
-    n = min_i(bound, lim);
+    lim = size - 2;
+    n = min_i(bound, min_i(remain, lim));
     if (!func_0013BBA0(t, e->f4, (int)buf, n)) {
         *buf = 0;
         return 0;
