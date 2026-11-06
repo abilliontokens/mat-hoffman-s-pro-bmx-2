@@ -311,6 +311,9 @@ C_0006D590 *C_0006D590::func_0006D750(C_0006E250_E8 *arg)
     int ids[3];
     int *r;
     int font1, font2;
+    int i;
+    S_0006D750_Obj *o;
+    S_0006D750_Txt *t;
 
     unkE8 = arg;
     ids[0] = (int)&D_00278690;
@@ -322,6 +325,105 @@ C_0006D590 *C_0006D590::func_0006D750(C_0006E250_E8 *arg)
     font1 = r ? *r : 0;
     r = D_002A8490->p2EC->func_0018C160((int)&D_00278678);
     font2 = r ? *r : 0;
+    D_002A60B0.f0 = D_00278664.f0;
+    D_002A60B0.f4 = D_00278664.f4;
+    D_002A60B0.f8 = D_00278664.f8;
+    D_002A60B0.fC = D_00278664.fC;
+    D_002A60B0.f10 = D_00278664.f10;
+
+    o = (S_0006D750_Obj *)func_001E8A44(0x64);
+    unkA4 = (C_001D5AD0 *)(o ? o->func_001D5760() : 0);
+    ((S_0006D750_Obj *)unkA4)->func_001D5810(D_00278658, 0, 0, 0);
+    width6D((S_0006D750_Obj *)unkA4, 0x44200000);
+    height6D((S_0006D750_Obj *)unkA4, 0x42480000);
+    uv6D((S_0006D750_Obj *)unkA4);
+
+    o = (S_0006D750_Obj *)func_001E8A44(0x64);
+    unkA8 = (C_001D5AD0 *)(o ? o->func_001D5760() : 0);
+    ((S_0006D750_Obj *)unkA8)->func_001D5810(D_00278658, 0, 398.0f, 0);
+    width6D((S_0006D750_Obj *)unkA8, 0x44200000);
+    height6D((S_0006D750_Obj *)unkA8, 0x42480000);
+    uv6D((S_0006D750_Obj *)unkA8);
+
+    for (i = 0; i < 5; i++) {
+        float x;
+        S_0006D750_Obj *n;
+        o = (S_0006D750_Obj *)func_001E8A44(0x64);
+        n = o ? o->func_001D5760() : 0;
+        x = i * D_00278650;
+        unkB0[i] = (C_001D5AD0 *)n;
+        n->func_001D5810(D_00278658, x, 50.0f, 0);
+        o = (S_0006D750_Obj *)func_001E8A44(0x64);
+        unkC4[i] = (C_001D5AD0 *)(o ? o->func_001D5760() : 0);
+        ((S_0006D750_Obj *)unkC4[i])->func_001D5810(D_00278658, x, 366.0f, 0);
+        o = (S_0006D750_Obj *)unkC4[i];
+        o->a = 0;
+        o->b = 1.0f;
+        o->c = 0.99f;
+        o->d = 0;
+        o->flags |= 4;
+    }
+
+    o = (S_0006D750_Obj *)func_001E8A44(0x64);
+    unkD8 = (C_001D5AD0 *)(o ? o->func_001D5760() : 0);
+    ((S_0006D750_Obj *)unkD8)->func_001D5810(D_00278638, 379.0f, 388.0f, 0);
+
+    o = (S_0006D750_Obj *)func_001E8A44(0x64);
+    unkDC = (C_001D5AD0 *)(o ? o->func_001D5760() : 0);
+    ((S_0006D750_Obj *)unkDC)->func_001D5810(D_00278608, 379.0f, 388.0f, 0);
+
+    o = (S_0006D750_Obj *)func_001E8A44(0x64);
+    unkF0 = (C_001D5AD0 *)(o ? o->func_001D5760() : 0);
+    ((S_0006D750_Obj *)unkF0)->func_001D5810(D_00278600, 0, 0, 0);
+    {
+        S_0006D750_Obj *p = (S_0006D750_Obj *)unkF0;
+        unsigned int c = p->color;
+        p->flags |= 2;
+        p->color = c & 0xff000000;
+    }
+    {
+        S_0006D750_Obj *p = (S_0006D750_Obj *)unkF0;
+        unsigned char fl = p->flags;
+        fl |= 2;
+        *((unsigned char *)&p->color + 3) = 0x80;
+        p->flags = fl;
+    }
+    height6D((S_0006D750_Obj *)unkF0, 0x43e00000);
+    width6D((S_0006D750_Obj *)unkF0, 0x44200000);
+
+    func_001ADCC0((char *)&D_002A60B0, 0x104, D_00275678, D_002A5870, D_002A5FA8);
+
+    t = (S_0006D750_Txt *)func_001E8A44(0x60);
+    unkE0 = (int)(t ? t->func_001D5E90() : 0);
+    t = (S_0006D750_Txt *)unkE0;
+    t->func_001D6190(font1, D_002A8490->p2E8[1][0x838 / 4], (int)&D_00278690);
+    pos6D(t, 0x43ea0000, 0x43c48000);
+    color6D(t, 0xffcccccc);
+    align6D(t, D_0028F5EC);
+
+    t = (S_0006D750_Txt *)func_001E8A44(0x60);
+    unkF4 = (int)(t ? t->func_001D5E90() : 0);
+    t = (S_0006D750_Txt *)unkF4;
+    t->func_001D5FA0(font2, (char *)&D_00278678, 0x28, 0);
+    pos6D(t, 0x43a00000, 0x42200000);
+    color6D(t, 0xffcccccc);
+    align6D(t, D_0028F5E0);
+
+    for (i = 0; i < 15; i++) {
+        float y;
+        t = (S_0006D750_Txt *)func_001E8A44(0x60);
+        t = t ? t->func_001D5E90() : 0;
+        unk68[i] = (u32)t;
+        t->func_001D5FA0(font1, (char *)&D_00278690, 0x2d, 0);
+        y = i * D_00275800 + D_00278AE8;
+        if (t->x != 0x43a00000 || *(float *)&t->y != y) {
+            *(float *)&t->y = y;
+            t->x = 0x43a00000;
+            t->flags |= 6;
+        }
+        t = (S_0006D750_Txt *)unk68[i];
+        align6D(t, D_0028F5E0);
+    }
     return this;
 }
 
@@ -379,96 +481,5 @@ void C_0006D590::func_0006DF50()
     if (unkF0 != 0) {
         unkF0->func_001D5AD0();
     }
-}
-
-void C_0006D590::func_0006DFC0() {
- int id;
- char buf[64];
- ((Text_6D*)unkE0)->func_001D6600();
- if(unkE8->p1C0->func_000976A0()==0) id=0xd6;
- else if(unkE8->p1C0->func_000976A0()==1) id=0xd8;
- else if(unkE8->p1C0->func_000976A0()==2) id=0xda;
- else if(unkE8->p1C0->func_000976A0()==3) id=0xdc;
- ((Text_6D*)unkF4)->func_0005E840((char*)D_002A8490->p2E8[1][id*2]);
- ((Text_6D*)unkF4)->func_001D6600();
- if(unkE8->p1C0) {
- int one=0x3f800000;
- int count=unkE8->p1C0->func_00097C60();
- Objective_6D **list=unkE8->p1C0->func_00097C20();
- if(count==0) {
- Text_6D *p=(Text_6D*)unk68[0];
- p->func_0005E840((char*)D_002A8490->p2E8[1][0x1ba]);
- p=(Text_6D*)unk68[0];
- if(p->color!=0xff5eff5e) { p->flags|=8; p->color=(p->color&0xff5eff5e)|0x5eff5e; }
- p=(Text_6D*)unk68[0];
- if(p->scale!=one) {unsigned char f=(*(volatile unsigned char*)&p->flags)|6;p->scale=one;(*(volatile unsigned char*)&p->flags)=f;}
- ((Text_6D*)unk68[0])->func_001D6600();
- return;
- }
- int i=0;
- if(count>0) {
- u32 *out=unk68;
- do {
- if(!list[i]->f1a8) {
- func_001ADCC0(buf,0x104,D_00278AEC,list[i]);
- ((Text_6D*)*out)->func_0005E840(buf);
- if(list[i]->func_00096740()) {
- Text_6D *p=(Text_6D*)*out;
- if(p->color!=0xff5eff5e) {unsigned char f=(*(volatile unsigned char*)&p->flags)|8;p->color=(p->color&0xff5eff5e)|0x5eff5e;(*(volatile unsigned char*)&p->flags)=f;}
- } else {
- Text_6D *p=(Text_6D*)*out;
- if(p->color!=0xffcccccc) {unsigned char f=(*(volatile unsigned char*)&p->flags)|8;p->color=(p->color&0xffcccccc)|0xcccccc;(*(volatile unsigned char*)&p->flags)=f;}
- }
- Text_6D *p=(Text_6D*)*out;
- if(p->scale!=one) {p->flags|=6;p->scale=one;}
- ((Text_6D*)*out)->func_001D6600();
- ++out;
- }
- } while(++i<*(volatile int*)&count);
- }
- }
- }
-
-int C_0006D590::func_0006E1E0()
-{
-    if ((D_002B9030 & 1) == 0) {
-        D_002B9030 |= 1;
-        D_002B902C = D_002A7CB8->func_00026500((int)&D_00278AF0, 0);
-    }
-    if (D_002A8490->f274 < D_002A8490->f270 - 1) {
-        return 1;
-    }
-    func_0006DF50();
-    func_0006DFC0();
-    return func_00157960();
-}
-
-int C_0006D590::func_0006E250(float dt)
-{
-    if (unk64 != 0) {
-        unkEC += dt;
-        if (unkEC >= D_00278500) {
-            unkE4 = 0;
-            ((C_0006D590_V *)this)->v4();
-            unkE8->f160->func_000601D0();
-            unk64 = 0;
-            unkEC = 0;
-        }
-    }
-    return 1;
-}
-
-int C_0006E2C0::func_0006E2C0(int *param_1, int param_2)
-{
-    if (param_1[2] == unkF8 && unk64 == 0) {
-        if (func_001361E0(5, 2, param_1, -2147483648) == 0 &&
-            func_001361E0(24, 2, param_1, -2147483648) == 0) {
-            return 0;
-        }
-        unkE8->func_00031610(4, 1);
-        unk64 = 1;
-        unkEC = 0;
-    }
-    return 0;
 }
 
