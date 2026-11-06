@@ -4,13 +4,20 @@
 struct SimpleVCR {
     void *vtbl;
     char pad4[0x20];
-    float f24, f28, f2c, f30, f34, f38;
+    int f24, f28, f2c, f30, f34, f38;
     float f3c, f40, f44;
-    float f48;
-    union { float f4c; int f4c_i; };
-    float f50, f54, f58, f5c, f60, f64, f68, f6c, f70, f74, f78, f7c, f80, f84, f88;
+    int f48;
+    unsigned int f4c;
+    unsigned char *f50, *f54, *f58;
+    int f5c, f60, f64, f68;
+    unsigned int f6c, f70, f74;
+    int *f78, *f7c, *f80, *f84, *f88;
     char pad8C[4];
-    float f90, f94, f98, f9c, fA0, fA4, fA8, fAC, fB0, fB4, fB8;
+    float *f90, *f94;
+    int *f98, *f9c, *fA0;
+    float *fA4, *fA8;
+    int *fAC, *fB0, *fB4;
+    unsigned char *fB8;
     char padBC[4];
     union {
         unsigned char fC0;
@@ -322,7 +329,8 @@ Vec4_195D40 *func_00195D40(Vec4_195D40 *out, int x, int y, int z, int w)
 SimpleVCR *SimpleVCR::func_00195D90(void)
 {
     func_00157600(1);
-    fC0 = fC0 & 0x41;
+    fl.mid = 0;
+    fl.b7 = 0;
     f74 = 0;
     f6c = 0;
     f70 = 0;
