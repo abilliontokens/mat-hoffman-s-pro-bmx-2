@@ -47,7 +47,7 @@ struct S_DD1B0_Font {
 struct S_DD1B0_Mgr {
     int *func_0018C160(const char *name);
 };
-struct S_DD1B0_Sub { char pad0[0x138]; char f138[1]; };
+struct S_DD1B0_Sub { char pad0[0x138]; char *f138; };
 struct S_DD1B0_Pair { char pad0[4]; S_DD1B0_Sub *f4; };
 struct S_DD1B0_Root {
     char pad0[0x2e0];
