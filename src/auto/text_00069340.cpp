@@ -343,6 +343,7 @@ struct T69Txt {
 struct T69Btn {
     void func_0005E840(int);
     void func_001D6600();
+    void Show(int s) { func_0005E840(s); func_001D6600(); }
 };
 
 struct T69Page {
@@ -403,11 +404,11 @@ void T69Page::func_00069340()
             t[2]->func_001B17D0(D_002A8490->p2E8->p4->fAC8);
             t[2]->func_001B2270(0xffcccccc);
             t[2]->func_001B19C0(0x140, s88[2], 0);
-            t[2]->func_001B1860(0.0f, -1.0f, 0xff, 1.0f, 0.0f, 0.0f, -1.0f, 0xff, 1.0f, 0.0f, 0, 0, 0);
+            t[2]->func_001B1860(0.0f, -1.0f, 0xff, 1.0f, 0.0f, 0.0f, -1.0f, 0xff, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f);
             t[3]->func_001B17D0(D_002A8490->p2E8->p4->f1278);
             t[3]->func_001B2270(0xffcccccc);
             t[3]->func_001B19C0(0x140, s88[3], 0);
-            t[3]->func_001B1860(0.0f, -1.0f, 0xff, 1.0f, 0.0f, 0.0f, -1.0f, 0xff, 1.0f, 0.0f, 0, 0, 0);
+            t[3]->func_001B1860(0.0f, -1.0f, 0xff, 1.0f, 0.0f, 0.0f, -1.0f, 0xff, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f);
         } else if (f168 != 0) {
             for (i = 0; i < 7; i++) {
                 t[i]->func_001B1980();
@@ -415,7 +416,7 @@ void T69Page::func_00069340()
             t[2]->func_001B17D0(D_002A8490->p2E8->p4->fAD0);
             t[2]->func_001B2270(0xffcccccc);
             t[2]->func_001B19C0(0x140, s88[2], 0);
-            t[2]->func_001B1860(0.0f, -1.0f, 0xff, 1.0f, 0.0f, 0.0f, -1.0f, 0xff, 1.0f, 0.0f, 0, 0, 0);
+            t[2]->func_001B1860(0.0f, -1.0f, 0xff, 1.0f, 0.0f, 0.0f, -1.0f, 0xff, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f);
         } else if (f160 != 0) {
             for (i = 0; i < 7; i++) {
                 t[i]->func_001B1980();
@@ -423,11 +424,11 @@ void T69Page::func_00069340()
             t[2]->func_001B17D0(D_002A8490->p2E8->p4->fAD8);
             t[2]->func_001B2270(0xffcccccc);
             t[2]->func_001B19C0(0x140, s88[2], 0);
-            t[2]->func_001B1860(0.0f, -1.0f, 0xff, 1.0f, 0.0f, 0.0f, -1.0f, 0xff, 1.0f, 0.0f, 0, 0, 0);
+            t[2]->func_001B1860(0.0f, -1.0f, 0xff, 1.0f, 0.0f, 0.0f, -1.0f, 0xff, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f);
             t[3]->func_001B17D0(D_002A8490->p2E8->p4->fAE0);
             t[3]->func_001B2270(0xffcccccc);
             t[3]->func_001B19C0(0x140, s88[3], 0);
-            t[3]->func_001B1860(0.0f, -1.0f, 0xff, 1.0f, 0.0f, 0.0f, -1.0f, 0xff, 1.0f, 0.0f, 0, 0, 0);
+            t[3]->func_001B1860(0.0f, -1.0f, 0xff, 1.0f, 0.0f, 0.0f, -1.0f, 0xff, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f);
         } else {
             for (i = 0; i < 7; i++) {
                 t[i]->func_001B1980();
@@ -437,7 +438,7 @@ void T69Page::func_00069340()
                     if (f16C == 1) {
                         t[i]->func_001B1860(0.0f, -1.0f, 0xff, 1.3f, 0.0f, 0.0f, 0.0f, 0xff, 1.3f, 0.0f, 0.0f, 0.2f, 0.0f);
                     } else {
-                        t[i]->func_001B1860(0.0f, -1.0f, 0xff, 1.3f, 0.0f, 0.0f, -1.0f, 0xff, 1.0f, 0.0f, 0, 0, 0);
+                        t[i]->func_001B1860(0.0f, -1.0f, 0xff, 1.3f, 0.0f, 0.0f, -1.0f, 0xff, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f);
                     }
                 } else if (i == sel2) {
                     t[i]->func_001B19C0(0x140, s88[i], 0);
@@ -456,7 +457,7 @@ void T69Page::func_00069340()
                     if (f16C == 1) {
                         t[i]->func_001B1860(0.0f, -1.0f, 0xff, 1.3f, 0.0f, 0.0f, 0.0f, 0xff, 1.0f, 0.0f, 0.0f, 0.2f, 0.0f);
                     } else {
-                        t[i]->func_001B1860(0.0f, -1.0f, 0xff, 1.0f, 0.0f, 0.0f, -1.0f, 0xff, 1.0f, 0.0f, 0, 0, 0);
+                        t[i]->func_001B1860(0.0f, -1.0f, 0xff, 1.0f, 0.0f, 0.0f, -1.0f, 0xff, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f);
                     }
                 } else {
                     if (i == 1) {
@@ -472,7 +473,7 @@ void T69Page::func_00069340()
                         t[i]->func_001B2270(0xffcccccc);
                     }
                     t[i]->func_001B19C0(0x140, s88[i], 0);
-                    t[i]->func_001B1860(0.0f, -1.0f, 0xff, 1.0f, 0.0f, 0.0f, -1.0f, 0xff, 1.0f, 0.0f, 0, 0, 0);
+                    t[i]->func_001B1860(0.0f, -1.0f, 0xff, 1.0f, 0.0f, 0.0f, -1.0f, 0xff, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f);
                 }
             }
         }
