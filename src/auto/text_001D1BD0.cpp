@@ -41,8 +41,8 @@ struct Reader1D1BD0 {
 
 static __forceinline int Min_1D1BD0(int a, int b) { return a > b ? b : a; }
 static __forceinline int Max_1D1BD0(int a, int b) { return a < b ? b : a; }
-static __forceinline float MinF_1D1BD0(float a, float b) { float r; _mm_store_ss(&r, _mm_min_ss(*(__m128 *)&a, *(__m128 *)&b)); return r; }
-static __forceinline float MaxF_1D1BD0(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(*(__m128 *)&a, *(__m128 *)&b)); return r; }
+static __forceinline float MinF_1D1BD0(float a, float b) { return _mm_min_ss(_mm_set_ss(a), _mm_set_ss(b)).m128_f32[0]; }
+static __forceinline float MaxF_1D1BD0(float a, float b) { return _mm_max_ss(_mm_set_ss(a), _mm_set_ss(b)).m128_f32[0]; }
 extern "C" __declspec(dllimport) void __stdcall RtlEnterCriticalSection(void *);
 extern "C" __declspec(dllimport) void __stdcall RtlLeaveCriticalSection(void *);
 
