@@ -24,6 +24,10 @@ struct GObj4 {
     int f888;
     char pad88C[0x930 - 0x88C];
     char *p930;
+    char pad934[0x11A8 - 0x934];
+    int f11A8;
+    char pad11AC[4];
+    int f11B0;
 };
 
 extern char D_00278690[], D_00278678[], D_002786A0[], D_002786B0[];
