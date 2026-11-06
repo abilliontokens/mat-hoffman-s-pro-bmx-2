@@ -359,6 +359,13 @@ struct S_001C1520_Sprite {
         color = (a << 24) | (color & 0xffffff);
         colorDirty = 1;
     }
+    void SetUVi(int x0, int x1, int y0, int y1) {
+        rectSet = 1;
+        f3c = x0 * f4c;
+        f40 = x1 * f4c;
+        f44 = y0 * f50;
+        f48 = y1 * f50;
+    }
     void SetUV(float x0, float x1, float y0, float y1) {
         rectSet = 1;
         f3c = x0 * f4c;
