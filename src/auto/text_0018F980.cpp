@@ -29,6 +29,7 @@ struct C_190200_Elem {
     C_190200_Sub f150;
     char pad151[0x6f];
     void func_0018F390(char *n, unsigned int a, void **p);
+    void *func_0018E1D0(void);
 };
 struct C_190200_Ent {
     int f0;
