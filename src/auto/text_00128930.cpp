@@ -336,18 +336,15 @@ int func_00129050(unsigned int a0, unsigned int a1)
 }
 
 extern "C" int func_00122400(float *pa, float *pb, float *pos, float f, float radius, void *m);
-int func_001236A0(int a1, int a2);
+int func_001236A0(unsigned short a0, unsigned short a1);
 #pragma optimize("y", off)
 int func_00129110(unsigned short a0, unsigned short a1)
 {
-    unsigned int aLeaf = a0;
-    unsigned int bLeaf = a1;
+    unsigned int aLeaf = a0 & 0x8000;
+    unsigned int bLeaf = a1 & 0x8000;
     S_00129110_Node *na;
     S_00129110_Node *nb;
     int r;
-
-    aLeaf &= 0x8000;
-    bLeaf &= 0x8000;
 
     if (aLeaf) {
         if (bLeaf) {
@@ -401,25 +398,27 @@ int func_00129110(unsigned short a0, unsigned short a1)
         return 0;
     }
     if (func_001236A0(a0, a1)) {
-        r = 0;
+        int hit;
         if (aLeaf) {
+            hit = 0;
             nb = &((S_00129110_Node *)D_002B9290->nodes)[a1];
             if (func_00129110(a0, nb->child0)) {
-                r = 1;
+                hit = 1;
             }
             if (func_00129110(a0, nb->child1)) {
-                r = 1;
+                hit = 1;
             }
         } else {
+            hit = 0;
             na = &((S_00129110_Node *)D_002B92E8->nodes)[a0];
             if (func_00129110(na->child0, a1)) {
-                r = 1;
+                hit = 1;
             }
             if (func_00129110(na->child1, a1)) {
-                r = 1;
+                hit = 1;
             }
         }
-        return r;
+        return hit;
     }
     return 0;
 }
