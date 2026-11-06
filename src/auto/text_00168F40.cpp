@@ -138,18 +138,18 @@ struct VT_00169C00 {
 int C_00168F40::func_00168F40(int id)
 {
     int idx;
-    int key = id;
+    int buf;
 
-    idx = func_00168300(key);
-    if (func_00168300(key) != -1) {
+    idx = func_00168300(id);
+    if (func_00168300(id) != -1) {
         if (f4 != 0) {
             D_002BEAAC->func_0013AFF0(f0, f4B8[idx].offset, 0);
-            id = 0;
-            D_002BEAAC->func_0013C8A0(f0, &id, 4, 1);
+            buf = 0;
+            D_002BEAAC->func_0013C8A0(f0, &buf, 4, 1);
             f430 = 0;
             f424 = 1;
-            f42C = id;
-            return id;
+            f42C = buf;
+            return buf;
         }
         D_002BEAAC->func_0013AFF0(f0, f18[idx].offset, 0);
         f430 = 0;
@@ -157,8 +157,7 @@ int C_00168F40::func_00168F40(int id)
         f42C = f18[idx].size;
         return f42C;
     }
-    key = 0;
-    return key;
+    return 0;
 }
 
 int C_00169010::func_00169010(int idx, float *out)
@@ -402,6 +401,116 @@ int C_00168F40::func_00169490(int name, int flag)
         func_001692E0(f0);
     }
     f424 = 0;
+    return 1;
+}
+
+int C_00168F40::func_00169710(char * volatile name)
+{
+    C_00168F40 * volatile self = this;
+    C_00168F40 *q;
+    struct {
+        volatile int lim;
+        volatile int res;
+        volatile int len;
+    } t;
+    int idx;
+    int n;
+    int count;
+    int tmp;
+    int i;
+    int k;
+    char clean[0x400];
+
+    if (f8 == 0) {
+        return 0;
+    }
+    if (fC != 0) {
+        D_002BEAAC->func_0013AF80(f0);
+    }
+    idx = self->func_00168300((int)name);
+    if (idx == -1) {
+        return 0;
+    }
+    q = self;
+    if (q->f4 != 0) {
+        S_00168F40_Index *e;
+        int off;
+        unsigned size;
+
+        t.len = strlen(name);
+        t.lim = 0x3ff;
+        t.res = t.lim > t.len ? t.len : t.lim;
+        n = t.res;
+        func_001E8920(self->pad24, name, n);
+        self->pad24[n] = 0;
+        q = self;
+        e = &q->f4B8[idx];
+        off = e->offset;
+        size = e->unk4;
+        if (q->f4C0 != 0) {
+            if (q->f4C4 < size) {
+                q->f4C4 = size;
+                q = self;
+                q->f4C0 = func_001E83E8(q->f4C0, q->f4C4);
+            }
+        } else {
+            q->f4C4 = size;
+            q = self;
+            q->f4C0 = func_001E8AA5(q->f4C4);
+        }
+        q = self;
+        D_002BEAAC->func_0013AFF0(q->f0, off, 0);
+        tmp = 0;
+        q = self;
+        D_002BEAAC->func_0013C8A0(q->f0, &tmp, 4, 1);
+        self->f1C = tmp;
+        q = self;
+        D_002BEAAC->func_0013C8A0(q->f0, q->f4C0, q->f4C4, 1);
+        return 1;
+    }
+    D_002BEAAC->func_0013AFF0(q->f0, q->f18[idx].offset, 0);
+    q = self;
+    if (q->f20 != 0) {
+        q->func_001684B0();
+    }
+    q = self;
+    count = q->f18[idx].size;
+    t.len = strlen(name);
+    t.lim = 0x3ff;
+    t.res = t.lim > t.len ? t.len : t.lim;
+    n = t.res;
+    func_001E8920(self->pad24, name, n);
+    self->pad24[n] = 0;
+    q = self;
+    for (i = 0; i < count; i++) {
+        char line[0x400];
+
+        D_002BEAAC->func_0013C6E0(q->f0, line, 0x400);
+        q = self;
+        q->func_001690D0(line, clean);
+        if (clean[0] != 0 && clean[0] != ';') {
+            q->f1C++;
+            q = self;
+        }
+    }
+    D_002BEAAC->func_0013AFF0(q->f0, q->f18[idx].offset, 0);
+    q = self;
+    q->func_001684F0(q->f1C);
+    q = self;
+    k = 0;
+    for (i = 0; i < count; i++) {
+        char line[0x400];
+
+        D_002BEAAC->func_0013C6E0(q->f0, line, 0x400);
+        q = self;
+        q->func_001690D0(line, clean);
+        if (clean[0] != 0 && clean[0] != ';') {
+            strcpy((char *)q->f20[k], clean);
+            k++;
+            q = self;
+        }
+    }
+    q->f424 = 0;
     return 1;
 }
 
