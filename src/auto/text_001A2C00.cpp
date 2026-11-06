@@ -336,7 +336,7 @@ struct ResponseEmitter {
         f1e8 &= 0xfe;
     }
     void func_001A2CF0(void);
-    void func_001A2DD0(int id);
+    int func_001A2DD0(int id);
     void func_001A2E80(void);
     S_001A2C00_Snd *func_001A2EF0(int id);
     int func_001A2F70(void);
@@ -380,16 +380,18 @@ void ResponseEmitter::func_001A2CF0(void)
     ((C_00157660 *)this)->func_00157660();
 }
 
-void ResponseEmitter::func_001A2DD0(int id)
+int ResponseEmitter::func_001A2DD0(int id)
 {
     int i;
+    int r = 0;
 
     for (i = 0; i < list1d8.count; i++) {
         if (list1d8.at(i)->f0 == id) {
-            list1d8.at(i)->f4->v6(0);
+            r = list1d8.at(i)->f4->v6(0);
             list1d8.removeAt(i);
         }
     }
+    return r;
 }
 
 void ResponseEmitter::func_001A2E80(void)
