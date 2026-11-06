@@ -87,3 +87,45 @@ struct BmxMusicMenu {
 extern int D_0027850C;
 extern int D_00278C64;
 extern char* D_002A8490;
+
+void* BmxMusicMenu::func_000715B0(int a0) {
+ func_00157600(a0);
+ f0=(int)&D_0027850C;
+ int* p=&f44;
+ int i;
+ for(i=0;i<8;i++,p++) { p[-8]=0; p[0]=0; }
+ f0=(int)&D_00278C64;
+ p=&fdc;
+ for(i=0;i<4;i++,p++) { p[-4]=0;p[0]=0; }
+ f80=0;
+ p=&f120;
+ for(i=0;i<5;i++,p++) { p[-5]=0;p[0]=0; }
+ for (i=0;i<2;i++) f134[i]=0;
+ memset(&fec,0,32);
+ f64=1;
+ f6c=1;
+ f94=1;
+ fbc=0;
+ f78=0;
+ f7c=0;
+ f74=0;
+ fc4=-1;
+ f9c=1;
+ fa0=1;
+ fc8=0;
+ f70=0;
+ f68=-1;
+ f84=0;
+ f88=0;
+ f8c=0;
+ f90=0;
+ fa4=0;
+ fb4=0;
+ fb8=0;
+ f98=0;
+ fac=*(int*)(*(char**)(D_002A8490+0x2e0)+0x18);
+ fb0=*(int*)(*(char**)(D_002A8490+0x2e0)+0x1c);
+ fbc=0;
+ f13c=0;
+ return this;
+}
