@@ -2,6 +2,7 @@
 #include "common.h"
 #include <math.h>
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 
 extern int D_00288ED4;
 int func_001B2CB0(int a);
@@ -135,18 +136,13 @@ static __forceinline int edge_1793E0(Vec4 *p, Vec4 *q, Vec4 *r, Vec4 *n)
 
 int func_00178C60(void *a, void *b, int c, int d, int e, int f, int g, int h, int i, int j, int k, int l, int m)
 {
-    int es;
-    void *dst;
-    int height;
-    int pitch;
+    void *dst = a;
+    int height = d;
+    int pitch = e;
     int flag = 0;
 
-    height = d;
-    dst = a;
-    pitch = e;
     if (m != 0) {
-        es = func_001B2CB0(g);
-        dst = func_001E8A44(es * height * pitch);
+        dst = func_001E8A44(func_001B2CB0(g) * height * pitch);
         if (dst == 0)
             return 0;
     }
@@ -220,6 +216,10 @@ int func_00178C60(void *a, void *b, int c, int d, int e, int f, int g, int h, in
     return flag;
 }
 
+void func_00179370(float *out, float *in) {
+    AsmVec3Normalize(out, in);
+}
+
 int func_001793E0(Vec4 *a0, Vec4 *a1, Vec4 *a2, Vec4 *a3, Vec4 *a4, Vec4 *a5)
 {
     if (!edge_1793E0(a2, a3, a0, a1)) return 0;
@@ -268,17 +268,12 @@ void C_00179820::func_00179880(void) {
  fB4=a>b?a:b;
 }
 
+#pragma optimize("y", on)
 void C_00179820::func_00179950(void) {
     float u[4], b[4], d[4];
     int i;
-    u[0] = v24[1].x - v24[0].x;
-    u[1] = v24[1].y - v24[0].y;
-    u[2] = v24[1].z - v24[0].z;
-    u[3] = 1.0f;
-    b[0] = v24[2].x - v24[0].x;
-    b[1] = v24[2].y - v24[0].y;
-    b[2] = v24[2].z - v24[0].z;
-    b[3] = 1.0f;
+    sub_179950(u, &v24[1], &v24[0]);
+    sub_179950(b, &v24[2], &v24[0]);
     cross_179950(&v64.x, u, b);
     func_00179370(&v64, &v64);
     for (i = 0; i < 4; i++) {
@@ -288,18 +283,7 @@ void C_00179820::func_00179950(void) {
         d[2] = n->z - v24[i].z;
         d[3] = 1.0f;
         cross_179950(&v74[i].x, d, &v64.x);
-        __m128 v = _mm_loadu_ps(&v74[i].x);
-        __m128 sq = _mm_mul_ps(v, v);
-        __m128 len = _mm_add_ss(_mm_movehl_ps(sq, sq), sq);
-        len = _mm_add_ss(len, _mm_shuffle_ps(sq, sq, 0xe1));
-        __m128 minv = _mm_load_ss(&D_00288EC0);
-        __m128 cmp = _mm_cmplt_ss(len, minv);
-        len = _mm_add_ss(len, _mm_and_ps(cmp, minv));
-        __m128 r = _mm_rsqrt_ss(len);
-        __m128 t = _mm_mul_ss(_mm_mul_ss(len, r), r);
-        __m128 scale = _mm_mul_ss(_mm_mul_ss(r, _mm_load_ss(&D_00288EA0)), _mm_sub_ss(_mm_load_ss(&D_00288EB0), t));
-        scale = _mm_shuffle_ps(scale, scale, 0);
-        _mm_storeu_ps(&v74[i].x, _mm_mul_ps(scale, v));
+        norm_179950(&v74[i].x, &v74[i].x);
     }
 }
-
+#pragma optimize("", on)
