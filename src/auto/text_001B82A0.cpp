@@ -179,6 +179,8 @@ struct C_001B8550 {
     void func_001B8550(Arg_001B8550 *arg);
 };
 
+static __forceinline int Min_001B8550(int a, int b) { return a < b ? a : b; }
+
 void func_0014FF00(int a, const char *b, int c, char *d, int e);
 extern "C" char *func_001E8920(char *dst, const char *src, unsigned int n);
 extern "C" char *func_001E8AC0(const char *s, int c);
