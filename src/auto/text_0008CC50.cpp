@@ -64,12 +64,167 @@ struct C_001B1980 {
     void func_001B1980(void);
 };
 
-void *func_001E8A44(unsigned int);
-struct Elem_8CC50 { Elem_8CC50 *func_001D5760(); };
+struct Str_8CC50 {
+    int a[4];
+    char c;
+};
+extern Str_8CC50 D_00278664;
+extern Str_8CC50 D_002A60B0;
+extern int D_00278668;
+extern int D_0027866C;
+extern int D_00278670;
+extern char D_00278674;
+extern int D_002A60B4;
+extern int D_002A60B8;
+extern int D_002A60BC;
+extern char D_002A60C0;
+
+extern int D_0028F5DC;
+extern int D_0028F5E0;
+extern int D_0028F5EC;
+extern int *D_002F07B8;
+extern char D_002786B0[];
+extern char D_00279F28[];
+extern char D_00279F18[];
+extern char D_00279F10[];
+extern char D_00279F08[];
+extern char D_00279EFC[];
+extern char D_00279EE8[];
+extern char D_00279F60[];
+extern float D_002798A0;
+extern float D_00279F74;
+extern float D_00279F70;
+extern float D_00279F6C;
+extern float D_00276558;
+extern float D_00276524;
+extern float D_00279F5C;
+extern float D_00279F58;
+
+struct Elem_8CC50 {
+    char pad0[0x28];
+    int x;
+    int y;
+    char pad30[4];
+    float f34;
+    unsigned int argb;
+    float m3c;
+    float m40;
+    float m44;
+    float m48;
+    char pad4c[0xc];
+    unsigned char flags;
+    Elem_8CC50 *func_001D5760();
+    void func_001D5810(char *name, float x, float y, int z);
+    void SetArgbRaw(unsigned int c) {
+        argb = (argb & c) | (c & 0xffffff);
+        flags |= 2;
+    }
+    void SetY(int ny) {
+        if (y != ny) {
+            y = ny;
+            flags |= 1;
+        }
+    }
+    void SetX(int nx) {
+        if (x != nx) {
+            x = nx;
+            flags |= 1;
+        }
+    }
+    void SetF34(float v) {
+        if (f34 != v) {
+            f34 = v;
+            flags |= 1;
+        }
+    }
+    void SetIdentity2() {
+        m3c = 1.0f;
+        m48 = 1.0f;
+        m40 = 0;
+        m44 = 0;
+        flags |= 4;
+    }
+    void SetAlpha(unsigned char a) {
+        ((unsigned char *)&argb)[3] = a;
+        flags |= 2;
+    }
+};
+
+struct Text_8CC50 {
+    char pad0[4];
+    int x;
+    float y;
+    char pad0c[0x30];
+    int f3c;
+    char pad40[4];
+    int color;
+    unsigned int argb;
+    char pad4c[2];
+    unsigned char flags;
+    Text_8CC50 *func_001D5E90();
+    void func_001D5FA0(int font, char *name, int size, int z);
+    void func_0005E840(char *s);
+    void SetPos(int nx, float ny) {
+        if (x != nx || y != ny) {
+            flags |= 6;
+            y = ny;
+            x = nx;
+        }
+    }
+    void SetColor(int c) {
+        if (color != c) {
+            color = c;
+            flags |= 6;
+        }
+    }
+    void SetArgb(unsigned int c) {
+        if (argb != c) {
+            flags |= 8;
+            argb = (argb & c) | (c & 0xffffff);
+        }
+    }
+    void Set3C(int v) {
+        if (f3c != v) {
+            f3c = v;
+            flags |= 4;
+        }
+    }
+};
+
+struct Win_8CC50 {
+    Win_8CC50 *func_001B12C0(int a);
+    void func_001B13A0(char *a, char *b, int c, int d);
+    void func_001B19C0(int a, int b, int c);
+    void func_001B2270(unsigned int c);
+    void func_001B19A0(int a);
+    void func_001B1AB0(int a, int b);
+    void func_001B17D0(int a);
+};
+
+struct Res_8CC50 {
+    void func_0018C780(int n, void *names, int a);
+    int *func_0018C160(char *name);
+};
+
 struct C_0008CC50 {
-    char pad0[0x7c];
+    void *vtbl;
+    char pad4[0x20];
+    Text_8CC50 *unk24;
+    Text_8CC50 *unk28;
+    Text_8CC50 *unk2c;
+    char pad30[8];
+    Elem_8CC50 *unk38;
+    char pad3c[4];
+    Elem_8CC50 *unk40;
+    Elem_8CC50 *unk44;
+    Elem_8CC50 *unk48;
+    Elem_8CC50 *unk4c;
+    Elem_8CC50 *unk50;
+    Win_8CC50 *unk54;
+    char pad58[0x7c - 0x58];
     int u7c;
     void func_0008CC50();
+    void func_001577A0(Win_8CC50 *w, int a);
 };
 
 struct C_0008D550 {
@@ -118,16 +273,21 @@ void S_0008D290::func_0008D290()
 {
     char a[15] = {0};
     char out[15] = {0};
+    register char *p;
     int i, j, k, r;
+
     u48->func_001D5AD0();
     u4c->func_001D5AD0();
     u70 = u64->u584;
     func_001ADCC0(a, 15, D_00277038, u70);
     r = strlen(a) % 3;
-    k = 0; j = -r;
-    for (i = 0; i < (int)strlen(a); i++) {
-        if (i > r - 1 && i != 0 && (j == 0 || j % 3 == 0)) { out[k++] = ',';  out[k++] = a[i]; }
-        else out[k++] = a[i];
+    for (i = 0, p = out, j = -r; i < (int)strlen(a); i++) {
+        if (i > r - 1 && i != 0 && (j == 0 || j % 3 == 0)) {
+            *p++ = ',';
+            *p++ = a[i];
+        } else {
+            *p++ = a[i];
+        }
         j++;
     }
     u28->func_0005E840(out);
@@ -135,10 +295,13 @@ void S_0008D290::func_0008D290()
     u74 = u64->u574 + u64->u578 * 10;
     func_001ADCC0(a, 15, D_00277038, u74);
     r = strlen(a) % 3;
-    k = 0; j = -r;
-    for (i = 0; i < (int)strlen(a); i++) {
-        if (i > r - 1 && i != 0 && (j == 0 || j % 3 == 0)) { out[k++] = ',';  out[k++] = a[i]; }
-        else out[k++] = a[i];
+    for (i = 0, k = 0, j = -r; i < (int)strlen(a); i++) {
+        if (i > r - 1 && i != 0 && (j == 0 || j % 3 == 0)) {
+            out[k++] = ',';
+            out[k++] = a[i];
+        } else {
+            out[k++] = a[i];
+        }
         j++;
     }
     out[k] = 0;
@@ -149,10 +312,13 @@ void S_0008D290::func_0008D290()
         u78 = u68->u4d4;
         func_001ADCC0(a, 15, D_00277038, u78);
         r = strlen(a) % 3;
-        k = 0; j = -r;
-        for (i = 0; i < (int)strlen(a); i++) {
-            if (i > r - 1 && i != 0 && (j == 0 || j % 3 == 0)) { out[k++] = ',';  out[k++] = a[i]; }
-            else out[k++] = a[i];
+        for (i = 0, p = out, j = -r; i < (int)strlen(a); i++) {
+            if (i > r - 1 && i != 0 && (j == 0 || j % 3 == 0)) {
+                *p++ = ',';
+                *p++ = a[i];
+            } else {
+                *p++ = a[i];
+            }
             j++;
         }
         u34->func_0005E840(out);
