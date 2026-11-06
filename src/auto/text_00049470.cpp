@@ -1,5 +1,6 @@
 /* 10 functions from 0x00049470 to 0x0004A360, found by Ghidra. */
 #include "common.h"
+#include "asm_helpers.h"
 
 extern int D_0027718C;
 extern char D_00277160[], D_00277150[], D_00277140[];
@@ -302,7 +303,7 @@ void S_00049470_This::func_00049470()
     S_49470_F64 *f = (S_49470_F64 *)f64;
     S_49470_F540 *sub = (S_49470_F540 *)f540;
     S_49470_Elem *a, *b, *c, *d;
-    int idx;
+    int idx, i;
 
     f47c = 15;
     f480 = 0;
@@ -310,7 +311,8 @@ void S_00049470_This::func_00049470()
     f474 = 3;
     func_0003AD50();
 
-    idx = f->f5a4[f47c].f44 + f480;
+    i = f47c;
+    idx = f->f5a4[i].f44 + f480;
     a = get49470(f->f5ac, f->f5a8, idx);
     b = get49470(f->f5ac, f->f5a8, idx);
     c = get49470(f->f5ac, f->f5a8, idx);
@@ -350,12 +352,12 @@ void S_00049470_This::func_00049470()
         } else {
             m = a->f35c;
         }
-        if (f->f5a4[f47c].f3c <= f->f5a4[f47c].f40) {
-            if (f->f5a4[f47c].f40 <= f->f5a4[f47c].f38) n = f->f5a4[f47c].f38;
-            else n = (m > f->f5a4[f47c].f40) ? m : f->f5a4[f47c].f40;
+        if (f->f5a4[i].f3c <= f->f5a4[i].f40) {
+            if (f->f5a4[i].f40 <= f->f5a4[i].f38) n = f->f5a4[i].f38;
+            else n = (m > f->f5a4[i].f40) ? m : f->f5a4[i].f40;
         } else {
-            if (f->f5a4[f47c].f3c <= f->f5a4[f47c].f38) n = f->f5a4[f47c].f38;
-            else n = (m > f->f5a4[f47c].f3c) ? m : f->f5a4[f47c].f3c;
+            if (f->f5a4[i].f3c <= f->f5a4[i].f38) n = f->f5a4[i].f38;
+            else n = (m > f->f5a4[i].f3c) ? m : f->f5a4[i].f3c;
         }
         t = (float)n * D_0027653C;
         v50.x = 0.0f;
@@ -391,6 +393,10 @@ void S_00049470_This::func_00049470()
         ((S_49470_Obj *)f550)->func_0008A0A0();
     }
     ((S_49470_Obj *)f53c)->func_001A4100(2, 1, 0);
+}
+
+void func_000499B0(float *out, float *in) {
+    AsmVec3Normalize(out, in);
 }
 
 void func_00049A20(S_00049A20_Arg *arg) {
