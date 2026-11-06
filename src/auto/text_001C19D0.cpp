@@ -346,6 +346,78 @@ struct C_001C2290 {
     void func_001C2290(void);
 };
 
+#define LOAD_SUB2_19D0(F, BUF, K0, K1, K2, K3, K4, K5, K6, K7, K8, K9, SETY) \
+    { \
+        char *p = func_001E8AC0(BUF, 0x2e); \
+        if (p != 0) { \
+            memset(p, 0, strlen(p)); \
+        } \
+        s->func_001D5810((int *)BUF, 0, 0, 0); \
+        V[0] = 0; \
+        V[2] = (int)F.f28; \
+        V[1] = 0; \
+        V[3] = (int)F.f2c; \
+        if (cfg->func_00168E70(K0, V, A) != 0) { \
+            s->f58 |= 4; \
+            s->f3c = (float)A[0] * s->f4c; \
+            s->f40 = (float)A[2] * s->f4c; \
+            s->f44 = (float)A[1] * s->f50; \
+            s->f48 = (float)A[3] * s->f50; \
+        } \
+        if (cfg->func_00168E70(K1, V, W) == 0) { \
+            float t = 0; \
+            cfg->func_00168C50(K2, 0, &t); \
+            W[0] = (int)t; \
+            cfg->func_00168C50(K3, 0, &t); \
+            SETY \
+            W[2] = (W[0] - A[0]) + A[2]; \
+            W[3] = (W[1] - A[1]) + A[3]; \
+        } \
+        float fy = (float)W[1]; \
+        float fx = (float)W[0]; \
+        if (fx != s->f04 || fy != s->f08) { \
+            s->f04 = fx; \
+            s->f08 = fy; \
+            s->f58 |= 1; \
+        } \
+        if ((float)(W[2] - W[0]) != s->f28) { \
+            s->f28 = (float)(W[2] - W[0]); \
+            s->f58 |= 1; \
+        } \
+        if ((float)(W[3] - W[1]) != s->f2c) { \
+            s->f2c = (float)(W[3] - W[1]); \
+            s->f58 |= 1; \
+        } \
+        if (cfg->func_00168C50(K4, 0, &f1) != 0) { \
+            cfg->func_00168C50(K5, 0, &f2); \
+            cfg->func_00168C50(K6, 0, &f3); \
+            if (s->f30 != f1) { \
+                s->f30 = f1; \
+                s->f58 |= 1; \
+            } \
+            if (s->f14 != f2 || s->f18 != f3) { \
+                s->f18 = f3; \
+                s->f14 = f2; \
+                s->f58 |= 1; \
+            } \
+        } \
+        cfg->func_00168C20(K7, 0xff, &color); \
+        s->f38 = ((int)(short)color << 24) | (s->f38 & 0xffffff); \
+        s->f58 |= 2; \
+        cfg->func_00168C50(K8, 0, &temp); \
+        if (temp < D_00275544) { \
+            temp = (float)(D_002F07B8[0x6b4 / 4] - 300); \
+        } \
+        if (s->f34 != temp) { \
+            s->f34 = temp; \
+            s->f58 |= 1; \
+        } \
+        colIn[0] = 200.0f; colIn[1] = 200.0f; colIn[2] = 200.0f; colIn[3] = 1.0f; \
+        cfg->func_00168CB0(K9, colIn, colOut.v); \
+        s->f38 = (s->f38 ^ ((((((int)colOut.v[1] & 0xff) | ((int)colOut.v[0] << 8)) << 8) | ((int)colOut.v[2] & 0xff)) ^ s->f38) & 0xffffff); \
+        s->f58 |= 2; \
+    }
+
 /* colour whose constructor sets (0, 0, 0, 1), stores z, y, x first */
 struct Col19D0 {
     float v[4];
@@ -426,22 +498,25 @@ struct Col19D0 {
 
 void *C_001C19D0::func_001C19D0(int a1, int a2)
 {
-    Cfg19D0 *cfg = (Cfg19D0 *)a1;
-    func_001BF600(cfg);
-    f28 = a2;
+    Cfg19D0 *cfg = (Cfg19D0 *)a2;
+    Sub19D0 *s;
     char buf[0x104];
-    char *keys1[10];
-    keys1[0] = D_0028E1D4; keys1[1] = D_0028E1C4; keys1[2] = D_0028E1B0; keys1[3] = D_0028E19C;
-    keys1[4] = D_0028E18C; keys1[5] = D_0028E17C; keys1[6] = D_0028E16C; keys1[7] = D_0028E15C;
-    keys1[8] = D_0028E14C; keys1[9] = D_0027DE44;
+
+    func_001BF600(cfg);
+    f28 = a1;
+    float f1 = 0, f2 = 0, f3 = 0;
+    Col19D0 colOut;
+    int V[4], A[4], W[4];
+    int color;
+    float temp;
+    float colIn[4];
+
     cfg->func_00168BE0(D_0028D998, D_0028D75C, buf, 0x104);
-    LoadSub19D0(&f68, cfg, keys1, buf);
-    char *keys2[10];
-    keys2[0] = D_0028E120; keys2[1] = D_0028E10C; keys2[2] = D_0028E0F8; keys2[3] = D_0028E0E4;
-    keys2[4] = D_0028E0D4; keys2[5] = D_0028E0C0; keys2[6] = D_0028E0AC; keys2[7] = D_0028E09C;
-    keys2[8] = D_0028E08C; keys2[9] = D_0028E07C;
+    s = &f68;
+    LOAD_SUB_19D0(buf, D_0028E1D4, D_0028E1C4, D_0028E1B0, D_0028E19C, D_0028E18C, D_0028E17C, D_0028E16C, D_0028E15C, D_0028E14C, D_0027DE44);
     cfg->func_00168BE0(D_0028E138, D_0028D75C, buf, 0x104);
-    LoadSub19D0(&fCC, cfg, keys2, buf);
+    s = &fCC;
+    LOAD_SUB_19D0(buf, D_0028E120, D_0028E10C, D_0028E0F8, D_0028E0E4, D_0028E0D4, D_0028E0C0, D_0028E0AC, D_0028E09C, D_0028E08C, D_0028E07C);
     return this;
 }
 
