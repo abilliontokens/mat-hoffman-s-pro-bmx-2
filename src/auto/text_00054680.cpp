@@ -1,6 +1,7 @@
 /* 6 functions from 0x00054680 to 0x00055380, found by Ghidra. */
 #include "common.h"
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 
 struct V_000551B0 {
     int x, y, z, w;
@@ -389,21 +390,26 @@ void C_000549F0::func_000549F0(float dt)
     func_00031260(dt);
 }
 
-void func_000551B0(int *a, int *b)
+void func_00055140(float *out, float *in) {
+    AsmVec3Normalize(out, in);
+}
+
+void func_000551B0(Q_000551B0_Owner *a, Q_000551B0_Item *b)
 {
-    if (b[0x68/4] == D_002BA160 || b[0x68/4] == D_002B9118 || b[0x68/4] == D_002B9108 || b[0x68/4] == D_002B9114 || b[0x68/4] == D_002B9110) {
-        int *d = (int *)a[0x54/4];
-        int *s = (int *)a[0x60/4];
-        V_000551B0 *p = (V_000551B0 *)(s + 0x11c/4);
-        *p = D_002A1A64;
-        V_000551B0 *q = (V_000551B0 *)(s + 0x10c/4);
-        *q = D_002A1A64;
-        if (d[1] > 0) {
-            *q = *(V_000551B0 *)(d + 0x54/4);
-            V_000551B0 &v = *(V_000551B0 *)(d + 0x24/4);
-            p->x=v.x; p->y=v.y; p->z=v.z; p->w=v.w;
+    Q_000551B0_Src *d;
+    Q_000551B0_Dst *s;
+    if (b->f68 == D_002BA160 || b->f68 == D_002B9118 ||
+        b->f68 == D_002B9108 || b->f68 == D_002B9114 ||
+        b->f68 == D_002B9110) {
+        d = a->f54;
+        s = a->f60;
+        s->f11c = D_002A1A64;
+        s->f10c = D_002A1A64;
+        if (d->count > 0) {
+            s->f10c = d->f54;
+            s->f11c = d->f24;
         }
-        s[0x12c/4] = 1;
+        s->f12c = 1;
     }
 }
 
