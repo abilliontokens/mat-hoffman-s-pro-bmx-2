@@ -158,9 +158,9 @@ struct V4_00104A00 {
 
 static float fabs_00104A00(float x)
 {
-    float r;
-    *(int *)&r = *(int *)&x & 0x7fffffff;
-    return r;
+    volatile int tmp;
+    tmp = *(volatile int *)&x & 0x7fffffff;
+    return *(float *)&tmp;
 }
 
 
