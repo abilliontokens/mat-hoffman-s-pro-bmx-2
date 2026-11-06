@@ -126,8 +126,8 @@ struct __declspec(align(16)) S_0013E9B0_Mat {
 
 static __forceinline void XformV_0013E9B0(float *volatile outArg, float *volatile inArg, float *volatile mArg)
 {
-    float *m = mArg;
     float *in = inArg;
+    float *m = mArg;
     float *out = outArg;
     __m128 v = _mm_loadu_ps(in);
     __m128 r0 = _mm_load_ps(&m[0]);
