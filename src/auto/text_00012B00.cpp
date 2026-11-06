@@ -50,10 +50,10 @@ extern S_12B00_Obstacles *D_002B9134;
 extern S_13910_Vec D_002A051C;
 struct S_12B00_L {
     AIPedFightState *volatile self;
-    int next;
+    union { int next; float distance; } u4;
     int a; int b;
     float sq;
-    float speed;
+    union { float speed; float f8max; } u14;
     S_13910_Vec offset; S_13910_Vec side; S_13910_Vec t; S_13910_Vec toSelf;
     S_13910_Vec pos; S_13910_Vec target; S_13910_Vec forward; S_13910_Vec toTarget;
     S_13910_Vec cross; S_13910_Vec dir; S_13910_Vec up; S_13910_Vec along2; S_13910_Vec d;
@@ -69,7 +69,7 @@ void AIPedFightState::func_00012B00(int a0)
 {
  struct Fr { AIPedFightState *volatile self; int tmp; int a; int b; } fr;
  fr.self = this;
- fr.self->f1c=D_002A8490->f238+375;
+ this->f1c=D_002A8490->f238+375;
  fr.self->f8->func_00011BE0(&fr.a,&fr.b);
  if(fr.a==-1) return;
  S_13910_Row *row=D_002B9120->f588[fr.self->f8->f3b4];
@@ -130,43 +130,46 @@ void AIPedFightState::func_00012B00(int a0)
     cross12(&side,&D_002A051C,&toTarget);
     distance=row->f8*0.8f;
     S_13910_Vec candidate=add12(pos,mul12(side,distance));
-    if(fr.self->f8->func_00012510((int *)&candidate,fr.self->f8->f3b0)<=row->f8) {
+    if(fr.self->f8->func_00012510((int *)&candidate,fr.self->f8->f3b0)>row->f8) {
      if(dot12(toSelf,forward)>=0.85f) {if(attempts!=1)break;direction=0;}
      else direction=-1;
-    }else {dir=side;break;}
+    }else goto fb;
    }else if(direction==0) {
     cross12(&side,&toTarget,&D_002A051C);
     distance=row->f8*0.8f;
     S_13910_Vec candidate=add12(pos,mul12(side,distance));
-    if(fr.self->f8->func_00012510((int *)&candidate,fr.self->f8->f3b0)<=row->f8) {
+    if(fr.self->f8->func_00012510((int *)&candidate,fr.self->f8->f3b0)>row->f8) {
      if(dot12(toSelf,forward)>=0.85f) {if(attempts!=1)break;direction=1;}
      else direction=-1;
-    }else {dir=side;break;}
+    }else goto fb;
    }else {
-    side=S_13910_Vec(-forward.x,-forward.y,-forward.z);
-    distance=row->f8*0.8f;
+fb:
+    {
     S_13910_Vec scaled,candidate;
-    func_000110E0(&candidate,&pos,func_00011140(&scaled,&side,distance));
-    if(fr.self->f8->func_00012510((int *)&candidate,fr.self->f8->f3b0)<=row->f8) {
-     if(!moving)goto stop;
+    do {
+     side=S_13910_Vec(-forward.x,-forward.y,-forward.z);
+     distance=row->f8*0.8f;
+     func_000110E0(&candidate,&pos,func_00011140(&scaled,&side,distance));
+    } while(fr.self->f8->func_00012510((int *)&candidate,fr.self->f8->f3b0)<=row->f8);
+    if(moving) {
      fr.self->f8->func_00011440(side);
      *(S_13910_Vec *)((char *)fr.self+0xc)=add12(fr.self->f8->pos,mul12(side,distance));
-     dir=side;
-     break;
-    }else {dir=side;break;}
+    }
+    goto obstacles;
+    }
    }
   }
-  if(!moving) {
+  if(moving) goto fb;
 stop:
-   *(S_13910_Vec *)((char *)fr.self+0xc)=fr.self->f8->pos;
-   void *g=*(void **)((char *)D_002A8490+0x2a4);
-   if(g&&!*(int *)((char *)g+0x1c8)) {
-    *(int *)((char *)fr.self->f8+0x3bc)=8;
-    (*(S_12B00_Anim **)((char *)fr.self->f8+0x384))->func_0008AB90(*(int *)((char *)fr.self->f8+0x3a8));
-   }
-   return;
+  *(S_13910_Vec *)((char *)fr.self+0xc)=fr.self->f8->pos;
+  void *g=*(void **)((char *)D_002A8490+0x2a4);
+  if(g&&!*(int *)((char *)g+0x1c8)) {
+   *(int *)((char *)fr.self->f8+0x3bc)=8;
+   (*(S_12B00_Anim **)((char *)fr.self->f8+0x384))->func_0008AB90(*(int *)((char *)fr.self->f8+0x3a8));
   }
+  return;
  }
+obstacles:
  if(D_002B9134) {
   for(int i=0;i<D_002B9134->count;i++) {
    S_13910_Vec delta=sub12(D_002B9134->items[i]->pos,fr.self->f8->pos);
