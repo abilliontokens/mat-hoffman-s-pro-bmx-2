@@ -2,6 +2,8 @@
 #include "common.h"
 #include "ghidra.h"
 #include <xmmintrin.h>
+extern "C" float __cdecl sqrtf(float);
+#pragma intrinsic(sqrtf)
 extern float D_00275460;
 extern float D_002755E8;
 extern float D_002755EC;
