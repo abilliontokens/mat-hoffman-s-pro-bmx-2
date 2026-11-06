@@ -39,7 +39,14 @@ struct Obj {
     void func_00169710(void *a0);
     void func_00168C20(void *a0, int a1, void *a2);
     void func_00168BE0(void *a0, void *a1, char *a2, int a3);
+    char *func_00163A50(void *a0, char *a1);
+    void func_001691E0();
+    Obj *func_001CF740(int a0, int a1, int a2);
+    void func_000951B0(int a0);
+    void func_00095520(int a0);
 };
+typedef void (Obj::*ObjFn5)(void *, int, int, int, int);
+union ObjFn5U { void *p; ObjFn5 f; };
 
 typedef Obj *(Obj::*ObjFn1)(void *);
 typedef void (Obj::*ObjFn0)();
