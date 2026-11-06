@@ -58,14 +58,13 @@ double func_001EA2BA(double x, double *ip)
     double func_001F38F6(int, int, double, double, u32);
     double func_001F3996(double);
     double func_001EAF91(double, double);
-    double r;
-    register unsigned short hi;
     u32 cw;
+    double r;
+    double result;
 
     cw = func_001F3AFB(0, 0);
     func_001F3AFB(D_002AE65C, (u32)D_0000FFFF);
-    hi = ((unsigned short *)&x)[3];
-    if ((hi & 0x7ff0) == 0x7ff0) {
+    if ((((unsigned short *)&x)[3] & 0x7ff0) == 0x7ff0) {
         *ip = D_002AED60;
         switch (func_001F39D3(x)) {
         case 1:
@@ -84,12 +83,12 @@ double func_001EA2BA(double x, double *ip)
     }
     r = func_001F3996(x);
     *ip = r;
-    x = x - r;
-    if (x == D_002766A8) {
-        ((unsigned short *)&x)[3] |= hi & 0x8000;
+    result = x - r;
+    if (result == D_002766A8) {
+        ((unsigned short *)&result)[3] |= ((unsigned short *)&x)[3] & 0x8000;
     }
     func_001F3AFB(cw, (u32)D_0000FFFF);
-    return x;
+    return result;
 }
 
 #pragma optimize("", on)
