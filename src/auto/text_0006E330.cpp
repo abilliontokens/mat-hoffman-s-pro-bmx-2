@@ -152,7 +152,7 @@ struct C_001B17D0 {
     int func_001B1800();
     void func_001B1980();
     void func_001B17D0(char *s);
-    int func_001B17F0();
+    char *func_001B17F0();
 };
 struct S_0006E620 {
     virtual void v0();
