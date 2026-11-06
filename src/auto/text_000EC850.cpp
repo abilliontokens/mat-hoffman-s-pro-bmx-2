@@ -246,10 +246,17 @@ struct E300_Spr {
     float f3C, f40, f44, f48;
     char pad4C[0xC];
     unsigned char f58;
-    void init(char *name, float a, float b, int c);
+    E300_Spr *func_001D5760();
+    void func_001D5810(char *name, float a, float b, int c);
+    void SetColor() {
+        f38 = (f38 & 0xffbfa35a) | 0xbfa35a;
+        f58 |= 2;
+    }
 };
+void *func_001E8A44(unsigned int n);
 struct E300_Txt {
-    void init(char *a, char *b, int c, int d);
+    E300_Txt *func_001B12C0(int a);
+    void func_001B13A0(char *a, char *b, int c, int d);
     void func_001B1A30(float a, float b, int c);
     void func_001B2270(int c);
     void func_001B19A0(int c);
