@@ -24,6 +24,9 @@ struct Sprite_8AED0 {
     unsigned char b58;
     Sprite_8AED0 *func_001D5760();
     void func_001D5810(int a0, float a1, float a2, int a3);
+    void SetF28(int v) { if (f28 != v) { f28 = v; b58 |= 1; } }
+    void SetF34(int v) { if (f34 != v) { f34 = v; b58 |= 1; } }
+    void SetF2c(int v) { if (f2c != v) { f2c = v; b58 |= 1; } }
 };
 extern int D_00275630;
 extern int D_00279DEC;
@@ -311,6 +314,118 @@ struct C_0008B710 {
     void func_0008B710();
     void func_00157960();
 };
+
+C_0008AED0 *C_0008AED0::func_0008AED0()
+{
+    void *mem;
+    int *res;
+    int font;
+
+    D_002A60B0 = D_00278664;
+    D_002A60B4 = D_00278668;
+    D_002A60B8 = D_0027866C;
+    D_002A60BC = D_00278670;
+    D_002A60C0 = D_00278674;
+
+    mem = func_001E8A44(0x64);
+    s3c = mem ? ((Sprite_8AED0 *)mem)->func_001D5760() : 0;
+    mem = func_001E8A44(0x64);
+    s40 = mem ? ((Sprite_8AED0 *)mem)->func_001D5760() : 0;
+    s3c->func_001D5810((int)D_00279DD0, 225.0f, 296.0f, 0);
+    if (s3c->f28 != 0x42c00000) {
+        s3c->f28 = 0x42c00000;
+        s3c->b58 |= 1;
+    }
+    if (s3c->f34 != 0x40b00000) {
+        s3c->f34 = 0x40b00000;
+        s3c->b58 |= 1;
+    }
+    s40->func_001D5810((int)D_00279DD0, 321.0f, 296.0f, 0);
+    if (s40->f28 != 0x42c00000) {
+        s40->f28 = 0x42c00000;
+        s40->b58 |= 1;
+    }
+    s40->f3c = 1.0f;
+    s40->b58 |= 4;
+    s40->f40 = 0.0f;
+    s40->f44 = 0.0f;
+    s40->f48 = 1.0f;
+    if (s40->f34 != 0x40b00000) {
+        s40->f34 = 0x40b00000;
+        s40->b58 |= 1;
+    }
+
+    mem = func_001E8A44(0x64);
+    s44 = mem ? ((Sprite_8AED0 *)mem)->func_001D5760() : 0;
+    s44->func_001D5810((int)D_00279DC0, 0.0f, 0.0f, 0);
+    s44->b58 |= 2;
+    s44->f38 &= 0xff000000;
+    s44->b58 |= 2;
+    ((char *)&s44->f38)[3] = (char)0x80;
+    if (s44->f2c != 0x43bc8000) {
+        s44->f2c = 0x43bc8000;
+        s44->b58 |= 1;
+    }
+    if (s44->f28 != 0x44200000) {
+        s44->f28 = 0x44200000;
+        s44->b58 |= 1;
+    }
+    if (s44->f34 != 0x40b9999a) {
+        s44->f34 = 0x40b9999a;
+        s44->b58 |= 1;
+    }
+
+    res = ((C_0008B850_Res *)((int *)D_002A8490)[0x2ec / 4])->func_0018C160((void *)D_0027958C);
+    font = res ? *res : 0;
+
+    mem = func_001E8A44(0x60);
+    t24 = mem ? ((C_0008B850_Text *)mem)->func_001D5E90() : 0;
+    t24->func_001D5FA0(font, (char *)D_00279DA8, 0x19, 0);
+    t24->SetPos(0x43a00000, 0x43960000);
+    t24->SetArgb(0xffcccccc);
+    t24->SetColor(D_0028F5E0);
+    t24->SetF3c(0x40a00000);
+
+    mem = func_001E8A44(0x60);
+    t28 = mem ? ((C_0008B850_Text *)mem)->func_001D5E90() : 0;
+    t28->func_001D5FA0(font, (char *)D_00279DA8, 5, 0);
+    t28->SetPos(0x43a28000, 0x43960000);
+    t28->SetArgb(0xffcccccc);
+    t28->SetColor(D_0028F5DC);
+    t28->SetF3c(0x40a00000);
+
+    mem = func_001E8A44(0x60);
+    t2c = mem ? ((C_0008B850_Text *)mem)->func_001D5E90() : 0;
+    t2c->func_001D5FA0(font, (char *)D_00279DA8, 5, 0);
+    t2c->SetPos(0x43a28000, 0x43960000);
+    t2c->SetArgb(0xffcccccc);
+    t2c->SetColor(D_0028F5DC);
+    t2c->SetF3c(0x40a00000);
+
+    mem = func_001E8A44(0x60);
+    t30 = mem ? ((C_0008B850_Text *)mem)->func_001D5E90() : 0;
+    t30->func_001D5FA0(font, (char *)D_00279DA8, 0x19, 0);
+    t30->SetF3c(0x40a00000);
+
+    mem = func_001E8A44(0x60);
+    t38 = mem ? ((C_0008B850_Text *)mem)->func_001D5E90() : 0;
+    t38->func_001D5FA0(font, (char *)D_00279DA8, 0x4b, (char *)&D_00275630);
+    t38->SetPos(0x43a00000, 0x43960000);
+    t38->SetArgb(0xffcccccc);
+    t38->SetColor(D_0028F5E0);
+    t38->SetF3c(0x40a00000);
+
+    mem = func_001E8A44(0x60);
+    t34 = mem ? ((C_0008B850_Text *)mem)->func_001D5E90() : 0;
+    t34->func_001D5FA0(font, (char *)D_00279DA8, 0xf, 0);
+    t34->SetPos(0x43a00000, 0x43870000);
+    t34->SetArgb(0xffbfa35a);
+    t34->SetColor(D_0028F5E0);
+    ((C_0005E840 *)t34)->func_0005E840(*(int *)(*(int *)(*(int *)((char *)D_002A8490 + 0x2e8) + 4) + 0x10d0));
+    t34->SetF3c(0x40a00000);
+
+    return this;
+}
 
 void C_0008B670::func_0008B670(int param_1) {
     ((C_0005E840 *)f24)->func_0005E840(param_1);
