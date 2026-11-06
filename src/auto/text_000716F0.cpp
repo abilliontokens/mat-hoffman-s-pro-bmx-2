@@ -1,7 +1,7 @@
 /* 10 functions from 0x000716F0 to 0x000725B0, found by Ghidra. */
 #include "common.h"
 struct Clamp_716 { char pad[16]; float f10, f14; };
-struct Lookup_716 { int *func_0018C160(int); };
+struct Lookup_716 { int *func_0018C160(int); void func_0018C780(int, int *, int); };
 struct Mid_716 { Clamp_716 *func_0018C070(); };
 extern float D_00275AEC;
 extern int D_00278690, D_00278678;
