@@ -12,7 +12,7 @@ extern int D_0027D4C4;
 extern int D_002A2FD8, D_002A2FDC, D_002A2FE0, D_002A2FE4;
 struct C_000B6180 {
     virtual void v0();
-    int u[0x28];
+    int u[0x27];
     float f[0x4c];
     int t[7];
     C_000B6180 *func_000B6180(int a0);
@@ -118,7 +118,6 @@ C_000B6180 *C_000B6180::func_000B6180(int a0)
     VEC(0xa0) VEC(0xb0) VEC(0xc0) VEC(0xd0) VEC(0xe0) VEC(0xf0) VEC(0x100) VEC(0x110)
     VEC(0x120) VEC(0x130) VEC(0x140) VEC(0x150) VEC(0x160) VEC(0x170) VEC(0x180) VEC(0x190)
     VEC(0x1a0) VEC(0x1b0) VEC(0x1c0)
-    *(void **)this = &D_0027D4C4;
     u[0x24/4] = 1; u[0x28/4] = 0; u[0x2c/4] = 0; u[0x30/4] = 0; u[0x34/4] = 0;
     u[0x40/4] = 0; u[0x44/4] = 0; u[0x50/4] = 0; u[0x54/4] = 0;
     u[0x38/4] = 0; u[0x3c/4] = 0; u[0x48/4] = 0; u[0x4c/4] = 0;
