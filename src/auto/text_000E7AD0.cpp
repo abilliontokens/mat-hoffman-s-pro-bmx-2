@@ -56,6 +56,10 @@ struct E7_124 {
     int func_000BBDF0();
 };
 
+struct E7_Row {
+    char name[0x1A8];
+};
+
 struct C_000E7AD0 {
     char pad0[0x124];
     E7_124 *f124;
