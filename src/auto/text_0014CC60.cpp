@@ -97,7 +97,7 @@ struct C_0014CC60 {
     int f580;
     int f584;
     char pad588[0xC];
-    int f594;
+    volatile int f594;
     unsigned char *f598;
     char pad59C[0x1C38];
     int f21D4;
@@ -129,17 +129,15 @@ int C_0014CC60::func_0014CC60(const char *name, int *out)
         f598[i] = (unsigned char)i;
     }
     for (i = 0; i < 0x100; i++) {
+        S_Slot *s;
         D_002BEAAC->func_0013C8A0(h, &flag, 1, 1);
         if (!flag) {
             break;
         }
         D_002BEAAC->func_0013C8A0(h, &b, 1, 1);
         f598[i] = (unsigned char)f594;
-        S_Slot *s = (S_Slot *)func_001E8A44(0x20C);
-        if (s) {
-            s = (S_Slot *)s, s->func_0014C720();
-        }
-        slots[f594] = s;
+        s = (S_Slot *)func_001E8A44(0x20C);
+        slots[f594] = s ? s->func_0014C720() : 0;
         D_002BEAAC->func_0013C8A0(h, slots[f594], b, 1);
         D_002BEAAC->func_0013C8A0(h, &b, 1, 1);
         D_002BEAAC->func_0013C8A0(h, slots[f594]->name2, b, 1);
@@ -185,7 +183,7 @@ int C_0014CC60::func_0014CC60(const char *name, int *out)
             D_002BEAAC->func_0013C8A0(h, (char *)slots[f594]->f1F0 + j * 0x2c + 0x24, 4, 1);
             D_002BEAAC->func_0013C8A0(h, (char *)slots[f594]->f1F0 + j * 0x2c + 0x28, 4, 1);
         }
-        f594++;
+        *(int *)((char *)this + 0x594) += 1;
     }
     D_002BEAAC->func_0013C8A0(h, &flag, 1, 1);
     if (flag) {
@@ -197,7 +195,8 @@ int C_0014CC60::func_0014CC60(const char *name, int *out)
             if (flag) {
                 D_002BEAAC->func_0013C8A0(h, &b, 1, 1);
                 D_002BEAAC->func_0013C8A0(h, (char *)this + 0x4D8, b, 1);
-                D_002BEAAC->func_0013C8A0(h, (char *)this + 0x558, 4, 1);
+                D_002BEAAC->func_0013C8A0(h, &f558, 4, 1);
+                f3C = f558;
             }
         }
     }
@@ -248,7 +247,7 @@ int C_0014CC60::func_0014D360(int handle, int flag)
         rec->pos = pos;
         rec->b = b;
         rec->a = a;
-        rec->flag0 = 1;
+        rec->flag0 |= 1;
         position.x = position.y = position.z = 0;
         position.w = 1;
         bounds.x = bounds.y = bounds.z = 0;
