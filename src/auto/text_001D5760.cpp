@@ -200,8 +200,7 @@ struct Tbl_001D5810 {
     void func_001B2640(void);
 };
 struct Size_001D5810 {
-    int pad0;
-    int pad4;
+    char pad0[0x14];
     unsigned w;
     unsigned h;
 };
@@ -353,15 +352,16 @@ void C_001D5760::func_001D57E0()
 
 C_001D5810 *C_001D5810::func_001D5810(float a, int b, int c, int d)
 {
-    float h;
     float w;
+    float h;
     int idx;
     int type;
-    char name[0x100];
+    char name[0x104];
     Cfg_001D5810 cfg;
     Size_001D5810 sz;
     C_001D5FA0Obj *p;
     Part_001D5810 *part;
+    Info_001D5810 *info;
     char *src;
     char *dst;
     char ch;
@@ -385,8 +385,9 @@ C_001D5810 *C_001D5810::func_001D5810(float a, int b, int c, int d)
         goto L1c8;
     }
     if (type >= 0) {
-        h = (float)((Tbl_001D5810 *)D_002AA6C0)->f14[type].info->f8;
-        w = (float)((Tbl_001D5810 *)D_002AA6C0)->f14[type].info->fC;
+        info = ((Tbl_001D5810 *)D_002AA6C0)->f14[type].info;
+        h = (float)info->f8;
+        w = (float)info->fC;
     } else {
         func_001FCE40(((Tbl_001D5810 *)D_002A71C0)->f14[-type].info, 0, &sz);
         h = (float)sz.w;
@@ -437,7 +438,7 @@ Ldone:
     f54 = d;
     f58 = f58 | 7;
     if (d != 0) {
-        f24 = f24 * D_002755E8;
+        f24 *= D_002755E8;
     }
     return this;
 }
