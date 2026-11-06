@@ -235,6 +235,8 @@ void C_00076EF0::func_00076EF0()
 {
     char buf[64];
     char num[8];
+    float pct;
+    float total;
     int i;
     int n;
     int t;
@@ -268,7 +270,7 @@ void C_00076EF0::func_00076EF0()
     func_001ADCC0(buf, 0x104, D_00278DE4, mins, secs);
     unk114->func_0005E840(buf);
     unk114->func_001D6600();
-    n = 3 - (unk120->f90 - 1 != 0);
+    n = 2 + (unk120->f90 == 1);
     if (unk1AC != 0) {
         for (i = 0; i < n; i++) {
             unk94[i]->func_001B1980();
@@ -293,12 +295,14 @@ void C_00076EF0::func_00076EF0()
             func_001ADCC0(num, 0x104, D_00277038, i + 1);
             func_001AC330(buf, G_76EF0_2E8->p4->f850, num);
             unk64[i]->func_0005E840(buf);
-            unk12C[i] = D_002B9120->f4E4[1]->f6CC;
-            unk14C[i] = D_002B9120->f4E4[1]->f6D0;
+            unk12C[i] = D_002B9120->f4E4[1 - i]->f6CC;
+            unk14C[i] = D_002B9120->f4E4[1 - i]->f6D0;
             if (D_002B9120->f4E4[i]->f6D4 == 0) {
                 unk16C[i] = 0;
             } else {
-                unk16C[i] = (int)((float)D_002B9120->f4E4[1]->f6D8 * D_00275994 / (float)D_002B9120->f4E4[i]->f6D4);
+                pct = (float)D_002B9120->f4E4[1 - i]->f6D8 * D_00275994;
+                total = (float)D_002B9120->f4E4[i]->f6D4;
+                unk16C[i] = (int)(pct / total);
             }
             SETUP_LABEL_76EF0(unk64[i]);
             unk64[i]->func_001D6600();
@@ -377,7 +381,9 @@ C_000777A0 *C_000777A0::func_000777A0(int a)
     fA0 = 0;
     f9C = 0;
     fC8 = 0;
-    f68 = f64 = 0;
+    for (int i = 0; i < 2; i++) {
+        ((void **)&f64)[i] = 0;
+    }
     for (int i = 0; i < 2; i++) {
         fB0[i] = 0;
         fA8[i] = 0;
