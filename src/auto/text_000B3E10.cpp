@@ -282,8 +282,13 @@ struct C_000B4300 {
     void func_000B1E50(void);
     void func_000B1E60(void);
     void func_000B1E70(void);
-    void func_001577A0(S_B3E10_Obj *o, int a);
+    void B4300_Reg(B4300_Cb cb, const char *a, const char *b, const char *c)
+    {
+        D_002EFE08->func_0018CF40(f38, cb, a, b, c, 1);
+    }
 };
+
+extern "C" void __stdcall func_001577A0(S_B3E10_Obj *o, int a);
 
 C_000B4300 *C_000B4300::func_000B4300(S_B4300_Stream * volatile a, S_B4300_Stream * volatile b)
 {
