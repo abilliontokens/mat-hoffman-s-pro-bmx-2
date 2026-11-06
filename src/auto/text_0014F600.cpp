@@ -226,17 +226,14 @@ void func_0014F670(float x, float *num, float *den)
 
 void func_0014F6E0(float a, float *s, float *c)
 {
- extern float D_002756D0, D_002DF870, D_002DF874;
- float func_00016D60(float);
- float v=(func_00016D60(a)+D_002756D0)*D_002DF870;
- int * volatile p=(int *)&a;
- volatile float t=v;
- *p=_mm_cvttss_si32(*(__m128 *)&t);
- float f=((float)*(int *)&a);
- f=(v-f)*D_002DF874;
- int i=*(int *)&a;
- *s=f*D_002CF6B4[i].a+D_002CF6B4[i].b;
- *c=D_002CF6B4[i].a-f*D_002CF6B4[i].b;
+    extern float D_002756D0, D_002DF870, D_002DF874;
+    float func_00016D60(float);
+    float v = (func_00016D60(a) + D_002756D0) * D_002DF870;
+    AsmFloatToInt(v, (int *)&a);
+    int i = *(int *)&a;
+    float f = (v - (float)i) * D_002DF874;
+    *s = f * D_002CF6B4[i].a + D_002CF6B4[i].b;
+    *c = D_002CF6B4[i].a - f * D_002CF6B4[i].b;
 }
 
 void func_0014F760(float x, float *num, float *den, float *q)
