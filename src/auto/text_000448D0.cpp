@@ -25,9 +25,7 @@ struct Dev_000448D0 {
 struct Dev6_000448D0 {
     virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4();
     virtual void v5(); virtual void v6();
-};
-struct Q4_000448D0 {
-    char pad0[0xb4];
+    char padB4[0xb4 - 4];
     Dev6_000448D0 *fB4;
 };
 struct Q1A8_000448D0 {
