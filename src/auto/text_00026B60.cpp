@@ -82,16 +82,14 @@ void func_00026340(V4_000273F0 *out, V4_000273F0 *in);
 static __forceinline void Cross_000273F0(V4_000273F0 * volatile out, V4_000273F0 * volatile a, V4_000273F0 * volatile b)
 {
     V4_000273F0 *pa = a, *pb = b;
-    __m128 va = _mm_loadu_ps(&pa->x);
-    __m128 vb = _mm_loadu_ps(&pb->x);
-    __m128 sa = va, sb = vb;
-    sa = _mm_shuffle_ps(sa, sa, 0xc9);
-    sb = _mm_shuffle_ps(sb, sb, 0xc9);
-    vb = _mm_mul_ps(vb, sa);
-    va = _mm_mul_ps(va, sb);
-    va = _mm_sub_ps(va, vb);
-    va = _mm_shuffle_ps(va, va, 0xc9);
-    _mm_storeu_ps(&out->x, va);
+    _mm_storeu_ps(&out->x,
+        _mm_shuffle_ps(
+            _mm_sub_ps(
+                _mm_mul_ps(_mm_loadu_ps(&pa->x), _mm_shuffle_ps(_mm_loadu_ps(&pb->x), _mm_loadu_ps(&pb->x), 0xc9)),
+                _mm_mul_ps(_mm_loadu_ps(&pb->x), _mm_shuffle_ps(_mm_loadu_ps(&pa->x), _mm_loadu_ps(&pa->x), 0xc9))),
+            _mm_sub_ps(
+                _mm_mul_ps(_mm_loadu_ps(&pa->x), _mm_shuffle_ps(_mm_loadu_ps(&pb->x), _mm_loadu_ps(&pb->x), 0xc9)),
+                _mm_mul_ps(_mm_loadu_ps(&pb->x), _mm_shuffle_ps(_mm_loadu_ps(&pa->x), _mm_loadu_ps(&pa->x), 0xc9))), 0xc9));
 }
 struct C_00027850 {
     char pad0[0x5CC];
@@ -99,6 +97,57 @@ struct C_00027850 {
     void func_00027850(int a0);
 };
 
+
+int C_000273F0::func_000273F0(V4_000273F0 *a1, V4_000273F0 *a2, V4_000273F0 *a3)
+{
+    V4_000273F0 a;
+    V4_000273F0 b;
+    V4_000273F0 c;
+    V4_000273F0 d;
+    V4_000273F0 e;
+
+    f230->func_00198330(D_00276690)->func_00197E70(&e);
+    if (a1) {
+        c = *a1;
+        f2C = c;
+    } else {
+        c = f2C;
+    }
+    d = c;
+    if (a2) {
+        func_00026340(&a, a2);
+        f3C = a;
+    } else {
+        func_00026340(&a, &f3C);
+    }
+    if (a3) {
+        b = *a3;
+    } else if (f22C) {
+        f22C->func_000BA430(&d, &b, 0, 0);
+    } else {
+        d = D_002A10F0;
+        b = D_002A1110;
+    }
+    V4_000273F0 f;
+    Cross_000273F0(&f, &b, &a);
+    Cross_000273F0(&a, &f, &b);
+    f230->func_00199110(0, &a, &b, 0, 1, 0);
+    if (d.y > c.y) {
+        c = d;
+    }
+    f230->func_00199790(0, &c);
+    f230->func_00197AA0();
+    f67C = 1;
+    f220->func_000269B0(b.x, 3.402823466e+38f, 3.402823466e+38f);
+    f224->func_000269B0(b.y, 3.402823466e+38f, 3.402823466e+38f);
+    f228->func_000269B0(b.z, 3.402823466e+38f, 3.402823466e+38f);
+    f1E0->v45();
+    f13C = D_002A10F0;
+    f14C = D_002A10F0;
+    f1E8->func_000B6A70(0);
+    f1E8->v13(0);
+    return f1E8->f64 != 0;
+}
 
 void C_00027850::func_00027850(int a0) {
     unk5CC = a0;
