@@ -279,7 +279,7 @@ static __declspec(noinline) char *func_001AC940(int *sign, char *buf, double arg
             dp--;
         }
     }
-    p1 = (unsigned int)ndigits + buf;
+    p1 = &buf[ndigits];
     if (eflag == 0)
         p1 += dp;
     *decpt = dp;
@@ -373,13 +373,13 @@ finish:
     return out;
 }
 
-char *func_001ACCF0(int flag, int *sign, unsigned value, char *end, int *len)
+static __declspec(noinline) char *func_001ACCF0(int flag, int *sign, unsigned value, char *end, int *len)
 {
     char *p = end;
     if (flag) {
         *sign = 0;
     } else {
-        int neg = value < 0;
+        int neg = (int)value < 0;
         *sign = neg;
         if (neg)
             value = -value;
