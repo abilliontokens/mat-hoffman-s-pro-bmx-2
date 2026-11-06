@@ -260,6 +260,7 @@ struct C_00067DA0 {
     T_67DA0 *t104;
     int f108;
     R_67DA0 *r10C;
+    char pad110[4];
     int f114;
     int scores[11];
     char pad144[8];
