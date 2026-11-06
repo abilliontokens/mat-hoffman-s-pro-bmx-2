@@ -28,6 +28,19 @@ struct C_00157600 {
     void func_00157600(int a0);
 };
 
+struct S_002A8490_119810 {
+    char pad0[0x124];
+    int f124;
+};
+extern S_002A8490_119810 *D_002A8490;
+
+struct BmxVehicle {
+    int func_00119810(int a);
+    void func_00027D40();
+    int func_001091D0();
+    void func_0010DC00();
+};
+
 struct C_00198330 {
     char pad0[0x144];
     f32 f144;
@@ -91,11 +104,11 @@ void BmxWallPlantConstraint::func_0011A4B0()
     v.w = 1.0f;
     C_00198330 *obj = f28->func_00198330(&D_0027D3F0);
     obj->func_00199A70(f28, &v);
-    float h = obj->f144;
+    f32 h = obj->f144;
     Vec4 t;
-    t.x = 0.0f;
     t.y = v.y;
     t.z = v.z + h;
+    t.x = 0.0f;
     t.w = 1.0f;
     f2C = t;
 }
