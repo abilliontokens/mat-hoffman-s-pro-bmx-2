@@ -1,34 +1,7 @@
 /* 42 functions from 0x0005B8D0 to 0x0005C720, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
-struct S_0005C3A0_Slot {
-    int f000;
-    int f004;
-    int f008;
-    int f00c[8][3][15];
-    int f5ac[8];
-    int f5cc;
-    int f5d0;
-    int f5d4;
-    int f5d8;
-    int f5dc;
-    short f5e0;
-    short f5e2;
-    int f5e4;
-    int f5e8;
-    int f5ec[8];
-    int f60c[8];
-    int f62c[3];
-    int f638[8];
-    int f658[8];
-    int f678[800];
-    int f12f8[8];
-    int f1318[800];
-};
-
 struct C_0005C3A0 {
-    char pad0[0xd80];
-    S_0005C3A0_Slot slots[11];
     void func_0005C3A0(int idx);
 };
 extern int D_002782AC;
