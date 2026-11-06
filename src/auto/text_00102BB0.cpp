@@ -147,7 +147,6 @@ struct C_00103450 {
     int unk3F0;
     int unk3F4;
     C_00103450 *func_00103450(S_Cfg *cfg, int a);
-    C_00103450 *func_00103450(int a, S_Cfg *cfg);
 };
 
 struct C_001BF6A0 {
