@@ -16,7 +16,7 @@ r0=_mm_add_ps(r0,t);r2=_mm_add_ps(r2,h);t=_mm_movehl_ps(t,r0);
 r0=_mm_movelh_ps(r0,r2);t=_mm_shuffle_ps(t,r2,0x14);
 _mm_storeu_ps(out,_mm_add_ps(r0,t));out[3]=1.0f;}
 
-struct V_1800 { float x,y,z,w; V_1800(){z=y=x=0;w=1;} V_1800(const float &a,const float &b,const float &c){x=a;y=b;z=c;w=1;} };
+struct V_1800 { float x,y,z,w; V_1800(const float &a,const float &b,const float &c){x=a;y=b;z=c;w=1;} };
 struct RayCollisionObject { char pad[0xB0]; float matrix[16]; char padF0[12]; float *pFC; float *p100; void func_001800A0(float *out,float *extent); };
 extern "C" void func_0001C680(V_1800 *,V_1800,float *);
 static __forceinline float Abs1800(float f){int i=*(int *)&f & 0x7fffffff;return *(float *)&i;}
