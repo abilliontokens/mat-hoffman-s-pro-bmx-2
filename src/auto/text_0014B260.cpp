@@ -42,8 +42,8 @@ struct V4_0014BA80 {
     V4_0014BA80(f32 x_, f32 y_, f32 z_, f32 w_) { x = x_; y = y_; z = z_; w = w_; }
 };
 void func_0001C680(V4_0014BA80 *out, V4_0014BA80 v, float *m);
-V4_0014BA80 func_0011EEE0_V4(const V4_0014BA80 &a, const V4_0014BA80 &b);
-V4_0014BA80 func_0014AA70_V4(const V4_0014BA80 &a, const V4_0014BA80 &b);
+V4_0014BA80 func_0011EEE0(const V4_0014BA80 &a, const V4_0014BA80 &b);
+V4_0014BA80 func_0014AA70(const V4_0014BA80 &a, const V4_0014BA80 &b);
 static __forceinline void XformV4_0014BA80(V4_0014BA80 *out, const M44_0014BA80 *mat, const float *v)
 {
     __m128 t = _mm_loadu_ps(v);
