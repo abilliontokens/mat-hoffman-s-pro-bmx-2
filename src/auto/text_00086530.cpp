@@ -125,8 +125,10 @@ struct BestScoreOverlay_Text {
     void SetPosRev(int nx, int ny) {
         if (x != nx || y != ny) {
             y = ny;
-            Or6();
+            unsigned char f = flags;
+            f |= 6;
             x = nx;
+            flags = f;
         }
     }
     void SetPosY(int nx, float ny) {
