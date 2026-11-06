@@ -122,6 +122,13 @@ static __forceinline int IsLocal_151F0()
     return p != 0 && *(int *)(p + 0x1c8) == 0;
 }
 
+static __forceinline void SetAnimState_14EF0(char *o, int state, int anim)
+{
+    if (IsLocal_151F0())
+        *(int *)(o + 0x3bc) = state;
+    (*(PedAnim **)(o + 0x384))->func_0008AB90(anim);
+}
+
 void func_001E891B(void *ptr);
 int func_00011260(int arg1, int arg2);
 
