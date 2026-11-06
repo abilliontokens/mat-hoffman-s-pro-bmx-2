@@ -129,7 +129,13 @@ struct S_001EEFE3 {
     S_001EEFE3 *func_001EF419(void);
     S_001EEFE3 *Tail(void) {
         S_001EEFE3 *p = this;
-        while (p->next != 0) p = p->next;
+        S_001EEFE3 *cur;
+        goto test;
+        do {
+            p = cur;
+        test:
+            cur = p->next;
+        } while (cur != 0);
         return p;
     }
 };
