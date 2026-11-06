@@ -87,7 +87,7 @@ extern float D_0028403C;
 void func_0012A380(void *dst, int param);
 
 struct S_0012AB70Vec;
-inline void Vec_Normalize(int (&dst)[4], int src) { if (src) func_0012A380(dst, src); }
+inline void Vec_Normalize(void *dst, int src) { if (src) func_0012A380(dst, src); }
 
 struct S_0012AB70Vec {
     int v0;
@@ -463,12 +463,8 @@ void C_0012AB70R::func_0012AB70(S_0012AB70Vec *param1, int param2, int param3, i
     if (param1 != 0) {
         f170 = *param1;
     }
-    if (param2 != 0) {
-        func_0012A380((void *)f180, param2);
-    }
-    if (param3 != 0) {
-        func_0012A380((void *)f190, param3);
-    }
+    Vec_Normalize(f180, param2);
+    Vec_Normalize(f190, param3);
     if (param4 != 0) {
         f1d4 = *param4;
     }
