@@ -52,6 +52,7 @@ extern int *D_002F07B8;
 char *func_001E8AC0(char *, int);
 extern "C" void *memset(void *, int, unsigned int);
 extern "C" unsigned int strlen(const char *);
+#pragma intrinsic(strlen, memset)
 int func_001E8858(float);
 struct Cfg19D0 {
     void func_00168BE0(char *, char *, char *, int);
@@ -304,11 +305,11 @@ void C_001C2190::func_001C2190(int a0) {
 
 void C_001C21B0::func_001C21B0() {
     unk2C = 1;
-    if (unk30 == 0 || unk34 == 0) {
-        if (unk30 != 0) {
+    if (!(unk30 && unk34)) {
+        if (unk30) {
             ((VCall8 *)this)->v7();
         }
-        if (unk34 != 0) {
+        if (unk34) {
             ((VCall8 *)this)->v5();
         }
     }
@@ -321,7 +322,8 @@ void C_001C21F0::func_001C21F0(int a0) {
 
 void C_001C2210::func_001C2210() {
     unk2C = 1;
-    if (unk30 == 0 || unk34 == 0) {
+    if (unk30 != 0 && unk34 != 0) {
+    } else {
         if (unk30 != 0) {
             ((VCall8 *)this)->v7();
         }
@@ -333,13 +335,16 @@ void C_001C2210::func_001C2210() {
 
 void C_001C2250::func_001C2250() {
     unk2C = 0;
-    if (unk38 == 0 || unk3C == 0) {
-        if (unk38 != 0) {
-            ((VCall8 *)this)->v7();
-        }
-        if (unk3C != 0) {
-            ((VCall8 *)this)->v5();
-        }
+    if (unk38 == 0)
+        goto inner;
+    if (unk3C != 0)
+        return;
+inner:
+    if (unk38 != 0) {
+        ((VCall8 *)this)->v7();
+    }
+    if (unk3C != 0) {
+        ((VCall8 *)this)->v5();
     }
 }
 
