@@ -141,8 +141,7 @@ static __forceinline void XformV_0013E9B0(float *volatile outArg, float *volatil
     r2 = _mm_mul_ps(r2, v);
     __m128 lo = _mm_unpacklo_ps(r0, r1);
     __m128 hi = _mm_unpackhi_ps(r0, r1);
-    __m128 junk;
-    junk = _mm_movehl_ps(junk, r2);
+    __m128 junk = _mm_movehl_ps(r2, r2);
     lo = _mm_add_ps(lo, hi);
     r2 = _mm_add_ps(r2, junk);
     hi = _mm_movehl_ps(hi, lo);
@@ -211,6 +210,48 @@ struct C_0013ED30 {
     int f21F8;
     void func_0013ED30(void);
 };
+
+int C_0013E6F0::func_0013E6F0(char *name, int b, int c)
+{
+    int dim[2];
+    int lock[2];
+    int desc[7];
+    char buf[0x104];
+    fAC = c;
+    char *p = func_001E8AC0(name, 0x2e);
+    if (p) {
+        memset(p, 0, strlen(p));
+    }
+    int i;
+    for (i = 0; i < 6; i++) {
+        func_001ADCC0(buf, 0x104, D_002772CC, name, i);
+        f114[i] = (Surf *)func_001D6E20(buf, b, c);
+        if (!f114[i]) return 0;
+        if (i == 0) {
+            dim[1] = f114[i]->f8;
+            dim[0] = f114[i]->fA4;
+        }
+    }
+    fA4 = (void *)dim[0];
+    int t = func_001FCF20(dim[1], dim[1], 1, 1, 1, dim[0], 5);
+    f110 = t;
+    long hr = t ? 0 : 0x8007000e;
+    if (hr >= 0) {
+        for (i = 0; i < 6; i++) {
+            f12C[i] = func_001FCED0(f110, i, 0);
+            func_00201210(f12C[i], (int)lock, 0, 0);
+            func_001FCEA0((int)f114[i]->fB8, 0, (int)&dim[1], 0, 0);
+            func_001FCE40((int)f114[i]->fB8, 0, (int)desc);
+            void *src = (void *)dim[1];
+            func_001B2CB0((int)fA4);
+            memcpy((void *)lock[1], src, desc[4]);
+            func_00201100(f114[i]->fB8);
+            f114[i]->fB8 = 0;
+        }
+        return 1;
+    }
+    return 0;
+}
 
 C_0013E8C0 *C_0013E8C0::func_0013E8C0(int param_1)
 {
