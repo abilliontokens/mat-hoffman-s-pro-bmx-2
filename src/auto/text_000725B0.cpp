@@ -18,6 +18,8 @@ extern "C" void __cdecl func_001E891B(void *);
 
 /* a resource released with func_001D6410 and then freed */
 struct Res_72C90 {
+    int pad0,x,y; char padC[0x38]; int align; unsigned int color; char pad4c[2]; unsigned char flags;
+    Res_72C90* func_001D5E90(); void func_001D6190(void*,int,int);void func_001D5FA0(void*,int,int,int);void func_0005E840(int);
     void func_001D6410();
 };
 
