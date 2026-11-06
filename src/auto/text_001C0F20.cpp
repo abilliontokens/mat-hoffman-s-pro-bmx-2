@@ -550,9 +550,9 @@ int C_001C13A0::func_001C13A0()
 
 int C_001C1490::func_001C1490(void)
 {
-    if (*(S_001C1490_Obj * volatile *)&f68 != 0) {
+    if (f68 != 0) {
         f1ec = 1;
-        func_00197EA0(&f200);
+        f68->func_00197EA0(&f200);
         f68->func_00157810();
         f68->v2();
         f68 = 0;
