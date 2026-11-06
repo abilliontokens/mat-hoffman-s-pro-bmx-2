@@ -2,7 +2,7 @@
 #include "common.h"
 #include "ghidra.h"
 extern float D_00275544;
-extern float D_00277924;
+extern const float D_00277924;
 extern float D_002A8F40;
 extern float D_002756B8, D_002756D0, D_002756E8;
 extern float D_00277928, D_0027792C, D_002779FC, D_00277A00;
@@ -347,24 +347,24 @@ void R_00051CF0::func_00051CF0()
 
 void C_00051CF0::func_00051F10()
 {
-    C_00168280 reader;
+    char path[0x104];
     char buf[0x104];
-    char secName[0x104];
-    Img_51F *p;
+    C_00168280 reader;
+    void *p;
     int i;
     float a;
     float b;
 
     func_00012140();
     reader.func_00168280();
-    func_001ADCC0(buf, 0x104, D_00277A5C, D_002A5870);
-    if (reader.func_00169490(buf, 0) == 0) {
+    func_001ADCC0(path, 0x104, D_00277A5C, D_002A5870);
+    if (reader.func_00169490(path, 0) == 0) {
         reader.func_001691E0();
         return;
     }
     for (i = 0; i < 4; i++) {
-        func_001ADCC0(secName, 0x104, D_002769DC, i + 1);
-        reader.func_00169710(secName);
+        func_001ADCC0(buf, 0x104, D_002769DC, i + 1);
+        reader.func_00169710(buf);
         reader.func_00168C50(D_00277A54, 0.0f, &m1[0][i]);
         reader.func_00168C50(D_00277A4C, 0.0f, &m1[1][i]);
         reader.func_00168C50(D_00277A48, 10.0f, &m1[2][i]);
@@ -389,22 +389,22 @@ void C_00051CF0::func_00051F10()
         m2[3][i] = m1[3][i];
     }
     func_001ADCC0(D_002A60B0, 0x104, D_00275678, D_002A5348, D_002A5FA8);
-    p = (Img_51F *)func_001E8A44(0x64);
-    unk2A8 = p ? p->func_001D5760() : 0;
+    p = func_001E8A44(0x64);
+    unk2A8 = p ? ((Img_51F *)p)->func_001D5760() : 0;
     unk2A8->func_001D5810(D_00277A38, D_00277A00 - D_00277928, D_002779FC - D_0027792C, 0);
     if (unk2A8->f28 != D_00277928) { unk2A8->f28 = D_00277928; unk2A8->flags |= 1; }
     if (unk2A8->f2C != D_0027792C) { unk2A8->f2C = D_0027792C; unk2A8->flags |= 1; }
     if (unk2A8->f34 != D_00275544) { unk2A8->f34 = 0.0f; unk2A8->flags |= 1; }
     unk2A8->flags |= 2;
     unk2A8->cb.hi = 0x20;
-    p = (Img_51F *)func_001E8A44(0x64);
-    unk2AC = p ? p->func_001D5760() : 0;
+    p = func_001E8A44(0x64);
+    unk2AC = p ? ((Img_51F *)p)->func_001D5760() : 0;
     unk2AC->func_001D5810(D_00277A30, 442.0f, 285.0f, 0);
     if (unk2AC->f28 != 197.0f) { unk2AC->f28 = 197.0f; unk2AC->flags |= 1; }
     if (unk2AC->f2C != 16.0f) { unk2AC->f2C = 16.0f; unk2AC->flags |= 1; }
     if (unk2AC->f34 != D_00275544) { unk2AC->f34 = 0.0f; unk2AC->flags |= 1; }
-    p = (Img_51F *)func_001E8A44(0x64);
-    unk2B0 = p ? p->func_001D5760() : 0;
+    p = func_001E8A44(0x64);
+    unk2B0 = p ? ((Img_51F *)p)->func_001D5760() : 0;
     unk2B0->func_001D5810(D_00277A30, 427.0f, 448.0f, 0);
     if (unk2B0->f28 != 147.0f) { unk2B0->f28 = 147.0f; unk2B0->flags |= 1; }
     if (unk2B0->f2C != 16.0f) { unk2B0->f2C = 16.0f; unk2B0->flags |= 1; }
@@ -420,8 +420,8 @@ void C_00051CF0::func_00051F10()
     unk2B0->f44 = 0.0f;
     unk2B0->flags |= 4;
     if (unk2B0->f34 != D_00275544) { unk2B0->f34 = 0.0f; unk2B0->flags |= 1; }
-    p = (Img_51F *)func_001E8A44(0x64);
-    unk2B4 = p ? p->func_001D5760() : 0;
+    p = func_001E8A44(0x64);
+    unk2B4 = p ? ((Img_51F *)p)->func_001D5760() : 0;
     unk2B4->func_001D5810(D_00277A24, 427.0f, 285.0f, 0);
     if (unk2B4->f34 != D_00275544) { unk2B4->f34 = 0.0f; unk2B4->flags |= 1; }
     reader.func_001691E0();
