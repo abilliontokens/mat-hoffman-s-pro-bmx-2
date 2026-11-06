@@ -530,6 +530,69 @@ int func_0004CCE0(void) {
     return 1;
 }
 
+int H2_Event::func_0004CCF0(int state) {
+    unk288->func_00086130(0);
+    unk288->func_00086140(0);
+    switch (state) {
+    case 0:
+        unk288->func_00085BD0(1);
+        unk64->unk4e0->items[unk120]->unk95c = 1;
+        break;
+    case 2:
+        unk288->func_00085D00(1);
+        unk288->func_00086130(1);
+        unk64->unk4e0->items[unk120]->unk95c = 1;
+        break;
+    case 1:
+        unk29c = 10.0f;
+        unk294 = 1;
+        unk288->func_00086130(0);
+        unk288->func_00086140(1);
+        break;
+    case 3:
+        unk29c = 10.0f;
+        unk294 = 1;
+        unk288->func_00086140(1);
+        unk288->func_00086130(1);
+        break;
+    case 5:
+        unk288->func_00085E50(1);
+        unk64->unk4e0->items[unk120]->unk95c = 1;
+        break;
+    case 6:
+        unk288->func_00085F40(1);
+        unk64->unk4e0->items[unk120]->unk95c = 1;
+        break;
+    case 4:
+        unk288->func_00086030(1);
+        unk64->unk4e0->items[unk120]->unk95c = 1;
+        break;
+    case 7:
+        func_00032A20();
+        unk19c->func_0006D280();
+        unk19c->unkb8 = unk134 + 1;
+        break;
+    }
+    unk290 = state;
+    return 1;
+}
+
+int C_0004CED0::func_0004CEC0()
+{
+    G_0004CED0 *g = (G_0004CED0 *)D_002A8490;
+    g->f230 |= 1;
+    ((G_0004CED0 *)D_002A8490)->f124 = 0;
+    C_0013E4F0_0004CED0 *p = (C_0013E4F0_0004CED0 *)func_001E8A44(0x2d0);
+    f24 = p ? p->func_0013E4F0(1) : 0;
+    f24->func_0012B410(0x3f9f49f5, 0x280, 0x1c0);
+    C_0002EF20_0004CED0 *q = (C_0002EF20_0004CED0 *)func_001E8A44(0x78);
+    f44 = q ? q->func_0002EF20(1) : 0;
+    f44->func_000306F0(f24, ((G_0004CED0 *)D_002A8490)->f2E0->f8, *f64->f4AC, f64->f4DC->f24, 0, 0);
+    v27();
+    v28();
+    return 1;
+}
+
 void func_00031400(void);
 int C_0004CED0::func_0004CED0()
 {
