@@ -2,6 +2,38 @@
 #include "common.h"
 #include "ghidra.h"
 #include <xmmintrin.h>
+struct S_0019A8C0_V4 {
+    float x;
+    float y;
+    float z;
+    float w;
+    S_0019A8C0_V4()
+    {
+        z = 0.0f;
+        y = 0.0f;
+        x = 0.0f;
+        w = 1.0f;
+    }
+    S_0019A8C0_V4(float a, float b, float c, float d)
+    {
+        x = a;
+        y = b;
+        z = c;
+        w = d;
+    }
+};
+
+void func_0001C680(S_0019A8C0_V4 *out, S_0019A8C0_V4 v, float *m);
+void func_00030AC0(float *out, float *v, float *m);
+
+static __forceinline float Abs_0019A8C0(float f)
+{
+    unsigned u = *(unsigned *)&f;
+
+    u &= 0x7fffffff;
+    return *(float *)&u;
+}
+
 struct C_0019B6D0 {
     undefined4 func_0019B6D0(byte param_1);
 };
