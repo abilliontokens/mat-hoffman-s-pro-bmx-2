@@ -65,6 +65,19 @@ extern S_1C4FB0_Cull *D_002AB66C;
         } \
     }
 
+/* each child gets its own quadrant corner: x0 is c or right, y0 is d or bottom */
+#define QN_VISIT2(i, EX, EZ, X0, Y0) \
+    if (f4[i]) { \
+        ctr.y = f4[i]->fC; \
+        ext2.y = f4[i]->f10; \
+        ctr.x = EX; \
+        ctr.z = EZ; \
+        if (D_002AB66C->func_001C5DE0(f + 0xf0, &ctr, &ext2, &res)) { \
+            if (res == 0) f4[i]->vf1(a, b, X0, Y0, e); \
+            else f4[i]->func_001C4FB0(a, b, X0, Y0, e, f); \
+        } \
+    }
+
 /* last child of a path: the calls are in tail position */
 #define QN_VISIT_LAST(i, EX, EZ) \
     if (f4[i]) { \
@@ -152,6 +165,16 @@ C_001C5AC0 *C_001C5AC0::func_001C5AC0(unsigned int flags)
         func_001E891B(this);
     }
     return this;
+}
+
+VisibilityQuadTreeNode *func_001C5AF0() {
+    VisibilityQuadTreeNode *p = (VisibilityQuadTreeNode *)func_001E8A44(0x14);
+    if (p) {
+        p->func_0017CE10();
+        p->vtbl = &D_0028E6B0;
+        return p;
+    }
+    return 0;
 }
 
 int __stdcall func_001C5C50(S_001C5C50_View *view, float *m, float *v, float *out, unsigned int *flags)
