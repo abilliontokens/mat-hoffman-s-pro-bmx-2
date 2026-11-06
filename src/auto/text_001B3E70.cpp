@@ -1,5 +1,6 @@
 /* 11 functions from 0x001B3E70 to 0x001B4E20, found by Ghidra. */
 #include "common.h"
+#include <xmmintrin.h>
 
 extern int D_002AA8E0;
 extern int D_002AA8C0;
@@ -178,6 +179,87 @@ struct C_001B4B70 {
     void func_001B4B70(void);
 };
 
+
+float sqrtf(float);
+void TireTrack::func_001B3E70(V4_3E70 *a0, V4_3E70 *a1, float a2, int a3, float a4)
+{
+    float clamped = a4;
+    unsigned char bl;
+    float acc;
+    float dist;
+    float off;
+    V4_3E70 n1;
+    V4_3E70 n2;
+    V4_3E70 diff;
+    int color;
+    int i;
+    if (clamped > 1.0f) clamped = 1.0f;
+    if (clamped < 0.0f) clamped = 0.0f;
+    bl = (unsigned char)(int)(clamped * D_0027A060);
+    if (f34) {
+        v40 = *a0;
+        v50 = *a1;
+        f34 = 0;
+        v60 = *a0;
+        v70 = *a1;
+    }
+    acc = fa4 + (float)func_001E8833() * D_002754B0 * D_002755E0;
+    {
+        float dx = v40.x - v60.x;
+        float dy = v40.y - v60.y;
+        float dz = v40.z - v60.z;
+        dist = sqrtf(dx * dx + dy * dy + dz * dz) / a2;
+    }
+    off = 0.0f;
+    if (f30 > 0) {
+        off = dist + fa0;
+    }
+    n1.x = 0.0f; n1.y = 0.0f; n1.z = 0.0f; n1.w = 1.0f;
+    n2.x = 0.0f; n2.y = 0.0f; n2.z = 0.0f; n2.w = 1.0f;
+    diff.x = v40.x - v60.x;
+    diff.y = v40.y - v60.y;
+    diff.z = v40.z - v60.z;
+    diff.w = 1.0f;
+    func_001B3BA0(&n1, &diff);
+    {
+        V4_3E70 cross;
+        cross.x = n2.y * v70.z - n2.z * v70.y;
+        cross.y = n2.z * v70.x - n2.x * v70.z;
+        cross.z = n2.x * v70.y - n2.y * v70.x;
+        cross.w = 1.0f;
+        v80.x = v60.x + cross.x * acc * a2;
+        v80.y = v60.y + cross.y * acc * a2;
+        v80.z = v60.z + cross.z * acc * a2;
+        v80.w = 1.0f;
+        v90.x = v60.x + cross.x * acc * a2;
+        v90.y = v60.y + cross.y * acc * a2;
+        v90.z = v60.z + cross.z * acc * a2;
+        v90.w = 1.0f;
+    }
+    if (f30 == 0) {
+        for (i = 2; i < 0x10; i += 2) {
+            f24->v29(f2c, i, &v70);
+            f24->v28(f2c, i, &v80);
+            f24->v31(f2c, i, 0);
+            f24->v29(f2c, i + 1, &v70);
+            f24->v28(f2c, i + 1, &v90);
+            f24->v31(f2c, i + 1, 0);
+        }
+        f24->v29(f2c, 0, &v70);
+        f24->v28(f2c, 0, &v80);
+        color = (fa8 << 24) | (bl << 16) | (fa9 << 8) | faa;
+        f24->v31(f2c, 0, color);
+        f24->v32(f2c, 0, 0, 0);
+        f24->v29(f2c, 1, &v70);
+        f24->v28(f2c, 1, &v90);
+        f24->v31(f2c, 1, color);
+        f24->v32(f2c, 1, 0, 0x3f800000);
+        f30 += 2;
+        v40 = v60;
+    }
+    (void)a3;
+    (void)off;
+}
 
 void TireTrack::func_001B4970()
 {
