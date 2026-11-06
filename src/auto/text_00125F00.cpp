@@ -40,6 +40,7 @@ static __forceinline float Sqrt_00126A80(float x) { float r; _mm_store_ss(&r, _m
 static __forceinline float Max_00126A80(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
 static __forceinline float Abs_00126A80(float f) { int i = *(int *)&f & 0x7fffffff; return *(float *)&i; }
 
+static inline float Sqrt_00125F00(float x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(*(__m128 *)&x)); return r; }
 struct S_00125F00_Vec { float f[4]; };
 struct S_00125F00_Node {
     char pad00[8];
@@ -78,6 +79,107 @@ struct S_00125F00_A3 {
     char pad90[4];
     float f94;
 };
+
+int func_00125540(int, S_00125F00_Vec, S_00125F00_Vec, float, S_00125F00_Vec *, S_00125F00_Vec *, float *);
+int func_00125F00(S_00125F00_A0 *a0, int idx, int *a2, S_00125F00_A3 *a3, int flag)
+{
+    if ((char)(idx >> 8) < 0) {
+        int base = a2[1] + (idx & 0x7fff) * 0x14;
+        S_00125F00_Vec *b4 = a0->b4;
+        S_00125F00_Vec *b8 = a0->b8;
+        float *bc = a0->bc;
+        S_00125F00_Vec *p78 = a3->p78;
+        S_00125F00_Vec *p74 = a3->p74;
+        int *p88 = a3->p88;
+        float *p8c = a3->p8c;
+        int count = a0->count;
+        int i;
+        if (count <= 0) return 1;
+        for (i = count; i != 0; i--) {
+            if (func_00125540(base, *b8, *b4, *bc, p78, p74, p8c) != 0) {
+                *p88 = 1;
+                a3->n80++;
+                if (*p8c < a3->f94) {
+                    float f;
+                    float dot;
+                    a3->f94 = *p8c;
+                    a3->v20 = *p74;
+                    a3->v30 = *p78;
+                    f = 1.0f - *p8c;
+                    dot = f * b8->f[2] * p74->f[2] + f * b8->f[0] * p74->f[0] + f * b8->f[1] * p74->f[1];
+                    a3->v40.f[0] = dot * p74->f[0];
+                    a3->v40.f[1] = dot * p74->f[1];
+                    a3->v40.f[2] = dot * p74->f[2];
+                    a3->v40.f[3] = 1.0f;
+                }
+            }
+            b4++;
+            bc++;
+            p78++;
+            b8++;
+            p74++;
+            p88++;
+            p8c++;
+        }
+        return 1;
+    } else {
+        S_00125F00_Node *node = (S_00125F00_Node *)a2[0] + (idx & 0xffff);
+        float cx = node->c[0];
+        float cy = node->c[1];
+        float cz = node->c[2];
+        float rx = node->r[0];
+        float ry = node->r[1];
+        float rz = node->r[2];
+        if (flag == 0) {
+            float dx = cx - a0->c8;
+            float dy = cy - a0->cc;
+            float dz = cz - a0->d0;
+            if (Sqrt_00126A80(rx * rx + ry * ry + rz * rz) + a0->e8 < Sqrt_00126A80(dx * dx + dy * dy + dz * dz)) {
+                return 1;
+            }
+            func_00125F00(a0, node->left, a2, a3, 0);
+            func_00125F00(a0, node->right, a2, a3, 0);
+            return 1;
+        } else {
+            S_00125F00_Vec *b4;
+            S_00125F00_Vec *b8;
+            float *bc;
+            int i;
+            if (rx + a0->e8 < Abs_00126A80(cx - a0->c8)) return 1;
+            if (ry + a0->e8 < Abs_00126A80(cy - a0->cc)) return 1;
+            if (rz + a0->e8 < Abs_00126A80(cz - a0->d0)) return 1;
+            b4 = a0->b4;
+            b8 = a0->b8;
+            bc = a0->bc;
+            if (a0->count <= 0) return 1;
+            for (i = 0; i < a0->count; i++) {
+                float t;
+                if (Abs_00126A80(cx - b4->f[0]) <= rx && Abs_00126A80(cy - b4->f[1]) <= ry && Abs_00126A80(cz - b4->f[2]) <= rz) goto hit;
+                t = ((cx + rx) - b4->f[0]) / b8->f[0];
+                if (0.0f <= t && t < *bc && Abs_00126A80(t * b8->f[1] + b4->f[1] - cy) <= ry && Abs_00126A80(t * b8->f[2] + b4->f[2] - cz) <= rz) goto hit;
+                t = ((cx - rx) - b4->f[0]) / b8->f[0];
+                if (0.0f <= t && t < *bc && Abs_00126A80(t * b8->f[1] + b4->f[1] - cy) <= ry && Abs_00126A80(t * b8->f[2] + b4->f[2] - cz) <= rz) goto hit;
+                t = ((cz + rz) - b4->f[2]) / b8->f[2];
+                if (0.0f <= t && t < *bc && Abs_00126A80(t * b8->f[1] + b4->f[1] - cy) <= ry && Abs_00126A80(t * b8->f[0] + b4->f[0] - cx) <= rx) goto hit;
+                t = ((cz - rz) - b4->f[2]) / b8->f[2];
+                if (0.0f <= t && t < *bc && Abs_00126A80(t * b8->f[1] + b4->f[1] - cy) <= ry && Abs_00126A80(t * b8->f[0] + b4->f[0] - cx) <= rx) goto hit;
+                t = ((cy + ry) - b4->f[1]) / b8->f[1];
+                if (0.0f <= t && t < *bc && Abs_00126A80(t * b8->f[2] + b4->f[2] - cz) <= rz && Abs_00126A80(t * b8->f[0] + b4->f[0] - cx) <= rx) goto hit;
+                t = ((cy - ry) - b4->f[1]) / b8->f[1];
+                if (0.0f <= t && t < *bc && Abs_00126A80(t * b8->f[2] + b4->f[2] - cz) <= rz && Abs_00126A80(t * b8->f[0] + b4->f[0] - cx) <= rx) goto hit;
+                b4++;
+                b8++;
+                bc++;
+                continue;
+            hit:
+                func_00125F00(a0, node->left, a2, a3, flag);
+                func_00125F00(a0, node->right, a2, a3, flag);
+                return 1;
+            }
+            return 1;
+        }
+    }
+}
 
 void func_00126740(int a0, int a1, int a2, int a3, int a4, int a5) {
     extern int D_002B92F4;
