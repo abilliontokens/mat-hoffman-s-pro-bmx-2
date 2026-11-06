@@ -75,7 +75,7 @@ static inline V4_00128120 Add_00128120(const S_00127DD0_V4 &a, const S_00127DD0_
     return V4_00128120(a.x + b.x, a.y + b.y, a.z + b.z, 1.0f);
 }
 
-static inline V4_00128120 Scale4_00128120(const V4_00128120 &s, float k)
+static inline V4_00128120 Scale4_00128120(const V4_00128120 &s, const float &k)
 {
     return V4_00128120(k * s.x, k * s.y, k * s.z, 1.0f);
 }
