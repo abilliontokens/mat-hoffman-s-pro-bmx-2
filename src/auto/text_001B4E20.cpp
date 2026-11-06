@@ -2,6 +2,7 @@
 #include "common.h"
 #include "ghidra.h"
 #include <string.h>
+#include "asm_helpers.h"
 static inline const int &min_ref(const int &a, const int &b) { return b < a ? b : a; }
 static inline int min_val_001B4E20(int a, int b) { return b < a ? b : a; }
 struct C_001B5D00 {
@@ -329,21 +330,17 @@ struct C_001B5240_Obj {
 };
 
 
-int C_001B4E20::func_001B4E20(void *volatile param) {
+int C_001B4E20::func_001B4E20(void *param)
+{
     char buf[0x104];
-    volatile int len;
-    volatile int count;
-    C_001B4E20 * volatile self = this;
-    int n;
 
     func_001B4B80(param);
     ((S_001B4E20_Stream *)param)->func_00168BE0((char *)&D_0027D880, (char *)&D_002764F0, buf, 0x104);
-    len = func_001E9040(buf, (char *)&D_0027CEF0);
-    count = len > 0x32 ? 0x32 : len;
-    n = count;
-    func_001E8920((char *)self + 4, buf, n);
-    ((char *)self)[n + 4] = 0;
-    ((S_001B4E20_Stream *)param)->func_00168C20((char *)&D_0028CA88, 1, (char *)self + 0x114);
+    int len = func_001E9040(buf, (char *)&D_0027CEF0);
+    int count = AsmMinI(len, 0x32);
+    func_001E8920((char *)this + 4, buf, count);
+    ((char *)this)[count + 4] = 0;
+    ((S_001B4E20_Stream *)param)->func_00168C20((char *)&D_0028CA88, 1, (char *)this + 0x114);
     return 1;
 }
 
@@ -416,6 +413,44 @@ int C_001B5000::func_001B5000(S_001B5000_Stream *s)
     return 1;
 }
 
+#pragma optimize("", on)
+Model1B0_001B58C0 *Model1B0_001B58C0::func_001B5110(void) {
+ Model1B0_001B58C0 *last;
+ Model1B0_001B58C0 * volatile self=this;
+ volatile int limits[2]; int len;
+ func_001B4ED0();
+ ((volatile Model1B0_001B58C0*)self)->vtbl=(void*)&D_0028CAC8;
+ _ReadWriteBarrier();
+ ((volatile Model1B0_001B58C0*)self)->f58=0;
+ ((volatile Model1B0_001B58C0*)self)->f5C=0;
+ ((volatile Model1B0_001B58C0*)self)->f60=0;
+ ((volatile Model1B0_001B58C0*)self)->f64=0;
+ ((volatile Model1B0_001B58C0*)self)->f6C=0;
+ ((volatile Model1B0_001B58C0*)self)->f70=0;
+ ((volatile Model1B0_001B58C0*)self)->f78=0;
+ ((volatile Model1B0_001B58C0*)self)->f74=0;
+ ((volatile Model1B0_001B58C0*)self)->f80=0;
+ ((volatile Model1B0_001B58C0*)self)->f84=0;
+ ((volatile Model1B0_001B58C0*)self)->f88=-1;
+ ((volatile Model1B0_001B58C0*)self)->f8C=0;
+ ((volatile Model1B0_001B58C0*)self)->f90=0;
+ ((volatile Model1B0_001B58C0*)self)->f94=0;
+ ((volatile Model1B0_001B58C0*)self)->f98=1;
+ ((volatile Model1B0_001B58C0*)self)->f9C=0;
+ ((volatile Model1B0_001B58C0*)self)->f68=0;
+ ((volatile Model1B0_001B58C0*)self)->f7C=0;
+ limits[0]=0x103;
+ int t=limits[0];
+ int bound=4; if(t<bound) bound=t; limits[1]=bound;
+ len=limits[1];
+ func_001E8920((void*)((volatile Model1B0_001B58C0*)self)->fA0,&D_002764F0,len);
+ ((volatile Model1B0_001B58C0*)self)->fA0[len]=0;
+ ((volatile Model1B0_001B58C0*)self)->f1A4=0; ((volatile Model1B0_001B58C0*)self)->f1A8=0;
+ last=self;
+ _ReadWriteBarrier();
+ ((volatile Model1B0_001B58C0*)last)->f1AC=0;
+ return self;
+}
 void C_001B5000::func_001B5240(S_001B5000_Stream *s)
 {
     char bufA[0x104];
