@@ -733,26 +733,28 @@ int C_0001CE80::func_0001CE80(Obj_1CE80 *obj, float *p, float *q, int unused, fl
     V4C_1CE80 m2;
     V4C_1CE80 m1;
     V4C_1CE80 m0;
+    float **pp = &p;
     float bestd;
-    int closest;
+    int bi;
     int i;
     if (count > 0) {
-        closest = 0;
+        bi = 0;
         bestd = 3.4028235e38f;
         for (i = 0; i < count; i++) {
             float d;
             nodes[i]->func_001A15C0(&tmp);
-            d = func_0001CAF0(&tmp, *(float * volatile *)&p);
+            d = func_0001CAF0(&tmp, *pp);
             if (d < bestd) {
                 bestd = d;
                 best = tmp;
-                closest = i;
+                bi = i;
             }
         }
-        nodes[closest]->func_001A1540(&m2, &m1);
-        nodes[closest]->func_001A1620(&m0);
+        nodes[bi]->func_001A1540(&m2, &m1);
+        nodes[bi]->func_001A1620(&m0);
+        float *pv = *pp;
         V4C_1CE80 r;
-        r.x = p[0] - best.x; r.y = p[1] - best.y; r.z = p[2] - best.z; r.w = 1.0f;
+        r.x = pv[0] - best.x; r.y = pv[1] - best.y; r.z = pv[2] - best.z; r.w = 1.0f;
         if (obj != 0 && bestd < maxd) {
             obj->SetA(r);
             V4C_1CE80 s;
