@@ -335,6 +335,8 @@ struct VideoCard {
     int f34;
     int f38;
     VideoCardFlags f3C;
+    void Clear_001C3D90(void) { f30 = 0; f2C = 0; f34 = 0; f38 = 0; f3C.bit0 = 0; }
+    void Alloc_001C3D90(void) { f30 = (int)func_001E8A44(4); f34 = 1; f38 = 1; f3C.bit0 = 1; }
     VideoCard *func_001C3D90(void);
     void *func_001C3E20(unsigned int flags);
 };
@@ -955,6 +957,85 @@ int FadeOut_001C41E0::func_001C41E0(int a0)
     f3C = 1;
     v6();
     return 1;
+}
+
+extern char *D_002EFDB8;
+extern float D_00275544, D_002755E4;
+void func_00157960(void);
+extern "C" void *memcpy(void *dst, const void *src, unsigned int n);
+int FadeObj::func_001C4240(void)
+{
+    int a;
+    int v = f34;
+    char *dev;
+    FadeSprite *s;
+
+    if (v != *(int *)(D_002A8490 + 0x10)) {
+        if (v != -1) return func_00157920();
+    }
+    if (v == -1 && *(int *)(D_002A8490 + 0x274) < *(int *)(D_002A8490 + 0x270) - 1) return 1;
+    if (f38 != 0) {
+        a = FtoI_001C4240(f30 * D_0027A060);
+        if (a == 255) {
+            f40 = 1;
+            f38 = 0;
+        }
+    } else if (f3C != 0) {
+        a = FtoI_001C4240(D_0027A060 - f30 * D_0027A060);
+        if (a == 0) {
+            f40 = 0;
+            f3C = 0;
+            v4();
+        }
+    } else if (f40 != 0) {
+        a = 255;
+    } else {
+        return 0;
+    }
+    dev = *(char **)(D_002EFDB8 + 4);
+    if (f34 == -1 && *(int *)(D_002A8490 + 0x270) > 1) {
+        int rect[6];
+        int out;
+        memcpy(rect, dev + 0x1e0, 0x18);
+        rect[2] = 0;
+        rect[3] = 0;
+        rect[4] = 0x280;
+        rect[5] = 0x1c0;
+        ((FadeDev *)dev)->func_0012B2B0(rect, &out);
+    }
+    s = f24;
+    if (s->f4 != D_00275544 || s->f8 != D_00275544) {
+        s->f4 = 0;
+        s->f8 = 0;
+        s->f58 |= 1;
+    }
+    {
+        float f = (float)*(unsigned int *)(dev + 0x1e8);
+        if (s->f28 != f) {
+            s->f28 = f;
+            s->f58 |= 1;
+        }
+    }
+    {
+        float f = (float)*(unsigned int *)(dev + 0x1ec);
+        if (s->f2C != f) {
+            s->f2C = f;
+            s->f58 |= 1;
+        }
+    }
+    s->f38 = (s->f38 & 0xffffff) | ((a & 0xff) << 24);
+    s->f58 |= 2;
+    s->func_001D5AD0();
+    if (f34 == -1 && *(int *)(D_002A8490 + 0x270) > 1) {
+        int rect[6];
+        rect[2] = 0;
+        rect[3] = 0;
+        rect[4] = 0x280;
+        rect[5] = 0x1c0;
+        ((FadeDev *)dev)->func_0012B2B0(rect, 0);
+    }
+    func_00157960();
+    return 0;
 }
 
 CrossFade_001C44A0 *CrossFade_001C44A0::func_001C44A0(int a0)
