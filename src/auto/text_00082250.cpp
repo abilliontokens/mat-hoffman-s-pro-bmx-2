@@ -8,6 +8,28 @@ struct BmxInGameOverlays {
  int w[0xda4/4];
  void func_00157600(int);
  BmxInGameOverlays *func_00082450(int);
+ void func_00082790();
+};
+
+struct C_00082790_IniSub {
+    int func_00169490(char *name, int zero);
+    int func_00169710(char *name);
+    int func_00168CB0(char *key, char *fmt, float *out);
+    int func_00168BE0(char *key, char *fmt, int *out, int def);
+    int func_00168C20(char *key, int zero, char *out);
+};
+
+struct C_00082790_Ini {
+    char pad0[8];
+    C_00082790_IniSub sub;
+    char pad1[0x5c0];
+    void func_00168280();
+    void func_001691E0();
+};
+
+struct C_00082790_X {
+    int func_001B1A30(int a, int b, int c);
+    int func_001B19A0(int a);
 };
 struct C_00082400 {
     void func_00082400(short param_1);
