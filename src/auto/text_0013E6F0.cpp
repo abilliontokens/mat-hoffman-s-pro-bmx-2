@@ -150,6 +150,35 @@ static __forceinline void Xform_0013E9B0(float *in, S_0013E9B0_Mat *mat, float *
     out[3] = 1.0f;
 }
 
+static __forceinline void XformV_0013E9B0(float *volatile outArg, float *volatile inArg, float *volatile mArg)
+{
+    float *in = inArg;
+    float *m = mArg;
+    float *out = outArg;
+    __m128 v = _mm_loadu_ps(in);
+    __m128 r0 = _mm_load_ps(&m[0]);
+    _mm_storeh_pi((__m64 *)(out + 2), v);
+    __m128 r1 = _mm_load_ps(&m[4]);
+    out[3] = 1.0f;
+    __m128 r2 = _mm_load_ps(&m[8]);
+    v = _mm_loadh_pi(v, (const __m64 *)(out + 2));
+    r0 = _mm_mul_ps(r0, v);
+    r1 = _mm_mul_ps(r1, v);
+    r2 = _mm_mul_ps(r2, v);
+    __m128 lo = _mm_unpacklo_ps(r0, r1);
+    __m128 hi = _mm_unpackhi_ps(r0, r1);
+    __m128 junk;
+    junk = _mm_movehl_ps(junk, r2);
+    lo = _mm_add_ps(lo, hi);
+    r2 = _mm_add_ps(r2, junk);
+    hi = _mm_movehl_ps(hi, lo);
+    lo = _mm_movelh_ps(lo, r2);
+    hi = _mm_shuffle_ps(hi, r2, 0x14);
+    lo = _mm_add_ps(lo, hi);
+    _mm_storeu_ps(out, lo);
+    out[3] = 1.0f;
+}
+
 static __forceinline void Trunc_0013E9B0(int *volatile out, float f)
 {
     *out = _mm_cvttss_si32(*(__m128 *)&f);
