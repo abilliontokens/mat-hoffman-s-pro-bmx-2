@@ -41,6 +41,7 @@ struct S_00199B00_F4 {
 };
 
 extern float D_002755E8;
+extern "C" float sqrtf(float);
 
 struct S_0019A680_V4 {
     float x, y, z, w;
@@ -262,6 +263,54 @@ void C_00199BE0::func_00199E50(S_00199B00_F4 v, int a4, int a5, int a6, int a7, 
     }
 }
 
+#pragma optimize("a", on)
+void C_00199BE0::func_0019A0A0(float sx, float sy, float sz)
+{
+    S_00199B00_F4 v;
+
+    v.x = fB0[0];
+    v.y = fB0[4];
+    v.w = 1.0f;
+    v.z = fB0[8];
+    func_001977B0(&v, &v);
+    v.x *= sx;
+    v.y *= sx;
+    v.z *= sx;
+    fB0[0] = v.x;
+    fB0[4] = v.y;
+    fB0[8] = v.z;
+
+    v.x = fB0[1];
+    v.y = fB0[5];
+    v.z = fB0[9];
+    func_001977B0(&v, &v);
+    v.x *= sy;
+    v.y *= sy;
+    v.z *= sy;
+    fB0[1] = v.x;
+    fB0[5] = v.y;
+    fB0[9] = v.z;
+
+    v.x = fB0[2];
+    v.y = fB0[6];
+    v.z = fB0[10];
+    func_001977B0(&v, &v);
+    v.x *= sz;
+    v.y *= sz;
+    v.z *= sz;
+    fB0[2] = v.x;
+    fB0[6] = v.y;
+    fB0[10] = v.z;
+
+    func_001982F0();
+    if (f180 & 1) {
+        f180 &= 0xfe;
+        if (f174 != 0) {
+            f174->func_00197B10();
+        }
+    }
+}
+#pragma optimize("", on)
 void C_00199BE0::func_0019A210(C_00199BE0 *node)
 {
     C_00199BE0 *p;
@@ -343,6 +392,7 @@ void C_00199BE0::func_0019A680(S_0019A680_V4 *center, S_0019A680_V4 *extent)
     func_00197AA0();
     S_0019A680_V4 a;
     S_0019A680_V4 b;
+    S_0019A680_V4 t;
     int flag = 0;
     C_00199BE0 *p;
 
@@ -355,12 +405,12 @@ void C_00199BE0::func_0019A680(S_0019A680_V4 *center, S_0019A680_V4 *extent)
         p->func_001985D0(&flag, &a, &b, fF0, 1);
     }
     if (center != 0) {
-        S_0019A680_V4 *out = center;
-        *out = Scale_0019A680(Add_0019A680(b, a), D_002755E8);
+        t = Scale_0019A680(Add_0019A680(b, a), D_002755E8);
+        *center = t;
     }
     if (extent != 0) {
-        S_0019A680_V4 *out = extent;
-        *out = Scale_0019A680(Sub_0019A680(b, a), D_002755E8);
+        t = Scale_0019A680(Sub_0019A680(b, a), D_002755E8);
+        *extent = t;
     }
 }
 
