@@ -337,7 +337,6 @@ static int func_001F54D0(int *punlock_flag, int *pfh, const char *path, int ofla
     int fh;
     int filepos;
     char fileflags;
-    char isdev;
     char ch;
     int osfh;
     unsigned int fileaccess;
@@ -451,10 +450,9 @@ static int func_001F54D0(int *punlock_flag, int *pfh, const char *path, int ofla
     func_001EE63F(fh, osfh);
 
     fileflags |= 1;
-    isdev = fileflags & 0x48;
     D_002FB260[fh >> 5][fh & 0x1f].osfile = fileflags;
 
-    if (!isdev && (fileflags & 0x80) && (oflag & 2)) {
+    if (!(fileflags & 0x48) && (fileflags & 0x80) && (oflag & 2)) {
         filepos = func_001EE4BD(fh, -1, 2);
         if (filepos == -1) {
             if (*func_001ED07E() != 0x83) {
@@ -476,7 +474,7 @@ static int func_001F54D0(int *punlock_flag, int *pfh, const char *path, int ofla
         }
     }
 
-    if (!isdev && (oflag & 8)) {
+    if (!(fileflags & 0x48) && (oflag & 8)) {
         D_002FB260[fh >> 5][fh & 0x1f].osfile |= 0x20;
     }
     return fh;
