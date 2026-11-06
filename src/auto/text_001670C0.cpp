@@ -83,6 +83,7 @@ static inline S_00167AF0_Vector add_00167AF0(const S_00167AF0_Vector &a, char *m
  S_00167AF0_Vector r=a; r.x+=*(float*)(m+12); r.y+=*(float*)(m+28); r.z+=*(float*)(m+44); return r;
 }
 extern int D_002EFB1C;
+struct S_00167AF0_List { char pad0[0x10]; int count; char **items; char pad18[0xc]; char tag; };
 struct C_00167AF0_Context { int func_001C5DE0(void *, void *, void *, int); };
 extern C_00167AF0_Context *D_002AB66C;
 void func_000263B0(void *, void *, void *);
@@ -494,6 +495,48 @@ C_00167AC0 *C_00167AC0::func_00167AC0(void)
         n--;
     } while (n != 0);
     return this;
+}
+
+int C_00167DD0::func_00167AF0(void *p)
+{
+    float radius;
+    S_00167AF0_Vector center;
+    int i;
+    S_00167AF0_Vector pos;
+    S_00167AF0_Vector extent;
+    S_00167AF0_Vector delta;
+    __declspec(align(16)) float matrix[16];
+    char *obj;
+
+    pos = *(S_00167AF0_Vector *)(f24 + 0xc0);
+    for (i = 0; i < *(int *)((char *)p + 0x10); ++i) {
+        if (*(int *)((char *)p + 0x10) > 0 && *(void **)((char *)p + 0x14) && i < *(int *)((char *)p + 0x10))
+            obj = (*(char ***)((char *)p + 0x14))[i];
+        else
+            obj = 0;
+        if (obj[0x20] != *((char *)p + 0x24) || !(obj[0x1a3] & 8))
+            continue;
+        radius = *(int *)(obj + 0x190) == 1 ? *(float *)(obj + 0x184) : *(float *)(obj + 0x188);
+        if (!(*(float *)(obj + 0x1b0) - radius < *(float *)((char *)this + 0x358)))
+            continue;
+        if (((C_00167AF0_Obj *)obj)->test())
+            continue;
+        center = *(S_00167AF0_Vector *)(obj + 0x150);
+        delta.x = center.x + *(float *)(obj + 0xfc) - pos.x;
+        delta.y = center.y + *(float *)(obj + 0x10c) - pos.y;
+        delta.z = center.z + *(float *)(obj + 0x11c) - pos.z;
+        if (!(delta.x * delta.x + delta.y * delta.y + delta.z * delta.z - radius * radius < *(float *)((char *)this + 0x35c)))
+            continue;
+        extent = *(S_00167AF0_Vector *)(obj + 0x160);
+        center = *(S_00167AF0_Vector *)(obj + 0x150);
+        func_000263B0(matrix, obj + 0xf0, *(char **)(f24 + 0xfc) + 0xf0);
+        if (D_002EFB1C || D_002AB66C->func_001C5DE0(matrix, &center, &extent, 0)) {
+            ((char **)((char *)this + 0x2c))[f350] = obj;
+            if (++f350 >= 200)
+                break;
+        }
+    }
+    return 1;
 }
 
 C_00167760 *C_00167760::func_00167D10(C_0017A860 *owner, int b)
