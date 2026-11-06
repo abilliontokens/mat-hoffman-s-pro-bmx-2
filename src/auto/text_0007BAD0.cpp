@@ -43,7 +43,9 @@ struct S_7C690_Data {
     int f7c0;
     char pad7c4[4];
     int f7c8;
-    char pad7cc[0xff0 - 0x7cc];
+    char pad7cc[0x848 - 0x7cc];
+    char *f848;
+    char pad84c[0xff0 - 0x84c];
     char *ff0;
     int pad_ff4;
     int ff8;
@@ -146,6 +148,100 @@ struct C_0007C9E0 {
     undefined4 func_0007C9E0(byte param_1);
 };
 
+
+void C_0007C2C0::func_0007BAD0()
+{
+    char buf[0x32];
+    int numA = 0;
+    int numB = 0;
+    int si;
+    int i, n, color;
+    S_7BAD0_Player **arr;
+    S_7BAD0_Player *p;
+    S_7C2C0_W *w;
+
+    si = f244;
+    func_001ADCC0(buf, 0x32, D_002A8490->f2e8->f4->f6b8, D_00279030);
+    si = func_00064580(func_00064580(si, buf, 0xffbfa35a), D_00275630, 0xffcccccc);
+    n = f1d0->f1c0->func_00097710(0);
+    arr = f1d0->f1c0->func_00097740(0);
+    for (i = 0; i < n; i++) {
+        p = arr[i];
+        if (p->f1a8 == 0) {
+            color = p->func_00096740() ? 0xff5eff5e : 0xffcccccc;
+            if (si >= 0 && si < 0x10) {
+                w = f13c[si];
+                w->func_0005E840((char *)p);
+                w->SetColorVar(color);
+                w->func_001D6600();
+            }
+            si++;
+        } else {
+            numA++;
+            if (p->func_00096740())
+                numB++;
+        }
+    }
+    func_001ADCC0(buf, 0x32, D_00275678, D_002A8490->f2e8->f4->f6c8, D_00279030);
+    si = AddLine(si, D_00275630, 0xffcccccc);
+    si = AddLine(si, buf, 0xffbfa35a);
+    si = AddLine(si, D_00275630, 0xffcccccc);
+    if (f1d0->f1c0->func_000976A0() > 0) {
+        n = f1d0->f1c0->func_00097710(1);
+        arr = f1d0->f1c0->func_00097740(1);
+        for (i = 0; i < n; i++) {
+            p = arr[i];
+            if (p->f1a8 == 0) {
+                color = p->func_00096740() ? 0xff5eff5e : 0xffcccccc;
+                if (si >= 0 && si < 0x10) {
+                    w = f13c[si];
+                    w->func_0005E840((char *)p);
+                    w->SetColorVar(color);
+                    w->func_001D6600();
+                }
+                si++;
+            } else {
+                numA++;
+                if (p->func_00096740())
+                    numB++;
+            }
+        }
+    } else {
+        si = AddLine(si, D_00279028, 0xffdd3737);
+    }
+    func_001ADCC0(buf, 0x32, D_00275678, D_002A8490->f2e8->f4->f6d8, D_00279030);
+    si = AddLine(si, D_00275630, 0xffcccccc);
+    si = AddLine(si, buf, 0xffbfa35a);
+    si = AddLine(si, D_00275630, 0xffcccccc);
+    if (f1d0->f1c0->func_000976A0() > 1) {
+        n = f1d0->f1c0->func_00097710(2);
+        arr = f1d0->f1c0->func_00097740(2);
+        for (i = 0; i < n; i++) {
+            p = arr[i];
+            if (p->f1a8 == 0) {
+                color = p->func_00096740() ? 0xff5eff5e : 0xffcccccc;
+                if (si >= 0 && si < 0x10) {
+                    w = f13c[si];
+                    w->func_0005E840((char *)p);
+                    w->SetColorVar(color);
+                    w->func_001D6600();
+                }
+                si++;
+            } else {
+                numA++;
+                if (p->func_00096740())
+                    numB++;
+            }
+        }
+    } else {
+        si = AddLine(si, D_00279028, 0xffdd3737);
+    }
+    func_001ADCC0(buf, 0x32, D_00275678, D_002A8490->f2e8->f4->ff0, D_00279030);
+    si = AddLine(si, D_00275630, 0xffcccccc);
+    si = AddLine(si, buf, 0xffbfa35a);
+    si = AddLine(si, D_00275630, 0xffcccccc);
+    func_001ADCC0(buf, 4, D_00277038, numB);
+}
 
 undefined4 C_0007C2C0::func_0007C2C0()
 {
