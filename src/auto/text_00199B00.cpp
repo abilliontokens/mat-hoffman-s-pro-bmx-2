@@ -109,6 +109,20 @@ struct C_00199C20Mat {
     void func_000264C0(void *m);
 };
 
+/* the original unit defines this earlier, so MSVC knows which registers it keeps */
+void C_00199BE0::func_00197B10(void)
+{
+    if (f178 != 0) {
+        f178->func_00197B10();
+    }
+    if (f180 & 1) {
+        f180 &= 0xfe;
+        if (f174 != 0) {
+            f174->func_00197B10();
+        }
+    }
+}
+
 S_00199B00_F4 C_00199BE0::func_00199B00(C_00199BE0 *other) {
 if(other==this) return S_00199B00_F4(fB0[3],fB0[7],fB0[11]);
 S_00199B00_F4 v;
