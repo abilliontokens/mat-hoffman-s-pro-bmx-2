@@ -77,8 +77,7 @@ inline int Clamp_00013A40(const char *s)
     volatile int lim = 0x103;
     volatile int res;
     int a = lim, b = len;
-    if (a > b) a = b;
-    res = a;
+    res = a > b ? b : a;
     return res;
 }
 inline int MinV_00013A40(int a, int b) { return a > b ? b : a; }
@@ -246,6 +245,99 @@ static __forceinline State_14170 *Make_14170(unsigned size, void *vt, int kind) 
  State_14170 *s=(State_14170*)func_001E8A44(size);
  if(s) { s->vtbl=vt;s->kind=kind;s->owner=0; }
  return s;
+}
+
+void C_00013F50::func_00013A40(char *path)
+{
+    C_00013F50 *volatile self;
+    int n2;
+    int n1;
+    int n3;
+    int mode;
+    volatile int len;
+    volatile int lim;
+    volatile int res;
+    char val[0x104];
+    char name[0x104];
+    char saved[0x104];
+    S_00013A40_Ini *ini;
+    int i, n, a, b;
+
+    self = this;
+    f0++;
+    C_00013F50 *s = self;
+    if (s->f1c != 0 || s->f20 != 0 || s->f24 != 0) {
+        return;
+    }
+    ini = new S_00013A40_Ini;
+    if (ini->func_00169490(path, 0)) {
+        len = strlen(D_002A48F8);
+        lim = 0x103;
+        a = lim; b = len;
+        if (a > b) a = b;
+        res = a;
+        n = res;
+        func_001E8920(saved, D_002A48F8, n);
+        saved[n] = 0;
+        ini->func_00169710(D_0027568C);
+        ini->func_00168C20(D_00275680, 1, &mode);
+        if (mode == 1) {
+            func_001ADCC0(D_002A48F8, 0x104, D_00275678, D_002A5348, D_002A47F0);
+        } else {
+            func_001ADCC0(D_002A48F8, 0x104, D_00275678, D_002A5870, D_002A47F0);
+        }
+        ini->func_00168C20(D_00275668, 0, &n1);
+        ini->func_00168C20(D_00275658, 0, &n2);
+        ini->func_00168C20(D_00275644, 0, &n3);
+        if (n1 > 0) {
+            self->f1c = (int *)func_001E8A44(n1 * 4);
+            for (i = 0; i < n1; i++) {
+                func_001ADCC0(name, 0x104, D_00275634, i + 1);
+                ini->func_00168BE0(name, D_00275630, val, 0x104);
+                if (val[0] != 0 && self->f10 < n1) {
+                    ((S_00013A40_Obj **)self->f1c)[self->f10] = (S_00013A40_Obj *)new S_00013A40_ObjImpl(D_002A8490->f4->fb4, D_002B9120->f4c0, 1);
+                    ((S_00013A40_Obj **)self->f1c)[self->f10]->v4(val, 1, 1, 0, 0);
+                    self->f10++;
+                }
+            }
+            self->f4 = func_00011260(0, self->f10 - 1);
+        }
+        if (n2 > 0) {
+            self->f20 = (int *)func_001E8A44(n2 * 4);
+            for (i = 0; i < n2; i++) {
+                func_001ADCC0(name, 0x104, D_00275620, i + 1);
+                ini->func_00168BE0(name, D_00275630, val, 0x104);
+                if (val[0] != 0 && self->f14 < n2) {
+                    ((S_00013A40_Obj **)self->f20)[self->f14] = (S_00013A40_Obj *)new S_00013A40_ObjImpl(D_002A8490->f4->fb4, D_002B9120->f4c0, 1);
+                    ((S_00013A40_Obj **)self->f20)[self->f14]->v4(val, 1, 1, 0, 0);
+                    self->f14++;
+                }
+            }
+            self->f8 = func_00011260(0, self->f14 - 1);
+        }
+        if (n3 > 0) {
+            self->f24 = (int *)func_001E8A44(n3 * 4);
+            for (i = 0; i < n3; i++) {
+                func_001ADCC0(name, 0x104, D_0027560C, i + 1);
+                ini->func_00168BE0(name, D_00275630, val, 0x104);
+                if (val[0] != 0 && self->f18 < n3) {
+                    ((S_00013A40_Obj **)self->f24)[self->f18] = (S_00013A40_Obj *)new S_00013A40_ObjImpl(D_002A8490->f4->fb4, D_002B9120->f4c0, 1);
+                    ((S_00013A40_Obj **)self->f24)[self->f18]->v4(val, 1, 1, 0, 0);
+                    self->f18++;
+                }
+            }
+            self->fC = func_00011260(0, self->f18 - 1);
+        }
+        len = strlen(saved);
+        lim = 0x103;
+        a = lim; b = len;
+        if (a > b) a = b;
+        res = a;
+        n = res;
+        func_001E8920(D_002A48F8, saved, n);
+        D_002A48F8[n] = 0;
+    }
+    delete ini;
 }
 
 void C_00013F50::func_00013F50(C_00013F50_Dst *dst, int kind, void *arg1, float arg2)
