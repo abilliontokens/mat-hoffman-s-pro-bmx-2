@@ -210,15 +210,13 @@ S_001EF734 *S_001EF734::func_001EFAB5(void *ap, void *bp)
 #pragma optimize("y", on)
 C_001EFB18 *C_001EFB18::func_001EFB18(char param_1)
 {
-    S_001EFB18_Obj *o;
-
     if (param_1 != 0) {
-        if (func_001EF1E7() != 0) {
+        if (((S_001EF734 *)this)->func_001EF1E7() != 0) {
             func_001EF999(param_1);
         } else {
             f0 = f0->func_001EF419();
             if (f0 != 0) {
-                o = (S_001EFB18_Obj *)D_002F6A04->func_001EEE62(0xc, 0);
+                S_001EFB18_Obj *o = (S_001EFB18_Obj *)D_002F6A04->func_001EEE62(0xc, 0);
                 if (o != 0) {
                     o->f4 = 0;
                     o->vtbl = &D_00295BCC;
