@@ -106,6 +106,43 @@ static __forceinline int Min_001D2A40(int a, int b) { return a > b ? b : a; }
         } \
     }
 
+/* the same channel step, on the track expression T (used with this->f10 + off) */
+#define TRACK_CHT(T, k, LO, HI, M, FM, PM) \
+    if (!((T)->done & (M))) { \
+        if (!((T)->dir & (M))) { \
+            (T)->val[k] = (T)->step[k] + (T)->val[k]; \
+            if ((T)->val[k] >= (float)(T)->HI) { \
+                if ((T)->flags & (FM)) { \
+                    if ((T)->flags & (PM)) { \
+                        (T)->dir |= (M); \
+                        (T)->val[k] = (float)(T)->HI; \
+                    } else { \
+                        (T)->val[k] = (float)(T)->LO; \
+                    } \
+                } else { \
+                    (T)->done |= (M); \
+                    (T)->val[k] = (float)(T)->HI; \
+                } \
+            } \
+        } else { \
+            (T)->val[k] = (T)->val[k] - (T)->step[k]; \
+            if ((T)->val[k] <= (float)(T)->LO) { \
+                if ((T)->flags & (FM)) { \
+                    if ((T)->flags & (PM)) { \
+                        (T)->dir &= ~(M); \
+                        (T)->val[k] = (float)(T)->LO; \
+                    } else { \
+                        (T)->val[k] = (float)(T)->HI; \
+                    } \
+                } else { \
+                    (T)->done |= (M); \
+                    (T)->val[k] = (float)(T)->LO; \
+                } \
+            } \
+        } \
+    }
+#define TRK_T (*(S_001D2A40_Track *)((char *)this->f10 + off))
+
 #define TRACK_CH3(k, LO, HI, M, FM, PM) \
     { \
         S_001D2A40_Track &a = TRK; \
@@ -320,14 +357,14 @@ void C_001D2A40::func_001D2A40()
         RtlEnterCriticalSection(self->f30);
         if (TRK.done != 0x3f) {
             S_001D2A40_Frame *q;
-            Round_001D2A40(&idx, TRK.val[0]);
+            AsmFloatToIntRound(TRK.val[0], &idx);
             q = &self->f14[idx];
-            Round_001D2A40(&x, TRK.val[1]);
-            Round_001D2A40(&y, TRK.val[2]);
-            Round_001D2A40(&w, TRK.val[3]);
-            Round_001D2A40(&h, TRK.val[4]);
-            Round_001D2A40(&alpha, TRK.val[5]);
-            alpha = Min_001D2A40(alpha, 255);
+            AsmFloatToIntRound(TRK.val[1], &x);
+            AsmFloatToIntRound(TRK.val[2], &y);
+            AsmFloatToIntRound(TRK.val[3], &w);
+            AsmFloatToIntRound(TRK.val[4], &h);
+            AsmFloatToIntRound(TRK.val[5], &alpha);
+            alpha = AsmMinI(alpha, 255);
             dst[0] = x - (w >> 1);
             dst[1] = y - (h >> 1);
             dst[2] = dst[0] + w;
