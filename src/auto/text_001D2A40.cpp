@@ -43,8 +43,7 @@ struct S_001D2A40_Track {
     short frameLo, frameHi;
     short posLo[2], posHi[2];
     short sizeLo[2], sizeHi[2];
-    short alphaLo, alphaHi;
-    char pad1c[4];
+    float alphaLo, alphaHi;
     unsigned char flags;
     unsigned char dir;
     unsigned short done;
@@ -215,6 +214,46 @@ struct C_001D3700 {
     void func_001D3700(int param_1, int param_2);
 };
 
+
+void C_001D2A40::func_001D2A40()
+{
+    int i;
+    if (f50 != 0) {
+        int rc[4] = {0, 0, 0x280, 0x1c0};
+        D_002EFDB8->v4(0, f50, rc, 0);
+    }
+    for (i = 0; i < f8; i++) {
+        int idx, x, y, w, h, alpha;
+        int dst[4];
+        int src[4];
+        RtlEnterCriticalSection(f30);
+        if (f10[i].done != 0x3f) {
+            S_001D2A40_Frame *q;
+            Round_001D2A40(&idx, f10[i].val[0]);
+            q = &f14[idx];
+            Round_001D2A40(&x, f10[i].val[1]);
+            Round_001D2A40(&y, f10[i].val[2]);
+            Round_001D2A40(&w, f10[i].val[3]);
+            Round_001D2A40(&h, f10[i].val[4]);
+            Round_001D2A40(&alpha, f10[i].val[5]);
+            alpha = Min_001D2A40(alpha, 255);
+            dst[0] = x - (w >> 1);
+            dst[1] = y - (h >> 1);
+            dst[2] = dst[0] + w;
+            dst[3] = dst[1] + h;
+            src[0] = 0;
+            src[1] = 0;
+            src[2] = q->w;
+            src[3] = q->h;
+            TRACK_CHANNEL(0, frameLo, frameHi, 1, 1, 0x10)
+            TRACK_CHANNEL(1, posLo[0], posHi[0], 2, 2, 0x20)
+            TRACK_CHANNEL(2, posLo[1], posHi[1], 4, 2, 0x20)
+            TRACK_CHANNEL(3, sizeLo[0], sizeHi[0], 8, 4, 0x40)
+            TRACK_CHANNEL(4, sizeLo[1], sizeHi[1], 0x10, 4, 0x40)
+            TRACK_CHANNEL(5, alphaLo, alphaHi, 0x20, 8, 0x80)
+        }
+    }
+}
 
 void C_001D35E0::func_001D35E0()
 {
