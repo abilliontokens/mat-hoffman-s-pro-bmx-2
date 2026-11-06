@@ -119,6 +119,7 @@ struct C_000D4280 {
     void func_000D24B0();
     void func_000D25A0();
     void func_000D4280();
+    void func_000D44C0();
 };
 
 void C_000D4280::func_000D4280()
