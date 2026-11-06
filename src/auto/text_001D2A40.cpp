@@ -30,7 +30,7 @@ struct S_001D2A40_Dev {
     virtual void v1();
     virtual void v2();
     virtual void v3();
-    virtual void v4(int a, void *b, void *c, int d);
+    virtual void v4(void *a, void *b, void *c, int d);
 };
 extern S_001D2A40_Dev *D_002EFDB8;
 
