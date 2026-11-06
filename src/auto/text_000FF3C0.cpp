@@ -160,10 +160,17 @@ struct C_000FFF70 {
     void func_000FFF70();
 };
 
+struct PhotoMessages { void func_0001BC50(const void *, const void *, int); };
+struct PhotoUI { char pad[0x484]; PhotoMessages *messages; };
+struct PhotoOwner { char pad[0x150]; PhotoUI *ui; char pad154[0x108]; S_000FFC20_Dev *dev; char pad260[0x44]; int busy; void func_000BB3B0(const void *,const void *); void func_000BB380(const void *); };
+struct PhotoDevice { int func_00092A10(); int func_00092A50(int); int func_00092BE0(); };
+extern float D_00278C48,D_00275544,D_002755E8,D_00275460,D_0027DE74;
+extern char D_00282668[],D_0027F7D4[],D_00282658[],D_00282648[],D_0027A144[],D_00282638[],D_0028262C[],D_0028261C[],D_0028260C[],D_002825FC[],D_002825EC[],D_002825E4[];
 struct C_000FF590 {
-    char pad0[0x28c];
-    int f28c, f290;
-    void func_000FF590(float dt);
+    void **vtbl; char pad4[0x120]; PhotoOwner *owner; char pad128[0x20]; int inputs[8]; char pad168[0x118];
+    float f280; int f284,f288,f28c,f290,f294,f298,f29c,f2a0,f2a4,f2a8,f2ac,f2b0,f2b4; float f2b8; PhotoDevice *f2bc;
+    int f2c0,f2c4,f2c8,f2cc,f2d0,f2d4,f2d8,f2dc,f2e0; float f2e4; int f2e8,f2ec,f2f0,f2f4,f2f8; float f2fc,f300; int f304,f308,f30c;
+    int func_000DCC20(); void func_001BED00(float); void func_000FF590(float dt);
 };
 
 struct C_000FF3C0 {
