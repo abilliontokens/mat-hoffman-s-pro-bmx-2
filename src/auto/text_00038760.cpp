@@ -53,7 +53,7 @@ static __forceinline void Round_00038850(int *out, float value)
     S_00038760_Conv c;
     c.out = out;
     c.v = value;
-    *c.out = _mm_cvtss_si32(*(__m128 *)&c.v);
+    *(*(int * volatile *)&c.out) = _mm_cvtss_si32(*(__m128 *)&c.v);
 }
 extern char D_00276E90[];
 extern int D_002B911C;
