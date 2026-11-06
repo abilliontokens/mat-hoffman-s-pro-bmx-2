@@ -52,3 +52,16 @@ C_001C5AC0 *C_001C5AC0::func_001C5AC0(unsigned int flags)
     return this;
 }
 
+int __stdcall func_001C5C50(S_001C5C50_View *view, float *m, float *v, float *out, unsigned int *flags)
+{
+float x,y,z,w; unsigned int f=0;
+w=m[14]*v[2]; w+=m[13]*v[1]; w+=m[12]*v[0]; w+=m[15];
+*(unsigned int *)&w &= 0x7fffffff;
+x=m[2]*v[2]+m[1]*v[1]+m[0]*v[0]+m[3];
+y=m[6]*v[2]; y+=m[5]*v[1]; y+=m[4]*v[0]; y+=m[7];
+z=m[10]*v[2]; z+=m[9]*v[1]; z+=m[8]*v[0]; z+=m[11];
+if(x>w)f|=1; if(x< -w)f|=2; if(y>w)f|=4; if(y< -w)f|=8; if(z>w)f|=16; if(z< -w)f|=32;
+if(out){float inv=D_00275460/w;float sh=(float)view->height*D_002755E8;float sw=(float)view->width*D_002755E8;out[0]=(inv*x+D_00275460)*sw;out[1]=(inv*y+D_00275460)*sh;out[2]=inv*z;}
+if(flags)*flags=f;return f==0;
+}
+
