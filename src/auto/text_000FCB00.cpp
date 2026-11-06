@@ -41,9 +41,11 @@ struct Obj60_FCB00 {
     Obj60_FCB00 *func_001D5E90();
 };
 
+struct MgrB_FCB00 { void func_0005B240(); };
+
 struct S_000FCB00_Mgr2 {
     char pad0[0x2e0];
-    void *f2e0;
+    MgrB_FCB00 *f2e0;
     char pad2e4[4];
     void *f2e8;
     S_000FCB00_Mgr2 *f2ec;
