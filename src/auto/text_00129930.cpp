@@ -174,10 +174,10 @@ static __forceinline void Set4_12A3F0(V4_12A3F0 *v)
 
 static __forceinline void Ident_12A3F0(float *m)
 {
-    ((__m128 *)m)[0] = _mm_setzero_ps();
-    ((__m128 *)m)[1] = _mm_setzero_ps();
-    ((__m128 *)m)[2] = _mm_setzero_ps();
-    ((__m128 *)m)[3] = _mm_setzero_ps();
+    _mm_storeu_ps(m, _mm_setzero_ps());
+    _mm_storeu_ps(m + 4, _mm_setzero_ps());
+    _mm_storeu_ps(m + 8, _mm_setzero_ps());
+    _mm_storeu_ps(m + 12, _mm_setzero_ps());
     m[0] = 1.0f;
     m[5] = 1.0f;
     m[10] = 1.0f;
@@ -337,55 +337,56 @@ StaticCache_12A350 *StaticCache_12A350::func_0012A350(int a, int b)
 
 Camera_12A3F0 *Camera_12A3F0::func_0012A3F0(int a)
 {
+    Camera_12A3F0 * volatile self = this;
     V4_12A3F0 v;
 
     func_00157600(a);
-    ((unsigned char *)this)[0x26] = 0xff;
-    *(unsigned short *)((char *)this + 0x24) = 0;
-    ((unsigned char *)this)[0x27] &= 0xf8;
-    *(int *)this = (int)&D_00284074;
-    Set4_12A3F0((V4_12A3F0 *)((char *)this + 0x170));
-    Set4_12A3F0((V4_12A3F0 *)((char *)this + 0x180));
-    Set4_12A3F0((V4_12A3F0 *)((char *)this + 0x190));
-    Set4_12A3F0((V4_12A3F0 *)((char *)this + 0x1a0));
-    Set4_12A3F0((V4_12A3F0 *)((char *)this + 0x1b0));
-    Set4_12A3F0((V4_12A3F0 *)((char *)this + 0x1c0));
-    *(float *)((char *)this + 0x21c) = 109.0f;
-    *(float *)((char *)this + 0x220) = 10.0f;
-    *(float *)((char *)this + 0x1d0) = 77.0f;
-    *(int *)((char *)this + 0x224) = 0;
-    *(int *)((char *)this + 0x228) = 0;
-    *(int *)((char *)this + 0x22c) = 0;
-    *(float *)((char *)this + 0x1fc) = D_00284038;
-    *(float *)((char *)this + 0x200) = D_0028403C;
-    *(int *)((char *)this + 0x20c) = 0;
-    *(int *)((char *)this + 0x210) = 0;
-    memset((char *)this + 0x1e0, 0, 24);
-    Ident_12A3F0((float *)((char *)this + 0x30));
+    ((unsigned char *)self)[0x26] = 0xff;
+    *(unsigned short *)((char *)self + 0x24) = 0;
+    ((unsigned char *)self)[0x27] &= 0xf8;
+    *(int *)self = (int)&D_00284074;
+    Set4_12A3F0((V4_12A3F0 *)((char *)self + 0x170));
+    Set4_12A3F0((V4_12A3F0 *)((char *)self + 0x180));
+    Set4_12A3F0((V4_12A3F0 *)((char *)self + 0x190));
+    Set4_12A3F0((V4_12A3F0 *)((char *)self + 0x1a0));
+    Set4_12A3F0((V4_12A3F0 *)((char *)self + 0x1b0));
+    Set4_12A3F0((V4_12A3F0 *)((char *)self + 0x1c0));
+    *(float *)((char *)self + 0x21c) = 109.0f;
+    *(float *)((char *)self + 0x220) = 10.0f;
+    *(float *)((char *)self + 0x1d0) = 77.0f;
+    *(int *)((char *)self + 0x224) = 0;
+    *(int *)((char *)self + 0x228) = 0;
+    *(int *)((char *)self + 0x22c) = 0;
+    *(float *)((char *)self + 0x1fc) = D_00284038;
+    *(float *)((char *)self + 0x200) = D_0028403C;
+    *(int *)((char *)self + 0x20c) = 0;
+    *(int *)((char *)self + 0x210) = 0;
+    memset((char *)self + 0x1e0, 0, 24);
+    Ident_12A3F0((float *)((char *)self + 0x30));
     v.x = 0.0f; v.y = 0.0f; v.z = 1.0f; v.w = 1.0f;
-    *(V4_12A3F0 *)((char *)this + 0x180) = v;
+    *(V4_12A3F0 *)((char *)self + 0x180) = v;
     v.x = 0.0f; v.y = 1.0f; v.z = 0.0f; v.w = 1.0f;
-    *(V4_12A3F0 *)((char *)this + 0x190) = v;
+    *(V4_12A3F0 *)((char *)self + 0x190) = v;
     v.x = 0.0f; v.y = 0.0f; v.z = 0.0f; v.w = 1.0f;
-    *(V4_12A3F0 *)((char *)this + 0x170) = v;
-    *(int *)((char *)this + 0x1d4) = 0;
-    *(int *)((char *)this + 0x214) = 1;
-    *(int *)((char *)this + 0x218) = 1;
-    *(int *)((char *)this + 0x230) = 0;
-    *(int *)((char *)this + 0x23c) = 0;
-    *(int *)((char *)this + 0x234) = 0;
-    *(int *)((char *)this + 0x238) = 0;
-    *(int *)((char *)this + 0x240) = 0;
-    *(int *)((char *)this + 0x244) = 0;
-    *(V4_12A3F0 *)((char *)this + 0x1b0) = *(V4_12A3F0 *)((char *)this + 0x180);
-    *(V4_12A3F0 *)((char *)this + 0x1a0) = *(V4_12A3F0 *)((char *)this + 0x170);
-    *(float *)((char *)this + 0x1c0) = D_002A3E3C;
-    *(float *)((char *)this + 0x1c4) = D_002A3E40;
-    *(float *)((char *)this + 0x1c8) = D_002A3E44;
-    *(float *)((char *)this + 0x1cc) = D_002A3E48;
-    Ident_12A3F0((float *)((char *)this + 0x130));
-    *(int *)((char *)this + 0x28) = 0;
-    *(int *)((char *)this + 0x2c) = 0;
+    *(V4_12A3F0 *)((char *)self + 0x170) = v;
+    *(int *)((char *)self + 0x1d4) = 0;
+    *(int *)((char *)self + 0x214) = 1;
+    *(int *)((char *)self + 0x218) = 1;
+    *(int *)((char *)self + 0x230) = 0;
+    *(int *)((char *)self + 0x23c) = 0;
+    *(int *)((char *)self + 0x234) = 0;
+    *(int *)((char *)self + 0x238) = 0;
+    *(int *)((char *)self + 0x240) = 0;
+    *(int *)((char *)self + 0x244) = 0;
+    *(V4_12A3F0 *)((char *)self + 0x1b0) = *(V4_12A3F0 *)((char *)self + 0x180);
+    *(V4_12A3F0 *)((char *)self + 0x1a0) = *(V4_12A3F0 *)((char *)self + 0x170);
+    *(float *)((char *)self + 0x1c0) = D_002A3E3C;
+    *(float *)((char *)self + 0x1c4) = D_002A3E40;
+    *(float *)((char *)self + 0x1c8) = D_002A3E44;
+    *(float *)((char *)self + 0x1cc) = D_002A3E48;
+    Ident_12A3F0((float *)((char *)self + 0x130));
+    *(int *)((char *)self + 0x28) = 0;
+    *(int *)((char *)self + 0x2c) = 0;
     return this;
 }
 
