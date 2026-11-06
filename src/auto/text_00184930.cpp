@@ -269,11 +269,6 @@ struct S_00185610_Elem {
     char pad14c[0x160 - 0x14c];
 };
 
-static __forceinline S_00185610_Vec4 GetPos_00185610(const S_00185610_Elem *e)
-{
-    return e->f134;
-}
-
 struct S_00185610_Link;
 
 struct S_00185610_Node {
@@ -537,13 +532,13 @@ void S_00185610_Scene::func_00185610(S_00185610_Out *out)
     float dist;
     float inv;
     S_00185610_Vec4 q;
+    float w;
 
     for (; l != 0; l = l->next) {
         if (l->test->func_0017A1D0(pos, D_002A9118, &dist) != 0) {
-            float w;
             o = &f344[l->node->f3c];
-            w = (D_002A9118 - dist) / D_002A9118;
             q = o->f134;
+            w = (D_002A9118 - dist) / D_002A9118;
             total += w;
             v.x += q.x * w;
             v.y += q.y * w;
