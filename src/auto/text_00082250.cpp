@@ -27,6 +27,7 @@ struct C_00168F40 {
     __declspec(noinline) ~C_00168F40();
 };
 typedef C_00168F40 C_00082790_Ini;
+__declspec(noinline) C_00168F40::~C_00168F40() { sub.func_00169710(0); }
 
 struct C_00082790_X {
     int func_001B1A30(float a, float b, int c);
