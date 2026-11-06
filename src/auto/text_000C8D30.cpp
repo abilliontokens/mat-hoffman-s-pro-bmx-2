@@ -76,6 +76,7 @@ struct GObjRoot {
     GObj2E0 *p2E0;
     char pad2e4[4];
     GObj2E8 *p2E8;
+    Obj2EC *p2EC;
 };
 
 extern GObjRoot *D_002A8490;
