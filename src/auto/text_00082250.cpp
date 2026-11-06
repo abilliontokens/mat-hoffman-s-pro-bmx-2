@@ -404,51 +404,8 @@ void BmxInGameOverlays::func_00082790()
             *(float *)(sub + 2) = pb;
             *((char *)sub + 0x4e) |= 6;
         }
-        switch (((char *)&s)[0]) {
-        case 'L':
-        case 'l':
-            val = D_0028F5DC;
-            break;
-        case 'R':
-        case 'r':
-            val = D_0028F5EC;
-            break;
-        case 'C':
-        case 'c':
-            val = D_0028F5E0;
-            break;
-        default:
-            goto after1;
-        }
-        sub = *(int **)((char *)this + 0x16c);
-        if (*(int *)((char *)sub + 0x44) != val) {
-            *(int *)((char *)sub + 0x44) = val;
-            *((char *)sub + 0x4e) |= 6;
-        }
-    after1:
-        switch (((char *)&s)[0x14]) {
-        case 'L':
-        case 'l':
-            val = D_0028F5DC;
-            break;
-        case 'R':
-        case 'r':
-            val = D_0028F5EC;
-            break;
-        case 'C':
-        case 'c':
-            val = D_0028F5E0;
-            break;
-        default:
-            goto after2;
-        }
-        sub = *(int **)((char *)this + 0x178);
-        if (*(int *)((char *)sub + 0x44) != val) {
-            *(int *)((char *)sub + 0x44) = val;
-            *((char *)sub + 0x4e) |= 6;
-        }
-    after2:
-        ;
+        SetJustify_00082790((char *)this, 0x16c, ((char *)&s)[0]);
+        SetJustify_00082790((char *)this, 0x178, ((char *)&s)[0x14]);
     }
     val = *(int *)(*(int *)(D_002A8490 + 0x2e0) + 8);
     if (val == 0) {
@@ -490,28 +447,7 @@ void BmxInGameOverlays::func_00082790()
             *(float *)(sub + 2) = pb;
             *((char *)sub + 0x4e) |= 6;
         }
-        switch (((char *)&s)[0]) {
-        case 'L':
-        case 'l':
-            val = D_0028F5DC;
-            break;
-        case 'R':
-        case 'r':
-            val = D_0028F5EC;
-            break;
-        case 'C':
-        case 'c':
-            val = D_0028F5E0;
-            break;
-        default:
-            goto after3;
-        }
-        sub = *(int **)((char *)this + 0xc50);
-        if (*(int *)((char *)sub + 0x44) != val) {
-            *(int *)((char *)sub + 0x44) = val;
-            *((char *)sub + 0x4e) |= 6;
-        }
-    after3:
+        SetJustify_00082790((char *)this, 0xc50, ((char *)&s)[0]);
         ini.sub.func_00168CB0(D_0027922C, D_002A2034, &s.f[0]);
         ini.sub.func_00168BE0(D_00279210, D_00279258, &s.dummy0, -1);
         pa = s.f[0];
@@ -522,28 +458,7 @@ void BmxInGameOverlays::func_00082790()
             *(float *)(sub + 2) = pb;
             *((char *)sub + 0x4e) |= 6;
         }
-        switch (((char *)&s)[0]) {
-        case 'L':
-        case 'l':
-            val = D_0028F5DC;
-            break;
-        case 'R':
-        case 'r':
-            val = D_0028F5EC;
-            break;
-        case 'C':
-        case 'c':
-            val = D_0028F5E0;
-            break;
-        default:
-            goto after4;
-        }
-        sub = *(int **)((char *)this + 0x208);
-        if (*(int *)((char *)sub + 0x44) != val) {
-            *(int *)((char *)sub + 0x44) = val;
-            *((char *)sub + 0x4e) |= 6;
-        }
-    after4:
+        SetJustify_00082790((char *)this, 0x208, ((char *)&s)[0]);
         ini.sub.func_00168CB0(D_00279204, D_002A2034, &s.f[0]);
         ini.sub.func_00168BE0(D_002791EC, D_00279258, &s.dummy0, -1);
         ((C_00082790_X *)*(int *)((char *)this + 0xd08))->func_001B1A30(s.f[0], s.f[1], 0);
