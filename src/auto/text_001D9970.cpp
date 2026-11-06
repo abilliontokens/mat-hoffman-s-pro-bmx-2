@@ -11,7 +11,7 @@ extern int D_002F0BDC;
 void __fastcall func_001FEC30(int, void *);
 void __fastcall func_001FEBD0(int, void *);
 void __stdcall func_00201590(int, void *, int);
-int __stdcall func_001FEE00(int, void *, int);
+void __stdcall func_001FEE00(int, void *, int);
 void __stdcall func_00202770(void *, int);
 struct Vec_1D9E { float x,y,z,w; Vec_1D9E(float a,float b,float c,float d) : x(a),y(b),z(c),w(d) {} };
 void *__stdcall func_001FFE40(int);
@@ -195,6 +195,43 @@ void XboxWaterDisplacement::func_001D9E60(void *a1, void *a2)
     func_001D9820(p + 0x240, D_0028F8A0, 0x20);
     func_001D9820(a1, D_0028F88C, 0x20);
     func_001D9820(a2, D_0028F878, 0x20);
+}
+
+void DXVSWaterDataItem::func_001D9ED0() {
+volatile float scale;
+float v[4];
+char *p = D_002EFDB8->p4;
+func_001FEC30(0x10,p+0x250);
+func_001FEBD0(0x23,(char *)p4+0xf4);
+func_001FEBD0(0x24,(char *)p4+0xd4);
+func_001FEBD0(0x25,(char *)p4+0xe4);
+func_001FEBD0(0x26,p+0x170);
+func_001FEBD0(0x2a,D_002AC63C);
+func_001FEBD0(0x2b,D_002AC64C);
+func_001FEBD0(0x27,D_002AB85C);
+scale=D_00275460 / D_0028F7E8;
+Vec_1D9E w(0,scale * *(float *)(p+0x200) * D_0027A060,scale * *(float *)(p+0x200) * D_0028F8D0,scale * *(float *)(p+0x200) * D_0028F8D4);
+v[0]=0; v[1]=0; v[2]=0;
+v[3]=D_00284758*D_002F08A4;
+func_00201590(1,v,1);
+func_001FEBD0(3,(char *)D_002EFDB8+0x74);
+func_001FEBD0(0x20,D_002AC61C);
+func_001FEBD0(0x28,&w);
+func_001FEBD0(0x29,D_002AC62C);
+func_001FEBD0(0x2c,D_002AC65C);
+func_001FEE00(0,*(void **)((char *)p4+0x2d0),4);
+char *q=(char *)((volatile DXVSWaterDataItem *)this)->p4;
+func_001FEE00(1,q+0x2c4,4);
+func_001FEE00(2,(char *)p4+0x2ac,4);
+func_001FEE00(3,(char *)p4+0x2b8,4);
+func_00202770((char *)p4+0x2d4,0);
+if(D_002F0BDC) {
+D_002F0BDC=0;
+void *a=func_001FFE40(0);
+void *b=func_00200210();
+p4->func_001D9E60(a,b);
+func_00201100(a); func_00201100(b);
+}
 }
 
 XboxWaterDisplacement *XboxWaterDisplacement::func_001DA0E0()
