@@ -60,8 +60,8 @@ void func_0011ACC0(void *a, void *b, float *m);
 
 extern float D_00275544;
 extern float D_00275F58;
-extern float D_00275460;
-extern float D_00278C48;
+extern const float D_00275460;
+extern const float D_00278C48;
 
 struct C_0011A590_f28 {
     void func_00197F70(void *a, void *b);
