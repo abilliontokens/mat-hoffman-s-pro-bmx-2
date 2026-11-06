@@ -319,7 +319,7 @@ struct VideoCardFlags {
 };
 
 struct VideoCard {
-    void *vtbl;
+    void * volatile vtbl;
     int f4;
     int f8;
     int fC;
