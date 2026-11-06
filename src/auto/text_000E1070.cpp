@@ -196,7 +196,6 @@ struct C_000E1070 {
     int f294;
     char pad298[0x2A4 - 0x298];
     int f2A4;
-    char pad2A8[4];
     int f2A8;
     char pad2AC[0x2B4 - 0x2AC];
     int f2B4;
