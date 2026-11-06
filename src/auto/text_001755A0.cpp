@@ -48,8 +48,6 @@ int _func_001755A0(unsigned int flag, unsigned short* src, int w, int h, int dst
     return 1;
 }
 
-static __forceinline int MaskF8(int x) { return x & (unsigned int)D_0000FFF8; }
-
 #pragma optimize("y", on)
 int func_00175840(unsigned short *dst, unsigned short *src, int width, int height, int dstStride, int srcStride)
 {
