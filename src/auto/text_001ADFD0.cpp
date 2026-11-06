@@ -36,7 +36,8 @@ struct S_ADFD0_Tex {
 };
 
 struct S_ADFD0_Vtx {
-    float x, y, z;
+    float x, y;
+    int z;
     int color;
     float u, v;
 };
