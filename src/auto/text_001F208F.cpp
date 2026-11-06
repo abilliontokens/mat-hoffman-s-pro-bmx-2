@@ -57,6 +57,7 @@ extern char D_00295EC8[], D_00295EC0[], D_00295EB4[], D_00295EAC[], D_00295EA4[]
 extern char D_00295E94[], D_00295E8C[], D_00295E80[], D_00295C38[], D_00295C2C[], D_00295B38[];
 extern char D_0027D240[], D_0027D21C[], D_0028A82C[];
 extern int D_002F6A08, D_002F6A0C, D_002F6A10, D_002F6A14;
+void *func_001F1085(void *out);
 
 struct AllocObj {
     int (*fn0)(int);
