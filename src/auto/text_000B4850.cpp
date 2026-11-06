@@ -161,11 +161,26 @@ struct StopLight {
     int f34;
     int f38;
     int f3C;
-    void **f40;
-    void **f44;
-    void **f48;
-    void **f4C;
-    void **f50;
+    union {
+        void **f40;
+        int c40;
+    };
+    union {
+        void **f44;
+        BigObjB4850 **t44;
+    };
+    union {
+        void **f48;
+        ObjB1EE0 **t48;
+    };
+    union {
+        void **f4C;
+        ObjA4C4850 **t4C;
+    };
+    union {
+        void **f50;
+        Obj14B4850 **t50;
+    };
     void func_000B4850(ParserB4850 *p);
 };
 
