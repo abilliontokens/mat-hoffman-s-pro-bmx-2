@@ -20,7 +20,6 @@ struct S_002B91AC {
     C_0005E840 *f44;
     void func_000BF860(int a, int b, int c, int d);
 };
-extern S_002B91AC *D_002B91AC_Mgr;
 
 
 extern int D_0028F5E0;
