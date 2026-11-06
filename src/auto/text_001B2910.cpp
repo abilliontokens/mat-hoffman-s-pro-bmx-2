@@ -37,11 +37,6 @@ struct C_001B33A0_Loader {
 extern C_001B33A0_Loader *D_002BEAAC;
 void *func_001E8AA5(int size);
 
-static __inline int image_pixels(S_001B3560 *item)
-{
-    return item->f10 * item->fE;
-}
-
 int func_001B2910(int param_1);
 S_001B3560 *func_001B33A0(int a, int b);
 int func_001B2CD0(S_001B3560 *item, int a);
@@ -319,12 +314,12 @@ int func_001B3150(S_001B3560 *item, int a)
         if (!item->f14) return 0;
         item->f18 = size;
     }
-    unsigned short *p = (unsigned short *)item->f14;
-    unsigned short *end = (unsigned short *)((char *)p + size);
+    unsigned char *p = (unsigned char *)item->f14;
+    unsigned char *end = p + size;
     if (item->f2 == 2) {
         for (int i = 0; i < item->f10; i++) {
             if (D_002BEAAC->func_0013C8A0(a, p, 2, item->fE) != item->fE) return 0;
-            p += item->fE;
+            p += item->fE * 2;
         }
     } else {
         do {
@@ -335,11 +330,11 @@ int func_001B3150(S_001B3560 *item, int a)
             if (n & 0x80) {
                 n &= 0x7f;
                 if (D_002BEAAC->func_0013C8A0(a, &pixel, 2, 1) != 1) return 0;
-                do { *p++ = pixel; } while (n--);
+                do { *(unsigned short *)p = pixel; p += 2; } while (n--);
             } else {
                 ++n;
                 if (D_002BEAAC->func_0013C8A0(a, p, 2, n) != (int)n) return 0;
-                p += n;
+                p += n * 2;
             }
         } while (p < end);
     }
