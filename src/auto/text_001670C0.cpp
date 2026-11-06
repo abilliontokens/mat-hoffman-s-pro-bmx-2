@@ -415,14 +415,15 @@ void C_001670C0::func_001670C0(float dt, int remap, int *mask)
 
 C_001673B0_Base *C_001673B0::func_001673B0(const char *name, const char *slt, void *unused, int id, int arg4)
 {
-    char buf[0x100];
-    char path[0x104];
+    C_001673B0 * volatile self = this;
     C_001673B0_Found *found = 0;
     int key = -1;
     int key2;
     int n;
     int len;
-    C_00168280 *p;
+    char buf[0x100];
+    char path[0x104];
+    C_00168280 *mem;
 
     f1e0 = id;
     if (slt) {
@@ -431,50 +432,55 @@ C_001673B0_Base *C_001673B0::func_001673B0(const char *name, const char *slt, vo
     }
     if (D_002BEAAC->func_0013D310(buf, D_00275FB4, &key, &found, 0) == 0 &&
         D_002BEAAC->func_0013D310((char *)name, D_00275FB4, &key, &found, 0) == 0) {
-        v2();
+        self->v2();
         return 0;
     }
     if (found == 0) {
         key2 = key;
         if (slt)
             D_002BEAAC->func_0013AC40(buf, 0, 0, 0, &key2, 0);
-        D_002BEAAC->func_0013B1F0(key2, this);
+        D_002BEAAC->func_0013B1F0(key2, self);
         D_002BEAAC->func_0013C110(key);
     }
-    p = (C_00168280 *)func_001E8A44(0x4cc);
-    f8 = p ? p->func_00168280() : 0;
+    mem = (C_00168280 *)func_001E8A44(0x4cc);
+    self->f8 = mem ? mem->func_00168280() : 0;
     len = strlen(name);
-    n = Min(0x4f, len);
-    func_001E8920((char *)this + 0x48, name, n);
-    ((char *)this)[0x48 + n] = 0;
-    f8->func_00169490(name, 0);
-    f8->func_00169710(D_00287E90);
+    n = len < 0x4f ? len : 0x4f;
+    func_001E8920((char *)self + 0x48, name, n);
+    ((char *)self)[0x48 + n] = 0;
+    self->f8->func_00169490(name, 0);
+    self->f8->func_00169710(D_00287E90);
     if (slt) {
-        strcpy(f138, slt);
-        f188 = 1;
+        strcpy(self->f138, slt);
+        self->f188 = 1;
     } else {
-        f8->func_00168550(D_00287EA8, f138, -1);
-        f188 = 0;
+        self->f8->func_00168550(D_00287EA8, self->f138, -1);
+        self->f188 = 0;
     }
     if (found) {
         func_0014FF00(found->f4 + 0x28, 0, 0, path, 0);
         func_00030F30(path, D_00287EA0);
-        if (func_001EA426(path, f138) == 0) {
-            found->func_00166CA0(arg4);
-            if (f8) {
-                f8->func_001691E0();
-                func_001E891B(f8);
-            }
-            return (C_001673B0_Base *)found;
-        }
+        if (func_001EA426(path, self->f138) == 0)
+            goto useFound;
     }
     found = 0;
-    func_00166EB0(arg4);
-    if (f8) {
-        f8->func_001691E0();
-        func_001E891B(f8);
+    self->func_00166EB0(arg4);
+    if (self->f8) {
+        self->f8->func_001691E0();
+        func_001E891B(self->f8);
     }
-    return ((C_001673B0_Base *)this)->func_001D3F50();
+    return self->func_001D3F50();
+
+useFound:
+    if (found) {
+        self->func_00166CA0(found, arg4);
+        if (self->f8) {
+            self->f8->func_001691E0();
+            func_001E891B(self->f8);
+        }
+        return self;
+    }
+    return 0;
 }
 
 C_001676D0 *C_001676D0::func_001676D0(int n)
@@ -534,9 +540,16 @@ void C_001677B0::func_001677B0(int a0) {
 void C_001677C0::func_001677C0(C_001677C0_Dst *dst)
 {
     C_001677C0 * volatile self = this;
+    __m128 * volatile s;
+    __m128 * volatile d;
 
     dst->f50 = self->f24;
-    dst->blk = self->f24->blk;
+    s = (__m128 *)&self->f24->blk;
+    d = (__m128 *)&dst->blk;
+    d[0] = s[0];
+    d[1] = s[1];
+    d[2] = s[2];
+    d[3] = s[3];
     dst->blk.m[3] = 0.5f;
     dst->blk.m[7] = 0.5f;
     dst->v54 = V4_001677C0(1.0f, 1.0f, 1.0f, 0.3f);
