@@ -8,7 +8,7 @@ struct S_002F6A38 {
 };
 extern S_002F6A38 D_002F6A38;
 extern int D_00295C04;
-int func_001EEE49(...);
+extern "C" char *func_001EEE49(int n);
 
 
 /* 8-byte value object used by the 'A'..'N' parser helpers. */
@@ -153,6 +153,7 @@ int S_001EF734::func_001EF1E7(void)
 
 void *_func_001EF9D9(S_001EF734 *o)
 {
+    /* probe: ellipsis-only callee declaration */
     S_001EF734 local;
     char c = *D_002F6A28;
     if (c != 0) {
@@ -358,6 +359,7 @@ void *_func_001EFDB9(void *out, int v)
     char *q = 0;
     char c;
     unsigned dim;
+    S_001EF734 *r;
 
     if (*D_002F6A28 == 'Q') {
         q = D_00295C0C;
@@ -366,18 +368,12 @@ void *_func_001EFDB9(void *out, int v)
     c = *D_002F6A28;
     if (c == 0) {
         o->func_001EF170(2);
-    } else if (c >= '0' && c <= '9') {
-        S_001EF734 *r;
-
-        if (q != 0) {
-            r = (S_001EF734 *)_func_001EFD19(&slot[1], q, slot[2].func_001EF848(*D_002F6A28++ - '/'));
-        } else {
-            r = slot[0].func_001EF848(*D_002F6A28++ - '/');
-        }
-        o->func_001EEEE6(r);
+        return out;
+    }
+    if (c >= '0' && c <= '9') {
+        dim = *D_002F6A28++ - '/';
+        v = 0;
     } else {
-        S_001EF734 *r;
-
         dim = 0;
         while (c != '@') {
             if (c == 0) {
@@ -397,21 +393,21 @@ void *_func_001EFDB9(void *out, int v)
             o->func_001EF170(1);
             return out;
         }
-        if ((char)v != 0) {
-            if (q != 0) {
-                r = (S_001EF734 *)_func_001EFD19(&slot[1], q, slot[0].func_001EF88F(dim));
-            } else {
-                r = slot[2].func_001EF88F(dim);
-            }
-        } else {
-            if (q != 0) {
-                r = (S_001EF734 *)_func_001EFD19(&slot[1], q, slot[0].func_001EF848(dim));
-            } else {
-                r = slot[2].func_001EF848(dim);
-            }
-        }
-        o->func_001EEEE6(r);
     }
+    if ((char)v != 0) {
+        if (q != 0) {
+            r = (S_001EF734 *)_func_001EFD19(&slot[1], q, slot[0].func_001EF88F(dim));
+        } else {
+            r = slot[2].func_001EF88F(dim);
+        }
+    } else {
+        if (q != 0) {
+            r = (S_001EF734 *)_func_001EFD19(&slot[1], q, slot[0].func_001EF848(dim));
+        } else {
+            r = slot[2].func_001EF848(dim);
+        }
+    }
+    o->func_001EEEE6(r);
     return out;
 }
 
