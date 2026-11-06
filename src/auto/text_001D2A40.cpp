@@ -270,7 +270,7 @@ struct C_001D3690 {
 };
 
 extern float D_0028F26C;
-extern float D_002779FC;
+extern const float D_002779FC;
 extern char D_0028F45C;
 void *__cdecl func_001E8A44(unsigned int);
 void *__stdcall func_001FFE40(int);
@@ -347,6 +347,58 @@ void C_001D2A40::func_001D2A40()
     }
 }
 
+void __stdcall func_001D3300(int param, int unused)
+{
+    S_001D3300_Arg *a = (S_001D3300_Arg *)param;
+    C_001D2A40 *obj = a->obj;
+    int r;
+    r = func_001DDDD6(a->h, 0x11);
+    while (r != 0) {
+        if (r == 0x102) {
+            func_001DE70D(a->lock);
+            obj->func_001D2A40();
+            if (a->cb)
+                a->cb(a->cbArg);
+            func_002025D0(0);
+            func_001DE733(a->lock);
+        }
+        r = func_001DDDD6(a->h, 0x11);
+    }
+    func_001DE7C2(0);
+}
+
+void C_001D3480::func_001D3480()
+{
+ if (fc) {
+  int desc[7];
+  int rect[4];
+  volatile int point[2];
+  void *surface = func_001FFE40(0);
+  func_002011F0(surface, desc);
+  C_001D6AD0 *obj = (C_001D6AD0 *)func_001E8A44(0x110);
+  if (obj) obj = obj->func_001D6AD0(0);
+  else obj = 0;
+  f50 = obj;
+  obj->fb8 = func_001FCF20(640,448,1,1,0,desc[0],3);
+  void *dest = func_001FCE50(f50->fb8,0);
+  rect[0]=0;
+  rect[2]=640;
+  rect[1]=(int)D_0028F26C;
+  rect[3]=(int)(D_0028F26C+D_002779FC);
+  point[0]=0; point[1]=0;
+  func_001FFF40(surface,rect,1,dest,(void *)point);
+  func_00201100(dest);
+  func_00201100(surface);
+  f50->f8=640; f50->fc=448; f50->fa4=desc[0]; f50->fa8=1;
+ }
+ f20=this;
+ f24=func_001DDBC7(0,0,0,&D_0028F45C);
+ RtlInitializeCriticalSection((char *)this+0x30);
+ f4c=-1;
+ f1c=func_001DE8C7(0,0,(void *)func_001D3300,&f20,0,0);
+ f18=1;
+}
+
 void C_001D35E0::func_001D35E0()
 {
     vtbl = (void *)&D_0028F274;
@@ -418,9 +470,11 @@ void C_001D3700::func_001D3700(int param_1, int param_2)
   return;
 }
 
+extern "C" void _ReadWriteBarrier(void);
+#pragma intrinsic(_ReadWriteBarrier)
 int C_001D3690::func_001D3730(int a)
 {
-    struct { C_001D3690 * volatile self; int v; float t; int * volatile p; } L;
+    struct { C_001D3690 * volatile self; int v; union { float t; int n; }; int * volatile p; } L;
     int r;
 
     L.self = this;
@@ -428,8 +482,10 @@ int C_001D3690::func_001D3730(int a)
         f48 = 1;
         D_002F07B8->func_001C3D40(0);
         L.p = &L.v;
-        L.t = (float)(a << 15) * D_002755E0;
+        L.n = a << 15;
+        L.t = (float)L.n * D_002755E0;
         r = _mm_cvtss_si32(*(__m128 *)&L.t);
+        _ReadWriteBarrier();
         *L.p = r;
         func_002598A0(L.self->f44, 0, L.v);
         return L.self->f48;
@@ -437,7 +493,6 @@ int C_001D3690::func_001D3730(int a)
     f48 = 0;
     return L.self->f48;
 }
-
 void C_001D3690::func_001D37C0()
 {
     f48 = 0;
