@@ -90,7 +90,7 @@ struct S_3AE40_List {
 struct C_3AE40 {
     char pad0[0x484]; int f484; char pad488[0x5A0-0x488]; S_3AE40_List list;
     unsigned short func_00038A70(void *p, int *o);
-    void func_0003AE40(S_3AE40_Rec *dst);
+    void func_0003AE40(S_3AE40_Rec * volatile dst);
 };
 extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
 extern char D_00276EEC[];
