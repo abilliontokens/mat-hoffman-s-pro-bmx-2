@@ -527,9 +527,9 @@ int C_001A1860::func_001A1860(S_001A1860_Buf buf, S_001A1860_Quad q70, S_001A186
         goto fail;
     }
     if ((a18 & 2) == 0 || (a18 & 4) != 0 || a21 != 0) {
-        unk1A0 |= 4;
+        unk1A0_2 = 1;
     }
-    unk1A0 ^= ((a22 << 3) ^ unk1A0) & 8;
+    unk1A0_3 = a22;
     unk3C = buf;
     unk70 = q70;
     unk80 = q80;
