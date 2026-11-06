@@ -56,11 +56,6 @@ struct E7_124 {
     int func_000BBDF0();
 };
 
-static __forceinline int E7_IsDefaultName(const char *s)
-{
-    return memcmp(s, D_0027E83C, sizeof(D_0027E83C)) == 0;
-}
-
 struct C_000E7AD0 {
     char pad0[0x124];
     E7_124 *f124;
