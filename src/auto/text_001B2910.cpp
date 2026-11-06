@@ -29,6 +29,12 @@ struct S_001B3560 {
 struct S_001B2CD0_Px {
     unsigned short lo;
     unsigned char hi;
+    S_001B2CD0_Px &operator=(const S_001B2CD0_Px &o)
+    {
+        lo = o.lo;
+        hi = o.hi;
+        return *this;
+    }
 };
 #pragma pack(pop)
 
@@ -207,6 +213,97 @@ int func_001B2C40(int param_1)
 int func_001B2CB0(int param_1)
 {
     return func_001B2910(param_1) / 8;
+}
+
+extern "C" void *memcpy(void *d, const void *s, unsigned int n);
+int func_001B2CD0(S_001B3560 *item, int a)
+{
+    unsigned int size;
+    int pixels;
+    unsigned char *p;
+    unsigned char *end;
+    int count;
+
+    pixels = item->fE * item->f10;
+    size = pixels * 3;
+    if (size > (unsigned int)item->f18) {
+        if (item->f14 != 0) {
+            func_001E8390(item->f14);
+        }
+        item->f14 = 0;
+        item->f18 = 0;
+    }
+    if (item->f14 == 0) {
+        item->f14 = func_001E8AA5(size);
+        if (item->f14 == 0) {
+            return 0;
+        }
+        item->f18 = size;
+    }
+    p = (unsigned char *)item->f14;
+    end = p + size;
+    if (item->f2 == 2) {
+        if (D_002BEAAC->func_0013C8A0(a, p, 3, pixels) != pixels) {
+            return 0;
+        }
+    } else if (p < end) {
+        do {
+            unsigned char hdr;
+            D_002BEAAC->func_0013C8A0(a, &hdr, 1, 1);
+            count = hdr;
+            if (count & 0x80) {
+                S_001B2CD0_Px px;
+                count &= 0x7f;
+                if (D_002BEAAC->func_0013C8A0(a, &px, 3, 1) != 1) {
+                    return 0;
+                }
+                do {
+                    *(S_001B2CD0_Px *)p = px;
+                    p += 3;
+                } while (count-- != 0);
+            } else {
+                count++;
+                if (D_002BEAAC->func_0013C8A0(a, p, 3, count) != count) {
+                    return 0;
+                }
+                p += count * 3;
+            }
+        } while (p < end);
+    }
+    if (!(item->f13 & 0x20)) {
+        int stride;
+        int i;
+        unsigned char *top = (unsigned char *)item->f14;
+        unsigned char *bot = top + (item->f10 - 1) * item->fE * 3;
+        unsigned char *tmp;
+
+        if (item->f120 != 0 && (unsigned int)item->f124 < (unsigned int)(item->fE * 3)) {
+            func_001E8390((void *)item->f120);
+            item->f124 = 0;
+            item->f120 = 0;
+        }
+        if (item->f120 == 0) {
+            item->f120 = (int)func_001E8AA5(item->fE * 3);
+            if (item->f120 == 0) {
+                return 0;
+            }
+            item->f124 = item->fE * 3;
+        }
+        tmp = (unsigned char *)item->f120;
+        for (i = 0; i < item->f10 / 2; i++) {
+            stride = item->fE * 3;
+            memcpy(tmp, top, stride);
+            stride = item->fE * 3;
+            memcpy(top, bot, stride);
+            stride = item->fE * 3;
+            memcpy(bot, tmp, stride);
+            stride = item->fE * 3;
+            bot -= stride;
+            top += stride;
+        }
+        item->f13 |= 0x20;
+    }
+    return 1;
 }
 
 S_001B3560 *func_001B33A0(int a, int b)
