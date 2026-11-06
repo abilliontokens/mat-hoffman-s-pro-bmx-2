@@ -116,7 +116,7 @@ extern const float D_002756B8;
 
 extern void *D_002A8490;
 extern Obj13F50 *D_002AF44C;
-static inline int IsLocal_151F0()
+static __forceinline int IsLocal_151F0()
 {
     char *p = *(char **)((char *)D_002A8490 + 0x2a4);
     return p != 0 && *(int *)(p + 0x1c8) == 0;
@@ -234,8 +234,9 @@ int AIPedFleeState::func_00014EF0(float dt)
         AIPedFleeState *self;
         float dist;
         int idx;
+        volatile float sq;
+        volatile float len;
     } L;
-    float len;
 
     L.self = this;
     if (*(int *)(*(int *)((char *)D_002A8490 + 0x2a4) + 0x1c8) == 1)
@@ -253,8 +254,9 @@ int AIPedFleeState::func_00014EF0(float dt)
         float dx = *(float *)((char *)L.self + 0xc) - o[0];
         float dy = *(float *)((char *)L.self + 0x10) - o[1];
         float dz = *(float *)((char *)L.self + 0x14) - o[2];
-        len = Sqrt_14EF0(dz * dz + dy * dy + dx * dx);
-        if (len < D_00275600) {
+        L.sq = dz * dz + dy * dy + dx * dx;
+        L.len = sqrtf(L.sq);
+        if (L.len < D_00275600) {
             if (*(unsigned int *)((char *)D_002A8490 + 0x238) <= *(unsigned int *)((char *)L.self + 0x1c))
                 return 1;
             L.self->func_00012B00(0);
