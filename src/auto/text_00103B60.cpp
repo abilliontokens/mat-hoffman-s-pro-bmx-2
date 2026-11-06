@@ -146,14 +146,6 @@ struct V4_00104A00 {
     float y;
     float z;
     float w;
-    V4_00104A00() {}
-    V4_00104A00(float ax, float ay, float az, float aw)
-    {
-        x = ax;
-        y = ay;
-        z = az;
-        w = aw;
-    }
 };
 
 static float fabs_00104A00(float x)
