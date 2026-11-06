@@ -306,11 +306,18 @@ bool C_00089040::func_00089040(void)
 
 C_000891A0 *C_000891A0::func_000891A0(int unused)
 {
+    int i;
     ((C_00157600 *)this)->func_00157600(1);
     vtbl = &D_00279A44;
-    memset(&f24, 0, 0x10);
-    memset(fA0, 0, sizeof(fA0));
-    memset(fE0, 0, sizeof(fE0));
+    for (i = 0; i < 4; i++) {
+        f24[i] = 0;
+    }
+    for (i = 0; i < 16; i++) {
+        fA0[i] = 0;
+    }
+    for (i = 0; i < 16; i++) {
+        fE0[i] = 0;
+    }
     f120 = 0;
     f124 = 0;
     f12C = 0;
