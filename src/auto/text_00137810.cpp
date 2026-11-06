@@ -21,7 +21,7 @@ struct FileSys {
     int func_0013AFF0(int h, int pos, int whence);
     void func_0013C110(int h);
 };
-struct CubeSub { CubeSub *func_00136AD0(); void func_001365B0(int h, int a); };
+struct CubeSub { CubeSub *func_00136AD0(); void *func_001365B0(int h, int a); };
 struct CubeSub2 { void func_0014A520(void *p); void func_0014A560(void *p, int a); };
 struct CubeSub3 { CubeSub3 *func_00142C70(); void func_00142C80(void *p, int a); };
 struct CubeSub4 { void *func_00135150(int h); };
