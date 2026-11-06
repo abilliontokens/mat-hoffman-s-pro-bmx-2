@@ -64,6 +64,11 @@ extern const float D_002756B8;
 
 extern void *D_002A8490;
 extern Obj13F50 *D_002AF44C;
+static inline int IsLocal_151F0()
+{
+    char *p = *(char **)((char *)D_002A8490 + 0x2a4);
+    return p != 0 && *(int *)(p + 0x1c8) == 0;
+}
 
 void func_001E891B(void *ptr);
 int func_00011260(int arg1, int arg2);
