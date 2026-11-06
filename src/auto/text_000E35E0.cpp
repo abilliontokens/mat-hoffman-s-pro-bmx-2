@@ -92,10 +92,9 @@ struct C_000E3D30_Item {
     char pad3C[0x1C];
     unsigned char flags;
     /* defined in the class (the compiler inlines it into the first calls only) */
-    void SetFlag(int m) { flags |= m; }
     void func_00051120(short a) {
         w38 = ((int)a << 24) | (w38 & 0xffffff);
-        SetFlag(2);
+        flags |= 2;
     }
     void func_001D5AD0();
 };
