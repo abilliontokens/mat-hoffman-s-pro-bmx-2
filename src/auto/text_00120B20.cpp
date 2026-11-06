@@ -23,12 +23,6 @@ void func_0001C680(S_0011F4B0_V4 *out, S_0011F4B0_V4 v, float *m);
 extern S_0011F4B0_V4 D_002A3C3C[3];
 extern S_0011F4B0_V4 D_002B9350[15];
 extern float D_00275544;
-void func_00030AC0(float *out, float *a, float *m);
-void func_0001C680(S_0011F4B0_V4 *out, S_0011F4B0_V4 v, float *m);
-
-extern S_0011F4B0_V4 D_002A3C3C[3];
-extern S_0011F4B0_V4 D_002B9350[15];
-extern float D_00275544;
 
 static __forceinline void Cross_00120FF0(S_0011F4B0_V4 *a, S_0011F4B0_V4 *b, S_0011F4B0_V4 *out)
 {
