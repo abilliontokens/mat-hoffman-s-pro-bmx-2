@@ -187,9 +187,9 @@ static __forceinline void identity_ref_00026960(S_00026960_Mat *&p)
 
 static __forceinline float min_ss_00026A10(float a, float b)
 {
-    float r;
-    _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&b), _mm_load_ss(&a)));
-    return r;
+    union { __m128 v; float f; } u;
+    u.v = _mm_min_ss(_mm_load_ss(&b), _mm_load_ss(&a));
+    return u.f;
 }
 
 struct C_00026500 {
@@ -398,12 +398,9 @@ void C_000269B0::func_000269B0(float a, float b, float c)
 
 float C_00026A10::func_00026A10(float a, float b)
 {
-    C_00026A10 * volatile self = this;
-    float t = min_ss_00026A10(f4, b);
-
-    self->f8 = t / self->f4;
-    self->f0 = (a - self->f0) * self->f8 + self->f0;
-    return self->f0;
+    f8 = clamp_min_000261F0(b, f4) / f4;
+    f0 = (a - f0) * f8 + f0;
+    return f0;
 }
 
 undefined4 C_00026A70::func_00026A70(int param_1)
