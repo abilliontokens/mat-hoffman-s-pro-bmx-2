@@ -67,6 +67,35 @@ static inline Vec4_0017F2B0 Vec4Make_0017F2B0(f32 x, f32 y, f32 z) {
 }
 int func_00123770(Vec4_0017F2B0 *a, Vec4_0017F2B0 *b, void *c, Vec4_0017F2B0 *d, Vec4_0017F2B0 *e, void *f);
 
+/* collision result accumulator pointed to by D_002B92EC */
+struct S_002B92EC_Result {
+    char pad0[0x20];
+    Vec4_0017F2B0 f20;
+    Vec4_0017F2B0 f30;
+    Vec4_0017F2B0 f40;
+    Vec4_0017F2B0 f50;
+    Vec4_0017F2B0 f60;
+    char pad70[4];
+    Vec4_0017F2B0 *f74;
+    Vec4_0017F2B0 *f78;
+    int f7C;
+    int f80;
+    int *f84;
+    char pad88[0x10];
+    u8 f98;
+};
+extern S_002B92EC_Result *D_002B92EC;
+extern Vec4_0017F2B0 D_002A8EE8;
+
+void func_0001C680(Vec4_0017F2B0 *out, Vec4_0017F2B0 v, float *m);
+Vec4_0017F2B0 *func_000110E0(Vec4_0017F2B0 *out, Vec4_0017F2B0 *a, Vec4_0017F2B0 *b);
+int func_00129350(int a0, int a1, S_0017F550_Pair *a2, S_0017F550_Pair *a3, float *a4, float *a5, int a6, char *a7);
+int func_00123980(char *a, int b, int c, int d, S_0017F550_Pair *e, float *f, int g);
+int func_00123C80(char *a, int b, float *c, int d, S_0017F550_Pair *e, float *f);
+
+static __forceinline float Min_0017F550(float a, float b) { float r; _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
+static __forceinline float Max_0017F550(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
+
 struct S_0017FDB0_Node {
     char pad0[8];
     u16 f8;
