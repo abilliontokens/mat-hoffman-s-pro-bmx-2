@@ -1,6 +1,7 @@
 /* 7 functions from 0x0004D7A0 to 0x0004E680, found by Ghidra. */
 #include "common.h"
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 
 void *func_001E8A44(unsigned int);
 struct C_0004E480_Object {
@@ -456,6 +457,11 @@ int C_0004DCA0::func_0004DDB0(float dt)
         }
     }
     return 1;
+}
+
+extern float D_00277630, D_00277620, D_00277610;
+void func_0004E410(float *out, float *in) {
+    AsmVec3Normalize(out, in);
 }
 
 void C_0004E480::func_0004E480() {
