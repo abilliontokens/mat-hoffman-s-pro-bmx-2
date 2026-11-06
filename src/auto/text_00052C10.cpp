@@ -230,6 +230,7 @@ struct C_52F90_2E0 {
 struct C_52F90_Net {
     char pad0[0x11b8];
     int f11B8;
+    char pad11BC[4];
     int f11C0;
 };
 struct C_52F90_2E8 {
@@ -577,7 +578,6 @@ int C_52D90::func_00052D90()
 int C_52F90::func_00052F90(int a)
 {
     char buf[0x104];
-    C_52F90_Root *root = (C_52F90_Root *)D_002A8490;
     int flag = 1;
 
     if (f1C8) {
@@ -606,15 +606,15 @@ int C_52F90::func_00052F90(int a)
                 f64->f4E0->f1A8->f1214 != 0 &&
                 f290->f63C == 0) {
                 func_001ADCC0(buf, 0x104, D_00277A70,
-                              (const char *)root->f2E8->f4->f11C0,
-                              root->f2E8->f4->f11B8);
+                              (const char *)((C_52F90_Root *)D_002A8490)->f2E8->f4->f11C0,
+                              ((C_52F90_Root *)D_002A8490)->f2E8->f4->f11B8);
                 f170->func_00083A70(buf);
                 ((C_52F90_VT6 *)f1B8)->v5(flag);
                 f290->f63C = flag;
             }
             if (f16C) {
                 if (f28C == 0) {
-                    C_52F90_2E0 *p = root->f2E0;
+                    C_52F90_2E0 *p = ((C_52F90_Root *)D_002A8490)->f2E0;
                     if (p->f20 == 0) {
                         if (f128 <= D_00275544)
                             f28C = 1;
@@ -625,7 +625,7 @@ int C_52F90::func_00052F90(int a)
                 flag = 0;
                 if (f64->f4E0->f1A8->func_00108660()) {
                     f128 = 0.0f;
-                    f124 = root->f2E0->f10;
+                    f124 = ((C_52F90_Root *)D_002A8490)->f2E0->f10;
                     flag = 1;
                 }
                 if (f28C) {
@@ -643,7 +643,7 @@ int C_52F90::func_00052F90(int a)
                             f16C->func_00064A40();
                             ((C_52F90_VT40 *)this)->v39();
                         }
-                        root->f4->func_0001D330();
+                        ((C_52F90_Root *)D_002A8490)->f4->func_0001D330();
                         f64->f4C0->v28();
                         if (f1C4 != 0)
                             f1C4->func_001041C0();
