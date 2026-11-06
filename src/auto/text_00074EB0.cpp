@@ -40,8 +40,8 @@ struct Text_75170 {
     void func_001B1860(float, float, int, float, float, float, float, int, float, float, float, float, float);
 };
 struct Mode_75170 { char pad0[0x90]; int f90; };
-struct Player_75170 { char pad0[0x6CC]; int f6CC, f6D0; u32 f6D4; int f6D8; };
-struct Shared_75170 { char pad0[0x76C]; int f76C, f770; u32 f774; int f778; };
+struct Player_75170 { char pad0[0x6CC]; int f6CC, f6D0, f6D4, f6D8; };
+struct Shared_75170 { char pad0[0x76C]; int f76C, f770, f774, f778; };
 struct Root_75170 { char pad0[0x4E4]; Player_75170 *f4E4[17]; Shared_75170 *f528; };
 extern Root_75170 *D_002B9120;
 extern char D_00278DE4[], D_00278DD8[], D_00277038[], D_00278DD0[];
@@ -347,7 +347,7 @@ void C_00075170::func_00075170()
                 if (D_002B9120->f528->f774 == 0) {
                     unk16C[1] = 0;
                 } else {
-                    unk16C[1] = Percent_75170(D_002B9120->f4E4[0]->f6D8, D_002B9120->f528->f774);
+                    unk16C[1] = (int)((double)D_002B9120->f4E4[0]->f6D8 * D_00275994 / (double)(int)D_002B9120->f528->f774);
                 }
             } else {
                 func_001ADCC0(num, 0x104, D_00277038, i + 1);
@@ -358,7 +358,7 @@ void C_00075170::func_00075170()
                 if (D_002B9120->f4E4[i]->f6D4 == 0) {
                     unk16C[i] = 0;
                 } else {
-                    unk16C[i] = Percent_75170(D_002B9120->f528->f778, D_002B9120->f4E4[i]->f6D4);
+                    unk16C[i] = (int)((double)D_002B9120->f528->f778 * D_00275994 / (double)(int)D_002B9120->f4E4[i]->f6D4);
                 }
             }
             SETUP_LABEL(unk64[i]);
