@@ -45,7 +45,6 @@ typedef void (C_000B4300::*B4300_Cb)(void);
 struct S_B4300_Mgr {
     int func_0018E740(void *obj, const char *name);
     void func_0018CF40(int id, B4300_Cb cb, const char *a, const char *b, const char *c, int d);
-    void func_0018CF40(int id, int cb, const char *a, const char *b, const char *c, int d);
     void func_0018D330(int id, int k, const char *a, const char *b);
     void func_00191270(void *obj, const char *name, S_B4300_Stream *s, char *buf);
 };
