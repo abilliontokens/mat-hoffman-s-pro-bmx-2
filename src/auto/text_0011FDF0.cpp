@@ -30,10 +30,7 @@ struct S_001206E0_Hit {
 extern S_001206E0_Hit *D_002B92EC;
 static __forceinline void Cross_0011FF30(S_0011F4B0_V4 *out, S_0011F4B0_V4 *a, S_0011F4B0_V4 *b)
 {
-    __m128 va = _mm_loadu_ps(&a->x);
-    __m128 vb = _mm_loadu_ps(&b->x);
-    __m128 r = _mm_sub_ps(_mm_mul_ps(va, _mm_shuffle_ps(vb, vb, 0xc9)), _mm_mul_ps(vb, _mm_shuffle_ps(va, va, 0xc9)));
-    _mm_storeu_ps(&out->x, _mm_shuffle_ps(r, r, 0xc9));
+    _mm_storeu_ps(&out->x, _mm_shuffle_ps(_mm_sub_ps(_mm_mul_ps(_mm_loadu_ps(&a->x), _mm_shuffle_ps(_mm_loadu_ps(&b->x), _mm_loadu_ps(&b->x), 0xc9)), _mm_mul_ps(_mm_loadu_ps(&b->x), _mm_shuffle_ps(_mm_loadu_ps(&a->x), _mm_loadu_ps(&a->x), 0xc9))), _mm_sub_ps(_mm_mul_ps(_mm_loadu_ps(&a->x), _mm_shuffle_ps(_mm_loadu_ps(&b->x), _mm_loadu_ps(&b->x), 0xc9)), _mm_mul_ps(_mm_loadu_ps(&b->x), _mm_shuffle_ps(_mm_loadu_ps(&a->x), _mm_loadu_ps(&a->x), 0xc9))), 0xc9));
 }
 
 
