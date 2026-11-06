@@ -95,6 +95,10 @@ struct C_00032E90 {
 };
 
 struct V4_00032E50;
+struct V3_00032F50 {
+    float x, y, z;
+    V3_00032F50(float a, float b, float c) { x = a; y = b; z = c; }
+};
 struct O_Cam32F50 {
     char pad0[0x28];
     char name[0x198];
@@ -102,6 +106,7 @@ struct O_Cam32F50 {
     float f1c4;
     float f1c8;
     V4_00032E50 func_001824E0(float x, float y, float z);
+    V4_00032E50 func_001824E0(V3_00032F50 v);
 };
 struct O_Obj32F50 { char pad0[8]; O_Cam32F50 *f8; };
 extern V4_00032E50 D_002A1460;
