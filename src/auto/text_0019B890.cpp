@@ -42,6 +42,17 @@ struct C_0019BA70 {
 
 struct S_0019BBD0_Tree { char *nodes; char *leaves; };
 struct S_0019BBD0_Vec { float x, y, z, w; };
+struct S_0019BBD0_V4 {
+    float x, y, z, w;
+    S_0019BBD0_V4()
+    {
+        z = 0.0f;
+        y = 0.0f;
+        x = 0.0f;
+        w = 1.0f;
+    }
+};
+void func_00030AC0(float *out, float *v, float *m);
 void func_0011F0E0(S_0019BBD0_Vec *a, S_0019BBD0_Vec *b, S_0019BBD0_Vec *c, void *leaf, void *p);
 void __stdcall func_00011FF0(void *base, int count, int size, void *cmp);
 int func_00011060(const void *a, const void *b);
@@ -246,6 +257,34 @@ void C_0019BA70::func_0019B890(void)
     obj[0] = t[0] * D_0028B248 + obj[0];
     obj[1] = t[1] * D_0028B248 + obj[1];
     obj[2] = t[2] * D_0028B248 + obj[2];
+}
+
+void C_0019BA70::func_0019BA70()
+{
+    float *volatile saved = (float *)(f54 + 0x10);
+    float *v = (float *)(f54 + 0x10);
+    volatile float x=0.0f, y=0.0f, z=0.0f, w=1.0f;
+    v[0]=x; v[1]=y; v[2]=z; v[3]=w;
+    for(int i=D_002B92F0;i<D_002B92E0;++i) {
+        v[0]=D_002B9448[i*4-2]+v[0];
+        v[1]=D_002B9448[i*4-1]+v[1];
+        v[2]=D_002B9448[i*4]+v[2];
+    }
+    float *volatile in = v;
+    float *volatile out = v;
+    __m128 a=_mm_loadu_ps(in);
+    __m128 b=_mm_mul_ps(a,a);
+    __m128 c=_mm_add_ss(_mm_movehl_ps(b,b),b);
+    c=_mm_add_ss(c,_mm_shuffle_ps(b,b,0xe1));
+    __m128 d=_mm_load_ss(&D_0028B1B0);
+    c=_mm_add_ss(c,_mm_and_ps(_mm_cmplt_ss(c,d),d));
+    __m128 r=_mm_rsqrt_ss(c);
+    c=_mm_mul_ss(c,r);
+    c=_mm_mul_ss(c,r);
+    r=_mm_mul_ss(r,_mm_load_ss(&D_0028B190));
+    r=_mm_mul_ss(r,_mm_sub_ss(_mm_load_ss(&D_0028B1A0),c));
+    _mm_storeu_ps(out,_mm_mul_ps(_mm_shuffle_ps(r,r,0),a));
+    D_002B92F0=D_002B92E0;
 }
 
 void SoultreeCollisionObject::func_0019BB80(void *arg1)
