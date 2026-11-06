@@ -54,8 +54,8 @@ struct S_00173B00_Rig {
     int f1b4;
 };
 
-static __forceinline float Min_00173B00(float a, float b) { float r; __m128 x = _mm_load_ss(&a); __m128 y = _mm_load_ss(&b); _mm_store_ss(&r, _mm_min_ss(x, y)); return r; }
-static __forceinline float Max_00173B00(float a, float b) { float r; __m128 x = _mm_load_ss(&a); __m128 y = _mm_load_ss(&b); _mm_store_ss(&r, _mm_max_ss(x, y)); return r; }
+static __forceinline float Min_00173B00(float a, float b) { float r; _mm_store_ss(&r, _mm_min_ss(*(__m128 *)&a, *(__m128 *)&b)); return r; }
+static __forceinline float Max_00173B00(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(*(__m128 *)&a, *(__m128 *)&b)); return r; }
 float func_00011170(float *v);
 
 extern Vec4 D_002EF740;
@@ -135,6 +135,51 @@ struct C_00174550 {
     void func_00174550(int a0, int a1, int a2);
 };
 
+
+int PhObj::func_00173B00(float dt)
+{
+    if (D_002A8490->f124 != 0)
+        return 1;
+    f124 = 0.0f;
+    f128 = 0.0f;
+    if (fc4->f1b4 != 0) {
+        if (f30 != 0 && f34 != 0) {
+            func_001724B0(dt);
+            f124 = func_00011170(&fc4->f6c.x);
+            f128 = func_00011170(&fc4->f7c.x);
+        } else if (f30 == 0 || f34 == 0) {
+            ((S_00173B00_Obj *)fcc)->v13(dt);
+            float total = 0.0f;
+            float step = Min_00173B00(dt, D_002A8BEC);
+            *(Vec4 *)&fb4 = D_002A8BA0;
+            while (D_00275544 < dt) {
+                ((S_00173B00_Obj *)this)->v28(step);
+                ((S_00173B00_Obj *)fd0)->v13(step);
+                if (fabs(fc4->f170) > fabs(fb4)) fb4 = fc4->f170;
+                if (fabs(fc4->f174) > fabs(fb8)) fb8 = fc4->f174;
+                if (fabs(fc4->f178) > fabs(fbc)) fbc = fc4->f178;
+                ((S_00173B00_Obj *)fc4)->v13(step);
+                f124 = Max_00173B00(f124, Sqrt_001743A0(fc4->f6c.x * fc4->f6c.x + fc4->f6c.y * fc4->f6c.y + fc4->f6c.z * fc4->f6c.z));
+                f128 = Max_00173B00(f128, Sqrt_001743A0(fc4->f7c.x * fc4->f7c.x + fc4->f7c.y * fc4->f7c.y + fc4->f7c.z * fc4->f7c.z));
+                total += step;
+                step = Min_00173B00(D_002A8BEC, dt - total);
+                if (!(total < dt)) break;
+            }
+            func_001729D0();
+            func_00172000();
+            fd4->func_00133ED0();
+            fd8->func_00133ED0();
+            if (f30 != 0) {
+                if (fd0->f30 != 0) f11c = 0.0f;
+                else f11c += dt;
+                if (f11c > f120) f34 = 1;
+            }
+        }
+        func_001730B0(dt);
+    }
+    f38 = 0;
+    return func_00157A00(dt);
+}
 
 PhysicsRigidBody *PhysicsRigidBody::func_00173F70(Vec4 a, Vec4 b, Vec4 c, int a12, int a13, int a14, int a15, int a16)
 {
