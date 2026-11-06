@@ -5,7 +5,7 @@ struct AirMotion { void func_00197B40(AirVec*,AirVec*); };
 struct AirBody {
  char pad0[0x8c]; float speed; float f90,f94; char pad98[0x140-0x98]; AirVec position;
  char pad150[0x210-0x150]; float f210; char pad214[0x18]; AirMotion *motion; char pad230[8]; AirVec direction; AirVec f248;
- char pad258[0x10]; AirVec velocity;
+ AirVec f258; AirVec velocity;
  void func_0001C710(AirVec);
 };
 struct AirRider {
