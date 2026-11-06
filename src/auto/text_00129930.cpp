@@ -2,6 +2,33 @@
 #include "common.h"
 #include "ghidra.h"
 
+struct S_00129A10_Arg {
+    char pad0[0x50];
+    int f50;
+    char pad54[0x54];
+    float fA8, fAC, fB0;
+    char padB4[0x4C];
+    float f100;
+    char pad104[8];
+    float f10C;
+};
+struct C_00129A10 {
+    char pad0[0xB0];
+    float fB0[4];
+    char padC0[0x30];
+    float fF0[4];
+    float f100[4];
+    int func_00129A10(S_00129A10_Arg *a);
+};
+void func_001225C0(void *a, void *b, void *c, void *d, void *e, void *f);
+void func_000264C0(void *a);
+void func_0011AC30(void *a, void *b);
+void func_0011ACC0(void *a, void *b, void *c);
+void func_00120FF0(void *a, void *b, void *c, void *d, void *e);
+void func_000110E0(void *a, void *b, void *c);
+void func_001C5E0(void *a, float b, void *c);
+void func_00011110(void *a, void *b, void *c);
+
 extern int D_00283F64;
 void func_001E891B(void *p);
 extern "C" void *__cdecl memset(void *dst, int val, unsigned int size);
