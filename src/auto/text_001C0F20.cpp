@@ -362,8 +362,8 @@ struct S_001C1520_Sprite {
     void SetUV(float x0, float x1, float y0, float y1) {
         rectSet = 1;
         f3c = x0 * f4c;
-        f40 = y0 * f4c;
-        f44 = x1 * f50;
+        f40 = x1 * f4c;
+        f44 = y0 * f50;
         f48 = y1 * f50;
     }
     S_001C1520_Sprite *func_001D5760();
