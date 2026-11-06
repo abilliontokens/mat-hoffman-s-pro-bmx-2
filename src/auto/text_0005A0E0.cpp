@@ -43,7 +43,7 @@ struct C_Mgr { C_Tex *func_00163DC0(C_Ini *ini, char *a, char *b); };
 extern C_Dev *D_002BEAAC;
 extern C_Mgr *D_002EF7D0;
 extern char D_00276C90[], D_002780CC[], D_002A4A00[], D_002780C0[], D_00277298[], D_00277288[], D_00277268[], D_00276C08[], D_002780AC[], D_002780A0[], D_002A5660[];
-extern const float D_002780BC;
+extern float D_002780BC;
 extern int D_001F4240;
 extern "C" int func_001ADCC0(char *buf, int n, char *fmt, ...);
 extern "C" void func_001DC974();
@@ -193,7 +193,8 @@ void __stdcall func_0005A480(int flag)
         func_001ADCC0(buf3, 0x104, D_00277268, i + 1);
         tex = D_002EF7D0->func_00163DC0(ini, buf3, D_002A4A00);
         if (tex) tex->cnt++;
-        n = (int)(f += D_002780BC);
+        f = f + D_002780BC;
+        n = (int)f;
         dlg->vC(D_00276C08, n, 0x10);
         dlg->v8(D_00276C08, n / 2 + 0x72, 0x187);
     }
@@ -222,7 +223,8 @@ void __stdcall func_0005A480(int flag)
         func_001ADCC0(buf3, 0x104, D_00277268, i + 1);
         tex = D_002EF7D0->func_00163DC0(ini2, buf3, D_002A5660);
         if (tex) tex->cnt++;
-        n = (int)(f += D_002780BC);
+        f = f + D_002780BC;
+        n = (int)f;
         dlg->vC(D_00276C08, n, 0x10);
         dlg->v8(D_00276C08, n / 2 + 0x72, 0x187);
     }
