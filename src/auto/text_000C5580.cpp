@@ -312,9 +312,11 @@ BmxUIPageParkEditor *BmxUIPageParkEditor::func_000C5D00(int a, int b, int c)
     return this;
 }
 
-void BmxUIPageParkEditor::func_000C5E40(void)
+void __fastcall func_000C5E40(BmxUIPageParkEditor *self)
 {
-    if (f124->getB()->f74->func_000301D0() == 0)
+    C_5E40_A *a = self->f124;
+
+    if (a->f25C->f74->func_000301D0() == 0)
         D_002B91AC->f38->func_001D6600();
     D_002B91AC->f80->func_001D6600();
     D_002B91AC->f84->func_001D6600();
