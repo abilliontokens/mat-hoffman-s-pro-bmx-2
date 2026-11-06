@@ -466,7 +466,7 @@ void C_001C10D0::func_001C10D0(void)
   }
   v7();
 }
-#pragma optimize("a", off)
+#pragma optimize("g", on)
 void C_001C1110::func_001C1110(void)
 {
   f2c = 0;
