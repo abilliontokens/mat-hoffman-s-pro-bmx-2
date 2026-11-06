@@ -49,6 +49,7 @@ static __forceinline float Dot_0012FE50(const V4_0012FE50 &a, const V4_0012FE50 
 }
 
 extern V4_0012FE50 D_002A4110;
+extern float D_002A4114, D_002A4118, D_002A411C;
 extern V4_0012FE50 D_002A4130;
 extern V4_0012FE50 D_002A4140;
 extern float D_00276080;
@@ -272,7 +273,7 @@ int C_0012FE50::func_0012FE50(float dt, int b)
         V4_0012FE50 o2;
         func_00030A30(&o2, d2, (char *)f400 + 0xf0);
         f4e0 = func_0014FBA0(o2.x, o2.z);
-        f4e0 = Min_0012FE50(Max_0012FE50(f4e0, -0.5235988f), 0.5235988f);
+        f4e0 = AsmMinF(AsmMaxF(f4e0, -0.5235988f), 0.5235988f);
     }
     V4_0012FE50 o;
     f400->func_00199A70(0, &o);
