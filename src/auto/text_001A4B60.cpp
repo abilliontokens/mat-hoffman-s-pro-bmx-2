@@ -90,12 +90,14 @@ struct C_SphereCollisionObject {
     char padB8[0x8];
     __declspec(align(16)) f32 matrix[16];
     int f100;
-    char pad104[0xC];
+    char pad104[0x4];
+    f32 f108;
+    f32 f10C;
     void *f110;
     void func_00133E60();
     void func_001A52D0(void *a);
     void func_001A5370(void);
-    void func_001A53C0(void *out);
+    void func_001A53C0(f32 *center, f32 *extent);
     void func_001A57E0(int a, int b, int c, int d, f32 r, void *e);
     void *func_001A57A0(unsigned int flags);
 };
@@ -174,6 +176,50 @@ struct C_001A52C0 {
     void func_001A52C0(void);
 };
 
+
+int C_001A4FC0::func_001A4FC0(char *a)
+{
+    char *self = (char *)this;
+    int bounds[2];
+    char *hit;
+    int i;
+    if (a[0x21] & 1) {
+    switch (*(int *)(a+0x50)) {
+    case 1:
+        if (!func_001225C0(a+0xa8,a+0xb8,self+0x28,*(int *)(self+0x100),*(int *)(self+0x104),a+0x130)) return 0;
+        for (i=0;i<*(int *)(a+0x190);i++) {
+            hit=(*(char ***)(a+0x1a0))[i];
+            bounds[1]=*(int *)(hit+0x1c8); bounds[0]=*(int *)(hit+0x1c4);
+            if (func_00123940(self+0x28,*(int *)(self+0x100),*(int *)(self+0x104),0,bounds,hit+0xb0,hit+0x1b0,1)) {
+                char *out=D_002B92EC;
+                *(Vec4 *)(out+0x14)=*(Vec4 *)(self+0x28);
+                for(i=0;i<*(int *)(out+4);i++) if (!((int *)(out+0x84))[i]) {
+                    func_0001C680(out+0x24+i*16,*(Vec4 *)(out+0x24+i*16),hit+0xb0);
+                    func_00030AC0((float *)(out+0x54+i*16),(float *)(out+0x54+i*16),(float *)(hit+0xb0));
+                    ((int *)(out+0x84))[i]=1;
+                }
+                return 1;
+            }
+        }
+        return 0;
+    case 0:
+        bounds[0]=*(int *)(a+0x1c4); bounds[1]=*(int *)(a+0x1c8);
+        hit=a+0xb0;
+        if (!func_00123940(self+0x28,*(int *)(self+0x100),*(int *)(self+0x104),0,bounds,hit,a+0x1b0,1)) return 0;
+        {
+            char *out=D_002B92EC;
+            *(Vec4 *)(out+0x14)=*(Vec4 *)(self+0x28);
+            for(i=0;i<*(int *)(out+4);i++) if (!((int *)(out+0x84))[i]) {
+                func_0001C680(out+0x24+i*16,*(Vec4 *)(out+0x24+i*16),hit);
+                func_00030AC0((float *)(out+0x54+i*16),(float *)(out+0x54+i*16),(float *)hit);
+                ((int *)(out+0x84))[i]=1;
+            }
+        }
+        return 1;
+    }
+    }
+    return 0;
+}
 
 void C_001A52C0::func_001A52C0(void)
 {
@@ -259,6 +305,36 @@ void *C_SphereCollisionObject::func_001A57A0(unsigned int flags)
     if (flags & 1)
         func_001E891B(this);
     return this;
+}
+
+void *func_001E8A44(unsigned int size);
+void C_SphereCollisionObject::func_001A57E0(int a, int b, int c, int d, f32 r, void *e)
+{
+    int *p = (int *)func_001E8A44(0x90);
+    if (p)
+        p = (int *)((C_001A5730 *)p)->func_001A5730();
+    p[0] = 3;
+    p[1] = 0;
+    f54 = p;
+    f110 = e;
+    fA8.x = a;
+    fA8.y = b;
+    fA8.z = c;
+    fA8.w = d;
+    *(f32 *)&f100 = r;
+    ((f32 *)&f100)[1] = r * r;
+    ((f32 *)&f100)[2] = 1.0f;
+    ((f32 *)&f100)[3] = 1.0f;
+    __m128 z = _mm_setzero_ps();
+    f32 *m = matrix;
+    _mm_store_ps(m, z);
+    _mm_store_ps(m + 4, z);
+    _mm_store_ps(m + 8, z);
+    _mm_store_ps(m + 12, z);
+    m[0] = 1.0f;
+    m[5] = 1.0f;
+    m[10] = 1.0f;
+    m[15] = 1.0f;
 }
 
 SplashScreenManager *SplashScreenManager::func_001A58D0(void *a)
