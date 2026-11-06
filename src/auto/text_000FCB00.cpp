@@ -8,7 +8,7 @@ extern "C" void *func_001E8A44(unsigned int size);
 struct Text_FCB00 {
     Text_FCB00 *func_001B12C0(int a);
     void func_001B13A0(char *a, char *b, int c, int d);
-    void func_001B1A30(int a, int b, int c);
+    void func_001B1A30(float a, float b, int c);
     void func_001B2270(unsigned int color);
     void func_001B19A0(int a);
     void func_001B17D0(char *a);
@@ -78,7 +78,8 @@ struct C_000FCB00 {
 
 extern S_000FCB00_Mgr2 *D_002A8490;
 
-C_000FCB00 *C_000FCB00::func_000FCB00(int a, int b, int c) {
+C_000FCB00 *C_000FCB00::func_000FCB00(int a, int b, int c)
+{
     const char *names[3] = {D_00278678, D_002786A0, D_00278690};
     int v;
     void *p;
@@ -89,5 +90,152 @@ C_000FCB00 *C_000FCB00::func_000FCB00(int a, int b, int c) {
     v = p ? *(int *)p : 0;
     D_002A8490->f2ec->func_0018C160((int)D_00278678);
     D_002A8490->f2ec->func_0018C160((int)D_002786A0);
+    D_002A8490->f2e0->func_0005B240();
+
+    {
+        Text_FCB00 *t = (Text_FCB00 *)func_001E8A44(0x184);
+        t = t ? t->func_001B12C0(1) : 0;
+        f2a8 = (int)t;
+        t->func_001B13A0(D_002786A0, D_002786A0, 0, 0x32);
+        ((Text_FCB00 *)f2a8)->func_001B1A30(540, 269, 0);
+        ((Text_FCB00 *)f2a8)->func_001B2270(0xffcccccc);
+        ((Text_FCB00 *)f2a8)->func_001B19A0(D_0028F5EC);
+        ((Text_FCB00 *)f2a8)->func_001B17D0(D_00282598);
+        func_001577A0((void *)f2a8, -1);
+    }
+    {
+        Text_FCB00 *t = (Text_FCB00 *)func_001E8A44(0x184);
+        t = t ? t->func_001B12C0(1) : 0;
+        f202c = (int)t;
+        t->func_001B13A0(D_002786A0, D_002786A0, 0, 0xa);
+        ((Text_FCB00 *)f202c)->func_001B1A30(605, 269, 0);
+        ((Text_FCB00 *)f202c)->func_001B2270(0xffcccccc);
+        ((Text_FCB00 *)f202c)->func_001B19A0(D_0028F5EC);
+        func_001577A0((void *)f202c, -1);
+    }
+    {
+        Text_FCB00 *t = (Text_FCB00 *)func_001E8A44(0x184);
+        t = t ? t->func_001B12C0(1) : 0;
+        f2b0 = (int)t;
+        t->func_001B13A0(D_002786A0, D_002786A0, 0, 0x32);
+        ((Text_FCB00 *)f2b0)->func_001B1A30(540, 293, 0);
+        ((Text_FCB00 *)f2b0)->func_001B2270(0xffcccccc);
+        ((Text_FCB00 *)f2b0)->func_001B19A0(D_0028F5EC);
+        ((Text_FCB00 *)f2b0)->func_001B17D0(D_00282580);
+        func_001577A0((void *)f2b0, -1);
+    }
+    {
+        Text_FCB00 *t = (Text_FCB00 *)func_001E8A44(0x184);
+        t = t ? t->func_001B12C0(1) : 0;
+        f2030 = (int)t;
+        t->func_001B13A0(D_002786A0, D_002786A0, 0, 0xa);
+        ((Text_FCB00 *)f2030)->func_001B1A30(605, 293, 0);
+        ((Text_FCB00 *)f2030)->func_001B2270(0xffcccccc);
+        ((Text_FCB00 *)f2030)->func_001B19A0(D_0028F5EC);
+        func_001577A0((void *)f2030, -1);
+    }
+    {
+        Text_FCB00 *t = (Text_FCB00 *)func_001E8A44(0x184);
+        t = t ? t->func_001B12C0(1) : 0;
+        f2b4 = (int)t;
+        t->func_001B13A0(D_002786A0, D_002786A0, 0, 0x32);
+        ((Text_FCB00 *)f2b4)->func_001B1A30(540, 317, 0);
+        ((Text_FCB00 *)f2b4)->func_001B2270(0xffcccccc);
+        ((Text_FCB00 *)f2b4)->func_001B19A0(D_0028F5EC);
+        ((Text_FCB00 *)f2b4)->func_001B17D0(D_00282568);
+        func_001577A0((void *)f2b4, -1);
+    }
+    {
+        Text_FCB00 *t = (Text_FCB00 *)func_001E8A44(0x184);
+        t = t ? t->func_001B12C0(1) : 0;
+        f2034 = (int)t;
+        t->func_001B13A0(D_002786A0, D_002786A0, 0, 0xa);
+        ((Text_FCB00 *)f2034)->func_001B1A30(605, 317, 0);
+        ((Text_FCB00 *)f2034)->func_001B2270(0xffcccccc);
+        ((Text_FCB00 *)f2034)->func_001B19A0(D_0028F5EC);
+        func_001577A0((void *)f2034, -1);
+    }
+    {
+        Text_FCB00 *t = (Text_FCB00 *)func_001E8A44(0x184);
+        t = t ? t->func_001B12C0(1) : 0;
+        f2ac = (int)t;
+        t->func_001B13A0(D_002786A0, D_002786A0, 0, 0x32);
+        ((Text_FCB00 *)f2ac)->func_001B1A30(540, 349, 0);
+        ((Text_FCB00 *)f2ac)->func_001B2270(0xffcccccc);
+        ((Text_FCB00 *)f2ac)->func_001B19A0(D_0028F5EC);
+        ((Text_FCB00 *)f2ac)->func_001B17D0(D_00282550);
+        func_001577A0((void *)f2ac, -1);
+    }
+    {
+        Text_FCB00 *t = (Text_FCB00 *)func_001E8A44(0x184);
+        t = t ? t->func_001B12C0(1) : 0;
+        f2038 = (int)t;
+        t->func_001B13A0(D_002786A0, D_002786A0, 0, 0xa);
+        ((Text_FCB00 *)f2038)->func_001B1A30(605, 349, 0);
+        ((Text_FCB00 *)f2038)->func_001B2270(0xffcccccc);
+        ((Text_FCB00 *)f2038)->func_001B19A0(D_0028F5EC);
+        func_001577A0((void *)f2038, -1);
+    }
+
+    for (int i = 0; i < 2; i++) {
+        Img_FCB00 *o = (Img_FCB00 *)func_001E8A44(0x64);
+        o = o ? o->func_001D5760() : 0;
+        f284[i] = (int)o;
+        if (i % 2 == 0)
+            o->func_001D5810(D_002786B0, 279.0f, 345.0f, 0);
+        else
+            o->func_001D5810(D_002786B0, 449.0f, 345.0f, 0);
+        o = (Img_FCB00 *)f284[i];
+        o->a = 1.0f;
+        o->b = 0.0f;
+        o->c = 0.0f;
+        o->d = 1.0f;
+        o->flags |= 4;
+        if (o->width != 170) {
+            o->width = 170;
+            o->flags |= 1;
+        }
+    }
+
+    {
+        Obj_FCB00 *o = (Obj_FCB00 *)func_001E8A44(0x60);
+        o = o ? o->func_001D5E90() : 0;
+        f408 = o;
+        void *e = *(void **)((char *)D_002A8490->f2e8 + 4);
+        void *y = *(void **)((char *)e + 0x10f8);
+        o->func_001D6190(v, y, D_00278690);
+        if (o->x != 154 || o->y != 228) {
+            o->x = 154;
+            o->y = 228;
+            o->flags |= 6;
+        }
+        if (o->f44 != D_0028F5E0) {
+            o->f44 = D_0028F5E0;
+            o->flags |= 6;
+        }
+        if (o->f48 != 0xffcccccc) {
+            o->f48 = (o->f48 & 0xffcccccc) | 0xcccccc;
+            o->flags |= 8;
+        }
+    }
+
+    {
+        Img_FCB00 *o = (Img_FCB00 *)func_001E8A44(0x64);
+        o = o ? o->func_001D5760() : 0;
+        f2044 = o;
+        o->func_001D5810(D_00282544, 32.0f, 174.0f, 0);
+        if (o->f2C != 106) {
+            o->f2C = 106;
+            o->flags |= 1;
+        }
+        if (o->width != 240) {
+            o->width = 240;
+            o->flags |= 1;
+        }
+    }
+
+    func_000D2080();
+    func_000D1AE0();
+    func_000D1980();
     return this;
 }
