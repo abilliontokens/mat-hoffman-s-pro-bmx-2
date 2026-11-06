@@ -102,10 +102,31 @@ struct Cam_151130 {
     char pad0[0x1a4];
     Mid_151130 *f1a4;
 };
+struct Obj20C_151130 {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(const char *, int, int, int, int);
+    Obj20C_151130 *func_001CF740(void *, void *, int);
+};
+struct FB4_151130 {
+    char pad0[0xb4];
+    void *fB4;
+};
+struct F2E0_151130 {
+    int f0;
+};
 struct G9120_151130 {
     char pad0[0x4a8];
     int *f4A8;
+    int *f4AC;
+    char pad4B0[0x4c0 - 0x4b0];
+    void *f4C0;
 };
+static __forceinline void Scale_151130(V4_151130 *v, float s)
+{
+    v->x *= s;
+    v->y *= s;
+    v->z *= s;
+}
 struct Obj829C_151130 {
     void func_00161680(void);
 };
@@ -156,6 +177,120 @@ struct C_00198390 {
 struct C_001983A0 {
     void func_001983A0(void);
 };
+
+void C_00151130::func_00151130(int a, Cam_151130 *b, void *c)
+{
+    char saved[0x104];
+    char unused[0x104];
+    V4_151130 pts[36];
+    int i;
+    void *mem;
+
+    f30 = a;
+    f2C = b;
+    mem = func_001E8A44(0x3c);
+    f38 = mem ? ((Obj3C_151130 *)mem)->func_001362A0(-1.0f, 1.0f, 0.0f, D_002A8490->f8->func_00135E80(), 2, 0.2f) : 0;
+    mem = func_001E8A44(0x3c);
+    f3C = mem ? ((Obj3C_151130 *)mem)->func_001362A0(-1.0f, 1.0f, 0.0f, D_002A8490->f8->func_00135E80(), 5, 0.3f) : 0;
+    if (D_002A8490->f8->ents[f28] != 0) {
+        D_002A8490->f8->ents[f28]->func_0015B060(f38, 0.01f, 0.01f);
+        D_002A8490->f8->ents[f28]->func_0015B060(f3C, 0.01f, 0.01f);
+    }
+    mem = func_001E8A44(0x3c);
+    f40 = mem ? ((Obj3C_151130 *)mem)->func_001362A0(-1.0f, 1.0f, 0.0f, D_002A8490->f8->func_00135E80(), 1, 0.15f) : 0;
+    mem = func_001E8A44(0x3c);
+    f44 = mem ? ((Obj3C_151130 *)mem)->func_001362A0(-1.0f, 1.0f, 0.0f, D_002A8490->f8->func_00135E80(), 0, 0.15f) : 0;
+    if (D_002A8490->f8->ents[f28] != 0) {
+        D_002A8490->f8->ents[f28]->func_0015B060(f40, 0.01f, 0.01f);
+        D_002A8490->f8->ents[f28]->func_0015B060(f44, 0.01f, 0.01f);
+    }
+    for (i = 0; i < 16; i++) {
+        pts[i * 2] = D_002A789C;
+        pts[i * 2 + 1].x = (float)cos(i * D_00283E00);
+        pts[i * 2 + 1].z = (float)sin(i * D_00283E00);
+        pts[i * 2 + 1].x *= 2.0f;
+        pts[i * 2 + 1].y *= 2.0f;
+        pts[i * 2 + 1].z *= 2.0f;
+    }
+    pts[1].x *= D_002756BC;
+    pts[1].y *= D_002756BC;
+    pts[1].z *= D_002756BC;
+    pts[32].Copy(V4_151130());
+    pts[33].Copy(V4_151130(0.0f, 4.0f, 2.0f));
+    pts[34].Copy(V4_151130());
+    pts[35].Copy(V4_151130(0.0f, 4.0f, -2.0f));
+    mem = func_001E8A44(0x110);
+    f60 = mem ? ((ObjFC_151130 *)mem)->func_0017F050(1) : 0;
+    f60->func_0017F0A0(2);
+    f60->func_00180E00(0x12, pts, 0, b->f1a4->f4);
+    f60->f60 = this;
+    f60->f9C = (void *)&func_00150970;
+    func_001577A0(f60, -1);
+    {
+        int k = 0;
+        char ch;
+        do {
+            ch = D_002A5EA0[k];
+            saved[k] = ch;
+            k++;
+        } while (ch != 0);
+    }
+    memcpy(D_002A5EA0, D_00286C90, 23);
+    for (i = 0; i < 11; i++) {
+        Slot_151130 *s = &slots[i];
+        mem = func_001E8A44(0x1e0);
+        s->f0 = mem ? ((Node_151130 *)mem)->func_00143580(1) : 0;
+        s->f0->Load(D_00286C80, 1, 0);
+        s->f0->func_00199600(D_002A789C);
+        s->f0->func_00198F50(&D_002A78CC, &D_002A78BC, 0, 1, 0);
+        s->f0->func_0019ABA0(*D_002B9120->f4A8, 2);
+        func_001577A0(s->f0, -1);
+        s->f0->func_00198390();
+        mem = func_001E8A44(0x218);
+        s->f54 = mem ? ((Obj218_151130 *)mem)->func_0016CE80(1) : 0;
+        s->f54->func_0016CF10(c, D_0027592C, 0, 0);
+        func_001577A0(s->f54, 2);
+        s->f54->v31();
+        s->f54->v4();
+        mem = func_001E8A44(0x218);
+        s->f58 = mem ? ((Obj218_151130 *)mem)->func_0016CE80(1) : 0;
+        s->f58->func_0016CF10(c, D_00286C70, 0, 0);
+        func_001577A0(s->f58, 2);
+        s->f58->v31();
+        s->f58->v4();
+        mem = func_001E8A44(0x250);
+        s->f5C = mem ? ((Obj250_151130 *)mem)->func_0016ABE0(1) : 0;
+        s->f5C->func_0016AD20(c, D_00286C60, 0, 0);
+        func_001577A0(s->f5C, 2);
+        s->f5C->v31();
+        s->f5C->v4();
+    }
+    {
+        int k = 0;
+        char ch;
+        do {
+            ch = saved[k];
+            D_002A5EA0[k] = ch;
+            k++;
+        } while (ch != 0);
+    }
+    mem = func_001E8A44(0x230);
+    fe0 = mem ? ((Obj230_151130 *)mem)->func_0016D620(1) : 0;
+    fe0->func_0016D6A0(c, D_00286C4C, 0, 0);
+    func_001577A0(fe0, 2);
+    fe0->v31();
+    fe0->v4();
+    D_002A829C->func_00161680();
+    D_002AA6C0->func_001B2640();
+    mem = func_001E8A44(0xf4);
+    f78 = mem ? ((ObjF8_151130 *)mem)->func_0014AB30(1) : 0;
+    f78->func_00129920(2);
+    f78->f60 = this;
+    f78->f9C = (void *)&D_00150BA0;
+    f78->func_001334E0(1);
+    f78->fA7 |= 1;
+    f78->func_0014C1C0(1, 0, 0);
+}
 
 int C_00151F40::func_00151F40(void)
 {
