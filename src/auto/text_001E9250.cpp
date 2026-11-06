@@ -258,6 +258,108 @@ double func_001E931E(char *str, char **endptr) {
     return v;
 }
 
+#pragma optimize("s", on)
+#pragma optimize("y", off)
+unsigned long func_001E93CD(const char *nptr, const char **endptr, int ibase, int flags)
+{
+    const char *p;
+    char c;
+    unsigned long number;
+    unsigned int digval;
+    unsigned long maxval;
+    unsigned long maxrem;
+
+    p = nptr;
+    number = 0;
+    c = *p++;
+    for (;;) {
+        unsigned int t;
+
+        if (D_002AEA38 > 1) {
+            t = func_001EC5F1((unsigned char)c, 8);
+        } else {
+            t = D_002AEA30[(unsigned char)c] & 8;
+        }
+        if (t == 0) {
+            break;
+        }
+        c = *p++;
+    }
+    if (c == '-') {
+        flags |= 2;
+        c = *p++;
+    } else if (c == '+') {
+        c = *p++;
+    }
+    if (ibase < 0 || ibase == 1 || ibase > 36) {
+        if (endptr) {
+            *endptr = nptr;
+        }
+        return 0;
+    } else if (ibase == 0) {
+        if (c != '0') {
+            ibase = 10;
+        } else if (*p == 'x' || *p == 'X') {
+            ibase = 16;
+        } else {
+            ibase = 8;
+        }
+    }
+    if (ibase == 16) {
+        if (c == '0' && (*p == 'x' || *p == 'X')) {
+            ++p;
+            c = *p++;
+        }
+    }
+    maxval = 0xffffffffUL / ibase;
+    maxrem = 0xffffffffUL % ibase;
+    for (;;) {
+        if (isdigit_001E93CD(c)) {
+            digval = c - '0';
+        } else if (isalpha_001E93CD(c)) {
+            digval = toupper_001E93CD(c) - 'A' + 10;
+        } else {
+            break;
+        }
+        if (digval >= (unsigned int)ibase) {
+            break;
+        }
+        flags |= 8;
+        if (number < maxval || (number == maxval && (unsigned long)digval <= maxrem)) {
+            number = number * ibase + digval;
+        } else {
+            flags |= 4;
+        }
+        c = *p++;
+    }
+    --p;
+    if (!(flags & 8)) {
+        if (endptr) {
+            p = nptr;
+        }
+        number = 0;
+    } else if ((flags & 4) ||
+               (!(flags & 1) &&
+                (((flags & 2) && (number > 0x80000000UL)) ||
+                 (!(flags & 2) && (number > 0x7fffffffUL))))) {
+        *func_001ED075() = 0x22;
+        if (flags & 1) {
+            number = 0xffffffffUL;
+        } else if (flags & 2) {
+            number = 0x80000000UL;
+        } else {
+            number = 0x7fffffffUL;
+        }
+    }
+    if (endptr != 0) {
+        *endptr = p;
+    }
+    if (flags & 2) {
+        number = (unsigned long)(-(long)number);
+    }
+    return number;
+}
+#pragma optimize("", on)
 /* strtoxl(nptr, endptr, ibase, flags): flags bit 0 = unsigned */
 unsigned long func_001E93CD(const char *nptr, const char **endptr, int ibase, int flags);
 
@@ -709,6 +811,10 @@ void func_001E9F99(void) {
 }
 
 #pragma optimize("t", off)
+static __forceinline char *func_001E9FA2_last(char *s)
+{
+    return s + strlen(s) - 1;
+}
 const char *S_001E9FA2_TypeInfo::func_001E9FA2(void)
 {
     void func_001EB390(int n);
@@ -724,8 +830,11 @@ const char *S_001E9FA2_TypeInfo::func_001E9FA2(void)
         if (und == 0) {
             return 0;
         }
-        for (tail = und + strlen(und) - 1; *tail == ' '; tail--) {
+        tail = und + strlen(und);
+        tail--;
+        while (*tail == ' ') {
             *tail = 0;
+            tail--;
         }
         func_001EB390(0xe);
         dst = _m_data = (char *)func_001E8AA5(strlen(und) + 1);
