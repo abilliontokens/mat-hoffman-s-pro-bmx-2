@@ -33,6 +33,31 @@ struct Vec4 {
     f32 x, y, z, w;
 };
 
+struct S_00173B00_Obj {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
+    virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11();
+    virtual void v12(); virtual void v13(float a); virtual void v14(); virtual void v15();
+    virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
+    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23();
+    virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27();
+    virtual void v28(float a);
+};
+
+struct S_00173B00_Rig {
+    char pad0[0x6c];
+    Vec4 f6c;
+    Vec4 f7c;
+    char pad8c[0x170 - 0x8c];
+    float f170, f174, f178;
+    char pad17c[0x1b4 - 0x17c];
+    int f1b4;
+};
+
+static __forceinline float Min_00173B00(float a, float b) { float r; __m128 x = _mm_load_ss(&a); __m128 y = _mm_load_ss(&b); _mm_store_ss(&r, _mm_min_ss(x, y)); return r; }
+static __forceinline float Max_00173B00(float a, float b) { float r; __m128 x = _mm_load_ss(&a); __m128 y = _mm_load_ss(&b); _mm_store_ss(&r, _mm_max_ss(x, y)); return r; }
+float func_00011170(float *v);
+
 extern Vec4 D_002EF740;
 extern Vec4 D_002A8C18;
 static __forceinline void Zero3(int *p) { p[0]=0; p[1]=0; p[2]=0; }
