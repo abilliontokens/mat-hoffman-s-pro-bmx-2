@@ -66,8 +66,6 @@ extern int D_002845AC;
 void func_001E891B(void *ptr);
 void func_001E8390(void *ptr);
 
-static inline float Abs_001325D0(float v) { volatile float t = v; int bits = *(volatile int *)&t & 0x7fffffff; return *(float *)&bits; }
-
 struct C_Off_1324B0 {
     char pad0[4];
     int f4;
