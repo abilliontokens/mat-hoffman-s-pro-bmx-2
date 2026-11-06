@@ -43,22 +43,6 @@ struct C_00097050 {
     void func_00097050(C_00097050_Arg *a);
 };
 extern float D_00275544;
-struct C_00097050_Rec {
-    int kind;
-    char pad0[0x2554 - 4];
-    int count;
-    char pad1[0x2ff8 - 0x2558];
-    char nameA[10][0x78];
-    char nameB[10][0x78];
-    char pad2[0x50c8 - 0x3958];
-    char nameC[10][0x78];
-    char nameD[10][0x78];
-    char nameE[10][0x78];
-    char nameF[10][0x78];
-    char pad3[0x63d8 - 0x6388];
-    C_00097050_Obj *objA[10];
-    C_00097050_Obj *objB[10];
-};
 struct C_000976A0 {
     undefined4 func_000976A0(void);
 };
@@ -299,9 +283,9 @@ void C_00097050::func_00097050(C_00097050_Arg *a)
 #define LIST(o) (*(char **)(*(char **)((char *)a + 0x64) + (o)))
 #define MGR (*(C_00097050_Mgr **)(*(char **)((char *)a + 0x64) + 0x484))
 #define N(m) ((char (*)[0x78])(self + 0x290 + (m)))
+#define R ((float *)(self + 0x4104 + i * 0x10))
+#define Q ((int *)(self + 0x40d0 + i * 4))
     for (int i = 0; i < *(int *)(self + 0x1cc); i++) {
-        float *r = (float *)(self + 0x4104 + i * 0x10);
-        int *q = (int *)(self + 0x40d0 + i * 4);
         int j;
         for (j = 0; j < *(int *)(LIST(0x3ac) + 0x24); j++) {
             char *item = (*(char ***)(LIST(0x3ac) + 0x28))[j];
@@ -317,15 +301,15 @@ void C_00097050::func_00097050(C_00097050_Arg *a)
         }
         if (N(0x38a0)[i][0] && *(int *)((char *)a + 0x1c8) == 0) {
             C_00097050_Obj *o = (C_00097050_Obj *)(*(C_00097050_Finder **)((char *)D_002A8490 + 4))->func_0001D450(N(0x38a0)[i]);
-            if (o && *q != -1)
-                o->func_001A2A10(*q);
+            if (o && *Q != -1)
+                o->func_001A2A10(*Q);
         }
         if (N(0x3f30)[i][0])
-            a->func_00033090(N(0x3f30)[i], *(C_00097050_V16 *)((char *)r + 0x65c), 1);
-        if (r[-1] != D_00275544 || r[0] != D_00275544 || r[1] != D_00275544)
-            a->func_00032E50(*(C_00097050_V16 *)(r - 1));
+            a->func_00033090(N(0x3f30)[i], *(C_00097050_V16 *)((char *)R + 0x65c), 1);
+        if (R[-1] != D_00275544 || R[0] != D_00275544 || R[1] != D_00275544)
+            a->func_00032E50(*(C_00097050_V16 *)(R - 1));
         if (N(0x1c20)[i][0] && N(0x21c0)[i][0])
-            (*(C_00097050_Obj **)((char *)q + 0x7b0))->func_001B65D0();
+            (*(C_00097050_Obj **)((char *)Q + 0x7b0))->func_001B65D0();
         if (N(0x2760)[i][0]) {
             int found = -1;
             int k;
@@ -349,7 +333,7 @@ void C_00097050::func_00097050(C_00097050_Arg *a)
     if (*(int *)(self + 0x1b0) == 0)
         return;
 #define ITEM ((*(char ***)(self + 0x1c8))[m])
-#define S(it, o) ((it) + k * 0x78 + (o))
+#define S(it, o) (((char (*)[0x78])((it) + (o)))[k])
     for (int m = 0; m < *(int *)(self + 0x1b8); m++) {
         if (*(int *)ITEM != 1)
             continue;
@@ -379,19 +363,23 @@ void C_00097050::func_00097050(C_00097050_Arg *a)
                     }
                 }
             }
-            strcpy(b2, S(ITEM, 0x5578));
-            strcpy(b3, S(ITEM, 0x50c8));
+            char *it1 = ITEM;
+            strcpy(b2, S(it1, 0x5578));
+            strcpy(b3, S(it1, 0x50c8));
             if (b3[0] && b2[0])
-                (*(C_00097050_Obj **)(ITEM + k * 4 + 0x63d8))->func_001B65D0();
-            strcpy(b2, S(ITEM, 0x5ed8));
-            strcpy(b3, S(ITEM, 0x5a28));
+                ((C_00097050_Obj **)(it1 + 0x63d8))[k]->func_001B65D0();
+            char *it2 = ITEM;
+            strcpy(b2, S(it2, 0x5ed8));
+            strcpy(b3, S(it2, 0x5a28));
             if (b2[0] && b3[0])
-                (*(C_00097050_Obj **)(ITEM + k * 4 + 0x6400))->func_001B65D0();
+                ((C_00097050_Obj **)(it2 + 0x6400))[k]->func_001B65D0();
         }
     }
 #undef S
 #undef ITEM
 #undef N
+#undef R
+#undef Q
 #undef LIST
 #undef MGR
 }
