@@ -48,6 +48,7 @@ struct C_001A6260 {
     S_6260_V *f4c; S_6260_V *f50;
     char pad54[0x40];
     S_6260_V *f94;
+    void Fill24(int v) { f24 = v; f28 = v; f2c = v; f30 = v; }
     void func_001A6260();
     void func_001A6930();
     void func_001578D0();
@@ -521,15 +522,14 @@ void C_001A60A0::func_001A60A0(int a, int b)
 }
 
 LoadMemoryCard *LoadMemoryCard::func_001A61C0(void *arg) {
-    int i;
     func_00157600(arg);
     vtbl = &D_0028BB74;
-    for (i = 0; i < 2; i++) {
+    for (int i = 0; i < 2; i++) {
         (&f44)[i] = 0;
         (&f34)[i] = 0;
         (&f3c)[i] = 0;
     }
-    f24 = i * 0; f28 = i * 0; f2c = i * 0; f30 = i * 0;
+    f24 = 0; f28 = 0; f2c = 0; f30 = 0;
     f4c = 0; f50 = 0; f54 = 0x3f800000; f58 = 0;
     f64 = 0; f5c = 0; f60 = 0; f68 = 0; f70 = 1;
     f74 = 0; f78 = 0; f7c = 0;
@@ -565,10 +565,7 @@ void C_001A6260::func_001A6260()
             f44[i] = 0;
         }
     }
-    f24 = 0;
-    f28 = 0;
-    f2c = 0;
-    f30 = 0;
+    memset(&f24, 0, 16);
     if (f94 != 0) {
         f94->v2();
         f94 = 0;
