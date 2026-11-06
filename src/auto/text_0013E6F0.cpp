@@ -124,32 +124,6 @@ struct __declspec(align(16)) S_0013E9B0_Mat {
     float m[16];
 };
 
-static __forceinline void Xform_0013E9B0(float *in, S_0013E9B0_Mat *mat, float *out)
-{
-    __m128 v = _mm_loadu_ps(in);
-    __m128 r0 = _mm_load_ps(&mat->m[0]);
-    _mm_storeh_pi((__m64 *)(out + 2), v);
-    __m128 r1 = _mm_load_ps(&mat->m[4]);
-    out[3] = 1.0f;
-    __m128 r2 = _mm_load_ps(&mat->m[8]);
-    v = _mm_loadh_pi(v, (const __m64 *)(out + 2));
-    r0 = _mm_mul_ps(r0, v);
-    r1 = _mm_mul_ps(r1, v);
-    r2 = _mm_mul_ps(r2, v);
-    __m128 lo = _mm_unpacklo_ps(r0, r1);
-    __m128 hi = _mm_unpackhi_ps(r0, r1);
-    __m128 junk;
-    junk = _mm_movehl_ps(junk, r2);
-    lo = _mm_add_ps(lo, hi);
-    r2 = _mm_add_ps(r2, junk);
-    hi = _mm_movehl_ps(hi, lo);
-    lo = _mm_movelh_ps(lo, r2);
-    hi = _mm_shuffle_ps(hi, r2, 0x14);
-    lo = _mm_add_ps(lo, hi);
-    _mm_storeu_ps(out, lo);
-    out[3] = 1.0f;
-}
-
 static __forceinline void XformV_0013E9B0(float *volatile outArg, float *volatile inArg, float *volatile mArg)
 {
     float *in = inArg;
@@ -248,30 +222,31 @@ void func_0013E990(void)
 
 int C_0013E9B0::func_0013E9B0(S_0013E9B0_Arg *arg)
 {
+    C_0013E9B0 * volatile self = this;
     S_0013E9B0_Mat m;
     S_0013E9B0_Mat mat;
     S_0013E9B0_Obj *obj = D_002BF250->f54[fE];
     float s = obj->func_0014C860(f11) * obj->f1D0 * D_002BEB34;
-    float t = obj->func_0014C830(f10) * obj->f1CC;
-    float a = f14 * s;
-    float b = f16 * s;
+    float t = obj->func_0014C830(self->f10) * obj->f1CC;
+    float a = self->f14 * s;
+    float b = self->f16 * s;
     m.m[0] = a;
     m.m[1] = 0.0f;
     m.m[2] = -b;
-    m.m[3] = f8 * D_002BF250->f578;
+    m.m[3] = self->f8 * D_002BF250->f578;
     m.m[4] = 0.0f;
     m.m[5] = t;
     m.m[6] = 0.0f;
-    m.m[7] = fA * D_002BF250->f578;
+    m.m[7] = self->fA * D_002BF250->f578;
     m.m[8] = b;
     m.m[9] = 0.0f;
     m.m[10] = a;
-    m.m[11] = fC * D_002BF250->f578;
+    m.m[11] = self->fC * D_002BF250->f578;
     m.m[12] = 0.0f;
     m.m[13] = 0.0f;
     m.m[14] = 0.0f;
     m.m[15] = 1.0f;
-    float r = D_0027988C - (fF - 16) * D_00284ED0;
+    float r = D_0027988C - (self->fF - 16) * D_00284ED0;
     if (r > D_0027988C)
         r = 64.0f;
     Trunc_0013E9B0(&arg->fE0, r);
@@ -279,9 +254,9 @@ int C_0013E9B0::func_0013E9B0(S_0013E9B0_Arg *arg)
     char *base = D_002EFDB8->f4;
     func_000263B0(arg->f10, &m, base + 0x250);
     func_0011AC30(&mat, &m);
-    Xform_0013E9B0((float *)(base + 0x170), &mat, arg->fD0);
+    XformV_0013E9B0(arg->fD0, (float *)(base + 0x170), mat.m);
     D_002E2930->func_0015E420(arg->f50, arg->f90, 0);
-    Xform_0013E9B0(arg->f50, &mat, arg->f50);
+    XformV_0013E9B0(arg->f50, arg->f50, mat.m);
     arg->fCC = r * D_00284ECC;
     obj->f200->func_00149310(obj->f204, (int)arg, 0, 0);
     return 1;
