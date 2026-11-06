@@ -178,18 +178,24 @@ static __forceinline void Xform_001A4B60(const S_001A53C0_V4 *volatile vArg, con
     const S_001A53C0_V4 *v=vArg;
     const __m128 *mat=matArg;
     f32 *out=outArg;
-    __m128 r0=mat[0], r1=mat[1], r2=mat[2];
     __m128 t=_mm_loadu_ps(&v->x);
     _mm_storeh_pi((__m64 *)&out[2],t);
     out[3]=1.0f;
     t=_mm_loadh_pi(t,(__m64 *)&out[2]);
-    r0=_mm_mul_ps(r0,t); r1=_mm_mul_ps(r1,t); r2=_mm_mul_ps(r2,t);
-    __m128 hi=r0;
-    r0=_mm_unpacklo_ps(r0,r1); hi=_mm_unpackhi_ps(hi,r1);
-    __m128 upper=_mm_movehl_ps(r2,r2);
-    r0=_mm_add_ps(r0,hi); r2=_mm_add_ps(r2,upper);
-    hi=_mm_movehl_ps(hi,r0); r0=_mm_movelh_ps(r0,r2); hi=_mm_shuffle_ps(hi,r2,0x14);
-    _mm_storeu_ps(out,_mm_add_ps(r0,hi)); out[3]=1.0f;
+    __m128 r0=_mm_mul_ps(mat[0],t);
+    __m128 r1=_mm_mul_ps(mat[1],t);
+    __m128 r2=_mm_mul_ps(mat[2],t);
+    __m128 lo=_mm_unpacklo_ps(r0,r1);
+    __m128 hi=_mm_unpackhi_ps(r0,r1);
+    __m128 junk=_mm_movehl_ps(r2,r2);
+    lo=_mm_add_ps(lo,hi);
+    r2=_mm_add_ps(r2,junk);
+    hi=_mm_movehl_ps(hi,lo);
+    lo=_mm_movelh_ps(lo,r2);
+    hi=_mm_shuffle_ps(hi,r2,0x14);
+    lo=_mm_add_ps(lo,hi);
+    _mm_storeu_ps(out,lo);
+    out[3]=1.0f;
 }
 
 static inline f32 Fabs_001A53C0(f32 x)
@@ -238,8 +244,9 @@ struct C_001A52C0 {
 int C_001A4FC0::func_001A4FC0(char *a)
 {
     char *self = (char *)this;
-    int bounds[2];
+    struct B2 { int lo, hi; };
     char *hit;
+    B2 bounds;
     int i;
     if (a[0x21] & 1) {
     switch (*(int *)(a+0x50)) {
@@ -247,8 +254,8 @@ int C_001A4FC0::func_001A4FC0(char *a)
         if (!func_001225C0(a+0xa8,a+0xb8,self+0x28,*(int *)(self+0x100),*(int *)(self+0x104),a+0x130)) return 0;
         for (i=0;i<*(int *)(a+0x190);i++) {
             hit=(*(char ***)(a+0x1a0))[i];
-            bounds[1]=*(int *)(hit+0x1c8); bounds[0]=*(int *)(hit+0x1c4);
-            if (func_00123940(self+0x28,*(int *)(self+0x100),*(int *)(self+0x104),0,bounds,hit+0xb0,hit+0x1b0,1)) {
+            bounds.hi=*(int *)(hit+0x1c8); bounds.lo=*(int *)(hit+0x1c4);
+            if (func_00123940(self+0x28,*(int *)(self+0x100),*(int *)(self+0x104),0,&bounds,hit+0xb0,hit+0x1b0,1)) {
                 char *out=D_002B92EC;
                 *(Vec4 *)(out+0x14)=*(Vec4 *)(self+0x28);
                 for(i=0;i<*(int *)(out+4);i++) if (!((int *)(out+0x84))[i]) {
@@ -261,9 +268,9 @@ int C_001A4FC0::func_001A4FC0(char *a)
         }
         return 0;
     case 0:
-        bounds[0]=*(int *)(a+0x1c4); bounds[1]=*(int *)(a+0x1c8);
+        bounds.lo=*(int *)(a+0x1c4); bounds.hi=*(int *)(a+0x1c8);
         hit=a+0xb0;
-        if (!func_00123940(self+0x28,*(int *)(self+0x100),*(int *)(self+0x104),0,bounds,hit,a+0x1b0,1)) return 0;
+        if (!func_00123940(self+0x28,*(int *)(self+0x100),*(int *)(self+0x104),0,&bounds,hit,a+0x1b0,1)) return 0;
         {
             char *out=D_002B92EC;
             *(Vec4 *)(out+0x14)=*(Vec4 *)(self+0x28);
@@ -292,9 +299,7 @@ void C_001A52C0::func_001A52C0(void)
 void C_SphereCollisionObject::func_001A52D0(void *a)
 {
     if (a == 0) {
-        for (int i = 0; i < 16; i++) {
-            matrix[i] = 0.0f;
-        }
+        memset(matrix, 0, 0x40);
         matrix[0] = 1.0f;
         matrix[5] = 1.0f;
         matrix[10] = 1.0f;
@@ -316,6 +321,24 @@ void C_SphereCollisionObject::func_001A5370(void)
     } else {
         ((C_SphereCollisionObjectVT *)this)->func_001A52D0(0);
     }
+}
+
+void C_SphereCollisionObject::func_001A53C0(f32 *center, f32 *extent)
+{
+    f32 r = f10C;
+    S_001A53C0_V4 v(*(f32 *)&fA8.x * r, *(f32 *)&fA8.y * r, *(f32 *)&fA8.z * r);
+    f32 t = f108 * *(f32 *)&f100;
+    S_001A53C0_V4 a[3];
+    a[0] = S_001A53C0_V4(t, 0, 0);
+    a[1] = S_001A53C0_V4(0, t, 0);
+    a[2] = S_001A53C0_V4(0, 0, t);
+    Xform_001A4B60(&v, (const __m128 *)matrix, center);
+    func_0001C680(&a[0], *(Vec4 *)&a[0], matrix);
+    func_0001C680(&a[1], *(Vec4 *)&a[1], matrix);
+    func_0001C680(&a[2], *(Vec4 *)&a[2], matrix);
+    extent[0] = Fabs_001A53C0(a[2].x) + Fabs_001A53C0(a[1].x) + Fabs_001A53C0(a[0].x);
+    extent[1] = Fabs_001A53C0(a[2].y) + Fabs_001A53C0(a[1].y) + Fabs_001A53C0(a[0].y);
+    extent[2] = Fabs_001A53C0(a[2].z) + Fabs_001A53C0(a[1].z) + Fabs_001A53C0(a[0].z);
 }
 
 C_001A5730 *C_001A5730::func_001A5730(void)
@@ -370,31 +393,21 @@ void *C_SphereCollisionObject::func_001A57A0(unsigned int flags)
 void *func_001E8A44(unsigned int size);
 void C_SphereCollisionObject::func_001A57E0(int a, int b, int c, int d, f32 r, void *e)
 {
-    int *p = (int *)func_001E8A44(0x90);
-    if (p)
-        p = (int *)((C_001A5730 *)p)->func_001A5730();
-    p[0] = 3;
-    p[1] = 0;
-    f54 = p;
-    f110 = e;
-    fA8.x = a;
-    fA8.y = b;
-    fA8.z = c;
-    fA8.w = d;
-    *(f32 *)&f100 = r;
-    ((f32 *)&f100)[1] = r * r;
-    ((f32 *)&f100)[2] = 1.0f;
-    ((f32 *)&f100)[3] = 1.0f;
-    __m128 z = _mm_setzero_ps();
-    f32 *m = matrix;
-    _mm_store_ps(m, z);
-    _mm_store_ps(m + 4, z);
-    _mm_store_ps(m + 8, z);
-    _mm_store_ps(m + 12, z);
-    m[0] = 1.0f;
-    m[5] = 1.0f;
-    m[10] = 1.0f;
-    m[15] = 1.0f;
+ volatile C_SphereCollisionObject *volatile self=this;
+ int *p=(int*)func_001E8A44(0x90);
+ if(p) p=(int*)((C_001A5730*)p)->func_001A5730();
+ else p=0;
+ p[0]=3; p[1]=0;
+ self->f54=p;
+ self->f110=e;
+ volatile Vec4 *v=&self->fA8;
+ v->x=a; v->y=b; v->z=c; v->w=d;
+ *(float*)&self->f100=r;
+ float q=*(float*)&self->f100;
+ ((float*)&self->f100)[1]=q*q;
+ self->f108=1.0f;
+ self->f10C=1.0f;
+ SetIdentity((float*)self->matrix);
 }
 
 SplashScreenManager *SplashScreenManager::func_001A58D0(void *a)
