@@ -138,6 +138,7 @@ struct Home_001A9FA0 {
     This_001A9FA0 *self;
     V4_001A96D0 a;
     V4_001A96D0 b;
+    V4_001A96D0 t;
 };
 
 struct V4 { float x, y, z, w; };
@@ -302,36 +303,38 @@ void This_001A9D20::func_001A9D20(float s, V4_001A96D0 v, V4_001A96D0 q, Obj_001
     }
 }
 
+extern "C" double __cdecl sqrt(double);
 void This_001A9FA0::func_001A9FA0(float s, V4_001A96D0 v, V4_001A96D0 q, Obj_001A9FA0 *other, unsigned mask)
 {
-    V4_001A96D0 a;
-    V4_001A96D0 b;
-    float d = v.y * f128 + v.x * f124 + v.z * f12c;
+    Home_001A9FA0 h;
+
+    h.self = this;
+    float d = v.y * h.self->f128 + v.x * h.self->f124 + v.z * h.self->f12c;
     V4_001A96D0 t;
-    t.x = f124 - v.x * d;
-    t.y = f128 - v.y * d;
-    t.z = f12c - v.z * d;
-    a = t;
-    func_001A8DC0(&b, &a);
+    t.x = h.self->f124 - v.x * d;
+    t.y = h.self->f128 - v.y * d;
+    t.z = h.self->f12c - v.z * d;
+    h.a = t;
+    func_001A8DC0(&h.b, &h.a);
     V4_001A96D0 nb;
-    nb.x = -b.x;
-    nb.y = -b.y;
-    nb.z = -b.z;
-    b = nb;
-    float len = Sqrt_001A9FA0(a.y * a.y + a.z * a.z + a.x * a.x) * D_002755E8;
+    nb.x = -h.b.x;
+    nb.y = -h.b.y;
+    nb.z = -h.b.z;
+    h.b = nb;
+    float len = (float)sqrt(h.a.y * h.a.y + h.a.z * h.a.z + h.a.x * h.a.x) * D_002755E8;
     float m = len < 1.0f ? len : 1.0f;
-    float k = m * f24->f210 * s * D_00275BF8;
+    float k = m * h.self->f24->f210 * s * D_00275BF8;
     V4_001A96D0 w;
-    w.x = b.x * k;
-    w.y = b.y * k;
-    w.z = b.z * k;
-    if (!(f24->f204 & mask))
-        func_001A96D0(f24, w, q, fc8);
-    if (other && !(f7c & other->f204)) {
+    w.x = h.b.x * k;
+    w.y = h.b.y * k;
+    w.z = h.b.z * k;
+    if (!(h.self->f24->f204 & mask))
+        h.self->func_001A96D0(h.self->f24, w, q, h.self->fc8);
+    if (other && !(h.self->f7c & other->f204)) {
         V4_001A96D0 nw;
         nw.x = -w.x;
         nw.y = -w.y;
         nw.z = -w.z;
-        func_001A96D0(other, nw, q, fc8);
+        h.self->func_001A96D0(other, nw, q, h.self->fc8);
     }
 }
