@@ -566,4 +566,4 @@ int C_001AFB00::func_001AFB00(void)
     }
     return f30;
 }
-
+#include <xmmintrin.h>
