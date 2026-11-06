@@ -170,6 +170,25 @@ extern int D_0020C6DC, D_0020C710, D_0020C718, D_0020C720, D_0020CA50;
 extern S_137F90_RS D_0020C6E0[];
 extern int D_002BEA90;
 extern S_137F90_Quad D_002BA728[];
+
+struct S_137810_V3 { float x, y, z; };
+struct S_137810_Clamp { char pad0[0x10]; float f10, f14; };
+struct S_137810_Proj { void func_001C5C50(char *a, float *m, float *v, int z, int *out); };
+extern S_137810_Proj *D_002AB66C;
+extern S_137F90_Mat D_002BEA50;
+extern float D_002BEA10[], D_002BE040[], D_002BE9A8[];
+extern float D_00275AEC, D_0028491C, D_002757FC;
+#define CLAMP8_137810(o) { \
+    if (D_002757FC > (o)->f10) (o)->f10 = 8.0f; \
+    if (D_002757FC < (o)->f14 || (o)->f14 > (o)->f10) (o)->f14 = 8.0f; }
+#define CELL_137810(n) \
+    b = j + (n); \
+    idx = b + b / 4; \
+    if (!((vf[idx + 5] & vf[idx + 6] & vf[idx + 1] & vf[idx]) & 0xffffffef)) { \
+        *(unsigned short *)((char *)self->f28 + k * 0xfc + 0x12c) |= (unsigned short)(1 << b); \
+        o = ((S_137810_Clamp **)self->f28)[0x13 + k * 0x3f + j + (n)]; \
+        if (o) CLAMP8_137810(o) \
+    }
 void __fastcall func_001FD020(void *p, int v);
 void __fastcall func_001FEC30(int n, void *p);
 int __fastcall func_001FEBD0(int n, void *p);
@@ -297,9 +316,9 @@ int DrawableCube::func_00137F90()
         pm->identity();
         {
             DrawableCube *t = self;
-            mat.m[3] = t->f28->f8;
-            mat.m[7] = t->f28->fC;
-            mat.m[11] = t->f28->f10;
+            ((int *)mat.m)[3] = t->f28->f8;
+            ((int *)mat.m)[7] = t->f28->fC;
+            ((int *)mat.m)[11] = t->f28->f10;
         }
         func_000263B0(mat2.m, mat.m, (float *)(g4 + 0x250));
         func_001FEC30(0x18, mat2.m);
@@ -310,7 +329,7 @@ int DrawableCube::func_00137F90()
         func_001FD020(&D_0004035C, 0);
         func_001FE490(1);
         func_001FD020(&D_00040354, 0x203);
-        D_0020C6DC |= 0x2800;
+        D_0020C6DC = D_0020C6DC | 0x2800;
         D_0020C710 = 2;
         D_0020C718 = 2;
         D_0020CA50 = 0;
@@ -329,8 +348,9 @@ int DrawableCube::func_00137F90()
         for (k = 0; k < 6; k++) {
             for (j = 0; j < 16; j++) {
                 char *c = (char *)self->f28;
-                if (((1 << j) & *(unsigned short *)(c + k * 0xfc + 0x12c)) != 0 &&
-                    ((1 << j) & *(unsigned short *)(c + k * 0xfc + 0x48)) != 0) {
+                int bit = 1 << j;
+                if ((bit & *(unsigned short *)(c + k * 0xfc + 0x12c)) != 0 &&
+                    (bit & *(unsigned short *)(c + k * 0xfc + 0x48)) != 0) {
                     if (((S_137F90_Obj **)c)[0x13 + k * 0x3f + j]->v11() != 0) {
                         ((S_137F90_Obj **)self->f28)[0x13 + k * 0x3f + j]->v21(0);
                         if (D_002BEA90 != 0) {
