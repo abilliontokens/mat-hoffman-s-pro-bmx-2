@@ -376,7 +376,7 @@ struct C_0005EDC0 {
     virtual void v24();
     virtual void v25();
     virtual void v26();
-    virtual void v27();
+    virtual int v27();
     char pad4[0x94 - 4];
     Img_5ED *unk94;
     Img_5ED *unk98;
@@ -685,13 +685,15 @@ C_0005ECA0 *C_0005ECA0::func_0005ECA0(int a0)
 
 C_0005EDC0 *C_0005EDC0::func_0005EDC0(void *a0)
 {
-    int ids[3];
-    int *r;
-    int font1;
-    int font2;
-    int i;
-    Img_5ED *o;
+    int mode;
+    C_5ED_Data *d;
     Txt_5ED *t;
+    Img_5ED *o;
+    int i;
+    int font2;
+    int font1;
+    int *r;
+    int ids[3];
 
     unk104 = a0;
     ids[0] = (int)D_002786A0;
@@ -721,10 +723,12 @@ C_0005EDC0 *C_0005EDC0::func_0005EDC0(void *a0)
 
     for (i = 0; i < 5; i++) {
         float x;
+        Img_5ED *n;
         o = (Img_5ED *)func_001E8A44(0x64);
-        unkAC[i] = o ? o->func_001D5760() : 0;
+        n = o ? o->func_001D5760() : 0;
         x = i * D_00278650;
-        unkAC[i]->func_001D5810(D_00278658, x, 50.0f, 0);
+        unkAC[i] = n;
+        n->func_001D5810(D_00278658, x, 50.0f, 0);
         o = (Img_5ED *)func_001E8A44(0x64);
         unkC0[i] = o ? o->func_001D5760() : 0;
         unkC0[i]->func_001D5810(D_00278658, x, 366.0f, 0);
@@ -750,11 +754,13 @@ C_0005EDC0 *C_0005EDC0::func_0005EDC0(void *a0)
     pos5ED(unk124, 0x43a00000, 0x42ea0000);
     align5ED(unk124, D_0028F5E0);
     color5ED(unk124, 0xffcccccc);
-    unk124->func_0005E840(D_002A8490->f2E0->f4 != 0 ? D_002A8490->f2E8->f4->fAC8 : D_002A8490->f2E8->f4->fFC0);
+    mode = D_002A8490->f2E0->f4;
+    d = D_002A8490->f2E8->f4;
+    unk124->func_0005E840(mode == 0 ? d->fFC0 : d->fAC8);
 
     o = (Img_5ED *)func_001E8A44(0x64);
     unkD4 = o ? o->func_001D5760() : 0;
-    unkD4->func_001D5810(D_00278648, 490.0f, 388.0f, 0);
+    unkD4->func_001D5810(D_00278648, 491.0f, 388.0f, 0);
 
     o = (Img_5ED *)func_001E8A44(0x64);
     unkD8 = o ? o->func_001D5760() : 0;
@@ -762,7 +768,7 @@ C_0005EDC0 *C_0005EDC0::func_0005EDC0(void *a0)
 
     o = (Img_5ED *)func_001E8A44(0x64);
     unkDC = o ? o->func_001D5760() : 0;
-    unkDC->func_001D5810(D_00278624, 490.0f, 388.0f, 0);
+    unkDC->func_001D5810(D_00278624, 491.0f, 388.0f, 0);
 
     o = (Img_5ED *)func_001E8A44(0x64);
     unkE0 = o ? o->func_001D5760() : 0;
@@ -771,10 +777,19 @@ C_0005EDC0 *C_0005EDC0::func_0005EDC0(void *a0)
     o = (Img_5ED *)func_001E8A44(0x64);
     unk10C = o ? o->func_001D5760() : 0;
     unk10C->func_001D5810(D_00278600, 0, 0, 0);
-    unk10C->flags |= 2;
-    unk10C->color &= 0xff000000;
-    unk10C->flags |= 2;
-    *((unsigned char *)&unk10C->color + 3) = 0x80;
+    {
+        Img_5ED *p = unk10C;
+        unsigned int c = p->color;
+        p->flags |= 2;
+        p->color = c & 0xff000000;
+    }
+    {
+        Img_5ED *p = unk10C;
+        unsigned char fl = p->flags;
+        fl |= 2;
+        *((unsigned char *)&p->color + 3) = 0x80;
+        p->flags = fl;
+    }
     height5ED(unk10C, 0x43e00000);
     width5ED(unk10C, 0x44200000);
 
