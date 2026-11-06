@@ -112,16 +112,6 @@ struct C_00150360 {
     void func_00150390(float a, float b, float c, int d);
     void func_00150390(int a, float b, float c, int d);
     void func_001503E0(float a, float b, float c);
-    __forceinline void Blend_001503E0(int a, float b, float c)
-    {
-        f24 = a;
-        f30 = b;
-        f34 = c;
-        f2C = (f44 - f48) * b + f48;
-        f28 = (D_00275460 - c) * (f2C - f4C);
-        D_002EFDB8->f2C = a;
-        f50 = 1;
-    }
 };
 
 struct C_00150440 {
