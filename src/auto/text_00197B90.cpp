@@ -47,6 +47,7 @@ static __forceinline void Copy4_00198040(__m128 * volatile dst, __m128 * volatil
 {
     __m128 *s = src;
     __m128 *d = dst;
+    _ReadWriteBarrier();
     __m128 a0 = s[0], a1 = s[1], a2 = s[2], a3 = s[3];
     _ReadWriteBarrier();
     d[0] = a0; d[1] = a1; d[2] = a2; d[3] = a3;
