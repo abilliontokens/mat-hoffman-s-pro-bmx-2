@@ -392,6 +392,11 @@ struct BmxEventEditor {
         *out = 0;
         func_00038A70(p, out);
     }
+    __forceinline void FindBlock(void **out, void *p)
+    {
+        *out = 0;
+        func_00038A70(p, out);
+    }
 };
 
 struct S_3D910_Base {
@@ -422,8 +427,7 @@ int BmxEventEditor::func_00041560()
     flag = 1;
     if (func_00038B10(&f564->obj->f28, a, b, &px, &py, &pz, 1) == 0)
         return -1;
-    blk = 0;
-    func_00038A70(&f564->obj->f28, &blk);
+    FindBlock(&f564->obj->f28, &blk);
     if (blk == 0)
         return -1;
     w = ((S_41560_Block *)blk)->w;
@@ -514,20 +518,22 @@ int BmxEventEditor::func_00041560()
                                         k++;
                                     } while (k < arr.count);
                                 }
-                                if (f28C == f48c && f28C > 0) {
+                                if (f28C == f48c) {
                                     k = 0;
-                                    do {
-                                        S_41F00_Entry *e2 = arr.at(k);
-                                        if (e2->type == 0) {
-                                            if (func_001E8AF0(&e2->obj->f28, D_00276F78) != 0) {
-                                                *(S_41F00_P4 *)f294 = *(S_41F00_P4 *)(e2->obj->func_00199B00((S_41F00_V4 *)&tmp2, 0));
-                                                e2->obj->func_00197B40((S_41F00_V4 *)f2a4, (S_41F00_V4 *)f2b4);
-                                                f28C = k;
-                                                break;
+                                    if (f28C > 0) {
+                                        do {
+                                            S_41F00_Entry *e2 = arr.at(k);
+                                            if (e2->type == 0) {
+                                                if (func_001E8AF0(&e2->obj->f28, D_00276F78) != 0) {
+                                                    *(S_41F00_P4 *)f294 = *(S_41F00_P4 *)(e2->obj->func_00199B00((S_41F00_V4 *)&tmp2, 0));
+                                                    e2->obj->func_00197B40((S_41F00_V4 *)f2a4, (S_41F00_V4 *)f2b4);
+                                                    f28C = k;
+                                                    break;
+                                                }
                                             }
-                                        }
-                                        k++;
-                                    } while (k < f28C);
+                                            k++;
+                                        } while (k < f28C);
+                                    }
                                 }
                             }
                         }
