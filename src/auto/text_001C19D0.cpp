@@ -80,8 +80,8 @@ static __forceinline void LoadSub19D0(Sub19D0 *s, Cfg19D0 *cfg, char **keys, cha
         memset(p, 0, strlen(p));
     }
     s->func_001D5810((int *)buf, 0, 0, 0);
-    int v1 = func_001E8858(s->f28);
-    int v2 = func_001E8858(s->f2c);
+    int v1 = (int)s->f28;
+    int v2 = (int)s->f2c;
     (void)v1; (void)v2;
     int a[4];
     int b[4];
