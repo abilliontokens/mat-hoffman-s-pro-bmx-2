@@ -367,6 +367,42 @@ void C_00077450::func_00077450(float dt)
     func_0005EA10(dt);
 }
 
+int C_000775D0::func_000775D0(int *a, int b) {
+    int func_001361E0(int, int, int *, int);
+    if (f194 || f1B8) goto done;
+    if (func_001361E0(2, 2, a, 0x80000000)) {
+        if (f1AC) goto done;
+        f120->func_00031610(2, 1);
+        f1A8 = f11C;
+        f1AC = 1;
+        --f11C;
+        if (f11C < 0) f11C = 1;
+    } else if (func_001361E0(3, 2, a, 0x80000000)) {
+        if (f1AC) goto done;
+        f120->func_00031610(2, 1);
+        f1A8 = f11C;
+        f1AC = 1;
+        ++f11C;
+        if (f11C > 1) f11C = 0;
+    } else {
+        if (func_001361E0(4, 2, a, 0x80000000) || func_001361E0(23, 2, a, 0x80000000)) {
+            f120->func_00031610(4, 1);
+            f194 = 1;
+            f124 = 0;
+            goto done;
+        }
+        if ((func_001361E0(5, 2, a, 0x80000000) || func_001361E0(24, 2, a, 0x80000000)) && f1B4) {
+            f120->func_00031610(4, 1);
+            f1B8 = 1;
+            f124 = 0;
+            goto done;
+        }
+    }
+    return func_00157BF0(a, b);
+done:
+    return 0;
+}
+
 C_000777A0 *C_000777A0::func_000777A0(int a)
 {
     ((C_000777A0_Base *)this)->func_00157600(a);
