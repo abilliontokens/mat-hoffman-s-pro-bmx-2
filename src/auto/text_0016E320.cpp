@@ -2,7 +2,7 @@
 #include "common.h"
 #include <xmmintrin.h>
 static __forceinline void FloatToInt_16EC80(int *out, float f) { int * volatile p = out; *p = _mm_cvttss_si32(*(__m128 *)&f); }
-struct L_16EC80 { int * volatile p; float t; };
+static __forceinline void FloatToIntV_16EC80(int *out, float f) { *out = _mm_cvttss_si32(*(__m128 *)&f); }
 
 struct Anim { int unk_0; int unk_4; int unk_8; };
 struct Owner { char pad[0x1b0]; int idx; float unk_1b4; float unk_1b8; };
@@ -225,8 +225,11 @@ void func_0016EC80(Table *t, Body *b, float dt)
                 k = b->frame - base;
                 int m = (int)((float)k * o->unk_1b8);
                 FloatToInt_16EC80(pk, b->cur / (b->len * o->unk_1b8));
-                if (k > 0)
-                    b->frame = m * n + (k - 1) + base;
+                int kk = k;
+                if (kk > 0) {
+                    kk--;
+                    b->frame = m * n + kk + base;
+                }
             }
         }
     }
