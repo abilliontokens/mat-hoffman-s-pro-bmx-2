@@ -147,6 +147,14 @@ extern int D_002AADF8;
 
 struct Vec_001BB950 {
     float x, y, z, w;
+    Vec_001BB950 &operator=(const Vec_001BB950 &o)
+    {
+        x = o.x;
+        y = o.y;
+        z = o.z;
+        w = o.w;
+        return *this;
+    }
 };
 
 struct Anim_001BB950 {
@@ -605,6 +613,32 @@ int C_001BB900::func_001BB900(void *a1)
         return 1;
     }
     return 0;
+}
+
+int C_001BB950::func_001BB950(Vec_001BB950 *a, Vec_001BB950 *b, int c, int d, float e)
+{
+    f24 = *a;
+    f34 = *b;
+    f2E0 = *(int *)&e;
+    if (e > D_00275544) {
+        Anim_001BB950 *p = f2E4;
+        if (p->f50 == 5) {
+            p->func_001A4AE0(a, &f2E0);
+            p->func_001A52C0();
+            p->func_00133210();
+            return 1;
+        }
+    }
+    if (a->x != D_002AAE04 || a->y != D_002AAE08 || a->z != D_002AAE0C) {
+        Anim_001BB950 *p = f2E4;
+        if (p->f50 == 6) {
+            p->func_001299C0(0, b);
+            func_000265C0(f50, a, (void *)c, (void *)d, 0, 1);
+            p->v31(f50);
+            p->func_00133210();
+        }
+    }
+    return 1;
 }
 
 void C_001BBAA0::func_001BBA60(void)
