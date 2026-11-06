@@ -116,6 +116,77 @@ struct C_000A1E90 {
     void func_000A1E90(void);
 };
 
+/* the 0x24-byte node group a page registers its controls with */
+struct S_000A1990_Group {
+    S_000A1990_Group *func_00157600(int a0);
+    void func_001577A0(void *obj, int flags);
+};
+
+struct S_000A1990_List {
+    int f0;
+    int f4;
+};
+
+extern void *D_002B9134;
+
+struct C_000A1990 {
+    char pad0[0x340];
+    int f340;
+    char pad344[0x388 - 0x344];
+    S_000A1990_List *f388;
+    void *f38C;
+    char pad390[0x398 - 0x390];
+    void *f398;
+    void *f39C;
+    void *f3A0;
+    void *f3A4;
+    void **f3A8;
+    void *f3AC;
+    void **f3B0;
+    void *f3B4;
+    char pad3B8[0x3C0 - 0x3B8];
+    void *f3C0;
+    char pad3C4[0x3DC - 0x3C4];
+    void *f3DC;
+    void **f3E0;
+    void *f3E4;
+    void *f3E8;
+    void *f3EC;
+    void *f3F0;
+    void *a3F4[12];
+    void *a424[24];
+    void *f484;
+    void *f488;
+    void **f48C;
+    int f490;
+    int f494;
+    char pad498[0x4A0 - 0x498];
+    void *f4A0;
+    void *f4A4;
+    char pad4A8[0x4E0 - 0x4A8];
+    void *f4E0;
+    void *a4E4[8];
+    void *a504[8];
+    char pad524[0x528 - 0x524];
+    void *f528;
+    char pad52C[0x530 - 0x52C];
+    void *f530;
+    char pad534[0x538 - 0x534];
+    void *f538;
+    void *f53C;
+    void *f540;
+    char pad544[0x548 - 0x544];
+    void *f548;
+    void *f54C;
+    char pad550[0x558 - 0x550];
+    void *f558;
+    char pad55C[0x598 - 0x55C];
+    S_000A1990_Group *f598;
+    S_000A1990_Group *f59C;
+    C_000A1990 *func_000A1990(void **list, int count);
+    void func_001577A0(void *obj, int flags);
+};
+
 int C_000A17E0::func_000A17E0(void) {
     int r;
 
