@@ -5,6 +5,11 @@ struct C_001046B0 {
  void func_001046B0();
  void func_001960F0(float, void *, int, int, int, int, int);
  void func_00196000(float, void *, int, int, int, int, int);
+ int func_001961E0(void *, int, int);
+ void func_001041F0(char *p);
+ char pad0[0xDC];
+ int unkDC;
+ char unkE0;
 };
 extern char *D_002B9134;
 extern char *D_002B9120;
