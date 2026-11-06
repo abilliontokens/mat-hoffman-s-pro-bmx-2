@@ -72,14 +72,14 @@ struct XboxVideoCard_001D7E30 {
 };
 
 struct XboxVideoCard_001D7D50 {
-    void *volatile vtbl;
+    void *vtbl;
     char pad4[0x68];
-    volatile int f6C;
+    int f6C;
     char pad70[0x5B4 - 0x70];
     int a5B4[0x40];
     int f6B4;
     int f6B8;
-    volatile int f6BC;
+    int f6BC;
     int f6C0;
     int f6C4;
     int f6C8;
@@ -88,13 +88,13 @@ struct XboxVideoCard_001D7D50 {
     int a6D4[0xC0];
     union {
         u8 f9D4;
-        volatile struct {
+        struct {
             u8 b01 : 2;
             u8 rest : 6;
         } f9D4b;
     };
     char pad9D5[3];
-    volatile int f9D8;
+    int f9D8;
     XboxVideoCard_001D7D50 *func_001D7D50(void);
 };
 
@@ -278,6 +278,137 @@ struct C_001D7CE0 {
     C_001D7CE0 *func_001D7CE0();
     void *func_001D7D10(int flags);
 };
+
+int XboxTextureMap::func_001D73E0(int file, int width, int height, int minDim, int fmt, int size, int dxFmt, unsigned int flags, int a9)
+{
+    int *op;
+    int count;
+    int mult;
+    int base;
+    int curW;
+    int curH;
+    int mipSize;
+    int convFmt;
+    int sz;
+    int offsets[13];
+    S_001D7910_Desc desc;
+    S_001D7910_Rect rect;
+    void *bufB;
+    void *bufA;
+    int fc;
+    XboxTextureMap *self = this;
+
+    fc = func_001B2870(fmt);
+    self->fB0 = 0;
+    sz = func_001B2910(func_001B2910(fc) <= func_001B2910(dxFmt) ? fc : dxFmt) * width * height >> 3;
+    bufA = D_002F0670->v30(sz);
+    if (bufA != 0) {
+    sz = (func_001B2910(func_001B2910(fc) <= func_001B2910(dxFmt) ? fc : dxFmt) * width * height >> 3) + 4;
+    bufB = D_002F0670->v31(sz);
+    if (bufB != 0) {
+    if (func_001B2810(fmt)) {
+        if (((VTexMap_001D73E0 *)self)->func_001D7910(0, width, height, width, minDim, fc, dxFmt, flags, 0) == 0)
+            return 0;
+        count = 0;
+        mult = 1;
+        op = offsets;
+        do {
+            base = D_002BEAAC->func_0013AFD0(file);
+            if (D_002BEAAC->func_0013C8A0(file, op, 4, 1) != 1)
+                return 0;
+            *op += base;
+            count++;
+            op++;
+            mult <<= 1;
+        } while (mult <= width);
+        base = D_002BEAAC->func_0013AFD0(file);
+        op = &offsets[count];
+        if (D_002BEAAC->func_0013C8A0(file, op, 4, 1) != 1)
+            return 0;
+        *op += base;
+        curW = 1;
+        curH = 1;
+        op = offsets;
+        do {
+            mipSize = op[1] - op[0];
+            if (func_001B27B0(fmt)) {
+                if (size == 0) {
+                    if (D_002BEAAC->func_0013C8A0(file, &size, 4, 1) != 1)
+                        return 0;
+                    D_002BEAAC->func_0013C8A0(file, bufA, 1, size);
+                } else {
+                    if (D_002BEAAC->func_0013C8A0(file, bufA, func_001B2730(fmt) * curW >> 3, curH) != curH)
+                        return 0;
+                }
+            } else {
+                sz = func_001B2730(fmt) * width * curW >> 3;
+                size = sz;
+                if (D_002BEAAC->func_0013C8A0(file, bufB, sz, 1) != size)
+                    return 0;
+            }
+            if (curW >= minDim) {
+                int s;
+                int level;
+                unsigned int cnt;
+                cnt = func_001FCFE0(self->field_b8);
+                s = width;
+                level = 0;
+                if (width > curW) {
+                    for (;;) {
+                        if ((unsigned int)level > cnt)
+                            return 0;
+                        s >>= 1;
+                        level++;
+                        if (s <= curW)
+                            break;
+                    }
+                }
+                if (s == curW) {
+                    func_001FCEA0(self->field_b8, level, &rect, 0, 0);
+                    if (dxFmt == 12) {
+                        func_001FCE40(self->field_b8, level, &desc);
+                        memcpy(rect.bits, bufA, size);
+                    } else {
+                        switch (dxFmt) {
+                        case 3:
+                            convFmt = 0x613;
+                            break;
+                        default:
+                            convFmt = 0x22b8;
+                            break;
+                        }
+                        func_00178C60(rect.bits, bufB, rect.pitch * 8 / func_001B2910(dxFmt), curW, curH, curW, convFmt, fc, 0, 0, 0x80, 0xff00ff, 1);
+                    }
+                    self->arrC0[level] = (u32)rect.bits;
+                    self->arrE8[level] = rect.pitch;
+                }
+            }
+            op++;
+            curW <<= 1;
+            curH <<= 1;
+        } while (curW <= width);
+        return 1;
+    } else {
+        if (func_001B27B0(fmt) == 0) {
+            memcpy(bufB, bufA, size);
+        } else if (size == (func_001B2730(fmt) * width * height >> 3)) {
+            memcpy(bufB, bufA, size);
+        } else {
+            if (size == 0) {
+                if (D_002BEAAC->func_0013C8A0(file, &size, 4, 1) != 1)
+                    return 0;
+                if (D_002BEAAC->func_0013C8A0(file, bufA, 1, size) != size)
+                    return 0;
+            }
+            if (fmt >= 6 && fmt <= 12)
+                func_001611C0(bufB, bufA, func_001B2730(fmt) * width * height >> 3);
+        }
+        return ((VTexMap_001D73E0 *)self)->func_001D7910(bufB, width, height, width, minDim, fc, dxFmt, flags, 0);
+    }
+    }
+    }
+    return 0;
+}
 
 int XboxTextureMap::func_001D7910(void *data, int width, int height, int a4, int minDim, int srcFmt, int dxFmt, unsigned int flags, int a9)
 {
