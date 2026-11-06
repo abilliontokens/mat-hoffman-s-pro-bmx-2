@@ -153,7 +153,7 @@ struct S_00095880_Array {
     int capacity;
     unsigned char owned : 1;
     unsigned char flags : 7;
-    S_00095880_Array(int n) { count = 0; owned = 0; data = (int *)func_001E8A44(n * 4); growth = 16; capacity = n; owned = 1; }
+    S_00095880_Array(int n) { owned = 0; data = (int *)func_001E8A44(n * 4); growth = 16; capacity = n; owned = 1; }
     ~S_00095880_Array() { func_001E891B(data); }
     void func_001CDED0(int n);
 };
@@ -341,16 +341,13 @@ C_00095640 *C_00095640::func_00095640(int a, int b, int c)
 
 int C_00095A00::func_00095880()
 {
-    int func_001E891B(...);
     if (!f50) return 0;
     int n = f34 == 0 ? f54 : f50->v41(f34);
     S_00095880_Array a(n);
     int count;
     if (f34 == 0) {
-        if (!func_000952F0()) {
-            goto fail;
-        }
-        if (!n) goto fail;
+        if (!func_000952F0()) return 0;
+        if (!n) return 0;
         if (f68.count == func_000952F0()) f68.func_00094F10();
         count = 0;
         for (int i = 1; n > 0; ++i, --n) {
@@ -360,9 +357,7 @@ int C_00095A00::func_00095880()
             }
         }
     } else {
-        if (n <= 0) {
-            goto fail;
-        }
+        if (n <= 0) return 0;
         if (f68.count == n) f68.func_00094F10();
         count = 0;
         for (int i = 1; n > 0; ++i, --n) {
@@ -378,11 +373,7 @@ int C_00095A00::func_00095880()
     f50->v30(chosen - 1, 1);
     f30 = 2;
     f38 = chosen;
-    func_001E891B(a.data);
     return 1;
-fail:
-    func_001E891B(a.data);
-    return 0;
 }
 
 extern "C" void *__cdecl memset(void *dst, int c, unsigned int n);
