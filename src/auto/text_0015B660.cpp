@@ -561,22 +561,4 @@ int func_0015C530(float *base, float v, int hi, float **lo, float **up, float *t
     return 0;
 }
 
-void C_0015C5C0::func_0015C5C0(int a0, int a1)
-{
-    if (unkC >= unk10)
-        v6(unk10 + 1);
-    C_0015C5C0_Entry e;
-    func_0001B130(&e.b, a0);
-    e.a = e.b;
-    int count = unkC;
-    C_0015C5C0_Entry *entries = unk14;
-    int index = func_0015C640(entries, count, e.b);
-    int i = count;
-    while (i > index) {
-        entries[i] = entries[i - 1];
-        i--;
-    }
-    entries[index] = e;
-    unkC++;
-}
 
