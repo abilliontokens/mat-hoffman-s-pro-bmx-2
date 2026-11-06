@@ -101,6 +101,102 @@ struct FPSSave_Snd {
     void func_0001EDC0(int id);
 };
 
+struct S_SelectObj {
+    virtual void v00(); virtual void v01(); virtual void v02(); virtual void v03();
+    virtual void v04(); virtual void v05(); virtual void v06(); virtual void v07();
+    virtual void v08(); virtual void v09(); virtual void v10(); virtual void v11();
+    virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15();
+    virtual int v16();
+};
+
+struct FPSSave_R8 {
+    char pad0[0x14];
+    S_SelectObj **objs;
+};
+
+struct S_InGameObj {
+    char pad0[0xA40];
+    int fA40;
+    float fA4C;
+    float fA54;
+    int fA58;
+    int fA5C;
+    char padA60[0x1058 - 0xA60];
+    float f1058;
+    void func_001067B0(void);
+};
+
+struct FPSSave_P4E0 {
+    char pad0[0x24];
+    int f24;
+    char pad28[0x1A8 - 0x28];
+    S_InGameObj *arr1a8[1];
+};
+
+struct C_0005B960 {
+    int func_0005B960(int a0, float a1);
+};
+
+struct S_F164 {
+    char pad0[0xFC];
+    int fFC;
+    void func_0006E970(int a0);
+};
+
+struct S_F1A0 {
+    void func_000717E0(void);
+    void func_00072590(int a0);
+};
+
+struct BmxInGameMenuSub {
+    virtual void v00(); virtual void v01(); virtual void v02(); virtual void v03();
+    virtual void v04(); virtual void v05(); virtual void v06(); virtual void v07();
+    virtual void v08(); virtual void v09(); virtual void v10(); virtual void v11();
+    virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15();
+    virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
+    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23();
+    virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27();
+    virtual void v28(); virtual void v29(); virtual void v30(); virtual void v31();
+    virtual void v32(); virtual void v33(); virtual void v34(); virtual void v35();
+    virtual void v36(); virtual void v37(); virtual void v38();
+    virtual void v39();
+    char pad4[0x64 - 4];
+    FPSSave_R64 *f64;
+    C_0005B960 *f68;
+    char pad6C[0x90 - 0x6C];
+    int f90;
+    char pad94[0x120 - 0x94];
+    int f120;
+    char pad124[0x164 - 0x124];
+    S_F164 *f164;
+    char pad168[0x1A0 - 0x168];
+    S_F1A0 *f1A0;
+    void func_00032720(void);
+    void func_00032740(void);
+};
+
+struct BmxInGameMenu {
+    char pad0[0xF0];
+    float unkF0;
+    int unkF4;
+    int unkF8;
+    char padFC[4];
+    int unk100;
+    BmxInGameMenuSub *unk104;
+    char pad108[0x110 - 0x108];
+    int unk110;
+    char pad114[0x11C - 0x114];
+    int unk11C;
+    int unk120;
+    char pad124[4];
+    int unk128;
+    int unk12C;
+    void func_000601B0(void);
+    void func_00060220(void);
+    void func_0005EA10(float dt);
+    void func_00078FD0(float dt);
+};
+
 struct FPSSave_Root {
     char pad0[0x2A4];
     FPSSave_R2A4 *p2A4;
