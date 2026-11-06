@@ -19,7 +19,7 @@ struct Q_Sub {
 };
 struct Q_List { char pad0[0x24]; int count; char **items; };
 struct Q_P64 { char pad0[0x3ac]; Q_List *f3AC; char pad3B0[0xd4]; Q_Sub *f484; };
-struct Q_Mgr { char pad0[0x64]; Q_P64 *f64; char pad68[0x160]; int f1C8; };
+struct Q_Mgr { char pad0[0x64]; Q_P64 *f64; char pad68[0x160]; void **f1C8; };
 struct Q_Vec { float x, y, z, w; };
 struct Q_Actor {
     virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
@@ -165,9 +165,11 @@ struct C_00096750 {
 void C_00096450::func_00096450(int idx)
 {
     char buf[0x104];
+    char buf2[0x104];
     Q_Mgr *mgr;
     Q_P64 *p;
     char *e;
+    char *src2;
     int i;
     int found;
 
@@ -206,8 +208,8 @@ void C_00096450::func_00096450(int idx)
             }
         }
     }
-    char buf2[0x104];
-    strcpy(buf2, s4768[idx]);
+    src2 = s4768[idx];
+    strcpy(buf2, src2);
     if (!mgr->f1C8 && buf2[0])
         func_00052630(buf2);
     if (s42b8[idx][0] && !D_002A8490->f2A4->f1C8)
