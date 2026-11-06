@@ -157,7 +157,15 @@ struct S_00095880_Array {
     ~S_00095880_Array() { func_001E891B(data); }
     void func_001CDED0(int n);
 };
-void *func_001E8A44(unsigned int size);
+struct S_00095880_Raw {
+    int count;
+    int *data;
+    int growth;
+    int capacity;
+    unsigned char owned : 1;
+    unsigned char flags : 7;
+    void func_001CDED0(int n);
+};
 int func_00011260(int a, int b);
 
 struct S_00095AB0_Vt {
