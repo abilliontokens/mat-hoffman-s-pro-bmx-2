@@ -66,8 +66,6 @@ struct CrtDouble_001EDD36 {
 extern void (*D_002AEA14)(CrtDouble_001EDD36 *, char *, int, int, int);
 extern void (*D_002AEA18)(char *);
 extern void (*D_002AEA20)(char *);
-/* Never defined or called: func_001EDD36 mentions it in a dead `if (0)` so format and argptr stay in memory. */
-void func_unused_001EDD36(void *, void *);
 
 /* output.c's flag bits, buffer sizes and va_arg helpers */
 #define OUTA_FL_SIGN       0x0001
