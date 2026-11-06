@@ -1,5 +1,13 @@
 /* 2 functions from 0x0005C720 to 0x0005D6A0, found by Ghidra. */
 #include "common.h"
+#include "asm_helpers.h"
+extern char D_00278424[], D_0027841C[], D_00278414[], D_0027840C[], D_00278404[];
+extern char D_00278400[], D_002783F8[], D_002783F0[], D_002783E8[], D_002783E0[];
+extern char D_002783D8[], D_002783D0[], D_002783C8[], D_002783C0[], D_002783B8[];
+extern char D_002783B0[], D_002783A4[], D_002783A0[], D_00278398[], D_00278390[];
+extern char D_00278388[], D_00278380[], D_00278378[], D_00278370[], D_00278368[];
+extern char D_00278360[], D_00278358[], D_00278352[], D_0027834A[], D_00278344[];
+extern char D_0001E6E0[], D_00013B3C[], D_0003D860[], D_00024B80[], D_0001A838[], D_00013A1A[];
 
 struct IniFile_5C720 {
     IniFile_5C720 *func_00168280(void);
