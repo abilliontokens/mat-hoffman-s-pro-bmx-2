@@ -10,8 +10,48 @@ extern char D_0028AA74[8];
 void *func_001E8AA5(int size);
 
 /* node of the per-entry list, linked through +0x2C, 8-byte tag at +0 */
+struct S_1904E0_Rec {
+    char name[0x40];
+    int f40;
+};
+
+struct S_1904E0_Entry {
+    int f0;
+    S_1904E0_Rec rec;
+    unsigned int f48;
+    int f4C;
+};
+
+struct S_1904E0_Frame {
+    int count;
+    int recId;
+    unsigned int flags;
+    int tbl;
+};
+
+struct S_1904E0_Sub {
+    void *func_00191400(void);
+};
+
+struct C_0018F350 {
+    char pad0[0x18];
+    unsigned int f18;
+    char pad1c[0xc];
+    char *f28;
+    char pad2c[0x12c - 0x2c];
+    int f12c;
+    char pad130[0x150 - 0x130];
+    S_1904E0_Sub f150;
+    char pad151[0x1c0 - 0x151];
+    C_0018F350 *func_0018F350(void);
+    void func_0018F4D0(unsigned int a);
+    void func_0018E250(char *a, unsigned int b);
+    void *func_0018E1D0(void);
+};
+
 struct S_00191270_Node {
-    char tag[0x24];
+    char tag[0x20];
+    S_1904E0_Entry *f20;
     int f24;
     char pad28[4];
     S_00191270_Node *f2C;
@@ -66,13 +106,20 @@ struct C_00191400 {
     void func_00191420(int a0, unsigned int a1, C_00191400_Vec *a2);
 };
 
-#pragma intrinsic(memcmp)
+#pragma intrinsic(strcmp)
+extern "C" int strcmp(const char *a, const char *b);
+#pragma intrinsic(strcmp)
+void C_00191270::func_001904E0(S_00191270_Owner *owner, int slot, S_00191270_Node *node, int c, int d)
+{
+    (void)owner; (void)slot; (void)node; (void)c; (void)d;
+}
+
 void C_00191270::func_00191270(S_00191270_Owner *owner, int a, char *name, int b)
 {
     int flag;
     int slot;
-    S_00191270_Entry *e;
     S_00191270_Node *node;
+    S_00191270_Node *n2;
 
     slot = func_0018CE00(owner, name);
     flag = 0;
@@ -81,11 +128,10 @@ void C_00191270::func_00191270(S_00191270_Owner *owner, int a, char *name, int b
     f158[slot].f4C = func_0018FF10(a, b, slot, &flag);
     f158[slot].f44 = owner->f38;
     owner->f38 = slot;
-    e = &f158[slot];
-    if (e->f4C == 1 && e->f48 != 0) {
-        for (node = e->f48->f104; node != 0; node = node->f2C) {
-            if (memcmp(D_0028AA74, node->tag, 8) == 0) {
-                e->f58 = 0;
+    if (f158[slot].f4C == 1 && f158[slot].f48 != 0) {
+        for (node = f158[slot].f48->f104; node != 0; node = node->f2C) {
+            if (strcmp("@Create", node->tag) == 0) {
+                f158[slot].f58 = 0;
                 f158[slot].f5C = f158[slot].f58 + node->f24;
                 f158[slot].f54 = func_001E8AA5(f158[slot].f5C * 0x1c0);
                 func_001904E0(owner, slot, node, 0, node->f24);
@@ -93,9 +139,9 @@ void C_00191270::func_00191270(S_00191270_Owner *owner, int a, char *name, int b
             }
         }
         if (flag != 0) {
-            for (node = f158[slot].f48->f104; node != 0; node = node->f2C) {
-                if (memcmp(D_0028AA74, node->tag, 8) != 0) {
-                    func_0018E0E0(node, slot);
+            for (n2 = f158[slot].f48->f104; n2 != 0; n2 = n2->f2C) {
+                if (strcmp("@Create", n2->tag) != 0) {
+                    func_0018E0E0(n2, slot);
                 }
             }
         }
