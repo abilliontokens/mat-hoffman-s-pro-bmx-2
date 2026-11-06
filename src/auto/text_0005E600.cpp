@@ -297,6 +297,100 @@ struct BmxMenu {
     void func_0005EA10(int a0);
 };
 
+/* image widget (0x64 bytes) */
+struct Img_5ED {
+    char pad0[4];
+    char pad4[0x24];
+    int width;
+    int height;
+    char pad30[8];
+    unsigned int color;
+    float a, b, c, d;
+    float w, h;
+    char pad54[4];
+    unsigned char flags;
+    Img_5ED *func_001D5760();
+    void func_001D5810(char *name, float x, float y, int z);
+};
+
+/* text widget (0x60 bytes) */
+struct Txt_5ED {
+    int pad0, x, y;
+    char padC[0x38];
+    int align;
+    unsigned int color;
+    char pad4c[2];
+    unsigned char flags;
+    Txt_5ED *func_001D5E90();
+    void func_001D5FA0(int font, char *name, int size, int z);
+    void func_0005E840(int str);
+};
+
+extern "C" void *func_001E8A44(unsigned int size);
+extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
+extern "C" char *strcpy(char *dst, const char *src);
+extern char D_002786A0[], D_00278690[], D_00278678[], D_00278658[], D_00278648[], D_00278638[], D_00278624[], D_00278608[], D_00278600[];
+extern char D_002A60B0[], D_002A5FA8[], D_002A5870[], D_00275678[];
+extern int D_0028F5E0;
+
+static __forceinline void pos5ED(Txt_5ED *p, int x, int y) { if (p->x != x || p->y != y) { p->y = y; p->x = x; p->flags |= 6; } }
+static __forceinline void align5ED(Txt_5ED *p, int a) { if (p->align != a) { p->align = a; p->flags |= 6; } }
+static __forceinline void color5ED(Txt_5ED *p, unsigned int c) { if (p->color != c) { p->flags |= 8; p->color = (p->color & (c | 0xff000000)) | (c & 0xffffff); } }
+static __forceinline void uv5ED(Img_5ED *p) { float a = 127.0f * p->w; p->flags |= 4; p->a = a; p->b = 0.0f * p->w; p->c = 15.0f * p->h; p->d = 0.0f * p->h; }
+static __forceinline void width5ED(Img_5ED *p, int v) { if (p->width != v) { p->width = v; p->flags |= 1; } }
+static __forceinline void height5ED(Img_5ED *p, int v) { if (p->height != v) { p->height = v; p->flags |= 1; } }
+
+/* in-game menu (BmxInGameMenu): builds its widgets */
+struct C_0005EDC0 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
+    virtual void v15();
+    virtual void v16();
+    virtual void v17();
+    virtual void v18();
+    virtual void v19();
+    virtual void v20();
+    virtual void v21();
+    virtual void v22();
+    virtual void v23();
+    virtual void v24();
+    virtual void v25();
+    virtual void v26();
+    virtual void v27();
+    char pad74[0x94 - 0x74];
+    Img_5ED *unk94;
+    Img_5ED *unk98;
+    char pad9C[0x10];
+    Img_5ED *unkAC[5];
+    Img_5ED *unkC0[5];
+    Img_5ED *unkD4;
+    Img_5ED *unkD8;
+    Img_5ED *unkDC;
+    Img_5ED *unkE0;
+    char padE4[8];
+    Txt_5ED *unkEC;
+    char padF0[0x14];
+    void *unk104;
+    char pad108[4];
+    Img_5ED *unk10C;
+    char pad110[0x14];
+    Txt_5ED *unk124;
+    C_0005EDC0 *func_0005EDC0(void *a0);
+};
+
 C_0005E600 *C_0005E600::func_0005E600(int a0)
 {
     int *p;
