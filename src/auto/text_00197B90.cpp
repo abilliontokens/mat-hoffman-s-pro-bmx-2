@@ -78,7 +78,8 @@ struct C_00197EC0 {
     float f118;
     char pad11C[0x14];
     float f130[4];
-    char pad140[0x34];
+    float f140[4];
+    char pad150[0x24];
     C_00197EC0 *f174;
     C_00197EC0 *f178;
     char pad17C[4];
