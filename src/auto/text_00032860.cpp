@@ -96,7 +96,8 @@ struct C_00032E90 {
 
 static inline void RoundToInt(int *out, float f)
 {
-    *out = _mm_cvtss_si32(_mm_load_ss(&f));
+    int * volatile p = out;
+    *p = _mm_cvtss_si32(*(__m128 *)&f);
 }
 
 struct V4_00032E50;
@@ -274,6 +275,108 @@ void C_00032A20::func_00032A40(void)
     D_002A8490->f124 = 0;
 }
 
+void BmxEvent::func_00032A60(void)
+{
+#define PAUSE32A60() do { \
+    ((V_32A60 *)self)->v18(1); \
+    *(int *)((char *)D_002A8490 + 0x124) = 1; \
+    ((V_32A60 *)*(char **)(*(char **)(self + 0x64) + 0x4c0))->v31(1, 1); \
+    ((V_32A60 *)*(char **)(*(char **)((char *)D_002A8490 + 0x2e0) + 0x2fc))->v18(1); \
+} while (0)
+#define SETHALF32A60() do { \
+    int k; \
+    for (k = 0; k < *(int *)(self + 0x90); k++) { \
+        char *a = *(char **)(*(char **)(self + 0x64) + 0x4e0); \
+        *(float *)(*(char **)(a + 0x1a8 + k * 4) + 0x958) = 0.5f; \
+    } \
+} while (0)
+    char *self = (char *)this;
+    char *glob = (char *)D_002A8490;
+    char *mgr = *(char **)(glob + 0x2e0);
+    int n = *(int *)(self + 0x90);
+    int i;
+
+    if (*(int *)(self + 0x11c) != 0) {
+        int idx = *(int *)(self + 0x120);
+        char *arr = *(char **)(glob + 0x8);
+        int id = *(int *)(mgr + 0x300 + idx * 4);
+        char *obj = *(char **)(arr + 0x14 + id * 4);
+        if (((V_32A60 *)obj)->v16() == 0) {
+            if (*(int *)(*(char **)(self + 0x15c) + 0xfc) == 0) {
+                if (*(int *)(*(char **)(self + 0x190) + 0x168) == 0) {
+                    PAUSE32A60();
+                    SETHALF32A60();
+                    ((O_33320 *)*(char **)(self + 0x15c))->func_000602B0();
+                    ((O_33320 *)*(char **)(self + 0x15c))->func_00060350(id);
+                }
+            }
+        }
+    }
+    for (i = 0; i < n; i++) {
+        char *arr = *(char **)(glob + 0x8);
+        int id = *(int *)(mgr + i * 4);
+        char *obj = *(char **)(arr + 0x14 + id * 4);
+        int mode;
+        if (((V_32A60 *)obj)->v16() != 0) {
+            continue;
+        }
+        mode = *(int *)(mgr + 0x4);
+        if (mode == 10) {
+            if (*(int *)(self + 0x90) == 1) {
+                char *o = *(char **)(self + 0x1ac);
+                if (o == 0) {
+                    continue;
+                }
+                if (*(int *)(*(char **)(self + 0x15c) + 0xfc) != 0) {
+                    continue;
+                }
+                if (*(int *)(o + 0x1c0) != 0) {
+                    continue;
+                }
+                PAUSE32A60();
+                ((O_33320 *)*(char **)(self + 0x15c))->func_000602B0();
+                ((O_33320 *)*(char **)(self + 0x15c))->func_00060350(0);
+            } else if (*(int *)(self + 0x90) == 2) {
+                char *o = *(char **)(self + 0x1a8);
+                if (o == 0) {
+                    continue;
+                }
+                if (*(int *)(*(char **)(self + 0x15c) + 0xfc) != 0) {
+                    continue;
+                }
+                if (*(int *)(o + 0x1c0) != 0) {
+                    continue;
+                }
+                PAUSE32A60();
+                ((O_33320 *)*(char **)(self + 0x15c))->func_000602B0();
+                ((O_33320 *)*(char **)(self + 0x15c))->func_00060350(0);
+            }
+        } else if (mode != 0) {
+            if (*(int *)(*(char **)(self + 0x15c) + 0xfc) != 0) {
+                continue;
+            }
+            if (*(int *)(*(char **)(self + 0x190) + 0x168) != 0) {
+                continue;
+            }
+            PAUSE32A60();
+            SETHALF32A60();
+            ((O_33320 *)*(char **)(self + 0x15c))->func_000602B0();
+            ((O_33320 *)*(char **)(self + 0x15c))->func_00060350(id);
+        } else {
+            char *o = *(char **)(self + 0x16c);
+            if (*(int *)(o + 0x1c8) != 0) {
+                continue;
+            }
+            PAUSE32A60();
+            SETHALF32A60();
+            ((O_33320 *)*(char **)(self + 0x160))->func_000602B0();
+            ((O_33320 *)*(char **)(self + 0x160))->func_00060350(id);
+        }
+    }
+#undef PAUSE32A60
+#undef SETHALF32A60
+}
+
 void C_00032E50::func_00032E50(V4_00032E50 v)
 {
     if (D_002F08BC != 0) {
@@ -284,13 +387,16 @@ void C_00032E50::func_00032E50(V4_00032E50 v)
 
 void C_00032E90::func_00032E90(void)
 {
-    int r;
-    float t;
+    struct { C_00032E90 * volatile self; int v; int * volatile p; float t; } L;
+    C_00032E90 *s;
 
+    L.self = this;
     if (D_002F08BC != 0 && (f210 != D_00275544 || f214 != D_00275544 || f218 != D_00275544) && f230 < D_00275600) {
-        f230 = D_002A8490->f244 + f230;
-        t = func_0001C870(f230, 0, f220, 2.0f, f210);
-        r = _mm_cvtss_si32(_mm_load_ss(&t));
+        *(volatile float *)&f230 = D_002A8490->f244 + f230;
+        s = L.self;
+        L.p = &L.v;
+        L.t = func_0001C870(s->f230, 0, s->f220, 2.0f, s->f210);
+        *L.p = _mm_cvtss_si32(*(__m128 *)&L.t);
     }
 }
 
