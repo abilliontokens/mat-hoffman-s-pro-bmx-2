@@ -188,8 +188,8 @@ static __forceinline void InitTail_00055380(volatile u32 *p)
     p[0x2] = 0;
     p[0x4f] = 0;
     p[0x18] = 0x3f800000;
-    p[0x53] = 0x3eb2b8c1;
-    p[0x54] = 0x3eb2b8c1;
+    *(volatile float *)&p[0x53] = 0.34906581f;
+    *(volatile float *)&p[0x54] = 0.34906581f;
     p[0x50] = 0x3f860a91;
     p[0x56] = 0x40400000;
     p[0x55] = 0x3f800000;
