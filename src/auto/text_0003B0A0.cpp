@@ -161,7 +161,8 @@ void C_0003BB60::func_0003B0A0()
         char *e3 = Get_3B0A0((int *)(mgr + 0x5a8), sel);
         char *g1 = Get_3B0A0((int *)((char *)this + 0x5c8), sel + 1);
         char *g2 = Get_3B0A0((int *)((char *)this + 0x5c8), sel);
-        ((S_3B0A0_Obj *)*(void **)((char *)this + 0x540))->Spawn(g2, g1, mgr, *(float *)((char *)this + 0x440), idx,
+        S_3B0A0_Obj *o = (S_3B0A0_Obj *)*(void **)((char *)this + 0x540);
+        Spawn_3B0A0(o, g2, g1, mgr, *(float *)((char *)this + 0x440), idx,
             *(int *)(e3 + 0x360), *(int *)(e2 + 0x358), *(int *)(e1 + 0x35c));
     } else if (func_001E8AF0(*(char **)(*(char **)((char *)this + 0x64) + 0x5a4) + *(int *)((char *)this + 0x47c) * 72, D_00276F00)) {
         void *a3 = *(int *)((char *)this + 0x480) ? *(void **)((char *)this + 0x594) : *(void **)((char *)this + 0x590);
