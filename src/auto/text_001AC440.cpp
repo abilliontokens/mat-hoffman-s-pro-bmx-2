@@ -33,7 +33,6 @@ struct StringTable {
     int capacity;
     int unk10;
     StringTableEntry *entries;
-    int func_001AC440(const char *name);
     int func_001AC680(const char *name, int value);
     void func_001AC750(int index, int data);
     int func_001AC7B0(const char *name, int unused);
@@ -76,10 +75,11 @@ void func_001E8390(void *p);
 void *func_001E8AA5(unsigned int size);
 
 
-int StringTable::func_001AC440(const char *name)
+int DynamicStringTable::func_001AC440(const char *name)
 {
     char path[260];
     int size, unused;
+    int j;
     if (entries) func_001E891B(entries);
     if (unk10) func_001E8390((void *)unk10);
     strcpy(path, name);
@@ -117,14 +117,14 @@ int StringTable::func_001AC440(const char *name)
             }
         }
     }
-    *(volatile int *)&capacity = count;
-    for (int j = 0; j < ((DynamicStringTable *)this)->unk1C; ++j)
-        for (int k = 0; k < count; ++k)
-            {
-            const char *other = ((StringTableEntry *)((DynamicStringTable *)this)->unk18)[j].name;
+    j = 0;
+    capacity = count;
+    for (; j < unk1C; ++j)
+        for (int k = 0; k < count; ++k) {
+            const char *other = ((StringTableEntry *)unk18)[j].name;
             const char *current = entries[k].name;
             if (!func_001EA426(current, other)) {
-                StringTableEntry *src = &((StringTableEntry *)((DynamicStringTable *)this)->unk18)[j];
+                StringTableEntry *src = &((StringTableEntry *)unk18)[j];
                 StringTableEntry *dst = &entries[k];
                 dst->name = src->name;
                 dst->value = src->value;
