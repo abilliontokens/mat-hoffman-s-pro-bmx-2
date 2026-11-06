@@ -221,6 +221,7 @@ struct S_000C8660_Obj {
     unsigned char f58;
     S_000C8660_Obj *func_001D5760(void);
     void func_001D5810(void *a, float b, float c, int d);
+    C_NumHorse_Clamp *func_001D5AA0(void);
 };
 
 void *func_001E8A44(int size);
