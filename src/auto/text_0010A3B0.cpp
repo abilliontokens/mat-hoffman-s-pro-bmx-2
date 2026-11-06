@@ -220,6 +220,25 @@ struct Hud_0010A3B0 {
             f17f4[i] = D_002EF7D0->func_00162B20(buf, 1); \
         } \
     }
+#define NAME_LOOP12(i0, chk, ld) \
+    { \
+    int i, j; \
+    for (i = i0, j = 0; i < i0 + 8; i++, j++) { \
+        const char *src = f24->f52c + j * 0x32 + chk; \
+        char *dst = name; \
+        char c; \
+        do { \
+            c = *src++; \
+            *dst++ = c; \
+        } while (c != 0); \
+        if (func_001E8AF0(name, D_00282B54) == 0) { \
+            func_001ADCC0(buf, 0x100, D_00276F28, f24->f52c + j * 0x32 + ld); \
+            f1658[i] = D_002EF7D0->func_00162B20(buf, 1); \
+            func_001ADCC0(buf, 0x100, D_00282B50, f24->f52c + j * 0x32 + ld); \
+            f17f4[i] = D_002EF7D0->func_00162B20(buf, 1); \
+        } \
+    } \
+    }
 #define NAME_LOOP4(end, chk, ld) \
     for (j = 0; i < end; i += 4, j += 0x32) { \
         char *dst = name; \
