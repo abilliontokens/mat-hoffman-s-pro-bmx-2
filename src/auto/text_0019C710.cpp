@@ -95,7 +95,7 @@ struct S_19CCE0_Elem {
 extern "C" float __cdecl sqrtf(float);
 static __forceinline void Sqrt_19CCE0(float *out, float x)
 {
-    _mm_store_ss(out, _mm_sqrt_ss(*(__m128 *)&x));
+    _mm_store_ss(out, _mm_sqrt_ss(_mm_load_ss(&x)));
 }
 /* 0x14-byte record of the third table */
 struct S_19CCE0_Rec {
@@ -207,16 +207,17 @@ void SoultreeCollisionObject::func_0019CCA0(int param_1)
 void SoultreeCollisionObject::func_0019CCE0(int volatile file)
 {
     SoultreeCollisionObject * volatile self = this;
-    int x1;
-    int y1;
-    int x2;
-    int count;
-    int nRec;
+    S_19CCE0_Vec3 v;
     int hasColor;
+    int nRec;
+    int count;
+    int x2;
+    int y1;
+    int x1;
     int i;
     void *mem;
 
-    RD_19CCE0(&self->unkF0[0][0], 4);
+    RD_19CCE0(&this->unkF0[0][0], 4);
     RD_19CCE0(&self->unkF0[1][0], 4);
     RD_19CCE0(&self->unkF0[2][0], 4);
     self->unkF0[3][0] = 0.0f;
@@ -266,7 +267,6 @@ void SoultreeCollisionObject::func_0019CCE0(int volatile file)
         }
         self->unk1B0p = mem;
         for (i = 0; i < self->unk1CC; i++) {
-            S_19CCE0_Vec3 v;
             RD_19CCE0(&v.x, 4);
             RD_19CCE0(&v.y, 4);
             RD_19CCE0(&v.z, 4);
@@ -288,7 +288,6 @@ void SoultreeCollisionObject::func_0019CCE0(int volatile file)
         } else {
             self->unk1B4p = new S_19CCE0_V3z[self->unk1CC];
             for (i = 0; i < self->unk1CC; i++) {
-                S_19CCE0_Vec3 v;
                 RD_19CCE0(&v.x, 4);
                 RD_19CCE0(&v.y, 4);
                 RD_19CCE0(&v.z, 4);
@@ -302,20 +301,18 @@ void SoultreeCollisionObject::func_0019CCE0(int volatile file)
     self->unk1C4 = (int)new S_19CCE0_Elem[count];
     for (i = 0; i < count; i++) {
         S_19CCE0_Elem *e = &((S_19CCE0_Elem *)self->unk1C4)[i];
-        S_19CCE0_Vec3 va;
-        S_19CCE0_Vec3 vb;
         RD_19CCE0(&e->f0, 4);
-        RD_19CCE0(&va.x, 4);
-        RD_19CCE0(&va.y, 4);
-        RD_19CCE0(&va.z, 4);
-        S_19CCE0_Vec3 ta = va;
+        RD_19CCE0(&v.x, 4);
+        RD_19CCE0(&v.y, 4);
+        RD_19CCE0(&v.z, 4);
+        S_19CCE0_Vec3 ta = v;
         *(S_19CCE0_Vec3 *)&e->a = ta;
-        RD_19CCE0(&vb.x, 4);
-        RD_19CCE0(&vb.y, 4);
-        RD_19CCE0(&vb.z, 4);
-        S_19CCE0_Vec3 tb = vb;
+        RD_19CCE0(&v.x, 4);
+        RD_19CCE0(&v.y, 4);
+        RD_19CCE0(&v.z, 4);
+        S_19CCE0_Vec3 tb = v;
         *(S_19CCE0_Vec3 *)&e->b = tb;
-        e->len = sqrtf(vb.x * vb.x + vb.y * vb.y + vb.z * vb.z);
+        e->len = sqrtf(v.x * v.x + v.y * v.y + v.z * v.z);
         RD_19CCE0(&e->f8, 2);
         RD_19CCE0(&e->fA, 2);
     }
@@ -326,24 +323,21 @@ void SoultreeCollisionObject::func_0019CCE0(int volatile file)
         return;
     }
     for (i = 0; i < nRec; i++) {
-        S_19CCE0_Rec *r = &((S_19CCE0_Rec *)self->unk1C8)[i];
-        float vx;
-        float vy;
-        float vz;
+        S_19CCE0_Rec *rec = &((S_19CCE0_Rec *)self->unk1C8)[i];
         float w4[4];
         S_19CCE0_Color c;
-        RD_19CCE0(&r->f8, 4);
-        RD_19CCE0(&vx, 4);
-        RD_19CCE0(&vy, 4);
-        RD_19CCE0(&vz, 4);
-        w4[0] = vx;
-        w4[2] = vz;
-        w4[1] = vy;
+        RD_19CCE0(&rec->f8, 4);
+        RD_19CCE0(&v.x, 4);
+        RD_19CCE0(&v.y, 4);
+        RD_19CCE0(&v.z, 4);
+        w4[0] = v.x;
+        w4[2] = v.z;
+        w4[1] = v.y;
         w4[3] = 1.0f;
-        r->col = *c.func_0001AF00(w4);
-        RD_19CCE0(&r->f0, 2);
-        RD_19CCE0(&r->f2, 2);
-        RD_19CCE0(&r->f4, 2);
+        rec->col = *c.func_0001AF00(w4);
+        RD_19CCE0(&rec->f0, 2);
+        RD_19CCE0(&rec->f2, 2);
+        RD_19CCE0(&rec->f4, 2);
     }
     self->unk1BC = 0;
 }
