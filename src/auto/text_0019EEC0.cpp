@@ -138,11 +138,15 @@ struct S_0019F600_Node {
 static __forceinline void XformPoint(float *out, float *in, float *m)
 {
     __m128 v = _mm_loadu_ps(in);
-    v = _mm_loadh_pi(v, (__m64 *)(out + 2));
+    __m128 r0 = _mm_load_ps(m);
+    _mm_storeh_pi((__m64 *)(out + 2), v);
+    __m128 r1 = _mm_load_ps(m + 4);
     out[3] = 1.0f;
-    __m128 r0 = _mm_mul_ps(_mm_load_ps(m), v);
-    __m128 r1 = _mm_mul_ps(_mm_load_ps(m + 4), v);
-    __m128 r2 = _mm_mul_ps(_mm_load_ps(m + 8), v);
+    __m128 r2 = _mm_load_ps(m + 8);
+    v = _mm_loadh_pi(v, (__m64 *)(out + 2));
+    r0 = _mm_mul_ps(r0, v);
+    r1 = _mm_mul_ps(r1, v);
+    r2 = _mm_mul_ps(r2, v);
     __m128 t = _mm_add_ps(_mm_unpacklo_ps(r0, r1), _mm_unpackhi_ps(r0, r1));
     __m128 u = _mm_add_ps(r2, _mm_movehl_ps(r2, r2));
     _mm_storeu_ps(out, _mm_add_ps(_mm_movelh_ps(t, u), _mm_shuffle_ps(_mm_movehl_ps(t, t), u, 0x14)));
