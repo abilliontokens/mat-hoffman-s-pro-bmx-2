@@ -229,6 +229,75 @@ struct C_001A8720 {
 static __forceinline float Min_001A8720(float a, float b) { return a < b ? a : b; }
 static __forceinline float Max_001A8720(float a, float b) { return a > b ? a : b; }
 
+int C_001A8720::func_001A8720(void)
+{
+    int i;
+    int j;
+
+    if (f24 != 0) {
+        if (f54 != 0 || (f24->f3c != 0 && f28 != 0)) {
+            V4_001A8720 mn;
+            V4_001A8720 mx;
+            V4_001A8720 tmp;
+            V4_001A8720 v;
+            S_001A8720_Item *it;
+
+            mn.x = 3.402823466e+38f;
+            mn.y = 3.402823466e+38f;
+            mn.z = 3.402823466e+38f;
+            mx.x = -3.402823466e+38f;
+            mx.y = -3.402823466e+38f;
+            mx.z = -3.402823466e+38f;
+            it = f24->f84;
+            for (i = 0, j = 0; i < f24->f80; i++, j += 0x20, it++) {
+                int flags;
+
+                v = *it->f40->func_00197F70(&tmp, &it->f10);
+                if (f28 != 0 && f24->f3c != 0) {
+                    it->f30 = v;
+                    f28->func_000BA430(&it->f30, &it->f20, 0, &flags);
+                    it->f50 = flags & 7;
+                    f24->fd8 = flags & 7;
+                }
+                if (f54 != 0) {
+                    *(V4_001A8720 *)(f54 + j + 0x10) = v;
+                    mn.x = Min_001A8720(v.x, mn.x);
+                    mn.y = Min_001A8720(v.y, mn.y);
+                    mn.z = Min_001A8720(v.z, mn.z);
+                    mx.x = Max_001A8720(v.x, mx.x);
+                    mx.y = Max_001A8720(v.y, mx.y);
+                    mx.z = Max_001A8720(v.z, mx.z);
+                }
+            }
+            if (f54 != 0) {
+                f34 = V4_001A8720((mx.x + mn.x) * D_002755E8, (mx.y + mn.y) * D_002755E8,
+                                  (mx.z + mn.z) * D_002755E8, 1.0f);
+                f44 = V4_001A8720((mx.x - mn.x) * D_002755E8, (mx.y - mn.y) * D_002755E8,
+                                  (mx.z - mn.z) * D_002755E8, 1.0f);
+            }
+        }
+        if (f60 != 0) {
+            f24->func_001A9680();
+        }
+        if (f2c != 0 && f5c != 0) {
+            if (f54 != 0) {
+                for (i = 0, j = 0; i < f24->f80; i++, j += 0x20) {
+                    *(V4_001A8720 *)(f54 + j) = f34;
+                }
+                f2c->func_0014AC30(f54, 0);
+            } else {
+                f2c->func_00133ED0();
+            }
+            if (f68 != 0) {
+                f2c->func_00134770(*f64, f68);
+                return 1;
+            }
+            f2c->func_00133F10(0);
+        }
+    }
+    return 1;
+}
+
 void *C_001A8B80::func_001A8B80(int flags)
 {
     void *p = f54;
@@ -271,7 +340,6 @@ void C_001A8B80::func_001A9220(int idx, f32 v)
 
 void C_001A8B80::func_001A93A0(unsigned short idx, S_001A8B80_Tree *tree, int a2, int a3)
 {
-    V4_001A8B80 *vp;
     if (!(idx & 0x8000)) {
         do {
             S_001A8B80_Node *n = &tree->nodes[idx];
@@ -279,8 +347,9 @@ void C_001A8B80::func_001A93A0(unsigned short idx, S_001A8B80_Tree *tree, int a2
             idx = n->right;
         } while (!(idx & 0x8000));
     }
-    vp = (V4_001A8B80 *)((char *)(tree->leaves + (idx & 0x7fff)) + 0x10);
-    func_001A9240(*vp, a2, a3, 0);
+    S_001A8B80_Leaf *leaf = &tree->leaves[idx & 0x7fff];
+    V4_001A8B80 v = leaf->v;
+    func_001A9240(v, a2, a3, 0.0f);
 }
 
 void C_001A8B80::func_001A9430(S_001A9430_Obj *obj, int a, int b)
