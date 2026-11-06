@@ -57,6 +57,7 @@ struct C_00150810 {
 };
 
 struct Vec3_150F80 { int x, y, z; };
+struct Vec4_150F80 { float x, y, z, w; };
 extern int D_002A789C, D_002A78A0, D_002A78A4, D_002A78A8;
 struct Vec4_150900 {
     float x, y, z, w;
