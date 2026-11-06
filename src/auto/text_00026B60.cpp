@@ -151,7 +151,7 @@ struct ObjF8_26 {
     virtual void v30(); virtual void v31(); virtual void v32();
     char pad4[0x60 - 4]; void *f60; void *f64; int f68;
     char pad6C[0x9C - 0x6C]; void *f9C;
-    void func_0014AB30(int); void func_00129920(int); void func_0014C1C0(int, int, int);
+    ObjF8_26 *func_0014AB30(int); void func_00129920(int); void func_0014C1C0(int, int, int);
 };
 struct Obj204_26 {
     char pad0[0x68]; int f68;
