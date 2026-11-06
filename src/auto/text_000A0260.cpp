@@ -14,6 +14,87 @@ extern World_A0B* D_002E2930;
 extern Special_A0B* D_002F07E8;
 extern Result_A0B* D_002EFE78;
 void func_00012140();
+#include <xmmintrin.h>
+
+struct Vec_A0260 {
+    f32 x, y, z, w;
+};
+
+static inline void Init_A0260(Vec_A0260 *v)
+{
+    v->x = v->y = v->z = 0.0f;
+    v->w = 1.0f;
+}
+
+static __forceinline void Cross_A0260(Vec_A0260 * volatile out, Vec_A0260 * volatile a, Vec_A0260 * volatile b)
+{
+    Vec_A0260 *pa = a, *pb = b;
+    __m128 va = _mm_loadu_ps(&pa->x);
+    __m128 vb = _mm_loadu_ps(&pb->x);
+    __m128 sa = va, sb = vb;
+    sa = _mm_shuffle_ps(sa, sa, 0xc9);
+    sb = _mm_shuffle_ps(sb, sb, 0xc9);
+    vb = _mm_mul_ps(vb, sa);
+    va = _mm_mul_ps(va, sb);
+    va = _mm_sub_ps(va, vb);
+    va = _mm_shuffle_ps(va, va, 0xc9);
+    _mm_storeu_ps(&out->x, va);
+}
+
+struct Cam_A0260 {
+    void func_00199A70(int a, Vec_A0260 *out);
+    void func_001994C0(int a, Vec_A0260 *b, Vec_A0260 *c);
+    Vec_A0260 *func_00197F70(Vec_A0260 *out, Vec_A0260 *in);
+};
+
+struct Holder_A0260 {
+    char pad0[4];
+    Cam_A0260 *cam;
+};
+
+struct Owner_A0260 {
+    char pad0[0xA04];
+    Holder_A0260 *holder;
+};
+
+struct Res_A0260 {
+    int func_00026500(char *name, int a);
+};
+
+extern int D_002B90EC;
+extern int D_002B90E8;
+extern Res_A0260 *D_002A7CB8;
+extern char D_00277F44[];
+extern Vec_A0260 D_002A2600;
+extern Vec_A0260 D_002A25E0;
+
+void func_00158390(int a, Vec_A0260 b, Vec_A0260 c, Vec_A0260 *out);
+void func_0009F5B0(Vec_A0260 *out, Vec_A0260 *in);
+
+/* BmxPhotoCamera */
+struct C_000A0260 {
+    void *vtbl;
+    Owner_A0260 *f4;
+    int f8;
+    Cam_A0260 *fC;
+    char pad10[8];
+    Vec_A0260 f18;
+    Vec_A0260 f28;
+    int f38;
+    int f3C;
+    char pad40[0xC];
+    f32 f4C;
+    char pad50[8];
+    Vec_A0260 f58;
+    Vec_A0260 f68;
+    Vec_A0260 f78;
+    f32 f88;
+    int f8C;
+    int f90;
+    void func_000A0260(int a1, int *a2, Vec_A0260 *a3, Vec_A0260 *a4, int *a5, Vec_A0260 *a6, Vec_A0260 *a7, int *a8);
+    void func_0009FB00(Vec_A0260 a, Vec_A0260 b, Vec_A0260 c, Vec_A0260 d, int e);
+};
+
 struct C_000A09F0 {
     char pad0[0x18];
     int unk18;
