@@ -59,45 +59,6 @@ void S_func_001E6B50_this::func_001E6B50()
     p[4] = r2 - xx; p[5] = q2 + x; p[6] = xx + r2; p[7] = x - q2;
 }
 
-void __fastcall func_001E6D40(float *c, float *d)
-{
-    float s0, s4, s8, sC, s10, s14, s18, s1C, s20, s24, s28, s2C, s30, s34, s38, s3C;
-    float k1 = c[1], k4 = c[4], k5 = c[5];
-    float a, b;
-    s4 = d[0] - d[9];
-    sC = d[8] + d[1];
-    s28 = d[9] + d[0];
-    s2C = d[1] - d[8];
-    a = d[4] - d[13]; b = d[12] + d[5];
-    s8 = (a - b) * k1; s10 = (a + b) * k1;
-    a = d[13] + d[4]; b = d[5] - d[12];
-    s30 = (a - b) * k1; s24 = (a + b) * k1;
-    a = d[2] - d[11]; b = d[3] + d[10];
-    s14 = a * k4 - b * k5; s1C = a * k5 + b * k4;
-    a = d[11] + d[2]; b = d[3] - d[10];
-    s38 = a * k5 - b * k4; s3C = a * k4 + b * k5;
-    a = d[6] - d[15]; b = d[7] + d[14];
-    s18 = a * k5 - b * k4; s20 = a * k4 + b * k5;
-    a = d[15] + d[6]; b = d[7] - d[14];
-    s34 = a * k4 - b * k5; s0 = a * k5 + b * k4;
-    {
-        float p = s8 + s4, q = s10 + sC, r = s18 + s14, t = s20 + s1C;
-        d[0] = p + r; d[1] = q + t; d[2] = p - r; d[3] = q - t;
-    }
-    {
-        float p = s4 - s8, q = sC - s10, r = s14 - s18, t = s1C - s20;
-        d[4] = p - t; d[5] = q + r; d[6] = p + t; d[7] = q - r;
-    }
-    {
-        float p = s28 - s24, q = s30 + s2C, r = s38 - s34, t = s3C - s0;
-        d[8] = p + r; d[9] = q + t; d[10] = p - r; d[11] = q - t;
-    }
-    {
-        float p = s24 + s28, q = s2C - s30, r = s34 + s38, t = s0 + s3C;
-        d[12] = p - t; d[13] = q + r; d[14] = p + t; d[15] = q - r;
-    }
-}
-
 void func_001E6F70(float *p)
 {
     float a = p[0] + p[4];
