@@ -38,23 +38,51 @@ struct C_000E4AB0 {
 struct C_000E5150_Slots {
     char pad0[0x62C];
     int f62C[3];
-    int f638[1];
+    int f638[8];
 };
 
 struct C_0005C020 {
     C_000E5150_Slots *func_0005C020(int param);
+    void func_0005C1B0(int a, int b);
+    void func_0005C170(int a, int b);
 };
 
 struct C_000E5150_Mgr {
-    char pad0[0x2C0];
+    char pad0[0x190];
+    int a190[(0x2C0 - 0x190) / 4];
     C_0005C020 *f2C0;
     char pad2C4[0x14];
     int f2D8;
 };
 
+/* the strings of the text table the root holds at +0x2E8 (+4) */
+struct S_000E4BC0_Strings {
+    char pad0[0x800];
+    char *f800;
+    char pad804[0x838 - 0x804];
+    char *f838;
+    char pad83C[0x950 - 0x83C];
+    char *f950;
+    char pad954[0xF50 - 0x954];
+    char *fF50;
+};
+
+struct S_000E4BC0_Text {
+    int f0;
+    S_000E4BC0_Strings *f4;
+};
+
+/* lookup of named UI nodes, held by the root at +0x2EC */
+struct S_000E4BC0_Lookup {
+    int *func_0018C160(int name);
+};
+
 struct C_000E5150_Global {
     char pad0[0x2E0];
     C_000E5150_Mgr *f2E0;
+    char pad2E4[4];
+    S_000E4BC0_Text *f2E8;
+    S_000E4BC0_Lookup *f2EC;
 };
 
 extern C_000E5150_Global *D_002A8490;
