@@ -180,7 +180,16 @@ struct C_00104B00 {
     S_00104DF0_Tex *f1238;
     S_00104DF0_Tex *f123c;
     S_00104DF0_Tex *f1240;
-    char pad1244[0x15d8 - 0x1244];
+    char pad1244[0x15b4 - 0x1244];
+    int f15b4;
+    int f15b8;
+    int f15bc;
+    int f15c0;
+    int f15c4;
+    int f15c8;
+    int f15cc;
+    int f15d0;
+    char pad15d4[4];
     int f15d8;
     int f15dc;
     char pad15e0[4];
