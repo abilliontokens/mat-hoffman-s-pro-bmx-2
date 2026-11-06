@@ -166,6 +166,14 @@ struct S_00095880_Raw {
     unsigned char flags : 7;
     void func_001CDED0(int n);
 };
+struct S_00095880_Raw2 {
+    int count;
+    int *data;
+    int growth;
+    int capacity;
+    unsigned char flags;
+    void func_001CDED0(int n);
+};
 int func_00011260(int a, int b);
 
 struct S_00095AB0_Vt {
@@ -351,11 +359,24 @@ int C_00095A00::func_00095880()
 {
     if (!f50) return 0;
     int n = f34 == 0 ? f54 : f50->v41(f34);
-    S_00095880_Array a(n);
+    S_00095880_Raw a;
+    a.count = 0;
+    a.owned = 0;
+    int *buf = (int *)func_001E8A44(n * 4);
+    a.data = buf;
+    a.growth = 16;
+    a.capacity = n;
+    a.owned = 1;
     int count;
     if (f34 == 0) {
-        if (!func_000952F0()) return 0;
-        if (!n) return 0;
+        if (!func_000952F0()) {
+            func_001E891B(buf);
+            return 0;
+        }
+        if (!n) {
+            func_001E891B(buf);
+            return 0;
+        }
         if (f68.count == func_000952F0()) f68.func_00094F10();
         count = 0;
         for (int i = 1; n > 0; ++i, --n) {
@@ -365,7 +386,10 @@ int C_00095A00::func_00095880()
             }
         }
     } else {
-        if (n <= 0) return 0;
+        if (n <= 0) {
+            func_001E891B(buf);
+            return 0;
+        }
         if (f68.count == n) f68.func_00094F10();
         count = 0;
         for (int i = 1; n > 0; ++i, --n) {
@@ -376,11 +400,13 @@ int C_00095A00::func_00095880()
         }
     }
     int index = func_00011260(0, count - 1);
-    int chosen = a.count > 0 && a.data && index < a.count ? a.data[index] : 0;
+    int *d = a.data;
+    int chosen = a.count > 0 && d && index < a.count ? d[index] : 0;
     f68.func_001CDED0(chosen);
     f50->v30(chosen - 1, 1);
     f30 = 2;
     f38 = chosen;
+    func_001E891B(d);
     return 1;
 }
 
