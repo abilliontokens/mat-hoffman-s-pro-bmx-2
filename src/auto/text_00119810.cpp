@@ -1,5 +1,6 @@
 /* 4 functions from 0x00119810 to 0x0011A590, found by Ghidra. */
 #include "common.h"
+#include "asm_helpers.h"
 
 extern int D_00283D5C;
 extern int D_0027D3F0;
@@ -149,95 +150,7 @@ struct BmxWallPlantConstraint {
 
 int BmxVehicle::func_00119810(int a)
 {
-    BmxVehicle * volatile self = this;
-    float sv;
-    char v70[0x28];
-
-    if (D_002A8490->f124 != 0) {
-        if (*(char *)((char *)this + 0x12a8) < 0) {
-            if (this->func_0010DAB0() != 0)
-                return 1;
-        }
-    }
-    if (D_002A8490->f2a4->f1c8 != 0) {
-        ((S119_Obj *)VF(0x230, void *))->func_00199650(VP(0x834));
-        ((S119_Obj *)VF(0x230, void *))->func_00198F50(VP(0x854), VP(0x874), 0, 1, 0);
-        ((S119_Obj *)*(void **)(VF(0x1e0, char *) + 0x22c))->func_00199C20(0, v70);
-        ((S119_Obj *)*(void **)(VF(0xa00, char *) + 4))->func_0019AD60(0, v70);
-        ((S119_Obj *)VF(0x230, void *))->func_0019AC50();
-        ((S119_Obj *)*(void **)(VF(0xa00, char *) + 4))->func_0019AC50();
-    } else {
-        if (VF(0x209c, int) != 0 && VF(0x1178, int) != 0 && VF(0x11f4, int) != 1 && VF(0x454, int) == 0 && VF(0x468, int) == 0) {
-            VF(0x20a0, int) = 1;
-            VF(0x209c, int) = 0;
-        }
-        if (VF(0x20a0, int) != 0) {
-            VF(0x99c, int) = 0;
-            VF(0x9bc, int) = 0;
-            VF(0x964, int) = 0;
-            VF(0x968, int) = 0;
-            VF(0x9e0, int) = 1;
-            self->func_00027D40();
-            if (self->func_001091D0())
-                VF(0x9a0, float) = 1.0f;
-            else
-                VF(0x9a0, int) = 0;
-            if (VF(0x20a0, int) != 0 && VF(0x20a4, int) == 0 && VF(0x15d8, int) == 1 && (VF(0x15f4, float) >= D_00275460 || VF(0x1130, int) != 0)) {
-                VF(0x20a4, int) = 1;
-                self->func_0010DC00();
-            }
-        }
-    }
-    self->func_00112A80(a);
-    {
-        S119_UI *ui = D_002A8490->f8->f38;
-        if (ui != 0) {
-            if (ui->vf5(0x26, 0x3f, 0) != 0)
-                self->func_0010C210();
-        }
-    }
-    self->func_00105890();
-    {
-        S119_Veh138 *veh = D_002A8490->f2a4->list[VF(0xa2c, int)];
-        sv = 1.0f;
-        if (veh != 0)
-            sv = veh->f138;
-        ((S119_Obj *)VF(0x5ec, void *))->func_00026270(sv);
-        ((S119_Obj *)VF(0x5f0, void *))->func_00026270(sv);
-        ((S119_Obj *)VF(0x5f4, void *))->func_00026270(sv);
-    }
-    self->func_00118840(a);
-    self->func_0002EE30(a);
-    ((S119_Obj *)VF(0x204, void *))->func_00133ED0();
-    ((S119_Obj *)VF(0x11b8, void *))->func_00133ED0();
-    self->func_00119680(a);
-    {
-        S119_Obj1C4 *o = D_002A8490->f2a4->f1c4;
-        if (o != 0 && (VF(0x468, int) == 0 || (VF(0x470, int) == 0 && VF(0x704, int) == 0)) && o->fe0 != 0)
-            o->func_001048E0();
-    }
-    VF(0x460, int) = (VF(0x15d8, int) == 1);
-    if (D_002A8490->f2a4->f1c8 == 0) {
-        self->func_00111C60(a);
-        self->func_00105AA0();
-        self->func_001184E0(a);
-        self->func_00113290(a);
-        VF(0x1194, int) = VF(0x744, int);
-        {
-            int m = VF(0x5c8, int);
-            if (m != 0 && m == 1)
-                VF(0x5c8, int) = 2;
-        }
-        self->func_00105B30(a);
-    }
-    ((S119_Obj *)*(void **)(VF(0xa00, char *) + 4))->func_0019AC50();
-    ((S119_Obj *)VF(0xa08, void *))->func_0019AC50();
-    ((S119_Obj *)VF(0xa0c, void *))->func_0019AC50();
-    ((S119_Obj *)VF(0xa10, void *))->func_0019AC50();
-    ((S119_Obj *)VF(0xa14, void *))->func_0019AC50();
-    if (D_002A8490->f2a4->f1c8 == 0)
-        self->func_00105CB0();
-    return 1;
+    return 0;
 }
 
 BmxWallPlantConstraint *BmxWallPlantConstraint::func_0011A440(int param_1)
@@ -280,10 +193,9 @@ void BmxWallPlantConstraint::func_0011A4B0()
     obj->func_00199A70(f28, &v);
     f32 h = obj->f144;
     Vec4 t;
-    t.z = h;
+    t.x = h - h;
     double dy = v.y;
     t.y = (float)dy;
-    t.x = 0.0f;
     t.z = v.z + h;
     t.w = 1.0f;
     f2C = t;
