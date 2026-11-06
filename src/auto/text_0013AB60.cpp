@@ -365,9 +365,9 @@ undefined4 C_0013B260::func_0013B260(int param_1)
 void C_0013AEC0::func_0013B280(int keep)
 {
     S_0013B340_Buf *first;
+    S_0013B340_Buf *p;
     int count;
-    int i;
-    int idx;
+    unsigned int idx;
 
     if (fE0 != -1) {
         ((S_0013B340_Buf *)((char *)this + 0x80) + fE0)->f4 = -1;
@@ -376,14 +376,16 @@ void C_0013AEC0::func_0013B280(int keep)
     first = (S_0013B340_Buf *)((char *)this + 0x80);
     fE0 = -1;
     count = 0;
-    for (i = 0; i < 8; i++) {
-        idx = first[i].f4;
-        if (idx != -2 && (idx == -1 || (*(unsigned char *)((int)fE8 + idx * 0x20 + 0x18) & 4) == 0)) {
-            first[i].f8 = -0x6000;
-            first[i].f4 = -1;
+    p = (S_0013B340_Buf *)((char *)this + 0x80);
+    do {
+        idx = p->f4;
+        if (idx != -2 && (idx == -1 || (fE8[idx].f18 & 4) == 0)) {
+            p->f8 = -0x6000;
+            p->f4 = -1;
             count++;
         }
-    }
+        p++;
+    } while (p <= (S_0013B340_Buf *)((char *)this + 0xd4));
     count -= keep;
     if (count >= 1) {
         do {
@@ -549,6 +551,52 @@ void __stdcall func_0013B660(S_BufSet *set, void *dst, unsigned int off)
         src = (char *)set->bufs[idx] + off;
     }
     memcpy(dst, src, 0x6000);
+}
+
+int C_0013AEC0::func_0013B760(S_0013AF80_Row *row, int v)
+{
+    if (*f24 != row->f0) {
+        int found = 0;
+        int *p = f24;
+        do {
+            if (*++p == row->f0) {
+                do {
+                    *p = p[-1];
+                    p--;
+                } while (p > f24);
+                *f24 = row->f0;
+                p = f28;
+                found = 1;
+            }
+        } while (p != f28);
+        if (!found) {
+            int e = *f28;
+            if (e != -1) {
+                S_0013AF80_Row *r = &fC[e];
+                if (!(r->fC & 0x10) && r->f10) {
+                    func_0014FE50((void *)r->f10);
+                    r->f10 = 0;
+                }
+            }
+            p = f28;
+            do {
+                *p = p[-1];
+                p--;
+            } while (p > f24);
+            *f24 = row->f0;
+        }
+        if (row->fC & 0x100) {
+            func_0013B390(row->f0);
+        }
+    }
+    if (row->f10 == 0) {
+        row->f10 = (int)func_0014FDF0((const char *)row->f4, D_00275FB4);
+        if (row->f10 == 0) {
+            return 0;
+        }
+    }
+    row->f8 = v;
+    return 1;
 }
 
 void C_0013AEC0::func_0013B840(S_0013AF80_Row *row)
