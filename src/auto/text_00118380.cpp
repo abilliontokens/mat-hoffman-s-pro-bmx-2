@@ -105,6 +105,10 @@ struct C_000B5950 {
     int func_000B5950();
 };
 
+struct V4_118380 {
+    float x, y, z, w;
+};
+
 int C_00118380::func_00118380(int a, int b)
 {
     if (f1218 == 0) {
