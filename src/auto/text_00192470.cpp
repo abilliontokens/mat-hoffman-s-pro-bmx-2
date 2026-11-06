@@ -321,6 +321,16 @@ struct SearchNode {
     int func_00192B70(void);
     int func_00192AC0(S_00192930_Iface *obj);
     int func_00192CC0(float *pts);
+    int HasId(int id)
+    {
+        int i;
+        for (i = 0; i < f34; i++) {
+            if (f30[i] == id) {
+                return 1;
+            }
+        }
+        return 0;
+    }
 };
 
 struct S_00192CC0_Rect {
@@ -707,6 +717,57 @@ C_00192CA0 *C_00192CA0::func_00192CA0(unsigned int flags)
         func_001E891B(this);
     }
     return this;
+}
+
+int SearchNode::func_00192F40(SearchNode *root)
+{
+    S_00192930_Node *n;
+    D_002EFE60++;
+    if (D_002EFE60 == 1) {
+        D_002EFE54++;
+    }
+    f92 = D_002EFE54;
+    for (n = f24; n != 0; n = n->next) {
+        SearchNode *o = (SearchNode *)n->a;
+        if (D_002EFE50 == o->f90 && o->f92 != D_002EFE54) {
+            int i;
+            for (i = 0; i < root->f34; i++) {
+                if (root->f30[i] == o->f3c) {
+                    goto skip;
+                }
+            }
+            o->func_00192F40(root);
+            if (D_002EFE58 != 0) {
+                ((S_00192930_Iface *)n->b)->v16();
+            }
+        }
+    skip:;
+    }
+    if (D_002EFE5C != 0 && D_002EFE60 == D_002EFE5C) {
+        int t = D_002A8490->f18;
+        if (t != 0) {
+            func_0013E1F0(t, D_002A9868, D_0028AC60, f3c + 1,
+                          (int)((f40 + 1.0f) * D_00278788),
+                          (int)(224.0f - f4c * 224.0f),
+                          (int)((f44 + 1.0f) * D_00278788),
+                          (int)(224.0f - f48 * 224.0f));
+        }
+    }
+    if (f28 != 0) {
+        f28->v16();
+    }
+    if (f2C != 0 && f2C != f28) {
+        f2C->v16();
+    }
+    if (D_002EFE60 == 1 && D_002EFE4C != 0 && D_002EFE50 == D_002EFE4C->f90) {
+        int t = D_002A8490->f18;
+        if (t != 0) {
+            func_0013E1F0(t, D_002A9868, D_0028AC44);
+        }
+        D_002EFE4C->f28->v16();
+    }
+    D_002EFE60--;
+    return 1;
 }
 
 int SearchNode::func_001930F0(void)
