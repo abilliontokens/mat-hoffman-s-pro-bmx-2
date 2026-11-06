@@ -346,6 +346,45 @@ C_0006E330 *C_0006E330::func_0006E330(int a0)
     return this;
 }
 
+void C_0006E330::func_0006E480()
+{
+    int i;
+    Res_6E480 *p;
+    vtbl = &D_00278B14;
+    for (i = 0; i < 4; i++) {
+        if (unk140[i]) { delete (VObj_6E480 *)unk140[i]; unk140[i] = 0; }
+        p = (Res_6E480 *)unk130[i];
+        if (p) { p->func_001D6410(); func_001E891B(p); }
+    }
+    for (i = 0; i < 2; i++) {
+        if ((&unk128)[i]) { delete (VObj_6E480 *)(&unk128)[i]; (&unk128)[i] = 0; }
+    }
+    p = (Res_6E480 *)unkE0;
+    if (p) { p->func_001D6410(); func_001E891B(p); }
+    if (unkC8) delete (VObj_6E480 *)unkC8;
+    if (unkCC) delete (VObj_6E480 *)unkCC;
+    if (unkD8) { delete (VObj_6E480 *)unkD8; unkD8 = 0; }
+    for (i = 0; i < 2; i++) {
+        if ((&unk150)[i]) delete (VObj_6E480 *)(&unk150)[i];
+        (&unk150)[i] = 0;
+    }
+    for (i = 0; i < 5; i++) {
+        if (unk158[i]) { delete (VObj_6E480 *)unk158[i]; unk158[i] = 0; }
+        if (unk16C[i]) { delete (VObj_6E480 *)unk16C[i]; unk16C[i] = 0; }
+    }
+    if (unkF0) { delete (VObj_6E480 *)unkF0; unkF0 = 0; }
+    for (i = 0; i < 6; i++) {
+        p = (Res_6E480 *)unk180[i];
+        if (p) { p->func_001D6410(); func_001E891B(p); }
+        unk180[i] = 0;
+    }
+    p = (Res_6E480 *)unkF8;
+    if (p) { p->func_001D6410(); func_001E891B(p); unkF8 = 0; }
+    p = (Res_6E480 *)unk100;
+    if (p) { p->func_001D6410(); func_001E891B(p); unk100 = 0; }
+    func_00157660();
+}
+
 void C_0006E910::func_0006E910()
 {
     D_002EFDB8->vf7(1);
