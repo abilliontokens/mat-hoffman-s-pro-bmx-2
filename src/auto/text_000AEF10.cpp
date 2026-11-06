@@ -160,6 +160,7 @@ struct S_000AF0D0_Mgr {
     S_000AF0D0_Mgr *func_00159560(int a);
     void func_001595A0(int n, void *owner);
     void *func_00159E90(char *name, Vec4_000AF0D0 *p0, Vec4_000AF0D0 *p1, char *s2, char *s3, int n);
+    void func_unk(void *entry, void *node, void (*cb)(void));
 };
 
 struct S_000AF0D0_Node {
