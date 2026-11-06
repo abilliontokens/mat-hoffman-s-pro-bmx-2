@@ -234,6 +234,11 @@ struct S_000BE540_Vt {
 extern C_0013B210 *D_002BEAAC;
 extern int D_0027D75C;
 
+struct C_001C3E50;
+struct C_000BEDC0;
+struct C_00092890;
+struct C_001D1BB0;
+
 struct C_000BBE30 {
     void *vtbl;
     char pad4[0x14C];
