@@ -213,7 +213,7 @@ struct PhysicsBody {
     char pad11C[0x10];
     int f12C;
     char pad130[0x14];
-    int f144;
+    int *f144;
     int f148;
     C_00171D00_F14C *f14C;
     char pad150[0xE0];
