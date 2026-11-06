@@ -43,7 +43,7 @@ static __forceinline void Copy_00198120(M_00198040 *dst, const M_00198040 *src)
 extern "C" void _ReadWriteBarrier(void);
 #pragma intrinsic(_ReadWriteBarrier)
 
-static __forceinline void Copy4_00198040(__m128 * volatile src, __m128 * volatile dst)
+static __forceinline void Copy4_00198040(__m128 * volatile dst, __m128 * volatile src)
 {
     __m128 *s = src;
     __m128 *d = dst;
@@ -282,9 +282,10 @@ C_00197EC0_Vec4 C_00197EC0::func_00198040(C_00197EC0_Vec4 *v)
     C_00197EC0_Vec4 q;
     M_00198040 m;
     q.z = 0; q.y = 0; q.x = 0; q.w = 1.0f;
-    C_00197EC0 * volatile self = this;
+    C_00197EC0 *self = this;
+    C_00197EC0 **pself = &self;
     func_00197AA0();
-    Copy4_00198040((__m128 *)&m, (__m128 *)&self->fF0);
+    Copy4_00198040((__m128 *)&(*pself)->fF0, (__m128 *)&m);
     func_0011AC30(&m, &m);
     func_0001C680(&q, *v, (float *)&m);
     return q;
@@ -441,27 +442,23 @@ void C_001983E0::func_001983E0(void *out0, void *out1)
 
 void C_00197EC0::func_00198440(float * volatile pos, float * volatile maxDist, int recurse)
 {
-    C_00197EC0_Vec4 v;
     C_00197EC0 * volatile self = this;
+    C_00197EC0_Vec4 v;
 
-    if (self->f180 & 4) {
+    if (f180 & 4) {
         if (*maxDist > D_00275544) {
-            v = self->func_00197F70(self->f130);
-            float d = fabs_00198440(v.x - pos[0]);
+            v = func_00197F70(f130);
+            float x = fabs_00198440(v.x - pos[0]);
+            volatile float d = x;
             float e = fabs_00198440(v.y - pos[1]);
-            if (e > d) {
-                d = e;
-            }
+            if (e > x) d = e;
             e = fabs_00198440(v.z - pos[2]);
-            if (e > d) {
-                d = e;
-            }
-            if (d + self->f184 > *maxDist) {
-                *maxDist = d + self->f184;
-            }
+            if (e > d) d = e;
+            float r = d + self->f184;
+            if (r > *maxDist) *maxDist = r;
         } else {
-            *maxDist = self->f184;
-            *(C_00197EC0_Vec4 *)pos = self->func_00197F70(self->f130);
+            *maxDist = f184;
+            *(C_00197EC0_Vec4 *)pos = func_00197F70(f130);
         }
     }
     if (recurse) {
