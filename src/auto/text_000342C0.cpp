@@ -40,6 +40,20 @@ static __forceinline Vec4 Vec3Add(Vec4 a, Vec4 b)
     return r;
 }
 
+struct C_000342C0 {
+    void **vtbl;
+    char pad4[0x64];
+    void *f68;
+    char pad6C[0x24];
+    int f90;
+    char pad94[0xc4];
+    void *f158;
+    char pad15C[0x78];
+    void *f1d4;
+    void func_000342C0();
+};
+void *func_001E8A44(int size);
+
 struct C_00034890 {
     int unk0;
     int unk4;
@@ -82,47 +96,23 @@ C_00034890* C_00034890::func_00034890(void) {
 
 void func_000348B0(Vec4 *out, float t, Vec4 p0, Vec4 p1, Vec4 p2, Vec4 p3)
 {
-    Vec4 n0, m0;
-    Vec4 n1, m1, q1, q2, s, u;
     float t2 = t * t;
     float t3 = t * t2;
     float a = ((t3 + t3) - t2 * D_002755EC) + D_00275460;
     float b = t2 * D_002755EC - (t3 + t3);
     float c = (t3 - D_00275600 * t2) + t;
     float d = t3 - t2;
-    m0.x = p2.x - p0.x;
-    m0.y = p2.y - p0.y;
-    m0.z = p2.z - p0.z;
-    m0.x *= D_002755E8;
-    m0.y *= D_002755E8;
-    m0.z *= D_002755E8;
-    m1.x = p3.x - p1.x;
-    m1.y = p3.y - p1.y;
-    m1.z = p3.z - p1.z;
-    m1.x *= D_002755E8;
-    m1.y *= D_002755E8;
-    m1.z *= D_002755E8;
-    n1.x = m1.x * d;
-    n1.y = m1.y * d;
-    n1.z = m1.z * d;
-    n0.x = m0.x * c;
-    n0.y = m0.y * c;
-    n0.z = m0.z * c;
-    q2.x = p2.x * b;
-    q2.y = p2.y * b;
-    q2.z = p2.z * b;
-    out->w = 1.0f;
-    q1.x = p1.x * a;
-    q1.y = p1.y * a;
-    q1.z = p1.z * a;
-    s.x = q1.x + q2.x;
-    s.y = q1.y + q2.y;
-    s.z = q1.z + q2.z;
-    u.x = s.x + n0.x;
-    u.y = s.y + n0.y;
-    u.z = s.z + n0.z;
+    Vec4 m0 = Vec3Scale(Vec3Sub(p2, p0), D_002755E8);
+    Vec4 m1 = Vec3Scale(Vec3Sub(p3, p1), D_002755E8);
+    Vec4 n1 = Vec3Scale(m1, d);
+    Vec4 n0 = Vec3Scale(m0, c);
+    Vec4 q2 = Vec3Scale(p2, b);
+    Vec4 q1 = Vec3Scale(p1, a);
+    Vec4 s = Vec3Add(q1, q2);
+    Vec4 u = Vec3Add(s, n0);
     out->x = u.x + n1.x;
     out->y = u.y + n1.y;
     out->z = u.z + n1.z;
+    out->w = 1.0f;
 }
 
