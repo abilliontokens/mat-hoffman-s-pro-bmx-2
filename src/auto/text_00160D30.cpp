@@ -59,7 +59,7 @@ struct V3_00161930 {
 
 V4_00161930 *func_001618A0(V4_00161930 *out, V4_00161930 *in);
 
-static __forceinline void cross_001619D0(float *out, float *a, float *b)
+static inline void cross_001619D0(float *out, float *a, float *b)
 {
     __m128 va = _mm_loadu_ps(a);
     __m128 vb = _mm_loadu_ps(b);
@@ -676,8 +676,9 @@ void *C_00161870::func_00161870(unsigned int flags)
 
 void func_00161910(float a, float *s, float *c)
 {
-    *c = (float)cos(a);
-    *s = (float)sin(a);
+    double x = a;
+    *s = (float)sin(x);
+    *c = (float)cos(x);
 }
 
 void func_00161930(V3_00161930 *a, V3_00161930 *n, V4_00161930 *out)
@@ -720,7 +721,11 @@ void func_001619D0(V3_00161930 *a, V3_00161930 *b, V3_00161930 *c, V4_00161930 *
     v2.x = b->x - a->x;
     v2.y = b->y - a->y;
     v2.z = b->z - a->z;
-    cross_001619D0((float *)out, (float *)&v2, (float *)&v1);
+    _mm_storeu_ps(&out->x, _mm_shuffle_ps(
+        _mm_sub_ps(_mm_mul_ps(_mm_loadu_ps(&v2.x), _mm_shuffle_ps(_mm_loadu_ps(&v1.x), _mm_loadu_ps(&v1.x), 0xc9)),
+                   _mm_mul_ps(_mm_loadu_ps(&v1.x), _mm_shuffle_ps(_mm_loadu_ps(&v2.x), _mm_loadu_ps(&v2.x), 0xc9))),
+        _mm_sub_ps(_mm_mul_ps(_mm_loadu_ps(&v2.x), _mm_shuffle_ps(_mm_loadu_ps(&v1.x), _mm_loadu_ps(&v1.x), 0xc9)),
+                   _mm_mul_ps(_mm_loadu_ps(&v1.x), _mm_shuffle_ps(_mm_loadu_ps(&v2.x), _mm_loadu_ps(&v2.x), 0xc9))), 0xc9));
     n = func_001618A0(out, out);
     if (d != 0) {
         *d = -(n->y * a->y + a->x * n->x + n->z * a->z);
@@ -732,6 +737,25 @@ S_Matrix16_00161AA0 func_00161AA0(float a1, float a2, float a3, float a4)
     S_Matrix16_00161AA0 m;
 
     func_00162530(m.m, a3, a4, a1, a2, 1);
+    return m;
+}
+
+S_Matrix16_00161AA0 func_00161AE0(V4_00161930 a, V4_00161930 b, V4_00161930 c, float angle)
+{
+    V4_00161930 v;
+    S_Matrix16_00161AA0 m;
+    S_Matrix16_00161AA0 r;
+
+    v.x = 0.0f;
+    v.y = 0.0f;
+    v.z = 0.0f;
+    v.w = 1.0f;
+    cross_001619D0(&v.x, &c.x, &b.x);
+    func_00162330(&m, &a, &v, &c, &b);
+    if (angle != D_00275544) {
+        r = func_001622C0(-angle);
+        func_0011ACC0(&m, &m, &r);
+    }
     return m;
 }
 
