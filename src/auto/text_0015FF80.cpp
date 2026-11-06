@@ -68,16 +68,36 @@ struct C_00160C40 {
 };
 
 struct V4_00160310 { float x, y, z, w; };
-struct S_Cam_00160310 { char pad0[0x170]; V4_00160310 p; };
+struct S_Cam_00160310 {
+    char pad0[0xB0];
+    float b0, b4, b8;
+    char padBC[4];
+    float c0, c4, c8;
+    char padCC[4];
+    float d0, d4, d8;
+    char padDC[0x14];
+    float mat[16];
+    char pad130[0x40];
+    V4_00160310 p;
+};
 struct S_Holder_00160310 { int unk0; S_Cam_00160310 *cam; };
 extern S_Holder_00160310 *D_002EFDB8;
 extern int D_002E2944;
 extern float D_002A8110, D_002A810C, D_00275460;
+extern int D_002A829C;
+void __stdcall func_00030AC0(void *out, void *v, void *m);
+void __stdcall func_0011F460(void *a, void *b, void *c, void *d, void *e);
+float func_0015FF80(float y, float x);
+void func_001B07A0(void *p);
+void func_001578D0(void);
 struct C_00160310 {
     char pad0[0x28];
     float x, y, z;
-    char pad34[0x4c];
+    char pad34[0x44];
+    int f78;
+    char pad7C[4];
     float scale;
+    int f84;
     int func_00160310(void);
 };
 void *func_001E8A44(int size);
