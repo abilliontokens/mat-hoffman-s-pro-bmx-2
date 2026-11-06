@@ -112,6 +112,9 @@ struct BmxUIPageHOF3 {
     S_000D7900_Widget *unk304[5];
     BmxUIPageHOF3 *func_000D6C90(int param);
     void func_000D6D50(void);
+    BmxUIPageHOF3 *func_000D6DD0(int a, int b, int c);
+    void func_001BE4F0(int a, int b, int c);
+    void func_001577A0(int w, int z);
     void func_000D75D0(void);
     void func_000D7710(void);
     void func_000D7900(void);
