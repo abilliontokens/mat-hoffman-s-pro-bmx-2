@@ -10,7 +10,7 @@ extern float D_002756D4;
 extern float D_002756D0;
 extern float D_002756DC;
 extern float D_00275544;
-static __forceinline void norm28130(float *out, float *in)
+static void norm28130(float *out, float *in)
 {
     __m128 v = _mm_loadu_ps(in);
     __m128 sq = _mm_mul_ps(v, v);
