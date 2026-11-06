@@ -140,7 +140,7 @@ struct S_6DD0_Spr {
     void func_001D5810(char *a, float b, float c, int d);
 };
 extern char D_00278690[], D_002786A0[], D_00278678[], D_0027CEF0[], D_0027F29C[], D_00279B00[], D_00279AF0[], D_00279AE0[], D_00279AD0[], D_0027F2AC[];
-extern float D_0027F2B4;
+extern float D_0027F2B4, D_0027F2B8, D_0027F2BC, D_00279F74;
 extern "C" void *func_001E8A44(unsigned int size);
 
 struct BmxUIPageHOF4 {
