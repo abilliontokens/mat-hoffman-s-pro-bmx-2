@@ -111,7 +111,7 @@ struct GrindLineManager {
     int unk24;
     int unk28;
     int unk2C;
-    char pad30[4];
+    int unk30;
     GrindLine **unk34;
     int unk38;
     void *unk3C;
