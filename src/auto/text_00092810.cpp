@@ -431,19 +431,23 @@ int C_00092890::func_00092E30(int idx)
 {
     char buf[0x104];
     S_00092E30_Mgr *mgr;
-    S_00092E30_Rec *rec;
-    S_00092E30_Slot *slot;
+    int *p;
+    int *w;
+    int i;
 
     if (func_00092B40(idx) != 0) {
         func_001ADCC0(buf, 0x104, &D_0027A140, idx);
         D_002A8490->f2e0->f2cc->func_001D4720(&f4c, buf);
     }
     mgr = D_002A8490->f2e0->f2c0->func_001D3F50();
-    rec = &mgr->fA14[idx];
-    slot = &mgr->f814[idx];
-    rec->f0 = 0;
-    rec->f4 = 0;
-    memset(slot, 0, 0x1c);
+    p = (int *)&mgr->fA14[idx];
+    for (i = 0; i < 2; i++) {
+        p[i] = 0;
+    }
+    w = mgr->f814[idx].w;
+    for (i = 0; i < 7; i++) {
+        w[i] = 0;
+    }
     *D_002A8490->f2e0->f2c0->func_0005C020(idx) = 1;
     return 1;
 }
