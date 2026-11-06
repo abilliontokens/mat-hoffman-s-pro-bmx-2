@@ -301,6 +301,40 @@ struct C_00069BD0 {
     int func_00157BF0(int *a, int b);
 };
 
+struct T69Txt {
+    void func_001B1980();
+    void func_001B17D0(int);
+    void func_001B2270(unsigned);
+    void func_001B19C0(int, int, int);
+    void func_001B1860(float, float, int, float, float, float, float, int, float, float, int, int, int);
+};
+
+struct T69Btn {
+    void func_0005E840(int);
+    void func_001D6600();
+};
+
+struct T69Page {
+    char pad0[0x64];
+    T69Txt *t[7];
+    int s88[7];
+    char padA4[4];
+    T69Btn *bA8;
+    T69Btn *bAC;
+    char padB0[0x13c - 0xb0];
+    T69Btn *b13C;
+    char pad140[4];
+    int sel;
+    int sel2;
+    C_00069BD0_Obj *obj;
+    char pad150[0x10];
+    int f160;
+    int f164;
+    int f168;
+    int f16C;
+    void func_00069340();
+};
+
 struct C_00069BB0 {
     void func_00069BB0(void);
 };
