@@ -99,6 +99,7 @@ struct C_001C9920 {
     void func_001C9920(int a);
     void func_00192370(int a0);
     C_001C9920 *func_001C99E0(int a0);
+    C_001C9920 *func_001C9B10(int a, int b, int c, int d, int e, int f, int g);
 };
 
 struct C_001C9B10 {
