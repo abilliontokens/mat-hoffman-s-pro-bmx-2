@@ -344,7 +344,8 @@ extern float D_00278650;
 static __forceinline void pos5ED(Txt_5ED *p, int x, int y) { if (p->x != x || p->y != y) { p->y = y; p->x = x; p->flags |= 6; } }
 static __forceinline void align5ED(Txt_5ED *p, int a) { if (p->align != a) { p->align = a; p->flags |= 6; } }
 static __forceinline void color5ED(Txt_5ED *p, unsigned int c) { if (p->color != c) { p->flags |= 8; p->color = (p->color & (c | 0xff000000)) | (c & 0xffffff); } }
-static __forceinline void uv5ED(Img_5ED *p) { float a = 127.0f * p->w; p->flags |= 4; p->a = a; p->b = 0.0f * p->w; p->c = 15.0f * p->h; p->d = 0.0f * p->h; }
+extern float D_00278654, D_0027653C;
+static __forceinline void uv5ED(Img_5ED *p) { float a = D_00278654 * p->w; p->flags |= 4; p->a = a; p->b = D_00275544 * p->w; p->c = D_0027653C * p->h; p->d = D_00275544 * p->h; }
 static __forceinline void width5ED(Img_5ED *p, int v) { if (p->width != v) { p->width = v; p->flags |= 1; } }
 static __forceinline void height5ED(Img_5ED *p, int v) { if (p->height != v) { p->height = v; p->flags |= 1; } }
 
@@ -706,14 +707,14 @@ C_0005EDC0 *C_0005EDC0::func_0005EDC0(void *a0)
     font1 = r ? *r : 0;
     r = D_002A8490->f2EC->func_0018C160((int)D_00278678);
     font2 = r ? *r : 0;
-    strcpy(D_002A60B0, "global\\textures\\");
+    memcpy(D_002A60B0, "global\\textures\\", 17);
 
     o = (Img_5ED *)func_001E8A44(0x64);
     unk94 = o ? o->func_001D5760() : 0;
     unk94->func_001D5810(D_00278658, 0, 0, 0);
     uv5ED(unk94);
-    height5ED(unk94, 0x42480000);
     width5ED(unk94, 0x44200000);
+    height5ED(unk94, 0x42480000);
 
     o = (Img_5ED *)func_001E8A44(0x64);
     unk98 = o ? o->func_001D5760() : 0;
