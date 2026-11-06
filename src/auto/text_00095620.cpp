@@ -155,7 +155,6 @@ struct S_00095880_Array {
     unsigned char flags;
     void func_001CDED0(int n);
 };
-typedef S_00095880_Array S_00095880_Raw2;
 int func_00011260(int a, int b);
 
 struct S_00095AB0_Vt {
