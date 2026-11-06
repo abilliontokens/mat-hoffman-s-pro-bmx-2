@@ -60,6 +60,8 @@ struct C_002B9120 {
 };
 struct C_002B7E18 { char pad0[0x2C]; int unk2C; };
 struct C_0001CE80 { void func_0001CE80(void *a, void *b, void *c, float d, float e); };
+struct S_00025980_A2A4 { char pad0[0x120]; int f120; };
+struct S_00025980_A2E0 { char pad0[0x10]; float f10; };
 struct C_002A8490 {
     char pad0[4];
     C_0001CE80 *unk4;
@@ -67,6 +69,10 @@ struct C_002A8490 {
     int unk124;
     char pad128[0x238 - 0x128];
     int unk238;
+    char pad23c[0x2a4 - 0x23c];
+    S_00025980_A2A4 *unk2a4;
+    char pad2a8[0x2e0 - 0x2a8];
+    S_00025980_A2E0 *unk2e0;
 };
 extern C_002A8490 *D_002A8490;
 extern C_002B7E18 *D_002B7E18;
