@@ -170,6 +170,7 @@ static __forceinline float distance_11BE0(const C_00017680_Vec &a, const C_00017
 }
 struct C_00011BE0 { char pad[0x3e4]; C_00017680_Vec pos; void func_00011BE0(int *, float *); };
 extern S_115F0_Mgr *D_002B9120;
+extern char *D_gSelfSink11730;
 struct C_00011E30 {
     char pad0[0x3c];
     S_11BE0_Mid *f3C;
@@ -212,8 +213,10 @@ struct C_00011730 {
 };
 extern float D_00275544;
 
+extern "C" float __cdecl sqrtf(float);
+extern "C" float sqrtf(float);
+#pragma intrinsic(sqrtf)
 float func_00011000(float x) { return sqrtf(x); }
-
 float func_00011020(float a, float b)
 {
     float r;
@@ -268,12 +271,10 @@ void func_000111B0(float *out, float *in) {
     __m128 sq = _mm_mul_ps(v, v);
     __m128 len = _mm_add_ss(_mm_movehl_ps(sq, sq), sq);
     len = _mm_add_ss(len, _mm_shuffle_ps(sq, sq, 0xe1));
-    __m128 minv = _mm_load_ss(&D_002754A0);
-    __m128 cmp = _mm_cmplt_ss(len, minv);
-    len = _mm_add_ss(len, _mm_and_ps(cmp, minv));
+    __m128 cmp = _mm_cmplt_ss(len, _mm_load_ss(&D_002754A0));
+    len = _mm_add_ss(len, _mm_and_ps(cmp, _mm_load_ss(&D_002754A0)));
     __m128 r = _mm_rsqrt_ss(len);
-    __m128 t = _mm_mul_ss(_mm_mul_ss(len, r), r);
-    __m128 scale = _mm_mul_ss(_mm_mul_ss(r, _mm_load_ss(&D_00275480)), _mm_sub_ss(_mm_load_ss(&D_00275490), t));
+    __m128 scale = _mm_mul_ss(_mm_mul_ss(r, _mm_load_ss(&D_00275480)), _mm_sub_ss(_mm_load_ss(&D_00275490), _mm_mul_ss(_mm_mul_ss(len, r), r)));
     scale = _mm_shuffle_ps(scale, scale, 0);
     _mm_storeu_ps(out, _mm_mul_ps(scale, v));
 }
