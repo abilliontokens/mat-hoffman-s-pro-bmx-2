@@ -11,6 +11,7 @@ void __fastcall func_001E4500(float *dst, int, int, int, int, int, int);
 void __fastcall func_001E7D20(int, float *, int, int, int);
 void __fastcall func_001E7DC0(int, float *, int, int, int);
 void __fastcall func_001E7410(int, int, int, int, int, int);
+void __fastcall func_001E7410(int, int, int);
 void __fastcall func_001E32D0(int, int);
 void __fastcall func_001E5F20(float *, int, int, int, int);
 void __fastcall func_001E4220(float *);
