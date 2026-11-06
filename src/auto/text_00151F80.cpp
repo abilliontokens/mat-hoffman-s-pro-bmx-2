@@ -57,7 +57,7 @@ struct S_151F80_Tgt { char pad0[0x50]; int f50; char pad54[0x14]; int f68; };
 struct S_151F80_Line {
     void func_0014AC30(S_151F80_Vec *line, int a);
     void func_00133ED0(void);
-    void func_00133F10(int a);
+    float func_00133F10(int a);
 };
 extern S_151F80_Root *D_002B9120;
 extern S_151F80_Vec D_002A789C;
