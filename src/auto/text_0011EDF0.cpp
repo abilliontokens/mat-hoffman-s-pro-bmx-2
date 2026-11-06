@@ -1,5 +1,7 @@
 /* 14 functions from 0x0011EDF0 to 0x0011FDF0, found by Ghidra. */
 #include "common.h"
+#include <math.h>
+#pragma intrinsic(sqrt)
 #pragma pack(push, 4)
 #include <xmmintrin.h>
 #pragma pack(pop)
