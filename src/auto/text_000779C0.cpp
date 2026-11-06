@@ -68,6 +68,7 @@ struct Wid_779C0 {
         f40 = f4c * D_00275544;
         f44 = f50 * D_0027653C;
         f48 = f50 * D_00275544;
+        /* x87 operand order as the original */
     }
     Wid_779C0 *func_001D5760();
     void func_001D5810(char *, float, float, float);
