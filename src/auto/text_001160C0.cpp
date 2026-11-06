@@ -44,5 +44,38 @@ struct C_001160C0 {
     char pad9F0[0x1E68 - 0x9F0];
     int input[0x20];
     int prev[0x20];
+    int func_00107FB0();
     void func_001160C0(float dt);
 };
+
+void C_001160C0::func_001160C0(float dt)
+{
+    if (f958 <= 0.0f && f95C == 0) {
+        f964 = f9E8->f24;
+        f968 = f9EC->f24;
+        for (int i = 0; i < 0x20; i++) {
+            float v;
+            if (D_002A8490->f8->items[f970]->v3(i, 0x3F, &v)) {
+                input[i] = v >= 0.0f;
+            } else {
+                input[i] = 0;
+                if (prev[i] != 0 && v > 0.0f) {
+                    input[i] = 1;
+                }
+            }
+        }
+        if (input[D_002A8490->f8->func_00136170(0, 2, 0)]) {
+            f964 = -1.0f;
+        } else if (input[D_002A8490->f8->func_00136170(1, 2, 0)]) {
+            f964 = 1.0f;
+        }
+        if (input[D_002A8490->f8->func_00136170(2, 2, 0)]) {
+            f968 = -1.0f;
+        } else if (input[D_002A8490->f8->func_00136170(3, 2, 0)]) {
+            f968 = 1.0f;
+        }
+    }
+    for (int j = 0; j < 0x20; j++) {
+        prev[j] = input[j];
+    }
+}
