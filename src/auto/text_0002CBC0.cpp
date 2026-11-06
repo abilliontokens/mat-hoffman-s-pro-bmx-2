@@ -79,7 +79,7 @@ extern S_2D270_Glob *D_002A8490;
 
 extern float D_00275544;
 void func_00026340(void *a, void *b);
-int func_00028130(void *a, int b, int c);
+int __stdcall func_00028130(void *a, int b, int c);
 
 struct S2CBC0 {
     char pad0[0x160];
@@ -127,30 +127,111 @@ static __forceinline void Cross_2D270(V4_2D270 *volatile out, const V4_2D270 *vo
     _mm_storeu_ps(&out->x, _mm_shuffle_ps(r, r, 0xc9));
 }
 
+#pragma optimize("y", on)
 void S2CBC0::func_0002CBC0(float dt)
 {
-    if (f468 != 0) {
-        if (f730 > 0.0f) {
-            f730 = f730 - dt;
+    V4_2CBC0 a;
+    V4_2CBC0 b;
+    V4_2CBC0 v;
+    V4_2CBC0 m;
+    V4_2CBC0 mat;
+    V4_2CBC0 *p;
+    float cx, cy, cz, dot, lp, la, t;
+
+    b.z = b.y = b.x = 0; b.w = 1.0f;
+    a.z = a.y = a.x = 0; a.w = 1.0f;
+    if (f468 == 0) {
+        return;
+    }
+    if (f730 > D_00275544) {
+        f730 = f730 - dt;
+    }
+    if (f730 <= D_00275544 && f73c == 0 && f720 != 0 && f720->fn7c != 0) {
+        f720->fn7c(f1f4->f2c, f720, f720->f80, 1);
+        f73c = 1;
+    }
+    f210->f30->fC = 1;
+    f5ec->func_00025E50(dt);
+    f5c0 = f5ec->func_000260F0() * f5b8;
+
+    p = f230->func_00197F70(&mat, f210->mat38);
+    m = *p;
+    m.w = 1.0f;
+    v.x = f210->f30->v20[0] - m.x;
+    v.y = f210->f30->v20[1] - m.y;
+    v.z = f210->f30->v20[2] - m.z;
+    v.w = 1.0f;
+    dot = v.y * f210->f30->v40[1] + v.x * f210->f30->v40[0] + v.z * f210->f30->v40[2];
+    cx = f210->f30->v20[0] - dot * f210->f30->v40[0];
+    cy = f210->f30->v20[1] - dot * f210->f30->v40[1];
+    cz = f210->f30->v20[2] - dot * f210->f30->v40[2];
+    v.x = f210->f30->v20[0] - cx;
+    v.y = f210->f30->v20[1] - cy;
+    v.z = f210->f30->v20[2] - cz;
+    v.w = 1.0f;
+    b.x = v.x; b.y = v.y; b.z = v.z; b.w = v.w;
+    a.x = f210->f30->v30[0] - cx;
+    a.y = f210->f30->v30[1] - cy;
+    a.z = f210->f30->v30[2] - cz;
+    lp = sqrtf(v.z * v.z + v.y * v.y + v.x * v.x);
+    la = sqrtf(a.y * a.y + a.z * a.z + a.x * a.x);
+    t = __min(lp, la);
+    func_00026340(&b, &b);
+    func_00026340(&a, &a);
+    if (a.y * b.y + a.x * b.x + a.z * b.z > D_00275544 && t > f5bc) {
+        int r = func_00028130(f210->f78, 0, 0);
+        f210->f30->fC = 0;
+        if (r == 0) {
+            func_00028070();
             return;
+        }
+        f724 = f210->f30;
+        p = f230->func_00197F70(&mat, f210->mat48);
+        m = *p;
+        m.w = 1.0f;
+        v.x = f210->f34->v20[0] - m.x;
+        v.y = f210->f34->v20[1] - m.y;
+        v.z = f210->f34->v20[2] - m.z;
+        v.w = 1.0f;
+        dot = v.y * f210->f34->v40[1] + v.x * f210->f34->v40[0] + v.z * f210->f34->v40[2];
+        cx = f210->f34->v20[0] - dot * f210->f34->v40[0];
+        cy = f210->f34->v20[1] - dot * f210->f34->v40[1];
+        cz = f210->f34->v20[2] - dot * f210->f34->v40[2];
+        v.x = f210->f34->v20[0] - cx;
+        v.y = f210->f34->v20[1] - cy;
+        v.z = f210->f34->v20[2] - cz;
+        v.w = 1.0f;
+        b.x = v.x; b.y = v.y; b.z = v.z; b.w = v.w;
+        a.x = f210->f34->v30[0] - cx;
+        a.y = f210->f34->v30[1] - cy;
+        a.z = f210->f34->v30[2] - cz;
+        lp = sqrtf(v.y * v.y + v.x * v.x + v.z * v.z);
+        la = sqrtf(a.y * a.y + a.z * a.z + a.x * a.x);
+        t = __min(lp, la);
+        func_00026340(&b, &b);
+        func_00026340(&a, &a);
+        if (a.y * b.y + a.x * b.x + a.z * b.z > D_00275544 && t > f5bc) {
+            if (func_00028130(f210->f7c, 0, 0) == 0) {
+                func_00028070();
+                return;
+            }
         }
     }
     f484 = f484 + dt;
     {
-        float t = f744;
-        int ti = *(int *)&t & 0x7fffffff;
-        float a = *(float *)&ti;
-        f488 = f488 + a * dt;
+        float tt = f744;
+        int ti = *(int *)&tt & 0x7fffffff;
+        float av = *(float *)&ti;
+        f488 = f488 + av * dt;
     }
     {
-        float t = f744;
-        int ti = *(int *)&t & 0x7fffffff;
-        float a = *(float *)&ti;
-        f48c = f48c + a * dt;
+        float tt = f744;
+        int ti = *(int *)&tt & 0x7fffffff;
+        float av = *(float *)&ti;
+        f48c = f48c + av * dt;
     }
 }
-
-#pragma optimize("y", on)
+#pragma optimize("", on)
 void S2CBC0::func_0002D270()
 {
     S2CBC0 *volatile self = this;
