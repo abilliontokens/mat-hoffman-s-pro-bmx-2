@@ -39,6 +39,82 @@ struct C_0006D100 {
 };
 extern int D_002789F4;
 void func_001E891B(void *p);
+extern float D_00275544;
+extern float D_00278654, D_0027653C, D_00278650, D_002757F0, D_00278A60;
+extern char D_00278690[];
+extern char D_00278658[], D_00278648[], D_00278624[], D_00278600[], D_002786B0[];
+extern int D_00278664, D_00278668, D_0027866C, D_00278670;
+extern char D_00278674;
+extern int D_002A60B0, D_002A60B4, D_002A60B8, D_002A60BC;
+extern char D_002A60C0;
+void *func_001E8A44(int);
+struct Wid_6C570 {
+    char pad0[0x28];
+    float f28, f2c;
+    char pad30[8];
+    unsigned int color;
+    float f3c, f40, f44, f48, f4c, f50;
+    char pad54[4];
+    unsigned char b58;
+    __forceinline void SetW(float w) { if (f28 != w) { f28 = w; b58 |= 1; } }
+    __forceinline void SetH(float h) { if (f2c != h) { f2c = h; b58 |= 1; } }
+    __forceinline void Scale()
+    {
+        float a = f4c, b = f50;
+        f3c = a * D_00278654;
+        b58 |= 4;
+        f40 = a * D_00275544;
+        f44 = b * D_0027653C;
+        f48 = b * D_00275544;
+    }
+    Wid_6C570 *func_001D5760();
+    void func_001D5810(char *, float, float, float);
+};
+struct Txt_6C570 {
+    char pad0[4];
+    float f4, f8;
+    char padC[0x38];
+    int f44;
+    unsigned int f48;
+    char pad4C[2];
+    unsigned char b4e;
+    __forceinline void SetPos(float x, float y) { if (f4 != x || f8 != y) { f4 = x; f8 = y; b4e |= 6; } }
+    __forceinline void SetColor(unsigned int c)
+    {
+        if (f48 != c) {
+            b4e |= 8;
+            f48 = (f48 & (c | 0xff000000)) | (c & 0xffffff);
+        }
+    }
+    Txt_6C570 *func_001D5E90();
+    void func_001D5FA0(int, char *, int, int);
+    void func_001D6190(int, int, int *);
+};
+struct Obj184_6C570 {
+    Obj184_6C570 *func_001B12C0(int);
+    void func_001B1580(char *, char *, int, int);
+    void func_001B19C0(int, int, int);
+    void func_001B2270(unsigned int);
+    void func_001B19A0(unsigned int);
+};
+struct C210_6C570 { float func_0018C210(); };
+struct Data6C570 { char pad0[4]; char *p4; };
+struct C_6C570 {
+    char pad0[0x64];
+    Obj184_6C570 *f64, *f68;
+    Wid_6C570 *w6C, *w70;
+    int f74, f78;
+    Wid_6C570 *arr7C[5];
+    Wid_6C570 *arr90[5];
+    Wid_6C570 *arrA4[4];
+    Wid_6C570 *wB4;
+    char padB8[4];
+    Wid_6C570 *wBC, *wC0;
+    Txt_6C570 *tC4, *tC8;
+    char padCC[8];
+    int fD4;
+    void func_001577A0(void *, int);
+};
 
 struct Obj_6C {
     virtual ~Obj_6C();
