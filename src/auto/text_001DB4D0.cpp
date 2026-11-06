@@ -1,6 +1,7 @@
 /* 3 functions from 0x001DB4D0 to 0x001DC010, found by Ghidra. */
 #include "common.h"
 #include <string.h>
+#include <new>
 struct WaterConfig {
  char pad0[0x54]; int f54; char pad58[0x10]; int f68;
  char pad6C[0x64]; void *fD0;
