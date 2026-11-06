@@ -184,7 +184,7 @@ struct C_000ABBC0 {
     void func_001578D0();
     void func_000ABBC0(void);
     void func_000AB4F0(C_000AADB0_Parser *);
-    void func_000AB790(S_000AB030_Arg *arg);
+    void func_000AB790(S_000AB030_Arg * volatile arg);
 };
 
 struct C_000AB340_Global {
@@ -358,22 +358,26 @@ void C_000AB490::func_000AB490(void)
 void C_000ABBC0::func_000AB790(S_000AB030_Arg *arg)
 {
     C_000ABBC0 * volatile self = this;
+    struct {
+        volatile int res1;
+        volatile int lim2;
+        volatile int res2;
+        volatile int len2;
+    } t;
     int i;
     int j;
+    int j2;
     int k;
     int n;
+    int cnt;
     char buf[260];
 
-    if (f24 != 0) {
-        for (i = 0; i < f24; i++) {
-            C_000ABBC0_Obj *obj = f28[i];
+    cnt = f24;
+    if (cnt != 0) {
+        for (i = 0; i < cnt; i++, cnt = self->f24) {
+            C_000ABBC0_Obj *obj = self->f28[i];
             k = 0;
             if (obj->f104 == 0) {
-                struct {
-                    volatile int lim;
-                    volatile int len;
-                    volatile int res;
-                } t;
                 if (obj->f108 != 0) {
                     func_001ADCC0(D_002A60B0, 0x104, D_00275678, D_002A5348, D_002A5FA8);
                     func_001ADCC0(D_002A5EA0, 0x104, D_00275678, D_002A5348, D_002A5D98);
@@ -386,10 +390,10 @@ void C_000ABBC0::func_000AB790(S_000AB030_Arg *arg)
                 self->f28[i]->f110[0] = m ? ((C_00143580_000AB790 *)m)->func_00143580(1) : 0;
                 C_000ABBC0_Sub *s = (C_000ABBC0_Sub *)self->f28[i]->f110[0];
                 if (s->v35(buf, 0, 1)) {
-                    t.len = strlen(buf);
-                    t.lim = 0x7f;
-                    t.res = t.lim > t.len ? t.len : t.lim;
-                    n = t.res;
+                    VOL_000AB790(j2) = strlen(buf);
+                    VOL_000AB790(k) = 0x7f;
+                    t.res1 = VOL_000AB790(k) > VOL_000AB790(j2) ? VOL_000AB790(j2) : VOL_000AB790(k);
+                    n = t.res1;
                     func_001E8920(s->name, buf, n);
                     s->name[n] = 0;
                     s->func_00199650(&D_002A2734);
@@ -411,18 +415,13 @@ void C_000ABBC0::func_000AB790(S_000AB030_Arg *arg)
                     }
                 }
                 if (k == 0) {
-                    struct {
-                        volatile int lim;
-                        volatile int res;
-                        volatile int len;
-                    } t;
-                    for (j = 0; j < (*arg->f3A8)->count; j++) {
-                        S_000AB030_ObjB *o = (*arg->f3A8)->items[j];
+                    for (j2 = 0; j2 < (*arg->f3A8)->count; j2++) {
+                        S_000AB030_ObjB *o = (*arg->f3A8)->items[j2];
                         if (o != 0 && o->f4 == 1 && o->f8 != 0) {
-                            t.len = strlen(o->f8->name);
-                            t.lim = 0x103;
-                            t.res = t.lim > t.len ? t.len : t.lim;
-                            n = t.res;
+                            t.len2 = strlen(o->f8->name);
+                            t.lim2 = 0x103;
+                            t.res2 = t.lim2 > t.len2 ? t.len2 : t.lim2;
+                            n = t.res2;
                             func_001E8920(buf, o->f8->name, n);
                             buf[n] = 0;
                             char *dot = func_001E8AC0(buf, '.');
