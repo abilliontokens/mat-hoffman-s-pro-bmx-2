@@ -386,21 +386,30 @@ extern float D_0028AD00;
 extern float D_0028ACF0;
 extern float D_0028ACE0;
 extern float D_002A9924, D_002A9928, D_002A992C, D_002A9930;
-static inline void Normalize_00193EB0(V4_00193EB0 *out, V4_00193EB0 *in)
+static __forceinline __m128 Sq_00193EB0(__m128 x) { return _mm_mul_ps(x, x); }
+static __forceinline __m128 Sum_00193EB0(__m128 x)
 {
-    __m128 x = _mm_loadu_ps(&in->x);
-    __m128 sq = _mm_mul_ps(x, x);
-    __m128 sum = _mm_add_ss(_mm_movehl_ps(sq, sq), sq);
-    sq = _mm_shuffle_ps(sq, sq, 0xe1);
-    sum = _mm_add_ss(sum, sq);
-    __m128 eps = _mm_load_ss(&D_0028AD00);
-    sum = _mm_add_ss(sum, _mm_and_ps(_mm_cmplt_ss(sum, eps), eps));
-    __m128 r = _mm_rsqrt_ss(sum);
-    __m128 t = _mm_mul_ss(_mm_mul_ss(sum, r), r);
-    r = _mm_mul_ss(_mm_mul_ss(r, _mm_load_ss(&D_0028ACE0)),
-                   _mm_sub_ss(_mm_load_ss(&D_0028ACF0), t));
-    r = _mm_shuffle_ps(r, r, 0);
-    _mm_storeu_ps(&out->x, _mm_mul_ps(r, x));
+    return _mm_add_ss(_mm_add_ss(_mm_movehl_ps(Sq_00193EB0(x), Sq_00193EB0(x)), Sq_00193EB0(x)),
+                      _mm_shuffle_ps(Sq_00193EB0(x), Sq_00193EB0(x), 0xe1));
+}
+static __forceinline __m128 SumE_00193EB0(__m128 x)
+{
+    return _mm_add_ss(Sum_00193EB0(x),
+                      _mm_and_ps(_mm_cmplt_ss(Sum_00193EB0(x), _mm_load_ss(&D_0028AD00)),
+                                 _mm_load_ss(&D_0028AD00)));
+}
+static __forceinline __m128 Inv_00193EB0(__m128 s)
+{
+    return _mm_mul_ss(_mm_mul_ss(_mm_rsqrt_ss(s), _mm_load_ss(&D_0028ACE0)),
+                      _mm_sub_ss(_mm_load_ss(&D_0028ACF0),
+                                 _mm_mul_ss(_mm_mul_ss(s, _mm_rsqrt_ss(s)), _mm_rsqrt_ss(s))));
+}
+static __forceinline void Normalize_00193EB0(V4_00193EB0 *out, V4_00193EB0 *in)
+{
+    _mm_storeu_ps(&out->x,
+                  _mm_mul_ps(_mm_shuffle_ps(Inv_00193EB0(SumE_00193EB0(_mm_loadu_ps(&in->x))),
+                                            Inv_00193EB0(SumE_00193EB0(_mm_loadu_ps(&in->x))), 0),
+                             _mm_loadu_ps(&in->x)));
 }
 
 /* growable pointer array (3 methods in one Ghidra symbol at 0x194190) */
@@ -465,4 +474,9 @@ C_00194130 *C_00194130::func_00194130(int a0)
 void C_00194190::func_00194190(int a0)
 {
     f2c = a0;
+    f28 = a0;
+    f24 = 0;
+    f40 = (int *)func_001E8A44(a0 * 4);
+    if (f24 < f28)
+        f40[f24++] = a0;
 }
