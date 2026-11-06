@@ -204,7 +204,6 @@ struct C_00051CF0 {
     float m1[4][4];                   /* 0x2D8 */
     float m2[4][4];                   /* 0x318 */
     int unk358;                       /* 0x358 */
-    void func_00012140();
     void func_00031450();
     void func_00032860();
     void func_00051F10();
