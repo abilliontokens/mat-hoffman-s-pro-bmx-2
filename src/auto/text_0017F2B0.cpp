@@ -93,8 +93,8 @@ int func_00129350(int a0, int a1, S_0017F550_Pair *a2, S_0017F550_Pair *a3, floa
 int func_00123980(char *a, int b, int c, int d, S_0017F550_Pair *e, float *f, int g);
 int func_00123C80(char *a, int *b, float *c, int d, S_0017F550_Pair *e, float *f);
 
-static __forceinline float Min_0017F550(float a, float b) { float r; _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
-static __forceinline float Max_0017F550(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
+static __forceinline float Min_0017F550(float a, float b) { return _mm_min_ss(_mm_set_ss(a), _mm_set_ss(b)).m128_f32[0]; }
+static __forceinline float Max_0017F550(float a, float b) { return _mm_max_ss(_mm_set_ss(a), _mm_set_ss(b)).m128_f32[0]; }
 
 struct S_0017FDB0_Node {
     char pad0[8];
@@ -167,6 +167,98 @@ struct RayCollisionObject {
     C_00199C20 *f19C;
     void func_00180070(void);
 };
+
+int C_0017F2B0::func_0017F550(S_0017F550_Shape *a)
+{
+    S_0017F550_Pair s;
+    S_0017F550_Pair t;
+    Vec4_0017F2B0 tmp;
+    int i;
+
+    switch (a->f50) {
+    case 0: {
+        S_002B92EC_Result *g;
+        s = tree;
+        t.nodes = a->f1C4;
+        t.leaves = a->f1C8;
+        if (func_00129350(fF0, a->f1BC, &s, &t, mB0, a->mB0, 1, a->f1B0)) {
+            g = D_002B92EC;
+            if (!(g->f98 & 1)) {
+                func_0001C680(&g->f20, g->f20, a->mB0);
+                func_0001C680(&g->f50, g->f50, a->mB0);
+                func_0001C680(&g->f60, g->f60, a->mB0);
+                func_00030AC0(&g->f30.x, &g->f30.x, a->mB0);
+                g->f98 |= 1;
+            }
+            g->f40 = *func_000110E0(&tmp, &g->f50, &g->f60);
+            for (i = 0; i < g->f80; i++) {
+                if (g->f84[i] == 0) {
+                    func_0001C680(&g->f74[i], g->f74[i], a->mB0);
+                    func_00030AC0(&g->f78[i].x, &g->f78[i].x, a->mB0);
+                    g->f84[i] = 1;
+                }
+            }
+            return 1;
+        }
+        break;
+    }
+    case 1: {
+        Vec4_0017F2B0 mx = D_002A8EE8;
+        Vec4_0017F2B0 mn = D_002A8EE8;
+        int ret = 0;
+        if (func_0017F2B0((char *)a)) {
+            for (i = 0; i < a->f190; i++) {
+                S_0017F550_Shape *e = a->f1A0[i];
+                S_002B92EC_Result *g;
+                s = tree;
+                t.nodes = e->f1C4;
+                t.leaves = e->f1C8;
+                if (a->f194[i] != 0) {
+                    if (func_00129350(fF0, e->f1BC, &s, &t, mB0, e->mB0, 1, e->f1B0)) {
+                        int j;
+                        g = D_002B92EC;
+                        ret = 1;
+                        if (!(g->f98 & 1)) {
+                            func_0001C680(&g->f20, g->f20, e->mB0);
+                            func_0001C680(&g->f50, g->f50, e->mB0);
+                            func_0001C680(&g->f60, g->f60, e->mB0);
+                            func_00030AC0(&g->f30.x, &g->f30.x, e->mB0);
+                            g->f98 |= 1;
+                        }
+                        mn.x = Min_0017F550(mn.x, g->f50.x);
+                        mn.y = Min_0017F550(mn.y, g->f50.y);
+                        mn.z = Min_0017F550(mn.z, g->f50.z);
+                        mx.x = Max_0017F550(mx.x, g->f50.x);
+                        mx.y = Max_0017F550(mx.y, g->f50.y);
+                        mx.z = Max_0017F550(mx.z, g->f50.z);
+                        g->f50 = D_002A8EE8;
+                        g->f50 = D_002A8EE8;
+                        g->f40.x = mx.x + mn.x;
+                        g->f40.y = mx.y + mn.y;
+                        g->f40.z = mx.z + mn.z;
+                        g->f40.w = 1.0f;
+                        for (j = 0; j < g->f80; j++) {
+                            if (g->f84[j] == 0) {
+                                func_0001C680(&g->f74[j], g->f74[j], e->mB0);
+                                func_00030AC0(&g->f78[j].x, &g->f78[j].x, e->mB0);
+                                g->f84[j] = 1;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return ret;
+    }
+    case 5:
+        s = tree;
+        return func_00123980(a->fA8, a->f100, a->f104, fF0, &s, mB0, 0);
+    case 6:
+        s = tree;
+        return func_00123C80(a->fF0, &a->f100, a->mB0, fF0, &s, mB0);
+    }
+    return 0;
+}
 
 void __stdcall func_0017FCA0(u16 idx, S_0017FDB0_Tree *tree, int depth, float *m)
 {
