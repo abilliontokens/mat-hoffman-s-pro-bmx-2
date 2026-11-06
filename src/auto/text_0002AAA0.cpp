@@ -188,10 +188,78 @@ static __forceinline float Min_0002AAA0(float a, float b)
     return a < b ? a : b;
 }
 
-static __forceinline float Abs_0002AAA0(float x)
+static __forceinline float Abs_0002AAA0(volatile float x)
 {
-    unsigned u = *(unsigned *)&x & 0x7fffffff;
+    unsigned u = *(volatile unsigned *)&x & 0x7fffffff;
     return *(float *)&u;
+}
+
+void C_0002AAA0::func_0002AAA0(float dt)
+{
+    C_0002AAA0 * volatile self = this;
+    float t;
+    float step;
+    float v;
+    float dx;
+    float dy;
+    float dz;
+
+    f1e0->func_00174550(1, 1, 1);
+    self->f1e0->v35();
+    f204->func_00133EF0(f230 + 0xf0);
+    self->f204->func_00134530(0x40, &f234, &f238, 3, 0, 0);
+    if (self->f234 > 0) {
+        self->f1f4->f5c = 1;
+    } else {
+        self->f1f4->f5c = 0;
+    }
+    self->f1e4->v29(32.2f);
+    self->f1f4->v13(dt);
+    self->f8c = *(Vec4_0002AF90 *)&D_002A10F0;
+    self->f9c = *(Vec4_0002AF90 *)&D_002A10F0;
+    t = 0;
+    step = Min_0002AAA0(dt, D_002A1174);
+    if (D_00275544 < dt) {
+        do {
+            self->f1e4->func_001941F0(step);
+            if (self->f1e8->f64 == 0) {
+                v = -(self->f1e0->f210 * self->f28);
+                dx = D_002A1110 * v;
+                dy = D_002A1114 * v;
+                dz = D_002A1118 * v;
+                self->f1e0->f130 += dx;
+                self->f1e0->f134 += dy;
+                self->f1e0->f138 += dz;
+            }
+            self->func_00027860(step);
+            self->f1f0->v13(step);
+            if (Abs_0002AAA0(self->f1e0->f170) > Abs_0002AAA0(self->f9c.x)) {
+                self->f9c.x = self->f1e0->f170;
+            }
+            if (Abs_0002AAA0(self->f1e0->f174) > Abs_0002AAA0(self->f9c.y)) {
+                self->f9c.y = self->f1e0->f174;
+            }
+            if (Abs_0002AAA0(self->f1e0->f178) > Abs_0002AAA0(self->f9c.z)) {
+                self->f9c.z = self->f1e0->f178;
+            }
+            self->f1e0->v13(step);
+            if (Abs_0002AAA0(self->f1e0->f6c) > Abs_0002AAA0(self->f8c.x)) {
+                self->f8c.x = self->f1e0->f6c;
+            }
+            if (Abs_0002AAA0(self->f1e0->f70) > Abs_0002AAA0(self->f8c.y)) {
+                self->f8c.y = self->f1e0->f70;
+            }
+            if (Abs_0002AAA0(self->f1e0->f74) > Abs_0002AAA0(self->f8c.z)) {
+                self->f8c.z = self->f1e0->f74;
+            }
+            t = step + t;
+            step = Min_0002AAA0(D_002A1174, dt - t);
+        } while (t < dt);
+    }
+    self->f444 = 0;
+    self->f680 = 0;
+    self->f684 = 0;
+    self->f440 = 0;
 }
 
 void C_0002AF90::func_0002AF90(void)
