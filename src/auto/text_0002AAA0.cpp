@@ -181,7 +181,7 @@ struct C_0002AAA0 {
     void func_0002AAA0(float dt);
 };
 
-extern float D_002A1174, D_00275544, D_002A1110, D_002A1114, D_002A1118;
+extern float D_002A10FC, D_002A1174, D_00275544, D_002A1110, D_002A1114, D_002A1118;
 
 static __forceinline float Min_0002AAA0(float a, float b)
 {
@@ -200,14 +200,44 @@ void C_0002AAA0::func_0002AAA0(float dt)
     float t;
     float step;
     float v;
-    float dx;
-    float dy;
-    float dz;
+    struct {
+        volatile unsigned xb1;
+        volatile unsigned xa1;
+        volatile unsigned xa4;
+        volatile unsigned rb4;
+        volatile unsigned rb1;
+        volatile unsigned xa5;
+        volatile unsigned xb2;
+        volatile unsigned xb5;
+        volatile unsigned rb2;
+        volatile unsigned ra5;
+        volatile unsigned xb3;
+        volatile unsigned rb5;
+        volatile unsigned rb3;
+        volatile unsigned xa6;
+        volatile unsigned xb4;
+        volatile unsigned xb6;
+        volatile unsigned xa2;
+        volatile unsigned ra6;
+        volatile unsigned xa3;
+        volatile unsigned rb6;
+        volatile unsigned ra1;
+        volatile float rem;
+        volatile unsigned ra2;
+        volatile unsigned d1174;
+        volatile unsigned ra4;
+        volatile unsigned mres;
+        volatile unsigned ra3;
+        unsigned pad80;
+        volatile float dy;
+        volatile float dz;
+        unsigned pad8c;
+    } s;
 
     f1e0->func_00174550(1, 1, 1);
     self->f1e0->v35();
-    f204->func_00133EF0(f230 + 0xf0);
-    self->f204->func_00134530(0x40, &f234, &f238, 3, 0, 0);
+    self->f204->func_00133EF0(self->f230 + 0xf0);
+    self->f204->func_00134530(0x40, &self->f234, &self->f238, 3, 0, 0);
     if (self->f234 > 0) {
         self->f1f4->f5c = 1;
     } else {
@@ -224,36 +254,62 @@ void C_0002AAA0::func_0002AAA0(float dt)
             self->f1e4->func_001941F0(step);
             if (self->f1e8->f64 == 0) {
                 v = -(self->f1e0->f210 * self->f28);
-                dx = D_002A1110 * v;
-                dy = D_002A1114 * v;
-                dz = D_002A1118 * v;
-                self->f1e0->f130 += dx;
-                self->f1e0->f134 += dy;
-                self->f1e0->f138 += dz;
+                s.dy = D_002A1114 * v;
+                s.dz = D_002A1118 * v;
+                self->f1e0->f130 += D_002A1110 * v;
+                self->f1e0->f134 += s.dy;
+                self->f1e0->f138 += s.dz;
             }
             self->func_00027860(step);
             self->f1f0->v13(step);
-            if (Abs_0002AAA0(self->f1e0->f170) > Abs_0002AAA0(self->f9c.x)) {
+            s.xa1 = *(unsigned *)&self->f1e0->f170;
+            s.ra1 = s.xa1 & 0x7fffffff;
+            s.xb1 = *(unsigned *)&self->f9c.x;
+            s.rb1 = s.xb1 & 0x7fffffff;
+            if (*(volatile float *)&s.ra1 > *(volatile float *)&s.rb1) {
                 self->f9c.x = self->f1e0->f170;
             }
-            if (Abs_0002AAA0(self->f1e0->f174) > Abs_0002AAA0(self->f9c.y)) {
+            s.xa2 = *(unsigned *)&self->f1e0->f174;
+            s.ra2 = s.xa2 & 0x7fffffff;
+            s.xb2 = *(unsigned *)&self->f9c.y;
+            s.rb2 = s.xb2 & 0x7fffffff;
+            if (*(volatile float *)&s.ra2 > *(volatile float *)&s.rb2) {
                 self->f9c.y = self->f1e0->f174;
             }
-            if (Abs_0002AAA0(self->f1e0->f178) > Abs_0002AAA0(self->f9c.z)) {
+            s.xa3 = *(unsigned *)&self->f1e0->f178;
+            s.ra3 = s.xa3 & 0x7fffffff;
+            s.xb3 = *(unsigned *)&self->f9c.z;
+            s.rb3 = s.xb3 & 0x7fffffff;
+            if (*(volatile float *)&s.ra3 > *(volatile float *)&s.rb3) {
                 self->f9c.z = self->f1e0->f178;
             }
             self->f1e0->v13(step);
-            if (Abs_0002AAA0(self->f1e0->f6c) > Abs_0002AAA0(self->f8c.x)) {
+            s.xa4 = *(unsigned *)&self->f1e0->f6c;
+            s.ra4 = s.xa4 & 0x7fffffff;
+            s.xb4 = *(unsigned *)&self->f8c.x;
+            s.rb4 = s.xb4 & 0x7fffffff;
+            if (*(volatile float *)&s.ra4 > *(volatile float *)&s.rb4) {
                 self->f8c.x = self->f1e0->f6c;
             }
-            if (Abs_0002AAA0(self->f1e0->f70) > Abs_0002AAA0(self->f8c.y)) {
+            s.xa5 = *(unsigned *)&self->f1e0->f70;
+            s.ra5 = s.xa5 & 0x7fffffff;
+            s.xb5 = *(unsigned *)&self->f8c.y;
+            s.rb5 = s.xb5 & 0x7fffffff;
+            if (*(volatile float *)&s.ra5 > *(volatile float *)&s.rb5) {
                 self->f8c.y = self->f1e0->f70;
             }
-            if (Abs_0002AAA0(self->f1e0->f74) > Abs_0002AAA0(self->f8c.z)) {
+            s.xa6 = *(unsigned *)&self->f1e0->f74;
+            s.ra6 = s.xa6 & 0x7fffffff;
+            s.xb6 = *(unsigned *)&self->f8c.z;
+            s.rb6 = s.xb6 & 0x7fffffff;
+            if (*(volatile float *)&s.ra6 > *(volatile float *)&s.rb6) {
                 self->f8c.z = self->f1e0->f74;
             }
             t = step + t;
-            step = Min_0002AAA0(D_002A1174, dt - t);
+            s.d1174 = *(unsigned *)&D_002A1174;
+            s.rem = dt - t;
+            s.mres = *(volatile float *)&s.d1174 < s.rem ? s.d1174 : *(volatile unsigned *)&s.rem;
+            step = *(volatile float *)&s.mres;
         } while (t < dt);
     }
     self->f444 = 0;
