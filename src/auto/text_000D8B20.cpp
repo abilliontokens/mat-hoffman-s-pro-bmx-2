@@ -63,6 +63,35 @@ struct BmxUIPageHOF5 {
     BmxUIPageHOF5 *func_000D8C70(int a0);
 };
 
+struct BmxUIPageHOF6 {
+    void *vtbl;
+    char pad4[0x280 - 4];
+    u32 unk280;
+    u32 unk284;
+    u32 unk288;
+    u32 unk28C;
+    u32 unk290;
+    char pad294[8];
+    u32 unk29C;
+    u32 unk2A0;
+    u32 unk2A4;
+    u32 unk2A8;
+    u32 unk2AC;
+    u32 unk2B0;
+    u32 unk2B4;
+    s32 unk2B8;
+    u32 unk2BC;
+    u32 unk2C0;
+    u32 arr2C4[5];
+    u32 arr2D8[5];
+    u32 arr2EC[2];
+    u32 arr2F4[2];
+    void *arr2FC[2];
+    u32 arr304[5];
+    void func_001BE360(int a0);
+    BmxUIPageHOF6 *func_000D9820(int a0);
+};
+
 extern char D_00278690[], D_002786A0[], D_00278678[], D_0027F2AC[], D_0027CEF0[], D_0027F29C[], D_00279B00[], D_00279AF0[], D_00279AE0[], D_00279AD0[];
 extern float D_0027F2B4;
 extern "C" void *func_001E8A44(unsigned int size);
