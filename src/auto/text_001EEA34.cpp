@@ -227,17 +227,18 @@ int *S_001EEFBA::func_001EEFBA(int idx)
 
 S_001EEFE3 *S_001EEFE3::func_001EEFE3(S_001EEFE3 *n)
 {
-    S_001EEFE3 *p;
-    S_001EEFE3 *q;
+    S_001EEFE3 *first;
+    S_001EEFE3 *last;
+    S_001EEFE3 *cur;
 
     if (n != 0) {
-        p = next;
-        if (p != 0) {
-            do {
-                q = p;
-                p = q->next;
-            } while (p != 0);
-            q->next = n;
+        first = next;
+        if (first != 0) {
+            last = first;
+            while ((cur = last->next) != 0) {
+                last = cur;
+            }
+            last->next = n;
         } else {
             next = n;
         }
