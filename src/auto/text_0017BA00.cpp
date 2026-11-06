@@ -393,6 +393,27 @@ int C_0017BDE0::func_0017BFB0(void) {
  return 1;
 }
 
+int func_0017C060(C_0017BDE0 *a, C_0017BDE0 *b, C_0017BDE0 *out)
+{
+ QuadV2 pts[24]; QuadV2 hit; QuadV2 *pa; QuadV2 *pb;
+ int n=0; int inA=0; int inB=0; int i; int j;
+ pb=(QuadV2*)b->v;
+ for(i=0;i<4;i++) { if(a->func_0017BDE0(pb[i].x,pb[i].y)) {pts[n]=pb[i];n++;inA++;} }
+ if(inA==4) {for(i=0;i<8;i++)out->v[i]=b->v[i];return 1;}
+ pa=(QuadV2*)a->v;
+ for(i=0;i<4;i++) {if(b->func_0017BDE0(pa[i].x,pa[i].y)){pts[n]=pa[i];n++;inB++;}}
+ if(inB==4){for(i=0;i<8;i++)out->v[i]=a->v[i];return 1;}
+ for(i=0;i<4;i++){for(j=0;j<4;j++){if(func_0017BA00(&pa[i],&pa[(i+1)&3],&pb[j],&pb[(j+1)&3],&hit)){pts[n]=hit;n++;}}}
+ if(n==0)return n;
+ if(n==4){
+ ((QuadV2*)out->v)[0]=pts[0];((QuadV2*)out->v)[1]=pts[1];((QuadV2*)out->v)[2]=pts[2];((QuadV2*)out->v)[3]=pts[3];
+ out->func_0017BE40();
+ if(!out->func_0017BFB0())out->func_0017BB90(&pts[0].x,4);
+ return 1;
+ }
+ out->func_0017BB90(&pts[0].x,n);return 1;
+}
+
 void C_0017C300::func_0017C300(void) {
     D_002EFD80 = this;
     unk880 = 0;
