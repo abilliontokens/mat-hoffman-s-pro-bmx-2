@@ -73,6 +73,10 @@ struct C_00075170 {
     int unk1B4;
     void func_00075170();
 };
+static __forceinline int Percent_75170(int n, int total)
+{
+    return (int)((float)n * D_00275994 / (float)total);
+}
 #define SETUP_LABEL(slot) { \
     Lbl_75170 *p = (slot); \
     u32 color = p->f48; \
@@ -284,7 +288,8 @@ void C_00075170::func_00075170()
     char num[8];
     int i;
     int t;
-    int v;
+    int mins;
+    int secs;
 
     if (unk1B4 != 0) {
         Text_75170 **p;
@@ -306,9 +311,11 @@ void C_00075170::func_00075170()
     unk10C->func_001D6600();
     unk110->func_001D6600();
     t = (int)D_002A8490->p2A4->f2C4;
-    unk190 = t % 60;
-    unk18C = t / 60;
-    func_001ADCC0(buf, 0x104, D_00278DE4, unk18C, unk190);
+    mins = t / 60;
+    secs = t - mins * 60;
+    unk18C = mins;
+    unk190 = secs;
+    func_001ADCC0(buf, 0x104, D_00278DE4, mins, secs);
     unk114->func_0005E840(buf);
     unk114->func_001D6600();
     if (unk1AC != 0) {
@@ -337,11 +344,11 @@ void C_00075170::func_00075170()
                 unk64[1]->func_0005E840(buf);
                 unk12C[1] = D_002B9120->f4E4[0]->f6CC;
                 unk14C[1] = D_002B9120->f4E4[0]->f6D0;
-                v = D_002B9120->f528->f774;
-                if (v == 0) {
+                if (D_002B9120->f528->f774 == 0) {
                     unk16C[1] = 0;
                 } else {
-                    unk16C[1] = (int)((float)D_002B9120->f4E4[0]->f6D8 * D_00275994 / (float)v);
+                    float pct = (float)D_002B9120->f4E4[0]->f6D8 * D_00275994;
+                    unk16C[1] = (int)(pct / (float)D_002B9120->f528->f774);
                 }
             } else {
                 func_001ADCC0(num, 0x104, D_00277038, i + 1);
@@ -349,25 +356,33 @@ void C_00075170::func_00075170()
                 unk64[i]->func_0005E840(buf);
                 unk12C[i] = D_002B9120->f528->f76C;
                 unk14C[i] = D_002B9120->f528->f770;
-                v = D_002B9120->f4E4[i]->f6D4;
-                if (v == 0) {
+                if (D_002B9120->f4E4[i]->f6D4 == 0) {
                     unk16C[i] = 0;
                 } else {
-                    unk16C[i] = (int)((float)D_002B9120->f528->f778 * D_00275994 / (float)v);
+                    unk16C[i] = (int)((float)D_002B9120->f528->f778 * D_00275994 / (float)(int)(unsigned)D_002B9120->f4E4[i]->f6D4);
                 }
             }
             SETUP_LABEL(unk64[i]);
             unk64[i]->func_001D6600();
             func_001ADCC0(buf, 0x104, D_00277038, unk12C[i]);
-            unk70[i]->func_0005E840(buf);
+            {
+                Lbl_75170 *w = unk70[i];
+                w->func_0005E840(buf);
+            }
             SETUP_LABEL(unk70[i]);
             unk70[i]->func_001D6600();
             func_001ADCC0(buf, 0x104, D_00277038, unk14C[i]);
-            unk7C[i]->func_0005E840(buf);
+            {
+                Lbl_75170 *w = unk7C[i];
+                w->func_0005E840(buf);
+            }
             SETUP_LABEL(unk7C[i]);
             unk7C[i]->func_001D6600();
             func_001ADCC0(buf, 0x104, D_00278DD0, unk16C[i]);
-            unk88[i]->func_0005E840(buf);
+            {
+                Lbl_75170 *w = unk88[i];
+                w->func_0005E840(buf);
+            }
             SETUP_LABEL(unk88[i]);
             unk88[i]->func_001D6600();
         }
