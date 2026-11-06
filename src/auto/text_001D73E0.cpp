@@ -200,7 +200,9 @@ struct XboxTextureMap {
     int fA0;
     int fA4;
     int fA8;
-    char padAC[0xB8 - 0xAC];
+    char padAC[0xB0 - 0xAC];
+    int fB0;
+    char padB4[0xB8 - 0xB4];
     void *field_b8;
     char padBC[4];
     u32 arrC0[10];
@@ -208,7 +210,68 @@ struct XboxTextureMap {
     int func_001D7BF0(int param_1);
     int func_001D7C50();
     int func_001D7910(void *data, int width, int height, int a4, int minDim, int srcFmt, int dxFmt, unsigned int flags, int a9);
+    int func_001D73E0(int file, int width, int height, int minDim, int fmt, int size, int dxFmt, unsigned int flags, int a9);
 };
+
+struct VTexMap_001D73E0 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual int func_001D7910(void *data, int width, int height, int a4, int minDim, int srcFmt, int dxFmt, unsigned int flags, int a9);
+};
+
+struct FileMgr_001D73E0 {
+    int func_0013AFD0(int file);
+    int func_0013C8A0(int file, void *dst, int size, int count);
+};
+extern FileMgr_001D73E0 *D_002BEAAC;
+
+struct TexAlloc_001D73E0 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
+    virtual void v15();
+    virtual void v16();
+    virtual void v17();
+    virtual void v18();
+    virtual void v19();
+    virtual void v20();
+    virtual void v21();
+    virtual void v22();
+    virtual void v23();
+    virtual void v24();
+    virtual void v25();
+    virtual void v26();
+    virtual void v27();
+    virtual void v28();
+    virtual void v29();
+    virtual void *v30(int size);
+    virtual void *v31(int size);
+};
+extern TexAlloc_001D73E0 *D_002F0670;
+
+int __cdecl func_001B2870(int x);
+int __cdecl func_001B27B0(int x);
+int __cdecl func_001B2730(int x);
+int __cdecl func_001B2810(int x);
+void __cdecl func_001611C0(void *dst, void *src, int n);
 
 struct C_001D7CE0 {
     void *vtbl;
