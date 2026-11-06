@@ -9,16 +9,7 @@ struct S_002F6A38 {
 extern S_002F6A38 D_002F6A38;
 extern int D_00295C04;
 int func_001EEE49(int n);
-struct S_001EF734;
-struct BitObj_001F062A { int f0; int s4; };
-int __fastcall func_001EF1D0(BitObj_001F062A *self, int unused) { return self->s4 == 0 || self->s4 == 2; }
-int __fastcall func_001EF1E7(BitObj_001F062A *a, int b)
-{
-    if (a->f0 != 0 && func_001EF1D0(a, b) != 0) {
-        return 0;
-    }
-    return 1;
-}
+
 
 /* 8-byte value object used by the 'A'..'N' parser helpers. */
 struct S_001EF734 {
