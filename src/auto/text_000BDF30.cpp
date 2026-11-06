@@ -152,6 +152,7 @@ extern S_000BDF30_Audio *D_002EFDB8;
 
 /* BmxVideoPlayer: video setup, this in ecx, three stack args (second is the file name) */
 struct C_000BE640 {
+    virtual void v0();
     void func_000BE640(char *a, char *b, int c);
     void func_001BCC90(void *p);
     void func_000BADB0();
