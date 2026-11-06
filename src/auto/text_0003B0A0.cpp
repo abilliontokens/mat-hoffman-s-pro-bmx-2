@@ -54,6 +54,7 @@ struct S_3B0A0_Obj {
     void func_001983A0();
     void func_0019A8C0(void *a, void *b);
     void func_00034A40(void *a1, void *a2, void *a3, void *a4, float a5, int a6, int a7, int a8, int a9);
+    void Spawn(void *a1, void *a2, char *a4, float a5, int a6, int a7, int a8, int a9);
 };
 struct S_3B0A0_Cam { void func_00198390(); };
 struct S_3B0A0_VBase {
