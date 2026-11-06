@@ -24,6 +24,17 @@ struct Vec4 {
     }
 };
 
+struct BmxWallPlantConstraint {
+    char pad0[0x28];
+    void *f28;
+    int pad2c[4];
+    float f3c, f40, f44;
+    int pad48;
+    float f4c[4];
+    float f5c, f60, f64, f68, f6c, f70;
+    int func_0011A590(float dt);
+};
+
 struct C_0011AB60 {
     void *vtbl;
     void func_00157660();
