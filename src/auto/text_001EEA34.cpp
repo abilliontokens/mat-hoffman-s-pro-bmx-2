@@ -135,13 +135,6 @@ struct S_001EEFE3 {
     }
 };
 
-static inline S_001EEFE3 *B_Tail(S_001EEFE3 *p)
-{
-    S_001EEFE3 *cur;
-    while ((cur = p->next) != 0) p = cur;
-    return p;
-}
-
 /* virtual object with a mode at +8 (Class_00295BE4 slot 1) */
 struct S_001EF087 {
     void *vtbl;
