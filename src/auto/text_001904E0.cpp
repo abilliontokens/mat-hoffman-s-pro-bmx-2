@@ -39,7 +39,7 @@ struct S_1904E0_Run {
     int f8;
 };
 
-struct C_0018F350 {
+__declspec(align(16)) struct C_0018F350 {
     char pad0[0x18];
     unsigned int f18;
     char pad1c[0xc];
@@ -127,7 +127,109 @@ extern "C" int strcmp(const char *a, const char *b);
 #pragma intrinsic(strcmp)
 void C_00191270::func_001904E0(S_00191270_Owner *owner, int slot, S_00191270_Node *node, int c, int d)
 {
-    (void)owner; (void)slot; (void)node; (void)c; (void)d;
+    C_0018F350 ctxA;
+    C_0018F350 ctxB;
+    C_0018F350 ctxC;
+    S_1904E0_Rec rec;
+    S_1904E0_Frame fr;
+    void *frObj;
+    int i;
+
+    if (node == 0 || c == -1 || d == -1 || owner->f28 == 1) {
+        return;
+    }
+    ctxA.func_0018F350();
+    ctxB.func_0018F350();
+    ctxC.func_0018F350();
+    for (i = c; i < d; i++) {
+        S_1904E0_Entry *e;
+        unsigned int flags;
+        int hi;
+        int r;
+        int idx;
+        int sidx;
+        int tmp;
+        int objIdx;
+        void *val;
+
+        rec = node->f20[i].rec;
+        e = &node->f20[i];
+        flags = e->f48;
+        hi = (flags >> 8) & 0xff;
+        r = func_0018D580(hi);
+        switch (e->f4C) {
+        case 8: {
+            volatile int a;
+            volatile int b;
+            volatile int m;
+            const char *end = ctxB.f28;
+            const char *s1 = end + 1;
+            char ch;
+            int n;
+
+            do {
+                ch = *end++;
+            } while (ch != 0);
+            a = end - s1;
+            b = 0x3f;
+            m = b > a ? a : b;
+            n = m;
+            func_001E8920(rec.name, ctxB.f28, n);
+            rec.name[n] = 0;
+            r = ctxC.f12c;
+            if (rec.name[0] == '$') {
+                if (func_0018E7D0(2, rec.name, &idx) == 1) {
+                    if (f158[idx].f48 != 0 && f158[idx].f50 == 0) {
+                        sidx = f158[idx].f0;
+                    }
+                }
+            }
+            break;
+        }
+        case 3:
+            if (rec.name[0] == '$') {
+                if (func_0018E7D0(1, rec.name, &idx) == 1) {
+                    val = (void *)f158[idx].f0;
+                    sidx = f158[idx].f44;
+                } else {
+                    ctxB.func_0018F4D0(flags);
+                    fr.count = -1;
+                    fr.flags = flags;
+                    break;
+                }
+            } else {
+                if (rec.f40 == -1) {
+                    ctxB.func_0018F4D0(flags);
+                    fr.count = r;
+                    fr.flags = flags;
+                    break;
+                }
+                val = owner;
+                sidx = f158[slot].f44;
+            }
+            fr.recId = rec.f40;
+            fr.flags = flags;
+            fr.tbl = sidx;
+            frObj = val;
+            f14c->f8 = 1;
+            break;
+        case 2:
+            if (fr.count == -1) {
+                ctxB.func_0018F4D0(fr.flags);
+                fr.count = -1;
+                break;
+            }
+            tmp = fr.count - 1;
+            if (tmp < 0) {
+                ctxB.func_0018F4D0(fr.flags);
+                fr.count = -1;
+                break;
+            }
+            break;
+        case 7:
+            break;
+        }
+    }
 }
 
 void C_00191270::func_00191270(S_00191270_Owner *owner, int a, char *name, int b)
