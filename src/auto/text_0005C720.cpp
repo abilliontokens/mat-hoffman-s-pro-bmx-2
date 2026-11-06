@@ -73,17 +73,15 @@ struct C_0005C720 {
 
 void C_0005C720::func_0005C720(void)
 {
-    volatile int a[8];
-    volatile int b[8];
-    volatile int c[8];
-    volatile int d[8];
-    volatile int e[8];
-    volatile int f[8];
+    int a[8];
+    int b[8];
+    int c[8];
+    int d[8];
+    int e[8];
+    int f[8];
     char buf[0x104];
     func_001ADCC0(buf, 0x104, D_00275678, D_002A5348, D_00278328);
     if (D_002BEAAC->func_0013B1A0(buf)) {
-        int s;
-        int *p;
         int i;
         void *mem = func_001E8A44(0x4cc);
         C_0005C720_Ini *ini = mem ? ((C_0005C720_Ini *)mem)->func_00168280() : 0;
@@ -149,15 +147,12 @@ void C_0005C720::func_0005C720(void)
             func_001E891B(ini);
         }
         total = 0;
-        p = this->a;
         i = 0;
         do {
-            s = b[i] + e[i] + d[i];
-            total += s;
-            p[-8] = s;
-            p[0] = a[i];
-            p[8] = c[i];
-            p++;
+            total += e[i] + b[i] + d[i];
+            sums[i] = e[i] + b[i] + d[i];
+            this->a[i] = a[i];
+            this->c[i] = c[i];
         } while (++i < 8);
     }
 }
