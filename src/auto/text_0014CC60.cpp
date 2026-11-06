@@ -80,7 +80,7 @@ int __stdcall func_0013C9F0(const char *name, const char *mode);
 struct C_0014CC60 {
     char pad0[0x38];
     int f38;
-    char pad3C[4];
+    int f3C;
     S_0014D360_Rec *f40;
     int f44;
     int *f48;
