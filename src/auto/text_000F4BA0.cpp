@@ -36,15 +36,18 @@ struct S_000F4BA0_Owner {
     S_000F4BA0_Item *func_000BA9B0(int id);
 };
 
-struct BmxUIPageOptions {
-    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
-    virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
-    virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11();
-    virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15();
-    virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
-    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23();
-    virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27();
-    virtual void v28(int, int);
+struct UIPage_000F4BA0 {
+    virtual void v00(); virtual void v04(); virtual void v08(); virtual void v0C();
+    virtual void v10(); virtual void v14(); virtual void v18(); virtual void v1C();
+    virtual void v20(); virtual void v24(); virtual void v28(); virtual void v2C();
+    virtual void v30(); virtual void v34(); virtual void v38(); virtual void v3C();
+    virtual void v40(); virtual void v44(); virtual void v48(); virtual void v4C();
+    virtual void v50(); virtual void v54(); virtual void v58(); virtual void v5C();
+    virtual void v60(); virtual void v64(); virtual void v68(); virtual void v6C();
+    virtual void v70(int a, int b);
+};
+
+struct BmxUIPageOptions : UIPage_000F4BA0 {
     char pad4[0x124 - 4];
     S_000F4BA0_Owner *unk124;
     char pad128[0x148 - 0x128];
@@ -108,7 +111,7 @@ void BmxUIPageOptions::func_000F4BA0(float dt)
             unk2a0 = 0;
         } else if (unk290 >= D_0027DE74) {
             unk284 = 1;
-            v28(unk28c, unk288);
+            ((VPage_000F4BA0 *)this)->v70(unk28c, unk288);
             unk290 = 0;
         }
     }
