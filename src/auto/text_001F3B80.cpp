@@ -12,13 +12,17 @@ int func_001F5059(void *ld, char **end, const char *s, int a, int b, int c, int 
 
 extern signed char D_00295500[];
 extern char D_00295520[];
-extern unsigned short D_0029557C[];
+extern char D_0029557C[];
 extern unsigned short D_00295584[];
 extern unsigned short *D_002AEA30;
 extern int D_002AEA38;
-extern int (*D_002AEA14)(unsigned short *, int, int, int, unsigned short *);
-extern int (*D_002AEA18)(unsigned short *);
-extern int (*D_002AEA20)(unsigned short *);
+struct CrtDouble_001F3C55 {
+    unsigned long lo;
+    unsigned long hi;
+};
+extern void (*D_002AEA14)(CrtDouble_001F3C55 *, char *, int, int, int);
+extern void (*D_002AEA18)(char *);
+extern void (*D_002AEA20)(char *);
 void *func_001E8AA5(int size);
 int func_001F4F45(unsigned short *pwc, const unsigned char *s, unsigned int n);
 unsigned __int64 __stdcall func_001F58E0(unsigned __int64 dividend, unsigned __int64 divisor);
@@ -71,18 +75,27 @@ extern char D_0000FFFF;
 void func_001F494D(LD10 *dst, unsigned long *src);
 int func_001F5C49(LD10 ld, int ndigits, int flags, FOS *fos);
 
-int func_001F3B80(unsigned char *a, unsigned char *b) {
-    unsigned char c1, c2;
-    do {
-        c1 = *a++;
-        c2 = *b++;
-        if (c1 != c2) {
-            c1 = (unsigned char)(c1 - 'A' + ((c1 - 'A' < 26) ? ('a' - 'A') : 0) + 'A' - 'A');
-            c2 = (unsigned char)(c2 - 'A' + ((c2 - 'A' < 26) ? ('a' - 'A') : 0));
-            if (c1 != c2) return (c1 > c2) - (c1 < c2);
-        }
-    } while (c1 != 0);
-    return 0;
+int func_001F3B80(unsigned char *a, unsigned char *b)
+{
+    unsigned char hi;
+    unsigned char lo = 0xff;
+    unsigned char t;
+
+    for (;;) {
+        if (lo == 0)
+            return 0;
+        lo = *b++;
+        hi = *a++;
+        if (hi == lo)
+            continue;
+        t = lo - 0x41;
+        lo = t + (-(t < 0x1a) & 0x20) + 0x41;
+        t = hi - 0x41;
+        hi = t + (-(t < 0x1a) & 0x20) + 0x41;
+        if (hi == lo)
+            continue;
+        return (hi < lo) ? -1 : 1;
+    }
 }
 
 #pragma optimize("y", on)
@@ -114,6 +127,253 @@ void func_001F3C18(unsigned short *str, int len, F3Obj *f, int *pnum)
         str++;
         if (*pnum == -1) break;
     }
+}
+
+int func_001F3C55(F3Obj *o, unsigned short *fmt, unsigned int *args)
+{
+    unsigned short buffer[255];
+    unsigned short *text = 0;
+    unsigned short *allocbuf = 0;
+    int count = 0;
+    int textlen = 0;
+    int flags = 0;
+    int width = 0;
+    int prec = -1;
+    int suppress = 0;
+    int state = 0;
+    int pad = 0;
+    unsigned short ch;
+
+    ch = *fmt;
+    if (ch == 0) return count;
+    for (;;) {
+        fmt++;
+        if (count < 0) break;
+        {
+            int cls = 0;
+            int act;
+            if (ch >= 0x20 && ch <= 0x78) cls = D_00295500[ch] & 0xf;
+            act = (signed char)D_00295520[state * 8 + cls] >> 4;
+            state = act;
+            switch (act) {
+            case 0:
+                func_001F3BCE(o, ch, &count);
+                break;
+            case 1:
+                prec = -1;
+                pad = 0;
+                textlen = 0;
+                width = 0;
+                suppress = 0;
+                flags = 0;
+                break;
+            case 2: {
+                int d = ch - 0x20;
+                if (d == 0) flags |= 2;
+                else if (d == 3) flags |= 0x80;
+                else if (d == 8) flags |= 8;
+                else {
+                    d -= 2;
+                    if (d == 0) flags |= 1;
+                    else if (d == 2) flags |= 4;
+                }
+                break;
+            }
+            case 3:
+                if (ch == 0x2a) {
+                    width = (int)*args++;
+                    if (width < 0) {
+                        flags |= 4;
+                        width = -width;
+                    }
+                } else {
+                    width = (ch - 0x30) + width * 10;
+                }
+                break;
+            case 4:
+                prec = 0;
+                break;
+            case 5:
+                if (ch == 0x2a) {
+                    prec = (int)*args++;
+                    if (prec < 0) prec = -1;
+                } else {
+                    prec = (ch - 0x30) + prec * 10;
+                }
+                break;
+            case 6:
+                if (ch == 0x49) {
+                    if (fmt[0] == 0x36 && fmt[1] == 0x34) {
+                        fmt += 2;
+                        flags |= 0x8000;
+                    } else if (fmt[0] == 0x33 && fmt[1] == 0x32) {
+                        fmt += 2;
+                        flags &= ~0x8000;
+                    } else if (ch != 0x64 && ch != 0x69 && ch != 0x6f && ch != 0x75 && ch != 0x78 && ch != 0x58) {
+                        state = 0;
+                        suppress = 1;
+                        func_001F3BCE(o, ch, &count);
+                    }
+                } else if (ch == 0x68) {
+                    flags |= 0x20;
+                } else if (ch == 0x6c) {
+                    flags |= 0x10;
+                } else if (ch == 0x77) {
+                    flags |= 0x800;
+                }
+                break;
+            case 7: {
+                unsigned int c = ch;
+                if (c < 0x65) {
+                    if (c == 0x58) {
+                        goto do_int;
+                    } else if (c == 0x43 || c == 0x45 || c == 0x47) {
+                        goto do_float;
+                    } else if (c == 0x63) {
+                        unsigned short wc = (unsigned short)*args++;
+                        suppress = 1;
+                        text = buffer;
+                        buffer[0] = wc;
+                        if (flags & 0x20) {
+                            char tmpc[2];
+                            tmpc[0] = (char)wc;
+                            tmpc[1] = 0;
+                            if (func_001F4F45(buffer, (unsigned char *)tmpc, 1) < 0) textlen = 1;
+                            else textlen = 1;
+                        }
+                        textlen = 1;
+                        goto output;
+                    }
+                } else if (c == 0x65 || c == 0x67) {
+                    goto do_float;
+                } else if (c == 0x69 || c == 0x64) {
+                    goto do_int;
+                } else if (c == 0x6e) {
+                    if (flags & 0x20) *(short *)*args = (short)count;
+                    else *(int *)*args = count;
+                    args++;
+                    suppress = 1;
+                    goto output;
+                } else if (c == 0x6f || c == 0x75 || c == 0x78) {
+                    goto do_int;
+                } else if (c == 0x70) {
+                    prec = 8;
+                    flags |= 0x40;
+                    goto do_int;
+                } else if (c == 0x73) {
+                    goto do_str;
+                }
+                goto output;
+            do_str: {
+                    unsigned short *s = (unsigned short *)*args++;
+                    if (s == 0) s = D_00295584;
+                    suppress = 1;
+                    text = s;
+                    textlen = 0;
+                    if (flags & 0x20) {
+                        unsigned short *p = s;
+                        int lim = prec;
+                        if (lim < 0) lim = 0x7fffffff;
+                        while (lim > 0 && *p != 0) { p++; lim--; textlen++; }
+                    } else {
+                        unsigned short *p = s;
+                        while (*p != 0) { p++; textlen++; }
+                        if (prec >= 0 && textlen > prec) textlen = prec;
+                    }
+                    goto output;
+                }
+            do_float: {
+                    suppress = 1;
+                    text = buffer;
+                    goto output;
+                }
+            do_int: {
+                    unsigned __int64 val;
+                    unsigned __int64 base;
+                    int neg = 0;
+                    suppress = 1;
+                    flags |= 0x40;
+                    if (ch == 0x64 || ch == 0x69) {
+                        if (flags & 0x8000) {
+                            val = *(unsigned __int64 *)args;
+                            args += 2;
+                            if ((__int64)val < 0) { neg = 1; val = -val; }
+                        } else if (flags & 0x20) {
+                            short sv = (short)*args++;
+                            val = (unsigned int)(sv < 0 ? -sv : sv);
+                            neg = sv < 0;
+                        } else {
+                            int sv = (int)*args++;
+                            val = (unsigned int)(sv < 0 ? -sv : sv);
+                            neg = sv < 0;
+                        }
+                        base = 10;
+                    } else {
+                        if (flags & 0x8000) {
+                            val = *(unsigned __int64 *)args;
+                            args += 2;
+                        } else if (flags & 0x20) {
+                            val = (unsigned short)*args++;
+                        } else {
+                            val = *args++;
+                        }
+                        base = (ch == 0x6f) ? 8 : ((ch == 0x75) ? 10 : 16);
+                    }
+                    if (prec < 0) prec = 1;
+                    else flags &= ~8;
+                    if (prec > 0x200) prec = 0x200;
+                    {
+                        unsigned short *p = &buffer[254];
+                        unsigned short *end = p;
+                        if (val == 0 && prec == 0) {
+                            textlen = 0;
+                        } else {
+                            while (val != 0 || prec > 0) {
+                                unsigned int digit = (unsigned int)(val % base);
+                                val = func_001F58E0(val, base);
+                                digit += 0x30;
+                                if (digit > 0x39) digit += (ch == 0x58) ? 7 : 0x27;
+                                *p = (unsigned short)digit;
+                                p--;
+                                prec--;
+                            }
+                            textlen = (int)(end - p);
+                        }
+                        text = p + 1;
+                        if (neg) {
+                            flags |= 0x100;
+                        }
+                    }
+                    goto output;
+                }
+            output:
+                break;
+            }
+            }
+        }
+        if (!suppress) {
+            int adj = width - pad - textlen;
+            if (flags & 0x40) {
+                if (!(flags & 0x100)) {
+                    if (flags & 1) { pad = 1; }
+                    else if (flags & 2) { pad = 1; }
+                }
+            }
+            if (!(flags & 0xc)) func_001F3BF3(&count, 0x20, adj, o);
+            if ((flags & 8) && !(flags & 4)) func_001F3BF3(&count, 0x30, adj, o);
+            if (textlen > 0) {
+                func_001F3C18(text, textlen, o, &count);
+            }
+            if (flags & 4) func_001F3BF3(&count, 0x20, adj, o);
+        }
+        if (allocbuf != 0) {
+            func_001E8390(allocbuf);
+            allocbuf = 0;
+        }
+        ch = *fmt;
+        if (ch == 0) break;
+    }
+    return count;
 }
 
 extern "C" unsigned long __cdecl _exception_code(void);
@@ -247,19 +507,17 @@ int func_001F45CF(unsigned int *x, int bits)
 #pragma optimize("", on)
 
 #pragma optimize("sy", on)
-void func_001F4641(unsigned int *dst, unsigned int *src)
+void func_001F4641(unsigned int *src, unsigned int *dst)
 {
+    int bias = (int)dst - (int)src;
     int i;
     unsigned int t;
 
     for (i = 0; i < 3; i++) {
         t = src[i];
-        dst[i] = t;
+        *(unsigned int *)((char *)&src[i] + bias) = t;
     }
 }
-#pragma optimize("", on)
-
-#pragma optimize("sy", on)
 int func_001F465C(unsigned int *p)
 {
     int i;
