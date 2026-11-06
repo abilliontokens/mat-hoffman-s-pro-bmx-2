@@ -209,8 +209,8 @@ struct Icon_7D {
     float f40;
     float f44;
     float f48;
-    float f4c;
-    float f50;
+    volatile float f4c;
+    volatile float f50;
     void *f54;
     u8 f58;
     char pad59[0xb];
@@ -222,10 +222,12 @@ struct Icon_7D {
     void setH(float v) { if (f2c != v) { u8 f = f58 | 1; f2c = v; f58 = f; } }
     void updateUV() {
         u8 f = f58 | 4;
-        f3c = f4c * *(volatile float *)&D_00278654;
-        f40 = f4c * *(volatile float *)&D_00275544;
-        f44 = f50 * *(volatile float *)&D_0027653C;
-        f48 = f50 * *(volatile float *)&D_00275544;
+        float tw = f4c;
+        float th = f50;
+        f3c = tw * D_00278654;
+        f40 = tw * D_00275544;
+        f44 = th * D_0027653C;
+        f48 = th * D_00275544;
         f58 = f;
     }
 };
