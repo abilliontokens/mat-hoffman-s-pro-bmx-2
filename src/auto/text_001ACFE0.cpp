@@ -17,6 +17,11 @@ struct S_001ACFE0_Range {
 };
 
 int func_001ACFE0(const u16 *fmt, S_001ACFE0_Range *range, int a, void *b);
+int func_001EA23F(int c);
+int func_001EA268(int c);
+int func_001E8BB0(const char *a, const char *b, int n);
+extern char D_0028C17C[];
+extern char D_0028C174[];
 
 struct S_func_001ADD80_arg0 {
     char pad0[0x6c];
