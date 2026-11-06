@@ -145,6 +145,7 @@ struct S_001A53C0_V4 {
     f32 x, y, z, w;
     S_001A53C0_V4() { z = 0; y = 0; x = 0; w = 1.0f; }
     S_001A53C0_V4(f32 a, f32 b, f32 c) { x = a; y = b; z = c; w = 1.0f; }
+    S_001A53C0_V4 operator*(f32 s) const { return S_001A53C0_V4(x * s, y * s, z * s); }
 };
 
 static inline void Xform_001A53C0(f32 *out, const f32 *mat, const S_001A53C0_V4 *v)
