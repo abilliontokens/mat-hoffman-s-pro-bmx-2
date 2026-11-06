@@ -61,7 +61,7 @@ struct C_000342C0 {
 /* element of the table reached through arg4->f5a4, 0x48 bytes */
 struct S_00034A40_Elem {
     char pad0[0x38];
-    float f38, f3c, f40;
+    int f38, f3c, f40;
     char pad44[4];
 };
 
