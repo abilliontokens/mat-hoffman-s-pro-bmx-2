@@ -462,17 +462,18 @@ void SlotsR_000A74B0::func_000A7650(float t)
             if (a78[i] == 0) {
                 ok = 0;
             }
-            if (prev == a0[i] && aC8[i] == 0) {
+            if (prev == state && aC8[i] == 0) {
                 ok = 0;
             }
             f144 = 0;
-            if (i < 8 && (a0[i + 1] == 0 || a0[i + 1] == 1 || a0[i + 1] == 2 || a0[i + 1] == 3) &&
-                f118[i] - f118[i + 1] <= D_00276284) {
-                a28[i] = a0[i + 1];
-                a50[i] = aF0[i + 1];
-                f144 = 1;
-                done = 1;
-                continue;
+            if (i < 8 && (a0[i + 1] == 0 || a0[i + 1] == 1 || a0[i + 1] == 2 || a0[i + 1] == 3)) {
+                float nextTime = f118[i + 1];
+                if (f118[i] - nextTime <= D_00276284) {
+                    a28[i] = a0[i + 1];
+                    a50[i] = aF0[i + 1];
+                    f144 = 1;
+                    ok = 0;
+                }
             }
             if (ok) {
                 a28[i] = a0[i];
@@ -480,8 +481,7 @@ void SlotsR_000A74B0::func_000A7650(float t)
                 prev = a0[i];
                 cur = f118[i];
             } else {
-                a28[i] = state;
-                a50[i] = aF0[i];
+                done = 1;
             }
         }
     }
@@ -585,6 +585,28 @@ int Coll_000A79E0::func_000A79E0(Game_000A79E0 *g)
     return 1;
 }
 
+int Parse_000A7C30::func_000A7C30(const char *s)
+{
+  if (!func_001EA426(s, D_0027C1D8)) return 0xc;
+  if (!func_001EA426(s, D_0027C1CC)) return 0xf;
+  if (!func_001EA426(s, D_0027C1BC)) return 0x1b;
+  if (!func_001EA426(s, D_0027C1B0)) return 0x10;
+  if (!func_001EA426(s, D_0027C1A4)) return 0x11;
+  if (!func_001EA426(s, D_0027C194)) return 0x12;
+  if (!func_001EA426(s, D_0027C18C)) return 0xd;
+  if (!func_001EA426(s, D_0027C184)) return 0xe;
+  if (!func_001EA426(s, D_0027C178)) return 0x15;
+  if (!func_001EA426(s, D_0027C170)) return 0x18;
+  if (!func_001EA426(s, D_0027C16C)) return 0x13;
+  if (!func_001EA426(s, D_0027C160)) return 0x14;
+  if (!func_001EA426(s, D_0027C154)) return 0x16;
+  if (!func_001EA426(s, D_0027C148)) return 0x17;
+  if (!func_001EA426(s, D_0027C140)) return 0x19;
+  if (!func_001EA426(s, D_0027B190)) return 0x1a;
+  if (!func_001EA426(s, D_0027C134)) return 0x1c;
+  return func_001B6710(s);
+}
+
 void func_000A7FE0(int a0, S_A7FE0_Obj *obj, S_A7FE0_Req *req, int enabled)
 {
     int i;
@@ -598,7 +620,10 @@ void func_000A7FE0(int a0, S_A7FE0_Obj *obj, S_A7FE0_Req *req, int enabled)
                     for (j = 0; j < D_002B7E18->f60[i]->f28->f58; j++) {
                         if (func_001EA426(req->name2, D_002B7E18->f60[i]->f28->f1ac[j]->name) == 0) {
                             S_A7FE0_Ent *e = D_002B7E18->f60[i];
-                            float dist = distance_A7FE0(*(S_A7FE0_Vec3 *)&e->x, *(S_A7FE0_Vec3 *)&obj->x);
+                            float dx = e->x - obj->x;
+                            float dy = e->y - obj->y;
+                            float dz = e->z - obj->z;
+                            float dist = sqrtf(dz * dz + dy * dy + dx * dx);
                             if (dist <= obj->radius) {
                                 e->func_000219E0(j);
                             }
