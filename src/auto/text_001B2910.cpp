@@ -27,7 +27,8 @@ struct S_001B3560 {
 
 #pragma pack(push, 1)
 struct S_001B2CD0_Px {
-    unsigned char b[3];
+    unsigned short lo;
+    unsigned char hi;
 };
 #pragma pack(pop)
 
@@ -113,18 +114,18 @@ int func_001B2910(int param_1)
                 return 0;
             }
         }
-    } else if (param_1 <= 0x613) {
-        if (param_1 != 0x613 && param_1 != 0x235) {
-            if (param_1 == 0x378)
-                return 0x18;
-            else
-                return 0;
-        }
-    } else if (param_1 != 0x115c) {
-        if (param_1 == 0x22b8)
+    } else {
+        switch (param_1) {
+        case 0x22b8:
             return 0x20;
-        else
-            return 0;
+        case 0x378:
+            return 0x18;
+        case 0x235:
+        case 0x613:
+        case 0x115c:
+            return 0x10;
+        }
+        return 0;
     }
     return 0x10;
 }
