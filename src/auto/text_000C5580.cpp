@@ -160,8 +160,6 @@ struct C_6420_Elem {
     char pad3C[0x1C];
     unsigned char b58;
     void func_001D5AD0();
-    void color() { f38 = (f38 & 0xffbfa35a) | 0xbfa35a; b58 |= 2; }
-    void dim() { f38 = (f38 & 0xffcccccc) | 0xcccccc; b58 |= 2; }
 };
 
 struct C_5E40_G {
