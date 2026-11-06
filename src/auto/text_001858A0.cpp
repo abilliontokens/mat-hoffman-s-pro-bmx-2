@@ -184,6 +184,14 @@ struct IB_001858A0 {
     }
 };
 
+static __forceinline void Fill4_001858A0(u32 *p, u32 v)
+{
+    p[0] = v;
+    p[1] = v;
+    p[2] = v;
+    p[3] = v;
+}
+
 struct C_00185D00 {
     void *vtbl;
     int f4;
@@ -525,9 +533,13 @@ int C_00185BF0::func_00185D60(S_Stream3 *stream, int count)
 
 C_00186170 *C_00186170::func_00186170(void)
 {
+    u32 *p;
+    int i;
+
     vtbl = &D_002897FC;
     f4 = 4;
-    f8.Set(0, 0, 0, 0);
+    p = &f8.a;
+    for (i = 0; i < 4; i++) *p++ = 0;
     f2c = (f2c & 0x84) | 4;
     f18 = 0;
     f1c = 0;
@@ -535,10 +547,14 @@ C_00186170 *C_00186170::func_00186170(void)
     f28 = 0;
     f24 = 0;
     fe8 = 1;
-    f38.Set(0, 0);
-    f40.Set(0, 0, 0, 0);
+    p = &f38.a;
+    *p++ = 0;
+    *(u8 *)p = 0;
+    p = &f40.a;
+    for (i = 0; i < 4; i++) *p++ = 0;
     f50 = 0x3f800000;
-    f94.Set(0, 0, 0, 0);
+    p = &f94.a;
+    for (i = 0; i < 4; i++) *p++ = 0;
     fa4 = 0x3f800000;
     f54 = 0;
     fec = -1;
