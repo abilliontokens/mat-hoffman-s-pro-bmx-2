@@ -282,18 +282,7 @@ void C_00165A20::func_00165A20(C_00165A20_Arg1 *a1, int *unused, f32 a2, int *ma
         }
         a1->f18[i]->v2(a2, &v);
         if (a4 != 0) {
-            float t = v.y;
-            float w = v.w;
-            if (fC == 0) {
-                t = -t;
-            } else if (fC == 1) {
-                v.z = -v.z;
-            } else if (fC == 2) {
-                w = -w;
-            }
-            v.y = -t;
-            v.w = -v.z;
-            v.z = -w;
+            mirror_165A20(&v, fC);
             f1EC[f1F0[a1->f18[i]->f4]].f34->func_00199300(&v);
         } else {
             f1EC[a1->f18[i]->f4].f34->func_00199300(&v);
@@ -401,4 +390,6 @@ void C_00166190::func_00166190(void)
         D_002BEAAC->func_0013C110(id);
     }
 }
-
+struct Obj1653 { virtual void v0(); virtual void v1(); virtual void get(float t, float *out); virtual void get2(float t, float *out); int f4; };
+struct Set1653 { char pad[0x14]; Obj1653 **f14; Obj1653 **f18; int f1c; int f20; char pad24[0x14]; float f38; };
+struct C1653 { char pad0[4]; int f4; char pad8[4]; int fc; void func_001653E0(Set1653*, Set1653*, Set1653*, Set1653*, float, int, int, int, float); };
