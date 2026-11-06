@@ -19,7 +19,9 @@ struct S_001160C0_Pad {
 struct S_001160C0_Axis {
     char pad0[0x24];
     volatile     float f24;
+#pragma optimize("p", on)
     __forceinline double value() const { return f24; }
+#pragma optimize("", on)
 };
 
 /* input mapper: index lookup of a (control, device, mode) triple */
