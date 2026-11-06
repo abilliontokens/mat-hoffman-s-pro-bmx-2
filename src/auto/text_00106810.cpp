@@ -100,6 +100,7 @@ struct C_00107070 {
 };
 static inline float abs_106B20(float v) { volatile int bits = *(int *)&v & 0x7fffffff; return *(volatile float *)&bits; }
 static inline float absp_106B20(float *v) { int bits = *(int *)v & 0x7fffffff; return *(float *)&bits; }
+static inline float absf_106B20(float v) { int bits = *(int *)&v & 0x7fffffff; return *(float *)&bits; }
 struct Vec_106B20 { int x,y,z,w; };
 struct Obj_106B20 {
  char pad0[0x1cc]; unsigned char flags;
@@ -210,16 +211,17 @@ void C_00106810::func_00106810(S_106810_Arg *arg, int mode)
     f7e0->func_0009EDB0(0);
 }
 
-void C_00106B20::func_00106B20() {
-    C_00106B20 * volatile self = this;
+void __fastcall func_00106B20(C_00106B20 * volatile self) {
     C_00106B20 *q;
     int active;
     float amount;
-    union { int i; float f; } t;
     float ratio;
+    int bits;
+    float strength;
     float rate;
     if (D_002A8490->f2a4->f1c8 == 0) {
-        flags &= ~2;
+        q = self;
+        q->flags &= ~2;
         q = self;
         q->flags &= ~4;
         q = self;
@@ -246,20 +248,20 @@ void C_00106B20::func_00106B20() {
     q = self;
     if (*(int *)(q->f1e8 + 0x54) == 1 && active) {
         ratio = q->f744 / *(float *)(q->f1ec + 0x3c);
-        t.i = *(int *)&ratio & 0x7fffffff;
-        t.f = t.f * amount;
+        bits = *(int *)&ratio & 0x7fffffff;
+        strength = *(float *)&bits * amount;
         rate = .1f;
         q = self;
         if (q->f1598 || *(int *)(*(char **)((char *)D_002A8490 + 0x2e0) + 0x190 + q->fa28 * 4) == 12) {
             rate = .3f;
         }
-        q->f1230->func_001B3E70(q->f1e8 + 0x130, q->f1e8 + 0x190, rate, 1.0f, t.f);
+        q->f1230->func_001B3E70(q->f1e8 + 0x130, q->f1e8 + 0x190, rate, 1.0f, strength);
         if (D_002A8490->f2a4->f1c8 == 0) {
             q = self;
             q->flags |= 4;
         }
-        q = self;
         int valid = 0;
+        q = self;
         if (q->f7d8 && *(int *)(q->f20c + 0x30) == 1) {
             valid = 1;
         }
@@ -270,7 +272,7 @@ void C_00106B20::func_00106B20() {
         } else if (!valid) {
             return;
         }
-        q->f7d8->func_0009DF90(t.f);
+        q->f7d8->func_0009DF90(strength);
         q = self;
         if (q->f1598) {
             q->f1598->func_0011CA60(*(Vec_106B20 *)(q->f1e8 + 0x130));
