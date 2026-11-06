@@ -268,6 +268,82 @@ void C_000831E0::func_000832A0(void)
     }
 }
 
+void C_00083410::func_00083410(void)
+{
+    int func_001ADCC0(char *buf, int size, const char *fmt, ...);
+    char c;
+    char *p;
+    int i;
+    int r;
+    char num[16];
+    char text[16];
+    float v;
+    S_00083410_Text *t;
+
+    memset(num, 0, 15);
+    memset(text, 0, 15);
+    if (fD8C == 1) {
+        func_001ADCC0(text, 15, D_0027956C, f44->fA40, D_002A8490->f2A4->f1250 / 2);
+    } else if (fD8C == 2) {
+        func_001ADCC0(text, 15, D_00279560, D_002A8490->f240);
+    } else if (fD8C == 3) {
+        func_001ADCC0(text, 15, D_00279550, D_002A8490->f27C);
+    } else {
+        func_001ADCC0(num, 15, D_00277038, f44->fA40);
+        r = strlen(num) % 3;
+        i = 0;
+        if ((int)strlen(num) > 0) {
+            p = text;
+            do {
+                c = num[i];
+                if (c == ' ') {
+                    strcat(text, &num[i]);
+                    break;
+                }
+                if (i > r - 1 && i && ((i - r) == 0 || (i - r) % 3 == 0)) {
+                    *p++ = ',';
+                    *p++ = c;
+                } else {
+                    *p++ = c;
+                }
+                i++;
+            } while (i < (int)strlen(num));
+        }
+    }
+    if (fD90 > 0) {
+        t = fD80;
+        v = t->f34;
+        if (fD90 == 2) {
+            v += D_0027954C;
+            if (v > D_00276288) {
+                v = D_00276288;
+            }
+            if (v != t->f34) {
+                t->f34 = v;
+                t->f4E |= 6;
+            }
+            if (v >= D_00276288) {
+                fD90--;
+            }
+        } else {
+            v -= D_0027954C;
+            if (v < D_00275460) {
+                v = D_00275460;
+            }
+            if (v != t->f34) {
+                t->f34 = v;
+                t->f4E |= 6;
+            }
+            if (v <= D_00275460) {
+                fD90--;
+            }
+        }
+    }
+    fD7C->func_001D6600();
+    fD80->func_0005E840(text);
+    fD80->func_001D6600();
+}
+
 void C_000836A0::func_000836A0(float a0) {
     unkCC = 1;
     unkD0 = a0 + unkD0;
