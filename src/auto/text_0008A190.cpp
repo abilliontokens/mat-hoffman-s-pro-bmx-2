@@ -141,6 +141,7 @@ struct C_0008A2E0 {
     void func_00157600(int a0);
     void func_00157660();
     void func_0008A350();
+ C_0008A2E0 *func_0008A3B0();
     void func_0008A8C0();
     void func_0008A9B0();
     int func_0008AA70();
