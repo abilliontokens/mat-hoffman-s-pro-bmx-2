@@ -273,6 +273,37 @@ undefined4 C_00197290::func_00197290(byte param_1)
   return in_ECX;
 }
 
+C_001972B0 *C_001972B0::func_001972B0(unsigned a,unsigned b,u8 c)
+{
+fC0 ^= (fC0 ^ c) & 1; fC8=b; f6C=a;
+f50=(char *)func_001E8A44(fC8);
+f78=(int *)func_001E8A44(f6C*4);
+f7C=(int *)func_001E8A44(f6C*4);
+f80=(int *)func_001E8A44(f6C*4);
+memset(f50,0,fC8);
+if(fC0&1){fCC=(char *)func_001E8A44(fC8);memset(fCC,0,fC8);}
+f84=(int *)func_001E8A44(f6C*4);
+f88=(int *)func_001E8A44(f6C*4);
+f8C=(int *)func_001E8A44(f6C*4);
+for(unsigned i=0;i<f6C;i++)f8C[i]=0;
+f90=(int *)func_001E8A44(f6C*4);
+f94=(int *)func_001E8A44(f6C*4);
+f98=(int *)func_001E8A44(f6C*4);
+fA0=(int *)func_001E8A44(f6C*4);
+f9C=(int *)func_001E8A44(f6C*4);
+fAC=(int *)func_001E8A44(f6C*4);
+fB0=(int *)func_001E8A44(f6C*4);
+fB4=(int *)func_001E8A44(f6C*4);
+fA4=(int *)func_001E8A44(f6C*4);
+fA8=(int *)func_001E8A44(f6C*4);
+fB8=(char *)func_001E8A44(f6C);
+fBC=(char *)func_001E8A44(f6C);
+for(unsigned j=0;j<f6C;j++){
+f78[j]=0;f7C[j]=0;f84[j]=1;f88[j]=0;f90[j]=0;f94[j]=0;f98[j]=0;fA0[j]=0;f9C[j]=0;fAC[j]=0;fB4[j]=0;fB0[j]=0;fA4[j]=0;fA8[j]=0;fB8[j]=0;
+}
+func_00196290();return this;
+}
+
 void C_00197590::func_00197590(void)
 {
   int func_00196290(...);
@@ -347,6 +378,49 @@ void C_00197700::func_00197780()
         D_002EFDB8->f4->func_0012B3D0();
     }
     func_00137F90();
+}
+
+C_00197820 *C_00197820::func_00197820(int a0)
+{
+    C_00197820 *volatile self = this;
+    S_00197820_Mat *volatile m;
+    S_00197820_HdrInit(&self->f24);
+    self->func_00157600(a0);
+    self->vtbl = &D_0028B0E4;
+    S_00197820_VecInit(&self->f130);
+    S_00197820_VecInit(&self->f140);
+    S_00197820_VecInit(&self->f150);
+    S_00197820_VecInit(&self->f160);
+    self->f170 = 0;
+    self->f174 = 0;
+    self->f17C = 0;
+    self->f178 = 0;
+    m = &self->fB0;
+    S_00197820_Identity(m);
+    m = &self->fF0;
+    S_00197820_Zero(m);
+    self->f180 &= 0xfe;
+    self->f180 |= 0x80;
+    self->f18C = 0;
+    self->f24.f3 &= 0xfb;
+    self->f180 &= 0xfd;
+    self->f180 &= 0xfb;
+    self->f180 &= 0xf7;
+    self->f180 &= 0xef;
+    self->f180 &= 0xdf;
+    self->f130.x = 0; self->f130.y = 0; self->f130.z = 0;
+    self->f140.x = 0; self->f140.y = 0; self->f140.z = 0;
+    self->f180 &= 0xbf;
+    self->f150.x = 0; self->f150.y = 0; self->f150.z = 0;
+    self->f160.x = 0; self->f160.y = 0; self->f160.z = 0;
+    self->f28 = 0;
+    self->f190 = 0;
+    self->f24.f2 = D_002AAEC8->func_001BC6E0(D_0028AB70);
+    self->f20 = self->f24.f2;
+    self->f181 |= 1;
+    self->f181 &= 0xfd;
+    self->f194 = 0;
+    return self;
 }
 
 void C_00197AA0::func_00197AA0()
