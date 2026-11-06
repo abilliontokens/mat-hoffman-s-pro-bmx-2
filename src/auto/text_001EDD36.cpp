@@ -61,8 +61,7 @@ extern char D_0029557C[];
 extern unsigned short D_00295584[];
 extern unsigned short *D_002AEA30;
 struct CrtDouble_001EDD36 {
-    unsigned long lo;
-    unsigned long hi;
+    double x;
 };
 extern void (*D_002AEA14)(CrtDouble_001EDD36 *, char *, int, int, int);
 extern void (*D_002AEA18)(char *);
