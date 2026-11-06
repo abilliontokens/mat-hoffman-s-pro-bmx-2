@@ -108,3 +108,84 @@ void XboxWaterDisplacement::func_001DBA40(void)
     }
     func_001CA1C0();
 }
+
+XboxWaterDisplacement *XboxWaterDisplacement::func_001DBBF0(WaterConfig *config,const char *name,int a,int b,int c,unsigned int count)
+{
+ func_001CA1D0(config,name,a,b,c,count);
+ *(WaterConfig**)((char*)this+0x100)=config;
+ f48=func_001E8A44(config->f68*4+4);
+ C_00012140 *p=(C_00012140*)func_001E8A44(0xf0);
+ fF0=p?p->func_00142C70():0;
+ p=(C_00012140*)func_001E8A44(0xf0);
+ fF4=p?p->func_00142C70():0;
+ p=(C_00012140*)func_001E8A44(0xf0);
+ fF8=p?p->func_00142C70():0;
+ p=(C_00012140*)func_001E8A44(0xf0);
+ fFC=p?p->func_00142C70():0;
+ fF0->func_00142C80(D_0028FA04,0);
+ fF4->func_00142C80(D_0028F9F4,0);
+ fF8->func_00142C80(D_0028F9E4,0);
+ fFC->func_00142C80(D_0028F9D4,0);
+ *(void**)((char*)this+0x44)=config->fD0;
+ if(name && *name) {
+ int saved=D_002ABE74;D_002ABE74=0;
+ f28=func_001D6E20(name,8888,0);D_002ABE74=saved;
+ }
+ WaterTexture *tex=(WaterTexture*)func_001E8A44(0x110);
+ tex=tex?tex->func_001D6AD0(1):0;
+ f4A0=(I_Release*)tex;
+ tex->create(0,16,16,16,16,0,0,0,0);
+ tex=(WaterTexture*)f4A0;
+ memset(tex->lock(0,0,0),0x80,0x100);
+ ((WaterTexture*)f4A0)->unlock(0);
+ *(int*)((char*)this+0x4c)=config->f54;
+ char *path=(char*)this+0x104;
+ func_001ADCC0(path,0x104,D_0028F9C0,D_002A5A80);
+ f208=func_001D6E20(path,8888,0);
+ *(unsigned int*)((char*)this+0x210)=(unsigned int)c;
+ WaterEntry *entries=(WaterEntry*)func_001E8A44(1000);
+ if(entries) { for(int j=0;j<50;j++) entries[j].initialize(); } else entries=0;
+ f20C=entries;
+ if(*(int*)((char*)this+0x4c)) {
+ for(unsigned int i=0;i<*(unsigned int*)((char*)this+0x210);i++) {
+ WaterConfig *cfg=*(WaterConfig**)((char*)this+0x100);
+ int index=*(int*)((char*)cfg+0x58+i*4);
+ WaterItem *item=*(WaterItem**)(D_002A829C->f14+index*16+4);
+ item->func_001B0560(D_001DB560,this);
+ *(void**)((char*)this+0x4c4+i*4)=item->f54;
+ cfg=*(WaterConfig**)((char*)this+0x100);
+ index=*(int*)((char*)cfg+0x60+i*4);
+ item=*(WaterItem**)(D_002A829C->f14+index*16+4);
+ item->func_001B0560(D_001DB700,this);
+ *(void**)((char*)this+0x4cc+i*4)=item->f54;
+ *(void**)((char*)this+0x4b4+i*4)=item->f58;
+ *(void**)((char*)this+0x4bc+i*4)=item->f5C;
+ }
+ }
+ if(!fE8) {
+ func_0014A7B0(D_002F0D08,D_002AC6D8);
+ C_0014A540 *q=(C_0014A540*)func_001E8A44(12);
+ fE8=q?q->func_0014A520(D_002F0D08):0;
+ fE8->func_0014A560(D_0028F9AC,0);
+ }
+ if(!fE0) {
+ func_0014A7B0(D_002F0E08,D_002AC6EC);
+ C_0014A540 *q=(C_0014A540*)func_001E8A44(12);
+ fE0=q?q->func_0014A520(D_002F0E08):0;
+ fE0->func_0014A560(D_0028F994,0);
+ }
+ if(!fE4) {
+ func_0014A7B0(D_002F0F08,D_002AC6FC);
+ C_0014A540 *q=(C_0014A540*)func_001E8A44(12);
+ fE4=q?q->func_0014A520(D_002F0F08):0;
+ fE4->func_0014A560(D_0028F994,0);
+ }
+ if(!fEC) {
+ func_0014A7B0(D_002F0C08,D_002AC710);
+ C_0014A540 *q=(C_0014A540*)func_001E8A44(12);
+ fEC=q?q->func_0014A520(D_002F0C08):0;
+ fEC->func_0014A560(D_0028F980,0);
+ }
+ return this;
+}
+
