@@ -333,8 +333,8 @@ int C_00022060::func_00022060(float dt)
 Obj_00022320 *C_00022320::func_00022320(int a)
 {
     f2C->v35(a, 1, 0);
-    f2C->func_00199600(D_002A0F74);
-    f2C->func_00198F50(D_002A0FA4, D_002A0F94, 0, 1, 0);
+    f2C->func_00199600(*(S_Vec4i_00022320 *)&D_002A0F74);
+    f2C->func_00198F50(D_002A0FA4, (char *)&D_002A0F94, 0, 1, 0);
     f2C->func_0019ABA0(*D_002B9120->f4A8, 2);
     f28 = 1;
     return f2C;
@@ -448,6 +448,26 @@ int C_00022730::func_00022730(int name, int idx)
     }
     D_002BEAAC->func_0013C110(handle);
     return 1;
+}
+
+void C_000229C0::func_000229C0(Arg_000229C0 *arg)
+{
+    if (f28 < D_00276088) {
+        int n = 5;
+        for (int i = 0; i < f70->l->count && n > 0; i++, n--) {
+            if (f70->l->items[i]->f24 == 0) {
+                V4_000229C0 v = arg->pos;
+                V4_000229C0 w = *(V4_000229C0 *)&D_002A0F74;
+                w.x = (float)func_001E8833() * D_002754B0 * 2.0f + D_00275460;
+                func_00158390((float)func_001E8833() * D_002754B0 * D_002756B8, *(V4_000229C0 *)D_002A0F94, w, &w);
+                v.x = v.x + w.x;
+                v.y = w.y + v.y;
+                v.z = w.z + v.z;
+                f70->l->items[i]->func_000223B0(v, 20.0f);
+            }
+        }
+        f28 = 3.0f;
+    }
 }
 
 void *C_00022DF0::func_00022DF0(int flags)
