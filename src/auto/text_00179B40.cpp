@@ -20,31 +20,9 @@ struct C_0017A700 {
     int fF4, fF8;
     void func_0017A700(DXRenderableObject *owner, int index);
 };
-static __forceinline void C_0017A700_Add(C_0017A700 *&self, DXRenderableObject *owner, int index)
+static inline C_0017A700 *const &C_0017A700_Same(C_0017A700 *const &a, C_0017A700 *const &b)
 {
-    void *func_001E8AA5(int);
-    void *func_001E83E8(void *, int);
-    void *func_001E8A44(int);
-    int max;
-    if (!self->fF0) {
-        self->fF0 = (DXShadowCaster **)func_001E8AA5(4);
-        self->fF8 = 1;
-        self->fF0[self->fF4] = 0;
-    } else if (self->fF8 < self->fF4 + 1) {
-        self->fF0 = (DXShadowCaster **)func_001E83E8(self->fF0, self->fF4 * 4 + 4);
-        self->fF8 = self->fF4 + 1;
-        self->fF0[self->fF4] = 0;
-    }
-    if (self->fF0[self->fF4]) self->fF0[self->fF4]->v2(owner);
-    else {
-        DXShadowCaster *p = (DXShadowCaster *)func_001E8A44(16);
-        if (p) p = p->func_00143820(owner);
-        else p = 0;
-        self->fF0[self->fF4] = p;
-    }
-    max = self->fF0[self->fF4]->f4->f1a4->count - 1;
-    self->fF0[self->fF4]->f8 = ShadowMin(index, max);
-    self->fF4++;
+    return a > b ? b : a;
 }
 struct C_0017B9E0 {
     int unk0, unk4;
