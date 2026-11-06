@@ -111,13 +111,10 @@ struct S_19CCE0_Frame {
     char ta[12];
     char B[16];
 };
+extern "C" void *__cdecl memset(void *, int, unsigned int);
 static __forceinline void Identity_19C710(float *m)
 {
-    __m128 z = _mm_setzero_ps();
-    _mm_store_ps(m, z);
-    _mm_store_ps(m + 4, z);
-    _mm_store_ps(m + 8, z);
-    _mm_store_ps(m + 12, z);
+    memset(m, 0, 0x40);
     m[0] = 1.0f;
     m[5] = 1.0f;
     m[10] = 1.0f;
