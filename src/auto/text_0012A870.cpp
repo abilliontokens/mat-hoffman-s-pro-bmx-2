@@ -197,13 +197,19 @@ struct C_0012ACC0 {
     int stamp;
     int func_0012ACC0(float x, float y, float z, float w);
 };
-inline void Cross_0012ACC0(float *dst, const float *a, const float *b)
+static __forceinline void Cross_0012ACC0(float * volatile dst, const float *a, const float *b)
 {
-    _mm_storeu_ps(dst, _mm_shuffle_ps(
-        _mm_sub_ps(_mm_mul_ps(_mm_loadu_ps(a), _mm_shuffle_ps(_mm_loadu_ps(b), _mm_loadu_ps(b), 0xc9)),
-                   _mm_mul_ps(_mm_loadu_ps(b), _mm_shuffle_ps(_mm_loadu_ps(a), _mm_loadu_ps(a), 0xc9))),
-        _mm_sub_ps(_mm_mul_ps(_mm_loadu_ps(a), _mm_shuffle_ps(_mm_loadu_ps(b), _mm_loadu_ps(b), 0xc9)),
-                   _mm_mul_ps(_mm_loadu_ps(b), _mm_shuffle_ps(_mm_loadu_ps(a), _mm_loadu_ps(a), 0xc9))), 0xc9));
+    const float * volatile pa = a, * volatile pb = b;
+    __m128 va = _mm_loadu_ps(pa);
+    __m128 vb = _mm_loadu_ps(pb);
+    __m128 sa = va, sb = vb;
+    sa = _mm_shuffle_ps(sa, sa, 0xc9);
+    sb = _mm_shuffle_ps(sb, sb, 0xc9);
+    vb = _mm_mul_ps(vb, sa);
+    va = _mm_mul_ps(va, sb);
+    va = _mm_sub_ps(va, vb);
+    va = _mm_shuffle_ps(va, va, 0xc9);
+    _mm_storeu_ps(dst, va);
 }
 
 struct C_0012B000 {
@@ -471,10 +477,14 @@ void C_0012AB70R::func_0012AB70(S_0012AB70Vec *param1, S_0012AB70Vec *param2, S_
         f170 = *param1;
     }
     if (param2 != 0) {
-        func_0012A380(&f180, param2);
+        S_0012AB70Vec *s = param2;
+        S_0012AB70Vec *d = &f180;
+        func_0012A380(d, s);
     }
     if (param3 != 0) {
-        func_0012A380(&f190, param3);
+        S_0012AB70Vec *s = param3;
+        S_0012AB70Vec *d = &f190;
+        func_0012A380(d, s);
     }
     if (param4 != 0) {
         f1d4 = *param4;
