@@ -161,7 +161,7 @@ static inline float C_0017A1D0_Fabs(const float &f)
     return *(float *)&i;
 }
 
-static inline float C_0017A1D0_Abs(const float &f)
+static inline float C_0017A1D0_Abs(volatile float f)
 {
     union { float f; int i; } u;
     u.f = f;
@@ -206,6 +206,65 @@ struct C_0017A860 {
     void func_0017A860(int value);
 };
 
+
+int C_00179B40::func_00179B40(C_0017BB10 *a0, char *a1)
+{
+    V4_0017A8F0 v[10];
+    C_0017B9E0 t[4];
+    int i, n, all, any;
+    float d;
+    union { float f; unsigned int u; } ab;
+    for (i = 0; i < 10; i++) { v[i].x = 0; v[i].y = 0; v[i].z = 0; v[i].w = 1.0f; }
+    d = (f68 * f28 + f64 * f24 + f6c * f2c) - (f68 * *(float *)(a1 + 0x174) + f64 * *(float *)(a1 + 0x170) + f6c * *(float *)(a1 + 0x178));
+    ab.f = d;
+    ab.u &= 0x7fffffff;
+    if (ab.f < *(float *)(a1 + 0x1fc)) {
+        a0->func_0017BB10((C_0017B9E0 *)&D_002EFD38);
+        return 1;
+    }
+    func_00161BE0(&v[0], &f24, 4, a1 + 0xf0, 16, 16);
+    all = -1; any = 0;
+    for (i = 0; i < 4; i++) { int c = func_001325D0(&v[i]); all &= c; any |= c; }
+    if (any == 0) n = 4;
+    else {
+        if (all) return 0;
+        n = func_00132650(&v[0], &v[1], 4);
+        if (n == 0) return 0;
+    }
+    for (i = 0; i < n; i++) {
+        float r = D_00275460 / v[i].w;
+        v[i].x *= r;
+        v[i].y *= r;
+    }
+    if (n == 4) {
+        ((C_0017BB10 *)a1)->func_0017BB10((C_0017B9E0 *)v);
+        a0->func_0017BE40();
+        return 1;
+    }
+    for (i = 0; i < 4; i++) t[i].func_001D3F50();
+    if (n == 3) {
+        t[0].unk0 = *(int *)&v[0].x; t[0].unk4 = *(int *)&v[0].y;
+        t[1].unk0 = *(int *)&v[1].x; t[1].unk4 = *(int *)&v[1].y;
+        t[2].unk0 = *(int *)&v[2].x; t[2].unk4 = *(int *)&v[2].y;
+        t[3] = t[2];
+        a0->func_0017BB10(t);
+        a0->func_0017BE40();
+        return 1;
+    }
+    float minx = v[0].x, maxx = v[0].x, miny = v[0].y, maxy = v[0].y;
+    for (i = 1; i < n; i++) {
+        if (v[i].x < minx) minx = v[i].x;
+        if (v[i].x > maxx) maxx = v[i].x;
+        if (v[i].y < miny) miny = v[i].y;
+        if (v[i].y > maxy) maxy = v[i].y;
+    }
+    *(float *)&t[0].unk0 = minx; *(float *)&t[0].unk4 = miny;
+    *(float *)&t[1].unk0 = maxx; *(float *)&t[1].unk4 = miny;
+    *(float *)&t[2].unk0 = maxx; *(float *)&t[2].unk4 = maxy;
+    *(float *)&t[3].unk0 = minx; *(float *)&t[3].unk4 = maxy;
+    a0->func_0017BB10(t);
+    return 1;
+}
 
 void *C_0017A2E0::func_0017A2E0(unsigned int flags)
 {
@@ -312,5 +371,35 @@ void C_0017A860::func_0017A860(int value)
     }
     f140[f13C] = value;
     f13C++;
+}
+
+int C_0017A8F0::func_0017A8F0(V4_0017A8F0 *a0, V4_0017A8F0 *unused, int mode)
+{
+    V4_0017A8F0 t0, up, t1, t3;
+    int m = mode;
+    *a0 = *func_0001E9E0(&t0, a0);
+    up.x = D_002A8D0C; up.y = D_002A8D10; up.z = D_002A8D14; up.w = D_002A8D18;
+    func_0001C610(&t1, &up, a0);
+    func_0017A460(&t0, &t1);
+    t3 = *func_0001C610(&t1, a0, &t0);
+    switch (m) {
+    case 1:
+        if (D_002EFD6C) {
+            char *c = D_002EFDB8->p;
+            a0->x = *(float *)(c + 0x170);
+            a0->y = *(float *)(c + 0x174);
+            a0->z = *(float *)(c + 0x178) - D_00275800;
+        }
+        return 0;
+    case 3:
+        a0->x = -(D_002A8CE0 * a0->x);
+        a0->y = -(D_002A8CE0 * a0->y);
+        a0->z = -(D_002A8CE0 * a0->z);
+        a0->w = 1.0f;
+        f118 = m;
+        if (fFC) func_0012AB70(a0, a0, &t3, 0, 0);
+        return 1;
+    }
+    return 0;
 }
 
