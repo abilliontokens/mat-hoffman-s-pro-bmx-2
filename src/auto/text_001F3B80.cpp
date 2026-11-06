@@ -148,251 +148,358 @@ void func_001F3C18(unsigned short *str, int len, F3Obj *f, int *pnum)
     }
 }
 
-int func_001F3C55(F3Obj *o, unsigned short *fmt, unsigned int *args)
+#pragma optimize("sy", on)
+int func_001F3C55(F3Obj *f, unsigned short *format, char *argptr)
 {
-    unsigned short buffer[255];
-    unsigned short *text = 0;
-    unsigned short *allocbuf = 0;
-    int count = 0;
-    int textlen = 0;
-    int flags = 0;
-    int width = 0;
-    int prec = -1;
-    int suppress = 0;
-    int state = 0;
-    int pad = 0;
+    int hexadd;
     unsigned short ch;
+    int flags;
+    int state;
+    int chclass;
+    int radix;
+    int charsout;
+    int fldwidth;
+    int precision;
+    unsigned short prefix[2];
+    int prefixlen;
+    int capexp;
+    int no_output;
+    union {
+        char *sz;
+        unsigned short *wz;
+    } text;
+    int textlen;
+    union {
+        char sz[OUT_BUFFERSIZE];
+        unsigned short wz[OUT_BUFFERSIZE];
+    } buffer;
+    unsigned short wchar;
+    int bufferiswide;
+    char *heapbuf;
+    int padding;
+    unsigned __int64 number;
+    int digit;
+    CrtDouble_001F3C55 tmp;
 
-    ch = *fmt;
-    if (ch == 0) return count;
-    for (;;) {
-        fmt++;
-        if (count < 0) break;
-        {
-            int cls = 0;
-            int act;
-            if (ch >= 0x20 && ch <= 0x78) cls = D_00295500[ch] & 0xf;
-            act = (signed char)D_00295520[state * 8 + cls] >> 4;
-            state = act;
-            switch (act) {
-            case 0:
-                func_001F3BCE(o, ch, &count);
+    textlen = 0;
+    charsout = 0;
+    heapbuf = 0;
+    state = 0;
+
+    while ((ch = *format++) != 0 && charsout >= 0) {
+        chclass = (ch < 0x20 || ch > 0x78) ? 0 : D_00295500[ch] & 0xf;
+        state = (signed char)D_00295520[chclass * 8 + state] >> 4;
+        switch (state) {
+        case 1:
+            prefixlen = fldwidth = no_output = capexp = 0;
+            flags = 0;
+            precision = -1;
+            bufferiswide = 0;
+            break;
+        case 2:
+            switch (ch) {
+            case ' ':
+                flags |= OUT_FL_SIGNSP;
                 break;
-            case 1:
-                prec = -1;
-                pad = 0;
-                textlen = 0;
-                width = 0;
-                suppress = 0;
-                flags = 0;
+            case '#':
+                flags |= OUT_FL_ALTERNATE;
                 break;
-            case 2: {
-                int d = ch - 0x20;
-                if (d == 0) flags |= 2;
-                else if (d == 3) flags |= 0x80;
-                else if (d == 8) flags |= 8;
-                else {
-                    d -= 2;
-                    if (d == 0) flags |= 1;
-                    else if (d == 2) flags |= 4;
+            case '+':
+                flags |= OUT_FL_SIGN;
+                break;
+            case '-':
+                flags |= OUT_FL_LEFT;
+                break;
+            case '0':
+                flags |= OUT_FL_LEADZERO;
+                break;
+            }
+            break;
+        case 3:
+            if (ch == '*') {
+                fldwidth = out_get_int_arg(&argptr);
+                if (fldwidth < 0) {
+                    flags |= OUT_FL_LEFT;
+                    fldwidth = -fldwidth;
+                }
+            } else {
+                fldwidth = fldwidth * 10 + (ch - '0');
+            }
+            break;
+        case 4:
+            precision = 0;
+            break;
+        case 5:
+            if (ch == '*') {
+                precision = out_get_int_arg(&argptr);
+                if (precision < 0)
+                    precision = -1;
+            } else {
+                precision = precision * 10 + (ch - '0');
+            }
+            break;
+        case 6:
+            switch (ch) {
+            case 'I':
+                if (*format == '6' && *(format + 1) == '4') {
+                    format += 2;
+                    flags |= OUT_FL_I64;
+                } else if (*format == '3' && *(format + 1) == '2') {
+                    format += 2;
+                    flags &= ~OUT_FL_I64;
+                } else if (*format != 'd' && *format != 'i' && *format != 'o' &&
+                           *format != 'u' && *format != 'x' && *format != 'X') {
+                    state = 0;
+                    goto NORMAL_STATE;
+                }
+                break;
+            case 'h':
+                flags |= OUT_FL_SHORT;
+                break;
+            case 'l':
+                flags |= OUT_FL_LONG;
+                break;
+            case 'w':
+                flags |= OUT_FL_WIDECHAR;
+                break;
+            }
+            break;
+        case 0:
+        NORMAL_STATE:
+            bufferiswide = 1;
+            func_001F3BCE(f, ch, &charsout);
+            break;
+        case 7:
+            switch (ch) {
+            case 'C':
+                if (!(flags & (OUT_FL_SHORT | OUT_FL_LONG | OUT_FL_WIDECHAR)))
+                    flags |= OUT_FL_SHORT;
+            case 'c':
+                wchar = (unsigned short)out_get_int_arg(&argptr);
+                bufferiswide = 1;
+                if (flags & OUT_FL_SHORT) {
+                    char mbc[2];
+                    mbc[0] = (char)wchar;
+                    mbc[1] = 0;
+                    if (func_001F4F45(buffer.wz, (const unsigned char *)mbc, D_002AEA38) < 0)
+                        no_output = 1;
+                } else {
+                    buffer.wz[0] = wchar;
+                }
+                text.wz = buffer.wz;
+                textlen = 1;
+                break;
+            case 'Z': {
+                struct CountString {
+                    short Length;
+                    short MaximumLength;
+                    char *Buffer;
+                } *pstr;
+                pstr = (CountString *)out_get_ptr_arg(&argptr);
+                if (pstr == 0 || pstr->Buffer == 0) {
+                    text.sz = D_0029557C;
+                    textlen = strlen(text.sz);
+                } else {
+                    if (flags & OUT_FL_WIDECHAR) {
+                        text.wz = (unsigned short *)pstr->Buffer;
+                        textlen = pstr->Length / 2;
+                        bufferiswide = 1;
+                    } else {
+                        bufferiswide = 0;
+                        text.sz = pstr->Buffer;
+                        textlen = pstr->Length;
+                    }
                 }
                 break;
             }
-            case 3:
-                if (ch == 0x2a) {
-                    width = (int)*args++;
-                    if (width < 0) {
-                        flags |= 4;
-                        width = -width;
+            case 'S':
+                if (!(flags & (OUT_FL_SHORT | OUT_FL_LONG | OUT_FL_WIDECHAR)))
+                    flags |= OUT_FL_SHORT;
+            case 's': {
+                int i;
+                char *p;
+                unsigned short *pwch;
+                i = (precision == -1) ? 0x7fffffff : precision;
+                text.sz = (char *)out_get_ptr_arg(&argptr);
+                if (flags & OUT_FL_SHORT) {
+                    if (text.sz == 0)
+                        text.sz = D_0029557C;
+                    p = text.sz;
+                    for (textlen = 0; textlen < i && *p; textlen++) {
+                        if (D_002AEA30[(unsigned char)*p] & 0x8000)
+                            ++p;
+                        ++p;
                     }
                 } else {
-                    width = (ch - 0x30) + width * 10;
+                    if (text.wz == 0)
+                        text.wz = D_00295584;
+                    bufferiswide = 1;
+                    pwch = text.wz;
+                    while (i-- && *pwch)
+                        ++pwch;
+                    textlen = pwch - text.wz;
                 }
                 break;
-            case 4:
-                prec = 0;
+            }
+            case 'n': {
+                void *p = out_get_ptr_arg(&argptr);
+                if (flags & OUT_FL_SHORT)
+                    *(short *)p = (short)charsout;
+                else
+                    *(int *)p = charsout;
+                no_output = 1;
                 break;
-            case 5:
-                if (ch == 0x2a) {
-                    prec = (int)*args++;
-                    if (prec < 0) prec = -1;
+            }
+            case 'E':
+            case 'G':
+                capexp = 1;
+                ch += 'a' - 'A';
+            case 'e':
+            case 'f':
+            case 'g':
+                flags |= OUT_FL_SIGNED;
+                text.sz = buffer.sz;
+                if (precision < 0)
+                    precision = 6;
+                else if (precision == 0 && ch == 'g')
+                    precision = 1;
+                else if (precision > OUT_BUFFERSIZE)
+                    precision = OUT_BUFFERSIZE;
+                if (precision > OUT_BUFFERSIZE - OUT_CVTBUFSIZE) {
+                    heapbuf = (char *)func_001E8AA5(OUT_CVTBUFSIZE + precision);
+                    if (heapbuf != 0)
+                        text.sz = heapbuf;
+                    else
+                        precision = OUT_BUFFERSIZE - OUT_CVTBUFSIZE;
+                }
+                tmp = *(CrtDouble_001F3C55 *)((argptr += 8) - 8);
+                (*D_002AEA14)(&tmp, text.sz, (char)ch, precision, capexp);
+                if ((flags & OUT_FL_ALTERNATE) && precision == 0)
+                    (*D_002AEA20)(text.sz);
+                if (ch == 'g' && !(flags & OUT_FL_ALTERNATE))
+                    (*D_002AEA18)(text.sz);
+                if (*text.sz == '-') {
+                    flags |= OUT_FL_NEGATIVE;
+                    ++text.sz;
+                }
+                textlen = strlen(text.sz);
+                break;
+            case 'd':
+            case 'i':
+                flags |= OUT_FL_SIGNED;
+            case 'u':
+                radix = 10;
+                goto COMMON_INT;
+            case 'p':
+                precision = 8;
+            case 'X':
+                hexadd = 'A' - '9' - 1;
+                goto COMMON_HEX;
+            case 'x':
+                hexadd = 'a' - '9' - 1;
+            COMMON_HEX:
+                radix = 16;
+                if (flags & OUT_FL_ALTERNATE) {
+                    prefix[0] = '0';
+                    prefix[1] = (unsigned short)('x' - 'a' + '9' + 1 + hexadd);
+                    prefixlen = 2;
+                }
+                goto COMMON_INT;
+            case 'o':
+                radix = 8;
+                if (flags & OUT_FL_ALTERNATE)
+                    flags |= OUT_FL_FORCEOCTAL;
+            COMMON_INT:
+                if (flags & OUT_FL_I64) {
+                    number = out_get_int64_arg(&argptr);
+                } else if (flags & OUT_FL_SHORT) {
+                    if (flags & OUT_FL_SIGNED)
+                        number = (short)out_get_int_arg(&argptr);
+                    else
+                        number = (unsigned short)out_get_int_arg(&argptr);
                 } else {
-                    prec = (ch - 0x30) + prec * 10;
+                    if (flags & OUT_FL_SIGNED)
+                        number = (long)out_get_int_arg(&argptr);
+                    else
+                        number = (unsigned long)out_get_int_arg(&argptr);
+                }
+                if ((flags & OUT_FL_SIGNED) && (__int64)number < 0) {
+                    number = -(__int64)number;
+                    flags |= OUT_FL_NEGATIVE;
+                }
+                if (!(flags & OUT_FL_I64))
+                    number &= 0xffffffff;
+                if (precision < 0) {
+                    precision = 1;
+                } else {
+                    flags &= ~OUT_FL_LEADZERO;
+                    if (precision > OUT_BUFFERSIZE)
+                        precision = OUT_BUFFERSIZE;
+                }
+                if (number == 0)
+                    prefixlen = 0;
+                text.sz = &buffer.sz[OUT_BUFFERSIZE - 1];
+                while (precision-- > 0 || number != 0) {
+                    digit = (int)(number % radix) + '0';
+                    number /= radix;
+                    if (digit > '9')
+                        digit += hexadd;
+                    *text.sz-- = (char)digit;
+                }
+                textlen = (int)&buffer.sz[OUT_BUFFERSIZE - 1] - (int)text.sz;
+                ++text.sz;
+                if (flags & OUT_FL_FORCEOCTAL) {
+                    if (*text.sz != '0' || textlen == 0) {
+                        *--text.sz = '0';
+                        ++textlen;
+                    }
                 }
                 break;
-            case 6:
-                if (ch == 0x49) {
-                    if (fmt[0] == 0x36 && fmt[1] == 0x34) {
-                        fmt += 2;
-                        flags |= 0x8000;
-                    } else if (fmt[0] == 0x33 && fmt[1] == 0x32) {
-                        fmt += 2;
-                        flags &= ~0x8000;
-                    } else if (ch != 0x64 && ch != 0x69 && ch != 0x6f && ch != 0x75 && ch != 0x78 && ch != 0x58) {
-                        state = 0;
-                        suppress = 1;
-                        func_001F3BCE(o, ch, &count);
-                    }
-                } else if (ch == 0x68) {
-                    flags |= 0x20;
-                } else if (ch == 0x6c) {
-                    flags |= 0x10;
-                } else if (ch == 0x77) {
-                    flags |= 0x800;
-                }
-                break;
-            case 7: {
-                unsigned int c = ch;
-                if (c < 0x65) {
-                    if (c == 0x58) {
-                        goto do_int;
-                    } else if (c == 0x43 || c == 0x45 || c == 0x47) {
-                        goto do_float;
-                    } else if (c == 0x63) {
-                        unsigned short wc = (unsigned short)*args++;
-                        suppress = 1;
-                        text = buffer;
-                        buffer[0] = wc;
-                        if (flags & 0x20) {
-                            char tmpc[2];
-                            tmpc[0] = (char)wc;
-                            tmpc[1] = 0;
-                            if (func_001F4F45(buffer, (unsigned char *)tmpc, 1) < 0) textlen = 1;
-                            else textlen = 1;
-                        }
-                        textlen = 1;
-                        goto output;
-                    }
-                } else if (c == 0x65 || c == 0x67) {
-                    goto do_float;
-                } else if (c == 0x69 || c == 0x64) {
-                    goto do_int;
-                } else if (c == 0x6e) {
-                    if (flags & 0x20) *(short *)*args = (short)count;
-                    else *(int *)*args = count;
-                    args++;
-                    suppress = 1;
-                    goto output;
-                } else if (c == 0x6f || c == 0x75 || c == 0x78) {
-                    goto do_int;
-                } else if (c == 0x70) {
-                    prec = 8;
-                    flags |= 0x40;
-                    goto do_int;
-                } else if (c == 0x73) {
-                    goto do_str;
-                }
-                goto output;
-            do_str: {
-                    unsigned short *s = (unsigned short *)*args++;
-                    if (s == 0) s = D_00295584;
-                    suppress = 1;
-                    text = s;
-                    textlen = 0;
-                    if (flags & 0x20) {
-                        unsigned short *p = s;
-                        int lim = prec;
-                        if (lim < 0) lim = 0x7fffffff;
-                        while (lim > 0 && *p != 0) { p++; lim--; textlen++; }
-                    } else {
-                        unsigned short *p = s;
-                        while (*p != 0) { p++; textlen++; }
-                        if (prec >= 0 && textlen > prec) textlen = prec;
-                    }
-                    goto output;
-                }
-            do_float: {
-                    suppress = 1;
-                    text = buffer;
-                    goto output;
-                }
-            do_int: {
-                    unsigned __int64 val;
-                    unsigned __int64 base;
-                    int neg = 0;
-                    suppress = 1;
-                    flags |= 0x40;
-                    if (ch == 0x64 || ch == 0x69) {
-                        if (flags & 0x8000) {
-                            val = *(unsigned __int64 *)args;
-                            args += 2;
-                            if ((__int64)val < 0) { neg = 1; val = -val; }
-                        } else if (flags & 0x20) {
-                            short sv = (short)*args++;
-                            val = (unsigned int)(sv < 0 ? -sv : sv);
-                            neg = sv < 0;
-                        } else {
-                            int sv = (int)*args++;
-                            val = (unsigned int)(sv < 0 ? -sv : sv);
-                            neg = sv < 0;
-                        }
-                        base = 10;
-                    } else {
-                        if (flags & 0x8000) {
-                            val = *(unsigned __int64 *)args;
-                            args += 2;
-                        } else if (flags & 0x20) {
-                            val = (unsigned short)*args++;
-                        } else {
-                            val = *args++;
-                        }
-                        base = (ch == 0x6f) ? 8 : ((ch == 0x75) ? 10 : 16);
-                    }
-                    if (prec < 0) prec = 1;
-                    else flags &= ~8;
-                    if (prec > 0x200) prec = 0x200;
-                    {
-                        unsigned short *p = &buffer[254];
-                        unsigned short *end = p;
-                        if (val == 0 && prec == 0) {
-                            textlen = 0;
-                        } else {
-                            while (val != 0 || prec > 0) {
-                                unsigned int digit = (unsigned int)(val % base);
-                                val = func_001F58E0(val, base);
-                                digit += 0x30;
-                                if (digit > 0x39) digit += (ch == 0x58) ? 7 : 0x27;
-                                *p = (unsigned short)digit;
-                                p--;
-                                prec--;
-                            }
-                            textlen = (int)(end - p);
-                        }
-                        text = p + 1;
-                        if (neg) {
-                            flags |= 0x100;
-                        }
-                    }
-                    goto output;
-                }
-            output:
-                break;
             }
+            if (!no_output) {
+                if (flags & OUT_FL_SIGNED) {
+                    if (flags & OUT_FL_NEGATIVE) {
+                        prefix[0] = '-';
+                        prefixlen = 1;
+                    } else if (flags & OUT_FL_SIGN) {
+                        prefix[0] = '+';
+                        prefixlen = 1;
+                    } else if (flags & OUT_FL_SIGNSP) {
+                        prefix[0] = ' ';
+                        prefixlen = 1;
+                    }
+                }
+                padding = fldwidth - prefixlen - textlen;
+                if (!(flags & (OUT_FL_LEFT | OUT_FL_LEADZERO)))
+                    func_001F3BF3(&charsout, ' ', padding, f);
+                func_001F3C18(prefix, prefixlen, f, &charsout);
+                if ((flags & OUT_FL_LEADZERO) && !(flags & OUT_FL_LEFT))
+                    func_001F3BF3(&charsout, '0', padding, f);
+                if (!bufferiswide && textlen > 0) {
+                    char *p = text.sz;
+                    int i = textlen;
+                    int retval;
+                    while (i-- > 0) {
+                        retval = func_001F4F45(&wchar, (const unsigned char *)p, D_002AEA38);
+                        if (retval <= 0)
+                            break;
+                        func_001F3BCE(f, wchar, &charsout);
+                        p += retval;
+                    }
+                } else {
+                    func_001F3C18(text.wz, textlen, f, &charsout);
+                }
+                if (flags & OUT_FL_LEFT)
+                    func_001F3BF3(&charsout, ' ', padding, f);
             }
+            if (heapbuf) {
+                func_001E8390(heapbuf);
+                heapbuf = 0;
+            }
+            break;
         }
-        if (!suppress) {
-            int adj = width - pad - textlen;
-            if (flags & 0x40) {
-                if (!(flags & 0x100)) {
-                    if (flags & 1) { pad = 1; }
-                    else if (flags & 2) { pad = 1; }
-                }
-            }
-            if (!(flags & 0xc)) func_001F3BF3(&count, 0x20, adj, o);
-            if ((flags & 8) && !(flags & 4)) func_001F3BF3(&count, 0x30, adj, o);
-            if (textlen > 0) {
-                func_001F3C18(text, textlen, o, &count);
-            }
-            if (flags & 4) func_001F3BF3(&count, 0x20, adj, o);
-        }
-        if (allocbuf != 0) {
-            func_001E8390(allocbuf);
-            allocbuf = 0;
-        }
-        ch = *fmt;
-        if (ch == 0) break;
     }
-    return count;
+    return charsout;
 }
 
 extern "C" unsigned long __cdecl _exception_code(void);
