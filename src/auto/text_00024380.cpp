@@ -32,7 +32,7 @@ struct Seg_24380 {
     int f4;
     int f8;
     int fC;
-    int f10;
+    void *f10;
 };
 
 struct AmbientDebris {
@@ -84,7 +84,77 @@ extern char D_0027642C[];
 extern V4_24380 D_002A0FA4;
 extern char D_00021290[];
 
-void __stdcall func_00024380(void *p)
+void AmbientDebris::func_00024380(Ini_24380 *ini)
 {
-    (void)p;
+    char buf[0x104];
+    int cnt;
+    int n;
+    int start;
+    int i;
+    int idx;
+    int lim;
+    int k;
+
+    lim = -1;
+    if (!ini->func_00169710(D_00276510))
+        return;
+    ini->func_00168C20(D_00276504, 0, &cnt);
+    if (cnt <= 0)
+        return;
+    if (f64 == 0) {
+        f34 = cnt;
+        n = f34;
+        start = 0;
+        lim = 0;
+        idx = n;
+        f64 = (Debris_24380 **)func_001E8A44(n * 4);
+    } else {
+        start = f34;
+        f34 = start + cnt;
+        n = f34;
+        f64 = (Debris_24380 **)func_001E83E8(f64, n * 4);
+        idx = start;
+        lim = n;
+    }
+    if (start >= n)
+        return;
+    for (i = start; i < n; i++) {
+        void *m = func_001E8A44(0x134);
+        Debris_24380 *o;
+        if (m) {
+            o = (Debris_24380 *)m;
+            o->f1C.x = 0.0f;
+            o->f1C.y = 0.0f;
+            o->f1C.z = 0.0f;
+            o->f1C.w = 1.0f;
+        } else {
+            o = 0;
+        }
+        f64[i] = o;
+        func_001ADCC0(buf, 0x20, D_002764F8, i - start + 1);
+        ini->func_00169710(buf);
+        ini->func_00168BE0(D_002764EC, D_002764F0, o->f30, 0x104);
+        ini->func_00168C20(D_002764DC, 1, &lim);
+        o->f2C = (unsigned char)lim;
+        ini->func_00168C50(D_002764D8, 60.0f, &o->f0);
+        ini->func_00168CB0(D_002764C8, &D_002A0FA4, &o->f1C);
+        ini->func_00168C20(D_002764B4, 0, &lim);
+        o->f2E = (unsigned char)lim;
+        ini->func_00168C20(D_002764A8, 0, &lim);
+        o->f8 = lim - 1;
+        if (o->f8 != -1)
+            o->f8 += start;
+        ini->func_00168C20(D_0027649C, 0, &lim);
+        o->fC = lim - 1;
+        ini->func_00168C20(D_00276490, 0, &lim);
+        o->f10 = lim - 1;
+        if (o->f10 != -1)
+            o->f10 += start;
+        ini->func_00168C20(D_00276488, 0, &lim);
+        o->f14 = lim - 1;
+        o->f18 = 0;
+        o->f4 = 0;
+        o->f2D = 0;
+        o->f2F = 0;
+    }
 }
