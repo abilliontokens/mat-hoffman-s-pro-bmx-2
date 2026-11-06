@@ -3,8 +3,9 @@
 #include "ghidra.h"
 struct C_0015CE00 {
  void *vtbl; char pad4[0x20]; unsigned short f24; unsigned char f26, f27; int u[42];
- void func_00157600(int a0);
- C_0015CE00 *func_0015CE00(int a0);
+   void func_00157600(int a0);
+   void InitFlags() { f24 = 0; f26 = 0xff; f27 &= 0xf8; }
+   C_0015CE00 *func_0015CE00(int a0);
 };
 struct C_001BC6E0 { unsigned char func_001BC6E0(void *p); };
 extern C_001BC6E0 *D_002AAEC8;
@@ -501,7 +502,7 @@ void C_0015CD70::func_0015CD70(S_0015CD70_Vec4 *p)
 C_0015CE00 *C_0015CE00::func_0015CE00(int a0)
 {
  func_00157600(a0);
- f24=0; f26=255; f27 &= 0xf8;
+ f24=0; f27 &= 0xf8; f26=255;
  int value=D_002E293C;
  vtbl=&D_002878B4;
  int *p=&u[27]; p[2]=0; p[1]=0; p[0]=0; p[3]=0x3f800000;
@@ -575,7 +576,6 @@ void C_0015D0A0::func_0015D0A0(int a0, int a1)
     float w;
     float s;
     C_001938C0 *obj;
-    V3_0015D0A0 t;
 
     s = f78 * D_002755E8;
     V4_0015D0A0 pos = f94;
@@ -585,11 +585,9 @@ void C_0015D0A0::func_0015D0A0(int a0, int a1)
         pos.x += s * f6c;
         pos.y += s * f70;
         pos.z += s * f74;
-        t = V3_0015D0A0(s, s, s);
-        scl = V4_0015D0A0(t, w);
+        scl = V4_0015D0A0(V3_0015D0A0(s, s, s), w);
     } else {
-        t = V3_0015D0A0(f78, f78, f78);
-        scl = V4_0015D0A0(t, w);
+        scl = V4_0015D0A0(V3_0015D0A0(f78, f78, f78), w);
     }
     obj = (C_001938C0 *)func_001E8A44(0x28);
     if (obj != 0) {
