@@ -1,5 +1,6 @@
 /* 9 functions from 0x000B8AD0 to 0x000B9AD0, found by Ghidra. */
 #include "common.h"
+#include "asm_helpers.h"
 struct C_000B8C80 {
     char pad0[0x9C];
     int unk9C;
@@ -66,6 +67,10 @@ void C_000B8AD0::func_000B8AD0(int a0, int a1)
     unk50 = a0;
     unk54 = a1;
     func_000B67C0();
+}
+
+void func_000B8AF0(float *out, float *in) {
+    AsmVec3Normalize(out, in);
 }
 
 C_000B8B60 *C_000B8B60::func_000B8B60(int a0)
