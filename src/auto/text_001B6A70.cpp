@@ -455,10 +455,24 @@ void C_001B6E70::func_001B7010(C_001B7010_arg *arg) {
     }
 }
 
+static __forceinline int ResolveSlot_001B70D0(C_001B6E70 *self, int i, S_001B70D0_Mgr *mgr, int id)
+{
+    int k;
+    for (k = 0; k < mgr->f284; k++) {
+        if (mgr->f280[k]->f1C0 == id) {
+            ((S_001B70D0_Obj *)((C_001B7370_item * volatile *)self->f28)[i]->f4)->f2DC =
+                mgr->f280[k]->f64->f22C;
+            return 1;
+        }
+    }
+    return 0;
+}
+
 void C_001B6E70::func_001B70D0(S_001B70D0_Arg *arg) {
     char name[0x40];
     char buf[0x40];
     int i;
+    int k;
 
     for (i = 0; i < f24; i++) {
         if (((S_001B70D0_Obj *)((C_001B7370_item * volatile *)f28)[i]->f4)->fD4[0] != 0) {
@@ -474,18 +488,14 @@ void C_001B6E70::func_001B70D0(S_001B70D0_Arg *arg) {
                             S_001B70D0_Mgr *mgr = e->f1A4;
                             int id = mgr->f4->func_00198330(
                                 ((S_001B70D0_Obj *)((C_001B7370_item * volatile *)f28)[i]->f4)->f1D8);
-                            int k = 0;
-                            do {
-                                if (k >= mgr->f284)
-                                    break;
+                            for (k = 0; mgr->f284 > k; k++) {
                                 if (mgr->f280[k]->f1C0 == id) {
                                     ((S_001B70D0_Obj *)((C_001B7370_item * volatile *)f28)[i]->f4)->f2DC =
                                         mgr->f280[k]->f64->f22C;
                                     found = 1;
                                     break;
                                 }
-                                k++;
-                            } while (1);
+                            }
                         }
                     } else {
                         S_001B70D0_Entry *p = arg->f28[j];
