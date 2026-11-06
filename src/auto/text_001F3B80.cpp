@@ -51,9 +51,9 @@ struct F3Obj {
 #define OUT_FL_I64        0x8000
 #define OUT_BUFFERSIZE    512
 #define OUT_CVTBUFSIZE    349
-#define out_get_int_arg(ap)   (*(int *)((*(ap) += 4) - 4))
-#define out_get_ptr_arg(ap)   (*(void **)((*(ap) += 4) - 4))
-#define out_get_int64_arg(ap) (*(__int64 *)((*(ap) += 8) - 8))
+__inline int out_get_int_arg(char **ap) { return *(int *)((*ap += 4) - 4); }
+__inline void *out_get_ptr_arg(char **ap) { return *(void **)((*ap += 4) - 4); }
+__inline __int64 out_get_int64_arg(char **ap) { return *(__int64 *)((*ap += 8) - 8); }
 
 extern "C" unsigned int strlen(const char *s);
 extern "C" char *strcpy(char *dst, const char *src);
