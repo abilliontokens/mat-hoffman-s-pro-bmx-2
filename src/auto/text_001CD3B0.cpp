@@ -150,6 +150,14 @@ struct S_SoundElemList {
     int func_001CDE90(S_SoundElem *elem);
     int func_001CDED0(S_SoundElem *elem);
 
+    void init()
+    {
+        items = 0;
+        count = 0;
+        growBy = 0;
+        capacity = 0;
+    }
+
     S_SoundElem *at(int i)
     {
         if (count > 0 && items != 0 && i < count) {
@@ -473,7 +481,7 @@ XboxSoundGroup *XboxSoundGroup::func_001CD770(int a, int b)
     list.capacity = 0;
     f40b.b0 = 0;
     list.items = (S_SoundElem **)func_001E8A44(0x20);
-    f40b.b0 = 1;
+    *(volatile u8 *)&f40 |= 1;
     list.growBy = 0x10;
     list.capacity = 8;
     f44 = 0;
@@ -754,7 +762,7 @@ int XboxSoundInterface::func_001CDF30(int a, int b)
             func_001CBC10(r, &D_0028EECC, 0xa2);
             goto fail;
         }
-        r = func_00222309(*dev, 0, 0, 0x3f800000, 0, 0x3f800000, 0, 1);
+        r = func_00222309(*dev, 0, 0, 1.0f, 0, 1.0f, 0, 1);
         if (r < 0) {
             func_001CBC10(r, &D_0028EECC, 0xab);
             goto fail;
