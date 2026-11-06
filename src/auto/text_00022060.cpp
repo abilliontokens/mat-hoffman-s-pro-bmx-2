@@ -23,8 +23,6 @@ void func_001E891B(void *p);
 
 struct V4_000229C0 {
     float x, y, z, w;
-    V4_000229C0() { x = 0; y = 0; z = 0; w = 0; }
-    V4_000229C0(float px, float py, float pz, float pw) { x = px; y = py; z = pz; w = pw; }
 };
 struct Item_000229C0 {
     char pad0[0x24];
@@ -393,6 +391,31 @@ undefined4 C_00022530::func_00022530(byte param_1)
   return in_ECX;
 }
 
+int C_00022550::func_00022550()
+{
+    for (int i = 0; i < count; i++) {
+        int j;
+        for (j = 0; j < groups[i]->total; j++)
+            func_001577A0(groups[i]->items[j]->func_00022320((int)&groups[i]->f34), (int *)-1);
+        for (j = 0; j < groups[i]->count; j++) {
+            V4_000229C0 p = *(V4_000229C0 *)(D_002B9120->f4DC + 0x24);
+            V4_000229C0 a;
+            a.x = D_002A0F74;
+            a.y = D_002A0F78;
+            a.z = D_002A0F7C;
+            a.w = D_002A0F80;
+            a.x = (float)func_001E8833() * D_002754B0 * D_00275AEC + D_00275994;
+            float r = (float)func_001E8833() * D_002754B0 * D_002756B8;
+            func_00158390(r, *(V4_000229C0 *)&D_002A0F94, a, &a);
+            p.x += a.x;
+            p.y += a.y;
+            p.z += a.z;
+            ((Item_000229C0 *)groups[i]->items[j])->func_000223B0(p, 0);
+        }
+    }
+    return 1;
+}
+
 int C_00022730::func_00022730(int name, int idx)
 {
     char s2[0x100];
@@ -453,15 +476,16 @@ void C_000229C0::func_000229C0(Arg_000229C0 *arg)
 {
     if (f28 < D_00276088) {
         int n = 5;
-        for (int i = 0; i < f70->l->count && n > 0; i++, n--) {
+        for (int i = 0; i < f70->l->count && n > 0; n--, i++) {
             if (f70->l->items[i]->f24 == 0) {
                 V4_000229C0 v = arg->pos;
                 V4_000229C0 w = *(V4_000229C0 *)&D_002A0F74;
                 w.x = (float)func_001E8833() * D_002754B0 * 2.0f + D_00275460;
-                func_00158390((float)func_001E8833() * D_002754B0 * D_002756B8, *(V4_000229C0 *)&D_002A0F94, w, &w);
+                float r = (float)func_001E8833() * D_002754B0 * D_002756B8;
+                func_00158390(r, *(V4_000229C0 *)&D_002A0F94, w, &w);
                 v.x = v.x + w.x;
-                v.y = w.y + v.y;
-                v.z = w.z + v.z;
+                v.y = v.y + w.y;
+                v.z = v.z + w.z;
                 f70->l->items[i]->func_000223B0(v, 20.0f);
             }
         }
