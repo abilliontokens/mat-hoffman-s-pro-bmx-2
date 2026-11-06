@@ -29,7 +29,7 @@ extern "C" void *func_001E8A44(unsigned int);
 extern "C" int strcmp(const char *, const char *);
 struct L_00103B60 { union {int index; char *empty;}; float def[4]; int alpha,mode,f; float v2[4]; int n,flag; float v1[4],v0[4]; char kind[20],text[400]; };
 struct C_00103B60 {
- C_00103B60 *func_00103B60(C_00103B60 *, int);
+ C_00103B60 *func_00103B60(int, C_00103B60 *);
  void func_001BF600(C_00103B60 *);
  int func_00168550(const char *, void *, int);
  void func_00168C20(const char *, int, void *);
