@@ -357,12 +357,24 @@ struct C_00095060 {
     C_00094F10 tracks;
     int f5C;
     int f60;
-    unsigned char f64;
+    union {
+        unsigned char f64;
+        struct {
+            unsigned char b0 : 1;
+            unsigned char rest : 7;
+        } f64b;
+    };
     char pad65[3];
     S_00095060_PtrList ids;
     int f70;
     int f74;
-    unsigned char f78;
+    union {
+        unsigned char f78;
+        struct {
+            unsigned char b0 : 1;
+            unsigned char rest : 7;
+        } f78b;
+    };
     char pad79[3];
     int f7C;
     void *f80;
@@ -824,18 +836,9 @@ void *C_00095060::func_00094F40(void *arg)
     ((C_00157600 *)this)->func_00157600(1);
     vtbl = (void *)&D_0027A23C;
     _ReadWriteBarrier();
-    tracks.items = 0;
-    tracks.count = 0;
-    f5C = 0;
-    f60 = 0;
-    unsigned char mask = 0xfe;
-    f64 &= mask;
+    ResetTracks_00094F40(this);
     _ReadWriteBarrier();
-    ids.items = 0;
-    ids.count = 0;
-    f70 = 0;
-    f74 = 0;
-    f78 &= mask;
+    ResetIds_00094F40(this);
     _ReadWriteBarrier();
     f30 = 5;
     f34 = 0;
