@@ -231,6 +231,8 @@ struct C_0008B710_Text {
     char *str;
     float x;
     float y;
+    float GetX() { return x; }
+    float GetY() { return y; }
     int func_001D6290();
 };
 
