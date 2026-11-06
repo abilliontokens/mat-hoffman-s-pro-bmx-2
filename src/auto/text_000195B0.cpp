@@ -338,11 +338,12 @@ template <class T> inline T min_198E0(T a, T b)
     }
 #define CopyPathV_198E0(dst, src, len, lim, res) \
     { \
-        int n, r; \
+        int ma, mb, n; \
         len = strlen(src); \
         lim = 0x103; \
-        r = min_198E0((int)lim, (int)len); \
-        res = r; \
+        ma = lim; \
+        mb = len; \
+        res = ma > mb ? mb : ma; \
         n = res; \
         func_001E8920(dst, src, n); \
         (dst)[n] = 0; \
