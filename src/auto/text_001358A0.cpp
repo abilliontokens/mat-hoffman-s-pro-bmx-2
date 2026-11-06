@@ -419,6 +419,43 @@ void C_00135E00::func_00135E90(int a0, int a1, int a2, int a3)
     f3C++;
 }
 
+void C_00135EE0::func_00135EE0(void) {
+    for (int i = 0; i < count; i++) {
+        C_00135EE0_Ent *e = &ents[i];
+        int v = (int)f38;
+        if (v != 0) {
+            v = f38->unk1898;
+        }
+        e->x = v;
+        switch (e->type) {
+        case 0:
+            if (e->state == 0) {
+                D_002A8490->on(e, (char *)f38 + e->idx * 0x18 + 0x20);
+            }
+            if (e->state == 1) {
+                D_002A8490->off(e, (char *)f38 + e->idx * 0x18 + 0x20);
+            }
+            break;
+        case 1:
+            if (e->state == 0) {
+                D_002A8490->on(e, f34 + e->idx * 0x18 + 0x1c);
+            }
+            if (e->state == 1) {
+                D_002A8490->off(e, f34 + e->idx * 0x18 + 0x1c);
+            }
+            break;
+        case 2:
+            if (e->state == 0) {
+                D_002A8490->on(e, arr14[e->sel] + e->idx * 0x18 + 0x324);
+            }
+            if (e->state == 1) {
+                D_002A8490->off(e, arr14[e->sel] + e->idx * 0x18 + 0x324);
+            }
+            break;
+        }
+    }
+}
+
 int C_00135E00::func_00135FF0(int a0, int kind, int a2, int idx)
 {
     S_00136110_Dev *dev;
