@@ -126,7 +126,14 @@ struct S_TireTrackSurf {
     virtual void v29(int a, int b, void *c);
     virtual void v30();
     virtual void v31(int a, int b, int c);
+    virtual void v32(int a, int b, int c, int d);
 };
+struct V4_3E70 { float x, y, z, w; };
+extern float D_0027A060;
+extern float D_002754B0;
+extern float D_002755E0;
+int func_001E8833();
+void func_001B3BA0(void *out, void *in);
 
 struct C_00157960 {
     void func_00157960();
@@ -210,13 +217,14 @@ void TireTrack::func_001B4A20()
 
 C_001B4A40Ret *C_001B4A40Ret::func_001B4A40(const char *str)
 {
-    const char *p = str;
-    const char *first = p + 1;
+    char *p = (char *)str;
+    char *first = p + 1;
     char c;
+
     do {
         c = *p++;
     } while (c != 0);
-    f4 = (p - first) ? str : 0;
+    f4 = (p - first) ? (char *)str : 0;
     return this;
 }
 
@@ -297,5 +305,27 @@ C_001B4BE0 *C_001B4BE0::func_001B4BE0(void) {
     self->f22C = 0;
     self->f230 = 0;
     return self;
+}
+
+int C_001B4BE0::func_001B4C90(S_001B4C90_Stream *stream) {
+    char buf[0x104];
+    volatile int len;
+    volatile int count;
+    C_001B4BE0 * volatile self = this;
+    ((C_001B4AF0 *)this)->func_001B4B80((S_001B4B80_Stream *)stream);
+    stream->func_00168BE0(D_00276310, (char *)&D_002764F0, buf, 0x104);
+    len = func_001E9040(buf, D_0027CEF0);
+    count = len > 0x32 ? 0x32 : len;
+    func_001E8920((char *)self + 4, buf, count);
+    ((char *)self)[count + 4] = 0;
+    stream->func_00168BE0(D_002764EC, (char *)&D_002764F0, self->f114, -1);
+    stream->func_00168C50(D_002764D8, 0, &self->f218);
+    stream->func_00168C20(D_0027D060, 0, &self->f21C);
+    stream->func_00168C20(D_0027D050, 0, &self->f220);
+    stream->func_00168C20(D_0027D044, 1, &self->f224);
+    stream->func_00168C20(D_0027D030, 1, &self->f228);
+    stream->func_00168C20(D_0027D020, 0, &self->f22C);
+    stream->func_00168C20(D_0027D008, 0, &self->f230);
+    return 1;
 }
 
