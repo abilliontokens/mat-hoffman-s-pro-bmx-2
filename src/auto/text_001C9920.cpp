@@ -56,7 +56,7 @@ struct C_001C9920_28 {
 
 struct S_001C9920_arg {
     char pad0[0x28];
-    C_001C9920_28 * volatile unk28;
+    C_001C9920_28 *unk28;
 };
 
 struct C_001C9920 {
