@@ -61,6 +61,27 @@ struct S_000E0E30_Root {
 
 extern S_000E0E30_Root *D_002A8490;
 
+struct PlaylistCall {
+ int func_000301D0();
+ int func_00136170(int,int,int);
+ void func_000B9A80(int,int);
+ int func_00095250(int);
+ int func_000952A0(int);
+ void func_00094D90(int);
+ void func_00095490(int);
+ void func_00094E40(int,int,int);
+ void func_00094960(int);
+ void func_00094C60();
+};
+struct BmxUIPageMusicPlaylist {
+ char pad0[0x124];
+ char *page;
+ char pad128[0x280-0x128];
+ int fields[0x700/4];
+ int func_000E00F0(int a,int b);
+ void func_000DFC90();
+};
+extern float D_0027988C;
 /* BmxUIPageTime */
 struct C_000E0D50 {
     void *vtbl;
