@@ -57,7 +57,10 @@ struct BmxMenu {
     BmxSprite* sc8;
     BmxSprite* scc;
     char padd0[8];
-    BmxSprite* sec[5][2];
+    union {
+        BmxSprite* sec[5][2];
+        struct { BmxSprite* secA[5]; BmxSprite* secB[5]; };
+    };
     BmxSprite* s100[14];
     BmxSprite* s138;
     char pad13c[0x10];
@@ -169,6 +172,111 @@ struct BmxEditorMenu {
     int func_00157960();
 };
 
+
+BmxMenu* BmxMenu::func_0007CA00(void* a0)
+{
+    int ids[3];
+    int i;
+    BmxSprite *o;
+
+    ids[0] = (int)D_00278690;
+    ids[1] = (int)D_002786A0;
+    ids[2] = (int)D_00278678;
+    D_002A8490->f2EC->func_0018C780(3, ids, 0);
+    s14c = (int *)a0;
+    D_002A60B0 = D_00278664;
+    D_002A60B4 = D_00278668;
+    D_002A60B8 = D_0027866C;
+    D_002A60BC = D_00278670;
+    D_002A60C0 = D_00278674;
+
+    o = (BmxSprite *)func_001E8A44(0x64);
+    s80 = o ? o->func_001D5760() : 0;
+    s80->func_001D5810(D_00278658, 0, 0, 0);
+    uv7CA(s80);
+    width7CA(s80, 0x44200000);
+    height7CA(s80, 0x42480000);
+
+    o = (BmxSprite *)func_001E8A44(0x64);
+    s84 = o ? o->func_001D5760() : 0;
+    s84->func_001D5810(D_00278658, 0, 398.0f, 0);
+    width7CA(s84, 0x44200000);
+    height7CA(s84, 0x42480000);
+    uv7CA(s84);
+
+    for (i = 0; i < 5; i++) {
+        float x;
+        BmxSprite *n;
+        o = (BmxSprite *)func_001E8A44(0x64);
+        n = o ? o->func_001D5760() : 0;
+        x = i * D_00278650;
+        sec[i][0] = n;
+        n->func_001D5810(D_00278658, x, 50.0f, 0);
+        o = (BmxSprite *)func_001E8A44(0x64);
+        sec[i][1] = o ? o->func_001D5760() : 0;
+        sec[i][1]->func_001D5810(D_00278658, x, 366.0f, 0);
+        o = sec[i][1];
+        o->u0 = 0;
+        o->v0 = 1.0f;
+        o->u1 = 0.99f;
+        o->v1 = 0;
+        o->flags |= 4;
+    }
+
+    for (i = 0; i < 14; i++) {
+        float x;
+        BmxSprite *n;
+        o = (BmxSprite *)func_001E8A44(0x64);
+        n = o ? o->func_001D5760() : 0;
+        s100[i] = n;
+        x = (i / 2) * D_00275800 + D_00279034;
+        n->func_001D5810(D_002786B0, (i % 2) ? 321.0f : 100.0f, x, 0);
+        n->u0 = 1.0f;
+        n->v0 = 0;
+        n->u1 = 0;
+        n->v1 = 1.0f;
+        n->flags |= 4;
+        width7CA(n, 0x435d0000);
+    }
+
+    o = (BmxSprite *)func_001E8A44(0x64);
+    sb8 = o ? o->func_001D5760() : 0;
+    sb8->func_001D5810(D_00278648, 491.0f, 388.0f, 0);
+
+    o = (BmxSprite *)func_001E8A44(0x64);
+    sc8 = o ? o->func_001D5760() : 0;
+    sc8->func_001D5810(D_00278624, 491.0f, 388.0f, 0);
+
+    o = (BmxSprite *)func_001E8A44(0x64);
+    sbc = o ? o->func_001D5760() : 0;
+    sbc->func_001D5810(D_00278638, 365.0f, 388.0f, 0);
+
+    o = (BmxSprite *)func_001E8A44(0x64);
+    scc = o ? o->func_001D5760() : 0;
+    scc->func_001D5810(D_00278608, 365.0f, 388.0f, 0);
+
+    o = (BmxSprite *)func_001E8A44(0x64);
+    s138 = o ? o->func_001D5760() : 0;
+    s138->func_001D5810(D_00278600, 0, 0, 0);
+    {
+        BmxSprite *p = s138;
+        unsigned int c = p->color;
+        p->flags |= 2;
+        p->color = c & 0xff000000;
+    }
+    {
+        BmxSprite *p = s138;
+        p->flags |= 2;
+        *((unsigned char *)&p->color + 3) = 0x80;
+    }
+    height7CA(s138, 0x43e00000);
+    width7CA(s138, 0x44200000);
+
+    func_001ADCC0((char *)&D_002A60B0, 0x104, D_00275678, D_002A5870, D_002A5FA8);
+    s178 = *(int *)((char *)s14c + 0x1d0);
+    func_000689E0();
+    return this;
+}
 
 int BmxEditorMenu::func_0007CF00()
 {
