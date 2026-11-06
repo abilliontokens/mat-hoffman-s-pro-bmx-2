@@ -16,6 +16,8 @@ extern char D_0027F29C[], D_00279B00[], D_00279AF0[], D_00279AE0[], D_00279AD0[]
 extern char D_0027F2AC[], D_0027CEF0[];
 extern "C" int func_001ADCC0(char *buf, int n, char *fmt, ...);
 void *func_001E8A44(unsigned int size);
+extern "C" void _ReadWriteBarrier(void);
+#pragma intrinsic(_ReadWriteBarrier)
 
 struct ElemHOF2 {
     virtual void Destroy(int a0);
