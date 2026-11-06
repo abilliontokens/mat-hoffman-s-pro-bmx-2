@@ -149,12 +149,6 @@ struct V4_00030E70 {
     float z;
     float w;
     V4_00030E70() {}
-    V4_00030E70(const V4_00030E70 &o) {
-        x = o.x;
-        y = o.y;
-        z = o.z;
-        w = o.w;
-    }
     V4_00030E70(float x_, float y_, float z_, float w_) {
         x = x_;
         y = y_;
