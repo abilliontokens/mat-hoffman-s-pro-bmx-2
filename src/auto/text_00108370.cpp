@@ -307,7 +307,9 @@ struct C_00108F50 {
 
 
 struct S_001091D0_V {
-    float x, y, z, w;
+    int x;
+    float y;
+    int z, w;
 };
 struct S_001091D0_Ref {
     char pad0[0x68];
@@ -725,12 +727,11 @@ Vec4_00108370 *C_00109180::func_00109180(Vec4_00108370 *out)
 
 int C_001091D0::func_001091D0(void)
 {
-    S_001091D0_V a = f1e8->f1a0;
     S_001091D0_V b;
     S_001091D0_V o;
-    a = *(S_001091D0_V *)func_0001E9E0((float *)&b, (float *)&a);
+    S_001091D0_V a = *func_0001E9E0(&b, S_001091D0_V(f1e8->f1a0));
     b = f874;
-    func_0001E9E0((float *)&o, (float *)&b);
+    func_0001E9E0(&o, b);
     if (f1e8->f1d8 != 0 && f1e8->f1d8->f68 == D_002B9108) {
         if (f874.y > D_00282AC8 && a.y > D_00282AC8) {
             return 1;
