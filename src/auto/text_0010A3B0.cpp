@@ -205,8 +205,9 @@ struct Hud_0010A3B0 {
         } \
     }
 #define NAME_LOOP5(i0, chk, ld) \
-    for (i = i0, j = 0; i < i0 + 8; i++, j++) { \
-        const char *src = f24->f52c + j * 0x32 + chk; \
+    for (i = i0; i < i0 + 8; i++) { \
+        int jo = (i - i0) * 0x32; \
+        const char *src = f24->f52c + jo + chk; \
         char *dst = name; \
         char c; \
         do { \
@@ -214,9 +215,9 @@ struct Hud_0010A3B0 {
             *dst++ = c; \
         } while (c != 0); \
         if (func_001E8AF0(name, D_00282B54) == 0) { \
-            func_001ADCC0(buf, 0x100, D_00276F28, f24->f52c + j * 0x32 + ld); \
+            func_001ADCC0(buf, 0x100, D_00276F28, f24->f52c + jo + ld); \
             f1658[i] = D_002EF7D0->func_00162B20(buf, 1); \
-            func_001ADCC0(buf, 0x100, D_00282B50, f24->f52c + j * 0x32 + ld); \
+            func_001ADCC0(buf, 0x100, D_00282B50, f24->f52c + jo + ld); \
             f17f4[i] = D_002EF7D0->func_00162B20(buf, 1); \
         } \
     }
@@ -284,7 +285,7 @@ void Hud_0010A3B0::func_0010A3B0()
     int i, j, k, r;
     prefix[0] = 0;
     LOAD_ALL_TEX;
-    NAME_LOOP7(47, 0x6858, 0x6858)
+    NAME_LOOP5(47, 0x6858, 0x6858)
     for (k = 0; k < *(int *)(f24->f52c + 0x18); k++) {
         func_001ADCC0(buf, 0x100, D_00276F28, f24->f52c + k * 0x32 + 0xdc8);
         f1990[k] = D_002EF7D0->func_00162B20(buf, 1);
@@ -299,11 +300,11 @@ void Hud_0010A3B0::func_0010A3B0()
             f1d00[r][k] = D_002EF7D0->func_00162B20(buf, 1);
         }
     }
-    NAME_LOOP7(55, 0x6cb8, 0x6cb8)
-    NAME_LOOP7(63, 0x6cb8, 0x6e48)
-    NAME_LOOP7(71, 0x6cb8, 0x6fd8)
-    NAME_LOOP7(79, 0x72f8, 0x72f8)
-    NAME_LOOP7(87, 0x72f8, 0x7488)
-    NAME_LOOP7(95, 0x72f8, 0x7618)
+    NAME_LOOP5(55, 0x6cb8, 0x6cb8)
+    NAME_LOOP5(63, 0x6cb8, 0x6e48)
+    NAME_LOOP5(71, 0x6cb8, 0x6fd8)
+    NAME_LOOP5(79, 0x72f8, 0x72f8)
+    NAME_LOOP5(87, 0x72f8, 0x7488)
+    NAME_LOOP5(95, 0x72f8, 0x7618)
     func_001056E0();
 }
