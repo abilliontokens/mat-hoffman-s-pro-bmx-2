@@ -129,6 +129,10 @@ static __forceinline float clamp_0001C870(double v, float lo, float hi) {
     return v;
 }
 
+struct V4C_0001C680 : S_0001C610_V4 {
+    V4C_0001C680() { x = y = z = 0.0f; w = 1.0f; }
+};
+
 static __forceinline float cross_0001C610(float *a, float *b, int i, int j) {
     return b[j] * a[i] - b[i] * a[j];
 }
@@ -478,9 +482,7 @@ void C_0001C750::func_0001C750(S_0001C610_V4 a, S_0001C610_V4 b) {
  Add3_1C750(self->f130,&v.x);
  c.z=c.y=c.x=0; c.w=1;
  vec3_set(&d.x,b.x-self->f190[0],b.y-self->f190[1],b.z-self->f190[2]);
- __m128 x=_mm_loadu_ps(&d.x), y=_mm_loadu_ps(&a.x);
- __m128 z=_mm_sub_ps(_mm_mul_ps(x,_mm_shuffle_ps(y,y,0xc9)),_mm_mul_ps(y,_mm_shuffle_ps(x,x,0xc9)));
- _mm_storeu_ps(&c.x,_mm_shuffle_ps(z,z,0xc9));
+ _mm_storeu_ps(&c.x,_mm_shuffle_ps(cross_1C750(&d.x,&a.x),cross_1C750(&d.x,&a.x),0xc9));
  Add3_1C750(self->f140,&c.x);
  }
 }
