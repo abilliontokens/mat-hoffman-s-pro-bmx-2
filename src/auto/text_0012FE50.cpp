@@ -34,7 +34,7 @@ static __forceinline V4_0012FE50 operator+(const V4_0012FE50 &a, const V4_0012FE
     r.z = a.z + b.z;
     return r;
 }
-static inline V4_0012FE50 operator-(const V4_0012FE50 &a, const V4_0012FE50 &b)
+static __forceinline V4_0012FE50 operator-(const V4_0012FE50 &a, const V4_0012FE50 &b)
 {
     V4_0012FE50 r;
     r.x = a.x - b.x;
