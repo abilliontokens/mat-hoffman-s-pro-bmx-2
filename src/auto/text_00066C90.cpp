@@ -48,7 +48,32 @@ struct C_00066C90 {
     void func_00157660();
     void func_00157600(int a0);
     C_00066C90 *func_00066C90(int a0);
+    void func_00066FA0(int a0);
 };
+
+struct Res_66C { void *func_0018C160(void *name); };
+struct Spr_66C {
+    char pad0[0x28];
+    float x;
+    float y;
+    char pad30[8];
+    unsigned int color;
+    float u0, v0, u1, v1;
+    float w, h;
+    char pad54[4];
+    unsigned char flags;
+    Spr_66C *func_001D5760();
+    void func_001D5810(void *name, float x, float y, int z);
+};
+struct App_66C { char pad[0x2e8]; void *unk2E8; Res_66C *unk2EC; };
+extern App_66C *D_002A8490;
+extern char D_002786A0[], D_00278690[], D_00278678[], D_00278658[];
+extern int D_00278664, D_00278668, D_0027866C, D_00278670;
+extern char D_00278674;
+extern int D_002A60B0, D_002A60B4, D_002A60B8, D_002A60BC;
+extern char D_002A60C0;
+extern float D_00278654, D_00275544, D_0027653C;
+extern "C" void *__cdecl func_001E8A44(unsigned int);
 
 C_00066C90 *C_00066C90::func_00066C90(int a0)
 {
