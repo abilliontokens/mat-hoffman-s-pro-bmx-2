@@ -26,6 +26,8 @@ struct Res_72C90 {
 /* an object with a virtual destructor, deleted through its vtable */
 struct Obj_72C90 {
     virtual ~Obj_72C90();
+    char pad4[0x24]; int width,height; char pad30[0xc]; float a,b,c,d,w,h; char pad54[4]; unsigned char flags;
+    Obj_72C90* func_001D5760();void func_001D5810(char*,float,float,int);
 };
 
 /* BmxMenu-derived menu (RunResultsMenu) */
