@@ -188,6 +188,20 @@ int func_001ADCC0(char *dst, int size, const char *fmt, ...);
 extern "C" char *func_001E8920(char *dst, const char *src, unsigned int n);
 void func_000AE280(void);
 
+template <class T>
+inline T AF0D0_Min(const T &a, const T &b)
+{
+    return a > b ? b : a;
+}
+
+inline void AF0D0_Copy(char *dst, const char *src, int max)
+{
+    int len = strlen(src);
+    int n = AF0D0_Min(max, len);
+    func_001E8920(dst, src, n);
+    dst[n] = 0;
+}
+
 /* one 0x160-byte record of the table at BmxScene+0x344 */
 struct S_000AEFA0_Elem {
     char pad0[0x160];
