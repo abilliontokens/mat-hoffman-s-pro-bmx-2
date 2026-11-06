@@ -60,6 +60,8 @@ struct C_001888F0_Obj : C_00188VT {
     static void *operator new(unsigned int size) { return func_001E8A44(size); }
 };
 
+static __forceinline void CallV0_001888F0(C_001888F0_Obj *o) { o->v0(); }
+
 struct S_00188AB0_Parser {
     int func_00169710(char *name);
     int func_00168BE0(const char *k1, const char *k2, char *dst, int size);
@@ -426,7 +428,7 @@ void C_00188700::func_001888F0(void)
         q = 0;
     }
     unkC = (int)q;
-    q->v0();
+    (*(void (__fastcall **)(C_001888F0_Obj *))*(void ***)q)(q);
 }
 
 void C_00188920::func_00188920(void)
