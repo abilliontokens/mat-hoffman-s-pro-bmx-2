@@ -52,6 +52,7 @@ struct S_00156030_Player {
     char pad_3C4[0x3d4 - 0x3c4];
     int unk3D4;
     int unk3D8;
+    void func_001C6DA0(int param_1, int param_2);
     void Flinch(void)
     {
         if (unk39C->unk108 != 0) {
@@ -142,19 +143,16 @@ struct C_00156820 {
 
 int TikiPlayerAirborneState::func_00156030(int param_1)
 {
-    S_00156030_Player *p = unk8;
-    S_00156030_A *a = p->unk39C;
-    if (a->unk108 != 0) {
-        S_00156030_B *b = p->unk3C;
-        if (b->unk10 != 0) {
+    S_00156030_Player *p = GetPlayer();
+    if (p->unk39C->unk108 != 0) {
+        if (p->unk3C->unk10 != 0) {
             p->unk384->func_0008AB90(p->unk388);
         } else if (p->unkC4 != p->unk3C0) {
             func_001C6DA0(p->unk3C0, 1);
         }
     }
-    p = unk8;
-    S_00156030_B *b2 = p->unk3C;
-    if (b2->unk10 != 0) {
+    p = GetPlayer();
+    if (p->unk3C->unk10 != 0) {
         func_001C6DA0(p->unk3BC, 1);
     }
     return 1;
