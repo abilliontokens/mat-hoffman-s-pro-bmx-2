@@ -47,6 +47,12 @@ struct V4_0002B1C0 {
     void Init() { x = y = z = 0.0f; w = 1.0f; }
 };
 
+struct S5_0002B1C0 {
+    int a, b, c, d, e;
+    void Init() { a = 0; b = 0; c = 0; e = 0; d = 0; }
+};
+
+#define S5_AT(off) ((S5_0002B1C0 *)((char *)p + (off)))
 #define V4_AT(off) ((V4_0002B1C0 *)((char *)p + (off)))
 #define V4_CPY(off, src) (*V4_AT(off) = *(V4_0002B1C0 *)&(src))
 #define V4_COPY4(off, s0, s1, s2, s3) { unsigned int *dst_ = (unsigned int *)((char *)p + (off)); dst_[0] = s0; dst_[1] = s1; dst_[2] = s2; dst_[3] = s3; }
