@@ -515,7 +515,7 @@ C_0007D6F0 *C_0007D6F0::func_0007D6F0(C_Arg_7D *arg)
         }
     }
 
-    func_001ADCC0((char *)D_002A60B0, 0x104, D_00275678, (int)D_002A5870, (int)D_002A5FA8);
+    func_001ADCC0((char *)&D_002A60B0, 0x104, D_00275678, (int)D_002A5870, (int)D_002A5FA8);
     func_0006A360();
     f1a0 = f15c->f1d0;
     return this;
