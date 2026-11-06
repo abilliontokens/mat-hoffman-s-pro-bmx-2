@@ -269,7 +269,7 @@ int C_0017F2B0::func_0017F550(S_0017F550_Shape *a)
     return 0;
 }
 
-void __stdcall func_0017FCA0(u16 idx, S_0017FDB0_Tree *tree, int depth, float *m)
+void C_0017FCA0::func_0017FCA0(u16 idx, S_0017FDB0_Tree *tree, int depth, float *m)
 {
     Vec4_0017F2B0 out2;
     Vec4_0017F2B0 max;
