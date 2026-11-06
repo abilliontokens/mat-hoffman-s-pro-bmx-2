@@ -53,18 +53,6 @@ extern float D_002EFD7C;
 extern S_1C4FB0_Camera *D_002EFD80;
 extern S_1C4FB0_Cull *D_002AB66C;
 
-#define QN_VISIT(i, EX, EZ) \
-    if (f4[i]) { \
-        ctr.y = f4[i]->fC; \
-        ext2.y = f4[i]->f10; \
-        ctr.x = EX; \
-        ctr.z = EZ; \
-        if (D_002AB66C->func_001C5DE0(f + 0xf0, &ctr, &ext2, &res)) { \
-            if (res == 0) f4[i]->vf1(a, b, c, d, e); \
-            else f4[i]->func_001C4FB0(a, b, c, d, e, f); \
-        } \
-    }
-
 /* each child gets its own quadrant corner: x0 is c or right, y0 is d or bottom */
 #define QN_VISIT2(i, EX, EZ, X0, Y0) \
     { \
