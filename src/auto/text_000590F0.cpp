@@ -668,10 +668,8 @@ int BmxGame::func_00059AC0(void)
         default:
             goto done;
         }
-        {
-            S_00059F50_Obj &o = *obj;
-            f2A4 = (BmxGameObj2A4 *)f14->func_001577A0(o.v10(), -1);
-        }
+        _ReadWriteBarrier();
+        f2A4 = (BmxGameObj2A4 *)f14->func_001577A0(obj->v10(), -1);
     }
 done:
     if (f2F0 != 0) {
