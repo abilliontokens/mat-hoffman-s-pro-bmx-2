@@ -362,15 +362,14 @@ Vec4_165EF0 C_00165E20::func_00165E20(C_00165E20_Arg1 *a1, f32 a2, int a3, void 
     return v;
 }
 
-void C_00165EF0::func_00165EF0(Vec4_165EF0 *out, C_00165EF0_Arg1 *a1, f32 a2, int a3, void *a4)
+Vec4_165EF0 C_00165EF0::func_00165EF0(C_00165EF0_Arg1 *a1, f32 a2, int a3, void *a4)
 {
     Vec4_165EF0 v;
-    a2 = a2 * a1->f38;
-    C_00165EF0_Obj *o = a1->f18[(u8)func_00164650(a3)];
-    o->v2(a2, &v);
-    if (a4)
-        func_001641B0(fC, &v);
-    *out = v;
+    float t = a2 * a1->f38;
+    int idx = (u8)func_00164650(a3);
+    a1->f18[idx]->v2(t, &v);
+    if (a4) func_001641B0(fC, &v);
+    return v;
 }
 
 void C_00166190::func_00166190(void)
