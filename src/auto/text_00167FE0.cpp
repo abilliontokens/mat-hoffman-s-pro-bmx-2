@@ -35,6 +35,20 @@ static __forceinline float tokf_00168CB0(char *s, const char *delim)
     return (float)func_001E9649(func_001E95A4(s, delim));
 }
 
+extern "C" void *memcpy(void *dst, const void *src, unsigned int n);
+#pragma intrinsic(memcpy)
+char *func_001E8920(char *dst, const char *src, int n);
+extern char D_0028800C[];
+
+/* 8-byte string tokenizer state (strtok-like) */
+struct S_00168550_Tokenizer {
+    double align;
+    void func_001B4A40(const char *str);
+    char *func_001B4A70(const char *delims);
+};
+
+static __inline int Min_00168550(int a, int b) { return a > b ? b : a; }
+
 struct C_001684B0 {
     char pad0[0x1c];
     int f1c;
@@ -318,21 +332,18 @@ int C_00168280::func_00168C50(const char *name, float def, float *out)
 int C_00168280::func_00168CB0(const char *name, const float *def, float *out)
 {
     char buf[0x184];
-    int ret;
 
     if (func_00168550(name, buf, 0x80) == 0) {
         strcpy(buf, D_00275630);
         out[0] = def[0];
         out[1] = def[1];
         out[2] = def[2];
-        ret = 0;
-    } else {
-        out[0] = (float)func_001E9649(func_001E95A4(buf, D_002869B8));
-        out[1] = (float)func_001E9649(func_001E95A4(0, D_002869B8));
-        out[2] = (float)func_001E9649(func_001E95A4(0, D_002869B4));
-        ret = 1;
+        return 0;
     }
-    return ret;
+    out[0] = (float)func_001E9649(func_001E95A4(buf, D_002869B8));
+    out[1] = (float)func_001E9649(func_001E95A4(0, D_002869B8));
+    out[2] = (float)func_001E9649(func_001E95A4(0, D_002869B4));
+    return 1;
 }
 
 int C_00168280::func_00168D70(const char *name, float *out, int count)
