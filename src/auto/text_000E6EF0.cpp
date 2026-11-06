@@ -3,8 +3,64 @@
 struct LookupObj_000F1980 {
     int *func_0018C160(int a);
 };
+struct Input_000E6EF0 {
+    int func_00136170(int a, int b, int c);
+};
+struct Snd_000E6EF0 {
+    void func_000B9A80(int a, int b);
+};
+struct Ops_000E6EF0 {
+    int func_0005C150(int a, int b);
+    int func_0005C190(int a, int b);
+};
+struct Game_000E6EF0 {
+    char pad0[0x4];
+    int i4;
+    char pad8[0x2c0 - 0x8];
+    Ops_000E6EF0 *p2C0;
+    char pad2C4[0x300 - 0x2c4];
+    int a300[4];
+};
+struct Entry_000E6EF0 {
+    char pad0[0x110];
+    int n110;
+    char pad114[0x11c - 0x114];
+    int n11C;
+    char pad120[0x1a8 - 0x120];
+};
+struct Anim_000E6EF0 {
+    int func_000301D0();
+};
+struct Obj74_000E6EF0 {
+    char pad0[0x74];
+    Anim_000E6EF0 *p74;
+};
+struct List_000E6EF0 {
+    int func_001C3F10();
+    int func_001C3F30();
+};
+struct Ctx_000E6EF0 {
+    char pad0[0x24];
+    Snd_000E6EF0 *p24;
+    char pad28[0x138 - 0x28];
+    int i138;
+    char pad13C[0x25c - 0x13c];
+    Obj74_000E6EF0 *p25C;
+    char pad260[0x268 - 0x260];
+    List_000E6EF0 *p268;
+    char pad26C[0x27c - 0x26c];
+    Entry_000E6EF0 *p27C;
+    int pad280;
+    int i284;
+    int i288;
+    int i28C;
+};
 struct GObjRoot_000F1980 {
-    char pad0[0x2ec];
+    char pad0[0x8];
+    Input_000E6EF0 *p8;
+    char padC[0x2e0 - 0xc];
+    Game_000E6EF0 *p2E0;
+    char pad2E4[0x2ec - 0x2e4];
     LookupObj_000F1980 *p2EC;
 };
 extern GObjRoot_000F1980 *D_002A8490;
