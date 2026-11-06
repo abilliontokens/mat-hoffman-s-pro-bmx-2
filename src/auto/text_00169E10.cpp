@@ -90,6 +90,118 @@ struct C_0016ABE0 {
     C_0016ABE0 *func_0016ABE0(int a);
 };
 
+extern char D_00277298[], D_002882D4[], D_002882C4[], D_002882B8[], D_002882B0[], D_002882A4[];
+extern char D_0028828C[], D_00288280[], D_002A8754[], D_00288274[], D_00288268[], D_0028825C[];
+extern char D_00288250[], D_0028823C[], D_00283700[], D_00288230[], D_00288220[], D_00288210[];
+extern char D_002881FC[], D_002881E8[], D_002881DC[], D_002881CC[], D_002881C0[], D_002881B8[];
+extern char D_002881AC[], D_002881A4[], D_00288194[], D_0028818C[], D_00288180[], D_00283B18[];
+extern char D_0028817C[], D_00288168[], D_00288154[], D_00288148[], D_00288138[], D_00288124[];
+extern char D_00288118[];
+extern float D_002754B0, D_00275460;
+int func_001E8833();
+int func_001ADCC0(char *, int, const char *, int);
+
+struct EmitterReader {
+    void func_00169710(const void *name);
+    void func_00168C20(const void *name, int def, void *out);
+    void func_00168C50(const void *name, float def, void *out);
+    void func_00168CB0(const void *name, const void *def, void *out);
+};
+
+struct EmitterLoad {
+    char pad0[0x54];
+    float f54;
+    char pad58[0x118];
+    float f170, f174, f178, f17C, f180;
+    char pad184[0xC];
+    u32 f190;
+    char pad194[4];
+    float f198, f19C, f1A0, f1A4;
+    char pad1A8[8];
+    int f1B0;
+    float f1B4, f1B8;
+    int *f1BC;
+    int f1C0, f1C4, f1C8;
+    char pad1CC[4];
+    int f1D0, f1D4, f1D8;
+    float f1DC, f1E0, f1E4, f1E8, f1EC;
+    int func_0016A3A0(EmitterReader *r);
+};
+
+int EmitterLoad::func_0016A3A0(EmitterReader *r) {
+    int i[8];
+    int mode;
+    if (!r) return 0;
+    r->func_00169710(D_00277298);
+    r->func_00168C20(D_002882D4, -1, &f1B0);
+    r->func_00168C50(D_002882C4, 1000.0f, &f170);
+    r->func_00168C50(D_002882B8, 1.0f, &f178);
+    r->func_00168C50(D_002882B0, 0.0f, &f174);
+    r->func_00168C50(D_002882A4, 500.0f, &f17C);
+    r->func_00168C50(D_0028828C, 0.0f, &f180);
+    r->func_00168C50(D_00288280, 0.0f, &f198);
+    f198 = f198 * f170;
+    r->func_00168CB0(D_00288274, D_002A8754, &f54);
+    r->func_00168C20(D_00288268, 0, &mode);
+    f1D0 = mode;
+    r->func_00168C50(D_0028825C, 0.0f, &f1D8);
+    f1D4 = f1D8;
+    r->func_00168C50(D_00288250, 3.4028235e38f, &f19C);
+    r->func_00168C50(D_0028823C, 3.0f, &f1A0);
+    r->func_00168C50(D_00283700, 0.55f, &f1A4);
+    if (f1D0 == 1) {
+        r->func_00168C50(D_00288230, 0.0f, &f1E4);
+        f1DC = f1E4;
+    } else if (f1D0 == 2) {
+        r->func_00168C50(D_00288220, 0.0f, &f1E0);
+        r->func_00168C50(D_00288210, 0.0f, &f1E4);
+        r->func_00168C50(D_002881FC, 0.0f, &f1E8);
+        r->func_00168C50(D_002881E8, 0.0f, &f1EC);
+        float t = (float)func_001E8833() * D_002754B0;
+        f1DC = (f1E4 - f1E0) * t + f1E0;
+    } else if (f1D0 == 3) {
+        r->func_00168C50(D_002881DC, 0.0f, &f1E4);
+        r->func_00168C50(D_002881CC, 0.0f, &f1EC);
+        f1DC = f1E4;
+    }
+    r->func_00169710(D_002881C0);
+    r->func_00168C20(D_002881B8, 0, &i[0]);
+    r->func_00168C20(D_002881AC, 0, &i[1]);
+    r->func_00168C20(D_002881A4, 0, &i[2]);
+    r->func_00168C20(D_00288194, 0, &i[3]);
+    r->func_00168C20(D_0028818C, 0, &i[5]);
+    r->func_00168C20(D_00288180, 0, &i[4]);
+    r->func_00168C20(D_00283B18, 0, &i[6]);
+    r->func_00168C20(D_0028817C, 1, &i[7]);
+    r->func_00168C20(D_00288168, 0, &f1C4);
+    r->func_00168C20(D_00288154, 0, &f1C8);
+    if (i[0]) f190 |= 2; else f190 &= ~2;
+    if (i[1]) f190 |= 4; else f190 &= ~4;
+    if (i[2]) f190 |= 8; else f190 &= ~8;
+    if (i[3]) f190 |= 0x1000; else f190 &= ~0x1000;
+    if (i[4]) f190 |= 1; else f190 &= ~1;
+    if (i[5]) f190 |= 0x2000; else f190 &= ~0x2000;
+    if (i[6]) f190 |= 0x20; else f190 &= ~0x20;
+    if (!i[7]) f190 |= 0x800; else f190 &= ~0x800;
+    if (*(int *)&f19C != 0x7f7fffff) f190 |= 0x200; else f190 &= ~0x200;
+    r->func_00169710(D_00288148);
+    r->func_00168C50(D_00288138, -1.0f, &f1B4);
+    f1B8 = D_00275460 / f1B4;
+    r->func_00168C20(D_00288124, 0, &f1C0);
+    if (f1B4 > D_00275460) f190 |= 0x400; else f190 &= ~0x400;
+    if (f1C0 > 0) {
+        if (f1BC) func_001E891B(f1BC);
+        f1BC = (int *)func_001E8A44(f1C0 * 4);
+        for (int k = 0; k < f1C0; k++) {
+            char buf[16];
+            func_001ADCC0(buf, 16, D_00288118, k + 1);
+            r->func_00168C20(buf, -1, &f1BC[k]);
+            f1BC[k] -= 1;
+        }
+    }
+    return 1;
+}
+
 struct ParticleEmitter {
     void *vtbl;
     char pad4[0x40];
