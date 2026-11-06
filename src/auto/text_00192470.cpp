@@ -381,7 +381,7 @@ int C_00192470::func_00192570()
                 f40++;
             }
             if (f40 < f28) {
-                goto found;
+                return row[f40++];
             }
             f3C++;
             row = f34[f3C];
@@ -392,14 +392,12 @@ int C_00192470::func_00192570()
                 f40++;
             }
             if (f40 < f30) {
-                goto found;
+                return row[f40++];
             }
             f3C++;
         }
     }
     return 0;
-found:
-    return row[f40++];
 }
 
 void C_00192470::func_00192610()
