@@ -39,13 +39,12 @@ int func_00011260(int lo, int hi);
 void func_00034820(float *out, const float *in);
 void func_00158390(float angle, S_34EF0_V4 axis, S_34EF0_V4 v, S_34EF0_V4 *out);
 
+static __forceinline __m128 Shuf_34EF0(__m128 v) { return _mm_shuffle_ps(v, v, 0xc9); }
 static __forceinline void Cross_34EF0(S_34EF0_V4 *out, const S_34EF0_V4 *a, const S_34EF0_V4 *b)
 {
-    __m128 va = _mm_loadu_ps(&a->x);
-    __m128 vb = _mm_loadu_ps(&b->x);
-    __m128 r = _mm_sub_ps(_mm_mul_ps(va, _mm_shuffle_ps(vb, vb, 0xc9)),
-                          _mm_mul_ps(vb, _mm_shuffle_ps(va, va, 0xc9)));
-    _mm_storeu_ps(&out->x, _mm_shuffle_ps(r, r, 0xc9));
+    _mm_storeu_ps(&out->x, Shuf_34EF0(_mm_sub_ps(
+        _mm_mul_ps(_mm_loadu_ps(&a->x), Shuf_34EF0(_mm_loadu_ps(&b->x))),
+        _mm_mul_ps(_mm_loadu_ps(&b->x), Shuf_34EF0(_mm_loadu_ps(&a->x))))));
 }
 
 struct PreviewPane {
