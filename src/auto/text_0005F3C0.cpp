@@ -186,6 +186,7 @@ struct BmxInGameMenu {
 struct Obj_5FC { void func_0005E840(int a); void func_001D6600(void); void func_001B1980(void); void func_00157960(void); void func_0012B2B0(void *a, void *b); };
 extern "C" int func_001ADCC0(char *buf, int n, const char *fmt, ...);
 extern char D_002786BC[];
+struct S6_5FC { int r[4]; int x, y; };
 #define AT(t, o) (*(t *)((char *)this + (o)))
 #define GAT(t, o) (*(t *)((char *)D_002A8490 + (o)))
 #define AT(t, o) (*(t *)((char *)this + (o)))
