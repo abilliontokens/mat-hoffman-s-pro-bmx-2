@@ -18,14 +18,14 @@ static __forceinline void Slice(Vec4 *P,Vec4 *N,const Vec4 *p,const Vec4 *a,cons
  if(vb[k]!=vc[k]&&((vb[k]<=pa[k]&&vc[k]>=pa[k])||(vb[k]>=pa[k]&&vc[k]<=pa[k]))){v[count]=b;v[count+1]=c;vn[count]=nb;vn[count+1]=nc;count+=2;}
  if(vc[k]!=va[k]&&((vc[k]<=pa[k]&&va[k]>=pa[k])||(vc[k]>=pa[k]&&va[k]<=pa[k]))){v[count]=c;v[count+1]=a;vn[count]=nc;vn[count+1]=na;}
   float t,s;
- t=(pa[k]-(&v[0]->x)[k])/((&v[1]->x)[k]-(&v[0]->x)[k]);
- s=D_00275460-t;
- P[0]=*v[1]*t+*v[0]*s;
- N[0]=*vn[1]*t+*vn[0]*s;
- t=(pa[k]-(&v[2]->x)[k])/((&v[3]->x)[k]-(&v[2]->x)[k]);
- s=D_00275460-t;
- P[1]=*v[3]*t+*v[2]*s;
- N[1]=*vn[3]*t+*vn[2]*s;
+ int i;
+ for(i=0;i<2;i++){
+  const Vec4 *a0=v[2*i],*a1=v[2*i+1],*n0=vn[2*i],*n1=vn[2*i+1];
+  t=(pa[k]-(&a0->x)[k])/((&a1->x)[k]-(&a0->x)[k]);
+  s=D_00275460-t;
+  P[i]=*a1*t+*a0*s;
+  N[i]=*n1*t+*n0*s;
+ }
  }
 #include <math.h>
 
