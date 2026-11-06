@@ -425,9 +425,9 @@ int C_001A4590::func_001A3DA0(int volatile a0)
         for (t.i = 1; t.i <= t.a; t.i++) {
             func_001ADCC0(s.buf2, 0x104, D_00284AB0, t.i);
             if (obj.func_00169710(s.buf2) != 0) {
-                C_001A4440_List *list;
                 S_001A3DA0_Item *item;
                 C_001A4590 *p;
+                C_001A4440_List *list;
                 unsigned int flags;
 
                 obj.func_00168BE0(D_0027A1F8, D_00275630, s.buf3, -1);
@@ -611,6 +611,7 @@ undefined4 C_001A4500::func_001A4500(int a1, int *a2, int a3)
 {
   int in_ECX = (int)this;
   C_001A4440_List *list;
+  void **items;
   int iVar1;
 
   *(int *)(in_ECX + 0x48) = a2[9];
@@ -630,7 +631,8 @@ undefined4 C_001A4500::func_001A4500(int a1, int *a2, int a3)
       return 1;
     }
   }
-  *(int **)((char *)list->items + list->count * 4) = a2;
+  items = (void **)*(void * volatile *)&list->items;
+  items[list->count] = a2;
   list->count++;
   return 1;
 }
