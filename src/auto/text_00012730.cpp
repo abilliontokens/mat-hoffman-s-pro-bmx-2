@@ -340,3 +340,35 @@ int S_11FF0_Owner::func_00012730(V4_00012730 *a, V4_00012730 *b, V4_00012730 *ou
     iter.func_001A4A20();
     return result;
 }
+
+extern void *func_00011110(void *, void *, void *);
+extern float func_00011170(void *);
+extern volatile float D_002755EC;
+void S_11FF0_Owner::func_00012960(float *p, int a, int b)
+{
+    S_12590_Vec4f vec[3];
+    if (D_002A8490->f2a4->f1c8 == 1) {
+        p[1] = *(float *)((char *)this + 0x3e8);
+        return;
+    }
+    if (!*((char *)this + 0x3de) && *(int *)((char *)f384 + 0x24) == *(int *)((char *)this + 0x394) && !*((char *)this + 0x3df)) {
+        float v = func_00011170(func_00011110(&vec[2], (char *)this + 0x3e4, (char *)D_002B9120->f588[f3b4][1] + f3b0 * 16));
+        float base = ((float *)D_002B9120->f588[f3b4][1])[f3b0 * 4 + 1];
+        p[1] = base + (v / *(float *)((char *)this + 0x3c4)) * *(float *)((char *)this + 0x3c8);
+        return;
+    }
+    vec[0].x = p[0];
+    vec[0].y = p[1];
+    vec[0].z = p[2];
+    vec[0].w = p[3];
+    vec[0].y += D_002755EC;
+    vec[1].x = p[0];
+    vec[1].y = p[1];
+    vec[1].z = p[2];
+    vec[1].w = p[3];
+    vec[1].y = (float)*(int *)(*(char **)((char *)D_002B9120 + 0x4dc) + 0x124);
+    vec[2].z = 0; vec[2].y = 0; vec[2].x = 0; vec[2].w = 1;
+    if (func_00012730((V4_00012730 *)&vec[0], (V4_00012730 *)&vec[1], (V4_00012730 *)&vec[2], 0, 1) == 1 && vec[2].y > vec[1].y)
+        p[1] = vec[2].y;
+}
+
