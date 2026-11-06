@@ -61,11 +61,6 @@ struct Game {
     void func_00156FC0();
 };
 
-static __forceinline void CallBase_001D1390(Game *g)
-{
-    g->func_00156FC0();
-}
-
 struct V_XboxGame {
     virtual void v0();
     virtual void v1();
