@@ -251,8 +251,8 @@ struct S_15D0_Pkt { int id; unsigned short buttons; unsigned char a[8]; short lx
 struct S_15D0_State { unsigned short buttons; unsigned char a[8]; short lx, ly, rx, ry; };
 struct S_15D0_H { void func_00135E90(int a, int b, int c, int d); };
 extern char *D_002A8490;
-extern "C" int func_0026ECB6(void *h, void *p);
-extern "C" int func_0026ED25(void *h, void *p);
+extern "C" int __stdcall func_0026ECB6(void *h, void *p);
+extern "C" int __stdcall func_0026ED25(void *h, void *p);
 extern float D_002755E4, D_00284758, D_00287B68, D_00278650, D_00278784, D_00275544;
 int XboxGame::func_001D0FD0(int param_1)
 {
