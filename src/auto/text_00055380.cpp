@@ -319,7 +319,9 @@ struct Quat_00055380 : S_00056100_Quat {
 };
 
 struct func_00055380 : CameraBehavior_00055380 {
-    void *vtbl_dummy_unused_pad;
+    virtual void v0();
+    virtual void v1();
+    virtual void v3();
     char pad4[4];
     u32 unk8, unkC, unk10, unk14, unk18;
     Quat_00055380 q1C;
@@ -346,7 +348,6 @@ void func_00055140(S_00056100_Quat *,S_00056100_Quat *);
 void C_000559E0_unused();
 func_00055380::func_00055380()
 {
-    vtbl_dummy_unused_pad = &D_00277CF4;
     unkC = 0;
     unk10 = 0;
     unk14 = 0;
