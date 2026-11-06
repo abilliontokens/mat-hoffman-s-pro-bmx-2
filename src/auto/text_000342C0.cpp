@@ -40,6 +40,8 @@ static __forceinline Vec4 Vec3Add(Vec4 a, Vec4 b)
     return r;
 }
 
+struct S_000342C0_Mgr { char pad0[0x234]; int f234; };
+extern S_000342C0_Mgr *D_002A8490;
 struct C_000342C0 {
     void **vtbl;
     char pad4[0x64];
@@ -184,6 +186,8 @@ void C_00034A40::func_00034A40(void *a1, void *a2, void *a3, S_00034A40_Tab *a4,
     Vec4 v54, v24, v64, v34, v74;
     S_00034A40_Elem *e;
     float ex, ey, ez;
+    float m, t;
+    float u;
 
     v54.x = v54.y = v54.z = 0.0f; v54.w = 1.0f;
     v24.x = v24.y = v24.z = 0.0f; v24.w = 1.0f;
@@ -203,14 +207,55 @@ void C_00034A40::func_00034A40(void *a1, void *a2, void *a3, S_00034A40_Tab *a4,
     ez = e->f40;
 
     if (f24 != 0) {
-        func_00198390(f24);
+        ((S_00034A40_Obj *)f24)->func_00198390();
         if (f2c != 0)
-            func_00198390(f2c);
+            ((S_00034A40_Obj *)f2c)->func_00198390();
         f24 = 0;
     } else if (f28 != 0) {
-        func_00198390(*(void **)((char *)f28->f1a4 + 4));
+        ((S_00034A40_Obj *)*(void **)((char *)f28->f1a4 + 4))->func_00198390();
         f28 = 0;
     }
-    (void)ex; (void)ey; (void)ez;
+    if (a1 != 0) {
+        f24 = a1;
+        ((S_00034A40_Obj *)f24)->func_001983A0();
+        ((S_00034A40_Obj *)f24)->func_0019A8C0(&v34, &v74);
+        if (func_001E8AF0((char *)f24 + 0x28, D_00276D54))
+            v34.z -= D_00275AEC;
+        *(int *)((char *)f24 + 0x68) = 0;
+        f28 = (S_00034A40_28 *)a3;
+        ((S_00034A40_Obj *)*(void **)((char *)f28->f1a4 + 4))->func_001983A0();
+        ((S_00034A40_Obj *)*(void **)((char *)f28->f1a4 + 4))->func_0019A8C0(&v34, &v74);
+        ((S_00034A40_Obj *)f28->f1a4)->func_00164820(*(void **)((char *)f28->f1ac + 4));
+    } else {
+        f28 = 0;
+    }
+    if (a2 != 0) {
+        f2c = a2;
+        ((S_00034A40_Obj *)f2c)->func_001983A0();
+    } else {
+        f2c = 0;
+    }
+    m = a7;
+    if (m > a8) {
+        if (m > a9) m = a7; else m = a9;
+    } else {
+        if (a8 > a9) m = a8; else m = a9;
+    }
+    {
+        float best;
+        if (ey > ez) {
+            best = (ey > ex) ? ey : ex;
+        } else {
+            best = (ez > ex) ? ez : ex;
+        }
+        t = (m > best) ? best : m;
+    }
+    t = t * D_0027653C;
+    t = t * (float)D_002766C8;
+    u = D_00276220 * t + a5;
+    v34.z = a5 - u;
+    v64.x = v34.y * u - v34.z * u;
+    this->f38 = 0.0f;
+    (void)v54; (void)v64; (void)v74;
 }
 
