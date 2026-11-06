@@ -386,7 +386,7 @@ extern float D_0028AD00;
 extern float D_0028ACF0;
 extern float D_0028ACE0;
 extern float D_002A9924, D_002A9928, D_002A992C, D_002A9930;
-static __forceinline void Normalize_00193EB0(V4_00193EB0 *out, V4_00193EB0 *in)
+static inline void Normalize_00193EB0(V4_00193EB0 *out, V4_00193EB0 *in)
 {
     __m128 x = _mm_loadu_ps(&in->x);
     __m128 sq = _mm_mul_ps(x, x);
