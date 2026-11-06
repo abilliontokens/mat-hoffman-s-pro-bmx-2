@@ -164,7 +164,7 @@ struct C_0018F980_Obj {
 struct C_0018F980 {
     char pad0[0x24];
     volatile int f24;
-    char name[0x104];
+    volatile char name[0x104];
     volatile int f12c;
     volatile int f130;
     volatile int f134;
@@ -213,7 +213,7 @@ void C_0018F980::func_0018F980(int a1, char *volatile str)
     do {
         c = *end++;
     } while (c != 0);
-    t.a = end - (s0 + 1);
+    t.a = end - s0 - 1;
     t.b = 0x103;
     {
         int vb = t.b;
@@ -221,8 +221,8 @@ void C_0018F980::func_0018F980(int a1, char *volatile str)
         t.r = vb > va ? va : vb;
     }
     n = t.r;
-    func_001E8920(self->name, str, n);
-    self->name[n] = 0;
+    func_001E8920((char *)self->name, str, n);
+    n[self->name] = 0;
     self->f12c = 4;
     self->f130 = 4;
     self->f134 = 4;
@@ -232,16 +232,16 @@ void C_0018F980::func_0018F980(int a1, char *volatile str)
     self->f138 = 8;
     self->f13c = 1;
     self->f168 = 0;
-    self->f16c = self->f168 + 10;
+    { C_0018F980 *s = self; s->f16c = s->f168 + 10; }
     self->f164 = func_001E8AA5(self->f16c * 0x38);
     self->f15c = 0;
-    self->f160 = self->f15c + 0x32;
+    { C_0018F980 *s = self; s->f160 = s->f15c + 0x32; }
     self->f158 = func_001E8AA5(self->f160 * 0x60);
     self->f174 = 0;
-    self->f178 = self->f174 + 10;
+    { C_0018F980 *s = self; s->f178 = s->f174 + 10; }
     self->f170 = func_001E8AA5(self->f178 * 0x24);
     self->f180 = 0;
-    self->f184 = self->f180 + 10;
+    { C_0018F980 *s = self; s->f184 = s->f180 + 10; }
     self->f17c = func_001E8AA5(self->f184 * 8);
     p = (C_0018F980_Obj *)func_001E8A44(0x190);
     self->f14c = p ? p->Init() : 0;
