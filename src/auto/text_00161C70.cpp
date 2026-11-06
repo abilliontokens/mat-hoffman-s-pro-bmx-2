@@ -300,7 +300,7 @@ void func_00162330(void *a, float *n, float *p1, float *p2, float *p3)
 }
 
 /* The part of the projection matrix that doesn't depend on the far plane. */
-static __forceinline void setprojcommon(float *m, float a2, float a3, float a4, float a5, float a6)
+static __forceinline void setprojcommon(float *m, float a2, float a3, float a4, float a5, float a6, float d)
 {
     m[14] = 1.0f;
     m[3] = 0.0f;
@@ -313,19 +313,19 @@ static __forceinline void setprojcommon(float *m, float a2, float a3, float a4, 
     m[9] = 0.0f;
     m[13] = 0.0f;
     m[0] = (a6 + a6) / (a3 - a2);
-    m[5] = (a6 + a6) / (a5 - a4);
+    m[5] = (a6 + a6) / d;
     m[2] = (a2 + a3) / (a3 - a2);
-    m[6] = (a4 + a5) / (a5 - a4);
+    m[6] = (a4 + a5) / d;
 }
 
-float *func_00162470(float *m, float a2, float a3, float a4, float a5, float a6, float a7, int a8)
+float *func_00162470(float *m, float a2, float a3, float a4, float a5, float a6, float a7, unsigned a8)
 {
     if (a8 != 0) {
-        setprojcommon(m, a2, a3, a4, a5, a6);
+        setprojcommon(m, a2, a3, a4, a5, a6, a5 - a4);
         m[10] = a7 / (a7 - a6);
         m[11] = -(a6 * a7 / (a7 - a6));
     } else {
-        setprojcommon(m, a2, a3, a4, a5, a6);
+        setprojcommon(m, a2, a3, a4, a5, a6, a5 - a4);
         m[10] = (a6 + a7) / (a7 - a6);
         m[11] = a6 * a7 * -2.0f / (a7 - a6);
     }
