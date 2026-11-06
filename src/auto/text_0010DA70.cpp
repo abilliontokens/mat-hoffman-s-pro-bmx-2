@@ -138,7 +138,7 @@ struct BmxVehicle_10DA70 {
 };
 
 /* declarations for BmxVehicle_10DA70::func_0010E2A0 (vehicle reset) */
-#define MEMBER_10E2A0(T, off) (*(T *)((char *)self + (off)))
+#define MEMBER_10E2A0(T, off) (*(T volatile *)((char *)self + (off)))
 extern float D_00275460, D_00275544;
 extern int D_002A3A9C, D_002A3A98, D_002B91FC;
 
@@ -460,10 +460,9 @@ int C_0010DED0::func_0010E030(int a, int b)
 {
     char buffer[260];
     float scale;
-    Table_10DED0 *t;
-    int cur;
     int i;
     int idx;
+    int cur;
     int mode;
     int flag;
 
@@ -472,8 +471,8 @@ int C_0010DED0::func_0010E030(int a, int b)
     if (cur != -1) {
         for (i = 0; i < 16; i++) {
             if (f1134 != -1) break;
-            t = f24->f52C;
-            idx = i + (cur << 4);
+            Table_10DED0 *t = f24->f52C;
+            idx = cur * 16 + i;
             if (t->ids[idx] == a && t->keys[idx] == b) {
                 int *p = &cntE20[cur * 16 + i];
                 f1134 = i;
