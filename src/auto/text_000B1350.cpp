@@ -453,6 +453,8 @@ int func_000B1740(VehicleAI *ai, S_000B1740_Panel *panel)
     return 0;
 }
 
+#pragma optimize("g", off)
+#pragma optimize("y", on)
 void C_000B1A40::func_000B1A40(S_000B1A40_Stream *stream)
 {
     char buf[0x104];
