@@ -1,5 +1,21 @@
 /* 4 functions from 0x000DA390 to 0x000DB310, found by Ghidra. */
 #include "common.h"
+struct DA_Call {
+ int func_000301D0();
+ int func_000B5870();
+ int func_00136170(int,int,int);
+ void func_000B9A80(int,int);
+ void func_00094E40(int,int,int);
+};
+struct DA_Page {
+ char pad[0x124]; char *owner;
+ char pad128[0x158];
+ int f280,f284,f288,f28c,f290,f294,f298,f29c,f2a0,f2a4,f2a8,f2ac;
+ int f2b0,f2b4,f2b8,f2bc,f2c0,f2c4,f2c8,f2cc,f2d0;
+ char pad2d4[0x58]; float positions[11];
+ int func_000DAAB0(int,int);
+};
+extern float D_002757F0;
 
 struct LookupObj_DA {
     int *func_0018C160(int a);
