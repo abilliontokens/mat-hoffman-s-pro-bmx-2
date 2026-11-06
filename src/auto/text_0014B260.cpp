@@ -31,6 +31,12 @@ struct __declspec(align(16)) M44_0014BA80 { __m128 m[4]; };
 struct S_0014BA80_Node { char pad0[0xF0]; M44_0014BA80 mat; };
 struct S_0014BA80_Pair { S_0014BA80_Node *a; S_0014BA80_Node *b; };
 extern float D_002755E8;
+extern char *D_002B92EC;
+extern "C" void *__cdecl memset(void *, int, unsigned int);
+void func_00133D80(int);
+void func_0011AC30(void *, void *);
+void func_00030AC0(void *, void *, void *);
+void func_00126740(void *, int, int *, void *, char *, int);
 Vec4 *func_0011EEE0(Vec4 *out, Vec4 *a, Vec4 *b);
 Vec4 *func_0014AA70(Vec4 *out, Vec4 *a, Vec4 *b);
 void func_0001C680(Vec4 *out, Vec4 v, float *m);
@@ -167,6 +173,7 @@ void DynamicRayCollisionObject::func_0014BA40(int param_1)
 #pragma auto_inline(on)
 void DynamicRayCollisionObject::func_0014BA80(Vec4 *centre, float *extent)
 {
+    DynamicRayCollisionObject * volatile self = this;
     V4_0014BA80 axes[3];
     V4_0014BA80 c;
     V4_0014BA80 a;
@@ -174,26 +181,28 @@ void DynamicRayCollisionObject::func_0014BA80(Vec4 *centre, float *extent)
     V4_0014BA80 mn(3.4028235e+38f, 3.4028235e+38f, 3.4028235e+38f, 1.0f);
     V4_0014BA80 mx(-3.4028235e+38f, -3.4028235e+38f, -3.4028235e+38f, 1.0f);
     int i;
-    for (i = 0; i < unkA8; i++) {
-        if (fAC[i].a != 0) {
-            XformV4_0014BA80(&a, &fAC[i].a->mat, &fB0[i * 2].x);
+    for (i = 0; i < self->unkA8; i++) {
+        S_0014BA80_Node *n = self->fAC[i].a;
+        if (n != 0) {
+            XformV4_0014BA80(&a, &n->mat, &self->fB0[i * 2].x);
         } else {
-            a = *(V4_0014BA80 *)&fB0[i * 2];
+            a = *(V4_0014BA80 *)&self->fB0[i * 2];
         }
-        if (fAC[i].b != 0) {
-            XformV4_0014BA80(&b, &fAC[i].b->mat, &fB0[i * 2 + 1].x);
+        n = self->fAC[i].b;
+        if (n != 0) {
+            XformV4_0014BA80(&b, &n->mat, &self->fB0[i * 2 + 1].x);
         } else {
-            b = *(V4_0014BA80 *)&fB0[i * 2 + 1];
+            b = *(V4_0014BA80 *)&self->fB0[i * 2 + 1];
         }
         mn = func_0011EEE0(func_0011EEE0(mn, b), a);
         mx = func_0014AA70(func_0014AA70(mx, b), a);
     }
-    c = V4_0014BA80((mx.x + mn.x) * D_002755E8, (mx.y + mn.y) * D_002755E8, (mx.z + mn.z) * D_002755E8, 1.0f);
     V4_0014BA80 h((mx.x - mn.x) * D_002755E8, (mx.y - mn.y) * D_002755E8, (mx.z - mn.z) * D_002755E8, 1.0f);
-    f28 = *(Vec4 *)&c;
+    c = V4_0014BA80((mx.x + mn.x) * D_002755E8, (mx.y + mn.y) * D_002755E8, (mx.z + mn.z) * D_002755E8, 1.0f);
+    self->f28 = *(Vec4 *)&c;
     float rad;
     _mm_store_ss(&rad, _mm_sqrt_ss(_mm_set_ss(h.x * h.x + h.y * h.y + h.z * h.z)));
-    f48 = rad;
+    self->f48 = rad;
     M44_0014BA80 m;
     _mm_store_ps((float *)&m.m[0], _mm_setzero_ps());
     _mm_store_ps((float *)&m.m[1], _mm_setzero_ps());
