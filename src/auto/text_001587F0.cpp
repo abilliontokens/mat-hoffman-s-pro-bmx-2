@@ -99,6 +99,14 @@ struct C_00158BE0 {
     void *func_00158BE0(int flags);
 };
 
+static __forceinline void SetUnitW_001594F0(int *p)
+{
+    p[2] = 0;
+    p[1] = 0;
+    p[0] = 0;
+    p[3] = 0x3f800000;
+}
+
 struct C_001594F0 {
     unsigned unk0 : 16;
     unsigned unk2 : 8;
