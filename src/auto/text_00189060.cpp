@@ -356,8 +356,11 @@ struct BasicScene {
     SceneSound *f3a4;
     SceneGroup **f3a8;
     char pad3ac[0x3b4 - 0x3ac];
-    SceneLoader *f3b4;
-    char pad3b8[0x3e4 - 0x3b8];
+    S_00189060_Root *f3b4;
+    S_00189060_Sub *f3b8;
+    char pad3bc[0x3c0 - 0x3bc];
+    S_00189060_Holder *f3c0;
+    char pad3c4[0x3e4 - 0x3c4];
     int f3e4;
     char pad3e8[0x3f4 - 0x3e8];
     C_00189B60_Node *arr3f4[12];
