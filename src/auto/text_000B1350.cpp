@@ -339,7 +339,9 @@ void C_000B1350::func_000B1350(void)
         {
             int cnt = 0;
             for (i = 0; i < f38; i++) {
-                if (f48[i]->f50 == n || f48[i]->f54 == n) {
+                if (f48[i]->f50 == n) {
+                    cnt++;
+                } else if (f48[i]->f54 == n) {
                     cnt++;
                 }
             }
@@ -396,8 +398,8 @@ void C_000B1350::func_000B1350(void)
         for (k = 0; k < f44[i]->f4C; k++) {
             S_000B1350_Sub *s = f44[i]->f48[k];
             int cur = (int)s->f4;
-            S_000B1350_Node *node = f4C[s->f0];
-            if (node->f4 > 0) {
+            if (f4C[s->f0]->f4 > 0) {
+                S_000B1350_Node *node = f4C[s->f0];
                 float t = s->f4 - (float)cur;
                 S_000B1350_Tbl *tbl = node->fC[0]->f3C->f518;
                 unsigned int next = cur + 1;
@@ -452,25 +454,29 @@ int func_000B1740(VehicleAI *ai, S_000B1740_Panel *panel)
     return 0;
 }
 
-#pragma optimize("g", off)
-#pragma optimize("y", on)
-void C_000B1A40::func_000B1A40(S_000B1A40_Stream *stream)
+#pragma optimize("g", on)
+void C_000B1A40::func_000B1A40(S_000B1A40_Stream * volatile stream)
 {
     char buf[0x104];
     int len;
+    int mb;
+    struct { C_000B1A40 * volatile self; volatile int a; volatile int cnt; } t;
 
+    t.self = this;
     stream->func_00168BE0(D_00276310, D_002764F0, buf, 0x104);
-    len = Min_000B1740(func_001E9040(buf, D_0027CEF0), 0x32);
-    func_001E8920(name, buf, len);
-    name[len] = 0;
-    stream->func_00168BE0(D_00275AE0, D_002764F0, text, 0x104);
-    stream->func_00168C20(D_00275680, 0, &f8);
-    stream->func_00168CB0(D_00275AD4, &D_002A2DC4, fC);
-    stream->func_00168CB0(D_00275AC8, &D_002A2DF4, f1C);
-    stream->func_00168CB0(D_0027CEE4, &D_002A2DE4, f2C);
-    stream->func_00168C20(D_0027CED8, 1, &f0);
+    t.a = func_001E9040(buf, D_0027CEF0);
+    mb = 0x32;
+    t.cnt = t.a > mb ? mb : t.a;
+    len = t.cnt;
+    func_001E8920(t.self->name, buf, len);
+    t.self->name[len] = 0;
+    stream->func_00168BE0(D_00275AE0, D_002764F0, t.self->text, 0x104);
+    stream->func_00168C20(D_00275680, 0, &t.self->f8);
+    stream->func_00168CB0(D_00275AD4, &D_002A2DC4, t.self->fC);
+    stream->func_00168CB0(D_00275AC8, &D_002A2DF4, t.self->f1C);
+    stream->func_00168CB0(D_0027CEE4, &D_002A2DE4, t.self->f2C);
+    stream->func_00168C20(D_0027CED8, 1, &t.self->f0);
 }
-#pragma optimize("", on)
 void C_000B1B80::func_000B1B80(void)
 {
     char buf[0x104];
@@ -542,12 +548,22 @@ int VehicleAI::func_000B1DA0(int a) {
 
 #pragma optimize("g", on)
 VehicleAI *VehicleAI::func_000B1EE0(int a0) {
+    u32 *p;
+
     ((C_0018C7B0 *)this)->func_0018C7B0(a0);
     vtbl = (void *)&D_0027CF8C;
-    f7C = f80 = f84 = 0;
-    f88 = 0x3f800000;
-    f98 = 0x3f800000;
-    f8C = f90 = f94 = 0;
+    p = (u32 *)&f7C;
+    p[2] = 0;
+    p[1] = 0;
+    p[0] = 0;
+    p[3] = 0x3f800000;
+    p = (u32 *)&f8C;
+    p[2] = 0;
+    p[1] = 0;
+    p[0] = 0;
+    p[3] = 0x3f800000;
+    f50 = -1;
+    f54 = -1;
     f3C = 0;
     f40 = 0;
     f44 = 0;
@@ -557,8 +573,6 @@ VehicleAI *VehicleAI::func_000B1EE0(int a0) {
     f48 = 0;
     f78 = 0;
     f1A3 = 0;
-    f50 = -1;
-    f54 = -1;
     f6C = 0x41100000;
     return this;
 }
