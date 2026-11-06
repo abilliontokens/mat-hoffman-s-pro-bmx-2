@@ -33,7 +33,13 @@ static __forceinline void Xform_0019DEF0(V4_0019DEF0 * volatile out, const M_001
     out->w = 1.0f;
 }
 
-static __forceinline void Copy_0019DEF0(M_0019DEF0 * volatile dst, const M_0019DEF0 * volatile src) { *dst = *src; }
+static __forceinline void Copy_0019DEF0(M_0019DEF0 * volatile dst, const M_0019DEF0 * volatile src)
+{
+    const M_0019DEF0 *s = src;
+    __m128 r0 = s->m[0], r1 = s->m[1], r2 = s->m[2], r3 = s->m[3];
+    M_0019DEF0 *d = dst;
+    d->m[0] = r0; d->m[1] = r1; d->m[2] = r2; d->m[3] = r3;
+}
 
 static inline float Abs_0019DEF0(float f) { int i = *(int *)&f & 0x7fffffff; return *(float *)&i; }
 
