@@ -20,3 +20,4 @@ extern AirVec D_002A0E84;
 extern float D_002A0E78, D_00275994, D_002760A0, D_002A0E74, D_00275544;
 AirVec *func_000110B0(AirVec*,AirVec*);
 AirVec *func_0001C5E0(AirVec*,float,AirVec*);
+extern float D_002756DC,D_00275F64,D_002A0E34,D_00276080;
