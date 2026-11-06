@@ -146,7 +146,7 @@ __declspec(align(16)) struct Mat44_10E2A0 {
     float m[16];
 };
 
-static __forceinline void identity_ref_10E2A0(Mat44_10E2A0 *&p)
+static __forceinline void identity_ref_10E2A0(Mat44_10E2A0 * volatile &p)
 {
     Mat44_10E2A0 *q = p;
     _mm_store_ps(&q->m[0], _mm_setzero_ps());
@@ -518,6 +518,77 @@ void C_0010E260::func_0010E260(void)
   } while (iVar3 != 0);
   *(undefined4 *)(iVar1 + 0x34) = 0xffffffff;
   return;
+}
+
+void BmxVehicle_10DA70::func_0010E2A0(void)
+{
+    BmxVehicle_10DA70 * volatile self = this;
+    Mat44_10E2A0 m1;
+    Mat44_10E2A0 *pm;
+    Mat44_10E2A0 m2;
+    Vec4 a;
+    Vec4 b;
+    Vec4 c;
+    float lenSq;
+    float len;
+    C_0010E810Slot *slot;
+    Vec4 *v;
+
+    *(int *)((char *)this + 0x2084) = 0;
+    MEMBER_10E2A0(int, 0x2088) = -1;
+    if (MEMBER_10E2A0(float, 0x11A4) <= D_00275460) {
+        func_00108510(0, D_002A3A3C);
+    }
+    if (MEMBER_10E2A0(int, 0x11F4) == 1) {
+        MEMBER_10E2A0(int, 0x11F4) = 2;
+    }
+    MEMBER_10E2A0(int, 0x964) = 0;
+    MEMBER_10E2A0(int, 0x968) = 0;
+    MEMBER_10E2A0(int, 0x96C) = 0;
+    MEMBER_10E2A0(int, 0x99C) = 0;
+    MEMBER_10E2A0(int, 0x9A0) = 0;
+    MEMBER_10E2A0(int, 0x9BC) = 0;
+    slot = D_002A8490->f2A4->f170[MEMBER_10E2A0(int, 0xA2C)];
+    if (slot != 0) {
+        slot->func_000848F0();
+    }
+    self->func_0002D270();
+    pm = &m1;
+    identity_ref_10E2A0(pm);
+    m2 = m1;
+    MEMBER_10E2A0(C_10E2A0_230 *, 0x230)->f174->func_00199BE0(&m2);
+    self->func_00028070();
+    MEMBER_10E2A0(int, 0x5C8) = 1;
+    MEMBER_10E2A0(int, 0x8AC) = 0;
+    a.z = 0.0f;
+    a.y = 0.0f;
+    a.x = 0.0f;
+    a.w = 1.0f;
+    b.z = 0.0f;
+    b.y = 0.0f;
+    b.x = 0.0f;
+    b.w = 1.0f;
+    MEMBER_10E2A0(Obj_10DA70_1E0 *, 0x1E0)->f22C->func_00199A70(0, &b);
+    MEMBER_10E2A0(C_10E2A0_950 *, 0x950)->f88->func_00199A70(0, &a);
+    MEMBER_10E2A0(C_10E2A0_950 *, 0x950)->func_0011CA60(a);
+    func_0001E9E0(&c, (Vec4 *)((char *)MEMBER_10E2A0(char *, 0x1E0) + 0x258));
+    v = (Vec4 *)((char *)MEMBER_10E2A0(char *, 0x1E0) + 0x258);
+    lenSq = v->x * v->x + v->y * v->y + v->z * v->z;
+    len = sqrtf(lenSq);
+    MEMBER_10E2A0(C_10E2A0_950 *, 0x950)->func_0011C900(b, *(Vec4 *)((char *)MEMBER_10E2A0(char *, 0x1E0) + 0x238), c, len);
+    ((void (__stdcall *)(void *))(*(void ***)MEMBER_10E2A0(char *, 0x1E0))[0x74 / 4])((char *)self + 0x8D0);
+    MEMBER_10E2A0(int, 0x1F0 + 0) = MEMBER_10E2A0(int, 0x1F0);
+    *(int *)(MEMBER_10E2A0(char *, 0x1F0) + 0xC8) = D_002A3A9C;
+    *(int *)(MEMBER_10E2A0(char *, 0x1F0) + 0xB4) = D_002A3A98;
+    *(int *)(MEMBER_10E2A0(char *, 0x1F0) + 0xBC) = D_002B91FC;
+    *(int *)(MEMBER_10E2A0(char *, 0x1F0) + 0xC0) = D_002B91FC;
+    *(int *)(MEMBER_10E2A0(char *, 0x1F0) + 0xC4) = D_002B91FC;
+    *(int *)(MEMBER_10E2A0(char *, 0x1F0) + 0xD0) = 0x3be56042;
+    *(Vec4 *)(MEMBER_10E2A0(char *, 0x1E0) + 0x190) = *(Vec4 *)((char *)self + 0xFC);
+    MEMBER_10E2A0(int, 0x11CC) = MEMBER_10E2A0(float, 0x878) < D_00275544;
+    MEMBER_10E2A0(C_10E2A0_A04 *, 0xA04)->func_001648E0(MEMBER_10E2A0(int, 0x1800), 1.0f, 0, 0, 0);
+    MEMBER_10E2A0(C_10E2A0_A04 *, 0xA04)->func_00164820(MEMBER_10E2A0(int, 0x1800));
+    MEMBER_10E2A0(C_10E2A0_15A8 *, 0x15A8)->func_001A4100(func_00011260(1, MEMBER_10E2A0(C_10E2A0_15A8 *, 0x15A8)->f1C4), 0, 0);
 }
 
 void C_10E6D0::func_0010E6D0(void)
