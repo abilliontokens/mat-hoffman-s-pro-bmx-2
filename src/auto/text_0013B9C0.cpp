@@ -22,6 +22,9 @@ int func_0014FE60(void *p, int size, void *file);
 
 void *func_001E83E8(void *p, int size);
 void *func_0014FDF0(const char *name, char *mode);
+int func_00192300(void *file, int *pos, int *val);
+extern "C" int __stdcall func_0013B530(void *a, void *b, int c, int d);
+extern "C" int __stdcall func_0013B660(void *a, void *b, int c);
 extern short D_00284C50;
 extern "C" unsigned int strlen(const char *);
 extern "C" char *strcpy(char *, const char *);
