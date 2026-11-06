@@ -126,6 +126,17 @@ struct C_000264C0 {
     C_000264C0 *func_000264C0(S_000264C0_Mat *src);
 };
 
+extern "C" void _ReadWriteBarrier(void);
+#pragma intrinsic(_ReadWriteBarrier)
+
+static __forceinline void Copy4_000264C0(__m128 *s, __m128 * volatile dst)
+{
+    __m128 a0 = s[0], a1 = s[1], a2 = s[2], a3 = s[3];
+    _ReadWriteBarrier();
+    __m128 *d = dst;
+    d[0] = a0; d[1] = a1; d[2] = a2; d[3] = a3;
+}
+
 struct S_00026500_Entry {
     char name[0x20];
     int value;
@@ -249,16 +260,26 @@ undefined4 func_00026300(float *param_1, float *param_2)
 
 void func_000263B0(float *out, float *a, float *b)
 {
-    __m128 *A = (__m128 *)a;
     __m128 *O = (__m128 *)out;
-    O[0] = _mm_add_ps(_mm_add_ps(_mm_mul_ps(_mm_load_ps1(&b[0]), A[0]), _mm_mul_ps(_mm_load_ps1(&b[1]), A[1])),
-                      _mm_add_ps(_mm_mul_ps(_mm_load_ps1(&b[2]), A[2]), _mm_mul_ps(_mm_load_ps1(&b[3]), A[3])));
-    O[1] = _mm_add_ps(_mm_add_ps(_mm_mul_ps(_mm_load_ps1(&b[4]), A[0]), _mm_mul_ps(_mm_load_ps1(&b[5]), A[1])),
-                      _mm_add_ps(_mm_mul_ps(_mm_load_ps1(&b[6]), A[2]), _mm_mul_ps(_mm_load_ps1(&b[7]), A[3])));
-    O[2] = _mm_add_ps(_mm_add_ps(_mm_mul_ps(_mm_load_ps1(&b[8]), A[0]), _mm_mul_ps(_mm_load_ps1(&b[9]), A[1])),
-                      _mm_add_ps(_mm_mul_ps(_mm_load_ps1(&b[10]), A[2]), _mm_mul_ps(_mm_load_ps1(&b[11]), A[3])));
-    O[3] = _mm_add_ps(_mm_add_ps(_mm_mul_ps(_mm_load_ps1(&b[12]), A[0]), _mm_mul_ps(_mm_load_ps1(&b[13]), A[1])),
-                      _mm_add_ps(_mm_mul_ps(_mm_load_ps1(&b[14]), A[2]), _mm_mul_ps(_mm_load_ps1(&b[15]), A[3])));
+    __m128 *ap = (__m128 *)a;
+    float *bp = b;
+    __m128 r0 = _mm_setzero_ps();
+    __m128 r1 = _mm_setzero_ps();
+    __m128 r2 = _mm_setzero_ps();
+    __m128 r3 = _mm_setzero_ps();
+    int k;
+    for (k = 0; k < 4; k++) {
+        __m128 ak = *ap++;
+        r0 = _mm_add_ps(r0, _mm_mul_ps(_mm_load_ps1(&bp[0]), ak));
+        r1 = _mm_add_ps(r1, _mm_mul_ps(_mm_load_ps1(&bp[4]), ak));
+        r2 = _mm_add_ps(r2, _mm_mul_ps(_mm_load_ps1(&bp[8]), ak));
+        r3 = _mm_add_ps(r3, _mm_mul_ps(_mm_load_ps1(&bp[12]), ak));
+        bp++;
+    }
+    O[0] = r0;
+    O[1] = r1;
+    O[2] = r2;
+    O[3] = r3;
 }
 
 C_000264C0 *C_000264C0::func_000264C0(S_000264C0_Mat *src)
@@ -398,7 +419,7 @@ void C_000269B0::func_000269B0(float a, float b, float c)
 
 float C_00026A10::func_00026A10(float a, float b)
 {
-    f8 = clamp_min_000261F0(b, f4) / f4;
+    f8 = min_ss_00026A10(f4, b) / f4;
     f0 = (a - f0) * f8 + f0;
     return f0;
 }
