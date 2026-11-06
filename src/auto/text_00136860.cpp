@@ -58,6 +58,9 @@ struct C_0013B210 {
 extern C_0013B210 *D_002BEAAC;
 
 int func_001B27B0(int format);
+struct V136FE0 { float x, y, z; int color; float u, v; };
+extern const float D_00278C48, D_00275994;
+extern float D_002BE040[];
 int func_001B2730(int format);
 void *func_001E8A44(int size);
 
