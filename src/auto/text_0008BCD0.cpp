@@ -16,6 +16,10 @@ extern char D_00279F10[];
 extern char D_00279F08[];
 extern char D_00279EFC[];
 extern char D_00279EE8[];
+extern char D_00279F3C[];
+extern char D_00279F34[];
+extern char D_00279F44[];
+extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
 
 struct Str_0008BCD0 {
     int a[4];
