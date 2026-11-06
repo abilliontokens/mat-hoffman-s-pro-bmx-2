@@ -263,6 +263,7 @@ struct S_0001B910_Node {
 struct S_0001B910_Flags {
     char pad0[0x24];
     unsigned char f24;
+    int func_001628A0(float t);
 };
 
 struct S_0001BE90_Ctx2 {
