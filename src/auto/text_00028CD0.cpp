@@ -8,7 +8,7 @@ struct C_00029290 {
 struct Q_292C0 { float x, y, z, w; };
 static inline float dot_295D0(const Q_292C0 &a, const Q_292C0 &b) { return a.y*b.y + a.x*b.x + a.z*b.z; }
 static inline Q_292C0 subtract_295D0(const Q_292C0 &a, const Q_292C0 &b) { Q_292C0 r; r.x=a.x-b.x; r.y=a.y-b.y; r.z=a.z-b.z; r.w=a.w-b.w; return r; }
-struct Q_292C0_Src { Q_292C0 *f74; Q_292C0 *f78; };
+struct Q_292C0_Src { char pad0[0x74]; Q_292C0 *f74; Q_292C0 *f78; };
 struct Q_292C0_Obj {
     char pad0[0x54]; Q_292C0_Src *f54; char pad58[0xa7 - 0x58]; unsigned char fa7;
     void func_00133ED0(); float func_00133F10(int);
