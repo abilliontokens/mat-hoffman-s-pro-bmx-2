@@ -108,6 +108,13 @@ struct Text_0008BCD0 {
             flags |= 6;
         }
     }
+    void SetPos2(int nx, int ny) {
+        if (x != nx || y != ny) {
+            flags |= 6;
+            y = ny;
+            x = nx;
+        }
+    }
     void SetColor(int c) {
         if (color != c) {
             color = c;
