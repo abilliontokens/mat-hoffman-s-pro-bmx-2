@@ -4,6 +4,21 @@
 #include "ghidra.h"
 #include <string.h>
 #include <stdlib.h>
+struct Config_AF900 {
+ char data[0x4d0];
+ void func_00168280(); void func_001691E0();
+ int func_00169490(const char *, int); int func_00169710(const char *);
+ void func_00168C20(const char *, int, int *);
+ void func_00168C50(const char *, float, float *);
+ void func_00168BE0(const char *, const char *, char *, int);
+ void func_00168CB0(const char *, const void *, void *);
+};
+struct Entry_AF900 { char name[0x34]; int count,a,b,c,start; };
+struct Item_AF900 { char data[0x378]; };
+struct Array_AF900 { int count; Item_AF900 **items; int grow,capacity; int func_0015ACA0(int); };
+struct C_AF900 { char pad[0x5a0]; int count; Entry_AF900 *entries; Array_AF900 objects; int func_000AF900(int *); };
+int func_001ADCC0(char *, int, const char *, ...);
+extern char D_0027CDF0[],D_002A5870[],D_00275678[],D_0027A150[],D_0027CDE8[],D_0027CDE0[],D_0027CDD8[],D_0027CDD0[],D_0027CDC8[],D_0027CDC0[],D_0027CDB8[],D_0027CDA4[],D_0027CD90[],D_0027CD7C[],D_0027CD68[],D_0027CD50[],D_0027CD40[],D_0027CD34[],D_0027CD24[],D_0027CD18[],D_0027CD0C[],D_0027CD00[],D_0027CCF4[],D_0027CCE0[],D_0027CCDC[],D_0027CCD8[],D_0027CCC8[],D_0027CCB8[],D_0027CCA8[],D_0027CC9C[],D_0027CC90[],D_0027CC80[],D_0027CC74[],D_0027CC64[],D_00275630[],D_00276980[],D_00276310[],D_0027ADEC[],D_0027ADDC[],D_002A2734[];
 struct Obj_B0060 {
  virtual void v0();
  virtual void v1();
