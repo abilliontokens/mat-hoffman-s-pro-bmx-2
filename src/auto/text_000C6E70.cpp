@@ -35,6 +35,29 @@ struct S_000C7_Obj {
 
 };
 
+struct S_000C6E70_Widget {
+    char pad0[0x38];
+    u32 f38;
+    char pad3C[0x58 - 0x3C];
+    unsigned char flags;
+    void SetAlpha(int a) { f38 = (a << 24) | (f38 & 0xffffff); flags |= 2; }
+};
+
+/* BmxUIPageParkLevel (vtable 0x0027E1F4) */
+struct C_000C6E70 {
+    char pad0[0x2D4];
+    short f2D4;
+    char pad2D6[0x2F0 - 0x2D6];
+    S_000C6E70_Widget *f2F0;
+    S_000C6E70_Widget *f2F4;
+    S_000C6E70_Widget *f2F8;
+    S_000C6E70_Widget *f2FC;
+    S_000C6E70_Widget *f300;
+    S_000C6E70_Widget *f304;
+    void func_001BF000(void);
+    void func_000C6E70(void);
+};
+
 struct BmxUIPageTwoPlayer {
     void *vtbl;
     char pad4[0x280 - 4];
