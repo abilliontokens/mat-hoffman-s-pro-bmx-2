@@ -32,6 +32,9 @@ struct C_00018D40Elem {
 extern char *D_002B9120;
 extern char D_002A5EA0[], D_002A60B0[], D_002A45E0[], D_002A5870[], D_00275678[], D_002A5FA8[], D_002A47F0[];
 extern char D_00275748[], D_00275940[], D_0027592C[], D_00275910[];
+extern char *D_002B9120;
+extern char D_002A5EA0[], D_002A60B0[], D_002A45E0[], D_002A5870[], D_00275678[], D_002A5FA8[], D_002A47F0[];
+extern char D_00275748[], D_00275940[], D_0027592C[], D_00275910[];
 extern char D_00275984[];
 extern char D_00275978[];
 extern char D_00275968[];
