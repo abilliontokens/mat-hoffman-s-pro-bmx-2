@@ -42,14 +42,6 @@ struct V4_001A8B80 {
     float x, y, z, w;
 };
 
-static __forceinline void SetV4_001A9430(V4_001A8B80 *v, float x, float y, float z, float w)
-{
-    v->x = x;
-    v->y = y;
-    v->z = z;
-    v->w = w;
-}
-
 /* first of the four consecutive floats (D_002AA248..D_002AA254) copied by func_001A9680 */
 extern V4_001A8B80 D_002AA248;
 
