@@ -88,6 +88,7 @@ struct BmxUIPageGlobal {
     Elem_000BF930 *a88[2];
     Elem_000BF930 *a90[2];
     void func_000BF930(void);
+    void func_000BEE30(void);
     void func_001578D0(void);
 };
 
@@ -102,11 +103,14 @@ struct C_000BFB70 {
 void C_000BF860::func_000BF860(int idx, int x, int y, int w)
 {
     S_000BF860_elem *e = a50[idx];
+    int s;
+
     e->SetXY58((float)x, (float)y);
     e = a68[idx];
     e->SetXY58((float)x, (float)y);
+    s = w + x;
     e = a38[idx];
-    e->SetXY4E((float)(x + 0x27 + w), (float)(y + 5));
+    e->SetXY4E((float)(s + 0x27), (float)(y + 5));
 }
 
 void BmxUIPageGlobal::func_000BF930(void)
