@@ -107,7 +107,7 @@ void __cdecl func_001DDE51(char *buf, const char *fmt, ...);
 int func_001EA426(const char *a, const char *b);
 unsigned __stdcall func_0026EBC5(void *type);
 int __stdcall func_0026EBE7(void *type, unsigned *insertions, unsigned *removals);
-int __stdcall func_0026ED5B(int port, int slot, char *letter);
+int __stdcall func_0026ED5B(int port, char slot, char *letter);
 int __stdcall func_0026EE8D(int port, int slot);
 
 struct S_001D4200_Find {
@@ -645,7 +645,9 @@ unsigned C_001D4200::func_001D4060(int a)
 
 int C_001D4200::func_001D40E0(int a)
 {
-    char letter;
+    struct {
+        char c;
+    } L;
 
     if (a == 8) {
         unk0 = a;
@@ -653,8 +655,8 @@ int C_001D4200::func_001D40E0(int a)
         return 1;
     }
     if ((func_0026EBC5(&D_0026D8D0) & func_001D4060(a)) != 0) {
-        if (func_0026ED5B(func_001D4010(a), (a >= 4) ? 1 : 0, &letter) >= 0) {
-            func_001ADCC0(unk4, 4, D_0028F130, letter);
+        if (func_0026ED5B(func_001D4010(a), (a >= 4) ? 1 : 0, &L.c) >= 0) {
+            func_001ADCC0(unk4, 4, D_0028F130, L.c);
             unk0 = a;
             return 1;
         }
