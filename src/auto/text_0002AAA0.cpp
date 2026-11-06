@@ -1,6 +1,7 @@
 /* 5 functions from 0x0002AAA0 to 0x0002B1C0, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+#include <xmmintrin.h>
 
 extern char D_002766F0[];
 extern char D_002766E0[];
