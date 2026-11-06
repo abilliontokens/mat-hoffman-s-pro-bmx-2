@@ -24,7 +24,12 @@ static __forceinline V_1800 Add1800(float *a,float *b){return V_1800(a[0]+b[0],a
 static __forceinline V_1800 Sub1800(float *a,float *b){return V_1800(a[0]-b[0],a[1]-b[1],a[2]-b[2]);}
 static __forceinline V_1800 Mul1800(V_1800 a){return V_1800(a.x*D_002755E8,a.y*D_002755E8,a.z*D_002755E8);}
 
-static inline void FloatToInt(int *out, float f) { *out = (int)f; }
+static inline void FloatToInt(int *out, float f)
+{
+    int * volatile p = out;
+
+    *p = _mm_cvttss_si32(*(__m128 *)&f);
+}
 struct C_001805F0 {
     char pad0[0x104];
     int unk104;
@@ -92,9 +97,13 @@ C_001804F0 *C_001804F0::func_001804F0(float *p) {
     float f0 = D_002F0798 * p[0];
     float f1 = D_002F0798 * p[1];
     float f2 = D_002F0798 * p[2];
-    unk0 = (short)(D_002891BC * f0);
-    unk2 = (short)(D_002891BC * f1);
-    unk4 = (short)(D_002891BC * f2);
+    int t;
+    FloatToInt(&t, D_002891BC * f0);
+    unk0 = *(short *)&t;
+    FloatToInt(&t, D_002891BC * f1);
+    unk2 = *(short *)&t;
+    FloatToInt(&t, D_002891BC * f2);
+    unk4 = *(short *)&t;
     return this;
 }
 #pragma auto_inline(on)
@@ -136,6 +145,7 @@ void C_00180600::func_00180600(int a0, volatile int handle)
     int n1;
     int n2;
     C_00180600 * volatile self = this;
+    F4_1800 P, Q, R;
     if (handle == -1)
         return;
     func_000EBE90v();
@@ -177,7 +187,7 @@ void C_00180600::func_00180600(int a0, volatile int handle)
             D_002BEAAC->func_0013C8A0(handle, &y, 4, 1);
             D_002BEAAC->func_0013C8A0(handle, &z, 4, 1);
             V_1800 A(x, y, z);
-            V_1800 P = Unpack1800(q1.func_001804F0(&A.x));
+            P = UnpackF1800(q1.func_001804F0(&A.x));
             rec->fC = P.x;
             rec->f10 = P.y;
             rec->f14 = P.z;
@@ -187,7 +197,7 @@ void C_00180600::func_00180600(int a0, volatile int handle)
             D_002BEAAC->func_0013C8A0(handle, &y, 4, 1);
             D_002BEAAC->func_0013C8A0(handle, &z, 4, 1);
             V_1800 B(n[0] + x, n[1] + y, n[2] + z);
-            V_1800 Q = Unpack1800(q2.func_001804F0(&B.x));
+            Q = UnpackF1800(q2.func_001804F0(&B.x));
             rec->f18 = Q.x;
             rec->f1C = Q.y;
             rec->f20 = Q.z;
@@ -198,7 +208,7 @@ void C_00180600::func_00180600(int a0, volatile int handle)
                 C.y += D_00275460;
             if (C.z < z)
                 C.z += D_00275460;
-            V_1800 R = Unpack1800(q3.func_001804F0(&C.x));
+            R = UnpackF1800(q3.func_001804F0(&C.x));
             rec->f18 = R.x;
             rec->f1C = R.y;
             rec->f20 = R.z;
