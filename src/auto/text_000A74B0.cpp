@@ -224,7 +224,7 @@ struct Obj_000A79E0 {
     char pad6c;
     char f6d;
     char pad6e[0x32];
-    void (*fA0)();
+    void (* volatile fA0)();
     void func_00133140(int a, int b);
 };
 struct Data_000A79E0 {
@@ -528,14 +528,17 @@ int Models_000A7860::func_000A7860(Arg_000A7860 *arg)
 }
 
 extern "C" int memcmp(const void *a, const void *b, unsigned int n);
+extern "C" int strcmp(const char *a, const char *b);
 int Coll_000A79E0::func_000A79E0(Game_000A79E0 *g)
 {
     char buf[0x104];
+    __declspec(align(16)) float m[16];
     char *name = fC->name;
     char *src;
     char c;
+    Pt_000A79E0 *p;
 
-    if (memcmp(name, D_002764F0, 5) == 0) {
+    if (strcmp(name, "none") == 0) {
         return 0;
     }
     src = name;
@@ -565,18 +568,16 @@ int Coll_000A79E0::func_000A79E0(Game_000A79E0 *g)
         if (fC->f148 > 0) {
             f8->f6d = (char)fC->f148;
         }
-        if (fC->f14c != 0) {
+        if (fC->f14c > 0) {
             D_002B7E18->func_000216F0(buf, fC->f14c, f8);
         }
         f8->fA0 = func_00024360;
-        {
-            __declspec(align(16)) float m[16];
-            ((Pt_000A79E0 *)g->f3b0[g->f348])->func_001577A0(f8, 0x402);
-            func_000265C0(m, fC->f108, fC->f118, fC->f128, 0, 1);
-            f8->v31(m);
-            f8->v31(m);
-            f8->func_00133140(g->f4ac[g->f348], 1);
-        }
+        p = (Pt_000A79E0 *)g->f3b0[g->f348];
+        p->func_001577A0(f8, 0x402);
+        func_000265C0(m, fC->f108, fC->f118, fC->f128, 0, 1);
+        f8->v31(m);
+        f8->v31(m);
+        f8->func_00133140(g->f4ac[g->f348], 1);
     }
     func_001E891B(fC);
     fC = 0;
