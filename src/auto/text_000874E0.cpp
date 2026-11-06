@@ -43,22 +43,59 @@ static __forceinline void SetVtbl_876B0(C_000876B0 *p)
     p->vtbl = (void *)&D_002797A4;
 }
 
+extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
+void *func_001E8A44(int size);
+
 struct LookupObj_874E0 {
     int *func_0018C160(int a);
+    void func_0018C780(int count, char **names, int flags);
+};
+
+struct Mode_87760 {
+    int f0;
+    int f4;
+    int f8;
+};
+
+struct HudMenu_87760 {
+    char pad0[0xa10];
+    int fA10;
+};
+
+struct Hud_87760 {
+    int pad0;
+    HudMenu_87760 *f4;
+};
+
+struct Gfx_87760 {
+    char padB4[0xb4];
+    int fB4;
 };
 
 struct GObjRoot_874E0 {
-    char pad0[0x10];
+    char pad0[4];
+    Gfx_87760 *f4;
+    char pad8[8];
     int f10;
-    char pad14[0x2ec - 0x14];
+    char pad14[0x2e0 - 0x14];
+    Mode_87760 *f2E0;
+    char pad2E4[4];
+    Hud_87760 *f2E8;
     LookupObj_874E0 *p2EC;
 };
 
 extern GObjRoot_874E0 *D_002A8490;
 
 extern float D_00275AEC;
-extern int D_00278690;
-extern int D_0027958C;
+extern char D_00278690[];
+extern char D_0027958C[];
+extern char D_002786B0[], D_002786A0[];
+extern unsigned D_0028F5EC, D_0028F5E0;
+extern int D_00278664, D_00278668, D_0027866C, D_00278670;
+extern char D_00278674;
+extern int D_002A60B0, D_002A60B4, D_002A60B8, D_002A60BC;
+extern char D_002A60C0;
+extern char D_00275678[], D_002A5348[], D_002A47F0[], D_002A48F8[], D_00279810[];
 
 struct ClampObj_874E0 {
     char pad0[0x10];
@@ -120,10 +157,11 @@ void C_000874E0::func_000874E0(void)
 
 C_000876B0 *C_000876B0::func_000876B0(int a0) {
     volatile C_000876B0 *v;
+    C_000876B0 *base;
 
-    ((C_00157600 *)this)->func_00157600(1);
+    base = (C_000876B0 *)((C_00157600 *)this)->func_00157600(1);
+    base->vtbl = (void *)&D_002797A4;
     v = (volatile C_000876B0 *)this;
-    v->vtbl = (void *)&D_002797A4;
     v->f24[0] = 0;
     v->f24[1] = 0;
     v->f2C = 0;
