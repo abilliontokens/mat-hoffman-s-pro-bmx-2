@@ -7,7 +7,7 @@ extern float D_002AA140;
 extern float D_002AA144;
 extern float D_002AA148;
 extern float D_002AA14C;
-struct V4_001A7FE0 { float x,y,z,w; };
+struct V4_001A7FE0 { float x,y,z,w; V4_001A7FE0() { x=y=z=0; w=1; } };
 struct Body_001A7FE0 {
     virtual void v00(); virtual void v01(); virtual void v02(); virtual void v03();
     virtual void v04(); virtual void v05(); virtual void v06(); virtual void v07();
