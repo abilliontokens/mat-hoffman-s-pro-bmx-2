@@ -223,28 +223,25 @@ void C_0006FBF0::func_0006FBF0(void)
 char *__stdcall func_0006FE60(int value, char *out)
 {
     char buf[64];
-    int i;
-    int j;
-    int c;
-    int rem;
-    int n;
+    int i, j, rem, n;
 
     memset(buf, 0, 64);
     func_001ADCC0(buf, 0x104, D_00277038, value);
     rem = strlen(buf) % 3;
     j = 0;
     n = strlen(buf);
-    c = -rem;
     for (i = 0; i < n; i++) {
-        if (buf[i] == ' ') {
+        char c = buf[i];
+        if (c == ' ') {
             strcat(out, &buf[i]);
             break;
         }
-        if (i > rem - 1 && i != 0 && (c == 0 || c % 3 == 0)) {
+        if (i > rem - 1 && i != 0 && ((i - rem) == 0 || (i - rem) % 3 == 0)) {
             out[j++] = ',';
+            out[j++] = c;
+        } else {
+            out[j++] = c;
         }
-        out[j++] = buf[i];
-        c++;
     }
     out[j] = 0;
     return out;
@@ -253,11 +250,45 @@ char *__stdcall func_0006FE60(int value, char *out)
 int C_00070360::func_0006FF80(void)
 {
     int n = 0;
+    S_0006FF80_Buf buf;
+    char out[0x28];
     if (fEC->f68->func_0005B960(3, (float)fEC->f64->f4e0->f1a8->fa58)) {
-        S_0006FF80_Buf buf = {0};
-        char out[0x14];
+        memset(&buf, 0, sizeof(buf));
         func_0006FE60(fEC->f64->f4e0->f1a8->fa58, (char *)&buf);
         func_001ADCC0(out, 0x104, D_00278C38, ((S_6FF80_Data *)D_002A8490->f2e8->f4)->f128);
+        unk180[n++]->func_0005E840((int)out);
+    }
+    if (fEC->f68->func_0005B960(1, (float)fEC->f64->f4e0->f1a8->fa4c)) {
+        memset(&buf, 0, sizeof(buf));
+        func_0006FE60(fEC->f64->f4e0->f1a8->fa4c, (char *)&buf);
+        func_001ADCC0(out, 0x104, D_00278C28, ((S_6FF80_Data *)D_002A8490->f2e8->f4)->f18,
+                      (double)fEC->f64->f4e0->f1a8->fa4c, ((S_6FF80_Data *)D_002A8490->f2e8->f4)->fF68);
+        unk180[n++]->func_0005E840((int)out);
+    }
+    if (fEC->f68->func_0005B960(4, (float)fEC->f64->f4e0->f1a8->fa40)) {
+        memset(&buf, 0, sizeof(buf));
+        func_0006FE60(fEC->f64->f4e0->f1a8->fa40, (char *)&buf);
+        func_001ADCC0(out, 0x104, D_00278C38, ((S_6FF80_Data *)D_002A8490->f2e8->f4)->f120);
+        unk180[n++]->func_0005E840((int)out);
+    }
+    if (fEC->f68->func_0005B960(2, (float)fEC->f64->f4e0->f1a8->f1058)) {
+        memset(&buf, 0, sizeof(buf));
+        func_0006FE60(fEC->f64->f4e0->f1a8->f1058, (char *)&buf);
+        func_001ADCC0(out, 0x104, D_00278C28, ((S_6FF80_Data *)D_002A8490->f2e8->f4)->f188,
+                      (double)fEC->f64->f4e0->f1a8->f1058, ((S_6FF80_Data *)D_002A8490->f2e8->f4)->fF68);
+        unk180[n++]->func_0005E840((int)out);
+    }
+    if (fEC->f68->func_0005B960(5, (float)fEC->f64->f4e0->f1a8->fa5c)) {
+        memset(&buf, 0, sizeof(buf));
+        func_0006FE60(fEC->f64->f4e0->f1a8->fa5c, (char *)&buf);
+        func_001ADCC0(out, 0x104, D_00278C38, ((S_6FF80_Data *)D_002A8490->f2e8->f4)->f1198);
+        unk180[n++]->func_0005E840((int)out);
+    }
+    if (fEC->f68->func_0005B960(0, (float)fEC->f64->f4e0->f1a8->fa54)) {
+        memset(&buf, 0, sizeof(buf));
+        func_0006FE60(fEC->f64->f4e0->f1a8->fa54, (char *)&buf);
+        func_001ADCC0(out, 0x104, D_00278C28, ((S_6FF80_Data *)D_002A8490->f2e8->f4)->f20,
+                      (double)fEC->f64->f4e0->f1a8->fa54, ((S_6FF80_Data *)D_002A8490->f2e8->f4)->fF68);
         unk180[n++]->func_0005E840((int)out);
     }
     return n;
