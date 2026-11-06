@@ -157,6 +157,12 @@ struct V_33320 {
  virtual void v16(); virtual void v17(); virtual void v18(int);
  virtual void v19(); virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23(); virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27(); virtual void v28(); virtual void v29(); virtual void v30(); virtual void v31(int,int);
 };
+struct V_32A60 {
+ virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
+ virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11(); virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15();
+ virtual int v16(); virtual void v17(); virtual void v18(int);
+ virtual void v19(); virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23(); virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27(); virtual void v28(); virtual void v29(); virtual void v30(); virtual void v31(int,int);
+};
 extern O_33320 *D_002A829C;
 extern O_33320 *D_002AA6C0;
 int func_001361E0(int, int, void *, unsigned int);
@@ -291,8 +297,8 @@ void BmxEvent::func_00033090(const char *name, float x, float y, float z, float 
 {
     char buf[0x104];
     int i;
-    int j;
     int found;
+    int j;
     O_Obj32F50 *obj;
     char *dot;
     char *s;
@@ -318,11 +324,11 @@ void BmxEvent::func_00033090(const char *name, float x, float y, float z, float 
                 if (flag) {
                     obj->f8->func_001824E0(x, y, z);
                 } else {
-                    for (j = found; j < 2; j++) {
+                    for (j = 0; j < 2; j++) {
                         if (found) {
                             break;
                         }
-                        if (!f234[j]) {
+                        if (f234[j] == 0) {
                             f23C[j].x = x;
                             f23C[j].y = y;
                             f23C[j].z = z;
