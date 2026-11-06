@@ -537,7 +537,7 @@ struct S_001C1520_Sprite {
     unsigned char colorDirty : 1;
     unsigned char rectSet : 1;
     char pad59[0xb];
-    S_001C1520_Sprite();
+    S_001C1520_Sprite *func_001D5760();
     S_001C1520_Sprite *func_001D5810(char *name, int a, int b, int c);
 };
 struct S_001C1520_Stream {
