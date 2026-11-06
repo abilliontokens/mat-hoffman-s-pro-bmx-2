@@ -148,6 +148,31 @@ struct C_0015FF60 {
 };
 
 
+extern float D_002A8060, D_002A805C, D_002A8064;
+extern unsigned char D_002A8010;
+extern float D_002A80A8;
+struct Iter_15F880 {
+ char data[0x40];
+ void func_001A46F0();
+ void func_001A4790(void*, int, V4_0015F120*, V4_0015F120*, V4_0015F120*, V4_0015F120*, int);
+ char *func_001A4840();
+ void func_001A4A20();
+};
+struct Query_15F880 {
+ int data[10];
+ void func_00193490();
+ void func_00193500();
+};
+struct C_15F880 {
+ char pad[0x34]; E_0015F120 *f34; int *f38; char pad3c[0x14];
+ V4_0015F120 *f50; char pad54[0x18]; int *f6c; char pad70[8];
+ int f78, f7c; char pad80[12]; C_0015F470 *f8c;
+ void func_0015F880(void*, V4_0015F120, float, float*, float*, float*);
+ void func_0015F120(int, V4_0015F120, float*, float*, float*);
+ void func_0015E130(void*, V4_0015F120*, float, float*, float*);
+};
+void func_0015CD90(V4_0015F120*, V4_0015F120*);
+
 int C_0015F470::func_0015F470(int a, S_0015F470_Mat *m0, S_0015F470_Mat *m1, S_0015F470_Mat *m2)
 {
     int i = func_0015E5B0();
