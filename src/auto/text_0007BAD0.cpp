@@ -27,7 +27,7 @@ struct S_7C690_Device {
 };
 extern S_7C690_Device *D_002EFDB8;
 
-struct S_7C690_Data { char pad0[0x7b8]; int f7b8; char pad7bc[4]; int f7c0; int f7c8; };
+struct S_7C690_Data { char pad0[0x7b8]; int f7b8; char pad7bc[4]; int f7c0; char pad7c4[4]; int f7c8; };
 struct S_7C690_Mgr { char pad0[4]; S_7C690_Data *f4; };
 struct S_7C690_Global {
     char pad0[0x270];
@@ -81,6 +81,46 @@ undefined4 C_0007C670::func_0007C670(byte param_1)
     func_001E891B(in_ECX);
   }
   return in_ECX;
+}
+
+int ResultsScreen::func_0007C690()
+{
+    S_7C690_Rect vp;
+    S_7C690_Rect old;
+    S_7C690_Viewport *dev;
+
+    if ((D_002B9048 & 1) == 0) {
+        D_002B9048 |= 1;
+        D_002B9044 = D_002A7CB8->func_00026500(D_00278AF0, 0);
+    }
+    if (D_002A8490->f274 >= D_002A8490->f270 - 1) {
+        D_002EFDB8->v8();
+        D_002EFDB8->v7(1);
+        dev = D_002EFDB8->f4;
+        if (f10C->f90 > 1) {
+            vp = dev->rect;
+            vp.x = 0;
+            vp.y = 0;
+            vp.w = 0x280;
+            vp.h = 0x1c0;
+            dev->func_0012B2B0(&vp, &old);
+        }
+        func_000682B0();
+        func_00067DA0();
+        if (f150) {
+            f100->func_0005E840(D_002A8490->f2e8->f4->f7b8);
+            f154->func_0005E840(D_002A8490->f2e8->f4->f7c0);
+            f154->func_001D6600();
+        } else {
+            f100->func_0005E840(D_002A8490->f2e8->f4->f7c8);
+            f100->func_001D6600();
+        }
+        func_00157960();
+        if (f10C->f90 > 1) {
+            dev->func_0012B2B0(&old, 0);
+        }
+    }
+    return 1;
 }
 
 undefined4 C_0007C9E0::func_0007C9E0(byte param_1)
