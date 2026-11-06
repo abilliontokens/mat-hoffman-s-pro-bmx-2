@@ -91,7 +91,7 @@ struct S_001DAC10_Vert {
     float x, y, z;
     float u0, v0;
     float u1, v1;
-    S_001DAC10_Vert() { x = y = z = 0; u0 = v0 = 0; u1 = v1 = 0; }
+    S_001DAC10_Vert() { x = y = z = 0; u0 = v0 = u1 = v1 = 0; }
 };
 
 struct S_001DAC10_Quad {
