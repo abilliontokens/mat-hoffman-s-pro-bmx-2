@@ -184,7 +184,7 @@ struct V4_0009FB00 {
     V4_0009FB00 operator+(const V4_0009FB00 &o) const { return V4_0009FB00(x + o.x, y + o.y, z + o.z); }
     V4_0009FB00 operator-(const V4_0009FB00 &o) const { return V4_0009FB00(x - o.x, y - o.y, z - o.z); }
     V4_0009FB00 operator*(float s) const { return V4_0009FB00(x * s, y * s, z * s); }
-    float Length() const { return _mm_sqrt_ss(_mm_set_ss(x * x + y * y + z * z)).m128_f32[0]; }
+    __forceinline float Length() const { return _mm_sqrt_ss(_mm_set_ss(x * x + y * y + z * z)).m128_f32[0]; }
 };
 void func_0009F5B0(V4_0009FB00 *, V4_0009FB00 *);
 struct Obj_0009FB00 {
@@ -214,6 +214,25 @@ struct C_000A00A0 {
     int unkB4;
     void func_000A00A0(V4_000A00A0 a0, int a1);
 };
+
+void func_0009F620(int *a, int *b)
+{
+ int id = b[0x68/4];
+ if (id == D_002BA160 || id == D_002B9118 || id == D_002B9108 || id == D_002B9114 || id == D_002B9110) {
+ int *data = (int *)a[0x54/4];
+ int *out = (int *)a[0x60/4];
+ V4_0009F620 *p = (V4_0009F620 *)(out+0xcc/4);
+ 
+ *p = *(V4_0009F620 *)&D_002A25E0;
+ V4_0009F620 *q = (V4_0009F620 *)(out+0xbc/4);
+ *q = *(V4_0009F620 *)&D_002A25E0;
+ if (data[1] > 0) {
+ *q = *(V4_0009F620 *)(data+0x54/4);
+ *p = *(V4_0009F620 *)(data+0x24/4);
+ }
+ out[0xb8/4] = 1;
+ }
+}
 
 func_0009F7F0::func_0009F7F0()
 {
@@ -302,25 +321,36 @@ void C_0009FAD0::func_0009FAD0(int a0, int a1, float a2)
 
 int C_0009FB00::func_0009FB00(V4_0009FB00 a0, V4_0009FB00 a1, V4_0009FB00 a2, V4_0009FB00 a3, int a4)
 {
-    C_0009FB00 *self = this;
     V4_0009FB00 v[2];
     V4_0009FB00 d;
+    C_0009FB00 * volatile self = this;
+    C_0009FB00 *p;
     v[0] = a1;
-    v[1] = self->v58;
-    self->unkB8 = 0;
-    self->unk10->func_001A4AE0(&self->v58, 0);
-    self->unk10->func_00133ED0();
-    self->unk14->func_0014AC30(v, 0);
-    self->unk14->func_00133ED0();
-    self->unk14->func_00133F10(0);
-    if (self->unkB8 == 0)
-        self->unk10->func_00133F10(0);
-    if (self->unkB8 != 0) {
-        self->v58 = self->vBC + self->vCC * self->unkB4;
-        d = a1 - self->v58;
+    p = self;
+    v[1] = p->v58;
+    p->unkB8 = 0;
+    p = self;
+    p->unk10->func_001A4AE0(&p->v58, 0);
+    p = self;
+    p->unk10->func_00133ED0();
+    p = self;
+    p->unk14->func_0014AC30(v, 0);
+    p = self;
+    p->unk14->func_00133ED0();
+    p = self;
+    p->unk14->func_00133F10(0);
+    p = self;
+    if (p->unkB8 == 0)
+        p->unk10->func_00133F10(0);
+    p = self;
+    if (p->unkB8 != 0) {
+        p->v58 = p->vBC + p->vCC * p->unkB4;
+        p = self;
+        d = a1 - p->v58;
         float len = d.Length();
         func_0009F5B0(&d, &d);
-        self->v58 = a1 - self->v68 * len;
+        p = self;
+        p->v58 = a1 - p->v68 * len;
     }
     return 1;
 }
