@@ -315,6 +315,117 @@ unsigned char *__stdcall func_001DFD24(unsigned char *p)
     }
     return r;
 }
+
+unsigned char __stdcall func_001DFD40(S_HeapRoot *root, unsigned int flags, S_HeapEntry *entry, unsigned int size, unsigned int index)
+{
+    unsigned char eflags;
+    unsigned char fflags;
+    unsigned int oldSize;
+    unsigned int n;
+    S_HeapEntry *next;
+    S_HeapEntry *split;
+
+    if (index > *(unsigned int *)((unsigned char *)root + 0x1c)) {
+        return 0;
+    }
+    next = (S_HeapEntry *)((unsigned char *)entry + entry->size * 16);
+    eflags = entry->flags;
+    if (eflags & 0x10) {
+        n = ((index - entry->size) * 16 + 0xfff) & 0xfffff000;
+        split = (S_HeapEntry *)func_001DF7FA(root, (S_HeapBlock *)root->bucket[entry->bucket], &n, (int)next);
+        if (split == 0) {
+            return 0;
+        }
+        n >>= 4;
+        split = (S_HeapEntry *)func_001DF985(root, (unsigned char *)split, &n, 0);
+        fflags = split->flags;
+        if (entry->size + n < index) {
+            func_001DFC2A(root, (unsigned char *)split, n);
+            root->freeTotal += n;
+            return 0;
+        }
+        n = entry->size + n;
+    } else {
+        fflags = next->flags;
+        if (fflags & 1) {
+            return 0;
+        }
+        n = next->size + entry->size;
+        if (n < index) {
+            return 0;
+        }
+        FreeUnlink_001DF985(root, next);
+        root->freeTotal -= next->size;
+    }
+    oldSize = entry->size * 16 - *((unsigned char *)entry + 6);
+    n -= index;
+    if (n <= 2) {
+        index += n;
+        n = 0;
+    }
+    if (eflags & 2) {
+        *(S_HeapEntry *)((unsigned char *)entry + index * 16 - 16) = *(S_HeapEntry *)((unsigned char *)entry + entry->size * 16 - 16);
+    }
+    entry->size = (unsigned short)index;
+    *((unsigned char *)entry + 6) = (unsigned char)(index * 16 - size);
+    if (n == 0) {
+        entry->flags |= fflags & 0x10;
+        if (!(fflags & 0x10)) {
+            *(unsigned short *)((unsigned char *)entry + (unsigned short)index * 16 + 2) = (unsigned short)index;
+        } else {
+            ((S_HeapBlock *)root->bucket[entry->bucket])->next = (unsigned char *)entry;
+        }
+    } else {
+        split = (S_HeapEntry *)((unsigned char *)entry + index * 16);
+        split->prevSize = (unsigned short)index;
+        split->bucket = entry->bucket;
+        if (fflags & 0x10) {
+            ((S_HeapBlock *)root->bucket[split->bucket])->next = (unsigned char *)split;
+            split->flags = fflags;
+            split->size = (unsigned short)n;
+            split->flags = fflags & 0xf8;
+            FreeInsert_001DFD40(root, split, n);
+            root->freeTotal += n;
+        } else {
+            next = (S_HeapEntry *)((unsigned char *)split + n * 16);
+            if (next->flags & 1) {
+                split->flags = fflags & 0xef;
+                split->size = (unsigned short)n;
+                *(unsigned short *)((unsigned char *)split + n * 16 + 2) = (unsigned short)n;
+                split->flags &= 0xf8;
+                FreeInsert_001DFD40(root, split, n);
+                root->freeTotal += n;
+            } else {
+                fflags = next->flags;
+                FreeUnlink_001DF985(root, next);
+                root->freeTotal -= next->size;
+                n += next->size;
+                split->flags = fflags;
+                if (n <= (unsigned int)&D_0000FF00) {
+                    split->size = (unsigned short)n;
+                    if (!(fflags & 0x10)) {
+                        *(unsigned short *)((unsigned char *)split + n * 16 + 2) = (unsigned short)n;
+                    } else {
+                        ((S_HeapBlock *)root->bucket[split->bucket])->next = (unsigned char *)split;
+                    }
+                    split->flags &= 0xf8;
+                    FreeInsert_001DFD40(root, split, n);
+                    root->freeTotal += n;
+                } else {
+                    func_001DFC2A(root, (unsigned char *)split, n);
+                }
+            }
+        }
+    }
+    if (flags & 8) {
+        if (size > oldSize) {
+            memset((unsigned char *)entry + 0x10 + oldSize, 0, size - oldSize);
+        }
+    }
+    entry->flags = ((unsigned char)(flags >> 4) ^ entry->flags) & 0x1f ^ (unsigned char)(flags >> 4);
+    return 1;
+}
+
 int __stdcall func_001E013E(int a, int b, unsigned char *p)
 {
     int r;
@@ -389,6 +500,7 @@ unsigned char *__stdcall func_001E028B(S_HeapRoot *heap, unsigned int size)
     S_HeapBlock *cur;
     unsigned int allocSize;
     unsigned int commit;
+    unsigned int total;
     long status;
     unsigned char *r;
 
@@ -414,8 +526,12 @@ unsigned char *__stdcall func_001E028B(S_HeapRoot *heap, unsigned int size)
         return 0;
     }
     cur = 0;
-    size = allocSize = size + 0x1000;
-    if (size <= heap->reserveSize) {
+    total = size + 0x1000;
+    if (total > heap->reserveSize) {
+        size = total;
+        allocSize = total;
+    } else {
+        size = total;
         allocSize = heap->reserveSize;
     }
     status = NtAllocateVirtualMemory(&cur, 0, &allocSize, 0x2000, 4);
