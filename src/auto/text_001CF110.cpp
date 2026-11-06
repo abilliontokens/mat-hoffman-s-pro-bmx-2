@@ -442,15 +442,16 @@ void XboxMusic::func_001CF110(IntArray *list)
 
 int C_001CF1B0::func_001CF1B0(int block, S_001CF1B0_Packet *packet)
 {
+    u32 *done = (u32 *)&block + 1;
     memset(packet, 0, sizeof(*packet));
     packet->buffer = buffer + (block << 13);
     packet->size = 0x2000;
-    packet->completed = (u32 *)&block;
+    packet->completed = done;
     int result = ((int (__stdcall *)(void *, void *, S_001CF1B0_Packet *))(*(void ***)stream)[4])(stream, 0, packet);
     if (result >= 0) {
-        if ((u32)block < packet->size)
-            memset(packet->buffer + (u32)block, 0, packet->size - (u32)block);
-        if (!block) {
+        if (*done < packet->size)
+            memset(packet->buffer + *done, 0, packet->size - *done);
+        if (!*done) {
             ((void (__stdcall *)(void *))(*(void ***)handles[index])[5])(handles[index]);
             func_00220AE5(handles[index], 0, 0, 3);
             func_001CB7D0();
@@ -461,10 +462,10 @@ int C_001CF1B0::func_001CF1B0(int block, S_001CF1B0_Packet *packet)
                 return 0;
             }
             v33(0);
-            return 0;
         }
+        return 0;
     }
-    return 0;
+    return result;
 }
 
 void XboxSoundGroup::func_001CF2A0()
@@ -493,11 +494,13 @@ void XboxSoundGroup::func_001CF2A0()
 int C_001CF3C0::func_001CF3C0(SoundVoice *voice)
 {
     SoundVoiceList *list;
-    SoundVoice *found;
+    SoundVoice *v;
     int x;
     int index;
+    SoundVoice *found;
 
-    if (voice->f10c & 8) {
+    v = voice;
+    if (v->f10c & 8) {
         x = f8;
         list = (SoundVoiceList *)f10;
     } else {
@@ -505,13 +508,13 @@ int C_001CF3C0::func_001CF3C0(SoundVoice *voice)
         list = (SoundVoiceList *)f24;
     }
     if (func_001CDD50(list, x, &found, &index, &found)) {
-        if (!Voice_CheckOther(voice = found, voice)) {
-            if (index >= 0 || list->func_001CDE90(voice)) {
+        if (!(v = found)->func_001CD940(v)) {
+            if (index >= 0 || list->func_001CDE90(v)) {
                 return 1;
             }
         }
-        voice->flags &= ~8;
-        func_001CDE40(list, voice);
+        v->flags &= ~8;
+        func_001CDE40(list, v);
     }
     return 0;
 }
