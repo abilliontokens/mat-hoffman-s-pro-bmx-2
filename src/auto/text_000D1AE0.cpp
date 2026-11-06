@@ -89,7 +89,8 @@ struct C_000D2080 {
     S_000D2080_Mgr *f124;
     char pad128[0x474 - 0x128];
     char names[10][0x104];
-    char padE9C[0x2048 - 0xE9C];
+    char extraNames[16][0x104];
+    char pad1EDC[0x2048 - 0x1EDC];
     S_000D2080_Item *ptrs[10];
     void func_000D2080(void);
 };
