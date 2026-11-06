@@ -89,7 +89,7 @@ struct C_0018C960 {
     int f158;
     int f15C;
     int f160;
-    ScriptFreeGroup *f164;
+    char *f164;
     int f168;
     int f16C;
     int f170;
@@ -446,11 +446,7 @@ int C_0018C000::func_0018C2D0(char *a, char *b, int c)
                 if (!D_002BEAAC->func_0013C8A0(h, &L, 2, 1)) break;
                 it = unk58[H];
                 if (it != 0) {
-                    it->unk14 = I;
-                    it->unk16 = J;
-                    it->unk18 = K;
-                    it->unk1A = L;
-                    it->unk1C = 1;
+                    it->SetBounds(I, J, K, L);
                 }
             }
         }
@@ -460,8 +456,16 @@ int C_0018C000::func_0018C2D0(char *a, char *b, int c)
     i = 0;
     do { D_002A60B0[i] = D_002A5240[i]; } while (D_002A5240[i++]);
     func_001ADCC0(name, 0x104, D_00275678, D_002A60B0, b);
-    i = 0;
-    do { pad8[i] = name[i]; } while (name[i++]);
+    {
+        char *src = name;
+        char *dst = (char *)this + 8;
+        char ch;
+        do {
+            ch = *src;
+            dst[src - name] = ch;
+            src++;
+        } while (ch != 0);
+    }
     unk458 = D_002AA6C0->v7((int)name, 0);
     D_002AA6C0->v6(unk458, 0);
     D_002AA6C0->func_001B2640();
@@ -647,6 +651,59 @@ void C_0018C960::func_0018C9B0(int keep)
         }
         node = next;
     }
+}
+
+void C_0018C960::func_0018CA20()
+{
+    int i, j;
+    ScriptFreeNode *p, *next;
+    vtbl = &D_0028A984;
+    func_0018C9B0(0);
+    for (p = (ScriptFreeNode *)f14C; p; p = next) {
+        next = p->next;
+        func_001E891B(p);
+    }
+    if (f164) {
+        for (i = 0; i < f168; i++) {
+            if (*(ScriptFreeChild **)((char *)f164 + i * 0x38 + 0x20)) {
+                for (j = 0; j < *(int *)((char *)f164 + i * 0x38 + 0x24); j++)
+                    func_001E8390((*(ScriptFreeChild **)((char *)f164 + i * 0x38 + 0x20))[j].f10);
+                func_001E8390(*(ScriptFreeChild **)((char *)f164 + i * 0x38 + 0x20));
+                *(ScriptFreeChild **)((char *)f164 + i * 0x38 + 0x20) = 0;
+            }
+            if (*(void **)((char *)f164 + i * 0x38 + 0x2C)) {
+                func_001E8390(*(void **)((char *)f164 + i * 0x38 + 0x2C));
+                *(void **)((char *)f164 + i * 0x38 + 0x2C) = 0;
+            }
+        }
+        func_001E8390((void *)f164);
+        f164 = 0;
+    }
+    if (f158) {
+        for (i = 0; i < f15C; i++) {
+            if (((ScriptFreeEntry *)f158)[i].f54) {
+                func_001E8390(((ScriptFreeEntry *)f158)[i].f54);
+                ((ScriptFreeEntry *)f158)[i].f54 = 0;
+            }
+        }
+        func_001E8390((void *)f158);
+        f158 = 0;
+    }
+    if (f170) {
+        func_001E8390((void *)f170);
+        f170 = 0;
+    }
+    if (f17C) {
+        for (i = 0; i < f180; i++) {
+            if (((ScriptFreePair *)f17C)[i].p) {
+                func_001E8390(((ScriptFreePair *)f17C)[i].p);
+                ((ScriptFreePair *)f17C)[i].p = 0;
+            }
+        }
+        func_001E8390((void *)f17C);
+        f17C = 0;
+    }
+    func_00157660();
 }
 
 int C_0018CC00::func_0018CC00(const char *name)
