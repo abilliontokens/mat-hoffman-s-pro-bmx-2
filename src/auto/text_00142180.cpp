@@ -613,8 +613,8 @@ struct C_00142DE0 {
 };
 
 struct C_00142D00 {
-    int unk0;
-    void func_00142D00(int a0);
+    void *unk0;
+    void func_00142D00(void *a0);
 };
 
 struct C_00142D20 {
@@ -668,9 +668,9 @@ void C_00142D90::func_00142D90(int param_1)
     }
 }
 
-void C_00142D00::func_00142D00(int a0) {
+void C_00142D00::func_00142D00(void *a0) {
     if (a0 != unk0) {
-        func_00201350((void *)a0);
+        func_00201350(a0);
         unk0 = a0;
     }
 }
