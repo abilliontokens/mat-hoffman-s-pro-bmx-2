@@ -26,6 +26,30 @@ struct Obj_000F3C70_25C {
 struct Btn_000F3C70 {
     void func_00103260(int a);
     void func_00103350();
+    char pad0[0x2cc];
+    float f2CC;
+    char pad2D0[0x90];
+    int f360;
+};
+struct Obj24_000F3C70 {
+    void func_000B9A80(int a, int b);
+};
+struct GData_000F3C70 {
+    int f0;
+    int f4;
+    int f8;
+    int fC;
+    int f10;
+    char pad14[0xc];
+    int f20;
+    char pad24[0x24];
+    int f48;
+    char pad4C[0x144];
+    int f190;
+    char pad194[0x12c];
+    void *p2C0;
+    void func_0005B220();
+    int func_0005C0F0();
 };
 
 struct Owner_000F3C70 {
