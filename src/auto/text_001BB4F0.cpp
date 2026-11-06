@@ -147,14 +147,6 @@ extern int D_002AADF8;
 
 struct Vec_001BB950 {
     float x, y, z, w;
-    Vec_001BB950 &operator=(const Vec_001BB950 &o)
-    {
-        x = o.x;
-        y = o.y;
-        z = o.z;
-        w = o.w;
-        return *this;
-    }
 };
 
 struct Anim_001BB950 {
