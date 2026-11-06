@@ -247,7 +247,7 @@ struct C_52F90_Root {
 struct C_52F90 {
     void *vtbl;
     char pad04[0x60];
-    C_52F90_Mid *f64;
+    C_52F90_64 *f64;
     C_52F90_Q *f68;
     char pad6C[0xb8];
     float f124;
