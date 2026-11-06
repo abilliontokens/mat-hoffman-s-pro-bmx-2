@@ -14,8 +14,56 @@ struct GObj2E0 {
 };
 
 struct GObj4 {
-    char pad0[0x930];
+    char pad0[0xD0];
+    int fD0;
+    char padD4[0x340 - 0xD4];
+    int f340;
+    char pad344[0x880 - 0x344];
+    int f880;
+    char pad884[4];
+    int f888;
+    char pad88C[0x930 - 0x88C];
     char *p930;
+};
+
+extern char D_00278690[], D_00278678[], D_002786A0[], D_002786B0[];
+extern int D_0028F5DC, D_0028F5EC;
+extern float D_0027E484;
+void *func_001E8A44(int size);
+
+struct Obj2EC {
+    void func_0018C160(char *s);
+};
+
+struct WidgetC9090 {
+    WidgetC9090 *func_001B12C0(int a);
+    void func_001B13A0(char *a, char *b, int c, int d);
+    void func_001B1A30(float a, float b, int c);
+    void func_001B19A0(int a);
+    void func_001B2270(int a);
+    void func_001B17D0(int a);
+};
+
+static __forceinline WidgetC9090 *NewWidgetC9090()
+{
+    void *mem = func_001E8A44(0x184);
+    if (mem != 0)
+        return ((WidgetC9090 *)mem)->func_001B12C0(1);
+    return 0;
+}
+
+struct Entry334 {
+    char pad0[0x28];
+    int f28;
+    char pad2C[0x3C - 0x2C];
+    int f3C;
+    int f40;
+    int f44;
+    int f48;
+    char pad4C[0x58 - 0x4C];
+    unsigned char b58;
+    Entry334 *func_001D5760();
+    void func_001D5810(char *s, float a, float b, int c);
 };
 
 struct GObj2E8 {
