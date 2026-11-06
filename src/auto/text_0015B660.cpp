@@ -51,7 +51,7 @@ struct C_0015C5C0 {
     int unkC;
     int unk10;
     C_0015C5C0_Entry *unk14;
-    void func_0015C5C0(int a0, int a1);
+    void func_0015C5C0(void *q, float t);
 };
 
 struct C_0015B7C0 {
