@@ -93,8 +93,13 @@ int func_00129350(int a0, int a1, S_0017F550_Pair *a2, S_0017F550_Pair *a3, floa
 int func_00123980(char *a, int b, int c, int d, S_0017F550_Pair *e, float *f, int g);
 int func_00123C80(char *a, int *b, float *c, int d, S_0017F550_Pair *e, float *f);
 
-static __forceinline float Min_0017F550(float a, float b) { return a < b ? a : b; }
-static __forceinline float Max_0017F550(float a, float b) { return a > b ? a : b; }
+static __forceinline float Min_0017F550(float a, float b) { float r; _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
+static __forceinline float Max_0017F550(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
+
+struct V4C_0017F550 {
+    float x, y, z, w;
+    V4C_0017F550(float a, float b, float c, float d) { x = a; y = b; z = c; w = d; }
+};
 
 struct S_0017FDB0_Node {
     char pad0[8];
