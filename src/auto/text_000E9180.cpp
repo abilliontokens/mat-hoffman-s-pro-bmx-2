@@ -60,6 +60,8 @@ void func_0001B910(void *p);
 
 struct S_0E9180_270 {
     char pad0[0x270];
+    int func_000BC670();
+    void func_000BC590();
 };
 
 struct S_0E9180_150 {
