@@ -119,6 +119,11 @@ extern int D_0028F5DC;
 extern char D_00278658[];
 extern char D_00278648[];
 extern char D_00278624[];
+extern char D_00278638[];
+extern char D_00278608[];
+extern char D_00279008[];
+extern char D_00278FF0[];
+extern char D_00279C28[];
 void *func_001E8A44(unsigned int);
 void func_001ADCC0(char *, int, char *, char *, char *);
 extern char D_002A60B0[];
@@ -143,6 +148,103 @@ struct C_000BFB70 {
     int f284;
     C_000BFB70 *func_000BFB70(void *param);
 };
+
+void C_BEE30::func_000BEE30(void)
+{
+    void *mem;
+    int ids[3];
+    int v0, v1, v2;
+    int i;
+    ids[0] = (int)&D_00278678;
+    ids[1] = (int)&D_00278690;
+    ids[2] = (int)&D_002786A0;
+    ((LookupBEE *)D_002A8490->p2EC)->func_0018C780(3, ids, 0);
+    {
+        int *r = ((LookupBEE *)D_002A8490->p2EC)->func_0018C160(&D_00278678);
+        v0 = r ? *r : 0;
+    }
+    {
+        int *r = ((LookupBEE *)D_002A8490->p2EC)->func_0018C160(&D_00278690);
+        v1 = r ? *r : 0;
+    }
+    {
+        int *r = ((LookupBEE *)D_002A8490->p2EC)->func_0018C160(&D_002786A0);
+        v2 = r ? *r : 0;
+    }
+    mem = func_001E8A44(0x64);
+    f24 = mem ? ((ElemA_BEE *)mem)->func_001D5760() : 0;
+    f24->func_001D5810(D_00278658, 0.0f, 0.0f, 0.0f);
+    f24->f3C = f24->f4C * D_00278654;
+    f24->f58 |= 4;
+    f24->f40 = f24->f4C * D_00275544;
+    f24->f44 = f24->f50 * D_0027653C;
+    f24->f48 = f24->f50 * D_00275544;
+    f24->SetF28(640.0f);
+    f24->SetF2C(50.0f);
+    mem = func_001E8A44(0x64);
+    f28 = mem ? ((ElemA_BEE *)mem)->func_001D5760() : 0;
+    f28->func_001D5810(D_00278658, 0.0f, 199.0f, 0.0f);
+    f28->f3C = f28->f4C * D_00278654;
+    f28->f58 |= 4;
+    f28->f40 = f28->f4C * D_00275544;
+    f28->f44 = f28->f50 * D_0027653C;
+    f28->f48 = f28->f50 * D_00275544;
+    f28->SetF28(640.0f);
+    f28->SetF2C(50.0f);
+    mem = func_001E8A44(0x64);
+    f2C = mem ? ((ElemA_BEE *)mem)->func_001D5760() : 0;
+    f2C->func_001D5810(D_00278658, 0.0f, 50.0f, 0.0f);
+    f2C->SetF28(640.0f);
+    f2C->f58 |= 4;
+    f2C->f3C = 0.0f;
+    f2C->f40 = 5.0f;
+    f2C->f44 = 0.0f;
+    f2C->f48 = 1.0f;
+    mem = func_001E8A44(0x64);
+    f30 = mem ? ((ElemA_BEE *)mem)->func_001D5760() : 0;
+    f30->func_001D5810(D_00278658, 0.0f, 366.0f, 0.0f);
+    f30->SetF28(640.0f);
+    f30->f58 |= 4;
+    f30->f3C = 0.0f;
+    f30->f40 = 5.0f;
+    f30->f44 = 0.99000001f;
+    f30->f48 = 0.0f;
+    mem = func_001E8A44(0x60);
+    f34 = mem ? ((ElemB_BEE *)mem)->func_001D5E90() : 0;
+    f34->func_001D5FA0((void *)v2, &D_00278678, 0x1e, 0);
+    f34->SetXY4E(320.0f, 40.0f);
+    if (f34->f48 != 0xaaaaaaaa) {
+        f34->f48 = (f34->f48 & 0xffaaaaaa) | 0x00aaaaaa;
+        f34->f4E |= 8;
+    }
+    if (f34->f44 != D_0028F5E0) {
+        f34->f44 = D_0028F5E0;
+        f34->f4E |= 6;
+    }
+    for (i = 0; i < 6; i++) {
+        mem = func_001E8A44(0x60);
+        a38[i] = mem ? ((ElemB_BEE *)mem)->func_001D5E90() : 0;
+        a38[i]->func_001D5FA0((void *)v1, &D_00278690, 0x1e, 0);
+        a38[i]->SetXY4E(527.0f, 393.0f);
+        if (a38[i]->f48 != 0xffcccccc) {
+            a38[i]->f48 = (a38[i]->f48 & 0xffcccccc) | 0x00cccccc;
+            a38[i]->f4E |= 8;
+        }
+        if (a38[i]->f44 != D_0028F5DC) {
+            a38[i]->f44 = D_0028F5DC;
+            a38[i]->f4E |= 6;
+        }
+    }
+    func_001ADCC0(D_002A60B0, 0x104, D_00275678, D_002A5348, D_002A5FA8);
+    mem = func_001E8A44(0x64);
+    a50[0] = mem ? ((ElemA_BEE *)mem)->func_001D5760() : 0;
+    a50[0]->func_001D5810(D_00278648, 0.0f, 0.0f, 0.0f);
+    a50[0]->SetXY58(491.0f, 386.0f);
+    mem = func_001E8A44(0x64);
+    a68[0] = mem ? ((ElemA_BEE *)mem)->func_001D5760() : 0;
+    a68[0]->func_001D5810(D_00278624, 0.0f, 0.0f, 0.0f);
+    a68[0]->SetXY58(491.0f, 386.0f);
+}
 
 void C_000BF860::func_000BF860(int idx, int x, int y, int w)
 {
