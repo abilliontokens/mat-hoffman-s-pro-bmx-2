@@ -348,6 +348,35 @@ struct C_0001B910 {
     int func_001B5720(void);
 };
 
+/* same object layout as C_0001B910, but 0x9c is a float timer here */
+struct C_0001B440 {
+    char pad0[0x44];
+    int f44;
+    int f48;
+    int f4C;
+    S_0001B910_Child **f50;
+    char pad54[0xC];
+    int f60;
+    int *f64;
+    char pad68[4];
+    int **f6C;
+    int *f70;
+    char pad74[4];
+    int *f78;
+    char pad7C[8];
+    int f84;
+    int f88;
+    int f8C;
+    int f90;
+    int *f94;
+    int f98;
+    float f9C;
+    char padA0[0x104];
+    S_0001B910_Anim *f1A4;
+    S_0001B910_Node *func_001B56F0(void);
+    int func_001B5720(void);
+};
+
 void C_0001B790::func_0001B440(S_0001B790_Obj *obj, int r)
 {
     C_0001B910 *p = (C_0001B910 *)obj;
