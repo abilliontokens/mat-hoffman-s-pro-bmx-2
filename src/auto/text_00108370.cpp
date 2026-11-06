@@ -307,9 +307,7 @@ struct C_00108F50 {
 
 
 struct S_001091D0_V {
-    int x;
-    float y;
-    int z, w;
+    float x, y, z, w;
 };
 struct S_001091D0_Ref {
     char pad0[0x68];
