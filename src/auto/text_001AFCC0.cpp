@@ -238,7 +238,7 @@ struct S_001AFF80_list {
 static __forceinline void FloatToInt(int *out, float f)
 {
     int * volatile p = out;
-    *p = (int)f;
+    *p = _mm_cvtt_ss2si(_mm_set_ss(f));
 }
 
 struct C_001AFF80 {
@@ -344,7 +344,7 @@ struct C_001B08B0 {
 
 int C_001AFEC0::func_001AFEC0()
 {
-    int i;
+    register int i;
     if (D_002A8490->unk238 == unk8) {
         return 1;
     }
@@ -353,9 +353,8 @@ int C_001AFEC0::func_001AFEC0()
     }
     if (cb == 0 || cb(user, this) != 0) {
         for (i = 0; i < 4; i++) {
-            C_001AF530 *item = items[i];
-            if (item != 0) {
-                item->func_001AF530(i);
+            if (items[i] != 0) {
+                items[i]->func_001AF530(i);
             }
         }
         if (unk1C != 0) {
