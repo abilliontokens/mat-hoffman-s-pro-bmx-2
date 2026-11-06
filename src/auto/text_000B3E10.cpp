@@ -24,6 +24,8 @@ extern char D_0027D1EC[];
 extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
 extern "C" int func_001EA426(const char *a, const char *b);
 
+struct S_B3E10_Obj;
+
 struct S_B4300_Stream {
     void func_00168BE0(const char *key, const char *def, char *dst, int n);
 };
