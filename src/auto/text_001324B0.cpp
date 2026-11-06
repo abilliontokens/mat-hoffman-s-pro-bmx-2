@@ -1,6 +1,8 @@
 /* 13 functions from 0x001324B0 to 0x00132DB8, found by Ghidra. */
 #include "common.h"
 
+static __forceinline float Fabs(volatile float f){int i=*(volatile int*)&f&0x7fffffff;return *(float*)&i;}
+
 struct CinematographerCam {
     void *vtbl;
     char pad_4[0x80 - 0x4];
@@ -256,6 +258,106 @@ int func_001325D0(float *param_1)
         bVar3 = bVar3 | 0x20;
     }
     return bVar3;
+}
+
+extern float D_002B9E20[32][4];
+extern float D_00275460;
+extern unsigned int D_002BA020;
+int func_001325D0(float *v);
+int func_00132650(float *out, float *in, int n)
+{
+    int i, plane, cnt, bit, axis, neg, ca, cb;
+    float *src, *dst, *prev, *cur, *s, *d;
+    float da, db, t, k;
+
+    if (!(D_002BA020 & 1)) {
+        D_002BA020 |= 1;
+        d = (float *)D_002B9E20;
+        for (i = 0x20; i != 0; i--) {
+            d[0] = 0.0f;
+            d[1] = 0.0f;
+            d[2] = 0.0f;
+            d[3] = 1.0f;
+            d += 4;
+        }
+    }
+    if (n > 10) {
+        return 0;
+    }
+    s = in;
+    d = (float *)D_002B9E20;
+    for (i = 0; i < n; i++) {
+        d[0] = s[0];
+        d[1] = s[1];
+        d[2] = s[2];
+        d[3] = s[3];
+        d += 4;
+        s += 4;
+    }
+    for (plane = 5; plane >= 0; plane--) {
+        neg = plane & 1;
+        axis = plane >> 1;
+        bit = 1 << plane;
+        src = (float *)((char *)D_002B9E20 + (neg ^ 1) * 0x100);
+        dst = (float *)((char *)D_002B9E20 + neg * 0x100);
+        cnt = 0;
+        prev = src + n * 4 - 4;
+        cur = src;
+        for (i = 0; i < n; i++) {
+            ca = func_001325D0(prev) & bit;
+            cb = func_001325D0(cur) & bit;
+            if (!(ca | cb)) {
+                dst[0] = prev[0];
+                dst[1] = prev[1];
+                dst[2] = prev[2];
+                dst[3] = prev[3];
+                cnt++;
+            } else if (!(ca & cb)) {
+                da = neg ? prev[axis] - prev[3] : prev[axis] + prev[3];
+                db = neg ? cur[axis] - cur[3] : cur[axis] + cur[3];
+                t = D_00275460 / (da - db);
+                if (ca) {
+                    k = -db * t;
+                    dst[0] = cur[0] + (prev[0] - cur[0]) * k;
+                    dst[1] = cur[1] + (prev[1] - cur[1]) * k;
+                    dst[2] = cur[2] + (prev[2] - cur[2]) * k;
+                    dst[3] = cur[3] + (prev[3] - cur[3]) * k;
+                    cnt++;
+                } else {
+                    dst[0] = prev[0];
+                    dst[1] = prev[1];
+                    dst[2] = prev[2];
+                    dst[3] = prev[3];
+                    cnt++;
+                    dst += 4;
+                    k = da * t;
+                    dst[0] = prev[0] + (cur[0] - prev[0]) * k;
+                    dst[1] = prev[1] + (cur[1] - prev[1]) * k;
+                    dst[2] = prev[2] + (cur[2] - prev[2]) * k;
+                    dst[3] = prev[3] + (cur[3] - prev[3]) * k;
+                    cnt++;
+                }
+            }
+            prev = cur;
+            cur += 4;
+            dst += 4;
+        }
+        n = cnt;
+        if (n == 0) {
+            return 0;
+        }
+    }
+    s = (float *)D_002B9E20;
+    d = out;
+    for (i = 0; i < n; i++) {
+        d[0] = s[0];
+        d[1] = s[1];
+        d[2] = s[2];
+        d[3] = s[3];
+        d += 4;
+        s += 4;
+    }
+    return n;
 }
 
 Class_002845AC *Class_002845AC::func_001328F0(int a, int mostDerived)
