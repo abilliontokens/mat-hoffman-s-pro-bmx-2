@@ -279,6 +279,8 @@ struct S_0001BE90_Ctx1 {
 extern float D_00275BC0;
 #include <string.h>
 
+struct V4_0001B440 { float x, y, z, w; };
+
 struct S_0001B910_Anim {
     int pad0;
     S_0001BE90_Ctx1 *f4;
@@ -292,8 +294,10 @@ struct S_0001B910_Anim {
     int f34;
     void func_00164820(S_0001B910_Node *node);
     void func_00166C80(S_0001B910_Node *node, int a);
-    void func_001670C0(int a, int b, int c);
+    void func_001670C0(float t, int a, int b);
     void func_00132D20(void);
+    char pad38[0x220 - 0x38];
+    V4_0001B440 f220;
 };
 
 struct S_0001B910_Child {
