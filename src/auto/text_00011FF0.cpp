@@ -318,8 +318,10 @@ void AIPedTurningBackState::func_000121E0()
 {
     owner->func_001C6DA0(owner->f418, 1);
     if (D_002A8490->f2a4->f1c8 == 0) {
-        if (--owner->f3b0 < 0) {
-            owner->f3b0 = *D_002B9120->f588[owner->f3b4] - 1;
+        owner->f3b0--;
+        S_11FF0_Owner *o = owner;
+        if (o->f3b0 < 0) {
+            o->f3b0 = *D_002B9120->f588[o->f3b4] - 1;
         }
     }
 }
