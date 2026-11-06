@@ -67,6 +67,23 @@ struct VObj_00148780 {
     virtual void f1();
 };
 
+/* object walked by C_00149480::func_00149480: vtable, a sub-object pointer at +4,
+   flags at +0xC/+0x18/+0x24 */
+struct Item_00149480 {
+    virtual void v0();
+    virtual void v1();
+    virtual void v2();
+    void *f4;
+    int f8;
+    int fC;
+    int f10;
+    int f14;
+    int f18;
+    int f1C;
+    int f20;
+    int f24;
+};
+
 extern int D_00286818;
 
 /* RestoreFrameBufferDataItem allocation helper: ctor stores the real vtable */
@@ -428,24 +445,26 @@ void *C_00149120::func_00149120(int a0, int a1)
     void __stdcall func_00011FF0(void *p, int a1, int a2, int *a3);
     func_001B07F0(a0, a1);
     *(volatile u32 *)&unk1C = (u32)&D_00284E94;
+    u32 fv = *(volatile u32 *)&unk8;
     *(volatile void **)&vtbl = (void *)&D_00285C84;
     *(volatile u32 *)&unk1C = (u32)&D_00285C78;
-    int n = unk8->count;
-    if (n == 0) {
-        unk20 = 0;
-    } else {
-        void *p = func_001E8A44(n * 0x14);
-        if (p != 0) {
+    int n = ((AnimSrc_00149120 *)fv)->count;
+    void *p;
+    if (n) {
+        p = func_001E8A44(n * 0x14);
+        if (p)
             func_00011FF0(p, 0x14, n, &D_00144CD0);
-            unk20 = (Anim_00149120 *)p;
-        } else {
+        else
             p = 0;
-            unk20 = (Anim_00149120 *)p;
-        }
+        unk20 = (Anim_00149120 *)p;
+    } else {
+        unk20 = 0;
     }
-    for (int i = 0; i < n; i++) {
-        unk20[i].a0 = unk8->arr[i].a0;
-        unk20[i].data = unk8->arr[i].data;
+    AnimSrc_00149120 *src = unk8;
+    int cnt = src->count;
+    for (int i = 0; i < cnt; i++) {
+        unk20[i].a0 = src->arr[i].a0;
+        unk20[i].data = src->arr[i].data;
     }
     return this;
 }
@@ -456,19 +475,20 @@ void *C_001491E0::func_001491E0(C_001491E0 *a0)
     void __stdcall func_00011FF0(void *p, int a1, int a2, int *a3);
     func_001B08F0(a0);
     *(volatile u32 *)&unk1C = (u32)&D_00284E94;
+    volatile AnimSrc_00149120 *src = *(AnimSrc_00149120 * volatile *)&unk8;
     *(volatile void **)&vtbl = (void *)&D_00285C84;
     *(volatile u32 *)&unk1C = (u32)&D_00285C78;
-    int n = unk8->count;
-    if (n == 0) {
-        unk20 = 0;
-    } else {
-        void *p = func_001E8A44(n * 0x14);
-        if (p != 0) {
+    int n = src->count;
+    void *p;
+    if (n) {
+        p = func_001E8A44(n * 0x14);
+        if (p)
             func_00011FF0(p, 0x14, n, &D_00144CD0);
-            unk20 = (Anim_00149120 *)p;
-        } else {
-            unk20 = 0;
-        }
+        else
+            p = 0;
+        unk20 = (Anim_00149120 *)p;
+    } else {
+        unk20 = 0;
     }
     if (unk20 != 0) {
         memcpy(unk20, a0->unk20, unk8->count * 0x14);
