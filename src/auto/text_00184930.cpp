@@ -417,6 +417,10 @@ int C_00184930::func_00184D10(void)
 }
 
 #pragma intrinsic(memcmp)
+static __forceinline int Cmp5_00185110(const char *a, const char *b)
+{
+    return memcmp(a, b, 5);
+}
 int C_00184930::func_00184FC0(void)
 {
     void *mem;
@@ -457,6 +461,15 @@ int C_00184930::func_00184FC0(void)
     }
     return 1;
 }
+
+int C_00184930::func_00185200(void)
+{
+    if (f3b4 != 0) {
+        f3b4->v29(this);
+    }
+    return 1;
+}
+
 C_00185790 *C_00185790::func_00185790(void)
 {
     u32 *p;
