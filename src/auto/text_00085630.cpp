@@ -196,6 +196,7 @@ struct C_00086240 {
     int fEC;
     int fF0;
     int fF4;
+    C_00086240 *func_00085630(int a, int b);
     int func_00086240(void);
     int func_00157960(void);
 };
