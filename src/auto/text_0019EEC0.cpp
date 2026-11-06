@@ -59,7 +59,7 @@ extern int D_002B92F0;
 
 extern "C" unsigned __int64 __rdtsc();
 #pragma intrinsic(__rdtsc)
-extern float D_00275460;
+extern const float D_00275460;
 extern float D_0028B320;
 
 /* one 0x50-byte timer record */
@@ -247,6 +247,25 @@ void *SoultreeHierarchyCollisionObject::func_0019FBA0(int flags)
     }
     return this;
 }
+
+void C_0019FC80::func_0019FC80(int i)
+{
+    S_0019FC80_Timer *e = &timers[i];
+    unsigned __int64 now = __rdtsc();
+    float elapsed;
+
+    now -= e->start;
+    elapsed = (float)(__int64)now * f28;
+    e->f8 = e->f8 + 1.0f;
+    e->fC = elapsed + e->fC;
+    e->f10 = e->f10 + 1.0f;
+    e->f14 = elapsed + e->f14;
+    e->f20 = elapsed;
+    if (elapsed > e->f24 || e->f24 > D_0028B320) {
+        e->f24 = elapsed;
+    }
+}
+
 struct C_0019EEC0 {
     char pad0[0x190];
     int f190;
