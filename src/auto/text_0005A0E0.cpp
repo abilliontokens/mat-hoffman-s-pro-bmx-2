@@ -193,7 +193,7 @@ void __stdcall func_0005A480(int flag)
         func_001ADCC0(buf3, 0x104, D_00277268, i + 1);
         tex = D_002EF7D0->func_00163DC0(ini, buf3, D_002A4A00);
         if (tex) tex->cnt++;
-        f = f + D_002780BC;
+        f = *(volatile float *)&f + D_002780BC;
         n = (int)f;
         dlg->vC(D_00276C08, n, 0x10);
         dlg->v8(D_00276C08, n / 2 + 0x72, 0x187);
@@ -202,8 +202,10 @@ void __stdcall func_0005A480(int flag)
         ini->func_001691E0();
         func_001E891B(ini);
     }
-    if (flag) D_002BEAAC->func_00086130(0);
-    D_002BEAAC->func_0013CC80(buf, 1, 1, 0, 0, 0, 0, 1);
+    if (flag) {
+        D_002BEAAC->func_00086130(0);
+        D_002BEAAC->func_0013CC80(buf, 1, 1, 0, 0, 0, 0, 1);
+    }
     D_002BEAAC->func_0013DFF0((float *)buf, 1);
     func_001ADCC0(buf, 0x104, D_002780AC, D_002A5348);
     if (flag) {
@@ -223,7 +225,7 @@ void __stdcall func_0005A480(int flag)
         func_001ADCC0(buf3, 0x104, D_00277268, i + 1);
         tex = D_002EF7D0->func_00163DC0(ini2, buf3, D_002A5660);
         if (tex) tex->cnt++;
-        f = f + D_002780BC;
+        f = *(volatile float *)&f + D_002780BC;
         n = (int)f;
         dlg->vC(D_00276C08, n, 0x10);
         dlg->v8(D_00276C08, n / 2 + 0x72, 0x187);
@@ -232,8 +234,10 @@ void __stdcall func_0005A480(int flag)
         ini2->func_001691E0();
         func_001E891B(ini2);
     }
-    if (flag) D_002BEAAC->func_00086130(0);
-    D_002BEAAC->func_0013CC80(buf, 1, 1, 0, 0, 0, 0, 1);
+    if (flag) {
+        D_002BEAAC->func_00086130(0);
+        D_002BEAAC->func_0013CC80(buf, 1, 1, 0, 0, 0, 0, 1);
+    }
     D_002BEAAC->func_0013DFF0((float *)buf, 1);
     D_002BEAAC->func_0013B260(0);
     dlg->func_001D35E0();
