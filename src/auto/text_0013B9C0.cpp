@@ -62,7 +62,7 @@ struct S_0013B9C0_Ent20 {
     int f1C;
 };
 
-template <class T> inline const T &Min_0013B9C0(const T &a, const T &b) { return b < a ? b : a; }
+template <class T> inline T Min_0013B9C0(T a, T b) { return a < b ? a : b; }
 
 struct C_0013B9C0 {
     char pad0[8];
