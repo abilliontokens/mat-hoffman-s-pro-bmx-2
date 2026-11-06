@@ -119,38 +119,42 @@ void C_001805F0::func_001805F0(void) {
 }
 
 extern float D_00275460;
-void C_00180600::func_00180600(int a0, int handle)
+static __forceinline V_1800 Unpack1800(C_001804F0 *s) {
+    return V_1800((float)s->unk0 * D_002EFD9C * D_002AB30C, (float)s->unk2 * D_002EFD9C * D_002AB30C, (float)s->unk4 * D_002EFD9C * D_002AB30C);
+}
+void C_00180600::func_00180600(int a0, volatile int handle)
 {
     int n1;
     int n2;
+    C_00180600 * volatile self = this;
     if (handle == -1)
         return;
     func_000EBE90v();
-    fF4 = a0;
-    D_002BEAAC->func_0013C8A0(handle, &mB0, 4, 1);
-    D_002BEAAC->func_0013C8A0(handle, &mC0, 4, 1);
-    D_002BEAAC->func_0013C8A0(handle, &mD0, 4, 1);
-    D_002BEAAC->func_0013C8A0(handle, &mE0, 4, 1);
-    D_002BEAAC->func_0013C8A0(handle, &mB4, 4, 1);
-    D_002BEAAC->func_0013C8A0(handle, &mC4, 4, 1);
-    D_002BEAAC->func_0013C8A0(handle, &mD4, 4, 1);
-    D_002BEAAC->func_0013C8A0(handle, &mE4, 4, 1);
-    D_002BEAAC->func_0013C8A0(handle, &mB8, 4, 1);
-    D_002BEAAC->func_0013C8A0(handle, &mC8, 4, 1);
-    D_002BEAAC->func_0013C8A0(handle, &mD8, 4, 1);
-    D_002BEAAC->func_0013C8A0(handle, &mE8, 4, 1);
-    D_002BEAAC->func_0013C8A0(handle, &mBC, 4, 1);
-    D_002BEAAC->func_0013C8A0(handle, &mCC, 4, 1);
-    D_002BEAAC->func_0013C8A0(handle, &mDC, 4, 1);
-    D_002BEAAC->func_0013C8A0(handle, &mEC, 4, 1);
-    D_002BEAAC->func_0013C8A0(handle, &fF8, 4, 1);
+    self->fF4 = a0;
+    D_002BEAAC->func_0013C8A0(handle, &self->mB0, 4, 1);
+    D_002BEAAC->func_0013C8A0(handle, &self->mC0, 4, 1);
+    D_002BEAAC->func_0013C8A0(handle, &self->mD0, 4, 1);
+    D_002BEAAC->func_0013C8A0(handle, &self->mE0, 4, 1);
+    D_002BEAAC->func_0013C8A0(handle, &self->mB4, 4, 1);
+    D_002BEAAC->func_0013C8A0(handle, &self->mC4, 4, 1);
+    D_002BEAAC->func_0013C8A0(handle, &self->mD4, 4, 1);
+    D_002BEAAC->func_0013C8A0(handle, &self->mE4, 4, 1);
+    D_002BEAAC->func_0013C8A0(handle, &self->mB8, 4, 1);
+    D_002BEAAC->func_0013C8A0(handle, &self->mC8, 4, 1);
+    D_002BEAAC->func_0013C8A0(handle, &self->mD8, 4, 1);
+    D_002BEAAC->func_0013C8A0(handle, &self->mE8, 4, 1);
+    D_002BEAAC->func_0013C8A0(handle, &self->mBC, 4, 1);
+    D_002BEAAC->func_0013C8A0(handle, &self->mCC, 4, 1);
+    D_002BEAAC->func_0013C8A0(handle, &self->mDC, 4, 1);
+    D_002BEAAC->func_0013C8A0(handle, &self->mEC, 4, 1);
+    D_002BEAAC->func_0013C8A0(handle, &self->fF8, 4, 1);
     D_002BEAAC->func_0013C8A0(handle, &n1, 4, 1);
     D_002BEAAC->func_0013C960(handle, &n2, 4);
     {
         Rec180600 *mem = (Rec180600 *)func_001E8A44(n1 * 0x24);
         if (mem != 0)
             func_00011FF0(mem, 0x24, n1, &func_00128910);
-        fFC = mem;
+        self->fFC = mem;
     }
     {
         int i;
@@ -158,7 +162,7 @@ void C_00180600::func_00180600(int a0, int handle)
         float n[3];
         C_001804F0 q1, q2, q3;
         for (i = 0; i < n1; i++) {
-            Rec180600 *rec = (Rec180600 *)((char *)fFC + i * 0x24);
+            Rec180600 *rec = (Rec180600 *)((char *)self->fFC + i * 0x24);
             D_002BEAAC->func_0013C8A0(handle, rec, 4, 1);
             D_002BEAAC->func_0013C8A0(handle, &x, 4, 1);
             D_002BEAAC->func_0013C8A0(handle, &y, 4, 1);
@@ -189,10 +193,7 @@ void C_00180600::func_00180600(int a0, int handle)
             rec->f18 = (float)s->unk0 * D_002EFD9C * D_002AB30C;
             rec->f1C = (float)s->unk2 * D_002EFD9C * D_002AB30C;
             rec->f20 = (float)s->unk4 * D_002EFD9C * D_002AB30C;
-            float sq = C.z * C.z + C.y * C.y + C.x * C.x;
-            float len;
-            _mm_store_ss(&len, _mm_sqrt_ss(*(__m128 *)&sq));
-            rec->f4 = len;
+            rec->f4 = sqrtf(C.z * C.z + C.y * C.y + C.x * C.x);
             D_002BEAAC->func_0013C8A0(handle, &rec->s8, 2, 1);
             D_002BEAAC->func_0013C8A0(handle, &rec->sA, 2, 1);
         }
@@ -207,12 +208,12 @@ void C_00180600::func_00180600(int a0, int handle)
                 p++;
             }
         }
-        f100 = mem;
+        self->f100 = mem;
     }
     {
         int j;
         for (j = 0; j < n2; j++) {
-            Pair180600 *e = (Pair180600 *)((char *)f100 + j * 0x20);
+            Pair180600 *e = (Pair180600 *)((char *)self->f100 + j * 0x20);
             D_002BEAAC->func_0013C8A0(handle, &e->f0, 1, 4);
             D_002BEAAC->func_0013C8A0(handle, &e->f4, 1, 4);
             D_002BEAAC->func_0013C8A0(handle, &e->f8, 1, 4);
@@ -221,7 +222,7 @@ void C_00180600::func_00180600(int a0, int handle)
             D_002BEAAC->func_0013C8A0(handle, &e->f18, 1, 4);
         }
     }
-    fF0s = 0;
+    self->fF0s = 0;
 }
 
 void *C_00180DD0::func_00180DD0(unsigned int flags) {
