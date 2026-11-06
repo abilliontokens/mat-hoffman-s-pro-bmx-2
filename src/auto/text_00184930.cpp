@@ -421,6 +421,10 @@ static __forceinline int Cmp5_00185110(const char *a, const char *b)
 {
     return memcmp(a, b, 5);
 }
+static __forceinline int CmpN_00185110(const char *a, const char *b, int n)
+{
+    return memcmp(a, b, n);
+}
 int C_00184930::func_00184FC0(void)
 {
     void *mem;
@@ -458,6 +462,27 @@ int C_00184930::func_00184FC0(void)
     if (f3f0->func_0014ECD0(f3e4, f388->f31c, 0x115c, 1, 9, f388->f54c, f388->f550, 0) == 0) {
         f3f0 = 0;
         return 0;
+    }
+    return 1;
+}
+
+int C_00184930::func_00185110(int a)
+{
+    if (!f388) return 1;
+    if (!f388->f4) return 1;
+    f3e0 = (S_00185110_Obj **)func_001E8A44(f388->f4 * 4);
+    int i = 0;
+    while (i < f388->f4) {
+        if (Cmp5_00185110(f388->f8[i], D_002764F0) != 0) {
+            S_00185110_Obj *p = (S_00185110_Obj *)func_001E8A44(0x7e0);
+            f3e0[i] = p ? p->func_00197680(1) : 0;
+            if (!f3e0[i]->func_001976A0(f388->f8[i], 1024.0f)) {
+                f3e0[i]->v2();
+                f3e0[i] = 0;
+                return 0;
+            }
+        }
+        ++i;
     }
     return 1;
 }
