@@ -387,6 +387,11 @@ struct BmxEventEditor {
     int func_00038B10(void *obj, S_41F00_V4 va, S_41F00_V4 vb, int *ox, int *oy, int *oz, int flag);
     void func_00038A70(void *p, void **out);
     int func_0003D7B0(S_41F00_V4 v);
+    __forceinline void FindBlock(void *p, void **out)
+    {
+        *out = 0;
+        func_00038A70(p, out);
+    }
 };
 
 struct S_3D910_Base {
@@ -402,7 +407,7 @@ int BmxEventEditor::func_00041560()
     S_41F00_P4 tmp1;
     S_41F00_P4 tmp2;
     int px, py, pz;
-    S_41560_Block *blk;
+    void *blk;
     int w, h;
     int i, j, k;
     int idx;
@@ -410,7 +415,6 @@ int BmxEventEditor::func_00041560()
     S_41F00_Entry *save564;
     void *save568;
     void *save56C;
-    void *save570;
     int save48C;
 
     f564->obj->func_00197E70(&a);
@@ -419,24 +423,24 @@ int BmxEventEditor::func_00041560()
     if (func_00038B10(&f564->obj->f28, a, b, &px, &py, &pz, 1) == 0)
         return -1;
     blk = 0;
-    func_00038A70(&f564->obj->f28, (void **)&blk);
+    func_00038A70(&f564->obj->f28, &blk);
     if (blk == 0)
         return -1;
+    w = ((S_41560_Block *)blk)->w;
+    h = ((S_41560_Block *)blk)->h;
     save48C = f48c;
     save568 = f568;
-    w = blk->w;
-    h = blk->h;
     save564 = f564;
     f564 = 0;
     f568 = 0;
     save56C = 0;
-    save570 = 0;
+    blk = 0;
     if (f56c != 0) {
         save56C = f56c;
         f56c = 0;
     }
     if (f570 != 0) {
-        save570 = f570;
+        blk = f570;
         f570 = 0;
     }
     for (i = 0; i < h; i++) {
@@ -468,8 +472,8 @@ int BmxEventEditor::func_00041560()
                         f568 = save568;
                         if (save56C != 0)
                             f56c = save56C;
-                        if (save570 != 0)
-                            f570 = save570;
+                        if (blk != 0)
+                            f570 = blk;
                         f48c = save48C;
                         return -1;
                     }
@@ -537,8 +541,8 @@ int BmxEventEditor::func_00041560()
     f568 = save568;
     if (save56C != 0)
         f56c = save56C;
-    if (save570 != 0)
-        f570 = save570;
+    if (blk != 0)
+        f570 = blk;
     f48c = -1;
     return flag == 0;
 }
