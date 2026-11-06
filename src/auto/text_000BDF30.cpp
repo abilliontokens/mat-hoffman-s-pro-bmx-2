@@ -219,6 +219,8 @@ struct C_000BE640 {
     int f2B0[8];
     int f2D0[8];
     void func_000BE640(char *a, char *b, int c);
+    int func_000BDF30(int show);
+    int func_000BE020(int show);
     void func_001BCC90(void *p);
     void func_000BADB0();
     void func_000BCBB0();
