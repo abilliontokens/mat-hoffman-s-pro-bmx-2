@@ -7,6 +7,38 @@ extern char D_0000FFF8[];
 extern char D_0000F81F[];
 extern char D_0000FFFC[];
 
+static __forceinline void Downsample555Row(unsigned short *s, unsigned short *d, int count, int pitch)
+{
+    unsigned int sum;
+    unsigned int pair;
+    unsigned int a;
+    unsigned int b;
+    while (count != 0) {
+        sum = 0;
+        pair = *(unsigned int *)s;
+        a = pair & (unsigned int)D_0000FFFF;
+        b = pair >> 16;
+        sum += (b * 0x8000) & 0x1f00000;
+        sum += (a & 0x3e0) << 15;
+        sum += b & 0x7c1f;
+        sum += a & 0x7c1f;
+        s += pitch;
+        pair = *(unsigned int *)s;
+        a = pair & (unsigned int)D_0000FFFF;
+        b = pair >> 16;
+        sum += (b * 0x8000) & 0x1f00000;
+        sum += (a & 0x3e0) << 15;
+        sum += b & 0x7c1f;
+        sum += a & 0x7c1f;
+        s -= pitch;
+        sum >>= 2;
+        *d = (unsigned short)((sum & 0x7c1f) + ((sum >> 15) & 0x3e0));
+        s += 2;
+        ++d;
+        --count;
+    }
+}
+
 #pragma optimize("y", on)
 int _func_001755A0(unsigned int flag, unsigned short* src, int w, int h, int dstride, int sstride)
 {
