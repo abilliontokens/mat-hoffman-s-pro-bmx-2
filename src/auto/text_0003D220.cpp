@@ -38,7 +38,7 @@ struct Obj2_3D220 {
     int func_001BC040(Vec4_3D220 a, Vec4_3D220 b, Vec4_3D220 c, Vec4_3D220 d, int e, int f, int g, int h);
     void func_001BBAE0(int a);
 };
-struct Track_3D220 { char pad[0x44]; int f44; char pad48[0x48 - 0x48]; };
+struct Track_3D220 { char pad[0x44]; int f44; };
 struct Game_3D220 {
     char pad0[0x3a8]; Mgr_3D220 **f3a8;
     char pad1[0x4a8 - 0x3ac]; int *f4a8; int *f4ac;
