@@ -88,6 +88,7 @@ struct C_00168280 {
     C_00168280 *func_00168280(void);
     int func_00168300(const char *name);
     int func_00168550(const char *name, char *dst, int size);
+    int func_00168BE0(const char *name, const char *src, char *dst, int d);
     int func_00168C50(const char *name, float def, float *out);
     int func_00168CB0(const char *name, const float *def, float *out);
     int func_00168D70(const char *name, float *out, int count);
@@ -286,6 +287,129 @@ void C_001684B0::func_001684F0(int count)
     }
 }
 
+int C_00168280::func_00168550(const char *name, char *dst, int size)
+{
+    char key[0x400];
+    char val[0x400];
+    S_00168550_Tokenizer tok;
+    char *t;
+    char *e;
+    char *s;
+    char *p;
+    char c;
+    int lo;
+    int hi;
+    int mid;
+    int cmp;
+    int n;
+    int i;
+    int count;
+    int delta;
+    char **list;
+
+    if (f4 == 0) {
+        count = f1c;
+        list = f20;
+        for (i = 0; i < count; i++) {
+            n = Min_00168550(strlen(list[i]), 0x3ff);
+            func_001E8920(key, list[i], n);
+            key[n] = 0;
+            tok.func_001B4A40(key);
+            s = tok.func_001B4A70(D_0028800C);
+            n = Min_00168550(strlen(s), 0x3ff);
+            func_001E8920(val, s, n);
+            val[n] = 0;
+            s = tok.func_001B4A70(D_002869B4);
+            if (s != 0 && func_001EA426(val, name) == 0) {
+                if (*s == '"') {
+                    s++;
+                }
+                n = strlen(s) - 1;
+                if (n >= 0 && s[n] == '"') {
+                    s[n] = 0;
+                }
+                if (size != -1) {
+                    func_001E8920(dst, s, size);
+                    n = Min_00168550(strlen(s), size - 1);
+                    dst[n] = 0;
+                } else {
+                    strcpy(dst, s);
+                }
+                return 1;
+            }
+        }
+        dst[0] = 0;
+        return 0;
+    }
+    if (f1c == 0) {
+        dst[0] = 0;
+        return 0;
+    }
+    p = (char *)name;
+    delta = key - p;
+    do {
+        c = *p;
+        p[delta] = c;
+        p++;
+    } while (c);
+    func_000347F0(key);
+    t = f4c0;
+    if (f1c == 1) {
+        if (strcmp(key, t) != 0) {
+            return 0;
+        }
+        s = t + *(int *)(t + 0x23);
+        n = strlen(s);
+        if (size != -1) {
+            n = Min_00168550(n, size - 1);
+        }
+    } else {
+        lo = 0;
+        hi = f1c - 1;
+        mid = hi >> 1;
+        do {
+            e = t + mid * 0x2b;
+            cmp = strcmp(key, e);
+            if (cmp == 0) {
+                s = t + *(int *)(e + 0x23);
+                n = strlen(s);
+                if (size != -1) {
+                    n = Min_00168550(n, size - 1);
+                }
+                goto copy;
+            }
+            if (cmp < 0) {
+                hi = mid;
+            } else {
+                lo = mid;
+            }
+            mid = ((hi - lo) >> 1) + lo;
+        } while (hi - lo > 1);
+        e = t + lo * 0x2b;
+        if (strcmp(key, e) == 0) {
+            s = t + *(int *)(e + 0x23);
+            n = strlen(s);
+            if (size != -1) {
+                n = Min_00168550(n, size - 1);
+            }
+        } else {
+            e = t + hi * 0x2b;
+            if (strcmp(key, e) != 0) {
+                return 0;
+            }
+            s = t + *(int *)(e + 0x23);
+            n = strlen(s);
+            if (size != -1) {
+                n = Min_00168550(n, size - 1);
+            }
+        }
+    }
+copy:
+    memcpy(dst, s, n);
+    dst[n] = 0;
+    return 1;
+}
+
 int __stdcall func_00168B90(float a, float *out)
 {
     char buf[0x400];
@@ -301,7 +425,8 @@ int __stdcall func_00168550(int a, char *dst, int d);
 int __stdcall func_00168550(void *a, char *dst, int d);
 int __stdcall func_00168BE0(int a, const char *src, char *dst, int d)
 {
-    if (func_00168550(a, dst, d) != 0) {
+    int r = func_00168550(a, dst, d);
+    if (r != 0) {
         return 1;
     }
     strcpy(dst, src);
