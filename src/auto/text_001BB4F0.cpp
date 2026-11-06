@@ -217,6 +217,8 @@ struct V4b_001BB680 {
 };
 
 /* 4x4 float matrix, 16-byte aligned for movaps */
+extern "C" void _ReadWriteBarrier(void);
+#pragma intrinsic(_ReadWriteBarrier)
 __declspec(align(16)) struct S_001BB680_Mat {
     float m[16];
     __forceinline void identity(void)
@@ -462,7 +464,7 @@ struct C_001BBBE0 {
 
 void func_001BB4F0(S_1BB4F0_Arg1 *a1, int a2, S_1BB4F0_Arg3 *a3, int enable)
 {
-    char *lb;
+    S_1BB4F0_List *list;
     S_1BB4F0_Obj *obj;
     S_1BB4F0_Obj **pp;
     int found;
@@ -478,10 +480,10 @@ void func_001BB4F0(S_1BB4F0_Arg1 *a1, int a2, S_1BB4F0_Arg3 *a3, int enable)
         return;
     }
     key = a1->f64;
-    lb = (char *)D_002A8490->f2A4->f64->f4E0;
-    n = *(int *)(lb + 0x24);
+    list = D_002A8490->f2A4->f64->f4E0;
+    n = list->f24;
     found = 0;
-    pp = (S_1BB4F0_Obj **)(lb + 0x1A8);
+    pp = list->f1A8;
     for (i = 0; i < n; i++, pp++) {
         if (found) {
             break;
