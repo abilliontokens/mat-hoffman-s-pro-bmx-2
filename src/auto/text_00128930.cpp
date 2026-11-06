@@ -188,7 +188,7 @@ static inline void Identity_00129510(S_00129510_M44 *p)
     f[15] = 1.0f;
 }
 
-static inline void Xform_00129510(S_00129510_V4 * volatile out, const S_00129510_M44 * volatile mat, const S_00129510_V4 * volatile v)
+static inline void Xform_00129510(S_00129510_V4 *out, const S_00129510_M44 *mat, const S_00129510_V4 *v)
 {
     __m128 t = _mm_loadu_ps(&v->x);
     _mm_storeh_pi((__m64 *)&out->z, t);
