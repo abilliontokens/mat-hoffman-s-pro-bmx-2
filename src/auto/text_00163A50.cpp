@@ -175,7 +175,6 @@ void func_001EA1EE(char *);
 void *func_001E8920(void *, const void *, unsigned int);
 extern "C" unsigned int __cdecl strlen(const char *);
 extern "C" char *__cdecl strcpy(char *, const char *);
-template <class T> inline T min_164270(T a, T b) { return a > b ? b : a; }
 
 
 /* 0x40-byte entry; the name is at +0 */
