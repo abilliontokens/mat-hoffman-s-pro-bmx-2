@@ -89,6 +89,38 @@ void C_0009EDB0::func_0009EDB0(char param_1) {
     b1 = param_1;
 }
 
+C_0009EDF0 *C_0009EDF0::func_0009EDF0(int a) {
+    func_00169C50(a);
+    vtbl = &D_0027AC8C;
+    f32 *p = &f1fc;
+    p[2] = 0;
+    p[1] = 0;
+    p[0] = 0;
+    p[3] = 1.0f;
+    f1ac = 0;
+    f1a8 = 0;
+    f188 = 0;
+    f170 = 1000.0f;
+    f178 = 0.015f;
+    f174 = 0.5f;
+    f190 = 0x26;
+    f1cc |= 1;
+    f1f0 = 1000.0f;
+    f1f4 = 0;
+    f1f8 = 0;
+    f17c = 5.0f;
+    f1fc = D_002A2528;
+    f200 = D_002A252C;
+    f204 = D_002A2530;
+    f208 = D_002A2534;
+    f218 = 5.0f;
+    f20c = 10.0f;
+    f210 = 6.0f;
+    f214 = 0.8f;
+    func_001ADCC0(f6c, 0x104, &D_0027AC78, &D_002A5558);
+    return this;
+}
+
 void C_0009EDB0::func_0009F4C0(char param_1) {
     b1 = param_1;
     unk1dc = 0;
