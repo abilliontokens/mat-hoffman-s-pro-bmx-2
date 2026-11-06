@@ -1,5 +1,6 @@
 /* 7 functions from 0x000195B0 to 0x0001A5A6, found by Ghidra. */
 #include "common.h"
+#include <math.h>
 #include "ghidra.h"
 #include <xmmintrin.h>
 extern "C" float __cdecl sqrtf(float);
@@ -468,15 +469,28 @@ undefined4 C_0001A3E0::func_0001A3E0(byte param_1)
 
 void C_1A400::func_0001A400(S_1A400_Arg *a, float t)
 {
-    C_1A400 * volatile self = this;
-    float dx = t * a->f18;
-    float dy = t * a->f1C;
-    float dz = t * a->f20;
-    float *pos = &a->p->x;
-    pos[0] += dx;
-    pos[1] += dy;
-    pos[2] += dz;
-    a->p->func_0011CA60(*(S_1A400_Vec4 *)pos);
-    (void)self;
+ float z=t*a->f20, y=t*a->f1C, x=t*a->f18;
+ S_1A400_Vec4 *v=(S_1A400_Vec4*)&a->p->x;
+ v->x+=x; v->y+=y; v->z+=z;
+ a->p->func_0011CA60(*(S_1A400_Vec4*)&a->p->x);
+ int hit=0;
+ if(a->p->y < a->f8) hit=1;
+ S_1A400_Vec4 p;
+ S_1A400_Entity *e=D_002B9120->p->p;
+ if(!e) p=*(S_1A400_Vec4*)&D_002A0718;
+ else e->p->p->func_00199B00(&p,0);
+ float d;
+ x=a->p->x-p.x; y=a->p->y-p.y; z=a->p->z-p.z;
+ float square=z*z+y*y+x*x;
+ _mm_store_ss(&d,_mm_sqrt_ss(_mm_set_ss(square)));
+ if(d<D_002756C4) {
+ d=D_0027599C-d;
+ D_002B9120->p->func_00153D30((int)(d*D_00275AEC));
+ D_002B9120->p->score+=(int)(d*D_00275AEC);
+ func_00017D20(50);
+ hit=1;
+ }
+
+ if(hit) a->f8=0;
 }
 
