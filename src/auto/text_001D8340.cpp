@@ -54,7 +54,6 @@ struct S_001D8AE0_S3 {
     int b;
     int c;
     S_001D8AE0_S3() { a = b = c = 0; }
-    S_001D8AE0_S3(int x, int y, int z) { a = x; b = y; c = z; }
 };
 
 struct C_001D8AE0 {
