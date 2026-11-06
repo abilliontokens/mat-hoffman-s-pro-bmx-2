@@ -28,6 +28,14 @@ void func_00120FF0(void *a, void *b, void *c, void *d, void *e);
 void func_000110E0(void *a, void *b, void *c);
 void func_001C5E0(void *a, float b, void *c);
 void func_00011110(void *a, void *b, void *c);
+struct M264C0 { void func_000264C0(void *a); };
+struct M11AC30 { void func_0011AC30(void *a, void *b); };
+struct M11ACC0 { void func_0011ACC0(void *a, void *b, void *c); };
+struct M1225C0 { void func_001225C0(void *a, void *b, void *c, void *d, void *e, void *f); };
+struct M120FF0 { void func_00120FF0(void *a, void *b, void *c, void *d, void *e); };
+struct M110E0 { void func_000110E0(void *a, void *b, void *c); };
+struct M11110 { void func_00011110(void *a, void *b, void *c); };
+struct MC5E0 { void func_001C5E0(float a, void *b); };
 
 extern int D_00283F64;
 void func_001E891B(void *p);
@@ -245,16 +253,19 @@ struct BoxCollisionObject {
     void func_00129E10(void);
 };
 
+extern float D_ZeroVec_probe[4];
 void BoxCollisionObject::func_00129930(Vec4 a1, Vec4 a2)
 {
+    struct { BoxCollisionObject * volatile self; float * volatile q; } L;
+    L.self = this;
     (**(code **)(*(int *)this + 0x6c))();
-    fF0 = a1;
-    f100 = a2;
-    memset(matrix, 0, 0x40);
-    matrix[0] = 1.0f;
-    matrix[5] = 1.0f;
-    matrix[10] = 1.0f;
-    matrix[15] = 1.0f;
+    L.self->fF0 = a1;
+    L.self->f100 = a2;
+    L.q = L.self->matrix;
+    __m128 *v = (__m128 *)L.q;
+    v[3] = v[2] = v[1] = v[0] = *(__m128 *)D_ZeroVec_probe;
+    float *p = (float *)v;
+    p[0]=1.0f; p[5]=1.0f; p[10]=1.0f; p[15]=1.0f;
 }
 
 void BoxCollisionObject::func_001299C0(Vec4 *p1, Vec4 *p2)
@@ -263,6 +274,33 @@ void BoxCollisionObject::func_001299C0(Vec4 *p1, Vec4 *p2)
         fF0 = *p1;
     if (p2)
         f100 = *p2;
+}
+
+int C_00129A10::func_00129A10(S_00129A10_Arg *a)
+{
+    float v1[4], v2[4];
+
+    v1[0] = 0.0f; v1[1] = 0.0f; v1[2] = 0.0f; v1[3] = 1.0f;
+    v2[0] = 0.0f; v2[1] = 0.0f; v2[2] = 0.0f; v2[3] = 1.0f;
+    switch (a->f50) {
+    case 0:
+        break;
+    case 1:
+        break;
+    case 2:
+        break;
+    case 3:
+        break;
+    case 4:
+        break;
+    case 5:
+        break;
+    case 6:
+        break;
+    default:
+        return 0;
+    }
+    return 1;
 }
 
 void BoxCollisionObject::func_00129DF0(int a, int b)
@@ -366,8 +404,10 @@ Camera_12A3F0 *Camera_12A3F0::func_0012A3F0(int a)
 {
     Camera_12A3F0 * volatile self = this;
     V4_12A3F0 v;
+    float *f;
 
     func_00157600(a);
+    f = (float *)self;
     ((unsigned char *)self)[0x26] = 0xff;
     *(unsigned short *)((char *)self + 0x24) = 0;
     ((unsigned char *)self)[0x27] &= 0xf8;
@@ -378,14 +418,14 @@ Camera_12A3F0 *Camera_12A3F0::func_0012A3F0(int a)
     Set4_12A3F0((V4_12A3F0 *)((char *)self + 0x1a0));
     Set4_12A3F0((V4_12A3F0 *)((char *)self + 0x1b0));
     Set4_12A3F0((V4_12A3F0 *)((char *)self + 0x1c0));
-    *(float *)((char *)self + 0x21c) = 109.0f;
-    *(float *)((char *)self + 0x220) = 10.0f;
-    *(float *)((char *)self + 0x1d0) = 77.0f;
+    f[135] = 109.0f;
+    f[136] = 10.0f;
+    f[116] = 77.0f;
     *(int *)((char *)self + 0x224) = 0;
     *(int *)((char *)self + 0x228) = 0;
     *(int *)((char *)self + 0x22c) = 0;
-    *(float *)((char *)self + 0x1fc) = D_00284038;
-    *(float *)((char *)self + 0x200) = D_0028403C;
+    f[127] = D_00284038;
+    f[128] = D_0028403C;
     *(int *)((char *)self + 0x20c) = 0;
     *(int *)((char *)self + 0x210) = 0;
     memset((char *)self + 0x1e0, 0, 24);
@@ -407,10 +447,10 @@ Camera_12A3F0 *Camera_12A3F0::func_0012A3F0(int a)
     *(int *)((char *)self + 0x244) = 0;
     *(V4_12A3F0 *)((char *)self + 0x1b0) = *(V4_12A3F0 *)((char *)self + 0x180);
     *(V4_12A3F0 *)((char *)self + 0x1a0) = *(V4_12A3F0 *)((char *)self + 0x170);
-    *(float *)((char *)self + 0x1c0) = D_002A3E3C;
-    *(float *)((char *)self + 0x1c4) = D_002A3E40;
-    *(float *)((char *)self + 0x1c8) = D_002A3E44;
-    *(float *)((char *)self + 0x1cc) = D_002A3E48;
+    f[112] = D_002A3E3C;
+    f[113] = D_002A3E40;
+    f[114] = D_002A3E44;
+    f[115] = D_002A3E48;
     Ident_12A3F0((float *)((char *)self + 0x130));
     *(int *)((char *)self + 0x28) = 0;
     *(int *)((char *)self + 0x2c) = 0;
