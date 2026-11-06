@@ -57,6 +57,7 @@ struct C_Particle {
     float f40;
     u32 f44;
     void *f48;
+    u32 f4C;
 };
 
 struct C_Pool {
