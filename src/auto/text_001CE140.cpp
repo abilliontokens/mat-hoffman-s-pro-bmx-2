@@ -99,8 +99,10 @@ struct Globals138 {
     LockOwner *f138;
 };
 extern Globals138 *D_002F08EC;
-extern "C" __declspec(dllimport) void __stdcall RtlEnterCriticalSection(void *cs);
-extern "C" __declspec(dllimport) void __stdcall RtlLeaveCriticalSection(void *cs);
+extern "C" void (__stdcall *__imp__RtlEnterCriticalSection)(void *cs);
+extern "C" void (__stdcall *__imp__RtlLeaveCriticalSection)(void *cs);
+#define RtlEnterCriticalSection __imp__RtlEnterCriticalSection
+#define RtlLeaveCriticalSection __imp__RtlLeaveCriticalSection
 int __stdcall func_00220A12(int h, int a, int b, int c);
 
 struct Voice {
@@ -258,6 +260,53 @@ struct XboxSound {
     int func_001CCA10();
     int func_001CE660(float dt);
 };
+
+int Voice::func_001CE140(int arg)
+{
+    RtlEnterCriticalSection(D_002F08EC->f138->Lock());
+    if (!(flags & 8)) {
+        if (flags & 4) {
+            if (!D_002F08EC->f138->l38.func_001CDED0((int)this)) {
+                RtlLeaveCriticalSection(D_002F08EC->f138->Lock());
+                return 0;
+            }
+            flags = (flags & 0xef) | 0x20;
+            RtlLeaveCriticalSection(D_002F08EC->f138->Lock());
+            return 1;
+        }
+        RtlLeaveCriticalSection(D_002F08EC->f138->Lock());
+        return 0;
+    }
+    RtlLeaveCriticalSection(D_002F08EC->f138->Lock());
+    if (f13c) {
+        v20(f1a0);
+        v24(f1ac);
+        if (f154) {
+            flags = (flags & 0xef) | 0x20;
+            return 1;
+        }
+        int mode;
+        if (flags & 1)
+            mode = (arg & 1) ? 3 : 1;
+        else
+            mode = (arg & 1) ? 2 : 0;
+        if (func_00220A12(f13c, 0, 0, mode))
+            return 0;
+        flags &= 0xef;
+        f120 = 0;
+        return 1;
+    }
+    RtlEnterCriticalSection(D_002F08EC->f138->Lock());
+    if (f140) {
+        v48(0);
+        RtlLeaveCriticalSection(D_002F08EC->f138->Lock());
+        v20(f1a0);
+        f120 = 0;
+        return 1;
+    }
+    RtlLeaveCriticalSection(D_002F08EC->f138->Lock());
+    return 1;
+}
 
 int XboxSound::func_001CE660(float dt)
 {
