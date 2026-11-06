@@ -300,6 +300,31 @@ void SoultreeCollisionObject::func_0019BB80(void *arg1)
                   &p, (char *)this + 0xb0, (char *)this + 0x1b0);
 }
 
+void C_0019BBD0::func_0019BBD0(unsigned short idx, S_0019BBD0_Tree *tree, int depth, float *m, void *p)
+{
+    char *node;
+
+    if (depth != 0) {
+        do {
+            if (idx & 0x8000)
+                return;
+            node = tree->nodes + idx * 36;
+            func_0019BBD0(*(unsigned short *)(node + 8), tree, depth - 1, m, p);
+            depth = depth - 1;
+            idx = *(unsigned short *)(node + 10);
+        } while (depth != 0);
+    }
+    if (!(idx & 0x8000))
+        return;
+    S_0019BBD0_V4 a, b, c;
+    S_0019BBD0_Vec out[3];
+    func_0011F0E0((S_0019BBD0_Vec *)&a, (S_0019BBD0_Vec *)&b, (S_0019BBD0_Vec *)&c, tree->leaves + (idx & 0x7fff) * 20, p);
+    func_00011FF0(out, 0x10, 3, (void *)func_00011060);
+    func_00030AC0((float *)&out[0], &a.x, m);
+    func_00030AC0((float *)&out[1], &b.x, m);
+    func_00030AC0((float *)&out[2], &c.x, m);
+}
+
 void SoultreeCollisionObject::func_0019C1E0(void)
 {
     S_Matrix16 m;
