@@ -850,18 +850,35 @@ void *C_001B1110::func_001B1110(unsigned int flags)
 
 void *C_001B1130::func_001B1130(int a0)
 {
+    u32 *p;
+
     func_00157600(a0);
     vtbl = (void *)&D_0028C70C;
-    unk24 = unk28 = unk2C = 0;
-    unk30 = 1.0f;
-    unk34 = unk38 = unk3C = 0;
-    unk40 = 1.0f;
-    unk44 = unk48 = unk4C = 0;
-    unk50 = 1.0f;
-    unk54 = unk58 = unk5C = 0;
-    unk60 = 1.0f;
-    unk64 = unk68 = unk6C = 0;
-    unk70 = 1.0f;
+    p = (u32 *)&unk24;
+    p[2] = 0;
+    p[1] = 0;
+    p[0] = 0;
+    p[3] = 0x3f800000;
+    p = (u32 *)&unk34;
+    p[2] = 0;
+    p[1] = 0;
+    p[0] = 0;
+    p[3] = 0x3f800000;
+    p = (u32 *)&unk44;
+    p[2] = 0;
+    p[1] = 0;
+    p[0] = 0;
+    p[3] = 0x3f800000;
+    p = (u32 *)&unk54;
+    p[2] = 0;
+    p[1] = 0;
+    p[0] = 0;
+    p[3] = 0x3f800000;
+    p = (u32 *)&unk64;
+    p[2] = 0;
+    p[1] = 0;
+    p[0] = 0;
+    p[3] = 0x3f800000;
     return this;
 }
 
