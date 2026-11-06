@@ -30,7 +30,7 @@ extern S_7C690_Device *D_002EFDB8;
 struct S_7C690_Data { char pad0[0x790]; int f790; char pad794[0x7b8 - 0x794]; int f7b8; char pad7bc[4]; int f7c0; char pad7c4[4]; int f7c8; char pad7cc[0xff8 - 0x7cc]; int ff8; };
 struct S_7C690_Mgr { char pad0[4]; S_7C690_Data *f4; };
 struct S_7C690_C020 { int func_0005C020(void *a); };
-struct S_7C690_E { char pad0[0x2c0]; S_7C690_C020 *f2c0; char pad2c4[0x14]; void *f2d8; };
+struct S_7C690_E { char pad0[0x48]; int f48; char pad4c[0x2c0 - 0x4c]; S_7C690_C020 *f2c0; char pad2c4[0x14]; void *f2d8; };
 struct S_7C690_Global {
     char pad0[0x270];
     int f270;
