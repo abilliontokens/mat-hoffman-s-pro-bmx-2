@@ -58,6 +58,7 @@ static __forceinline void Xform_0014BA80(Vec4 *out, const M44_0014BA80 *mat, con
     out->w = 1.0f;
 }
 static __forceinline float Abs_0014BA80(float f) { return fabsf(f); }
+#pragma auto_inline(off)
 struct DynamicRayCollisionObject {
     int func_0014B260(char *obj);
     char pad_0[0x28];
