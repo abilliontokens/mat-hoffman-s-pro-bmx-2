@@ -122,10 +122,14 @@ struct BestScoreOverlay_Text {
         }
     }
     void SetPosRev(int nx, int ny) {
-        if (x != nx || y != ny) {
-            *(volatile int *)&y = ny;
+        if (x != nx) {
+            y = ny;
+            x = nx;
             flags |= 6;
-            *(volatile int *)&x = nx;
+        } else if (y != ny) {
+            y = ny;
+            x = nx;
+            flags |= 6;
         }
     }
     void SetPosY(int nx, float ny) {
@@ -516,11 +520,12 @@ BestScoreOverlay *BestScoreOverlay::func_00086E60(u32 a, int mode, int c)
     mem = func_001E8A44(0x60);
     f28 = mem ? ((BestScoreOverlay_Text *)mem)->func_001D5E90() : 0;
     if (mode == 0) {
+        int m = 6;
         f24->func_001D5FA0(font, &D_00278690, 0x28, 0);
         f24->SetPos(0x4415c000, 0x41d00000);
         f24->SetColor(D_0028F5EC);
         f28->func_001D5FA0(font2, &D_0027958C, 0x28, 0);
-        f28->SetPosRev(0x4415c000, 0x42500000);
+        f28->SetPosM(0x4415c000, 0x42500000, m);
     } else if (mode == 1) {
         f24->func_001D5FA0(font, &D_002786A0, 0x28, 0);
         f24->SetColor(D_0028F5EC);
