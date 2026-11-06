@@ -159,6 +159,18 @@ struct S_1390A0_60 {
     char pad0[0x28];
     void **f28;
 };
+struct S_1395_Track {
+    int id;
+    char pad4[0x14];
+    int flag;
+};
+
+struct S_1395_Group {
+    int id;
+    int pad4[2];
+    int flag;
+};
+
 struct S_1395_Owner {
     char pad0[0x3c];
     int count;
@@ -326,5 +338,25 @@ void CutScene::func_001394F0(int arg) {
         for (j = 0; j < g->count; j++) g->children[j]->v32();
     }
     D_002A8490->v15(f44, 0, 0, 0);
+}
+
+void __fastcall func_001395D0(S_1395_Owner *self) {
+    for (int i = 0; i < self->count; i++) {
+        for (int j = 0; j < *(int *)((char *)self->entries + i * 0x2c + 4); j++) {
+            char *it = ((S_1390A0_Entry *)((char *)self->entries + i * 0x2c))->list1 + j * 0x1c;
+            if (*(int *)(it + 0x18) == 1)
+                self->list58[*(int *)it]->f4->func_00198390();
+        }
+        for (int k = 0; k < *(int *)((char *)self->entries + i * 0x2c + 8); k++) {
+            char *it = ((S_1390A0_Entry *)((char *)self->entries + i * 0x2c))->list2 + k * 0x10;
+            if (*(int *)(it + 0xc) == 1) {
+                S_1390A0_Q *q = (S_1390A0_Q *)self->p60->f28[*(int *)it];
+                for (int m = 0; m < q->f10; m++) {
+                    q->f4[m]->v31();
+                    q->f4[m]->v4();
+                }
+            }
+        }
+    }
 }
 
