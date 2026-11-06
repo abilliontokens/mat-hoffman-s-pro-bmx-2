@@ -176,9 +176,18 @@ struct PhysicsBody {
     void *vtbl;
     char pad4[0x20];
     void *f24;
-    char pad28[0x88];
+    char pad28[0x0C];
+    int f34;
+    char pad38[0x5C];
+    float f94;
+    float f98;
+    float f9C;
+    char padA0[0x10];
     C_00193490 *fB0;
-    char padB4[0x10];
+    float fB4;
+    float fB8;
+    float fBC;
+    float fC0;
     void *fC4;
     char padC8[8];
     C_00172090_D0 *fD0;
@@ -434,14 +443,14 @@ extern "C" void *memcpy(void *dst, const void *src, unsigned int n);
 void PhysicsBody::func_001729D0(void)
 {
     char *p = (char *)this;
-    V3_00171BA0 *src = (V3_00171BA0 *)(p + 0x84);
-    V3_00171BA0 v;
+    W3_001729D0 *src = (W3_001729D0 *)(p + 0x84);
+    W3_001729D0 v;
 
     v.z = 0.0f; v.y = 0.0f; v.x = 0.0f; v.w = 1.0f;
     ((C_001729D0_Cam *)*(void **)(*(char **)(p + 0xc4) + 0x22c))->func_00199A70(0, &src->x);
-    V3_00171BA0 *dst = (V3_00171BA0 *)(p + 0x74);
+    W3_001729D0 *dst = (W3_001729D0 *)(p + 0x74);
     if (dst->x == D_002A8BA0 && dst->y == D_002A8BA4 && dst->z == D_002A8BA8) {
-        *(V3_00171BA0 *)(p + 0x74) = *(V3_00171BA0 *)(p + 0x84);
+        *(W3_001729D0 *)(p + 0x74) = *(W3_001729D0 *)(p + 0x84);
     }
     ((C_001729D0_Obj *)fDC)->func_0014AC30(&dst->x, 0);
     ((C_001729D0_Obj *)fDC)->func_00133ED0();
@@ -452,11 +461,10 @@ void PhysicsBody::func_001729D0(void)
     }
     if (((C_001729D0_Obj *)fDC)->fA7 & 0x20) {
         C_001729D0_Node *n = ((C_001729D0_Obj *)fDC)->f54;
-        V3_00171BA0 *m = (V3_00171BA0 *)((char *)n + 0x20);
-        V3_00171BA0 &pos = *(V3_00171BA0 *)((char *)n + 0x30);
-        *(V3_00171BA0 *)(p + 0x94) = *m;
-        V3_00171BA0 w = pos + *m * D_002A8BE8;
-        w.w = 1.0f;
+        W3_001729D0 *m = (W3_001729D0 *)((char *)n + 0x20);
+        W3_001729D0 &pos = *(W3_001729D0 *)((char *)n + 0x30);
+        *(W3_001729D0 *)(p + 0x94) = *m;
+        W3_001729D0 w = *m * D_002A8BE8 + pos;
         v = w;
         ((C_001729D0_Cam *)f14C)->func_00199790(0, &v.x);
         ((C_001729D0_Cam *)f14C)->func_0019AC50();
