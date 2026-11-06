@@ -1,6 +1,8 @@
 /* 16 functions from 0x0004E680 to 0x0004F5E0, found by Ghidra. */
 #include "common.h"
 #include <string.h>
+extern "C" void _ReadWriteBarrier(void);
+#pragma intrinsic(_ReadWriteBarrier)
 
 struct H_Player {
  char p0[0xa40]; int score; char pa44[8]; float fa4c; int fa50; float fa54;
