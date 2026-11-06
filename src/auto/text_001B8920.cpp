@@ -1,11 +1,77 @@
 /* 2 functions from 0x001B8920 to 0x001B9560, found by Ghidra. */
 #include "common.h"
+#include "ghidra.h"
+#include <math.h>
+#include <xmmintrin.h>
 
 extern int D_0028D0BC;
 extern char D_00275630[];
 
 extern "C" int strlen(const char *s);
 char *func_001E8920(char *dst, const char *src, int n);
+
+extern void *D_002EFDB8;
+extern unsigned short D_002EFE50;
+extern float D_0028CA50;
+extern float D_0028CA40;
+extern float D_0028CA30;
+
+struct V4_1B8920 { float x, y, z, w; };
+extern V4_1B8920 D_002AAA14;
+extern "C" void func_00158390(float f, V4_1B8920 a, V4_1B8920 b, V4_1B8920 *out);
+extern "C" float func_0014F890(float x);
+
+static __forceinline void norm_1B8920(float * volatile out, float * volatile in)
+{
+    __m128 v = _mm_loadu_ps(in);
+    __m128 sq = _mm_mul_ps(v, v);
+    __m128 len = _mm_add_ss(_mm_movehl_ps(sq, sq), sq);
+    len = _mm_add_ss(len, _mm_shuffle_ps(sq, sq, 0xe1));
+    __m128 minv = _mm_load_ss(&D_0028CA50);
+    __m128 cmp = _mm_cmplt_ss(len, minv);
+    len = _mm_add_ss(len, _mm_and_ps(cmp, minv));
+    __m128 r = _mm_rsqrt_ss(len);
+    __m128 t = _mm_mul_ss(_mm_mul_ss(len, r), r);
+    __m128 scale = _mm_mul_ss(_mm_mul_ss(r, _mm_load_ss(&D_0028CA30)), _mm_sub_ss(_mm_load_ss(&D_0028CA40), t));
+    scale = _mm_shuffle_ps(scale, scale, 0);
+    _mm_storeu_ps(out, _mm_mul_ps(scale, v));
+}
+
+static __forceinline void Cross_1B8920(V4_1B8920 * volatile out, V4_1B8920 * volatile a, V4_1B8920 * volatile b)
+{
+    V4_1B8920 *pa = a, *pb = b;
+    _mm_storeu_ps(&out->x,
+        _mm_shuffle_ps(
+            _mm_sub_ps(
+                _mm_mul_ps(_mm_loadu_ps(&pa->x), _mm_shuffle_ps(_mm_loadu_ps(&pb->x), _mm_loadu_ps(&pb->x), 0xc9)),
+                _mm_mul_ps(_mm_loadu_ps(&pb->x), _mm_shuffle_ps(_mm_loadu_ps(&pa->x), _mm_loadu_ps(&pa->x), 0xc9))),
+            _mm_sub_ps(
+                _mm_mul_ps(_mm_loadu_ps(&pa->x), _mm_shuffle_ps(_mm_loadu_ps(&pb->x), _mm_loadu_ps(&pb->x), 0xc9)),
+                _mm_mul_ps(_mm_loadu_ps(&pb->x), _mm_shuffle_ps(_mm_loadu_ps(&pa->x), _mm_loadu_ps(&pa->x), 0xc9))), 0xc9));
+}
+
+struct Item_1B8920 {
+    char pad0[0x18c];
+    void *f18C;
+    void func_00197E70(float *out);
+    void func_001994C0(int flags, float *axis, float *v2);
+};
+
+struct Sub_1B8920 {
+    char pad0[0x104];
+    int f104;
+    char pad108[0x118 - 0x108];
+    V4_1B8920 f118;
+    char pad128[0x158 - 0x128];
+    Item_1B8920 **f158;
+};
+
+struct C_1B8920_Mgr {
+    char pad0[0x24];
+    int f24;
+    Sub_1B8920 **f28;
+    void func_001B8920(void);
+};
 
 struct S_001B9460_Quat {
     u32 x;
