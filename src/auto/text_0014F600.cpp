@@ -398,11 +398,6 @@ float func_0014FB30(float v)
     return r;
 }
 
-static __forceinline void Abs_0014FBA0(volatile float *dst, const float *src)
-{
-    *(int *)dst = *(const int *)src & 0x7fffffff;
-}
-
 float func_0014FBA0(volatile float y, volatile float x)
 {
     extern float D_002756D0;
