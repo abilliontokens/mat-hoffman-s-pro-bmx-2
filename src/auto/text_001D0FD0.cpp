@@ -61,6 +61,10 @@ struct Game {
     void func_00156FC0();
 };
 
+struct GameBase {
+    void func_00156FC0();
+};
+
 struct V_XboxGame {
     virtual void v0();
     virtual void v1();
@@ -341,6 +345,7 @@ V_002EFDB8 *XboxGame::func_001D1290()
     return D_002EFDB8;
 }
 
+void __fastcall func_00156FC0(void *p);
 void *XboxGame::func_001D1390(int flags)
 {
     vtbl = (void *)&D_0028F154;
