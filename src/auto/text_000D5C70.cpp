@@ -37,9 +37,11 @@ struct ElemHOF2 {
     void func_001D5810(char *name, float x, float y, int z);
     void func_001D5AD0();
     void SetIdentity() {
-        m44 = m40 = 0;
         b58 |= 4;
-        m48 = m3c = 1.0f;
+        m40 = 0;
+        m44 = 0;
+        m3c = 1.0f;
+        m48 = 1.0f;
     }
     void SetX(int nx) {
         if (x != nx) {
