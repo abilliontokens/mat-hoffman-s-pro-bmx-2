@@ -25,7 +25,6 @@ struct S_00094620_NodeHead {
 struct S_00094620_NodeTail {
     int unk0;
     char pad4[0x20];
-    int *Self(void) { return &unk0; }
 };
 
 struct S_00094620_Node : S_00094620_NodeHead, S_00094620_NodeTail {
