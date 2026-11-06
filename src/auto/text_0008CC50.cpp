@@ -64,6 +64,8 @@ struct C_001B1980 {
     void func_001B1980(void);
 };
 
+void *func_001E8A44(unsigned int);
+struct Elem_8CC50 { Elem_8CC50 *func_001D5760(); };
 struct C_0008CC50 {
     char pad0[0x7c];
     int u7c;
@@ -111,6 +113,52 @@ struct C_0008D590 {
     void func_0008D590();
     void func_001578D0();
 };
+
+void S_0008D290::func_0008D290()
+{
+    char a[15] = {0};
+    char out[15] = {0};
+    int i, j, k, r;
+    u48->func_001D5AD0();
+    u4c->func_001D5AD0();
+    u70 = u64->u584;
+    func_001ADCC0(a, 15, D_00277038, u70);
+    r = strlen(a) % 3;
+    k = 0; j = -r;
+    for (i = 0; i < (int)strlen(a); i++) {
+        if (i > r - 1 && i != 0 && (j == 0 || j % 3 == 0)) { out[k++] = ',';  out[k++] = a[i]; }
+        else out[k++] = a[i];
+        j++;
+    }
+    u28->func_0005E840(out);
+    u28->func_001D6600();
+    u74 = u64->u574 + u64->u578 * 10;
+    func_001ADCC0(a, 15, D_00277038, u74);
+    r = strlen(a) % 3;
+    k = 0; j = -r;
+    for (i = 0; i < (int)strlen(a); i++) {
+        if (i > r - 1 && i != 0 && (j == 0 || j % 3 == 0)) { out[k++] = ',';  out[k++] = a[i]; }
+        else out[k++] = a[i];
+        j++;
+    }
+    out[k] = 0;
+    u2c->func_0005E840(out);
+    u2c->func_001D6600();
+    if (u68) {
+        for (i = 0; i < 15; i++) out[i] = 0;
+        u78 = u68->u4d4;
+        func_001ADCC0(a, 15, D_00277038, u78);
+        r = strlen(a) % 3;
+        k = 0; j = -r;
+        for (i = 0; i < (int)strlen(a); i++) {
+            if (i > r - 1 && i != 0 && (j == 0 || j % 3 == 0)) { out[k++] = ',';  out[k++] = a[i]; }
+            else out[k++] = a[i];
+            j++;
+        }
+        u34->func_0005E840(out);
+        u34->func_001D6600();
+    }
+}
 
 void C_0008D550::func_0008D550(void)
 {
