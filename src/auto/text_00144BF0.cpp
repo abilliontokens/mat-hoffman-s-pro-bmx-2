@@ -110,16 +110,17 @@ struct C_00145370_Src {
 };
 struct C_00145370_Out { int idx; int type; int val; };
 extern "C" int __cdecl func_001ADCC0(char *buf, int n, const char *fmt, ...);
-void __cdecl func_00140DF0(int f, char *b, int v, int *p);
-void __cdecl func_00140F30(int f, char *b, int v, int *p);
-void __cdecl func_00141070(int f, char *b, int v, int *p);
-void __cdecl func_00140820(int f, char *b, float v, float *p);
-void __cdecl func_00140890(int f, char *b, int v, int *p);
-void __cdecl func_001411A0(int f, char *b, int v, int *p);
-void __cdecl func_00140A10(int f, char *b, int v, int *p);
-void __cdecl func_001412A0(int f, char *b, int v, int *p);
-void __cdecl func_00140B60(int f, char *b, int v, int *p);
-void __cdecl func_001409A0(int f, char *b, int v, int *p);
+struct C_00168BE0;
+int func_00140DF0(C_00168BE0 *cfg, const char *key, int def, int &out);
+int func_00140F30(C_00168BE0 *cfg, const char *key, int def, int &out);
+int func_00141070(C_00168BE0 *cfg, const char *key, int def, int &out);
+int func_00140820(C_00168BE0 *cfg, const char *key, int def, int &out);
+int func_00140890(C_00168BE0 *cfg, const char *key, int def, int &out);
+int func_001411A0(C_00168BE0 *cfg, const char *key, int def, int &out);
+int func_00140A10(C_00168BE0 *cfg, const char *key, int def, int &out);
+int func_001412A0(C_00168BE0 *cfg, const char *key, int def, int &out);
+int func_00140B60(C_00168BE0 *cfg, const char *key, int def, int &out);
+int func_001409A0(C_00168BE0 *cfg, const char *key, int def, int &out);
 extern char D_00285DC4[], D_00285DB8[], D_00285DAC[], D_00285DA0[], D_00285D90[], D_00285D80[], D_00285D70[], D_00285D5C[];
 extern char D_00285D4C[], D_00285D38[], D_00285D28[], D_00285D18[], D_00285D08[], D_00285CF4[], D_00285CE4[], D_00285CD0[];
 
