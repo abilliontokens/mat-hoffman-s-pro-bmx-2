@@ -345,6 +345,110 @@ struct C_0004D0E0 {
     int func_0004D650();
 };
 
+void C_0004C7A0::func_0004C7A0(int a)
+{
+    char *s = (char *)this;
+    int i, j, k;
+    if (*(int *)(s + 0x1f4)) {
+        func_00157A00(a);
+        return;
+    }
+    if (*(int *)(*(char **)(s + 0x64) + 0x3b4)) {
+        for (i = 0; i < *(int *)(s + 0x1250); i++) {
+            char *o = *(char **)((*(char ***)(*(char **)(*(char **)(s + 0x64) + 0x3b4) + 0x28))[((int *)(s + 0x98c))[i]] + 4);
+            if (*(u8 *)(o + 0x2ec) & 0x10) {
+                for (j = 0; j < *(int *)(s + 0x90); j++) {
+                    int *rec = (int *)(s + 0xbe4 + j * 0xcc);
+                    if (*(int *)(o + 0x2e8) == *(int *)((*(char ***)(*(char **)(s + 0x64) + 0x4e0))[0x6a + j] + 0x11b0)) {
+                        int n = rec[0];
+                        if (n < 50) {
+                            k = 0;
+                            do {
+                                if (rec[k + 1] == i)
+                                    goto next;
+                                k++;
+                            } while (k < 50);
+                            rec[n + 1] = i;
+                            rec[0]++;
+                        }
+                    }
+                next:;
+                }
+                *(u8 *)(o + 0x2ec) &= ~0x10;
+            }
+        }
+    }
+    for (j = 0; j < *(int *)(s + 0x90); j++) {
+        int *rec = (int *)(s + 0xbe4 + j * 0xcc);
+        char *p = (*(char ***)(*(char **)(s + 0x64) + 0x4e0))[0x6a + j];
+        if (*(int *)(p + 0x1178) && !*(int *)(p + 0x11f8) && rec[0]) {
+            rec[0] = 0;
+            for (k = 0; k < 50; k++)
+                rec[k + 1] = -1;
+        }
+        if (*(int *)(p + 0x11f8) == 3 && *(int *)(p + 0x11f4) != 3) {
+            int score = *(int *)((*(char ***)((char *)D_002A8490 + 0x2a4))[0x5c + j] + 0x130);
+            int id;
+            if (rec[0] <= 0)
+                continue;
+            id = rec[rec[0]];
+            rec[rec[0]] = -1;
+            rec[0]--;
+            while (id != -1) {
+                if (score > *(int *)(s + id * 8 + 0xa58)) {
+                    int prev = *(int *)(s + id * 8 + 0xa54);
+                    *(int *)(s + id * 8 + 0xa54) = j;
+                    *(int *)(s + id * 8 + 0xa58) = score;
+                    if (prev >= 0) {
+                        (*(int *)((*(char ***)(*(char **)(s + 0x64) + 0x4e0))[0x6a + prev] + 0xa40))--;
+                        if (prev != j)
+                            ((C_00088F70 **)(s + 0x1248))[prev]->func_00088F70(*(int *)((*(char ***)(*(char **)(s + 0x64) + 0x4e0))[0x6a + prev] + 0xa40), 0);
+                    }
+                    func_0004C3F0(id, j, score < 5000 ? 1 : score < 10000 ? 2 : (score >= 50000) + 3);
+                    (*(int *)(p + 0xa40))++;
+                    ((C_00088F70 **)(s + 0x1248))[j]->func_00088F70(*(int *)(p + 0xa40), 0);
+                }
+                if (rec[0] <= 0)
+                    break;
+                id = rec[rec[0]];
+                rec[rec[0]] = -1;
+                rec[0]--;
+            }
+        }
+    }
+    if (*(void **)(s + 0x190)) {
+        if (!*(int *)(s + 0x1244)) {
+            if (!*(int *)(*(char **)((char *)D_002A8490 + 0x2e0) + 0x20) && *(float *)(s + 0x128) <= D_00275544)
+                *(int *)(s + 0x1244) = 1;
+            for (i = 0; i < *(int *)(s + 0x90); i++)
+                if (((C_00088F70 **)(s + 0x1248))[i]->func_00089040())
+                    *(int *)(s + 0x1244) = 1;
+        }
+        int ok = 1;
+        for (i = 0; i < *(int *)(s + 0x90); i++)
+            if (!((C_00108660 **)(*(char **)(*(char **)(s + 0x64) + 0x4e0)))[0x6a + i]->func_00108660())
+                ok = 0;
+        if (*(int *)(s + 0x1244)) {
+            for (i = 0; i < *(int *)(s + 0x90); i++)
+                ((C_00108660 **)(*(char **)(*(char **)(s + 0x64) + 0x4e0)))[0x6a + i]->func_001084E0();
+            if (*(int *)(s + 0x1244) && ok && !*(int *)(*(char **)(s + 0x190) + 0x168)) {
+                for (i = 0; i < *(int *)(s + 0x90); i++)
+                    (*(C_00067D60 **)(s + 0x190))->func_00067D60(i, *(int *)((*(char ***)(*(char **)(s + 0x64) + 0x4e0))[0x6a + i] + 0xa40));
+                char **pl = *(char ***)(*(char **)(s + 0x64) + 0x4e0);
+                int a0 = *(int *)(pl[0x6a] + 0xa40);
+                int a1 = *(int *)(pl[0x6b] + 0xa40);
+                if (a0 > a1)
+                    (*(C_00088F70 **)(s + 0x1248))->func_00089010();
+                else if (a0 < a1)
+                    (*(C_00088F70 **)(s + 0x124c))->func_00089010();
+                func_00032A20();
+                (*(C_00067D60 **)(s + 0x190))->func_000684B0();
+            }
+        }
+    }
+    func_00031260(a);
+}
+
 void C_0004CC60::func_0004CC60(int id, int a1, int a2, int a3, int a4, int a5)
 {
     for (int i = 0; i < f90; i++) {
