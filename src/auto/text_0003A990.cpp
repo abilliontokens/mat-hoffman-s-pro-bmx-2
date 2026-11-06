@@ -31,7 +31,7 @@ struct C_0003AC20 {
  char pad57C[0x5A0-0x57C]; int count; S_0003AC20_Entry **items;
  S_0003AC20_Entry *at(int i) { if(count>0 && items && i<count) return items[i]; return 0; }
     int func_00038760(S_0003AC20_Arg pos,int *out);
-   int func_0003AC20(float x,float y,float z,int w);
+   int func_0003AC20(int x,float y,int z,int w);
   };
 static __forceinline void Round_0003AC20(int * volatile out,float f) { *out = _mm_cvtss_si32(*(__m128 *)&f); }
 
