@@ -186,6 +186,12 @@ struct C_0009A290 {
     C_0009A290 *func_0009A290(void *a0, char *a1, int a2);
     void func_0009C770(void);
 };
+static __forceinline void destroy_00031840(C_0009A290 *p)
+{
+    if (p != 0) {
+        p->func_0009C770();
+    }
+}
 
 struct C_00031840 {
     char pad0[0x64];
@@ -565,12 +571,11 @@ C_00030F90 *C_00030F90::func_00030F90(int a0)
     struct Q4 { int x, y, z, w; };
     int *u = (int *)this;
     int *p;
-    int *q;
     int *z;
     int i;
 
     ((C_00030C00 *)this)->func_00157600(a0);
-    u[0] = (int)&D_00276AB4;
+    vtbl = (void *)&D_00276AB4;
     u[0x218 / 4] = 0;
     u[0x214 / 4] = 0;
     u[0x210 / 4] = 0;
@@ -668,16 +673,16 @@ C_00030F90 *C_00030F90::func_00030F90(int a0)
     u[0x1c8 / 4] = 0;
     memset(&u[0x1dc / 4], 0, 6 * 4);
     u[0x1f4 / 4] = 0;
-    q = &u[0x25c / 4];
+    p = &u[0x25c / 4];
     z = &u[0x27c / 4];
     i = 2;
     do {
         z[-0x12] = 0;
-        *(Q4 *)(q - 8) = *(Q4 *)&D_002A1460;
-        *(Q4 *)q = *(Q4 *)&D_002A1460;
+        *(Q4 *)(p - 8) = *(Q4 *)&D_002A1460;
+        *(Q4 *)p = *(Q4 *)&D_002A1460;
         z[0] = 0;
         z++;
-        q += 4;
+        p += 4;
     } while (--i);
     u[0x1b4 / 4] = 0;
     D_002F07B8->func_001C3D40(0);
@@ -713,7 +718,7 @@ int BmxEvent_00030A30::func_00031260(float dt)
         D_002B8F18 = D_002A7CB8->func_00026500((int)&D_00276B68, -1);
     }
     if (D_002A8490->f4 != 0) {
-        v30(!(D_002A8490->f2e0->f4 == 10));
+        v30(!!(D_002A8490->f2e0->f4 - 10));
     }
     func_00157A00(dt);
     if (D_002A8490->f124 == 0 && f110 != 0) {
@@ -852,11 +857,11 @@ void C_00031840::func_00031840(void)
     C_0009A290 *obj = m ? ((C_0009A290 *)m)->func_0009A290(this, f64 + 0x134, 0) : 0;
 
     f1C0 = obj;
-    if (*(volatile int *)&obj->f194 != 0) {
+    if (f1C0->f194 != 0) {
         if (obj != 0) {
             obj->func_0009C770();
-            func_001E891B(obj);
         }
+        func_001E891B(obj);
         f1C0 = 0;
     }
 }
