@@ -66,7 +66,8 @@ struct S_000C50E0_Widget {
     char pad2c[0x10];
     float f3c, f40, f44, f48;
     char pad4c[0xc];
-    volatile unsigned char f58;
+    unsigned char f58;
+    __forceinline void SetColor(float r,float g,float b,float a) { f3c=r; f40=g; f44=b; f48=a; f58 |= 4; }
     S_000C50E0_Widget *func_001D5760();
     void func_001D5810(int, float, float, int);
     S_000C50E0_Clamp *func_001D5AA0();
