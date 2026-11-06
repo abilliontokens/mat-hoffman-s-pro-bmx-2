@@ -67,7 +67,7 @@ struct R_001747F0 {
     char pad228[0x22c - 0x228];
     Body_001747F0 *p22C;
     char pad230[0x234 - 0x230];
-    void (*fn234)(int, Vec4_001747F0 *, Vec4_001747F0 *);
+    char pad234[4];
     Vec4_001747F0 v238;
     Vec4_001747F0 v248;
     Vec4_001747F0 v258;
