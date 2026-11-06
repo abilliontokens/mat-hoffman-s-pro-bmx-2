@@ -1,6 +1,7 @@
 /* 5 functions from 0x00172BA0 to 0x00173B00, found by Ghidra. */
 #include "common.h"
 #include <math.h>
+#include <string.h>
 
 extern float D_00275544;
 float func_0001C870(float a, float b, float c, float d, float e);
