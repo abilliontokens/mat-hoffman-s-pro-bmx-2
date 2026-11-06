@@ -2,6 +2,18 @@
 #include "common.h"
 #include "ghidra.h"
 #include <xmmintrin.h>
+static __forceinline float clamp_max_000261F0(float a, float b)
+{
+ float r;
+ _mm_store_ss(&r, _mm_max_ss(_mm_set_ss(a), _mm_set_ss(b)));
+ return r;
+}
+static __forceinline float clamp_min_000261F0(float a, float b)
+{
+ float r;
+ _mm_store_ss(&r, _mm_min_ss(_mm_set_ss(a), _mm_set_ss(b)));
+ return r;
+}
 struct C_00026290 {
     int unk0;
     void *func_00026290(int flags);
