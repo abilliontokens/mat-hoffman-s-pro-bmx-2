@@ -76,12 +76,6 @@ struct S_QuadTreeDispatch {
     virtual void v4(int x, int y, int z, int flag);
 };
 
-struct QuadTreeBits {
-    char pad0[0xC];
-    unsigned stampBits : 16;
-    unsigned active : 1;
-};
-
 /* QuadTree */
 struct QuadTree {
     void *vtbl;
@@ -310,10 +304,9 @@ void C_0017D190::func_0017D190(void)
 
 void QuadTree::func_0017D1B0(void)
 {
-    QuadTreeBits *bits = (QuadTreeBits *)this;
-    if (bits->active) {
+    if (flagsE & 1) {
         f94->func_0001E860();
-        bits->active = 0;
+        flagsE &= 0xfe;
         f9C = 0;
         fA0 = 0;
         fA4 = 0;
