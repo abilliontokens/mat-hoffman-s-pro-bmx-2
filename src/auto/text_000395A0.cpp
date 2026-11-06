@@ -6,6 +6,7 @@ char pad0[0x450]; int f450; char pad454[8]; int f45C,f460; char pad464[0x38]; S_
 int func_00038A70(void*,void**);
 int func_00038B10(void*,S_000392B0_Vec4,S_000392B0_Vec4,int*,int*,int*,int);
 int func_000395A0(S_000392B0_Vec4 pos);
+S_000392B0_Block *GetBlock(S_000392B0_Obj *o) { S_000392B0_Block *b = 0; func_00038A70(&o->f28, (void **)&b); return b; }
 };
 
 int C_000395A0::func_000395A0(S_000392B0_Vec4 pos) {
