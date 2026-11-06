@@ -97,6 +97,11 @@ struct BmxUIPageRiderOps {
     int func_000E6EF0(int a, int b);
     void func_000E7820();
     void func_001578D0();
+    int func_000E5180(int a);
+    int func_000E5150(int a);
+    void func_000E6D00();
+    void func_000E6DC0();
+    void func_000E5FF0();
 };
 
 void BmxUIPageRiderOps::func_000E7820()
