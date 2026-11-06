@@ -175,7 +175,7 @@ struct Axis14_26 { float f0, f4, f8, fC, f10; };
 struct Obj20C_26 {
     char pad0[0x24]; int f24;
     char pad28[0x94 - 0x28]; void *f94; void *f98;
-    void func_000B8B60(int); void func_000B8C80(void *);
+    Obj20C_26 *func_000B8B60(int); void func_000B8C80(void *);
 };
 extern int D_002BA148;
 extern int D_002BA15C;
