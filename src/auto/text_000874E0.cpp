@@ -212,26 +212,24 @@ void C_000874E0::func_000874E0(void)
     func_001578D0();
 }
 
+extern "C" void _ReadWriteBarrier(void);
+#pragma intrinsic(_ReadWriteBarrier)
 C_000876B0 *C_000876B0::func_000876B0(int a0) {
-    volatile C_000876B0 *v;
-    C_000876B0 *base;
-
-    base = (C_000876B0 *)((C_00157600 *)this)->func_00157600(1);
-    base->vtbl = (void *)&D_002797A4;
-    v = (volatile C_000876B0 *)this;
-    v->f24[0] = 0;
-    v->f24[1] = 0;
-    v->f2C = 0;
-    v->f30 = 0;
-    v->f34 = 0;
-    v->f38 = 0;
-    v->f3C = 0;
-    v->f40 = 0;
-    v->fC4 = 0;
-    memset((void *)v->f44, 0, sizeof(f44));
+    ((C_00157600 *)this)->func_00157600(1);
+    vtbl = (void *)&D_002797A4;
+    _ReadWriteBarrier();
+    f24[0] = 0;
+    f24[1] = 0;
+    f2C = 0;
+    f30 = 0;
+    f34 = 0;
+    f38 = 0;
+    f3C = 0;
+    f40 = 0;
+    fC4 = 0;
+    memset((void *)f44, 0, sizeof(f44));
     return this;
 }
-
 void C_000876B0::func_00087700(void) {
     int i;
 
@@ -291,9 +289,11 @@ C_00087760 *C_00087760::func_00087760(int a, Owner_87760 *b, int c)
         f30->SetF28(0x42400000);
     }
     s = f30;
-    s->f3C = s->f48 = 0x3f800000;
-    s->f44 = s->f40 = 0;
+    s->f48 = 0x3f800000;
+    s->f3C = 0x3f800000;
     s->f58 |= 4;
+    s->f40 = 0;
+    s->f44 = 0;
     f2C->SetF34(0x40c00000);
     f30->SetF34(0x40c00000);
 
