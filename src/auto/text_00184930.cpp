@@ -538,8 +538,8 @@ int C_00185790::func_00185800(S_Stream *stream)
 
 int __stdcall func_00185860(char *name)
 {
-    if (memcmp(name, D_002895F4, 9) == 0) {
+    if (strcmp(name, "QuadTree") == 0) {
         return 2;
     }
-    return memcmp(name, D_002895EC, 5) == 0;
+    return strcmp(name, "List") == 0;
 }
