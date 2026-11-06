@@ -136,7 +136,15 @@ struct Body {
     float f94; float f98; char p4[8]; float a0[2]; float a8[2]; char p5[0x0c]; int fb8;
     void func_001A9D20(Other* other, unsigned mask, V4 p4, V4 p5, float f);
 };
-void __stdcall func_001A96D0(Other* o, int a, V4 b, V4 c);
+struct Obj_001A9D20 {
+    char pad0[0x204];
+    unsigned f204;
+    char pad208[8];
+    float f210;
+    float f214;
+};
+
+void __stdcall func_001A96D0(Obj_001A9D20 *o, V4_001A96D0 b, V4_001A96D0 c, int a);
 
 void This_001A96D0::func_001A96D0(Body_001A96D0 *body, V4_001A96D0 p, V4_001A96D0 q, float s)
 {
@@ -170,6 +178,57 @@ void This_001A96D0::func_001A96D0(Body_001A96D0 *body, V4_001A96D0 p, V4_001A96D
     }
 }
 
+void This_001A96D0::func_001A9990(V4_001A96D0 p, Other_001A9990 *other)
+{
+    This_001A96D0 * volatile self = this;
+    V4_001A96D0 a;
+    V4_001A96D0 b;
+    V4_001A96D0 d;
+    V4_001A96D0 c;
+    V4_001A96D0 t;
+    Frame_001A9990 *fr;
+
+    t.x = p.x - f114;
+    t.y = p.y - f118;
+    t.z = p.z - f11c;
+    a = t;
+    a = ((Frame_001A9990 *)f24)->f22c->func_00198040(&a);
+    cross_001A96D0(&b.x, &((Frame_001A9990 *)self->f24)->f268[0], &a.x);
+    t = ((Frame_001A9990 *)self->f24)->f22c->func_00197EC0(&b);
+    fr = (Frame_001A9990 *)self->f24;
+    t.x = t.x + fr->f238;
+    t.y = t.y + fr->f23c;
+    t.z = t.z + fr->f240;
+    if (other == 0) {
+        d = *(V4_001A96D0 *)&D_002AA248;
+    } else {
+        V4_001A96D0 u;
+        V4_001A96D0 r;
+        V4_001A96D0 s;
+
+        func_00030AC0(&d, &other->f190, (float *)(other->f22c + 0xf0));
+        u.x = p.x - d.x;
+        u.y = p.y - d.y;
+        u.z = p.z - d.z;
+        c = u;
+        r = other->v44();
+        cross_001A96D0(&b.x, &r.x, &c.x);
+        s = other->v42();
+        u.x = b.x + s.x;
+        u.y = b.y + s.y;
+        u.z = b.z + s.z;
+        d = u;
+    }
+    {
+        V4_001A96D0 f;
+
+        f.x = t.x - d.x;
+        f.y = t.y - d.y;
+        f.z = t.z - d.z;
+        self->f124 = f;
+    }
+}
+
 void This_001A9FA0::func_001A9FA0(float s, V4_001A96D0 v, V4_001A96D0 q, Obj_001A9FA0 *other, unsigned mask)
 {
     V4_001A96D0 a;
@@ -186,7 +245,8 @@ void This_001A9FA0::func_001A9FA0(float s, V4_001A96D0 v, V4_001A96D0 q, Obj_001
     nb.y = -b.y;
     nb.z = -b.z;
     b = nb;
-    float m = Min_001A9FA0(Sqrt_001A9FA0(a.y * a.y + a.z * a.z + a.x * a.x) * D_002755E8, 1.0f);
+    float len = Sqrt_001A9FA0(a.y * a.y + a.z * a.z + a.x * a.x) * D_002755E8;
+    float m = len < 1.0f ? len : 1.0f;
     float k = m * f24->f210 * s * D_00275BF8;
     V4_001A96D0 w;
     w.x = b.x * k;
