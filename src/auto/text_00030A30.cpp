@@ -3,6 +3,8 @@
 #include <xmmintrin.h>
 static __forceinline float Max_00030CE0(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
 static __forceinline float Min_00030CE0(float a, float b) { float r; _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
+static inline float Max2_00030CE0(float a, float b) { _mm_store_ss(&a, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return a; }
+static inline float Min2_00030CE0(float a, float b) { _mm_store_ss(&a, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return a; }
 extern float D_00275460;
 extern float D_00275544;
 extern float D_00276A90;
