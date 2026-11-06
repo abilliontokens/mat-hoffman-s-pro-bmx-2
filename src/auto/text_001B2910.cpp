@@ -37,6 +37,11 @@ struct C_001B33A0_Loader {
 extern C_001B33A0_Loader *D_002BEAAC;
 void *func_001E8AA5(int size);
 
+static __inline int image_pixels(S_001B3560 *item)
+{
+    return item->f10 * item->fE;
+}
+
 int func_001B2910(int param_1);
 S_001B3560 *func_001B33A0(int a, int b);
 int func_001B2CD0(S_001B3560 *item, int a);
@@ -211,11 +216,11 @@ int func_001B2CB0(int param_1)
 extern "C" void *memcpy(void *d, const void *s, unsigned int n);
 int func_001B2CD0(S_001B3560 *item, int a)
 {
-    unsigned int size;
-    int pixels;
-    unsigned char *p;
-    unsigned char *end;
     int count;
+    unsigned char *end;
+    unsigned char *p;
+    int pixels;
+    unsigned int size;
 
     pixels = item->fE * item->f10;
     size = pixels * 3;
@@ -251,7 +256,7 @@ int func_001B2CD0(S_001B3560 *item, int a)
                     return 0;
                 }
                 do {
-                    memcpy(p, &px, 3);
+                    *(S_001B2CD0_Px *)p = px;
                     p += 3;
                 } while (count-- != 0);
             } else {
@@ -293,6 +298,71 @@ int func_001B2CD0(S_001B3560 *item, int a)
             stride = item->fE * 3;
             bot -= stride;
             top += stride;
+        }
+        item->f13 |= 0x20;
+    }
+    return 1;
+}
+
+int func_001B3150(S_001B3560 *item, int a)
+{
+    int count = item->f10;
+    count *= item->fE;
+    unsigned int size = count * 2;
+    if (size > (unsigned int)item->f18) {
+        if (item->f14) func_001E8390(item->f14);
+        item->f14 = 0;
+        item->f18 = 0;
+    }
+    if (!item->f14) {
+        item->f14 = func_001E8AA5(size);
+        if (!item->f14) return 0;
+        item->f18 = size;
+    }
+    unsigned short *p = (unsigned short *)item->f14;
+    unsigned short *end = (unsigned short *)((char *)p + size);
+    if (item->f2 == 2) {
+        for (int i = 0; i < item->f10; i++) {
+            if (D_002BEAAC->func_0013C8A0(a, p, 2, item->fE) != item->fE) return 0;
+            p += item->fE;
+        }
+    } else {
+        do {
+            unsigned char packet;
+            unsigned short pixel;
+            D_002BEAAC->func_0013C8A0(a, &packet, 1, 1);
+            unsigned int n = packet;
+            if (n & 0x80) {
+                n &= 0x7f;
+                if (D_002BEAAC->func_0013C8A0(a, &pixel, 2, 1) != 1) return 0;
+                do { *p++ = pixel; } while (n--);
+            } else {
+                ++n;
+                if (D_002BEAAC->func_0013C8A0(a, p, 2, n) != (int)n) return 0;
+                p += n;
+            }
+        } while (p < end);
+    }
+    if (!(item->f13 & 0x20)) {
+        char *first = (char *)item->f14;
+        char *last = first + (item->f10 - 1) * item->fE * 2;
+        if (item->f120 && (unsigned int)item->f124 < (unsigned int)(item->fE * 2)) {
+            func_001E8390((void *)item->f120);
+            item->f124 = 0;
+            item->f120 = 0;
+        }
+        if (!item->f120) {
+            item->f120 = (int)func_001E8AA5(item->fE * 2);
+            if (!item->f120) return 0;
+            item->f124 = item->fE * 2;
+        }
+        void *tmp = (void *)item->f120;
+        for (int i = 0; i < item->f10 / 2; ++i) {
+            memcpy(tmp, first, item->fE * 2);
+            memcpy(first, last, item->fE * 2);
+            memcpy(last, tmp, item->fE * 2);
+            last -= item->fE * 2;
+            first += item->fE * 2;
         }
         item->f13 |= 0x20;
     }
