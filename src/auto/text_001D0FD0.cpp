@@ -195,6 +195,36 @@ struct C_001D1B70 {
 };
 
 
+struct S_15D0_Btn { int mode; float val; int f8; int fc; int f10; int f14; };
+struct S_15D0_Pad {
+    char pad0[8];
+    int f8;
+    char padC[0x314];
+    int f320;
+    S_15D0_Btn analog[8];
+    S_15D0_Btn digital[8];
+    char pad4A4[0x180];
+    float axis[6];
+    char pad63C[0x7C];
+    void *f6B8;
+    unsigned short f6BC;
+    char pad6BE[2];
+    int f6C0;
+    float f6C4;
+    float f6C8;
+    float f6CC;
+    float f6D0;
+    char pad6D4[4];
+    int f6D8;
+    int f6DC;
+    short f6E0;
+    short f6E2;
+    int f6E4;
+    int f6E8;
+    char pad6EC[0x3A];
+    int f726;
+    int func_001D15D0(int *out);
+};
 int XboxGame::func_001D0FD0(int param_1)
 {
     int saved = 0;
