@@ -78,11 +78,11 @@ int DXVSData::func_001D9760(int a1, int a2, int a3, int a4, int a5, int a6, int 
     buf = func_001DDB7E(size, -1, 0, 0x404);
     for (int i = 0; i < 6; i++)
         ((int *)a5)[i] = 0;
-    func_0021DB06(f304, f308, a4, a5, 0, a3);
+    func_0021DB06(f304, f308, a4, a5, 0, *(volatile int *)&a3);
     desc = (int *)a6;
     memset(desc, 0, 12);
     func_0021DB71(size, 8, 0x40, 1, (int)desc, 0);
-    func_0021DB47(a1, a2, 1, 8, 0x12, 1, a7, 0, a3);
+    func_0021DB47(a1, a2, 1, 8, 0x12, 1, a7, 0, *(volatile int *)&a3);
     func_00201150(a5, (int)buf);
     func_00201150((int)desc, (int)buf);
     func_00201150(a7, (int)buf);
