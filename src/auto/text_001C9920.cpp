@@ -208,6 +208,20 @@ void *func_001E8A44(unsigned int size);
 void *func_001E8AA5(unsigned int size);
 void func_0014FF00(int a0, int a1, char *a2, int a3, int a4);
 
+struct V4_001C9B10 {
+    float x, y, z, w;
+    V4_001C9B10() { x = y = z = 0.0f; w = 1.0f; }
+};
+
+/* 0x48-byte water entry */
+struct E_001C9B10 {
+    char pad0[8];
+    V4_001C9B10 a;
+    V4_001C9B10 b;
+    char pad28[0x20];
+    static void *operator new[](unsigned int n) { return func_001E8A44(n); }
+};
+
 
 void C_001C9920::func_001C9920(S_001C9920_arg *arg)
 {
@@ -300,6 +314,101 @@ undefined4 C_001C9AF0::func_001C9AF0(byte param_1)
     func_001E891B(in_ECX);
   }
   return in_ECX;
+}
+
+C_001C9920 *C_001C9920::func_001C9B10(int a, int b, int c, int d, int e, int f, int g)
+{
+    char *self = (char *)this;
+    C_001C9B10_VT *vt = (C_001C9B10_VT *)this;
+    int size;
+    char *arr;
+    int i;
+    int len;
+    char buf[0x104];
+    char save[0x104];
+    float va[4];
+    float vb[4];
+    *(int *)(self + 0x214) = f;
+    *(int *)(self + 0x218) = f;
+    *(int *)(self + 0x38) = c;
+    size = c * 0x48;
+    arr = (char *)func_001E8A44(size);
+    if (arr) {
+        int *p = (int *)arr;
+        float one = 1.0f;
+        for (int k = c - 1; k >= 0; k--) {
+            p[4] = 0; p[3] = 0; p[2] = 0; *(float *)&p[5] = one;
+            p[8] = 0; p[7] = 0; p[6] = 0; *(float *)&p[9] = one;
+            p += 0x12;
+        }
+    } else {
+        arr = 0;
+    }
+    *(char **)(self + 0x2c) = arr;
+    vt->func_001D3F50();
+    if (!vt->func_001C8960(a))
+        return 0;
+    *(int *)(self + 0xbc) = d;
+    *(float *)(self + 0xc0) = (float)d * D_002755E8;
+    if (*(char **)(self + 0x2c) == 0)
+        return 0;
+#define E(o) ((*(char (**)[0x48])(self + 0x2c))[i] + (o))
+    for (i = 0; i < c; i++) {
+        int cnt = *(int *)(self + 0xbc) * d;
+        *(void **)E(0x3c) = func_001E8AA5(cnt * 16 + 0x5f);
+        if (*(int *)E(0x3c) == 0)
+            return 0;
+        *(int *)E(0x40) = (*(int *)E(0x3c) + 0x1f) & ~0x1f;
+        *(int *)E(0x44) = *(int *)E(0x40) + cnt * 8 + 0x40;
+#define TEX(off, sz, fmt) \
+        { \
+            C_001C9B10_Tex *t = (C_001C9B10_Tex *)func_001E8A44(0x110); \
+            t = t ? t->func_001D6AD0(1) : 0; \
+            *(C_001C9B10_Tex **)E(off) = t; \
+            (*(C_001C9B10_Tex **)E(off))->v8(0, sz, sz, sz, sz, 0x13, 0x13, 0, 0); \
+            func_001ADCC0((char *)*(C_001C9B10_Tex **)E(off) + 0x18, 0x104, fmt, D_002A5A80, i + 1); \
+            t = *(C_001C9B10_Tex **)E(off); \
+            int r = D_002AA6C0->v7((char *)t + 0x18, t); \
+            D_002AA6C0->v6(r, *(int *)((char *)*(C_001C9B10_Tex **)E(off) + 0xac)); \
+            float *fp = (float *)*(C_001C9B10_Tex **)E(off); \
+            if (D_0028EBFC > fp[4]) \
+                fp[4] = 9.0f; \
+            if (D_0028EBFC < fp[5] || fp[5] > fp[4]) \
+                fp[5] = 9.0f; \
+        }
+        TEX(0x2c, 0x80, D_0028EC00)
+        TEX(0x30, 0x100, D_0028EBE8)
+        TEX(0x34, 0x80, D_0028EBD0)
+        TEX(0x38, 0x80, D_0028EBB8)
+#undef TEX
+        vt->v28(E(0), D_002AB80C, e);
+    }
+#undef E
+    *(char **)(self + 0x34) = *(char **)(self + 0x2c) + size - 0x48;
+    *(char **)(self + 0x30) = *(char **)(self + 0x2c);
+    *(int *)(self + 0x40) = (*(C_001C9B10_Tex **)(*(char **)(self + 0x2c) + 0x2c))->v16(0, &len, 0);
+    *(int *)(self + 0xb4) = len / 4;
+    (*(C_001C9B10_Tex **)(*(char **)(self + 0x2c) + 0x2c))->v17(0);
+    func_0014FF00(a, 0, buf, 0, 0);
+    strcpy(save, D_002A60B0);
+    func_001ADCC0(D_002A60B0, 0x104, D_0028E910, buf);
+    D_002A829C->func_00161680();
+    D_002AA6C0->func_001B2640();
+    strcpy(D_002A60B0, save);
+    vb[2] = 0; vb[1] = 0; vb[0] = 0; vb[3] = 1.0f;
+    va[2] = 0; va[1] = 0; va[0] = 0; va[3] = 1.0f;
+    D_002F08BC = (S_002F08BC *)this;
+    float x = D_002F07E8->unk40 * D_002755E8;
+    vb[1] = 0;
+    vb[0] = x;
+    float y = D_002F07E8->unk44 * D_002755E8;
+    va[1] = 1000.0f;
+    vb[2] = y;
+    va[0] = x;
+    va[2] = y;
+    int r = D_002F07E8->v6(vb, va, 0);
+    D_002F07E8->v7(self + 0x24, r, vb, va);
+    return this;
 }
 
 void C_001CA1C0::func_001CA1C0(void) {
