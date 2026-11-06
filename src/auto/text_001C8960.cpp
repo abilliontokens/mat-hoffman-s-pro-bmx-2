@@ -88,6 +88,32 @@ struct C_001C96E0 {
     void func_001C96E0(void);
 };
 
+struct C_001C8960_Ini8 {
+    int func_00169490(char *name, int zero);
+};
+struct C_001C8960_Ini14 {
+    int func_00168C50(char *key, float def, float *out);
+    int func_00168C20(char *key, int def, void *out);
+};
+struct C_001C8960_Ini18 {
+    int func_00168BE0(char *key, char *fmt, int *out, int def);
+};
+struct C_001C8960_Ini {
+    char pad0[8];
+    C_001C8960_Ini8 s8;
+    char padC[4];
+    C_001C8960_Ini14 s14;
+    C_001C8960_Ini18 s18;
+    char rest[0x4a0];
+    void func_00168280();
+    void func_001691E0();
+    int func_00169710(char *name);
+};
+struct C_001C8960 {
+    int w[0x240];
+    int func_001C8960(char *name);
+};
+
 void C_001C96E0::func_001C96E0(void) {
     int idx = D_002EFDB8->f4->f2c->f3c;
     C_001C96E0_Node *node;
