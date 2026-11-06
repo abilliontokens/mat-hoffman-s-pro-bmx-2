@@ -8,6 +8,11 @@ int func_001E8833();
 static __forceinline float random_00017910() {
     return (float)func_001E8833() * D_002754B0;
 }
+/* normalize constants: 0.5, 3.0 (the Newton-Raphson step for rsqrtss) and the
+   0x00800000 guard added to a zero length so the reciprocal stays finite. */
+extern float D_002756F0;
+extern float D_00275700;
+extern float D_00275710;
 extern float D_002756D0;
 extern float D_002756B8;
 extern float D_002756E8;
