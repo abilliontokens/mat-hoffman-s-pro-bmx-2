@@ -12,16 +12,6 @@ struct Vec4_149A0 {
     float x, y, z, w;
 };
 
-static __forceinline Vec4_149A0 Scale_149A0(const Vec4_149A0 &v, float s)
-{
-    Vec4_149A0 r;
-    r.x = v.x * s;
-    r.y = v.y * s;
-    r.z = v.z * s;
-    r.w = 1.0f;
-    return r;
-}
-
 struct Obj197B40 {
     void func_00197B40(Vec4_149A0 *a, Vec4_149A0 *b);
 };
@@ -95,10 +85,10 @@ void AIPedestrian::func_000149A0(int idx, float scale)
             b.z = 0.0f; b.y = 0.0f; b.x = 0.0f; b.w = 1.0f;
             (*(Obj197B40 **)(*(char **)((char *)this + 0x3c) + 4))->func_00197B40(&a, &b);
             (*(Obj108360 **)(*(char **)(D_002B9120 + 0x4e0) + idx * 4 + 0x1a8))->func_00108360();
+            c.w = 1.0f;
             c.x = a.x * scale;
             c.y = a.y * scale;
             c.z = a.z * scale;
-            c.w = 1.0f;
             *(Vec4_149A0 *)(*(char **)(*(char **)(*(char **)(D_002B9120 + 0x4e0) + idx * 4 + 0x1a8) + 0x950) + 0x5c) = c;
             *(unsigned int *)((char *)this + 0x3c0) = *(unsigned int *)((char *)D_002A8490 + 0x238) + 5000;
             int snd = *(int *)(*(char **)(*(char **)(D_002B9120 + 0x4e0) + idx * 4 + 0x1a8) + 0x970);
