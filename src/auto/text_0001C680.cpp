@@ -375,6 +375,10 @@ static __forceinline void clear_bit0_0001C9F0(unsigned char *p) {
     *p &= 0xfe;
 }
 
+static __forceinline void clear_bit0_volatile_0001C9F0(volatile unsigned char *p) {
+    *p &= 0xfe;
+}
+
 static __forceinline void init_0001C9F0(C_0001CA30 *p) {
     p->f8 = 0;
     p->f4 = 0;
@@ -544,18 +548,8 @@ void *C_0001C9C0::func_0001C9C0(int flags) {
 C_0001CA30 *C_0001CA30::func_0001C9F0(void)
 {
     extern int D_00275DAC;
-    *(void *volatile *)&vtbl = (void *)&D_00275DAC;
-    f8 = 0;
-    f4 = 0;
-    fC = 0;
-    f10 = 0;
-    clear_bit0_0001C9F0(&f14);
-    f1C = 0;
-    f18 = 0;
-    f20 = 0;
-    f24 = 0;
-    clear_bit0_0001C9F0(&f28);
-    clear_bit0_0001C9F0(&f2C);
+    vtbl = (void *)&D_00275DAC;
+    init_0001C9F0(this);
     return this;
 }
 
