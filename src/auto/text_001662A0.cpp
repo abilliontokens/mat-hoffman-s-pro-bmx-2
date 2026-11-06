@@ -111,6 +111,39 @@ struct C_00166C80 {
     void func_00166C80(S_00166C80_Arg *param_1, int param_2);
 };
 
+struct Vec4_166830 { float x, y, z, w; };
+struct C_166830_Item {
+ virtual void v0(); virtual void v1();
+ virtual void v2(int, Vec4_166830 *);
+ virtual void v3(int, Vec4_166830 *);
+ int f4;
+};
+struct C_166830_Arg {
+ char pad0[0x14];
+ C_166830_Item **f14, **f18;
+ int f1C, f20;
+};
+struct C_166830_Node {
+ char pad0[0x170];
+ int f170;
+ void func_00199300(Vec4_166830 *);
+ void func_00199650(Vec4_166830 *);
+};
+struct C_166830_Elem { char pad0[0x34]; C_166830_Node *f34; char pad38[8]; };
+struct C_166830 {
+ int f0; int f4; int f8; int fC; char pad10[8];
+ C_166830_Arg *f18; char pad1C[0x18]; int f34;
+ char pad38[0x1B4];
+ C_166830_Elem *f1EC; int *f1F0; char pad1F4[0xC];
+ Vec4_166830 *f200, *f204; int f208, f20C; char pad210[4]; Vec4_166830 *f214;
+ void func_00166830(float, int *, int);
+ void func_00165A20(C_166830_Arg *, int, float, int *, int);
+ void func_00165D00(float);
+};
+void func_0015C7D0(Vec4_166830 *, Vec4_166830 *, Vec4_166830 *, float);
+void func_001640D0(int, int, int, void *);
+extern int D_002A8450, D_002A8454, D_002A8458, D_002A845C;
+extern float D_00275460;
 struct C_002EF7D0 {
     int func_00162B20(int param_1, int param_2);
 };
