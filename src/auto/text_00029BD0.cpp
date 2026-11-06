@@ -7,6 +7,7 @@ struct V4_00029BD0 {
  V4_00029BD0(const V4_00029BD0 &v) { q[0]=v.q[0]; q[1]=v.q[1]; }
  V4_00029BD0 &operator=(const V4_00029BD0 &v) { q[0]=v.q[0]; q[1]=v.q[1]; return *this; }
 };
+struct P4_00029BD0 { float x, y, z, w; };
 struct __declspec(align(16)) M4_00029BD0 { float m[16]; };
 struct Sub_00029BD0 { char pad[0x1a0]; V4_00029BD0 v; const V4_00029BD0 &GetPos() const { return v; } };
 struct Data_00029BD0 { char pad[0x78]; V4_00029BD0 *v; };
@@ -344,7 +345,7 @@ float func_0001C870(float a, int b, float c, float d, float e);
 
 int C_00029BD0::func_00029BD0()
 {
- V4_00029BD0 v=f1e8->v, temp;
+ V4_00029BD0 v=*(V4_00029BD0 *)((char *)f1e8+0x1a0), temp;
  v=*func_0001E9E0(&temp,&v);
  f464=v.y;
  if(v.y<D_002766A4) {
