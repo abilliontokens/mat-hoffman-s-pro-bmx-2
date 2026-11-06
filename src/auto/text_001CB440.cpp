@@ -57,7 +57,7 @@ struct C_001CBD40 : Base_001CBD40 {
             int v[4];
             void init() { v[0] = 0; v[1] = 0; v[2] = 0; v[3] = 0; }
         } b;
-        __forceinline Sub() : a() { f10 = 0; b.init(); }
+        __forceinline Sub() : a() { memset(&a, 0, sizeof(a)); f10 = 0; memset(&b, 0, sizeof(b)); }
         void init() { a.init(); f10 = 0; b.init(); }
     } f34;
     int fD4;
