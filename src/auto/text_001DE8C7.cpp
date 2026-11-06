@@ -57,6 +57,9 @@ struct S_Heap {
     S_FreeNode *head;
 };
 
+extern "C" __declspec(dllimport) long __stdcall NtAllocateVirtualMemory(void **base, u32 zeroBits, u32 *size, u32 type, u32 protect);
+extern "C" __declspec(dllimport) long __stdcall NtFreeVirtualMemory(void **base, u32 *size, u32 type);
+
 S_FreeNode * __stdcall func_001DF626(S_Heap *heap);
 void __stdcall func_001DF746(S_Heap *heap, S_FreeNode *node);
 
@@ -663,6 +666,14 @@ void __stdcall func_001DF5B9(unsigned int a, int b)
 int __stdcall func_001DF5D6(int a)
 {
     return func_001E1297(D_002F6BB4, 0, a) ? 0 : a;
+}
+
+void __stdcall func_001DF5F4(char *s)
+{
+    char *p = s;
+    while (*p++) {}
+    volatile unsigned short length = (unsigned short)(p - s - 1);
+    volatile unsigned short maximum = length + 1;
 }
 
 #pragma intrinsic(memcpy)
