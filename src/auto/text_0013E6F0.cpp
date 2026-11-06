@@ -60,7 +60,7 @@ int __stdcall func_001FCF20(int a, int b, int c, int d, int e, int f, int g);
 int __stdcall func_001FCED0(int a, int b, int c);
 int __stdcall func_00201210(int a, int b, int c, int d);
 int __stdcall func_001FCEA0(int a, int b, int c, int d, int e);
-int func_001FCE40(int a, int b, int c);
+int __stdcall func_001FCE40(int a, int b, int c);
 void *func_001B2CB0(int a);
 void __stdcall func_00201100(void *a);
 extern "C" void *memset(void *, int, unsigned int);
