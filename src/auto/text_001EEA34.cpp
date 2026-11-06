@@ -129,7 +129,8 @@ struct S_001EEFE3 {
     S_001EEFE3 *func_001EF419(void);
     S_001EEFE3 *Tail(void) {
         S_001EEFE3 *p = this;
-        while (p->next != 0) p = p->next;
+        S_001EEFE3 *q;
+        while ((q = p->next) != 0) p = q;
         return p;
     }
 };
@@ -467,17 +468,10 @@ int *S_001EEFBA::func_001EEFBA(int idx)
 
 S_001EEFE3 *S_001EEFE3::func_001EEFE3(S_001EEFE3 *n)
 {
-    S_001EEFE3 *p;
-    S_001EEFE3 *q;
-
     if (n != 0) {
-        p = next;
-        if (p != 0) {
-            do {
-                q = p;
-                p = q->next;
-            } while (p != 0);
-            q->next = n;
+        S_001EEFE3 *last = next;
+        if (last != 0) {
+            last->Tail()->next = n;
         } else {
             next = n;
         }
