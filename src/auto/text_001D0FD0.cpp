@@ -20,6 +20,16 @@ void __stdcall func_001FE490(int a);
 void __stdcall func_00200390(int index, int value);
 void __stdcall func_001FEFE0(int a);
 
+/* per-stage setup of the first stage loop: three state words, the dirty bit, then the stage notification */
+static __forceinline void InitStage_001D1060(unsigned int i)
+{
+    (&D_0020C6E4)[i * 0x20 - 1] = 3;
+    (&D_0020C6E4)[i * 0x20] = 3;
+    D_0020C6DC |= 1 << i;
+    (&D_0020C6E4)[i * 0x20 + 1] = 3;
+    func_00200390(i, 0);
+}
+
 struct S_002F07B8;
 
 struct V_002EFDB8 {
@@ -259,6 +269,58 @@ int XboxGame::func_001D0FD0(int param_1)
         D_002EFDB8->func_00182830(saved);
         D_002EFDB8->v12(saved + 0x1e0);
     }
+    return 1;
+}
+
+int XboxGame::func_001D1060(void)
+{
+    unsigned int i;
+    int *p;
+
+    func_001FD890(0);
+    func_001FD020(&D_00040310, 0);
+    func_001FD380(0);
+    func_001FE810(0);
+    D_0020CA50 = 0;
+    D_0020C6DC |= 0x2000;
+    D_0020CA64 = 0;
+    func_001FD770(((int *)D_002EFDB8)[0x18]);
+    func_001FE490((unk230 >> 6) & 1);
+    func_001FD020(&D_0004035C, (unk230 >> 6) & 1);
+    func_001FD020(&D_00040304, 0);
+    D_0020C6DC |= 0x800;
+    D_0020C710 = 2;
+    D_0020C718 = 2;
+    D_0020C720 = 2;
+    D_0020C728 = 2;
+    func_001FD020(&D_0004037C, 0x1d01);
+    for (i = 0, p = &D_0020C6E4; i < *(unsigned int *)((char *)D_002F07B8 + 0x108); i++, p += 0x20) {
+        D_0020C6DC |= 1 << i;
+        p[-1] = 3;
+        p[0] = 3;
+        p[1] = 3;
+        func_00200390(i, 0);
+    }
+    func_001FD020(&D_00040354, 0x203);
+    D_0020C6DC |= 0x3000;
+    D_0020CA7C = 0;
+    func_001FD020(&D_00040300, 1);
+    func_001FD020(&D_00040340, 0);
+    func_001FD020(&D_0004033C, 0x204);
+    for (i = 0; i < *(unsigned int *)((char *)D_002F07B8 + 0x108); i++) {
+        (&D_0020C6F0)[i * 0x20 - 1] = 2;
+        (&D_0020C6F0)[i * 0x20] = 2;
+        (&D_0020C6F0)[i * 0x20 + 1] = 0;
+        D_0020C6DC |= 1 << i;
+    }
+    for (i = 0; i < *(unsigned int *)((char *)D_002F07B8 + 0x108); i++) {
+        D_0020C6DC |= 0x800;
+        (&D_0020C720)[i * 0x20 - 4] = 1;
+        (&D_0020C720)[i * 0x20] = 1;
+    }
+    D_0020C6DC |= 0x1200;
+    D_0020CA78 = 0;
+    func_001FEFE0(1);
     return 1;
 }
 
