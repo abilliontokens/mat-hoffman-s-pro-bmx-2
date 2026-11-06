@@ -5,6 +5,13 @@ extern int D_0027C594;
 extern int D_0027C1EC;
 
 void func_001E891B(void *p);
+extern int D_0027C12C;
+struct C_000ADF20_Obj {
+    void *vtbl;
+    int f4;
+    char pad8[8];
+    C_000ADF20_Obj *func_00188700();
+};
 
 struct GrindElem {
     void func_000A83C0();
