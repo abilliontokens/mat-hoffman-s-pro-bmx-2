@@ -100,7 +100,7 @@ struct ActorBC {
 struct AnimBC {
  virtual void v0();virtual void v1();virtual void Destroy();
  char padC[0x5c];int f68;
- AnimBC *func_0019B700(int);int func_00129920();
+ AnimBC *func_0019B700(int);int func_00129920(int);
  int func_0019D7B0(NodeBC*,char*);
 };
 struct EndBC {void func_00161680();void func_001B2640();};
