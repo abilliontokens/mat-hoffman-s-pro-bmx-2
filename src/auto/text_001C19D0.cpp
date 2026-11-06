@@ -157,8 +157,8 @@ struct C_001C2250 {
     char pad4[0x28];
     u32 unk2C;
     char pad30[0x8];
-    u32 unk38;
-    u32 unk3C;
+    void *unk38;
+    void *unk3C;
     void func_001C2250();
 };
 
@@ -374,9 +374,24 @@ UIWidgetSoultreeCharacter *UIWidgetSoultreeCharacter::func_001C22C0(int arg,char
  v[0]=0;v[1]=0;v[2]=1;v[3]=1;
  cfg->func_00168CB0(D_0027CEE4,v,v8C);
  other->func_00169490(path,0);
- LoadName1C22C0(cfg,other,D_0028E23C,str19C,buf,&id);
- LoadName1C22C0(cfg,other,D_0028E220,str29C,buf,&id);
- LoadName1C22C0(cfg,other,D_0028E210,str9C,buf,&id);
+ memcpy(str19C,D_00284A98,5);
+ if(cfg->func_00168C20(D_0028E23C,0,&id)&&id>0){
+  func_001ADCC0(buf,0x100,D_00277268,id);
+  other->func_00169710(buf);
+  other->func_00168550(D_0028E234,str19C,0x100);
+ }
+ memcpy(str29C,D_00284A98,5);
+ if(cfg->func_00168C20(D_0028E220,0,&id)&&id>0){
+  func_001ADCC0(buf,0x100,D_00277268,id);
+  other->func_00169710(buf);
+  other->func_00168550(D_0028E234,str29C,0x100);
+ }
+ memcpy(str9C,D_00284A98,5);
+ if(cfg->func_00168C20(D_0028E210,0,&id)&&id>0){
+  func_001ADCC0(buf,0x100,D_00277268,id);
+  other->func_00169710(buf);
+  other->func_00168550(D_0028E234,str9C,0x100);
+ }
  cfg->func_00168C20(D_0028E1F8,0,&count);
  if(count>0){
  strings=(char**)func_001E8AA5(count*4);
