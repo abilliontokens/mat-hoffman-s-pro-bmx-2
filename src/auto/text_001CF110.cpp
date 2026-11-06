@@ -424,6 +424,11 @@ struct FlatElemList_001CF2A0 : SoundElemList_001CF2A0 {
     }
 };
 
+struct PlainElemList_001CF2A0 : SoundElemList_001CF2A0 {
+    unsigned char flags;
+    char pad[3];
+};
+
 struct XboxSoundGroup {
     void *vtbl;
     char pad4[0x2c];
@@ -470,25 +475,39 @@ int C_001CF1B0::func_001CF1B0(int block, S_001CF1B0_Packet *packet)
 
 void XboxSoundGroup::func_001CF2A0()
 {
+    int n;
+    SoundElem_001CF2A0 *elem;
     FlatElemList_001CF2A0 copy;
     int i;
-
+    int count = copy.count;
+    SoundElem_001CF2A0 **items = copy.items;
     if (list.count > 0) {
-        copy.init(list.count);
-        i = 0;
-        do {
-            copy.add(list.at(i));
-            i++;
-        } while (i < list.count);
-        i = 0;
-        while (i < copy.count) {
-            copy.at(i)->release();
-            i++;
+        n = list.count;
+        items = (SoundElem_001CF2A0 **)func_001E8A44(n * 4);
+        copy.items = items;
+        copy.growBy = 16;
+        copy.capacity = n;
+        copy.flags |= 1;
+        for (i = 0; i < list.count; i++) {
+            elem = list.at(i);
+            int ok = 1;
+            if (count >= copy.capacity) {
+                ok = copy.func_0015ACA0(count + copy.growBy);
+                items = copy.items;
+                count = copy.count;
+            }
+            if (ok) {
+                items[count++] = elem;
+                copy.count = count;
+            }
+        }
+        for (i = 0; i < count; i++) {
+            (count > 0 && items && i < count ? items[i] : 0)->release();
         }
     }
     memset(list.items, 0, list.count * sizeof(int));
     list.count = 0;
-    func_001E891B(copy.items);
+    func_001E891B(items);
 }
 
 int C_001CF3C0::func_001CF3C0(SoundVoice *voice)
@@ -768,7 +787,6 @@ int SoundThread_001CFDC0::func_001CFC00(void)
     int r;
     int cur = fC8;
     int want = fCC;
-
     if (cur != want) {
         switch (cur) {
         case 0:
@@ -804,46 +822,29 @@ int SoundThread_001CFDC0::func_001CFC00(void)
             break;
         }
         fC8 = want;
-        if (want != 2)
-            return 0;
-        while (fB4 != 0) {
-            if (func_001CB780(&block, fB0) == 0)
-                return 0;
-            r = func_001CF1B0(block, &pkt);
-            if (r < 0)
-                return r;
-            if (pkt.size != 0) {
-                pkt.rest[0] = (u32)&fD0[block];
-                pkt.completed = 0;
-                r = fB8[fB0]->Process(&pkt, 0);
-                if (r < 0)
-                    return r;
-            }
+    } else {
+        if (want != 2) return 0;
+        if (fAC != f24 || (fA0 & 2)) {
+            fA0 &= ~2;
+            fB8[0]->Flush();
+            fB8[1]->Flush();
+            D_00220AE0(fB8[0], 0);
+            D_00220AE0(fB8[1], 0);
+            func_001CB8A0();
         }
-        return 0;
     }
-    if (want != 2)
-        return 0;
-    if (fAC != f24 || (fA0 & 2)) {
-        fA0 &= ~2;
-        fB8[0]->Flush();
-        fB8[1]->Flush();
-        D_00220AE0(fB8[0], 0);
-        D_00220AE0(fB8[1], 0);
-        func_001CB8A0();
-    }
+    if (want != 2) return 0;
     while (fB4 != 0) {
-        if (func_001CB780(&block, fB0) == 0)
-            return 0;
-        r = func_001CF1B0(block, &pkt);
-        if (r < 0)
-            return r;
+        if (func_001CB780(&block, fB0) == 0) return 0;
+        int index = block;
+        r = func_001CF1B0(index, &pkt);
+        if (r < 0) return r;
         if (pkt.size != 0) {
-            pkt.rest[0] = (u32)&fD0[block];
+            int channel = fB0;
+            pkt.rest[0] = (u32)&fD0[index];
             pkt.completed = 0;
-            r = fB8[fB0]->Process(&pkt, 0);
-            if (r < 0)
-                return r;
+            r = fB8[channel]->Process(&pkt, 0);
+            if (r < 0) return r;
         }
     }
     return 0;
