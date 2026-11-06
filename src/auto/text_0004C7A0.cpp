@@ -79,6 +79,28 @@ struct C_0004D070 {
 
 extern S_0004D070_Global *D_002A8490;
 
+struct C_00088F70 {
+    void func_00088F70(int a, int b);
+    int func_00089040(void);
+    void func_00089010(void);
+};
+struct C_00108660 {
+    int func_00108660(void);
+    void func_001084E0(void);
+};
+struct C_00067D60 {
+    void func_00067D60(int a, int b);
+    void func_000684B0(void);
+};
+struct C_0004C7A0 {
+    void func_0004C7A0(int a);
+    void func_00157A00(int a);
+    void func_0004C3F0(int a, int b, int c);
+    void func_00032A20(void);
+    void func_00031260(int a);
+};
+extern float D_00275544;
+
 extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
 void *func_001E8A44(int size);
 extern char D_002A5870[];
