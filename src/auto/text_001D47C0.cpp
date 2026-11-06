@@ -70,6 +70,29 @@ struct S_001D5610_Obj {
 void *__stdcall func_001FF3C0(int size);
 void *func_001E8A44(int size);
 
+/* the quad vertex func_001D4B40 fills */
+struct S_001D4B40_Vtx {
+    float x, y, z;
+    unsigned int color;
+    float u, v;
+};
+
+struct S_001D4B40_Dev {
+    char pad0[0x1e0];
+    int f1e0;
+    int f1e4;
+};
+
+extern float D_002ABD1C, D_002ABD20, D_0028F570;
+extern int D_0020C6DC, D_0020C6E0, D_0020C6E4, D_0020C6EC, D_0020C6F0;
+extern int D_0020CA50, D_0020C710, D_0020C718, D_0020C71C, D_0020C720;
+extern char D_00040300[], D_00040304[], D_00040344[], D_00040348[];
+void __fastcall func_001FD020(int state, int value);
+void __stdcall func_001FE490(int a);
+void *__stdcall func_001FF410(void *buf, int n);
+void __stdcall func_00200A90(int a, int b, int c);
+void __fastcall func_001FEC30(int n, void *p);
+
 /* 0x10-byte aligned 4x4 float matrix */
 struct __declspec(align(16)) S_001D5660_Mat {
     float m[16];
@@ -397,15 +420,8 @@ C_001D48A0* C_001D48A0::func_001D48A0(u8 param_1)
 }
 
 C_001D48E0::C_001D48E0(void)
+    : f54(0), f58(0), f5C(0), f60(0x1b02), f64(0), f68(0), f6C(0), f70(0)
 {
-    f60 = 0x1b02;
-    f54 = 0;
-    f58 = 0;
-    f5C = 0;
-    f68 = 0;
-    f64 = 0;
-    f6C = 0;
-    f70 = 0;
     v74.x = 0;
     v74.y = 0;
     v74.z = 0;
