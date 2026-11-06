@@ -18,6 +18,12 @@ struct KB_Obj {
     void func_00032150(char *s, int a);
     void func_00032180(char *s, int a);
     void func_000320E0(char *s, int a);
+    int func_00032180(int score, char *name);
+    int func_00032060(int score, char *name);
+    int func_000320A0(float value, char *name);
+    int func_000320E0(int score, char *name);
+    int func_00032120(float value, char *name);
+    int func_00032150(float value, char *name);
     int func_0005B960(int a, float b);
     void func_00064A40();
     void func_00032720();
