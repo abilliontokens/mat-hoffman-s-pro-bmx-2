@@ -157,6 +157,12 @@ static inline int FlagsNeedBit(int f)
     return (f & 2) == 0 || (f & 4) != 0;
 }
 
+/* writes bit 3 of v into b, leaving the rest of b alone */
+static inline unsigned char MergeBit3(unsigned char v, unsigned char b)
+{
+    return b ^ ((v ^ b) & 8);
+}
+
 struct S_001A1860_Buf {
     int a[9];
 };
@@ -333,22 +339,20 @@ bool C_001A1850::func_001A1850(void)
 int C_001A1860::func_001A1860(S_001A1860_Buf buf, S_001A1860_Quad q70, S_001A1860_Quad q80,
                               int a18, int a19, int a20, int a21, int a22)
 {
-    int flags = a18;
-
     if (func_001D3F50() == 0) {
         goto fail;
     }
     if (unk1A4 == 0) {
         goto fail;
     }
-    if ((flags & 2) == 0 || (flags & 4) != 0 || a21 != 0) {
+    if (FlagsNeedBit(a18) || a21 != 0) {
         unk1A0 |= 4;
     }
     unk1A0 ^= ((a22 << 3) ^ unk1A0) & 8;
     unk3C = buf;
     unk70 = q70;
     unk80 = q80;
-    unk98 = flags;
+    unk98 = a18;
     unk1A8 = a19;
     unk1AC = a20;
     return (int)this;
