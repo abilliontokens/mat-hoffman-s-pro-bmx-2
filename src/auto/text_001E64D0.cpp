@@ -277,8 +277,7 @@ struct M16E6D40 {
         d[12] = p - t; d[13] = q + r2; d[14] = p + t; d[15] = q - r2;
     }
 };
-M16E6D40 __fastcall func_001E6D40(float *tw);
-struct C6D40 { M16E6D40 func_001E6D40(); };
+float *__fastcall func_001E6D40(float *c, float *x);
 void __declspec(noinline) func_001E7410(int n, float *a, float *b, int k)
 {
     if (n == 0x80) {
@@ -290,11 +289,12 @@ void __declspec(noinline) func_001E7410(int n, float *a, float *b, int k)
         return;
     }
     func_001E6B50(a, b + k - 0x10);
-    func_001E6D40(a + 0x10);
+    func_001E6D40(b + k - 0x10, a + 0x10);
     func_001E6B50(a + 0x20, b);
     func_001E6B50(a + 0x30, b);
 }
-M16E6D40 __fastcall func_001E6D40(float *c)
+float *__fastcall func_001E6D40(float *c, float *x)
 {
-    return M16E6D40(c);
+    fft16_001E6D40(x, c);
+    return x;
 }
