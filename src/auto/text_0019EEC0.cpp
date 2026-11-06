@@ -221,3 +221,8 @@ void *SoultreeHierarchyCollisionObject::func_0019FBA0(int flags)
     }
     return this;
 }
+struct C_0019EEC0 {
+    char pad0[0x190];
+    int f190;
+    int func_0019EEC0(int *out);
+};
