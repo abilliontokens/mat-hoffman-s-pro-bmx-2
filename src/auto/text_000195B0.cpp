@@ -265,18 +265,18 @@ static __forceinline S_198E0_State *InitD_198E0(void *p)
 
 /* the original saves the three path buffers with a length-clamped copy, keeping the
    clamp's operands and result in three stack slots (len/limit/result) */
-static __forceinline void CopyPathV_198E0(char *dst, const char *src, volatile int &len, volatile int &lim, volatile int &res)
-{
-    int ma, mb, n;
-    len = strlen(src);
-    lim = 0x103;
-    ma = lim;
-    mb = len;
-    res = ma > mb ? mb : ma;
-    n = res;
-    func_001E8920(dst, src, n);
-    dst[n] = 0;
-}
+#define CopyPathV_198E0(dst, src, len, lim, res) \
+    { \
+        int ma, mb, n; \
+        len = strlen(src); \
+        lim = 0x103; \
+        ma = lim; \
+        mb = len; \
+        res = ma > mb ? mb : ma; \
+        n = res; \
+        func_001E8920(dst, src, n); \
+        (dst)[n] = 0; \
+    }
 
 struct C_198E0 {
     char pad0[0x3c];
@@ -354,8 +354,8 @@ C_198E0 *C_198E0::func_000198E0(S_198E0_Stream * volatile stream, S_198E0_Cam *c
 {
     char bufB[0x104];
     char bufA[0x104];
-    char save2[0x104];
     char save1[0x104];
+    char save2[0x104];
     char save3[0x104];
     S_198E0_Vec4 v;
     struct { C_198E0 * volatile self; volatile int s0; volatile int s1; volatile int s2; } t;
@@ -369,8 +369,8 @@ C_198E0 *C_198E0::func_000198E0(S_198E0_Stream * volatile stream, S_198E0_Cam *c
     stream->func_00168CB0(D_00275AC8, &D_002A0748, &v);
     t.self->func_00018D40(stream);
     t.self->f398 = cam;
-    CopyPathV_198E0(save1, D_002A5EA0, t.s0, t.s1, t.s2);
-    CopyPathV_198E0(save2, D_002A4C10, t.s2, t.s1, t.s0);
+    CopyPathV_198E0(save2, D_002A5EA0, t.s0, t.s1, t.s2);
+    CopyPathV_198E0(save1, D_002A4C10, t.s2, t.s1, t.s0);
     CopyPathV_198E0(save3, D_002A60B0, t.s2, t.s1, t.s0);
     func_001ADCC0(D_002A5EA0, 0x104, D_00275678, D_002A5870, D_002A45E0);
     func_001ADCC0(D_002A4C10, 0x104, D_00275678, D_002A5870, D_002A45E0);
@@ -436,8 +436,8 @@ C_198E0 *C_198E0::func_000198E0(S_198E0_Stream * volatile stream, S_198E0_Cam *c
     t.self->fC0[13].f54 = 1;
     t.self->f768 = t.self->func_001C6E30(D_002759A0);
     t.self->fC0[14].f54 = 1;
-    CopyPathV_198E0(D_002A5EA0, save1, t.s2, t.s1, t.s0);
-    CopyPathV_198E0(D_002A4C10, save2, t.s2, t.s1, t.s0);
+    CopyPathV_198E0(D_002A5EA0, save2, t.s2, t.s1, t.s0);
+    CopyPathV_198E0(D_002A4C10, save1, t.s2, t.s1, t.s0);
     CopyPathV_198E0(D_002A60B0, save3, t.s2, t.s1, t.s0);
     return t.self;
 }
