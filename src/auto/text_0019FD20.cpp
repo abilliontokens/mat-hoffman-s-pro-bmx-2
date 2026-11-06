@@ -32,17 +32,6 @@ static __forceinline float Abs_19FD20(float f)
     return *(float *)&i;
 }
 
-static __forceinline float Abs_19FD20(float *f)
-{
-    int i = *(int *)f & 0x7fffffff;
-    return *(float *)&i;
-}
-
-static __forceinline float Dot_19FD20(Vec_19FD20 *a, Vec_19FD20 *b)
-{
-    return a->y * b->y + a->x * b->x + a->z * b->z;
-}
-
 struct Node_19FD20 {
     void func_00199A70(int a, Vec_19FD20 *out);
     Vec_19FD20 func_00198040(Vec_19FD20 *in);
