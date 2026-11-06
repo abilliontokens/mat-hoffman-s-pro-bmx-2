@@ -227,6 +227,7 @@ int __stdcall func_001DE942(const char *path, unsigned __int64 *freeToCaller, un
     return 1;
 }
 
+static __forceinline void ClearBits_1DED66(u8 *p, unsigned m) { *p &= ~m; }
 void __stdcall func_001DED66(char c)
 {
     char buf[260];
@@ -238,7 +239,7 @@ void __stdcall func_001DED66(char c)
     RtlInitAnsiString(&name, buf);
     status = IoDeleteSymbolicLink(&name);
     if (c == 'X' && status >= 0) {
-        D_002F41C8 = 0;
+        *(char *)&D_002F41C8 &= 0u;
     }
     RtlNtStatusToDosError(status);
 }
@@ -256,8 +257,8 @@ void __stdcall func_001DEDC3(void *info, char *out)
     *(u32 *)((char *)out + 0x1c) = *(u32 *)((char *)info + 0x2c);
     *(u32 *)((char *)out + 0x20) = *(u32 *)((char *)info + 0x28);
     memcpy(out + 0x2c, (char *)info + 0x40, *(u32 *)((char *)info + 0x3c));
-    *(bool *)(out + 0x2c + *(u32 *)((char *)info + 0x3c)) &= false;
-    *(bool *)(out + 0x130) &= false;
+    out[0x2c + *(u32 *)((char *)info + 0x3c)] &= 0u;
+    out[0x130] &= 0u;
 }
 int __stdcall func_001DEE2F(const char *path, char *out)
 {
