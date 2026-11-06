@@ -41,6 +41,7 @@ extern S_6260_H *D_002F0630;
 struct C_001A6260 {
     void *vtbl; char pad4[0x20];
     int f24; int f28; int f2c; int f30;
+    struct S_LMC_Z24 { int a, b, c, d; };
     S_6260_V *f34[2];
     S_6260_V *f3c[2];
     S_6260_E *f44[2];
@@ -521,6 +522,23 @@ void C_001A60A0::func_001A60A0(int a, int b)
         }
     }
     func_00157BF0(a, b);
+}
+
+LoadMemoryCard *LoadMemoryCard::func_001A61C0(void *arg) {
+    int i;
+    func_00157600(arg);
+    vtbl = &D_0028BB74;
+    for (i = 0; i < 2; i++) {
+        (&f44)[i] = 0;
+        (&f34)[i] = 0;
+        (&f3c)[i] = 0;
+    }
+    f24 = i * 0; f28 = i * 0; f2c = i * 0; f30 = i * 0;
+    f4c = 0; f50 = 0; f54 = 0x3f800000; f58 = 0;
+    f64 = 0; f5c = 0; f60 = 0; f68 = 0; f70 = 1;
+    f74 = 0; f78 = 0; f7c = 0;
+    f84 = 0; f88 = 0; f8c = 0; f90 = 0; f94 = 0; f98 = 0;
+    return this;
 }
 
 void C_001A6260::func_001A6930()
