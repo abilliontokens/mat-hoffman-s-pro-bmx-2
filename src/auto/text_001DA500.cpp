@@ -8,6 +8,7 @@ extern char D_002AC7D4[];
 void __fastcall func_001FEC30(int,void*);
 void __stdcall func_00201590(int,void*,int);
 void __stdcall func_001FDA60(int,unsigned int);
+struct V3_001DA500 {float x,y,z;};
 struct C_001DA500 {
  char data[0x230];
  void func_001DA500();
