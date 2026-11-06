@@ -20,6 +20,51 @@ struct S_001C5C50_View {
 };
 extern float D_00275460, D_002755E4, D_002755E8;
 
+/* quad tree node traversal (func_001C4FB0) */
+struct V4_1C4FB0 {
+    float x, y, z, w;
+    V4_1C4FB0() { x = y = z = 0.0f; w = 1.0f; }
+    V4_1C4FB0(float a, float b, float c) { x = a; y = b; z = c; w = 1.0f; }
+};
+
+struct S_1C4FB0_Camera {
+    char pad0[0x28];
+    float f28;
+    char pad2c[4];
+    float f30;
+    void func_0017D500(int a, int b);
+};
+
+struct S_1C4FB0_Cull {
+    int func_001C5DE0(int base, V4_1C4FB0 *center, V4_1C4FB0 *extent, int *out);
+};
+
+struct C_001C4FB0 {
+    virtual void vf0();
+    virtual void vf1(int a, int b, int c, int d, int e);
+    C_001C4FB0 **f4;
+    int f8;
+    float fC;
+    float f10;
+    void func_001C4FB0(int a, int b, int c, int d, int e, int f);
+};
+
+extern float D_002EFD7C;
+extern S_1C4FB0_Camera *D_002EFD80;
+extern S_1C4FB0_Cull *D_002AB66C;
+
+#define QN_VISIT(i, EX, EZ) \
+    if (f4[i]) { \
+        ctr.x = EX; \
+        ctr.y = f4[i]->fC; \
+        ctr.z = EZ; \
+        ext2.y = f4[i]->f10; \
+        if (D_002AB66C->func_001C5DE0(f + 0xf0, &ctr, &ext2, &res)) { \
+            if (res == 0) f4[i]->vf1(a, b, c, d, e); \
+            else f4[i]->func_001C4FB0(a, b, c, d, e, f); \
+        } \
+    }
+
 /* VisibilityQuadTree */
 struct C_001C5AA0 {
     char pad0[0x890];
