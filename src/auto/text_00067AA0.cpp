@@ -206,6 +206,78 @@ struct C_00067D80 {
     void func_00067D80(int param_1);
 };
 
+struct T_67DA0 {
+    char pad0[0x34];
+    float f34;
+    char pad38[0x44 - 0x38];
+    int f44;
+    int f48;
+    char pad4C[2];
+    unsigned char f4E;
+    void func_0005E840(char *s);
+    void func_001D6600(void);
+};
+
+struct M_67DA0 {
+    void func_001B1980(void);
+    void func_001B2270(int color);
+    void func_001B19C0(int a, int b, int c);
+    void func_001B1860(int a1, float a2, int a3, float a4, int a5, int a6, float a7, int a8, int a9, float a10, int a11, float a12, int a13);
+};
+
+struct R_67DA0 {
+    char pad0[0x90];
+    int unk90;
+};
+
+struct Sc_67DA0 {
+    char pad0[0xa40];
+    int fA40;
+};
+
+struct G67DA0_E2E8 { char pad0[4]; void *f4; };
+struct G67DA0_E2E0 { char pad0[4]; int f4; };
+struct G67DA0_2A4 { char pad0[0x64]; char *f64; };
+struct G67DA0_8490 {
+    char pad0[0x2a4];
+    G67DA0_2A4 *f2A4;
+    char pad2a8[0x2e0 - 0x2a8];
+    G67DA0_E2E0 *f2E0;
+    G67DA0_E2E8 *f2E8;
+};
+extern G67DA0_8490 *D_002A8490_67DA0;
+
+struct C_00067DA0 {
+    char pad0[0x64];
+    T_67DA0 *arr[8];
+    float fs[3];
+    char pad90[0xd8 - 0x90];
+    int flags[8];
+    T_67DA0 *tFC;
+    T_67DA0 *t104;
+    int f108;
+    R_67DA0 *r10C;
+    int f114;
+    int scores[11];
+    char name[0x104];
+    char pad248[0x4c];
+    T_67DA0 *t14C;
+    char pad250[4];
+    int f150;
+    int f158;
+    int f15C;
+    void func_00067DA0(void);
+};
+
+extern char D_00277038[];
+extern float D_00276DD4;
+extern int D_0028F5E0_67DA0;
+int func_001E8858(float f);
+int func_001ADCC0_67DA0(char *buf, int size, const char *fmt, ...);
+void func_001AC330_67DA0(char *a, char *b, char *c);
+void func_000639B0_67DA0(char *a, int b, char *c);
+
+
 
 void C_00067AA0::func_00067AA0() {
     int ids[3]; int i; int *r; Clamp_67 *o; W_67 **e; Lookup_67 *lk;
