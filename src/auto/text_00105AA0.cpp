@@ -119,6 +119,7 @@ void C_001067B0::func_00105AA0(void)
     }
 }
 
+#pragma optimize("a", on)
 void C_00105B30::func_00105B30(int unused)
 {
     Vec4_00105B30 v;
@@ -130,20 +131,20 @@ void C_00105B30::func_00105B30(int unused)
     f230->func_001994C0(0, &f854, f874);
     prev = &f844;
     if (prev->x == D_002A3A3C && prev->y == D_002A3A40 && prev->z == D_002A3A44) {
-        *prev = *cur;
+        f844 = f834;
     }
     prev2 = &f864;
     if (prev2->x == D_002A3A3C && prev2->y == D_002A3A40 && prev2->z == D_002A3A44) {
-        *prev2 = f854;
+        f864 = f854;
     }
     v = f854;
     v.y = 0.0f;
     func_00104A90(&v, &v);
     f122C = f1E0->f26C;
-    *prev = *cur;
-    *prev2 = v;
+    f844 = f834;
+    f864 = v;
 }
-
+#pragma optimize("", on)
 void C_001067B0::func_00105CB0(void)
 {
     if (f15A4 == 0) {
