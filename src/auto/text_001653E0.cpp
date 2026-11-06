@@ -198,9 +198,9 @@ static inline int min_165F70(const int &a, const int &b) { return a > b ? b : a;
 /* axis mirror used by func_00165A20: flip one of y/z/w by mode, then negate all three */
 static __forceinline void mirror_165A20(Vec4_165EF0 *v, int mode)
 {
-    float t = v->x;
     float z = v->z;
     float w = v->w;
+    float t = v->x;
 
     if (mode == 0) {
         t = -t;
