@@ -10,23 +10,24 @@ extern char D_0000FFFC[];
 static __forceinline void Downsample555Row(unsigned int *src, unsigned short *dst, int count, int srcPitch)
 {
     do {
-        unsigned int sum = 0;
+        volatile unsigned int acc = 0;
+        unsigned int sum;
         unsigned int a;
-        unsigned short b;
+        unsigned int b;
         a = *src & (unsigned int)D_0000FFFF;
-        b = (unsigned short)(*src >> 16);
-        sum += (b << 15) & 0x1f00000;
-        sum += (a & 0x3e0) << 15;
-        sum += b & 0x7c1f;
-        sum += a & 0x7c1f;
+        b = *src >> 16;
+        acc += (b << 15) & 0x1f00000;
+        acc += (a & 0x3e0) << 15;
+        acc += b & 0x7c1f;
+        acc += a & 0x7c1f;
         src = (unsigned int *)((unsigned short *)src + srcPitch);
         a = *src & (unsigned int)D_0000FFFF;
-        b = (unsigned short)(*src >> 16);
-        sum += (b << 15) & 0x1f00000;
+        b = *src >> 16;
+        sum = ((b << 15) & 0x1f00000) + acc;
         sum += (a & 0x3e0) << 15;
         sum += b & 0x7c1f;
-        sum += a & 0x7c1f;
         src = (unsigned int *)((unsigned short *)src - srcPitch);
+        sum += a & 0x7c1f;
         sum >>= 2;
         *dst = (unsigned short)((sum & 0x7c1f) + ((sum >> 15) & 0x3e0));
         src++;
