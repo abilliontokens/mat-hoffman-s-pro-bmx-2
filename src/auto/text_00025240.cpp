@@ -322,7 +322,7 @@ void C_000255D0::func_000255D0(Vec4_257E0 * volatile pos, float radius, float t,
     int idx[6];
 
     if (t != D_00275544) {
-        f58 = D_002A8490->unk238 - (int)(D_00276520 * t);
+        f58 = D_002A8490->unk238 - (int)(t * D_00276520);
         self->f74 = *pos;
         self->f24 = radius;
         return;
@@ -546,6 +546,37 @@ C_00025E10* C_00025E10::func_00025E10(void) {
     return this;
 }
 
+void C_00025E50::func_00025E50(float dt)
+{
+    if (D_002A1030 != 0 && unk20 == 0 && unk18 <= D_00275544) {
+        float t;
+        unk4 += dt * unk8;
+        unk4 = _mm_min_ss(_mm_max_ss(_mm_set_ss(unk4), _mm_set_ss(unk24)), _mm_set_ss(unk28)).m128_f32[0];
+        t = _mm_max_ss(_mm_min_ss(_mm_set_ss(unk2C), _mm_set_ss(unk2C)), _mm_set_ss(unk38)).m128_f32[0];
+        unk14 += unk10 * unk4 * t * dt;
+        unk14 = _mm_min_ss(_mm_max_ss(_mm_set_ss(unk14), _mm_set_ss(-1.0f)), _mm_set_ss(1.0f)).m128_f32[0];
+        float f;
+        if (unk30 > D_00276558) {
+            f = (unk30 - D_00276558) * D_00276554 + D_00276550;
+        } else if (unk30 > D_00275AF4) {
+            f = (unk30 - D_00275AF4) * D_0027654C + D_00276548;
+        } else if (unk30 > D_00275800) {
+            f = (unk30 - D_00275800) * D_00276544 + D_00276540;
+        } else if (unk30 > D_0027653C) {
+            f = (unk30 - D_0027653C) * D_002756B4 + D_00276538;
+        } else {
+            f = unk30 * D_002755E0;
+        }
+        if (unk3C != 0) {
+            f *= D_002A1050;
+        }
+        unkC += (f + unk4) * (unkC - unk14) * dt;
+        unkC = _mm_min_ss(_mm_max_ss(_mm_set_ss(unkC), _mm_set_ss(-1.0f)), _mm_set_ss(1.0f)).m128_f32[0];
+    } else if (unk18 > D_00275544) {
+        unk18 -= dt;
+    }
+}
+
 float C_000260F0::func_000260F0(void) {
     return unkC;
 }
@@ -581,3 +612,58 @@ void AmbientDebris::func_00026170(C_00168B90 *cfg)
     cfg->func_00168B90(D_0027656C, &unk38);
     cfg->func_00168B90(D_0027655C, &unk1C);
 }
+
+/* func_00025240: ambient object spawn over the manager's tracks and entries */
+extern f32 D_0027651C, D_00275F58, D_002A0F78, D_002A0F7C;
+void __stdcall func_00166C80(void *p, int a);
+
+struct S_25240_Entry { int f0; int f4; };
+
+struct S_25240_Obj { void func_00199600(Vec4_257E0 v); };
+
+struct S_25240_Hold {
+    char pad0[4];
+    S_25240_Obj *f4;
+    char pad8[8];
+    int f10;
+    void func_00164820(int a);
+};
+
+struct S_25240_Y { char pad0[8]; void *f8; };
+
+struct S_25240_Own {
+    char pad0[0x1a4];
+    S_25240_Hold *f1a4;
+    char pad1a8[4];
+    S_25240_Y *f1ac;
+};
+
+struct S_25240_Item {
+    char pad0[0x28];
+    S_25240_Own *f28;
+    S_00025980_Track *f2c;
+    int f30, f34, f38, f3c, f40;
+    char pad44[8];
+    Vec4_257E0 f4c;
+    Vec4_257E0 f5c;
+    float f6c, f70, f74;
+    char pad78[2];
+    u8 f7a;
+    char pad7b;
+    void func_00022E30(void);
+};
+
+struct C_00025240 {
+    char pad0[0x30];
+    int f30;
+    int f34;
+    char pad38[4];
+    int f3c;
+    char pad40[0x20];
+    S_25240_Item **f60;
+    S_00025980_Track **f64;
+    char pad68[4];
+    S_25240_Entry *f6c;
+    int func_00022730(void *name, int idx);
+    int func_00025240(void);
+};
