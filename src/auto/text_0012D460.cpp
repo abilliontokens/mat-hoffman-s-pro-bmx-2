@@ -103,7 +103,7 @@ struct Attach_0012D620 {
     void func_000BA430(V4_0012D620 *a, V4_0012D620 *b, int c, int d);
 };
 
-void func_00011FF0(void *arr, int size, int count, void *ctor);
+void __stdcall func_00011FF0(void *arr, int size, int count, void *ctor);
 void func_00011060();
 void func_00030A30(V4_0012D620 *out, V4_0012D620 v, void *m);
 void func_0001C680(V4_0012D620 *out, V4_0012D620 v, void *m);
