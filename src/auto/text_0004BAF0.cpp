@@ -331,12 +331,14 @@ void C_0004C560::func_0004C320(void)
 
     for (i = 0; i < f1250; i++) {
         for (j = 1; j < 9; j++) {
-            if (f284[j][i] >= 0) {
-                f64->f3ac->f28[f284[j][i]]->f1a4->v5();
+            int idx = f284[j][i];
+            if (idx >= 0) {
+                S_0004C320_Obj *ob = f64->f3ac->f28[idx];
+                ob->f1a4->v5();
             }
         }
         o = f64->f3ac->f28[f284[0][i]];
-        ((S_0004C320_Base *)((char *)o->f1a4 + ((S_0004C320_PartRaw *)o->f1a4)->vbptr[1]))->v7();
+        o->f1a4->v7();
         o->f1a4->f4->func_001824E0(v, 1.0f, 1.0f, 1.0f);
     }
 }
