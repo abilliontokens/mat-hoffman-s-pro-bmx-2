@@ -106,6 +106,14 @@ struct XboxGame : Game {
     char pad231[0x6B];
     int unk29C;
     int unk2A0;
+    ~XboxGame()
+    {
+        vtbl = (void *)&D_0028F154;
+        if (unk2A0 != 0) {
+            unk2A0 = 0;
+            func_00156FC0();
+        }
+    }
     int func_00201820(int a0);
     int func_001572B0(int a0);
     void func_00156FC0();
