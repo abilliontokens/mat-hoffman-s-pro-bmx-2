@@ -102,7 +102,7 @@ static inline int C_000ACF30_strlen(const char *s)
     return q - p;
 }
 
-template <class T> inline const T &C_000ACF30_min(const T &a, const T &b)
+template <class T> inline T C_000ACF30_min(const T &a, const T &b)
 {
     return a > b ? b : a;
 }
@@ -332,11 +332,6 @@ int C_000ACE60::func_000ACF30(C_000ACF30_Game * volatile game, int count, int fl
 {
     void *func_001E8A44(...);
     C_000ACE60 * volatile self = this;
-    struct {
-        volatile int res;
-        volatile int lim;
-        volatile int len;
-    } t;
     C_000ACE60 *me;
     C_000ACE60_s4 *p;
     C_000ACF30_Stage *stage;
@@ -344,8 +339,8 @@ int C_000ACE60::func_000ACF30(C_000ACF30_Game * volatile game, int count, int fl
     int i;
     int n;
     int cnt;
-    int ma;
-    int mb;
+    int len;
+    int lim;
     int idx;
     char buf[0x104];
     char name[0x104];
@@ -369,12 +364,9 @@ int C_000ACE60::func_000ACF30(C_000ACF30_Game * volatile game, int count, int fl
     }
     cnt = me->unk24;
     for (i = 0; i < cnt; i++, cnt = (me = self)->unk24) {
-        t.len = C_000ACF30_strlen(D_002A8490->f2E0->names1F4[i]);
-        t.lim = 0x103;
-        ma = t.lim;
-        mb = t.len;
-        t.res = ma > mb ? mb : ma;
-        n = t.res;
+        len = C_000ACF30_strlen(D_002A8490->f2E0->names1F4[i]);
+        lim = 0x103;
+        n = C_000ACF30_min(lim, len);
         func_001E8920(name, D_002A8490->f2E0->names1F4[i], n);
         name[n] = 0;
         func_001ADCC0(buf, 0x104, D_00276C34, D_002A5348, name);
