@@ -127,7 +127,7 @@ struct E_189D40 {
     virtual void v15(); virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
     virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23(); virtual void v24();
     virtual void v25(); virtual void v26();
-    virtual void v27(int a, int b, int c, int d, int e, int f, int g, int h, int i, int j, int k, int l, int m, int n, int o);
+    virtual void v27(int a, int b, int c, int d, int e, int f, int g, int h, int i, int j, int k, int l, int m, int n, int o, int p);
     virtual void v28();
     char padx[0xd0 - 8];
     O_189D40 *unkd0;
@@ -378,6 +378,54 @@ struct BasicScene {
     void func_00189770(void);
     int func_00189AA0(void);
 };
+
+void BasicScene::func_00189060(void)
+{
+    int i;
+    int j;
+    int k;
+    int idx;
+    S_00189060_Item *item;
+    S_00189060_List *list;
+
+    if (f3b8 != 0) {
+        f3b8->func_00188E70();
+    }
+    if (f484 != 0) {
+        f484->func_0001C240();
+    }
+    if (f3b4 != 0) {
+        f3b4->v30(this);
+        for (i = 0; i < f3b4->count; i++) {
+            for (j = 0; j < f3b4->groups[i]->count; j++) {
+                item = f3b4->groups[i]->items[j];
+                if (item->kind == 1) {
+                    list = f484->f2c;
+                    idx = -1;
+                    for (k = 0; k < list->count && idx == -1; k++) {
+                        if (strcmp(item->name, list->items[k]->name) == 0) {
+                            idx = k;
+                        }
+                    }
+                    f484->func_0001BAC0(idx, 0);
+                }
+                item = f3b4->groups[i]->items[j];
+                if (item->kind == 0xb) {
+                    S_00189060_X *x = f3c0->f28[item->f10c - 1];
+                    S_00189060_Obj *y = x->f4[item->f110 - 1];
+                    y->v32();
+                    if (x->f14 != 0) {
+                        y->v30();
+                        y->v6();
+                    } else {
+                        y->v31();
+                        y->v4();
+                    }
+                }
+            }
+        }
+    }
+}
 
 int BasicScene::func_00189720(void)
 {
