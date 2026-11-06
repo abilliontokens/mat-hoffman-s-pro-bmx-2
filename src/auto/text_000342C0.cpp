@@ -3,7 +3,7 @@
 #include "ghidra.h"
 extern float D_00275460;
 extern float D_002755E8;
-extern const float D_002755EC;
+extern float D_002755EC;
 extern float D_00275600;
 
 struct Vec4 {
@@ -168,13 +168,12 @@ C_00034890* C_00034890::func_00034890(void) {
 void func_000348B0(Vec4 *out, float t, Vec4 p0, Vec4 p1, Vec4 p2, Vec4 p3)
 {
     float t2 = t * t;
-    float t3 = t * t2;
-    float t6 = t3 + t3;
+    float t6 = t * t2 + t * t2;
     float k = t2 * 3.0f;
     float a = (t6 - k) + D_00275460;
     float b = k - t6;
-    float c = (t3 - D_00275600 * t2) + t;
-    float d = t3 - t2;
+    float c = (t * t2 - D_00275600 * t2) + t;
+    float d = t * t2 - t2;
     Vec4 m0 = Vec3Scale(Vec3Sub(p2, p0), D_002755E8);
     Vec4 m1 = Vec3Scale(Vec3Sub(p3, p1), D_002755E8);
     Vec4 n1 = Vec3Scale(m1, d);
