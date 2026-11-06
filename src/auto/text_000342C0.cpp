@@ -87,16 +87,29 @@ extern void *D_002F07B8;
 extern void *D_002F0670;
 extern void *D_002BEAAC;
 extern void *D_002A829C;
+struct S_342C0_FE08 {
+    void func_0018C960(int a);
+    void func_0018F980(int a, const char *s);
+};
 struct C_000342C0 {
     void **vtbl;
-    char pad4[0x64];
+    char pad4[0x60];
+    void *f64;
     void *f68;
     char pad6C[0x24];
     int f90;
     char pad94[0xc4];
     void *f158;
-    char pad15C[0x78];
+    char pad15C[0x5C];
+    void *f1b8;
+    char pad1BC[0x8];
+    void *f1c4;
+    char pad1C8[0xC];
     void *f1d4;
+    void func_001577A0(void *p, int n);
+    void func_00012140(void);
+    void func_001D3F50(void);
+    void func_00033680(void);
     void func_000342C0();
 };
 
