@@ -9,6 +9,7 @@ extern S_Rec11 D_00278664, D_002A60B0;
 extern char D_002786B0[];
 void __stdcall func_001D5810(void *p, float x, float y, int z);
 extern char D_00279058[];
+extern char D_00277038[];
 struct C_0005E840;
 struct C_000867F0 {
     char pad0[0x30];
