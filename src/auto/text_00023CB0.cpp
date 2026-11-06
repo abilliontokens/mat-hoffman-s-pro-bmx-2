@@ -88,7 +88,7 @@ struct C_00023C30 {
     int f48;
     C_00199B00 *f4C;
     C_00023C30 *func_00023C30(int a, int b, int c, int d);
-    void func_00023CB0(int a, S_00024210_Vec v, float len);
+    int func_00023CB0(int a, S_00024210_Vec v, float len);
     int func_00021B90(int a, S_00024210_Vec v, float len);
 };
 
