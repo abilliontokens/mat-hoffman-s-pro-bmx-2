@@ -656,9 +656,10 @@ C_001A6330 *C_001A6330::func_001A6330(int a)
 {
     char buf[0x104];
     int *ids[2];
-    int i;
+    int *res;
     Font6330 *font;
     void *mem;
+    int i;
 
     D_002A8490->f234 = 1;
     func_001ADCC0(buf, 0x104, D_0028BC34, D_002A64D0);
@@ -667,17 +668,15 @@ C_001A6330 *C_001A6330::func_001A6330(int a)
     mem = func_001E8A44(0x4010);
     if (mem != 0) {
         ((Big6330 *)mem)->func_00149380();
-        D_002A829C->v4(D_0028BC0C);
     }
+    D_002A829C->v4(D_0028BC0C);
     D_002EFDB8->f30 = 0;
     f4c = a;
     ids[0] = &D_0027958C;
     ids[1] = &D_00278690;
     ((Lookup6330 *)D_002A8490->f2ec)->func_0018C780(2, ids, 0);
-    {
-        int *res = ((Lookup6330 *)D_002A8490->f2ec)->func_0018C160((int)&D_0027958C);
-        font = res ? (Font6330 *)*res : 0;
-    }
+    res = ((Lookup6330 *)D_002A8490->f2ec)->func_0018C160((int)&D_0027958C);
+    font = res ? (Font6330 *)*res : 0;
     for (i = 0; i < 4; i++) {
         mem = func_001E8A44(0x184);
         a24[i] = mem ? ((W6330 *)mem)->func_001B12C0(1) : 0;
@@ -718,10 +717,12 @@ C_001A6330 *C_001A6330::func_001A6330(int a)
     f40->func_001D5810(D_00278608, 52.0f, 388.0f, 0);
     {
         int k = 0;
+        char ch;
         do {
-            D_002A60B0[k] = D_002A63C8[k];
+            ch = D_002A63C8[k];
+            D_002A60B0[k] = ch;
             k++;
-        } while (D_002A63C8[k - 1] != 0);
+        } while (ch != 0);
     }
     mem = func_001E8A44(0x358);
     f78 = mem ? ((W78_6330 *)mem)->func_00092890(1) : 0;
