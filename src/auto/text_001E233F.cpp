@@ -38,31 +38,43 @@ static void initterm(PVFV *pfbegin, PVFV *pfend) {
 
 #pragma optimize("t", off)
 void func_001E2655(void) {
+    PVFV f;
+    PVFV *p;
     if (D_002AE580 != 0) {
         D_002AE580();
     }
-    initterm(D_002A0410, D_002A0424);
-    initterm(D_0029F4F0, D_002A040C);
+    for (p = D_002A0410; p < D_002A0424; ++p) {
+        f = *p;
+        if (f != 0 && f != (PVFV)-1) {
+            f();
+        }
+    }
+    for (p = D_0029F4F0; p < D_002A040C; ++p) {
+        f = *p;
+        if (f != 0 && f != (PVFV)-1) {
+            f();
+        }
+    }
 }
 #pragma optimize("", on)
 
 #pragma optimize("t", off)
 void func_001E26AD(void) {
-    PVFV *end = D_0029F4EC;
-    PVFV *p = D_0029F4E0;
-    while (p < end) {
+    PVFV *p;
+    for (p = D_0029F4E0; p < D_0029F4EC; p++) {
         if (*p != 0 && (int)*p != -1) {
             (*p)();
         }
-        p++;
     }
 }
 #pragma optimize("", on)
 
 #pragma optimize("t", off)
 void func_001E26D6(void) {
-    __int64 due = -216000000000i64;
-    _imp__KeSetTimer(D_002F6B00, due, D_002F6AE0);
+    union { __int64 q; struct { unsigned int lo; int hi; } p; } t;
+    t.p.lo = 0xb5659000;
+    t.p.hi = -51;
+    _imp__KeSetTimer(D_002F6B00, t.q, D_002F6AE0);
 }
 #pragma optimize("", on)
 
