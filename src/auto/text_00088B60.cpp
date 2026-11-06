@@ -105,8 +105,8 @@ struct S_00088DD0_Sprite {
     void Dirty(unsigned char flags) { b58 |= flags; }
     void SetWidth(u32 w) { if(f28!=w) { f28=w; Dirty(1); } }
     void SetHeight(u32 h) { if(f2C!=h) { f2C=h; Dirty(1); } }
-    void SetWidthF(u32 w, unsigned char flags) { if(f28!=w) { f28=w; b58 |= flags; } }
-    void SetHeightF(u32 h, unsigned char flags) { if(f2C!=h) { f2C=h; b58 |= flags; } }
+    void SetWidthF(u32 w, int flags) { if(f28!=w) { f28=w; b58 |= flags; } }
+    void SetHeightF(u32 h, int flags) { if(f2C!=h) { f2C=h; b58 |= flags; } }
     S_00088DD0_Sprite *func_001D5760();
     void func_001D5810(void *a, int b, int c, int d);
 };
@@ -269,11 +269,11 @@ C_00088DD0 *C_00088DD0::func_00088DD0(int a0, int a1, S_00088DD0_Arg *a2)
  p->func_001D5810(&D_00279A34,0,0,0);
  unsigned h;
  if(f24==two) {
- f2C->SetWidth(0x43a00000); h=0x43e00000;
+ f2C->SetWidthF(0x43a00000,one); h=0x43e00000;
  } else {
- f2C->SetWidth(0x44200000); h=0x43600000;
+ f2C->SetWidthF(0x44200000,one); h=0x43600000;
  }
- f2C->SetHeight(h);
+ f2C->SetHeightF(h,one);
  p=f2C;
  if(f28==one)p->f38=(p->f38&0xffdd3737)|0xdd3737;
  else p->f38=(p->f38&0xffaaaaff)|0xaaaaff;
