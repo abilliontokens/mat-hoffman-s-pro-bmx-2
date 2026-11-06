@@ -571,6 +571,42 @@ void C_000C86A0::func_000C86A0(void)
     D_002B91AC->unk84->func_0005E840(D_002A8490->f2E8->f4->f908);
 }
 
+BmxUIPageOptions *BmxUIPageOptions::func_000C87A0(int a, int b, int c)
+{
+    int i;
+    S_000C8660_Obj *p;
+    S_000C8660_Obj *o;
+
+    func_001BE4F0(a, b, c);
+    D_002A8490->p2EC->func_0018C160((int)&D_00278690);
+    D_002A8490->p2EC->func_0018C160((int)&D_00278678);
+    D_002A8490->p2EC->func_0018C160((int)&D_002786A0);
+    i = 0;
+    do {
+        p = (S_000C8660_Obj *)func_001E8A44(0x64);
+        p = p != 0 ? p->func_001D5760() : 0;
+        unk2D8[i] = p;
+        if (i % 2 == 0) {
+            p->func_001D5810(&D_002786B0, 100.0f, (float)(i / 2 * 40) + D_0027E140, 0);
+        } else {
+            p->func_001D5810(&D_002786B0, 321.0f, (float)(i / 2 * 40) + D_0027E140, 0);
+            o = unk2D8[i];
+            o->f3C = 1.0f;
+            o->f40 = 0;
+            o->f44 = 0;
+            o->f48 = 1.0f;
+            o->f58 |= 4;
+        }
+        o = unk2D8[i];
+        if (o->f28 != 0x435d0000) {
+            o->f28 = 0x435d0000;
+            o->f58 |= 1;
+        }
+        i++;
+    } while (i < 4);
+    return this;
+}
+
 void BmxUIPageOptions::func_000C88E0(void)
 {
     int ids[3];
