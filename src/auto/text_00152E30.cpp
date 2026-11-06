@@ -6,6 +6,7 @@ void func_001E891B(void *p);
 int func_00011260(int a, int b);
 struct Q4_00152E30 { int x, y, z, w; };
 extern Q4_00152E30 D_002A78BC, D_002A789C;
+extern int D_002A78C0, D_002A78C4, D_002A78C8, D_002A78A0, D_002A78A4, D_002A78A8;
 static __forceinline void set_id_00152E30(int *d)
 {
     d[0] = D_002A789C.x; d[1] = D_002A789C.y; d[2] = D_002A789C.z; d[3] = D_002A789C.w;
