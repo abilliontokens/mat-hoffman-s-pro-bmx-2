@@ -29,7 +29,7 @@ extern char D_002782B4[];
 template <class T> inline const T &MinRef_5CBD0(const T &a, const T &b) { return b < a ? b : a; }
 extern "C" unsigned int strlen(const char *s);
 char *func_001E8920(char *dst, const char *src, int n);
-static inline void CopyName_5CBD0(char *dst, const char *src) { int n = MinRef_5CBD0(15, (int)strlen(src)); func_001E8920(dst, src, n); dst[n] = 0; }
+static inline void CopyName_5CBD0(char *dst, const char *src, int len) { int n = 15; if (n > len) n = len; func_001E8920(dst, src, n); dst[n] = 0; }
 struct S_5CBD0_GroupF { float s[5]; char n[5][16]; };
 struct S_5CBD0_GroupI { int s[5]; char n[5][16]; };
 struct C_0005CBD0 {
@@ -157,5 +157,42 @@ void C_0005C720::func_0005C720(void)
     }
 }
 
-void func_0005CBD0(void) {}
+void C_0005CBD0::func_0005CBD0()
+{
+    volatile int maxn = 15;
+    int n;
+    *(int *)&g0.s[0] = 0x4283999a; n = MinRef_5CBD0((int)maxn, (int)strlen("allen")); func_001E8920(g0.n[0], "allen", n); g0.n[0][n] = 0;
+    *(int *)&g0.s[1] = 0x425ccccd; n = MinRef_5CBD0((int)maxn, (int)strlen("lori")); func_001E8920(g0.n[1], "lori", n); g0.n[1][n] = 0;
+    *(int *)&g0.s[2] = 0x42493333; n = MinRef_5CBD0((int)maxn, (int)strlen("rick")); func_001E8920(g0.n[2], "rick", n); g0.n[2][n] = 0;
+    *(int *)&g0.s[3] = 0x4237999a; n = MinRef_5CBD0((int)maxn, (int)strlen("roman")); func_001E8920(g0.n[3], "roman", n); g0.n[3][n] = 0;
+    *(int *)&g0.s[4] = 0x42226666; n = MinRef_5CBD0((int)maxn, (int)strlen("eric d")); func_001E8920(g0.n[4], "eric d", n); g0.n[4][n] = 0;
+    *(int *)&g1.s[0] = 0x426f3333; n = MinRef_5CBD0((int)maxn, (int)strlen("mat")); func_001E8920(g1.n[0], "mat", n); g1.n[0][n] = 0;
+    *(int *)&g1.s[1] = 0x4243999a; n = MinRef_5CBD0((int)maxn, (int)strlen("mike")); func_001E8920(g1.n[1], "mike", n); g1.n[1][n] = 0;
+    *(int *)&g1.s[2] = 0x422a6666; n = MinRef_5CBD0((int)maxn, (int)strlen("brian")); func_001E8920(g1.n[2], "brian", n); g1.n[2][n] = 0;
+    *(int *)&g1.s[3] = 0x421b3333; n = MinRef_5CBD0((int)maxn, (int)strlen("vinnie")); func_001E8920(g1.n[3], "vinnie", n); g1.n[3][n] = 0;
+    *(int *)&g1.s[4] = 0x42013333; n = MinRef_5CBD0((int)maxn, (int)strlen("paul")); func_001E8920(g1.n[4], "paul", n); g1.n[4][n] = 0;
+    *(int *)&g2.s[0] = 0x43fa0000; n = MinRef_5CBD0((int)maxn, (int)strlen("lorna")); func_001E8920(g2.n[0], "lorna", n); g2.n[0][n] = 0;
+    *(int *)&g2.s[1] = 0x43e14000; n = MinRef_5CBD0((int)maxn, (int)strlen("alfred")); func_001E8920(g2.n[1], "alfred", n); g2.n[1][n] = 0;
+    *(int *)&g2.s[2] = 0x43c8199a; n = MinRef_5CBD0((int)maxn, (int)strlen("thomas")); func_001E8920(g2.n[2], "thomas", n); g2.n[2][n] = 0;
+    *(int *)&g2.s[3] = 0x43af7333; n = MinRef_5CBD0((int)maxn, (int)strlen("jessica")); func_001E8920(g2.n[3], "jessica", n); g2.n[3][n] = 0;
+    *(int *)&g2.s[4] = 0x43964ccd; n = MinRef_5CBD0((int)maxn, (int)strlen("jared")); func_001E8920(g2.n[4], "jared", n); g2.n[4][n] = 0;
+    g4.s[0] = 0x1e6e0; n = MinRef_5CBD0((int)maxn, (int)strlen("jared")); func_001E8920(g4.n[0], "jared", n); g4.n[0][n] = 0;
+    g4.s[1] = 0x13b3c; n = MinRef_5CBD0((int)maxn, (int)strlen("kristina")); func_001E8920(g4.n[1], "kristina", n); g4.n[1][n] = 0;
+    g4.s[2] = 0xb3b0; n = MinRef_5CBD0((int)maxn, (int)strlen("ron")); func_001E8920(g4.n[2], "ron", n); g4.n[2][n] = 0;
+    g4.s[3] = 0x5014; n = MinRef_5CBD0((int)maxn, (int)strlen("michael")); func_001E8920(g4.n[3], "michael", n); g4.n[3][n] = 0;
+    g4.s[4] = 0x2a94; n = MinRef_5CBD0((int)maxn, (int)strlen("jeff")); func_001E8920(g4.n[4], "jeff", n); g4.n[4][n] = 0;
+    g3.s[0] = 0x3d860; n = MinRef_5CBD0((int)maxn, (int)strlen("dakota")); func_001E8920(g3.n[0], "dakota", n); g3.n[0][n] = 0;
+    g3.s[1] = 0x24b80; n = MinRef_5CBD0((int)maxn, (int)strlen("troy")); func_001E8920(g3.n[1], "troy", n); g3.n[1][n] = 0;
+    g3.s[2] = 0x1a838; n = MinRef_5CBD0((int)maxn, (int)strlen("pete")); func_001E8920(g3.n[2], "pete", n); g3.n[2][n] = 0;
+    g3.s[3] = 0x13a1a; n = MinRef_5CBD0((int)maxn, (int)strlen("eric c")); func_001E8920(g3.n[3], "eric c", n); g3.n[3][n] = 0;
+    g3.s[4] = 0xc67a; n = MinRef_5CBD0((int)maxn, (int)strlen("brennen")); func_001E8920(g3.n[4], "brennen", n); g3.n[4][n] = 0;
+    g5.s[0] = 0x3d860; n = MinRef_5CBD0((int)maxn, (int)strlen("brian b")); func_001E8920(g5.n[0], "brian b", n); g5.n[0][n] = 0;
+    g5.s[1] = 0x24b80; n = MinRef_5CBD0((int)maxn, (int)strlen("scott")); func_001E8920(g5.n[1], "scott", n); g5.n[1][n] = 0;
+    g5.s[2] = 0x1a838; n = MinRef_5CBD0((int)maxn, (int)strlen("wil")); func_001E8920(g5.n[2], "wil", n); g5.n[2][n] = 0;
+    g5.s[3] = 0x13a1a; n = MinRef_5CBD0((int)maxn, (int)strlen("josh")); func_001E8920(g5.n[3], "josh", n); g5.n[3][n] = 0;
+    g5.s[4] = 0xc67a; n = MinRef_5CBD0((int)maxn, (int)strlen("andre")); func_001E8920(g5.n[4], "andre", n); g5.n[4][n] = 0;
+    f258 = 50; f25C = 100; f260 = 2; f264 = 1; f268 = 1; f26C = 0;
+    fCD0 = 0x20;
+    func_0005C3A0(-1);
+}
 
