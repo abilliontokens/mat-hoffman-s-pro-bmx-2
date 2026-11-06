@@ -518,9 +518,9 @@ fail:
 }
 
 void C_0001D330::func_0001D330(void) {
-    for (int i = 0; i < unk70; i++) {
-        C_0001D330_Item *item = itemAt(i);
-        item->virt33();
+    int i;
+    for (i = 0; i < list.count; i++) {
+        list.at(i)->virt33();
     }
 }
 
