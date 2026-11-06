@@ -134,7 +134,8 @@ extern "C" void func_001E8390(void*);
 extern "C" void* func_001E8AA5(int);
 
 static inline void FloatToIndex(int *out, float f) {
-    *out = (int)f;
+    int * volatile p = out;
+    *p = _mm_cvttss_si32(*(__m128 *)&f);
 }
 
 struct C_0014F170 {
@@ -142,9 +143,10 @@ struct C_0014F170 {
 };
 
 
-C_0014ECD0 *C_0014ECD0::func_0014ECD0(int a0, char *name, int a2, int a3, int a4, volatile float f5, volatile float f6, int a7)
+C_0014ECD0 *C_0014ECD0::func_0014ECD0(int a0, char * volatile name, int a2, int volatile a3, int a4, volatile float f5, volatile float f6, int a7)
 {
     C_0014ECD0 * volatile self = this;
+    C_0014ECD0 *p;
     struct {
         union {
             int var;
@@ -166,6 +168,8 @@ C_0014ECD0 *C_0014ECD0::func_0014ECD0(int a0, char *name, int a2, int a3, int a4
     int cnt;
     int ma;
     int mb;
+    int r;
+    int v;
     S_0014ECD0_Item *items;
     S_0014ECD0_Item *mem;
     S_0014ECD0_Base *base;
@@ -175,8 +179,8 @@ C_0014ECD0 *C_0014ECD0::func_0014ECD0(int a0, char *name, int a2, int a3, int a4
     self->f564 = f6;
     self->f50 = a0;
     self->f55c = a2;
-    t.tb = *(volatile float *)&D_002F07E8->f44;
-    t.ta = *(volatile float *)&D_002F07E8->f40;
+    t.tb = D_002F07E8->f44;
+    t.ta = D_002F07E8->f40;
     t.m = t.ta > t.tb ? t.ta : t.tb;
     self->f57c = D_00286A9C / t.m;
     self->f578 = t.m * D_00286A90;
@@ -202,17 +206,21 @@ C_0014ECD0 *C_0014ECD0::func_0014ECD0(int a0, char *name, int a2, int a3, int a4
         return 0;
     }
     for (i = 0; i < 0x100; i++) {
-        if (self->f54[i] != 0) {
-            self->f54[i]->func_0014C890(0x22b8);
+        p = self;
+        if (p->f54[i] != 0) {
+            p->f54[i]->func_0014C890(0x22b8);
             if (a3 != 0) {
-                self->func_0014E630(self->f54[i]);
+                p = self;
+                p->func_0014E630(p->f54[i]);
             } else {
-                self->f54[i]->f1ec = 0;
+                p = self;
+                p->f54[i]->f1ec = 0;
             }
         }
     }
     self->f568 = D_002AAEC8->func_001BC6E0(D_00282A9C);
-    cnt = self->f3c;
+    p = self;
+    cnt = p->f3c;
     mem = (S_0014ECD0_Item *)func_001E8A44(cnt * 0x1c);
     if (mem != 0) {
         S_0014ECD0_Item *it = mem;
@@ -242,31 +250,35 @@ C_0014ECD0 *C_0014ECD0::func_0014ECD0(int a0, char *name, int a2, int a3, int a4
     self->f48 = (int *)func_001E8AA5(self->f584 << 2);
     self->f4c = (int *)func_001E8AA5(self->f588 << 2);
     self->f21d8 = (int *)func_001E8AA5(self->f21d4 << 2);
-    if (self->f40 != 0 && self->f44 != 0 && self->f48 != 0 && self->f4c != 0 && self->f21d8 != 0) {
+    p = self;
+    if (p->f40 != 0 && p->f44 != 0 && p->f48 != 0 && p->f4c != 0 && p->f21d8 != 0) {
         for (i = 0; i < 0x3c; i++) {
             self->f21d8[i] = func_0013F650();
         }
         self->f21dc = self->func_0013F690();
         self->f21e0 = func_0013F7B0();
-        self->func_0014D360(t.var, a7);
-        D_002BEAAC->func_0013C110(t.var);
+        v = t.var;
+        self->func_0014D360(v, a7);
+        D_002BEAAC->func_0013C110(v);
         S_0014ECD0_Vec a;
         S_0014ECD0_Vec b;
-        a.x = D_002F07E8->f40 * D_002755E8;
+        a.x = D_002755E8 * D_002F07E8->f40;
         a.y = 0;
-        a.z = D_002F07E8->f44 * D_002755E8;
+        a.z = D_002755E8 * D_002F07E8->f44;
         b.y = 1000.0f;
-        b.x = a.x * D_002755E8;
-        b.z = a.z * D_002755E8;
-        if (self != 0) {
-            base = (S_0014ECD0_Base *)((char *)self + 0x24);
+        b.x = D_002755E8 * a.x;
+        b.z = D_002755E8 * a.z;
+        r = D_002F07E8->v6(&a, &b, 0);
+        p = self;
+        if (p != 0) {
+            base = (S_0014ECD0_Base *)((char *)p + 0x24);
         } else {
             base = 0;
         }
-        D_002F07E8->v7(base, D_002F07E8->v6(&a, &b, 0), &a, &b);
+        D_002F07E8->v7(base, r, &a, &b);
         return self;
     }
-    self->v2();
+    p->v2();
     return 0;
 }
 
@@ -394,8 +406,9 @@ float func_0014F450(int x) {
 
 float func_0014F4B0(int x) {
     float f = (func_00016D60(x) + D_002756D0) * D_002DF870;
+    int * volatile p = &x;
 
-    FloatToIndex(&x, f);
+    *p = _mm_cvttss_si32(*(__m128 *)&f);
     return D_002CF6B4[x].a - (f - (float)x) * D_002CF6B4[x].b * D_002DF874;
 }
 
