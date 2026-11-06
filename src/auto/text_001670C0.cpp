@@ -2,6 +2,7 @@
 #include "common.h"
 #include "ghidra.h"
 #include <xmmintrin.h>
+#include <string.h>
 struct Vec4_165EF0 { float x,y,z,w; };
 struct C_001673B0 { char pad[0x1e0]; int f1e0; int func_001673B0(const char *a, void *b, void *c, void *d, int e); };
 struct C_001648E0_Item {
@@ -499,6 +500,7 @@ C_00167AC0 *C_00167AC0::func_00167AC0(void)
 
 int C_00167DD0::func_00167AF0(void *p)
 {
+    S_00167AF0_List *list = (S_00167AF0_List *)p;
     float radius;
     S_00167AF0_Vector center;
     int i;
@@ -509,12 +511,12 @@ int C_00167DD0::func_00167AF0(void *p)
     char *obj;
 
     pos = *(S_00167AF0_Vector *)(f24 + 0xc0);
-    for (i = 0; i < *(int *)((char *)p + 0x10); ++i) {
-        if (*(int *)((char *)p + 0x10) > 0 && *(void **)((char *)p + 0x14) && i < *(int *)((char *)p + 0x10))
-            obj = (*(char ***)((char *)p + 0x14))[i];
+    for (i = 0; i < list->count; ++i) {
+        if (list->count > 0 && list->items && i < list->count)
+            obj = list->items[i];
         else
             obj = 0;
-        if (obj[0x20] != *((char *)p + 0x24) || !(obj[0x1a3] & 8))
+        if (obj[0x20] != list->tag || !(obj[0x1a3] & 8))
             continue;
         radius = *(int *)(obj + 0x190) == 1 ? *(float *)(obj + 0x184) : *(float *)(obj + 0x188);
         if (!(*(float *)(obj + 0x1b0) - radius < *(float *)((char *)this + 0x358)))
