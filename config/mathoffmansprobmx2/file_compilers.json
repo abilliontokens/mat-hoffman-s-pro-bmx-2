@@ -1,17 +1,18 @@
 {
   "src/auto/text_00011FF0.cpp": "7.1",
   "src/auto/text_00012B00.cpp": "7.1",
-  "src/auto/text_0001D280.cpp": "7.1",
   "src/auto/text_000C7DF0.cpp": "7.1",
   "src/auto/text_0012C540.cpp": "7.1",
   "src/auto/text_00177230.cpp": "7.1",
   "src/auto/text_00178C60.cpp": "7.1",
   "src/auto/text_00187670.cpp": "7.1",
+  "src/auto/text_0019A8C0.cpp": "7.1",
   "src/auto/text_001C4FB0.cpp": "7.1",
-  "src/auto/text_001CE140.cpp": "7.1",
   "src/auto/text_001DC010.cpp": "7.1",
   "src/auto/text_001DCDC7.cpp": "7.1",
   "src/auto/text_001DE8C7.cpp": "7.1",
   "src/auto/text_001E06BC.cpp": "7.1",
-  "src/auto/text_001E2770.cpp": "7.1"
+  "src/auto/text_001E2770.cpp": "7.1",
+  "src/auto/text_001E64D0.cpp": "7.1",
+  "src/auto/text_001E7480.cpp": "7.1"
 }
