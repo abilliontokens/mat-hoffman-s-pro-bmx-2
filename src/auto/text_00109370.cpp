@@ -124,6 +124,17 @@ static inline void StrCopy_001095A0(char *d, const char *s)
     } while (c != '\0');
 }
 
+static inline void StrCopyOff_001095A0(char *d, const char *s)
+{
+    int off = d - s;
+    char c;
+    do {
+        c = *s;
+        *(char *)(s + off) = c;
+        s++;
+    } while (c != '\0');
+}
+
 void func_001E891B(void *p);
 void func_001E8390(void *p);
 
@@ -295,6 +306,153 @@ int C_00109520::func_00109580(int idx) {
         return -1;
     }
     return a[idx];
+}
+
+void C_00109520::func_001095A0(int idx, char *dst)
+{
+    char out[0x104];
+    char s2[0x104];
+    char s3[0x104];
+    char tmp[0x104];
+    char name[0x104];
+    int v;
+    int dd;
+    char *p;
+    char ch;
+
+    if (idx >= count) {
+        return;
+    }
+    v = b[idx];
+    switch (a[idx]) {
+    case 11:
+        StrCopy_001095A0(name, D_002A8490->f2A4->f64->f52C + 0x64b6);
+        break;
+    case 12:
+        StrCopy_001095A0(name, D_002A8490->f2A4->f64->f52C + 0x64ec);
+        break;
+    case 13:
+        StrCopy_001095A0(name, D_002A8490->f2A4->f64->f52C + 0x63ee);
+        break;
+    case 8:
+        StrCopy_001095A0(name, D_002A8490->f2A4->f64->f52C + 0x7168 + v * 0x32);
+        break;
+    case 9:
+        StrCopy_001095A0(name, D_002A8490->f2A4->f64->f52C + 0x6b28 + v * 0x32);
+        break;
+    case 10:
+        StrCopy_001095A0(name, D_002A8490->f2A4->f64->f52C + 0x66c8 + v * 0x32);
+        break;
+    case 0:
+        StrCopy_001095A0(name, D_002A8490->f2A4->f64->f52C + 0x1c + v * 0x32);
+        break;
+    case 6:
+        StrCopy_001095A0(name, D_002A8490->f2A4->f64->f52C + 0x668c);
+        break;
+    case 7:
+        StrCopy_001095A0(name, D_002A8490->f2A4->f64->f52C + 0x6650);
+        break;
+    case 1:
+        if (v < 0) {
+            StrCopy_001095A0(name, D_002A8490->f2A4->f64->f52C + 0x6524);
+        } else {
+            StrCopy_001095A0(name, D_002A8490->f2A4->f64->f52C + 0x3a04 + v * 0x32);
+        }
+        break;
+    case 2:
+        if (v < 0) {
+            StrCopy_001095A0(name, D_002A8490->f2A4->f64->f52C + 0x6614);
+        } else {
+            StrCopy_001095A0(name, D_002A8490->f2A4->f64->f52C + 0x3d24 + v * 0x32);
+        }
+        break;
+    case 3:
+        if (v < 0) {
+            StrCopy_001095A0(name, D_002A8490->f2A4->f64->f52C + 0x6560);
+        } else {
+            StrCopy_001095A0(name, D_002A8490->f2A4->f64->f52C + 0x4044 + v * 0x32);
+        }
+        break;
+    case 4:
+        if (v < 0) {
+            StrCopy_001095A0(name, D_002A8490->f2A4->f64->f52C + 0x65d8);
+        } else {
+            StrCopy_001095A0(name, D_002A8490->f2A4->f64->f52C + 0x4364 + v * 0x32);
+        }
+        break;
+    case 5:
+        if (v < 0) {
+            StrCopy_001095A0(name, D_002A8490->f2A4->f64->f52C + 0x659c);
+        } else {
+            StrCopy_001095A0(name, D_002A8490->f2A4->f64->f52C + 0x4684 + v * 0x32);
+        }
+        break;
+    default:
+        name[0] = 0;
+        break;
+    }
+    s2[0] = 0;
+    if (c[idx] != 0) {
+        switch (c[idx]) {
+        case 1:
+            func_001ADCC0(tmp, 0x104, D_00282AD8, 0xb4);
+            break;
+        case 2:
+            func_001ADCC0(tmp, 0x104, D_00282AD8, 0x168);
+            break;
+        case 3:
+            func_001ADCC0(tmp, 0x104, D_00282AD8, 0x21c);
+            break;
+        case 4:
+            func_001ADCC0(tmp, 0x104, D_00282AD8, 0x2d0);
+            break;
+        case 5:
+            func_001ADCC0(tmp, 0x104, D_00282AD8, 0x384);
+            break;
+        case 6:
+            func_001ADCC0(tmp, 0x104, D_00282AD4, D_002A8490->f2A4->f64->f52C + 0x6420);
+            break;
+        case 7:
+            func_001ADCC0(tmp, 0x104, D_00282AD4, D_002A8490->f2A4->f64->f52C + 0x63bc);
+            break;
+        }
+        dd = d[count - 1];
+        if (dd == 0) {
+            func_001ADCC0(s2, 0x104, D_00276F28, tmp);
+        } else if (dd == 2) {
+            func_001ADCC0(s2, 0x104, D_00277A70, D_002A8490->f2A4->f64->f52C + 0x6452, tmp);
+        } else if (dd == 1) {
+            func_001ADCC0(s2, 0x104, D_00277A70, D_002A8490->f2A4->f64->f52C + 0x6484, tmp);
+        }
+    }
+    s3[0] = 0;
+    if (e[idx] != -1) {
+        switch (e[idx]) {
+        case 0:
+            func_001ADCC0(s3, 0x104, D_00282AD4, D_002A8490->f2A4->f64->f52C + 0x2cf4);
+            break;
+        case 2:
+            func_001ADCC0(s3, 0x104, D_00282AD4, D_002A8490->f2A4->f64->f52C + 0x2d26);
+            break;
+        case 3:
+            func_001ADCC0(s3, 0x104, D_00282AD4, D_002A8490->f2A4->f64->f52C + 0x2d58);
+            break;
+        case 5:
+            func_001ADCC0(s3, 0x104, D_00282AD4, D_002A8490->f2A4->f64->f52C + 0x2d8a);
+            break;
+        case 6:
+            func_001ADCC0(s3, 0x104, D_00282AD4, D_002A8490->f2A4->f64->f52C + 0x2dbc);
+            break;
+        }
+    }
+    out[0] = 0;
+    func_001ADCC0(out, 0x104, D_0027D158, s2, s3, name);
+    p = out;
+    do {
+        ch = *p;
+        *(char *)((int)p + ((int)dst - (int)out)) = ch;
+        p++;
+    } while (ch != '\0');
 }
 
 int C_00109520::func_00109C70(C_00109520 *src)
