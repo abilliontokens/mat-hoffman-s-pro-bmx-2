@@ -23,6 +23,61 @@ struct C_00074EB0 {
 };
 extern int D_00278DF4;
 
+struct Lbl_75170 {
+    char pad0[0x34];
+    u32 f34;
+    char pad38[0xC];
+    u32 f44, f48;
+    char pad4C[2];
+    u8 f4E;
+    void func_0005E840(char *);
+    void func_001D6600();
+};
+struct Text_75170 {
+    void func_001B1980();
+    void func_001B2270(unsigned int);
+    void func_001B19C0(int, int, int);
+    void func_001B1860(float, float, int, float, float, float, float, int, float, float, float, float, float);
+};
+struct Mode_75170 { char pad0[0x90]; int f90; };
+struct Player_75170 { char pad0[0x6CC]; int f6CC, f6D0, f6D4, f6D8; };
+struct Shared_75170 { char pad0[0x76C]; int f76C, f770, f774, f778; };
+struct Root_75170 { char pad0[0x4E4]; Player_75170 *f4E4[17]; Shared_75170 *f528; };
+extern Root_75170 *D_002B9120;
+extern char D_00278DE4[], D_00278DD8[], D_00277038[], D_00278DD0[];
+extern float D_00276DD4, D_00275994;
+extern u32 D_0028F5E0;
+int func_001ADCC0(char *, int, const char *, ...);
+int func_001AC330(char *, const char *, ...);
+
+struct C_00075170 {
+    char pad0[0x64];
+    Lbl_75170 *unk64[3];
+    Lbl_75170 *unk70[3];
+    Lbl_75170 *unk7C[3];
+    Lbl_75170 *unk88[3];
+    Text_75170 *unk94[3];
+    float fA0[3];
+    char padAC[0x100 - 0xAC];
+    Lbl_75170 *unk100, *unk104, *unk108, *unk10C, *unk110, *unk114, *unk118;
+    int unk11C;
+    Mode_75170 *unk120;
+    char pad124[0x12C - 0x124];
+    int unk12C[8];
+    int unk14C[8];
+    int unk16C[8];
+    int unk18C, unk190;
+    char pad194[0x1A8 - 0x194];
+    int unk1A8, unk1AC;
+    char pad1B0[4];
+    int unk1B4;
+    void func_00075170();
+};
+#define SETUP_LABEL(slot) \
+    if ((slot)->f48 != 0xffcccccc) { (slot)->f4E |= 8; (slot)->f48 = ((slot)->f48 & 0xffcccccc) | 0xcccccc; } \
+    if ((slot)->f44 != D_0028F5E0) { (slot)->f44 = D_0028F5E0; (slot)->f4E |= 6; } \
+    if ((slot)->f34 != 0x3f800000) { (slot)->f34 = 0x3f800000; (slot)->f4E |= 6; }
+
 struct V_002EFDB8 {
     virtual void vf0();
     virtual void vf1();
