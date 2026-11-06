@@ -99,6 +99,7 @@ struct C_00171A00 {
 };
 
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 
 static __forceinline void Zero_00171340(Mat_00171340 * volatile &p)
 {
@@ -188,6 +189,14 @@ struct PhysicsAnimatedBody {
     V4_170DB0 func_00170DB0();
 };
 
+V4_170DB0 PhysicsAnimatedBody::func_00170DB0()
+{
+    local = getLocal();
+    V4_170DB0 input = local;
+    world = model->func_00198040(&input);
+    return world;
+}
+
 void C_00171230::func_00171230(int a) {
     ((C_000264C0 *)((char *)this + 0x2c0))->func_000264C0((char *)this + 0x280);
     ((C_000264C0 *)((char *)this + 0x280))->func_000264C0((void *)(unk22C + 0xf0));
@@ -209,6 +218,10 @@ void *C_001712A0::func_001712A0(int flags) {
         func_001E891B(this);
     }
     return this;
+}
+
+void func_001712D0(float *out, float *in) {
+    AsmVec3Normalize(out, in);
 }
 
 void *C_00171340::func_00171340(int a)
@@ -326,5 +339,19 @@ void C_00171A00::func_00171A00(void *param_1)
 {
     fB0.func_000264C0(param_1);
     func_00162210(&fF0, &fB0);
+}
+
+void C_00171BA0::func_00171BA0(float x, float y, float z, float w)
+{
+    float v[4];
+    v[0]=0.0f; v[1]=0.0f; v[2]=0.0f; v[3]=1.0f;
+    func_001712D0(v, &f150);
+    V3_00171BA0 &up = *(V3_00171BA0 *)v;
+    float d=x*v[0]+y*v[1]+z*v[2];
+    V3_00171BA0 r=V3_00171BA0(x,y,z)-up*d;
+    float len2=f150*f150+f154*f154+f158*f158;
+    float len=_mm_sqrt_ss(_mm_set_ss(len2)).m128_f32[0];
+    float t=_mm_max_ss(_mm_set_ss(d-len),_mm_setzero_ps()).m128_f32[0];
+    *(V3_00171BA0 *)&f150 += up*t+r;
 }
 
