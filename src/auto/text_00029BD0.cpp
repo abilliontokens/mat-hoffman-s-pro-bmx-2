@@ -4,7 +4,7 @@
 struct V4_00029BD0 {
  union { struct { float x,y,z,w; }; __int64 q[2]; };
  V4_00029BD0() {}
- V4_00029BD0 &operator=(const V4_00029BD0 &v) { q[0]=v.q[0]; q[1]=v.q[1]; return *this; }
+ V4_00029BD0 &operator=(const V4_00029BD0 &v) { y=v.y; x=v.x; z=v.z; w=v.w; return *this; }
 };
 struct P4_00029BD0 { float x, y, z, w; };
 struct __declspec(align(16)) M4_00029BD0 { float m[16]; };
@@ -344,7 +344,7 @@ float func_0001C870(float a, int b, float c, float d, float e);
 
 int C_00029BD0::func_00029BD0()
 {
- V4_00029BD0 v=*(V4_00029BD0 *)((char *)f1e8+0x1a0), temp;
+ V4_00029BD0 v=f1e8->v, temp;
  v=*func_0001E9E0(&temp,&v);
  f464=v.y;
  if(v.y<D_002766A4) {
