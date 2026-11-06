@@ -85,6 +85,11 @@ struct V4f_0016D6A0 {
     void Set(float a, float b, float c, float d) { x = a; y = b; z = c; w = d; }
 };
 
+struct V4f {
+    float x, y, z, w;
+    V4f(float a, float b, float c, float d) { x = a; y = b; z = c; w = d; }
+};
+
 struct Particle_0016DEA0 {
     char pad0[0x2c];
     int f2C;
