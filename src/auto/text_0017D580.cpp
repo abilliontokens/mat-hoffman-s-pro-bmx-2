@@ -21,6 +21,10 @@ struct S_QuadTreeGlobal {
     int f880;
 };
 
+extern int D_002890E8;
+struct S_QTNode { void *vtbl; int f4; int f8; int fC; float f10; };
+extern "C" void *__cdecl func_001E8A44(unsigned int size);
+
 struct C_0017D580 {
     undefined4 func_0017D580(byte param_1);
 };
