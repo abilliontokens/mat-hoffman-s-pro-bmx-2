@@ -44,7 +44,7 @@ struct C_000ECDC0 {
     void func_000ECDC0();
 };
 struct S_000ED170_Obj {
-    void func_0005E840(char *s);
+    void func_0005E840(const char *s);
 };
 
 struct S_002B91AC {
@@ -278,6 +278,81 @@ struct C_000ED300 {
     void func_001577A0(E300_Txt *t, int x);
     C_000ED300 *func_000ED300(int a, int b, int c);
 };
+
+void C_000EC850::func_000EC850()
+{
+    char *ids[3];
+    int i;
+    C_000EC850_Ctl **e;
+    ids[0] = D_002786A0;
+    ids[1] = D_00278690;
+    ids[2] = D_00278678;
+    for (i = 0; i < 3; i++) {
+        C_000EC850_Lib *lk = ((C_000EC850_Glob *)D_002A8490)->f2EC;
+        C_000EC850_Node **r = lk->func_0018C160(ids[i]);
+        if (r && *r) {
+            C_000EC850_Range *o = (*r)->func_0018C070();
+            o->Clamp();
+        }
+    }
+    if (f320) {
+        C_000EC850_Range *o = f320->func_001D5AA0();
+        o->Clamp();
+    }
+    e = f2A0;
+    i = 16;
+    do {
+        if (*e) {
+            C_000EC850_Range *o = (*e)->func_001D5AA0();
+            o->Clamp();
+        }
+        e++;
+        i--;
+    } while (i);
+    func_001578D0();
+}
+
+void C_000ECC60::func_000ECC60(void) {
+    C_001D5AD0 *p;
+    S_002B91AC *s;
+    C_001D5AD0 **ptr;
+    int i;
+    if (f330 != 0) goto skip;
+    if (f324 > 0 || f35C != 0) {
+        p = f30C ? D_002B91AC->unk68 : D_002B91AC->unk50;
+        p->func_001D5AD0();
+    }
+    if (f35C == 0 && f124->f138 == 0) {
+        p = f310 ? D_002B91AC->unk6C : D_002B91AC->unk54;
+        p->func_001D5AD0();
+    }
+skip:
+    s = D_002B91AC;
+    s->unk24->func_001D5AD0();
+    s->unk28->func_001D5AD0();
+    s->unk2C->func_001D5AD0();
+    s->unk30->func_001D5AD0();
+    i = 0;
+    ptr = f2A0;
+    do {
+        if (i == f33C * 2 || i == f33C * 2 + 1) {
+            p = *ptr;
+            p->f38 = (p->f38 & 0xffffff) | (f388 << 24);
+            p->f58 |= 2;
+            p = *ptr;
+            p->f38 = (p->f38 & 0xff000000) | 0xbfa35a;
+            p->f58 |= 2;
+        } else {
+            p = *ptr;
+            unsigned char f = p->f58 | 2;
+            p->f38 = (p->f38 & 0xff000000) | 0xcccccc;
+            p->f58 = f;
+        }
+        (*ptr)->func_001D5AD0();
+        i++;
+        ptr++;
+    } while (i < 16);
+}
 
 void C_000ECD90::func_000ECD90(void) {
     unk380 = 0;
