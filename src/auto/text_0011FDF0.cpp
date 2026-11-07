@@ -3,8 +3,8 @@
 #include <xmmintrin.h>
 #include "asm_helpers.h"
 
-static __forceinline float Min_0011FDF0(float a, float b) { return _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b)).m128_f32[0]; }
-static __forceinline float Max_0011FDF0(float a, float b) { return _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b)).m128_f32[0]; }
+static __forceinline float Min_0011FDF0(float a, float b) { float r; _mm_store_ss(&r, _mm_min_ss(*(__m128 *)&a, *(__m128 *)&b)); return r; }
+static __forceinline float Max_0011FDF0(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(*(__m128 *)&a, *(__m128 *)&b)); return r; }
 static __forceinline float Abs_0011FDF0(const float &f) { int i = *(int *)&f & 0x7fffffff; return *(float *)&i; }
 
 static __forceinline float AbsVal_00120470(float f) { int i = *(int *)&f & 0x7fffffff; return *(float *)&i; }
