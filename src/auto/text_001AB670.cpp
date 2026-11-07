@@ -6,7 +6,7 @@
 static __forceinline float Min_001AB670(float a, float b) { float r; _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
 static inline float Dot_001AB670(const float *a, const float *b) { return a[0] * b[0] + a[1] * b[1] + a[2] * b[2]; }
 static __forceinline float Dot2_001AB670(const float *a, const float *b) { return (a[1] * b[1] + b[0] * a[0]) + a[2] * b[2]; }
-struct V4_001AB670 { float x, y, z, w; V4_001AB670() { z = 0.0f; y = 0.0f; x = 0.0f; w = 1.0f; } };
+struct V4_001AB670 { float x, y, z, w; V4_001AB670() { z = 0.0f; y = 0.0f; x = 0.0f; w = 1.0f; } V4_001AB670(float a, float b, float c, float d) { x = a; y = b; z = c; w = d; } };
 struct V4P_001AB670 { float x, y, z, w; };
 struct Body_001AB670 {
     char pad_00[0x130];
