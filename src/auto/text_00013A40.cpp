@@ -1,5 +1,6 @@
 /* 5 functions from 0x00013A40 to 0x000149A0, found by Ghidra. */
 #include "common.h"
+#include "asm_helpers.h"
 
 struct S_11FF0_State3 {
     void *vtbl;
@@ -131,6 +132,7 @@ struct S_00014850_Vec4 {
     f32 y;
     f32 z;
     f32 w;
+    S_00014850_Vec4 &operator=(const S_00014850_Vec4 &v) { x=v.x; y=v.y; z=v.z; w=v.w; return *this; }
 };
 
 /* a vector that starts as (0, 0, 0, 1) */
@@ -250,7 +252,6 @@ static __forceinline State_14170 *Make_14170(unsigned size, void *vt, int kind) 
 
 void C_00013F50::func_00013A40(char *path)
 {
-    C_00013F50 *volatile self;
     int n2;
     int n1;
     int n3;
@@ -261,15 +262,13 @@ void C_00013F50::func_00013A40(char *path)
     S_00013A40_Ini *ini;
     int i, n;
 
-    self = this;
     f0++;
-    C_00013F50 *s = self;
-    if (s->f1c != 0 || s->f20 != 0 || s->f24 != 0) {
+    if (f1c != 0 || f20 != 0 || f24 != 0) {
         return;
     }
     ini = new S_00013A40_Ini;
     if (ini->func_00169490(path, 0)) {
-        n = Clamp_00013A40(D_002A48F8);
+        n = AsmMinI(0x103, strlen(D_002A48F8));
         func_001E8920(saved, D_002A48F8, n);
         saved[n] = 0;
         ini->func_00169710(D_0027568C);
@@ -283,45 +282,45 @@ void C_00013F50::func_00013A40(char *path)
         ini->func_00168C20(D_00275658, 0, &n2);
         ini->func_00168C20(D_00275644, 0, &n3);
         if (n1 > 0) {
-            self->f1c = (int *)func_001E8A44(n1 * 4);
+            f1c = (int *)func_001E8A44(n1 * 4);
             for (i = 0; i < n1; i++) {
                 func_001ADCC0(name, 0x104, D_00275634, i + 1);
                 ini->func_00168BE0(name, D_00275630, val, 0x104);
-                if (val[0] != 0 && self->f10 < n1) {
-                    ((S_00013A40_Obj **)self->f1c)[self->f10] = (S_00013A40_Obj *)new S_00013A40_ObjImpl(D_002A8490->f4->fb4, D_002B9120->f4c0, 1);
-                    ((S_00013A40_Obj **)self->f1c)[self->f10]->v4(val, 1, 1, 0, 0);
-                    self->f10++;
+                if (val[0] != 0 && f10 < n1) {
+                    ((S_00013A40_Obj **)f1c)[f10] = (S_00013A40_Obj *)new S_00013A40_ObjImpl(D_002A8490->f4->fb4, D_002B9120->f4c0, 1);
+                    ((S_00013A40_Obj **)f1c)[f10]->v4(val, 1, 1, 0, 0);
+                    f10++;
                 }
             }
-            self->f4 = func_00011260(0, self->f10 - 1);
+            f4 = func_00011260(0, f10 - 1);
         }
         if (n2 > 0) {
-            self->f20 = (int *)func_001E8A44(n2 * 4);
+            f20 = (int *)func_001E8A44(n2 * 4);
             for (i = 0; i < n2; i++) {
                 func_001ADCC0(name, 0x104, D_00275620, i + 1);
                 ini->func_00168BE0(name, D_00275630, val, 0x104);
-                if (val[0] != 0 && self->f14 < n2) {
-                    ((S_00013A40_Obj **)self->f20)[self->f14] = (S_00013A40_Obj *)new S_00013A40_ObjImpl(D_002A8490->f4->fb4, D_002B9120->f4c0, 1);
-                    ((S_00013A40_Obj **)self->f20)[self->f14]->v4(val, 1, 1, 0, 0);
-                    self->f14++;
+                if (val[0] != 0 && f14 < n2) {
+                    ((S_00013A40_Obj **)f20)[f14] = (S_00013A40_Obj *)new S_00013A40_ObjImpl(D_002A8490->f4->fb4, D_002B9120->f4c0, 1);
+                    ((S_00013A40_Obj **)f20)[f14]->v4(val, 1, 1, 0, 0);
+                    f14++;
                 }
             }
-            self->f8 = func_00011260(0, self->f14 - 1);
+            f8 = func_00011260(0, f14 - 1);
         }
         if (n3 > 0) {
-            self->f24 = (int *)func_001E8A44(n3 * 4);
+            f24 = (int *)func_001E8A44(n3 * 4);
             for (i = 0; i < n3; i++) {
                 func_001ADCC0(name, 0x104, D_0027560C, i + 1);
                 ini->func_00168BE0(name, D_00275630, val, 0x104);
-                if (val[0] != 0 && self->f18 < n3) {
-                    ((S_00013A40_Obj **)self->f24)[self->f18] = (S_00013A40_Obj *)new S_00013A40_ObjImpl(D_002A8490->f4->fb4, D_002B9120->f4c0, 1);
-                    ((S_00013A40_Obj **)self->f24)[self->f18]->v4(val, 1, 1, 0, 0);
-                    self->f18++;
+                if (val[0] != 0 && f18 < n3) {
+                    ((S_00013A40_Obj **)f24)[f18] = (S_00013A40_Obj *)new S_00013A40_ObjImpl(D_002A8490->f4->fb4, D_002B9120->f4c0, 1);
+                    ((S_00013A40_Obj **)f24)[f18]->v4(val, 1, 1, 0, 0);
+                    f18++;
                 }
             }
-            self->fC = func_00011260(0, self->f18 - 1);
+            fC = func_00011260(0, f18 - 1);
         }
-        n = Clamp_00013A40(saved);
+        n = AsmMinI(0x103, strlen(saved));
         func_001E8920(D_002A48F8, saved, n);
         D_002A48F8[n] = 0;
     }
@@ -422,6 +421,67 @@ void C_00014020::func_00014020()
     func_001C75A0();
 }
 
+extern "C" char *strcpy(char*,const char*);
+#pragma intrinsic(strcpy)
+void C_14170::func_00014170(char *volatile name,unsigned char flag,int mode,int a,char *path,char *type,float value,int b,int c,int d,S_00014850_Vec4 *vec)
+{
+ C_14170 *volatile self=this;
+ self->f404=*vec; self->f3b8=c;self->f3e3=flag;
+ char save0[0x104],save1[0x104];
+ int limit=0x103;
+ int len=0;
+ int n;
+ len=(int)strlen(D_002A5EA0);n=AsmMinI(limit,len);func_001E8920(save0,D_002A5EA0,n);save0[n]=0;
+ len=(int)strlen(D_002A60B0);n=AsmMinI(limit,len);func_001E8920(save1,D_002A60B0,n);save1[n]=0;
+ if(mode==1) {
+ func_001ADCC0(D_002A5EA0,0x104,D_00275678,D_002A5348,D_002A45E0);
+ func_001ADCC0(D_002A60B0,0x104,D_00275678,D_002A5348,D_002A5FA8);
+ } else {
+ func_001ADCC0(D_002A5EA0,0x104,D_00275678,D_002A5870,D_002A45E0);
+ func_001ADCC0(D_002A60B0,0x104,D_00275678,D_002A5870,D_002A5FA8);
+ }
+ self->func_001C76B0(a,d,vec,0,0,D_002A050C,D_002A050C);
+ self->f3b4=b;self->f3b0=c;
+ strcpy(self->f42c,name);
+ self->f3cc=value+0.0f;
+ Machine_14170 *machine=(Machine_14170*)func_001E8A44(0x6c);
+ self->f384=machine?machine->func_001AC080():0;
+ self->f388=Make_14170(0xc,&D_00275554,0);self->f388->owner=self;
+ self->f38c=Make_14170(0xc,&D_00275564,5);self->f38c->owner=this;
+ self->f390=Make_14170(0xc,&D_00275574,6);self->f390->owner=this;
+ self->f398=Make_14170(0xc,&D_00275594,2);self->f398->owner=this;
+ self->f394=Make_14170(0xc,&D_00275584,1);self->f394->owner=this;
+ State_14170 *state=(State_14170*)func_001E8A44(0x20);
+ if(state) {
+ state->vtbl=&D_002755A4;state->vec.z=0;state->vec.y=0;state->vec.x=0;state->vec.w=1;
+ state->kind=3;state->owner=0;state->vec=D_002A04FC;
+ }
+ self->f39c=state;self->f39c->owner=this;
+ self->f3a0=Make_14170(0xc,&D_002755B4,4);self->f3a0->owner=this;
+ self->f3a4=Make_14170(0xc,&D_002755C4,7);self->f3a4->owner=this;
+ self->f3a8=Make_14170(0x10,&D_002755D4,8);self->f3a8->owner=this;
+ self->f384->func_001AC0A0(self->f388,self->f42c);
+ self->f414=0;self->f418=1;self->f41c=2;self->f420=3;self->f424=4;self->f428=5;
+ if(self->f3e2==2) {
+ *(int*)(self->fc0+0x54)=0;*(int*)(self->fc0+0xac)=0;*(int*)(self->fc0+0x104)=0;
+ *(int*)(self->fc0+0x15c)=0;*(int*)(self->fc0+0x1b4)=0;*(int*)(self->fc0+0x20c)=0;
+ }
+ if(D_002A8490->f4) {
+ if(func_001EA426(type,D_002756AC)==0) self->f3e2=1;
+ else self->f3e2=func_001EA426(type,D_002756A0)==0?2:0;
+ if(!D_002AF44C) {
+ C_00013F50 *shared=(C_00013F50*)func_001E8A44(0x28);
+ if(shared) { shared->f4=0;shared->f8=0;shared->fC=0;shared->f0=0;shared->f1c=0;shared->f10=0;shared->f20=0;shared->f14=0;shared->f24=0;shared->f18=0; }
+ D_002AF44C=(S_00014020_Shared*)shared;
+ }
+ ((C_00013F50*)D_002AF44C)->func_00013A40(path);
+ }
+ S_00014850_Player *player=D_002A8490->f2a4;
+ if(player && !player->f1c8) self->f3bc=0;
+ self->f384->func_0008AB90(self->f388);self->f3bc=0;self->func_001C6DA0(self->f414,1);
+ len=(int)strlen(save0);n=AsmMinI(limit,len);func_001E8920(D_002A5EA0,save0,n);D_002A5EA0[n]=0;
+ len=(int)strlen(save1);n=AsmMinI(limit,len);func_001E8920(D_002A60B0,save1,n);D_002A60B0[n]=0;
+}
 void C_00014020::func_00014850(int arg)
 {
     S_00014850_State *st = f384->f24;
