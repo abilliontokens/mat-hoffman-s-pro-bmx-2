@@ -387,6 +387,7 @@ struct C_001AE810 {
 void C_001ADFD0::func_001ADFD0(float *srcf, S_ADFD0_Tex *tex, int *rect, int a4, int a5, int a6)
 {
     int *src = (int *)srcf;
+    S_ADFD0_Tex *t = tex;
     S_ADFD0_Mat mat;
     S_ADFD0_Mat *volatile pm = &mat;
     C_001ADFD0 *volatile self = this;
@@ -408,8 +409,8 @@ void C_001ADFD0::func_001ADFD0(float *srcf, S_ADFD0_Tex *tex, int *rect, int a4,
     } else {
         x = 0;
         y = 0;
-        z = tex->f8;
-        w = tex->fC;
+        z = t->f8;
+        w = t->fC;
     }
     if (src != 0) {
         s0 = (int)((float)src[0] * D_002AA2E8);
@@ -435,13 +436,13 @@ void C_001ADFD0::func_001ADFD0(float *srcf, S_ADFD0_Tex *tex, int *rect, int a4,
     func_001FD020(&D_00040300, 0);
     func_001FE490(1);
     func_001FD020(&D_00040354, a6 != 0 ? 0x203 : 0x207);
-    func_00200390(0, tex->fB8);
+    func_00200390(0, t->fB8);
     fx = (float)s0;
     fy = (float)s1;
     fz = (float)s2;
     fw = (float)s3;
     b = 1;
-    switch (tex->fA4) {
+    switch (t->fA4) {
     case 6:
     case 0xc:
     case 0xe:
@@ -470,10 +471,10 @@ void C_001ADFD0::func_001ADFD0(float *srcf, S_ADFD0_Tex *tex, int *rect, int a4,
         u1 = (float)z;
         v1 = (float)w;
     } else {
-        u0 = (float)x / (float)tex->f8;
-        v0 = (float)y / (float)tex->fC;
-        u1 = (float)z / (float)tex->f8;
-        v1 = (float)w / (float)tex->fC;
+        u0 = (float)x / (float)t->f8;
+        v0 = (float)y / (float)t->fC;
+        u1 = (float)z / (float)t->f8;
+        v1 = (float)w / (float)t->fC;
     }
     cr = self->f24;
     cg = self->f25;
@@ -631,53 +632,33 @@ float C_1AE570::func_001AE530(float x, float y)
 
 int C_1AE570::func_001AE570(void)
 {
-    float a[4];
-    float b[4];
-    float t;
-    float out;
+    float a[4], b[4], t, out;
     C_1AE570_Cam *cam;
     float *p;
-    float x, y, z;
+    float x,y,z;
     int flag;
-
-    if (D_002F00D0) {
-        return 0;
-    }
-    flag = D_002AA3EC;
-    f7C = 320.0f;
-    f80 = 100.0f;
-    if (flag) {
-        a[2] = 0.0f;
-        a[1] = 0.0f;
-        a[0] = 0.0f;
-        a[3] = 1.0f;
-        p = D_002EFDB8->cam->pos;
-        z = p[2] - f48;
-        y = p[1] - f44;
-        x = p[0] - f40;
-        b[3] = 1.0f;
-        b[0] = x;
-        b[1] = y;
-        b[2] = z;
-        cam = D_002EFDB8->cam;
-        f84_0 = D_002AB66C->func_001C5C50(cam, cam->mat, b, a, &out);
-        f7C = a[0];
-        t = (float)D_002EFDB8->cam->f1EC - a[1];
-        f80 = t;
+    if (D_002F00D0) return 0;
+    flag=D_002AA3EC;
+    f7C=320.0f; f80=100.0f;
+    if(flag) {
+        a[2]=0.0f; a[1]=0.0f; a[0]=0.0f; a[3]=1.0f;
+        p=D_002EFDB8->cam->pos;
+        z=p[2]-f48; y=p[1]-f44; x=p[0]-f40;
+        b[3]=1.0f; b[0]=x; b[1]=y; b[2]=z;
+        cam=D_002EFDB8->cam;
+        f84_0=D_002AB66C->func_001C5C50(cam,cam->mat,b,a,&out);
+        f7C=a[0];
+        t=(float)D_002EFDB8->cam->f1EC-a[1]; f80=t;
         {
-            float *d = D_002EFDB8->cam->dir;
-            float dot = -f40 * d[0];
-            dot += -f44 * d[1];
-            dot += -f48 * d[2];
-            if (dot > D_00275544) {
-                f30 = D_00275460 - D_0028C280 * func_001AE530(a[0], t);
-            } else {
-                f30 = 0.0f;
-            }
+            float *d=D_002EFDB8->cam->dir;
+            float n[3];
+            n[0]=-f40; n[1]=-f44; n[2]=-f48;
+            float dot = n[1]*d[1]+n[0]*d[0];
+            if(dot+n[2]*d[2]>D_00275544)
+                f30=D_00275460-D_0028C280*func_001AE530(a[0],t);
+            else f30=0.0f;
         }
-    } else {
-        f84_0 = 1;
-    }
+    } else f84_0=1;
     return func_001578D0();
 }
 
@@ -767,7 +748,6 @@ void __fastcall func_001AE890(C_001AE890 * volatile self)
     int rect2[4];
     int rect[4];
     struct { int pitch; int *bits; } lock;
-    void *oldView;
     int bottom;
     int right;
     C_001AE890 *q;
@@ -779,13 +759,12 @@ void __fastcall func_001AE890(C_001AE890 * volatile self)
     q = self;
     func_001ADD80(q->f18);
     q = self;
-    setint_1AE890(&right, (float)q->f34 * q->f3C + (float)q->f2C);
+    AsmFloatToIntRound((float)q->f34 * q->f3C + (float)q->f2C, &right);
     q = self;
-    setint_1AE890(&bottom, (float)q->f38 * q->f40 + (float)q->f30);
+    AsmFloatToIntRound((float)q->f38 * q->f40 + (float)q->f30, &bottom);
     q = self;
     func_001FF940(q->f20, *(void **)((char *)D_002EFDB8 + 0x5c));
-    oldView = (char *)D_002EFDB8->cam + 0x1e0;
-    view = *(S_001AE890_View *)oldView;
+    view = *(S_001AE890_View *)((char *)D_002EFDB8->cam + 0x1e0);
     func_00200230(&view);
     q = self;
     {
@@ -840,7 +819,7 @@ void __fastcall func_001AE890(C_001AE890 * volatile self)
     q = self;
     q->f18->func_001AE700();
     func_001FF940(*(void **)((char *)D_002EFDB8 + 0x58), *(void **)((char *)D_002EFDB8 + 0x5c));
-    func_00200230(oldView);
+    func_00200230((char *)D_002EFDB8->cam + 0x1e0);
     q = self;
     rect2[0] = q->f2C;
     rect2[1] = q->f30;
