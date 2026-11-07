@@ -9,7 +9,9 @@ struct C_00113F00_Fx {
     void func_001648E0(int,float,int,int,float);
 };
 struct C_00113F00_GMgr {
-    char pad0[0x1c4];
+    char pad0[0x124];
+    float f124;
+    char pad128[0x1c4 - 0x128];
     int f1c4;
     int f1c8;
 };
