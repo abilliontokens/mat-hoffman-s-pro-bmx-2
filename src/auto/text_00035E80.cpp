@@ -109,8 +109,8 @@ int C_00035E80::func_00035E80(int a1, const char *volatile path, S_00035E80_Out 
     char buf[0x104];
     char secName[0x14];
     char key1[0x1e];
-    char name[0x20];
-    char key2[0x1e];
+    char name[0x1e];
+    char key2[0x20];
     int count;
     int subCount;
     int total = 0;
@@ -160,8 +160,8 @@ int C_00035E80::func_00035E80(int a1, const char *volatile path, S_00035E80_Out 
             S_00035E80_Line *line;
             func_001ADCC0(key1, 0x1e, D_00276D8C, j + 1);
             func_001ADCC0(key2, 0x1e, D_00276D8C, j + 2);
-            stream->func_00168CB0(key1, Vec4_000361F0(), pos0);
-            stream->func_00168CB0(key2, Vec4_000361F0(), pos1);
+            stream->func_00168CB0(key1, Vec4_000361F0(0.0f, 0.0f, 0.0f, 1.0f), pos0);
+            stream->func_00168CB0(key2, Vec4_000361F0(0.0f, 0.0f, 0.0f, 1.0f), pos1);
             line = f64->f530->func_00159E90(name, &pos0, &pos1, 0, 0, a1);
             f64->f530->func_00159C40(line);
             out->f18[idx] = line;
