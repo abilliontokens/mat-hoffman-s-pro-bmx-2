@@ -28,7 +28,7 @@ void func_0001C680(S_0019A8C0_V4 *out, S_0019A8C0_V4 v, float *m);
 void func_00030AC0(float *out, float *v, float *m);
 void func_0013E4A0(void *dst, void *src);
 
-static __forceinline float Abs_0019A8C0(float f)
+static float Abs_0019A8C0(float f)
 {
     unsigned u = *(unsigned *)&f;
 
@@ -385,7 +385,7 @@ void SoultreeObject::func_0019AE40(int volatile file) {
 }
 
 void func_0013E4A0(void *dst, void *src);
-int SoultreeObject::func_0019B1A0(volatile int file, SoultreeObject ** volatile arr)
+int SoultreeObject::func_0019B1A0(int file, SoultreeObject **arr)
 {
     SoultreeObject * volatile self = this;
     int *parents;
@@ -400,7 +400,7 @@ int SoultreeObject::func_0019B1A0(volatile int file, SoultreeObject ** volatile 
         }
         D_002BEAAC->func_0013C8A0(file, &arr[i]->f28, 0x80, 1);
         D_002BEAAC->func_0013C8A0(file, &arr[i]->fB0, 0x40, 1);
-        func_0013E4A0(&arr[i]->fB0, &arr[i]->fB0);
+        AsmTransposeMatrix(arr[i]->fB0, arr[i]->fB0);
         *((u8 *)&arr[i]->f24 + 3) &= 0xfb;
         arr[i]->f180 |= 0x20;
         arr[i]->f180 |= 4;
