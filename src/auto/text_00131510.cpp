@@ -1,6 +1,7 @@
 /* 1 function from 0x00131510 to 0x001324B0, found by Ghidra. */
 #include "common.h"
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 
 struct V4_00131510 {
     float x, y, z, w;
@@ -17,6 +18,8 @@ struct S_Node_00131510 {
     float f8;
     float fC;
     float f10;
+    void func_000269B0(float, float, float);
+    float func_00026A10(float, float);
 };
 
 struct S_Sub_00131510 {
@@ -109,12 +112,12 @@ void C_00131510::func_00131510(float dt, int a1, int a2, int a3, float *p18, V4_
         float c4 = fC4;
         Vec4_00131510 a;
         Vec4_00131510 b;
-        Cross_00131510(&a, p20, p1c);
+        AsmVec3Cross(&a.x, &p20->x, &p1c->x);
         if (f9C == 0) {
             a.y = 0;
         }
         func_001310E0(&a, &a);
-        if (p1c->x == D_00275544 && p1c->z == D_00275544) {
+        if (p1c->x < D_00275544 && p1c->z < D_00275544) {
             b.x = p20->x;
             b.y = p20->y;
             b.z = p20->z;
