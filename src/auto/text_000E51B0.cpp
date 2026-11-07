@@ -138,7 +138,7 @@ extern char D_0027FD48[],D_0027FD40[],D_0027FD38[],D_0027FD28[],D_0027FD18[];
 extern char D_00279AF0[],D_00279AD0[],D_00279B00[],D_00279AE0[];
 extern float D_00275AE8,D_0027FD58,D_00276228,D_0027FD4C;
 extern int D_0028F5EC;
-extern "C" void * __cdecl func_001E8A44(int);
+
 struct RiderText {
 int w[0x184/4];
 RiderText *func_001B12C0(int);
