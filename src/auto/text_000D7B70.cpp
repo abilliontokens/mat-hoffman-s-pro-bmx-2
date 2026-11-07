@@ -64,6 +64,24 @@ struct S_000D8A40_Owner {
     S_000D8A40_Res *func_000BA9B0(int a);
 };
 
+extern char D_00278690[], D_002786A0[], D_00278678[], D_0027CEF0[], D_0027F2AC[], D_0027F29C[], D_00279B00[], D_00279AF0[], D_00279AE0[], D_00279AD0[];
+extern float D_00279F74, D_0027F2B4;
+extern "C" void *func_001E8A44(unsigned int);
+struct HOFResource { void func_0018C160(char *); };
+struct HOFWidget {
+    char pad[0x184];
+    HOFWidget *func_001B12C0(int);
+    void func_001B13A0(char *, char *, int, int);
+    void func_001B1A30(float, float, float);
+    void func_001B2270(unsigned int);
+    void func_001B17D0(char *);
+};
+struct HOFSprite {
+    char pad0[0x28]; unsigned int f28; char pad2c[12];
+    unsigned int f38; float f3c, f40, f44, f48; char pad4c[12]; unsigned char b58;
+    HOFSprite *func_001D5760();
+    void func_001D5810(char *, float, float, int);
+};
 struct BmxUIPageHOF4D {
     void *vtbl;
     char pad4[0x124 - 4];
@@ -114,6 +132,8 @@ void BmxUIPageHOF4D::func_000D7B70()
     }
     func_001BE3F0();
 }
+
+int func_000D7BF0(void) { return 0; }
 
 void BmxUIPageHOF4D::func_000D85C0()
 {
