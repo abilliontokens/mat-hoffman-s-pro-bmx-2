@@ -501,10 +501,11 @@ int func_001ED7FC(int fh, void *buffer, unsigned cnt)
  return retval;
 }
 
-void func_001ED883(int fh)
+int func_001ED883(void)
 {
-    int func_001EE782(int);
-    func_001EE782(fh);
+    int func_001EE782(void);
+    func_001EE782();
+    return 0;
 }
 
 int func_001ED88B(void)
@@ -653,6 +654,48 @@ int func_001ED9C0(int fh, const void *buf, unsigned cnt)
         }
     }
     return charcount - lfcount;
+}
+
+int func_001EDB4B(int fh, char *buf, int cnt)
+{
+    int func_001EE70F(int);
+    int func_001EE782(int);
+    int func_001ED9C0(int, const void *, unsigned);
+    int *func_001ED075(void);
+    int *func_001ED07E(void);
+    extern unsigned int D_002FB240;
+    extern S_ioinfo *D_002FB260[];
+    int retval;
+
+    if ((unsigned int)fh >= D_002FB240 ||
+        (D_002FB260[fh >> 5][fh & 0x1f].osfile & 1) == 0) {
+        *func_001ED075() = 9;
+        *func_001ED07E() = 0;
+        return -1;
+    }
+    func_001EE70F(fh);
+    __try {
+        if (D_002FB260[fh >> 5][fh & 0x1f].osfile & 1) {
+            retval = func_001ED9C0(fh, buf, cnt);
+        } else {
+            *func_001ED075() = 9;
+            *func_001ED07E() = 0;
+            retval = -1;
+        }
+    } __finally {
+        func_001EE782(fh);
+    }
+    return retval;
+}
+
+int func_001EDBDA(void)
+{
+    int *func_001ED075(void);
+    int *func_001ED07E(void);
+    void func_001EAB1B(void);
+    *func_001ED075() = 9;
+    *func_001ED07E() &= 0;
+    return (func_001EAB1B(), -1);
 }
 
 int func_001EE782(int fh);
