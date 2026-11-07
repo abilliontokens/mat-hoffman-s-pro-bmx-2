@@ -106,6 +106,11 @@ struct S_Obj {
       char pad4[0x24];
     int f28;
     void func_001983A0();
+      S_Obj *func_00143580(int);
+      void func_00199600(V4);
+      void func_00198F50(V4 *,V4 *,int,int,int);
+      void func_0019ABA0(int,int);
+      void func_0019AC50();
 };
 
 struct S_Entry {
