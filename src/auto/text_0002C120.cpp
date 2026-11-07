@@ -9,7 +9,10 @@ static __forceinline float Max_0002C120(float a, float b) { float r; _mm_store_s
 
 /* four floats built in a temporary like the callers do */
 struct V4_0002C120 {
-    float x, y, z, w;
+    union {
+        struct { float x, y, z, w; };
+        int i[4];
+    };
     V4_0002C120() {}
     V4_0002C120(float a, float b, float c, float d)
     {
@@ -192,6 +195,7 @@ void C_0002C120::func_0002C120(int param_1, float param_2)
     V4_0002C120 zero;
     V4_0002C120 tmp;
     float s;
+    int *fp;
 
     if (!(this->f504 < this->f508 || this->f468 != 0 || this->f69c != 0)) {
         return;
@@ -204,7 +208,11 @@ void C_0002C120::func_0002C120(int param_1, float param_2)
     }
     this->f698 = 0;
     v = func_0014F870(this->f110);
-    this->f54c = D_002A10F0;
+    fp = (int *)&this->f54c;
+    fp[0] = ((int *)&D_002A10F0)[0];
+    fp[1] = D_002A10F4;
+    fp[2] = D_002A10F8;
+    fp[3] = D_002A10FC;
     zero.z = 0;
     zero.y = 0;
     zero.x = 0;
@@ -250,7 +258,11 @@ void C_0002C120::func_0002C120(int param_1, float param_2)
             } else {
                 if (u == D_002B910C) {
                     this->f698 = 4;
-                    this->f53c = D_002A10F0;
+                    fp = (int *)&this->f53c;
+                    fp[0] = ((int *)&D_002A10F0)[0];
+                    fp[1] = D_002A10F4;
+                    fp[2] = D_002A10F8;
+                    fp[3] = D_002A10FC;
                     goto end;
                 }
                 if (v <= this->f510 && v > this->f50c) {
@@ -291,6 +303,7 @@ void C_0002C120::func_0002C120(int param_1, float param_2)
         }
     } else {
         float fl;
+        float ps;
         S_0002C120_Normal *n;
         if (param_1 != 0) {
             this->f698 = 2;
@@ -299,23 +312,29 @@ void C_0002C120::func_0002C120(int param_1, float param_2)
             this->f698 = 1;
             fl = this->f728 * this->f520;
         }
-        this->f53c = V4_0002C120(D_002A1110.x * fl, D_002A1110.y * fl, D_002A1110.z * fl, 1.0f);
-        param_2 = param_2 * this->f52c;
-        this->f54c = V4_0002C120(D_002A1100.x * param_2, D_002A1100.y * param_2, D_002A1100.z * param_2, 1.0f);
+        this->f53c = V4_0002C120(D_002A1110.x * fl, D_002A1114 * fl, D_002A1118 * fl, 1.0f);
+        ps = param_2 * this->f52c;
+        this->f54c = V4_0002C120(D_002A1100.x * ps, D_002A1104 * ps, D_002A1108 * ps, 1.0f);
         n = this->f210;
         if (func_00026300(&n->vx, &D_002A10F0)) {
             S_0002C120_Body *b = this->f1e0;
             float d = n->vy * b->f238.y + b->f238.x * n->vx + n->vz * b->f238.z;
-            b->f238.x = b->f238.x - d * n->vx;
-            b->f238.y = b->f238.y - d * n->vy;
-            b->f238.z = b->f238.z - d * n->vz;
+            float dx = d * n->vx;
+            float dy = d * n->vy;
+            float dz = d * n->vz;
+            b->f238.x = b->f238.x - dx;
+            b->f238.y = b->f238.y - dy;
+            b->f238.z = b->f238.z - dz;
             if (d < D_00275544) {
                 s = D_00275F58;
             } else {
                 s = D_00275460;
             }
-            v = AsmMaxF(s * this->f4a4 + d, -this->f1ec->f3c);
-            v = AsmMinF(v, this->f1ec->f3c);
+            lc = s * this->f4a4 + d;
+            s = -this->f1ec->f3c;
+            v = AsmMaxF(lc, s);
+            lc = this->f1ec->f3c;
+            v = AsmMinF(v, lc);
             b->f238.x = v * n->vx + b->f238.x;
             b->f238.y = v * n->vy + b->f238.y;
             b->f238.z = v * n->vz + b->f238.z;
