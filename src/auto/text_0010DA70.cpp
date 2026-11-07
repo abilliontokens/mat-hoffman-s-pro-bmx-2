@@ -3,6 +3,7 @@
 #include "ghidra.h"
 #include <xmmintrin.h>
 #include <math.h>
+#include "asm_helpers.h"
 
 extern int D_00275630;
 
@@ -222,7 +223,7 @@ struct Table_10DED0 {
  union { int ids[80]; int ids2[5][16]; };
  union { int keys[80]; int keys2[5][16]; };
    void func_000A4AF0(int, char *);
-  int Match(int slot, int mode, int id, int key) { int idx = mode * 16 + slot; return ids[idx] == id && keys[idx] == key; }
+  int Match(int mode, int slot, int id, int key) { int idx = mode * 16 + slot; return ids[idx] == id && keys[idx] == key; }
 };
 struct Owner_10DED0 { char pad0[0x52C]; Table_10DED0 *f52C; };
 struct Queue_10DED0 { int count; int ids[5]; int modes[5]; int f2C; int f30; int f34; int f38[100]; int f1C8[100]; void func_00109340(int,int); void Push(int slot, int mode) { f38[++f34] = slot; f1C8[f34] = mode; } };
@@ -568,7 +569,7 @@ void BmxVehicle_10DA70::func_0010E2A0(void)
     }
     self->func_0002D270();
     pm = &m1;
-    identity_ref_10E2A0(pm);
+    AsmIdentityMatrix(pm);
     m2 = m1;
     MEMBER_10E2A0(C_10E2A0_230 *, 0x230)->f174->func_00199BE0(&m2);
     self->func_00028070();
@@ -588,7 +589,7 @@ void BmxVehicle_10DA70::func_0010E2A0(void)
     func_0001E9E0(&c, (Vec4 *)((char *)MEMBER_10E2A0(char *, 0x1E0) + 0x258));
     v = (Vec4 *)((char *)MEMBER_10E2A0(char *, 0x1E0) + 0x258);
     lenSq = v->x * v->x + v->y * v->y + v->z * v->z;
-    _mm_store_ss(&len, _mm_sqrt_ss(*(__m128 *)&lenSq));
+    len = AsmSqrtF(lenSq);
     {
         BmxVehicle_10DA70 *p = self;
         ((C_10E2A0_950 *)*(char **)((char *)p + 0x950))->func_0011C900(b, *(Vec4 *)(*(char **)((char *)p + 0x1E0) + 0x238), c, len);
