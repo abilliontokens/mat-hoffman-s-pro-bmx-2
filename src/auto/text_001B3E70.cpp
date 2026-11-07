@@ -135,6 +135,7 @@ struct V4_3E70 {
     float x, y, z, w;
     __forceinline V4_3E70() {}
     __forceinline V4_3E70(float a, float b, float c, float d = 1.0f) : x(a), y(b), z(c), w(d) {}
+    __forceinline V4_3E70 &operator=(const V4_3E70 &o) { x=o.x; y=o.y; z=o.z; w=o.w; return *this; }
     __forceinline V4_3E70 operator+(const V4_3E70 &o) const { return V4_3E70(x+o.x,y+o.y,z+o.z); }
     __forceinline V4_3E70 operator-(const V4_3E70 &o) const { return V4_3E70(x-o.x,y-o.y,z-o.z); }
     __forceinline V4_3E70 operator-() const { return V4_3E70(-x,-y,-z); }
