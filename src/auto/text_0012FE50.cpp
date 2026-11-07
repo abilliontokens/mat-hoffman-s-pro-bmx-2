@@ -45,7 +45,7 @@ static __forceinline V4_0012FE50 operator-(const V4_0012FE50 &a, const V4_0012FE
 }
 static __forceinline float Dot_0012FE50(const V4_0012FE50 &a, const V4_0012FE50 &b)
 {
-    return a.x * b.x + a.y * b.y + a.z * b.z;
+    return a.y * b.y + a.x * b.x + a.z * b.z;
 }
 
 extern V4_0012FE50 D_002A4110;
