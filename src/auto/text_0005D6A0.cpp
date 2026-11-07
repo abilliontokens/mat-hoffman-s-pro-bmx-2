@@ -38,7 +38,13 @@ struct Node_5DAB0 {
     float f48;
 };
 
+extern float D_00275544;
 struct Obj22C_5DAB0 {
+    Vec4_5DAB0 *func_00197F70(void *out, void *in);
+    Vec4_5DAB0 *func_00198040(void *out, void *in);
+    void func_001994C0(int a, void *b, void *c);
+    void func_00199960(int a, void *b);
+    void func_00199E50(Vec4_5DAB0 a, Vec4_5DAB0 b, float c);
     Vec4_5DAB0 *func_00197F70(void *a);
     void func_001994C0(void *a, void *b, int c);
     void func_00199960(void *a, int b);
