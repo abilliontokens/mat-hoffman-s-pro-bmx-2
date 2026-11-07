@@ -148,24 +148,6 @@ struct XboxVideoCard_001D8240 {
 void __stdcall func_002025D0(int a);
 void func_001FFBB0(void);
 
-void __cdecl func_001D7E60(float r, float g, float b, char *out);
-
-static __forceinline void SetLight1_001D7FB0(float r, float g, float b, char *out)
-{
-    int prev = 0;
-    func_001D7E60(r, g, b, out);
-}
-static __forceinline void SetLight2_001D7FB0(float r, float g, float b, char *out, int w)
-{
-    int prev = w;
-    func_001D7E60(r, g, b, out);
-}
-
-static __forceinline int IdentityW_001D7FB0(int v)
-{
-    return v;
-}
-
 struct LightBufs_001D7FB0 {
     char a[0x100];
     char b[0x100];
