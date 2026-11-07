@@ -189,8 +189,8 @@ struct C_00026500 {
 void C_000261F0::func_000261F0(float delta)
 {
     f4 += delta;
-    _mm_store_ss(&f4, _mm_max_ss(_mm_set_ss(f4), _mm_set_ss(f24)));
-    _mm_store_ss(&f4, _mm_min_ss(_mm_set_ss(f4), _mm_set_ss(f28)));
+    float m = AsmMaxF(f4, f24);
+    f4 = AsmMinF(m, f28);
 }
 
 void C_00026270::func_00026270(int a0) {
@@ -378,8 +378,8 @@ void C_000269B0::func_000269B0(float a, float b, float c)
 
 float C_00026A10::func_00026A10(float a, float b)
 {
-    f8 = min_ss_00026A10(f4, b) / f4;
-    f0 = (a - f0) * f8 + f0;
+    f8 = min_ss_00026A10(b, f4) / f4;
+    f0 = f8 * (a - f0) + f0;
     return f0;
 }
 
