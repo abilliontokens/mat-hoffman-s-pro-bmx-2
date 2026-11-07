@@ -107,6 +107,11 @@ struct C_0010C210 {
 };
 struct Q10C { float x, y, z, w; Q10C() { z = 0; y = 0; x = 0; w = 1.0f; } };
 struct __declspec(align(16)) M44C { float m[16]; };
+static __forceinline void ZeroMatrix10(float *p) {
+    __m128 z = _mm_setzero_ps();
+    _mm_store_ps(p, z); _mm_store_ps(p+4, z);
+    _mm_store_ps(p+8, z); _mm_store_ps(p+12, z);
+}
 struct Owner10C {
     void func_0010C210();
 };
