@@ -304,8 +304,6 @@ struct C_000B4300 {
 
 extern "C" void __stdcall func_001577A0(S_B3E10_Obj *o, int a);
 
-extern "C" void _ReadWriteBarrier(void);
-#pragma intrinsic(_ReadWriteBarrier)
 void C_000B4300::func_000B3E10(void)
 {
     char path[0x104];
