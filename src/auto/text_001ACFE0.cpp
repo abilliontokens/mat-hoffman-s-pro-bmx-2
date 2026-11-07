@@ -29,7 +29,7 @@ char *func_001ACD40(int ndec, char fmt, double value, int alt, int *sign, char *
 char *func_001ACB40(double value, int ndec, char *buf, int alt);
 char *func_001E9260(const char *s, int c);
 
-static __declspec(noinline) char *func_001ACCF0(int flag, int *sign, unsigned value, char *end, int *len)
+static char *func_001ACCF0(int flag, int *sign, unsigned value, char *end, int *len)
 {
     char *p = end;
     if (flag) {
