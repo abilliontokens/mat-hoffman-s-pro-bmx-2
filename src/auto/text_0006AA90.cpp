@@ -23,7 +23,7 @@ extern "C" void func_001AC330(char*,char*,char*);
 extern "C" void *func_001E8920(void*,const void*,unsigned int);
 struct S_6AA90 {
  char pad[0x64]; Widget_6AA90 *widgets[8];
- Txt_6AA90 *t84; Txt_6AA90 *t88; int pad8c; Txt_6AA90* objs[2];
+ Txt_6AA90 *t84; Txt_6AA90 *t88; Txt_6AA90 *t8c; Txt_6AA90* objs[2];
  char pad98[0xbc-0x98]; void *coords[8];
  char paddc[0x154-0xdc]; int selected; int previous; char pad15c[8];
  int unk164; int unk168; char pad3[8]; Txt_6AA90* t174; Txt_6AA90* t178; Txt_6AA90* t17C; int pad180; int unk184;
