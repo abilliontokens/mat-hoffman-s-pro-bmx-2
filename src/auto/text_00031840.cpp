@@ -187,14 +187,6 @@ struct C_0009A290 {
     void func_0009C770(void);
 };
 
-static __forceinline void Destroy_00031840(C_0009A290 *obj)
-{
-    if (obj) {
-        obj->func_0009C770();
-        func_001E891B(obj);
-    }
-}
-
 struct C_00031840 {
     char pad0[0x64];
     char *f64;
