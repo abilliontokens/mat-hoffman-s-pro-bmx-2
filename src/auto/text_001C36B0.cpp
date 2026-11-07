@@ -18,6 +18,7 @@ struct FadeSprite {
 struct FadeBuf { char pad[0x1E0]; int r[6]; };
 struct FadeDev { void func_0012B2B0(int *rect, int *out); };
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 
 struct FadeObj {
     virtual void v0();
@@ -230,10 +231,10 @@ struct C_001D5760 {
     void func_001D5810(void *a, int b, int c, int d);
     __forceinline void SetUV(int u0, int u1, int v0, f32 v1)
     {
+        b58 = b58 | 4;
         f3C = u0;
         f40 = u1;
         *(int *)&f44 = v0;
-        b58 = b58 | 4;
         f48 = v1;
     }
 };
@@ -801,6 +802,7 @@ VideoCard *VideoCard::func_001C3D90(void)
 {
     volatile VideoCard *v = this;
     unsigned char t;
+    unsigned char m;
     int p;
     v->vtbl = &D_0028E3A0;
     t = *(volatile unsigned char *)&v->f3C;
@@ -808,8 +810,8 @@ VideoCard *VideoCard::func_001C3D90(void)
     v->f2C = 0;
     v->f34 = 0;
     v->f38 = 0;
-    t = (unsigned char)(t & 0xfe);
-    *(volatile unsigned char *)&v->f3C = t;
+    m = (unsigned char)(t & 0xfe);
+    *(volatile unsigned char *)&v->f3C = m;
     f1C = 0;
     f20 = 0;
     f4 = 0;
@@ -1015,19 +1017,21 @@ int FadeObj::func_001C4240(void)
     int v = f34;
     char *dev;
     FadeSprite *s;
+    int rect[6];
+    int rect2[6];
 
     if (v != *(int *)(D_002A8490 + 0x10)) {
         if (v != -1) return func_00157920();
     }
     if (v == -1 && *(int *)(D_002A8490 + 0x274) < *(int *)(D_002A8490 + 0x270) - 1) return 1;
     if (f38 != 0) {
-        FtoI2_001C4240(&a, f30 * D_0027A060);
+        AsmFloatToIntRound(*(volatile float *)&f30 * D_0027A060, &a);
         if (a == 255) {
             f40 = 1;
             f38 = 0;
         }
     } else if (f3C != 0) {
-        FtoI2_001C4240(&a, D_0027A060 - f30 * D_0027A060);
+        AsmFloatToIntRound(D_0027A060 - *(volatile float *)&f30 * D_0027A060, &a);
         if (a == 0) {
             f40 = 0;
             f3C = 0;
@@ -1040,7 +1044,6 @@ int FadeObj::func_001C4240(void)
     }
     dev = *(char **)(D_002EFDB8 + 4);
     if (f34 == -1 && *(int *)(D_002A8490 + 0x270) > 1) {
-        int rect[6];
         int out;
         memcpy(rect, dev + 0x1e0, 0x18);
         rect[2] = 0;
@@ -1073,12 +1076,11 @@ int FadeObj::func_001C4240(void)
     s->f58 |= 2;
     s->func_001D5AD0();
     if (f34 == -1 && *(int *)(D_002A8490 + 0x270) > 1) {
-        int rect[6];
-        rect[2] = 0;
-        rect[3] = 0;
-        rect[4] = 0x280;
-        rect[5] = 0x1c0;
-        ((FadeDev *)dev)->func_0012B2B0(rect, 0);
+        rect2[2] = 0;
+        rect2[3] = 0;
+        rect2[4] = 0x280;
+        rect2[5] = 0x1c0;
+        ((FadeDev *)dev)->func_0012B2B0(rect2, 0);
     }
     func_00157960();
     return 0;
