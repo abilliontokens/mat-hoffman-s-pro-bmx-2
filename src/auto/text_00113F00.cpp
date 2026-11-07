@@ -26,6 +26,8 @@ void __stdcall func_00107070(float dt);
 float __cdecl func_00016D20(float a);
 float __cdecl func_0014F550(float a);
 struct C_00113F00 {
+    void func_00107070(float dt);
+    void func_00107AE0();
     void func_00113F00(float dt);
 };
 
