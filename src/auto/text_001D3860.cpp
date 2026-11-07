@@ -38,6 +38,8 @@ struct C_001D3E30 {
     void func_001D3EA0(int n, const char *a, const char *b, const char *c);
 };
 
+static __forceinline int Slot_001D40E0(int a) { return a >= 4; }
+
 struct C_001D4010 {
     int func_001D4010(int a);
 };
@@ -325,11 +327,14 @@ struct C_001D3AB0 {
 };
 
 
+extern "C" void _ReadWriteBarrier(void);
+#pragma intrinsic(_ReadWriteBarrier)
 int C_001D3AB0::func_001D3860(void)
 {
     C_001D3AB0 *p = this;
     C_001D3AB0 * volatile q = p;
-    volatile S_001D3860_Coords c;
+    _ReadWriteBarrier();
+    S_001D3860_Coords c;
     S_001D3860_Mat mat;
     
     
@@ -342,8 +347,10 @@ int C_001D3AB0::func_001D3860(void)
     c.x[2] = (int)((float)p->unk5C * D_002ABC88);
     c.x[1] = (int)((float)p->unk58 * D_002ABC8C);
     c.x[3] = (int)((float)p->unk60 * D_002ABC8C);
+    _ReadWriteBarrier();
     D_0020C6E0 = 3;
     D_0020C6E4 = 3;
+    _ReadWriteBarrier();
     int state = D_0020C6DC | 1;
     D_0020C6EC = 1;
     D_0020C6DC = state;
@@ -355,13 +362,14 @@ int C_001D3AB0::func_001D3860(void)
     D_0020CA50 = 0;
     func_001FD020(&D_00040300, 0);
     func_00200390(0, (int)q->unk70->fB8);
+    c.pm = &mat;
     c.f[0] = (float)c.x[0];
     c.f[3] = (float)c.x[2];
     c.f[4] = (float)c.x[1];
     c.f[1] = (float)c.x[3];
     c.f[5] = (float)c.w;
     c.f[2] = (float)c.h;
-    c.pm = &mat;
+    _ReadWriteBarrier();
     c.pm->identity();
     out = (float *)func_001FF410(q->unk7C, 0);
     out[0] = c.f[0]; out[1] = c.f[1];
@@ -380,7 +388,6 @@ int C_001D3AB0::func_001D3860(void)
     func_00200A90(6, 0, 4);
     return 1;
 }
-
 void C_001D3AB0::func_001D3AB0(void)
 {
     vtbl = &D_0028F474;
