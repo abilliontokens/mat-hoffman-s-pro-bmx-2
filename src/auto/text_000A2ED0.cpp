@@ -438,13 +438,11 @@ int C_000A3780::func_000A3780(int a1, const char *volatile path, S_000A3780_Out 
         stream->func_00168550(D_00276D98, name, -1);
         stream->func_00168A10(D_00276DA4, &subCount);
         for (j = 0; j < subCount - 1; j++) {
-            V4_000A3780 d1;
-            V4_000A3780 d2;
             void *line;
             func_001ADCC0(key1, 0x1e, D_00276D8C, j + 1);
             func_001ADCC0(key2, 0x1e, D_00276D8C, j + 2);
-            stream->func_00168CB0(key1, &d1, &pos0);
-            stream->func_00168CB0(key2, &d2, &pos1);
+            stream->func_00168CB0(key1, V4_000A3780(0.0f, 0.0f, 0.0f, 1.0f), pos0);
+            stream->func_00168CB0(key2, V4_000A3780(0.0f, 0.0f, 0.0f, 1.0f), pos1);
             line = f530->func_00159E90(name, &pos0, &pos1, 0, 0, a1);
             f530->func_00159C40(line);
             if (out) out->f18[idx] = line;
