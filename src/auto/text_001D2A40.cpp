@@ -111,19 +111,19 @@ static __forceinline int Min_001D2A40(int a, int b) { return a > b ? b : a; }
     if (!((T)->done & (M))) { \
         if (!((T)->dir & (M))) { \
             (T)->val[k] = (T)->step[k] + (T)->val[k]; \
-            if ((T)->val[k] >= (float)(T)->HI) { \
-                if ((T)->flags & (FM)) { \
-                    if ((T)->flags & (PM)) { \
-                        (T)->dir |= (M); \
-                        (T)->val[k] = (float)(T)->HI; \
-                    } else { \
-                        (T)->val[k] = (float)(T)->LO; \
-                    } \
-                } else { \
-                    (T)->done |= (M); \
-                    (T)->val[k] = (float)(T)->HI; \
-                } \
-            } \
+                          if ((T)->val[k] >= (float)(T)->HI) { \
+                  if (!((T)->flags & (FM))) { \
+                      (T)->done |= (M); \
+                      (T)->val[k] = (float)(T)->HI; \
+                  } else { \
+                      if ((T)->flags & (PM)) { \
+                          (T)->dir |= (M); \
+                          (T)->val[k] = (float)(T)->HI; \
+                      } else { \
+                          (T)->val[k] = (float)(T)->LO; \
+                      } \
+                  } \
+              } \
         } else { \
             (T)->val[k] = (T)->val[k] - (T)->step[k]; \
             if ((T)->val[k] <= (float)(T)->LO) { \
@@ -336,34 +336,26 @@ struct C_001D3700 {
 
 void C_001D2A40::func_001D2A40()
 {
-    int L[8];
-    C_001D2A40 *&self = *(C_001D2A40 **)&L[0];
-    int &idx = L[1];
-    int &alpha = L[2];
-    int &w = L[3];
-    int &x = L[4];
-    int &h = L[5];
-    int &y = L[6];
-    int &i = L[7];
+    int idx, alpha, w, x, h, y;
+    int i;
     int off = 0;
-    self = this;
-    if (self->f50 != 0) {
+    if (this->f50 != 0) {
         int rc[4] = {0, 0, 0x280, 0x1c0};
-        D_002EFDB8->v4(0, self->f50, rc, 0);
+        D_002EFDB8->v4(0, this->f50, rc, 0);
     }
-    for (i = 0; i < self->f8; i++, off += 0x54) {
+    for (i = 0; i < this->f8; i++, off += 0x54) {
         int dst[4];
         int src[4];
-        RtlEnterCriticalSection(self->f30);
-        if (TRK.done != 0x3f) {
+        RtlEnterCriticalSection(this->f30);
+        if (TRK_T->done != 0x3f) {
             S_001D2A40_Frame *q;
-            AsmFloatToIntRound(TRK.val[0], &idx);
-            q = &self->f14[idx];
-            AsmFloatToIntRound(TRK.val[1], &x);
-            AsmFloatToIntRound(TRK.val[2], &y);
-            AsmFloatToIntRound(TRK.val[3], &w);
-            AsmFloatToIntRound(TRK.val[4], &h);
-            AsmFloatToIntRound(TRK.val[5], &alpha);
+            AsmFloatToIntRound(TRK_T->val[0], &idx);
+            q = &this->f14[idx];
+            AsmFloatToIntRound(TRK_T->val[1], &x);
+            AsmFloatToIntRound(TRK_T->val[2], &y);
+            AsmFloatToIntRound(TRK_T->val[3], &w);
+            AsmFloatToIntRound(TRK_T->val[4], &h);
+            AsmFloatToIntRound(TRK_T->val[5], &alpha);
             alpha = AsmMinI(alpha, 255);
             dst[0] = x - (w >> 1);
             dst[1] = y - (h >> 1);
@@ -373,13 +365,13 @@ void C_001D2A40::func_001D2A40()
             src[1] = 0;
             src[2] = q->w;
             src[3] = q->h;
-            TRACK_CH2(0, frameLo, frameHi, 1, 1, 0x10)
-            TRACK_CH2(1, posLo[0], posHi[0], 2, 2, 0x20)
-            TRACK_CH2(2, posLo[1], posHi[1], 4, 2, 0x20)
-            TRACK_CH2(3, sizeLo[0], sizeHi[0], 8, 4, 0x40)
-            TRACK_CH2(4, sizeLo[1], sizeHi[1], 0x10, 4, 0x40)
-            TRACK_CH2(5, alphaLo, alphaHi, 0x20, 8, 0x80)
-            RtlLeaveCriticalSection(self->f30);
+            TRACK_CHT(TRK_T, 0, frameLo, frameHi, 1, 1, 0x10)
+            TRACK_CHT(TRK_T, 1, posLo[0], posHi[0], 2, 2, 0x20)
+            TRACK_CHT(TRK_T, 2, posLo[1], posHi[1], 4, 2, 0x20)
+            TRACK_CHT(TRK_T, 3, sizeLo[0], sizeHi[0], 8, 4, 0x40)
+            TRACK_CHT(TRK_T, 4, sizeLo[1], sizeHi[1], 0x10, 4, 0x40)
+            TRACK_CHT(TRK_T, 5, alphaLo, alphaHi, 0x20, 8, 0x80)
+            RtlLeaveCriticalSection(this->f30);
             D_002EFDB8->v4(dst, q->f0, src, 0);
         }
     }
