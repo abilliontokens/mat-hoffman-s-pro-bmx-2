@@ -46,9 +46,8 @@ static __forceinline float Dot_00122810(const S_00122810_V3 &a, const S_00122810
 }
 static __forceinline float Fabs_00122810(volatile float f)
 {
-    volatile float result;
-    *(int *)&result = *(volatile int *)&f & 0x7fffffff;
-    return result;
+    int i = *(volatile int *)&f & 0x7fffffff;
+    return *(float *)&i;
 }
 
 int func_00122730(float *p1, float r1, float *m1, float *p2, float r2, float *m2)
