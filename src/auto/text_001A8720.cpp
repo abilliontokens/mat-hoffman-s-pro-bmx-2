@@ -254,21 +254,21 @@ struct C_001A8720 {
     int f60;
     int *f64;
     int f68;
-    int func_001A8720(void);
+    int func_001A8720(int a);
 };
 
 static __forceinline float Min_001A8720(float a, float b) { return AsmMinF(a, b); }
 static __forceinline float Max_001A8720(float a, float b) { return AsmMaxF(a, b); }
 
-int C_001A8720::func_001A8720(void)
+int C_001A8720::func_001A8720(int a)
 {
     int i;
     int j;
 
     if (f24 != 0) {
         if (f54 != 0 || (f24->f3c != 0 && f28 != 0)) {
-            V4_001A8720 mx;
             V4_001A8720 mn;
+            V4_001A8720 mx;
             V4_001A8720 tmp;
             V4_001A8720 v;
             S_001A8720_Item *it;
@@ -292,12 +292,12 @@ int C_001A8720::func_001A8720(void)
                 }
                 if (f54 != 0) {
                     *(V4_001A8720 *)(f54 + j + 0x10) = v;
-                    mn.x = AsmMinF(v.x, mn.x);
-                    mn.y = AsmMinF(v.y, mn.y);
-                    mn.z = AsmMinF(v.z, mn.z);
-                    mx.x = AsmMaxF(v.x, mx.x);
-                    mx.y = AsmMaxF(v.y, mx.y);
-                    mx.z = AsmMaxF(v.z, mx.z);
+                    mn.x = Min_001A8720(v.x, mn.x);
+                    mn.y = Min_001A8720(v.y, mn.y);
+                    mn.z = Min_001A8720(v.z, mn.z);
+                    mx.x = Max_001A8720(v.x, mx.x);
+                    mx.y = Max_001A8720(v.y, mx.y);
+                    mx.z = Max_001A8720(v.z, mx.z);
                 }
             }
             if (f54 != 0) {
