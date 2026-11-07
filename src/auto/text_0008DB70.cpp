@@ -31,6 +31,7 @@ struct S_0008DB70 {
     char padd68[0xd84 - 0xd68]; void *fd84; void *fd88;
     char padd90[0xd98 - 0xd8c]; int fd98;
     S_0008DB70 *func_0008DB70(char *a2, int a1, int a0, int a3, int a5, int a4);
+    S_0008DB70 *func_0008DB70(char *a2, int a1, int a0, int a3, int a5, int a4, int a6);
 };
 
 S_0008DB70 *S_0008DB70::func_0008DB70(char *a2, int a1, int a0, int a3, int a5, int a4)
