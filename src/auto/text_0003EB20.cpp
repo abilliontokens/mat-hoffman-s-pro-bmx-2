@@ -1,5 +1,6 @@
 /* 1 function from 0x0003EB20 to 0x00041560, found by Ghidra. */
 #include "common.h"
+#include <xmmintrin.h>
 struct V4 { float x,y,z,w; V4(){z=0;y=0;x=0;w=1;} };
 struct Obj3EB20 { void func_00197E70(V4*); void func_00197B40(V4*,V4*); void func_001A4100(int,int,int); void func_000363E0(V4); void func_00198F50(V4*,V4*,int,int,int); void func_0019AC50(); void func_001824E0(V4*,float,float,float); void func_00133EF0(void*); void func_00038A70(void *, void **); int func_00038B10(void *, V4, V4, int *, int *, int *, int); };
 extern float D_00276CA8;
