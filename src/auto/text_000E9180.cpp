@@ -64,6 +64,13 @@ struct S_0E9180_270 {
     void func_000BC590();
 };
 
+struct S_0E9180_Manager {
+    char pad0[0x2c];
+    void *f2c;
+    void func_0001C1E0(int, int, int, int);
+    void func_0001BB00(int, void *, int);
+    void func_0001B910(void *);
+};
 struct S_0E9180_150 {
     char pad0[0x484];
     void *f484;
@@ -161,6 +168,51 @@ void C_000E9180::func_000E9180(float dt)
             f298 = 0;
         }
     }
+    if (f4dc != 0 || f4e8 != 0 || f4e0 != 0 || f4e4 != 0) {
+        f4ec = f4ec + dt;
+        if (!(f4ec < D_002755E8)) {
+            if (f4e0 != 0) {
+                f288 = func_000BE020(1);
+                func_0001C1E0((int)m->f150->f484, f28c, 0, 1);
+                func_0001C1E0((int)m->f150->f484, f288, 0, 1);
+                func_0001BB00((int)m->f150->f484, f28c, D_00281A64);
+                func_0001BB00((int)m->f150->f484, f288, D_00281A64);
+                f4c8 = 1;
+                f4d4 = m->f288;
+                f4e0 = 0;
+            }
+            if (f4dc != 0) {
+                f288 = func_000BE020(1);
+                func_0001C1E0((int)m->f150->f484, f28c, 0, 1);
+                func_0001C1E0((int)m->f150->f484, f288, 0, 1);
+                func_0001BB00((int)m->f150->f484, f28c, D_00281A64);
+                func_0001BB00((int)m->f150->f484, f288, D_00281A64);
+                f4c8 = 1;
+                f4d4 = m->f288;
+                f4dc = 0;
+            }
+            if (f4e8 != 0) {
+                f28c = func_000BDF30(1);
+                func_0001C1E0((int)m->f150->f484, f28c, 0, 1);
+                func_0001C1E0((int)m->f150->f484, f288, 0, 1);
+                func_0001BB00((int)m->f150->f484, f28c, D_00281A64);
+                func_0001BB00((int)m->f150->f484, f288, D_00281A64);
+                f4cc = 1;
+                f4d0 = m->f28c;
+                f4e8 = 0;
+            }
+            if (f4e4 != 0) {
+                f28c = func_000BDF30(1);
+                func_0001C1E0((int)m->f150->f484, f28c, 0, 1);
+                func_0001C1E0((int)m->f150->f484, f288, 0, 1);
+                func_0001BB00((int)m->f150->f484, f28c, D_00281A64);
+                func_0001BB00((int)m->f150->f484, f288, D_00281A64);
+                f4cc = 1;
+                f4d0 = m->f28c;
+                f4e4 = 0;
+            }
+        }
+    }
     v = ((u8 *)f514)[0x3b];
     if (f47c != v) {
         if (f488 >= f48c) {
@@ -171,6 +223,12 @@ void C_000E9180::func_000E9180(float dt)
         }
     }
     f488 = f488 + dt;
+    if (f78c != 0) {
+        if (f784 != 0) {
+            f28c = func_000BDF30(0);
+            f288 = func_000BE020(0);
+        }
+    }
 }
 
 void C_000E9FD0::func_000E9FD0(void) {
