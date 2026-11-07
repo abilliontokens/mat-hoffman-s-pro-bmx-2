@@ -42,6 +42,9 @@ struct S_CCBE0_Text {
     void func_001B2270(int colour);
     void func_001B1A30(float x, float y, float z);
     void func_001B1B30(float a, int b);
+    void func_001B1C10(int);
+    void func_001B17D0(int);
+    void func_001B1980();
 };
 
 struct S_CCBE0_Mgr {
