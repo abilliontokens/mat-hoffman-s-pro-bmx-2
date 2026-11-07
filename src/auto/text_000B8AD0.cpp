@@ -42,6 +42,14 @@ struct C_000B8C90 {
     float f3C;
     int f40;
     float f44;
+    char pad48[0x1C];
+    float f64[4];
+    float f74[4];
+    float f84[4];
+    char pad94[8];
+    unsigned char *f9C;
+    unsigned char *fA0;
+    float fA4, fA8, fAC, fB0, fB4;
     void func_000B8C90(float dt);
 };
 
