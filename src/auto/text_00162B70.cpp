@@ -40,8 +40,8 @@ extern "C" void *memcpy(void *, const void *, unsigned int);
 
 struct IVt163780 {
     virtual void v0();
-    virtual void v1();
-    virtual void v2();
+    virtual void v1(void *a, float b);
+    virtual void v2(void *a, float b);
     virtual void v3();
     virtual void v4(int k, int *a, int *b);
     virtual void v5();
@@ -129,6 +129,7 @@ int func_001EA1EE(char *s);
 char *func_001E95A4(char *a, char *b);
 int func_001EA426(char *a, char *b);
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 double func_001E9649(char *s);
 void func_000265C0(float *dst, float *a, float *b, float *c, int d, int e);
 struct EObj_00162FB0 {
@@ -286,29 +287,56 @@ void C_00162DF0::func_00162DF0(int count) {
     }
 }
 
+void *C_00162ED0::func_00162ED0(unsigned int flags)
+{
+    if (flags & 2) {
+        int *base = (int *)((char *)this - 4);
+        int n = *base;
+        char *p = (char *)this + n * 0x18;
+        if (--n >= 0) {
+            int k = n + 1;
+            do {
+                p -= 0x18;
+                ((Elem162ED0 *)p)->func_0015B990();
+            } while (--k);
+        }
+        if (flags & 1) {
+            func_001E891B(base);
+        }
+        return base;
+    }
+    ((Elem162ED0 *)this)->func_0015B990();
+    if (flags & 1) {
+        func_001E891B(this);
+    }
+    return this;
+}
+
+void *func_001E8AA5(int size);
 int __stdcall func_00162FB0(Src162FB0 *src, char *name, Pack162FB0 *pack)
 {
-    Mgr162FB0 *mgr = (Mgr162FB0 *)D_002BEAAC;
     int handle;
     int table[0x100];
     char buf[0x100];
     float v20[4];
     float v30[4];
     float v44[4];
-    char out[0x5c];
+    char out[0x20];
+    float r4[4];
     int found;
     int count2;
     int i;
     int n;
+    int cnt;
     float *mats;
-    handle = mgr->func_0013C9F0(name, D_00276274);
+    handle = ((Mgr162FB0 *)D_002BEAAC)->func_0013C9F0(name, D_00276274);
     if (handle == -1)
         return 0;
     for (i = 0; i < 0x40; i++)
         table[i] = 0;
     found = 0;
     count2 = 0;
-    while (mgr->func_0013C6E0(handle, buf, 0xff)) {
+    while (((Mgr162FB0 *)D_002BEAAC)->func_0013C6E0(handle, buf, 0xff)) {
         char *s;
         func_001EA1EE(buf);
         s = func_001E95A4(buf, D_002789B8);
@@ -332,17 +360,11 @@ int __stdcall func_00162FB0(Src162FB0 *src, char *name, Pack162FB0 *pack)
     }
     if (found < pack->f34 || pack->f34 == 0)
         pack->f34 = found;
-    pack->f38 = (float)(pack->f34 - 1) / (float)pack->f30;
-    mats = (float *)func_001E8A44(src->count1E8 << 6);
+    pack->f38 = (float)(pack->f34 - 1) / pack->f30;
+    mats = (float *)func_001E8AA5(src->count1E8 << 6);
     for (i = 0; i < src->count1E8; i++) {
         float *m = mats + i * 16;
-        int k;
-        for (k = 0; k < 16; k++)
-            m[k] = 0.0f;
-        m[0] = 1.0f;
-        m[5] = 1.0f;
-        m[10] = 1.0f;
-        m[15] = 1.0f;
+        AsmIdentityMatrix(m);
     }
     pack->func_00162DF0(pack->countB);
     pack->func_001628C0(pack->countA);
@@ -372,29 +394,33 @@ int __stdcall func_00162FB0(Src162FB0 *src, char *name, Pack162FB0 *pack)
             }
         }
     }
-    mgr->func_0013AFF0(handle, 0, 0);
+    ((Mgr162FB0 *)D_002BEAAC)->func_0013AFF0(handle, 0, 0);
     v20[0] = 0; v20[1] = 0; v20[2] = 0; v20[3] = 1.0f;
     v30[0] = 0; v30[1] = 0; v30[2] = 0; v30[3] = 1.0f;
     v44[0] = 0; v44[1] = 0; v44[2] = 0; v44[3] = 1.0f;
-    if (mgr->func_0013C6E0(handle, buf, 0xff)) {
+    cnt = 0;
+    if (((Mgr162FB0 *)D_002BEAAC)->func_0013C6E0(handle, buf, 0xff) && cnt < pack->f34) {
         func_001EA1EE(buf);
         func_001E95A4(buf, D_002789B8);
         if (count2 > 0) {
             n = count2;
             do {
-                mgr->func_0013C6E0(handle, buf, 0xff);
+                ((Mgr162FB0 *)D_002BEAAC)->func_0013C6E0(handle, buf, 0xff);
                 func_001E95A4(buf, D_002789B8);
                 i = (unsigned char)src->func_00164650(func_001E95A4(0, D_00287D00));
                 if (i == 0xff)
                     break;
+                func_001E95A4(0, D_002789B8);
+                func_001E95A4(0, D_002789B8);
+                func_001E95A4(0, D_002789B8);
                 v30[0] = (float)func_001E9649(func_001E95A4(0, D_002789B8));
                 v30[2] = (float)func_001E9649(func_001E95A4(0, D_002789B8));
                 v30[1] = (float)func_001E9649(func_001E95A4(0, D_002789B8));
-                Norm_00162FB0(v30);
+                AsmVec3Normalize(v30, v30);
                 v44[0] = (float)func_001E9649(func_001E95A4(0, D_002789B8));
                 v44[2] = (float)func_001E9649(func_001E95A4(0, D_002789B8));
                 v44[1] = (float)func_001E9649(func_001E95A4(0, D_002789B8));
-                Norm_00162FB0(v44);
+                AsmVec3Normalize(v44, v44);
                 v20[0] = (float)func_001E9649(func_001E95A4(0, D_002789B8));
                 v20[2] = (float)func_001E9649(func_001E95A4(0, D_002789B8));
                 v20[1] = (float)func_001E9649(func_001E95A4(0, D_002789B8));
@@ -402,19 +428,21 @@ int __stdcall func_00162FB0(Src162FB0 *src, char *name, Pack162FB0 *pack)
                 n--;
             } while (n != 0);
         }
-    }
-    for (i = 0; i < src->count1E8; i++) {
-        Entry162FB0 *e = &src->entries1EC[i];
-        float *m = mats + i * 16;
-        if (e->f3C != 0 && e->f38 == 0) {
-            float *r = (float *)((EObj_00162FB0 *)e->f34)->func_00199B00(src->f4, out);
-            m[3] = r[0];
-            m[7] = r[1];
-            m[11] = r[2];
-            ((EObj_00162FB0 *)e->f34)->func_0019AD60(src->f4, m);
+        for (i = 0; i < src->count1E8; i++) {
+            Entry162FB0 *e = &src->entries1EC[i];
+            float *m = mats + i * 16;
+            if (e->f3C != 0 && e->f38 == 0) {
+                float *r = (float *)((EObj_00162FB0 *)e->f34)->func_00199B00(src->f4, out);
+                r4[0] = r[0]; r4[1] = r[1]; r4[2] = r[2]; r4[3] = r[3];
+                v20[0] = r[0]; v20[1] = r[1]; v20[2] = r[2]; v20[3] = r[3];
+                m[3] = r4[0];
+                m[7] = r4[1];
+                m[11] = r4[2];
+                ((EObj_00162FB0 *)e->f34)->func_0019AD60(src->f4, m);
+            }
         }
     }
-    mgr->func_0013C110(handle);
+    ((Mgr162FB0 *)D_002BEAAC)->func_0013C110(handle);
     return 1;
 }
 
