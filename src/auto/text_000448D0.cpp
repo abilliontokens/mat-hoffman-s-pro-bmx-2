@@ -37,6 +37,34 @@ struct Q4E0_000448D0 {
     Q1A8_000448D0 *f1a8;
     void func_000A4500(int, int);
 };
+struct Table_448D0 { char pad0[0x38]; int f38,f3c,f40,f44; char pad48[0x48-0x48]; };
+struct Elem_448D0 { char pad0[0x358]; int f358,f35c,f360; };
+struct Cam_448D0 {
+    int f0,f4;
+    void func_00194E60(V4_000448D0);
+    void func_00194EB0(V4_000448D0);
+    void func_00194F60(V4_000448D0);
+    void func_00194F90(float);
+};
+struct Holder_448D0 { char pad0[0x5c]; Cam_448D0 *f5c; };
+struct Object_448D0 {
+    char pad0[0x28];
+    void func_00198390(); void func_001983A0();
+    void func_0019A8C0(V4_000448D0*,V4_000448D0*);
+};
+struct Base_448D0 {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4();
+    Object_448D0 *f4;
+};
+struct Nested_448D0 { char pad0[0x1a4]; Base_448D0 *f1a4; };
+struct Sub_448D0 { char pad0[0x24]; Object_448D0 *f24; Nested_448D0 *f28; Object_448D0 *f2c; int f30; Holder_448D0 *f34; float f38; };
+struct Timer_448D0 { void func_001C4D10(int,int); };
+extern float D_00275AEC,D_0027653C,D_00276220,D_00276D50;
+extern double D_002766C8;
+extern float D_002A14E4[4];
+extern char D_00276D54[];
+int func_001E8AF0(void*,char*);
+void func_00034820(float*,float*);
 struct Q64_000448D0 {
     char pad0[0x4e0];
     Q4E0_000448D0 *f4e0;
@@ -120,6 +148,39 @@ int func_001ADCC0(char *buf, int size, const char *fmt, ...);
 
 void C_000448D0::func_000448D0(void)
 {
+    void *mem;
+
     D_002A8490->f234 = 1;
     func_00012140();
+    mem = func_001E8A44(0x54);
+    f1d4 = mem ? ((Obj54_000448D0 *)mem)->func_001D1BB0() : 0;
+    f1d4->v0(D_00276C90, 0);
+    f1d4->v5();
+    func_001D3F50();
+    if (func_001D7D00() == 0) return;
+    func_00033680();
+    func_00042260();
+    D_002EFDB8->f30 = 1;
+    D_002F07B8->f8 = 1;
+    func_00012140();
+    v33();
+    if (D_002A8490->f230 & 0x20) {
+        D_002F0670->v32();
+    }
+    D_002A8490->f4->fB4->v6();
+    if (D_002A8490->f2e4 == 0) {
+        D_002A8490->f2e0->f2fc->func_00095200(0x13);
+    }
+    func_001ADCC0(D_002A48F8, 0x104, D_00275678, D_002A5348, D_002A47F0);
+    D_002A829C->func_001616F0();
+    D_002A8490->f4->v6();
+    if (D_002A8490->f2e0->f190 == 3) {
+        f64->f4e0->f1a8->func_00108370();
+        f64->f4e0->f1a8->func_001083E0();
+        f64->f4e0->func_000A4500(0, 0);
+    }
+    func_000321C0();
+    f550->func_0008A060();
+    f554->func_0008A910();
+    func_0003AD50();
 }
