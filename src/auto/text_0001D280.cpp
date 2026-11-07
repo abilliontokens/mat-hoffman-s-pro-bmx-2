@@ -319,6 +319,7 @@ extern "C" char *func_001E8AC0(const char *s, int c);
 extern "C" int func_001EA426(const char *a, const char *b);
 
 template <class T> inline const T &minref(const T &a, const T &b) { return a > b ? b : a; }
+static __forceinline int clampLength(int a, int b) { return a > b ? b : a; }
 
 static __forceinline void stripExt(char *dst, const char *src)
 {
@@ -532,32 +533,46 @@ C_0001D450_Item *C_0001D450::func_0001D450(const char *name)
 {
     char buf[0x104];
     char key[0x104];
-    int len = strlen(name);
-    int lim = 0x103;
-    int n = *(lim > len ? &len : &lim);
-    func_001E8920(key, name, n);
-    key[n] = 0;
+    {
+        struct { volatile int n, lim, len; } t;
+        t.len = strlen(name);
+        t.lim = 0x103;
+        int a = t.lim;
+        int b = t.len;
+        t.n = a > b ? b : a;
+        int sz = t.n;
+        func_001E8920(key, name, sz);
+        key[sz] = 0;
+    }
     char *p = func_001E8AC0(key, '.');
     if (p) memset(p, 0, strlen(p));
     for (int i = 0; i < unk70; i++) {
         C_0001D450_Item *item = itemAt(i);
         if (item) {
+            volatile int len, lim, n;
             const char *s = item->name;
             len = strlen(s);
             lim = 0x103;
-            n = *(lim > len ? &len : &lim);
-            func_001E8920(buf, s, n);
-            buf[n] = 0;
+            int a = lim;
+            int b = len;
+            n = a > b ? b : a;
+            int sz = n;
+            func_001E8920(buf, s, sz);
+            buf[sz] = 0;
             p = func_001E8AC0(buf, '.');
             if (p) memset(p, 0, strlen(p));
             if (func_001EA426(key, buf) == 0) return item;
             if (item->unk1BC) {
+                volatile int n3;
                 s = item->unk1BC->name;
                 len = strlen(s);
                 lim = 0x103;
-                n = *(lim > len ? &len : &lim);
-                func_001E8920(buf, s, n);
-                buf[n] = 0;
+                int a = lim;
+                int b = len;
+                n3 = a > b ? b : a;
+                int sz = n3;
+                func_001E8920(buf, s, sz);
+                buf[sz] = 0;
                 p = func_001E8AC0(buf, '.');
                 if (p) memset(p, 0, strlen(p));
                 if (func_001EA426(key, buf) == 0) return item;
@@ -723,49 +738,44 @@ void C_0001E0A0::func_0001E0A0(float a0, float a1, float a2, int a3) {
 
 void C_0001E0E0::func_0001E0E0(int n)
 {
-    unsigned int *first = data;
-    unsigned int *prev = first;
-    unsigned int *next;
+    union { unsigned int i; unsigned short s[2]; unsigned char c[4]; } u;
+    int words = (this->nbits + 31) / 32;
+    unsigned int *first = this->data;
     int m = 32 - n;
-    int words = (nbits + 31) / 32;
-    unsigned int v;
+    unsigned int *next;
+    int i;
 
-    v = swap32(*first) << n;
-    *first = swap32(v);
-    for (;;) {
-        words--;
-        if (words == 0) {
-            if (fill == 0) {
-                *first &= D_002A0C18[m];
-            } else {
-                *first |= ~D_002A0C18[m];
-            }
-            return;
+    u.i = *first;
+    u.i = (((u.c[0] << 8 | u.c[1]) << 8 | (unsigned char)u.s[1]) << 8 | (unsigned char)(u.s[1] >> 8)) << n;
+    *first = ((u.c[0] << 8 | u.c[1]) << 8 | (unsigned char)u.s[1]) << 8 | (unsigned char)(u.s[1] >> 8);
+    next = first + 1;
+    for (i = words - 1; i != 0; i--, next++) {
+        if (*next == 0) {
+            first++;
+            continue;
         }
-        next = prev + 1;
-        if (*next != 0) {
-            if (*next == 0xffffffff) {
-                *first |= ~D_002A0C18[m];
-                v = D_002A0C18[m];
-            } else {
-                v = swap32(*next);
-                *next = v;
-                v >>= m;
-                if (v != 0) {
-                    *first |= swap32(v);
-                }
-                v = *next << n;
-                *next = v;
-                if (v == 0) {
-                    goto skip;
-                }
-                v = swap32(v);
+        if (*next == 0xffffffff) {
+            *first |= ~D_002A0C18[m];
+            *next = D_002A0C18[m];
+            first++;
+        } else {
+            unsigned char *b = (unsigned char *)next;
+            *next = ((b[0] << 8 | b[1]) << 8 | b[2]) << 8 | b[3];
+            u.i = *next >> m;
+            if (u.i != 0) {
+                *first |= ((u.c[0] << 8 | u.c[1]) << 8 | (unsigned char)u.s[1]) << 8 | (unsigned char)(u.s[1] >> 8);
             }
-            *next = v;
+            first++;
+            if ((*next <<= n) == 0) continue;
+            *next = ((b[0] << 8 | b[1]) << 8 | b[2]) << 8 | b[3];
         }
-skip:
-        first++;
-        prev = next;
+    }
+    unsigned int t = *first;
+    unsigned int mask = D_002A0C18[m];
+    if (this->fill == 0) {
+        *first = t & mask;
+    } else {
+        *first = t | ~mask;
     }
 }
 
