@@ -37,6 +37,7 @@ struct V4_0012FCF0 {
     f32 y;
     f32 z;
     f32 w;
+    V4_0012FCF0() {}
 };
 
 struct V4W_0012F0F0 {
@@ -255,7 +256,6 @@ struct C_0012FE30 {
 V4_0012FCF0 C_CarProceduralExtended::func_0012F0F0(f32 t)
 {
     S_0012F518 *ar = f518;
-    V4_0012FCF0 out;
     f32 r;
     f32 x;
 
@@ -272,22 +272,15 @@ V4_0012FCF0 C_CarProceduralExtended::func_0012F0F0(f32 t)
         f32 h00, h01, h10;
         u32 j;
         u32 cur;
-        V4_0012FCF0 d1;
-        V4_0012FCF0 t0;
-        V4_0012FCF0 t1;
 
         r *= f4C0;
-        j = f4B8 + 1;
-        if (j < ar->count) {
-            do {
-                if (r <= ((S_0012F0F0_Key *)ar->arr)[j].time) {
-                    break;
-                }
-                f4B8++;
-                j++;
-            } while (j < f518->count);
+        for (j = f4B8 + 1; j < f518->count; j++) {
+            if (!(r > ((S_0012F0F0_Key *)ar->arr)[j].time)) {
+                break;
+            }
+            f4B8++;
         }
-        while (f4B8 != 0 && r < ((S_0012F0F0_Key *)ar->arr)[f4B8].time) {
+        while (f4B8 > 0 && r < ((S_0012F0F0_Key *)ar->arr)[f4B8].time) {
             f4B8--;
             j--;
         }
@@ -300,37 +293,28 @@ V4_0012FCF0 C_CarProceduralExtended::func_0012F0F0(f32 t)
         keys = (S_0012F0F0_Key *)ar->arr;
         k1 = &keys[j];
         k0 = &keys[cur];
-        d1.w = 1.0f;
-        d1.x = k1->pos.x - k0->pos.x;
-        d1.y = k1->pos.y - k0->pos.y;
-        d1.z = k1->pos.z - k0->pos.z;
+        const V4C_0012F0F0 &P0 = (const V4C_0012F0F0 &)k0->pos;
+        const V4C_0012F0F0 &P1 = (const V4C_0012F0F0 &)k1->pos;
+        V4C_0012F0F0 d1(P1.x - P0.x, P1.y - P0.y, P1.z - P0.z, 1.0f);
+        V4_0012FCF0 t0;
         if (cur == 0) {
             t0 = d1;
         } else {
             f32 k = (k1->time - k0->time) / (k1->time - k0[-1].time);
-            t0.x = (k0->pos.x - k0[-1].pos.x) + d1.x;
-            t0.y = (k0->pos.y - k0[-1].pos.y) + d1.y;
-            t0.z = (k0->pos.z - k0[-1].pos.z) + d1.z;
-            t0 = V4C_0012F0F0(t0.x * k, t0.y * k, t0.z * k, 1.0f);
+            V4C_0012F0F0 p(P0.x - k0[-1].pos.x, P0.y - k0[-1].pos.y, P0.z - k0[-1].pos.z, 1.0f);
+            t0 = (p + d1) * k;
         }
-        if (j != ar->count - 1) {
+        V4_0012FCF0 t1;
+        if (j == ar->count - 1) {
+            t1 = d1;
+        } else {
             f32 k = (k1->time - k0->time) / (k1[1].time - k0->time);
-            t1.x = (k1[1].pos.x - k1->pos.x) + d1.x;
-            t1.y = (k1[1].pos.y - k1->pos.y) + d1.y;
-            t1.z = (k1[1].pos.z - k1->pos.z) + d1.z;
-            d1.x = t1.x * k;
-            d1.y = t1.y * k;
-            d1.z = t1.z * k;
+            V4C_0012F0F0 p(k1[1].pos.x - P1.x, k1[1].pos.y - P1.y, k1[1].pos.z - P1.z, 1.0f);
+            t1 = (p + d1) * k;
         }
-        t1 = d1;
-        out.w = 1.0f;
-        out.x = h00 * k0->pos.x + h01 * k1->pos.x + t0.x * h10 + t1.x * t;
-        out.y = h00 * k0->pos.y + h01 * k1->pos.y + t0.y * h10 + t1.y * t;
-        out.z = h00 * k0->pos.z + h01 * k1->pos.z + t0.z * h10 + t1.z * t;
-        return out;
+        return ((P0 * h00 + P1 * h01) + (const V4C_0012F0F0 &)t0 * h10) + (const V4C_0012F0F0 &)t1 * t;
     }
-    out = D_002A4130;
-    return out;
+    return D_002A4130;
 }
 
 C_0012F460::C_0012F460()
@@ -351,28 +335,29 @@ void C_CarProceduralExtended::func_0012F600(f32 param_1, int param_2)
 
 f32 C_0012F670::func_0012F670(f32 a, f32 b)
 {
-    S_12F670_Spline *ar = f518;
+    C_0012F670 * volatile self = this;
+    S_12F670_Spline *ar = self->f518;
     f32 r;
     u32 j;
 
-    r = a * f4C0;
-    j = idx + 1;
+    r = a * self->f4C0;
+    j = self->idx + 1;
     if (j < ar->count) {
         do {
             if (r <= ar->keys[j].time) {
                 break;
             }
-            idx++;
+            self->idx++;
             j++;
-        } while (j < f518->count);
+        } while (j < self->f518->count);
     }
-    while (idx != 0 && r < ar->keys[idx].time) {
-        idx--;
+    while (self->idx != 0 && r < ar->keys[self->idx].time) {
+        self->idx--;
         j--;
     }
     if (b > D_00275544) {
         S_0012F0F0_Key *keys = ar->keys;
-        u32 cur = idx;
+        u32 cur = self->idx;
         S_0012F0F0_Key *k0 = &keys[cur];
         S_0012F0F0_Key *k1 = &keys[j];
         f32 f = (b - k0->time) / (k1->time - k0->time) * k0->f4;
@@ -389,9 +374,9 @@ f32 C_0012F670::func_0012F670(f32 a, f32 b)
             return D_00275544;
         }
         k1 = &keys[(e + 1) % ar->count];
-        return (k0->time + (f - b) / k0->f4 * (k1->time - k0->time)) * f4C4;
+        return (k0->time + (f - b) / k0->f4 * (k1->time - k0->time)) * self->f4C4;
     }
-    return b * f4C4;
+    return b * self->f4C4;
 }
 
 void C_CarProceduralExtended::func_0012FBF0(int param_1)
