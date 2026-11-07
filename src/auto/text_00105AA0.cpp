@@ -10,6 +10,7 @@ extern const float D_00275544,D_00282A58,D_002755E0,D_002755E8,D_00275994,D_0027
 extern float D_002A3A48;
 int func_00011260(int,int);
 float func_00011170(void*);
+union IntFloat_105CB0 { int i; float f; };
 struct C_Device {
     virtual void v0();  virtual void v1();  virtual void v2();  virtual void v3();
     virtual void v4();  virtual void v5();  virtual void v6();  virtual void v7();
