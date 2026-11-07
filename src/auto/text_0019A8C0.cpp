@@ -30,10 +30,11 @@ void func_0013E4A0(void *dst, void *src);
 
 static float Abs_0019A8C0(float f)
 {
-    unsigned u = *(unsigned *)&f;
+    union { float f; unsigned u; } v;
 
-    u &= 0x7fffffff;
-    return *(float *)&u;
+    v.f = f;
+    v.u &= 0x7fffffff;
+    return v.f;
 }
 
 struct C_0019B6D0 {
