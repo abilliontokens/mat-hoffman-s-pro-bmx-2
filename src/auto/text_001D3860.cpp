@@ -675,20 +675,28 @@ unsigned C_001D4200::func_001D4060(int a)
     return 0;
 }
 
+static __forceinline int SlotLower(int a)
+{
+    return a >= 4;
+}
+
 int C_001D4200::func_001D40E0(int a)
 {
     char letter;
+    int port;
 
     if (a == 8) {
         unk0 = a;
         strcpy(unk4, "u:\\");
         return 1;
     }
-    if ((func_001D4060(a) & func_0026EBC5(&D_0026D8D0)) != 0 &&
-        func_0026ED5B(func_001D4010(a), a >= 4, &letter) >= 0) {
-        func_001ADCC0(unk4, 4, D_0028F130, letter);
-        unk0 = a;
-        return 1;
+    if ((func_001D4060((short)a) & func_0026EBC5(&D_0026D8D0)) != 0) {
+        port = func_001D4010(a);
+        if (func_0026ED5B(port, a >= 4, &letter) >= 0) {
+            func_001ADCC0(unk4, 4, D_0028F130, letter);
+            unk0 = a;
+            return 1;
+        }
     }
     return 0;
 }
@@ -740,11 +748,10 @@ int C_001D4200::func_001D4200(char *out)
             if (func_001EA426(buf, out + 0x1f) == 0) {
                 func_001E8920(out, find.name, 30);
                 found = 1;
-                break;
             }
-        } while (func_001DE625(h, &find) != 0);
-        ret = found;
+        } while (!found && func_001DE625(h, &find) != 0);
         func_001DE66C(h);
+        ret = found;
     }
     return ret;
 }
