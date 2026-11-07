@@ -189,7 +189,7 @@ static __forceinline void S_00197820_Identity(S_00197820_Mat *m)
     m->m[15] = 1.0f;
 }
 
-static inline void S_00197820_Zero(S_00197820_Mat *m)
+static __forceinline void S_00197820_Zero(S_00197820_Mat *m)
 {
     __m128 z = _mm_xor_ps(*(__m128 *)m, *(__m128 *)m);
     _mm_store_ps(&m->m[0], z);
