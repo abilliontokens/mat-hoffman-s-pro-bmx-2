@@ -68,6 +68,10 @@ static __forceinline void Copy_001188F0(M4 * volatile dst, const M4 * volatile s
 }
 
 struct Self1188F0 {
+    void func_0002D270();
+    void func_0010DCB0();
+    void func_00108690_4(int);
+    void func_00113F00(int);
     void func_00107380();
     void func_001138E0(int a);
 };
@@ -93,8 +97,9 @@ void Obj::func_001188F0(int arg)
     M4 m;
     Vec4 v;
     Vec4 tmp;
-    int p18, p1c;
+    float p18, p1c;
     Node1188F0 *n;
+    Vec4 *pt = &tmp;
 
     if (*(int *)(*(int *)(t + 0x950) + 0xbc) == 0) {
         ((Cam1188F0 *)*(int *)(*(int *)(t + 0x1e0) + 0x22c))->func_00199C20(0, &m);
@@ -105,10 +110,10 @@ void Obj::func_001188F0(int arg)
         v.w = 1.0f;
         if (*(int *)(t + 0x470) != 0) {
             n = ((Node1188F0 *)*(int *)(t + 0x230))->f174;
-            v = *n->func_00197EC0(&tmp, &v);
+            v = *n->func_00197EC0(pt, &v);
             Copy_001188F0(&m, (M4 *)((char *)((Node1188F0 *)*(int *)(t + 0x230))->f174 + 0xf0));
         } else {
-            v = *((Node1188F0 *)*(int *)(t + 0x230))->func_00197EC0(&tmp, &v);
+            v = *((Node1188F0 *)*(int *)(t + 0x230))->func_00197EC0(pt, &v);
             Copy_001188F0(&m, (M4 *)(*(char **)(t + 0x230) + 0xf0));
         }
         ((float *)&m)[3] = ((float *)&m)[3] + v.x;
@@ -132,14 +137,14 @@ void Obj::func_001188F0(int arg)
     {
         Vec4 out;
         int below;
-        p1c = 0;
-        p18 = 0;
+        p1c = 0.0f;
+        p18 = 0.0f;
         ((Node1188F0 *)*(int *)(t + 0x230))->func_00198040(&out, (Vec4 *)(t + 0x9c));
         below = out.y <= D_00283D30;
         {
             char *b = t;
             int st = *(int *)(b + 0x15d8);
-            int sub = *(int *)(b + 0x15dc);
+            int &sub = *(int *)(b + 0x15dc);
             int edx = 0;
             switch (st) {
             case 0:
@@ -191,7 +196,7 @@ void Obj::func_001188F0(int arg)
                             sub = 6;
                     }
                 } else if (sub == 8) {
-                    p18 = *(int *)(b + 0x9f8);
+                    p1c = *(float *)(b + 0x9f8);
                 }
                 break;
             case 4:
@@ -210,7 +215,7 @@ void Obj::func_001188F0(int arg)
                             sub = 6;
                     }
                 } else if (sub == 8) {
-                    p18 = *(int *)(b + 0x9f8);
+                    p1c = *(float *)(b + 0x9f8);
                 }
                 break;
             case 5:
@@ -415,7 +420,7 @@ void Obj::func_001188F0(int arg)
                 if (sub == 0x10) {
                     if (D_00275460 <= *(float *)(b + 0x15f4) || *(int *)(b + 0x20a0) != 0 || *(int *)(b + 0x634) == 0) {
                         sub = 1;
-                        p18 = 0x3f800000;
+                        p18 = 1.0f;
                     }
                     if (*(int *)(b + 0x1f88) != 0) {
                         sub = 2;
@@ -427,11 +432,8 @@ void Obj::func_001188F0(int arg)
                     *(int *)(b + 0x9d0) = 0;
                     *(int *)(t + 0x20ac) = 0;
                     func_0002D270();
-                    {
-                        M4 m3;
-                        func_00199C20(0, &m3);
-                        func_0019AD60(0, &m3);
-                    }
+                    ((Cam1188F0 *)*(int *)(*(int *)(t + 0x1e0) + 0x22c))->func_00199C20(0, &m);
+                    ((Cam1188F0 *)*(int *)(*(int *)(t + 0xa00) + 4))->func_0019AD60(0, &m);
                     sub = (-(*(int *)(t + 0x1178) != 0) & 8);
                 }
                 break;
@@ -463,8 +465,8 @@ void Obj::func_001188F0(int arg)
                     }
                     *(unsigned int *)(b + 0x15fc) = (-(*(int *)(b + 0x15d8) != 0x10) & 2);
                     *(int *)(t + 0x15d8) = *(int *)(t + 0x15dc);
-                    *(float *)(t + 0x15f4) = 0.0f;
-                    *(int *)(t + 0x1600) = 0;
+                    *(float *)(t + 0x15f4) = p18;
+                    *(float *)(t + 0x1600) = p1c;
                     *(int *)(t + 0x15e4) = 0;
                     *(int *)(t + 0x15e8) = 0;
                     *(int *)(t + 0x163c) = 0;
@@ -475,7 +477,6 @@ void Obj::func_001188F0(int arg)
         }
     }
 }
-#pragma optimize("y", on)
 void Obj::func_00119680(int a)
 {
     static int h = D_002A7CB8->func_00026500(D_00283D34, -1);
