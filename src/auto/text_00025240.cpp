@@ -252,6 +252,7 @@ struct C_000255D0 {
 };
 
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 static __forceinline float Max_00025E50(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
 static __forceinline float Min_00025E50(float a, float b) { float r; _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
 /* func_00025E50's clamps: the original has no __m128 anywhere (its frame is a bare
@@ -472,8 +473,6 @@ int C_00025240::func_00025240(void)
 
 void C_000255D0::func_000255D0(Vec4_257E0 * volatile pos, float radius, float t, int chance)
 {
-    C_000255D0 * volatile self = this;
-    C_000255D0 *p;
     int hits;
     int id;
     int i;
@@ -483,59 +482,60 @@ void C_000255D0::func_000255D0(Vec4_257E0 * volatile pos, float radius, float t,
 
     if (t != D_00275544) {
         f58 = D_002A8490->unk238 - (int)(*(volatile float *)&t * D_00276520);
-        self->f74 = *pos;
-        self->f24 = radius;
+        f74 = *pos;
+        f24 = radius;
         return;
     }
     hits = 0;
     id = -1;
-    p = this;
-    for (i = 0; i < p->f30; i++, p = self) {
-        if (p->f60[i]->f79 == 0) {
+    for (i = 0; i < this->f30; i++) {
+        if (this->f60[i]->f79 == 0) {
             Vec4_257E0 *q = pos;
-            float dx = p->f60[i]->f5c - q->x;
-            float dy = p->f60[i]->f60 - q->y;
-            float dz = p->f60[i]->f64 - q->z;
-            float d = (float)sqrt(dx * dx + dy * dy + dz * dz);
+            float dx = this->f60[i]->f5c - q->x;
+            float dy = this->f60[i]->f60 - q->y;
+            float dz = this->f60[i]->f64 - q->z;
+            float d2 = dx * dx + dy * dy + dz * dz;
+            float d = AsmSqrtF(d2);
             if (d < radius) {
-                self->f60[i]->func_000235C0();
-                self->f60[i]->f34--;
-                self->f60[i]->func_00023340();
-                self->f60[i]->f79 = 1;
-                self->f60[i]->f78 = 0;
-                p = self;
-                id = p->f60[i]->f44;
+                this->f60[i]->func_000235C0();
+                this->f60[i]->f34--;
+                this->f60[i]->func_00023340();
+                this->f60[i]->f79 = 1;
+                this->f60[i]->f78 = 0;
+                id = this->f60[i]->f44;
                 hits++;
             }
         }
     }
     if (hits != 0 && id != -1) {
         n = 0;
-        for (i = 0; i < p->f40; i++) {
-            if (p->f5c[i]->id == id) {
+        for (i = 0; i < this->f40; i++) {
+            if (this->f5c[i]->id == id) {
                 idx[n++] = i;
                 if (n >= 6) {
                     break;
                 }
             }
         }
-        if (chance == 0 || func_00011260(1, 100) <= 50) {
-            p = self;
-            if (n != 0) {
-                if (n == 1) {
-                    k = 0;
-                } else {
-                    k = func_00011260(0, n - 1);
-                    if (k < 0) {
-                        return;
-                    }
-                }
-                p = self;
-                k = idx[k];
-                D_002A8490->unk4->func_0001CE80(p->f5c[k]->f4, pos, D_002A0F74, 4.0f, 100.0f);
-                self->f5c[k]->f4->v5(4);
-            }
+        if (chance != 0 && func_00011260(1, 100) > 50) {
+            return;
         }
+        switch (n) {
+        case 0:
+            return;
+        case 1:
+            k = 0;
+            break;
+        default:
+            k = func_00011260(0, n - 1);
+            if (k < 0) {
+                return;
+            }
+            break;
+        }
+        k = idx[k];
+        D_002A8490->unk4->func_0001CE80(this->f5c[k]->f4, pos, D_002A0F74, 4.0f, 100.0f);
+        this->f5c[k]->f4->v5(4);
     }
 }
 
@@ -598,6 +598,7 @@ void *AmbientDebris::func_00025920(unsigned int flags)
 
 int C_00025980::func_00025980(float dt)
 {
+    C_00025980 *self = this;
     Vec4_257E0 n;
     Vec4_257E0 v;
     Vec4_257E0 w;
@@ -609,28 +610,28 @@ int C_00025980::func_00025980(float dt)
     float b;
 
     if (D_002A8490->unk124 == 0) {
-        if (f58 != 0 && f58 < D_002A8490->unk238) {
-            func_000255D0(&f74, f24, 0.0f, 1);
-            f58 = 0;
+        if (self->f58 != 0 && self->f58 < D_002A8490->unk238) {
+            self->func_000255D0(&self->f74, self->f24, 0.0f, 1);
+            self->f58 = 0;
         }
-        f2c = (int)(f2c * D_002755E8);
-        if (f54 < D_002A8490->unk238) {
-            count = f34;
-            idx = f48;
+        self->f2c = (int)(self->f2c * D_002755E8);
+        if (self->f54 < D_002A8490->unk238) {
+            count = self->f34;
+            idx = self->f48;
             for (i = 0; i < count; i++) {
-                if (f64[idx]->f2c == 0 && f64[idx]->f2e == 0) {
-                    S_00025980_Pt *pt = &f64[idx]->f18[f64[idx]->f4 - 1];
+                if (self->f64[idx]->f2c == 0 && self->f64[idx]->f2e == 0) {
+                    S_00025980_Pt *pt = &self->f64[idx]->f18[self->f64[idx]->f4 - 1];
                     v.x = pt->x;
                     v.y = pt->y;
                     v.z = pt->z;
                     v.w = 1.0f;
-                    func_000255D0(&v, 32.0f, 0.0f, 1);
+                    self->func_000255D0(&v, 32.0f, 0.0f, 1);
                     idx++;
-                    if (idx >= f34) {
-                        idx -= f34;
+                    if (idx >= self->f34) {
+                        idx -= self->f34;
                     }
-                    f48 = idx;
-                    f54 = (int)(D_002A8490->unk2e0->f10 * D_00276278 / f34) + D_002A8490->unk238;
+                    self->f48 = idx;
+                    self->f54 = (int)(D_002A8490->unk2e0->f10 * D_00276278 / self->f34) + D_002A8490->unk238;
                     break;
                 }
                 idx++;
@@ -639,9 +640,9 @@ int C_00025980::func_00025980(float dt)
                 }
             }
         }
-        for (i = 0; i < f44; i++) {
-            for (j = 0; j < f70[i]->f14; j++) {
-                if (f70[i]->f18[j]->f24 == 0) {
+        for (i = 0; i < self->f44; i++) {
+            for (j = 0; j < self->f70[i]->f14; j++) {
+                if (self->f70[i]->f18[j]->f24 == 0) {
                     if (Rand01_00025980() < D_00276088) {
                         D_002B9120->unk4e0->f1a8[D_002A8490->unk2a4->f120]->f1e0->f22c->func_00199B00(&v, 0);
                         w = *(Vec4_257E0 *)D_002A0F74;
@@ -654,16 +655,16 @@ int C_00025980::func_00025980(float dt)
                         v.x = v.x + w.x;
                         v.y = w.y + v.y;
                         v.z = w.z + v.z;
-                        f70[i]->f18[j]->func_000223B0(v, 0.0f);
+                        self->f70[i]->f18[j]->func_000223B0(v, 0.0f);
                     }
                 }
             }
         }
-        f4c++;
-        if (f28 > D_00275544) {
-            f28 -= dt;
-            if (f28 < D_00275544) {
-                f28 = 0;
+        self->f4c++;
+        if (self->f28 > D_00275544) {
+            self->f28 -= dt;
+            if (self->f28 < D_00275544) {
+                self->f28 = 0;
             }
         }
         D_002B7E1C += dt;
@@ -678,8 +679,8 @@ int C_00025980::func_00025980(float dt)
         v.y = n.y * a;
         v.z = n.z * a;
         v.w = 1.0f;
-        f84 = v;
-        func_00157A00(dt);
+        self->f84 = v;
+        self->func_00157A00(dt);
     }
     return 1;
 }
@@ -710,10 +711,10 @@ void C_00025E50::func_00025E50(float dt)
     if (D_002A1030 != 0 && unk20 == 0 && unk18 <= D_00275544) {
         float t;
         unk4 += dt * unk8;
-        unk4 = _mm_min_ss(_mm_max_ss(_mm_set_ss(unk4), _mm_set_ss(unk24)), _mm_set_ss(unk28)).m128_f32[0];
-        t = _mm_max_ss(_mm_min_ss(_mm_set_ss(unk2C), _mm_set_ss(unk2C)), _mm_set_ss(unk38)).m128_f32[0];
+        unk4 = AsmMinF(AsmMaxF(unk4, unk24), unk28);
+        t = AsmMaxF(AsmMinF(unk2C, unk2C), unk38);
         unk14 += unk10 * unk4 * t * dt;
-        unk14 = _mm_min_ss(_mm_max_ss(_mm_set_ss(unk14), _mm_set_ss(-1.0f)), _mm_set_ss(1.0f)).m128_f32[0];
+        unk14 = AsmMinF(AsmMaxF(unk14, -1.0f), 1.0f);
         float f;
         if (unk30 > D_00276558) {
             f = (unk30 - D_00276558) * D_00276554 + D_00276550;
@@ -724,13 +725,13 @@ void C_00025E50::func_00025E50(float dt)
         } else if (unk30 > D_0027653C) {
             f = (unk30 - D_0027653C) * D_002756B4 + D_00276538;
         } else {
-            f = unk30 * D_002755E0;
+            f = unk30 * 0.01f;
         }
         if (unk3C != 0) {
             f *= D_002A1050;
         }
         unkC += (f + unk4) * (unkC - unk14) * dt;
-        unkC = _mm_min_ss(_mm_max_ss(_mm_set_ss(unkC), _mm_set_ss(-1.0f)), _mm_set_ss(1.0f)).m128_f32[0];
+        unkC = AsmMinF(AsmMaxF(unkC, -1.0f), 1.0f);
     } else if (unk18 > D_00275544) {
         unk18 -= dt;
     }
