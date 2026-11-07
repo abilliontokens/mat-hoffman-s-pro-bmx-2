@@ -18,6 +18,7 @@ struct Ser_000A4D30 {
     int func_00169490(char *path, int z);
     void func_001691E0();
     int func_00169710(char *name);
+    void func_00168BE0(char *key, char *value, char *dest, int size);
     void func_00168C20(char *name, int value, void *ptr);
     void func_00168A10(char *name, void *ptr);
     void func_00168B90(char *name, void *ptr);
