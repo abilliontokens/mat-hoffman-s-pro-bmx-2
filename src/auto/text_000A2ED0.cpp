@@ -62,6 +62,7 @@ struct S_000A3780_Stream {
     void func_00168A10(const char *key, int *dst);
     void func_00168550(const char *key, char *dst, int n);
     void func_00168CB0(const char *key, V4_000A3780 *def, V4_000A3780 *dst);
+    void func_00168CB0(const char *key, const V4_000A3780 &def, V4_000A3780 &dst);
 };
 struct S_000A3780_Mgr {
     void *func_00159E90(char *name, V4_000A3780 *p0, V4_000A3780 *p1, char *s2, char *s3, int n);
