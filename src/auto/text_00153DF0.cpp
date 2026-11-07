@@ -35,7 +35,7 @@ struct C153DF0_Self {
     int fC0[4];
     char padC4[4];
     int fC8[4];
-    char padCC[0x0C];
+
     int fD8;
     int fDC;
     char padE0[0x150 - 0xE0];
