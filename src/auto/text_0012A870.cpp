@@ -2,6 +2,7 @@
 #include "common.h"
 #include "ghidra.h"
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 
 static __forceinline float Max_0012AAE0(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
 static __forceinline float Min_0012AAE0(float a, float b) { float r; _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
@@ -112,6 +113,8 @@ struct C_0012AB70R {
     int f210;
     void func_0012AB70(S_0012AB70Vec *param1, int param2, int param3, int *param4, float *param5);
     void func_0012AB70(S_0012AB70Vec *param1, S_0012AB70Vec *param2, S_0012AB70Vec *param3, int *param4, float *param5);
+    S_0012AB70Vec *f180p(void) { return &f180; }
+    S_0012AB70Vec *f190p(void) { return &f190; }
 };
 
 void func_0012A380(S_0012AB70Vec *dst, const S_0012AB70Vec *src);
@@ -466,26 +469,24 @@ void C_0012AAB0::func_0012AAB0(float param)
 
 void C_0012AAE0::func_0012AAE0(float param1, float param2)
 {
-    _mm_store_ss(&f1fc, _mm_max_ss(_mm_load_ss(&D_00284038), _mm_set_ss(param1)));
-    _mm_store_ss(&f200, _mm_min_ss(_mm_load_ss(&D_0028403C), _mm_set_ss(param2)));
+    f1fc = AsmMaxF(D_00284038, param1);
+    f200 = AsmMinF(D_0028403C, param2);
     ((C_0012AAE0_VCall *)this)->v29(f1fc, f200);
 }
 
 void func_0012A380(S_0012AB70Vec *dst, const S_0012AB70Vec *src);
+extern "C" void _ReadWriteBarrier(void);
+#pragma intrinsic(_ReadWriteBarrier)
 void C_0012AB70R::func_0012AB70(S_0012AB70Vec *param1, S_0012AB70Vec *param2, S_0012AB70Vec *param3, int *param4, float *param5)
 {
     if (param1 != 0) {
         f170 = *param1;
     }
     if (param2 != 0) {
-        S_0012AB70Vec *s = param2;
-        S_0012AB70Vec *d = &f180;
-        func_0012A380(d, s);
+        func_0012A380(&f180, param2);
     }
     if (param3 != 0) {
-        S_0012AB70Vec *s = param3;
-        S_0012AB70Vec *d = &f190;
-        func_0012A380(d, s);
+        func_0012A380(&f190, param3);
     }
     if (param4 != 0) {
         f1d4 = *param4;
@@ -499,7 +500,6 @@ void C_0012AB70R::func_0012AB70(S_0012AB70Vec *param1, S_0012AB70Vec *param2, S_
         f210 = D_002EFDB8[4] + 1;
     }
 }
-
 void C_0012AC20::func_0012AC20(S_0012AB70Vec *p1, S_0012AB70Vec *p2, S_0012AB70Vec *p3, int *p4, float *p5)
 {
     if (p1) *p1 = f170;
