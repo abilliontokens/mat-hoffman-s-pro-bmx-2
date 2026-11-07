@@ -71,6 +71,31 @@ struct BmxSceneMgr {
     int *ints;
 };
 
+struct SceneNode {
+    char pad0[0x3c]; int f3c;
+    SceneNode *func_00192900(int);
+    SceneNode *func_00157600(int);
+    SceneNode *func_00179820(int);
+    void func_00192AF0(int,int);
+    void func_00192A50(SceneNode*,SceneNode*);
+    void func_00192A90(void*);
+    void func_00192AC0(void*);
+    SceneNode *func_0017A310(void*);
+    void func_001577A0(SceneNode*,int);
+};
+struct SceneBounds {
+    void **vt;
+    SceneBounds *func_001C4F40();
+    SceneBounds *func_001923F0(int);
+    void func_001C4F70(int,int,int,int,int,int,int);
+    void func_001C4FA0(int);
+};
+struct SceneResult {
+    int f0; SceneNode *f4; SceneBounds *f8;
+    SceneResult *func_00193490();
+};
+extern SceneBounds *D_002F07E8;
+extern SceneResult *D_002EFE78;
 struct BmxScene {
     char pad0[0x28];
     int f28;
@@ -163,6 +188,8 @@ void BmxScene::func_00183E90(void)
     }
 }
 
+int _func_00183EC0(void) { return 1; }
+
 int BmxScene::func_00184880(void)
 {
     int i;
@@ -171,9 +198,8 @@ int BmxScene::func_00184880(void)
         func_001577A0(f38c->objs2[i].f4, 2);
     }
     for (i = 0; i < f340; i++) {
-        BmxSceneMgr *m = f38c;
-        float *f = m->floats;
-        int *n = m->ints;
+        float *f = f38c->floats;
+        int *n = f38c->ints;
         if (f[i * 4] >= D_0028957C) {
             D_002E2930->func_0015E300(i, (int)&f[i * 4], (int)&n[i]);
         } else {
