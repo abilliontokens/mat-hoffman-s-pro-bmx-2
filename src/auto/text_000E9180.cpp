@@ -100,11 +100,17 @@ struct S_0E9180_150 {
 };
 
 struct S_0E9180_124 {
-    char pad0[0x150];
+    char pad0[0x134];
+    int f134, f138;
+    char pad13c[0x150-0x13c];
     S_0E9180_150 *f150;
-    char pad154[0x270 - 0x154];
+    char pad154[0x264-0x154];
+    unsigned int f264;
+    Timer_0E9180 *f268;
     void *f270;
-    char pad274[0x288 - 0x274];
+    char pad274[8];
+    char *f27c;
+    char pad280[8];
     int f288;
     int f28c;
     int func_000BE020(int);
