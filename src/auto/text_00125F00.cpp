@@ -9,6 +9,7 @@ struct S_00126770_Rec {
 };
 
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 extern float D_002755E8;
 
 struct S_00126A80_Vec { float x, y, z, w; };
@@ -34,6 +35,16 @@ static inline void Xform_00126A80(S_00126A80_Vec *out, const S_00126A80_Mat *mat
     lo = _mm_add_ps(lo, hi);
     _mm_storeu_ps(&out->x, lo);
     out->w = 1.0f;
+}
+
+static __forceinline void MinMax_00126A80(S_00126A80_Vec *mn, S_00126A80_Vec *mx, const S_00126A80_Vec *v)
+{
+    if (v->x > mx->x) mx->x = v->x;
+    if (v->y > mx->y) mx->y = v->y;
+    if (v->z > mx->z) mx->z = v->z;
+    if (v->x < mn->x) mn->x = v->x;
+    if (v->y < mn->y) mn->y = v->y;
+    if (v->z < mn->z) mn->z = v->z;
 }
 
 static __forceinline float Sqrt_00126A80(float x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(_mm_load_ss(&x))); return r; }
@@ -83,6 +94,8 @@ struct S_00125F00_A3 {
 
 int func_00125540(int, S_00125F00_Vec, S_00125F00_Vec, float, S_00125F00_Vec *, S_00125F00_Vec *, float *);
 float sqrtf(float);
+extern float D_00275460;
+extern float D_00275544;
 int func_00125F00(S_00125F00_A0 *a0, unsigned short idx, int *a2, S_00125F00_A3 *a3, int flag)
 {
     if (idx & 0x8000) {
@@ -102,17 +115,15 @@ int func_00125F00(S_00125F00_A0 *a0, unsigned short idx, int *a2, S_00125F00_A3 
                 *p88 = 1;
                 a3->n80++;
                 if (*p8c < a3->f94) {
-                    float f;
                     float dot;
                     S_00125F00_Vec out;
                     a3->f94 = *p8c;
                     a3->v20 = *p74;
                     a3->v30 = *p78;
-                    f = 1.0f - *p8c;
                     out.f[3] = 1.0f;
-                    dot = f * b8->f[0] * p74->f[0];
-                    dot += f * b8->f[1] * p74->f[1];
-                    dot += f * b8->f[2] * p74->f[2];
+                    dot = (D_00275460 - *p8c) * b8->f[0] * p74->f[0]
+                        + (D_00275460 - *p8c) * b8->f[1] * p74->f[1]
+                        + (D_00275460 - *p8c) * b8->f[2] * p74->f[2];
                     out.f[0] = dot * p74->f[0];
                     out.f[1] = dot * p74->f[1];
                     out.f[2] = dot * p74->f[2];
@@ -130,126 +141,114 @@ int func_00125F00(S_00125F00_A0 *a0, unsigned short idx, int *a2, S_00125F00_A3 
         return 1;
     } else {
         S_00125F00_Node *node = (S_00125F00_Node *)a2[0] + idx;
-        S_00125F00_Vec diff;
-        S_00125F00_Vec center;
-        S_00125F00_Vec extent;
+        float c[3];
+        float r[3];
+        float dx, dy, dz;
         float t;
-        float adx;
-        float ady;
-        float adz;
-        float ay1;
-        float az1;
-        float ay2;
-        float az2;
-        float ay3;
-        float ax3;
-        float ay4;
-        float ax4;
-        float az5;
-        float ax5;
-        float az6;
-        float ax6;
+        float adx, ady, adz;
+        float ay1, az1, ay2, az2, ay3, ax3, ay4, ax4, az5, ax5, az6, ax6;
         int i;
         int count;
         float *bc;
         S_00125F00_Vec *b8;
         S_00125F00_Vec *b4;
-        center.f[0] = node->c[0];
-        center.f[1] = node->c[1];
-        center.f[2] = node->c[2];
-        extent.f[0] = node->r[0];
-        extent.f[1] = node->r[1];
-        extent.f[2] = node->r[2];
-        if (flag == 0) {
-            float dist;
-            float rad;
-            diff.f[0] = center.f[0] - a0->c8;
-            diff.f[1] = center.f[1] - a0->cc;
-            diff.f[2] = center.f[2] - a0->d0;
-            dist = sqrtf(diff.f[0] * diff.f[0] + diff.f[1] * diff.f[1] + diff.f[2] * diff.f[2]);
-            rad = sqrtf(extent.f[0] * extent.f[0] + extent.f[1] * extent.f[1] + extent.f[2] * extent.f[2]);
-            if (dist > rad + a0->e8) {
-                return 1;
+        c[0] = node->c[0];
+        c[1] = node->c[1];
+        c[2] = node->c[2];
+        r[0] = node->r[0];
+        r[1] = node->r[1];
+        r[2] = node->r[2];
+        if (flag) {
+            dx = c[0] - a0->c8;
+            dy = c[1] - a0->cc;
+            dz = c[2] - a0->d0;
+            if (r[0] + a0->e8 >= Abs_00126A80(dx) && r[1] + a0->e8 >= Abs_00126A80(dy) && r[2] + a0->e8 >= Abs_00126A80(dz)) {
+                count = a0->count;
+                b8 = a0->b8;
+                b4 = a0->b4;
+                bc = a0->bc;
+                if (count <= 0) return 1;
+                for (i = 0; i < count; i++) {
+                    dx = c[0] - b4->f[0];
+                    dy = c[1] - b4->f[1];
+                    dz = c[2] - b4->f[2];
+                    adx = Abs_00126A80(dx);
+                    ady = Abs_00126A80(dy);
+                    adz = Abs_00126A80(dz);
+                    if (adx <= r[0] && ady <= r[1] && adz <= r[2]) goto hit;
+                    t = ((c[0] + r[0]) - b4->f[0]) / b8->f[0];
+                    if (t >= D_00275544 && t <= *bc) {
+                        ay1 = Abs_00126A80(t * b8->f[1] + b4->f[1] - c[1]);
+                        if (ay1 <= r[1]) {
+                            az1 = Abs_00126A80(t * b8->f[2] + b4->f[2] - c[2]);
+                            if (az1 <= r[2]) goto hit;
+                        }
+                    }
+                    t = ((c[0] - r[0]) - b4->f[0]) / b8->f[0];
+                    if (t >= D_00275544 && t <= *bc) {
+                        ay2 = Abs_00126A80(t * b8->f[1] + b4->f[1] - c[1]);
+                        if (ay2 <= r[1]) {
+                            az2 = Abs_00126A80(t * b8->f[2] + b4->f[2] - c[2]);
+                            if (az2 <= r[2]) goto hit;
+                        }
+                    }
+                    t = ((c[2] + r[2]) - b4->f[2]) / b8->f[2];
+                    if (t >= D_00275544 && t <= *bc) {
+                        ay3 = Abs_00126A80(t * b8->f[1] + b4->f[1] - c[1]);
+                        if (ay3 <= r[1]) {
+                            ax3 = Abs_00126A80(t * b8->f[0] + b4->f[0] - c[0]);
+                            if (ax3 <= r[0]) goto hit;
+                        }
+                    }
+                    t = ((c[2] - r[2]) - b4->f[2]) / b8->f[2];
+                    if (t >= D_00275544 && t <= *bc) {
+                        ay4 = Abs_00126A80(t * b8->f[1] + b4->f[1] - c[1]);
+                        if (ay4 <= r[1]) {
+                            ax4 = Abs_00126A80(t * b8->f[0] + b4->f[0] - c[0]);
+                            if (ax4 <= r[0]) goto hit;
+                        }
+                    }
+                    t = ((c[1] + r[1]) - b4->f[1]) / b8->f[1];
+                    if (t >= D_00275544 && t <= *bc) {
+                        az5 = Abs_00126A80(t * b8->f[2] + b4->f[2] - c[2]);
+                        if (az5 <= r[2]) {
+                            ax5 = Abs_00126A80(t * b8->f[0] + b4->f[0] - c[0]);
+                            if (ax5 <= r[0]) goto hit;
+                        }
+                    }
+                    t = ((c[1] - r[1]) - b4->f[1]) / b8->f[1];
+                    if (t >= D_00275544 && t <= *bc) {
+                        az6 = Abs_00126A80(t * b8->f[2] + b4->f[2] - c[2]);
+                        if (az6 <= r[2]) {
+                            ax6 = Abs_00126A80(t * b8->f[0] + b4->f[0] - c[0]);
+                            if (ax6 <= r[0]) goto hit;
+                        }
+                    }
+                    b4++;
+                    b8++;
+                    bc++;
+                    continue;
+                hit:
+                    func_00125F00(a0, node->left, a2, a3, flag);
+                    func_00125F00(a0, node->right, a2, a3, flag);
+                    return 1;
+                }
             }
-            func_00125F00(a0, node->left, a2, a3, 0);
-            func_00125F00(a0, node->right, a2, a3, 0);
             return 1;
         } else {
-            diff.f[0] = center.f[0] - a0->c8;
-            diff.f[1] = center.f[1] - a0->cc;
-            diff.f[2] = center.f[2] - a0->d0;
-            if (extent.f[0] + a0->e8 < Abs_00126A80(diff.f[0])) return 1;
-            if (extent.f[1] + a0->e8 < Abs_00126A80(diff.f[1])) return 1;
-            if (extent.f[2] + a0->e8 < Abs_00126A80(diff.f[2])) return 1;
-            count = a0->count;
-            b8 = a0->b8;
-            b4 = a0->b4;
-            bc = a0->bc;
-            if (count <= 0) return 1;
-            for (i = 0; i < count; i++) {
-                diff.f[0] = center.f[0] - b4->f[0];
-                diff.f[1] = center.f[1] - b4->f[1];
-                diff.f[2] = center.f[2] - b4->f[2];
-                adx = Abs_00126A80(diff.f[0]);
-                ady = Abs_00126A80(diff.f[1]);
-                adz = Abs_00126A80(diff.f[2]);
-                if (adx <= extent.f[0] && ady <= extent.f[1] && adz <= extent.f[2]) goto hit;
-                t = ((center.f[0] + extent.f[0]) - b4->f[0]) / b8->f[0];
-                if (t >= 0.0f && t < *bc) {
-                    ay1 = Abs_00126A80(t * b8->f[1] + b4->f[1] - center.f[1]);
-                    if (ay1 <= extent.f[1]) {
-                        az1 = Abs_00126A80(t * b8->f[2] + b4->f[2] - center.f[2]);
-                        if (az1 <= extent.f[2]) goto hit;
-                    }
-                }
-                t = ((center.f[0] - extent.f[0]) - b4->f[0]) / b8->f[0];
-                if (t >= 0.0f && t < *bc) {
-                    ay2 = Abs_00126A80(t * b8->f[1] + b4->f[1] - center.f[1]);
-                    if (ay2 <= extent.f[1]) {
-                        az2 = Abs_00126A80(t * b8->f[2] + b4->f[2] - center.f[2]);
-                        if (az2 <= extent.f[2]) goto hit;
-                    }
-                }
-                t = ((center.f[2] + extent.f[2]) - b4->f[2]) / b8->f[2];
-                if (t >= 0.0f && t < *bc) {
-                    ay3 = Abs_00126A80(t * b8->f[1] + b4->f[1] - center.f[1]);
-                    if (ay3 <= extent.f[1]) {
-                        ax3 = Abs_00126A80(t * b8->f[0] + b4->f[0] - center.f[0]);
-                        if (ax3 <= extent.f[0]) goto hit;
-                    }
-                }
-                t = ((center.f[2] - extent.f[2]) - b4->f[2]) / b8->f[2];
-                if (t >= 0.0f && t < *bc) {
-                    ay4 = Abs_00126A80(t * b8->f[1] + b4->f[1] - center.f[1]);
-                    if (ay4 <= extent.f[1]) {
-                        ax4 = Abs_00126A80(t * b8->f[0] + b4->f[0] - center.f[0]);
-                        if (ax4 <= extent.f[0]) goto hit;
-                    }
-                }
-                t = ((center.f[1] + extent.f[1]) - b4->f[1]) / b8->f[1];
-                if (t >= 0.0f && t < *bc) {
-                    az5 = Abs_00126A80(t * b8->f[2] + b4->f[2] - center.f[2]);
-                    if (az5 <= extent.f[2]) {
-                        ax5 = Abs_00126A80(t * b8->f[0] + b4->f[0] - center.f[0]);
-                        if (ax5 <= extent.f[0]) goto hit;
-                    }
-                }
-                t = ((center.f[1] - extent.f[1]) - b4->f[1]) / b8->f[1];
-                if (t >= 0.0f && t < *bc) {
-                    az6 = Abs_00126A80(t * b8->f[2] + b4->f[2] - center.f[2]);
-                    if (az6 <= extent.f[2]) {
-                        ax6 = Abs_00126A80(t * b8->f[0] + b4->f[0] - center.f[0]);
-                        if (ax6 <= extent.f[0]) goto hit;
-                    }
-                }
-                b4++;
-                b8++;
-                bc++;
-                continue;
-            hit:
-                func_00125F00(a0, node->left, a2, a3, flag);
+            float dist;
+            float rad;
+            float sq;
+            dx = c[0] - a0->c8;
+            dy = c[1] - a0->cc;
+            dz = c[2] - a0->d0;
+            sq = dz * dz + dy * dy + dx * dx;
+            dist = AsmSqrtF(sq);
+            sq = r[2] * r[2] + r[1] * r[1] + r[0] * r[0];
+            rad = AsmSqrtF(sq);
+            if (rad + a0->e8 >= dist) {
+                func_00125F00(a0, node->left, a2, a3, 0);
                 func_00125F00(a0, node->right, a2, a3, flag);
-                return 1;
             }
             return 1;
         }
@@ -348,10 +347,10 @@ int func_001268E0(S_001268E0_Rec *src, S_001268E0_Vec *pos, S_001268E0_Rec *outA
  *cntA=count/2; *cntB=count-count/2; return 0;
 }
 
-void _func_00126A80(S_00126A80_Vec *pts, int count, S_00126A80_Vec *center, S_00126A80_Vec *ext, float *vol, float *radius, S_00126A80_Mat *mat)
+void func_00126A80(S_00126A80_Vec *pts, int count, S_00126A80_Vec *center, S_00126A80_Vec *ext, float *vol, float *radius, S_00126A80_Mat *mat)
 {
-    S_00126A80_Vec mx = *pts;
     S_00126A80_Vec mn = *pts;
+    S_00126A80_Vec mx = *pts;
     S_00126A80_Vec v;
     S_00126A80_Vec c;
     float sx, sy, sz;
@@ -360,7 +359,7 @@ void _func_00126A80(S_00126A80_Vec *pts, int count, S_00126A80_Vec *center, S_00
     for (i = 0; i < count; i++) {
         v = *pts;
         if (mat)
-            Xform_00126A80(&v, mat, &v.x);
+            AsmTransformPoint(&v.x, &v.x, (const float *)mat);
         if (v.x > mx.x) mx.x = v.x;
         if (v.y > mx.y) mx.y = v.y;
         if (v.z > mx.z) mx.z = v.z;
@@ -379,10 +378,10 @@ void _func_00126A80(S_00126A80_Vec *pts, int count, S_00126A80_Vec *center, S_00
     mn.z = (mx.z - mn.z) * D_002755E8;
     mn.w = 1.0f;
     *ext = mn;
-    *radius = Sqrt_00126A80(ext->x * ext->x + ext->y * ext->y + ext->z * ext->z);
-    sx = Max_00126A80(Abs_00126A80(ext->x + ext->x), 0.01f);
-    sy = Max_00126A80(Abs_00126A80(ext->y + ext->y), 0.01f);
-    sz = Max_00126A80(Abs_00126A80(ext->z + ext->z), 0.01f);
+    *radius = AsmSqrtF(ext->x * ext->x + ext->y * ext->y + ext->z * ext->z);
+    sx = AsmMaxF(Abs_00126A80(ext->x + ext->x), 0.01f);
+    sy = AsmMaxF(Abs_00126A80(ext->y + ext->y), 0.01f);
+    sz = AsmMaxF(Abs_00126A80(ext->z + ext->z), 0.01f);
     *vol = sz * sy * sx;
 }
 
