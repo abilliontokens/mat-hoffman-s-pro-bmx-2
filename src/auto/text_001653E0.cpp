@@ -201,6 +201,7 @@ extern char D_00287E48[];
 #include <string.h>
 
 static inline int min_165F70(const int &a, const int &b) { return a > b ? b : a; }
+static __forceinline int min_165F70_volatile(const volatile int &a, const volatile int &b) { int x = a, y = b; return x > y ? y : x; }
 
 /* axis mirror used by func_00165A20: flip one of y/z/w by mode, then negate all three */
 static __forceinline void mirror_165A20(Vec4_165EF0 *v, int mode)
@@ -258,10 +259,11 @@ struct C_00165980 {
 
 void C1653::func_001653E0(Set1653 *a, Set1653 *b, Set1653 *c, Set1653 *d, float s, float blend1, float blend2, int flag, float t2)
 {
-    float t = s * a->f38;
+    float t;
     int i;
     int idx;
     f18 = 0;
+    t = s * a->f38;
     for (i = 0; i < a->f20; i++) {
         Vec4_165EF0 v[4];
         a->f18[i]->get(t, (float *)&v[0]);
@@ -446,7 +448,7 @@ Vec4_165EF0 C_00165EF0::func_00165EF0(C_00165EF0_Arg1 *a1, f32 a2, int a3, void 
 void C_00165F70::func_00165F70(void)
 {
     C_00165F70 * volatile self = this;
-    char buf[0x104];
+    char buf[0x100];
     int id;
     int idx;
     char *p;
@@ -454,21 +456,35 @@ void C_00165F70::func_00165F70(void)
     int n;
 
     if (this->f1FC == 0) {
-        int l = strlen(this->f190), m = 0xff;
-        n = min_165F70(m, l);
-        func_001E8920(buf, self->f190, n);
+        {
+            volatile int s1[3];
+            s1[0] = strlen(this->f190);
+            s1[1] = 0xff;
+            int a = s1[1];
+            int b = s1[0];
+            s1[2] = min_165F70(a, b);
+            C_00165F70 *source = self;
+            n = s1[2];
+            func_001E8920(buf, source->f190, n);
+        }
         buf[n] = 0;
         strcat(buf, self->f98);
         id = D_002BEAAC->func_0013C9F0(buf, &D_00276274);
         if (id != -1) {
             while (D_002BEAAC->func_0013C6E0(id, buf, 0xFF)) {
                 func_001EA1EE(buf);
-                idx = func_00164650(func_001E95A4(buf, D_00287E50));
+                idx = self->func_00164650(func_001E95A4(buf, D_00287E50));
                 if (idx != 0xff) {
+                    volatile int s2[3];
                     tok = func_001E95A4(0, D_00287E48);
-                    int l2 = strlen(tok), m2 = 0x31;
-                    n = min_165F70(m2, l2);
-                    func_001E8920(self->f1EC[idx].name, tok, n);
+                    s2[1] = strlen(tok);
+                    s2[0] = 0x31;
+                    int a2 = s2[0];
+                    int b2 = s2[1];
+                    s2[2] = min_165F70(a2, b2);
+                    C_00165F70 *src2 = self;
+                    n = s2[2];
+                    func_001E8920(src2->f1EC[idx].name, tok, n);
                     self->f1EC[idx].name[n] = 0;
                     self->f1EC[idx].f38 = 0;
                     self->f1EC[idx].f3C = 1;
