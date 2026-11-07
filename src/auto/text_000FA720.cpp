@@ -30,6 +30,8 @@ struct RiderSub270 {
 struct RiderPlayer {
     char pad0[0x270];
     RiderSub270 *f270;
+    char pad274[0x284-0x274];
+    int f284;
     RiderBtn *func_000BA9B0(int a);
 };
 
