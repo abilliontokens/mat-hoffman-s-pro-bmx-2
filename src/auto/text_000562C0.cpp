@@ -28,6 +28,11 @@ V4_000562C0 *func_000110B0(float *a, float *b);
 void func_0001EAB0(float *a, float *b, float *c);
 void func_00158390(void *a, V4_000562C0 b, V4_000562C0 c, float *d);
 void func_00055140(float *dst, const float *src);
+void __fastcall func_00197E70(void *self, V4_000562C0 *out);
+V4_000562C0 *__fastcall func_00197F70(void *self, float *a, V4_000562C0 *b);
+void __fastcall func_00199600(void *self, V4_000562C0 v);
+V4_000562C0 *__fastcall func_00197EC0(void *self, float *a, V4_000562C0 *b);
+void __stdcall func_00055A10(V4_000562C0 a, V4_000562C0 b, V4_000562C0 c, V4_000562C0 d, float dt);
 
 extern int D_002B8FDC;
 extern int D_002B8FD8;
