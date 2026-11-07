@@ -40,6 +40,12 @@ struct S_2D730_Mgr {
 
 struct S_2D730_Sub {
     void func_00025E50(float f);
+    void func_00030CE0(float);
+    void func_00030E70(float);
+    void func_001941F0(float);
+    void func_00174550(int, int, int);
+    void func_000B8AD0(int, int);
+    void func_000B6A70(float);
     void func_00133EF0(void *p);
     void func_00134530(int mask, int *a, int *b, int n, int x, int y);
 };
