@@ -98,7 +98,7 @@ struct ModelBC {
 };
 struct ActorBC {
  virtual void Destroy(int); virtual void SetModel(ModelBC*); virtual int Init(DataBC*);
- char padC[0x198];ManagerBC *f1A4;
+ char padC[0x1a0];ManagerBC *f1A4;
  ActorBC *func_001B5110();
 };
 struct AnimBC {
@@ -136,8 +136,12 @@ static __forceinline void copyBC(NodeBC *p,const char *s) {
 }
 
 void C_0003BC90::func_0003BC90() {
- V4 pos={0,0,0,1}, a={0,0,0,1}, b={0,0,0,1}, scale, center;
+ V4 pos, a, b, scale, center;
+ setV4(&pos,0,0,0,1);
+ setV4(&a,0,0,0,1);
+ setV4(&b,0,0,0,1);
  int n;
+ char path[0x104], fullPath[0x104];
  char name[0x104];
  center.w=1;
  pos.x=(float)f444; pos.y=f440; pos.z=(float)f448;
@@ -296,10 +300,9 @@ void C_0003BC90::func_0003BC90() {
  len=strlen(third);
  if(len){func_00035C10(first,1,third,&pos,&a,&b,0,1);f570->vf4();}
  if(getStringBC(f64,index)->f364){
- char path[0x104],fullPath[0x104];
  func_001ADCC0(path,0x104,getStringBC(f64,index)->name);
  char *dot=func_001E8AC0(path,'.');
- if(dot){unsigned int n=strlen(dot);memset(dot,0,n);}
+ if(dot){unsigned int m=strlen(dot);memset(dot,0,m);}
  func_001ADCC0(fullPath,0x104,D_00276F0C,D_002A5EA0,path);
  int resource=D_002BEAAC->func_0013C9F0(fullPath,D_00276274);
  if(resource!=-1)D_002BEAAC->func_0013C110(resource);
