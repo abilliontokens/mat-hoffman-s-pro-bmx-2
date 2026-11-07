@@ -25,7 +25,7 @@ extern char D_0028C174[];
 extern char D_0028C168[];
 extern char D_0028C118[];
 extern char D_0028C12C[];
-char *__fastcall func_001ACD40(int ndec, int unused, char fmt, double value, int alt, int *sign, char *buf, int *outlen);
+char *func_001ACD40(int ndec, char fmt, double value, int alt, int *sign, char *buf, int *outlen);
 char *func_001ACB40(double value, int ndec, char *buf, int alt);
 char *func_001E9260(const char *s, int c);
 
