@@ -68,6 +68,7 @@ struct S_Obj_B03A0 {
     int f18;
 };
 
+struct Vec_B03A0 { float x,y,z,w; };
 struct S_1E0_B03A0 {
     void *vtbl;
     char pad4[0x24];
@@ -133,6 +134,41 @@ struct C_000B11C0 {
     void func_000B1200(void);
     C_000B11C0 *func_000B11C0(int param_1);
 };
+
+int C_000B03A0::func_000B03A0(int a1, int a2, int a3)
+{
+    S_Rec_B03A0 *r;
+    S_Obj_B03A0 *obj;
+    int count;
+    int n;
+
+    r = (S_Rec_B03A0 *)((S_002A8490_B03A0 *)D_002A8490)->f2e0->f2c4;
+    if (r == 0) {
+        return 0;
+    }
+    n = 0;
+    for (count = 0; count < 0x96; count++, r = (S_Rec_B03A0 *)((char *)r + 0x70)) {
+        if ((s8)r->type <= 0) break;
+        obj = (S_Obj_B03A0 *)func_001E8A44(0x1c);
+        if (obj != 0) {
+            obj->f0 = -1;
+            obj->f4 = 0;
+            obj->f8 = 0;
+            obj->fC = 0;
+            obj->f10 = 0;
+            obj->f14 = 0;
+            obj->f18 = 0;
+        }
+        switch (r->type - 1) {
+        case 0:
+            n++;
+            break;
+        default:
+            break;
+        }
+    }
+    return 0;
+}
 
 C_000B11C0 *C_000B11C0::func_000B11C0(int param_1) {
     func_00157600(param_1);
