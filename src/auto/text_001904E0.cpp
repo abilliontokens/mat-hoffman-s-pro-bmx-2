@@ -105,6 +105,8 @@ struct C_00191270 {
     S_1904E0_Table *f164;
     char pad168[8];
     S_1904E0_Ops *f170;
+    void func_001900E0(S_00191270_Owner *, char *, int, S_1904E0_Rec *, unsigned int, int, C_0018F350 *);
+    void func_00190200(S_00191270_Owner *, int, char *, C_0018F350 *, S_1904E0_Rec *, unsigned int);
     int func_0018D580(unsigned int id);
     int func_0018E7D0(int kind, char *name, int *out);
     void func_0018EA50(unsigned int a, void *b);
