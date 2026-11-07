@@ -151,9 +151,9 @@ struct V4_00104A00 {
 
 static float fabs_00104A00(float x)
 {
-    volatile int tmp;
-    tmp = *(volatile int *)&x & 0x7fffffff;
-    return *(volatile float *)&tmp;
+    struct Tmp_00104A00 { volatile int v; } t;
+    t.v = *(volatile int *)&x & 0x7fffffff;
+    return *(volatile float *)&t.v;
 }
 
 
