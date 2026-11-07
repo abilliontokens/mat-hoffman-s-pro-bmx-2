@@ -106,7 +106,7 @@ struct C_0010C210 {
     void func_0010C210();
 };
 struct Q10C { float x, y, z, w; Q10C() { z = 0; y = 0; x = 0; w = 1.0f; } };
-struct M44C { float m[16]; };
+struct __declspec(align(16)) M44C { float m[16]; };
 struct Owner10C {
     void func_0010C210();
 };
