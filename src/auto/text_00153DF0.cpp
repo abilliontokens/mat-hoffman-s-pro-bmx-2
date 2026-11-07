@@ -63,7 +63,7 @@ struct C153DF0_Self {
 extern C153DF0_Game *D_002A8490;
 extern C153DF0_B9120 *D_002B9120;
 struct X153DF0_78 { void func_0014AC30(void *a, int b); void func_00133ED0(); void func_00133F10(int a); void func_00133EF0(void *a); };
-struct X153DF0_F { void *func_00197F70(void *a); };
+struct X153DF0_F { void *func_00197F70(void *a); Vec153DF0 *func_00197F70(Vec153DF0 *out, void *a); };
 struct X153DF0_50900 { void func_00150900(void *a, void *b); };
 void func_0011CA60(float *v);
 struct X153DF0_9B00 { void func_00199B00(void *a, int b); };
