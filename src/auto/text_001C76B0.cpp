@@ -203,4 +203,3 @@ void Obj::func_001C76B0(int a, int b, int c, int d, int e, int f2, int g, int h,
         func_001E891B(ini);
     }
 }
-#pragma optimize("", on)
