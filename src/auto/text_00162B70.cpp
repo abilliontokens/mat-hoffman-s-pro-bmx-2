@@ -135,7 +135,13 @@ void func_000265C0(float *dst, float *a, float *b, float *c, int d, int e);
 struct EObj_00162FB0 {
     void *func_00199B00(int a, void *out);
     void *func_0019AD60(int a, float *m);
+    void func_00197E70(float *v);
+    void func_00197B90(float *v);
 };
+struct Vec4_162FB0 {
+    float x, y, z, w;
+};
+void func_0015BB70(void *p);
 extern float D_00287CF0;
 extern float D_00287CE0;
 extern float D_00287CD0;
