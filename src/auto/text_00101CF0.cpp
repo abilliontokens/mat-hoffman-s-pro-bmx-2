@@ -2,7 +2,7 @@
 #include "common.h"
 #include <string.h>
 
-static __forceinline int min7(const int &a, const int &b) { return a > b ? b : a; }
+static const int &min_(const int &a, const int &b) { return b < a ? b : a; }
 
 extern int D_002826B4;
 
@@ -412,10 +412,9 @@ void C_00101CF0::func_00101CF0(void)
     func_00157960();
 }
 
+#pragma intrinsic(strlen, memset)
 void C_00102370::func_00102370(float dt)
 {
-    char buf[0x38];
-    Obj102370_Mgr2 *mgr;
     f328 += dt;
     if (f328 > D_00275460) {
         if (f344->func_00092A10() == 1 && f348 == 0) {
@@ -423,35 +422,32 @@ void C_00102370::func_00102370(float dt)
             f380 = 0;
             f384 = 0xff;
             f388 = f364;
-            f38C = 0;
-            f390 = 0x3e800000;
+            f38C = 0.0f;
+            f390 = 0.25f;
             func_000EBE90();
-            f328 = 0;
-        } else {
-            if (f344->func_00092A10() == 0 && f348 == 1) {
-                func_000EC6F0();
-                func_000ECD90();
-                func_000EBE90();
-            }
-            f328 = 0;
+            f328 = 0.0f;
+        } else if (f344->func_00092A10() == 0 && f348 == 1) {
+            func_000EC6F0();
+            func_000ECD90();
+            func_000EBE90();
+            f328 = 0.0f;
         }
     }
-    if (f380 != (int)f2A0->b3B) {
-        if (f38C < f390) {
-            f388 = (int)((f380 - f384) * (f38C / f390)) + f384;
-        } else {
+    if (f380 != f2A0->b3B) {
+        if (f38C >= f390)
             f388 = f380;
-        }
+        else
+            f388 = (int)((f380 - f384) * (f38C / f390)) + f384;
         f38C += dt;
     }
-    if (f334 != 0) {
+    if (f334) {
         f340 += dt;
         if (f340 >= D_00275460) {
-            if (f344->func_000930D0() != 0) {
+            if (f344->func_000930D0()) {
                 f35C = 0;
                 func_000EC320();
                 f34C = 1;
-                if (f394 != 0) {
+                if (f394) {
                     f344->func_00093120();
                     f394 = 0;
                 }
@@ -463,15 +459,15 @@ void C_00102370::func_00102370(float dt)
                 f344->func_00094570(320.0f, 100.0f, D_0028F5E0, 0, 0, 0);
             }
             f334 = 0;
-            f340 = 0;
+            f340 = 0.0f;
             f330 = 0;
         }
     }
-    if (f30C != 0 || f310 != 0) {
+    if (f30C || f310) {
         f308 += dt;
         if (f308 >= D_0027DE74) {
-            if (f30C != 0) {
-                if (f35C != 0) {
+            if (f30C) {
+                if (f35C) {
                     f344->func_00093120();
                     f378 = 1;
                     f35C = 0;
@@ -481,88 +477,82 @@ void C_00102370::func_00102370(float dt)
                     f124->f138 = 7;
                     f124->f134 = 8;
                 } else {
-                    int idx;
-                    int nameIdx;
-                    char *entry;
-                    char *name2;
-                    int len;
-                    int n;
-                    void *mem;
+                    Obj102370_124 *p = f124;
+                    int a = p->f27C;
+                    int b = p->f280;
+                    int r;
                     do {
-                        idx = func_00011260(0, 14);
-                    } while (D_002A8490->f2E0->f2C0->func_0005C1D0(idx) == 0);
-                    entry = (char *)f124 + idx * 0x1a8;
-                    nameIdx = **(int **)(entry + 0x120);
-                    mgr = D_002A8490->f2E0;
-                    mgr->f1F0 = mgr->f190;
-                    mgr->f190 = idx;
-                    *(int *)(entry + 0x124) = 0;
-                    len = 0;
-                    while (entry[0x104 + len] != 0) len++;
-                    n = len < 7 ? len : 7;
-                    func_001E8920(mgr->buf150, entry + 0x104, n);
-                    mgr->buf150[n] = 0;
-                    mgr->f1B0 = 0;
-                    name2 = (char *)f124->f280 + nameIdx * 0x120 + 0x104;
-                    len = 0;
-                    while (name2[len] != 0) len++;
-                    n = len < 7 ? len : 7;
-                    func_001E8920(mgr->buf1F4, name2, n);
-                    mgr->buf1F4[n] = 0;
+                        r = func_00011260(0, 0xe);
+                    } while (!D_002A8490->f2E0->f2C0->func_0005C1D0(r));
+                    char *e = (char *)a + r * 0x1a8;
+                    int x = **(int **)(e + 0x120);
+                    D_002A8490->f2E0->f1F0 = D_002A8490->f2E0->f190;
+                    D_002A8490->f2E0->f190 = r;
+                    *(int *)(e + 0x124) = 0;
+                    char *s = e + 0x104;
+                    int len = strlen(s);
+                    int lim = 7;
+                    int n = lim > len ? len : lim;
+                    func_001E8920(D_002A8490->f2E0->buf150, s, n);
+                    D_002A8490->f2E0->buf150[n] = 0;
+                    D_002A8490->f2E0->f1B0 = 0;
+                    s = (char *)b + x * 0x120 + 0x104;
+                    len = strlen(s);
+                    lim = 7;
+                    n = lim > len ? len : lim;
+                    func_001E8920(D_002A8490->f2E0->buf1F4, s, n);
+                    D_002A8490->f2E0->buf1F4[n] = 0;
                     f124->func_000BC3E0(0);
-                    mem = func_001E8A44(0x41a0);
-                    mgr->f2C4 = mem ? (int *)((Obj102370_7E050 *)mem)->func_0007E050() : 0;
-                    {
-                        int k;
-                        for (k = 0; k < 0x1068; k++) mgr->f2C4[k] = 0;
-                    }
-                    if (f344->func_00092C70() != 0) {
+                    Obj102370_7E050 *o = (Obj102370_7E050 *)func_001E8A44(0x41a0);
+                    D_002A8490->f2E0->f2C4 = (int *)(o ? o->func_0007E050() : 0);
+                    memset(D_002A8490->f2E0->f2C4, 0, 0x41a0);
+                    if (f344->func_00092C70()) {
+                        char buf[0x38];
                         func_001ADCC0(buf, 0x37, D_002790F4, arr2E0[f33C] + 1);
-                        mgr->f2CC->func_001D4590(f344->func_000928E0(), buf, (int)mgr->f2C4, 0x41a0);
+                        D_002A8490->f2E0->f2CC->func_001D4590(f344->func_000928E0(), buf, (int)D_002A8490->f2E0->f2C4, 0x41a0);
                     }
-                    switch (*(unsigned char *)((char *)arr2E0[f33C] + mgr->f2C8 + 8)) {
+                    switch (*(unsigned char *)(arr2E0[f33C] + D_002A8490->f2E0->f2C8 + 8)) {
                     case 0:
-                        mgr->f48 = 8;
-                        mgr->func_0005B3F0();
-                        mgr->f4 = 0xb;
+                        D_002A8490->f2E0->f48 = 8;
+                        D_002A8490->f2E0->func_0005B3F0();
+                        D_002A8490->f2E0->f4 = 0xb;
                         f124->f138 = 8;
                         break;
                     case 1:
-                        mgr->f48 = 9;
-                        mgr->func_0005B3F0();
-                        mgr->f4 = 0xb;
+                        D_002A8490->f2E0->f48 = 9;
+                        D_002A8490->f2E0->func_0005B3F0();
+                        D_002A8490->f2E0->f4 = 0xb;
                         f124->f138 = 8;
                         break;
                     case 2:
-                        mgr->f48 = 10;
-                        mgr->func_0005B3F0();
-                        mgr->f4 = 0xb;
+                        D_002A8490->f2E0->f48 = 0xa;
+                        D_002A8490->f2E0->func_0005B3F0();
+                        D_002A8490->f2E0->f4 = 0xb;
                         f124->f138 = 8;
                         break;
                     }
                 }
                 f30C = 0;
             }
-            if (f310 != 0) {
+            if (f310) {
                 f32C = 1;
                 f344->func_00093120();
                 f124->f138 = 7;
                 f124->f134 = 8;
                 f310 = 0;
             }
-            f308 = 0;
+            f308 = 0.0f;
         }
     }
-    if (f360 != (int)f320->b3B) {
-        if (f36C < f370) {
-            f368 = (int)((f360 - f364) * (f36C / f370)) + f364;
-        } else {
+    if (f360 != f320->b3B) {
+        if (f36C >= f370)
             f368 = f360;
-        }
+        else
+            f368 = (int)((f360 - f364) * (f36C / f370)) + f364;
         f36C += dt;
     }
     f398 += dt;
-    if (f39C != 0 && f358 == 0) {
+    if (f39C && !f358) {
         f398 += dt;
         if (f398 >= D_00278C48) {
             f358 = 1;
@@ -571,7 +561,6 @@ void C_00102370::func_00102370(float dt)
     }
     func_001BED00(dt);
 }
-
 C_00102B30 *C_00102B30::func_00102B30(void *a, void *b)
 {
     ((C_001C0110 *)this)->func_001C0110(a, b);
