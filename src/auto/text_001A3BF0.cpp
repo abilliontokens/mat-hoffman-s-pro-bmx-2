@@ -1,6 +1,7 @@
 /* 18 functions from 0x001A3BF0 to 0x001A4B60, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+#include "asm_helpers.h"
 
 extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
 extern char D_00275678[];
