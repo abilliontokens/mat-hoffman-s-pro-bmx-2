@@ -27,6 +27,9 @@ struct C_Elem_62070 {
     __forceinline void size(float z) { if(f2C!=z) {f2C=z;f58|=1;} if(f28!=z) {f28=z;f58|=1;} }
     __forceinline void layer(float z) { if(*(int *)&f34!=*(int *)&z) {f34=z;f58|=1;} }
 };
+extern V4_62070 D_002A1D88, D_002A1DD8, D_002A1D10;
+extern float D_002A1E28, D_002A1E2C, D_002A1E30, D_002A1E34, D_002755E8, D_00278650, D_00278788, D_00278784;
+struct S_62070_Control { void func_00052C10(int); };
 struct C_00062070 {
     char pad0[0x12C];
     C_Elem_62070 *f12C[30];
