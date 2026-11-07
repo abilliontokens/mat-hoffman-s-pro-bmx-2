@@ -50,7 +50,10 @@ struct C153DF0_Self {
     int f198;
     char pad19C[4];
     float f1A0;
-    char pad1A4[0x400];
+    C153DF0_Eff *f1A4;
+    C153DF0_Eff *f1A8;
+    C153DF0_Eff *f1AC;
+    char pad1B0[0x3F4];
     int f5A4;
     void func_00153DF0(float dt);
 };
