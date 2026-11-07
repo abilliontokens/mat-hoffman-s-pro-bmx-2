@@ -7,7 +7,7 @@ void *func_001E8A44(int size);
 void func_001ADCC0(char *buf, int size, char *fmt, ...);
 int func_001E8AF0(char *a, char *b);
 int func_001E8920(char *dst, const char *src, unsigned int n);
-void func_001577A0(void *obj, int a);
+void __stdcall func_001577A0(void *obj, int a);
 void func_001CDE90(int a);
 void func_0001CB80(char *buf);
 void func_000A3780(int a, char *b, void *c);
