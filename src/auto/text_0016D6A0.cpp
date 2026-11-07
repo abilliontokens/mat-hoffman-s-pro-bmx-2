@@ -140,7 +140,7 @@ struct C_0016DEA0 {
     int f18C;
     int f190;
     int f194;
-    int f198;
+    float f198;
     char pad19C[0xC];
     int f1A8, f1AC;
     char pad1B0[0x14];
