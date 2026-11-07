@@ -18,9 +18,9 @@ struct C_000B7520 {
     float f120, f124, f128, f12c;
       float f130, f134, f138;
     char pad13c[0x44];
-    float f180, f184, f188;
-    float f190, f194, f198;
-    float f1a0, f1a4, f1a8;
+    float f180, f184, f188, f18c;
+      float f190, f194, f198, f19c;
+      float f1a0, f1a4, f1a8, f1ac;
     int func_000B67C0();
     int func_000B7520(int a);
 };
