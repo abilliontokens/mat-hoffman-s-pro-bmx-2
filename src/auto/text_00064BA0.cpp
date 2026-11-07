@@ -18,7 +18,9 @@ struct S_ObjectiveStorage {
     int func_00092BE0();
 };
 struct S_00064BA0_Inner {
-    char pad00[0x64];
+    char pad00[0x44];
+    struct S_ObjectiveInput *f44;
+    char pad48[0x64 - 0x48];
     S_00064BA0_A *f64;              /* 0x64: object whose vtable slot 4 is called */
     char pad68[0x158 - 0x68];
     S_00064BA0_B *f158;             /* 0x158 */
