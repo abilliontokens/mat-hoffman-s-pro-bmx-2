@@ -301,6 +301,7 @@ void func_00012140(void);
 void func_001E8920(char *dst, const char *src, int n);
 int func_001DC974(void);
 void func_001E891B(void *p);
+void func_001ADCC0(char *buf, int size, const char *fmt, ...);
 
 void C_000342C0::func_000342C0()
 {
