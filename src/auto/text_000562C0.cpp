@@ -14,6 +14,7 @@ void func_00199A70(int,V4_000562C0*); void func_001994C0(int,V4_000562C0*,V4_000
 void func_000560A0(); void func_00197E70(V4_000562C0*);
 V4_000562C0 *func_00197F70(float*,V4_000562C0*); V4_000562C0 *func_00197EC0(float*,V4_000562C0*);
 void func_00199600(V4_000562C0);
+void func_00055A10(V4_000562C0,V4_000562C0,V4_000562C0,V4_000562C0,float);
 };
 struct V4s_000562C0 : V4_000562C0 {
     V4s_000562C0() { z = 0.0f; y = 0.0f; x = 0.0f; w = 1.0f; }
