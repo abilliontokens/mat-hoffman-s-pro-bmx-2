@@ -18,8 +18,8 @@ struct Vec4 {
     Vec4(f32 x_, double y_, double z_, f32 w_) {
         x = x_;
         y = (f32)y_;
-        w = w_;
         z = (f32)z_;
+        w = w_;
     }
 };
 
