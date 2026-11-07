@@ -47,6 +47,14 @@ struct TireTransform {
     void func_001994C0(int,TireVec *,TireVec *);
 };
 struct TireBody {
+    void **vtbl;
+    char pad4[0x24]; float f28;
+    char pad2C[0x104]; TireVec f130;
+    char pad140[0x50]; TireVec f190;
+    char pad1A0[0x70]; float f210;
+    char pad214[0x18]; TireTransform *f22C;
+    char pad230[8]; TireVec f238,f248;
+    char pad258[0x10]; TireVec f268;
     void func_0001C710(TireVec);
     void func_0001E0A0(TireVec);
     void func_0001C750(TireVec,TireVec);
