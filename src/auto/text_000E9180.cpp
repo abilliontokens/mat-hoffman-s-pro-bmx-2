@@ -84,6 +84,8 @@ struct S_0E9180_124 {
     char pad274[0x288 - 0x274];
     int f288;
     int f28c;
+    int func_000BE020(int);
+    int func_000BDF30(int);
 };
 
 struct C_000E9180 {
