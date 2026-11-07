@@ -675,11 +675,6 @@ unsigned C_001D4200::func_001D4060(int a)
     return 0;
 }
 
-static __forceinline int SlotLower(int a)
-{
-    return a >= 4;
-}
-
 int C_001D4200::func_001D40E0(int a)
 {
     char letter;
