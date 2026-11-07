@@ -1,5 +1,6 @@
 /* 9 functions from 0x000B8AD0 to 0x000B9AD0, found by Ghidra. */
 #include "common.h"
+#include <math.h>
 #include "asm_helpers.h"
 struct C_000B8C80 {
     char pad0[0x9C];
