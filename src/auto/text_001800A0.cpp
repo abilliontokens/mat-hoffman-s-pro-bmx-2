@@ -83,12 +83,12 @@ struct C_00180600 {
     virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7(); virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11(); virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15(); virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19(); virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23(); virtual void v24(); virtual void v25(); virtual void v26(); virtual void func_000EBE90v();
     char pad4[0xAC];
     float mB0, mB4, mB8, mBC, mC0, mC4, mC8, mCC, mD0, mD4, mD8, mDC, mE0, mE4, mE8, mEC;
-    char padF0[4];
+    short fF0s;
+    char padF2[2];
     int fF4;
     float fF8;
     Rec180600 *fFC;
     Pair180600 *f100;
-    short fF0s;
     void func_00180600(int a0, int a1);
 };
 
@@ -240,7 +240,7 @@ void C_00180600::func_00180600(int a0, volatile int handle)
             rec->f18 = S.x;
             rec->f1C = S.y;
             rec->f20 = S.z;
-            rec->f4 = sqrtf(C.z * C.z + C.y * C.y + C.x * C.x);
+            rec->f4 = AsmSqrtF(C.z * C.z + C.y * C.y + C.x * C.x);
             D_002BEAAC->func_0013C8A0(handle, &rec->s8, 2, 1);
             D_002BEAAC->func_0013C8A0(handle, &rec->sA, 2, 1);
         }
