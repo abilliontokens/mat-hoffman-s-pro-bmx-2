@@ -12,6 +12,10 @@ extern float D_002AA248, D_002AA24C, D_002AA250, D_002AA254;
 struct V4_001AA270 {
     float x, y, z, w;
     V4_001AA270() { x = y = z = 0.0f; w = 1.0f; }
+    V4_001AA270 operator*(float s) const { V4_001AA270 r; r.x=x*s; r.y=y*s; r.z=z*s; return r; }
+    V4_001AA270 operator-() const { V4_001AA270 r; r.x=-x; r.y=-y; r.z=-z; return r; }
+    V4_001AA270 operator+(const V4_001AA270 &b) const { V4_001AA270 r; r.x=x+b.x; r.y=y+b.y; r.z=z+b.z; return r; }
+    V4_001AA270 operator-(const V4_001AA270 &b) const { V4_001AA270 r; r.x=x-b.x; r.y=y-b.y; r.z=z-b.z; return r; }
 };
 
 void func_00030A30(V4_001AA270 *out, V4_001AA270 v, void *m);
