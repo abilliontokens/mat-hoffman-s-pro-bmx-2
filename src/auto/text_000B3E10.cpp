@@ -267,15 +267,15 @@ struct C_000B4300 {
     float f7c[4];
     float f8c[4];
     char f9c[0x104];
-    u8 f1a0;
-    u8 f1a1;
-    u8 f1a2;
+    char f1a0;
+    char f1a1;
+    char f1a2;
     char f1a3[1];
     char pad1a4[0x2a8 - 0x1a4];
-    u8 f2a8;
-    u8 f2a9;
+    char f2a8;
+    char f2a9;
     char pad2aa;
-    u8 f2ab;
+    char f2ab;
     int func_000B4530(float dt);
     void func_000B2630(void);
     void func_000B2930(void);
@@ -414,25 +414,25 @@ int C_000B4300::func_000B4530(float dt)
 {
     float tmp[4];
 
-    if (f1a0 == false) {
+    if (f1a0 == 0) {
         int id = D_002A829C->func_001617F0(f9c, 1);
         f3c->f400->func_00181DB0(id);
         f3c->f400->func_001820B0((void *)func_00192300, this, id);
-        f1a0 = true;
+        f1a0 = 1;
     }
     if (D_002A8490->f124 == 0) {
         if (D_002A8490->f2a4->f1c8 == 0) {
-            if (f1a2 == false) {
+            if (f1a2 == 0) {
                 f3c->f400->func_00199A70(0, f7c);
-                if (f2a8 == false) {
-                    if (f2a9 == false) {
-                        if (f2ab == false)
+                if (f2a8 == 0) {
+                    if (f2a9 == 0) {
+                        if (f2ab == 0)
                             func_000B2630();
                         if (f74 == 0)
                             func_000B2930();
                     }
                     func_000B3C30();
-                    if (f70 == 1 && f2a9 == false)
+                    if (f70 == 1 && f2a9 == 0)
                         func_000B3B40();
                 } else if (f74 == 0) {
                     func_000B2510(0x5a);
@@ -460,7 +460,7 @@ int C_000B4300::func_000B4530(float dt)
                 }
                 func_000B2450(f64);
             }
-            if (f1a1 == true) {
+            if (f1a1 == 1) {
                 int v = f5c;
                 if (f58 < v) {
                     f5c = (int)((float)v - dt * 600.0f);
@@ -469,19 +469,19 @@ int C_000B4300::func_000B4530(float dt)
                 }
                 if (f5c >= 0x5a) {
                     f5c = 0x5a;
-                    f1a1 = false;
+                    f1a1 = 0;
                 } else if (f5c <= 0) {
                     f5c = 0;
-                    f1a1 = false;
+                    f1a1 = 0;
                 }
             }
             if (f3c->func_0012FE50(dt * f64, 0) == 0) {
-                S_B3E10_Info *info = f3c;
-                int k = info->f4b8 - 1;
+                int k = f3c->f4b8 - 1;
                 S_B4530_List *l = D_002B9134;
                 int n = l->f40;
                 int i;
                 u32 key = f50;
+                S_B3E10_Info *volatile info = f3c;
                 for (i = 0; i < n; i++) {
                     if (l->f50[i]->f0 == key && l->f50[i]->f4 == k && info->f518->f14 == 0) {
                         func_000B2C20(l->f50[i]->fC, l->f50[i]->f10);
