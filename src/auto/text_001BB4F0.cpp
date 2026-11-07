@@ -352,10 +352,10 @@ static __inline void CopyMat_001BBAE0(S_001BBAE0_Mat *src, S_001BBAE0_Mat *dst)
 {
     __m128 *s = (__m128 *)src;
     __m128 *d = (__m128 *)dst;
-    __m128 r3 = s[3];
     __m128 r0 = s[0];
     __m128 r1 = s[1];
     __m128 r2 = s[2];
+    __m128 r3 = s[3];
 
     d[0] = r0;
     d[1] = r1;
