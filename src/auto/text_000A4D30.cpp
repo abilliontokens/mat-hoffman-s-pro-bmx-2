@@ -3,6 +3,7 @@
 #define I4(p, o) (*(int *)((char *)(p) + (o)))
 #define P4(p, o) (*(char **)((char *)(p) + (o)))
 extern char D_002A5348;
+extern char D_00010000;
 extern char D_0027C118;
 extern char D_002769F8;
 extern char D_0027C104, D_0027C0EC, D_0027C0D4, D_0027C0B8, D_0027C098, D_0027C078, D_0027C068, D_0027C058, D_0027C03C, D_0027C028, D_0027C014, D_0027C000, D_0027BFE0, D_0027BFC0, D_0027BFA0, D_0027BF88, D_0027BF74, D_0027BF60, D_0027BF44;
