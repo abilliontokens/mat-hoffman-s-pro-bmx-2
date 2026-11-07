@@ -1,6 +1,7 @@
 /* 5 functions from 0x00028CD0 to 0x00029BD0, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+#include "asm_helpers.h"
 struct C_00029290 {
     undefined4 func_00029290(void);
 };
@@ -329,6 +330,37 @@ int C_000292C0::func_000292C0() {
     return 0;
 }
 
+int C_295D0::func_000295D0(int activate) {
+ if (!f704 && f6a8 && f714) {
+ f200->func_00133ED0(); f200->func_00133F10(0);
+ if (f200->fa7 & 0x20) {
+ char *s=(char*)f200->f54;
+ f6cc=**(Q_292C0**)(s+0x78); f6dc=**(Q_292C0**)(s+0x74);
+ Q_292C0 v[8]; Q_292C0 *normal=&f6dc;
+ f6f4=0; f230->func_00198120(&v[5],&f6cc);
+ v[0].x=v[0].y=v[0].z=0; v[0].w=1; v[2].x=v[2].y=v[2].z=0; v[2].w=1;
+ f230->func_00197B40(&v[0],&v[2]);
+ v[0]=*func_0001E9E0(&v[4],&v[0]); v[2]=*func_0001E9E0(&v[1],&v[2]);
+ v[4]=*func_0001E9E0(&v[6],func_0001C610(&v[1],&v[0],&v[2]));
+ v[1]=f1e0->f238; v[1]=*func_0001E9E0(&v[7],&v[1]);
+ v[3].x=v[3].y=v[3].z=0; v[3].w=1; f230->func_00197E70(&v[3]);
+ if (!((v[3].x-f6cc.x)*normal->x+(v[3].y-f6cc.y)*normal->y+(v[3].z-f6cc.z)*normal->z < D_00275544)) {
+ float p=v[0].z*normal->z+(v[0].y*normal->y+v[0].x*normal->x);
+ float q=v[1].y*normal->y+v[1].x*normal->x+v[1].z*normal->z;
+ if (-f6f0 < q) { f704=0; f70c=0; return 0; }
+ if (q+p <= -f6ec) {
+ if (!activate) return 0;
+ f704=1; f6a4=(v[4].y*normal->y+v[4].x*normal->x+v[4].z*normal->z < D_00275544)?1:0;
+ f714=0; f21c->func_0011A550(&f6cc,&f6dc); func_00027C30(); return 1;
+ }
+ }
+reset:
+ f704=0; f70c=0;
+ }
+ }
+ return 0;
+}
+
 void C_000298F0::func_000298F0(int a0)
 {
     float t;
@@ -346,8 +378,8 @@ void C_000298F0::func_000298F0(int a0)
             v = f1E8->f1A0;
         } else {
             float c = f1E0->f26C * f60C * D_002766A0;
-            c = c > -1.0f ? c : -1.0f;
-            c = c < 1.0f ? c : 1.0f;
+            c = AsmMaxF(c, -1.0f);
+            c = AsmMinF(c, 1.0f);
             if (f20C->f30 != 0) {
                 t = func_00011020(func_00011040(c, -f614), f614);
             } else {
