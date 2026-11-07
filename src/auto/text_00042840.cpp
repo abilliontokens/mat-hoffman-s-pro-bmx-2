@@ -122,6 +122,7 @@ struct S_List { void func_001577A0(S_Obj *,int); };
 void *func_001E8A44(unsigned int);
 void func_001E891B(void *);
 void func_0001CB80(char *);
+void *func_001E8920(void *,const void *,unsigned int);
 extern char D_00276F0C[];
 struct S_Entry {
     int type;
