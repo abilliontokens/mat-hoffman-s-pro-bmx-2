@@ -268,6 +268,7 @@ struct BmxEventEditor {
       int func_0003A990(V4,V4);
       void func_000399A0(int);
       void func_0003AD50();
+      void func_00035E80(S_Obj *,char *,S_Entry *);
       void func_00035C10(S_Obj *,int,const char *,V4 *,V4 *,V4 *,int,int);
 };
 
