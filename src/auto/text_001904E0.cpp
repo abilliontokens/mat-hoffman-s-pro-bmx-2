@@ -10,6 +10,8 @@ extern "C" int memcmp(const void *a, const void *b, unsigned int n);
 extern char D_0028AA74[8];
 float func_00011240();
 void *func_001E83E8(void *, int);
+void *func_001E8A44(int);
+void func_001E891B(void *);
 void *func_001E8AA5(int size);
 void *func_001E8920(void *, const void *, int);
 
