@@ -133,6 +133,7 @@ struct C_0003D910 {
     RetD *func_00038A10(NodeD *a, int *b);
     void func_000399A0(int a);
     void func_000392B0();
+    __forceinline int Get_0003D910(int i) { if (f5B4 <= 0 || f5B8 == 0 || i >= f5B4) return 0; return f5B8[i]; }
 };
 
 #pragma optimize("y", on)
