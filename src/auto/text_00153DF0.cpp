@@ -24,7 +24,7 @@ struct C153DF0_Self {
     int f24;
     char pad28[4];
     C153DF0_2C *f2C;
-    char pad30[0x40];
+    char pad30[0x44];
     int f74;
     int f78;
     int f7C;
