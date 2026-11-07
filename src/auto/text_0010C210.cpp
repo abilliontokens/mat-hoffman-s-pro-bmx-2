@@ -1,6 +1,8 @@
 /* 1 function from 0x0010C210 to 0x0010DA70, found by Ghidra. */
 #include "common.h"
 #include <string.h>
+#include <xmmintrin.h>
+#include "asm_helpers.h"
 
 struct Cfg10 {
     Cfg10 *func_00168280();
@@ -107,8 +109,7 @@ void Owner10C::func_0010C210()
     (*(Node230 **)(s + 0x230))->func_0019A680(&q1, s + 0x7c);
     M44C matA;
     M44C matB;
-    float *pm = matA.m;
-    memset(pm, 0, 0x40);
+    AsmZeroMatrix(&matA);
     matB = matA;
     ((Mat10 *)(s + 0x8d0))->func_000264C0(&matB);
     {
@@ -132,8 +133,7 @@ void Owner10C::func_0010C210()
     (*(Node230 **)(s + 0x230))->func_00198B70(&q1, &q2);
     M44C matC;
     M44C matD;
-    float *pm2 = matC.m;
-    memset(pm2, 0, 0x40);
+    AsmZeroMatrix(&matC);
     matD = matC;
     ((Mat10 *)(s + 0x910))->func_000264C0(&matD);
     {
@@ -207,6 +207,14 @@ void Owner10C::func_0010C210()
     cfg->func_00168B90(D_00283834, s + 0x7c8);
     cfg->func_00168B90(D_00283820, s + 0x530);
     cfg->func_00168B90(D_00283814, s + 0x534);
+    cfg->func_00168B90(D_00283800, s + 0x508);
+    cfg->func_00168B90(D_00283800, s + 0x52c);
+    cfg->func_00168B90(D_00283800, s + 0x49c);
+    cfg->func_00168B90(D_00283800, s + 0x4a0);
+    *(float *)(s + 0x50c) = *(float *)(s + 0x50c) * D_00275998;
+    *(float *)(s + 0x510) = *(float *)(s + 0x510) * D_00275998;
+    cfg->func_00168B90(D_002837B4, s + 0x590);
+    cfg->func_00168B90(D_002837A4, s + 0x58c);
     *(float *)(s + 0x618) = *(float *)(s + 0x618) * D_00275998;
     *(float *)(s + 0x614) = *(float *)(s + 0x614) * D_00275998;
     *(float *)(s + 0x638) = *(float *)(s + 0x638) * D_00275998;
