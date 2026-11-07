@@ -37,6 +37,7 @@ struct RiderPlayer {
 
 struct RiderPool {
     int *func_0005C020(int a);
+    int func_0005C1D0(int a);
 };
 
 struct RiderHandles {
