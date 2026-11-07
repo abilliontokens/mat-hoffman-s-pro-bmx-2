@@ -291,10 +291,15 @@ struct C_00012590 {
 
 void __stdcall func_00011FF0(void *p, int step, int count, S_11FF0_IterFn fn)
 {
-    for (int i = count - 1; i >= 0; i--) {
+    int i;
+
+    if (--count < 0)
+        return;
+    i = count + 1;
+    do {
         fn(p);
         p = (char *)p + step;
-    }
+    } while (--i);
 }
 
 void AIPedIdleState::func_00012020()
@@ -308,7 +313,7 @@ void func_00012140(void) {
 int AIPedFallState::func_00012150(int arg)
 {
     S_11FF0_Mgr *mgr = D_002A8490->f2a4;
-    int state = mgr->f1c8;
+    int state = *(volatile int *)&mgr->f1c8;
     if (state != 1 && owner->f3c->f10 == 1) {
         if (mgr != 0 && state == 0) {
             owner->f3bc = 3;
@@ -417,22 +422,29 @@ float S_11FF0_Owner::func_00012510(float *p, int start)
 }
 
 int C_00012590::func_00012590(int a) {
- if(D_002A8490->f124!=1) {
- if(D_002A8490->f2a4->f1c8==1) {
- f3c->f4->func_00199650(&f3e4);
- f3c->f4->func_00198F50(f3f4,D_002A051C,0,1,0);
- S_12590_Anim *anim=f384->f24;
- if((anim?anim->f4:-1)!=f3bc) func_000114D0(f3bc);
- } else {
- f3e4=func_00011E30();
- S_12590_Vec4f v;v.z=0;v.y=0;v.x=0;v.w=1;
- f3c->f4->func_00197B40(f3f4,&v);
- if(f3e1==1&&f3ac) {if(f3ac->v7()==1) D_002A8490->f4->func_0001CE80(f3ac,&f3e4,D_002A04FC,15.0f,50.0f);else f3e1=0;}
- }
- f384->v12(a);
- if(!f3de&&!f3df) f3c->f4->func_0019AC50(); else {func_001C7EB0(a); f3de=0;return 1;}
- f3de=0;return 1;
- }
- return 1;
+    if (D_002A8490->f124 == 1) {
+        f3de = 0;
+        return 1;
+    }
+    if (D_002A8490->f2a4->f1c8 == 1) {
+        f3c->f4->func_00199650(&f3e4);
+        f3c->f4->func_00198F50(f3f4, D_002A051C, 0, 1, 0);
+        S_12590_Anim *anim = f384->f24;
+        if ((anim ? anim->f4 : -1) != f3bc) func_000114D0(f3bc);
+    } else {
+        f3e4 = func_00011E30();
+        S_12590_Vec4f v;
+        v.z = 0; v.y = 0; v.x = 0; v.w = 1;
+        f3c->f4->func_00197B40(f3f4, &v);
+        if (f3e1 == 1 && f3ac) {
+            if (f3ac->v7() == 1) D_002A8490->f4->func_0001CE80(f3ac, &f3e4, D_002A04FC, 15.0f, 50.0f);
+            else f3e1 = 0;
+        }
+    }
+    f384->v12(a);
+    if (!f3de && !f3df) f3c->f4->func_0019AC50();
+    else { func_001C7EB0(a); *(volatile char *)&f3de = 0; return 1; }
+    f3de = 0;
+    return 1;
 }
 
