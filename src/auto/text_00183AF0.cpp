@@ -40,6 +40,8 @@ struct C_001BB900 {
 struct SceneNode;
 struct C_0015E300 {
     int func_0015E300(int a, int b, int c);
+    void func_0015D850(int,int,int,int,int,int,int,int,int);
+    void func_0015DA60(int,int,SceneNode*);
 };
 
 extern C_0015E300 *D_002E2930;
