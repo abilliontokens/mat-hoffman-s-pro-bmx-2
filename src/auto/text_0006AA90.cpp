@@ -8,7 +8,7 @@ struct Widget_6AA90 {
  void func_001B1980(); void func_001B17D0(char*);
  void func_001B2270(unsigned int);
  void func_001B19C0(int,void*,int);
- void func_001B1860(int,float,int,float,int,int,int,int,float,int,int,float,int);
+ void func_001B1860(int,float,int,float,int,int,float,int,float,int,int,float,int);
 };
 struct Entry_6AA90 { char *s; int v; };
 struct Res_6AA90 { int pad; Entry_6AA90 *entries; };
