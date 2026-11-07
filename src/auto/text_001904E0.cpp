@@ -95,6 +95,7 @@ struct S_00191270_Owner {
     void func_0018C820(float delay, int start, int end, S_00191270_Node *node);
 };
 
+struct S_1904E0_Ops { char pad0[0x14]; void (__cdecl *convert)(S_1904E0_Rec *, C_0018F350 *); int (__cdecl *binary)(C_0018F350 *, C_0018F350 *, int, C_0018F350 *); int (__cdecl *bit)(C_0018F350 *, C_0018F350 *, unsigned int); char pad20[4]; };
 struct C_00191270 {
     char pad0[0x14c];
     struct S_1904E0_Run *f14c;
