@@ -97,7 +97,7 @@ struct Particle_0016DEA0 {
     V4f_0016D6A0 vel;
     char pad20[8];
     int f28;
-    int f2C;
+    float f2C;
     float f30;
     float f34;
     float f38;
