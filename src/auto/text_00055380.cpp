@@ -111,6 +111,7 @@ struct S_00056100_Quat {
  S_00056100_Quat operator+(const S_00056100_Quat &b) const { S_00056100_Quat r; r.x=x+b.x;r.y=y+b.y;r.z=z+b.z;return r; }
  S_00056100_Quat operator-(const S_00056100_Quat &b) const { S_00056100_Quat r; r.x=x-b.x;r.y=y-b.y;r.z=z-b.z;return r; }
 };
+static inline S_00056100_Quat operator*(float s, const S_00056100_Quat &v) { S_00056100_Quat r; r.x=s*v.x;r.y=s*v.y;r.z=s*v.z;return r; }
 
 struct S_00056100_Node {
     char pad0[0x60];
@@ -530,9 +531,16 @@ int C_00055380::func_00055A10(S_00056100_Quat a,S_00056100_Quat b,S_00056100_Qua
  ((S_00056100_Node*)this->unk18)->func_00133ED0();
  ((S_00056100_Node*)this->unk18)->func_00133F10(0);
  if(!*(int*)this->pad12C) ((S_00056100_Node*)this->unk14)->func_00133F10(0);
- if(*(int*)this->pad12C) this->q6C=this->q10C+this->q11C*(*(float*)&this->unk21C);
+ if(*(int*)this->pad12C) {
+  float t=*(float*)&this->unk21C;
+  S_00056100_Quat hit;
+  hit=this->q10C+this->q11C*t;
+  this->q6C=hit;
+ }
  dir=b-this->q6C;
- float squared=dir.z*dir.z+dir.y*dir.y+dir.x*dir.x;
+ float squared=dir.z*dir.z;
+ squared+=dir.y*dir.y;
+ squared+=dir.x*dir.x;
  float distance=AsmSqrtF(squared);
  func_00055140(&dir,&dir);
  if(*(int*)this->pad12C) {
