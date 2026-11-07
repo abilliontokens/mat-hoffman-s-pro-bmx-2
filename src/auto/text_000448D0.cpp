@@ -129,7 +129,13 @@ struct C_000448D0 {
     Timer_448D0 *f158;
     char pad15c[0x1d4-0x15c];
     Obj54_000448D0 *f1d4;
-    char pad1d8[0x550 - 0x1d8];
+    char pad1d8[0x440-0x1d8];
+    float f440;
+    char pad444[0x47c-0x444];
+    int f47c,f480;
+    char pad484[0x540-0x484];
+    Sub_448D0 *f540;
+    char pad544[0x550-0x544];
     Node_000448D0 *f550;
     Node_000448D0 *f554;
     void func_00012140(void);
