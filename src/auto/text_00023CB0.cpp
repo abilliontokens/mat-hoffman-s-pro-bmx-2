@@ -1,5 +1,6 @@
 /* 4 functions from 0x00023CB0 to 0x00024380, found by Ghidra. */
 #include "common.h"
+#include "asm_helpers.h"
 #include <math.h>
 #include <xmmintrin.h>
 
@@ -164,8 +165,9 @@ int C_00023C30::func_00023CB0(float a, S_00024210_Vec v, float len)
     S_00024210_Vec *r;
     int n;
     int flags;
+    float k;
 
-    if (D_002A8490->f2A4->f120 != 0) {
+    if (D_002A8490->f124 != 0) {
         out.x = v.x + a * f0;
         out.y = v.y + a * f4;
         out.z = v.z + a * f8;
@@ -182,9 +184,10 @@ int C_00023C30::func_00023CB0(float a, S_00024210_Vec v, float len)
         goto sw;
     f14 = 0;
     n = f44 + 1;
-    t.x = v.x + f0 * D_0027628C * (float)n * D_00276288;
-    t.y = v.y + f4 * D_0027628C * (float)n * D_00276288;
-    t.z = v.z + f8 * D_0027628C * (float)n * D_00276288;
+    k = D_0027628C * (float)n * D_00276288;
+    t.x = v.x + f0 * k;
+    t.y = v.y + f4 * k;
+    t.z = v.z + f8 * k;
     t.w = 1.0f;
     func_00011FF0(&tmp, 0x10, 2, _func_00011060);
     tmp = v;
