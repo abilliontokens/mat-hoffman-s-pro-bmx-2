@@ -1,5 +1,6 @@
 /* 15 functions from 0x00163A50 to 0x001648E0, found by Ghidra. */
 #include "common.h"
+#include "asm_helpers.h"
 struct S_Vec4_1640D0 {
     float x, y, z, w;
 };
@@ -231,6 +232,7 @@ void *C_00163A50::func_00163A50(void *a, void *b)
     S_00163A50_Arg *a1 = (S_00163A50_Arg *)a;
     const char *section = (const char *)b;
     int val;
+    int z;
     char str[0x40];
     char path[0x104];
     char name[0x104];
@@ -254,8 +256,9 @@ void *C_00163A50::func_00163A50(void *a, void *b)
     path[0] = 0;
     strcat(path, a1->f190);
     strcat(path, file);
-    a1->f8->func_00168C20(D_00287DA8, 0, &res->f34);
-    a1->f8->func_00168C20(D_00287DA0, 0, &val);
+    z = 0;
+    a1->f8->func_00168C20(D_00287DA8, z, &res->f34);
+    a1->f8->func_00168C20(D_00287DA0, z, &val);
     res->f24.b0 = val;
     a1->f8->func_00168C20(D_002764D8, 0xf, &res->f30);
     a1->f8->func_00168C20(D_00287D8C, a1->f20, &val);
@@ -264,9 +267,11 @@ void *C_00163A50::func_00163A50(void *a, void *b)
     res->f24.b2 = val;
     if (a1->f8->func_00168550(D_00287D68, str, -1)) {
         if (func_001EA426(str, D_00287D5C) == 0) {
-            res->f28 = 0;
+            res->f28 = z;
         } else if (func_001EA426(str, D_00287D50) == 0) {
+            z = 1;
             res->f28 = 1;
+            z = 0;
         } else {
             res->f28 = a1->f28;
         }
@@ -275,7 +280,7 @@ void *C_00163A50::func_00163A50(void *a, void *b)
     }
     if (a1->f8->func_00168550(D_00287D40, str, -1)) {
         if (func_001EA426(str, D_00287D38) == 0) {
-            res->f2C = 0;
+            res->f2C = z;
         } else if (func_001EA426(str, D_00287D30) == 0) {
             res->f2C = 1;
         } else {
@@ -285,9 +290,9 @@ void *C_00163A50::func_00163A50(void *a, void *b)
         res->f2C = a1->f2C;
     }
     func_00030F30(path, D_00287D28);
-    if (func_00163780(path, res) != 0) goto loaded;
+    if (func_00163780(path, res) != z) goto loaded;
     func_00030F30(path, D_00287D20);
-    if (func_00162FB0(a1, path, res) == 0) goto loaded;
+    if (func_00162FB0(a1, path, res) == z) goto loaded;
     func_00030F30(path, D_00287D28);
     func_00162B70(path, res);
 loaded:
