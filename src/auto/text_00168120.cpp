@@ -59,6 +59,7 @@ struct S_00168550_Tokenizer {
 };
 
 static __inline int Min_00168550(int a, int b) { return a > b ? b : a; }
+static __forceinline int min_168550(const int &a, const int &b) { return AsmMinI(a, b); }
 
 struct C_001684B0 {
     char pad0[0x1c];
