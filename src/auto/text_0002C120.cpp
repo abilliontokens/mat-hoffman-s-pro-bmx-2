@@ -1,6 +1,7 @@
 /* 3 functions from 0x0002C120 to 0x0002CBC0, found by Ghidra. */
 #include "common.h"
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 
 extern float D_00275544;
 static __forceinline float Min_0002C120(float a, float b) { float r; _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
@@ -118,8 +119,15 @@ extern int D_002B9108;
 extern int D_002B910C;
 extern int D_002B911C;
 extern V4_0002C120 D_002A10F0;
+extern float D_002A10F4;
+extern float D_002A10F8;
+extern float D_002A10FC;
 extern V4_0002C120 D_002A1100;
+extern float D_002A1104;
+extern float D_002A1108;
 extern V4_0002C120 D_002A1110;
+extern float D_002A1114;
+extern float D_002A1118;
 
 float func_0014F870(float x);
 V4_0002C120 *func_0001C5E0(V4_0002C120 *out, float s, V4_0002C120 *v);
@@ -179,128 +187,125 @@ struct C_0002CB00 {
 
 void C_0002C120::func_0002C120(int param_1, float param_2)
 {
-    C_0002C120 *self = this;
-    C_0002C120 **pself = &self;
     float v;
     float lc;
     V4_0002C120 zero;
     V4_0002C120 tmp;
     float s;
 
-    if (!(self->f504 < self->f508 || self->f468 != 0 || self->f69c != 0)) {
+    if (!(this->f504 < this->f508 || this->f468 != 0 || this->f69c != 0)) {
         return;
     }
-    if (self->f4f4 != 0) {
+    if (this->f4f4 != 0) {
         return;
     }
-    if (self->f444 != 0) {
+    if (this->f444 != 0) {
         return;
     }
-    self->f698 = 0;
-    v = func_0014F870(self->f110);
-    self->f54c = D_002A10F0;
+    this->f698 = 0;
+    v = func_0014F870(this->f110);
+    this->f54c = D_002A10F0;
     zero.z = 0;
     zero.y = 0;
     zero.x = 0;
     zero.w = 1.0f;
-    func_00026340(&zero, &self->f55c);
-    if (self->f1e0->f28 < D_002A1184) {
+    func_00026340(&zero, &this->f55c);
+    if (this->f1e0->f28 < D_002A1184) {
         lc = 0;
     } else {
-        if (self->f1ec->f3c - D_002A1180 > self->f1e0->f28) {
-            lc = self->f1ec->f38;
-        } else if (self->f1e8->f68 == 0) {
-            lc = D_002A117C * self->f1ec->f3c;
+        if (this->f1ec->f3c - D_002A1180 > this->f1e0->f28) {
+            lc = this->f1ec->f38;
+        } else if (this->f1e8->f68 == 0) {
+            lc = D_002A117C * this->f1ec->f3c;
         } else {
-            lc = self->f1ec->f3c;
+            lc = this->f1ec->f3c;
         }
     }
-    if (self->f468 == 0 && self->f46c == 0) {
-        if (self->f69c == 0 && self->f6a0 == 0) {
-            unsigned int u = self->f500;
+    if (this->f468 == 0 && this->f46c == 0) {
+        if (this->f69c == 0 && this->f6a0 == 0) {
+            unsigned int u = this->f500;
             float m;
             if (u == D_002B9108 || u == D_002B911C) {
-                if (self->f110 > D_00276080) {
-                    self->f698 = 4;
-                    self->f53c = *func_0001C5E0(&tmp, (float)self->f778.fC * self->f778.f0 + self->f528, &D_002A1110);
-                    self->f778.func_0002B180();
+                if (this->f110 > D_00276080) {
+                    this->f698 = 4;
+                    this->f53c = *func_0001C5E0(&tmp, (float)this->f778.fC * this->f778.f0 + this->f528, &D_002A1110);
+                    this->f778.func_0002B180();
                     goto end;
                 }
-                if (!(self->f120 > D_00276080)) {
+                if (!(this->f120 > D_00276080)) {
                     goto end;
                 }
-                self->f698 = 1;
-                if (lc > self->f1ec->f38) {
+                this->f698 = 1;
+                if (lc > this->f1ec->f38) {
                     s = D_00275460;
                 } else {
-                    s = self->f514;
+                    s = this->f514;
                 }
-                self->f53c = *func_0001C5E0(&tmp, s * self->f520, &D_002A1110);
+                this->f53c = *func_0001C5E0(&tmp, s * this->f520, &D_002A1110);
                 if (param_1 != 0) {
-                    self->f698 = 2;
-                    self->f53c = *func_0001C5E0(&tmp, self->f530, &D_002A1110);
+                    this->f698 = 2;
+                    this->f53c = *func_0001C5E0(&tmp, this->f530, &D_002A1110);
                 }
-                m = self->f4a0;
+                m = this->f4a0;
             } else {
                 if (u == D_002B910C) {
-                    self->f698 = 4;
-                    self->f53c = D_002A10F0;
+                    this->f698 = 4;
+                    this->f53c = D_002A10F0;
                     goto end;
                 }
-                if (v <= self->f510 && v > self->f50c) {
-                    self->f698 = 3;
-                    if (lc > self->f1ec->f38) {
+                if (v <= this->f510 && v > this->f50c) {
+                    this->f698 = 3;
+                    if (lc > this->f1ec->f38) {
                         s = D_00275460;
                     } else {
-                        s = self->f518;
+                        s = this->f518;
                     }
-                    self->f53c = *func_0001C5E0(&tmp, s * self->f524, &D_002A1110);
-                    m = self->f49c;
+                    this->f53c = *func_0001C5E0(&tmp, s * this->f524, &D_002A1110);
+                    m = this->f49c;
                 } else {
-                    self->f698 = 1;
+                    this->f698 = 1;
                     if (param_1 != 0) {
-                        self->f698 = 2;
-                        self->f53c = *func_0001C5E0(&tmp, self->f530, &D_002A1110);
+                        this->f698 = 2;
+                        this->f53c = *func_0001C5E0(&tmp, this->f530, &D_002A1110);
                     } else {
-                        if (lc > self->f1ec->f38) {
+                        if (lc > this->f1ec->f38) {
                             s = D_00275460;
                         } else {
-                            s = self->f514;
+                            s = this->f514;
                         }
-                        self->f53c = *func_0001C5E0(&tmp, s * self->f520, &D_002A1110);
+                        this->f53c = *func_0001C5E0(&tmp, s * this->f520, &D_002A1110);
                     }
-                    self->f1e0->f238 = *func_0001C5E0(&tmp, lc * self->f4a0, &zero);
+                    this->f1e0->f238 = *func_0001C5E0(&tmp, lc * this->f4a0, &zero);
                     goto end;
                 }
             }
-            self->f1e0->f238 = *func_0001C5E0(&tmp, lc * m, &zero);
+            this->f1e0->f238 = *func_0001C5E0(&tmp, lc * m, &zero);
         } else {
-            self->f698 = 1;
-            self->f53c = *func_0001C5E0(&tmp, self->f6ac * self->f520, &D_002A1110);
+            this->f698 = 1;
+            this->f53c = *func_0001C5E0(&tmp, this->f6ac * this->f520, &D_002A1110);
             if (param_1 != 0) {
-                self->f698 = 2;
-                self->f53c = *func_0001C5E0(&tmp, self->f530, &D_002A1110);
+                this->f698 = 2;
+                this->f53c = *func_0001C5E0(&tmp, this->f530, &D_002A1110);
             }
-            self->f54c = *func_0001C5E0(&tmp, param_2 * self->f52c, &D_002A1100);
+            this->f54c = *func_0001C5E0(&tmp, param_2 * this->f52c, &D_002A1100);
         }
     } else {
         float fl;
+        S_0002C120_Normal *n;
         if (param_1 != 0) {
-            self->f698 = 2;
-            fl = self->f530;
+            this->f698 = 2;
+            fl = this->f530;
         } else {
-            self->f698 = 1;
-            fl = self->f728 * self->f520;
+            this->f698 = 1;
+            fl = this->f728 * this->f520;
         }
-        self->f53c = V4_0002C120(D_002A1110.x * fl, D_002A1110.y * fl, D_002A1110.z * fl, 1.0f);
-        param_2 = param_2 * self->f52c;
-        self->f54c = V4_0002C120(D_002A1100.x * param_2, D_002A1100.y * param_2, D_002A1100.z * param_2, 1.0f);
-        if (func_00026300(&self->f210->vx, &D_002A10F0)) {
-            S_0002C120_Normal *n = self->f210;
-            S_0002C120_Body *b = self->f1e0;
+        this->f53c = V4_0002C120(D_002A1110.x * fl, D_002A1110.y * fl, D_002A1110.z * fl, 1.0f);
+        param_2 = param_2 * this->f52c;
+        this->f54c = V4_0002C120(D_002A1100.x * param_2, D_002A1100.y * param_2, D_002A1100.z * param_2, 1.0f);
+        n = this->f210;
+        if (func_00026300(&n->vx, &D_002A10F0)) {
+            S_0002C120_Body *b = this->f1e0;
             float d = n->vy * b->f238.y + b->f238.x * n->vx + n->vz * b->f238.z;
-            float t;
-            float lim;
             b->f238.x = b->f238.x - d * n->vx;
             b->f238.y = b->f238.y - d * n->vy;
             b->f238.z = b->f238.z - d * n->vz;
@@ -309,30 +314,21 @@ void C_0002C120::func_0002C120(int param_1, float param_2)
             } else {
                 s = D_00275460;
             }
-            lim = -self->f1ec->f3c;
-            t = s * self->f4a4 + d;
-            if (!(t > lim)) {
-                t = lim;
-            }
-            lim = self->f1ec->f3c;
-            if (!(lim > t)) {
-                t = lim;
-            }
-            n = self->f210;
-            b = self->f1e0;
-            b->f238.x = t * n->vx + b->f238.x;
-            b->f238.y = t * n->vy + b->f238.y;
-            b->f238.z = t * n->vz + b->f238.z;
+            v = AsmMaxF(s * this->f4a4 + d, -this->f1ec->f3c);
+            v = AsmMinF(v, this->f1ec->f3c);
+            b->f238.x = v * n->vx + b->f238.x;
+            b->f238.y = v * n->vy + b->f238.y;
+            b->f238.z = v * n->vz + b->f238.z;
         }
     }
 end:
-    if (self->f698 != 0) {
-        self->f538 = 0.1f;
-        self->f504 = self->f508;
-        self->func_00028070();
-        self->f4f4 = 0;
-        self->f69c = 0;
-        self->f4fc = 0;
+    if (this->f698 != 0) {
+        this->f538 = 0.1f;
+        this->f504 = this->f508;
+        this->func_00028070();
+        this->f4f4 = 0;
+        this->f69c = 0;
+        this->f4fc = 0;
     }
 }
 
