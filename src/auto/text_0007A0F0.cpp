@@ -133,6 +133,9 @@ extern int D_0028F5DC;
 static __forceinline void SetSpriteUV7(C_0007A0F0_W *p,float a,float b,float c,float d) {
  p->f44=c; p->f48=d; p->f3C=a; p->f40=b; p->f58|=4;
 }
+static __forceinline void SetSpriteUV7B(C_0007A0F0_W *p,float a,float b,float c,float d) {
+ p->f3C=a; p->f40=b; p->f44=c; p->f48=d; p->f58|=4;
+}
 static __forceinline C_0007A0F0_W *CreateSprite7() {
  C_0007A0F0_W *p=(C_0007A0F0_W *)func_001E8A44(0x64);
  return p ? p->func_001D5760() : 0;
