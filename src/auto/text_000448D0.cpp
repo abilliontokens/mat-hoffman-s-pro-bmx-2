@@ -138,6 +138,10 @@ struct C_000448D0 {
     char pad544[0x550-0x544];
     Node_000448D0 *f550;
     Node_000448D0 *f554;
+    char pad558[0x5c8-0x558];
+    int f5c8;
+    Object_448D0 **f5cc;
+    void func_000399A0(int);
     void func_00012140(void);
     int func_001D7D00(void);
     void func_001D3F50(void);
