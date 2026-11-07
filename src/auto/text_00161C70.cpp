@@ -391,7 +391,7 @@ volatile float &h=*(volatile float *)&a8; h=a5-a4;
 m[5]=(a6+a6)/h; m[2]=(a2+a3)/(a3-a2); m[6]=(a4+a5)/h; m[10]=a7/(a7-a6); m[11]=-(a6*a7/(a7-a6)); } else { m[14]=1.0f; m[3]=0.0f; m[7]=0.0f; m[15]=0.0f; m[4]=0.0f; m[8]=0.0f; m[12]=0.0f; m[1]=0.0f; m[9]=0.0f; m[13]=0.0f;
 m[0]=(a6+a6)/(a3-a2);
 volatile float &h=*(volatile float *)&a8; h=a5-a4;
-m[5]=(a6+a6)/h; m[2]=(a2+a3)/(a3-a2); m[6]=(a4+a5)/h; m[10]=(a6+a7)/(a7-a6); m[11]=a6*a7*-2.0f/(a7-a6); } return m; }
+m[5]=(a6+a6)/h; m[2]=(a2+a3)/(a3-a2); m[6]=(a4+a5)/h; m[10]=(a6+a7)/(a7-a6); float num=a6*a7; m[11]=num*D_00287B80/(a7-a6); } return m; }
 
 void func_00162530(float *m, float a2, float a3, float a4, float a5, int a6)
 {
