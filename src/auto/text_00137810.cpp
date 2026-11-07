@@ -1,7 +1,7 @@
 /* 11 functions from 0x00137810 to 0x00138800, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
-#include "ghidra.h"
+#include "asm_helpers.h"
 extern "C" void *memset(void *, int, unsigned);
 struct C_001387E0 {
     undefined4 func_001387E0(byte param_1);
@@ -265,10 +265,7 @@ void DrawableCube::func_00137810()
 
     v = *(S_137810_V3 *)(D_002EFDB8->f4 + 0xd0);
     pm = &D_002BEA50;
-    *(__m128 *)&pm->m[0] = _mm_setzero_ps();
-    *(__m128 *)&pm->m[4] = _mm_setzero_ps();
-    *(__m128 *)&pm->m[8] = _mm_setzero_ps();
-    *(__m128 *)&pm->m[12] = _mm_setzero_ps();
+    memset(pm, 0, 0x40);
     pm->m[0] = 1.0f;
     pm->m[5] = 1.0f;
     pm->m[10] = 1.0f;
@@ -278,12 +275,11 @@ void DrawableCube::func_00137810()
     ((int *)D_002BEA50.m)[11] = self->f28->f10;
     func_000263B0(D_002BEA10, D_002BEA50.m, (float *)(D_002EFDB8->f4 + 0xf0));
     for (k = 0; k < 6; k++) {
-        float *p = &D_002BE9A8[k * 4];
         float *vp;
         int *op;
         *(unsigned short *)((char *)self->f28 + k * 0xfc + 0x12c) = 0;
         limit = (*(float *)(D_002EFDB8->f4 + 0x1d0) - D_00275AEC) * D_0028491C;
-        if (!(limit < v.y * p[-1] + v.x * p[-2] + v.z * p[0])) {
+        if (!(limit < v.y * D_002BE9A8[k * 4 - 1] + v.x * D_002BE9A8[k * 4 - 2] + v.z * D_002BE9A8[k * 4])) {
             vp = &D_002BE040[k * 100];
             op = vf;
             i = 25;
@@ -380,7 +376,18 @@ int DrawableCube::func_00137F90()
         D_002EFDB8->f70->func_00142D00(self->f7d4);
         g4 = D_002EFDB8->f4;
         pm = &mat;
-        pm->identity();
+        {
+            __m128 z = _mm_setzero_ps();
+            float *mm = pm->m;
+            ((__m128 *)mm)[0] = z;
+            ((__m128 *)mm)[1] = z;
+            ((__m128 *)mm)[2] = z;
+            ((__m128 *)mm)[3] = z;
+            ((int *)mm)[0] = 0x3f800000;
+            ((int *)mm)[5] = 0x3f800000;
+            ((int *)mm)[10] = 0x3f800000;
+            ((int *)mm)[15] = 0x3f800000;
+        }
         {
             DrawableCube *t = self;
             ((int *)mat.m)[3] = t->f28->f8;
@@ -523,9 +530,12 @@ void DrawableCube::func_00138390(void)
 DrawableCube *DrawableCube::func_00138480(int a)
 {
     int n;
+    int i;
+    int j;
     int v;
     int x;
     int h;
+    int zero = 0;
     CubeSub *p;
     CubeSub2 *q;
     CubeSub3 *r;
@@ -542,26 +552,26 @@ DrawableCube *DrawableCube::func_00138480(int a)
     if (D_002BEAAC->func_0013C8A0(h, &f7c8, 4, 1) != 1) {
         goto done;
     }
-    for (int i = 0; i < n; i++) {
+    for (i = zero; i < n; i++) {
         if (D_002BEAAC->func_0013C8A0(h, &v, 4, 1) != 1) {
             goto done;
         }
         x = D_002BEAAC->func_0013AFD0(h);
-        if (D_002BEAAC->func_0013AFF0(h, v, 0) != 0) {
+        if (D_002BEAAC->func_0013AFF0(h, v, zero) != 0) {
             goto done;
         }
-        if (f7c0 != 0) {
+        if (f7c0 != (DrawableCubeVirt *)zero) {
             f7c0->v2();
         }
         p = (CubeSub *)func_001E8A44((int)D_00018B10);
         f7c0 = (DrawableCubeVirt *)(p ? ((CubeSub4 *)p)->func_00135150(h) : 0);
-        if (D_002BEAAC->func_0013AFF0(h, x, 0) != 0) {
+        if (D_002BEAAC->func_0013AFF0(h, x, zero) != 0) {
             goto done;
         }
     }
     f30 = 0;
     f2c = (DrawableCubeVirt **)func_001E8A44(f7c8 * 4);
-    for (int j = 0; j < f7c8; j++) {
+    for (j = 0; j < f7c8; j++) {
         if (D_002BEAAC->func_0013C8A0(h, &v, 4, 1) != 1) {
             goto done;
         }
@@ -579,8 +589,8 @@ DrawableCube *DrawableCube::func_00138480(int a)
             goto done;
         }
     }
-    for (int k = 0; k < f7c8; k++) {
-        func_001376B0(f2c[k]);
+    for (j = 0; j < f7c8; j++) {
+        func_001376B0(f2c[j]);
     }
     f30 = 0;
     f28 = (S_137F90_Src *)f2c[0];
