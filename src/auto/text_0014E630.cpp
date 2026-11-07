@@ -1,5 +1,6 @@
 /* 11 functions from 0x0014E630 to 0x0014F600, found by Ghidra. */
 #include "common.h"
+#include "asm_helpers.h"
 #include "ghidra.h"
 #include <xmmintrin.h>
 #include <xmmintrin.h>
@@ -287,6 +288,7 @@ void __fastcall func_0014E630(void *self, int edx_, S_0014E630_Holder *a)
 
 C_0014ECD0 *C_0014ECD0::func_0014ECD0(int a0, char * volatile name, int a2, int volatile a3, int a4, volatile float f5, volatile float f6, int a7)
 {
+    C_0014ECD0 * volatile self = this;
     C_0014ECD0 *p;
     struct {
         union {
@@ -314,7 +316,6 @@ C_0014ECD0 *C_0014ECD0::func_0014ECD0(int a0, char * volatile name, int a2, int 
     S_0014ECD0_Item *items;
     S_0014ECD0_Item *mem;
     S_0014ECD0_Base *base;
-    C_0014ECD0 * volatile self = this;
 
     func_001D3F50();
     self->f560 = f5;
@@ -323,7 +324,7 @@ C_0014ECD0 *C_0014ECD0::func_0014ECD0(int a0, char * volatile name, int a2, int 
     self->f55c = a2;
     t.tb = D_002F07E8->f44;
     t.ta = D_002F07E8->f40;
-    t.m = t.ta > t.tb ? t.ta : t.tb;
+    t.m = AsmMaxF(t.ta, t.tb);
     self->f57c = *(volatile float *)&D_00286A9C / t.m;
     self->f578 = t.m * D_00286A90;
     if (func_001E8AF0(name, D_00286A94) == 0) {
@@ -332,7 +333,7 @@ C_0014ECD0 *C_0014ECD0::func_0014ECD0(int a0, char * volatile name, int a2, int 
             t.lim = 0x103;
             ma = t.lim;
             mb = t.len;
-            t.res = ma > mb ? mb : ma;
+            t.res = AsmMinI(ma, mb);
             n = t.res;
             func_001E8920(buf, name, n);
             buf[n] = 0;
