@@ -50,7 +50,7 @@ extern int D_0028F5DC;
 extern "C" void *func_001E8A44(unsigned int size);
 
 static __forceinline void width_EE(Img_EE *p, int v) { if (p->width != v) { p->width = v; p->flags |= 1; } }
-static __forceinline void color_EE(Img_EE *p) { p->color = (p->color & 0xffbfa35a) | 0xbfa35a; p->flags |= 2; }
+static __forceinline void color_EE(Img_EE *p) { unsigned int c = p->color; unsigned char f = p->flags; c &= 0xffbfa35a; c |= 0xbfa35a; f |= 2; p->color = c; p->flags = f; }
 static __forceinline void pos_EE(Img_EE *p, int x, int y) { if (p->x != x || p->y != y) { p->x = x; p->y = y; p->flags |= 1; } }
 static __forceinline void rot_EE(Img_EE *p, int r) { if (p->rot != r) { p->rot = r; p->flags |= 1; } }
 static __forceinline void uv_EE(Img_EE *p) { p->flags |= 4; p->a = 1.0f; p->b = 0; p->c = 0; p->d = 1.0f; }
@@ -106,8 +106,8 @@ C_000EDF00 *C_000EDF00::func_000EE450(int a0, int a1, int a2)
         y = i * D_002757F0 + D_0027F978;
         AT(Img_EE *, off + 0x84)->func_001D5810(D_00281DC0, 150.0f, y, 0);
         AT(float, off) = y;
-        Round_EE(&AT(int, off2), AT(float, off));
-        Round_EE(&AT(int, off2 + 0x90), AT(float, off));
+        AsmFloatToIntRound(AT(float, off), &AT(int, off2));
+        AsmFloatToIntRound(AT(float, off), &AT(int, off2 + 0x90));
         AT(int, off2 - 0x90) = AT(int, off2);
         o = (Img_EE *)func_001E8A44(0x64);
         AT(Img_EE *, off + 0xa8) = o ? o->func_001D5760() : 0;
