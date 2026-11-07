@@ -88,7 +88,7 @@ struct Spr_66C {
     float w, h;
     char pad54[4];
     unsigned char flags;
-    void setX(float a) { if (*(int*)&x != *(int*)&a) { x=a; flags|=1; } }
+    void setX(float a) { if (x != a) { x=a; flags|=1; } }
     void setY(float a) { if (*(int*)&y != *(int*)&a) { y=a; flags|=1; } }
     void setUV(float a,float b,float c,float d) {u0=a;v0=b;u1=c;v1=d;flags|=4;}
     void setColor(unsigned int a) {color=(color&(0xff000000|a))|(a&0xffffff);flags|=2;}
