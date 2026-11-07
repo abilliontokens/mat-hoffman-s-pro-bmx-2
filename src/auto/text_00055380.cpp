@@ -108,6 +108,7 @@ struct S_00056100_Quat {
     float x, y, z, w;
     S_00056100_Quat() { z = 0; y = 0; x = 0; w = 1.0f; }
  S_00056100_Quat operator*(float s) const { S_00056100_Quat r; r.x=x*s;r.y=y*s;r.z=z*s;return r; }
+ S_00056100_Quat operator%(const float &s) const { S_00056100_Quat r; r.x=x*s;r.y=y*s;r.z=z*s;return r; }
  S_00056100_Quat operator+(const S_00056100_Quat &b) const { S_00056100_Quat r; r.x=x+b.x;r.y=y+b.y;r.z=z+b.z;return r; }
  S_00056100_Quat operator-(const S_00056100_Quat &b) const { S_00056100_Quat r; r.x=x-b.x;r.y=y-b.y;r.z=z-b.z;return r; }
 };
@@ -538,9 +539,7 @@ int C_00055380::func_00055A10(S_00056100_Quat a,S_00056100_Quat b,S_00056100_Qua
   this->q6C=hit;
  }
  dir=b-this->q6C;
- float squared=dir.z*dir.z;
- squared+=dir.y*dir.y;
- squared+=dir.x*dir.x;
+ float squared=dir.z*dir.z+dir.y*dir.y+dir.x*dir.x;
  float distance=AsmSqrtF(squared);
  func_00055140(&dir,&dir);
  if(*(int*)this->pad12C) {
