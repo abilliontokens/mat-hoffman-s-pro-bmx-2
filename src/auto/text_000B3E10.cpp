@@ -171,18 +171,11 @@ inline B4300_Cb B4300_CbOf(void *p)
     return u.f;
 }
 
-template <class T>
-inline T B3E10_Min(const volatile T &a, const volatile T &b)
-{
-    return a > b ? b : a;
-}
-
 __forceinline void B3E10_Copy(char *dst, const char *src, int max)
 {
-    volatile int length = strlen(src);
-    volatile int limit = max;
-    volatile int size = B3E10_Min(limit, length);
-    int n = size;
+    int length = strlen(src);
+    int limit = max;
+    int n = AsmMinI(limit, length);
     func_001E8920(dst, src, n);
     dst[n] = 0;
 }
