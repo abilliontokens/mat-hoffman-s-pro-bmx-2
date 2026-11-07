@@ -12,13 +12,6 @@ struct Vec4 {
     f32 z;
     f32 w;
     Vec4() {}
-    Vec4 &operator=(const Vec4 &v) {
-        x = v.x;
-        y = v.y;
-        z = v.z;
-        w = v.w;
-        return *this;
-    }
     Vec4(f32 x_, f32 y_, f32 z_, f32 w_) : x(x_), y(y_), z(z_), w(w_) {}
     /* y and z arrive as doubles: this makes z a fld/fstp copy (as in the
        original) instead of an integer move. */
