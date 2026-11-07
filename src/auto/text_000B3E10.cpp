@@ -2,6 +2,9 @@
 #include "common.h"
 #include "asm_helpers.h"
 #include <string.h>
+
+extern "C" void _ReadWriteBarrier(void);
+#pragma intrinsic(_ReadWriteBarrier)
 extern char D_0027D144[];
 extern char D_0027D138[];
 extern char D_002764F0[];
@@ -300,6 +303,8 @@ struct C_000B4300 {
 
 extern "C" void __stdcall func_001577A0(S_B3E10_Obj *o, int a);
 
+extern "C" void _ReadWriteBarrier(void);
+#pragma intrinsic(_ReadWriteBarrier)
 void C_000B4300::func_000B3E10(void)
 {
     char path[0x104];
@@ -346,13 +351,29 @@ void C_000B4300::func_000B3E10(void)
     B3E10_Copy(D_002A60B0, path2, 0x103);
     if (D_002EFE08->func_0018E740(this, D_0027D1E0) == 0) {
         B4300_Cb volatile cb = &C_000B4300::func_000B3330;
-        this->B4300_Reg(cb, D_0027D1BC, D_0027D1D0, D_0027D1D8);
+        {
+            B4300_Cb volatile fn = cb;
+            _ReadWriteBarrier();
+            D_002EFE08->func_0018CF40(this->f38, fn, D_0027D1BC, D_0027D1D0, D_0027D1D8, 1);
+        }
         cb = B4300_CbOf(D_000B1E50);
-        this->B4300_Reg(cb, D_0027D1AC, D_0027D1D0, D_0027D1D8);
+        {
+            B4300_Cb volatile fn = cb;
+            _ReadWriteBarrier();
+            D_002EFE08->func_0018CF40(this->f38, fn, D_0027D1AC, D_0027D1D0, D_0027D1D8, 1);
+        }
         cb = B4300_CbOf(D_000B1E60);
-        this->B4300_Reg(cb, D_0027D194, D_0027D1A4, D_0027D1D8);
+        {
+            B4300_Cb volatile fn = cb;
+            _ReadWriteBarrier();
+            D_002EFE08->func_0018CF40(this->f38, fn, D_0027D194, D_0027D1A4, D_0027D1D8, 1);
+        }
         cb = B4300_CbOf(D_000B1E70);
-        this->B4300_Reg(cb, D_0027D178, D_0027D18C, D_0027D1D8);
+        {
+            B4300_Cb volatile fn = cb;
+            _ReadWriteBarrier();
+            D_002EFE08->func_0018CF40(this->f38, fn, D_0027D178, D_0027D18C, D_0027D1D8, 1);
+        }
         info = this->f3c;
         D_002EFE08->func_00191270(this, D_0027D1E0, (S_B4300_Stream *)info->f348, info->f384);
     }
@@ -363,7 +384,6 @@ void C_000B4300::func_000B3E10(void)
         this->f3c = 0;
     }
 }
-
 C_000B4300 *C_000B4300::func_000B4300(S_B4300_Stream * volatile a, S_B4300_Stream * volatile b)
 {
     char name[0x104];
