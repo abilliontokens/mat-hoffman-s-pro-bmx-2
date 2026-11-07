@@ -73,7 +73,7 @@ struct S_0E9180_Manager {
 };
 struct S_0E9180_150 {
     char pad0[0x484];
-    void *f484;
+    S_0E9180_Manager *f484;
 };
 
 struct S_0E9180_124 {
