@@ -1,6 +1,8 @@
 /* 17 functions from 0x00167FE0 to 0x00168F40, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+#include "asm_helpers.h"
+#include "asm_helpers.h"
 extern "C" unsigned int strlen(const char *s);
 extern "C" char *strcpy(char *dst, const char *src);
 extern "C" void *memset(void *dst, int c, unsigned int n);
@@ -324,16 +326,94 @@ int C_00168280::func_00168550(const char *name, char *dst, int size)
     int delta;
     char **list;
 
-    if (f4 == 0) {
+    if (f4 != 0) {
+        if (f1c != 0) {
+            if (f1c == 1) {
+                p = (char *)name;
+                delta = key - p;
+                do {
+                    c = *p;
+                    p[delta] = c;
+                    p++;
+                } while (c);
+                func_000347F0(key);
+                t = f4c0;
+                if (strcmp(key, t) != 0) {
+                    return 0;
+                }
+                s = t + *(int *)(t + 0x23);
+                n = strlen(s);
+                if (size != -1) {
+                    n = AsmMinI(n, size - 1);
+                }
+                goto copy;
+            }
+            p = (char *)name;
+            delta = key - p;
+            do {
+                c = *p;
+                p[delta] = c;
+                p++;
+            } while (c);
+            func_000347F0(key);
+            t = f4c0;
+            lo = 0;
+            hi = f1c - 1;
+            mid = hi >> 1;
+            for (;;) {
+                e = t + mid * 0x2b;
+                cmp = strcmp(key, e);
+                if (cmp == 0) {
+                    s = t + *(int *)(e + 0x23);
+                    n = strlen(s);
+                    if (size != -1) {
+                        n = AsmMinI(n, size - 1);
+                    }
+                    goto copy;
+                }
+                if (cmp < 0) {
+                    hi = mid;
+                } else {
+                    lo = mid;
+                }
+                mid = ((hi - lo) >> 1) + lo;
+                if (hi - lo <= 1) {
+                    break;
+                }
+            }
+            e = t + lo * 0x2b;
+            if (strcmp(key, e) == 0) {
+                s = t + *(int *)(e + 0x23);
+                n = strlen(s);
+                if (size != -1) {
+                    n = AsmMinI(n, size - 1);
+                }
+                goto copy;
+            }
+            e = t + hi * 0x2b;
+            if (strcmp(key, e) != 0) {
+                return 0;
+            }
+            s = t + *(int *)(e + 0x23);
+            n = strlen(s);
+            if (size != -1) {
+                n = AsmMinI(n, size - 1);
+            }
+copy:
+            memcpy(dst, s, n);
+            dst[n] = 0;
+            return 1;
+        }
+    } else {
         count = f1c;
         list = f20;
         for (i = 0; i < count; i++) {
-            n = Min_00168550(strlen(list[i]), 0x3ff);
+            n = AsmMinI(0x3ff, strlen(list[i]));
             func_001E8920(key, list[i], n);
             key[n] = 0;
             tok.Tokenizer_SetString(key);
             s = tok.func_001B4A70(D_0028800C);
-            n = Min_00168550(strlen(s), 0x3ff);
+            n = AsmMinI(0x3ff, strlen(s));
             func_001E8920(val, s, n);
             val[n] = 0;
             s = tok.func_001B4A70(D_002869B4);
@@ -347,7 +427,7 @@ int C_00168280::func_00168550(const char *name, char *dst, int size)
                 }
                 if (size != -1) {
                     func_001E8920(dst, s, size);
-                    n = Min_00168550(strlen(s), size - 1);
+                    n = AsmMinI(size - 1, strlen(s));
                     dst[n] = 0;
                 } else {
                     strcpy(dst, s);
@@ -355,76 +435,9 @@ int C_00168280::func_00168550(const char *name, char *dst, int size)
                 return 1;
             }
         }
-        dst[0] = 0;
-        return 0;
     }
-    if (f1c == 0) {
-        dst[0] = 0;
-        return 0;
-    }
-    p = (char *)name;
-    delta = key - p;
-    do {
-        c = *p;
-        p[delta] = c;
-        p++;
-    } while (c);
-    func_000347F0(key);
-    t = f4c0;
-    if (f1c == 1) {
-        if (strcmp(key, t) != 0) {
-            return 0;
-        }
-        s = t + *(int *)(t + 0x23);
-        n = strlen(s);
-        if (size != -1) {
-            n = Min_00168550(n, size - 1);
-        }
-    } else {
-        lo = 0;
-        hi = f1c - 1;
-        mid = hi >> 1;
-        do {
-            e = t + mid * 0x2b;
-            cmp = strcmp(key, e);
-            if (cmp == 0) {
-                s = t + *(int *)(e + 0x23);
-                n = strlen(s);
-                if (size != -1) {
-                    n = Min_00168550(n, size - 1);
-                }
-                goto copy;
-            }
-            if (cmp < 0) {
-                hi = mid;
-            } else {
-                lo = mid;
-            }
-            mid = ((hi - lo) >> 1) + lo;
-        } while (hi - lo > 1);
-        e = t + lo * 0x2b;
-        if (strcmp(key, e) == 0) {
-            s = t + *(int *)(e + 0x23);
-            n = strlen(s);
-            if (size != -1) {
-                n = Min_00168550(n, size - 1);
-            }
-        } else {
-            e = t + hi * 0x2b;
-            if (strcmp(key, e) != 0) {
-                return 0;
-            }
-            s = t + *(int *)(e + 0x23);
-            n = strlen(s);
-            if (size != -1) {
-                n = Min_00168550(n, size - 1);
-            }
-        }
-    }
-copy:
-    memcpy(dst, s, n);
-    dst[n] = 0;
-    return 1;
+    dst[0] = 0;
+    return 0;
 }
 
 int C_00168280::func_00168A10(const char *name, int *out)
@@ -488,19 +501,19 @@ int C_00168280::func_00168C50(const char *name, float def, float *out)
 int C_00168280::func_00168CB0(const char *name, const float *def, float *out)
 {
     char buf[0x184];
-    int ok = func_00168550(name, buf, 0x80) != 0;
 
-    if (!ok) {
+    if (func_00168550(name, buf, 0x80) == 0) {
         strcpy(buf, D_00275630);
         out[0] = def[0];
         out[1] = def[1];
         out[2] = def[2];
         return 0;
+    } else {
+        out[0] = (float)func_001E9649(func_001E95A4(buf, D_002869B8));
+        out[1] = (float)func_001E9649(func_001E95A4(0, D_002869B8));
+        out[2] = (float)func_001E9649(func_001E95A4(0, D_002869B4));
+        return 1;
     }
-    out[0] = (float)func_001E9649(func_001E95A4(buf, D_002869B8));
-    out[1] = (float)func_001E9649(func_001E95A4(0, D_002869B8));
-    out[2] = (float)func_001E9649(func_001E95A4(0, D_002869B4));
-    return 1;
 }
 
 int C_00168280::func_00168D70(const char *name, float *out, int count)
