@@ -1,5 +1,6 @@
 /* 4 functions from 0x0016F110 to 0x0016FEE0, found by Ghidra. */
 #include "common.h"
+#include "asm_helpers.h"
 struct Rdr6F110 {
     char pad0[0x4d4];
     void func_00168280();
