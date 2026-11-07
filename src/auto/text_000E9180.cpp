@@ -64,6 +64,25 @@ struct S_0E9180_270 {
     void func_000BC590();
 };
 
+#include <xmmintrin.h>
+struct Vec_0E9180 { float x,y,z,w; };
+struct V_0E9180 {
+    virtual void v0(); virtual void v4(); virtual void v8(); virtual void vc();
+    virtual void v10(); virtual void v14(); virtual void v18(); virtual void v1c();
+};
+struct Transform_0E9180 {
+    void func_00197E70(void *);
+    void func_001996A0(int, Vec_0E9180);
+};
+struct Model_0E9180 {
+    int *vbtable;
+    Transform_0E9180 *transform;
+    V_0E9180 *interfacePtr() { return (V_0E9180 *)((char *)this + vbtable[1]); }
+};
+struct Item_0E9180 { char pad[0x1a4]; Model_0E9180 *model; };
+struct List_0E9180 : V_0E9180 { char pad[0x24]; Item_0E9180 **items; };
+struct Query_0E9180 { int func_0005C1D0(int); };
+struct Timer_0E9180 { void func_001C4B60(int,int); int func_001C3F10(); };
 struct S_0E9180_Manager {
     char pad0[0x2c];
     void *f2c;
