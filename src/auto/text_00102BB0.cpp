@@ -28,7 +28,7 @@ struct C_001B1980 {
     void func_001B17D0(char *s);
     void func_001B13A0(char *a, char *b, int c, int d);
 };
-extern const float D_00275998;
+extern float D_00275998;
 
 struct C_001C01B0 {
     void func_001C01B0();
@@ -408,9 +408,9 @@ C_00103450 *C_00103450::func_00103450(int a, S_Cfg *cfg)
     cfg->func_00168C20(D_00282854, 0xff, &l.i1);
     cfg->func_00168C20(D_00282844, 0, &l.i2);
     cfg->func_00168C50(D_0028283C, 0.0f, &l.f);
+    unk3E8 = l.i3;
     unk3F0 = l.i2;
     unk3EC = l.i1;
-    unk3E8 = l.i3;
     unk3F4 = *(int *)&l.f;
     l.v[0] = 40.0f; l.v[1] = 40.0f; l.v[2] = 40.0f; l.v[3] = 1.0f;
     cfg->func_00168CB0(D_0027DE44, (S_00103_Vec4 *)l.v, (S_00103_Vec4 *)l.c1);
@@ -421,13 +421,13 @@ C_00103450 *C_00103450::func_00103450(int a, S_Cfg *cfg)
     unk3D0 = (((int)l.c2[0] | 0xffffff00) << 8 | ((int)l.c2[1] & 0xff)) << 8 | ((int)l.c2[2] & 0xff);
     cfg->func_00168C20(D_00282824, 0, &unk190);
     unk28 = a;
-    if (strcmp(l.buf, "Right") == 0)
+    if (strcmp(l.tmp, "Right") == 0)
         unk178 = D_0028F5EC;
-    else if (strcmp(l.buf, "CenterBoth") == 0)
+    else if (strcmp(l.tmp, "CenterBoth") == 0)
         unk178 = D_0028F5E8;
-    else if (strcmp(l.buf, "CenterVertical") == 0)
+    else if (strcmp(l.tmp, "CenterVertical") == 0)
         unk178 = D_0028F5E4;
-    else if (strcmp(l.buf, "CenterHorizontal") == 0)
+    else if (strcmp(l.tmp, "CenterHorizontal") == 0)
         unk178 = D_0028F5E0;
     else
         unk178 = D_0028F5DC;
@@ -445,7 +445,7 @@ C_00103450 *C_00103450::func_00103450(int a, S_Cfg *cfg)
         else
             q = 0;
         *unk1B0 = q;
-        C_001B13A0::func_001B13A0(unk1B8, unkF0, 0, strlen(l.buf));
+        (*unk1B0)->func_001B13A0(unk1B8, unkF0, 0, strlen(l.buf));
         ((C_001577A0 *)this)->func_001577A0(*unk1B0, -1);
         (*unk1B0)->func_001B1860(0, -1.0f, 0xff, 1.0f, 0, 0, -1.0f, 0xff, 1.0f, 0, 0, 0, 0);
         (*unk1B0)->func_001B17D0(l.buf);
