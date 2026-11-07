@@ -1,5 +1,6 @@
 /* 1 function from 0x00042260 to 0x00042840, found by Ghidra. */
 #include "common.h"
+#include "asm_helpers.h"
 void *func_001E8A44(unsigned int);
 void func_001E891B(void *);
 extern "C" char *func_001E8920(char *dst, const char *src, unsigned int n);
@@ -123,3 +124,111 @@ struct C_00042260 {
     void func_0003BC90();
     int func_000392B0();
 };
+
+int C_00042260::func_00042260()
+{
+    C_00042260 *volatile self = this;
+    C_00042260 *t;
+    char buf[0x104];
+    S36_42260 s;
+    S16_42260 tmp;
+    void *mem;
+
+    mem = func_001E8A44(0xa0);
+    self->f54C = mem ? ((C_00192900 *)mem)->func_00192900(1) : 0;
+    t = self; t->f54C->f3C = 0;
+    mem = func_001E8A44(0x44);
+    self->f544 = mem ? ((C_001923F0 *)mem)->func_001923F0(0x400) : 0;
+    mem = func_001E8A44(0x44);
+    self->f548 = mem ? ((C_001923F0 *)mem)->func_001923F0(0x400) : 0;
+    t = self; t->f54C->func_00192A90(t->f544);
+    t = self; t->f54C->func_00192AC0(t->f548);
+    func_001ADCC0(buf, 0x104, D_00276FC8, D_002A5870);
+    if (D_002BEAAC->func_0013D780(buf, 0, 0, 0, 0, 0, 0, 0))
+        D_002BEAAC->func_0013B260(0);
+    volatile int mm[2];
+    mm[1] = 0x103;
+    {
+        int a = mm[1];
+        int lim = 8;
+        if (a > lim) a = lim;
+        mm[0] = a;
+    }
+    int cnt = mm[0];
+    func_001E8920(D_002A60B0, D_00276FBC, cnt);
+    D_002A60B0[cnt] = 0;
+    mem = func_001E8A44(0x70);
+    self->f158 = mem ? ((C_001C3E50 *)mem)->func_001C3E50(1) : 0;
+    self->f158->func_001C3EA0(1);
+    self->f158->func_001C4A70();
+    self->f158->func_001C4C30();
+    func_001ADCC0(D_002A60B0, 0x104, D_00275678, D_002A5870, D_002A5FA8);
+    self->v24();
+    self->v1F();
+    self->f1D4->v3(D_00276C08, 0x19c, 0x10);
+    self->f1D4->v2(D_00276C08, 0x140, 0x186);
+    func_001ADCC0(D_002A48F8, 0x104, D_00275678, D_002A5870, D_002A47F0);
+    mem = func_001E8A44(0x1f0);
+    self->f53C = mem ? ((C_001A2C00 *)mem)->func_001A2C00(D_002A8490->f4, self->f64->f4C0, 6, 1) : 0;
+    self->f53C->func_001A23F0(s, D_002A14D4, D_002A14D4, 2, 0x41a00000, 0x42c80000, 0, 1);
+    self->f53C->func_001A4640(D_00276FAC, D_00275630, -1);
+    D_002BEAAC->func_0013DFF0(buf, 1);
+    t = self;
+    if (t->f1D4) {
+        t->f1D4->v6();
+        C_001D35E0 *p = self->f1D4;
+        if (p) {
+            p->func_001D35E0();
+            func_001E891B(p);
+        }
+        self->f1D4 = 0;
+    }
+    self->f1D0->func_00012140();
+    func_001ADCC0(buf, 0x104, D_00276B9C, D_002A5870);
+    D_002BEAAC->func_0013C1D0(&D_00280000);
+    if (D_002BEAAC->func_0013D780(buf, 0, 0, 0, 0, 0, 0, 0))
+        D_002BEAAC->func_0013B260(0);
+    t = self;
+    if (!t->f64->func_000AF900(t->f428))
+        return 0;
+    self->func_0003BC90();
+    t = self;
+    mem = func_001E8A44(t->f460 * t->f45C * t->f458 * 4);
+    self->f49C = (int *)mem;
+    t = self; memset(t->f49C, 0, t->f460 * t->f45C * t->f458 * 4);
+    if (D_002A8490->f2E0->f2C4) {
+        t = self;
+        int start = t->f5A0;
+        t->f64->func_000B03A0(&t->f5A0, t->f5B4, func_00037840);
+        for (int i = start; t = self, i < t->f5A0; i++) {
+            S_42260_Item *item = (t->f5A0 > 0 && t->f5A4 && i < t->f5A0) ? t->f5A4[i] : 0;
+            t->f564 = item;
+            if (item->f0 == 0 || (item->f0 > 2 && item->f0 <= 5)) {
+                self->func_000392B0();
+                if (func_001E8AF0((char *)item->f8 + 0x28, D_00276F78)) {
+                    t = self;
+                    if (t->f290 == 0) {
+                        t->f290 = 1;
+                        t = self;
+                        S16_42260 *r = t->f564->f8->func_00199B00(&tmp, 0);
+                        self->f294 = *r;
+                        t = self; t->f564->f8->func_00197B40(t->pad2A4, t->f2B4);
+                    }
+                    t = self;
+                    t->f288++;
+                    C_00042260 *u = self;
+                    C_000AF900 *m = u->f64;
+                    int k = m->f5A4->f47C;
+                    S_42260_Ent *e = (m->f5A8 > 0 && m->f5AC && k < m->f5A8) ? m->f5AC[k] : 0;
+                    func_001ADCC0(e->s314, 0x32, D_00276F9C, u->f288 + 1);
+                }
+                self->f564 = 0;
+            }
+        }
+    }
+    t->f564 = 0;
+    t = self; t->f568 = 0;
+    t = self; t->f56C = 0;
+    t = self; t->f570 = 0;
+    return 1;
+}
