@@ -13,6 +13,7 @@ struct C_0004BAB0 {
 
 #include <xmmintrin.h>
 #include <string.h>
+#include "asm_helpers.h"
 #define D9120 ((char *)D_002B9120)
 #define D8490 ((char *)D_002A8490)
 struct Vec16 { int v[4]; };
@@ -111,7 +112,7 @@ struct S_4B760_Mgr {
     VP4B(i) VP4B(j) VP4B(k) VP4B(l) VP4B(m) VP4B(n) VP4B(o) VP4B(p)
     VP4B(q) VP4B(r) VP4B(s) VP4B(t) VP4B(u) VP4B(v) VP4B(w) VP4B(x)
     virtual void *y0(void *a);
-    char pad184[0x524 - 0x184];
+    char pad4[0x524 - 4];
     void **f524;
     char pad528[0x560 - 0x528];
     int f560;
@@ -282,7 +283,7 @@ void C_0004AD10::func_0004AD10()
         *(Obj **)(self + 0x2e8) = mem ? ((Obj *)mem)->func_000A43E0() : 0;
         len = strlen(*(char **)(D8490 + 0x2e0) + 0x1f4);
         max = 0x103;
-        n = Min(max, len);
+        n = AsmMinI(max, len);
         func_001E8920(name, *(char **)(D8490 + 0x2e0) + 0x1f4, n);
         name[n] = 0;
         func_001ADCC0(path, 0x104, D_00276C34, D_002A5348, name);
@@ -311,7 +312,7 @@ void C_0004AD10::func_0004AD10()
             p->func_00168BE0(D_00277274, D_00275630, buf, 0x104);
             len = strlen(buf);
             max = 0x4f;
-            n = Min(max, len);
+            n = AsmMinI(max, len);
             func_001E8920(**(char ***)(self + 0x2e4) + 0x190, buf, n);
             (**(char ***)(self + 0x2e4) + 0x190)[n] = 0;
             *(Obj **)(**(char ***)(self + 0x2e4) + 8) = p;
@@ -328,7 +329,7 @@ void C_0004AD10::func_0004AD10()
             p->func_00168BE0(D_00277274, D_00275630, buf, 0x104);
             len = strlen(buf);
             max = 0x4f;
-            n = Min(max, len);
+            n = AsmMinI(max, len);
             func_001E8920(**(char ***)(self + 0x2e8) + 0x190, buf, n);
             (**(char ***)(self + 0x2e8) + 0x190)[n] = 0;
             *(Obj **)(**(char ***)(self + 0x2e8) + 8) = p;
@@ -346,7 +347,7 @@ void C_0004AD10::func_0004AD10()
     }
     len = strlen(D_002A48F8);
     max = 0x103;
-    n = Min(max, len);
+    n = AsmMinI(max, len);
     func_001E8920(saved, D_002A48F8, n);
     saved[n] = 0;
     func_001ADCC0(D_002A48F8, 0x104, D_00275678, D_002A5870, D_002A47F0);
@@ -359,7 +360,7 @@ void C_0004AD10::func_0004AD10()
     }
     len = strlen(saved);
     max = 0x103;
-    n = Min(max, len);
+    n = AsmMinI(max, len);
     func_001E8920(D_002A48F8, saved, n);
     D_002A48F8[n] = 0;
     (*(Obj **)(*(char **)(D8490 + 0x2e0) + 0x2fc))->func_000951B0(0x13);
@@ -368,26 +369,91 @@ void C_0004AD10::func_0004AD10()
 
 void BmxEventFPS::func_0004B760(float dt)
 {
+    int i;
+    int one = 1;
     char *m = (char *)this;
 
-    if (*(int *)(m + 0x2d4) == 1) {
-        if (*(int *)(*(char **)(m + 0x2cc) + 0x34) == 0) {
-            ((Obj *)*(char **)(m + 0x2e4))->func_001670C0(dt, 0, 0);
-            ((Obj *)*(char **)(*(char **)(m + 0x2e4) + 4))->func_0019AC50();
-            ((Obj *)*(char **)(m + 0x2e8))->func_001670C0(dt, 0, 0);
-            ((Obj *)*(char **)(*(char **)(m + 0x2e8) + 4))->func_0019AC50();
-            goto L;
-        }
-        *(int *)(m + 0x2d4) = 0;
-        ((V8Bmx *)*(char **)(m + 0x2cc))->b2();
-        ((V45Bmx *)this)->g3();
-        func_0004A590();
-        ((V45Bmx *)this)->i2();
-        ((V45Bmx *)this)->j3();
-        func_00031260(0.0f);
+    if (D_002A8490->f124 == one) {
+        func_00031260(dt);
         return;
     }
+    if (*D_002A8490->f2E0 <= one) {
+        if (*(int *)(m + 0x2e0) == one && *(int *)(m + 0x2dc) == 0 &&
+            ((C_4B760_A *)*(void **)((char *)D_002A8490->f2E0 + 0x2c0))->func_0005C0A0() == 0) {
+            func_0004A360();
+            ((V45Bmx *)this)->i3();
+            *(int *)(m + 0x2d4) = one;
+            *(int *)(m + 0x2dc) = one;
+            ((V8Bmx *)*(char **)(m + 0x2cc))->b2();
+            ((C_4B760_B *)*(char **)(m + 0x2cc))->func_001394F0(-1);
+            *(int *)(m + 0x2e0) = 0;
+            {
+                Obj *r = (Obj *)D_002B9120->y0(D_00277140);
+                if (r) ((C_4B760_C *)r)->func_001983A0();
+            }
+        }
+        if (*(int *)(m + 0x2d4) == one) {
+            if (*(int *)(*(char **)(m + 0x2cc) + 0x34) == 0) {
+                Obj *o = (Obj *)*(char **)(m + 0x2e4);
+                o->func_001670C0(dt, 0, 0);
+                ((Obj *)*(char **)((char *)o + 4))->func_0019AC50();
+                o = (Obj *)*(char **)(m + 0x2e8);
+                o->func_001670C0(dt, 0, 0);
+                ((Obj *)*(char **)((char *)o + 4))->func_0019AC50();
+                goto L;
+            }
+            *(int *)(m + 0x2d4) = 0;
+            ((V8Bmx *)*(char **)(m + 0x2cc))->b0();
+            ((V45Bmx *)this)->g3();
+            func_0004A590();
+            ((V45Bmx *)this)->i2();
+            ((V45Bmx *)this)->j3();
+            func_00031260(0.0f);
+            return;
+        }
+        if (*(int *)(m + 0x2d8) == one) {
+            if (*(int *)(*(char **)(m + 0x2d0) + 0x34) == 0) {
+                Obj *o = (Obj *)*(char **)(m + 0x2e4);
+                o->func_001670C0(dt, 0, 0);
+                ((Obj *)*(char **)((char *)o + 4))->func_0019AC50();
+                goto L;
+            }
+            ((V8Bmx *)*(char **)(m + 0x2c8))->b2();
+            *(int *)(m + 0x2d8) = 0;
+            ((V8Bmx *)*(char **)(m + 0x2d0))->b0();
+            ((V45Bmx *)this)->g3();
+            func_0004A590();
+            ((V45Bmx *)this)->i2();
+            *(int *)(*(char **)(m + 0x284) + 0x60) = 200;
+            ((C_4B760_D *)*(char **)(m + 0x168))->func_000788D0();
+            D_002A8490->f124 = one;
+        }
+    } else {
+        if (*(int *)(m + 0x114) == one)
+            ((V45Bmx *)this)->j3();
+    }
 L:
+    if (*(int *)(m + 0x2d4) == 0 && *(int *)(m + 0x2d8) == 0) {
+        *(float *)(m + 0x2c4) += dt;
+        for (i = 0; i < D_002B9120->f560; i++) {
+            S_4B760_Item *it = (S_4B760_Item *)D_002B9120->f524[i];
+            if (it->f84 > D_00275544) {
+                it->f84 -= dt;
+                it = (S_4B760_Item *)D_002B9120->f524[i];
+                if (it->f84 < D_00275544) {
+                    it->f84 = 0;
+                    ((V8Bmx *)it->f80)->b2();
+                    {
+                        char *p = *(char **)(it->f4 + 0x1a4);
+                        ((C_4B760_C *)*(char **)(p + 4))->func_001983A0();
+                        ((V8Bmx *)(p + *(int *)p))->b2();
+                    }
+                }
+            }
+        }
+        if (*(int *)(m + 0x90) > one)
+            func_0004A6A0();
+    }
     func_00031260(dt);
 }
 
