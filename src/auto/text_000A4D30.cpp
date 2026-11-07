@@ -25,6 +25,7 @@ struct Ser_000A4D30 {
 };
 struct S_000A4D30 {
     char pad0[0x7a90];
+    void func_000A4AF0(int key, char *name);
     int func_000A4D30();
 };
 
