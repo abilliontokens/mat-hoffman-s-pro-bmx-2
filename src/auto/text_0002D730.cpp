@@ -7,7 +7,7 @@ struct V4_2D730 {
 };
 static __forceinline float Abs_2D730(float a)
 {
-    unsigned int i = *(unsigned int *)&a & 0x7fffffff;
+    unsigned int i = *(volatile unsigned int *)&a & 0x7fffffff;
     return *(float *)&i;
 }
 static __forceinline void Cross_2D730(float *out, float *a, float *b)
