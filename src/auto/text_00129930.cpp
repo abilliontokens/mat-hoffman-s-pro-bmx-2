@@ -210,22 +210,15 @@ struct V4_12A3F0 { float x, y, z, w; };
 
 static __forceinline void Set4_12A3F0(V4_12A3F0 *v)
 {
+    v->w = 1.0f;
     v->z = 0.0f;
     v->y = 0.0f;
     v->x = 0.0f;
-    v->w = 1.0f;
 }
 
 static __forceinline void Ident_12A3F0(float *m)
 {
-    ((__m128 *)m)[0] = _mm_setzero_ps();
-    ((__m128 *)m)[1] = _mm_setzero_ps();
-    ((__m128 *)m)[2] = _mm_setzero_ps();
-    ((__m128 *)m)[3] = _mm_setzero_ps();
-    m[0] = 1.0f;
-    m[5] = 1.0f;
-    m[10] = 1.0f;
-    m[15] = 1.0f;
+    AsmIdentityMatrix(m);
 }
 
 struct Camera_12A3F0 {
