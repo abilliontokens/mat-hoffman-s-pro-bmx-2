@@ -106,7 +106,9 @@ struct BmxScene {
     char f30[0x104];
     char pad134[0x340 - 0x134];
     int f340;
-    char pad344[0x38c - 0x344];
+    int *f344; int f348; int f34c; int f350;
+    char pad354[0x384-0x354];
+    int *f384; int *f388;
     BmxSceneMgr *f38c;
     char pad390[0x3ac - 0x390];
     BmxSceneMgr *f3ac;
