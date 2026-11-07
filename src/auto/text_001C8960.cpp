@@ -1,5 +1,30 @@
 /* 3 functions from 0x001C8960 to 0x001C9920, found by Ghidra. */
 #include "common.h"
+extern float D_002F0BCC;
+extern char D_0028EB7C[];
+extern char D_0028EB68[];
+extern char D_0028EB5C[];
+extern char D_0028EB50[];
+extern char D_0028EB44[];
+extern float D_002F08D0;
+extern char D_0028EB34[];
+extern char D_0028EB28[];
+extern float D_002F0BD8;
+extern char D_0028EB10[];
+extern float D_002F0BD4;
+extern char D_0028EAF8[];
+extern char D_0028EAE4[];
+extern char D_0028EACC[];
+extern char D_0028EAB8[];
+extern char D_0028EAAC[];
+extern char D_0028EA9C[];
+extern char D_0028EA90[];
+extern char D_0028A730[];
+extern char D_0028EA84[];
+extern float D_002AB800;
+extern char D_0028EA78[];
+extern float D_002F08A4;
+extern char D_0028EA68[];
 extern float D_00275544, D_002F08AC, D_0028E858, D_002F08B0, D_0028E854, D_002AC5CC, D_002F08A8;
 extern int D_002AB7F0, D_002F0BD0;
 struct S_1C9760_Vec { float x,y,z; };
