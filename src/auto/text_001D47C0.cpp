@@ -1,5 +1,6 @@
 /* 28 functions from 0x001D47C0 to 0x001D5760, found by Ghidra. */
 #include "common.h"
+#include "asm_helpers.h"
 #include <xmmintrin.h>
 #include <string.h>
 
@@ -486,7 +487,8 @@ int func_001D4B20(void)
 
 int XboxRenderTarget::func_001D4B40(int *rect, int *src, int *dst, int unused)
 {
-    XboxRenderTarget *p = this;
+    int w, h;
+    XboxRenderTarget * volatile p = this;
     S_001D5660_Mat mat;
     S_001D5660_Mat * volatile pm = &mat;
     int v[4];
@@ -494,7 +496,6 @@ int XboxRenderTarget::func_001D4B40(int *rect, int *src, int *dst, int unused)
     float u0, u1, v0, v1;
     float f0, f1, f2, f3;
     int flag;
-    int w, h;
     S_001D4B40_Vtx *vt;
 
     pm->identity();
