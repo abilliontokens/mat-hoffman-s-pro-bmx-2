@@ -69,6 +69,18 @@ static __forceinline int clamp_168550(const char *s, int size)
     }
     return n;
 }
+static __forceinline void copy_168550(char *dst, const char *s, int size)
+{
+    int n;
+
+    if (size != -1) {
+        func_001E8920(dst, s, size);
+        n = min_168550(size - 1, strlen(s));
+        dst[n] = 0;
+    } else {
+        strcpy(dst, (char *)s);
+    }
+}
 
 struct C_001684B0 {
     char pad0[0x1c];
@@ -351,10 +363,7 @@ int C_00168280::func_00168550(const char *name, char *dst, int size)
                     return 0;
                 }
                 s = t + *(int *)(t + 0x23);
-                n = strlen(s);
-                if (size != -1) {
-                    n = min_168550(n, size - 1);
-                }
+                n = clamp_168550(s, size);
                 goto copy;
             }
             p = (char *)name;
@@ -376,10 +385,7 @@ int C_00168280::func_00168550(const char *name, char *dst, int size)
                 cmp = strcmp(key, e);
                 if (cmp == 0) {
                     s = t + *(int *)(e + 0x23);
-                    n = strlen(s);
-                    if (size != -1) {
-                        n = min_168550(n, size - 1);
-                    }
+                    n = clamp_168550(s, size);
                     goto copy;
                 }
                 if (cmp < 0) {
@@ -392,10 +398,7 @@ int C_00168280::func_00168550(const char *name, char *dst, int size)
             e = t + lo * 0x2b;
             if (strcmp(key, e) == 0) {
                 s = t + *(int *)(e + 0x23);
-                n = strlen(s);
-                if (size != -1) {
-                    n = min_168550(n, size - 1);
-                }
+                n = clamp_168550(s, size);
                 goto copy;
             }
             e = t + hi * 0x2b;
@@ -403,10 +406,7 @@ int C_00168280::func_00168550(const char *name, char *dst, int size)
                 return 0;
             }
             s = t + *(int *)(e + 0x23);
-            n = strlen(s);
-            if (size != -1) {
-                n = min_168550(n, size - 1);
-            }
+            n = clamp_168550(s, size);
 copy:
             memcpy(dst, s, n);
             dst[n] = 0;
