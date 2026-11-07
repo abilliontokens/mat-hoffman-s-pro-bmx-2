@@ -471,12 +471,10 @@ C_00194130 *C_00194130::func_00194130(int a0)
     return this;
 }
 
+/* 0x194190, setter for f2c. Ghidra merged three __thiscall methods into this
+ * symbol; the other two start at 0x1941A0 and 0x1941D0, each separated by
+ * alignment NOPs, so only this block belongs here. */
 void C_00194190::func_00194190(int a0)
 {
     f2c = a0;
-    f28 = a0;
-    f24 = 0;
-    f40 = (int *)func_001E8A44(a0 * 4);
-    if (f24 < f28)
-        f40[f24++] = a0;
 }
