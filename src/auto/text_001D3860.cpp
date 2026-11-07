@@ -108,10 +108,6 @@ int func_001EA426(const char *a, const char *b);
 unsigned __stdcall func_0026EBC5(void *type);
 int __stdcall func_0026EBE7(void *type, unsigned *insertions, unsigned *removals);
 int __stdcall func_0026ED5B(int port, int slot, char *letter);
-static __forceinline int Mount_001D40E0(C_001D4010 *self, int a, int slot, char *letter)
-{
-    return func_0026ED5B(self->func_001D4010(a), slot, letter);
-}
 int __stdcall func_0026EE8D(int port, int slot);
 
 struct S_001D4200_Find {
