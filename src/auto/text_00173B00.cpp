@@ -217,15 +217,15 @@ Vec4 func_00174110(Vec4 *src) {
 Vec4 r;
 Vec4 *dst=&r;
 int w,z,y,x;
+struct Q { float root, a, b, c, d; } q;
 float sum=LengthSq(src->x,src->y,src->z,src->w);
 if(sum!=D_00275544) {
-float root=sqrtf(sum);
-volatile float *rootp=&root;
-float inv=D_00275460/ *rootp;
-float a=inv*src->x; x=*(int*)&a;
-float b=inv*src->y; y=*(int*)&b;
-float c=inv*src->z; z=*(int*)&c;
-float d=inv*src->w; w=*(int*)&d;
+q.root=AsmSqrtF(sum);
+float inv=D_00275460/q.root;
+q.a=inv*src->x; x=*(int*)&q.a;
+q.b=inv*src->y; y=*(int*)&q.b;
+q.c=inv*src->z; z=*(int*)&q.c;
+q.d=inv*src->w; w=*(int*)&q.d;
 } else { w=0; x=w; y=w; z=w; }
 ((int*)dst)[0]=x; ((int*)dst)[1]=y; ((int*)dst)[2]=z; ((int*)dst)[3]=w;
 return r;
@@ -289,7 +289,7 @@ Vec4 *func_001743A0(Vec4 *dst, Vec4 *q)
     r.y = -func_0014FBA0(b, e);
     r.z = -func_0014FBA0(a, d);
     d = d*d+a*a;
-    float s = sqrtf(d);
+    float s = AsmSqrtF(d);
     r.x = -func_0014FBA0(-c, s);
     *dst=r;
     return dst;
