@@ -1,6 +1,7 @@
 /* 15 functions from 0x00034EF0 to 0x00035E80, found by Ghidra. */
 #include "common.h"
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 
 /* PreviewPane (vtable 0x276CE4), virtual slot 12: swings the page's light around its anchor. */
 struct S_34EF0_V4 {
@@ -455,7 +456,7 @@ struct C_00035C10 {
 
 void PreviewPane::func_00034EF0(float dt)
 {
-    S_34EF0_V4 from, pos, tmp, dir, side;
+    S_34EF0_V4 pos, tmp, from, dir, side;
 
     if (f24 != 0) {
         f24->func_0019A8C0(&from, &tmp);
