@@ -292,9 +292,9 @@ struct C_00012590 {
 int S_11FF0_Owner::func_00012730(V4_00012730 *a, V4_00012730 *b, V4_00012730 *out, int mode, int all)
 {
     int result = 0;
+    float half[4];
     V4_00012730 seg[2];
     float center[4];
-    float half[4];
     S_00012730_Iter iter;
     S_00012730_Node *node;
     int type;
