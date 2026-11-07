@@ -148,8 +148,7 @@ struct XboxVideoCard_001D8240 {
 void __stdcall func_002025D0(int a);
 void func_001FFBB0(void);
 
-struct LightBufs_001D7FB0 {
-    char a[0x100];
+struct LightBufs_001D7FB0 {    char a[0x100];
     char b[0x100];
     char c[0x100];
 };
@@ -548,9 +547,9 @@ int XboxTextureMap::func_001D7C50()
             return 0;
         int dims[2];
         S_001D7C50_desc desc;
-        func_00201210(p, &dims[0], 0, 0x80);
-        func_002011F0(p, (void *)&desc);
-        ((C_001D6D00 *)this)->func_001D6D00((void *)&desc, &dims[0], 0);
+        func_00201210(p, dims, 0, 0x80);
+        func_002011F0(p, &desc);
+        ((C_001D6D00 *)this)->func_001D6D00(&desc, dims, 0);
         func_00201100(p);
     }
     return 1;
