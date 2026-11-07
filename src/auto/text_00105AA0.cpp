@@ -21,7 +21,7 @@ struct C_Device {
     virtual void v32(); virtual void v33(); virtual void v34(); virtual void v35();
     virtual void v36(); virtual void v37(); virtual void v38(int,Vec4_00105B30,int); virtual void v39();
     virtual void v40(); virtual void v41(int,Vec4_00105B30,int,int,int); virtual void v42(); virtual int v43(int);
-    virtual void v44(); virtual void v45(); virtual void v46();
+    virtual void v44(Vec4_00105B30,int,int); virtual void v45(); virtual void v46(); virtual void v47(int);
 };
 
 struct C_Button {
