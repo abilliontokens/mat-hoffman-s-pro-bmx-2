@@ -26,6 +26,9 @@ struct Transform7520 {
     void func_00199110(int,S_000B7520_Vec4 *,S_000B7520_Vec4 *,int,int,int);
     S_000B7520_Vec4 *func_00197F70(S_000B7520_Vec4 *,const S_000B7520_Vec4 *);
     void func_00199960(int,S_000B7520_Vec4 *);
+    S_000B7520_Vec4 *func_00198040(S_000B7520_Vec4 *,const S_000B7520_Vec4 *);
+    S_000B7520_Vec4 *func_00198120(S_000B7520_Vec4 *,const S_000B7520_Vec4 *);
+    void func_00199E50(S_000B7520_Vec4,S_000B7520_Vec4,float);
 };
 void __stdcall func_0001C710(S_000B7520_Vec4);
 void func_000B60D0(S_000B7520_Vec4 *,const S_000B7520_Vec4 *);
