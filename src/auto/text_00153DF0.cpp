@@ -68,7 +68,8 @@ struct X153DF0_50900 { void func_00150900(void *a, void *b); };
 void func_0011CA60(float *v);
 struct X153DF0_9B00 { void func_00199B00(void *a, int b); };
 extern "C" double sqrt(double x);
-extern float D_002756DC;
+extern float D_002756DC, D_00286D4C, D_00286D48, D_00275AEC;
+void __cdecl func_00150890(void *, void *);
 extern int D_002A789C, D_002A78A0, D_002A78A4, D_002A78A8;
 
 
