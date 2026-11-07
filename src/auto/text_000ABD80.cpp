@@ -111,6 +111,7 @@ struct C_001B59E0 {
 struct C_000ABE10 {
     void *vtbl;
     C_000ABE10 *func_000ABE10();
+    void func_000ABE30(void *a, int b);
 };
 
 struct C_000ABD80_P1 {
@@ -523,11 +524,34 @@ C_000ABE10 *C_000ABE10::func_000ABE10()
     return this;
 }
 
+void __stdcall func_001B5A00(void *a, int b);
+void func_000ABE30(void *a, int b)
+{
+    func_001B5A00(a, b);
+}
+
 C_000AC140 *C_000AC140::func_000AC140()
 {
     ((C_001B59E0 *)this)->func_001B59E0();
     vtbl = (void *)&D_0027C824;
     return this;
+}
+
+void C_000AC160::func_000AC160(C_000AC160_P1 *a, void *b)
+{
+    char buf[0x78];
+    int i;
+    a->func_00168C20(&D_0027C80C, 0, &field_10C);
+    a->func_00168C50(&D_0027C800, 0, &field_110);
+    a->func_00168C20(&D_0027C868, 0, &field_114);
+    a->func_00168BE0(&D_0027C858, &D_00275630, field_118, 0x78);
+    a->func_00168C20(&D_0027C848, 3, &field_190);
+    a->func_00168C20(&D_0027C83C, 0, &field_194);
+    for (i = 1; i <= field_194; i++) {
+        func_001ADCC0(buf, 0x78, &D_0027C82C, i);
+        a->func_00168BE0(buf, &D_00275630, field_198[i - 1], 0x78);
+    }
+    func_001B5A00(a, b);
 }
 
 C_000AC2C0 *C_000AC2C0::func_000AC2C0(int flags)
