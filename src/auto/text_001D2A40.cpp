@@ -67,6 +67,7 @@ struct C_001D2A40 {
 };
 
 static __forceinline void Round_001D2A40(int * volatile out, float f) { *out = _mm_cvtss_si32(*(__m128 *)&f); }
+static __forceinline void RoundD_001D2A40(int *dst, float f) { AsmFloatToIntRound(f, dst); }
 static __forceinline float Get_001D2A40(const volatile float *p) { return *p; }
 static __forceinline int Min_001D2A40(int a, int b) { return a > b ? b : a; }
 
