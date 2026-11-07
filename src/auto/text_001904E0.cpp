@@ -58,6 +58,7 @@ __declspec(align(16)) struct C_0018F350 {
     void func_0018F4D0(unsigned int a);
     void func_0018E250(char *a, unsigned int b);
     void *func_0018E1D0(void);
+    void func_0018F390(char *, unsigned int, void *);
 };
 
 struct S_00191270_Node {
