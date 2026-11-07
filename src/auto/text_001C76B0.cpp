@@ -72,6 +72,7 @@ struct Obj {
     char padC4[0x37C - 0xC4];
     int f37C;
     void func_001C76B0(int a, int b, int c, int d, int e, int f2, int g, int h, int i, int j, int k, int l, int m);
+    void func_00167750();
 };
 void *func_001E8A44(int size);
 void func_001E891B(void *p);
