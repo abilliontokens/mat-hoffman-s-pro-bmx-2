@@ -26,6 +26,12 @@ struct C_001D5AD0 {
     };
     void func_001D5AD0(void);
 };
+static __forceinline void SetColor_000ECC60(C_001D5AD0 *p, unsigned int color) {
+    unsigned int c = (p->f38 & 0xff000000) | color;
+    unsigned char flags = p->f58 | 2;
+    p->f38 = c;
+    p->f58 = flags;
+}
 extern int D_0028F5E0;
 struct C_000ECDC0_Obj {
     void func_00093A00(float a, float b, int c, int d, int e, float f);
@@ -520,5 +526,78 @@ void C_000ED170::func_000ED170(void)
     D_002B91AC->f38->func_0005E840(D_002A8490->f2E8->f4->f7C8);
     D_002B91AC->func_000BF860(1, 0x17B, 0x184, 0);
     D_002B91AC->f3c->func_0005E840(D_002A8490->f2E8->f4->f838);
+}
+
+C_000ED300 *C_000ED300::func_000ED300(int a, int b, int c) {
+    int i;
+    void *p;
+    E300_Spr *s;
+    unsigned char fl;
+    func_001BE4F0(a, b, c);
+    D_002A8490->f2EC->func_0018C160(D_002786A0);
+    D_002A8490->f2EC->func_0018C160(D_00278690);
+    D_002A8490->f2EC->func_0018C160(D_00278678);
+    p = func_001E8A44(0x64);
+    f288 = p ? ((E300_Spr *)p)->func_001D5760() : 0;
+    f288->func_001D5810(D_0027E52C, 0, 70.0f, 0);
+    s = f288;
+    if (s->f2C != 308.0f) { s->f2C = 308.0f; s->f58 |= 1; }
+    s = f288;
+    if (s->f28 != 640.0f) { s->f28 = 640.0f; s->f58 |= 1; }
+    s = f288;
+    fl = s->f58 | 2;
+    *((char *)s + 0x3b) = 0;
+    s->f58 = fl;
+    for (i = 0; i < 11; i++) {
+        p = func_001E8A44(0x184);
+        f48C[i] = p ? ((E300_Txt *)p)->func_001B12C0(1) : 0;
+        f48C[i]->func_001B13A0(D_002786A0, D_002786A0, 0, 40);
+        f460[i] = i * D_00279F6C + D_0027F978;
+        f48C[i]->func_001B1A30(320.0f, f460[i], 0);
+        f48C[i]->func_001B2270(0xffcccccc);
+        f48C[i]->func_001B19A0(D_0028F5E0);
+        func_001577A0(f48C[i], -1);
+    }
+    for (i = 0; i < 4; i++) {
+        p = func_001E8A44(0x64);
+        f4B8[i] = p ? ((E300_Spr *)p)->func_001D5760() : 0;
+    }
+    f4B8[0]->func_001D5810(D_002786B0, 100.0f, 90.0f, 0);
+    s = f4B8[0];
+    if (s->f28 != 221.0f) { fl = s->f58 | 1; s->f28 = 221.0f; s->f58 = fl; }
+    f4B8[0]->SetColor();
+    f4B8[1]->func_001D5810(D_002786B0, 321.0f, 90.0f, 0);
+    s = f4B8[1];
+    if (s->f28 != 221.0f) { fl = s->f58 | 1; s->f28 = 221.0f; s->f58 = fl; }
+    f4B8[1]->SetColor();
+    s = f4B8[1];
+    fl = s->f58 | 4;
+    s->f3C = 1.0f; s->f40 = 0; s->f44 = 0; s->f48 = 1.0f;
+    s->f58 = fl;
+    f4B8[2]->func_001D5810(D_002786B0, 100.0f, 325.0f, 0);
+    s = f4B8[2];
+    if (s->f28 != 221.0f) { fl = s->f58 | 1; s->f28 = 221.0f; s->f58 = fl; }
+    f4B8[2]->SetColor();
+    s = f4B8[2];
+    fl = s->f58 | 4;
+    s->f3C = 0; s->f40 = 1.0f; s->f44 = 1.0f; s->f48 = 0;
+    s->f58 = fl;
+    f4B8[3]->func_001D5810(D_002786B0, 321.0f, 325.0f, 0);
+    s = f4B8[3];
+    if (s->f28 != 221.0f) { fl = s->f58 | 1; s->f28 = 221.0f; s->f58 = fl; }
+    f4B8[3]->SetColor();
+    s = f4B8[3];
+    fl = s->f58 | 4;
+    s->f3C = 1.0f; s->f44 = 1.0f; s->f40 = 0; s->f48 = 0;
+    s->f58 = fl;
+    i = 0;
+    do {
+        p = func_001E8A44(0x64);
+        f4C8[i] = p ? ((E300_Spr *)p)->func_001D5760() : 0;
+        if (i == 0) f4C8[i]->func_001D5810(D_0027E328, 309.0f, 82.0f, 0);
+        else f4C8[i]->func_001D5810(D_0027E31C, 309.0f, 350.0f, 0);
+        f4C8[i]->SetColor();
+    } while (++i < 2);
+    return this;
 }
 
