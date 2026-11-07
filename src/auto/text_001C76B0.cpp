@@ -2,7 +2,7 @@
 #include "common.h"
 #include <xmmintrin.h>
 #include "asm_helpers.h"
-struct Mtx { float m[16]; };
+struct __declspec(align(16)) Mtx { float m[16]; };
 struct V4 { int v[4]; };
 extern int D_002A4334;
 extern int D_002F088C;
