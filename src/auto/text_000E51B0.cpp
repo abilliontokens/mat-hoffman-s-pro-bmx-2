@@ -30,6 +30,7 @@ struct C_000E51B0_W {
     int w[0x60 / 4];
     C_000E51B0_W *func_001D5760();
     void func_001D5810(int a, int b, int c, int d);
+void func_001D5810(char *a, float b, float c, int d);
 };
 
 struct C_000E51B0_G {
