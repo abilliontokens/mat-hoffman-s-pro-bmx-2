@@ -94,7 +94,7 @@ struct BmxUIPageGlobal {
 
 struct ElemA_BEE {
     char pad0[4]; float x; float y;
-    char padC[0x24 - 0xC]; float f24; float f28; float f2C;
+    char padC[0x24 - 0xC]; int f24; float f28; float f2C;
     char pad30[0x3C - 0x30]; float f3C; float f40; float f44; float f48; float f4C; float f50;
     int f54; unsigned char f58;
     void SetF24() { if (f24 != 0.65f) { if (f54 == 0) { f24 = 0.65f; } else { f24 = 0.325f; f58 |= 1; } } }
