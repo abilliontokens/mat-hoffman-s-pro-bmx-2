@@ -149,6 +149,6 @@ void func_001B19A0(int);
 };
 struct RiderLabel {
 int w[0x60/4];
-void func_001D5E90();
+RiderLabel *func_001D5E90();
 void func_001D5FA0(int,char*,int,int);
 };
