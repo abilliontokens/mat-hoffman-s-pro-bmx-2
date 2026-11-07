@@ -39,7 +39,7 @@ extern float D_002755E8;
 extern float D_00275544;
 static __forceinline float DotAxis_00122810(float x, float y, float z, const S_00122810_V3 &n) { return x*n.x + y*n.y + z*n.z; }
 void func_0011EFA0(float *out, float *in);
-S_00122810_V3 *func_0001E9B0(S_00122810_V3 *out, S_00122810_V3 *a, S_00122810_V3 *b);
+S_00122810_V3 func_0001E9B0(const S_00122810_V3 &a, const S_00122810_V3 &b);
 static __forceinline float Dot_00122810(const S_00122810_V3 &a, const S_00122810_V3 &b)
 {
     return a.y * b.y + a.x * b.x + a.z * b.z;
