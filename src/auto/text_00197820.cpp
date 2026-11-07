@@ -177,7 +177,7 @@ struct S_00197820_Mat {
     float m[16];
 };
 
-static __forceinline void S_00197820_Identity(S_00197820_Mat *volatile m)
+static __forceinline void S_00197820_Identity(S_00197820_Mat *m)
 {
     _mm_store_ps(&m->m[0], _mm_setzero_ps());
     _mm_store_ps(&m->m[4], _mm_setzero_ps());
