@@ -229,10 +229,7 @@ float *func_0001C5E0(float *, float, float *);
 int C_SphereCollisionObject::func_001A4B60(char *o)
 {
     S_001A53C0_V4 c;
-    float *m = matrix;
-    float *v = (float *)&fA8;
-    float *d = &c.x;
-    AsmTransformPoint(d, v, m);
+    Xform_001A4B60(&c, (float *)&fA8, matrix);
     switch (*(int *)(o + 0x50)) {
     case 5:
         return func_00122730((float *)&fA8, *(f32 *)&f100, matrix, (float *)(o + 0xa8), *(f32 *)(o + 0x100), (float *)(o + 0xc0));
@@ -243,9 +240,9 @@ int C_SphereCollisionObject::func_001A4B60(char *o)
         return func_001225C0(o + 0xf0, o + 0x100, &a, f100, *(int *)((char *)this + 0x104), o + 0xb0);
     }
     case 3: {
-        S_Matrix16 m2;
-        AsmIdentityMatrix(&m2);
-        return func_00122730((float *)&fA8, *(f32 *)&f100, matrix, (float *)(o + 0x28), *(f32 *)(o + 0xe8), (float *)&m2);
+        S_Matrix16 m;
+        AsmIdentityMatrix(&m);
+        return func_00122730((float *)&fA8, *(f32 *)&f100, matrix, (float *)(o + 0x28), *(f32 *)(o + 0xe8), (float *)&m);
     }
     case 0: {
         S_001A53C0_V4 a(*(float **)(o + 0x1c4) + 3);
@@ -260,9 +257,9 @@ int C_SphereCollisionObject::func_001A4B60(char *o)
             a.set(*(float **)(o + 0xfc) + 3);
             b.set(*(float **)(o + 0xfc) + 6);
         } else {
-            float t[4], u[4], vv[4], w[4];
+            float t[4], u[4], v[4], w[4];
             a = *(S_001A53C0_V4 *)func_0001C5E0(u, 0.5f, func_000110E0(t, (float *)(*(char **)(o + 0x100) + 0x10), *(float **)(o + 0x100)));
-            b = *(S_001A53C0_V4 *)func_0001C5E0(w, 0.5f, func_00011110(vv, (float *)(*(char **)(o + 0x100) + 0x10), *(float **)(o + 0x100)));
+            b = *(S_001A53C0_V4 *)func_0001C5E0(w, 0.5f, func_00011110(v, (float *)(*(char **)(o + 0x100) + 0x10), *(float **)(o + 0x100)));
         }
         return func_001225C0(&a, &b, &c, f100, *(int *)((char *)this + 0x104), o + 0xb0);
     }
@@ -328,11 +325,7 @@ void C_001A52C0::func_001A52C0(void)
 void C_SphereCollisionObject::func_001A52D0(void *a)
 {
     if (a == 0) {
-        memset(matrix, 0, 0x40);
-        matrix[0] = 1.0f;
-        matrix[5] = 1.0f;
-        matrix[10] = 1.0f;
-        matrix[15] = 1.0f;
+        AsmIdentityMatrix(matrix);
     } else {
         ((C_000264C0 *)matrix)->func_000264C0(a);
     }
