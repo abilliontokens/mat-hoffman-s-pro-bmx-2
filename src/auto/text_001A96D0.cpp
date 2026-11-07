@@ -1,6 +1,7 @@
 /* 4 functions from 0x001A96D0 to 0x001AA270, found by Ghidra. */
 #include "common.h"
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 
 struct V4_001A96D0 {
     float x, y, z, w;
@@ -136,8 +137,8 @@ extern float D_002755E8, D_00275BF8;
    belong to, so all three live on the stack together */
 struct Home_001A9FA0 {
     This_001A9FA0 *self;
-    V4_001A96D0 a;
-    V4_001A96D0 b;
+    __declspec(align(16)) V4_001A96D0 a;
+    __declspec(align(16)) V4_001A96D0 b;
 };
 
 struct V4 { float x, y, z, w; };
@@ -201,7 +202,7 @@ void This_001A96D0::func_001A96D0(Body_001A96D0 *body, V4_001A96D0 p, V4_001A96D
             a = t;
         }
         V4_001A96D0 c;
-        cross_001A96D0(&c.x, &a.x, &b.x);
+        AsmVec3Cross(&c.x, &a.x, &b.x);
         if (f68) {
             c.x = 0.0f;
             c.z = 0.0f;
@@ -306,13 +307,17 @@ extern "C" double __cdecl sqrt(double);
 void This_001A9FA0::func_001A9FA0(float s, V4_001A96D0 v, V4_001A96D0 q, Obj_001A9FA0 *other, unsigned mask)
 {
     Home_001A9FA0 h;
+    float p[3];
 
     h.self = this;
-    float d = v.y * h.self->f128 + v.x * h.self->f124 + v.z * h.self->f12c;
+    float d = v.x * h.self->f124 + v.z * h.self->f12c + v.y * h.self->f128;
+    p[0] = v.x * d;
+    p[1] = v.y * d;
+    p[2] = v.z * d;
     V4_001A96D0 t;
-    t.x = h.self->f124 - v.x * d;
-    t.y = h.self->f128 - v.y * d;
-    t.z = h.self->f12c - v.z * d;
+    t.x = h.self->f124 - p[0];
+    t.y = h.self->f128 - p[1];
+    t.z = h.self->f12c - p[2];
     h.a = t;
     func_001A8DC0(&h.b, &h.a);
     V4_001A96D0 nb;
@@ -320,8 +325,8 @@ void This_001A9FA0::func_001A9FA0(float s, V4_001A96D0 v, V4_001A96D0 q, Obj_001
     nb.y = -h.b.y;
     nb.z = -h.b.z;
     h.b = nb;
-    float len = (float)sqrt(h.a.y * h.a.y + h.a.z * h.a.z + h.a.x * h.a.x) * D_002755E8;
-    float m = len < 1.0f ? len : 1.0f;
+    float len = AsmSqrtF(h.a.y * h.a.y + h.a.z * h.a.z + h.a.x * h.a.x) * D_002755E8;
+    float m = AsmMinF(len, 1.0f);
     float k = m * h.self->f24->f210 * s * D_00275BF8;
     V4_001A96D0 w;
     w.x = h.b.x * k;
