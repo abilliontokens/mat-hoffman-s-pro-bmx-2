@@ -194,8 +194,8 @@ struct Parent_0016D140 {
     Ref_0016D140 *f18C;
 };
 
-static inline void RoundToInt(float f, int * volatile out) { *out = _mm_cvtss_si32(_mm_load_ss(&f)); }
-static inline void TruncToInt(float f, int * volatile out) { *out = _mm_cvttss_si32(_mm_load_ss(&f)); }
+static inline void RoundToInt(float f, int * volatile out) { AsmFloatToIntRound(f, (int *)out); }
+static inline void TruncToInt(float f, int * volatile out) { AsmFloatToInt(f, (int *)out); }
 
 struct C_0016D140 {
     void *vtbl;
