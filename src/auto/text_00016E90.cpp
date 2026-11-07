@@ -2,6 +2,7 @@
 #include "common.h"
 #include <xmmintrin.h>
 #include <string.h>
+#include "asm_helpers.h"
 
 extern float D_002755E8, D_002754B0, D_002757FC, D_002757F8;
 int func_001E8833();
@@ -282,63 +283,135 @@ static __forceinline const int &Min_00016E90(const int &a, const int &b)
 
 void C_00017600::func_00016E90()
 {
-    C_00017600 * volatile self = this;
-    volatile int tmp[2];
-    int lim;
-    int len;
-    int n;
-
-    tmp[0] = sizeof(self->entries[0].name) - 1; lim = tmp[0]; len = (int)strlen("TIKI12"); if (lim > len) lim = len; tmp[1] = lim; n = tmp[1];
-    func_001E8920(self->entries[0].name, (const char *)D_002757E8, n); self->entries[0].name[n] = 0; self->entries[0].value = 3.0f;
-    tmp[0] = sizeof(self->entries[1].name) - 1; lim = tmp[0]; len = (int)strlen("TIKI14"); if (lim > len) lim = len; tmp[1] = lim; n = tmp[1];
-    func_001E8920(self->entries[1].name, (const char *)D_002757E0, n); self->entries[1].name[n] = 0; self->entries[1].value = 2.0f;
-    tmp[0] = sizeof(self->entries[2].name) - 1; lim = tmp[0]; len = (int)strlen("TIKI02"); if (lim > len) lim = len; tmp[1] = lim; n = tmp[1];
-    func_001E8920(self->entries[2].name, (const char *)D_002757D8, n); self->entries[2].name[n] = 0; self->entries[2].value = 2.0f;
-    tmp[0] = sizeof(self->entries[3].name) - 1; lim = tmp[0]; len = (int)strlen("TIKI11"); if (lim > len) lim = len; tmp[1] = lim; n = tmp[1];
-    func_001E8920(self->entries[3].name, (const char *)D_002757D0, n); self->entries[3].name[n] = 0; self->entries[3].value = 2.0f;
-    tmp[0] = sizeof(self->entries[4].name) - 1; lim = tmp[0]; len = (int)strlen("TIKI13"); if (lim > len) lim = len; tmp[1] = lim; n = tmp[1];
-    func_001E8920(self->entries[4].name, (const char *)D_002757C8, n); self->entries[4].name[n] = 0; self->entries[4].value = 2.0f;
-    tmp[0] = sizeof(self->entries[5].name) - 1; lim = tmp[0]; len = (int)strlen("TIKI17"); if (lim > len) lim = len; tmp[1] = lim; n = tmp[1];
-    func_001E8920(self->entries[5].name, (const char *)D_002757C0, n); self->entries[5].name[n] = 0; self->entries[5].value = 2.0f;
-    tmp[0] = sizeof(self->entries[6].name) - 1; lim = tmp[0]; len = (int)strlen("TIKI19"); if (lim > len) lim = len; tmp[1] = lim; n = tmp[1];
-    func_001E8920(self->entries[6].name, (const char *)D_002757B8, n); self->entries[6].name[n] = 0; self->entries[6].value = 2.0f;
-    tmp[0] = sizeof(self->entries[7].name) - 1; lim = tmp[0]; len = (int)strlen("TIKI20"); if (lim > len) lim = len; tmp[1] = lim; n = tmp[1];
-    func_001E8920(self->entries[7].name, (const char *)D_002757B0, n); self->entries[7].name[n] = 0; self->entries[7].value = 1.0f;
-    tmp[0] = sizeof(self->entries[8].name) - 1; lim = tmp[0]; len = (int)strlen("TIKI21"); if (lim > len) lim = len; tmp[1] = lim; n = tmp[1];
-    func_001E8920(self->entries[8].name, (const char *)D_002757A8, n); self->entries[8].name[n] = 0; self->entries[8].value = 1.0f;
-    tmp[0] = sizeof(self->entries[9].name) - 1; lim = tmp[0]; len = (int)strlen("TIKI23"); if (lim > len) lim = len; tmp[1] = lim; n = tmp[1];
-    func_001E8920(self->entries[9].name, (const char *)D_002757A0, n); self->entries[9].name[n] = 0; self->entries[9].value = 1.0f;
-    tmp[0] = sizeof(self->entries[10].name) - 1; lim = tmp[0]; len = (int)strlen("TIKI24"); if (lim > len) lim = len; tmp[1] = lim; n = tmp[1];
-    func_001E8920(self->entries[10].name, (const char *)D_00275798, n); self->entries[10].name[n] = 0; self->entries[10].value = 1.0f;
-    tmp[0] = sizeof(self->entries[11].name) - 1; lim = tmp[0]; len = (int)strlen("TIKI18"); if (lim > len) lim = len; tmp[1] = lim; n = tmp[1];
-    func_001E8920(self->entries[11].name, (const char *)D_00275790, n); self->entries[11].name[n] = 0; self->entries[11].value = 1.0f;
-    tmp[0] = sizeof(self->entries[12].name) - 1; lim = tmp[0]; len = (int)strlen("TIKI22"); if (lim > len) lim = len; tmp[1] = lim; n = tmp[1];
-    func_001E8920(self->entries[12].name, (const char *)D_00275788, n); self->entries[12].name[n] = 0; self->entries[12].value = 1.0f;
-    tmp[0] = sizeof(self->entries[13].name) - 1; lim = tmp[0]; len = (int)strlen("TIKI25"); if (lim > len) lim = len; tmp[1] = lim; n = tmp[1];
-    func_001E8920(self->entries[13].name, (const char *)D_00275780, n); self->entries[13].name[n] = 0; self->entries[13].value = 1.0f;
-    tmp[0] = sizeof(self->entries[14].name) - 1; lim = tmp[0]; len = (int)strlen("TIKI26"); if (lim > len) lim = len; tmp[1] = lim; n = tmp[1];
-    func_001E8920(self->entries[14].name, (const char *)D_00275778, n); self->entries[14].name[n] = 0; self->entries[14].value = 1.0f;
-    tmp[0] = sizeof(self->entries[15].name) - 1; lim = tmp[0]; len = (int)strlen("TIKI16"); if (lim > len) lim = len; tmp[1] = lim; n = tmp[1];
-    func_001E8920(self->entries[15].name, (const char *)D_00275770, n); self->entries[15].name[n] = 0; self->entries[15].value = 0.1f;
-    tmp[0] = sizeof(self->entries[16].name) - 1; lim = tmp[0]; len = (int)strlen("TIKI01"); if (lim > len) lim = len; tmp[1] = lim; n = tmp[1];
-    func_001E8920(self->entries[16].name, (const char *)D_00275768, n); self->entries[16].name[n] = 0; self->entries[16].value = 1.0f;
-    tmp[0] = sizeof(self->entries[17].name) - 1; lim = tmp[0]; len = (int)strlen("TIKI15"); if (lim > len) lim = len; tmp[1] = lim; n = tmp[1];
-    func_001E8920(self->entries[17].name, (const char *)D_00275760, n); self->entries[17].name[n] = 0; self->entries[17].value = 1.0f;
-    tmp[0] = sizeof(self->entries[18].name) - 1; lim = tmp[0]; len = (int)strlen("TIKI03"); if (lim > len) lim = len; tmp[1] = lim; n = tmp[1];
-    func_001E8920(self->entries[18].name, (const char *)D_00275758, n); self->entries[18].name[n] = 0; self->entries[18].value = 1.0f;
-    tmp[0] = sizeof(self->entries[19].name) - 1; lim = tmp[0]; len = (int)strlen("TIKI04"); if (lim > len) lim = len; tmp[1] = lim; n = tmp[1];
-    func_001E8920(self->entries[19].name, (const char *)D_00275750, n); self->entries[19].name[n] = 0; self->entries[19].value = 1.0f;
-    tmp[0] = sizeof(self->entries[20].name) - 1; lim = tmp[0]; len = (int)strlen("TIKI05"); if (lim > len) lim = len; tmp[1] = lim; n = tmp[1];
-    func_001E8920(self->entries[20].name, (const char *)D_00275748, n); self->entries[20].name[n] = 0; self->entries[20].value = 1.0f;
-    tmp[0] = sizeof(self->entries[21].name) - 1; lim = tmp[0]; len = (int)strlen("TIKI06"); if (lim > len) lim = len; tmp[1] = lim; n = tmp[1];
-    func_001E8920(self->entries[21].name, (const char *)D_00275740, n); self->entries[21].name[n] = 0; self->entries[21].value = 1.0f;
-    tmp[0] = sizeof(self->entries[22].name) - 1; lim = tmp[0]; len = (int)strlen("TIKI07"); if (lim > len) lim = len; tmp[1] = lim; n = tmp[1];
-    func_001E8920(self->entries[22].name, (const char *)D_00275738, n); self->entries[22].name[n] = 0; self->entries[22].value = 1.0f;
-    tmp[0] = sizeof(self->entries[23].name) - 1; lim = tmp[0]; len = (int)strlen("TIKI08"); if (lim > len) lim = len; tmp[1] = lim; n = tmp[1];
-    func_001E8920(self->entries[23].name, (const char *)D_00275730, n); self->entries[23].name[n] = 0; self->entries[23].value = 1.0f;
-    tmp[0] = sizeof(self->entries[24].name) - 1; lim = tmp[0]; len = (int)strlen("TIKI09"); if (lim > len) lim = len; tmp[1] = lim; n = tmp[1];
-    func_001E8920(self->entries[24].name, (const char *)D_00275728, n); self->entries[24].name[n] = 0; self->entries[24].value = 1.0f;
-    tmp[0] = sizeof(self->entries[25].name) - 1; lim = tmp[0]; len = (int)strlen("TIKI10"); if (lim > len) lim = len; tmp[1] = lim; n = tmp[1];
-    func_001E8920(self->entries[25].name, (const char *)D_00275720, n); self->entries[25].name[n] = 0; self->entries[25].value = 1.0f;
+    {
+        int lim = 15;
+        int n = AsmMinI(lim, 6);
+        func_001E8920(entries[0].name, (const char *)D_002757E8, n); entries[0].name[n] = 0; entries[0].value = 3.0f;
+    }
+    {
+        int lim = 15;
+        int n = AsmMinI(lim, 6);
+        func_001E8920(entries[1].name, (const char *)D_002757E0, n); entries[1].name[n] = 0; entries[1].value = 2.0f;
+    }
+    {
+        int lim = 15;
+        int n = AsmMinI(lim, 6);
+        func_001E8920(entries[2].name, (const char *)D_002757D8, n); entries[2].name[n] = 0; entries[2].value = 2.0f;
+    }
+    {
+        int lim = 15;
+        int n = AsmMinI(lim, 6);
+        func_001E8920(entries[3].name, (const char *)D_002757D0, n); entries[3].name[n] = 0; entries[3].value = 2.0f;
+    }
+    {
+        int lim = 15;
+        int n = AsmMinI(lim, 6);
+        func_001E8920(entries[4].name, (const char *)D_002757C8, n); entries[4].name[n] = 0; entries[4].value = 2.0f;
+    }
+    {
+        int lim = 15;
+        int n = AsmMinI(lim, 6);
+        func_001E8920(entries[5].name, (const char *)D_002757C0, n); entries[5].name[n] = 0; entries[5].value = 2.0f;
+    }
+    {
+        int lim = 15;
+        int n = AsmMinI(lim, 6);
+        func_001E8920(entries[6].name, (const char *)D_002757B8, n); entries[6].name[n] = 0; entries[6].value = 2.0f;
+    }
+    {
+        int lim = 15;
+        int n = AsmMinI(lim, 6);
+        func_001E8920(entries[7].name, (const char *)D_002757B0, n); entries[7].name[n] = 0; entries[7].value = 1.0f;
+    }
+    {
+        int lim = 15;
+        int n = AsmMinI(lim, 6);
+        func_001E8920(entries[8].name, (const char *)D_002757A8, n); entries[8].name[n] = 0; entries[8].value = 1.0f;
+    }
+    {
+        int lim = 15;
+        int n = AsmMinI(lim, 6);
+        func_001E8920(entries[9].name, (const char *)D_002757A0, n); entries[9].name[n] = 0; entries[9].value = 1.0f;
+    }
+    {
+        int lim = 15;
+        int n = AsmMinI(lim, 6);
+        func_001E8920(entries[10].name, (const char *)D_00275798, n); entries[10].name[n] = 0; entries[10].value = 1.0f;
+    }
+    {
+        int lim = 15;
+        int n = AsmMinI(lim, 6);
+        func_001E8920(entries[11].name, (const char *)D_00275790, n); entries[11].name[n] = 0; entries[11].value = 1.0f;
+    }
+    {
+        int lim = 15;
+        int n = AsmMinI(lim, 6);
+        func_001E8920(entries[12].name, (const char *)D_00275788, n); entries[12].name[n] = 0; entries[12].value = 1.0f;
+    }
+    {
+        int lim = 15;
+        int n = AsmMinI(lim, 6);
+        func_001E8920(entries[13].name, (const char *)D_00275780, n); entries[13].name[n] = 0; entries[13].value = 1.0f;
+    }
+    {
+        int lim = 15;
+        int n = AsmMinI(lim, 6);
+        func_001E8920(entries[14].name, (const char *)D_00275778, n); entries[14].name[n] = 0; entries[14].value = 1.0f;
+    }
+    {
+        int lim = 15;
+        int n = AsmMinI(lim, 6);
+        func_001E8920(entries[15].name, (const char *)D_00275770, n); entries[15].name[n] = 0; entries[15].value = 0.1f;
+    }
+    {
+        int lim = 15;
+        int n = AsmMinI(lim, 6);
+        func_001E8920(entries[16].name, (const char *)D_00275768, n); entries[16].name[n] = 0; entries[16].value = 1.0f;
+    }
+    {
+        int lim = 15;
+        int n = AsmMinI(lim, 6);
+        func_001E8920(entries[17].name, (const char *)D_00275760, n); entries[17].name[n] = 0; entries[17].value = 1.0f;
+    }
+    {
+        int lim = 15;
+        int n = AsmMinI(lim, 6);
+        func_001E8920(entries[18].name, (const char *)D_00275758, n); entries[18].name[n] = 0; entries[18].value = 1.0f;
+    }
+    {
+        int lim = 15;
+        int n = AsmMinI(lim, 6);
+        func_001E8920(entries[19].name, (const char *)D_00275750, n); entries[19].name[n] = 0; entries[19].value = 1.0f;
+    }
+    {
+        int lim = 15;
+        int n = AsmMinI(lim, 6);
+        func_001E8920(entries[20].name, (const char *)D_00275748, n); entries[20].name[n] = 0; entries[20].value = 1.0f;
+    }
+    {
+        int lim = 15;
+        int n = AsmMinI(lim, 6);
+        func_001E8920(entries[21].name, (const char *)D_00275740, n); entries[21].name[n] = 0; entries[21].value = 1.0f;
+    }
+    {
+        int lim = 15;
+        int n = AsmMinI(lim, 6);
+        func_001E8920(entries[22].name, (const char *)D_00275738, n); entries[22].name[n] = 0; entries[22].value = 1.0f;
+    }
+    {
+        int lim = 15;
+        int n = AsmMinI(lim, 6);
+        func_001E8920(entries[23].name, (const char *)D_00275730, n); entries[23].name[n] = 0; entries[23].value = 1.0f;
+    }
+    {
+        int lim = 15;
+        int n = AsmMinI(lim, 6);
+        func_001E8920(entries[24].name, (const char *)D_00275728, n); entries[24].name[n] = 0; entries[24].value = 1.0f;
+    }
+    {
+        int lim = 15;
+        int n = AsmMinI(lim, 6);
+        func_001E8920(entries[25].name, (const char *)D_00275720, n); entries[25].name[n] = 0; entries[25].value = 1.0f;
+    }
 }
 
