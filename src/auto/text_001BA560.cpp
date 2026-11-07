@@ -1,6 +1,7 @@
 /* 18 functions from 0x001BA560 to 0x001BB4F0, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+#include "asm_helpers.h"
 #define C_001BBAA0_DEFINED
 struct C_001BBAA0 {
     void func_001BBAA0(void *owner, void *fn);
@@ -14,7 +15,7 @@ struct S_9C0_Stream {
 };
 struct S_9C0_Vec {
     float x, y, z, w;
-    S_9C0_Vec() : x(0), y(0), z(0), w(1) {}
+    S_9C0_Vec() { x = y = z = 0; w = 1.0f; }
 };
 template <class T> inline T Min(T a, T b) { return a > b ? b : a; }
 extern "C" unsigned int strlen(const char *);
@@ -426,80 +427,79 @@ C_001BA5E0::C_001BA5E0()
 
 void __stdcall func_001BA660(int *kind, void **out)
 {
-    void **o = out;
     int k = *kind;
     if (k == 1) {
         T_A *p = (T_A *)func_001E8A44(0x18c);
-        if (p == 0) { *o = 0; return; }
+        if (p == 0) { *out = 0; return; }
         p->f4 = 0; p->f8 = 0; p->vtbl = &D_0028CC44; p->f10c = 0; p->f114 = 0; p->f110 = -1;
-        *o = p;
+        *out = p;
         return;
     }
     if (k == 2) {
         T_A *p = (T_A *)func_001E8A44(0x204);
-        if (p == 0) { *o = 0; return; }
+        if (p == 0) { *out = 0; return; }
         p->f4 = 0; p->f8 = 0; p->f10c = 0; p->f114 = 0; p->f18c = 0; p->vtbl = &D_0028CC60; p->f110 = -1;
-        *o = p;
+        *out = p;
         return;
     }
     if (k == 3) {
         T_C *p = (T_C *)func_001E8A44(0x204);
-        if (p == 0) { *o = 0; return; }
-        *o = p->func_001B5D00();
+        if (p == 0) { *out = 0; return; }
+        *out = p->func_001B5D00();
         return;
     }
     if (k == 4) {
         T_D *p = (T_D *)func_001E8A44(0x188);
-        if (p == 0) { *o = 0; return; }
-        *o = p->func_001B5EA0();
+        if (p == 0) { *out = 0; return; }
+        *out = p->func_001B5EA0();
         return;
     }
     if (k == 5) {
         T_B *p = (T_B *)func_001E8A44(0x184);
-        if (p == 0) { *o = 0; return; }
+        if (p == 0) { *out = 0; return; }
         p->f4 = 0; p->f8 = 0; p->vtbl = &D_0028CCA8; p->f10c = 0;
-        *o = p;
+        *out = p;
         return;
     }
     if (k == 6) {
         T_F *p = (T_F *)func_001E8A44(0x290);
-        if (p == 0) { *o = 0; return; }
-        *o = p->func_001B6100();
+        if (p == 0) { *out = 0; return; }
+        *out = p->func_001B6100();
         return;
     }
     if (k == 9) {
         T_H *p = (T_H *)func_001E8A44(0x110);
-        if (p == 0) { *o = 0; return; }
+        if (p == 0) { *out = 0; return; }
         p->f4 = 0; p->f8 = 0; p->vtbl = &D_0028CCF4; p->f10c = 0;
-        *o = p;
+        *out = p;
         return;
     }
     if (k == 7) {
         T_G *p = (T_G *)func_001E8A44(0x224);
-        if (p == 0) { *o = 0; return; }
-        *o = p->func_001B61A0();
+        if (p == 0) { *out = 0; return; }
+        *out = p->func_001B61A0();
         return;
     }
     if (k == 8) {
         T_B *p = (T_B *)func_001E8A44(0x210);
-        if (p == 0) { *o = 0; return; }
+        if (p == 0) { *out = 0; return; }
         p->f4 = 0; p->f8 = 0; p->vtbl = &D_0028CCE8; p->f10c = 0;
-        *o = p;
+        *out = p;
         return;
     }
     if (k == 10) {
         T_I *p = (T_I *)func_001E8A44(0x148);
-        if (p == 0) { *o = 0; return; }
-        *o = p->func_001BA5E0();
+        if (p == 0) { *out = 0; return; }
+        *out = p->func_001BA5E0();
         return;
     }
     if (k == 11) {
         T_J *p = (T_J *)func_001E8A44(0x118);
-        if (p == 0) { *o = 0; return; }
-        *o = p->func_001B6410();
+        if (p == 0) { *out = 0; return; }
+        *out = p->func_001B6410();
         return;
     }
-    *o = 0;
+    *out = 0;
 }
 
 void C_001BA910::func_001BA910(void)
@@ -545,21 +545,20 @@ undefined4 C_001BA9A0::func_001BA9A0(byte param_1)
 
 unsigned int strlen(const char *s);
 char *strncpy(char *d, const char *s, unsigned int n);
-void S_9C0_This::func_001BA9C0(S_9C0_Stream * volatile s)
+void S_9C0_This::func_001BA9C0(S_9C0_Stream *s)
 {
-    S_9C0_This * volatile self = this;
     int flag;
     float fa;
     int count;
     float fb;
     float fc;
-    int n;
-    int first;
-    int max;
     int len;
+    volatile int base;
+    int lim, r;
     char name[0x104];
     char buf[0x104];
     S_9C0_Elem *e;
+    int n;
     int i, j, limit;
 
     if (!s->func_00169710(D_0027CBAC))
@@ -567,22 +566,22 @@ void S_9C0_This::func_001BA9C0(S_9C0_Stream * volatile s)
     s->func_00168C20(D_0027CB90, 0, &count);
     if (count <= 0)
         return;
-    if (self->f28 != 0) {
-        i = self->f24;
-        self->f24 += count;
-        self->f28 = (S_9C0_Elem **)func_001E83E8(self->f28, self->f24 * 4);
+    if (f28 != 0) {
+        i = f24;
+        f24 += count;
+        f28 = (S_9C0_Elem **)func_001E83E8(f28, f24 * 4);
     } else {
         i = 0;
-        self->f24 = count;
-        self->f28 = (S_9C0_Elem **)func_001E8A44(count * 4);
+        f24 = count;
+        f28 = (S_9C0_Elem **)func_001E8A44(f24 * 4);
     }
-    limit = self->f24;
-    first = i;
+    limit = f24;
+    base = 1 - i;
     for (; i < limit; i++) {
-        S_9C0_Vec v1, v2, v4, v3;
-        func_001ADCC0(buf, 0x104, D_0027CB78, i + 1 - first);
+        func_001ADCC0(buf, 0x104, D_0027CB78, base + i);
         if (!s->func_00169710(buf))
             continue;
+        S_9C0_Vec v1, v2, v3, v4;
         s->func_00168BE0(D_0027C4D0, D_002764F0, name, -1);
         s->func_00168C20(D_0027C4BC, 1, &flag);
         s->func_00168C50(D_0027CB60, 0, &fb);
@@ -593,27 +592,25 @@ void S_9C0_This::func_001BA9C0(S_9C0_Stream * volatile s)
         s->func_00168CB0(D_0027CB30, D_002AA9F4, &v3);
         s->func_00168CB0(D_0027CB2C, D_002AA9F4, &v4);
         e = (S_9C0_Elem *)func_001E8A44(0x15c);
-        self->f28[i] = e ? e->func_001B84E0() : 0;
-        n = strlen(name);
-        max = 0x103;
-        len = Min(max, n);
-        strncpy((char *)self->f28[i], name, len);
-        ((char *)self->f28[i])[len] = 0;
-        self->f28[i]->f104 = flag;
-        self->f28[i]->f10c = fb;
-        self->f28[i]->f110 = fa;
-        self->f28[i]->f114 = fc;
-        self->f28[i]->v118 = v1;
-        self->f28[i]->v128 = v2;
-        self->f28[i]->v138 = v3;
-        self->f28[i]->v148 = v4;
+        f28[i] = e ? e->func_001B84E0() : 0;
+        len = strlen(name); lim = 0x103; r = AsmMinI(lim, len); n = r;
+        strncpy((char *)f28[i], name, n);
+        ((char *)f28[i])[n] = 0;
+        f28[i]->f104 = flag;
+        f28[i]->f10c = fb;
+        f28[i]->f110 = fa;
+        f28[i]->f114 = fc;
+        f28[i]->v118 = v1;
+        f28[i]->v128 = v2;
+        f28[i]->v138 = v3;
+        f28[i]->v148 = v4;
         if (flag == 0) {
-            self->f28[i]->f158 = (int *)func_001E8A44(4);
-            self->f28[i]->f158[0] = 0;
+            f28[i]->f158 = (int *)func_001E8A44(4);
+            f28[i]->f158[0] = 0;
         } else {
-            self->f28[i]->f158 = (int *)func_001E8A44(flag * 4);
+            f28[i]->f158 = (int *)func_001E8A44(flag * 4);
             for (j = 0; j < flag; j++)
-                self->f28[i]->f158[j] = 0;
+                f28[i]->f158[j] = 0;
         }
     }
 }
