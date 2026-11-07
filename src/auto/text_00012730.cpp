@@ -82,7 +82,7 @@ struct S_00012730_Node {
 };
 
 struct S_00012730_Iter {
-    char pad0[0x38];
+    char pad0[0x40];
     void func_001A46F0(void);
     void func_001A4790(int a, int b, float *c, float *d, int e, int f, int g);
     S_00012730_Node *func_001A4840(void);
