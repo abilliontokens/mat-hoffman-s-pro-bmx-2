@@ -428,12 +428,9 @@ int func_00164270(int index, S_00164650_Item *items, S_00164270_Node *node)
     *(int *)items[index].pad38 = 0;
     *(int *)(items[index].pad38 + 4) = 0;
     func_001EA1EE(node->name);
-    volatile int lengths[2];
-    lengths[0] = strlen(node->name);
-    lengths[1] = 49;
-    int y = lengths[1];
-    int x = lengths[0];
-    int length = y <= x ? y : x;
+    int len = strlen(node->name);
+    int lim = 49;
+    int length = AsmMinI(lim, len);
     func_001E8920(items[index].name, node->name, length);
     items[index].name[length] = 0;
     ++index;
