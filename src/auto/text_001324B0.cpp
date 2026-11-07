@@ -1,6 +1,11 @@
 /* 13 functions from 0x001324B0 to 0x00132DB8, found by Ghidra. */
 #include "common.h"
 
+static __forceinline void AbsI_001325D0(float *dst, volatile int *src)
+{
+    *(int *)dst = *src & 0x7fffffff;
+}
+
 struct CinematographerCam {
     void *vtbl;
     char pad_4[0x80 - 0x4];
@@ -272,9 +277,7 @@ int func_00132650(float *out, float *in, int n)
         D_002BA020 |= 1;
         d = (float *)D_002B9E20;
         for (i = 0x20; i != 0; i--) {
-            d[0] = 0.0f;
-            d[1] = 0.0f;
-            d[2] = 0.0f;
+            d[0] = d[1] = d[2] = 0.0f;
             d[3] = 1.0f;
             d += 4;
         }
@@ -284,13 +287,11 @@ int func_00132650(float *out, float *in, int n)
     }
     s = in;
     d = (float *)D_002B9E20;
-    for (i = 0; i < n; i++) {
+    for (i = 0; i < n; i++, d += 4, s += 4) {
         d[0] = s[0];
         d[1] = s[1];
         d[2] = s[2];
         d[3] = s[3];
-        d += 4;
-        s += 4;
     }
     for (plane = 5; plane >= 0; plane--) {
         neg = plane & 1;
