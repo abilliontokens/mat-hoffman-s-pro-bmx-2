@@ -16,6 +16,7 @@ struct C_00113F00_Global {
 extern C_00113F00_Global *D_002A8490;
 extern int D_002B9208;
 extern float D_002A3AA8;
+extern float D_00276E9C, D_00276E98;
 extern float D_00275544, D_00275460, D_002755EC, D_00275F58, D_002756B8, D_002755E8;
 void __stdcall func_00107070(float dt);
 float __cdecl func_00016D20(float a);
@@ -27,9 +28,9 @@ struct C_00113F00 {
 void C_00113F00::func_00113F00(float dt)
 {
     char *self = (char *)this;
-    int i125c = 0, i1260 = 0, i1268 = 0, i127c = 0;
-    int s14 = 0, s18 = 0, s20 = 0, s28 = 0, s2c = 0, s30 = 0, s34 = 0;
-    float s38 = 0.0f;
+    volatile int i125c = 0, i1260 = 0, i1268 = 0, i127c = 0;
+    volatile int s14 = 0, s18 = 0, s20 = 0, s28 = 0, s2c = 0, s30 = 0, s34 = 0;
+    volatile float s38 = 0.0f;
     float v = *(float *)(self + 0x9f8);
     int one;
     char *q;
@@ -230,6 +231,5 @@ Lcommon:
     *(int *)(self + 0x2084) = 1;
     *(int *)(self + 0x2088) = 0;
 Lend:
-    (void)dt; (void)i125c; (void)i1260; (void)i1268; (void)i127c;
-    (void)s14; (void)s18; (void)s20; (void)s28; (void)s2c; (void)s30; (void)s34; (void)s38;
+    (void)dt;
 }
