@@ -71,13 +71,14 @@ static __forceinline int clamp_168550(const char *s, int size)
 }
 static __forceinline void makeKey_168550(char *key, const char *name)
 {
-    int delta = key - name;
+    char *p = (char *)name;
+    int delta = key - p;
     char c;
 
     do {
-        c = *name;
-        ((char *)name)[delta] = c;
-        name++;
+        c = *p;
+        p[delta] = c;
+        p++;
     } while (c);
     func_000347F0(key);
 }
