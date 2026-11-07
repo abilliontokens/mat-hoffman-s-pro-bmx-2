@@ -11,6 +11,9 @@ void func_001B13A0(char*,char*,int,int);
 void func_001B1A30(float,float,int);
 void func_001B2270(int);
 void func_001B19A0(int);
+void func_001B1B30(float,int);
+void func_001B1AB0(int,int);
+void func_001B17D0(char*);
 };
 struct RiderLabel {
 int w[0x60/4];
