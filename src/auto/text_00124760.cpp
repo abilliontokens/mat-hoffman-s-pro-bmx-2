@@ -44,18 +44,16 @@ static __forceinline void TriInterp(Vec4 *out, Vec4 *Q, Vec4 *R, float *p, float
         v[cnt] = c; v[cnt + 1] = a; vn[cnt] = nc; vn[cnt + 1] = na;
     }
     t = (p[k] - v[0][k]) / (v[1][k] - v[0][k]);
-    Vec4 p0, n0;
-    EdgeEval(p0, n0, v[0], v[1], vn[0], vn[1], n, t);
-    Q[0] = p0; R[0] = n0;
+    Vec4 pv, nv;
+    EdgeEval(pv, nv, v[0], v[1], vn[0], vn[1], n, t);
+    Q[0] = pv; R[0] = nv;
     t = (p[k] - v[2][k]) / (v[3][k] - v[2][k]);
-    Vec4 p1, n1;
-    EdgeEval(p1, n1, v[2], v[3], vn[2], vn[3], n, t);
-    Q[1] = p1; R[1] = n1;
+    EdgeEval(pv, nv, v[2], v[3], vn[2], vn[3], n, t);
+    Q[1] = pv; R[1] = nv;
     j = (Fabs(n[1]) > Fabs(n[cmp])) ? ja : jb;
     t = (p[j] - (&Q[0].x)[j]) / ((&Q[1].x)[j] - (&Q[0].x)[j]);
-    Vec4 p2, n2;
-    EdgeEval(p2, n2, &Q[0].x, &Q[1].x, &R[0].x, &R[1].x, n, t);
-    *out = p2;
+    EdgeEval(pv, nv, &Q[0].x, &Q[1].x, &R[0].x, &R[1].x, n, t);
+    *out = pv;
 }
 
 static __forceinline float Fabs(volatile float f)
