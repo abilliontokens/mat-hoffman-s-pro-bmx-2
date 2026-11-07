@@ -40,15 +40,6 @@ struct S_3AE40_Obj { void func_00197E70(float *p); void func_00197B40(float *p, 
 extern char D_002A14F4[];
 #include "asm_helpers.h"
 extern "C" char *func_001E8920(char *dst, const char *src, int n);
-/* copies src into dst, at most 0x13 characters (the game's clamped strncpy) */
-static __forceinline void CopyName_3AE40(char *dst, const char *src)
-{
-    int len = strlen(src);
-    int lim = 0x13;
-    int cnt = AsmMinI(lim, len);
-    func_001E8920(dst, src, cnt);
-    dst[cnt] = 0;
-}
 template <class T> inline const T &Min(const T &a, const T &b) { return a > b ? b : a; }
 struct S_3AE40_Vec4 { float x, y, z, w; };
 /* 0x70-byte record written by C_3AE40::func_0003AE40 */
@@ -240,8 +231,7 @@ void C_0003AD50::func_0003AD50(void)
 void C_3AE40::func_0003AE40(S_3AE40_Rec * volatile dst)
 {
     int n = 0;
-    int i;
-    for (i = f484; i < list.count; i++, n++) {
+    for (int i = f484; i < list.count; i++, n++) {
         S_3AE40_Ent *e = list.at(i);
         dst[n].idx = n;
         dst[n].kind = e->kind + 1;
