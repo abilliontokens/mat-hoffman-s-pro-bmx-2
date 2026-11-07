@@ -20,7 +20,8 @@ extern int D_002A1190;
 extern float D_00275460;
 
 struct S_2D730_Node {
-    char pad0[0x238];
+    void **vtbl;
+    char pad4[0x238 - 4];
     float f238, f23C, f240;
 };
 
@@ -61,6 +62,8 @@ int func_000292C0(void);
 
 void C_0002D730::func_0002D730(float dt)
 {
+    int one = 1;
+
     if (!(D_002B7EA4 & 1)) {
         D_002B7EA4 |= 1;
         D_002B7EA0 = (int)((S_2D730_Mgr *)D_002A7CB8)->func_00026500(-1, &D_002767AC);
@@ -75,4 +78,21 @@ void C_0002D730::func_0002D730(float dt)
     }
     if (f454 != 0)
         f5f0->func_00025E50(dt);
+    func_00027D60();
+    if (f69c != 0) {
+        f6fc = f6fc + dt;
+        if (f6fc > f700) {
+            f1e0->f238 = f1e0->f238 + f6dc * D_00275AEC;
+            f1e0->f23C = f1e0->f23C + f6e0 * D_00275AEC;
+            f1e0->f240 = f1e0->f240 + f6e4 * D_00275AEC;
+            if (f1e8->f50 == 0 && f1e8->f54 == 0 && f468 == 0 && one) {
+                if (func_000292C0() == 0) {
+                    f69c = 0;
+                    f6a8 = 0;
+                }
+            }
+        }
+    }
+    if (f1e8->f68 != 0)
+        f6c8 = 0;
 }
