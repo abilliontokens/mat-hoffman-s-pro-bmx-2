@@ -319,6 +319,18 @@ struct C_001C8960_Ini {
     int func_00168C20(char *, int, void *);
     int func_00168BE0(char *, char *, void *, int);
 };
+struct C_001C8960_Parameters {
+    int total,kind,mode;
+    float offset;
+    int special;
+    float amount,sx,sy,rate,angle,rz;
+    int enabled;
+    float rx,frequency;
+    int param;
+    float gain,speed;
+    int extra;
+    float value;
+};
 struct C_001C8960_Storage {
     char section[128];
     C_001C8960_Ini ini;
