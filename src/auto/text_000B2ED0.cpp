@@ -1,6 +1,8 @@
 /* 9 functions from 0x000B2ED0 to 0x000B3E10, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+#include "string.h"
+#include "asm_helpers.h"
 static inline int vehicle_min(const int &a, const int &b) { return a > b ? b : a; }
 static inline const int &vehicle_min_ref(const int &a, const int &b) { return a > b ? b : a; }
 
@@ -293,6 +295,29 @@ void C_000B2ED0::func_000B2ED0(S_2ED0_Rd * volatile rd)
     }
 }
 
+#pragma intrinsic(strlen)
+C_000B31F0 *C_000B31F0::func_000B31F0(const char *name, int a)
+{
+    func_00167750();
+    void *mem = func_001E8A44(16);
+    *(void **)((char *)this + 0x40) = mem ? ((C_001884D0 *)mem)->func_001884D0() : 0;
+    *(int *)(*(char **)((char *)this + 0x40) + 12) = 0;
+    func_000B2ED0(a);
+    int len = strlen(name);
+    int limit = 59;
+    int n = AsmMinI(limit, len);
+    func_001E8920(*(char **)((char *)this + 0x3c) + 0x348, name, n);
+    (*(char **)((char *)this + 0x3c))[0x348 + n] = 0;
+    int len2 = strlen(*(char **)((char *)this + 0x3c) + 0x244);
+    int limit2 = 259;
+    int n2 = AsmMinI(limit2, len2);
+    func_001E8920((char *)this + 0x26c, *(char **)((char *)this + 0x3c) + 0x244, n2);
+    ((char *)this)[0x26c + n2] = 0;
+    mem = func_001E8A44(16);
+    *(void **)((char *)this + 0x44) = mem ? ((C_00188700 *)mem)->func_00188700() : 0;
+    *(int *)(*(char **)((char *)this + 0x44) + 4) = 1;
+    return this;
+}
 void VehicleAI::func_000B3330(int param_1)
 {
     f50 = param_1;
@@ -324,6 +349,122 @@ void VehicleAI::func_000B3390(int param_1)
     mem = func_001E8A44(0x458);
     f40 = mem != 0 ? ((C_000B2020 *)mem)->func_000B2020() : 0;
     f40->func_000B21B0(param_1);
+}
+
+void C_000B3410::func_000B3410(int a)
+{
+    struct V {
+        virtual void v0()=0; virtual void v1()=0; virtual void v2()=0; virtual void v3()=0; virtual void v4()=0; virtual void v5()=0; virtual void v6()=0; virtual void v7()=0;
+        virtual void v8()=0; virtual void v9()=0; virtual void v10()=0; virtual void v11()=0; virtual void v12()=0; virtual void v13()=0; virtual void v14()=0; virtual void v15()=0;
+        virtual void v16()=0; virtual void v17()=0; virtual void v18()=0; virtual void v19()=0; virtual void v20()=0; virtual void v21()=0; virtual void v22()=0; virtual void v23()=0;
+        virtual void v24()=0; virtual void v25()=0; virtual void v26()=0; virtual void v27()=0;
+        virtual void v28(void *a, void *b, char *c, int d)=0;
+        virtual void v29()=0; virtual void v30()=0; virtual void v31()=0; virtual void v32()=0;
+        virtual void v33()=0; virtual void v34()=0; virtual void v35()=0; virtual void v36()=0; virtual void v37()=0; virtual void v38()=0; virtual void v39()=0; virtual void v40()=0;
+        virtual void v41()=0; virtual void v42()=0; virtual void v43()=0; virtual void v44()=0; virtual void v45()=0; virtual void v46()=0; virtual void v47()=0; virtual void v48()=0;
+        virtual void v49()=0; virtual void v50()=0; virtual void v51()=0; virtual void v52()=0;
+        virtual int v53(char *name, char *path, int a, char *b, char *c, char *d, int e, int f, int g, float h, float i, int j, int k, int l, int m, int n, int o, int p, int q, int r)=0;
+    };
+    struct Locals {
+        char *self;
+        char old3[260], old4[260], old5[260], old2[260], old1[260], name[260], path[260];
+    } b;
+    int n, len;
+    b.self = (char *)this;
+    func_001ADCC0(b.name, 260, D_0027C588, *(char **)(b.self + 0x40) + 4);
+    func_001ADCC0(b.path, 260, D_0027D170, *(char **)(b.self + 0x40) + 4);
+    int lim = 259;
+    len = strlen(D_002A5EA0);
+    n = AsmMinI(lim, len);
+    func_001E8920(b.old1, D_002A5EA0, n); b.old1[n] = 0;
+    len = strlen(D_002A60B0);
+    n = AsmMinI(lim, len);
+    func_001E8920(b.old2, D_002A60B0, n); b.old2[n] = 0;
+    len = strlen(D_002A4C10);
+    n = AsmMinI(lim, len);
+    func_001E8920(b.old3, D_002A4C10, n); b.old3[n] = 0;
+    len = strlen(D_002A48F8);
+    n = AsmMinI(lim, len);
+    func_001E8920(b.old4, D_002A48F8, n); b.old4[n] = 0;
+    len = strlen(D_002A46E8);
+    n = AsmMinI(lim, len);
+    func_001E8920(b.old5, D_002A46E8, n); b.old5[n] = 0;
+    n = AsmMinI(lim, 0);
+    func_001E8920(D_002A46E8, D_00275630, n); D_002A46E8[n] = 0;
+    if (*(int *)(*(char **)(b.self + 0x40) + 0x108)) {
+        func_001ADCC0(D_002A5EA0, 260, D_00275678, D_002A5348, D_002A45E0);
+        func_001ADCC0(D_002A60B0, 260, D_00275678, D_002A5348, D_002A5FA8);
+        func_001ADCC0(D_002A4C10, 260, D_00275678, D_002A5348, D_002A45E0);
+        func_001ADCC0(D_002A48F8, 260, D_00275678, D_002A5348, D_002A47F0);
+    } else {
+        func_001ADCC0(D_002A5EA0, 260, D_00275678, D_002A5870, D_002A45E0);
+        func_001ADCC0(D_002A60B0, 260, D_00275678, D_002A5870, D_002A5FA8);
+        func_001ADCC0(D_002A4C10, 260, D_00275678, D_002A5870, D_002A45E0);
+        func_001ADCC0(D_002A48F8, 260, D_00275678, D_002A5870, D_002A47F0);
+    }
+    void *mem = func_001E8A44(0x520);
+    *(void **)(b.self + 0x3c) = mem ? ((C_0012EF30 *)mem)->func_0012EF30(1) : 0;
+    char *t = *(char **)(b.self + 0x40);
+    if (!(*(V **)(b.self + 0x3c))->v53(b.name, b.path, 0, t + 0x250, t + 0x354, D_002A2DC4,
+            *(int *)(t + 0x114), *(int *)(t + 0x130), *(int *)(t + 0x12c), (float)*(int *)(t + 0x124), 1.0f,
+            *(int *)(t + 0x128), 0, 0, 0, *(int *)(t + 0x134), *(int *)(t + 0x138), *(int *)(t + 0x13c), *(int *)(t + 0x140), a)) {
+        (*(V **)(b.self + 0x3c))->v2();
+        *(void **)(b.self + 0x3c) = 0;
+        t = *(char **)(b.self + 0x40);
+        if (t) {
+            *(void **)t = &D_0027D004;
+            ((C_001B4B70 *)t)->func_001B4B70();
+            func_001E891B(t);
+        }
+        *(void **)(b.self + 0x40) = 0;
+        return;
+    }
+    ((C_0019ABA0 *)*(void **)(*(char **)(b.self + 0x3c) + 0x400))->func_0019ABA0(**(int **)(D_002B9120 + 0x4a8), 2);
+    (*(V **)(*(char **)(b.self + 0x3c) + 0x40c))->v32();
+    ((C_00133140 *)*(void **)(*(char **)(b.self + 0x3c) + 0x40c))->func_00133140(**(int **)(D_002B9120 + 0x4ac), 2);
+    V *o = *(V **)(*(char **)(b.self + 0x3c) + 0x410);
+    if (o) {
+        o->v32();
+        ((C_00133140 *)*(void **)(*(char **)(b.self + 0x3c) + 0x410))->func_00133140(**(int **)(D_002B9120 + 0x4ac), 2);
+    }
+    ((C_001577A0 *)D_002B9120)->func_001577A0(*(void **)(b.self + 0x3c), 0);
+    char *q = *(char **)(b.self + 0x44);
+    if (q) {
+        int flag = (*(char **)(*(char **)(q + 0x28) + 0xc))[0x26c] != 0;
+        ((V *)q)->v28(D_002B9120, *(void **)(*(char **)(b.self + 0x3c) + 0x400), D_00275630, *(int *)(D_002B9120 + 0x4c0));
+        if (*(C_001A2A10 **)(*(char **)(*(char **)(b.self + 0x44) + 0x28) + 8) && flag == 1)
+            (*(C_001A2A10 **)(*(char **)(*(char **)(b.self + 0x44) + 0x28) + 8))->func_001A2A10(flag);
+        *(int *)(b.self + 0x78) = flag;
+    }
+    *(int *)(b.self + 0x50) = *(int *)(*(char **)(b.self + 0x40) + 0x11c) - 1;
+    *(int *)(b.self + 0x4c) = *(int *)(b.self + 0x50);
+    *(int *)(b.self + 0x54) = *(int *)(*(char **)(b.self + 0x40) + 0x120) - 1;
+    if (*(int *)(b.self + 0x54) < 0 || *(int *)(b.self + 0x54) >= *(int *)((char *)D_002B9134 + 0x3c))
+        *(int *)(b.self + 0x54) = -1;
+    b.self[0x2a7] = (*(char **)(b.self + 0x40))[0x148];
+    ((C_000B3410 *)b.self)->func_000B1F70();
+    t = *(char **)(b.self + 0x40);
+    if (t) {
+        *(void **)t = &D_0027D004;
+        ((C_001B4B70 *)t)->func_001B4B70();
+        func_001E891B(t);
+    }
+    *(void **)(b.self + 0x40) = 0;
+    len = strlen(b.old1);
+    n = AsmMinI(lim, len);
+    func_001E8920(D_002A5EA0, b.old1, n); D_002A5EA0[n] = 0;
+    len = strlen(b.old2);
+    n = AsmMinI(lim, len);
+    func_001E8920(D_002A60B0, b.old2, n); D_002A60B0[n] = 0;
+    len = strlen(b.old3);
+    n = AsmMinI(lim, len);
+    func_001E8920(D_002A4C10, b.old3, n); D_002A4C10[n] = 0;
+    len = strlen(b.old4);
+    n = AsmMinI(lim, len);
+    func_001E8920(D_002A48F8, b.old4, n); D_002A48F8[n] = 0;
+    len = strlen(b.old5);
+    n = AsmMinI(lim, len);
+    func_001E8920(D_002A46E8, b.old5, n); D_002A46E8[n] = 0;
 }
 
 void VehicleAI::func_000B3B40()
