@@ -18,6 +18,7 @@ extern int D_00280000;
 struct S16_42260 { int a, b, c, d; };
 struct S36_42260 { int f[9]; };
 extern S16_42260 D_002A14D4;
+extern int D_002A14D8, D_002A14DC, D_002A14E0;
 
 struct C_00192900 {
     char pad0[0x3c];
