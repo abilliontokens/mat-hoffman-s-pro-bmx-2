@@ -64,11 +64,6 @@ static __forceinline float Fabs(volatile float f)
 
 static __forceinline void EdgeEval(Vec4 &P, Vec4 &N, float *v0, float *v1, float *n0, float *n1, float *n, float t)
 {
-    Vec4 Pv;
-    Vec4 Nv;
-
-    Pv.w = 1.0f;
-    Nv.w = 1.0f;
     Vec3 m = (Vec3(n1[0], n1[1], n1[2]) + Vec3(n0[0], n0[1], n0[2])) * D_002755E8;
     float d = m.y * n[1] + m.x * n[0] + m.z * n[2];
     Vec3 r;
@@ -84,10 +79,8 @@ static __forceinline void EdgeEval(Vec4 &P, Vec4 &N, float *v0, float *v1, float
     Vec3 n1v(n1[0], n1[1], n1[2]);
     Vec3 pv = v0v * s + v1v * t;
     Vec3 nn = r * (t * s) + v0v * (s * s) + n1v * t;
-    Pv.x = pv.x; Pv.y = pv.y; Pv.z = pv.z;
-    Nv.x = nn.x; Nv.y = nn.y; Nv.z = nn.z;
-    P = Pv;
-    N = Nv;
+    P = Vec4(pv.x, pv.y, pv.z);
+    N = Vec4(nn.x, nn.y, nn.z);
 }
 
 void func_00124760(Vec4 *out, float *p, float *n, float *a, float *b, float *c, float *na, float *nb, float *nc)
