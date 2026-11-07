@@ -104,6 +104,9 @@ struct C_000B03A0 {
     char pad560[0x5a8 - 0x560];
     int f5a8;
     void **f5ac;
+    void func_000A3B00(void*);
+    void func_000A3780(void*,char*,void*);
+    void func_000B0060(void*,int,void*,float*,float*,float*,int,int,int);
     int func_000B03A0(int a1, int a2, int a3);
 };
 
