@@ -231,7 +231,7 @@ void __fastcall func_001E7E60(int n, int x3, int n2, int y, int z) {
     }
 }
 
-extern "C" void __fastcall func_001E4D60(int n, float *a, float *w);
+extern "C" void func_001E4D60(int n, float *a, float *w);
 extern "C" void func_001E3A20(int n, float *a, int nw);
 extern "C" void D_001E4300(void);
 extern "C" void D_001E4480(void);
@@ -252,17 +252,17 @@ void __fastcall func_001E7F90(float *a, float *w, int n, int *ip, int nw)
         } else if (m > 32) {
             func_001E7480(n, a, nw, w);
         } else {
-            func_001E7410(n, (int)w, nw, 0, 0, 0);
+            func_001E7410(n, (int)w, nw);
         }
         func_001E3A20(n, a, nw);
         return;
     }
     if (n > 8) {
         if (n == 32) {
-            func_001E5F20(a, w + nw - 8);
+            ((void (__fastcall *)(float *, float *))func_001E5F20)(w + nw - 8, a);
             D_001E4300();
         } else {
-            func_001E6B50(a, w);
+            ((void (__fastcall *)(float *, float *))func_001E6B50)(w, a);
             D_001E4480();
         }
         return;
