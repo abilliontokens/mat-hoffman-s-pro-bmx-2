@@ -98,7 +98,7 @@ struct XboxVideoCard_001D7D50 {
         } f9D4b;
     };
     char pad9D5[3];
-    int f9D8;
+    volatile int f9D8;
     XboxVideoCard_001D7D50 *func_001D7D50(void);
 };
 
