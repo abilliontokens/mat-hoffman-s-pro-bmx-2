@@ -114,6 +114,7 @@ struct S_Obj {
       S_Obj *func_001BB680(int);
       int func_001BC040(V4,V4,V4,V4,int,int,int,int);
       void func_001BBAE0(int);
+      void func_001824E0(V4 *,int,int,float);
 };
 
 struct S_List { void func_001577A0(S_Obj *,int); };
