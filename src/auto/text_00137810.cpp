@@ -173,6 +173,7 @@ extern int D_002BEA90;
 extern S_137F90_Quad D_002BA728[];
 
 struct S_137810_V3 { float x, y, z; };
+struct S_137810_V4 { float x, y, z, w; };
 struct S_137810_Clamp { char pad0[0x10]; float f10, f14; };
 struct S_137810_Proj { void func_001C5C50(char *a, float *m, float *v, int z, int *out); };
 extern S_137810_Proj *D_002AB66C;
@@ -252,34 +253,34 @@ struct DrawableCube {
 
 void DrawableCube::func_00137810()
 {
-    DrawableCube * volatile self = this;
     S_137F90_Mat *pm;
-    S_137810_V3 v;
+    float v[4];
     int vf[25];
     int i;
     int j;
     int k;
     int idx;
-    float limit;
     S_137810_Clamp *o;
 
-    v = *(S_137810_V3 *)(D_002EFDB8->f4 + 0xd0);
+    v[0] = *(float *)(D_002EFDB8->f4 + 0xd0);
+    v[1] = *(float *)(D_002EFDB8->f4 + 0xd4);
+    v[2] = *(float *)(D_002EFDB8->f4 + 0xd8);
     pm = &D_002BEA50;
-    memset(pm, 0, 0x40);
+    AsmIdentityMatrix(&D_002BEA50);
     pm->m[0] = 1.0f;
     pm->m[5] = 1.0f;
     pm->m[10] = 1.0f;
-    pm->m[15] = 1.0f;
-    ((int *)D_002BEA50.m)[3] = self->f28->f8;
-    ((int *)D_002BEA50.m)[7] = self->f28->fC;
-    ((int *)D_002BEA50.m)[11] = self->f28->f10;
+    ((int *)D_002BEA50.m)[3] = this->f28->f8;
+    ((int *)D_002BEA50.m)[7] = this->f28->fC;
+    ((int *)D_002BEA50.m)[11] = this->f28->f10;
     func_000263B0(D_002BEA10, D_002BEA50.m, (float *)(D_002EFDB8->f4 + 0xf0));
     for (k = 0; k < 6; k++) {
+        float *p = &D_002BE9A8[k * 4];
         float *vp;
         int *op;
-        *(unsigned short *)((char *)self->f28 + k * 0xfc + 0x12c) = 0;
-        limit = (*(float *)(D_002EFDB8->f4 + 0x1d0) - D_00275AEC) * D_0028491C;
-        if (!(limit < v.y * D_002BE9A8[k * 4 - 1] + v.x * D_002BE9A8[k * 4 - 2] + v.z * D_002BE9A8[k * 4])) {
+        *(unsigned short *)((char *)this->f28 + k * 0xfc + 0x12c) = 0;
+        if (!(v[1] * p[-1] + v[0] * p[-2] + v[2] * p[0]
+              > (*(float *)(D_002EFDB8->f4 + 0x1d0) - D_00275AEC) * D_0028491C)) {
             vp = &D_002BE040[k * 100];
             op = vf;
             i = 25;
@@ -292,9 +293,9 @@ void DrawableCube::func_00137810()
             for (j = 0; j < 16; j += 8) {
 #define CELL2(n) \
                 idx = (j + (n)) / 4 + j + (n); \
-                if (!((vf[idx + 5] & vf[idx + 6] & vf[idx + 1] & vf[idx]) & 0xffffffef)) { \
-                    *(unsigned short *)((char *)self->f28 + k * 0xfc + 0x12c) |= (unsigned short)(1 << (j + (n))); \
-                    o = ((S_137810_Clamp **)self->f28)[0x13 + k * 0x3f + j + (n)]; \
+                if (!(((vf[idx + 5] & vf[idx + 6]) & (vf[idx + 1] & vf[idx])) & 0xffffffef)) { \
+                    *(unsigned short *)((char *)this->f28 + k * 0xfc + 0x12c) |= (unsigned short)(1 << (j + (n))); \
+                    o = ((S_137810_Clamp **)this->f28)[0x13 + k * 0x3f + j + (n)]; \
                     if (o) CLAMP8_137810(o) \
                 }
                 CELL2(0)
