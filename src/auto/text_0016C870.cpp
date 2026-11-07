@@ -1,5 +1,6 @@
 /* 5 functions from 0x0016C870 to 0x0016D6A0, found by Ghidra. */
 #include "common.h"
+#include "asm_helpers.h"
 
 extern int D_0028877C;
 extern int D_002886E4;
