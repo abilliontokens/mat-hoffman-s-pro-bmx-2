@@ -174,8 +174,7 @@ inline B4300_Cb B4300_CbOf(void *p)
 __forceinline void B3E10_Copy(char *dst, const char *src, int max)
 {
     int limit = max;
-    int length = strlen(src);
-    int n = AsmMinI(limit, length);
+    int n = AsmMinI(limit, (int)strlen(src));
     func_001E8920(dst, src, n);
     dst[n] = 0;
 }
