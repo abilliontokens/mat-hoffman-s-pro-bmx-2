@@ -7,6 +7,15 @@ struct Vec4 {
     Vec4(float ax, float ay, float az) { x = ax; y = ay; z = az; w = 1.0f; }
 };
 
+struct Vec3 {
+    float x, y, z;
+    Vec3() { }
+    Vec3(float ax, float ay, float az) { x = ax; y = ay; z = az; }
+    Vec3 operator+(const Vec3 &o) const { return Vec3(x + o.x, y + o.y, z + o.z); }
+    Vec3 operator-(const Vec3 &o) const { return Vec3(x - o.x, y - o.y, z - o.z); }
+    Vec3 operator*(float s) const { return Vec3(x * s, y * s, z * s); }
+};
+
 extern float D_002755E8;
 extern float D_00275460;
 void func_0011EFA0(Vec4 *out, Vec4 *in);
