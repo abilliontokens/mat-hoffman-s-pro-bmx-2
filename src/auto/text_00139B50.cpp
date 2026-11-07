@@ -47,6 +47,7 @@ extern void *D_002A829C;
 extern void *D_002AA6C0;
 
 struct C_UI {
+    void func_001691E0();
     void func_00169490(void *p, int a);
     void func_00169710(char *s);
     void func_00168C20(char *name, int a, void *dst);
