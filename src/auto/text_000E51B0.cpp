@@ -1,5 +1,9 @@
 /* 1 function from 0x000E51B0 to 0x000E5FF0, found by Ghidra. */
 #include "common.h"
+extern float D_0027653C,D_00275994,D_0027FD14;
+extern int D_0028F5DC,D_0028F5E0;
+extern char D_002786B0[],D_0027F29C[],D_0027FD04[];
+
 extern char D_00279AF0[],D_00279AD0[],D_00279B00[],D_00279AE0[];
 extern float D_0027FD4C;
 extern int D_0028F5EC;
