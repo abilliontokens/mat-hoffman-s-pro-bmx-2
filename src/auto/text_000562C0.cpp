@@ -7,6 +7,14 @@ static __forceinline float Camera562C0Min(float x,float y) { float r; _mm_store_
 static __forceinline void Camera562C0Cross(float *out,const float *a,const float *b) { __m128 x=_mm_loadu_ps(a), y=_mm_loadu_ps(b); __m128 t=_mm_sub_ps(_mm_mul_ps(x,_mm_shuffle_ps(y,y,0xc9)),_mm_mul_ps(y,_mm_shuffle_ps(x,x,0xc9))); _mm_storeu_ps(out,_mm_shuffle_ps(t,t,0xc9)); }
 
 struct V4_000562C0 { float x, y, z, w; };
+struct Camera562C0Obj {
+void *func_00026500(void*,int);
+void func_00108B00(V4_000562C0*); void func_001089C0(V4_000562C0*);
+void func_00199A70(int,V4_000562C0*); void func_001994C0(int,V4_000562C0*,V4_000562C0*);
+void func_000560A0(); void func_00197E70(V4_000562C0*);
+V4_000562C0 *func_00197F70(float*,V4_000562C0*); V4_000562C0 *func_00197EC0(float*,V4_000562C0*);
+void func_00199600(V4_000562C0);
+};
 struct V4s_000562C0 : V4_000562C0 {
     V4s_000562C0() { z = 0.0f; y = 0.0f; x = 0.0f; w = 1.0f; }
 };
