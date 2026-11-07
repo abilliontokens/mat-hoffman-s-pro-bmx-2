@@ -15,7 +15,7 @@ struct S_000B7520_Vec4 {
 };
 
 static __forceinline void cross7520(S_000B7520_Vec4 *out,const S_000B7520_Vec4 *a,const S_000B7520_Vec4 *b) {
-    const float * volatile pa=&a->x; const float * volatile pb=&b->x; float * volatile po=&out->x;
+    const float *pa=&a->x; const float *pb=&b->x; float *po=&out->x;
     _mm_storeu_ps(po,_mm_shuffle_ps(
         _mm_sub_ps(_mm_mul_ps(_mm_loadu_ps(pa),_mm_shuffle_ps(_mm_loadu_ps(pb),_mm_loadu_ps(pb),0xc9)),_mm_mul_ps(_mm_loadu_ps(pb),_mm_shuffle_ps(_mm_loadu_ps(pa),_mm_loadu_ps(pa),0xc9))),
         _mm_sub_ps(_mm_mul_ps(_mm_loadu_ps(pa),_mm_shuffle_ps(_mm_loadu_ps(pb),_mm_loadu_ps(pb),0xc9)),_mm_mul_ps(_mm_loadu_ps(pb),_mm_shuffle_ps(_mm_loadu_ps(pa),_mm_loadu_ps(pa),0xc9))),0xc9));
