@@ -141,7 +141,7 @@ extern int D_0028F5EC;
 extern "C" void * __cdecl func_001E8A44(int);
 struct RiderText {
 int w[0x184/4];
-void func_001B12C0(int);
+RiderText *func_001B12C0(int);
 void func_001B13A0(char*,char*,int,int);
 void func_001B1A30(float,float,int);
 void func_001B2270(int);
