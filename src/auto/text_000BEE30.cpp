@@ -161,7 +161,7 @@ struct C_BEE30 {
     ElemA_BEE *a50[6]; ElemA_BEE *a68[6];
     ElemB_BEE *b80; ElemB_BEE *b84;
     ElemA_BEE *a88[2]; ElemA_BEE *a90[2];
-    void func_000BEE30(void);
+    C_BEE30 *func_000BEE30(void);
 };
 struct C_000BFB70 {
     void *vtbl;
@@ -171,8 +171,9 @@ struct C_000BFB70 {
     C_000BFB70 *func_000BFB70(void *param);
 };
 
-void C_BEE30::func_000BEE30(void)
+C_BEE30 *C_BEE30::func_000BEE30(void)
 {
+    return this;
     void *mem;
     int ids[3];
     int v1, v2;
