@@ -22,6 +22,32 @@ struct Mgr_6ECC0 {
     void *func_0018C160(const char *key);
 };
 
+struct Text_6ECC0 {
+    char pad0[4]; float x, y; char padC[0x38];
+    void *frame; unsigned int color; char pad4C[2]; unsigned char flags;
+    Text_6ECC0 *func_001D5E90();
+    void func_001D5FA0(void *font, const char *name, int len, void *text);
+    void func_001D6190(void *font, void *text, const char *name);
+    void func_0005E840(void *text);
+    void setPos(float a, float b) { if (x!=a || y!=b) { y=b; x=a; flags|=6; } }
+    void setColor(unsigned int c) { if(color!=c) {flags|=8; color=(color&(c|0xff000000))|(c&0xffffff); } }
+    void setFrame(void *p) { if(frame!=p) {frame=p;flags|=6;} }
+};
+struct Sprite_6ECC0 {
+    char pad0[4]; float x, y; char padC[0x18]; float scale, width, height;
+    char pad30[8]; unsigned int color;
+    float u0,v0,u1,v1,w,h; int mode; unsigned char flags;
+    Sprite_6ECC0 *func_001D5760();
+    void func_001D5810(const char *name,float x,float y,int a);
+    void setPos(float a,float b) {if(x!=a || y!=b){flags|=1;x=a;y=b;}}
+    void setWidth(float a) {if(width!=a){width=a;flags|=1;}}
+    void setHeight(float a) {if(height!=a){height=a;flags|=1;}}
+    void setColor(unsigned int c) {color=(color&(c|0xff000000))|(c&0xffffff);flags|=2;}
+    void setScale(float s) {if(scale!=s){scale=s;if(mode)scale=s*0.5f;flags|=1;}}
+};
+struct Font_6ECC0 {float func_0018C210();};
+struct Profile_6ECC0 { char pad[0x2c0]; const char *func_0005B870(); };
+
 struct C_0006ECC0 {
     char pad0[0xD0];
     W_6ECC0 *fD0;
