@@ -68,12 +68,12 @@ struct S_0E9180_270 {
 #include <xmmintrin.h>
 struct Vec_0E9180 { float x,y,z,w; };
 static __forceinline void cross_0E9180(Vec_0E9180 * volatile out,const Vec_0E9180 * volatile a,const float *b) {
-    __m128 va=_mm_loadu_ps(&a->x), vb=_mm_loadu_ps(b);
-    __m128 sa=va,sb=vb;
-    sa=_mm_shuffle_ps(sa,sa,0xc9); sb=_mm_shuffle_ps(sb,sb,0xc9);
-    vb=_mm_mul_ps(vb,sa); va=_mm_mul_ps(va,sb);
-    va=_mm_sub_ps(va,vb); va=_mm_shuffle_ps(va,va,0xc9);
-    _mm_storeu_ps(&out->x,va);
+    const Vec_0E9180 *pa=a;
+    _mm_storeu_ps(&out->x, _mm_shuffle_ps(
+        _mm_sub_ps(_mm_mul_ps(_mm_loadu_ps(&pa->x), _mm_shuffle_ps(_mm_loadu_ps(b),_mm_loadu_ps(b),0xc9)),
+        _mm_mul_ps(_mm_loadu_ps(b),_mm_shuffle_ps(_mm_loadu_ps(&pa->x),_mm_loadu_ps(&pa->x),0xc9))),
+        _mm_sub_ps(_mm_mul_ps(_mm_loadu_ps(&pa->x), _mm_shuffle_ps(_mm_loadu_ps(b),_mm_loadu_ps(b),0xc9)),
+        _mm_mul_ps(_mm_loadu_ps(b),_mm_shuffle_ps(_mm_loadu_ps(&pa->x),_mm_loadu_ps(&pa->x),0xc9))),0xc9));
 }
 struct V_0E9180 {
     virtual void v0(); virtual void v4(); virtual void v8(); virtual void vc();
