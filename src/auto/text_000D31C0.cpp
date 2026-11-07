@@ -49,26 +49,84 @@ extern S_000D31C0_Name D_0027F1C8;
 struct C_000D31C0 {
     void func_000D31C0(float dt);
     void func_000D2860();
+    void func_001BED00(float dt);
 };
 
 void C_000D31C0::func_000D31C0(float dt)
 {
     char *self = (char *)this;
+    char *g = M(char *, self, 0x124);
+    int k;
+    int score;
 
-    if (*(int *)(self + 0x28c) == 0 && *(int *)(self + 0x290) == 0 && *(int *)(self + 0x2bc) == 0 && *(int *)(self + 0x294) != 0) {
-        *(float *)(self + 0x2a4) += dt;
-        if (*(float *)(self + 0x2a4) >= D_0027DE74) {
-            *(int *)(self + 0x298) = 1;
-            func_000D2860();
-            *(int *)(self + 0x2a4) = 0;
-            *(int *)(self + 0x28c) = 0;
+    if (M(int, self, 0x28c) != 0 || M(int, self, 0x290) != 0 || M(int, self, 0x2bc) != 0 || M(int, self, 0x294) != 0) {
+        M(float, self, 0x2a4) = dt + M(float, self, 0x2a4);
+        if (M(float, self, 0x2a4) >= D_0027DE74) {
+            if (M(S_000D31C0_Vt *, M(char *, g, 0x24), 0x30)->v27() == 0) {
+                if (M(int, g, 0x2a4) != 0) {
+                    if (M(int, self, 0x2bc) != 0) {
+                        M(int, self, 0x2bc) = 0;
+                        M(int, self, 0x3d4) = 0;
+                        goto after_timer;
+                    }
+                    if (M(int, self, 0x28c) != 0 || M(int, self, 0x290) != 0 || M(int, self, 0x294) != 0) {
+                        func_000D2860();
+                    }
+                } else if (M(int, self, 0x290) != 0 || M(int, self, 0x2bc) != 0 || M(int, self, 0x294) != 0) {
+                    func_000D2860();
+                }
+                M(int, self, 0x298) = 1;
+                ((S_000D31C0_Vt *)self)->v28(M(int, self, 0x2a0), M(int, self, 0x29c));
+                M(int, self, 0x2a4) = 0;
+                M(int, self, 0x28c) = 0;
+            }
         }
     }
-    *(float *)(self + 0x420) += dt;
-    if (*(int *)(self + 0x3dc) == 0) {
-        *(float *)(self + 0x3c8) += dt;
-        if (*(float *)(self + 0x3c8) >= D_002755E8) {
-            *(int *)(self + 0x280) = 1;
+after_timer:
+    M(float, self, 0x420) = dt + M(float, self, 0x420);
+    if (M(int, self, 0x3dc) != 0) {
+        M(float, self, 0x3c8) = dt + M(float, self, 0x3c8);
+        if (M(float, self, 0x3c8) >= D_002755E8) {
+            if (M(C_000301D0 *, M(char *, g, 0x25c), 0x74)->func_000301D0() == 0) {
+                if (M(int, self, 0x3cc) != 0 || M(int, self, 0x41c) != 0) {
+                    if (M(int, self, 0x41c) == 1) {
+                        M(int, self, 0x280) = 1;
+                    }
+                    M(C_000BC5D0 *, g, 0x270)->func_000BC5D0(self + 0x2c4, 0);
+                    M(int, self, 0x3cc) = 0;
+                    M(int, self, 0x420) = 0;
+                    M(int, self, 0x41c) = 0;
+                }
+            }
         }
+    }
+    if (M(int, self, 0x1fec) != 0 && M(C_000BC5D0 *, g, 0x270)->func_000B5870() != 0 && M(float, self, 0x420) >= D_002755E8) {
+        M(int, self, 0x1fec) = 0;
+        func_000D2860();
+    }
+    M(C_0005B3F0 *, D_002A8490, 0x2e0)->func_0005B3F0();
+    M(int, M(char *, self, 0x124), 0x138) = 8;
+    if (M(int, self, 0x2018) != M(unsigned char, M(char *, self, 0x284), 0x3b)) {
+        if (M(float, self, 0x2024) >= M(float, self, 0x2028)) {
+            M(int, self, 0x2020) = M(int, self, 0x2018);
+        } else {
+            M(int, self, 0x2020) = (int)((float)(M(int, self, 0x2018) - M(int, self, 0x201c)) * (M(float, self, 0x2024) / M(float, self, 0x2028))) + M(int, self, 0x201c);
+            M(float, self, 0x2024) = dt + M(float, self, 0x2024);
+        }
+    }
+    if (M(int, self, 0x410) != 0) {
+        D_002EFDB8->v7(1);
+        D_002EFDB8->v8();
+        for (k = 0; k < 10; k++) {
+            S_000D31C0_Name buf;
+            int a;
+            int b;
+            S_000D31C0_Item *item = M(S_000D31C0_Item *, self, 0x2048 + k * 4);
+            buf = (M(int, self, 0x424 + k * 4) == 1) ? D_0027F1E8 : D_0027F1C8;
+            a = **item->f1b8;
+            b = D_002A829C->func_001617F0(&buf, 1);
+            M(S_000D31C0_Item *, self, 0x2048 + k * 4)->func_00182020(a, b);
+        }
+        score = M(C_0005C020 *, D_002A8490->f2e0, 0x2c0)->func_0005C020(D_002A8490->f2e0->f2d8)[1];
     }
 }
