@@ -10,6 +10,8 @@ struct W_6ECC0 {
     int func_001B1800(void);
     W_6ECC0 *func_001B12C0(int a);
     void func_001B1810(float *out);
+    const char *func_001B17F0();
+    void func_001B17D0(const char *text);
 };
 
 struct Mgr_6ECC0 {
