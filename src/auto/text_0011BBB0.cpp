@@ -187,19 +187,11 @@ extern float D_002756DC, D_002755E8, D_00278C48;
 extern V4_0011C3F0 D_002A3BCC;
 static __forceinline V4_0011C3F0 VScale_0011BBB0(const V4_0011C3F0 &a, float k)
 {
-    V4_0011C3F0 r;
-    r.x = a.x * k;
-    r.y = a.y * k;
-    r.z = a.z * k;
-    return r;
+    return V4_0011C3F0(a.x * k, a.y * k, a.z * k, 1.0f);
 }
 static __forceinline V4_0011C3F0 VAdd_0011BBB0(const V4_0011C3F0 &a, const V4_0011C3F0 &b)
 {
-    V4_0011C3F0 r;
-    r.x = a.x + b.x;
-    r.y = a.y + b.y;
-    r.z = a.z + b.z;
-    return r;
+    return V4_0011C3F0(a.x + b.x, a.y + b.y, a.z + b.z, 1.0f);
 }
 static inline void Cross_0011BBB0(V4_0011C3F0 *out, const V4_0011C3F0 *a, const V4_0011C3F0 *b)
 {
