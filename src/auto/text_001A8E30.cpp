@@ -2,6 +2,7 @@
 #include "common.h"
 #include <math.h>
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 
 extern float D_00275544;
 extern float D_00275BF8;
