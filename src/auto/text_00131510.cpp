@@ -24,6 +24,7 @@ struct S_Node_00131510 {
 
 struct S_Sub_00131510 {
     void func_000BA430(V4_00131510 *a, int b, int c, int d);
+    void func_00199A70(int, V4_00131510*);
 };
 
 /* CinematographerCam */
