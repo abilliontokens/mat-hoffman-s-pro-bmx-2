@@ -109,7 +109,7 @@ struct C_0016F800 {
     int func_0016F800(void);
 };
 extern "C" void __fastcall func_001D7D00(void);
-extern int D_002A88B8;
+extern const int D_002A88B8;
 extern float D_00288A7C, D_00275994, D_00275460;
 extern int *D_002F0630;
 extern S_16F800_Creator *D_002A829C;
@@ -250,7 +250,7 @@ int C_0016F800::func_0016F800(void)
         if (d < r->f1fc) continue;
         AsmFloatToInt(d * f, &q);
         node->f24 = (float)q * inv;
-        b = (int)func_001E8858((float)(D_002A88B8 - 1) * d * scale);
+        b = func_001E8858((float)(D_002A88B8 - 1) * d * scale);
         if (b >= D_002A88B8) continue;
         e = &this->buckets[b];
         if (e->id < this->frame) {
