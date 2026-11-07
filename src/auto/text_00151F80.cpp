@@ -2,6 +2,7 @@
 #include "common.h"
 #include <xmmintrin.h>
 #include <math.h>
+#include "asm_helpers.h"
 struct Vec1521 { float x, y, z, w; Vec1521() { x = y = z = 0; w = 1; } };
 struct C1521 { char pad[0x34]; float height; void func_001521D0(Vec1521*, Vec1521*); };
 extern int D_002B9110, D_002B911C;
@@ -40,6 +41,7 @@ struct S_152BA0_Ctl {
 struct S_152BA0_Slot { int f0; int f4; int f8; int fC; char pad10[0x50]; };
 struct S_151F80_Root { char pad0[0x528]; S_152BA0_Hnd *f528; };
 struct S_1528D0_Vec { float x, y, z, w; };
+struct __declspec(align(16)) S_151F80_Mat { float m[16]; };
 struct S_151F80_Xf {
     S_151F80_Vec func_00197F70(float *vin);
     S_1528D0_Vec *func_00199B00(S_1528D0_Vec *out, int a);
@@ -168,15 +170,15 @@ void C1521::func_001521D0(Vec1521* pos, Vec1521* out)
  pos->y = h;
 }
 
+extern "C" void *__cdecl memcpy(void *dst, const void *src, unsigned int n);
 void C_00151F80::func_00152300(float dt)
 {
-    S_151F80_Vec v;
-    __declspec(align(16)) float m[16];
+    S_1528D0_Vec v;
 
     if (f2c == 0) {
         v.x = D_002A789C.x; v.y = D_002A78A0; v.z = D_002A78A4; v.w = D_002A78A8;
     } else {
-        f2c->f1a4->f4->func_00199B00((S_1528D0_Vec *)&v, 0);
+        f2c->f1a4->f4->func_00199B00(&v, 0);
     }
     if (f78 != 0) {
         f94.x = D_002A789C.x; f94.y = D_002A78A0; f94.z = D_002A78A4; f94.w = D_002A78A8;
@@ -184,28 +186,64 @@ void C_00151F80::func_00152300(float dt)
         fc4 = 0;
         f84.x = D_002A789C.x; f84.y = D_002A78A0; f84.z = D_002A78A4; f84.w = D_002A78A8;
         f94.x = D_002A789C.x; f94.y = D_002A78A0; f94.z = D_002A78A4; f94.w = D_002A78A8;
-        S_151F80_Vec line[2];
-        line[0] = f120;
-        line[1] = func_00016E40();
-        fc8 = line[0];
-        f78->func_0014AC30(line, 0);
-        f78->func_00133ED0();
-        f78->func_00133F10(0);
+        {
+            S_151F80_Vec line[2];
+            line[0] = f120;
+            line[1] = func_00016E40();
+            fc8 = line[0];
+            f78->func_0014AC30(line, 0);
+            f78->func_00133ED0();
+            f78->func_00133F10(0);
+        }
         if (fc4 != 0) {
-            v = f84;
+            __declspec(align(16)) float m2[16];
+            v = *(S_1528D0_Vec *)&f84;
             if (f60 != 0) {
-                v.y = (D_00286CA8 - f34) + v.y;
-                m[0] = 0.0f; m[1] = 0.0f; m[2] = 0.0f; m[3] = 0.0f;
-                m[4] = 0.0f; m[5] = 0.0f; m[6] = 0.0f; m[7] = 0.0f;
-                m[8] = 0.0f; m[9] = 0.0f; m[10] = 0.0f; m[11] = 0.0f;
-                m[12] = 0.0f; m[13] = 0.0f; m[14] = 0.0f; m[15] = 0.0f;
-                m[0] = 1.0f; m[5] = 1.0f; m[10] = 1.0f; m[15] = 1.0f;
-                m[3] = v.x;
-                m[7] = v.y;
-                m[11] = v.z;
+                __declspec(align(16)) float m[16];
+                v.y = (D_00276288 - f34) + v.y;
+                AsmIdentityMatrix(m);
+                memcpy(m2, m, 0x40);
+                m2[3] = v.x;
+                m2[7] = v.y;
+                m2[11] = v.z;
                 f68.x = D_002A789C.x; f68.y = D_002A78A0; f68.z = D_002A78A4; f68.w = D_002A78A8;
-                f60->v31(m);
+                f60->v31(m2);
                 f60->func_00133F10(0);
+            }
+            {
+                S_151F80_Vec t, out, dst;
+                if (f60->fa7 & 0x20) {
+                    t = f68;
+                    if (AsmSqrtF(fe8.x * fe8.x + fe8.y * fe8.y + fe8.z * fe8.z) > D_002756DC
+                        && func_00011170(&t) > D_002756DC) {
+                        func_00150890(&out, &t);
+                        func_00021330(&dst, &fe8, &out);
+                        fe8 = dst;
+                        v.x -= t.x;
+                        v.y -= t.y;
+                        v.z -= t.z;
+                        m2[3] = v.x;
+                        m2[7] = v.y;
+                        m2[11] = v.z;
+                        f68.x = D_002A789C.x; f68.y = D_002A78A0; f68.z = D_002A78A4; f68.w = D_002A78A8;
+                        f60->v31(m2);
+                        f60->func_00133F10(0);
+                    }
+                    if (f60->fa7 & 0x20) {
+                        t = f68;
+                        if (func_00011170(&fe8) > D_002756DC && func_00011170(&t) > D_002756DC) {
+                            func_00150890(&out, &t);
+                            func_00021330(&dst, &fe8, &out);
+                            fe8 = dst;
+                            v.x -= t.x;
+                            v.y -= t.y;
+                            v.z -= t.z;
+                            v.y = v.y - (D_00276288 - f34);
+                            f2c->f1a4->f4->func_00199600(v);
+                            f2c->f1a4->func_00132D20();
+                        }
+                    }
+                }
             }
         }
     }
@@ -215,15 +253,18 @@ void C_00151F80::func_001528D0(float dt)
 {
     ffc -= D_00286CAC;
     if (ff8 == D_00275544 && f100 == D_00275544) {
-        ff8 = fe8.x * D_00275F60;
-        f100 = fe8.z * D_00275F60;
+        ff8 = fe8.x * -10.0f;
+        f100 = fe8.z * -10.0f;
     }
-    fe8 = S_151F80_Vec(dt * ff8 + fe8.x, dt * ffc + fe8.y, dt * f100 + fe8.z);
+    S_151F80_Vec *pos = &fe8;
+    *pos = S_151F80_Vec(dt * ff8, dt * ffc, dt * f100) + *pos;
     S_151F80_Vec v = fe8;
     v.y = 0.0f;
-    float len = sqrtf(v.z * v.z + v.x * v.x);
+    float sq = v.x * v.x + v.z * v.z;
+    float len = AsmSqrtF(sq);
     if (len > D_002A7870) {
-        func_00150890(&v, &v);
+        S_151F80_Vec *pv = &v;
+        func_00150890(pv, pv);
         v = v * D_002A7870;
         fe8.x = v.x;
         fe8.z = v.z;
@@ -233,14 +274,18 @@ void C_00151F80::func_001528D0(float dt)
     }
     S_1528D0_Vec q;
     if (f2c == 0) {
-        q = *(S_1528D0_Vec *)&D_002A789C;
+        q.x = D_002A789C.x;
+        q.y = D_002A78A0;
+        q.z = D_002A78A4;
+        q.w = D_002A78A8;
     } else {
         f2c->f1a4->f4->func_00199B00(&q, 0);
     }
+    S_151F80_Vec d = fe8 * dt;
     S_1528D0_Vec p = q;
-    p.x += dt * fe8.x;
-    p.y += dt * fe8.y;
-    p.z += dt * fe8.z;
+    p.x += d.x;
+    p.y += d.y;
+    p.z += d.z;
     f2c->f1a4->f4->func_00199600(p);
     f2c->f1a4->func_00132D20();
 }
