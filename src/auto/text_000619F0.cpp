@@ -1,5 +1,6 @@
 /* 6 functions from 0x00061300 to 0x00062070, found by Ghidra. */
 #include "common.h"
+#include "asm_helpers.h"
 
 extern "C" void *memset(void *dst, int c, unsigned int n);
 extern int D_0027850C;
@@ -163,38 +164,19 @@ struct C_00061B80 {
 
 void C_000619B0::func_000619F0(const char *name)
 {
-    C_000619B0 * volatile self = this;
-    volatile int len;
-    volatile int tmp[2];
+    unk1D0->func_00032A40();
+    int a0, a1;
     char buf[0x104];
-    int lim;
-    int n;
-
-    self->unk1D0->func_00032A40();
-    switch (self->unk1D0->unk1C0->func_000976A0()) {
-    case 0:
-        len = (int)strlen("AmateurObjectives");
-        tmp[0] = 0x103; lim = tmp[0]; if (lim > len) lim = len; tmp[1] = lim; n = tmp[1];
-        func_001E8920(buf, (const char *)D_00278744, n);
-        buf[n] = 0;
-        break;
-    case 1:
-        len = (int)strlen("SemiProObjectives");
-        tmp[0] = 0x103; lim = tmp[0]; if (lim > len) lim = len; tmp[1] = lim; n = tmp[1];
-        func_001E8920(buf, (const char *)D_00278758, n);
-        buf[n] = 0;
-        break;
-    case 2:
-        len = (int)strlen("ProObjectives");
-        tmp[0] = 0x103; lim = tmp[0]; if (lim > len) lim = len; tmp[1] = lim; n = tmp[1];
-        func_001E8920(buf, (const char *)D_0027876C, n);
-        buf[n] = 0;
-        break;
+    switch (unk1D0->unk1C0->func_000976A0()) {
+    case 0: a1 = 0x103; a0 = AsmMinI((unsigned short)a1, 0x11);
+            func_001E8920(buf, (const char *)D_00278744, a0); buf[a0] = 0; break;
+    case 1: a1 = 0x103; a0 = AsmMinI(a1, 0x11);
+            func_001E8920(buf, (const char *)D_00278758, a0); buf[a0] = 0; break;
+    case 2: a0 = 0x103; a1 = AsmMinI(a0, 0xd);
+            func_001E8920(buf, (const char *)D_0027876C, a1); buf[a1] = 0; break;
     }
-    if (self->unk1D0->unk44->unk74->func_00030020(buf) != 0) {
-        if (self->unk1D0->unk44->unk74->func_000300C0(name) != 0) {
-            self->unk1D0->unk44->unk74->func_00030160();
-        }
-    }
+    if (unk1D0->unk44->unk74->func_00030020(buf) != 0)
+        if (unk1D0->unk44->unk74->func_000300C0(name) != 0)
+            unk1D0->unk44->unk74->func_00030160();
 }
 
