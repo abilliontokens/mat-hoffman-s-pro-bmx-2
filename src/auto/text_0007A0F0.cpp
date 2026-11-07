@@ -52,6 +52,7 @@ struct C_0007A0F0_L {
     float func_0018C210();
 };
 
+struct MenuSetup7 { int fontId, count1, count2; };
 struct C_0007A0F0_Obj {
     int func_0018C780(int a, void *b, int c);
     int *func_0018C160(char *a);
