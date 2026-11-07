@@ -326,4 +326,4 @@ void C_001C9760::func_001C9760(S_1C9760_Vec *pos, int arg1, int arg2) {
     if (!arg2 && !(h-pos->y>D_002F08A8)) pos->y=h;
     else pos->y=height;
 }
-
+extern char D_0028EBA4[], D_0028EB94[];
