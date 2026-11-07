@@ -87,7 +87,8 @@ struct C_000B6640 {
     void Box(V4_000B6840 *dst, V4_000B6840 *src)
     {
         float y = (0.0f - f7C) + src->y;
-        *dst = V4Init_000B6840(src->x, y, src->z, 1.0f);
+        V4Init_000B6840 value(src->x, y, src->z, 1.0f);
+        *dst = value;
     }
 };
 
