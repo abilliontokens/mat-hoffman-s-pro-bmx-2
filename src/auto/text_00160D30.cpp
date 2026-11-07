@@ -716,23 +716,15 @@ void func_00161930(V3_00161930 *a, V3_00161930 *n, V4_00161930 *out)
 #pragma optimize("y", on)
 void func_001619D0(V3_00161930 *a, V3_00161930 *b, V3_00161930 *c, V4_00161930 *out, float *d)
 {
-    V4_00161930 v1;
-    V4_00161930 v2;
-    V4_00161930 *n;
-
-    v1.w = 1.0f;
-    v1.x = c->x - a->x;
-    v1.y = c->y - a->y;
-    v1.z = c->z - a->z;
-    v2.w = 1.0f;
-    v2.x = b->x - a->x;
-    v2.y = b->y - a->y;
-    v2.z = b->z - a->z;
-    cross_001619D0((float *)out, (float *)&v2, (float *)&v1);
-    n = func_001618A0(out, out);
-    if (d != 0) {
-        *d = -(n->y * a->y + a->x * n->x + n->z * a->z);
-    }
+ V4_00161930 v1, v2;
+ V4_00161930 *n;
+ v1.w=1.0f;
+ v1.x=c->x-a->x; v1.y=c->y-a->y; v1.z=c->z-a->z;
+ v2.w=1.0f;
+ v2.x=b->x-a->x; v2.y=b->y-a->y; v2.z=b->z-a->z;
+ AsmVec3Cross((float*)out,(float*)&v2,(float*)&v1);
+ n=func_001618A0(out,out);
+ if(d) { float p0=a->x*n->x; float p1=n->y*a->y; float sum=p0+p1; float p2=n->z*a->z; *d=-(sum+p2); }
 }
 #pragma optimize("", on)
 S_Matrix16_00161AA0 func_00161AA0(float a1, float a2, float a3, float a4)
@@ -743,20 +735,23 @@ S_Matrix16_00161AA0 func_00161AA0(float a1, float a2, float a3, float a4)
     return m;
 }
 
+void func_001622C0(float *m, float angle);
 S_Matrix16_00161AA0 func_00161AE0(V4_00161930 a, V4_00161930 b, V4_00161930 c, float angle)
 {
     V4_00161930 v;
     S_Matrix16_00161AA0 m;
+    S_Matrix16_00161AA0 t;
     S_Matrix16_00161AA0 r;
 
-    v.x = 0.0f;
-    v.y = 0.0f;
     v.z = 0.0f;
+    v.y = 0.0f;
+    v.x = 0.0f;
     v.w = 1.0f;
-    cross_001619D0(&v.x, &c.x, &b.x);
+    AsmVec3Cross(&v.x, &c.x, &b.x);
     func_00162330(&m, &a, &v, &c, &b);
     if (angle != D_00275544) {
-        r = func_001622C0(-angle);
+        func_001622C0((float *)&t, -angle);
+        r = t;
         func_0011ACC0(&m, &m, &r);
     }
     return m;
