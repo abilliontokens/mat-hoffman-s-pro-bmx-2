@@ -26,6 +26,7 @@ struct C_000E51B0_Y {
 struct BmxUIPageRiderOps {
     int w[0x900 / 4];
     void func_001BE4F0(int a, int b, int c);
+    void func_001577A0(void *p,int n);
     void *func_000E51B0(int a1, int a2, int a3);
 };
 
