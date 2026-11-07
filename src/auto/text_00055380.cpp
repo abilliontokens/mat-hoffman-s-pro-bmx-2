@@ -540,8 +540,7 @@ int C_00055380::func_00055A10(S_00056100_Quat a,S_00056100_Quat b,S_00056100_Qua
  dir=b-this->q6C;
  float squared=dir.z*dir.z+dir.y*dir.y+dir.x*dir.x;
  float distance=AsmSqrtF(squared);
- S_00056100_Quat *pd=&dir;
- func_00055140(pd,pd);
+ func_00055140(&dir,&dir);
  if(*(int*)this->pad12C) {
  distance=((C_00055A10_Filter*)*(int*)(this->pad12C+4))->func_00026A10(distance,dt);
  ((C_00055A10_Filter*)*(int*)(this->pad12C+8))->func_000269B0(distance,3.402823466e38f,3.402823466e38f);
