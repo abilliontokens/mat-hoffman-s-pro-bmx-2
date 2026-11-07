@@ -319,6 +319,7 @@ struct C_001C8960_Ini {
     int func_00168C20(char *, int, void *);
     int func_00168BE0(char *, char *, void *, int);
 };
+struct C_001C8960_Faces { int flags[6]; char *suffix[6]; };
 struct C_001C8960_Tables { int axis[6], flags[6]; char *suffix[6]; };
 struct C_001C8960_Parameters {
     int total,kind,mode;
