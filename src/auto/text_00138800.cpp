@@ -32,7 +32,7 @@ struct Obj138 {
     char pad0[8];
     int f8;
     char padC[0x30C];
-    int vec318[4];
+    SceneVector vec318;
     int count328;
     int f32c;
 };
@@ -495,6 +495,8 @@ void CutScene::func_00138950()
                         for (i = 0; i < e->count10; i++) {
                             ((ArrVec138 *)e->arr4[i])->func_0011CA60(vec);
                             ((ArrVec138 *)e->arr4[i])->func_0011CA60(vec);
+                            ((ArrVec138 *)e->arr4[i])->v31();
+                            ((ArrVec138 *)e->arr4[i])->v4();
                         }
                         func_001E891B(e->obj8);
                         e->obj8 = 0;
