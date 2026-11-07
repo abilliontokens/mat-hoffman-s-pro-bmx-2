@@ -3,6 +3,13 @@
 #include "asm_helpers.h"
 
 extern int D_002BF278;
+extern float D_0027A094, D_002755E8, D_00275544;
+void *func_001E83E8(void *, unsigned);
+struct EcoCollision { int func_001C5DE0(void *, float *, float *, int); };
+extern EcoCollision *D_002AB66C;
+struct EcoRender { char pad[0xd4]; int fD4; void func_001B07A0(); };
+extern char *D_002A829C;
+extern char *D_002F0630;
 
 struct C_0013E9B0 {
     void func_0013E9B0(int param_1);
