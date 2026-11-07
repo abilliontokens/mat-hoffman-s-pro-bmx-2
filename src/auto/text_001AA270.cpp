@@ -75,14 +75,3 @@ void C_001AA270::func_001AA270(float a0, float a1, float a2, float a3, void *a4,
     }
     v4.x = x;
 }
-struct Xf_001AA270 {
- V4_001AA270 func_00198040(V4_001AA270 *v);
- V4_001AA270 func_00197EC0(V4_001AA270 *v);
-};
-struct Body_001AA270 {
- void func_00030B20(V4_001AA270 v);
- void func_00030B90(V4_001AA270 v);
- void func_00171BA0(V4_001AA270 v);
- void func_00171D00(V4_001AA270 v);
-};
-V4_001AA270 *func_000110B0(V4_001AA270 *a, V4_001AA270 *b);
