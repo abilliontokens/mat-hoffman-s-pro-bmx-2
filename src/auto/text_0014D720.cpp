@@ -98,6 +98,7 @@ struct EcoSystem {
     void func_0014E4E0(void);
     void func_00157660(void);
     void func_0014D720(void);
+    void func_0014D670(void *ent);
 };
 struct EcoSub4 {
     char pad0[0xF0]; float fF0;
@@ -194,12 +195,12 @@ void EcoSystem::func_0014D720(void)
     unk574 = 0;
     scale = scale * D_0027D264;
     D_002F07E8->v13();
-    D_002BF258 = (int)(f57C * f560);
-    D_002BF25C = (int)(f57C * f564);
+    AsmFloatToInt(f57C * f560, &D_002BF258);
+    AsmFloatToInt(f57C * f564, &D_002BF25C);
     D_002BF264 = D_002BF258 * D_002BF258;
     D_002BF260 = D_002BF25C * D_002BF25C;
-    D_002BF268 = (int)(D_002EFDB8->f4->f170 * f57C);
-    D_002BF26C = (int)(D_002EFDB8->f4->f178 * f57C);
+    AsmFloatToInt(D_002EFDB8->f4->f170 * f57C, &D_002BF268);
+    AsmFloatToInt(D_002EFDB8->f4->f178 * f57C, &D_002BF26C);
     D_002BF270 = D_0027988C / (float)(D_002BF258 - D_002BF25C);
     count = 0;
     outp = D_002F07E8->f890;
