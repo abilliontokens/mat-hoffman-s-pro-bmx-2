@@ -12,7 +12,7 @@ extern int D_002B911C;
 extern char *D_002A8490;
 
 int func_001E8858(double x);
-float func_0001C870(float a, float b, float c, float d, float e);
+float func_0001C870(int a, int b, int c, int d, int e);
 void __stdcall func_00028CD0(void *a);
 
 struct VSlot10_00117160 {
