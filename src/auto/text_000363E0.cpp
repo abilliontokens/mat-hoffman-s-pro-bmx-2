@@ -47,6 +47,7 @@ struct C_000363E0 {
     char pad918[0x920 - 0x918];
     int f920;
     void func_000363E0(float x, float y, float z, float w);
+    void func_000363E0(S_Vec4 target);
 };
 
 extern const float D_00275544;
