@@ -221,29 +221,37 @@ void BmxUIPageGameOptions::func_000CEFC0()
         if (D_002A8490->f2e0->f4 == 0) *(int *)((char *)e + 0x5cc) = 12;
         { int n = 0x103; n = AsmMinI(n, 8); func_001E8920((char *)this + 0x28c, D_0027E824, n); ((char *)this + 0x28c)[n] = 0; }
         break;
-    case 14:
-        *(int *)((char *)D_002A8490->f2e0 + 0x190 + *(int *)((char *)this + 0x490) * 4) = 13;
-        if (D_002A8490->f2e0->f4 == 0) *(int *)((char *)e + 0x5cc) = 13;
-        { int n = 0x103; n = AsmMinI(n, 14); func_001E8920((char *)this + 0x28c, D_0027E7F8, n); ((char *)this + 0x28c)[n] = 0; }
-        { int n = 0x103; n = AsmMinI(n, 10); func_001E8920(tmp, D_0027E7EC, n); tmp[n] = 0; }
-        break;
     case 15:
         *(int *)((char *)D_002A8490->f2e0 + 0x190 + *(int *)((char *)this + 0x490) * 4) = 14;
         if (D_002A8490->f2e0->f4 == 0) *(int *)((char *)e + 0x5cc) = 14;
         { int n = 0x103; n = AsmMinI(n, 11); func_001E8920((char *)this + 0x28c, D_0027E7E0, n); ((char *)this + 0x28c)[n] = 0; }
         { int n = 0x103; n = AsmMinI(n, 10); func_001E8920(tmp, D_0027E7D4, n); tmp[n] = 0; }
         break;
+    case 14:
+        *(int *)((char *)D_002A8490->f2e0 + 0x190 + *(int *)((char *)this + 0x490) * 4) = 13;
+        if (D_002A8490->f2e0->f4 == 0) *(int *)((char *)e + 0x5cc) = 13;
+        { int n = 0x103; n = AsmMinI(n, 14); func_001E8920((char *)this + 0x28c, D_0027E7F8, n); ((char *)this + 0x28c)[n] = 0; }
+        { int n = 0x103; n = AsmMinI(n, 10); func_001E8920(tmp, D_0027E7EC, n); tmp[n] = 0; }
+        break;
+    case 16:
+        *(int *)((char *)D_002A8490->f2e0 + 0x190 + *(int *)((char *)this + 0x490) * 4) = 15;
+        if (D_002A8490->f2e0->f4 == 0) *(int *)((char *)e + 0x5cc) = 15;
+        { int n = 0x103; n = AsmMinI(n, 9); func_001E8920((char *)this + 0x28c, D_0027E7C8, n); ((char *)this + 0x28c)[n] = 0; }
+        break;
     default:
-        return;
+        break;
     }
     if (*(int *)((char *)this + 0x288) == 0) {
         return;
     }
+    p->func_000BE1D0(*(int *)((char *)this + 0x490));
+    p->f150->f484->func_0001BD60((char *)this + 0x28c, D_0027EB58);
+    p->f150->f484->func_0001BC50((char *)this + 0x28c, D_0027EB50, 1);
     if (val == 2 || val == 4 || val == 7 || val == 9 || val == 13 || val == 16) {
         return;
     }
-    p->f150->f484->func_0001BD60((char *)this + 0x28c, D_0027EB58);
-    p->f150->f484->func_0001BC50((char *)this + 0x28c, D_0027EB50, 1);
+    p->f150->f484->func_0001BD60(tmp, D_0027EB58);
+    p->f150->f484->func_0001BC50(tmp, D_0027EB50, 1);
 }
 
 void BmxUIPageGameOptions::func_000CFAC0()
