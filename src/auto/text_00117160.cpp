@@ -53,9 +53,9 @@ struct Rider_00117160 {
     int func_00028130(int *a, int b, int *c);
 };
 
-static inline float Abs_00117160(volatile float f)
+static inline float Abs_00117160(float f)
 {
-    volatile int i = *(volatile int *)&f & 0x7fffffff;
+    int i = *(int *)&f & 0x7fffffff;
     return *(float *)&i;
 }
 
