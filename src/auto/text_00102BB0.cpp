@@ -25,6 +25,7 @@ struct C_001B1980 {
     void func_001B1B80(float a, struct S_00103_Vec4 b, int c);
     void func_001B1AB0(int a, int b);
     void func_001B1BF0(int a);
+    void func_001B17D0(char *s);
 };
 extern const float D_00275998;
 
