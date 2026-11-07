@@ -29,7 +29,7 @@ struct Transform7520 {
     S_000B7520_Vec4 *func_00198120(S_000B7520_Vec4 *,const S_000B7520_Vec4 *);
     void func_00199E50(S_000B7520_Vec4,S_000B7520_Vec4,float);
 };
-void __stdcall func_0001C710(S_000B7520_Vec4);
+struct Body7520 { void func_0001C710(S_000B7520_Vec4); };
 void func_000B60D0(S_000B7520_Vec4 *,const S_000B7520_Vec4 *);
 float func_00011170(const S_000B7520_Vec4 *);
 extern float D_002755E8, D_002A303C;
