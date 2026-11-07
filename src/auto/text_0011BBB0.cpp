@@ -36,7 +36,7 @@ struct S_0011C3F0_Smoother {
     __forceinline float Update(float target, float dt)
     {
         float step = AsmMinF(dt, f4);
-        f8 = D_00275460 / f4 * step;
+        f8 = step * (D_00275460 / f4);
         f0 = (target - f0) * f8 + f0;
         return f0;
     }
@@ -361,46 +361,45 @@ void C_0011BBB0::func_0011BBB0(V4_0011C3F0 a)
 
 void C_0011C3F0::func_0011C3F0(float *m, float dt)
 {
-    C_0011C3F0 * volatile self = this;
-    if (self->f80 != 0) {
+    if (this->f80 != 0) {
         V4_0011C3F0 dir;
-        V4_0011C3F0 pos = self->f24;
-        self->f80->func_000BA430(&pos, &dir, 0, 0);
+        V4_0011C3F0 pos = this->f24;
+        this->f80->func_000BA430(&pos, &dir, 0, 0);
     }
     V4_0011C3F0 seg[2];
-    seg[0] = self->f24;
+    seg[0] = this->f24;
     seg[0].y = seg[0].y + D_00275548;
-    seg[1] = self->f24;
+    seg[1] = this->f24;
     seg[1].y = seg[1].y - D_00276278;
     V4_0011C3F0 hit;
     V4_0011C3F0 nrm;
-    if (func_00134DE0(seg, &hit, &nrm, 0, self->fF4, self->fF0, -1, 0, 1) == 0) {
-        hit = self->f24;
+    if (func_00134DE0(seg, &hit, &nrm, 0, this->fF4, this->fF0, -1, 0, 1) == 0) {
+        hit = this->f24;
         nrm = D_002A3BDC;
     }
     V4_0011C3F0 sm;
-    sm.x = self->fA8->Update(nrm.x, dt);
-    sm.y = self->fAC->Update(nrm.y, dt);
-    sm.z = self->fB0->Update(nrm.z, dt);
+    sm.x = this->fA8->Update(nrm.x, dt);
+    sm.y = this->fAC->Update(nrm.y, dt);
+    sm.z = this->fB0->Update(nrm.z, dt);
     func_0011ABC0(&sm, &sm);
     V4_0011C3F0 q;
-    q = func_0001C610(sm, func_0011B1B0(self->f58));
+    q = func_0001C610(sm, func_0011B1B0(this->f58));
     func_0011ABC0(&q, &q);
     func_000265C0(m, &hit, &func_0001C610(q, sm), &sm, 0, 1);
-    self->fA0->v31(m);
-    self->fA0->func_00133F10(0);
-    if (self->fA0->fA7 & 0x20) {
-        S_0011C3F0_Obj54 *p = self->fA0->f54;
-        V4_0011C3F0 t = self->f24;
+    this->fA0->v31(m);
+    this->fA0->func_00133F10(0);
+    if (this->fA0->fA7 & 0x20) {
+        S_0011C3F0_Obj54 *p = this->fA0->f54;
+        V4_0011C3F0 t = this->f24;
         t.x = t.x - p->f40;
         t.y = t.y - p->f44;
         t.z = t.z - p->f48;
         m[3] = t.x;
         m[7] = t.y;
         m[11] = t.z;
-        self->fA0->v31(m);
-        self->fA0->func_00133F10(0);
-        if (self->fA0->fA7 & 0x20) {
+        this->fA0->v31(m);
+        this->fA0->func_00133F10(0);
+        if (this->fA0->fA7 & 0x20) {
             t.x = t.x - p->f40;
             t.y = t.y - p->f44;
             t.z = t.z - p->f48;
