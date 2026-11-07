@@ -54,7 +54,7 @@ static __forceinline void color_EE(Img_EE *p) { unsigned int c = p->color; unsig
 static __forceinline void pos_EE(Img_EE *p, int x, int y) { if (p->x != x || p->y != y) { p->x = x; p->y = y; p->flags |= 1; } }
 static __forceinline void rot_EE(Img_EE *p, int r) { if (p->rot != r) { p->rot = r; p->flags |= 1; } }
 static __forceinline void uv_EE(Img_EE *p) { p->flags |= 4; p->a = 1.0f; p->b = 0; p->c = 0; p->d = 1.0f; }
-static __forceinline void Round_EE(int * volatile out, float f) { *out = _mm_cvtss_si32(*(__m128 *)&f); }
+static __forceinline void Round_EE(float f, int * volatile out) { *out = _mm_cvtss_si32(*(__m128 *)&f); }
 
 C_000EDF00 *C_000EDF00::func_000EE450(int a0, int a1, int a2)
 {
