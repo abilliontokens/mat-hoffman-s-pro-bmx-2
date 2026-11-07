@@ -117,11 +117,9 @@ static __forceinline float Track_00131510(S_Node_00131510 *n, float target, floa
 {
     float limit = n->f4;
     float m = Min_00131510(dt, limit);
-    float ratio = D_00275460 / n->f4 * m;
-    n->f8 = ratio;
-    float result = (target - n->f0) * ratio + n->f0;
-    n->f0 = result;
-    return result;
+    n->f8 = D_00275460 / n->f4 * m;
+    n->f0 = (target - n->f0) * n->f8 + n->f0;
+    return n->f0;
 }
 
 void C_00131510::func_00131510(float dt, int a1, int a2, int a3, float *p18, V4_00131510 *p1c, V4_00131510 *p20, int a7)
