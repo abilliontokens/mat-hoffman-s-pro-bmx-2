@@ -42,7 +42,7 @@ void func_0011EFA0(float *out, float *in);
 S_00122810_V3 func_0001E9B0(const S_00122810_V3 &a, const S_00122810_V3 &b);
 static __forceinline float Dot_00122810(const S_00122810_V3 &a, const S_00122810_V3 &b)
 {
-    return a.y * b.y + a.x * b.x + a.z * b.z;
+    return a.x * b.x + a.y * b.y + a.z * b.z;
 }
 static __forceinline float Fabs_00122810(volatile float f)
 {
