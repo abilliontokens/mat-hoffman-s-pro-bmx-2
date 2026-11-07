@@ -9,6 +9,8 @@ extern float D_002755E8;
 #define D31_PROFILE (D31_MANAGER->f2c0->func_0005C020(D31_MANAGER->f2d8))
 extern "C" char *strcpy(char *, const char *);
 #pragma intrinsic(strcpy)
+extern "C" void *memcpy(void *, const void *, unsigned int);
+#pragma intrinsic(memcpy)
 extern float D_00278C48;
 
 struct S_000D31C0_Vt {
