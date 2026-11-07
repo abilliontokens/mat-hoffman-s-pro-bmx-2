@@ -100,7 +100,9 @@ struct BmxUIPageRider {
     virtual void v28(int a, int b);
     char pad4[0x124 - 4];
     RiderPlayer *f124;
-    char pad128[0x484 - 0x128];
+    char pad128[0x3f8 - 0x128];
+    RiderByteObj *f3f8;
+    char pad3fc[0x484 - 0x3fc];
     int f484;
     int f488;
     int f48c;
@@ -168,6 +170,7 @@ void BmxUIPageRider::func_000FA720(float dt)
 {
     RiderPlayer *p = f124;
     int idx;
+    int i;
 
     if (p->f270->func_000BC670()) {
         p->f270->func_000BC590();
@@ -240,8 +243,8 @@ done_e0:
     }
     if (f4ec != 0 && D_002B91C4 >= D_00278C58) {
         if (f4f8->func_00092A10() == 0) {
-            f4f8->func_00093120();
             f538 = 1;
+            f4f8->func_00093120();
             v27();
             f4b8 = 0;
             switch (f48c) {
@@ -413,7 +416,80 @@ done_51c:;
                 case 14: idx = 8; break;
                 case 15: idx = 9; break;
                 }
+                f4f8->func_00092A50(&f520);
+                f52c = 0;
+                if (idx != -1 && *D_002A8490->f2e0->f2c0->func_0005C020(idx) == 0) {
+                    f52c = 1;
+                }
+                for (i = 0; i < 10; i++) {
+                    if (*D_002A8490->f2e0->f2c0->func_0005C020(i) != 0) {
+                        break;
+                    }
+                    if (f4f8->func_00092B40(i) != 0) {
+                        break;
+                    }
+                    f52c++;
+                }
+                if (f4f8->func_00092AC0() == 0) {
+                    f52c += 4;
+                }
+                if (f52c > f520 && f584 == 0) {
+                    f4f8->func_00093120();
+                    f498 = 0;
+                    f4a8 = 0;
+                    f510 = 0;
+                    f4f0 = 0;
+                    f4ec = 1;
+                    f52c = 0;
+                    for (i = 0; i < 10; i++) {
+                        if (*D_002A8490->f2e0->f2c0->func_0005C020(i) != 0) {
+                            break;
+                        }
+                        if (f4f8->func_00092B40(i) != 0) {
+                            break;
+                        }
+                        f52c++;
+                    }
+                    if (f4f8->func_00092AC0() == 0) {
+                        f52c = 4;
+                    }
+                } else {
+                    f584 = 0;
+                    switch (f48c) {
+                    case 1: D_002A8490->f2e0->f2d8 = 0; break;
+                    case 3: D_002A8490->f2e0->f2d8 = 1; break;
+                    case 5: D_002A8490->f2e0->f2d8 = 2; break;
+                    case 6: D_002A8490->f2e0->f2d8 = 3; break;
+                    case 8: D_002A8490->f2e0->f2d8 = 4; break;
+                    case 10: D_002A8490->f2e0->f2d8 = 5; break;
+                    case 11: D_002A8490->f2e0->f2d8 = 6; break;
+                    case 12: D_002A8490->f2e0->f2d8 = 7; break;
+                    case 14: D_002A8490->f2e0->f2d8 = 8; break;
+                    case 15: D_002A8490->f2e0->f2d8 = 9; break;
+                    }
+                    *D_002A8490->f2e0->f2c0->func_0005C020(D_002A8490->f2e0->f2d8) = 0;
+                    func_000CFB90();
+                    f510 = 0;
+                    f498 = 0;
+                    f4a8 = 0;
+                    f4f0 = 0;
+                    f578 = 0;
+                }
             }
+        }
+    } else {
+        f588 = 0;
+    }
+    if (f55c != 0 && f510 == 0) {
+        func_000CFDA0();
+    }
+    f570 += dt;
+    if (f53c != f550->b3b) {
+        if (f548 >= f54c) {
+            f544 = f53c;
+        } else {
+            f544 = (int)((float)(f53c - f540) * (f548 / f54c)) + f540;
+            f548 += dt;
         }
     }
     func_001BED00(dt);
