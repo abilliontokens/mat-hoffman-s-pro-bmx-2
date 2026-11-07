@@ -81,6 +81,19 @@ static __forceinline void copy_168550(char *dst, const char *s, int size)
         strcpy(dst, (char *)s);
     }
 }
+static __forceinline void makeKey_168550(char *key, const char *name)
+{
+    char *p = (char *)name;
+    int delta = key - p;
+    char c;
+
+    do {
+        c = *p;
+        p[delta] = c;
+        p++;
+    } while (c);
+    func_000347F0(key);
+}
 static __forceinline int store_168550(char *dst, char *s, int size)
 {
     int n;
@@ -446,15 +459,7 @@ copy:
             val[n] = 0;
             s = tok.func_001B4A70(D_002869B4);
             if (s != 0 && func_001EA426(val, name) == 0) {
-                if (*s == '"') {
-                    s++;
-                }
-                n = strlen(s) - 1;
-                if (n >= 0 && s[n] == '"') {
-                    s[n] = 0;
-                }
-                copy_168550(dst, s, size);
-                return 1;
+                return store_168550(dst, s, size);
             }
         }
     }
