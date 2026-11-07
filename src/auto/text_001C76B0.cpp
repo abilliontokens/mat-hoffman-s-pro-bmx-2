@@ -39,10 +39,13 @@ struct Sub4 {
     unsigned char b180;
     void func_00199BE0(float *m);
     Node170 *func_00198330(char *s);
+    void func_00199790(int a, int b);
 };
 struct Sub3C {
     void **vtbl;
     Sub4 *f4;
+    char pad8[0x10 - 0x8];
+    int f10;
     void func_001673B0(char *s, int a, int b, int c, int d);
     void func_001646B0();
 };
@@ -82,6 +85,7 @@ int func_001EA426(char *s, void *p);
 extern "C" char *strcpy(char *dst, const char *src);
 #pragma intrinsic(strcpy)
 
+#pragma optimize("y", on)
 void Obj::func_001C76B0(int a, int b, int c, int d, int e, int f2, int g, int h, int i2, int j, int k, int l, int m)
 {
     IniObj *ini;
@@ -203,3 +207,4 @@ void Obj::func_001C76B0(int a, int b, int c, int d, int e, int f2, int g, int h,
         func_001E891B(ini);
     }
 }
+#pragma optimize("", on)
