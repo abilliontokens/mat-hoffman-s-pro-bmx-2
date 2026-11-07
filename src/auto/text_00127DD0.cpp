@@ -61,6 +61,7 @@ struct C_00128910 {
 
 
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 extern float D_002755E8;
 
 static inline float Sqrt_00128480(float x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(*(__m128 *)&x)); return r; }
@@ -89,7 +90,7 @@ static inline S_00127DD0_V4 AddP_00128120(const S_00127DD0_V4 &a, const S_00127D
     return r;
 }
 
-static inline V4_00128120 Scale_00128120(const S_00127DD0_V4 &s, float k)
+static inline V4_00128120 Scale_00128120(const S_00127DD0_V4 &s, const float &k)
 {
     return V4_00128120(s.x * k, s.y * k, s.z * k, 1.0f);
 }
@@ -123,11 +124,71 @@ static inline void Xform_00128120(float *out, const M44_00128120 *mat, const flo
     out[3] = 1.0f;
 }
 
+void func_00126A80(S_00127DD0_Entry *verts, int count, void *center, void *extent, void *volume, void *radius, float *matrix);
+void func_00127980(S_00127DD0_Entry *e, S_00127DD0_V4 *pos, int count, int *mode, float *thr);
+int func_001268E0(S_00127DD0_Entry *src, S_00127DD0_V4 *pos, S_00127DD0_Entry *outA, S_00127DD0_Entry *outB, S_00127DD0_V4 *posA, S_00127DD0_V4 *posB, int count, int *cntA, int *cntB, float thr, int mode);
+void func_00127DD0(S_00127DD0_Node *node0, int *nodes, S_00127DD0_V4 *a2, S_00127DD0_Entry *e0, S_00127DD0_V4 *pos, int count0)
+{
+    int mode;
+    float thr;
+    int cntA, cntB;
+    S_00127DD0_Entry *bufA, *bufB;
+    S_00127DD0_V4 *posA, *posB;
+    int i;
+    S_00127DD0_Node *node = node0;
+    int count = count0;
+    S_00127DD0_Entry *e = e0;
+    while (count != 1) {
+        func_00126A80(e, count * 2, (char *)node + 8, (char *)node + 0x18, node, (char *)node + 4, 0);
+        func_00127980(e, pos, count, &mode, &thr);
+        cntA = 0;
+        cntB = 0;
+        bufA = (S_00127DD0_Entry *)func_001E8AA5(count << 5);
+        bufB = (S_00127DD0_Entry *)func_001E8AA5(count << 5);
+        posA = (S_00127DD0_V4 *)func_001E8AA5(count << 4);
+        posB = (S_00127DD0_V4 *)func_001E8AA5(count << 4);
+        func_001268E0(e, a2, bufA, bufB, posA, posB, count, &cntA, &cntB, thr, mode);
+        for (i = 0; i < cntA; i++) {
+            e[i].a = bufA[i].a;
+            e[i].b = bufA[i].b;
+            pos[i] = posA[i];
+        }
+        for (i = 0; i < cntB; i++) {
+            e[cntA + i].a = bufB[i].a;
+            e[cntA + i].b = bufB[i].b;
+            pos[cntA + i] = posB[i];
+        }
+        func_001E8390(bufA);
+        func_001E8390(bufB);
+        func_001E8390(posA);
+        func_001E8390(posB);
+        if (cntB == 0 || cntA == 0) {
+            cntA = count / 2;
+            cntB = count - cntA;
+        }
+        if (cntA == 1)
+            node->left = (S_00127DD0_Node *)func_001E8AA5(0x24);
+        else
+            node->left = (S_00127DD0_Node *)func_001E8AA5(0x30);
+        if (cntB == 1)
+            node->right = (S_00127DD0_Node *)func_001E8AA5(0x24);
+        else
+            node->right = (S_00127DD0_Node *)func_001E8AA5(0x30);
+        (*nodes)++;
+        func_00127DD0(node->left, nodes, a2, e, pos, cntA);
+        pos += cntA;
+        node = node->right;
+        e += cntA;
+        count = cntB;
+    }
+    (*nodes)++;
+    node->split = -1.0f;
+    node->a = e->a;
+    node->b = e->b;
+}
+
 void func_00128120(int a0, int a1, int a2, M44_00128120 *mat, S_00127DD0_Entry *e, int count)
 {
-    struct Q4 { float x, y, z, w; };
-    Q4 s;
-    Q4 t;
     V4_00128120 *mid;
     M44_00128120 m;
     float *p;
@@ -135,30 +196,14 @@ void func_00128120(int a0, int a1, int a2, M44_00128120 *mat, S_00127DD0_Entry *
     int n;
 
     mid = (V4_00128120 *)func_001E8AA5(count << 4);
-    for (i = 0; i + 4 <= count; i += 4) {
-        s.x = e[i].a.x + e[i].b.x; s.y = e[i].a.y + e[i].b.y; s.z = e[i].a.z + e[i].b.z;
-        t.x = s.x * D_002755E8; t.y = s.y * D_002755E8; t.z = s.z * D_002755E8; t.w = 1.0f;
-        *(Q4 *)&mid[i] = t;
-        s.x = e[i + 1].a.x + e[i + 1].b.x; s.y = e[i + 1].a.y + e[i + 1].b.y; s.z = e[i + 1].a.z + e[i + 1].b.z;
-        t.x = s.x * D_002755E8; t.y = s.y * D_002755E8; t.z = s.z * D_002755E8; t.w = 1.0f;
-        *(Q4 *)&mid[i + 1] = t;
-        s.x = e[i + 2].a.x + e[i + 2].b.x; s.y = e[i + 2].a.y + e[i + 2].b.y; s.z = e[i + 2].a.z + e[i + 2].b.z;
-        t.x = s.x * D_002755E8; t.y = s.y * D_002755E8; t.z = s.z * D_002755E8; t.w = 1.0f;
-        *(Q4 *)&mid[i + 2] = t;
-        s.x = e[i + 3].a.x + e[i + 3].b.x; s.y = e[i + 3].a.y + e[i + 3].b.y; s.z = e[i + 3].a.z + e[i + 3].b.z;
-        t.x = s.x * D_002755E8; t.y = s.y * D_002755E8; t.z = s.z * D_002755E8; t.w = 1.0f;
-        *(Q4 *)&mid[i + 3] = t;
-    }
-    for (; i < count; i++) {
-        s.x = e[i].a.x + e[i].b.x; s.y = e[i].a.y + e[i].b.y; s.z = e[i].a.z + e[i].b.z;
-        t.x = s.x * D_002755E8; t.y = s.y * D_002755E8; t.z = s.z * D_002755E8; t.w = 1.0f;
-        *(Q4 *)&mid[i] = t;
+    for (i = 0; i < count; i++) {
+        mid[i] = Scale_00128120(AddP_00128120(e[i].a, e[i].b), 0.5f);
     }
     m = *mat;
     func_0011AC30(&m, &m);
     p = (float *)e;
     for (n = count * 2; n > 0; n--) {
-        Xform_00128120(p, &m, p);
+        AsmTransformPoint(p, p, (const float *)m.m);
         p += 4;
     }
     func_00127DD0(a0, a1, a2, e, mid, count);
