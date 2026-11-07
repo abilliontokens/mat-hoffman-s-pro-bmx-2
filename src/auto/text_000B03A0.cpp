@@ -81,6 +81,11 @@ struct S_1E0_B03A0 {
     void func_0019ABA0(int,int);
     void func_0019AC50();
     void func_0019A0A0(float,float,float);
+    S_1E0_B03A0 *func_001BB680(int);
+    S_1E0_B03A0 *func_001BB470(int);
+    int func_001BC040(Vec_B03A0,Vec_B03A0,Vec_B03A0,Vec_B03A0,int,int,int,int);
+    void func_001BBAE0(int);
+    void func_001BB620(int,int,void*,int);
 };
 
 struct C_000B03A0 {
