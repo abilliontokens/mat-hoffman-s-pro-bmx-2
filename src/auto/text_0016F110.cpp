@@ -69,7 +69,7 @@ struct C_0016FBC0 {
 };
 
 struct O_0016F800 { char pad[0xa8]; int f; };
-struct S_16F800_Part { float x, y, z; char padc[0x14]; S_16F800_Part *next; int f24; };
+struct S_16F800_Part { float x, y, z; char padc[0x14]; S_16F800_Part *next; float f24; };
 struct S_16F800_Bucket { unsigned int id; S_16F800_Part *node; };
 struct S_16F800_Range {
     char pad0[0x170]; float f170, f174, f178, f17c;
@@ -224,7 +224,7 @@ int C_0016F800::func_0016F800(void)
     float v1[4];
     float v2[4];
     __declspec(align(16)) float m[16];
-    int i, b;
+    int i, b, q;
 
     this->f144 = 0;
     if (this->obj170->f) func_001D7D00();
@@ -248,8 +248,9 @@ int C_0016F800::func_0016F800(void)
         d = node->y * r->f274 + node->z * r->f278 + node->x * r->f270 + r->f27c;
         if (d > r->f200) continue;
         if (d < r->f1fc) continue;
-        node->f24 = (float)(int)(d * f) * inv;
-        b = func_001E8858((float)(D_002A88B8 - 1) * d * scale);
+        AsmFloatToInt(d * f, &q);
+        node->f24 = (float)q * inv;
+        b = (int)func_001E8858((float)(D_002A88B8 - 1) * d * scale);
         if (b >= D_002A88B8) continue;
         e = &this->buckets[b];
         if (e->id < this->frame) {
@@ -261,8 +262,8 @@ int C_0016F800::func_0016F800(void)
             e->node = node;
         }
         this->used++;
-        this->minb = b < this->minb ? b : this->minb;
-        this->maxb = b > this->maxb ? b : this->maxb;
+        this->minb = AsmMinI(this->minb, b);
+        this->maxb = AsmMaxI(this->maxb, b);
     }
     if (this->used == 0) return 1;
 
