@@ -199,7 +199,9 @@ static __forceinline void S_00197820_Zero(S_00197820_Mat *m)
 
 static __forceinline S_00197700_Vec4 *S_00197820_VecInit(S_00197700_Vec4 *v)
 {
-    v->z = v->y = v->x = 0.0f;
+    v->z = 0.0f;
+    v->y = 0.0f;
+    v->x = 0.0f;
     v->w = 1.0f;
     return v;
 }
