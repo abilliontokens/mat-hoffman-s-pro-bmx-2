@@ -26,6 +26,16 @@ int func_00109370(void);
 int __fastcall func_00109380(char *self, int unused, int arg);
 int __fastcall func_00109390(char *self, int unused, int arg);
 int __fastcall func_001093A0(char *self, int unused, int arg);
+struct C_0009CAD0_Calls {
+    int func_000988B0(char *, char *);
+    void func_00096FE0(float);
+    void func_00083A70(const char *);
+    void func_00095D70();
+    void func_00096450(int);
+    int func_00098080(const char *);
+    void func_00096AB0();
+    int func_00097CA0(const char *);
+};
 struct S_0009CAD0 {
     char *arr0;
     char *arr1;
