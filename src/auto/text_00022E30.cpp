@@ -29,17 +29,11 @@ void func_001ADCC0(char *buf, int size, const char *fmt, ...);
 extern char D_002A45E0[], D_002A5348[], D_00275678[], D_002A5FA8[], D_002A47F0[], D_002A5870[];
 extern int D_002B9120;
 
-static __forceinline int min_22E30(int a, int b)
-{
-    return a > b ? b : a;
-}
-
 __forceinline void copy_22E30(char *dst, const char *src, int max)
 {
-    volatile int length = strlen(src);
-    volatile int limit = max;
-    volatile int size = min_22E30(limit, length);
-    int n = size;
+    int length = strlen(src);
+    int limit = max;
+    int n = AsmMinI(limit, length);
     func_001E8920(dst, src, n);
     dst[n] = 0;
 }
