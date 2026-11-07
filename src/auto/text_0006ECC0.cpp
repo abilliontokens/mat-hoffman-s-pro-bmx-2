@@ -49,7 +49,9 @@ struct Font_6ECC0 {float func_0018C210();};
 struct Profile_6ECC0 { char pad[0x2c0]; const char *func_0005B870(); };
 
 struct C_0006ECC0 {
-    char pad0[0xD0];
+    char pad0[0x74];
+    char f74[0x28]; int f9C, fA0; char fA4[0x24];
+    Sprite_6ECC0 *fC8, *fCC;
     W_6ECC0 *fD0;
     W_6ECC0 *fD4;
     W_6ECC0 *fD8;
