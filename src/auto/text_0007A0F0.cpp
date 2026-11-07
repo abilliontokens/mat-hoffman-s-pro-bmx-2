@@ -101,6 +101,8 @@ struct BmxObjectivesMenu {
         };
     };
     void *func_0007A0F0(int a);
+    void func_00061B80();
+    void func_001577A0(void *,int);
 };
 
 extern C_0007A0F0_Root *D_002A8490;
