@@ -19,7 +19,7 @@ struct C_00191400 {
 };
 
 struct C_0018DA90_Result {
-    int pad0[9];
+    double pad0[8];
     int f40;
 };
 
@@ -536,15 +536,17 @@ int C_0018E7D0::func_0018E7D0(int kind, C_0018E7D0_Rec *buf, int *out)
 {
     C_0018E7D0_Rec rec;
     char tmp[0x100];
-    unsigned int unused;
     char *tok;
     char *name;
     int idx;
     int val;
     int n;
+    int cap;
+    unsigned int unused;
 
     rec = *buf;
-    n = min_0018DE60(0xff, StrLen_0018E3E0(rec.name));
+    cap = 0xff;
+    n = AsmMinI(cap, StrLen_0018E3E0(rec.name));
     func_001E8920(tmp, rec.name, n);
     tmp[n] = 0;
     tok = func_001E95A4(tmp, D_0028A9F4);
@@ -563,7 +565,8 @@ int C_0018E7D0::func_0018E7D0(int kind, C_0018E7D0_Rec *buf, int *out)
                 return 0;
             }
         }
-        n = min_0018DE60(0x3f, StrLen_0018E3E0(name));
+        cap = 0x3f;
+        n = AsmMinI(cap, StrLen_0018E3E0(name));
         func_001E8920(rec.name, name, n);
         break;
     case 1:
@@ -572,11 +575,13 @@ int C_0018E7D0::func_0018E7D0(int kind, C_0018E7D0_Rec *buf, int *out)
             return 0;
         }
         rec.f40 = n;
-        n = min_0018DE60(0x3f, StrLen_0018E3E0(name));
+        cap = 0x3f;
+        n = AsmMinI(cap, StrLen_0018E3E0(name));
         func_001E8920(rec.name, name, n);
         break;
     case 2:
-        n = min_0018DE60(0x3f, StrLen_0018E3E0(name));
+        cap = 0x3f;
+        n = AsmMinI(cap, StrLen_0018E3E0(name));
         func_001E8920(rec.name, name, n);
         break;
     }
