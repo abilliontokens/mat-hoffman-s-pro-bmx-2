@@ -83,6 +83,7 @@ struct C_0006ECC0 {
     Text_6ECC0 *f180[6];
     void func_001577A0(W_6ECC0 *w, int idx);
     void func_0006ECC0(int a);
+    C_0006ECC0(int a);
 };
 
 extern Mgr_6ECC0 *D_002A8490;
