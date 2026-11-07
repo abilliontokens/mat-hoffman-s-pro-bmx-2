@@ -151,7 +151,7 @@ struct BmxEventFPS {
     int f2E0;
     char *f2E4;
     char *f2E8;
-    void func_00031260(float dt);
+    int func_00031260(float dt);
     void func_0004A360();
     void func_0004A590();
     void func_0004A6A0();
@@ -370,40 +370,36 @@ void C_0004AD10::func_0004AD10()
 void BmxEventFPS::func_0004B760(float dt)
 {
     int i;
-    int one = 1;
-    char *m = (char *)this;
 
-    if (D_002A8490->f124 == one) {
+    if (D_002A8490->f124 == 1) {
         func_00031260(dt);
         return;
     }
-    if (*D_002A8490->f2E0 <= one) {
-        if (*(int *)(m + 0x2e0) == one && *(int *)(m + 0x2dc) == 0 &&
+    if (*D_002A8490->f2E0 <= 1) {
+        if (*(int *)((char *)this + 0x2e0) == 1 && *(int *)((char *)this + 0x2dc) == 0 &&
             ((C_4B760_A *)*(void **)((char *)D_002A8490->f2E0 + 0x2c0))->func_0005C0A0() == 0) {
             func_0004A360();
             ((V45Bmx *)this)->i3();
-            *(int *)(m + 0x2d4) = one;
-            *(int *)(m + 0x2dc) = one;
-            ((V8Bmx *)*(char **)(m + 0x2cc))->b2();
-            ((C_4B760_B *)*(char **)(m + 0x2cc))->func_001394F0(-1);
-            *(int *)(m + 0x2e0) = 0;
+            *(int *)((char *)this + 0x2d4) = 1;
+            *(int *)((char *)this + 0x2dc) = 1;
+            ((V8Bmx *)*(char **)((char *)this + 0x2cc))->b2();
+            ((C_4B760_B *)*(char **)((char *)this + 0x2cc))->func_001394F0(-1);
+            *(int *)((char *)this + 0x2e0) = 0;
             {
                 Obj *r = (Obj *)D_002B9120->y0(D_00277140);
                 if (r) ((C_4B760_C *)r)->func_001983A0();
             }
         }
-        if (*(int *)(m + 0x2d4) == one) {
-            if (*(int *)(*(char **)(m + 0x2cc) + 0x34) == 0) {
-                Obj *o = (Obj *)*(char **)(m + 0x2e4);
-                o->func_001670C0(dt, 0, 0);
-                ((Obj *)*(char **)((char *)o + 4))->func_0019AC50();
-                o = (Obj *)*(char **)(m + 0x2e8);
-                o->func_001670C0(dt, 0, 0);
-                ((Obj *)*(char **)((char *)o + 4))->func_0019AC50();
+        if (*(int *)((char *)this + 0x2d4) == 1) {
+            if (*(int *)(*(char **)((char *)this + 0x2cc) + 0x34) == 0) {
+                ((Obj *)*(char **)(*(char **)((char *)this + 0x2e4)))->func_001670C0(dt, 0, 0);
+                ((Obj *)*(char **)(*(char **)(*(char **)((char *)this + 0x2e4)) + 4))->func_0019AC50();
+                ((Obj *)*(char **)(*(char **)((char *)this + 0x2e8)))->func_001670C0(dt, 0, 0);
+                ((Obj *)*(char **)(*(char **)(*(char **)((char *)this + 0x2e8)) + 4))->func_0019AC50();
                 goto L;
             }
-            *(int *)(m + 0x2d4) = 0;
-            ((V8Bmx *)*(char **)(m + 0x2cc))->b0();
+            *(int *)((char *)this + 0x2d4) = 0;
+            ((V8Bmx *)*(char **)((char *)this + 0x2cc))->b0();
             ((V45Bmx *)this)->g3();
             func_0004A590();
             ((V45Bmx *)this)->i2();
@@ -411,47 +407,41 @@ void BmxEventFPS::func_0004B760(float dt)
             func_00031260(0.0f);
             return;
         }
-        if (*(int *)(m + 0x2d8) == one) {
-            if (*(int *)(*(char **)(m + 0x2d0) + 0x34) == 0) {
-                Obj *o = (Obj *)*(char **)(m + 0x2e4);
-                o->func_001670C0(dt, 0, 0);
-                ((Obj *)*(char **)((char *)o + 4))->func_0019AC50();
+        if (*(int *)((char *)this + 0x2d8) == 1) {
+            if (*(int *)(*(char **)((char *)this + 0x2d0) + 0x34) == 0) {
+                ((Obj *)*(char **)(*(char **)((char *)this + 0x2e4)))->func_001670C0(dt, 0, 0);
+                ((Obj *)*(char **)(*(char **)(*(char **)((char *)this + 0x2e4)) + 4))->func_0019AC50();
                 goto L;
             }
-            ((V8Bmx *)*(char **)(m + 0x2c8))->b2();
-            *(int *)(m + 0x2d8) = 0;
-            ((V8Bmx *)*(char **)(m + 0x2d0))->b0();
+            ((V8Bmx *)*(char **)((char *)this + 0x2c8))->b1();
+            *(int *)((char *)this + 0x2d8) = 0;
+            ((V8Bmx *)*(char **)((char *)this + 0x2d0))->b0();
             ((V45Bmx *)this)->g3();
             func_0004A590();
             ((V45Bmx *)this)->i2();
-            *(int *)(*(char **)(m + 0x284) + 0x60) = 200;
-            ((C_4B760_D *)*(char **)(m + 0x168))->func_000788D0();
-            D_002A8490->f124 = one;
+            *(int *)(*(char **)((char *)this + 0x284) + 0x60) = 200;
+            ((C_4B760_D *)*(char **)((char *)this + 0x168))->func_000788D0();
+            D_002A8490->f124 = 1;
         }
     } else {
-        if (*(int *)(m + 0x114) == one)
+        if (*(int *)((char *)this + 0x114) == 1)
             ((V45Bmx *)this)->j3();
     }
 L:
-    if (*(int *)(m + 0x2d4) == 0 && *(int *)(m + 0x2d8) == 0) {
-        *(float *)(m + 0x2c4) += dt;
+    if (*(int *)((char *)this + 0x2d4) == 0 && *(int *)((char *)this + 0x2d8) == 0) {
+        *(float *)((char *)this + 0x2c4) += dt;
         for (i = 0; i < D_002B9120->f560; i++) {
-            S_4B760_Item *it = (S_4B760_Item *)D_002B9120->f524[i];
-            if (it->f84 > D_00275544) {
-                it->f84 -= dt;
-                it = (S_4B760_Item *)D_002B9120->f524[i];
-                if (it->f84 < D_00275544) {
-                    it->f84 = 0;
-                    ((V8Bmx *)it->f80)->b2();
-                    {
-                        char *p = *(char **)(it->f4 + 0x1a4);
-                        ((C_4B760_C *)*(char **)(p + 4))->func_001983A0();
-                        ((V8Bmx *)(p + *(int *)p))->b2();
-                    }
+            if (((S_4B760_Item *)D_002B9120->f524[i])->f84 > D_00275544) {
+                ((S_4B760_Item *)D_002B9120->f524[i])->f84 -= dt;
+                if (((S_4B760_Item *)D_002B9120->f524[i])->f84 < D_00275544) {
+                    ((S_4B760_Item *)D_002B9120->f524[i])->f84 = 0;
+                    ((V8Bmx *)((S_4B760_Item *)D_002B9120->f524[i])->f80)->b2();
+                    ((C_4B760_C *)*(char **)(*(char **)(((S_4B760_Item *)D_002B9120->f524[i])->f4 + 0x1a4) + 4))->func_001983A0();
+                    ((V8Bmx *)(*(char **)(((S_4B760_Item *)D_002B9120->f524[i])->f4 + 0x1a4) + *(int *)(*(char **)(*(char **)(((S_4B760_Item *)D_002B9120->f524[i])->f4 + 0x1a4)) + 4)))->b2();
                 }
             }
         }
-        if (*(int *)(m + 0x90) > one)
+        if (*(int *)((char *)this + 0x90) > 1)
             func_0004A6A0();
     }
     func_00031260(dt);
