@@ -29,6 +29,24 @@ char *func_001ACD40(int ndec, char fmt, double value, int alt, int *sign, char *
 char *func_001ACB40(double value, int ndec, char *buf, int alt);
 char *func_001E9260(const char *s, int c);
 
+static __declspec(noinline) char *func_001ACF30(char *end, unsigned value, int shift, char fmt, int *outlen)
+{
+    char *p = end;
+    unsigned mask = (1U << shift) - 1;
+    char *digits = fmt == 'X' ? D_0028C12C : D_0028C118;
+    do {
+        *--p = digits[value & mask];
+        value >>= shift;
+    } while (value);
+    *outlen = end - p;
+    return p;
+}
+
+static __declspec(noinline) char *func_001ACF80(char *end, int shift, int value, char fmt, int *outlen)
+{
+    return func_001ACF30(end, (unsigned)value, shift, fmt, outlen);
+}
+
 static __declspec(noinline) char *func_001ACCF0(int flag, int *sign, unsigned value, char *end, int *len)
 {
     char *p = end;
