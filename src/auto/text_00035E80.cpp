@@ -4,9 +4,11 @@
 struct Vec4_000361F0 {
     float x, y, z, w;
     Vec4_000361F0() { x = y = z = 0; w = 1; }
+    Vec4_000361F0(float a, float b, float c, float d) { x = a; y = b; z = c; w = d; }
 };
 
 #include <string.h>
+#include "asm_helpers.h"
 
 static inline int Min_00035E80(volatile int a, volatile int b) { int y = b, x = a; return y > x ? x : y; }
 
@@ -100,7 +102,7 @@ struct C_000361F0 {
     void func_000361F0(int flag);
 };
 
-int C_00035E80::func_00035E80(int a1, const char *path, S_00035E80_Out *out)
+int C_00035E80::func_00035E80(int a1, const char *volatile path, S_00035E80_Out *out)
 {
     Vec4_000361F0 pos0;
     Vec4_000361F0 pos1;
@@ -114,23 +116,27 @@ int C_00035E80::func_00035E80(int a1, const char *path, S_00035E80_Out *out)
     int total = 0;
     int idx = 0;
     int i, j;
-    volatile int n;
+    int len;
+    int lim;
+    int n;
     char *dot;
 
-    void *mem = func_001E8A44(0x4CC);
     S_00035E80_Stream *stream;
-    if (mem)
-        stream = ((S_00035E80_Stream *)mem)->func_00168280();
+    stream = new S_00035E80_Stream;
+    if (stream)
+        stream = stream->func_00168280();
     else
         stream = 0;
     if (!stream->func_00169490(path, 0)) {
         if (stream) {
             stream->func_001691E0();
-            func_001E891B(stream);
+            delete stream;
         }
         return 0;
     }
-    n = Min_00035E80(strlen(path), 0x103);
+    len = strlen(path);
+    lim = 0x103;
+    n = AsmMinI(lim, len);
     func_001E8920(buf, path, n);
     buf[n] = 0;
     dot = func_001E8AC0(buf, '.');
@@ -164,7 +170,7 @@ int C_00035E80::func_00035E80(int a1, const char *path, S_00035E80_Out *out)
     }
     if (stream) {
         stream->func_001691E0();
-        func_001E891B(stream);
+        delete stream;
     }
     return 1;
 }
