@@ -15,7 +15,7 @@ struct C_000B7520 {
     char pad80[8];
     void *f88;
     char pad8c[0x94];
-    float f120, f124, f128;
+    float f120, f124, f128, f12c;
       float f130, f134, f138;
     char pad13c[0x44];
     float f180, f184, f188;
