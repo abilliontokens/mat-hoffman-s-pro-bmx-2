@@ -34,6 +34,13 @@ extern char D_0027A958[], D_0027A944[], D_0027A934[];
 int func_001ADCC0(char *, int, const char *, ...);
 int func_001EA426(const char *, const char *);
 int func_001E8A44(int);
+struct C_00097A80 {
+    char data[0x48e4];
+    C_00097A80 *func_00097A80();
+};
+void func_0009A1F0(C_00168280 *, const char *, const char *, char *, int);
+extern char D_0027A904[], D_0027A914[], D_0027A924[], D_002772CC[], D_00276980[], D_0027A8FC[], D_0027A8F0[], D_0027A8E0[], D_0027A8D8[], D_0027A8CC[], D_0027A8C4[], D_0027A8B0[], D_0027A8A4[], D_0027A894[], D_0027A888[], D_0027A878[], D_0027A85C[], D_0027A84C[], D_0027A83C[], D_0027A828[], D_0027A810[], D_0027A7F8[], D_0027A7E0[], D_0027A7CC[], D_0027A7BC[], D_0027A7A4[], D_0027A78C[], D_0027A774[], D_0027A760[], D_0027A748[], D_0027A730[], D_0027A718[];
+extern char D_0027A9D4;
 extern char D_002A5870[];
 extern char D_0027A9D0[];
 extern C_0009A290_Obj *D_002BEAAC;
