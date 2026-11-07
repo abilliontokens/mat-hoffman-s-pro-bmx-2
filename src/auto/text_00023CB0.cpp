@@ -112,7 +112,7 @@ struct S_00024140_Link {
     int f24;
     int f28;
     int f2C;
-    void func_00022060(int a);
+    void func_00022060(float a);
     S_00024140_Link *Init(C_00023C30 *a, C_00143580 *b, int c)
     {
         f0 = a;
