@@ -178,15 +178,6 @@ struct C_0001EDC0 {
 };
 
 extern u32 D_002A0C18[];
-static __forceinline u32 swap_shift_0001E260(u32 x)
-{
-    union { u32 i; unsigned char c[4]; } u;
-    u.i = x;
-    u32 r = (u.c[0] << 8) | u.c[1];
-    u.i >>= 16;
-    r = (r << 8) | u.c[0];
-    return (r << 8) | u.c[1];
-}
 static inline u32 swap32(u32 x)
 {
     unsigned char b0 = (unsigned char)x;
