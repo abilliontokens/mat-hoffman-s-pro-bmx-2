@@ -41,7 +41,7 @@ static __forceinline void norm153(V153 *v) {
     n=_mm_add_ss(n,_mm_and_ps(_mm_cmplt_ss(n,tiny),tiny));
     __m128 r=_mm_rsqrt_ss(n);
     r=_mm_mul_ss(_mm_mul_ss(r,_mm_set_ss(0.5f)),_mm_sub_ss(_mm_set_ss(3),_mm_mul_ss(_mm_mul_ss(n,r),r)));
-    _mm_storeu_ps(&v->x,_mm_mul_ps(_mm_shuffle_ps(r,r,0),x));
+    _mm_storeu_ps(&dst->x,_mm_mul_ps(_mm_shuffle_ps(r,r,0),x));
 }
 static __forceinline void transform153(V153 *v,M153 *m) {
     __m128 p=_mm_loadu_ps(&v->x);
