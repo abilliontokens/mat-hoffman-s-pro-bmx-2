@@ -67,7 +67,43 @@ struct S_Btn {
 };
 
 struct S_Obj {
-    char pad0[0x28];
+    virtual void v0(int);
+    virtual void v1();
+    virtual void v2();
+    virtual void v3();
+    virtual void v4();
+    virtual void v5();
+    virtual void v6();
+    virtual void v7();
+    virtual void v8();
+    virtual void v9();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
+    virtual void v15();
+    virtual void v16();
+    virtual void v17();
+    virtual void v18();
+    virtual void v19();
+    virtual void v20();
+    virtual void v21();
+    virtual void v22();
+    virtual void v23();
+    virtual void v24();
+    virtual void v25();
+    virtual void v26();
+    virtual void v27();
+    virtual void v28();
+    virtual void v29();
+    virtual void v30();
+    virtual void v31();
+    virtual void v32();
+    virtual void v33();
+    virtual void v34();
+    virtual int v35(const char *,int,int);
+      char pad4[0x24];
     int f28;
     void func_001983A0();
 };
@@ -217,3 +253,112 @@ struct BmxEventEditor {
     void func_0003D910(int a0);
     int func_00042840();
 };
+
+int BmxEventEditor::func_00042840()
+{
+    V4 d, c, b, a;
+    int i0 = f428;
+    int i1 = f430;
+    int i2 = f434;
+    int i3 = f43c;
+    S_Entry *e;
+    S_Item *item;
+
+    D_002EFDB8->vf7(1);
+    D_002EFDB8->vf8();
+    if (f47c == 0x12) {
+        if (f480 == 0) {
+            f598->f1A4->func_00164820(f598->f1AC->f4);
+            f598->f1A4->func_001670C0(0, 0, 0);
+            f598->f1A4->f10 = 1;
+            f598->f1A4->func_00132D20();
+            f2d0 = 1;
+            return 1;
+        }
+        if (f480 == 1) {
+            f59c->f1A4->func_00164820(f59c->f1AC->f4);
+            f59c->f1A4->func_001670C0(0, 0, 0);
+            f59c->f1A4->f10 = 1;
+            f59c->f1A4->func_00132D20();
+            f2d8 = 1;
+            return 1;
+        }
+    }
+    if (f2d0 == 0 && f2d8 == 0 && cnt5a0 - f484 >= 0x96) {
+        f558->func_0008B670(D_00276FF4);
+        f490 = 0;
+        f558->v6();
+        f53c->func_001A4100(1, 1, 0);
+        return 0;
+    }
+    if (f2d0 == 0 && f2d8 == 0 && f47c == 0x13 && cnt5a0 - f484 >= 0x93) {
+        f558->func_0008B670(D_00276FD8);
+        f490 = 0;
+        f558->v6();
+        f53c->func_001A4100(1, 1, 0);
+        return 0;
+    }
+    f44->f5C->func_00194F10(&d);
+    d.x = (float)((int)d.x / 10) * D_00275AEC;
+    d.z = (float)((int)d.z / 10) * D_00275AEC;
+    if (f4a0 == 0) {
+        d.x += D_00275548;
+        d.z += D_00275548;
+    }
+    d.y = f440;
+    if (d.x == D_002A14D4 && d.y == D_002A14D8 && d.z == D_002A14DC) {
+        a.x = (float)f444;
+        a.y = f440;
+        a.z = (float)f448;
+    } else {
+        a = d;
+    }
+    b.x = 1.0f;
+    b.y = 0.0f;
+    b.z = 0.0f;
+    if (f51c.x == D_002A14D4 && f51c.y == D_002A14D8 && f51c.z == D_002A14DC) {
+        f51c = b;
+    } else {
+        b = f51c;
+    }
+    c.x = 0.0f;
+    c.y = 1.0f;
+    c.z = 0.0f;
+    e = new S_Entry;
+    item = f64->GetItem(f64->f5A4[f47c].f44 + f480);
+    if (f4a0 != 0) {
+        if (item->f36c == 0) {
+            a.x -= D_00275548;
+            a.z -= D_00275548;
+            f4a0 = 0;
+        }
+    } else {
+        if (item->f36c != 0) {
+            a.x -= D_00275548;
+            a.z -= D_00275548;
+            f4a0 = 1;
+        }
+    }
+    if (f564 != 0) {
+        if (f48c > -1) {
+            if (f564->type == 0) {
+                f564->obj->func_001983A0();
+            } else if (f564->type >= 3) {
+                f564->obj->func_001983A0();
+                if (f564->type == 3 || f564->type == 5)
+                    f564->objC->func_001983A0();
+            }
+            f48c = -1;
+            f564 = 0;
+        } else {
+            func_0003D910(0);
+        }
+    }
+    if (memcmp(f64->f5A4[f47c].pad0, D_00276F2C, 5) != 0) {
+        f2cc = 0;
+        func_001ADCC0(D_002A5EA0, 0x104, D_00276BB4, D_002A5870);
+        func_001ADCC0(D_002A60B0, 0x104, D_00276F58, D_002A5870);
+        func_001ADCC0(D_002A4C10, 0x104, D_00276BB4, D_002A5870);
+    }
+    return 0;
+}
