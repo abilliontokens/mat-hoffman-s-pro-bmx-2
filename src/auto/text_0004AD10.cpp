@@ -134,7 +134,7 @@ struct BmxEventFPS {
     VP4B(a) VP4B(b) VP4B(c) VP4B(d) VP4B(e) VP4B(f) VP4B(g) VP4B(h)
     VP4B(i) VP4B(j) VP4B(k)
     virtual void v44();
-    char padB4[0x114 - 0xB4];
+    char pad4[0x114 - 4];
     int f114;
     char pad118[0x168 - 0x118];
     char *f168;
@@ -379,7 +379,7 @@ void BmxEventFPS::func_0004B760(float dt)
         if (*(int *)((char *)this + 0x2e0) == 1 && *(int *)((char *)this + 0x2dc) == 0 &&
             ((C_4B760_A *)*(void **)((char *)D_002A8490->f2E0 + 0x2c0))->func_0005C0A0() == 0) {
             func_0004A360();
-            ((V45Bmx *)this)->i3();
+            this->i3();
             *(int *)((char *)this + 0x2d4) = 1;
             *(int *)((char *)this + 0x2dc) = 1;
             ((V8Bmx *)*(char **)((char *)this + 0x2cc))->b2();
@@ -400,10 +400,10 @@ void BmxEventFPS::func_0004B760(float dt)
             }
             *(int *)((char *)this + 0x2d4) = 0;
             ((V8Bmx *)*(char **)((char *)this + 0x2cc))->b0();
-            ((V45Bmx *)this)->g3();
+            this->g3();
             func_0004A590();
-            ((V45Bmx *)this)->i2();
-            ((V45Bmx *)this)->j3();
+            this->i2();
+            this->j3();
             func_00031260(0.0f);
             return;
         }
@@ -416,16 +416,16 @@ void BmxEventFPS::func_0004B760(float dt)
             ((V8Bmx *)*(char **)((char *)this + 0x2c8))->b1();
             *(int *)((char *)this + 0x2d8) = 0;
             ((V8Bmx *)*(char **)((char *)this + 0x2d0))->b0();
-            ((V45Bmx *)this)->g3();
+            this->g3();
             func_0004A590();
-            ((V45Bmx *)this)->i2();
+            this->i2();
             *(int *)(*(char **)((char *)this + 0x284) + 0x60) = 200;
             ((C_4B760_D *)*(char **)((char *)this + 0x168))->func_000788D0();
             D_002A8490->f124 = 1;
         }
     } else {
         if (*(int *)((char *)this + 0x114) == 1)
-            ((V45Bmx *)this)->j3();
+            this->j3();
     }
 L:
     if (*(int *)((char *)this + 0x2d4) == 0 && *(int *)((char *)this + 0x2d8) == 0) {
