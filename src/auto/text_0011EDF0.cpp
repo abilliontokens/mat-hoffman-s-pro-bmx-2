@@ -69,6 +69,12 @@ struct C_0011EDF0 {
     float z;
     float w;
     C_0011EDF0 *func_0011EDF0(s16 *p);
+    __forceinline void set_scaled(s16 *p) {
+        x = p[0] * D_002B9348;
+        y = p[1] * D_002B9348;
+        z = p[2] * D_002B9348;
+        w = 1.0f;
+    }
 };
 
 extern float D_00275544;
@@ -129,16 +135,18 @@ C_0011EDF0 *C_0011EDF0::func_0011EDF0(s16 *p)
     return this;
 }
 
+extern "C" void _ReadWriteBarrier(void);
+#pragma intrinsic(_ReadWriteBarrier)
 V4_0011EE50 *func_0011EE50(V4_0011EE50 *out, V4_0011EE50 *in)
 {
- volatile float v; volatile int tmp;
- v=in->x; tmp=*(volatile int *)&v & 0x7fffffff; _ReadWriteBarrier(); in->x=*(float *)&tmp;
- v=in->y; tmp=*(volatile int *)&v & 0x7fffffff; _ReadWriteBarrier(); in->y=*(float *)&tmp;
- v=in->z; tmp=*(volatile int *)&v & 0x7fffffff; _ReadWriteBarrier(); in->z=*(float *)&tmp;
- v=in->w; tmp=*(volatile int *)&v & 0x7fffffff; _ReadWriteBarrier(); in->w=*(float *)&tmp;
- *out=*in; return out;
+    volatile float v; volatile int tmp;
+    int *p = (int *)in;
+    v=*(float *)&p[0]; tmp=*(volatile int *)&v & 0x7fffffff; _ReadWriteBarrier(); p[0]=tmp;
+    v=*(float *)&p[1]; tmp=*(volatile int *)&v & 0x7fffffff; _ReadWriteBarrier(); p[1]=tmp;
+    v=*(float *)&p[2]; tmp=*(volatile int *)&v & 0x7fffffff; _ReadWriteBarrier(); p[2]=tmp;
+    v=*(float *)&p[3]; tmp=*(volatile int *)&v & 0x7fffffff; _ReadWriteBarrier(); p[3]=tmp;
+    *out=*in; return out;
 }
-
 V4_0011EE50 *func_0011EEE0(V4_0011EE50 *out, V4_0011EE50 *a, V4_0011EE50 *b)
 {
     V4_0011EE50 t;
