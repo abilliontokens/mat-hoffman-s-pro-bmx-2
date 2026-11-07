@@ -18,10 +18,12 @@ struct C_00191400 {
     void *func_00191400(void);
 };
 
+#pragma pack(push, 4)
 struct C_0018DA90_Result {
     double pad0[8];
     int f40;
 };
+#pragma pack(pop)
 
 struct C_0018E0E0_Entry {
     char pad0[4];
