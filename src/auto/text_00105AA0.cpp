@@ -28,6 +28,7 @@ struct C_Button {
 struct C_ButtonSet {
     C_Button *func_001A2EF0(int index);
     void func_001A2DD0(int index);
+    void func_001A4100(int,int,int);
 };
 
 struct C_Source {
