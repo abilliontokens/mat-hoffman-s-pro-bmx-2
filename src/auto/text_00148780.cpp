@@ -499,9 +499,11 @@ int DXShaderDescriptor::func_00148910(int a0, Parser_00148910 *p, int id, int id
             f20[i] = flag2;
         }
     }
+    Item12_00148910 *dst;
     size = count1 * 12;
-    f2C = (Item12_00148910 *)func_001E8A44(size);
-    memcpy(f2C, items, size);
+    dst = (Item12_00148910 *)func_001E8A44(size);
+    f2C = dst;
+    memcpy(dst, items, size);
     f38 = count1;
     fl0 = (fA == 2);
     func_001458E0(p, sd, (Entry8_00148910 *)items, &count2);
@@ -616,6 +618,7 @@ void *C_001490F0::func_001490F0(unsigned int flags)
 
 extern "C" void _ReadWriteBarrier(void);
 #pragma intrinsic(_ReadWriteBarrier)
+extern "C" void *memcpy(void *, const void *, unsigned int);
 void *C_00149120::func_00149120(int a0, int a1)
 {
     void *func_001E8A44(int);
@@ -641,7 +644,7 @@ void *C_00149120::func_00149120(int a0, int a1)
     int cnt = src->count;
     for (int i = 0; i < cnt; i++) {
         unk20[i].a0 = src->arr[i].a0;
-        *(Anim_00149120_Data *)((int)unk20 + i * 0x14 + 4) = src->arr[i].data;
+        (*(Anim_00149120 * volatile *)&unk20)[i].data = src->arr[i].data;
     }
     return this;
 }
@@ -791,57 +794,39 @@ void *C_00149450::func_00149450(unsigned int flags)
 
 void C_00149480::func_00149480(void)
 {
-    int __fastcall func_001FEBD0(int a, void *b);
-    void __fastcall func_0001E860(void *p);
-    extern undefined4 D_002EFDB8;
-    int i;
-    int one = 1;
-    Item_00149480 *obj;
-
-    D_002BF0AC = 0;
-    if (!(D_002BF0DC & one)) {
-        D_002BF0DC |= one;
-        D_002BF0D8 = unk4;
-        D_002BF0B4 = 0;
-        D_002BF0B8 = 0;
-        D_002BF0BC = 0;
-        D_002BF0C0 = 0;
-        D_002BF0C4 = 0;
-        {
-            float v[8] = {0.0f, 0.0f, 0.0f, 1.0f, 0.5f, 0.5f, 0.5f, 0.5f};
-            func_001FEBD0(0, &v[0]);
-            func_001FEBD0(one, &v[4]);
-            func_001FEBD0(0x21, (void *)(*(int *)(D_002EFDB8 + 4) + 0x170));
-            func_001FEBD0(3, (void *)(D_002EFDB8 + 0x74));
-        }
-    }
-    for (i = 0; i < unk4; i++) {
-        obj = items[i];
-        if (obj == 0) continue;
-        if (obj->f4 != 0 && obj->fC == 0)
-            ((VObj_00148780 *)((char *)obj->f4 + 0xC))->f1();
-        if (obj->f18 == unk8) {
-            if (obj->f4 != 0 && obj->fC == 0)
-                ((VObj_00148780 *)((char *)obj->f4 + 0xC))->f1();
-            if (obj->f24 != 0) {
-                obj->v2();
-                ((C_001493E0 *)obj)->func_001493E0();
-            } else {
-                obj->v1();
-                ((C_001493E0 *)obj)->func_001493E0();
-            }
-        } else {
-            if (obj->f24 != 0) {
-                obj->v2();
-                ((C_001493E0 *)obj)->func_001493E0();
-            } else {
-                obj->v1();
-            }
-        }
-        if (obj->f4 == 0 && obj->fC != 0)
-            ((C_001493E0 *)obj)->func_001493E0();
-    }
-    func_0001E860(unkC);
-    unk8++;
+ int __fastcall func_001FEBD0(int,void*);
+ void __fastcall func_0001E860(void*);
+ extern undefined4 D_002EFDB8;
+ int one=1;
+ C_00149480 * volatile self=this;
+ D_002BF0AC=0;
+ if (!(D_002BF0DC & one)) {
+ D_002BF0DC |= one; D_002BF0D8=unk4;
+ }
+ D_002BF0B4=0; D_002BF0B8=0; D_002BF0BC=0; D_002BF0C0=0; D_002BF0C4=0;
+ int p=*(int*)(D_002EFDB8+4);
+ float v[8]; v[0]=0.0f;v[1]=0.0f;v[2]=0.0f;v[3]=1.0f;v[4]=0.5f;v[5]=0.5f;v[6]=0.5f;v[7]=0.5f;
+ func_001FEBD0(0,v); func_001FEBD0(one,v+4);
+ func_001FEBD0(0x21,(void*)(p+0x170)); func_001FEBD0(3,(void*)(D_002EFDB8+0x74));
+ int n=self->unk4;
+ if(n>0) { char *off=(char*)0x10; for(;n>0;--n) {
+ Item_00149480 *obj=*(Item_00149480**)(off+(int)self);
+ if(obj) {
+ if(obj->f4 && !obj->fC) ((VObj_00148780*)((char*)obj->f4+12))->f1();
+ int frame=obj->f18;
+ if(frame==self->unk8) {
+ if(obj->f4 && obj->fC) {
+ ((VObj_00148780*)((char*)obj->f4+12))->f1();
+ if(!obj->f24) {obj->v1(); ((C_001493E0*)obj)->func_001493E0();}
+ else {obj->v2(); ((C_001493E0*)obj)->func_001493E0();}
+ } else {
+ if(!obj->f24) obj->v1(); else obj->v2();
+ }
+ }
+ if(!obj->f4 && obj->fC) ((C_001493E0*)obj)->func_001493E0();
+ }
+ off+=4;
+ } }
+ func_0001E860(self->unkC); self->unk8++;
 }
 
