@@ -12,6 +12,16 @@ struct S_000B7520_Vec4 {
     float dot(const S_000B7520_Vec4 &b) const { return x*b.x+y*b.y+z*b.z; }
 };
 
+struct Transform7520 {
+    void func_001994C0(int, S_000B7520_Vec4 *, S_000B7520_Vec4 *);
+    void func_00199110(int,S_000B7520_Vec4 *,S_000B7520_Vec4 *,int,int,int);
+    S_000B7520_Vec4 *func_00197F70(S_000B7520_Vec4 *,const S_000B7520_Vec4 *);
+    void func_00199960(int,S_000B7520_Vec4 *);
+};
+void __stdcall func_0001C710(S_000B7520_Vec4);
+void func_000B60D0(S_000B7520_Vec4 *,const S_000B7520_Vec4 *);
+float func_00011170(const S_000B7520_Vec4 *);
+extern float D_002755E8, D_002A303C;
 struct C_000B7520 {
     char pad0[0x38];
     int f38, f3c, f40, f44, f48, f4c, f50, f54;
