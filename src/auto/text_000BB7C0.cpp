@@ -668,19 +668,12 @@ void C_000BC4A0::func_000BC4A0(undefined4 param_1, undefined4 param_2)
 
 void C_000BC4C0::func_000BC4C0(float a, float b)
 {
-    C_000BC4C0 * volatile self = this;
     int x;
     int y;
-    int * volatile p;
-    float t;
 
-    p = &x;
-    t = a;
-    *p = _mm_cvttss_si32(*(__m128 *)&t);
-    p = &y;
-    t = b;
-    *p = _mm_cvttss_si32(*(__m128 *)&t);
-    self->f30->func_001D3700(x, y);
+    AsmFloatToInt(a, &x);
+    AsmFloatToInt(b, &y);
+    f30->func_001D3700(x, y);
 }
 
 C_000BC520 *C_000BC520::func_000BC520(int a, S_000BC590_Owner *owner)
