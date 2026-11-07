@@ -22,7 +22,7 @@ void __fastcall func_001994C0(void *self, int a, V4_000562C0 *b, V4_000562C0 *c)
 void __fastcall func_000560A0(void *self);
 V4_000562C0 *func_000110B0(float *a, float *b);
 void func_0001EAB0(float *a, float *b, float *c);
-void func_00158390(float *a, V4_000562C0 *b, V4_000562C0 *c, float *d);
+void func_00158390(void *a, V4_000562C0 b, V4_000562C0 c, float *d);
 void func_00055140(float *dst, const float *src);
 
 extern int D_002B8FDC;
