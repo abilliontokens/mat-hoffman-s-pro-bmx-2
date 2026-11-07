@@ -27,20 +27,15 @@ struct V4_0011C3F0 {
 extern float D_00275548, D_00276278, D_00275460;
 extern V4_0011C3F0 D_002A3BDC;
 
-static __forceinline float Min_0011C3F0(float a, float b)
-{
-    return AsmMinF(a, b);
-}
-
 struct S_0011C3F0_Smoother {
     float f0;
     float f4;
     float f8;
     float fC;
     float f10;
-    float Update(float target, float dt)
+    __forceinline float Update(float target, float dt)
     {
-        float step = Min_0011C3F0(dt, f4);
+        float step = AsmMinF(dt, f4);
         f8 = D_00275460 / f4 * step;
         f0 = (target - f0) * f8 + f0;
         return f0;
