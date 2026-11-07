@@ -1,6 +1,6 @@
 /* 1 function from 0x000562C0 to 0x000590F0, found by Ghidra. */
 #include "common.h"
-#include "asm_helpers.h"
+
 #include <xmmintrin.h>
 static __forceinline float Camera562C0Sqrt(float x) { float r; _mm_store_ss(&r,_mm_sqrt_ss(_mm_set_ss(x))); return r; }
 static __forceinline float Camera562C0Min(float x,float y) { float r; _mm_store_ss(&r,_mm_min_ss(_mm_set_ss(x),_mm_set_ss(y))); return r; }
@@ -115,7 +115,7 @@ void __fastcall _func_000562C0(void *self, int a1, float dt, int *a3, V4_000562C
         *(V4_000562C0 *)&v98 = d;
         {
             V4s_000562C0 t58;
-            AsmVec3Cross((float *)&t58, (float *)&v24, (float *)((char *)self + 0x2c));
+            Camera562C0Cross((float *)&t58, (float *)&v24, (float *)((char *)self + 0x2c));
         }
         *(V4_000562C0 *)((char *)self + 0x1c) = vA8;
         *(V4_000562C0 *)((char *)self + 0x2c) = v24;
@@ -141,8 +141,8 @@ void __fastcall _func_000562C0(void *self, int a1, float dt, int *a3, V4_000562C
         && *(int *)((char *)(*(void **)((char *)self + 0x4)) + 0x680) != 0
         && *(int *)((char *)(*(void **)((char *)self + 0x4)) + 0x470) == 0
         && *(int *)((char *)self + 0x1e4) != 0) {
-        float len = AsmSqrtF(v98.x * v98.x + v98.z * v98.z + v98.y * v98.y);
-        AsmMinF(len / *(float *)((char *)self + 0x64), 1.0f);
+        float len = Camera562C0Sqrt(v98.x * v98.x + v98.z * v98.z + v98.y * v98.y);
+        Camera562C0Min(len / *(float *)((char *)self + 0x64), 1.0f);
         func_00055140((float *)((char *)self + 0x7c), (float *)((char *)self + 0x7c));
     }
     if (*(int *)((char *)self + 0xc) != 0) {
@@ -271,7 +271,7 @@ void __fastcall _func_000562C0(void *self, int a1, float dt, int *a3, V4_000562C
         {
             V4s_000562C0 v108;
             V4_000562C0 mix;
-            AsmVec3Cross((float *)&v108, (float *)&v24, (float *)&v34);
+            Camera562C0Cross((float *)&v108, (float *)&v24, (float *)&v34);
             mix.x = v108.x;
             mix.y = vA8.x;
             mix.z = vA8.y;
