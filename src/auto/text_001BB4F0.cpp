@@ -618,7 +618,7 @@ int C_001BB950::func_001BB950(Vec_001BB950 *a, Vec_001BB950 *b, int c, int d, fl
     pb = &f34;
     *pb = *b;
     f2E0 = *(int *)&e;
-    if (ev > D_00275544) {
+    if (ev > 0.0f) {
         Anim_001BB950 *p = f2E4;
         if (p->f50 == 5) {
             p->func_001A4AE0(a, &f2E0);
