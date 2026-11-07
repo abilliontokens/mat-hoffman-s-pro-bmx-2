@@ -144,6 +144,9 @@ virtual void slot65();
 virtual void slot66(int);
 virtual void slot67(int);
 };
+struct SceneRecord {
+ char pad0[0x124]; int f124; int f128; char pad12c[0x160-0x12c];
+};
 struct SceneNode {
     char pad0[0x3c]; int f3c;
     SceneNode *func_00192900(int);
