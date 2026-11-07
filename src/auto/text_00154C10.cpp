@@ -19,12 +19,10 @@ extern char D_002758F0[], D_002758E4[], D_002758D8[], D_002758CC[];
    keeps the clamp's operands and result in three stack slots (len/limit/result) */
 static __forceinline void CopyPathV_001554D0(char *dst, const char *src, volatile int &len, volatile int &lim, volatile int &res)
 {
-    int ma, mb, n;
+    int n;
     len = strlen(src);
     lim = 0x103;
-    ma = lim;
-    mb = len;
-    res = ma > mb ? mb : ma;
+    res = AsmMinI(lim, len);
     n = res;
     func_001E8920(dst, src, n);
     dst[n] = 0;
@@ -264,6 +262,8 @@ struct C_00155450 {
 int C_00154C10::func_00154C10(float dt)
 {
     struct { C_00154C10 *self; float t0; float t1; V4_154C10 v; V4_154C10 p[2]; } L;
+    V4_154C10 pos;
+    float ny;
     L.self = this;
     if (D_002A8490->f124 != 0) {
         return 1;
@@ -292,36 +292,35 @@ int C_00154C10::func_00154C10(float dt)
     L.self->func_00153350(dt);
     L.self->func_001528D0(dt);
     L.self->func_00152300(dt);
-    {
-        L.p[0].z = L.p[0].y = L.p[0].x = 0.0f;
-        L.p[0].w = 1.0f;
-        L.v = L.self->func_00016E40();
-        float ny = L.v.y - L.self->f34;
-        L.v.y = ny;
-        L.self->func_001521D0(&L.v, &L.p[0]);
-        L.self->fb4 = L.v;
-        L.self->f108 = 0;
-        if (ny <= L.v.y) {
-            L.self->f2c->f1a4->f4->func_00199600(V4k_154C10(L.v.x, L.v.y + L.self->f34, L.v.z, L.v.w));
-            L.self->f2c->f1a4->func_00132D20();
-            L.self->fec = 0;
-            L.self->f108 = 1;
-        }
-        if (L.self->f108 != 0) {
-            L.self->fa4 = L.p[0];
-        }
-        if (D_002A8490->f18 != 0) {
-            if (L.self->f6c8 < 0) {
-                L.self->f6c8 = D_002A8490->f18->f1934++;
-            }
-            func_0013E260(D_002A8490->f18, L.self->f6c8, D_00286D8C);
-            func_0013E1F0(D_002A8490->f18, L.self->f6c8, D_00286D7C, L.self->f108);
-            func_0013E1F0(D_002A8490->f18, L.self->f6c8, D_00286D68, (double)L.v.y);
-            func_0013E1F0(D_002A8490->f18, L.self->f6c8, D_00286D58, (double)(ny - L.v.y));
-        }
-        L.self->func_00153DF0(dt);
+    L.p[0].z = L.p[0].y = L.p[0].x = 0.0f;
+    L.p[0].w = 1.0f;
+    pos = L.self->func_00016E40();
+    ny = pos.y - L.self->f34;
+    L.v = pos;
+    L.v.y = ny;
+    L.self->func_001521D0(&L.v, &L.p[0]);
+    L.self->fb4 = L.v;
+    L.self->f108 = 0;
+    if (ny <= L.v.y) {
+        L.self->f2c->f1a4->f4->func_00199600(V4k_154C10(pos.x, L.v.y + L.self->f34, pos.z, pos.w));
+        L.self->f2c->f1a4->func_00132D20();
+        L.self->fec = 0;
+        L.self->f108 = 1;
     }
-    if (L.self->f108 != 0 && sqrtf(L.self->fe8 * L.self->fe8 + L.self->fec * L.self->fec + L.self->ff0 * L.self->ff0) > D_0027F710) {
+    if (L.self->f108 != 0) {
+        L.self->fa4 = L.p[0];
+    }
+    if (D_002A8490->f18 != 0) {
+        if (L.self->f6c8 < 0) {
+            L.self->f6c8 = D_002A8490->f18->f1934++;
+        }
+        func_0013E260(D_002A8490->f18, L.self->f6c8, D_00286D8C);
+        func_0013E1F0(D_002A8490->f18, L.self->f6c8, D_00286D7C, L.self->f108);
+        func_0013E1F0(D_002A8490->f18, L.self->f6c8, D_00286D68, (double)L.v.y);
+        func_0013E1F0(D_002A8490->f18, L.self->f6c8, D_00286D58, (double)(ny - L.v.y));
+    }
+    L.self->func_00153DF0(dt);
+    if (L.self->f108 != 0 && AsmSqrtF(L.self->fe8 * L.self->fe8 + L.self->fec * L.self->fec + L.self->ff0 * L.self->ff0) > D_0027F710) {
         L.self->f10c += dt;
         if (L.self->f10c > D_00275600) {
             L.self->f10c -= D_00275600;
