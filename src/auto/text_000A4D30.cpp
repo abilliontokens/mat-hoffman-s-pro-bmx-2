@@ -11,6 +11,7 @@ extern char D_0027BCC8, D_0027BCC0, D_0027BCB8, D_0027BCB0, D_0027BCA8, D_0027BC
 extern char D_0027BB88, D_0027BB78, D_0027BB64, D_0027BB50, D_0027BB38, D_0027BB24, D_0027BB0C, D_0027BAF4, D_00276844, D_0027BAE8;
 extern "C" int __cdecl strncmp(const char *, const char *, unsigned int);
 int func_001EA426(const char *, const char *);
+extern "C" char *__cdecl strcpy(char *, const char *);
 int func_001ADCC0(char *buf, int size, const char *fmt, ...);
 struct Ser_000A4D30 {
     char pad[0x4cc];
