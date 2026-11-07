@@ -31,6 +31,7 @@ struct V4f {
 
 #include <xmmintrin.h>
 #include <math.h>
+#include "asm_helpers.h"
 
 extern float D_00278C48;
 extern u16 D_002EFE50;
@@ -103,7 +104,7 @@ static __forceinline float Max_0016B900(float a, float b) { float r; _mm_store_s
 extern float D_002A8734, D_002A8730, D_002A8738, D_002A873C, D_002A8740, D_002A8744, D_002A8748;
 extern float D_0027AA24, D_00275F5C, D_002756DC;
 extern int D_002EFB64;
-int func_00169E10(float dt);
+int __stdcall func_00169E10(float dt);
 int func_0016A3A0(int a);
 struct C_0016C0D0 {
     void *vtbl;
@@ -231,8 +232,9 @@ struct C_0016C5B0 {
     C_0016C5B0 *func_0016C5B0(void *param);
 };
 
-int __fastcall func_0016B900(S_0016B900_This *self, int unused, float a)
+int __fastcall func_0016B900(S_0016B900_This *self_, int unused, float a)
 {
+    S_0016B900_This * volatile self = self_;
     float dx, dy, dz, len, inv, x, t, rate, acc;
     int count, i;
 
@@ -246,10 +248,10 @@ int __fastcall func_0016B900(S_0016B900_This *self, int unused, float a)
     dx = self->f24.x - self->f34.x;
     dy = self->f24.y - self->f34.y;
     dz = self->f24.z - self->f34.z;
-    len = Sqrt_0016B900(dx * dx + dy * dy + dz * dz);
+    len = AsmSqrtF(dx * dx + dy * dy + dz * dz);
     inv = len / a;
     if (len < D_002A8734) return 0;
-    if (self->f1F0 == 0.0f)
+    if (self->f1F0 == D_00275544)
         self->f178 = inv * D_0027AA24;
     else
         self->f178 = self->f1F0 * D_0027AA24 * inv;
@@ -257,29 +259,32 @@ int __fastcall func_0016B900(S_0016B900_This *self, int unused, float a)
     if (self->f178 > D_002A8730) self->f178 = D_002A8730;
     x = self->f178 * self->f170 * len * 2.0f;
     if (x < D_00275F5C) x = 500.0f;
-    if (x > self->f170 && D_002A8734 * 0.5f < len) x = self->f170;
+    if (x > self->f170 && D_002A8734 * D_002755E8 < len) x = self->f170;
     t = len * len / ((self->f184 + self->f178) * D_002A8738);
-    t = Max_0016B900(t, 0.05f);
+    t = AsmMaxF(t, 0.05f);
     rate = (self->f178 - self->f184) / (t * D_002A8744);
     self->f184 = self->f178;
     dx = dx * rate + self->f34.x;
     dy = dy * rate + self->f34.y;
     dz = dz * rate + self->f34.z;
     acc = rate + self->f178;
-    if (acc > 1.0f) {
-        count = (int)acc;
+    if (acc > D_00275460) {
+        AsmFloatToInt(acc, &count);
         self->f1F4 = 0;
     } else {
-        self->f1F4 += acc;
-        if (self->f1F4 > 1.0f) {
-            count = (int)self->f1F4;
+        *(float *)&self->f1F4 = *(float *)&self->f1F4 + acc;
+        if (*(float *)&self->f1F4 > D_00275460) {
+            AsmFloatToInt(*(float *)&self->f1F4, &count);
             self->f1F4 = 0;
         } else {
             count = 0;
         }
     }
-    if (count > 4) count = 4;
-    count = (int)Max_0016B900(self->f180, (float)count);
+    count = AsmMinI(count, 4);
+    {
+        float fc = (float)count;
+        AsmFloatToInt(AsmMaxF(*(float *)&self->f180, fc), &count);
+    }
     if (count <= 0) return 0;
     i = 0;
     {
@@ -293,17 +298,17 @@ int __fastcall func_0016B900(S_0016B900_This *self, int unused, float a)
             p->f0.y = dy;
             p->f0.z = dz;
             p->f0.w = 1.0f;
-            p->f2C = *(u32 *)&x;
+            p->f2C = D_002A873C * x;
             p->f28 = self->f188;
-            p->f3C = *(u32 *)&x;
-            p->f38 = *(u32 *)&x;
+            p->f3C = D_002A873C * x;
+            p->f38 = D_002A873C * x;
             p->f48 = self;
             idx++;
             p->f30 = x - (float)((idx & 3) + 2) * D_002A8748 * x;
             p->f34 = 1.0f / p->f30;
             p->f44 = self->f190;
             p->f40 = D_002A8740 * p->f30;
-            if (p->f40 == 0.0f) p->f44 &= ~8;
+            if (p->f40 == D_00275544) p->f44 &= ~8;
             p->f4C = *(u32 *)&self->f18C;
             p->f10 = *(V4f *)((char *)self + 0x54);
             dx += rate;
