@@ -7,6 +7,9 @@ int func_00011260(int a, int b);
 struct Q4_00152E30 { int x, y, z, w; };
 #include <xmmintrin.h>
 struct V153 { float x,y,z,w; };
+static __forceinline void init153(V153 *v) {
+    int *p=(int *)v; p[2]=0;p[1]=0;p[0]=0;p[3]=0x3f800000;
+}
 struct __declspec(align(16)) M153 { float m[16]; };
 struct Camera153 {
     void func_00199B00(V153 *, int);
