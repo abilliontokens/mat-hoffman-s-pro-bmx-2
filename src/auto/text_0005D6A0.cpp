@@ -39,6 +39,11 @@ struct Node_5DAB0 {
 };
 
 extern float D_00275544;
+static __forceinline Vec4_5DAB0 Scale_5DAB0(const Node_5DAB0 *n, float scale) {
+    Vec4_5DAB0 r;
+    r.x=scale*n->f40; r.y=scale*n->f44; r.z=scale*n->f48; r.w=1;
+    return r;
+}
 struct Obj22C_5DAB0 {
     Vec4_5DAB0 func_00197F70(const Vec4_5DAB0 &a);
     Vec4_5DAB0 func_00198040(const Vec4_5DAB0 &a);
