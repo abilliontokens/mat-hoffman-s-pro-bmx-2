@@ -1,5 +1,6 @@
 /* 4 functions from 0x00119810 to 0x0011A590, found by Ghidra. */
 #include "common.h"
+#include <xmmintrin.h>
 #include "asm_helpers.h"
 
 extern int D_00283D5C;
@@ -186,8 +187,8 @@ struct BmxWallPlantConstraint {
 int BmxVehicle::func_00119810(int a)
 {
     float sv;
-    Vec4 ve;
     __declspec(align(16)) char v70[0x28];
+    Vec4 ve;
 
     if (D_002A8490->f124 != 0) {
         if (*(char *)((char *)this + 0x12a8) < 0) {
