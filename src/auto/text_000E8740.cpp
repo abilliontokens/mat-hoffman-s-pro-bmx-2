@@ -20,7 +20,6 @@ extern float D_00275994, D_00275544;
 extern char D_00281A58, D_0027F2AC;
 int func_001ADCC0(char *,int,const char *,...);
 static __forceinline void Round_000E8740(int * volatile out,float f) { *out=_mm_cvt_ss2si(*(__m128 *)&f); }
-static __forceinline void ShowPct_000E8740(C_000E8740_UI *w,float v) { char buf[5]; int n; AsmFloatToIntRound(v*100.0f,&n); func_001ADCC0(buf,5,&D_0027F2AC,n,&D_00281A58); w->func_0005E840(buf); }
 
 void C_000E8740::func_000E8740() {
  C_000E8740_Model *m=model;
