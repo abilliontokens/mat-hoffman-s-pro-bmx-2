@@ -153,12 +153,9 @@ struct S_34A40_Gfx {
     void func_00194F90(float f);
 };
 struct S_34A40_Owner { char pad0[0x5c]; S_34A40_Gfx *f5c; };
-static __forceinline __m128 Shuf_34A40(__m128 v) { return _mm_shuffle_ps(v, v, 0xc9); }
 static __forceinline void Cross_34A40(Vec4 *out, const Vec4 *a, const Vec4 *b)
 {
-    _mm_storeu_ps(&out->x, Shuf_34A40(_mm_sub_ps(
-        _mm_mul_ps(_mm_loadu_ps(&a->x), Shuf_34A40(_mm_loadu_ps(&b->x))),
-        _mm_mul_ps(_mm_loadu_ps(&b->x), Shuf_34A40(_mm_loadu_ps(&a->x))))));
+    AsmVec3Cross(&out->x, &a->x, &b->x);
 }
 
 struct C_00034A40 {
