@@ -215,6 +215,93 @@ struct C_00034890 {
 };
 
 
+/* types for the full func_000342C0 transcription */
+struct S_342C0_1D4B {
+    virtual void v0(const char *s, int a) = 0;
+    virtual void v1() = 0;
+    virtual void v2(const char *s, int a, int b) = 0;
+    virtual void v3(const char *s, int a, int b) = 0;
+    virtual void v4() = 0;
+    virtual void v5() = 0;
+    virtual void v6() = 0;
+    void func_001D35E0();
+    S_342C0_1D4B *func_001D1BB0();
+};
+struct S_342C0_Self {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
+    virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11();
+    virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15();
+    virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
+    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23();
+    virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27();
+    virtual void v28(); virtual void v29(); virtual void v30(); virtual void v31();
+    virtual void v32(); virtual void v33(); virtual void v34(); virtual void v35();
+    virtual void v36(); virtual void v37();
+};
+struct S_342C0_F1B8 {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(const char *s, int a, int b, int c, int d);
+    void *func_001CF740(void *a, void *b, int c);
+};
+struct S_342C0_F158 {
+    void func_001C3E50(int a);
+    void func_001C3EA0(int a);
+    void func_001C4A70();
+    void func_001C4C30();
+    void func_001C4D50(int a);
+};
+struct S_342C0_F2FC {
+    void func_000951B0(int a);
+    void func_00095200(int a);
+};
+struct S_342C0_F1C4 {
+    void func_001046B0();
+};
+struct S_342C0_Item {
+    char pad0[0x958];
+    float f958;
+};
+struct S_342C0_F4E0 {
+    char pad0[0x1a8];
+    S_342C0_Item *arr[1];
+};
+struct S_342C0_F64 {
+    char pad0[0x4c0];
+    void *f4c0;
+    char pad4C4[0x1c];
+    S_342C0_F4E0 *f4e0;
+};
+struct S_342C0_Game {
+    void func_0013C1D0(int a);
+    int func_0013D780(void *p, int a, int b, int c, int d, int e, int f, int g);
+    void func_0013B260(int a);
+    void func_0013B280(int a);
+    void func_0013DFF0(void *p, int a);
+};
+struct S_342C0_A829C {
+    void func_001616F0();
+};
+struct S_342C0_FDB8 {
+    char pad0[0x30];
+    int f30;
+};
+struct S_342C0_F07B8 {
+    char pad0[8];
+    int f8;
+};
+extern char D_002A60B0[];
+extern char D_002A5870[];
+extern char D_002A5348[];
+extern char D_002A47F0[];
+extern char D_002A48F8[];
+extern char D_002A5FA8[];
+extern char D_00275678[];
+void func_00012140(void);
+void func_001E8920(char *dst, const char *src, int n);
+int func_001DC974(void);
+void func_001E891B(void *p);
+
 void C_000342C0::func_000342C0()
 {
     C_000342C0 *volatile self;
@@ -299,7 +386,7 @@ void func_000348B0(Vec4 *out, float t, Vec4 p0, Vec4 p1, Vec4 p2, Vec4 p3)
 
 void C_00034A40::func_00034A40(void *a1, void *a2, void *a3, S_00034A40_Tab *a4, float a5, int a6, int a7, int a8, int a9)
 {
-    Vec4 v54, v24, v64, v34, v74;
+    Vec4 v24, v34, v54, v64, v74;
     int ex, ey, ez;
     int m;
     float t;
@@ -371,7 +458,7 @@ void C_00034A40::func_00034A40(void *a1, void *a2, void *a3, S_00034A40_Tab *a4,
     v54.y = D_00276220 * t + a5;
     v54.z = v34.z - D_00276D50 * t;
     v24 = Vec4(0.0f, a5 - v54.y, v34.z - v54.z, 1.0f);
-    float d = sqrtf(v24.x * v24.x + v24.y * v24.y + v24.z * v24.z);
+    float d = AsmSqrtF(v24.x * v24.x + v24.y * v24.y + v24.z * v24.z);
     this->f38 = d;
     func_00034820(&v24.x, &v24.x);
     Cross_34A40(&v64, &v24, (const Vec4 *)D_002A14E4);
