@@ -118,6 +118,7 @@ struct BmxScene {
     void func_00183D70(void *a0);
     int func_00183DD0(int param_1);
     int func_00184880(void);
+    int func_00183EC0();
 };
 
 void BmxScene::func_00183AF0(void)
