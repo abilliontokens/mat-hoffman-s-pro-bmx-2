@@ -128,12 +128,15 @@ static __forceinline void appendBC(ListBC *l,NodeBC *p) {
  if(l->count<l->capacity || l->func_0015ACA0(l->count+l->grow)) l->data[l->count++]=p;
 }
 static __forceinline int minBC(const int &a,const int &b) {return AsmMinI(a,b);}
+static __forceinline void setV4(V4 *p,float x,float y,float z,float w) {
+ p->w=w;p->z=z;p->y=y;p->x=x;
+}
 static __forceinline void copyBC(NodeBC *p,const char *s) {
  int n=minBC(127,(int)strlen(s));func_001E8920(p->name,s,n);p->name[n]=0;
 }
 
 void C_0003BC90::func_0003BC90() {
- V4 pos={0,0,0,1}, b={0,0,0,1}, a={0,0,0,1}, scale, center;
+ V4 pos={0,0,0,1}, a={0,0,0,1}, b={0,0,0,1}, scale, center;
  int n;
  char name[0x104];
  center.w=1;
