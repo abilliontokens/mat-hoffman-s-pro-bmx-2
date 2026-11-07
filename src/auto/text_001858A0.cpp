@@ -1,6 +1,7 @@
 /* 16 functions from 0x001858A0 to 0x001867D0, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+#include "asm_helpers.h"
 extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
 
 extern char D_00289608;
@@ -409,32 +410,15 @@ int C_00185B10::func_00185B60(S_Stream *stream)
 
 C_00185BF0 *C_00185BF0::func_00185BF0(void)
 {
-    C_00185BF0 * volatile self = this;
-    volatile int limit;
-    volatile int n;
-
-    self->vtbl = &D_002896CC;
-    self->f4 = 0;
-    self->f8 = 0;
-    self->fc = 0;
-    limit = 0x103;
-    n = clamp_len_00185BF0(limit, 4);
-    func_001E8920(self->f10, (const char *)&D_002764F0, n);
-    self->f10[n] = 0;
-    limit = 0x103;
-    n = clamp_len_00185BF0(limit, 4);
-    func_001E8920(self->f114, (const char *)&D_002764F0, n);
-    self->f114[n] = 0;
-    self->f524 = 0;
-    self->f528 = 0;
-    self->f52c = 0;
-    self->f530 = 0;
-    self->f534 = 0;
-    self->f538 = 0;
-    self->f53c = 0;
-    self->f540 = 0;
-    self->f544 = 0;
-    return self;
+ volatile C_00185BF0 * volatile self=this;
+ self->vtbl=&D_002896CC;
+ self->f4=0; self->f8=0; self->fc=0;
+ { volatile int limit=0x103; volatile int n; { int len=4; int max=limit; n=max>len?len:max; }; int count=n;
+ func_001E8920((char *)self->f10,(const char *)&D_002764F0,count); self->f10[count]=0; }
+ { volatile int n; volatile int limit=0x103; { int len=4; int max=limit; n=max>len?len:max; }; int count=n;
+ func_001E8920((char *)self->f114,(const char *)&D_002764F0,count); self->f114[count]=0; }
+ self->f524=0; self->f528=0; self->f52c=0; self->f530=0; self->f534=0; self->f538=0; self->f53c=0; self->f540=0; self->f544=0;
+ return (C_00185BF0 *)self;
 }
 
 void C_00185D00::func_00185D00(void)
