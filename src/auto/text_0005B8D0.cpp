@@ -1,6 +1,7 @@
 /* 42 functions from 0x0005B8D0 to 0x0005C720, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+#include "asm_helpers.h"
 struct C_0005C3A0 {
     void func_0005C3A0(int idx);
 };
@@ -358,6 +359,9 @@ int C_0005B960::func_0005BA80(int sel, float val, char *name)
     float *p;
     int *q;
     int i, j;
+    char *s;
+    char *d;
+    char c;
 
     switch (sel) {
     case 1:
@@ -368,10 +372,20 @@ int C_0005B960::func_0005BA80(int sel, float val, char *name)
     f1:
         for (j = 4; j > i; j--) {
             g1.val[j] = g1.val[j - 1];
-            CopyName_0005BA80(g1.name[j], g1.name[j - 1]);
+            s = g1.name[j - 1];
+            d = g1.name[j];
+            do {
+                c = *s++;
+                *d++ = c;
+            } while (c != 0);
         }
         g1.val[i] = val;
-        CopyName_0005BA80(g1.name[i], name);
+        s = name;
+        d = g1.name[i];
+        do {
+            c = *s++;
+            *d++ = c;
+        } while (c != 0);
         return 1;
     case 3:
         for (i = 0, q = g4.val; i < 5; i++, q++) {
@@ -381,10 +395,20 @@ int C_0005B960::func_0005BA80(int sel, float val, char *name)
     f3:
         for (j = 4; j > i; j--) {
             g4.val[j] = g4.val[j - 1];
-            CopyName_0005BA80(g4.name[j], g4.name[j - 1]);
+            s = g4.name[j - 1];
+            d = g4.name[j];
+            do {
+                c = *s++;
+                *d++ = c;
+            } while (c != 0);
         }
         g4.val[i] = iv;
-        CopyName_0005BA80(g4.name[i], name);
+        s = name;
+        d = g4.name[i];
+        do {
+            c = *s++;
+            *d++ = c;
+        } while (c != 0);
         return 1;
     case 4:
         for (i = 0, q = g3.val; i < 5; i++, q++) {
@@ -394,10 +418,20 @@ int C_0005B960::func_0005BA80(int sel, float val, char *name)
     f4:
         for (j = 4; j > i; j--) {
             g3.val[j] = g3.val[j - 1];
-            CopyName_0005BA80(g3.name[j], g3.name[j - 1]);
+            s = g3.name[j - 1];
+            d = g3.name[j];
+            do {
+                c = *s++;
+                *d++ = c;
+            } while (c != 0);
         }
-        g3.val[i] = (int)f;
-        CopyName_0005BA80(g3.name[i], name);
+        AsmFloatToInt(f, &g3.val[i]);
+        s = name;
+        d = g3.name[i];
+        do {
+            c = *s++;
+            *d++ = c;
+        } while (c != 0);
         return 1;
     case 0:
         for (i = 0; i < 5; i++) {
@@ -407,10 +441,20 @@ int C_0005B960::func_0005BA80(int sel, float val, char *name)
     f0:
         for (j = 4; j > i; j--) {
             g0.val[j] = g0.val[j - 1];
-            CopyName_0005BA80(g0.name[j], g0.name[j - 1]);
+            s = g0.name[j - 1];
+            d = g0.name[j];
+            do {
+                c = *s++;
+                *d++ = c;
+            } while (c != 0);
         }
         g0.val[i] = f;
-        CopyName_0005BA80(g0.name[i], name);
+        s = name;
+        d = g0.name[i];
+        do {
+            c = *s++;
+            *d++ = c;
+        } while (c != 0);
         return 1;
     case 2:
         for (i = 0, p = g2.val; i < 5; i++, p++) {
@@ -420,10 +464,20 @@ int C_0005B960::func_0005BA80(int sel, float val, char *name)
     f2:
         for (j = 4; j > i; j--) {
             g2.val[j] = g2.val[j - 1];
-            CopyName_0005BA80(g2.name[j], g2.name[j - 1]);
+            s = g2.name[j - 1];
+            d = g2.name[j];
+            do {
+                c = *s++;
+                *d++ = c;
+            } while (c != 0);
         }
         g2.val[i] = f;
-        CopyName_0005BA80(g2.name[i], name);
+        s = name;
+        d = g2.name[i];
+        do {
+            c = *s++;
+            *d++ = c;
+        } while (c != 0);
         return 1;
     case 5:
         for (i = 0, q = g5.val; i < 5; i++, q++) {
@@ -433,10 +487,20 @@ int C_0005B960::func_0005BA80(int sel, float val, char *name)
     f5:
         for (j = 4; j > i; j--) {
             g5.val[j] = g5.val[j - 1];
-            CopyName_0005BA80(g5.name[j], g5.name[j - 1]);
+            s = g5.name[j - 1];
+            d = g5.name[j];
+            do {
+                c = *s++;
+                *d++ = c;
+            } while (c != 0);
         }
         g5.val[i] = iv;
-        CopyName_0005BA80(g5.name[i], name);
+        s = name;
+        d = g5.name[i];
+        do {
+            c = *s++;
+            *d++ = c;
+        } while (c != 0);
         return 1;
     }
     return 0;
@@ -709,6 +773,7 @@ void C_0005C390::func_0005C390(void) {
 extern "C" void * __cdecl memcpy(void *, const void *, unsigned int);
 void C_0005C3A0::func_0005C3A0(int param_1)
 {
+  undefined4 *base = (undefined4 *)this;
   int in_ECX = (int)this;
   int iVar1;
   undefined4 *puVar2;
@@ -759,7 +824,7 @@ void C_0005C3A0::func_0005C3A0(int param_1)
             *(undefined4 *)(local_a + -0x20 + in_ECX) = 1;
           }
           else {
-            *(undefined4 *)(in_ECX + (iVar1 + local_18 + -8) * 4) = 0;
+            base[local_18 + -8 + iVar1] = 0;
           }
           iVar1 = iVar1 + 1;
         } while (iVar1 < 8);
@@ -769,7 +834,7 @@ void C_0005C3A0::func_0005C3A0(int param_1)
             *(undefined4 *)(local_a + in_ECX) = 1;
           }
           else {
-            *(undefined4 *)(in_ECX + (local_18 + iVar1) * 4) = 0;
+            base[local_18 + iVar1] = 0;
           }
           iVar1 = iVar1 + 1;
         } while (iVar1 < 3);
@@ -779,7 +844,7 @@ void C_0005C3A0::func_0005C3A0(int param_1)
             *(undefined4 *)(local_a + 0xc + in_ECX) = 1;
           }
           else {
-            *(undefined4 *)(in_ECX + (iVar1 + local_18 + 3) * 4) = 0;
+            base[local_18 + 3 + iVar1] = 0;
           }
           iVar1 = iVar1 + 1;
         } while (iVar1 < 8);
