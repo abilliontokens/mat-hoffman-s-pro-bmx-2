@@ -213,7 +213,7 @@ struct S_00197820_Hdr {
     u8 f3;
 };
 
-static inline void S_00197820_HdrInit(S_00197820_Hdr *h)
+static __forceinline void S_00197820_HdrInit(S_00197820_Hdr *h)
 {
     h->f0 = 0;
     h->f2 = 0xff;
