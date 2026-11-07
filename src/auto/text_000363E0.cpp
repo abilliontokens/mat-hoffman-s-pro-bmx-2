@@ -12,6 +12,10 @@ struct S_Vec4 {
     float x, y, z, w;
 };
 
+struct S_DefaultVec4 : S_Vec4 {
+    S_DefaultVec4() { z = y = x = 0.0f; w = 1.0f; }
+};
+
 struct S_Vec4Int {
     int x, y, z, w;
 };
