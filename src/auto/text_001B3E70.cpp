@@ -143,6 +143,7 @@ struct V4_3E70 {
 };
 static __forceinline float MinF_3E70(float a, float b) { float r; _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
 static __forceinline float MaxF_3E70(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
+static __forceinline float SqrtRef_3E70(const float &x) { return AsmSqrtF(x); }
 extern float D_0027A060;
 extern float D_002754B0;
 extern float D_002755E0;
