@@ -82,28 +82,6 @@ struct T_I { T_I *func_001BA5E0(); };
 struct T_J { T_J *func_001B6410(); };
 extern int D_0028CC44, D_0028CC60, D_0028CCA8, D_0028CCF4, D_0028CCE8;
 void *func_001E8A44(unsigned int n);
-inline T_A *Init_AnimationTriggerAction(T_A *p)
-{
-    p->f4 = 0; p->f8 = 0; p->vtbl = &D_0028CC44;
-    p->f10c = 0; p->f114 = 0; p->f110 = -1;
-    return p;
-}
-inline T_A *Init_AnimationSequenceChangeTriggerAction(T_A *p)
-{
-    p->f4 = 0; p->f8 = 0; p->f10c = 0; p->f114 = 0; p->f18c = 0;
-    p->vtbl = &D_0028CC60; p->f110 = -1;
-    return p;
-}
-inline T_B *Init_TriggerActionB(T_B *p, void *vtbl)
-{
-    p->f4 = 0; p->f8 = 0; p->vtbl = vtbl; p->f10c = 0;
-    return p;
-}
-inline T_H *Init_TriggerActionH(T_H *p)
-{
-    p->f4 = 0; p->f8 = 0; p->vtbl = &D_0028CCF4; p->f10c = 0;
-    return p;
-}
 
 extern int D_0028CE6C;
 extern int D_0028D11C;
