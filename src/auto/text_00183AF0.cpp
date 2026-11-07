@@ -37,6 +37,7 @@ struct C_001BB900 {
     int func_001BB900(void *a1);
 };
 
+struct SceneNode;
 struct C_0015E300 {
     int func_0015E300(int a, int b, int c);
 };
