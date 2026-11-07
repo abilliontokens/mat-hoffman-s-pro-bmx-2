@@ -113,6 +113,9 @@ struct S_Obj {
       void func_0019AC50();
 };
 
+struct S_List { void func_001577A0(S_Obj *,int); };
+void *func_001E8A44(unsigned int);
+void func_001E891B(void *);
 struct S_Entry {
     int type;
     int pad4;
