@@ -1,6 +1,7 @@
 /* 8 functions from 0x000BDF30 to 0x000BEE30, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+#include "asm_helpers.h"
 
 extern "C" int func_001ADCC0(char *buf, int size, const char *fmt, ...);
 extern char D_0027DB74[];
@@ -488,22 +489,39 @@ int C_000BBE30::func_000BE020(int show)
 
 void C_000BBE30::func_000BE1D0(int slot)
 {
-    volatile C_000BBE30 *self = this;
     S_000BE1D0_Slot *s = (*(S_000BE1D0_Slots **)((char *)D_002A8490->f2E0 + 0x2c0))->func_0005C020(*(int *)((char *)D_002A8490->f2E0 + 0x2d8));
-    volatile int len;
-    volatile int max;
-    int m;
-    int n;
-#define COPYNAME(dst, src) len = strlen(src); max = 7; m = max > len ? len : max; n = m; func_001E8920(dst, src, n); (dst)[n] = 0;
-    COPYNAME((char *)D_002A8490->f2E0 + 0x150 + slot * 8, self->f27C[self->f284].f104)
-    ((int *)((char *)D_002A8490->f2E0 + 0x1b0))[slot] = self->f28C;
-    COPYNAME((char *)D_002A8490->f2E0 + slot * 8 + 0x1f4, self->f280[self->f27C[self->f284].f120[self->f288]].name)
-    if (*(int *)((char *)D_002A8490->f2E0 + 4) == 0) {
-        COPYNAME(s->f5D4, self->f27C[self->f284].f104)
-        s->f5E4 = self->f28C;
-        COPYNAME(s->f5DC, self->f280[self->f27C[self->f284].f120[self->f288]].name)
+    {
+        int len = strlen((char *)f27C[f284].f104);
+        int max = 7;
+        int n = AsmMinI(max, len);
+        func_001E8920((char *)D_002A8490->f2E0 + 0x150 + slot * 8, (char *)f27C[f284].f104, n);
+        ((char *)D_002A8490->f2E0 + 0x150 + slot * 8)[n] = 0;
     }
-#undef COPYNAME
+    ((int *)((char *)D_002A8490->f2E0 + 0x1b0))[slot] = f28C;
+    {
+        int len = strlen((char *)f280[f27C[f284].f120[f288]].name);
+        int max = 7;
+        int n = AsmMinI(max, len);
+        func_001E8920((char *)D_002A8490->f2E0 + slot * 8 + 0x1f4, (char *)f280[f27C[f284].f120[f288]].name, n);
+        ((char *)D_002A8490->f2E0 + slot * 8 + 0x1f4)[n] = 0;
+    }
+    if (*(int *)((char *)D_002A8490->f2E0 + 4) == 0) {
+        {
+            int len = strlen((char *)f27C[f284].f104);
+            int max = 7;
+            int n = AsmMinI(max, len);
+            func_001E8920(s->f5D4, (char *)f27C[f284].f104, n);
+            s->f5D4[n] = 0;
+        }
+        s->f5E4 = f28C;
+        {
+            int len = strlen((char *)f280[f27C[f284].f120[f288]].name);
+            int max = 7;
+            int n = AsmMinI(max, len);
+            func_001E8920(s->f5DC, (char *)f280[f27C[f284].f120[f288]].name, n);
+            s->f5DC[n] = 0;
+        }
+    }
     func_000BC3E0(slot);
 }
 
