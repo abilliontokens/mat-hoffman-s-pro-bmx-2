@@ -69,6 +69,8 @@ struct C_00171340 {
 
 extern V4_00171340 D_002A8AC8;
 extern V4_00171340 D_002EF740;
+extern float D_002A8ACC, D_002A8AD0, D_002A8AD4;
+extern float D_002EF744, D_002EF748, D_002EF74C;
 void __cdecl func_00161C70(void);
 
 static __forceinline void InitA_00171340(V4_00171340 *p) { p->z = 0; p->y = 0; p->x = 0; p->w = 1.0f; }
