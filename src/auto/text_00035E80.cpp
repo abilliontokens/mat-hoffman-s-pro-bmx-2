@@ -11,9 +11,14 @@ struct Vec4_000361F0 {
 static inline int Min_00035E80(volatile int a, volatile int b) { int y = b, x = a; return y > x ? x : y; }
 
 
+void *func_001E8A44(unsigned int size);
+void func_001E891B(void *ptr);
+
 /* config file reader, 0x4CC bytes */
 struct S_00035E80_Stream {
     char pad0[0x4CC];
+    static void *operator new(unsigned int size) { return func_001E8A44(size); }
+    static void operator delete(void *ptr) { func_001E891B(ptr); }
     S_00035E80_Stream *func_00168280(void);
     int func_00169490(const char *path, int flags);
     void func_001691E0(void);
@@ -101,8 +106,6 @@ int C_00035E80::func_00035E80(int a1, const char *path, S_00035E80_Out *out)
 {
     Vec4_000361F0 pos0;
     Vec4_000361F0 pos1;
-    S_00035E80_Stream *stream;
-    void *mem;
     char buf[0x104];
     char secName[0x14];
     char key1[0x1e];
@@ -113,25 +116,23 @@ int C_00035E80::func_00035E80(int a1, const char *path, S_00035E80_Out *out)
     int total = 0;
     int idx = 0;
     int i, j;
-    volatile int len;
-    volatile int lim;
-    volatile int res;
-    int n;
+    volatile int n;
     char *dot;
 
-    mem = func_001E8A44(0x4CC);
-    stream = mem != 0 ? ((S_00035E80_Stream *)mem)->func_00168280() : 0;
-    if (stream->func_00169490(path, 0) == 0) {
+    void *mem = func_001E8A44(0x4CC);
+    S_00035E80_Stream *stream;
+    if (mem)
+        stream = ((S_00035E80_Stream *)mem)->func_00168280();
+    else
+        stream = 0;
+    if (!stream->func_00169490(path, 0)) {
         if (stream) {
             stream->func_001691E0();
             func_001E891B(stream);
         }
         return 0;
     }
-    len = strlen(path);
-    lim = 0x103;
-    res = lim > len ? len : lim;
-    n = res;
+    n = Min_00035E80(strlen(path), 0x103);
     func_001E8920(buf, path, n);
     buf[n] = 0;
     dot = func_001E8AC0(buf, '.');
@@ -142,7 +143,7 @@ int C_00035E80::func_00035E80(int a1, const char *path, S_00035E80_Out *out)
         func_001ADCC0(secName, 0x14, D_00276DB0, i + 1);
         stream->func_00169710(secName);
         stream->func_00168A10(D_00276DA4, &subCount);
-        total += subCount - 1;
+        total = total + (subCount - 1);
     }
     out->f14 = total;
     out->f18 = (S_00035E80_Line **)func_001E8A44(total * 4);
@@ -159,7 +160,8 @@ int C_00035E80::func_00035E80(int a1, const char *path, S_00035E80_Out *out)
             stream->func_00168CB0(key2, Vec4_000361F0(), pos1);
             line = f64->f530->func_00159E90(name, &pos0, &pos1, 0, 0, a1);
             f64->f530->func_00159C40(line);
-            out->f18[idx++] = line;
+            out->f18[idx] = line;
+            idx = idx + 1;
         }
     }
     if (stream) {
@@ -174,29 +176,28 @@ void C_000361F0::func_000361F0(int flag)
     Vec4_000361F0 tmp;
 
     if (flag != 0) {
-        if (f4A4 != 1) {
-            f44->f5C->func_00194F10(&f52C);
-            tmp.x = (float)((f434 - f428) / 2 + f428);
-            tmp.y = f440;
-            tmp.z = (float)((f43C - f430) / 2 + f430);
-            f44->f5C->func_00194EE0(tmp);
-            tmp.x = tmp.x - f470;
-            tmp.y = tmp.y + f46C;
-            f44->f5C->func_00194E60(tmp);
-            f44->f5C->f4 = 1;
-            f4A4 = 1;
+        if (f4A4 == 1) {
+            return;
         }
-    } else {
-        if (f4A4 != 0) {
-            goto restore;
-        }
-        return;
-    restore:
-        f44->f5C->func_00194E60(f4AC);
-        if (f52C.x != D_002A14D4 || f52C.y != D_002A14D8 || f52C.z != D_002A14DC) {
-            f44->f5C->func_00194EE0(f52C);
-        }
+        f44->f5C->func_00194F10(&f52C);
+        tmp.x = (float)((f434 - f428) / 2 + f428);
+        tmp.y = f440;
+        tmp.z = (float)((f43C - f430) / 2 + f430);
+        f44->f5C->func_00194EE0(tmp);
+        tmp.x = tmp.x - f470;
+        tmp.y = tmp.y + f46C;
+        f44->f5C->func_00194E60(tmp);
         f44->f5C->f4 = 1;
-        f4A4 = 0;
+        f4A4 = 1;
+        return;
     }
+    if (f4A4 == 0) {
+        return;
+    }
+    f44->f5C->func_00194E60(f4AC);
+    if (f52C.x != D_002A14D4 || f52C.y != D_002A14D8 || f52C.z != D_002A14DC) {
+        f44->f5C->func_00194EE0(f52C);
+    }
+    f44->f5C->f4 = 1;
+    f4A4 = 0;
 }
