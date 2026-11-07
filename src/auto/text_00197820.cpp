@@ -198,7 +198,7 @@ static __forceinline void S_00197820_Zero(S_00197820_Mat *m)
     _mm_store_ps(&m->m[12], z);
 }
 
-static inline S_00197700_Vec4 *S_00197820_VecInit(S_00197700_Vec4 *v)
+static __forceinline S_00197700_Vec4 *S_00197820_VecInit(S_00197700_Vec4 *v)
 {
     v->z = 0.0f;
     v->y = 0.0f;
