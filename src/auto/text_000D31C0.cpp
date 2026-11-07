@@ -5,6 +5,11 @@ extern float D_002755E8;
 
 /* raw field access: M(type, base, byte offset) */
 #define M(T, base, off) (*(T *)((char *)(base) + (off)))
+#define D31_MANAGER (D_002A8490->f2e0)
+#define D31_PROFILE (D31_MANAGER->f2c0->func_0005C020(D31_MANAGER->f2d8))
+extern "C" char *strcpy(char *, const char *);
+#pragma intrinsic(strcpy)
+extern float D_00278C48;
 
 struct S_000D31C0_Vt {
     virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
