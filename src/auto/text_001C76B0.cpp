@@ -33,7 +33,7 @@ struct IniObj {
 struct RegObj { IniObj *func_00132E20(char *s); };
 struct MObj { IniObj *func_00168280(); IniObj *func_00164440(int a, int b); };
 struct G162Obj { int func_00162B20(char *s, int a); };
-struct Node170 { char pad0[0x40]; int f40; char pad44[0x170 - 0x44]; Node170 *f170; Node170 *func_0019FD20(V4 v, Node170 *a, Node170 *b, Node170 *c); };
+struct Node170 { char pad0[0x40]; int f40; char pad44[0x170 - 0x44]; Node170 *f170; Node170 *func_0019FD20(V4 v, Node170 *a, Node170 *b, Node170 *c); Node170 *func_0019FD20(Node170 *a, Node170 *b, Node170 *c, V4 v); };
 struct Sub4 {
     char pad0[0x180];
     unsigned char b180;
@@ -94,7 +94,7 @@ void Obj::func_001C76B0(int a, int b, int c, int d, int e, int f2, int g, int h,
     Node170 *s2;
     Node170 *node;
     int *vv;
-    char buf5[256];
+    __declspec(align(16)) char buf5[256];
     char buf1[256];
     char buf2[256];
     char buf3[256];
@@ -119,7 +119,7 @@ void Obj::func_001C76B0(int a, int b, int c, int d, int e, int f2, int g, int h,
     mem = func_001E8A44(0x244);
     f3C = mem ? (Sub3C *)((MObj *)mem)->func_00164440(1, 1) : 0;
     f3C->func_001673B0(buf1, d, 1, 1, 1);
-    func_001577A0(f3C ? (void *)((char *)f3C + (int)f3C->vtbl[1]) : 0, -1);
+    func_001577A0(f3C == 0 ? 0 : (void *)((char *)f3C + (int)f3C->vtbl[1]), -1);
     f3C->func_001646B0();
     AsmIdentityMatrix(&mat);
     mat2 = mat;
