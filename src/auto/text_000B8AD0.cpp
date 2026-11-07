@@ -35,7 +35,7 @@ struct C_000B9A80 {
 struct TireVec {
     float x,y,z,w;
     TireVec() {}
-    TireVec(float a,float b,float c,float d=1.0f) { z=c; y=b; x=a; w=d; }
+    TireVec(float a,float b,float c,float d=1.0f):x(a),y(b),z(c),w(d) {}
     TireVec operator+(const TireVec &b) const { return TireVec(x+b.x,y+b.y,z+b.z); }
     TireVec operator-(const TireVec &b) const { return TireVec(x-b.x,y-b.y,z-b.z); }
     TireVec operator*(float s) const { return TireVec(x*s,y*s,z*s); }
