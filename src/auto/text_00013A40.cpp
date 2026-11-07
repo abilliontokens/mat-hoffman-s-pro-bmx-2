@@ -132,6 +132,7 @@ struct S_00014850_Vec4 {
     f32 y;
     f32 z;
     f32 w;
+    S_00014850_Vec4 &operator=(const S_00014850_Vec4 &v) { x=v.x; y=v.y; z=v.z; w=v.w; return *this; }
 };
 
 /* a vector that starts as (0, 0, 0, 1) */
