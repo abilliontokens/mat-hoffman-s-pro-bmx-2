@@ -26,12 +26,6 @@ struct C_001D5AD0 {
     };
     void func_001D5AD0(void);
 };
-static __forceinline void SetColor_000ECC60(C_001D5AD0 *p, unsigned int color) {
-    unsigned int c = (p->f38 & 0xff000000) | color;
-    unsigned char flags = p->f58 | 2;
-    p->f38 = c;
-    p->f58 = flags;
-}
 extern int D_0028F5E0;
 struct C_000ECDC0_Obj {
     void func_00093A00(float a, float b, int c, int d, int e, float f);
