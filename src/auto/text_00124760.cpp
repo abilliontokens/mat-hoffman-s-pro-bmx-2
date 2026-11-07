@@ -30,7 +30,6 @@ static __forceinline void TriInterp(Vec4 *out, Vec4 *Q, Vec4 *R, float *p, float
     int cnt = 0;
     int j;
     float t;
-    Vec4 pv, nv;
 
     if ((a[k] <= p[k] && b[k] > p[k]) || (a[k] >= p[k] && b[k] < p[k])) {
         v[0] = a; v[1] = b; vn[0] = na; vn[1] = nb;
@@ -44,6 +43,7 @@ static __forceinline void TriInterp(Vec4 *out, Vec4 *Q, Vec4 *R, float *p, float
         v[cnt] = c; v[cnt + 1] = a; vn[cnt] = nc; vn[cnt + 1] = na;
     }
     t = (p[k] - v[0][k]) / (v[1][k] - v[0][k]);
+    Vec4 pv, nv;
     EdgeEval(pv, nv, v[0], v[1], vn[0], vn[1], n, t);
     Q[0] = pv; R[0] = nv;
     t = (p[k] - v[2][k]) / (v[3][k] - v[2][k]);
