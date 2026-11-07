@@ -75,6 +75,14 @@ static __forceinline void cross_0E9180(Vec_0E9180 * volatile out,const Vec_0E918
         _mm_sub_ps(_mm_mul_ps(_mm_loadu_ps(&pa->x), _mm_shuffle_ps(_mm_loadu_ps(b),_mm_loadu_ps(b),0xc9)),
         _mm_mul_ps(_mm_loadu_ps(b),_mm_shuffle_ps(_mm_loadu_ps(&pa->x),_mm_loadu_ps(&pa->x),0xc9))),0xc9));
 }
+static __forceinline void cross_scalar_0E9180(Vec_0E9180 * volatile out,const Vec_0E9180 * volatile a,const float *b) {
+    const Vec_0E9180 *v=a;
+    Vec_0E9180 *r=out;
+    r->x=v->y*b[2]-v->z*b[1];
+    r->y=v->z*b[0]-v->x*b[2];
+    r->z=v->x*b[1]-v->y*b[0];
+    r->w=0;
+}
 struct V_0E9180 {
     virtual void v0(); virtual void v4(); virtual void v8(); virtual void vc();
     virtual void v10(); virtual void v14(); virtual void v18(); virtual void v1c();
