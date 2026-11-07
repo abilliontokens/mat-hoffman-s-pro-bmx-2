@@ -1,6 +1,7 @@
 /* 10 functions from 0x001B9560 to 0x001BA560, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+#include "asm_helpers.h"
 
 extern int D_0028D11C;
 
@@ -337,6 +338,24 @@ struct KeyFramedModel {
     int func_001B9D60(S_001B9D60_Owner *p);
 };
 
+int SegmentedCordTempData::func_001B9560(S_001B9B50_Stream *stream)
+{
+    stream->func_00168C20(D_0028D0F8, 0, &f04);
+    stream->func_00168C50(D_0028D0E4, 0, &f0C);
+    stream->func_00168BE0(D_0028CF6C, D_00284A98, f10, -1);
+    stream->func_00168BE0(D_0028CF60, D_00284A98, f114, -1);
+    stream->func_00168CB0(D_0028CF4C, &D_002AA9F4, f320);
+    stream->func_00168C20(D_0027C4BC, 1, &f08);
+    stream->func_00168BE0(D_0028D0D4, D_00284A98, f218, -1);
+    f31C = (char *)func_001E8A44(0x104);
+    stream->func_00168BE0(D_0028D0C0, D_00284A98, f31C, -1);
+    if (func_001EA426(f31C, D_00284A98) == 0) {
+        func_001E891B(f31C);
+        f31C = 0;
+    }
+    return 1;
+}
+
 C_001B9B20 *C_001B9B20::func_001B9B20(void *param) {
     ((C_00157600 *)this)->func_00157600(param);
     f24 = 0;
@@ -386,6 +405,39 @@ int C_001B9B20::func_001B9B50(S_001B9B50_Stream *stream)
             }
         }
     }
+    return 1;
+}
+
+int C_001B9C70::func_001B9C70(int n)
+{
+    int *old;
+    int m;
+    int cnt;
+    int i;
+
+    if (n <= 0) {
+        return 0;
+    }
+    if (n < size) {
+        f0C = n - 1;
+    }
+    old = data;
+    data = (int *)func_001E8A44(n * 4);
+    if (data == 0) {
+        return 0;
+    }
+    m = size;
+    cnt = AsmMinI(m, n);
+    for (i = 0; i < cnt; i++) {
+        data[i] = old[i];
+    }
+    if (size < cnt && f10 != 0) {
+        for (i = size; i < cnt; i++) {
+            data[i] = f14;
+        }
+    }
+    func_001E891B(old);
+    size = n;
     return 1;
 }
 
