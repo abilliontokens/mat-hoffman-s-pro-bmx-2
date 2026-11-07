@@ -18,7 +18,8 @@ struct C_000C9940 {
     char pad2A8[0x30];
     ElemC9 *f2D8;
     ElemC9 *f2DC;
-    char pad2E0[0xc];
+    ElemC9 *f2E0;
+    char pad2E4[8];
     ElemC9 *f2EC;
     char pad2F0[4];
     ElemC9 *f2F4;
@@ -98,59 +99,59 @@ struct C_000CA8D0 {
 void C_000C9940::func_000C9940(void)
 {
     if (f2A4 == 1) {
-        f2EC->func_001B2270(0xffcccccc); f2EC->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0.0f, 0, 1.15f, 0, 0, 0.25f, 0);
-        f2D8->func_001B2270(0xffcccccc); f2D8->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0.0f, 0, 1.15f, 0, 0, 0.25f, 0);
-        f2FC->func_001B2270(0xff); f2FC->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0.0f, 0, 1.15f, 0, 0, 0.25f, 0);
-        f2DC->func_001B2270(0xff); f2DC->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0.0f, 0, 1.15f, 0, 0, 0.25f, 0);
-        f2F4->func_001B2270(0xffbfa35a); f2F4->func_001B1860(0, -1.0f, 0xff, 1.45f, 0, 0, 0.0f, 0, 1.45f, 0, 0, 0.25f, 0);
-        f32C->func_001B2270(0xffbfa35a); f32C->func_001B1860(0, -1.0f, 0xff, 1.45f, 0, 0, 0.0f, 0, 1.45f, 0, 0, 0.25f, 0);
-        f2F8->func_001B2270(0xffcccccc); f2F8->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0.0f, 0, 1.15f, 0, 0, 0.25f, 0);
+        SETC9(f2EC, 0xffcccccc, 1.15f, 1.15f);
+        SETC9(f2D8, 0xffcccccc, 1.15f, 1.15f);
+        SETC9(f2FC, 0xff, 1.15f, 1.15f);
+        SETC9(f2DC, 0xff, 1.15f, 1.15f);
+        SETC9(f2F4, 0xffbfa35a, 1.45f, 1.45f);
+        SETC9(f32C, 0xffbfa35a, 1.45f, 1.45f);
+        SETC9(f2F8, 0xffcccccc, 1.15f, 1.15f);
         f330->func_001B2270(0xffcccccc);
         f330->func_001B1B30(1.15f, 0);
     } else if (f2A4 == 2) {
-        f2EC->func_001B2270(0xffcccccc); f2EC->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0.0f, 0, 1.15f, 0, 0, 0.25f, 0);
-        f2D8->func_001B2270(0xffcccccc); f2D8->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0.0f, 0, 1.15f, 0, 0, 0.25f, 0);
-        f2FC->func_001B2270(0xffcccccc); f2FC->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0.0f, 0, 1.15f, 0, 0, 0.25f, 0);
-        f2DC->func_001B2270(0xffcccccc); f2DC->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0.0f, 0, 1.15f, 0, 0, 0.25f, 0);
-        f2F4->func_001B2270(0xffcccccc); f2F4->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0.0f, 0, 1.15f, 0, 0, 0.25f, 0);
-        f32C->func_001B2270(0xffcccccc); f32C->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0.0f, 0, 1.15f, 0, 0, 0.25f, 0);
-        f2F8->func_001B2270(0xffbfa35a); f2F8->func_001B1860(0, -1.0f, 0xff, 1.45f, 0, 0, 0.0f, 0, 1.45f, 0, 0, 0.25f, 0);
-        f330->func_001B2270(0xffbfa35a); f330->func_001B1860(0, -1.0f, 0xff, 1.45f, 0, 0, 0.0f, 0, 1.45f, 0, 0, 0.25f, 0);
+        SETC9(f2EC, 0xffcccccc, 1.15f, 1.15f);
+        SETC9(f2D8, 0xffcccccc, 1.15f, 1.15f);
+        SETC9(f2FC, 0xffcccccc, 1.15f, 1.15f);
+        SETC9(f2DC, 0xffcccccc, 1.15f, 1.15f);
+        SETC9(f2F4, 0xffcccccc, 1.15f, 1.15f);
+        SETC9(f32C, 0xffcccccc, 1.15f, 1.15f);
+        SETC9(f2F8, 0xffbfa35a, 1.45f, 1.45f);
+        SETC9(f330, 0xffbfa35a, 1.45f, 1.45f);
     } else if (f2A4 == 0) {
-        f2EC->func_001B2270(0xffbfa35a); f2EC->func_001B1860(0, -1.0f, 0xff, 1.45f, 0, 0, 0.0f, 0, 1.45f, 0, 0, 0.25f, 0);
-        f2D8->func_001B2270(0xffbfa35a); f2D8->func_001B1860(0, -1.0f, 0xff, 1.45f, 0, 0, 0.0f, 0, 1.45f, 0, 0, 0.25f, 0);
-        f2FC->func_001B2270(0xffcccccc); f2FC->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0.0f, 0, 1.15f, 0, 0, 0.25f, 0);
-        f2DC->func_001B2270(0xffcccccc); f2DC->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0.0f, 0, 1.15f, 0, 0, 0.25f, 0);
-        f2F4->func_001B2270(0xffcccccc); f2F4->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0.0f, 0, 1.15f, 0, 0, 0.25f, 0);
-        f32C->func_001B2270(0xffcccccc); f32C->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0.0f, 0, 1.15f, 0, 0, 0.25f, 0);
-        f2F8->func_001B2270(0xffcccccc); f2F8->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0.0f, 0, 1.15f, 0, 0, 0.25f, 0);
-        f330->func_001B2270(0xffcccccc); f330->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0.0f, 0, 1.15f, 0, 0, 0.25f, 0);
+        SETC9(f2EC, 0xffbfa35a, 1.45f, 1.45f);
+        SETC9(f2D8, 0xffbfa35a, 1.45f, 1.45f);
+        SETC9(f2FC, 0xffcccccc, 1.15f, 1.15f);
+        SETC9(f2DC, 0xffcccccc, 1.15f, 1.15f);
+        SETC9(f2F4, 0xffcccccc, 1.15f, 1.15f);
+        SETC9(f32C, 0xffcccccc, 1.15f, 1.15f);
+        SETC9(f2F8, 0xffcccccc, 1.15f, 1.15f);
+        SETC9(f330, 0xffcccccc, 1.15f, 1.15f);
     } else if (f2A4 == 3) {
-        f2EC->func_001B2270(0xffcccccc); f2EC->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0.0f, 0, 1.15f, 0, 0, 0.25f, 0);
-        f2D8->func_001B2270(0xffcccccc); f2D8->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0.0f, 0, 1.15f, 0, 0, 0.25f, 0);
-        f2FC->func_001B2270(0xffbfa35a); f2FC->func_001B1860(0, -1.0f, 0xff, 1.45f, 0, 0, 0.0f, 0, 1.45f, 0, 0, 0.25f, 0);
-        f2DC->func_001B2270(0xffbfa35a); f2DC->func_001B1860(0, -1.0f, 0xff, 1.45f, 0, 0, 0.0f, 0, 1.45f, 0, 0, 0.25f, 0);
-        f2F4->func_001B2270(0xffcccccc); f2F4->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0.0f, 0, 1.15f, 0, 0, 0.25f, 0);
-        f32C->func_001B2270(0xffcccccc); f32C->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0.0f, 0, 1.45f, 0, 0, 0.25f, 0);
-        f2F8->func_001B2270(0xffcccccc); f2F8->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0.0f, 0, 1.15f, 0, 0, 0.25f, 0);
-        f330->func_001B2270(0xffcccccc); f330->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0.0f, 0, 1.15f, 0, 0, 0.25f, 0);
+        SETC9(f2EC, 0xffcccccc, 1.15f, 1.15f);
+        SETC9(f2D8, 0xffcccccc, 1.15f, 1.15f);
+        SETC9(f2FC, 0xffbfa35a, 1.45f, 1.45f);
+        SETC9(f2DC, 0xffbfa35a, 1.45f, 1.45f);
+        SETC9(f2F4, 0xffcccccc, 1.15f, 1.15f);
+        SETC9(f32C, 0xffcccccc, 1.45f, 1.45f);
+        SETC9(f2F8, 0xffcccccc, 1.15f, 1.15f);
+        SETC9(f330, 0xffcccccc, 1.15f, 1.15f);
     } else {
-        f2EC->func_001B2270(0xffcccccc); f2EC->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0.0f, 0, 1.15f, 0, 0, 0.25f, 0);
-        f2D8->func_001B2270(0xffcccccc); f2D8->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0.0f, 0, 1.15f, 0, 0, 0.25f, 0);
-        f2FC->func_001B2270(0xffcccccc); f2FC->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0.0f, 0, 1.15f, 0, 0, 0.25f, 0);
-        f2DC->func_001B2270(0xffcccccc); f2DC->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0.0f, 0, 1.15f, 0, 0, 0.25f, 0);
-        f2F4->func_001B2270(0xffcccccc); f2F4->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0.0f, 0, 1.15f, 0, 0, 0.25f, 0);
-        f32C->func_001B2270(0xffcccccc); f32C->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0.0f, 0, 1.15f, 0, 0, 0.25f, 0);
-        f2F8->func_001B2270(0xffcccccc); f2F8->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0.0f, 0, 1.15f, 0, 0, 0.25f, 0);
-        f330->func_001B2270(0xffcccccc); f330->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0.0f, 0, 1.15f, 0, 0, 0.25f, 0);
+        SETC9(f2EC, 0xffcccccc, 1.15f, 1.15f);
+        SETC9(f2D8, 0xffcccccc, 1.15f, 1.15f);
+        SETC9(f2FC, 0xffcccccc, 1.15f, 1.15f);
+        SETC9(f2DC, 0xffcccccc, 1.15f, 1.15f);
+        SETC9(f2F4, 0xffcccccc, 1.15f, 1.15f);
+        SETC9(f32C, 0xffcccccc, 1.15f, 1.15f);
+        SETC9(f2F8, 0xffcccccc, 1.15f, 1.15f);
+        SETC9(f330, 0xffcccccc, 1.15f, 1.15f);
     }
-    f2FC->func_001B2270(0xffcccccc); f2FC->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0.0f, 0, 1.15f, 0, 0, 0.25f, 0);
-    f2DC->func_001B2270(0xffcccccc); f2DC->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0.0f, 0, 1.15f, 0, 0, 0.25f, 0);
-    f2F4->func_001B2270(0xffcccccc); f2F4->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0.0f, 0, 1.15f, 0, 0, 0.25f, 0);
-    f32C->func_001B2270(0xffcccccc); f32C->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0.0f, 0, 1.15f, 0, 0, 0.25f, 0);
-    f2F8->func_001B2270(0xffcccccc); f2F8->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0.0f, 0, 1.15f, 0, 0, 0.25f, 0);
-    f330->func_001B2270(0xffcccccc); f330->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0.0f, 0, 1.15f, 0, 0, 0.25f, 0);
-    f300->func_001B2270(0xffcccccc); f300->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0.0f, 0, 1.15f, 0, 0, 0.25f, 0);
+    SETC9(f2FC, 0xffcccccc, 1.15f, 1.15f);
+    SETC9(f2DC, 0xffcccccc, 1.15f, 1.15f);
+    SETC9(f2F4, 0xffcccccc, 1.15f, 1.15f);
+    SETC9(f32C, 0xffcccccc, 1.15f, 1.15f);
+    SETC9(f2F8, 0xffcccccc, 1.15f, 1.15f);
+    SETC9(f330, 0xffcccccc, 1.15f, 1.15f);
+    SETC9(f300, 0xffcccccc, 1.15f, 1.15f);
 }
 
 void C_000CA7D0::func_000CA7D0(void)
