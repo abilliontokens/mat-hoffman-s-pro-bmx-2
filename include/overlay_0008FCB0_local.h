@@ -22,7 +22,7 @@ struct C_0008FCB0 {
  char pad20C[0xe0]; int a2EC[100],a47C[100]; char pad60C[0x20c];
  char s818[4][0x104]; int fC28; char padC2C[4]; int fC30; float fC34,fC38,fC3C;
  int fC40,fC44,fC48; float fC4C; S_0008FCB0_Text *fC50; int fC54,fC58;
- char padC5C[0xe0]; S_0008FCB0_Text *fD3C,*fD40,*fD44,*fD48; char padD4C[4]; float fD50;
+ char padC5C[0xac]; S_0008FCB0_Font *fD08, *fD0C; char padD10[0x2c]; S_0008FCB0_Text *fD3C,*fD40,*fD44,*fD48; char padD4C[4]; float fD50;
  char padD54[0x10]; float fD64; char padD68[0x14]; int fD7C,fD80;
  S_0008FCB0_Text *fD84,*fD88; char padD8C[0x10]; int fD9C,fDA0;
  int func_0008FCB0(); void func_000847B0(); void func_000844B0(); void func_00157960();
