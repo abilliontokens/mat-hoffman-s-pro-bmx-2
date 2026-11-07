@@ -111,6 +111,9 @@ struct S_Obj {
       void func_00198F50(V4 *,V4 *,int,int,int);
       void func_0019ABA0(int,int);
       void func_0019AC50();
+      S_Obj *func_001BB680(int);
+      int func_001BC040(V4,V4,V4,V4,int,int,int,int);
+      void func_001BBAE0(int);
 };
 
 struct S_List { void func_001577A0(S_Obj *,int); };
