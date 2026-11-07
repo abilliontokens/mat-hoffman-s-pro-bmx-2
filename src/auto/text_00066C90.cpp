@@ -52,6 +52,16 @@ struct C_00066C90 {
     void func_001577A0(void *, int);
 };
 
+struct Menu_66C {
+    Menu_66C *func_001B12C0(int);
+    void func_001B1580(void *, void *, void *, int);
+    void func_001B1A30(float, float, int);
+    void func_001B2270(unsigned int);
+    void func_001B19A0(int);
+};
+extern int D_0028F5E0;
+extern char D_002A5FA8[], D_002A5870[], D_00275678[];
+extern float D_002757F0, D_0027886C, D_00278868;
 struct Res_66C { void *func_0018C160(void *name); };
 struct Txt_66C {
     char pad0[4];
