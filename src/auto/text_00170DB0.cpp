@@ -192,7 +192,8 @@ struct PhysicsAnimatedBody {
 V4_170DB0 PhysicsAnimatedBody::func_00170DB0()
 {
     local = getLocal();
-    world = model->func_00198040(&local);
+    V4_170DB0 input = local;
+    world = model->func_00198040(&input);
     return world;
 }
 
@@ -225,85 +226,66 @@ void func_001712D0(float *out, float *in) {
 
 void *C_00171340::func_00171340(int a)
 {
-    C_00171340 * volatile self = this;
-    Mat_00171340 * volatile pm;
-
     func_00157600(a);
-    self->vtbl = (void *)&D_00288C44;
-    InitA_00171340(&self->f2c);
-    InitA_00171340(&self->f3c);
-    InitA_00171340(&self->f4c);
-    InitA_00171340(&self->f5c);
-    InitA_00171340(&self->f6c);
-    InitA_00171340(&self->f7c);
-    InitA_00171340(&self->f8c);
-    InitA_00171340(&self->f9c);
-    InitA_00171340(&self->f130);
-    InitA_00171340(&self->f140);
-    InitA_00171340(&self->f150);
-    InitA_00171340(&self->f160);
-    InitC_00171340(&self->f170);
-    InitC_00171340(&self->f180);
-    InitC_00171340(&self->f190);
-    InitC_00171340(&self->f238);
-    InitC_00171340(&self->f248);
-    InitC_00171340(&self->f258);
-    InitC_00171340(&self->f268);
-    self->f1b4 = 1;
-    self->f1b8 = 0;
-    self->u24 = 0;
-    self->f2c = D_002A8AC8;
-    self->f3c = D_002A8AC8;
-    self->f4c = D_002A8AC8;
-    self->f238 = D_002A8AC8;
-    self->f248 = D_002A8AC8;
-    self->f258 = D_002A8AC8;
-    self->f268 = D_002A8AC8;
-    self->f6c = D_002A8AC8;
-    self->f7c = D_002A8AC8;
-    self->f150 = D_002A8AC8;
-    self->f160 = D_002A8AC8;
-    self->f170 = D_002A8AC8;
-    self->f180 = D_002A8AC8;
-    self->f1a0 = D_002EF740;
-    self->f8c = D_002A8AC8;
-    self->f218 = 933220.06f;
-    self->f21c = 250000.0f;
-    self->f220 = 18225.0f;
-    self->f224 = 625.0f;
-    self->f210 = 0;
-    self->f214 = 0;
-    self->f28 = 0;
-    self->f228 = 0;
-    pm = &self->fB0;
-    {
-        Mat_00171340 *q = pm;
-        __m128 *v = (__m128 *)q;
-        v[0] = _mm_setzero_ps();
-        v[1] = _mm_setzero_ps();
-        v[2] = _mm_setzero_ps();
-        v[3] = _mm_setzero_ps();
-    }
-    pm = &self->fF0;
-    {
-        Mat_00171340 *q = pm;
-        __m128 *v = (__m128 *)q;
-        v[0] = _mm_setzero_ps();
-        v[1] = _mm_setzero_ps();
-        v[2] = _mm_setzero_ps();
-        v[3] = _mm_setzero_ps();
-    }
-    self->f9c = D_002A8AC8;
-    self->f234 = (void *)func_00161C70;
-    self->f190 = D_002A8AC8;
-    self->f208 = 0;
-    self->f20c = 0;
-    self->f230 = 0;
-    self->f22c = 0;
-    self->f1bc = 0;
-    self->f1e0 = 0;
-    self->f204 = 0;
-    return self;
+    this->vtbl = (void *)&D_00288C44;
+    InitA_00171340(&this->f2c);
+    InitA_00171340(&this->f3c);
+    InitA_00171340(&this->f4c);
+    InitA_00171340(&this->f5c);
+    InitA_00171340(&this->f6c);
+    InitA_00171340(&this->f7c);
+    InitA_00171340(&this->f8c);
+    InitA_00171340(&this->f9c);
+    InitA_00171340(&this->f130);
+    InitA_00171340(&this->f140);
+    InitA_00171340(&this->f150);
+    InitA_00171340(&this->f160);
+    InitC_00171340(&this->f170);
+    InitC_00171340(&this->f180);
+    InitC_00171340(&this->f190);
+    InitC_00171340(&this->f238);
+    InitC_00171340(&this->f248);
+    InitC_00171340(&this->f258);
+    InitC_00171340(&this->f268);
+    this->f1b4 = 1;
+    this->f1b8 = 0;
+    this->u24 = 0;
+    this->f2c = D_002A8AC8;
+    this->f3c = D_002A8AC8;
+    this->f4c = D_002A8AC8;
+    this->f238 = D_002A8AC8;
+    this->f248 = D_002A8AC8;
+    this->f258 = D_002A8AC8;
+    this->f268 = D_002A8AC8;
+    this->f6c = D_002A8AC8;
+    this->f7c = D_002A8AC8;
+    this->f150 = D_002A8AC8;
+    this->f160 = D_002A8AC8;
+    this->f170 = D_002A8AC8;
+    this->f180 = D_002A8AC8;
+    this->f1a0 = D_002EF740;
+    this->f8c = D_002A8AC8;
+    this->f218 = 0x4963d241;
+    this->f21c = 0x48742400;
+    this->f220 = 0x468e6200;
+    this->f224 = 0x441c4000;
+    this->f210 = 0;
+    this->f214 = 0;
+    this->f28 = 0;
+    this->f228 = 0;
+    AsmZeroMatrix((void *)&this->fB0);
+    AsmZeroMatrix((void *)&this->fF0);
+    this->f9c = D_002A8AC8;
+    this->f234 = (void *)func_00161C70;
+    this->f190 = D_002A8AC8;
+    this->f208 = 0;
+    this->f20c = 0;
+    this->f230 = 0;
+    this->f22c = 0;
+    this->f1bc = 0;
+    this->f1e0 = 0;
+    this->f204 = 0;
+    return this;
 }
 
 void C_00171980::func_00171980(void) {
