@@ -87,7 +87,9 @@ struct S_0006FF80_Mid { char pad0[0x1a8]; S_0006FF80_Stats *f1a8; };
 struct S_0006FF80_Top { char pad0[0x4e0]; S_0006FF80_Mid *f4e0; };
 struct S_0006FF80_Chk { int func_0005B960(int idx, float v); int func_0005B960(int idx, int v); };
 struct S_0006FF80_Own { char pad0[0x64]; S_0006FF80_Top *f64; S_0006FF80_Chk *f68; };
+#pragma pack(push, 1)
 struct S_0006FF80_Buf { int a, b, c; short d; char e; };
+#pragma pack(pop)
 struct S_6FF80_Data {
     char pad0[0x18]; int f18;
     char pad1c[4]; int f20;
@@ -255,41 +257,47 @@ int C_00070360::func_0006FF80(void)
     if (fEC->f68->func_0005B960(3, (float)fEC->f64->f4e0->f1a8->fa58)) {
         memset(&buf, 0, sizeof(buf));
         func_0006FE60(fEC->f64->f4e0->f1a8->fa58, (char *)&buf);
-        func_001ADCC0(out, 0x104, D_00278C38, ((S_6FF80_Data *)D_002A8490->f2e8->f4)->f128);
-        unk180[n++]->func_0005E840((int)out);
+        func_001ADCC0(out, 0x104, D_00278C38, ((S_6FF80_Data *)D_002A8490->f2e8->f4)->f128, (char *)&buf);
+        unk180[n]->func_0005E840((int)out);
+        n = n + 1;
     }
-    if (fEC->f68->func_0005B960(1, (float)fEC->f64->f4e0->f1a8->fa4c)) {
+    if (fEC->f68->func_0005B960(1, fEC->f64->f4e0->f1a8->fa4c)) {
         memset(&buf, 0, sizeof(buf));
         func_0006FE60(fEC->f64->f4e0->f1a8->fa4c, (char *)&buf);
         func_001ADCC0(out, 0x104, D_00278C28, ((S_6FF80_Data *)D_002A8490->f2e8->f4)->f18,
-                      (double)fEC->f64->f4e0->f1a8->fa4c, ((S_6FF80_Data *)D_002A8490->f2e8->f4)->fF68);
-        unk180[n++]->func_0005E840((int)out);
+                      (double)*(float *)&fEC->f64->f4e0->f1a8->fa4c, ((S_6FF80_Data *)D_002A8490->f2e8->f4)->fF68);
+        unk180[n]->func_0005E840((int)out);
+        n = n + 1;
     }
     if (fEC->f68->func_0005B960(4, (float)fEC->f64->f4e0->f1a8->fa40)) {
         memset(&buf, 0, sizeof(buf));
         func_0006FE60(fEC->f64->f4e0->f1a8->fa40, (char *)&buf);
-        func_001ADCC0(out, 0x104, D_00278C38, ((S_6FF80_Data *)D_002A8490->f2e8->f4)->f120);
-        unk180[n++]->func_0005E840((int)out);
+        func_001ADCC0(out, 0x104, D_00278C38, ((S_6FF80_Data *)D_002A8490->f2e8->f4)->f120, (char *)&buf);
+        unk180[n]->func_0005E840((int)out);
+        n = n + 1;
     }
-    if (fEC->f68->func_0005B960(2, (float)fEC->f64->f4e0->f1a8->f1058)) {
+    if (fEC->f68->func_0005B960(2, fEC->f64->f4e0->f1a8->f1058)) {
         memset(&buf, 0, sizeof(buf));
         func_0006FE60(fEC->f64->f4e0->f1a8->f1058, (char *)&buf);
         func_001ADCC0(out, 0x104, D_00278C28, ((S_6FF80_Data *)D_002A8490->f2e8->f4)->f188,
-                      (double)fEC->f64->f4e0->f1a8->f1058, ((S_6FF80_Data *)D_002A8490->f2e8->f4)->fF68);
-        unk180[n++]->func_0005E840((int)out);
+                      (double)*(float *)&fEC->f64->f4e0->f1a8->f1058, ((S_6FF80_Data *)D_002A8490->f2e8->f4)->fF68);
+        unk180[n]->func_0005E840((int)out);
+        n = n + 1;
     }
     if (fEC->f68->func_0005B960(5, (float)fEC->f64->f4e0->f1a8->fa5c)) {
         memset(&buf, 0, sizeof(buf));
         func_0006FE60(fEC->f64->f4e0->f1a8->fa5c, (char *)&buf);
-        func_001ADCC0(out, 0x104, D_00278C38, ((S_6FF80_Data *)D_002A8490->f2e8->f4)->f1198);
-        unk180[n++]->func_0005E840((int)out);
+        func_001ADCC0(out, 0x104, D_00278C38, ((S_6FF80_Data *)D_002A8490->f2e8->f4)->f1198, (char *)&buf);
+        unk180[n]->func_0005E840((int)out);
+        n = n + 1;
     }
-    if (fEC->f68->func_0005B960(0, (float)fEC->f64->f4e0->f1a8->fa54)) {
+    if (fEC->f68->func_0005B960(0, fEC->f64->f4e0->f1a8->fa54)) {
         memset(&buf, 0, sizeof(buf));
         func_0006FE60(fEC->f64->f4e0->f1a8->fa54, (char *)&buf);
         func_001ADCC0(out, 0x104, D_00278C28, ((S_6FF80_Data *)D_002A8490->f2e8->f4)->f20,
-                      (double)fEC->f64->f4e0->f1a8->fa54, ((S_6FF80_Data *)D_002A8490->f2e8->f4)->fF68);
-        unk180[n++]->func_0005E840((int)out);
+                      (double)*(float *)&fEC->f64->f4e0->f1a8->fa54, ((S_6FF80_Data *)D_002A8490->f2e8->f4)->fF68);
+        unk180[n]->func_0005E840((int)out);
+        n = n + 1;
     }
     return n;
 }
