@@ -101,7 +101,7 @@ static __forceinline void AsmFloatToInt(float f, int *dst)
     }
 }
 
-/* *dst = f rounded to int (cvtss2si). Proven on _func_001D3730@4, _func_00032E90, _func_001D8340@4. */
+/* *dst = f rounded to int (cvtss2si). Proven on _func_001D3730@4, _func_00032E90, _func_001D8340@4, _func_001AE890. */
 static __forceinline void AsmFloatToIntRound(float f, int *dst)
 {
     __asm {
