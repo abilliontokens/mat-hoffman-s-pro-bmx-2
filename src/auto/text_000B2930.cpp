@@ -170,7 +170,10 @@ struct VehicleAI {
     u32 f68;
     char pad6C[0xC];
     u32 f78;
-    char pad7C[0x10];
+    float f7C;
+    float f80;
+    float f84;
+    char pad88[4];
     u32 f8C;
     char pad90[0x111];
     u8 f1A1;
