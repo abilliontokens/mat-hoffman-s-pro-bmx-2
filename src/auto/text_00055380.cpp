@@ -336,8 +336,15 @@ struct func_00055380 : CameraBehavior_00055380 {
 
 #include <xmmintrin.h>
 #include <math.h>
+#include "asm_helpers.h"
 struct C_00055A10_Filter { float func_00026A10(float,float); void func_000269B0(float,float,float); };
 void func_00055140(S_00056100_Quat *,S_00056100_Quat *);
+static __forceinline S_00056100_Quat MulS_00055A10(const S_00056100_Quat &q,float s)
+{
+ S_00056100_Quat r;
+ r.x=s*q.x; r.y=s*q.y; r.z=s*q.z;
+ return r;
+}
 void C_000559E0_unused();
 func_00055380::func_00055380()
 {
@@ -518,32 +525,31 @@ void C_000560A0::func_000559E0(int a0, int a1, float a2)
 
 int C_00055380::func_00055A10(S_00056100_Quat a,S_00056100_Quat b,S_00056100_Quat c,S_00056100_Quat d,float dt)
 {
- C_00055380 * volatile self=this;
  S_00056100_Quat points[2];
  points[0]=b;
  S_00056100_Quat dir;
- { C_00055380 *p=self; points[1]=p->q6C; }
- *(int*)self->pad12C=0;
- ((S_00056100_Node*)self->unk14)->func_001A4AE0(&self->q6C,0);
- ((S_00056100_Node*)self->unk14)->func_00133ED0();
- ((S_00056100_Node*)self->unk18)->func_0014AC30(points,0);
- ((S_00056100_Node*)self->unk18)->func_00133ED0();
- ((S_00056100_Node*)self->unk18)->func_00133F10(0);
- if(!*(int*)self->pad12C) ((S_00056100_Node*)self->unk14)->func_00133F10(0);
- if(*(int*)self->pad12C) { C_00055380 *p=self; p->q6C=p->q10C+p->q11C*(*(float*)&p->unk21C); }
- { C_00055380 *p=self; dir=b-p->q6C; }
- float distance=0;
+ points[1]=this->q6C;
+ *(int*)this->pad12C=0;
+ ((S_00056100_Node*)this->unk14)->func_001A4AE0(&this->q6C,0);
+ ((S_00056100_Node*)this->unk14)->func_00133ED0();
+ ((S_00056100_Node*)this->unk18)->func_0014AC30(points,0);
+ ((S_00056100_Node*)this->unk18)->func_00133ED0();
+ ((S_00056100_Node*)this->unk18)->func_00133F10(0);
+ if(!*(int*)this->pad12C) ((S_00056100_Node*)this->unk14)->func_00133F10(0);
+ if(*(int*)this->pad12C) this->q6C=this->q10C+this->q11C*(*(float*)&this->unk21C);
+ dir=b-this->q6C;
  float squared=dir.z*dir.z+dir.y*dir.y+dir.x*dir.x;
- distance=sqrtf(squared);
- func_00055140(&dir,&dir);
- if(*(int*)self->pad12C) {
- distance=((C_00055A10_Filter*)*(int*)(self->pad12C+4))->func_00026A10(distance,dt);
- ((C_00055A10_Filter*)*(int*)(self->pad12C+8))->func_000269B0(distance,3.402823466e38f,3.402823466e38f);
+ float distance=AsmSqrtF(squared);
+ S_00056100_Quat *pd=&dir;
+ func_00055140(pd,pd);
+ if(*(int*)this->pad12C) {
+ distance=((C_00055A10_Filter*)*(int*)(this->pad12C+4))->func_00026A10(distance,dt);
+ ((C_00055A10_Filter*)*(int*)(this->pad12C+8))->func_000269B0(distance,3.402823466e38f,3.402823466e38f);
  } else {
- distance=((C_00055A10_Filter*)*(int*)(self->pad12C+8))->func_00026A10(distance,dt);
- ((C_00055A10_Filter*)*(int*)(self->pad12C+4))->func_000269B0(distance,3.402823466e38f,3.402823466e38f);
+ distance=((C_00055A10_Filter*)*(int*)(this->pad12C+8))->func_00026A10(distance,dt);
+ ((C_00055A10_Filter*)*(int*)(this->pad12C+4))->func_000269B0(distance,3.402823466e38f,3.402823466e38f);
  }
- { C_00055380 *p=self; p->q6C=b-dir*distance; }
+ this->q6C=b-dir*distance;
  return 1;
 }
 
