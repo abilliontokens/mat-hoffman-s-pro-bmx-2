@@ -76,6 +76,7 @@ struct C_00198040 {
 };
 
 extern Vec4 D_002A8BA0;
+extern float D_002A8BA4, D_002A8BA8, D_002A8BAC;
 void *func_001E8A44(int size);
 
 struct C_00198330 {
