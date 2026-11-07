@@ -9,6 +9,8 @@ extern char D_0027E7B8[], D_0027E7A8[], D_0027E798[], D_0027E788[], D_0027E778[]
 extern char D_0027E768[], D_0027E758[], D_0027E748[], D_0027E734[], D_0027E724[];
 extern char D_0027E714[], D_0027E704[], D_0027E6F0[], D_0027E6DC[], D_0027E6CC[];
 extern char D_0027E6BC[];
+extern char D_0027E6A0[], D_0027E69C[], D_0027E684[], D_0027E66C[], D_0027E654[], D_0027E63C[], D_0027E624[], D_0027E60C[], D_0027E5F4[], D_0027E5DC[], D_0027958C[];
+extern int D_0028F5E0;
 extern char D_0027E6B8[], D_0027E6B4[], D_0027E6B0[], D_0027E6AC[], D_0027E6A8[], D_0027E6A4[];
 
 /* the text sprite object (0x64 bytes) */
@@ -69,6 +71,7 @@ struct C_000CCBE0 {
 void C_000CCBE0::func_000CCBE0(int a, int b, int c)
 {
     void *mem;
+    int i;
     S_CCBE0_Sprite *o;
 
     func_001BE4F0(a, b, c);
@@ -91,7 +94,7 @@ void C_000CCBE0::func_000CCBE0(int a, int b, int c)
     o = f550;
     *((unsigned char *)&o->f38 + 3) = 0;
     o->f58 |= 2;
-    for (int i = 0; i < 2; i++) {
+    for (i = 0; i < 2; i++) {
         mem = func_001E8A44(0x64);
         f3F8[i] = mem ? ((S_CCBE0_Sprite *)mem)->func_001D5760() : 0;
     }
@@ -113,15 +116,15 @@ void C_000CCBE0::func_000CCBE0(int a, int b, int c)
     o = f3F8[1];
     o->f3C = 0x3f800000;
     o->f48 = 0x3f800000;
-    o->f40 = 0;
-    o->f44 = 0;
+    o->f40 = 0.0f;
+    o->f44 = 0.0f;
     o->f58 |= 4;
     o = f3F8[1];
     o->f38 = (o->f38 & 0xffcccccc) | 0xcccccc;
     o->f58 |= 2;
-    for (int j = 0; j < 16; j++) {
+    for (i = 0; i < 16; i++) {
         mem = func_001E8A44(0x64);
-        f400[j] = mem ? ((S_CCBE0_Sprite *)mem)->func_001D5760() : 0;
+        f400[i] = mem ? ((S_CCBE0_Sprite *)mem)->func_001D5760() : 0;
     }
     f400[0]->func_001D5810(D_0027E7B8, 80.0f, 141.0f, 0);
     f400[1]->func_001D5810(D_0027E7A8, 80.0f, 141.0f, 0);
@@ -159,6 +162,96 @@ void C_000CCBE0::func_000CCBE0(int a, int b, int c)
         o->f58 |= 1;
     }
     o = f390[0];
+    if (o->f24 != 0x3f2b851f) {
+        int t = o->f54;
+        o->f24 = 0x3f2b851f;
+        if (t != 0) {
+            o->f24 = 0x3eab851f;
+        }
+        o->f58 |= 1;
+    }
+    mem = func_001E8A44(0x64);
+    f390[1] = mem ? ((S_CCBE0_Sprite *)mem)->func_001D5760() : 0;
+    f390[1]->func_001D5810(D_0027E6B4, 0.0f, 0.0f, 0);
+    o = f390[1];
+    if (o->f4 != 0x44048000 || o->f8 != 0x42480000) {
+        o->f4 = 0x44048000;
+        o->f8 = 0x42480000;
+        o->f58 |= 1;
+    }
+    o = f390[1];
+    if (o->f24 != 0x3f2b851f) {
+        int t = o->f54;
+        o->f24 = 0x3f2b851f;
+        if (t != 0) {
+            o->f24 = 0x3eab851f;
+        }
+        o->f58 |= 1;
+    }
+    mem = func_001E8A44(0x64);
+    f390[2] = mem ? ((S_CCBE0_Sprite *)mem)->func_001D5760() : 0;
+    f390[2]->func_001D5810(D_0027E6B0, 0.0f, 0.0f, 0);
+    o = f390[2];
+    if (o->f4 != 0x44048000 || o->f8 != 0x42480000) {
+        o->f4 = 0x44048000;
+        o->f8 = 0x42480000;
+        o->f58 |= 1;
+    }
+    o = f390[2];
+    if (o->f24 != 0x3f2b851f) {
+        int t = o->f54;
+        o->f24 = 0x3f2b851f;
+        if (t != 0) {
+            o->f24 = 0x3eab851f;
+        }
+        o->f58 |= 1;
+    }
+    mem = func_001E8A44(0x64);
+    f390[3] = mem ? ((S_CCBE0_Sprite *)mem)->func_001D5760() : 0;
+    f390[3]->func_001D5810(D_0027E6AC, 0.0f, 0.0f, 0);
+    o = f390[3];
+    if (o->f4 != 0x44048000 || o->f8 != 0x42480000) {
+        o->f4 = 0x44048000;
+        o->f8 = 0x42480000;
+        o->f58 |= 1;
+    }
+    o = f390[3];
+    if (o->f24 != 0x3f2b851f) {
+        int t = o->f54;
+        o->f24 = 0x3f2b851f;
+        if (t != 0) {
+            o->f24 = 0x3eab851f;
+        }
+        o->f58 |= 1;
+    }
+    mem = func_001E8A44(0x64);
+    f390[4] = mem ? ((S_CCBE0_Sprite *)mem)->func_001D5760() : 0;
+    f390[4]->func_001D5810(D_0027E6A8, 0.0f, 0.0f, 0);
+    o = f390[4];
+    if (o->f4 != 0x44048000 || o->f8 != 0x42480000) {
+        o->f4 = 0x44048000;
+        o->f8 = 0x42480000;
+        o->f58 |= 1;
+    }
+    o = f390[4];
+    if (o->f24 != 0x3f2b851f) {
+        int t = o->f54;
+        o->f24 = 0x3f2b851f;
+        if (t != 0) {
+            o->f24 = 0x3eab851f;
+        }
+        o->f58 |= 1;
+    }
+    mem = func_001E8A44(0x64);
+    f390[5] = mem ? ((S_CCBE0_Sprite *)mem)->func_001D5760() : 0;
+    f390[5]->func_001D5810(D_0027E6A4, 0.0f, 0.0f, 0);
+    o = f390[5];
+    if (o->f4 != 0x44048000 || o->f8 != 0x42480000) {
+        o->f4 = 0x44048000;
+        o->f8 = 0x42480000;
+        o->f58 |= 1;
+    }
+    o = f390[5];
     if (o->f24 != 0x3f2b851f) {
         int t = o->f54;
         o->f24 = 0x3f2b851f;
