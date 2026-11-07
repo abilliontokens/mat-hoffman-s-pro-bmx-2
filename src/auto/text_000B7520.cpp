@@ -5,6 +5,11 @@
 struct S_000B7520_Vec4 {
     float x, y, z, w;
     S_000B7520_Vec4() { z = 0.0f; y = 0.0f; x = 0.0f; w = 1.0f; }
+    S_000B7520_Vec4(float a,float b,float c) : x(a),y(b),z(c),w(1.0f) {}
+    S_000B7520_Vec4 operator+(const S_000B7520_Vec4 &b) const { return S_000B7520_Vec4(x+b.x,y+b.y,z+b.z); }
+    S_000B7520_Vec4 operator-(const S_000B7520_Vec4 &b) const { return S_000B7520_Vec4(x-b.x,y-b.y,z-b.z); }
+    S_000B7520_Vec4 operator*(float s) const { return S_000B7520_Vec4(x*s,y*s,z*s); }
+    float dot(const S_000B7520_Vec4 &b) const { return x*b.x+y*b.y+z*b.z; }
 };
 
 struct C_000B7520 {
