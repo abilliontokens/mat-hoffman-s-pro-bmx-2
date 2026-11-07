@@ -1,5 +1,6 @@
 /* 4 functions from 0x001904E0 to 0x00191470, found by Ghidra. */
 #include "common.h"
+#include "asm_helpers.h"
 
 struct C_000264C0 {
     void func_000264C0(void *param);
@@ -86,6 +87,7 @@ struct S_00191270_Owner {
     int f28;
     char pad2c[0xc];
     int f38;
+    void func_0018C820(float delay, int start, int end, S_00191270_Node *node);
 };
 
 struct C_00191270 {
@@ -149,7 +151,6 @@ void C_00191270::func_001904E0(S_00191270_Owner *owner, int slot, S_00191270_Nod
         int idx;
         int sidx;
         int tmp;
-        int objIdx;
         void *val;
 
         rec = node->f20[i].rec;
