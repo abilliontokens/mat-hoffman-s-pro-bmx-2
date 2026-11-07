@@ -21,10 +21,23 @@ struct S_000399A0_Obj2 {
     void *fEC;                /* 0xec */
 };
 
+struct Camera_399 {
+    int pad0, dirty;
+    void func_00194E90(S_000392B0_Vec4 *);
+    void func_00194F10(S_000392B0_Vec4 *);
+    void func_00194E60(S_000392B0_Vec4);
+    void func_00194EE0(S_000392B0_Vec4);
+};
+struct Holder_399 { char pad0[0x5c]; Camera_399 *camera; };
+struct Obj_399 { void func_001824E0(S_000392B0_Vec4 *, float, float, float); };
 struct C_000399A0 {
-    char pad0[0x450];
-    int f450;
-    char pad454[8];
+    char pad0[0x44];
+    Holder_399 *f44;
+    char pad48[0x428-0x48];
+    int f428, f42c, f430;
+    char pad434[0xc];
+    int f440, f444, f448, f44c;
+    int f450, f454, f458;
     int f45C, f460;
     float f464, f468;
     char pad46c[0x30];
@@ -98,8 +111,7 @@ int C_000399A0::func_000399A0(int mode) {
         a.z = (float)iz;
         f4b0 = a.y;
         if (f4ac != D_002A14D4 || f4b0 != D_002A14D8 || f4b4 != D_002A14DC) {
-            switch (mode) {
-            case 0:
+            if (mode == 0) {
                 switch (f4a8) {
                 case 0: f4ac = a.x - f468; f4b4 = a.z; break;
                 case 1: f4ac = a.x + f468; f4b4 = a.z; break;
@@ -110,8 +122,7 @@ int C_000399A0::func_000399A0(int mode) {
                 case 6: f4ac = a.x + f468; f4b4 = a.z + f468; break;
                 case 7: f4ac = a.x + f468; f4b4 = a.z - f468; break;
                 }
-                break;
-            case 1:
+            } else if (mode == 1) {
                 switch (f4a8) {
                 case 0: f4ac = a.x + f468; f4b4 = a.z + f468; f4a8 = 7; break;
                 case 1: f4ac = a.x; f4b4 = a.z + f468; f4a8 = 3; break;
@@ -122,8 +133,7 @@ int C_000399A0::func_000399A0(int mode) {
                 case 6: f4ac = a.x + f468; f4b4 = a.z; f4a8 = 1; break;
                 case 7: f4ac = a.x; f4b4 = a.z - f468; f4a8 = 2; break;
                 }
-                break;
-            case 2:
+            } else if (mode == 2) {
                 switch (f4a8) {
                 case 0: f4ac = a.x - f468; f4b4 = a.z - f468; f4a8 = 4; break;
                 case 1: f4ac = a.x - f468; f4b4 = a.z + f468; f4a8 = 5; break;
@@ -134,7 +144,6 @@ int C_000399A0::func_000399A0(int mode) {
                 case 6: f4ac = a.x; f4b4 = a.z - f468; f4a8 = 2; break;
                 case 7: f4ac = a.x - f468; f4b4 = a.z; f4a8 = 0; break;
                 }
-                break;
             }
             if (f564 != 0 && (f564->type == 0 || f564->type >= 3)) {
                 blk = 0;
