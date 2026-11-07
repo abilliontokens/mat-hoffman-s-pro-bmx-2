@@ -124,12 +124,13 @@ static __forceinline void Spawn_3B0A0(S_3B0A0_Obj *o, void *a1, void *a2, char *
     } else {
         if (a8 > a9) m = a8; else m = a9;
     }
-    if (ey > ez) {
-        if (ey > ex) t = (float)((m > ey) ? m : ey);
-        else t = (float)((m > ex) ? m : ex);
-    } else {
-        if (ez > ex) t = (float)((m > ez) ? m : ez);
-        else t = (float)((m > ex) ? m : ex);
+    {
+        int best;
+        if (ey > ez)
+            best = (ey > ex) ? ey : ex;
+        else
+            best = (ez > ex) ? ez : ex;
+        t = (float)((m > best) ? m : best);
     }
     t = t * D_0027653C;
     t = t * D_002766C8;
