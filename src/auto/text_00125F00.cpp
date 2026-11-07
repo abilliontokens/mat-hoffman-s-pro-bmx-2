@@ -37,16 +37,6 @@ static inline void Xform_00126A80(S_00126A80_Vec *out, const S_00126A80_Mat *mat
     out->w = 1.0f;
 }
 
-static __forceinline void MinMax_00126A80(S_00126A80_Vec *mn, S_00126A80_Vec *mx, const S_00126A80_Vec *v)
-{
-    if (v->x > mx->x) mx->x = v->x;
-    if (v->y > mx->y) mx->y = v->y;
-    if (v->z > mx->z) mx->z = v->z;
-    if (v->x < mn->x) mn->x = v->x;
-    if (v->y < mn->y) mn->y = v->y;
-    if (v->z < mn->z) mn->z = v->z;
-}
-
 static __forceinline float Sqrt_00126A80(float x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(_mm_load_ss(&x))); return r; }
 static __forceinline float Max_00126A80(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
 static __forceinline float Abs_00126A80(float f) { int i = *(int *)&f & 0x7fffffff; return *(float *)&i; }
