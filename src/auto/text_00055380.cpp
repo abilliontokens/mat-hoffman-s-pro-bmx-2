@@ -339,12 +339,6 @@ struct func_00055380 : CameraBehavior_00055380 {
 #include "asm_helpers.h"
 struct C_00055A10_Filter { float func_00026A10(float,float); void func_000269B0(float,float,float); };
 void func_00055140(S_00056100_Quat *,S_00056100_Quat *);
-static __forceinline S_00056100_Quat MulS_00055A10(const S_00056100_Quat &q,float s)
-{
- S_00056100_Quat r;
- r.x=s*q.x; r.y=s*q.y; r.z=s*q.z;
- return r;
-}
 void C_000559E0_unused();
 func_00055380::func_00055380()
 {
