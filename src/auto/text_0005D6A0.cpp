@@ -21,6 +21,7 @@ struct S_00094F40 {
 struct C_0005D6A0 { C_0005D6A0 *func_0005D6A0(void); };
 
 struct Vec4_5DAB0 {
+    Vec4_5DAB0() { x=y=z=0; w=1; }
     float x;
     float y;
     float z;
