@@ -1,6 +1,7 @@
 /* 14 functions from 0x0015E300 to 0x0015F120, found by Ghidra. */
 #include "common.h"
 #include <math.h>
+#include "asm_helpers.h"
 
 struct S_0015E300_V3 {
     int x, y, z;
@@ -191,6 +192,7 @@ struct LightSource {
     LS_Sub193950 *fC4;
     void func_0015E850(LS_Vec4 *v);
     void func_0015E650(LS_Vec4 v);
+    void func_00157A00(float dt);
 };
 
 extern char D_002A801C[];
@@ -432,19 +434,18 @@ void LightEmitter::func_0015E920(float *p)
 
 void LightEmitter::func_0015EB90(float dt)
 {
-    S_0015EB90_Blink *p = (S_0015EB90_Blink *)fCC;
-    if (p == 0)
+    if (fCC == 0)
         return;
-    if (*(int *)p == -1)
+    if (*(int *)fCC == -1)
         return;
-    p->f0c += dt;
-    while (p->f0c > p->f08)
-        p->f0c -= p->f08;
+    ((S_0015EB90_Blink *)fCC)->f0c += dt;
+    while (((S_0015EB90_Blink *)fCC)->f0c > ((S_0015EB90_Blink *)fCC)->f08)
+        ((S_0015EB90_Blink *)fCC)->f0c -= ((S_0015EB90_Blink *)fCC)->f08;
 
     unsigned int a = (unsigned int)func_0015CF60();
     int idx = (int)(((S_0015EB90_Blink *)fCC)->f0c / ((S_0015EB90_Blink *)fCC)->f08 * D_002756C0);
-    unsigned int b = ((p->f00 >> idx) & 1) ? p->f04 : 0;
-    float t = p->f10;
+    unsigned int b = ((((S_0015EB90_Blink *)fCC)->f00 >> idx) & 1) ? ((S_0015EB90_Blink *)fCC)->f04 : 0;
+    float t = ((S_0015EB90_Blink *)fCC)->f10;
     float it = D_00275460 - t;
     LS_Vec4 col;
     col.x = (float)((a >> 16) & 0xff) * t + (float)((b >> 16) & 0xff) * it;
@@ -460,24 +461,37 @@ void LightEmitter::func_0015EB90(float dt)
         float dist = sqrtf(dx * dx + dy * dy + dz * dz);
         if (f28 == 3) {
             float v = func_0014F600(f90 * D_002755E8);
-            LS_Vec4 n;
-            n.x = v * dist;
-            n.y = v * dist;
-            n.z = v * dist;
-            n.w = D_00275460;
-            func_0015CD90(&n.x, &n.x);
+            LS_Vec4 dir;
+            dir.x = f6C;
+            dir.y = f70;
+            dir.z = f74;
+            dir.w = D_00275460;
+            func_0015CD90(&dir.y, &dir.x);
+            LS_Vec4 m;
+            m.x = dir.x * f78;
+            m.y = dir.y * f78;
+            m.z = dir.z * f78;
+            m.w = D_00275460;
+            LS_Vec4 pos;
+            pos.x = m.x + f94;
+            pos.y = m.y + f98;
+            pos.z = m.z + f9c;
+            pos.w = v * f78;
             LS_Vec4 q;
-            q.x = n.x * D_002A802C.x + n.y * D_002A802C.y + n.z * D_002A802C.z;
-            q.y = n.x * D_002A802C.x + n.y * D_002A802C.y + n.z * D_002A802C.z;
-            q.z = n.x * D_002A802C.x + n.y * D_002A802C.y + n.z * D_002A802C.z;
+            AsmVec3Cross(&q.x, &m.x, &D_002A802C.x);
             q.w = 0.0f;
             if (func_000262C0(&q, D_002A801C)) {
-                LS_Vec4 m;
-                m.x = q.x * D_002A803C.x;
-                m.y = q.y * D_002A803C.y;
-                m.z = q.z * D_002A803C.z;
-                m.w = D_00275460;
-                func_0015CD90(&m.x, &m.x);
+                AsmVec3Cross(&q.x, &m.x, &D_002A803C.x);
+                func_0015CD90(&q.x, &q.x);
+                LS_Vec4 d;
+                d.x = pos.x - q.x;
+                d.y = pos.y - q.y;
+                d.z = pos.z - q.z;
+                AsmVec3Cross(&q.x, &m.x, &D_002A804C.x);
+                if (func_000262C0(&q, D_002A801C)) {
+                    AsmVec3Cross(&q.x, &m.x, &D_002A803C.x);
+                    func_0015CD90(&q.y, &q.x);
+                }
             }
         }
     }
