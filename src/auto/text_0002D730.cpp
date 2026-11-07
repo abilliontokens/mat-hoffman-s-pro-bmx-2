@@ -143,7 +143,8 @@ struct S_2D730_State {
     char pad90[0x1a0 - 0x90];
     int f1a0[4];
     char pad1b0[0x1d8 - 0x1b0];
-    S_2D730_State *f1d8;
+    S_2D730_State *f1d8, *f1dc, *f1e0;
+    int func_00026A70(int);
 };
 
 struct C_0002D730 {
