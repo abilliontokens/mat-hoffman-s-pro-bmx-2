@@ -432,3 +432,13 @@ void C_001C9760::func_001C9760(S_1C9760_Vec *pos, int arg1, int arg2) {
     else pos->y=height;
 }
 extern char D_0028EBA4[], D_0028EB94[];
+struct C_001C8960_Layer {
+    char pad0[0xac]; int type;
+    C_001C8960_Layer *func_00143940(float *, float *, int, float, float, float, float, float, float, float, int, int, int, float, float, int, int, float);
+    void func_00143A40(char *, char *);
+    void func_00194310(float, float);
+};
+struct C_001C8960_Slot {
+    char data[20];
+    void func_00144640();
+};
