@@ -542,38 +542,29 @@ void C_000255D0::func_000255D0(Vec4_257E0 * volatile pos, float radius, float t,
 #pragma intrinsic(sqrt)
 int AmbientBird::func_000257E0(volatile int a0)
 {
- AmbientBird *volatile self = this;
  C_002A8490 *g = D_002A8490;
- AmbientBird *p;
  if(g->unk124==0) {
- self->func_00157A00(a0);
- p=self;
- if(p->unk79==1) {
- struct { volatile float sum; float root; } t;
+ func_00157A00(a0);
+ if(unk79==1) {
+ struct { float sum; float root; } t;
  Vec4_257E0 v;
- p->unk28->unk1A4->unk4->func_00199B00(&v,0);
- p=self;
- volatile int *dst=(volatile int*)&p->unk5C;
- volatile int *src=(volatile int*)&v;
- dst[0]=src[0]; dst[1]=src[1]; dst[2]=src[2]; dst[3]=src[3];
- p=self;
- float dx=p->unk4C-p->unk5C.x;
- float dy=p->unk50-p->unk5C.y;
- float dz=p->unk54-p->unk5C.z;
+ unk28->unk1A4->unk4->func_00199B00(&v,0);
+ unk5C=v;
+ float dx=unk4C-unk5C.x;
+ float dy=unk50-unk5C.y;
+ float dz=unk54-unk5C.z;
  t.sum=dx*dx+dy*dy+dz*dz;
- t.root=(float)sqrt(t.sum);
- p=self;
+ t.root=AsmSqrtF(t.sum);
  if(t.root<D_00275600) {
- if(p->unk78!=2) p->func_00023340();
- self->func_000235C0();
+ if(unk78!=2) func_00023340();
+ func_000235C0();
  }
  }
- p=self;
- if(p->unk79==1) p->func_000239F0(a0);
- if(self->unk7B==1) {
+ if(unk79==1) func_000239F0(a0);
+ if(unk7B==1) {
  D_002B7E18->unk2C++;
- D_002B9120->unk484->func_0001B440(self->unk28,func_00011260(0,100));
- self->unk7B=0;
+ D_002B9120->unk484->func_0001B440(unk28,func_00011260(0,100));
+ unk7B=0;
  }
  }
  return 1;
@@ -596,12 +587,13 @@ void *AmbientDebris::func_00025920(unsigned int flags)
     return this;
 }
 
+extern float D_002A0F80;
 int C_00025980::func_00025980(float dt)
 {
-    C_00025980 *self = this;
     Vec4_257E0 n;
     Vec4_257E0 v;
     Vec4_257E0 w;
+    Vec4_257E0 pos;
     int i;
     int j;
     int idx;
@@ -610,28 +602,28 @@ int C_00025980::func_00025980(float dt)
     float b;
 
     if (D_002A8490->unk124 == 0) {
-        if (self->f58 != 0 && self->f58 < D_002A8490->unk238) {
-            self->func_000255D0(&self->f74, self->f24, 0.0f, 1);
-            self->f58 = 0;
+        if (f58 != 0 && f58 < D_002A8490->unk238) {
+            func_000255D0(&f74, f24, 0.0f, 1);
+            f58 = 0;
         }
-        self->f2c = (int)(self->f2c * D_002755E8);
-        if (self->f54 < D_002A8490->unk238) {
-            count = self->f34;
-            idx = self->f48;
+        f2c = (int)(f2c * D_002755E8);
+        if (f54 < D_002A8490->unk238) {
+            count = f34;
+            idx = f48;
             for (i = 0; i < count; i++) {
-                if (self->f64[idx]->f2c == 0 && self->f64[idx]->f2e == 0) {
-                    S_00025980_Pt *pt = &self->f64[idx]->f18[self->f64[idx]->f4 - 1];
-                    v.x = pt->x;
-                    v.y = pt->y;
-                    v.z = pt->z;
-                    v.w = 1.0f;
-                    self->func_000255D0(&v, 32.0f, 0.0f, 1);
+                if (f64[idx]->f2c == 0 && f64[idx]->f2e == 0) {
+                    S_00025980_Pt *pt = &f64[idx]->f18[f64[idx]->f4 - 1];
+                    pos.x = pt->x;
+                    pos.y = pt->y;
+                    pos.z = pt->z;
+                    pos.w = 1.0f;
+                    func_000255D0(&pos, 32.0f, 0.0f, 1);
                     idx++;
-                    if (idx >= self->f34) {
-                        idx -= self->f34;
+                    if (idx >= f34) {
+                        idx -= f34;
                     }
-                    self->f48 = idx;
-                    self->f54 = (int)(D_002A8490->unk2e0->f10 * D_00276278 / self->f34) + D_002A8490->unk238;
+                    f48 = idx;
+                    f54 = (int)(D_002A8490->unk2e0->f10 * D_00276278 / f34) + D_002A8490->unk238;
                     break;
                 }
                 idx++;
@@ -640,10 +632,11 @@ int C_00025980::func_00025980(float dt)
                 }
             }
         }
-        for (i = 0; i < self->f44; i++) {
-            for (j = 0; j < self->f70[i]->f14; j++) {
-                if (self->f70[i]->f18[j]->f24 == 0) {
+        for (i = 0; i < f44; i++) {
+            for (j = 0; j < f70[i]->f14; j++) {
+                if (f70[i]->f18[j]->f24 == 0) {
                     if (Rand01_00025980() < D_00276088) {
+                        float ang;
                         D_002B9120->unk4e0->f1a8[D_002A8490->unk2a4->f120]->f1e0->f22c->func_00199B00(&v, 0);
                         w = *(Vec4_257E0 *)D_002A0F74;
                         if (D_002B9120->unk24 != 0) {
@@ -651,20 +644,21 @@ int C_00025980::func_00025980(float dt)
                         } else {
                             w.x = Rand01_00025980() * D_0027599C + D_00275994;
                         }
-                        func_00158390(Rand01_00025980() * D_002756B8, D_002A0F94, w, &w);
+                        ang = Rand01_00025980() * D_002756B8;
+                        func_00158390(ang, D_002A0F94, w, &w);
                         v.x = v.x + w.x;
                         v.y = w.y + v.y;
                         v.z = w.z + v.z;
-                        self->f70[i]->f18[j]->func_000223B0(v, 0.0f);
+                        f70[i]->f18[j]->func_000223B0(v, 0.0f);
                     }
                 }
             }
         }
-        self->f4c++;
-        if (self->f28 > D_00275544) {
-            self->f28 -= dt;
-            if (self->f28 < D_00275544) {
-                self->f28 = 0;
+        f4c++;
+        if (f28 > D_00275544) {
+            f28 -= dt;
+            if (f28 < D_00275544) {
+                f28 = 0;
             }
         }
         D_002B7E1C += dt;
@@ -674,13 +668,13 @@ int C_00025980::func_00025980(float dt)
         n.y = 0;
         n.z = b;
         n.w = 1.0f;
-        Normalize_00025980(&n.x, &n.x);
+        AsmVec3Normalize(&n.x, &n.x);
         v.x = n.x * a;
         v.y = n.y * a;
         v.z = n.z * a;
         v.w = 1.0f;
-        self->f84 = v;
-        self->func_00157A00(dt);
+        f84 = v;
+        func_00157A00(dt);
     }
     return 1;
 }
