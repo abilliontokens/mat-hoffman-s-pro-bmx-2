@@ -127,6 +127,38 @@ extern float D_0027653C;
 extern float D_00278650;
 extern int D_0028F5E0;
 extern int D_0028F5DC;
+
+static __forceinline C_0007A0F0_W *CreateSprite7() {
+ C_0007A0F0_W *p=(C_0007A0F0_W *)func_001E8A44(0x64);
+ return p ? p->func_001D5760() : 0;
+}
+static __forceinline C_0007A0F0_L *CreateLabel7() {
+ C_0007A0F0_L *p=(C_0007A0F0_L *)func_001E8A44(0x60);
+ return p ? p->func_001D5E90() : 0;
+}
+struct Button7 {
+ Button7 *func_001B12C0(int);
+ void func_001B13A0(const char *,const char *,int,int);
+ void func_001B1580(const char *,const char *,int,int);
+};
+static __forceinline Button7 *CreateButton7() {
+ Button7 *p=(Button7 *)func_001E8A44(0x184);
+ return p ? p->func_001B12C0(1) : 0;
+}
+extern "C" int func_001ADCC0(void *,int,const char *,void *,void *);
+extern "C" void func_00160C20(int *,int);
+extern char D_002A5FA8[],D_002A5870[],D_00275678[],D_00275630[];
+extern float D_002784FC,D_002779FC,D_00275800,D_00278AE8,D_00278F68,D_002756C8,D_00278F64,D_00278D40,D_00278F60;
+extern char D_00278600[];
+extern char D_00278FC4[];
+extern char D_00278FB8[];
+extern char D_00278FAC[];
+extern char D_00278FA4[];
+extern char D_00278F9C[];
+extern char D_00278F94[];
+extern char D_00278F8C[];
+extern char D_00278F7C[];
+extern char D_00278F6C[];
 void *BmxObjectivesMenu::func_0007A0F0(int a)
 {
     const char *names[1];
