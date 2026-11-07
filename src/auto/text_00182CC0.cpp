@@ -265,7 +265,7 @@ void *func_001E83E8(void *p, int size);
 
 struct C_001AE3E0 {
     C_001AE3E0 *func_001AE3E0(int a);
-    void func_001AEBD0(char *a, char *b, void *c, float d, float e, float f, float g, int n, V4 v, int p);
+    void func_001AEBD0(char *s1, char *s2, void *pb, void *p1, void *p2, char *buf1, char *buf2, int n, V4 a, int p);
     void func_001AE4D0(V4 a, V4 b, int i);
 };
 
@@ -283,27 +283,72 @@ struct C_00183450 {
 void C_00183450::func_00183450(int param)
 {
     V4 pos = {0, 0, 0, 1}, a = {0, 0, 0, 1}, b = {0, 0, 0, 1};
-    int cnt = 0, i, j, ok;
-    char name[0x40], s1[0x104], s2[0x104], s3[0x104];
-    float p1[4], p2[4], p3[4], p4[4], p5[4];
-    int ia, ib;
+    int cnt = 0, i, j, ok, ia = 0, n, old;
+    char name[0x40];
+    char s1[0x104], s2[0x104], s3[0x104];
+    char buf1[0x80], buf2[0x80];
+    V4 p1, p2, p3, p4, v1, v2, v3, v4;
+    C_001AE3E0 *obj;
 
     f28->func_00169710(D_00289504);
     f28->func_00168C20(D_002894F0, 0, &cnt);
     if (cnt > 0) {
-        int old;
         if (f48C == 0) {
             old = 0;
-            f490 = cnt;
-            f48C = (C_001AE3E0 **)func_001E8A44(cnt * 4);
+            n = cnt;
+            f490 = n;
+            f48C = (C_001AE3E0 **)func_001E8A44(n * 4);
         } else {
             old = f490;
-            f490 += cnt;
-            f48C = (C_001AE3E0 **)func_001E83E8(f48C, f490 * 4);
+            n = old + cnt;
+            f490 = n;
+            f48C = (C_001AE3E0 **)func_001E83E8(f48C, n * 4);
         }
-        for (i = old; i < f490; i++) {
+        for (i = old; i < n; i++) {
             func_001ADCC0(name, 0x40, D_002894E4, i + 1);
             if (f28->func_00169710(name)) {
+                f28->func_00168550(D_00288A68, s1, -1);
+                f28->func_00168BE0(D_002894C0, D_002894D4, s2, -1);
+                f28->func_00168A10(D_002894B4, &ia);
+                f28->func_00168B90(D_002894A8, &p1);
+                f28->func_00168B90(D_0028949C, &p2);
+                f28->func_00168C20(D_00289494, 0x80, buf1);
+                f28->func_00168C20(D_0028948C, 0x80, buf2);
+                f28->func_00168BE0(D_00289474, D_00289480, s3, -1);
+                a = *func_00182980(&a, s3);
+                ok = f28->func_00168CB0(D_00289464, D_002A90B4, &b);
+                if (!ok) {
+                    f28->func_00168CB0(D_00275AD4, D_002A90D4, &p3);
+                    f28->func_00168CB0(D_00289454, D_002A90B4, &p4);
+                    b.x = p4.x - p3.x;
+                    b.y = p4.y - p3.y;
+                    b.z = p4.z - p3.z;
+                    b.w = 1.0f;
+                }
+                obj = (C_001AE3E0 *)func_001E8A44(0x88);
+                obj = obj ? obj->func_001AE3E0(1) : 0;
+                f48C[i] = obj;
+                obj->func_001AEBD0(s1, s2, &b, &p1, &p2, buf1, buf2, f340, a, param);
+                if (ia) {
+                    int e1 = f28->func_00168550(D_00289440, s1, -1);
+                    int e2 = f28->func_00168550(D_0028942C, s2, -1);
+                    if (e1 && e2) {
+                        v1 = *func_00182980(&v1, s2);
+                        v2 = *func_00182980(&v2, s1);
+                        for (j = 0; j < f340; j++)
+                            obj->func_001AE4D0(v1, v2, j);
+                    } else {
+                        for (j = 0; j < f340; j++) {
+                            func_001ADCC0(name, 0x40, D_002867E8, D_00289410, j + 1);
+                            f28->func_00168550(name, s1, -1);
+                            v3 = *func_00182980(&v3, s1);
+                            func_001ADCC0(name, 0x40, D_002867E8, D_002893F4, j + 1);
+                            f28->func_00168550(name, s2, -1);
+                            v4 = *func_00182980(&v4, s2);
+                            obj->func_001AE4D0(v3, v4, j);
+                        }
+                    }
+                }
             }
         }
     }
