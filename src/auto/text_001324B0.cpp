@@ -1,9 +1,9 @@
 /* 13 functions from 0x001324B0 to 0x00132DB8, found by Ghidra. */
 #include "common.h"
 
-static __forceinline void AbsI_001325D0(float *dst, volatile int *src)
+static __forceinline int AbsBits_001325D0(int v)
 {
-    *(int *)dst = *src & 0x7fffffff;
+    return *(volatile int *)&v & 0x7fffffff;
 }
 
 struct CinematographerCam {
