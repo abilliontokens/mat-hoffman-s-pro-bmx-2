@@ -361,7 +361,6 @@ void CutScene::func_00138950()
     int i;
     int k;
     Found138 *found;
-    void __stdcall func_0011CA60(SceneVector v);
 
     index = 0;
     if (((Cont138 *)f60)->count > 0) {
@@ -439,12 +438,10 @@ void CutScene::func_00138950()
                             for (k = 0; k < f54; k++) {
                                 if (func_001EA426((char *)e->obj8 + 0xc, (char *)((int *)f58)[k] + 0x138) == 0) {
                                     found = ((Elem138 *)((int *)f58)[k])->f4;
-                                    if (func_001EA426((char *)e->obj8 + 0x110, (char *)&D_00284A98) != 0) {
+                                    if (func_001EA426((char *)e->obj8 + 0x110, (char *)&D_00284A98) != 0)
                                         found = ((Elem138 *)((int *)f58)[k])->f4->func_00198330((char *)e->obj8 + 0x110);
-                                        if (found != 0) {
-                                            vec = *(SceneVector *)found->func_00199B00((int *)&tmp, 0);
-                                        }
-                                    }
+                                    if (found != 0)
+                                        vec = *(SceneVector *)found->func_00199B00((int *)&tmp, 0);
                                     break;
                                 }
                             }
@@ -496,10 +493,8 @@ void CutScene::func_00138950()
                             break;
                         }
                         for (i = 0; i < e->count10; i++) {
-                            func_0011CA60(vec);
-                            func_0011CA60(vec);
-                            ((ArrVec138 *)e->arr4[i])->v31(vec);
-                            ((ArrVec138 *)e->arr4[i])->v4(vec);
+                            ((ArrVec138 *)e->arr4[i])->func_0011CA60(vec);
+                            ((ArrVec138 *)e->arr4[i])->func_0011CA60(vec);
                         }
                         func_001E891B(e->obj8);
                         e->obj8 = 0;
