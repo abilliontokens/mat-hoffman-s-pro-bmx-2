@@ -108,6 +108,7 @@ struct S_0E9180_124 {
     char pad154[0x264-0x154];
     unsigned int f264;
     Timer_0E9180 *f268;
+    int f26c;
     void *f270;
     char pad274[8];
     char *f27c;
