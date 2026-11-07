@@ -139,16 +139,4 @@ extern char D_00279AF0[],D_00279AD0[],D_00279B00[],D_00279AE0[];
 extern float D_00275AE8,D_0027FD58,D_00276228,D_0027FD4C;
 extern int D_0028F5EC;
 
-struct RiderText {
-int w[0x184/4];
-RiderText *func_001B12C0(int);
-void func_001B13A0(char*,char*,int,int);
-void func_001B1A30(float,float,int);
-void func_001B2270(int);
-void func_001B19A0(int);
-};
-struct RiderLabel {
-int w[0x60/4];
-RiderLabel *func_001D5E90();
-void func_001D5FA0(int,char*,int,int);
-};
+
