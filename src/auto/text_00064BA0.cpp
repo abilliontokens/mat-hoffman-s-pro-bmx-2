@@ -24,6 +24,8 @@ struct S_00064BA0_Inner {
     S_00064BA0_A *f64;              /* 0x64: object whose vtable slot 4 is called */
     char pad68[0x158 - 0x68];
     S_00064BA0_B *f158;             /* 0x158 */
+    char pad15C[0x1C0 - 0x15C];
+    struct S_ObjectiveList *f1C0;
     void func_00052C10(int a);
 };
 
