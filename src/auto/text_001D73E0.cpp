@@ -242,6 +242,7 @@ struct XboxTextureMap {
     int func_001D7C50();
     int func_001D7910(void *data, int width, int height, int a4, int minDim, int srcFmt, int dxFmt, unsigned int flags, int a9);
     int func_001D73E0(int file, int width, int height, int minDim, int fmt, int size, int dxFmt, unsigned int flags, int a9);
+    void func_001D6D00(void *desc, int *dims, char *name);
 };
 
 struct VTexMap_001D73E0 {
@@ -557,14 +558,16 @@ int XboxTextureMap::func_001D7C50()
     unsigned count = func_001FCFE0(field_b8);
     for (unsigned i = 0; i < count; i++) {
         void *p = func_001FCE50(field_b8, i);
-        if (p == 0)
+        if (p != 0) {
+            int dims[2];
+            S_001D7C50_desc desc;
+            func_00201210(p, dims, 0, 0x80);
+            func_002011F0(p, &desc);
+            ((C_001D6D00 *)this)->func_001D6D00(&desc, dims, 0);
+            func_00201100(p);
+        } else {
             return 0;
-        int dims[2];
-        S_001D7C50_desc desc;
-        func_00201210(p, dims, 0, 0x80);
-        func_002011F0(p, &desc);
-        ((C_001D6D00 *)this)->func_001D6D00(&desc, dims, 0);
-        func_00201100(p);
+        }
     }
     return 1;
 }
