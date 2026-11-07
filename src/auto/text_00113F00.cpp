@@ -22,7 +22,7 @@ struct C_00113F00_Global {
 extern C_00113F00_Global *D_002A8490;
 extern int D_002B9208;
 extern float D_002A3AA8;
-extern float D_00276E9C, D_00276E98;
+extern float D_00276E9C, D_00276E98, D_002756DC, D_00276DD4;
 extern float D_00275544, D_00275460, D_002755EC, D_00275F58, D_002756B8, D_002755E8;
 void __stdcall func_00107070(float dt);
 float __cdecl func_00016D20(float a);
