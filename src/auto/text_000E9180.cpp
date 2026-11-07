@@ -46,6 +46,7 @@ extern void *D_002A8490;
 extern float D_002A33B8;
 extern float D_002A33BC;
 extern float D_002A33C0;
+extern int D_0027EB58;
 
 int func_000BC670();
 void func_000BC590();
