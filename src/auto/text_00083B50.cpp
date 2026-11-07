@@ -1,5 +1,6 @@
 /* 9 functions from 0x00083B50 to 0x000849F0, found by Ghidra. */
 #include "common.h"
+#include "asm_helpers.h"
 
 #include <xmmintrin.h>
 
@@ -423,52 +424,29 @@ void C_000847A0::func_000847A0(void) {
 
 void C_000847B0::func_000847B0(void)
 {
-    C_000847B0 * volatile self = this;
-    int v;
-    int lo;
-    int hi;
-    int i;
-    int x;
-    float t;
-    int * volatile p;
-    S_000847B0_Widget *w;
-
-    i = 1;
-    for (x = 4; x <= 100; x += 4) {
-        p = &v;
-        t = self->fD50 * D_00275994;
-        *p = _mm_cvtss_si32(*(__m128 *)&t);
-        if (v <= x) {
-            lo = i * 5 + 4;
-            hi = i * 5 + 3;
-            break;
-        }
-        i++;
-    }
-    w = self->fD48;
-    if (w->f2C != 0x42000000) {
-        w->f2C = 0x42000000;
-        w->b58 |= 1;
-    }
-    w = self->fD48;
-    if ((float)lo != w->f28) {
-        w->f28 = (float)lo;
-        w->b58 |= 1;
-    }
-    w = self->fD48;
-    w->f3C = w->f4C * D_00275544;
-    w->b58 |= 4;
-    w->f40 = (float)hi * w->f4C;
-    w->f44 = w->f50 * D_00275544;
-    w->f48 = w->f50 * D_002795B8;
-    w = self->fD48;
-    if (self->fD64 > D_00275544) {
-        w->f38 = (w->f38 & 0xff32a539) | 0x32a539;
-        w->b58 |= 2;
-    } else {
-        w->f38 = (w->f38 & 0xff324fa5) | 0x324fa5;
-        w->b58 |= 2;
-    }
+ C_000847B0 * volatile self=this;
+ int v, hi, lo;
+ int * volatile p=&v;
+ int i=1;
+ for(int x=4;x<=100;x+=4) {
+ float t=*(volatile float *)&self->fD50 * D_00275994;
+ *p=_mm_cvt_ss2si(*(__m128 *)&t);
+ if(v<=x) {lo=i*5+4;hi=i*5+3;break;}
+ i++;
+ }
+ S_000847B0_Widget *w=self->fD48;
+ if(w->f2C!=0x42000000) {w->f2C=0x42000000;w->b58|=1;}
+ w=self->fD48;
+ if((float)lo!=w->f28) {w->f28=(float)lo;w->b58|=1;}
+ w=self->fD48;
+ w->f3C=*(volatile float *)&w->f4C * D_00275544;
+ w->b58|=4;
+ w->f40=(float)hi*w->f4C;
+ w->f44=*(volatile float *)&w->f50 * D_00275544;
+ w->f48=*(volatile float *)&w->f50 * D_002795B8;
+ w=self->fD48;
+ if(self->fD64>D_00275544) {w->f38=(w->f38&0xff32a539)|0x32a539;w->b58|=2;}
+ else {w->f38=(w->f38&0xff324fa5)|0x324fa5;w->b58|=2;}
 }
 
 void C_000848F0::func_000848F0(void)
