@@ -1,5 +1,6 @@
 /* 4 functions from 0x000D0E00 to 0x000D1AE0, found by Ghidra. */
 #include "common.h"
+#include "asm_helpers.h"
 #include <string.h>
 
 extern int D_0027EB8C;
@@ -298,22 +299,209 @@ void C_000D0FD0::func_000D0FD0()
     func_001BE3F0();
 }
 
+void C_000D0FD0::func_000D1050()
+{
+    S_000D1980_Mgr *owner = f124;
+    int i = 0;
+    f1FEC = i;
+    f280 = i;
+    if (D_002A8490->f2E0->f4 == i) {
+        for (i = 0; i < 8; i++)
+            f3E8[i] = D_002A8490->f2E0->f2C0->func_0005C020(D_002A8490->f2E0->f2D8)->f60C[i];
+    } else {
+        for (i = 0; i < 8; i++)
+            f3E8[i] = D_002A8490->f2E0->f2C0->func_0005C120(i) != 0;
+    }
+    f2040 = 0;
+    for (i = 0; i < 8; i++) {
+        if (D_002A8490->f2E0->f2C0->func_0005C020(D_002A8490->f2E0->f2D8)->f5EC[i] != 0)
+            f2040++;
+    }
+    if (D_002A8490->f2E0->f4 == 0) {
+        for (i = 0; i < 8; i++)
+            f1FF0[i] = D_002A8490->f2E0->f2C0->func_0005C020(D_002A8490->f2E0->f2D8)->f5EC[i] != 0;
+    }
+    f1FE0 = 0;
+    f203C = 0;
+    int v = D_002A8490->f2E0->f2C0->func_0005C020(D_002A8490->f2E0->f2D8)->f4;
+    for (i = 0; i < 8; i++) {
+        if (i == f418) {
+            f450[i] = 2;
+            if (f1FF0[i] != 0) {
+                f470 = 3;
+            } else if (f3E8[i] != 0) {
+                f470 = 1;
+            } else if (D_002A8490->f2E0->f4 == 0) {
+                switch (i) {
+                case 0:
+                    f470 = v >= D_002A8490->f2E0->f2E8 ? 4 : 0;
+                    f470 = v >= D_002A8490->f2E0->f2E0 ? 4 : 0;
+                    f470 = v >= D_002A8490->f2E0->f2EC ? 4 : 0;
+                    break;
+                case 3:
+                    f470 = v >= D_002A8490->f2E0->f2E4 ? 4 : 0;
+                    f470 = v >= D_002A8490->f2E0->f2F0 ? 4 : 0;
+                    break;
+                case 2:
+                    f470 = v >= D_002A8490->f2E0->f2F0 ? 4 : 0;
+                case 7:
+                    if (v >= D_002A8490->f2E0->f2F8 && f2040 >= 7)
+                        f470 = 4;
+                    else
+                        f470 = 0;
+                    break;
+                case 5:
+                    f470 = v >= D_002A8490->f2E0->f2E4 ? 4 : 0;
+                    break;
+                case 4:
+                    f470 = v >= D_002A8490->f2E0->f2E0 ? 4 : 0;
+                    f470 = v >= D_002A8490->f2E0->f2F4 ? 4 : 0;
+                    break;
+                case 1:
+                    f470 = v >= D_002A8490->f2E0->f2EC ? 4 : 0;
+                    f470 = v >= D_002A8490->f2E0->f2F4 ? 4 : 0;
+                    break;
+                case 6:
+                    f470 = v >= D_002A8490->f2E0->f2EC ? 4 : 0;
+                    f470 = v >= D_002A8490->f2E0->f2E0 ? 4 : 0;
+                    break;
+                }
+            } else {
+                f470 = 0;
+            }
+        } else if (f1FF0[i] != 0) {
+            f450[i] = 3;
+        } else {
+            f450[i] = f3E8[i] != 0;
+        }
+    }
+    f44C = 0;
+    if (f450[5] != 0 && f450[2] != 0)
+        f424[0] = 1;
+    if (f450[5] != 0 && f450[3] != 0)
+        f424[1] = 1;
+    if (f450[2] != 0 && f450[7] != 0)
+        f424[2] = 1;
+    if (f450[2] != 0 && f450[3] != 0)
+        f424[3] = 1;
+    if (f450[3] != 0 && f450[0] != 0)
+        f424[4] = 1;
+    if (f450[0] != 0 && f450[1] != 0)
+        f424[5] = 1;
+    if (f450[0] != 0 && f450[4] != 0)
+        f424[6] = 1;
+    if (f450[1] != 0 && f450[4] != 0)
+        f424[7] = 1;
+    if (f450[4] != 0 && f450[6] != 0)
+        f424[8] = 1;
+    if (f450[1] != 0 && f450[6] != 0)
+        f424[9] = 1;
+    f28C = 0;
+    f290 = 0;
+    f294 = 0;
+    f2BC = 0;
+    f298 = 0;
+    f3E4 = 0;
+    f3E0 = 0;
+    f41C = 0;
+    f420 = 0;
+    if (!D_002A8490->f2E0->f2FC->func_00094EE0()) {
+        D_002A8490->f2E0->f2FC->func_00094C60();
+        D_002A8490->f2E0->f2FC->func_00094E40(2, 100, 500);
+        D_002A8490->f2E0->f2FC->func_00094E40(3, 100, 500);
+    }
+    owner->f270->f34 = 1;
+    owner->f270->f38 = 0;
+    owner->f270->func_000BC4C0(32.0f, D_0027ED00 + D_0027DE70);
+    owner->f270->func_000BC4A0(1.07f, 0.95f);
+    owner->f270->func_00093280(1.0f);
+    f3CC = 1;
+    switch (f418) {
+    case 0:
+        if (D_002A8490->f2E0->f2C0->func_0005C120(0))
+            func_001ADCC0((char *)&f2C4, 0x104, D_00275678, D_002A64D0, D_0027ECF0);
+        else
+            func_001ADCC0((char *)&f2C4, 0x104, D_00275678, D_002A64D0, D_0027ECE4);
+        break;
+    case 1:
+        if (D_002A8490->f2E0->f2C0->func_0005C120(1))
+            func_001ADCC0((char *)&f2C4, 0x104, D_00275678, D_002A64D0, D_0027ECD8);
+        else
+            func_001ADCC0((char *)&f2C4, 0x104, D_00275678, D_002A64D0, D_0027ECCC);
+        break;
+    case 2:
+        if (D_002A8490->f2E0->f2C0->func_0005C120(2))
+            func_001ADCC0((char *)&f2C4, 0x104, D_00275678, D_002A64D0, D_0027ECBC);
+        else
+            func_001ADCC0((char *)&f2C4, 0x104, D_00275678, D_002A64D0, D_0027ECB0);
+        break;
+    case 3:
+        if (D_002A8490->f2E0->f2C0->func_0005C120(3))
+            func_001ADCC0((char *)&f2C4, 0x104, D_00275678, D_002A64D0, D_0027ECA0);
+        else
+            func_001ADCC0((char *)&f2C4, 0x104, D_00275678, D_002A64D0, D_0027EC94);
+        break;
+    case 4:
+        if (D_002A8490->f2E0->f2C0->func_0005C120(4))
+            func_001ADCC0((char *)&f2C4, 0x104, D_00275678, D_002A64D0, D_0027EC84);
+        else
+            func_001ADCC0((char *)&f2C4, 0x104, D_00275678, D_002A64D0, D_0027EC78);
+        break;
+    case 5:
+        if (D_002A8490->f2E0->f2C0->func_0005C120(5))
+            func_001ADCC0((char *)&f2C4, 0x104, D_00275678, D_002A64D0, D_0027EC68);
+        else
+            func_001ADCC0((char *)&f2C4, 0x104, D_00275678, D_002A64D0, D_0027EC5C);
+        break;
+    case 6:
+        if (D_002A8490->f2E0->f2C0->func_0005C120(6))
+            func_001ADCC0((char *)&f2C4, 0x104, D_00275678, D_002A64D0, D_0027EC50);
+        else
+            func_001ADCC0((char *)&f2C4, 0x104, D_00275678, D_002A64D0, D_0027EC44);
+        break;
+    case 7:
+        if (D_002A8490->f2E0->f2C0->func_0005C120(7))
+            func_001ADCC0((char *)&f2C4, 0x104, D_00275678, D_002A64D0, D_0027EC38);
+        else
+            func_001ADCC0((char *)&f2C4, 0x104, D_00275678, D_002A64D0, D_0027EC2C);
+        break;
+    }
+    f3C8 = 0.5f;
+    f3D0 = 1;
+    f3DC = 0;
+    f410 = 1;
+    f2010 = 0;
+    f2014 = 0;
+    if (D_002A8490->f2E0->f4 == 0)
+        D_002B91AC->f34->func_0005E840(D_002A8490->f2E8->f4->f960);
+    else
+        D_002B91AC->f34->func_0005E840(D_002A8490->f2E8->f4->f958);
+    D_002B91AC->func_000BF860(0, 0x1eb, 0x184, 0);
+    D_002B91AC->f38->func_0005E840(D_002A8490->f2E8->f4->f7C8);
+    D_002B91AC->func_000BF860(1, 0x17b, 0x184, 0);
+    D_002B91AC->f3C->func_0005E840(D_002A8490->f2E8->f4->f838);
+    D_002B91AC->func_000BF860(2, 0xb4, 0x184, 0);
+    D_002B91AC->f40->func_0005E840(D_002A8490->f2E8->f4->f1258);
+    D_002B91AC->func_000BF860(3, 0x34, 0x184, 0);
+    D_002B91AC->f44->func_0005E840(D_002A8490->f2E8->f4->f978);
+    f20B4 = 0;
+}
+
 void C_000D0FD0::func_000D1980()
 {
     char buf[0x104];
     S_000D1980_Mgr *mgr = f124;
     int i;
-    volatile int t[2];
-    volatile int len;
+    volatile int t[3];
 
     f1EDC = D_0027ED04;
     for (i = 0; i < (*mgr->f150->f3A8)->count; (*(volatile int *)&i)++) {
         S_000D1980_Entry *e = (*mgr->f150->f3A8)->items[i];
         if (e != 0 && e->f4 == 1 && e->f8 != 0) {
-            len = strlen(e->f8->name);
+            t[2] = strlen(e->f8->name);
             t[0] = 0x103;
             int a = t[0];
-            int b = len;
+            int b = t[2];
             if (a > b) {
                 a = b;
             }
