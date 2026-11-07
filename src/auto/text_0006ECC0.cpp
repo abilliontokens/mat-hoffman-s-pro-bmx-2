@@ -120,3 +120,4 @@ extern "C" char *strcpy(char *,const char *);
 extern "C" unsigned int strlen(const char *);
 extern "C" int strcmp(const char *,const char *);
 int func_001ADCC0(char *,int,const char *,...);
+extern char D_00278414[],D_002783F8[];
