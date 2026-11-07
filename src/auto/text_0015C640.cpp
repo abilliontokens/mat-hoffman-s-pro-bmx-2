@@ -38,7 +38,7 @@ struct C_001938C0 {
     void func_001938C0(void *a0, int a1, int a2, V4_0015D0A0 *a3, V4_0015D0A0 *a4, float a5);
 };
 
-extern const float D_002755E8 = 0.5f;
+extern float D_002755E8;
 
 struct C_0015D0A0 {
     char pad0[0x24];
