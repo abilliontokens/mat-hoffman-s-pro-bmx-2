@@ -82,7 +82,7 @@ struct XboxVideoCard_001D7D50 {
     int a5B4[0x40];
     int f6B4;
     int f6B8;
-    volatile int f6BC;
+    int f6BC;
     int f6C0;
     int f6C4;
     int f6C8;
