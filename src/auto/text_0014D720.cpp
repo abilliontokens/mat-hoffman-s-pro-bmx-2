@@ -139,9 +139,9 @@ extern const float D_0027988C;
 extern const float D_002869B0;
 float func_0001E960(float);
 struct Ent14 {
-    char pad0[2]; unsigned char f2; char pad3; short f4; short f6;
-    short f8; short fA; short fC; unsigned char fE; unsigned char fF;
-    signed char f10; signed char f11; unsigned char f12; char pad13;
+    char pad0[2]; unsigned char f2; char pad3; unsigned short f4; unsigned short f6;
+    unsigned short f8; unsigned short fA; unsigned short fC; unsigned char fE; unsigned char fF;
+    signed char f10; signed char f11; unsigned char f12 : 1; unsigned char f12rest : 7; char pad13;
     short f14; short f16; int f18;
 };
 
