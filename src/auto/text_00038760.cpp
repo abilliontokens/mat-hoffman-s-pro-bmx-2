@@ -1,6 +1,7 @@
 /* 7 functions from 0x00038760 to 0x000395A0, found by Ghidra. */
 #include "common.h"
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 
 int func_001EA426(void *a, void *b);
 
@@ -125,16 +126,17 @@ extern float D_00275460;
 
 int C_00038760::func_00038760(float x, float y, float z, int unused, int *out)
 {
-    int n = arr.count;
+    int ret = 0;
     int i;
-    int j = 0;
+    int j;
 
-    for (i = 0; i < n; i++) {
+    for (i = 0; i < arr.count; i++) {
         S_00038760_Entry *e = (S_00038760_Entry *)arr.atv(i);
         if (e->type == 1) {
             S_00038760_Vec *v = &((S_00038760_Data *)e->data)->pos;
             if (x == v->x && y == v->y && z == v->z) {
-                for (; j < n; j++) {
+                ret = 1;
+                for (j = 0; j < arr.count; j++) {
                     S_00038760_Entry *e2 = (S_00038760_Entry *)arr.atv(j);
                     if (e2->type == 2) {
                         if (e2->owner->fE8 == e->data) {
@@ -147,11 +149,11 @@ int C_00038760::func_00038760(float x, float y, float z, int unused, int *out)
                         }
                     }
                 }
-                return 1;
+                break;
             }
         }
     }
-    return j;
+    return ret;
 }
 
 extern "C" void _ReadWriteBarrier(void);
