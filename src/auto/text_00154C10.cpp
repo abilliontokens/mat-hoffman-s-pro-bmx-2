@@ -19,10 +19,12 @@ extern char D_002758F0[], D_002758E4[], D_002758D8[], D_002758CC[];
    keeps the clamp's operands and result in three stack slots (len/limit/result) */
 static __forceinline void CopyPathV_001554D0(char *dst, const char *src, volatile int &len, volatile int &lim, volatile int &res)
 {
-    int n;
+    int ma, mb, n;
     len = strlen(src);
     lim = 0x103;
-    res = AsmMinI(lim, len);
+    ma = lim;
+    mb = len;
+    res = ma > mb ? mb : ma;
     n = res;
     func_001E8920(dst, src, n);
     dst[n] = 0;
