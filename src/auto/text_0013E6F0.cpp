@@ -200,9 +200,7 @@ int *__stdcall func_001FF410(int a, int b);
 
 static __forceinline float MinF_0013ED30(float a, float b)
 {
-    float r;
-    _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b)));
-    return r;
+    return AsmMinF(a, b);
 }
 struct V4_0013ED30 { float x, y, z, w; };
 void func_0013E920(V4_0013ED30 *out, V4_0013ED30 *in);
@@ -298,43 +296,43 @@ void func_0013E990(void)
 
 int C_0013E9B0::func_0013E9B0(S_0013E9B0_Arg *arg)
 {
-    C_0013E9B0 * volatile self = this;
+    S_0013E9B0_Arg *a = arg;
     S_0013E9B0_Mat m;
     S_0013E9B0_Mat mat;
     S_0013E9B0_Obj *obj = D_002BF250->f54[fE];
     float s = obj->func_0014C860(f11) * obj->f1D0 * D_002BEB34;
-    float t = obj->func_0014C830(self->f10) * obj->f1CC;
-    float a = self->f14 * s;
-    float b = self->f16 * s;
-    m.m[0] = a;
-    m.m[1] = 0.0f;
-    m.m[2] = -b;
-    m.m[3] = self->f8 * D_002BF250->f578;
+    float t = obj->func_0014C830(f10) * obj->f1CC;
+    float a2 = f14 * s;
+    float b = f16 * s;
     m.m[4] = 0.0f;
-    m.m[5] = t;
-    m.m[6] = 0.0f;
-    m.m[7] = self->fA * D_002BF250->f578;
-    m.m[8] = b;
-    m.m[9] = 0.0f;
-    m.m[10] = a;
-    m.m[11] = self->fC * D_002BF250->f578;
     m.m[12] = 0.0f;
+    m.m[1] = 0.0f;
+    m.m[9] = 0.0f;
     m.m[13] = 0.0f;
+    m.m[6] = 0.0f;
     m.m[14] = 0.0f;
+    m.m[0] = a2;
+    m.m[8] = b;
+    m.m[5] = t;
+    m.m[2] = -b;
+    m.m[10] = a2;
+    m.m[3] = f8 * D_002BF250->f578;
+    m.m[7] = fA * D_002BF250->f578;
+    m.m[11] = fC * D_002BF250->f578;
     m.m[15] = 1.0f;
-    float r = D_0027988C - (self->fF - 16) * D_00284ED0;
-    if (r > D_0027988C)
-        r = 64.0f;
-    Trunc_0013E9B0(&arg->fE0, r);
-    arg->fE0 = Min_0013E9B0(arg->fE0, 0xff);
+    s = D_0027988C - (fF - 16) * D_00284ED0;
+    if (s > D_0027988C)
+        s = 64.0f;
+    AsmFloatToInt(s, &a->fE0);
+    a->fE0 = AsmMinI(a->fE0, 0xff);
     char *base = D_002EFDB8->f4;
-    func_000263B0(arg->f10, &m, base + 0x250);
+    func_000263B0(a->f10, &m, base + 0x250);
     func_0011AC30(&mat, &m);
-    XformV_0013E9B0(arg->fD0, (float *)(base + 0x170), mat.m);
-    D_002E2930->func_0015E420(arg->f50, arg->f90, 0);
-    XformV_0013E9B0(arg->f50, arg->f50, mat.m);
-    arg->fCC = r * D_00284ECC;
-    obj->f200->func_00149310(obj->f204, (int)arg, 0, 0);
+    AsmTransformPoint(a->fD0, (float *)(base + 0x170), mat.m);
+    D_002E2930->func_0015E420(a->f50, a->f90, 0);
+    AsmTransformPoint(a->f50, a->f50, mat.m);
+    a->fCC = s * D_00284ECC;
+    obj->f200->func_00149310(obj->f204, (int)a, 0, 0);
     return 1;
 }
 
@@ -360,12 +358,11 @@ void __stdcall func_001FEE00(int, int, int);
 void func_0013F2F0(void)
 {
     char *p = D_002EFDB8->f4;
-
     func_001FEC30(0x18, p + 0x250);
     func_001FEBD0(0x2, p + 0x170);
-    func_001FEE00(0, *(int *)((char *)D_002BF250 + 0x21e4), 0xc);
-    func_001FEE00(1, *(int *)((char *)D_002BF250 + 0x21e8), 0xc);
-    func_001FEE00(2, *(int *)((char *)D_002BF250 + 0x21ec + *(int *)((char *)D_002BF250 + 0x21f8) * 4), 0x4);
+    func_001FEE00(0x0, *(int *)((char *)D_002BF250 + 0x21e4), 0xc);
+    func_001FEE00(0x1, *(int *)((char *)D_002BF250 + 0x21e8), 0xc);
+    func_001FEE00(0x2, *(int *)((char *)D_002BF250 + 0x21ec + *(int *)((char *)D_002BF250 + 0x21f8) * 4), 0x4);
 }
 
 C_0013F650 *func_0013F650(void)
