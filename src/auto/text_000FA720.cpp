@@ -103,7 +103,9 @@ struct BmxUIPageRider {
     virtual void v28(int a, int b);
     char pad4[0x124 - 4];
     RiderPlayer *f124;
-    char pad128[0x3f8 - 0x128];
+    char pad128[0x288 - 0x128];
+    int f288;
+    char pad28c[0x3f8 - 0x28c];
     RiderByteObj *f3f8;
     char pad3fc[0x484 - 0x3fc];
     int f484;
