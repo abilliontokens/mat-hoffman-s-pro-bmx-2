@@ -33,7 +33,10 @@ struct C_001AA270 {
     float fc4;
     char padc8[0x114 - 0xc8];
     float f114, f118, f11c;
+    float f120;
     float f124, f128, f12c;
+    int func_001AA270(float depth, V4_001AA270 normal, V4_001AA270 point, void *other, int mask);
+    void func_001A96D0(void *body, V4_001AA270 impulse, V4_001AA270 point, int scale);
     void func_001AA270(float a0, float a1, float a2, float a3, void *a4, void *a5, void *a6, void *a7, void *a8, int a9, int a10);
 };
 
