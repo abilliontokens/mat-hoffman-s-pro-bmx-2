@@ -110,7 +110,12 @@ void C_000C9940::func_000C9940(void)
         SETC9(f32C, 0xffbfa35a, 1.45f, 1.45f);
         SETC9(f2F8, 0xffcccccc, 1.15f, 1.15f);
         f330->func_001B2270(0xffcccccc);
-        f330->func_001B1B30(1.15f, 0);
+        f330->func_001B1B30(1.15f,0);
+        f330->func_001B1860(0,-1.0f,0xff,1.15f,0,0,0.0f,0,1.15f,0,0.25f,0,0);
+        SETC9(f304, 0xffcccccc, 1.15f, 1.15f);
+        SETC9(f2E0, 0xffcccccc, 1.15f, 1.15f);
+        SETC9(f324, 0xffcccccc, 1.15f, 1.15f);
+        SETC9(f300, 0xffcccccc, 1.15f, 1.15f);
     } else if (f2A4 == 2) {
         SETC9(f2EC, 0xffcccccc, 1.15f, 1.15f);
         SETC9(f2D8, 0xffcccccc, 1.15f, 1.15f);
@@ -120,15 +125,23 @@ void C_000C9940::func_000C9940(void)
         SETC9(f32C, 0xffcccccc, 1.15f, 1.15f);
         SETC9(f2F8, 0xffbfa35a, 1.45f, 1.45f);
         SETC9(f330, 0xffbfa35a, 1.45f, 1.45f);
+        SETC9(f304, 0xffcccccc, 1.15f, 1.15f);
+        SETC9(f2E0, 0xffcccccc, 1.15f, 1.15f);
+        SETC9(f324, 0xffcccccc, 1.15f, 1.15f);
+        SETC9(f300, 0xffcccccc, 1.15f, 1.15f);
     } else if (f2A4 == 0) {
         SETC9(f2EC, 0xffbfa35a, 1.45f, 1.45f);
         SETC9(f2D8, 0xffbfa35a, 1.45f, 1.45f);
         SETC9(f2FC, 0xffcccccc, 1.15f, 1.15f);
         SETC9(f2DC, 0xffcccccc, 1.15f, 1.15f);
         SETC9(f2F4, 0xffcccccc, 1.15f, 1.15f);
-        SETC9(f32C, 0xffcccccc, 1.15f, 1.15f);
+        SETC9(f32C, 0xffcccccc, 1.45f, 1.45f);
         SETC9(f2F8, 0xffcccccc, 1.15f, 1.15f);
         SETC9(f330, 0xffcccccc, 1.15f, 1.15f);
+        SETC9(f304, 0xffcccccc, 1.15f, 1.15f);
+        SETC9(f2E0, 0xffcccccc, 1.15f, 1.15f);
+        SETC9(f324, 0xffcccccc, 1.15f, 1.15f);
+        SETC9(f300, 0xffcccccc, 1.15f, 1.15f);
     } else if (f2A4 == 3) {
         SETC9(f2EC, 0xffcccccc, 1.15f, 1.15f);
         SETC9(f2D8, 0xffcccccc, 1.15f, 1.15f);
@@ -138,7 +151,11 @@ void C_000C9940::func_000C9940(void)
         SETC9(f32C, 0xffcccccc, 1.45f, 1.45f);
         SETC9(f2F8, 0xffcccccc, 1.15f, 1.15f);
         SETC9(f330, 0xffcccccc, 1.15f, 1.15f);
-    } else {
+        SETC9(f304, 0xffcccccc, 1.15f, 1.15f);
+        SETC9(f2E0, 0xffcccccc, 1.15f, 1.15f);
+        SETC9(f324, 0xffcccccc, 1.15f, 1.15f);
+        SETC9(f300, 0xffcccccc, 1.15f, 1.15f);
+    } else if (f2A4 == 4) {
         SETC9(f2EC, 0xffcccccc, 1.15f, 1.15f);
         SETC9(f2D8, 0xffcccccc, 1.15f, 1.15f);
         SETC9(f2FC, 0xffcccccc, 1.15f, 1.15f);
@@ -147,14 +164,24 @@ void C_000C9940::func_000C9940(void)
         SETC9(f32C, 0xffcccccc, 1.15f, 1.15f);
         SETC9(f2F8, 0xffcccccc, 1.15f, 1.15f);
         SETC9(f330, 0xffcccccc, 1.15f, 1.15f);
+        SETC9(f324, 0xffbfa35a, 1.45f, 1.45f);
+        SETC9(f300, 0xffbfa35a, 1.45f, 1.45f);
+        SETC9(f304, 0xffcccccc, 1.15f, 1.15f);
+        SETC9(f2E0, 0xffcccccc, 1.15f, 1.15f);
+    } else {
+        SETC9(f304, 0xffbfa35a, 1.45f, 1.45f);
+        SETC9(f2E0, 0xffbfa35a, 1.45f, 1.45f);
+        SETC9(f2EC, 0xffcccccc, 1.15f, 1.15f);
+        SETC9(f2D8, 0xffcccccc, 1.15f, 1.15f);
+        SETC9(f2FC, 0xffcccccc, 1.15f, 1.15f);
+        SETC9(f2DC, 0xffcccccc, 1.15f, 1.15f);
+        SETC9(f2F4, 0xffcccccc, 1.15f, 1.15f);
+        SETC9(f32C, 0xffcccccc, 1.15f, 1.15f);
+        SETC9(f2F8, 0xffcccccc, 1.15f, 1.15f);
+        SETC9(f330, 0xffcccccc, 1.15f, 1.15f);
+        SETC9(f300, 0xffcccccc, 1.15f, 1.15f);
+        SETC9(f324, 0xffcccccc, 1.15f, 1.15f);
     }
-    SETC9(f2FC, 0xffcccccc, 1.15f, 1.15f);
-    SETC9(f2DC, 0xffcccccc, 1.15f, 1.15f);
-    SETC9(f2F4, 0xffcccccc, 1.15f, 1.15f);
-    SETC9(f32C, 0xffcccccc, 1.15f, 1.15f);
-    SETC9(f2F8, 0xffcccccc, 1.15f, 1.15f);
-    SETC9(f330, 0xffcccccc, 1.15f, 1.15f);
-    SETC9(f300, 0xffcccccc, 1.15f, 1.15f);
 }
 
 void C_000CA7D0::func_000CA7D0(void)
