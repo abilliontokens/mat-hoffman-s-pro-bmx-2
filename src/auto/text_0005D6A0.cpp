@@ -70,6 +70,7 @@ struct BmxGrindConstraint {
     virtual void v11();
     virtual void v12();
     int func_0005DAB0();
+    int func_0005DAB0(int unused);
     char pad34[0x58 - 0x34];
     float f58;
     float f5C;
