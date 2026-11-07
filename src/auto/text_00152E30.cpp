@@ -102,7 +102,7 @@ struct S_Global_153 {
 
 extern S_Global_153 *D_002A8490;
 
-struct S_In_153 { virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4(); virtual int v5(int a, int b, int c, int d); };
+struct S_In_153 { virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4(); virtual int v5(int a, int b, int c, int d); int func_00136170(int,int,int); };
 struct S_G2_153 { char pad[8]; S_In_153 *unk8; };
 struct C_00153350 { char pad[0x28]; int unk28; char pad2[0x5c8 - 0x2c]; int arr5C8[32]; void func_00153350(float dt); void func_00152BA0(); };
 
