@@ -181,6 +181,14 @@ extern float D_002755E8;
 void func_001E891B(void *p);
 int func_001EA426(char *a, char *b);
 
+struct L_001596C0 {
+    GrindLineManager *self;
+    int found;
+    V4 ext;
+    V4 center;
+    int skip;
+};
+
 
 void GrindLineManager::func_00159C40(GL2 * volatile g)
 {
