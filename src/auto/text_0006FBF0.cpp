@@ -223,7 +223,7 @@ void C_0006FBF0::func_0006FBF0(void)
     func_001578D0();
 }
 
-char *__stdcall func_0006FE60(int value, char *out)
+char *C_00070360::func_0006FE60(int value, char *out)
 {
     char buf[64];
     int i, j, rem, n;
