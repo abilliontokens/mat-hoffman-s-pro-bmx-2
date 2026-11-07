@@ -62,7 +62,7 @@ static __forceinline float Abs_00112A80(float x)
     return *(float *)&i;
 }
 
-static __forceinline float AbsBits_00112A80(int x)
+static float AbsBits_00112A80(int x)
 {
     int i = x & 0x7fffffff;
     return *(float *)&i;
@@ -315,7 +315,9 @@ void Obj::func_00113290(float dt)
                     AT(float, self, 0x20b0) -= dt;
                     if (AT(float, self, 0x20b0) <= D_00275544) {
                         AT(float, self, 0x20b0) = 0.25f;
-                        float a = AbsBits_00112A80(AT(int, self, 0x744));
+                        int v = AT(int, self, 0x744);
+                        int i = *(int *)&v & 0x7fffffff;
+                        float a = *(float *)&i;
                         float t = func_00161F80(AT(int, self, 0x113c)) * D_002756DC;
                         Obj_VF *o = AT(Obj_VF *, AT(char *, D_002A8490, 0x8), 0x14 + AT(int, self, 0x970) * 4);
                         o->v3C(1, func_0001C870(a, 0, 0, 30.0f, 0.26f, 200) + t, 200);
@@ -352,12 +354,16 @@ void Obj::func_00113290(float dt)
         if (AT(int, self, 0x2010) == 0 && AT(int, self, 0xa38) != 0 && AT(int, self, 0x1078) != 0
             && AT(int, AT(char *, D_002A8490, 0x2a4), 0x170 + AT(int, self, 0xa2c) * 4) != 0) {
             char *tbl = AT(char *, AT(char *, self, 0x24), 0x52c);
-            self->func_0010DD90(
-                dt * (AT(int, self, 0x470) != 0
-                          ? (AT(int, self, 0x480) == 0 ? AT(float, tbl, 0x7928 + AT(int, self, 0x718) * 4)
-                                                       : AT(float, tbl, 0x77c8 + AT(int, self, 0x718) * 4))
-                          : AT(float, tbl, 0x6a08 + AT(int, self, 0x718) * 4)),
-                0, 0, -1, -1, 0);
+            float m;
+            if (AT(int, self, 0x470) != 0) {
+                if (AT(int, self, 0x480) == 0)
+                    m = AT(float, tbl, 0x7928 + AT(int, self, 0x718) * 4);
+                else
+                    m = AT(float, tbl, 0x77c8 + AT(int, self, 0x718) * 4);
+            } else {
+                m = AT(float, tbl, 0x6a08 + AT(int, self, 0x718) * 4);
+            }
+            self->func_0010DD90(dt * m, 0, 0, -1, -1, 0);
         }
         if (AT(float, self, 0x484) <= D_00275F64 && AT(int, self, 0x470) == 0)
             return;
@@ -414,10 +420,10 @@ void Obj::func_00113290(float dt)
         Obj *q = self;
         char *e = AT(char **, AT(char *, AT(char *, q, 0x24), 0x534), 0x28)[idx];
         int ge0 = 0;
-        if (AT(float, q, 0x484) >= AT(float, e, 0x400))
+        if (!(AT(float, q, 0x484) < AT(float, e, 0x400)))
             ge0 = 1;
         int ge1 = 0;
-        if (AT(float, q, 0x488) >= AT(float, e, 0x404))
+        if (!(AT(float, q, 0x488) < AT(float, e, 0x404)))
             ge1 = 1;
         if (ge0 == 0 || ge1 == 0)
             return;
