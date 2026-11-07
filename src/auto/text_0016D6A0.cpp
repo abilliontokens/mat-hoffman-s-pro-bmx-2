@@ -130,7 +130,7 @@ struct C_0016DEA0 {
     char pad30[0x34];
     Pool_0016DEA0 *f64;
     char pad68[0x108];
-    int f170;
+    float f170;
     int f174;
     int f178;
     float f17C;
