@@ -1,5 +1,6 @@
 /* 6 functions from 0x00022E30 to 0x00023CB0, found by Ghidra. */
 #include "common.h"
+#include "asm_helpers.h"
 #include <xmmintrin.h>
 
 extern int D_00276218;
@@ -537,7 +538,7 @@ void C_000235C0::func_000239F0(float dt)
     if (f78) {
         float ratio = (float)(f2c->count - f34) / (float)f2c->count;
         float lim = 0.65f;
-        float s = Min_239F0(lim, ratio);
+        float s = lim < ratio ? lim : ratio;
         s = (s + D_0027627C) * (*(float *)&f2c->f0) * dt;
         v.x *= s; v.y *= s; v.z *= s;
         out.x = v.x + f5c.x; out.y = v.y + f5c.y; out.z = v.z + f5c.z; out.w = 1.0f;
