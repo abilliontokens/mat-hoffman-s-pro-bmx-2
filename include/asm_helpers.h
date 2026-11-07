@@ -91,7 +91,7 @@ static __forceinline float AsmMaxF(float a, float b)
 }
 
 /* *dst = f truncated to int (cvttss2si). The float comes first: the parameters' stack slots depend on their order.
- * Proven on _func_00016CF0, _func_0014F450, _func_0014F4B0, _func_001CB0A0. */
+ * Proven on _func_00016CF0, _func_0014F450, _func_0014F4B0, _func_001CB0A0, _func_00161F80. */
 static __forceinline void AsmFloatToInt(float f, int *dst)
 {
     __asm {
