@@ -48,7 +48,7 @@ struct C_00066C90 {
     void func_00157660();
     void func_00157600(int a0);
     C_00066C90 *func_00066C90(int a0);
-    void func_00066FA0(int a0);
+    C_00066C90 *func_00066FA0(int a0);
     void func_001577A0(void *, int);
 };
 
@@ -199,7 +199,7 @@ extern char D_002786B0[], D_00278648[], D_00278624[], D_00278638[], D_00278608[]
 extern int D_0028F5E0;
 extern char D_002A5FA8[], D_002A5870[], D_00275678[];
 int func_001ADCC0(char *buf, int size, char *fmt, ...);
-void C_00066C90::func_00066FA0(int a0)
+C_00066C90 *C_00066C90::func_00066FA0(int a0)
 {
     unk10C = a0;
     D_002A8490->unk2EC->func_0018C160(D_002786A0);
@@ -309,5 +309,6 @@ void C_00066C90::func_00066FA0(int a0)
     if (t->color != 0xffcccccc) { t->color = (t->color & 0xffcccccc) | 0xcccccc; t->flags |= 8; }
     if (t->frame != D_0028F5E0) { t->frame = D_0028F5E0; t->flags |= 6; }
     func_001ADCC0((char *)&D_002A60B0, 0x104, D_00275678, D_002A5870, D_002A5FA8);
+return this;
 }
 
