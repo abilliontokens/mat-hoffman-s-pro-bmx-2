@@ -328,16 +328,15 @@ static __forceinline float Sqrt_0014F9F0(float x) { float r; _mm_store_ss(&r, _m
 #pragma intrinsic(sqrt)
 void func_0014F9F0(void)
 {
- volatile unsigned int bits;
+ float t;
+ unsigned int a, b;
  for(unsigned int i=0;i<0x80;i++) {
- unsigned int a=(i|0x3f80)<<16;
- float r=(float)sqrt(*(float *)&a);
- bits=*(unsigned int *)&r;
- D_002CF2B0[i]=*(unsigned int *)&r&0x7f0000;
- unsigned int b=(i|0x4000)<<16;
- float s=(float)sqrt(*(float *)&b);
- bits=*(unsigned int *)&s;
- D_002CF4B0[i]=*(unsigned int *)&s&0x7f0000;
+ a=(i|0x3f80)<<16;
+ t=AsmSqrtF(*(float *)&a);
+ D_002CF2B0[i]=*(unsigned int *)&t&0x7f0000;
+ b=(i|0x4000)<<16;
+ t=AsmSqrtF(*(float *)&b);
+ D_002CF4B0[i]=*(unsigned int *)&t&0x7f0000;
  }
 }
 void func_0014FA70(void)
@@ -648,9 +647,11 @@ void C_00150360::func_001503E0(float a, float b, float c)
 
     f44 = a;
     f48 = b;
-    f30 = (float)(s = f30);
-    f34 = (float)(t = f34);
     f4C = c;
+    s = f30;
+    f30 = (float)s;
+    t = f34;
+    f34 = (float)t;
     f2C = (a - b) * s + b;
     f28 = (D_00275460 - t) * (f2C - c);
     D_002EFDB8->f2C = f24;
