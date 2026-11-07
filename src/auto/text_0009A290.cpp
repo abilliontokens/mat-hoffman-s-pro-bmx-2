@@ -27,6 +27,9 @@ struct C_00168280 {
     void func_00168BE0(const char *, const char *, char *, int);
     void func_00168550(const char *, char *, int);
     void func_00168C20(const char *, int, int *);
+    void func_00168C50(const char *, float, float *);
+    void func_00168CB0(const char *, const float *, float *);
+    void func_001691E0();
 };
 extern char D_002769F8[], D_0027A9BC[], D_0027A9A8[], D_0027A994[];
 extern char D_0027A980[], D_0027A968[], D_00275630[];
