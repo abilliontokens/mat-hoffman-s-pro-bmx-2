@@ -96,7 +96,9 @@ struct UI10F320 {
     void func_00180E00(int,Vec4_10F320 *,int,int);
 };
 extern char D_00283CB4[],D_00283CA0[],D_00283C94[],D_00283C84[];
-extern int D_002BA15C;
+extern int D_002BA15C,D_002BA154;
+extern Vec4_10F320 D_002A3A3C;
+extern float D_00275AE8;
 
 extern Manager10F320 *D_002A8490;
 extern char D_002A4A00[],D_002A4C10[],D_00275678[],D_00283CD0[],D_00283CDC[];
