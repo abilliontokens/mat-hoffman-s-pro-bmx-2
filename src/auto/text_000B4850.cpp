@@ -16,10 +16,10 @@ struct Vec4 {
     /* y and z arrive as doubles: this makes z a fld/fstp copy (as in the
        original) instead of an integer move. */
     Vec4(f32 x_, double y_, double z_, f32 w_) {
-        x = x_;
         y = (f32)y_;
         z = (f32)z_;
         w = w_;
+        x = x_;
     }
 };
 
