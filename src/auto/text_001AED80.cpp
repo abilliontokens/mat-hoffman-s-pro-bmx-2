@@ -233,11 +233,8 @@ struct C_001AFB00 {
 
 int C_001AED80::func_001AED80(void)
 {
-    C_001AED80 * volatile self = this;
-    volatile int x;
-    volatile int y;
-    volatile float out;
-    float r;
+    int x;
+    int y;
     unsigned char a;
     unsigned int argb;
 
@@ -245,66 +242,53 @@ int C_001AED80::func_001AED80(void)
         return 0;
     }
     if ((f84 & 1) == 0 && f54->f64 == 0) {
-        C_001AED80 *p = self;
-        float t = p->f2C;
-        p->f54->f3C = t;
-        p->f54->f40 = t;
+        S_001AED80_Sub *s = f54;
+        float t = f2C;
+        s->f3C = t;
+        s->f40 = t;
     } else {
         {
-            C_001AED80 *p = self;
-            x = (int)(p->f7C - p->f54->f34 * p->f54->f3C * D_002755E8);
+            float t = f54->f3C;
+            AsmFloatToIntRound(f7C - f54->f34 * t * D_002755E8, &x);
         }
         {
-            C_001AED80 *p = self;
-            y = (int)(p->f80 - p->f54->f38 * p->f54->f40 * D_002755E8);
+            float t = f54->f40;
+            AsmFloatToIntRound(f80 - f54->f38 * t * D_002755E8, &y);
+        }
+        S_001AED80_Sub *s = f54;
+        s->f2C = x;
+        s->f30 = y;
+    }
+    f68 = 0;
+    if ((f84 & 1) == 0 && f54->f64 == 0) {
+        if (f50 != 0 && (f84 & 2) != 0) {
+            AsmMinF(AsmMaxF(0.0f, f30 * 0.75f), 1.0f);
+        }
+        return ((C_00157960 *)this)->func_00157960();
+    }
+    if ((f84 & 1) != 0) {
+        float c = (float)f54->f30;
+        float p = (float)f54->f2C;
+        {
+            float t = f54->f40;
+            AsmFloatToIntRound(p + f54->f34 * t * D_002755E8, &x);
         }
         {
-            C_001AED80 *p = self;
-            p->f54->f2C = x;
-            p->f54->f30 = y;
+            float t = f54->f3C;
+            AsmFloatToIntRound(f54->f38 * t * D_002755E8 + c, &y);
         }
+        f6C = x;
+        f74 = x + 0x10;
+        f70 = y;
+        f78 = y + 0x10;
+        ((C_001D54F0 *)((char *)this + 0x58))->func_001D54F0();
     }
     {
-        C_001AED80 *p = self;
-        p->f68 = 0;
-    }
-    if (((self->f84 & 1) == 0) && self->f54->f64 == 0) {
-        C_001AED80 *p = self;
-        if (p->f50 != 0 && (p->f84 & 2) != 0) {
-            r = p->f30 * D_00279B54;
-            r = r > 0.0f ? r : 0.0f;
-            r = r < 1.0f ? r : 1.0f;
-            out = r;
-        }
-        return ((C_00157960 *)self)->func_00157960();
-    }
-    if ((self->f84 & 1) != 0) {
-        C_001AED80 *p = self;
-        float c = (float)p->f54->f30;
-        x = (int)(p->f54->f34 * p->f54->f40 * D_002755E8 + (float)p->f54->f2C);
-        {
-            C_001AED80 *q = self;
-            y = (int)(q->f54->f38 * q->f54->f3C * D_002755E8 + c);
-        }
-        {
-            C_001AED80 *q = self;
-            q->f6C = x;
-            q->f74 = x + 0x10;
-            q->f70 = y;
-            q->f78 = y + 0x10;
-        }
-        ((C_001D54F0 *)((char *)self + 0x58))->func_001D54F0();
+        float v = (D_00275460 - D_002AA3F8) * f68 + (float)f54->f64 * D_002AA3F8;
+        a = (unsigned char)(AsmMinF(255.0f, v) * D_00276E9C);
     }
     {
-        C_001AED80 *p = self;
-        r = (float)p->f54->f64 * D_002AA3F8 + (D_00275460 - D_002AA3F8) * p->f68;
-        r = r < 255.0f ? r : 255.0f;
-        out = r;
-        a = (unsigned char)(out * D_00276E9C);
-    }
-    {
-        C_001AED80 *p = self;
-        S_001AED80_Sub *s = p->f54;
+        S_001AED80_Sub *s = f54;
         s->f64 = a;
         argb = (unsigned int)a << 24;
         s->f54 = (s->f54 & 0xffffff) | argb;
@@ -312,18 +296,13 @@ int C_001AED80::func_001AED80(void)
         s->f5C = (s->f5C & 0xffffff) | argb;
         s->f60 = (s->f60 & 0xffffff) | argb;
     }
-    if ((self->f84 & 4) == 0) {
-        self->f54->f4->func_001446B0(0, 0, -1);
+    if ((f84 & 4) == 0) {
+        f54->f4->func_001446B0(0, 0, -1);
     }
-    {
-        C_001AED80 *p = self;
-        if (p->f50 != 0 && (p->f84 & 2) != 0 && (p->f84 & 1) != 0 && p->f68 < D_0027A060) {
-            r = p->f68 * D_00284758;
-            r = r < 1.0f ? r : 1.0f;
-            out = r;
-        }
+    if (f50 != 0 && (f84 & 2) != 0 && (f84 & 1) != 0 && f68 < D_0027A060) {
+        AsmMinF(1.0f, f68 * 0.00392156886f);
     }
-    return ((C_00157960 *)self)->func_00157960();
+    return ((C_00157960 *)this)->func_00157960();
 }
 
 undefined4 C_001AF090::func_001AF090(byte param_1)
@@ -636,25 +615,24 @@ int C_001AFB00::func_001AFB00(void)
 void C_001AFB00::func_001AFB60(float *a, float *b, float *c)
 {
     float s;
-    if (f38 & 4) {
-        s = -D_002A8490->f244;
-    } else {
-        s = D_002A8490->f244;
-    }
+    if (f38 & 4) s = -D_002A8490->f244;
+    else s = D_002A8490->f244;
     f20 = Wrap_001AFB60(s * f2C + f20);
     float cs = func_0014F510(f20);
     float sn = func_0014F550(f20);
     f0 = (float)fmod(s * f24 + f0, D_002766B8);
-    f4 = (float)fmod(s * f28 + f4, D_002766B8);
-    a[0] = cs * f18 - sn * f14;
-    a[1] = cs * f10 - sn * f1C;
-    ((int *)a)[2] = 0;
+    float pos = (float)fmod(s * f28 + f4, D_002766B8);
+    float *out = a;
+    f4 = pos;
+    out[0] = cs * f18 - sn * f14;
+    out[1] = cs * f10 - sn * f1C;
+    out[2] = 0.0f;
     b[0] = sn * f18 + cs * f14;
     b[1] = sn * f10 + cs * f1C;
-    ((int *)b)[2] = 0;
+    b[2] = 0.0f;
     c[0] = (cs - f18) * f8 - sn * fC - f0;
     c[1] = (cs - f1C) * fC + sn * f8 - f4;
-    ((int *)c)[2] = 0;
+    c[2] = 0.0f;
     func_001AFB00();
 }
 
