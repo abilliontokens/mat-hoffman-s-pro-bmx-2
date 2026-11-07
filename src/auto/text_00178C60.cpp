@@ -107,10 +107,7 @@ static __forceinline __m128 cross_ps_179950(__m128 va, __m128 vb)
 
 static __forceinline void cross_179950(float *out, float *a, float *b)
 {
-    float * volatile dst = out;
-    float * volatile pa = a;
-    float * volatile pb = b;
-    _mm_storeu_ps(dst, cross_ps_179950(_mm_loadu_ps(pa), _mm_loadu_ps(pb)));
+    AsmVec3Cross(out, a, b);
 }
 
 static __forceinline int edge_1793E0(Vec4 *p, Vec4 *q, Vec4 *r, Vec4 *n)
