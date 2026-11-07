@@ -194,34 +194,11 @@ C_000B6640 *C_000B6640::func_000B6640(int a0, int a1)
 
 void C_000B67C0::func_000B67C0(void)
 {
-  int in_ECX = (int)this;
-  int iVar1;
-  
-  iVar1 = *(int *)(in_ECX + 0x50);
-  if ((iVar1 == 0) || (*(int *)(in_ECX + 0x54) == 0)) {
-    *(int *)(in_ECX + 100) = 0;
-  }
-  else {
-    *(int *)(in_ECX + 100) = 1;
-  }
-  if ((iVar1 == 0) && (*(int *)(in_ECX + 0x54) == 0)) {
-    *(int *)(in_ECX + 0x68) = 0;
-  }
-  else {
-    *(int *)(in_ECX + 0x68) = 1;
-  }
-  if (iVar1 != 0) {
-    if (*(int *)(in_ECX + 0x54) == 0) goto LAB_00002681;
-    if (iVar1 != 0) goto LAB_00002689;
-  }
-  if (*(int *)(in_ECX + 0x54) == 0) {
-LAB_00002689:
-    *(int *)(in_ECX + 0x6c) = 0;
-    return;
-  }
-LAB_00002681:
-  *(int *)(in_ECX + 0x6c) = 1;
-  return;
+ int p=(int)this;
+ 
+ if(*(int*)(p+0x50) && *(int*)(p+0x54)) *(int*)(p+0x64)=1; else *(int*)(p+0x64)=0;
+ if(*(int*)(p+0x50) || *(int*)(p+0x54)) *(int*)(p+0x68)=1; else *(int*)(p+0x68)=0;
+ if ((*(int*)(p+0x50) && !*(int*)(p+0x54)) || (!*(int*)(p+0x50) && *(int*)(p+0x54))) *(int*)(p+0x6c)=1; else *(int*)(p+0x6c)=0;
 }
 
 void *C_000B6810::func_000B6810(int flags)
