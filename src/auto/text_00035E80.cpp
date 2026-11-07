@@ -55,8 +55,6 @@ struct C_00035E80 {
 };
 
 extern char D_00276DCC[], D_00276DBC[], D_00276DB0[], D_00276DA4[], D_00276D98[], D_00276D8C[];
-void *func_001E8A44(unsigned int size);
-void func_001E891B(void *ptr);
 int func_001ADCC0(char *dst, int size, const char *fmt, ...);
 extern "C" char *func_001E8920(char *dst, const char *src, unsigned int n);
 extern "C" char *func_001E8AC0(const char *s, int c);
