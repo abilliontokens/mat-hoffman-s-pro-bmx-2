@@ -125,7 +125,9 @@ struct C_000448D0 {
     virtual void v30(); virtual void v31(); virtual void v32(); virtual void v33();
     char pad4[0x64 - 4];
     Q64_000448D0 *f64;
-    char pad68[0x1d4 - 0x68];
+    char pad68[0x158-0x68];
+    Timer_448D0 *f158;
+    char pad15c[0x1d4-0x15c];
     Obj54_000448D0 *f1d4;
     char pad1d8[0x550 - 0x1d8];
     Node_000448D0 *f550;
