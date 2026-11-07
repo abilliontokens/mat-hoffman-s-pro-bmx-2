@@ -415,41 +415,35 @@ int C_001B5000::func_001B5000(S_001B5000_Stream *s)
 
 #pragma optimize("", on)
 Model1B0_001B58C0 *Model1B0_001B58C0::func_001B5110(void) {
- Model1B0_001B58C0 *last;
- Model1B0_001B58C0 * volatile self=this;
- volatile int limits[2]; int len;
- func_001B4ED0();
- ((volatile Model1B0_001B58C0*)self)->vtbl=(void*)&D_0028CAC8;
- _ReadWriteBarrier();
- ((volatile Model1B0_001B58C0*)self)->f58=0;
- ((volatile Model1B0_001B58C0*)self)->f5C=0;
- ((volatile Model1B0_001B58C0*)self)->f60=0;
- ((volatile Model1B0_001B58C0*)self)->f64=0;
- ((volatile Model1B0_001B58C0*)self)->f6C=0;
- ((volatile Model1B0_001B58C0*)self)->f70=0;
- ((volatile Model1B0_001B58C0*)self)->f78=0;
- ((volatile Model1B0_001B58C0*)self)->f74=0;
- ((volatile Model1B0_001B58C0*)self)->f80=0;
- ((volatile Model1B0_001B58C0*)self)->f84=0;
- ((volatile Model1B0_001B58C0*)self)->f88=-1;
- ((volatile Model1B0_001B58C0*)self)->f8C=0;
- ((volatile Model1B0_001B58C0*)self)->f90=0;
- ((volatile Model1B0_001B58C0*)self)->f94=0;
- ((volatile Model1B0_001B58C0*)self)->f98=1;
- ((volatile Model1B0_001B58C0*)self)->f9C=0;
- ((volatile Model1B0_001B58C0*)self)->f68=0;
- ((volatile Model1B0_001B58C0*)self)->f7C=0;
- limits[0]=0x103;
- int t=limits[0];
- int bound=4; if(t<bound) bound=t; limits[1]=bound;
- len=limits[1];
- func_001E8920((void*)((volatile Model1B0_001B58C0*)self)->fA0,&D_002764F0,len);
- ((volatile Model1B0_001B58C0*)self)->fA0[len]=0;
- ((volatile Model1B0_001B58C0*)self)->f1A4=0; ((volatile Model1B0_001B58C0*)self)->f1A8=0;
- last=self;
- _ReadWriteBarrier();
- ((volatile Model1B0_001B58C0*)last)->f1AC=0;
- return self;
+    int t; int len;
+    func_001B4ED0();
+    vtbl = (void *)&D_0028CAC8;
+    f58 = 0;
+    f5C = 0;
+    f60 = 0;
+    f64 = 0;
+    f6C = 0;
+    f70 = 0;
+    f78 = 0;
+    f74 = 0;
+    f80 = 0;
+    f84 = 0;
+    f88 = -1;
+    f8C = 0;
+    f90 = 0;
+    f94 = 0;
+    f98 = 1;
+    f9C = 0;
+    f68 = 0;
+    f7C = 0;
+    t = 0x103;
+    len = AsmMinI(t, 4);
+    func_001E8920(fA0, &D_002764F0, len);
+    fA0[len] = 0;
+    f1A4 = 0;
+    f1A8 = 0;
+    f1AC = 0;
+    return this;
 }
 void C_001B5000::func_001B5240(S_001B5000_Stream *s)
 {
