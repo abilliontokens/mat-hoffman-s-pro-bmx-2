@@ -169,11 +169,11 @@ static __forceinline void identity_ref_00026960(S_00026960_Mat *&p)
     q->m[15] = 1.0f;
 }
 
+/* minss via the game's own helper: plain movss/minss/movss with no __m128
+ * temporary, so no ebp frame and no `and esp,-16`. */
 static __forceinline float min_ss_00026A10(float a, float b)
 {
-    union { __m128 v; float f; } u;
-    u.v = _mm_min_ss(_mm_load_ss(&b), _mm_load_ss(&a));
-    return u.f;
+    return AsmMinF(a, b);
 }
 
 struct C_00026500 {
