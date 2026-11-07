@@ -4,7 +4,7 @@
 #include <string.h>
 #include <math.h>
 #include <xmmintrin.h>
-#include <xmmintrin.h>
+#include "asm_helpers.h"
 struct C_001446B0 {
     void func_001446B0(int a, int b, int c);
 };
@@ -252,11 +252,11 @@ int C_001AED80::func_001AED80(void)
     } else {
         {
             C_001AED80 *p = self;
-            x = (int)(p->f7C - p->f54->f3C * (float)p->f54->f34 * D_002755E8);
+            x = (int)(p->f7C - p->f54->f34 * p->f54->f3C * D_002755E8);
         }
         {
             C_001AED80 *p = self;
-            y = (int)(p->f80 - p->f54->f40 * (float)p->f54->f38 * D_002755E8);
+            y = (int)(p->f80 - p->f54->f38 * p->f54->f40 * D_002755E8);
         }
         {
             C_001AED80 *p = self;
@@ -281,10 +281,10 @@ int C_001AED80::func_001AED80(void)
     if ((self->f84 & 1) != 0) {
         C_001AED80 *p = self;
         float c = (float)p->f54->f30;
-        x = (int)(p->f54->f40 * (float)p->f54->f34 * D_002755E8 + (float)p->f54->f2C);
+        x = (int)(p->f54->f34 * p->f54->f40 * D_002755E8 + (float)p->f54->f2C);
         {
             C_001AED80 *q = self;
-            y = (int)(q->f54->f3C * (float)q->f54->f38 * D_002755E8 + c);
+            y = (int)(q->f54->f38 * q->f54->f3C * D_002755E8 + c);
         }
         {
             C_001AED80 *q = self;
@@ -478,6 +478,58 @@ C_001AF360 *C_001AF360::func_001AF360(S_001AF360_Stream *stream, int owner, int 
     return this;
 }
 
+void C_001AF530::func_001AF530(int a)
+{
+    C_001AF530 *self = this;
+    C_001AF530 **pself = &self;
+    int len = D_002AA6C0->arr[f14->v7(a)].anim->len;
+    float dt = D_00275544;
+    if (self->f10 != -1) {
+        dt = (float)(D_002A8490->t - self->f10) * D_00276098;
+    }
+    self->f10 = D_002A8490->t;
+    if (len > 0) {
+        float flen;
+        float r;
+        dt *= self->f0;
+        if (self->f4 & 4) {
+            self->fC -= dt;
+        } else {
+            self->fC += dt;
+        }
+        flen = (float)len;
+        if (self->fC >= flen) {
+            r = (float)fmod(self->fC, flen);
+            if (self->f4 & 1) {
+                float lo = (float)(len - 1) - r;
+                self->fC = lo > 0.0f ? lo : 0.0f;
+                self->f4 |= 4;
+            } else if (self->f8 != -1) {
+                self->fC = (float)fmod(r, (float)(len - self->f8)) + self->f8;
+            } else {
+                self->fC = r;
+            }
+            if (!(self->f4 & 2)) {
+                self->f4 |= 8;
+            }
+        } else if (self->fC < D_00275544) {
+            if (self->f4 & 1) {
+                float t = (float)fmod(self->fC, flen);
+                int bits = *(int*)&t;
+                bits &= 0x7fffffff;
+                self->fC = *(float*)&bits;
+                self->f4 &= 0xfb;
+            } else if (self->f4 & 4) {
+                self->f4 |= 8;
+            }
+        }
+        if (self->f4 & 8) {
+            if (self->f4 & 4) self->fC = 0;
+            else self->fC = (float)(len - 1);
+        }
+    }
+}
+
 void C_001AF710::func_001AF710(void)
 {
     extern int D_0028C444;
@@ -596,13 +648,13 @@ void C_001AFB00::func_001AFB60(float *a, float *b, float *c)
     f4 = (float)fmod(s * f28 + f4, D_002766B8);
     a[0] = cs * f18 - sn * f14;
     a[1] = cs * f10 - sn * f1C;
-    a[2] = 0.0f;
+    ((int *)a)[2] = 0;
     b[0] = sn * f18 + cs * f14;
     b[1] = sn * f10 + cs * f1C;
-    b[2] = 0.0f;
+    ((int *)b)[2] = 0;
     c[0] = (cs - f18) * f8 - sn * fC - f0;
     c[1] = (cs - f1C) * fC + sn * f8 - f4;
-    c[2] = 0.0f;
+    ((int *)c)[2] = 0;
     func_001AFB00();
 }
 
