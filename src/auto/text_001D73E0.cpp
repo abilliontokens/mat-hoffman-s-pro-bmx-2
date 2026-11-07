@@ -161,6 +161,11 @@ static __forceinline void SetLight2_001D7FB0(float r, float g, float b, char *ou
     func_001D7E60(r, g, b, out);
 }
 
+static __forceinline int IdentityW_001D7FB0(int v)
+{
+    return v;
+}
+
 struct LightBufs_001D7FB0 {
     char a[0x100];
     char b[0x100];
