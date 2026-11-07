@@ -32,6 +32,10 @@ extern char D_002A4C10[];
 extern float D_00275460;
 extern float D_00275548;
 extern float D_00275F64;
+void func_000A0980(float*,float*);
+struct C_B03A0_Manager { void func_00161680(); void func_001B2640(); };
+extern C_B03A0_Manager *D_002A829C;
+extern C_B03A0_Manager *D_002AA6C0;
 
 struct S_2E0_B03A0 {
     char pad0[0x4];
