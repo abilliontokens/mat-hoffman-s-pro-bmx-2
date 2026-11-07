@@ -2,6 +2,7 @@
 #include "common.h"
 #include "ghidra.h"
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 
 extern char D_002766F0[];
 extern char D_002766E0[];
