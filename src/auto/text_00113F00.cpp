@@ -3,6 +3,10 @@
 
 struct C_00113F00_Fx {
     void func_00164770();
+    void func_001653E0(int,int,int,int,float,float,float,int,float);
+    void func_00164F80(int,int,float,float,float,int,int,float);
+    void func_00164BA0(int,int,float,float,int,float);
+    void func_001648E0(int,float,int,int,float);
 };
 struct C_00113F00_GMgr {
     char pad0[0x1c4];
