@@ -31,6 +31,30 @@ struct C_000B9A80 {
     Obj1A4100 *unk30;
     void func_000B9A80(int a0, int a1);
 };
+struct TireVec {
+    float x,y,z,w;
+    TireVec() {}
+    TireVec(float a,float b,float c,float d=1.0f):x(a),y(b),z(c),w(d) {}
+    TireVec operator+(const TireVec &b) const { return TireVec(x+b.x,y+b.y,z+b.z); }
+    TireVec operator-(const TireVec &b) const { return TireVec(x-b.x,y-b.y,z-b.z); }
+    TireVec operator*(float s) const { return TireVec(x*s,y*s,z*s); }
+    float dot(const TireVec &b) const { return x*b.x+y*b.y+z*b.z; }
+};
+struct TireTransform {
+    TireVec *func_00197F70(TireVec *,const TireVec *);
+    TireVec *func_00198040(TireVec *,const TireVec *);
+    void func_001994C0(int,TireVec *,TireVec *);
+};
+struct TireBody {
+    void func_0001C710(TireVec);
+    void func_0001E0A0(TireVec);
+    void func_0001C750(TireVec,TireVec);
+};
+float func_0001C870(float,float,float,float,float);
+float func_0014F7E0(float);
+float func_0014FB30(float);
+void func_0014F760(int,float *,float *,float *);
+extern float D_00275BF4,D_00275AEC,D_0027D5E0,D_00275BF8,D_00275544;
 /* BmxTireModel, vtable slot 13 (SIMD-heavy tire/contact update) */
 struct C_000B8C90 {
     char pad0[0x28];
