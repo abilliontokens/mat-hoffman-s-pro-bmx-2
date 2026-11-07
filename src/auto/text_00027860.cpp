@@ -115,14 +115,6 @@ struct V4_00027C50 {
     float w;
 };
 
-static __forceinline float Dot27C50(const V4_00027C50 &v)
-{
-    float d = v.y * -1.0f;
-    d += v.x * 0.0f;
-    d += v.z * 0.0f;
-    return d;
-}
-
 extern float D_00275544;
 extern float D_00275F58;
 
@@ -323,11 +315,10 @@ void C_00027C30::func_00027C30(void) {
 }
 
 void C_00027C50::func_00027C50(float scale) {
+    float d;
     V4_00027C50 a;
     V4_00027C50 b;
     V4_00027C50 c;
-    float d;
-    float tz;
 
     a.z = 0.0f;
     a.y = 0.0f;
@@ -340,9 +331,9 @@ void C_00027C50::func_00027C50(float scale) {
     unk230->func_00197B40(&a.x, &b.x);
     a = *(V4_00027C50 *)func_0001E9E0(&c.x, &a.x);
     d = a.y * -1.0f;
-    d += a.x * 0.0f;
-    tz = a.z * 0.0f;
-    unk580 = (d + tz) * scale;
+    d = d + a.x * 0.0f;
+    d = d + a.z * 0.0f;
+    unk580 = d * scale;
     if (unk580 < 0.0f) {
         unk580 = 0.0f;
     }
@@ -357,28 +348,21 @@ void C_00027D40::func_00027D40(void) {
 }
 
 void C_00028070::func_00027D60(void) {
-    int state;
-
-    if (unk468 != 0) {
-        unk5E8 = (unk470 != 0) ? 5 : 1;
-    } else {
-        state = unk5E8;
-        if (state == 1 && unk4F8 != 0) {
-            unk5E8 = 2;
-        } else if (unk454 != 0) {
-            unk5E8 = 3;
-        } else if (state == 3 && unk698 != 0) {
-            unk5E8 = 4;
-        } else if (unk1E8->unk64 != 0 && unk45C == D_00275544) {
-            unk5E8 = 0;
-        }
-    }
-    if (unk5E8 == 0) {
-        unk5EC->func_00026130();
-        unk5F0->func_00026130();
-        unk5F4->func_00026130();
-        unk724 = 0;
-    }
+ int state;
+ if (unk468 != 0) { unk5E8 = (unk470 != 0) ? 5 : 1; }
+ else {
+ state = unk5E8;
+ if (state == 1 && unk4F8 != 0) unk5E8 = 2;
+ else if (unk454 != 0) unk5E8 = 3;
+ else if (state == 3 && unk698 != 0) unk5E8 = 4;
+ else if (unk1E8->unk64 != 0 && unk45C == D_00275544) unk5E8 = 0;
+ }
+ if (unk5E8 == 0) {
+ unk5EC->func_00026130();
+ unk5F0->func_00026130();
+ unk5F4->func_00026130();
+ unk724 = 0;
+ }
 }
 
 void C_00027E40::func_00027E40() {
