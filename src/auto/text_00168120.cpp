@@ -60,6 +60,15 @@ struct S_00168550_Tokenizer {
 
 static __inline int Min_00168550(int a, int b) { return a > b ? b : a; }
 static __forceinline int min_168550(const int &a, const int &b) { return AsmMinI(a, b); }
+static __forceinline int clamp_168550(const char *s, int size)
+{
+    int n = strlen(s);
+
+    if (size != -1) {
+        n = AsmMinI(n, size - 1);
+    }
+    return n;
+}
 
 struct C_001684B0 {
     char pad0[0x1c];
@@ -320,7 +329,6 @@ int C_00168280::func_00168550(const char *name, char *dst, int size)
     int lo;
     int hi;
     int mid;
-    int cmp;
     int n;
     int i;
     int count;
@@ -345,7 +353,7 @@ int C_00168280::func_00168550(const char *name, char *dst, int size)
                 s = t + *(int *)(t + 0x23);
                 n = strlen(s);
                 if (size != -1) {
-                    n = AsmMinI(n, size - 1);
+                    n = min_168550(n, size - 1);
                 }
                 goto copy;
             }
@@ -357,18 +365,20 @@ int C_00168280::func_00168550(const char *name, char *dst, int size)
                 p++;
             } while (c);
             func_000347F0(key);
-            t = f4c0;
             lo = 0;
             hi = f1c - 1;
             mid = hi >> 1;
-            for (;;) {
+            t = f4c0;
+            do {
+                int cmp;
+
                 e = t + mid * 0x2b;
                 cmp = strcmp(key, e);
                 if (cmp == 0) {
                     s = t + *(int *)(e + 0x23);
                     n = strlen(s);
                     if (size != -1) {
-                        n = AsmMinI(n, size - 1);
+                        n = min_168550(n, size - 1);
                     }
                     goto copy;
                 }
@@ -378,16 +388,13 @@ int C_00168280::func_00168550(const char *name, char *dst, int size)
                     lo = mid;
                 }
                 mid = ((hi - lo) >> 1) + lo;
-                if (hi - lo <= 1) {
-                    break;
-                }
-            }
+            } while (hi - lo > 1);
             e = t + lo * 0x2b;
             if (strcmp(key, e) == 0) {
                 s = t + *(int *)(e + 0x23);
                 n = strlen(s);
                 if (size != -1) {
-                    n = AsmMinI(n, size - 1);
+                    n = min_168550(n, size - 1);
                 }
                 goto copy;
             }
@@ -398,7 +405,7 @@ int C_00168280::func_00168550(const char *name, char *dst, int size)
             s = t + *(int *)(e + 0x23);
             n = strlen(s);
             if (size != -1) {
-                n = AsmMinI(n, size - 1);
+                n = min_168550(n, size - 1);
             }
 copy:
             memcpy(dst, s, n);
@@ -409,12 +416,12 @@ copy:
         count = f1c;
         list = f20;
         for (i = 0; i < count; i++) {
-            n = AsmMinI(0x3ff, strlen(list[i]));
+            n = min_168550(0x3ff, strlen(list[i]));
             func_001E8920(key, list[i], n);
             key[n] = 0;
             tok.Tokenizer_SetString(key);
             s = tok.func_001B4A70(D_0028800C);
-            n = AsmMinI(0x3ff, strlen(s));
+            n = min_168550(0x3ff, strlen(s));
             func_001E8920(val, s, n);
             val[n] = 0;
             s = tok.func_001B4A70(D_002869B4);
@@ -428,7 +435,7 @@ copy:
                 }
                 if (size != -1) {
                     func_001E8920(dst, s, size);
-                    n = AsmMinI(size - 1, strlen(s));
+                    n = min_168550(size - 1, strlen(s));
                     dst[n] = 0;
                 } else {
                     strcpy(dst, s);
