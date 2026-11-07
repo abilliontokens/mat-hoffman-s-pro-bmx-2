@@ -73,7 +73,7 @@ extern Mgr_6ECC0 *D_002A8490;
 extern char D_00278678[];
 extern char D_00278690[];
 extern float D_0028F5DC;
-extern char D_00276228[];
+extern const float D_00276228;
 extern void *D_0028F5E0;
 
 void *func_001E8A44(int size);
