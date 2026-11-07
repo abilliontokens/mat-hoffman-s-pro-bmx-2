@@ -459,23 +459,30 @@ int *C_00192470::func_001926F0(int a, int b)
     return func_00192470((int *)b);
 }
 
+extern "C" void _ReadWriteBarrier(void);
+#pragma intrinsic(_ReadWriteBarrier)
 C_00192470 *C_00192470::func_00192720(void)
 {
     void *func_001E8A44(int);
     func_0001DFE0();
     vtbl = (void *)&D_0028AB84;
-    f20 &= 0xfe;
-    list.init();
+    _ReadWriteBarrier();
+    list.items = 0;
+    unsigned char flags = f20 & 0xfe;
+    list.count = 0;
+    list.growBy = 0;
+    list.capacity = 0;
+    f20 = flags;
+    _ReadWriteBarrier();
     f8 = 0;
     list.items = (SearchEntry **)func_001E8A44(0x78);
-    f20 |= 1;
     list.growBy = 0x1e;
     list.capacity = 0x1e;
+    f20 |= 1;
     f24 = D_002AAEC8->func_001BC6E0(D_0028AB70);
     f25 = D_002AAEC8->func_001BC6E0(D_0028AA90);
     return this;
 }
-
 void C_00192470::func_001927A0(void)
 {
     void func_001E891B(void *);
