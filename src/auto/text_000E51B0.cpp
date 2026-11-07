@@ -1,5 +1,13 @@
 /* 1 function from 0x000E51B0 to 0x000E5FF0, found by Ghidra. */
 #include "common.h"
+struct RiderWidgetRGBA {
+char pad[0x38];
+unsigned int rgb:24;
+unsigned int alpha:8;
+char pad3c[0x1c];
+unsigned char flags;
+};
+
 struct RiderWidgetColor {
 char pad[0x3b];
 unsigned char alpha;
