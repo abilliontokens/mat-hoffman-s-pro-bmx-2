@@ -135,7 +135,7 @@ struct Vec4_001CA480 {
 };
 
 struct Vec3_001CA480 {
-    float x, y, z, w;
+    float x, y, z;
     Vec3_001CA480() {}
     Vec3_001CA480(float a, float b, float c) { x = a; y = b; z = c; }
     Vec3_001CA480 operator+(const Vec3_001CA480 &o) const { return Vec3_001CA480(x + o.x, y + o.y, z + o.z); }
