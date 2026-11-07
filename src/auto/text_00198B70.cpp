@@ -197,24 +197,15 @@ void C_00198B70::func_00198C00(C_00198B70 *src, C_00198B70 *dst)
 extern "C" void *memset(void *, int, unsigned int);
 void C_00198B70::func_00198DE0(void)
 {
-    C_00198B70 * volatile self = this;
-    S_00198B70_Mat * volatile p;
-    unsigned int *iq;
     C_00198B70 *c;
 
     f180b.b0 = 0;
-    p = &self->fB0;
-    iq = (unsigned int *)p;
-    memset((void *)p, 0, 0x40);
-    iq[0] = 0x3f800000;
-    iq[5] = 0x3f800000;
-    iq[10] = 0x3f800000;
-    iq[15] = 0x3f800000;
-    c = self->f178;
+    AsmIdentityMatrix(&fB0);
+    c = f178;
     if (c != 0) {
         c->v32();
     }
-    c = self->f174;
+    c = f174;
     if (c != 0) {
         c->v32();
     }
