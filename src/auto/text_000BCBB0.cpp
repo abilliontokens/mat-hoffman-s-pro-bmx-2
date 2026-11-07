@@ -34,7 +34,14 @@ extern char D_0027DC30[];
 void *func_001E8A44(unsigned);
 int func_001ADCC0(char*, unsigned, const char*, ...);
 int func_001EA426(const char*,const char*);
+extern char D_0027DC18[];
+void func_001E891B(void*);
+struct Progress_BCBB0 { int func_0005C1D0(int); void func_0005C1E0(int); char *func_0005C020(int); void func_0005C170(int,int); void func_0005C1B0(int,int); };
+struct Game_BCBB0 { char pad[0x2c0]; Progress_BCBB0 *f2c0; char pad2c4[0x14]; int f2d8; char pad2dc[0x48]; int f324; };
+struct Global_BCBB0 { char pad[0x2e0]; Game_BCBB0 *f2e0; };
+extern Global_BCBB0 *D_002A8490;
 struct Parser_BCBB0 {
+void func_001691E0();
 Parser_BCBB0 *func_00168280();
 void func_00169490(const char*,int);
 void func_00169710(const char*);
