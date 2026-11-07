@@ -19,6 +19,12 @@ struct W_0008DB70 {
     char pad4c[0x58 - 0x4c]; unsigned char f58;
     W_0008DB70 *func_001D5760();
     void func_00051140(float width);
+    void setWidth(float width) {
+        if (f28 != width) { f28 = width; f58 |= 1; }
+    }
+    void setDepth(float depth) {
+        if (f34 != depth) { f34 = depth; f58 |= 1; }
+    }
     void func_001D5810(char *name, float x, float y, int z);
 };
 struct S_0008DB70 {
