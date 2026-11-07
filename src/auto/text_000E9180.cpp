@@ -93,7 +93,9 @@ struct S_0E9180_Manager {
     void func_0001B910(void *);
 };
 struct S_0E9180_150 {
-    char pad0[0x484];
+    char pad0[0x3a8];
+    V_0E9180 **f3a8;
+    char pad3ac[0x484-0x3ac];
     S_0E9180_Manager *f484;
 };
 
