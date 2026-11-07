@@ -3,6 +3,7 @@
 
 struct Vec4_10F320 { float x,y,z,w; };
 struct Model10F320 {
+    void func_00198B70(Vec4_10F320 *,Vec4_10F320 *);
     void func_00199790(int,Vec4_10F320 *);
     void func_00199110(int,void *,void *,int,int,int);
     void func_00199A70(int,Vec4_10F320 *);
