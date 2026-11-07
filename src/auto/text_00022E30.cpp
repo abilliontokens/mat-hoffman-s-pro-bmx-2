@@ -311,9 +311,9 @@ void C_00022E30::func_00022E30(void)
 {
     char a[0x104], c[0x104], b[0x104], d[0x104];
 
-    copy_22E30(a, D_002A5EA0, 0x103);
+    copy_22E30(c, D_002A5EA0, 0x103);
     copy_22E30(b, D_002A60B0, 0x103);
-    copy_22E30(c, D_002A48F8, 0x103);
+    copy_22E30(a, D_002A48F8, 0x103);
     copy_22E30(d, D_002A46E8, 0x103);
 
     if (f28->f1a8->f108) {
@@ -343,10 +343,11 @@ void C_00022E30::func_00022E30(void)
         f38 = f34 + 1;
         if (f79 == 1) {
             S_000235C0_Elem *e = &f2c->elems[f38];
-            f4c.x = e->p.x;
-            f4c.y = e->p.y;
-            f4c.z = e->p.z;
-            f4c.w = 1.0f;
+            V4_00023340 *v = &f4c;
+            v->x = e->p.x;
+            v->y = e->p.y;
+            v->z = e->p.z;
+            v->w = 1.0f;
             func_000219E0(2);
         } else {
             if (f2c->f2c == 0) {
@@ -357,13 +358,16 @@ void C_00022E30::func_00022E30(void)
             func_000219E0(0);
         }
     }
-    if (f24) {
-        func_001E891B(f24);
-        f24 = 0;
+    {
+        C_00022E30_Cfg *cfg = f24;
+        if (cfg != 0) {
+            func_001E891B(cfg);
+            f24 = 0;
+        }
     }
-    copy_22E30(D_002A5EA0, a, 0x103);
+    copy_22E30(D_002A5EA0, c, 0x103);
     copy_22E30(D_002A60B0, b, 0x103);
-    copy_22E30(D_002A48F8, c, 0x103);
+    copy_22E30(D_002A48F8, a, 0x103);
     copy_22E30(D_002A46E8, d, 0x103);
 }
 
@@ -435,8 +439,8 @@ void C_000235C0::func_000235C0()
                             if (f30 == D_002B7E18->f68[i]->f8) {
                                 for (j = 0; j < D_002B7E18->f68[i]->count; j++) {
                                     if (D_002B7E18->f68[i]->pts[j].used == 0) {
-                                        V4_000235C0 dir;
                                         V4_000235C0 up;
+                                        V4_000235C0 dir;
                                         S_000235C0_V3 *d;
 
                                         f78 = 2;
@@ -497,8 +501,9 @@ void C_000235C0::func_000235C0()
     } else {
         int i2;
         int k;
+        int n = D_002B7E18->f34;
 
-        for (i2 = 0; i2 < D_002B7E18->f34; i2++) {
+        for (i2 = 0; i2 < n; i2++) {
             S_000235C0_Tbl *t = D_002B7E18->f64[i2];
             if (f30 == t->f8 && f34 == t->fc && t->f2d == 0) {
                 Select(i2);
@@ -508,7 +513,8 @@ void C_000235C0::func_000235C0()
                         f2c->f2d = 1;
                         return;
                     }
-                    for (k = 0; k < D_002B7E18->f38; k++) {
+                    k = 0;
+                    while (k < D_002B7E18->f38) {
                         if (f30 == D_002B7E18->f68[k]->f8) {
                             D_002B7E18->f68[k]->cur++;
                             if (D_002B7E18->f68[k]->cur >= D_002B7E18->f68[k]->count) {
@@ -517,6 +523,7 @@ void C_000235C0::func_000235C0()
                             }
                             return;
                         }
+                        k++;
                     }
                 }
                 return;
