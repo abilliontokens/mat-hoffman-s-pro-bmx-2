@@ -16,10 +16,10 @@ struct Vec4 {
     /* y and z arrive as doubles: this makes z a fld/fstp copy (as in the
        original) instead of an integer move. */
     Vec4(f32 x_, double y_, double z_, f32 w_) {
+        x = x_;
         y = (f32)y_;
         z = (f32)z_;
         w = w_;
-        x = x_;
     }
 };
 
@@ -476,6 +476,7 @@ void BmxStallConstraint::func_000B51C0(void)
     C_00198330 *obj = f30->func_00198330(&D_0027D3FC);
     obj->func_00199A70(f30, &v);
     f32 neg = -obj->f144;
-    f44 = Vec4(0.0f, (double)neg + v.y, (double)v.z, 1.0f);
+    f32 x0 = 0.0f;
+    f44 = Vec4(x0, (double)neg + v.y, (double)v.z, 1.0f);
 }
 
