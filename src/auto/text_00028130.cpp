@@ -1,35 +1,16 @@
 /* 1 function from 0x00028130 to 0x00028CD0, found by Ghidra. */
 #include "common.h"
-#include <xmmintrin.h>
 #include "asm_helpers.h"
 
 struct V4 { float x; float y; float z; float w; };
-extern float D_00276600;
-extern float D_002765F0;
-extern float D_002765E0;
 extern float D_002756D4;
 extern float D_002756D0;
 extern float D_002756DC;
 extern float D_00275544;
-static __forceinline void norm28130(float *out, float *in)
-{
-    __m128 v = _mm_loadu_ps(in);
-    __m128 sq = _mm_mul_ps(v, v);
-    __m128 len = _mm_add_ss(_mm_movehl_ps(sq, sq), sq);
-    len = _mm_add_ss(len, _mm_shuffle_ps(sq, sq, 0xe1));
-    __m128 minv = _mm_load_ss(&D_00276600);
-    __m128 cmp = _mm_cmplt_ss(len, minv);
-    len = _mm_add_ss(len, _mm_and_ps(cmp, minv));
-    __m128 r = _mm_rsqrt_ss(len);
-    __m128 t = _mm_mul_ss(_mm_mul_ss(len, r), r);
-    __m128 scale = _mm_mul_ss(_mm_mul_ss(r, _mm_load_ss(&D_002765E0)), _mm_sub_ss(_mm_load_ss(&D_002765F0), t));
-    scale = _mm_shuffle_ps(scale, scale, 0);
-    _mm_storeu_ps(out, _mm_mul_ps(scale, v));
-}
 int strcmp(const char *a, const char *b);
+#pragma intrinsic(strcmp)
 void func_00026340(void *a, void *b);
 float func_0014F7E0(float a);
-float sqrtf(float a);
 
 struct Cand {
     char pad0[0x10];
