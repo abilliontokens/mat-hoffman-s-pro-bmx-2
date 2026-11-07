@@ -14,6 +14,13 @@ struct S_000B7520_Vec4 {
     float dot(const S_000B7520_Vec4 &b) const { return x*b.x+y*b.y+z*b.z; }
 };
 
+static __forceinline void cross7520(S_000B7520_Vec4 *out,const S_000B7520_Vec4 *a,const S_000B7520_Vec4 *b) {
+    const float * volatile pa=&a->x; const float * volatile pb=&b->x; float * volatile po=&out->x;
+    __m128 va=_mm_loadu_ps(pa), vb=_mm_loadu_ps(pb);
+    __m128 sa=_mm_shuffle_ps(va,va,0xc9), sb=_mm_shuffle_ps(vb,vb,0xc9);
+    __m128 r=_mm_sub_ps(_mm_mul_ps(va,sb),_mm_mul_ps(vb,sa));
+    _mm_storeu_ps(po,_mm_shuffle_ps(r,r,0xc9));
+}
 struct Transform7520 {
     void func_001994C0(int, S_000B7520_Vec4 *, S_000B7520_Vec4 *);
     void func_00199110(int,S_000B7520_Vec4 *,S_000B7520_Vec4 *,int,int,int);
