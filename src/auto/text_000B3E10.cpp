@@ -173,8 +173,8 @@ inline B4300_Cb B4300_CbOf(void *p)
 
 __forceinline void B3E10_Copy(char *dst, const char *src, int max)
 {
-    int length = strlen(src);
     int limit = max;
+    int length = strlen(src);
     int n = AsmMinI(limit, length);
     func_001E8920(dst, src, n);
     dst[n] = 0;
@@ -302,19 +302,18 @@ extern "C" void __stdcall func_001577A0(S_B3E10_Obj *o, int a);
 
 void C_000B4300::func_000B3E10(void)
 {
-    C_000B4300 * volatile self = this;
     char path[0x104];
     char path2[0x104];
     S_B3E10_Info *info;
     S_B3E10_Obj *o;
 
-    if (func_001EA426(self->f3c->f3c, D_002764F0) == 0)
+    if (func_001EA426(this->f3c->f3c, D_002764F0) == 0)
         return;
-    info = self->f3c;
+    info = this->f3c;
     func_001ADCC0(info->f140, 0x104, D_0027C588, info->f3c);
     B3E10_Copy(path, D_002A5EA0, 0x103);
     B3E10_Copy(path2, D_002A60B0, 0x103);
-    if (self->f3c->f8 != 0) {
+    if (this->f3c->f8 != 0) {
         func_001ADCC0(D_002A5EA0, 0x104, D_00275678, D_002A5348, D_002A45E0);
         func_001ADCC0(D_002A60B0, 0x104, D_00275678, D_002A5348, D_002A5FA8);
     } else {
@@ -322,41 +321,46 @@ void C_000B4300::func_000B3E10(void)
         func_001ADCC0(D_002A60B0, 0x104, D_00275678, D_002A5870, D_002A5FA8);
     }
     o = (S_B3E10_Obj *)func_001E8A44(0x1e0);
-    self->f40->f8 = o ? o->func_00143580(1) : 0;
-    info = self->f3c;
-    if (self->f40->f8->Load(info->f140, 0, info->f4)) {
-        B3E10_Copy(self->f40->f8->f28, self->f3c->f140, 0x7f);
-        self->f40->f8->func_00199600(self->f3c->fC);
-        self->f40->f8->func_00198F50(self->f3c->f1c, self->f3c->f2c, 1, 0, 0);
-        self->f40->f8->func_0019ABA0(D_002B9120->f4a8[D_002B9120->f348], 1);
-        func_001577A0(self->f40->f8, 0);
-        self->f40->f8->func_00182020(self->f40->f8->f1b8->f4,
-            D_002A829C->func_001617F0((char *)self + 0x64, 1));
-        self->f40->f8->func_00182020(self->f40->f8->f1b8->f8,
-            D_002A829C->func_001617F0((char *)self + 0x168, 1));
+    this->f40->f8 = o ? o->func_00143580(1) : 0;
+    info = this->f3c;
+    if (this->f40->f8->Load(info->f140, 0, info->f4)) {
+        int length = strlen(this->f3c->f140);
+        int limit = 0x7f;
+        int n = AsmMinI(limit, length);
+        int id1, id2;
+        func_001E8920(this->f40->f8->f28, this->f3c->f140, n);
+        this->f40->f8->f28[n] = 0;
+        this->f40->f8->func_00199600(this->f3c->fC);
+        this->f40->f8->func_00198F50(this->f3c->f1c, this->f3c->f2c, 1, 0, 0);
+        this->f40->f8->func_0019ABA0(D_002B9120->f4a8[D_002B9120->f348], 1);
+        func_001577A0(this->f40->f8, 0);
+        id1 = D_002A829C->func_001617F0((char *)this + 0x64, 1);
+        this->f40->f8->func_00182020(this->f40->f8->f1b8->f4, id1);
+        id2 = D_002A829C->func_001617F0((char *)this + 0x168, 1);
+        this->f40->f8->func_00182020(this->f40->f8->f1b8->f8, id2);
     } else {
-        self->f40->f8 = 0;
+        this->f40->f8 = 0;
     }
-    self->func_000B1B80();
+    this->func_000B1B80();
     B3E10_Copy(D_002A5EA0, path, 0x103);
     B3E10_Copy(D_002A60B0, path2, 0x103);
-    if (D_002EFE08->func_0018E740(self, D_0027D1E0) == 0) {
+    if (D_002EFE08->func_0018E740(this, D_0027D1E0) == 0) {
         B4300_Cb volatile cb = &C_000B4300::func_000B3330;
-        self->B4300_Reg(cb, D_0027D1BC, D_0027D1D0, D_0027D1D8);
+        this->B4300_Reg(cb, D_0027D1BC, D_0027D1D0, D_0027D1D8);
         cb = B4300_CbOf(D_000B1E50);
-        self->B4300_Reg(cb, D_0027D1AC, D_0027D1D0, D_0027D1D8);
+        this->B4300_Reg(cb, D_0027D1AC, D_0027D1D0, D_0027D1D8);
         cb = B4300_CbOf(D_000B1E60);
-        self->B4300_Reg(cb, D_0027D194, D_0027D1A4, D_0027D1D8);
+        this->B4300_Reg(cb, D_0027D194, D_0027D1A4, D_0027D1D8);
         cb = B4300_CbOf(D_000B1E70);
-        self->B4300_Reg(cb, D_0027D178, D_0027D18C, D_0027D1D8);
-        info = self->f3c;
-        D_002EFE08->func_00191270(self, D_0027D1E0, (S_B4300_Stream *)info->f348, info->f384);
+        this->B4300_Reg(cb, D_0027D178, D_0027D18C, D_0027D1D8);
+        info = this->f3c;
+        D_002EFE08->func_00191270(this, D_0027D1E0, (S_B4300_Stream *)info->f348, info->f384);
     }
-    self->v70();
-    info = self->f3c;
+    this->v70();
+    info = this->f3c;
     if (info != 0) {
         func_001E891B(info);
-        self->f3c = 0;
+        this->f3c = 0;
     }
 }
 
