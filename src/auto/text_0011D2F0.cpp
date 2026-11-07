@@ -11,6 +11,7 @@ struct M4_0011D2F0 {
 struct Node_0011D2F0 {
     void func_001996A0(int a, V4_0011D2F0 v);
     void func_00199300(V4_0011D2F0 *v);
+    void func_00199CF0(V4_0011D2F0 v, float angle);
     void func_00197EA0(M4_0011D2F0 *m);
     void func_00199C20(int a, M4_0011D2F0 *m);
     void func_00199A70(int a, V4_0011D2F0 *v);
@@ -174,6 +175,7 @@ void C_0011D2F0::func_0011D2F0(float dt)
         M4_0011D2F0 mTmp;
         V4_0011D2F0 hit, nrm;
         V4_0011D2F0 from, to;
+        V4_0011D2F0 blend;
         v0.z = 0.0f;
         v0.y = 0.0f;
         v0.x = 0.0f;
@@ -213,6 +215,29 @@ void C_0011D2F0::func_0011D2F0(float dt)
                 self->f198 = hit;
                 self->f44 = 0;
                 self->f34 = self->f24;
+                self->f168 = D_002A3BBC;
+                self->f178 = D_002A3BBC;
+                if (self->f178.x <= D_00275544) {
+                    blend.x = self->f168.x;
+                } else if (self->f168.x >= D_00275544) {
+                    blend.x = self->f178.x;
+                } else {
+                    blend.x = self->f178.x + self->f168.x;
+                }
+                if (self->f178.y <= D_00275544) {
+                    blend.y = self->f168.y;
+                } else if (self->f168.y >= D_00275544) {
+                    blend.y = self->f178.y;
+                } else {
+                    blend.y = self->f178.y + self->f168.y;
+                }
+                if (self->f178.z <= D_00275544) {
+                    blend.z = self->f168.z;
+                } else if (self->f168.z >= D_00275544) {
+                    blend.z = self->f178.z;
+                } else {
+                    blend.z = self->f178.z + self->f168.z;
+                }
             }
         }
         self->f84->node->func_00199C20(0, &mTmp);
