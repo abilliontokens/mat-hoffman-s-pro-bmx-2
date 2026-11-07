@@ -14,6 +14,9 @@ struct C153DF0_Eff {
     void func_001983A0();
     void func_0019AC50();
     void func_00199600(float *v);
+    void func_00199600(Vec153DF0 v);
+    void func_0011CA60(Vec153DF0 v);
+    void func_00198390();
     void func_00198F50(float *a, float *b, int c, int d, int e);
 };
 struct C153DF0_Game { char pad0[0x124]; int f124; char pad128[0x1B8]; int *f2E0; };
