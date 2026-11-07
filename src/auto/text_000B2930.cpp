@@ -3,6 +3,7 @@
 #include "ghidra.h"
 #include <math.h>
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 extern char D_002764F0[];
 extern char D_00276310[];
 extern char D_0027CEF0[];
@@ -192,7 +193,7 @@ struct VehicleAI {
 };
 
 /* trigger item of func_000B2930's target list (flag at +0x3e0) */
-struct S_000B2930_Item { char pad0[0x3e0]; VehicleV4 *func_00011E30(VehicleV4 *out); };
+struct S_000B2930_Item { char pad0[0x3e0]; u8 f3E0; VehicleV4 *func_00011E30(VehicleV4 *out); };
 void *func_00011E30(S_000B2930_Item *self);
 extern float D_0027CE50;
 extern float D_0027CE40;
@@ -455,65 +456,62 @@ struct C_000B2530 {
 
 void VehicleAI::func_000B2930(void)
 {
-    VehicleAI * volatile self = this;
     float v[4];
-    float nearv[4];
-    float plane[4];
-    float thr;
-    float dot;
+    float nearv;
+    float dx, dy, dz, sq, d;
+    float range, thr, dot;
+    VehicleV4 temp, plane;
+    float *p, *n;
     int i;
 
     v[0] = D_002A2DC4[0];
     v[1] = D_002A2DC4[1];
     v[2] = D_002A2DC4[2];
     v[3] = D_002A2DC4[3];
-    nearv[0] = 10000.0f;
+    nearv = 10000.0f;
     for (i = 0; i < D_002B9120->f578; i++) {
-        char *item = (char *)D_002B9120->f57C[i];
-        if (item[0x3e0] != 0) {
-            float *pos = (float *)func_00011E30((S_000B2930_Item *)item);
-            float dx = pos[0] - *(float *)((char *)self + 0x7c);
-            float dy = pos[1] - *(float *)((char *)self + 0x80);
-            float dz = pos[2] - *(float *)((char *)self + 0x84);
-            float sq = dx * dx + dy * dy + dz * dz;
-            float d;
-            _mm_store_ss(&d, _mm_sqrt_ss(_mm_set_ss(sq)));
-            if (d > D_00275544 && d < nearv[0]) {
-                nearv[0] = d;
+        if (((char *)D_002B9120->f57C[i])[0x3e0] != 0) {
+            *(VehicleV4 *)v = *((S_000B2930_Item *)D_002B9120->f57C[i])->func_00011E30(&temp);
+            dx = v[0] - *(float *)((char *)this + 0x7c);
+            dy = v[1] - *(float *)((char *)this + 0x80);
+            dz = v[2] - *(float *)((char *)this + 0x84);
+            sq = dx * dx + dy * dy + dz * dz;
+            d = AsmSqrtF(sq);
+            if (d > D_00275544 && d < nearv) {
+                nearv = d;
             }
         }
     }
-    if (*(float *)((char *)self + 0x64) <= D_00278C48) {
-        thr = D_002B9134->f24 * D_002755E8;
+    range = D_002B9134->f24;
+    if (D_00278C48 >= *(float *)((char *)this + 0x64)) {
+        range *= D_002755E8;
+        thr = 0.7f;
     } else {
         thr = 0.2f;
     }
-    if (thr <= nearv[0]) {
-        sub_000B2930(nearv, self, self);
-        norm_000B2930(nearv, nearv);
-        {
-            float *n = self->f3C->f458;
-            plane[0] = n[0];
-            plane[1] = n[1];
-            plane[2] = n[2];
-            plane[3] = n[3];
-        }
-        dot = plane[0] * nearv[0] + plane[1] * nearv[1] + plane[2] * nearv[2];
-        if (dot < thr) {
-            self->f2AB = 1;
-            self->f68 = 0;
+    if (range >= nearv) {
+        p = v;
+        p[2] -= *(float *)((char *)this + 0x84);
+        p[1] -= *(float *)((char *)this + 0x80);
+        p[0] -= *(float *)((char *)this + 0x7c);
+        p[3] = 1.0f;
+        AsmVec3Normalize(p, p);
+        plane = *(VehicleV4 *)f3C->f458;
+        n = (float *)&plane;
+        dot = n[1] * p[1] + n[0] * p[0] + n[2] * p[2];
+        if (dot >= thr) {
+            f2AB = 1;
+            f68 = 0;
             SetState(0x5a);
             return;
         }
-    } else if (!(D_00275544 < thr) && nearv[0] <= D_002B9134->f24 + D_00275548) {
+    } else if (!(D_00275544 < thr) && nearv <= D_002B9134->f24 + D_00275548) {
         return;
     }
-    self->f2AB = 0;
-    if (self->f2AA == 0) {
-        self->f68 = 0x3f800000;
-        if (self->f5C != 0) {
-            SetState(0);
-        }
+    f2AB = 0;
+    if (f2AA == 0) {
+        f68 = 0x3f800000;
+        SetState(0);
     }
 }
 
