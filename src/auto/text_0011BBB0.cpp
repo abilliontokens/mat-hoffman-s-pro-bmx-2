@@ -1,6 +1,7 @@
 /* 6 functions from 0x0011BBB0 to 0x0011CB40, found by Ghidra. */
 #include "common.h"
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 
 struct S_0011CA20_V4 {
     int x;
@@ -28,9 +29,7 @@ extern V4_0011C3F0 D_002A3BDC;
 
 static __forceinline float Min_0011C3F0(float a, float b)
 {
-    float r;
-    _mm_store_ss(&r, _mm_min_ss(_mm_set_ss(a), _mm_set_ss(b)));
-    return r;
+    return AsmMinF(a, b);
 }
 
 struct S_0011C3F0_Smoother {
@@ -246,6 +245,123 @@ static inline void SetV4(S_0011CA20_V4 *v, int x, int y, int z, int w)
 static inline void CopyV4(S_0011CA20_V4 *dst, S_0011CA20_V4 src)
 {
     *dst = src;
+}
+
+void C_0011BBB0::func_0011BBB0(V4_0011C3F0 a)
+{
+    V4_0011C3F0 up;
+    if (a.y >= D_002756DC) {
+        AsmVec3Cross((float *)&up, (const float *)&D_002A3BCC, (const float *)&a);
+    } else {
+        AsmVec3Cross((float *)&up, (const float *)&D_002A3BDC, (const float *)&a);
+    }
+    func_0011ABC0(&up, &up);
+    __declspec(align(16)) float m[16];
+    func_000265C0(m, (const V4_0011C3F0 *)&D_002A3BBC, &up, &a, 0, 1);
+    f124 = 0;
+    V4_0011C3F0 pos;
+    f11C->func_00199A70(0, &pos);
+    m[3] = pos.x;
+    m[7] = pos.y;
+    m[11] = pos.z;
+    f1A8 = 1;
+    fA4->v31(m);
+    fA4->func_00133F10(0);
+    if (fA4->fA7 & 0x20) {
+        V4_0011C3F0 t = *(V4_0011C3F0 *)((char *)fA4->f54 + 0x30);
+        V4_0011C3F0 u = *(V4_0011C3F0 *)((char *)fA4->f54 + 0x20);
+        f1B4 = f1A8;
+        f1C0 = t;
+        f1F0 = u;
+        V4_0011C3F0 p;
+        p.x = a.x * D_002755E8 + t.x;
+        p.y = a.y * D_002755E8 + t.y;
+        p.z = a.z * D_002755E8 + t.z;
+        f108->func_001A0C90(p);
+        if (f120 == 0) {
+            f120 = 1;
+            f124 = 1;
+        }
+    } else {
+        f120 = 0;
+        f1B4 = 0;
+    }
+    f10C->func_00199A70(0, &pos);
+    m[3] = pos.x;
+    m[7] = pos.y;
+    m[11] = pos.z;
+    f1A8 = 1;
+    fA4->v31(m);
+    fA4->func_00133F10(0);
+    if (fA4->fA7 & 0x20) {
+        V4_0011C3F0 t = *(V4_0011C3F0 *)((char *)fA4->f54 + 0x30);
+        V4_0011C3F0 u = *(V4_0011C3F0 *)((char *)fA4->f54 + 0x20);
+        if (f1B0 == 0) {
+            f1B8 = f1A8;
+            f1D0 = t;
+            f200 = u;
+        }
+        V4_0011C3F0 p;
+        p.x = a.x * D_00278C48 + t.x;
+        p.y = a.y * D_00278C48 + t.y;
+        p.z = a.z * D_00278C48 + t.z;
+        fF8->func_001A0C90(p);
+    } else {
+        f1B8 = 0;
+    }
+    f110->func_00199A70(0, &pos);
+    m[3] = pos.x;
+    m[7] = pos.y;
+    m[11] = pos.z;
+    f1A8 = 1;
+    fA4->v31(m);
+    fA4->func_00133F10(0);
+    if (fA4->fA7 & 0x20) {
+        V4_0011C3F0 t = *(V4_0011C3F0 *)((char *)fA4->f54 + 0x30);
+        V4_0011C3F0 u = *(V4_0011C3F0 *)((char *)fA4->f54 + 0x20);
+        if (f1B0 == 0) {
+            f1BC = f1A8;
+            f1E0 = t;
+            f210 = u;
+        }
+        V4_0011C3F0 p;
+        p.x = a.x * D_00278C48 + t.x;
+        p.y = a.y * D_00278C48 + t.y;
+        p.z = a.z * D_00278C48 + t.z;
+        fFC->func_001A0C90(p);
+    } else {
+        f1BC = 0;
+    }
+    f114->func_00199A70(0, &pos);
+    m[3] = pos.x;
+    m[7] = pos.y;
+    m[11] = pos.z;
+    f1A8 = 1;
+    fA4->v31(m);
+    fA4->func_00133F10(0);
+    if (fA4->fA7 & 0x20) {
+        V4_0011C3F0 t = *(V4_0011C3F0 *)((char *)fA4->f54 + 0x30);
+        V4_0011C3F0 p;
+        p.x = a.x * D_00278C48 + t.x;
+        p.y = a.y * D_00278C48 + t.y;
+        p.z = a.z * D_00278C48 + t.z;
+        f100->func_001A0C90(p);
+    }
+    f118->func_00199A70(0, &pos);
+    m[3] = pos.x;
+    m[7] = pos.y;
+    m[11] = pos.z;
+    f1A8 = 1;
+    fA4->v31(m);
+    fA4->func_00133F10(0);
+    if (fA4->fA7 & 0x20) {
+        V4_0011C3F0 t = *(V4_0011C3F0 *)((char *)fA4->f54 + 0x30);
+        V4_0011C3F0 p;
+        p.x = a.x * D_00278C48 + t.x;
+        p.y = a.y * D_00278C48 + t.y;
+        p.z = a.z * D_00278C48 + t.z;
+        f104->func_001A0C90(p);
+    }
 }
 
 void C_0011C3F0::func_0011C3F0(float *m, float dt)
