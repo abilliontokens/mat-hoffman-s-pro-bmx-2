@@ -126,19 +126,19 @@ static __forceinline int Min_001D2A40(int a, int b) { return a > b ? b : a; }
               } \
         } else { \
             (T)->val[k] = (T)->val[k] - (T)->step[k]; \
-            if ((T)->val[k] <= (float)(T)->LO) { \
-                if ((T)->flags & (FM)) { \
-                    if ((T)->flags & (PM)) { \
-                        (T)->dir &= ~(M); \
-                        (T)->val[k] = (float)(T)->LO; \
-                    } else { \
-                        (T)->val[k] = (float)(T)->HI; \
-                    } \
-                } else { \
-                    (T)->done |= (M); \
-                    (T)->val[k] = (float)(T)->LO; \
-                } \
-            } \
+                          if ((T)->val[k] <= (float)(T)->LO) { \
+                  if (!((T)->flags & (FM))) { \
+                      (T)->done |= (M); \
+                      (T)->val[k] = (float)(T)->LO; \
+                  } else { \
+                      if ((T)->flags & (PM)) { \
+                          (T)->dir &= ~(M); \
+                          (T)->val[k] = (float)(T)->LO; \
+                      } else { \
+                          (T)->val[k] = (float)(T)->HI; \
+                      } \
+                  } \
+              } \
         } \
     }
 #define TRK_T ((S_001D2A40_Track *)((char *)this->f10 + off))
