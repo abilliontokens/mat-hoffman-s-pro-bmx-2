@@ -75,6 +75,13 @@ struct C_00131510 {
 
 extern float D_00275544, D_002A4278, D_00275460, D_0028458C, D_00284588, D_002B9D6C;
 extern V4_00131510 D_002A4220, D_002A4230, D_002A4240;
+extern float D_002755EC, D_002A4274;
+extern char* D_002A8490;
+extern int D_002A9A68;
+extern char D_00284574[],D_0028455C[],D_00284544[],D_0028452C[],D_00284524[];
+void func_0013E260(void*,int,const char*);
+void func_0013E1F0(void*,int,const char*,...);
+float func_0014FBA0(float,float);
 
 void func_001310E0(V4_00131510 *a, V4_00131510 *b);
 float func_00016D60(float x);
