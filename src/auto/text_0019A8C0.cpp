@@ -28,13 +28,12 @@ void func_0001C680(S_0019A8C0_V4 *out, S_0019A8C0_V4 v, float *m);
 void func_00030AC0(float *out, float *v, float *m);
 void func_0013E4A0(void *dst, void *src);
 
-static float Abs_0019A8C0(float f)
+static __forceinline float Abs_0019A8C0(float f)
 {
-    union { float f; unsigned u; } v;
+    float r = f;
 
-    v.f = f;
-    v.u &= 0x7fffffff;
-    return v.f;
+    *(unsigned *)&r &= 0x7fffffff;
+    return r;
 }
 
 struct C_0019B6D0 {
