@@ -180,6 +180,8 @@ struct C_0002D730 {
     void func_0002D730(float dt);
     void func_00027D60(void);
     void func_0002AF90(void);
+    void func_0002A7C0(void);
+    void func_00027C50(float);
     void func_0002CBC0(float);
     void func_000298F0(float);
     void func_00029E00(float);
