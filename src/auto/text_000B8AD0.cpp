@@ -65,7 +65,7 @@ struct C_000B8C90 {
     int f34;
     float f38;
     float f3C;
-    int f40;
+    float f40;
     float f44;
     char pad48[0x1C];
     float f64[4];
