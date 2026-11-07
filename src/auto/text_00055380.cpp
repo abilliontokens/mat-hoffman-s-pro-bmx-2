@@ -108,8 +108,7 @@ struct S_00056100_Quat {
     float x, y, z, w;
     S_00056100_Quat() { z = 0; y = 0; x = 0; w = 1.0f; }
  S_00056100_Quat operator*(float s) const { S_00056100_Quat r; r.x=x*s;r.y=y*s;r.z=z*s;return r; }
- S_00056100_Quat operator%(const float &s) const { S_00056100_Quat r; r.x=x*s;r.y=y*s;r.z=z*s;return r; }
- S_00056100_Quat operator+(const S_00056100_Quat &b) const { S_00056100_Quat r; r.x=x+b.x;r.y=y+b.y;r.z=z+b.z;return r; }
+   S_00056100_Quat operator+(const S_00056100_Quat &b) const { S_00056100_Quat r; r.x=x+b.x;r.y=y+b.y;r.z=z+b.z;return r; }
  S_00056100_Quat operator-(const S_00056100_Quat &b) const { S_00056100_Quat r; r.x=x-b.x;r.y=y-b.y;r.z=z-b.z;return r; }
 };
 static inline S_00056100_Quat operator*(float s, const S_00056100_Quat &v) { S_00056100_Quat r; r.x=s*v.x;r.y=s*v.y;r.z=s*v.z;return r; }
