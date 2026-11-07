@@ -456,34 +456,27 @@ int C_000BBE30::func_000BE020(int show)
     char buf1[0x104];
     char buf2[0x104];
     char buf3[0x104];
-    struct { C_000BBE30 * volatile self; volatile int cnt; volatile int limit; volatile int len; } t;
+    
+    int cnt, limit, len;
     char *p;
     int idx;
-
-    t.self = this;
-    if (D_002A8490->f2E0->f324 == 1) {
-        return func_000BBED0(show);
-    }
+    if (D_002A8490->f2E0->f324 == 1) return func_000BBED0(show);
     func_001ADCC0(buf1, 0x104, D_0027DB8C, f280[f27C[f284].f120[f288]].name);
-    t.len = strlen(t.self->f27C[t.self->f284].name);
-    t.limit = 0x103;
-    t.cnt = t.limit > t.len ? t.len : t.limit;
-    func_001E8920(buf3, t.self->f27C[t.self->f284].name, t.cnt);
-    buf3[t.cnt] = 0;
+    len = strlen(this->f27C[this->f284].name);
+    limit = 0x103;
+    cnt = AsmMinI(limit, len);
+    func_001E8920(buf3, this->f27C[this->f284].name, cnt);
+    buf3[cnt] = 0;
     p = buf3;
-    while (*p != ' ' && *p != 0) {
-        p++;
-    }
+    while (*p != ' ' && *p != 0) p++;
     *p = 0;
     func_001ADCC0(buf2, 0x104, D_0027DDE0, buf3);
     if (D_002A8490->f234 != 1) {
         D_002EFDB8->v7(1);
         D_002EFDB8->v8();
     }
-    idx = t.self->f150->f484->func_0001B3C0(buf2);
-    if (show != 0) {
-        t.self->func_000BBA80(idx, buf1);
-    }
+    idx = this->f150->f484->func_0001B3C0(buf2);
+    if (show != 0) this->func_000BBA80(idx, buf1);
     return idx;
 }
 
