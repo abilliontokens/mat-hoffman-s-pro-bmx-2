@@ -21,7 +21,7 @@ extern float D_00275460;
 void func_0011EFA0(Vec4 *out, Vec4 *in);
 
 static __forceinline float Fabs(volatile float f);
-static __forceinline void EdgeEval(Vec4 &P, Vec4 &N, float *v0, float *v1, float *n0, float *n1, float *n, float t);
+static __forceinline Vec4 EdgeEval(Vec4 &N, float *v0, float *v1, float *n0, float *n1, float *n, float t);
 
 static __forceinline void TriInterp(Vec4 *out, Vec4 *Q, Vec4 *R, float *p, float *n, float *a, float *b, float *c, float *na, float *nb, float *nc, int k, int cmp, int ja, int jb)
 {
@@ -30,7 +30,6 @@ static __forceinline void TriInterp(Vec4 *out, Vec4 *Q, Vec4 *R, float *p, float
     int cnt = 0;
     int j;
     float t;
-    Vec4 dummy;
 
     if ((a[k] <= p[k] && b[k] > p[k]) || (a[k] >= p[k] && b[k] < p[k])) {
         v[0] = a; v[1] = b; vn[0] = na; vn[1] = nb;
@@ -44,16 +43,12 @@ static __forceinline void TriInterp(Vec4 *out, Vec4 *Q, Vec4 *R, float *p, float
         v[cnt] = c; v[cnt + 1] = a; vn[cnt] = nc; vn[cnt + 1] = na;
     }
     t = (p[k] - v[0][k]) / (v[1][k] - v[0][k]);
-    Vec4 pv, nv;
-    EdgeEval(pv, nv, v[0], v[1], vn[0], vn[1], n, t);
-    Q[0] = pv; R[0] = nv;
+    Q[0] = EdgeEval(R[0], v[0], v[1], vn[0], vn[1], n, t);
     t = (p[k] - v[2][k]) / (v[3][k] - v[2][k]);
-    EdgeEval(pv, nv, v[2], v[3], vn[2], vn[3], n, t);
-    Q[1] = pv; R[1] = nv;
+    Q[1] = EdgeEval(R[1], v[2], v[3], vn[2], vn[3], n, t);
     j = (Fabs(n[1]) > Fabs(n[cmp])) ? ja : jb;
     t = (p[j] - (&Q[0].x)[j]) / ((&Q[1].x)[j] - (&Q[0].x)[j]);
-    EdgeEval(pv, nv, &Q[0].x, &Q[1].x, &R[0].x, &R[1].x, n, t);
-    *out = pv;
+    *out = EdgeEval(*out, &Q[0].x, &Q[1].x, &R[0].x, &R[1].x, n, t);
 }
 
 static __forceinline float Fabs(volatile float f)
@@ -62,7 +57,7 @@ static __forceinline float Fabs(volatile float f)
     return *(float *)&i;
 }
 
-static __forceinline void EdgeEval(Vec4 &P, Vec4 &N, float *v0, float *v1, float *n0, float *n1, float *n, float t)
+static __forceinline Vec4 EdgeEval(Vec4 &N, float *v0, float *v1, float *n0, float *n1, float *n, float t)
 {
     Vec3 m = (Vec3(n1[0], n1[1], n1[2]) + Vec3(n0[0], n0[1], n0[2])) * D_002755E8;
     float d = m.y * n[1] + m.x * n[0] + m.z * n[2];
@@ -79,8 +74,8 @@ static __forceinline void EdgeEval(Vec4 &P, Vec4 &N, float *v0, float *v1, float
     Vec3 n1v(n1[0], n1[1], n1[2]);
     Vec3 pv = v0v * s + v1v * t;
     Vec3 nn = r * (t * s) + v0v * (s * s) + n1v * t;
-    P = Vec4(pv.x, pv.y, pv.z);
     N = Vec4(nn.x, nn.y, nn.z);
+    return Vec4(pv.x, pv.y, pv.z);
 }
 
 void func_00124760(Vec4 *out, float *p, float *n, float *a, float *b, float *c, float *na, float *nb, float *nc)
