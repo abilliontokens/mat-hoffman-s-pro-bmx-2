@@ -131,12 +131,12 @@ extern int D_002BF268;
 extern int D_002BF26C;
 extern float D_002BF270;
 extern float D_002BF280;
-extern float D_00275460;
-extern float D_002869C0;
-extern float D_002869BC;
-extern float D_0027D264;
-extern float D_0027988C;
-extern float D_002869B0;
+extern const float D_00275460;
+extern const float D_002869C0;
+extern const float D_002869BC;
+extern const float D_0027D264;
+extern const float D_0027988C;
+extern const float D_002869B0;
 float func_0001E960(float);
 struct Ent14 {
     char pad0[2]; unsigned char f2; char pad3; short f4; short f6;
