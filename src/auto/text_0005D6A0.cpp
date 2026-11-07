@@ -45,6 +45,7 @@ struct Obj22C_5DAB0 {
     void func_001994C0(int a, void *b, void *c);
     void func_00199960(int a, void *b);
     void func_00199E50(Vec4_5DAB0 a, Vec4_5DAB0 b, float c);
+    void func_00199CF0(Vec4_5DAB0 a, float b);
     Vec4_5DAB0 *func_00197F70(void *a);
     void func_001994C0(void *a, void *b, int c);
     void func_00199960(void *a, int b);
