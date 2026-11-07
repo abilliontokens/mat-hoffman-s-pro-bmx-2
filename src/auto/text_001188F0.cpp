@@ -67,6 +67,7 @@ static __forceinline void Copy_001188F0(M4 * volatile dst, const M4 * volatile s
     d->r0 = r0; d->r1 = r1; d->r2 = r2; d->r3 = r3;
 }
 
+struct Audio1188F0 { virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7(); virtual void v8(); virtual void v9(); virtual void vA(); virtual void vB(); virtual void vC(); virtual void vD(); virtual void vE(); virtual void vF(int, float, int); };
 struct Manager1188F0 { void func_001048E0(); void func_001048C0(); };
 struct Self1188F0 {
     void func_0002D270();
