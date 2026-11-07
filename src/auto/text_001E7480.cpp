@@ -231,7 +231,7 @@ void __fastcall func_001E7E60(int n, int x3, int n2, int y, int z) {
     }
 }
 
-extern "C" void func_001E4D60(int n, float *a, float *w);
+extern "C" void __fastcall func_001E4D60(int n, float *a, float *w);
 extern "C" void func_001E3A20(int n, float *a, int nw);
 extern "C" void D_001E4300(void);
 extern "C" void D_001E4480(void);
