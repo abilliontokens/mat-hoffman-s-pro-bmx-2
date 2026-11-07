@@ -1,5 +1,6 @@
 /* 6 functions from 0x000A91C0 to 0x000A9ED0, found by Ghidra. */
 #include "common.h"
+#include "asm_helpers.h"
 extern int D_0027C51C;
 extern char D_0027C504[], D_0027C4EC[], D_0027C4DC[], D_002764F0[], D_0027C4D0[];
 extern char D_0027C4BC[], D_0027C4AC[], D_0027C49C[], D_0027C494[], D_0027C488[];
@@ -167,19 +168,18 @@ void func_0014FF00(const char *, int, int, char *, int);
 extern "C" V4_A91C0 *func_00182980(void *a, void *b);
 void C_000A9820::func_000A91C0(S_A91C0_Reader * volatile stream)
 {
-    C_000A9820 * volatile self = this;
-    char val[0x104];
-    char key[0x104];
-    char sect[0x104];
-    char name[0x104];
-    char tmp[0x10];
     V4_A91C0 t;
-    int i;
-    int count;
-    int end;
-    float duration;
+    char tmp[0x10];
+    char name[0x104];
+    char sect[0x104];
+    char key[0x104];
+    char val[0x104];
     int nColors;
     int nCycles;
+    float duration;
+    int end;
+    int count;
+    int i;
     int start;
     int k;
     int len;
@@ -187,49 +187,49 @@ void C_000A9820::func_000A91C0(S_A91C0_Reader * volatile stream)
     if (stream->func_00169710(D_0027C504) != 0) {
         stream->func_00168C20(D_0027C4EC, 0, &count);
         if (count > 0) {
-            if (self->objs != 0) {
-                start = self->num;
-                self->num = count + start;
-                end = self->num;
-                self->objs = (CCObj **)func_001E83E8(self->objs, end * 4);
+            if (this->objs != 0) {
+                start = this->num;
+                this->num = count + start;
+                end = this->num;
+                this->objs = (CCObj **)func_001E83E8(this->objs, end * 4);
             } else {
                 start = 0;
-                self->num = count;
-                end = self->num;
-                self->objs = (CCObj **)func_001E8A44(end * 4);
+                this->num = count;
+                end = this->num;
+                this->objs = (CCObj **)func_001E8A44(end * 4);
             }
             for (i = start; i < end; i++) {
                 func_001ADCC0(sect, 0x104, D_0027C4DC, i - start + 1);
                 if (stream->func_00169710(sect) != 0) {
                     stream->func_00168BE0(D_0027C4D0, D_002764F0, name, -1);
                     stream->func_00168C20(D_0027C4BC, 1, &nColors);
-                    self->objs[i] = (CCObj *)func_001E8A44(0x12c);
-                    len = a91c0_min(0x103, a91c0_strlen(name));
-                    func_001E8920((char *)self->objs[i], name, len);
-                    ((char *)self->objs[i])[len] = 0;
-                    self->objs[i]->n = nColors;
-                    self->objs[i]->elems = (CCElem **)func_001E8A44(nColors * 4);
+                    this->objs[i] = (CCObj *)func_001E8A44(0x12c);
+                    len = AsmMinI(0x103, a91c0_strlen(name));
+                    func_001E8920((char *)this->objs[i], name, len);
+                    ((char *)this->objs[i])[len] = 0;
+                    this->objs[i]->n = nColors;
+                    this->objs[i]->elems = (CCElem **)func_001E8A44(nColors * 4);
                     for (k = 0; k < nColors; k++) {
-                        self->objs[i]->elems[k] = 0;
+                        this->objs[i]->elems[k] = 0;
                     }
                     stream->func_00168C20(D_0027C4AC, 1, &nCycles);
-                    self->objs[i]->count = nCycles;
-                    self->objs[i]->r = (float *)func_001E8A44(nCycles * 4);
-                    self->objs[i]->g = (float *)func_001E8A44(nCycles * 4);
-                    self->objs[i]->b = (float *)func_001E8A44(nCycles * 4);
-                    self->objs[i]->idx = 0;
+                    this->objs[i]->count = nCycles;
+                    this->objs[i]->r = (float *)func_001E8A44(nCycles * 4);
+                    this->objs[i]->g = (float *)func_001E8A44(nCycles * 4);
+                    this->objs[i]->b = (float *)func_001E8A44(nCycles * 4);
+                    this->objs[i]->idx = 0;
                     for (k = 0; k < nCycles; k++) {
                         func_001ADCC0(key, 0x104, D_0027C49C, k + 1);
                         stream->func_00168BE0(key, D_0027C494, val, -1);
                         t = *func_00182980(tmp, val);
-                        self->objs[i]->r[k] = t.x;
-                        self->objs[i]->g[k] = t.y;
-                        self->objs[i]->b[k] = t.z;
+                        this->objs[i]->r[k] = t.x;
+                        this->objs[i]->g[k] = t.y;
+                        this->objs[i]->b[k] = t.z;
                     }
                     stream->func_00168C50(D_0027C488, 1.0f, &duration);
-                    self->objs[i]->f120 = duration;
-                    self->objs[i]->dur = duration / ((float)nCycles - 1.0f);
-                    self->objs[i]->t = 0;
+                    this->objs[i]->f120 = duration;
+                    this->objs[i]->dur = duration / ((float)nCycles - 1.0f);
+                    this->objs[i]->t = 0;
                 }
             }
         }
@@ -240,46 +240,34 @@ extern "C" unsigned int strlen(const char *);
 void C_A95D0::func_000A95D0(S_A95D0_arg *a)
 {
     char buf[0x104];
-    int i;
-    int j;
-    int k;
-    int m;
-    int n;
 
-    if (num == 0) {
-        return;
-    }
-    for (i = 0; i < num; i++) {
-        k = 0;
-        for (j = 0; j < a->f3AC->num; j++) {
-            A9_Item *e = (A9_Item *)a->f3AC->items[j];
-            if (e != 0 && e->kind == 1 && e->info != 0) {
-                func_0014FF00(e->info->f4 + 0x28, 0, 0, buf, 0);
-                if (func_001EA426(buf, (const char *)objs[i]) == 0) {
-                    objs[i]->arr[k] = e->info->f4;
-                    k++;
-                    if (k >= objs[i]->n) {
-                        break;
+    if (num != 0) {
+        for (int i = 0; i < num; i++) {
+            int k = 0;
+            for (int j = 0; j < a->f3AC->num; j++) {
+                A9_Item *e = (A9_Item *)a->f3AC->items[j];
+                if (e && e->kind == 1 && e->info) {
+                    func_0014FF00(e->info->f4 + 0x28, 0, 0, buf, 0);
+                    if (func_001EA426(buf, (char *)objs[i]) == 0) {
+                        objs[i]->arr[k] = e->info->f4;
+                        k++;
+                        if (k >= objs[i]->n) break;
                     }
                 }
             }
-        }
-        if (k == 0) {
-            for (m = 0; m < (*a->f3A8)->num; m++) {
-                A9_Item *e = (A9_Item *)(*a->f3A8)->items[m];
-                if (e != 0 && e->kind == 1 && e->model != 0) {
-                    n = a9_min(0x103, strlen(e->model->name));
-                    func_001E8920(buf, e->model->name, n);
-                    buf[n] = 0;
-                    char *p = func_001E8AC0(buf, '.');
-                    if (p != 0) {
-                        memset(p, 0, strlen(p));
-                    }
-                    if (func_001EA426(buf, (const char *)objs[i]) == 0) {
-                        objs[i]->arr[k] = e->model;
-                        k++;
-                        if (k >= objs[i]->n) {
-                            break;
+            if (k == 0) {
+                for (int m = 0; m < (*a->f3A8)->num; m++) {
+                    A9_Item *e = (A9_Item *)(*a->f3A8)->items[m];
+                    if (e && e->kind == 1 && e->model) {
+                        int len = a9_min(0x103, strlen(e->model->name));
+                        func_001E8920(buf, e->model->name, len);
+                        buf[len] = 0;
+                        char *p = func_001E8AC0(buf, '.');
+                        if (p) memset(p, 0, strlen(p));
+                        if (func_001EA426(buf, (char *)objs[i]) == 0) {
+                            objs[i]->arr[k] = e->model;
+                            k++;
+                            if (k >= objs[i]->n) break;
                         }
                     }
                 }
@@ -365,14 +353,13 @@ extern "C" unsigned int __cdecl strlen(const char *);
 #pragma intrinsic(strlen)
 void C_A9::func_000A9A70(A9_Arg *arg)
 {
-    C_A9 *volatile self = this;
     char buf[0x104];
-    int i, found, len;
+    int i, found;
     A9_Model *model;
-    if (self->count != 0) {
-        for (i = 0; i < self->count; i++) {
+    if (count != 0) {
+        for (i = 0; i < count; i++) {
             found = 0;
-            A9_Obj *obj = self->objs[i];
+            A9_Obj *obj = objs[i];
             if (obj->count == 0) {
                 if (obj->flag) {
                     func_001ADCC0(D_002A60B0, 0x104, D_00275678, D_002A5348, D_002A5FA8);
@@ -381,31 +368,34 @@ void C_A9::func_000A9A70(A9_Arg *arg)
                     func_001ADCC0(D_002A60B0, 0x104, D_00275678, D_002A5870, D_002A5FA8);
                     func_001ADCC0(D_002A5EA0, 0x104, D_00275678, D_002A5870, D_002A5D98);
                 }
-                func_001ADCC0(buf, 0x104, D_0027C588, self->objs[i]);
+                func_001ADCC0(buf, 0x104, D_0027C588, objs[i]);
                 model = (A9_Model *)func_001E8A44(0x1e0);
                 if (model) model = model->func_00143580(1);
                 else model = 0;
-                self->objs[i]->models[0] = model;
-                model = self->objs[i]->models[0];
+                objs[i]->models[0] = model;
+                model = objs[i]->models[0];
                 if (model->load(buf, 0, 1)) {
-                    len = a9_min(0x7f, (int)strlen(buf));
-                    func_001E8920(model->name, buf, len);
-                    model->name[len] = 0;
-                    model->func_00199600(self->objs[i]->vec);
-                    obj = self->objs[i];
+                    int len = (int)strlen(buf);
+                    int lim = 0x7f;
+                    int r = AsmMinI(lim, len);
+                    int n = r;
+                    func_001E8920(model->name, buf, n);
+                    model->name[n] = 0;
+                    model->func_00199600(objs[i]->vec);
+                    obj = objs[i];
                     model->func_00198F50(obj->a, obj->b, 1, 0, 0);
                     model->func_0019ABA0(D_002B9120->models[arg->index], 1);
                     D_002B9120->lists[arg->index]->func_001577A0(model, 0);
-                    self->objs[i]->count = 1;
+                    objs[i]->count = 1;
                 }
             } else {
                 for (int j = 0; j < arg->list->count; j++) {
                     A9_Item *item = arg->list->items[j];
                     if (item && item->kind == 1) {
                         func_0014FF00(item->info->f4 + 0x28, 0, 0, buf, 0);
-                        if (!func_001EA426(buf, self->objs[i]->name)) {
-                            self->objs[i]->models[found] = (A9_Model *)item->info->f4;
-                            if (++found >= self->objs[i]->count) break;
+                        if (!func_001EA426(buf, objs[i]->name)) {
+                            objs[i]->models[found] = (A9_Model *)item->info->f4;
+                            if (++found >= objs[i]->count) break;
                         }
                     }
                 }
@@ -413,14 +403,17 @@ void C_A9::func_000A9A70(A9_Arg *arg)
                     for (int j = 0; j < arg->lists[0]->count; j++) {
                         A9_Item *item = arg->lists[0]->items[j];
                         if (item && item->kind == 1 && item->model) {
-                            len = a9_min(0x103, (int)strlen(item->model->name));
-                            func_001E8920(buf, item->model->name, len);
-                            buf[len] = 0;
+                            int len = (int)strlen(item->model->name);
+                            int lim = 0x103;
+                            int r = AsmMinI(lim, len);
+                            int n = r;
+                            func_001E8920(buf, item->model->name, n);
+                            buf[n] = 0;
                             char *dot = func_001E8AC0(buf, '.');
                             if (dot) memset(dot, 0, (int)strlen(dot));
-                            if (!func_001EA426(buf, self->objs[i]->name)) {
-                                self->objs[i]->models[found] = item->model;
-                                if (++found >= self->objs[i]->count) break;
+                            if (!func_001EA426(buf, objs[i]->name)) {
+                                objs[i]->models[found] = item->model;
+                                if (++found >= objs[i]->count) break;
                             }
                         }
                     }
