@@ -110,11 +110,25 @@ static __forceinline void cross_179950(float *out, float *a, float *b)
     AsmVec3Cross(out, a, b);
 }
 
+static __forceinline Vec4 sub_1793E0(Vec4 *a, Vec4 *b)
+{
+    Vec4 r;
+    r.x = a->x - b->x;
+    r.y = a->y - b->y;
+    r.z = a->z - b->z;
+    r.w = 1.0f;
+    return r;
+}
+
 static __forceinline int edge_1793E0(Vec4 *p, Vec4 *q, Vec4 *r, Vec4 *n)
 {
-    Vec4 a = make_179950(q->x - p->x, q->y - p->y, q->z - p->z);
-    Vec4 b = make_179950(r->x - p->x, r->y - p->y, r->z - p->z);
-    Vec4 c = make_179950(0.0f, 0.0f, 0.0f);
+    Vec4 a = sub_1793E0(q, p);
+    Vec4 b = sub_1793E0(r, p);
+    Vec4 c;
+    c.x = 0.0f;
+    c.y = 0.0f;
+    c.z = 0.0f;
+    c.w = 1.0f;
     cross_179950(&c.x, &a.x, &b.x);
     float d = c.y * n->y + c.x * n->x + c.z * n->z;
     return *(int *)&d >= 0;
