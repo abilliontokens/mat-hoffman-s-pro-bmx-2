@@ -131,7 +131,15 @@ struct S_TireTrackSurf {
     virtual void v31(int a, int b, int c);
     virtual void v32(int a, int b, int c, int d);
 };
-struct V4_3E70 { float x, y, z, w; };
+struct V4_3E70 {
+    float x, y, z, w;
+    V4_3E70() {}
+    V4_3E70(float a, float b, float c, float d = 1.0f) : x(a), y(b), z(c), w(d) {}
+    V4_3E70 operator+(const V4_3E70 &o) const { return V4_3E70(x+o.x,y+o.y,z+o.z); }
+    V4_3E70 operator-(const V4_3E70 &o) const { return V4_3E70(x-o.x,y-o.y,z-o.z); }
+    V4_3E70 operator-() const { return V4_3E70(-x,-y,-z); }
+    V4_3E70 operator*(float f) const { return V4_3E70(x*f,y*f,z*f); }
+};
 static __forceinline float MinF_3E70(float a, float b) { float r; _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
 static __forceinline float MaxF_3E70(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
 extern float D_0027A060;
@@ -185,6 +193,7 @@ struct C_001B4B70 {
 
 
 float sqrtf(float);
+int func_001E8858(float x);
 void TireTrack::func_001B3E70(V4_3E70 *a0, V4_3E70 *a1, float a2, int a3, float a4)
 {
     float clamped;
@@ -197,9 +206,9 @@ void TireTrack::func_001B3E70(V4_3E70 *a0, V4_3E70 *a1, float a2, int a3, float 
     V4_3E70 diff;
     int color;
     int i;
-    clamped = MinF_3E70(a4, 1.0f);
-    clamped = MaxF_3E70(clamped, 0.0f);
-    bl = (unsigned char)(int)(clamped * D_0027A060);
+    clamped = AsmMinF(a4, 1.0f);
+    clamped = AsmMaxF(clamped, 0.0f);
+    bl = (unsigned char)func_001E8858(clamped * D_0027A060);
     if (f34) {
         v40 = *a0;
         v50 = *a1;
