@@ -97,33 +97,173 @@ extern void *D_0028F5E0;
 void *func_001E8A44(int size);
 void *func_001B12C0(void *p, int a);
 
-void C_0006ECC0::func_0006ECC0(int a)
+C_0006ECC0::C_0006ECC0(int a)
 {
-    char *keys[2];
-    int n;
-    int m2;
-    W_6ECC0 *w;
-
     fEC = a;
-    keys[0] = D_00278678;
-    keys[1] = D_00278690;
-    D_002A8490->func_0018C780(2, keys, 0);
-    {
-        void *p = D_002A8490->func_0018C160(D_00278690);
-        n = p ? *(int *)p : 0;
-    }
-    {
-        void *p = D_002A8490->func_0018C160(D_00278678);
-        m2 = p ? *(int *)p : 0;
-    }
+    const char *keys[2] = { D_00278678, D_00278690 };
+    Mgr_6ECC0 *fonts = (Mgr_6ECC0 *)D_002A8490->f2EC;
+    fonts->func_0018C780(2, keys, 0);
+    void *fontEntry = ((Mgr_6ECC0 *)D_002A8490->f2EC)->func_0018C160(D_00278690);
+    void *font = fontEntry ? *(void **)fontEntry : 0;
+    void *otherEntry = ((Mgr_6ECC0 *)D_002A8490->f2EC)->func_0018C160(D_00278678);
+    void *other = otherEntry ? *(void **)otherEntry : 0;
+    W_6ECC0 *w = (W_6ECC0 *)func_001E8A44(0x184);
+    fD0 = w ? w->func_001B12C0(1) : 0;
+    fD0->func_001B13A0(D_00278690, D_00278690, 0, 50);
+    fD0->func_001B1A30(240.0f, 157.0f, 0);
+    fD0->func_001B19A0(*(void **)&D_0028F5DC);
+    fD0->func_001B2270(0xffbfa35a);
+    fD0->func_001B15F0();
+    func_001577A0(fD0, -1);
     w = (W_6ECC0 *)func_001E8A44(0x184);
-    w = w ? (W_6ECC0 *)func_001B12C0(w, 1) : 0;
-    fD0 = w;
-    w->func_001B13A0(D_00278690, D_00278690, 0, 0x32);
-    w->func_001B1A30(240.0f, 157.0f, 0);
-    w->func_001B19A0(&D_0028F5DC);
-    w->func_001B2270(0xffbfa35a);
-    w->func_001B15F0();
-    func_001577A0(w, -1);
+    fD4 = w ? w->func_001B12C0(1) : 0;
+    fD4->func_001B13A0(D_00278690, D_00278690, 0, 2);
+    int width = fD0->func_001B1800();
+    float pos[4];
+    fD0->func_001B1810(pos);
+    fD4->func_001B1A30((float)width + pos[0], 157.0f, 0);
+    fD4->func_001B2270(0xffbfa35a);
+    fD4->func_001B19A0(*(void **)&D_0028F5DC);
+    func_001577A0(fD4, -1);
+
+    for (int i=0;i<6;i++) {
+        Text_6ECC0 *t=(Text_6ECC0 *)func_001E8A44(0x60);
+        f180[i]=t?t->func_001D5E90():0;
+        f180[i]->func_001D5FA0(font,D_00278690,40,0);
+        f180[i]->setPos(320.0f,((Font_6ECC0 *)font)->func_0018C210()*i+D_00276228);
+        f180[i]->setColor(0xffcccccc);
+        f180[i]->setFrame(D_0028F5E0);
+    }
+    Text_6ECC0 *t=(Text_6ECC0 *)func_001E8A44(0x60);
+    fF8=t?t->func_001D5E90():0;
+    fF8->func_001D6190(font,(*(void ***)((char *)D_002A8490->f2E8+4))[0xf60/4],D_00278690);
+    fF8->setColor(0xffbfa35a); fF8->setFrame(D_0028F5E0); fF8->setPos(320.0f,200.0f);
+    t=(Text_6ECC0 *)func_001E8A44(0x60);
+    f100=t?t->func_001D5E90():0;
+    int mode=*(int *)((char *)D_002A8490->f2E0+4);
+    if(!mode)
+        f100->func_001D6190(font,(*(void ***)((char *)D_002A8490->f2E8+4))[0xfc0/4],D_00278690);
+    else
+        f100->func_001D6190(font,(*(void ***)((char *)D_002A8490->f2E8+4))[0xac8/4],D_00278690);
+    f100->setColor(0xffcccccc); f100->setFrame(D_0028F5E0); f100->setPos(320.0f,117.0f);
+    D_002A60B0=D_00278664; D_002A60B4=D_00278668; D_002A60B8=D_0027866C; D_002A60BC=D_00278670; D_002A60C0=D_00278674;
+    Sprite_6ECC0 *spr=(Sprite_6ECC0 *)func_001E8A44(0x64);
+    fD8=spr?spr->func_001D5760():0;
+    float spriteX=(float)(width-10)+113.0f;
+    fE8=spriteX;
+    fD8->func_001D5810(D_00278C18,spriteX,182.0f,0);
+    fD8->setColor(0xffbfa35a);
+    w=(W_6ECC0 *)func_001E8A44(0x184);
+    fDC=w?w->func_001B12C0(1):0;
+    fDC->func_001B13A0(D_00278690,D_00278690,0,16);
+    func_001577A0(fDC,-1);
+    t=(Text_6ECC0 *)func_001E8A44(0x60);
+    fE0=t?t->func_001D5E90():0;
+    fE0->func_001D5FA0(other,D_00278678,30,(*(void ***)((char *)D_002A8490->f2E8+4))[0xee8/4]);
+    fE0->setPos(320.0f,40.0f); fE0->setColor(0xaaaaaaaa); fE0->setFrame(D_0028F5E0);
+    for(int j=0;j<4;j++) {
+        t=(Text_6ECC0 *)func_001E8A44(0x60);
+        f130[j]=t?t->func_001D5E90():0;
+        f130[j]->func_001D5FA0(font,D_00278690,10,0);
+        f130[j]->setColor(0xffcccccc);
+    }
+    f130[0]->func_0005E840((*(void ***)((char *)D_002A8490->f2E8+4))[0x940/4]);
+    f130[0]->setPos(530.0f,393.0f);
+    f130[1]->func_0005E840((*(void ***)((char *)D_002A8490->f2E8+4))[0xf00/4]);
+    f130[1]->setPos(258.0f,393.0f);
+    f130[2]->func_0005E840((*(void ***)((char *)D_002A8490->f2E8+4))[0xef8/4]);
+    f130[2]->setPos(102.0f,393.0f);
+    f130[3]->func_0005E840((*(void ***)((char *)D_002A8490->f2E8+4))[0x7c0/4]);
+    f130[3]->setPos(415.0f,393.0f);
+    spr=(Sprite_6ECC0 *)func_001E8A44(0x64);
+    fCC=spr?spr->func_001D5760():0;
+    fCC->func_001D5810(D_00278658,0.0f,398.0f,0);
+    fCC->setUVScaled(127.0f,0.0f,15.0f,0.0f);
+    fCC->setHeight(50.0f); fCC->setWidth(640.0f);
+    spr=(Sprite_6ECC0 *)func_001E8A44(0x64);
+    fC8=spr?spr->func_001D5760():0;
+    fC8->func_001D5810(D_00278658,0.0f,0.0f,0);
+    fC8->setUVScaled(127.0f,0.0f,15.0f,0.0f);
+    fC8->setHeight(50.0f); fC8->setWidth(640.0f);
+    for(int k=0;k<5;k++) {
+        spr=(Sprite_6ECC0 *)func_001E8A44(0x64);
+        float x;
+        (f158[k]=spr?spr->func_001D5760():0)->func_001D5810(D_00278658,x=(float)k*D_00278650,50.0f,0);
+        spr=(Sprite_6ECC0 *)func_001E8A44(0x64);
+        f16C[k]=spr?spr->func_001D5760():0;
+        f16C[k]->func_001D5810(D_00278658,x,366.0f,0);
+        f16C[k]->setUV(0,1,0.99f,0);
+    }
+    for(int n=0;n<2;n++) {spr=(Sprite_6ECC0 *)func_001E8A44(0x64);f150[n]=spr?spr->func_001D5760():0;}
+    f150[0]->func_001D5810(D_002786B0,100.0f,150.0f,0);
+    f150[1]->func_001D5810(D_002786B0,321.0f,150.0f,0);
+    f150[1]->setUV(1,0,0,1);
+    f150[0]->setWidth(221.0f);f150[0]->setColor(0xffbfa35a);
+    f150[1]->setWidth(221.0f);f150[1]->setColor(0xffbfa35a);
+    spr=(Sprite_6ECC0 *)func_001E8A44(0x64);
+    f140=spr?spr->func_001D5760():0;
+    f140->func_001D5810(D_00278648,0.0f,0.0f,0);
+    f140->setPos(491.0f,388.0f);
+    spr=(Sprite_6ECC0 *)func_001E8A44(0x64);
+    f128=spr?spr->func_001D5760():0;
+    f128->func_001D5810(D_00278624,0.0f,0.0f,0);
+    f128->setPos(491.0f,388.0f);
+    spr=(Sprite_6ECC0 *)func_001E8A44(0x64);
+    f14C=spr?spr->func_001D5760():0;
+    f14C->func_001D5810(D_00278638,0.0f,0.0f,0);
+    f14C->setPos(379.0f,388.0f);
+    spr=(Sprite_6ECC0 *)func_001E8A44(0x64);
+    f12C=spr?spr->func_001D5760():0;
+    f12C->func_001D5810(D_00278608,0.0f,0.0f,0);
+    f12C->setPos(379.0f,388.0f);
+    spr=(Sprite_6ECC0 *)func_001E8A44(0x64);
+    f144=spr?spr->func_001D5760():0;
+    f144->func_001D5810(D_00278C0C,55.0f,385.0f,0);
+    f144->setScale(0.65f);
+    spr=(Sprite_6ECC0 *)func_001E8A44(0x64);
+    f148=spr?spr->func_001D5760():0;
+    f148->func_001D5810(D_00278BFC,210.0f,385.0f,0);
+    f148->setScale(0.65f);
+    spr=(Sprite_6ECC0 *)func_001E8A44(0x64);
+    fF0=spr?spr->func_001D5760():0;
+    fF0->func_001D5810(D_00278600,0.0f,0.0f,0);
+    fF0->setColor(0); fF0->setAlpha(128);
+    fF0->setHeight(448.0f); fF0->setWidth(640.0f);
+    func_001ADCC0((char *)&D_002A60B0,260,D_00275678,D_002A5870,D_002A5FA8);
+    memcpy(f74,D_00278BD4,37);
+    f9C=strlen(f74);
+    fA0=strlen(fD0->func_001B17F0());
+    char name[16];
+    strcpy(name,((Profile_6ECC0 *)*(void **)((char *)D_002A8490->f2E0+0x2c0))->func_0005B870());
+    if(strcmp(name," ")==0) {
+        switch(*(unsigned int *)((char *)D_002A8490->f2E0+0x190)) {
+        case 0: strcpy(name,"mat");break;
+        case 1: strcpy(name,"girl");break;
+        case 2: strcpy(name,"joe");break;
+        case 3: strcpy(name,"mime");break;
+        case 4: memcpy(name,D_00278414,5);break;
+        case 5: memcpy(name,D_002783F8,5);break;
+        case 6: strcpy(name,"day");break;
+        case 7: strcpy(name,"simon");break;
+        case 8: strcpy(name,"volcano");break;
+        case 9: strcpy(name,"kevin");break;
+        case 10: strcpy(name,"cory");break;
+        case 11: strcpy(name,"ruben");break;
+        case 12: strcpy(name,"big");break;
+        case 13: strcpy(name,"seth");break;
+        case 14: strcpy(name,"nate");break;
+        case 15: strcpy(name,"chad");break;
+        }
+    }
+    fD0->func_001B17D0(name);
+    char *dest=fA4;
+    const char *src=name;
+    do {
+        *dest++=*src;
+    } while(*src++);
+    fA0=strlen(fD0->func_001B17F0());
+    fD4->func_001B17D0(fA4+fA0-1);
+    fA4[fA0-1]=0;
+    fD0->func_001B17D0(fA4);
 }
 
