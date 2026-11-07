@@ -284,7 +284,9 @@ int AmbientDebris::func_00024210(int a)
         S_00024210_Vec tmpP;
         S_00024210_Vec tmpQ;
         S_00024210_Vec d;
-        S_00024210_Vec *p = D_002B9120->f4E0->a1A8[D_002A8490->f2A4->f120]->f1E0->f22C->func_00199B00(&tmpP, 0);
+        int index = D_002A8490->f2A4->f120;
+        S_00024210_Player *pl = D_002B9120->f4E0->a1A8[index]->f1E0;
+        S_00024210_Vec *p = pl->f22C->func_00199B00(&tmpP, 0);
         S_00024210_Vec *q = ((C_00199B00 *)f2c)->func_00199B00(&tmpQ, 0);
         float len;
 
@@ -292,13 +294,13 @@ int AmbientDebris::func_00024210(int a)
         d.y = q->y - p->y;
         d.z = q->z - p->z;
         d.w = 1.0f;
-        len = sqrtf(d.z * d.z + d.y * d.y + d.x * d.x);
+        len = AsmSqrtF(d.z * d.z + d.y * d.y + d.x * d.x);
         if (len > D_0027554C) {
             f24 = 0;
             ((C_00198390 *)f2c)->func_00198390();
         } else {
-            f30->func_00023CB0(a, d, len);
-            f34->func_00022060(a);
+            f30->func_00023CB0(*(float *)&a, d, len);
+            f34->func_00022060(*(float *)&a);
             return 1;
         }
     }
