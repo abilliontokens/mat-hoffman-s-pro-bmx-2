@@ -13,7 +13,7 @@ extern "C" int __cdecl strncmp(const char *, const char *, unsigned int);
 int func_001EA426(const char *, const char *);
 int func_001ADCC0(char *buf, int size, const char *fmt, ...);
 struct Ser_000A4D30 {
-    char pad[0x6dc];
+    char pad[0x4cc];
     void func_00168280();
     int func_00169490(char *path, int z);
     void func_001691E0();
