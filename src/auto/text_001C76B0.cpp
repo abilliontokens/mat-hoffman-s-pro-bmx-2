@@ -1,6 +1,9 @@
 /* 1 function from 0x001C76B0 to 0x001C7EB0, found by Ghidra. */
 #include "common.h"
 #include <xmmintrin.h>
+#include "asm_helpers.h"
+struct Mtx { float m[16]; };
+struct V4 { int v[4]; };
 extern int D_002A4334;
 extern int D_002F088C;
 extern int D_002EF7D0;
@@ -85,11 +88,11 @@ void Obj::func_001C76B0(int a, int b, int c, int d, int e, int f2, int g, int h,
 {
     Obj * volatile self = this;
     IniObj *ini;
+    char buf5[256];
     char buf1[256];
     char buf2[256];
     char buf3[256];
     char buf4[256];
-    char buf5[256];
     int flag;
     int tmp14;
     int tmp10;
@@ -108,7 +111,7 @@ void Obj::func_001C76B0(int a, int b, int c, int d, int e, int f2, int g, int h,
     ini->func_00168550(D_0028E82C, buf1, -1);
     mem = func_001E8A44(0x244);
     self->f3C = mem ? (Sub3C *)((MObj *)mem)->func_00164440(1, 1) : 0;
-    self->f3C->func_001673B0(buf2, d, 1, 1, 1);
+    self->f3C->func_001673B0(buf1, d, 1, 1, 1);
     if (self->f3C == 0) {
         n = 0;
     } else {
@@ -156,10 +159,10 @@ void Obj::func_001C76B0(int a, int b, int c, int d, int e, int f2, int g, int h,
             self->fC0[self->fBC].f44 = 0;
             self->fC0[self->fBC].f48 = 0;
             ini->func_00168550(D_0028E7F0, &self->fC0[self->fBC], -1);
-            ini->func_00168550(D_0027BC8C, buf1, -1);
+            ini->func_00168550(D_0027BC8C, buf2, -1);
             ini->func_00168A10(D_0028E7D8, &tmp14);
             ini->func_00168C20(D_0028E7D0, 1, &tmp10);
-            self->fC0[self->fBC].f40 = ((G162Obj *)D_002EF7D0)->func_00162B20(buf1, 1);
+            self->fC0[self->fBC].f40 = ((G162Obj *)D_002EF7D0)->func_00162B20(buf2, 1);
             self->fC0[self->fBC].f54 = tmp10;
             if (tmp14 != 0)
                 self->fC0[self->fBC].f44 = func_001C7250(self->fC0[self->fBC].f40);
@@ -189,17 +192,17 @@ void Obj::func_001C76B0(int a, int b, int c, int d, int e, int f2, int g, int h,
         return;
     func_001ADCC0(buf5, 0x100, D_0028E7C4, 1);
     ini->func_00169710(buf5);
-    ini->func_00168550(D_00276980, buf1, -1);
+    ini->func_00168550(D_00276980, buf2, -1);
     for (n = 0; n < self->fBC; n++) {
-        if (func_001EA426(buf1, &self->fC0[n]) == 0)
+        if (func_001EA426(buf2, &self->fC0[n]) == 0)
             return;
     }
     self->fC0 = (Elem58 *)func_001E83E8(self->fC0, (self->fBC + 1) * 0x58);
     self->fC0[self->fBC].f54 = 1;
     self->fC0[self->fBC].f44 = 0;
     self->fC0[self->fBC].f48 = 0;
-    for (n = 0; buf1[n] != 0; n++)
-        self->fC0[self->fBC].name[n] = buf1[n];
+    for (n = 0; buf2[n] != 0; n++)
+        self->fC0[self->fBC].name[n] = buf2[n];
     self->fC0[self->fBC].name[n] = 0;
 }
 #pragma optimize("", on)
