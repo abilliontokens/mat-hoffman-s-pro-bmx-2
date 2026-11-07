@@ -36,6 +36,13 @@ struct S_00122810_Box {
 };
 void func_0011F540(S_00122810_V3 *out, S_00122810_V4 pos, float *m);
 extern float D_002755E8;
+extern float D_00275544;
+void func_0011EFA0(float *out, float *in);
+S_00122810_V3 *func_0001E9B0(S_00122810_V3 *out, S_00122810_V3 *a, S_00122810_V3 *b);
+static __forceinline float Dot_00122810(const S_00122810_V3 &a, const S_00122810_V3 &b)
+{
+    return a.y * b.y + a.x * b.x + a.z * b.z;
+}
 static __forceinline float Fabs_00122810(volatile float f)
 {
     int i = *(volatile int *)&f & 0x7fffffff;
@@ -65,7 +72,11 @@ int func_00122730(float *p1, float r1, float *m1, float *p2, float r2, float *m2
     float dx = q2[0] - q1[0];
     float dy = q2[1] - q1[1];
     float dz = q2[2] - q1[2];
-    return dx * dx + dy * dy + dz * dz <= sum * sum ? 1 : 0;
+    float dist = dx * dx + dy * dy + dz * dz;
+    if (dist <= sum * sum) {
+        return 1;
+    }
+    return 0;
 }
 
 int func_00122810(float *p, float *half, S_00122810_Box *box, float eps, float unused, float *m)
