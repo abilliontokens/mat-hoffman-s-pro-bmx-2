@@ -47,6 +47,9 @@ struct Rider_00117160 {
     void func_00027E40();
     void func_0010DCB0();
     void func_0010E2A0();
+    void func_0010DD90(float, float, void *, int, int, int);
+    void func_0002C120(int, int);
+    float func_00104BB0(int);
     int func_00028130(int *a, int b, int *c);
 };
 
