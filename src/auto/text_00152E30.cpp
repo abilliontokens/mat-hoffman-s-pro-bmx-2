@@ -39,10 +39,22 @@ static __forceinline void norm153(V153 *v) {
     _mm_storeu_ps(&v->x,_mm_mul_ps(_mm_shuffle_ps(r,r,0),x));
 }
 static __forceinline void transform153(V153 *v,M153 *m) {
-    float x=v->x,y=v->y,z=v->z;
-    v->x=m->m[0]*x+m->m[1]*y+m->m[2]*z+m->m[3];
-    v->y=m->m[4]*x+m->m[5]*y+m->m[6]*z+m->m[7];
-    v->z=m->m[8]*x+m->m[9]*y+m->m[10]*z+m->m[11];
+    __m128 p=_mm_loadu_ps(&v->x);
+    _mm_storeh_pi((__m64 *)&v->z,p);
+    v->w=1;
+    p=_mm_loadh_pi(p,(const __m64 *)&v->z);
+    __m128 a=_mm_mul_ps(_mm_load_ps(&m->m[0]),p);
+    __m128 b=_mm_mul_ps(_mm_load_ps(&m->m[4]),p);
+    __m128 c=_mm_mul_ps(_mm_load_ps(&m->m[8]),p);
+    __m128 hi=_mm_unpackhi_ps(a,b);
+    a=_mm_unpacklo_ps(a,b);
+    __m128 h=_mm_movehl_ps(c,c);
+    a=_mm_add_ps(a,hi);
+    c=_mm_add_ps(c,h);
+    hi=_mm_movehl_ps(a,a);
+    a=_mm_movelh_ps(a,c);
+    hi=_mm_shuffle_ps(hi,c,0x14);
+    _mm_storeu_ps(&v->x,_mm_add_ps(a,hi));
     v->w=1;
 }
 extern Q4_00152E30 D_002A78BC, D_002A789C;
