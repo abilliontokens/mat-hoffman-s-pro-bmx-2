@@ -11,6 +11,32 @@ struct S_00064BA0_A {
 struct S_00064BA0_B {
     void func_001C4D50(int ms);
 };
+struct S_ObjectiveInputState { int func_000301D0(); };
+struct S_ObjectiveInput {
+    char pad[0x74];
+    S_ObjectiveInputState *f74;
+};
+struct S_ObjectiveEntry {
+    char pad[0x1A8];
+    int f1A8;
+    int func_00096740();
+};
+struct S_ObjectiveList {
+    int func_000976A0();
+    int func_00097C60();
+    S_ObjectiveEntry **func_00097C20();
+};
+struct S_ObjectiveRecord { int value; char pad[0x5E8]; int flags[1]; };
+struct S_ObjectiveRecords { S_ObjectiveRecord *func_0005C020(int); };
+struct S_ObjectiveGame {
+    char pad[0x48]; int f48;
+    char pad4C[0x2C0 - 0x4C];
+    S_ObjectiveRecords *f2C0;
+    char pad2C4[0x2D8 - 0x2C4];
+    int f2D8;
+};
+struct S_ObjectiveGlobal { char pad[0x2E0]; S_ObjectiveGame *f2E0; };
+extern S_ObjectiveGlobal *D_002A8490;
 struct S_ObjectiveStorage {
     int func_00092A10();
     int func_00092A50(int*);
