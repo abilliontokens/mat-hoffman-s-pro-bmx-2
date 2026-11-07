@@ -1,5 +1,6 @@
 /* 11 functions from 0x000B1350 to 0x000B21B0, found by Ghidra. */
 #include "common.h"
+#include "asm_helpers.h"
 
 extern int D_0027CF8C;
 extern u32 D_002A2DC4;
@@ -125,6 +126,7 @@ struct S_000B1740_Widget { char pad0[0xC]; float fC; };
 /* four widget slots at +0xC..+0x18 */
 struct S_000B1740_Panel { char pad0[0xC]; S_000B1740_Widget *f0C; S_000B1740_Widget *f10; S_000B1740_Widget *f14; S_000B1740_Widget *f18; };
 
+static __inline int MinVol_000B1860(const volatile int &a, int b) { int x = a; return x > b ? b : x; }
 static __inline int Min_000B1740(int a, int b) { return a > b ? b : a; }
 static __inline int Max_000B1740(int a, int b) { return a < b ? b : a; }
 static __inline const int &MinRef_000B2020(const int &a, const int &b) { return (b < a) ? b : a; }
@@ -398,7 +400,8 @@ void C_000B1350::func_000B1350(void)
         for (k = 0; k < f44[i]->f4C; k++) {
             S_000B1350_Sub *s = f44[i]->f48[k];
             int cur = (int)s->f4;
-            S_000B1350_Node *node = f4C[s->f0];
+            unsigned int ni = s->f0;
+            S_000B1350_Node *node = f4C[ni];
             if (node->f4 > 0) {
                 float t = s->f4 - (float)cur;
                 S_000B1350_Tbl *tbl = node->fC[0]->f3C->f518;
@@ -431,12 +434,13 @@ void C_000B1660::func_000B1660(S_000B1660_Arg *a) {
 
 int func_000B1740(VehicleAI *ai, S_000B1740_Panel *panel)
 {
+    volatile int a;
+    volatile int r;
     if (D_002A8490->f2A4->f1C8 == 1) {
-        int hi = 2;
-        int lo = 0;
-        int v = ai->f50;
-        const int &m = (hi < v) ? hi : v;
-        const int &r = (m < lo) ? lo : m;
+        a = ai->f50;
+        r = Min_000B1740(a, 2);
+        a = r;
+        r = Max_000B1740(0, a);
         ai->f50 = r;
     }
     if (panel->f0C != 0) {
@@ -531,45 +535,38 @@ void C_000B1B80::func_000B1B80(void)
 {
     char buf[0x104];
     S_000B1B80_Mat mat;
-    struct { C_000B1B80 * volatile self; volatile int limit; volatile int cnt; volatile int len; } t;
+    struct { int limit; int cnt; int len; } t;
     int n;
-    int ma;
-    int mb;
 
-    t.self = this;
     if (func_001EA426(name, D_002764F0) != 0) {
         t.len = strlen(D_002A4C10);
         t.limit = 0x103;
-        ma = t.limit;
-        mb = t.len;
-        t.cnt = ma > mb ? mb : ma;
+        t.cnt = AsmMinI(t.limit, t.len);
         n = t.cnt;
         func_001E8920(buf, D_002A4C10, n);
         buf[n] = 0;
-        func_001ADCC0(D_002A4C10, 0x104, D_00275678, (t.self->f3C->f8 != 0) ? D_002A5348 : D_002A5870, D_002A45E0);
+        func_001ADCC0(D_002A4C10, 0x104, D_00275678, (this->f3C->f8 == 0) ? D_002A5870 : D_002A5348, D_002A45E0);
         {
             void *mem = func_001E8A44(0x1e0);
-            t.self->f44->f8 = mem ? ((S_000B1B80_Obj *)mem)->func_0019B700(1) : 0;
+            this->f44->f8 = mem ? ((S_000B1B80_Obj *)mem)->func_0019B700(1) : 0;
         }
-        if (t.self->f44->f8->func_00133020(0xd) != 0) {
-            t.self->f44->f8->f68 = D_002BA160;
-            if (t.self->f44->f8->func_0019D7B0(0, t.self->name) == 0) {
-                t.self->f44->f8->v2();
-                t.self->f44->f8 = 0;
+        if (this->f44->f8->func_00133020(0xd) != 0) {
+            this->f44->f8->f68 = D_002BA160;
+            if (this->f44->f8->func_0019D7B0(0, this->name) == 0) {
+                this->f44->f8->v2();
+                this->f44->f8 = 0;
             }
         }
-        if (t.self->f44->f8 != 0) {
-            func_001577A0(t.self->f44->f8, 0);
-            func_000265C0(&mat, t.self->f3C->fC, t.self->f3C->f1C, t.self->f3C->f2C, 0, 1);
-            t.self->f44->f8->v31(&mat);
-            t.self->f44->f8->v31(&mat);
-            t.self->f44->f8->func_00133140(D_002B9120->f4AC[D_002B9120->f348], 1);
+        if (this->f44->f8 != 0) {
+            func_001577A0(this->f44->f8, 0);
+            func_000265C0(&mat, this->f3C->fC, this->f3C->f1C, this->f3C->f2C, 0, 1);
+            this->f44->f8->v31(&mat);
+            this->f44->f8->v31(&mat);
+            this->f44->f8->func_00133140(D_002B9120->f4AC[D_002B9120->f348], 1);
         }
         t.cnt = strlen(buf);
         t.limit = 0x103;
-        ma = t.limit;
-        mb = t.cnt;
-        t.len = ma > mb ? mb : ma;
+        t.len = AsmMinI(t.limit, t.cnt);
         n = t.len;
         func_001E8920(D_002A4C10, buf, n);
         D_002A4C10[n] = 0;
