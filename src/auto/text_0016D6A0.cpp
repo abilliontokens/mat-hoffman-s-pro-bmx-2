@@ -1,5 +1,6 @@
 /* 8 functions from 0x0016D6A0 to 0x0016E320, found by Ghidra. */
 #include "common.h"
+#include "asm_helpers.h"
 
 extern int D_00288084;
 extern int D_00288894;
@@ -97,7 +98,7 @@ struct Particle_0016DEA0 {
     char pad20[8];
     int f28;
     int f2C;
-    int f30;
+    float f30;
     float f34;
     float f38;
     float f3C;
@@ -421,51 +422,7 @@ C_0016DA40 *C_0016DA40::func_0016DA40(void *param)
     return this;
 }
 
-C_0016DAC0 *C_0016DAC0::func_0016DAC0(void *a, char *name, C_0016DAC0_Ref *b, V4u_0016D6A0 *c)
-{
-    ((C_001D3F50 *)this)->func_001D3F50();
-    f64 = a;
-    if (b) {
-        f68 = b;
-        if (c) {
-            C_Quad t;
-            Copy_0016DAC0(&f44, c);
-            b->func_00199A70(0, &f24);
-            AddTo_0016DAC0(&f24, f68->func_00197EC0(&t, &f44));
-            Copy_0016DAC0(&f34, &f24);
-        } else {
-            Copy_0016DAC0(&f24, c);
-            Copy_0016DAC0(&f34, c);
-        }
-    }
-    if (!a) {
-        f1A8 = 0x55;
-        f188 = 0x55;
-        f1F0 = V4(-1.0f, 0.0f, -1.0f, 1.0f);
-        f1AC = 100;
-        f200 = V4(1.0f, 0.0f, 1.0f, 1.0f);
-    } else {
-        f64 = a;
-        strcpy(&f6C, D_002A5558);
-        if (!name) {
-            ((ParticleEmitterResetVT *)this)->v2();
-            return 0;
-        }
-        strcat(&f6C, name);
-        if (((C_0016A330 *)this)->func_0016A330(&f6C)) return this;
-        f1F0 = V4(-1.0f, 0.0f, -1.0f, 1.0f);
-        f200 = V4(1.0f, 0.0f, 1.0f, 1.0f);
-    }
-    f170 = 750.0f;
-    f178 = 1.0f;
-    f17C = 350.0f;
-    f1C4 = 1;
-    f1C8 = 1;
-    f218 = 40000.0f;
-    f21C = -1.0f;
-    f220 = 100.0f;
-    return this;
-}
+C_0016DAC0 *C_0016DAC0::func_0016DAC0(void *a,char *name,C_0016DAC0_Ref *b,V4u_0016D6A0 *c){((C_001D3F50*)this)->func_001D3F50();f64=a;if(b){f68=b;if(c){C_Quad t;Copy_0016DAC0(&f44,c);b->func_00199A70(0,&f24);AddTo_0016DAC0(&f24,f68->func_00197EC0(&t,&f44));Copy_0016DAC0(&f34,&f24);}else{Copy_0016DAC0(&f24,c);Copy_0016DAC0(&f34,c);}}if(!a){f1A8=0x55;f188=0x55;f1F0=V4(-1,0,-1,1);f1AC=100;f200=V4(1,0,1,1);}else{f64=a;strcpy(&f6C,D_002A5558);if(!name){((ParticleEmitterResetVT*)this)->v2();return 0;}strcat(&f6C,name);if(((C_0016A330*)this)->func_0016A330(&f6C))return this;f1F0=V4(-1,0,-1,1);f200=V4(1,0,1,1);}f170=750;f178=1;f17C=350;f1C4=1;f1C8=1;f218=40000;f21C=-1;f220=100;return this;}
 
 int C_0016DD70::func_0016DD70(float dt)
 {
@@ -500,6 +457,7 @@ int C_0016DD70::func_0016DD70(float dt)
 
 void C_0016DEA0::func_0016DEA0(void)
 {
+    float base[3];
     int i;
     int count;
     float r1, r2, r3;
@@ -511,7 +469,7 @@ void C_0016DEA0::func_0016DEA0(void)
             f64->items[i]->f2C = f64->items[i]->f30;
         }
     }
-    f220[0] = f180 > f220[0] ? f180 : f220[0];
+    f220[0] = AsmMaxF(f180, f220[0]);
     for (count = 0; (float)count < f220[0]; count++) {
         if (f64->count >= f64->max) {
             break;
@@ -520,16 +478,18 @@ void C_0016DEA0::func_0016DEA0(void)
         r2 = Rand01_0016DEA0();
         r3 = Rand01_0016DEA0();
         p = f64->items[f64->count];
-        p->pos = V4f_0016D6A0((f200 - f1F0) * r1 + f1F0 + f24,
-                              (f204 - f1F4) * r2 + f1F4 + f28,
-                              (f208 - f1F8) * r3 + f1F8 + f2c, 1.0f);
+        base[0] = (f200 - f1F0) * r1 + f1F0;
+        base[1] = (f204 - f1F4) * r2 + f1F4;
+        base[2] = (f208 - f1F8) * r3 + f1F8;
+        p->pos = V4f_0016D6A0(base[0] + f24, base[1] + f28, base[2] + f2c, 1.0f);
         if (f220[1] != -1.0f) {
+            float *rate = &f220[3];
             float a = Rand01_0016DEA0();
             float b = Rand01_0016DEA0();
             float c = Rand01_0016DEA0();
-            float vx = b * f220[3];
-            float vy = a * f220[3];
-            float vz = c * f220[3];
+            float vx = b * *rate;
+            float vy = a * *rate;
+            float vz = c * *rate;
             if (Rand01_0016DEA0() > D_002755E8) {
                 vx = vx * D_00275F58;
             }
@@ -548,7 +508,7 @@ void C_0016DEA0::func_0016DEA0(void)
         }
         p->f48 = this;
         p->f30 = f170;
-        p->f34 = D_00275460 / p->f30;
+        p->f34 = D_00275460 / *(float *)&p->f30;
         p->f2C = f198;
         p->f28 = f188;
         p->f40 = 0;
