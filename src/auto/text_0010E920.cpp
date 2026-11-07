@@ -18,7 +18,7 @@ extern int D_002A3A5C, D_002A3A60, D_002A3A64, D_002A3A68;
 struct Vec_0010E920 {
     int x, y, z, w;
     __forceinline void Clear() { z = 0; y = 0; x = 0; w = 0x3f800000; }
-    __forceinline void Set() { x = D_002A3A3C; y = D_002A3A40; z = D_002A3A44; w = D_002A3A48; }
+    __forceinline Vec_0010E920 *Set() { x = D_002A3A3C; y = D_002A3A40; z = D_002A3A44; w = D_002A3A48; return this; }
     __forceinline void SetOther() { x = D_002A3A5C; y = D_002A3A60; z = D_002A3A64; w = D_002A3A68; }
 };
 
