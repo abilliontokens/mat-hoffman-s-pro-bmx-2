@@ -164,7 +164,7 @@ struct C_000E9180 {
     void *f6b8;
     char pad6BC[0x784 - 0x6BC];
     int f784;
-    char pad788[0x78c - 0x788];
+    int f788;
     int f78c;
     void func_000E9180(float dt);
     void func_000E8630();
