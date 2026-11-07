@@ -110,14 +110,4 @@ void C_0006ECC0::func_0006ECC0(int a)
     w->func_001B15F0();
     func_001577A0(w, -1);
 }
-extern int D_00278664,D_00278668,D_0027866C,D_00278670;
-extern char D_00278674;
-extern int D_002A60B0,D_002A60B4,D_002A60B8,D_002A60BC;
-extern char D_002A60C0;
-extern const float D_00278BD0,D_00278654,D_00275544,D_0027653C,D_00278650;
-extern char D_00278C18[],D_00278658[],D_002786B0[],D_00278648[],D_00278624[],D_00278638[],D_00278608[],D_00278C0C[],D_00278BFC[],D_00278600[],D_002A5FA8[],D_002A5870[],D_00275678[],D_00278BD4[];
-extern "C" char *strcpy(char *,const char *);
-extern "C" unsigned int strlen(const char *);
-extern "C" int strcmp(const char *,const char *);
-int func_001ADCC0(char *,int,const char *,...);
-extern char D_00278414[],D_002783F8[];
+
