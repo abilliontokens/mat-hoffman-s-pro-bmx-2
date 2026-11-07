@@ -154,7 +154,7 @@ struct C_00103450 {
 
 struct L_00103450 {
     float v[4];
-    float f;
+    int f;
     int i1;
     float c1[4];
     int i2;
