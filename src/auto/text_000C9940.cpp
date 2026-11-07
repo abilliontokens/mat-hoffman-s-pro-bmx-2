@@ -26,7 +26,10 @@ struct C_000C9940 {
     ElemC9 *f2F8;
     ElemC9 *f2FC;
     ElemC9 *f300;
-    char pad304[0x28];
+    ElemC9 *f304;
+    char pad308[0x1c];
+    ElemC9 *f324;
+    int pad328;
     ElemC9 *f32C;
     ElemC9 *f330;
     void func_000C9940(void);
