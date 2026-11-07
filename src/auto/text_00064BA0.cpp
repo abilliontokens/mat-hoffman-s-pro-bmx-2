@@ -11,6 +11,12 @@ struct S_00064BA0_A {
 struct S_00064BA0_B {
     void func_001C4D50(int ms);
 };
+struct S_ObjectiveStorage {
+    int func_00092A10();
+    int func_00092A50(int*);
+    int func_00092B40(int);
+    int func_00092BE0();
+};
 struct S_00064BA0_Inner {
     char pad00[0x64];
     S_00064BA0_A *f64;              /* 0x64: object whose vtable slot 4 is called */
