@@ -63,7 +63,14 @@ struct TailObj {
     void *f7C;
     int f80;
 };
-struct F210 { char pad0[0x30]; TailObj *f30; };
+struct F210 {
+    char pad0[0x30];
+    TailObj *f30;
+    void func_0005DA40(Cand *a);
+    void func_0005DA80(int a);
+    void func_00026270(Cand *a);
+    void func_0005DA50(int a);
+};
 struct F1F4 { char pad0[0x2c]; int f2C; };
 
 struct C_00028130 {
@@ -132,6 +139,21 @@ int C_00028130::func_00028130(int *param1, int param2, int *param3)
     v1.y = 0.0f;
     v1.x = 0.0f;
     v1.w = 1.0f;
+    V4 diff;
+    diff.z = 0.0f;
+    diff.y = 0.0f;
+    diff.x = 0.0f;
+    diff.w = 1.0f;
+    V4 diffB;
+    diffB.z = 0.0f;
+    diffB.y = 0.0f;
+    diffB.x = 0.0f;
+    diffB.w = 1.0f;
+    V4 nrm;
+    nrm.z = 0.0f;
+    nrm.y = 0.0f;
+    nrm.x = 0.0f;
+    nrm.w = 1.0f;
     V4 v2;
     v2.z = 0.0f;
     v2.y = 0.0f;
@@ -142,19 +164,12 @@ int C_00028130::func_00028130(int *param1, int param2, int *param3)
     v3.y = 0.0f;
     v3.x = 0.0f;
     v3.w = 1.0f;
-    V4 va;
-    va.z = 0.0f;
-    va.y = 0.0f;
-    va.x = 0.0f;
-    va.w = 1.0f;
-    V4 vb;
-    vb.z = 0.0f;
-    vb.y = 0.0f;
-    vb.x = 0.0f;
-    vb.w = 1.0f;
-    v1.x = f10C;
-    v1.y = f114;
-    *(int *)&v1.z = f118;
+    V4 point;
+    point.z = 0.0f;
+    point.y = 0.0f;
+    point.x = 0.0f;
+    point.w = 1.0f;
+    v1 = *(V4 *)((char *)this + 0x10c);
     v1.y = 0.0f;
     func_00026340(&v1, &v1);
     func_00026340((char *)f1E0 + 0x238, &v2);
@@ -182,11 +197,7 @@ int C_00028130::func_00028130(int *param1, int param2, int *param3)
     int flagResult = 0;
     Cand *cand;
     while ((cand = f24->f530->func_0015A520()) != 0) {
-        V4 nrm;
-        nrm.x = cand->v40;
-        nrm.y = cand->v44;
-        nrm.z = cand->v48;
-        nrm.w = cand->v4C;
+        nrm = *(V4 *)((char *)cand + 0x40);
         nrm.y = 0.0f;
         AsmVec3Normalize((float *)&nrm, (float *)&nrm);
         float dd = nrm.y * v1.y + nrm.x * v1.x;
@@ -206,13 +217,11 @@ int C_00028130::func_00028130(int *param1, int param2, int *param3)
             int ti = *(int *)&t & 0x7fffffff;
             ang2 = *(float *)&ti;
         }
-        V4 diff1;
-        diff1.x = cand->p20 - resF.x;
-        diff1.y = cand->p24 - resF.y;
-        diff1.z = cand->p28 - resF.z;
-        diff1.w = 1.0f;
-        float proj = diff1.z * nrm.z + diff1.x * nrm.x + diff1.y * nrm.y;
-        V4 point;
+        diff.x = cand->p20 - resF.x;
+        diff.y = cand->p24 - resF.y;
+        diff.z = cand->p28 - resF.z;
+        diff.w = 1.0f;
+        float proj = diff.z * nrm.z + diff.x * nrm.x + diff.y * nrm.y;
         point.x = cand->p20 - nrm.x * proj;
         point.y = cand->p24 - nrm.y * proj;
         point.z = cand->p28 - nrm.z * proj;
@@ -221,20 +230,18 @@ int C_00028130::func_00028130(int *param1, int param2, int *param3)
         float dz = point.z - resF.z;
         float ssq = dz * dz + dx * dx + dy * dy;
         float dist = AsmSqrtF(ssq);
-        V4 diffA;
-        diffA.x = cand->p20 - point.x;
-        diffA.y = cand->p24 - point.y;
-        diffA.z = cand->p28 - point.z;
-        diffA.w = 1.0f;
-        V4 diffB;
+        diff.x = cand->p20 - point.x;
+        diff.y = cand->p24 - point.y;
+        diff.z = cand->p28 - point.z;
+        diff.w = 1.0f;
         diffB.x = cand->p30 - point.x;
         diffB.y = cand->p34 - point.y;
         diffB.z = cand->p38 - point.z;
         diffB.w = 1.0f;
-        AsmVec3Normalize((float *)&diffA, (float *)&diffA);
+        AsmVec3Normalize((float *)&diff, (float *)&diff);
         AsmVec3Normalize((float *)&diffB, (float *)&diffB);
         int flag = 1;
-        float dot = diffB.z * diffA.z + diffB.x * diffA.x + diffB.y * diffA.y;
+        float dot = diffB.z * diff.z + diffB.x * diff.x + diffB.y * diff.y;
         int ti2 = *(int *)&f120 & 0x7fffffff;
         float f120abs = *(float *)&ti2;
         if (f120abs < D_002756DC && v2.y < D_00275544) {
@@ -245,11 +252,10 @@ int C_00028130::func_00028130(int *param1, int param2, int *param3)
                 flag = 0;
             }
         }
-        V4 pointC = point;
         if (dot < D_00275544 && dist < best1 && -f5A8 < resF.y - point.y && flag) {
             best1 = dist;
             best = cand;
-            V4 out = f230->func_00198120(&pointC);
+            V4 out = f230->func_00198120(&point);
             if (out.x <= D_00275544) {
                 flagResult = 1;
             } else {
