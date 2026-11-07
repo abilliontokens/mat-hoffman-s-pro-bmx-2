@@ -1,5 +1,6 @@
 /* 1 function from 0x0008FCB0 to 0x00091820, found by Ghidra. */
 #include "common.h"
+#include "overlay_0008FCB0_local.h"
 
 extern char *D_002A8490;
 int __fastcall func_0008FCB0(char *self, int unused, int a)
