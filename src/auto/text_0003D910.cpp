@@ -79,7 +79,7 @@ struct RetD {
     void *f10;
 };
 struct A530D { void func_0015A250(int a); void func_0015A180(int a); };
-struct Obj64D { char pad0[0x530]; A530D *f530; };
+struct Obj64D { char pad0[0x530]; A530D *f530; void func_000A3B60(F4ObjD *a); };
 struct ArrObjD { void func_000377F0(int a); };
 struct GObjD {
     virtual void g0(); virtual void g1(); virtual void g2(); virtual void g3();
@@ -144,7 +144,8 @@ void C_0003D910::func_0003D910(int a0)
     if (f564 == 0) {
         return;
     }
-    if (f48C != -1 && a0 == 0) {
+    int id = f48C;
+    if (id != -1 && a0 == 0) {
         if (f2D8 != 0) {
             f2D8 = 0;
             f59C->f1A4->func_00164820(f59C->f1AC->f4);
@@ -245,8 +246,8 @@ void C_0003D910::func_0003D910(int a0)
             f564->f8->nv2();
             f564->f8 = 0;
         } else if (f564->a == 1) {
-            if (f48C != -1) {
-                ((ArrObjD *)((char *)this + 0x5a0))->func_000377F0(f48C);
+            if (id != -1) {
+                ((ArrObjD *)((char *)this + 0x5a0))->func_000377F0(id);
                 f48C = -1;
             }
             f564->f8->func_00198E60();
@@ -258,8 +259,8 @@ void C_0003D910::func_0003D910(int a0)
             f564->f10 = 0;
         } else if (f564->a == 2) {
             int key[2];
-            if (f48C != -1) {
-                ((ArrObjD *)((char *)this + 0x5a0))->func_000377F0(f48C);
+            if (id != -1) {
+                ((ArrObjD *)((char *)this + 0x5a0))->func_000377F0(id);
                 f48C = -1;
             }
             RetD *r = func_00038A10(f564->f4->fE8, key);
@@ -368,8 +369,9 @@ int Obj::_func_0003E410()
     a.z = 0.0f; a.y = 0.0f; a.x = 0.0f; a.w = 1.0f;
     b.z = 0.0f; b.y = 0.0f; b.x = 0.0f; b.w = 1.0f;
     c.z = 0.0f; c.y = 0.0f; c.x = 0.0f; c.w = 1.0f;
-
-    if (f564->a != 0)
+    int t = f564->a;
+    blk = 0;
+    if (t != 0)
         return 1;
     f564->q->func_00197E70(&a);
     f564->q->func_00197B40(&b, &c);
@@ -377,7 +379,6 @@ int Obj::_func_0003E410()
         return 1;
     if (func_00038B10(f564->q + 1, a, b, &px, &py, &pz, 1) == 0)
         return 1;
-    blk = 0;
     func_00038A70(f564->q + 1, &blk);
     if (!blk->flag)
         return 1;
