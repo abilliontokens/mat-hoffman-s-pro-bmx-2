@@ -1,5 +1,6 @@
 /* 3 functions from 0x000B3E10 to 0x000B4850, found by Ghidra. */
 #include "common.h"
+#include "asm_helpers.h"
 #include <string.h>
 extern char D_0027D144[];
 extern char D_0027D138[];
@@ -479,9 +480,9 @@ int C_000B4300::func_000B4530(float dt)
                 int k = f3c->f4b8 - 1;
                 S_B4530_List *l = D_002B9134;
                 int n = l->f40;
+                S_B3E10_Info *volatile info = f3c;
                 int i;
                 u32 key = f50;
-                S_B3E10_Info *volatile info = f3c;
                 for (i = 0; i < n; i++) {
                     if (l->f50[i]->f0 == key && l->f50[i]->f4 == k && info->f518->f14 == 0) {
                         func_000B2C20(l->f50[i]->fC, l->f50[i]->f10);
