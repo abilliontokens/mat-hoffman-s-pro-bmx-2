@@ -197,6 +197,7 @@ void __stdcall func_0012B950(S_0012B950_Vec4 *out, float t, S_0012B950_Vec4 p0, 
     float d;
     S_0012B950_V3 m0;
     S_0012B950_V3 m1;
+    S_0012B950_V3 s;
 
     t2 = t * t;
     t3 = t * t2;
@@ -207,20 +208,25 @@ void __stdcall func_0012B950(S_0012B950_Vec4 *out, float t, S_0012B950_Vec4 p0, 
     d = t3 - t2;
     m0 = V3Scale_0012B950(V3Sub_0012B950(*(S_0012B950_V3 *)&p2, *(S_0012B950_V3 *)&p0), D_002755E8);
     m1 = V3Scale_0012B950(V3Sub_0012B950(*(S_0012B950_V3 *)&p3, *(S_0012B950_V3 *)&p1), D_002755E8);
+    s = V3Scale_0012B950(m1, d);
     V3AddInto_0012B950(out,
             V3Add_0012B950(
                 V3Add_0012B950(V3Scale_0012B950(*(S_0012B950_V3 *)&p1, a), V3Scale_0012B950(*(S_0012B950_V3 *)&p2, b)),
                 V3Scale_0012B950(m0, c)),
-            V3Scale_0012B950(m1, d));
+            s);
 }
 #pragma optimize("a", off)
 float __stdcall func_0012BAE0(float t, float p0, float p1, float p2, float p3) {
+    float three = 3.0f;
+    float t3 = t * t * t;
+    const float &r3 = t3;
+    float t2 = t * t;
     float m0 = (p2 - p0) * D_002755E8;
     float m1 = (p3 - p1) * D_002755E8;
-    return m0 * (((t * t * t) - ((t * t) + (t * t))) + t)
-         + m1 * ((t * t * t) - (t * t))
-         + ((((t * t * t) + (t * t * t)) - (t * t) * D_002755EC) + D_00275460) * p1
-         + ((t * t) * D_002755EC - ((t * t * t) + (t * t * t))) * p2;
+    return m0 * (((r3 - (t2 + t2)) + t))
+         + m1 * (r3 - t2)
+         + (((r3 + r3) - t2 * three) + D_00275460) * p1
+         + ((t2 * three) - (r3 + r3)) * p2;
 }
 
 void __stdcall func_0012BB60(char *input, char *output) {
