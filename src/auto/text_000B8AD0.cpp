@@ -44,6 +44,8 @@ struct TireVec {
 struct TireTransform {
     TireVec *func_00197F70(TireVec *,const TireVec *);
     TireVec *func_00198040(TireVec *,const TireVec *);
+    TireVec func_00197F70(const TireVec &);
+    TireVec func_00198040(const TireVec &);
     void func_001994C0(int,TireVec *,TireVec *);
 };
 struct TireBody {
