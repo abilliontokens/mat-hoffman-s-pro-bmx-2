@@ -2,6 +2,7 @@
 #include "common.h"
 #include "ghidra.h"
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 struct C_000BC0B0 {
     undefined4 func_000BC0B0(void);
 };
