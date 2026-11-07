@@ -341,16 +341,16 @@ void SoultreeObject::func_0019ADF0(SoultreeObject *p)
 
 float sqrtf(float);
 void SoultreeObject::func_0019AE40(int volatile file) {
- SoultreeObject *arr[256]; SoultreeObject *volatile self=this;
+ SoultreeObject *arr[256];
  int flag;
  D_002BEAAC->func_0013C8A0(file,&f190,4,1);
  arr[0]=this;
  int i;
- for(i=0;i<self->f190;i++) {
- if(i) ((S_0019B1A0_VThis*)self)->v29(&arr[i]);
+ for(i=0;i<this->f190;i++) {
+ if(i) ((S_0019B1A0_VThis*)this)->v29(&arr[i]);
  D_002BEAAC->func_0013C8A0(file,arr[i]->f28,0x80,1);
  D_002BEAAC->func_0013C8A0(file,arr[i]->fB0,0x40,1);
- func_0013E4A0(arr[i]->fB0,arr[i]->fB0);
+ AsmTransposeMatrix(arr[i]->fB0, arr[i]->fB0);
  D_002BEAAC->func_0013C8A0(file,&flag,4,1);
  arr[i]->f27_bit2=flag;
  D_002BEAAC->func_0013C8A0(file,&flag,4,1);
@@ -365,12 +365,12 @@ void SoultreeObject::func_0019AE40(int volatile file) {
  float *v=(float*)arr[i]->f140;
  float z=v[2],y=v[1],x=v[0];
  float len=x*x+y*y+z*z;
- float root=sqrtf(len);
+ float root=AsmSqrtF(len);
  *(float*)&arr[i]->f184=root;
  }
  int *parents=(int*)func_001E8A44(f190*4);
  D_002BEAAC->func_0013C8A0(file,parents,4,f190);
- for(i=0;i<self->f190;i++) {
+ for(i=0;i<this->f190;i++) {
  if(parents[i]!=-1) {
  SoultreeObject *child=arr[i], *parent=arr[parents[i]];
  if(child->f170) parent->f170->func_0019A210(child);
