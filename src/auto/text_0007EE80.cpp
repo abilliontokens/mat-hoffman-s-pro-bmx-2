@@ -18,6 +18,7 @@ struct S_7EE80_Text {
 /* string table entry (stride 8, only the pointer is read here) */
 struct S_7EE80_Str {
     const char *s;
+    int unk4;
 };
 
 struct S_7EE80_StrTbl {
@@ -103,7 +104,7 @@ void C_0007EE80::func_0007EE80(void)
     char bufa[0x104];
     char buf1[0x104];
     char buf2[0x104];
-    S_7EE80_Obj *obj = D_002A8490->f2E0->func_0005C020(D_002A8490->f2E0->f2D8);
+    S_7EE80_Obj *obj = D_002A8490->f2E0->f2C0->func_0005C020(D_002A8490->f2E0->f2D8);
     int zero = 0;
     int id1, id2;
     int mode = f1d0->f1c0->func_000976A0();
