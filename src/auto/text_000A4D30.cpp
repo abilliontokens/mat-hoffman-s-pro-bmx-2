@@ -11,6 +11,8 @@ extern char D_0027BCC8, D_0027BCC0, D_0027BCB8, D_0027BCB0, D_0027BCA8, D_0027BC
 extern char D_0027BB88, D_0027BB78, D_0027BB64, D_0027BB50, D_0027BB38, D_0027BB24, D_0027BB0C, D_0027BAF4, D_00276844, D_0027BAE8;
 extern "C" int __cdecl memcmp(const void *, const void *, unsigned int);
 #pragma intrinsic(memcmp)
+extern "C" int __cdecl strcmp(const char *, const char *);
+#pragma intrinsic(strcmp)
 int func_001EA426(const char *, const char *);
 extern "C" char *__cdecl strcpy(char *, const char *);
 extern char D_0027B6AC, D_0027B690, D_0027B674, D_0027B658, D_0027B638, D_0027B618, D_0027B5F4, D_0027B5D0, D_0027B5AC, D_0027B588, D_0027B580, D_0027B578, D_0027B564, D_0027B550, D_0027B544, D_0027B538, D_0027B528;
