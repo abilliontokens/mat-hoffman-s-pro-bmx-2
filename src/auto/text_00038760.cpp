@@ -54,10 +54,7 @@ extern "C" void _ReadWriteBarrier(void);
 
 static __forceinline void Round_00038850(int *out, float value)
 {
-    S_00038760_Conv c;
-    c.out = out;
-    c.v = value;
-    AsmFloatToIntRound(c.v, c.out);
+    AsmFloatToIntRound(value, out);
 }
 extern char D_00276E90[];
 extern int D_002B911C;
