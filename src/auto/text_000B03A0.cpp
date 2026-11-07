@@ -21,6 +21,8 @@ void *func_00143580(int a);
 void *func_001BB680(int a);
 
 extern char D_0027CE10[];
+extern char D_00276F28[];
+extern int D_000A7E30;
 extern char D_0027CE04[];
 extern char D_002A5870[];
 extern char D_00276BB4[];
