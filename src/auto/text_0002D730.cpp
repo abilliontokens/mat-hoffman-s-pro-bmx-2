@@ -26,10 +26,18 @@ struct S_2D730_Node {
 };
 
 struct S_2D730_State {
-    char pad0[0x50];
-    int f50, f54;
-    char pad58[0x68 - 0x58];
-    int f68;
+    char pad0[0x24];
+    int f24;
+    char pad28[0x50 - 0x28];
+    int f50, f54, f58;
+    char pad5c[0x64 - 0x5c];
+    int f64, f68, f6c, f70, f74;
+    char pad78[0x8c - 0x78];
+    int f8c;
+    char pad90[0x1a0 - 0x90];
+    int f1a0[4];
+    char pad1b0[0x1d8 - 0x1b0];
+    S_2D730_State *f1d8;
 };
 
 struct C_0002D730 {
