@@ -17,7 +17,7 @@ struct C153DF0_Eff {
 };
 struct C153DF0_Game { char pad0[0x124]; int f124; char pad128[0x1B8]; int *f2E0; };
 struct C153DF0_17A40 { void func_00017A40(void *a); };
-struct C153DF0_B9120 { char pad0[0x4E4]; int arr[0x2E]; C153DF0_17A40 *f528; };
+struct C153DF0_B9120 { char pad0[0x4E4]; int arr[0x11]; C153DF0_17A40 *f528; };
 struct C153DF0_2C { char pad0[0x1A4]; int *f1A4_2; };
 struct C153DF0_Self {
     char pad0[0x24];
