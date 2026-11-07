@@ -7,7 +7,7 @@
 struct Vec_19FD20 {
     f32 x, y, z, w;
     Vec_19FD20() {}
-    Vec_19FD20(f32 ax, f32 ay, f32 az, f32 aw = 1.0f) { x = ax; y = ay; z = az; w = aw; }
+    Vec_19FD20(f32 ax, f32 ay, f32 az, f32 aw = 1.0f) { w = aw; z = az; y = ay; x = ax; }
 };
 
 static __forceinline void Cross_19FD20(Vec_19FD20 * volatile out, Vec_19FD20 * volatile a, Vec_19FD20 * volatile b)
@@ -196,7 +196,10 @@ void C_001A0510::func_001A0510(Vec_19FD20 target)
         D_002A7CB8->func_0019FC40(D_002A9D78);
     }
 
-    Vec_19FD20 a(0, 0, 0, 1.0f), b(0, 0, 0, 1.0f), c(0, 0, 0, 1.0f);
+    Vec_19FD20 a, b, c;
+    a.z = 0; a.y = 0; a.x = 0; a.w = 1.0f;
+    b.z = 0; b.y = 0; b.x = 0; b.w = 1.0f;
+    c.z = 0; c.y = 0; c.x = 0; c.w = 1.0f;
     f0->func_00199A70(0, &a);
     f4->func_00199A70(0, &b);
     f8->func_00199A70(0, &c);
@@ -216,6 +219,8 @@ void C_001A0510::func_001A0510(Vec_19FD20 target)
     Vec_19FD20 e(a.x - b.x, a.y - b.y, a.z - b.z);
     Vec_19FD20 f(c.x - b.x, c.y - b.y, c.z - b.z);
     Vec_19FD20 g, h;
+    g.z = 0; g.y = 0; g.x = 0; g.w = 1.0f;
+    h.z = 0; h.y = 0; h.x = 0; h.w = 1.0f;
     func_0019FBD0(&g, &e);
     func_0019FBD0(&h, &f);
     f32 dot = h.y * g.y + h.x * g.x + h.z * g.z;
