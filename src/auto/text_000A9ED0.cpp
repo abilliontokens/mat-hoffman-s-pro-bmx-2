@@ -5,7 +5,7 @@
 
 struct Vec4_A9ED0 {
     float x,y,z,w;
-    Vec4_A9ED0() { z=y=x=0.0f;w=1.0f; }
+    Vec4_A9ED0() { x=y=z=0.0f;w=1.0f; }
 };
 struct Item_A9ED0 {
     char pad[0x174];
