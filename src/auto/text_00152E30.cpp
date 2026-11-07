@@ -5,6 +5,46 @@ extern int D_00286CBC;
 void func_001E891B(void *p);
 int func_00011260(int a, int b);
 struct Q4_00152E30 { int x, y, z, w; };
+#include <xmmintrin.h>
+struct V153 { float x,y,z,w; };
+struct __declspec(align(16)) M153 { float m[16]; };
+struct Camera153 {
+    void func_00199B00(V153 *, int);
+    void func_00197B40(V153 *, V153 *);
+    void func_00198F50(V153 *, V153 *, int, int, int);
+};
+struct Link153 { char pad[4]; Camera153 *cam; void func_00132D20(); };
+struct Owner153 { char pad[0x1a4]; Link153 *link; };
+extern Q4_00152E30 D_002A78CC;
+extern float D_002A7890, D_002A788C;
+float func_00016D60(float);
+float func_0014F510(float);
+float func_0014F550(float);
+float func_0001E960(float);
+void func_0011F010(M153 *, float, float, float, float, float);
+void func_000263B0(M153 *, M153 *, M153 *);
+static __forceinline void cross153(V153 *d, V153 *a, V153 *b) {
+    __m128 x=_mm_loadu_ps(&a->x), y=_mm_loadu_ps(&b->x);
+    __m128 v=_mm_sub_ps(_mm_mul_ps(x,_mm_shuffle_ps(y,y,0xc9)),_mm_mul_ps(y,_mm_shuffle_ps(x,x,0xc9)));
+    _mm_storeu_ps(&d->x,_mm_shuffle_ps(v,v,0xc9));
+}
+static __forceinline void norm153(V153 *v) {
+    __m128 x=_mm_loadu_ps(&v->x), q=_mm_mul_ps(x,x);
+    __m128 n=_mm_add_ss(_mm_movehl_ps(q,q),q);
+    n=_mm_add_ss(n,_mm_shuffle_ps(q,q,0xe1));
+    __m128 tiny=_mm_set_ss(1.17549435e-38f);
+    n=_mm_add_ss(n,_mm_and_ps(_mm_cmplt_ss(n,tiny),tiny));
+    __m128 r=_mm_rsqrt_ss(n);
+    r=_mm_mul_ss(_mm_mul_ss(r,_mm_set_ss(0.5f)),_mm_sub_ss(_mm_set_ss(3),_mm_mul_ss(_mm_mul_ss(n,r),r)));
+    _mm_storeu_ps(&v->x,_mm_mul_ps(_mm_shuffle_ps(r,r,0),x));
+}
+static __forceinline void transform153(V153 *v,M153 *m) {
+    float x=v->x,y=v->y,z=v->z;
+    v->x=m->m[0]*x+m->m[1]*y+m->m[2]*z+m->m[3];
+    v->y=m->m[4]*x+m->m[5]*y+m->m[6]*z+m->m[7];
+    v->z=m->m[8]*x+m->m[9]*y+m->m[10]*z+m->m[11];
+    v->w=1;
+}
 extern Q4_00152E30 D_002A78BC, D_002A789C;
 extern int D_002A78C0, D_002A78C4, D_002A78C8, D_002A78A0, D_002A78A4, D_002A78A8;
 static __forceinline void set_id_00152E30(int *d)
@@ -184,6 +224,13 @@ void C_001532E0::func_001532E0(void)
         func_001E891B(p);
     }
     ((C_00157660 *)this)->func_00157660();
+}
+
+void C_00153350::func_00153350(float dt)
+{
+    for (int i = 0; i < 32; i++) {
+        arr5C8[i] = (int)(float)((S_G2_153 *)D_002A8490)->unk8->v5(i, 2, 63, unk28);
+    }
 }
 
 void C_00153D30::func_00153D30(int dt)
