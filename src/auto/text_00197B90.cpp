@@ -219,6 +219,39 @@ struct C_001983E0 {
 };
 
 
+void C_00197B90::func_00197B90(float *out)
+{
+    float a = (m[0] + m[5] + m[10] + 1.0f) * 0.25f;
+    float b = (m[0] + 1.0f - m[5] - m[10]) * 0.25f;
+    float c = (1.0f - m[0] + m[5] - m[10]) * 0.25f;
+    float d = (1.0f - m[0] - m[5] + m[10]) * 0.25f;
+    if (a > b && a > c && a > d) {
+        out[0] = AsmSqrtF(a);
+        float inv = 0.25f / out[0];
+        out[1] = (m[9] - m[6]) * inv;
+        out[2] = (m[2] - m[8]) * inv;
+        out[3] = (m[4] - m[1]) * inv;
+    } else if (b > c && b > d) {
+        out[1] = AsmSqrtF(b);
+        float inv = 0.25f / out[1];
+        out[0] = (m[9] - m[6]) * inv;
+        out[2] = (m[4] + m[1]) * inv;
+        out[3] = (m[8] + m[2]) * inv;
+    } else if (c > d) {
+        out[2] = AsmSqrtF(c);
+        float inv = 0.25f / out[2];
+        out[0] = (m[2] - m[8]) * inv;
+        out[1] = (m[4] + m[1]) * inv;
+        out[3] = (m[9] + m[6]) * inv;
+    } else {
+        out[3] = AsmSqrtF(d);
+        float inv = 0.25f / out[3];
+        out[0] = (m[4] - m[1]) * inv;
+        out[1] = (m[8] + m[2]) * inv;
+        out[2] = (m[9] + m[6]) * inv;
+    }
+}
+
 void C_00197E70::func_00197E70(undefined4 *param_1)
 {
   int in_ECX = (int)this;
