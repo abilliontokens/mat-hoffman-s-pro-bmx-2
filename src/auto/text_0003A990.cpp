@@ -2,6 +2,7 @@
 #include "common.h"
 #include <string.h>
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 extern float D_00275548;
 extern float D_00276E9C, D_00276E98;
 void *func_001E8A44(unsigned int size);
@@ -37,7 +38,17 @@ static __forceinline void Round_0003AC20(int * volatile out,float f) { *out = _m
 
 struct S_3AE40_Obj { void func_00197E70(float *p); void func_00197B40(float *p, void *q); };
 extern char D_002A14F4[];
+#include "asm_helpers.h"
 extern "C" char *func_001E8920(char *dst, const char *src, int n);
+/* copies src into dst, at most 0x13 characters (the game's clamped strncpy) */
+static __forceinline void CopyName_3AE40(char *dst, const char *src)
+{
+    int len = strlen(src);
+    int lim = 0x13;
+    int cnt = AsmMinI(lim, len);
+    func_001E8920(dst, src, cnt);
+    dst[cnt] = 0;
+}
 template <class T> inline const T &Min(const T &a, const T &b) { return a > b ? b : a; }
 struct S_3AE40_Vec4 { float x, y, z, w; };
 /* 0x70-byte record written by C_3AE40::func_0003AE40 */
@@ -228,12 +239,10 @@ void C_0003AD50::func_0003AD50(void)
 
 void C_3AE40::func_0003AE40(S_3AE40_Rec * volatile dst)
 {
-    S_3AE40_List *l = &list;
     int n = 0;
     int i;
-    for (i = f484; i < this->list.count; i++, n++) {
-        S_3AE40_Ent *e = l->at(i);
-        int tmp;
+    for (i = f484; i < list.count; i++, n++) {
+        S_3AE40_Ent *e = list.at(i);
         dst[n].idx = n;
         dst[n].kind = e->kind + 1;
         switch (dst[n].kind - 1) {
@@ -245,17 +254,10 @@ void C_3AE40::func_0003AE40(S_3AE40_Rec * volatile dst)
             dst[n].v50 = e->f10->v34;
             break;
         case 2: {
-            struct { volatile int len; volatile int lim; volatile int cnt; } t;
-            t.len = strlen(e->f4->name0);
-            t.lim = 0x13;
-            t.cnt = t.lim > t.len ? t.len : t.lim;
-            func_001E8920(dst[n].name0, e->f4->name0, t.cnt);
-            dst[n].name0[t.cnt] = 0;
-            t.len = strlen(e->f4->name1);
-            t.lim = 0x13;
-            t.cnt = t.lim > t.len ? t.len : t.lim;
-            func_001E8920(dst[n].name1, e->f4->name1, t.cnt);
-            dst[n].name1[t.cnt] = 0;
+            { int len = strlen(e->f4->name0); int lim = 0x13; int cnt = AsmMinI(lim, len);
+              func_001E8920(dst[n].name0, e->f4->name0, cnt); dst[n].name0[cnt] = 0; }
+            { int len = strlen(e->f4->name1); int lim = 0x13; int cnt = AsmMinI(lim, len);
+              func_001E8920(dst[n].name1, e->f4->name1, cnt); dst[n].name1[cnt] = 0; }
             dst[n].f60 = e->f4->fDC;
             dst[n].f62 = n - 2;
             dst[n].f64 = n - 1;
@@ -264,11 +266,13 @@ void C_3AE40::func_0003AE40(S_3AE40_Rec * volatile dst)
         case 0:
         case 3:
         case 4:
-        case 5:
+        case 5: {
+            int tmp;
             dst[n].f4 = func_00038A70((char *)e->f8 + 0x28, &tmp);
             e->f8->func_00197E70(&dst[n].v30.x);
             e->f8->func_00197B40(&dst[n].f40, D_002A14F4);
             break;
+        }
         }
     }
 }
