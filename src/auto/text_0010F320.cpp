@@ -2,6 +2,18 @@
 #include "common.h"
 
 struct Vec4_10F320 { float x,y,z,w; };
+struct Model10F320 {
+    void func_00199790(int,Vec4_10F320 *);
+    void func_00199110(int,void *,void *,int,int,int);
+    void func_00199A70(int,Vec4_10F320 *);
+    int func_00198330(const char *);
+};
+struct Actor10F320 {
+    int *vtable;
+    Model10F320 *model;
+    void func_001646B0();
+};
+extern char D_002A3A5C[],D_002A3A6C[],D_00276690[];
 struct S_0002EF70_Item { void func_0015B060(void *,float,float); };
 struct S_0002EF70_Mgr { char pad[0x14]; S_0002EF70_Item *items[1]; void *func_00135E80(); };
 struct S_2EF70_Ent { void *func_001362A0(float,float,int,void *,int,float); };
