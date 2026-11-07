@@ -20,6 +20,9 @@ struct C_Button {
     virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
     virtual void v4(); virtual void v5(); virtual void v6();
     virtual int v7();
+    virtual void v8(int); virtual void v9(int); virtual void v10(); virtual void v11();
+    virtual void v12(int); virtual void v13(); virtual void v14(int);
+    virtual void v15(); virtual void v16(); virtual int v17();
 };
 
 struct C_ButtonSet {
