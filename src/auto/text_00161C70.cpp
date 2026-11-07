@@ -4,6 +4,7 @@
 #include <xmmintrin.h>
 #include <math.h>
 #include <string.h>
+#include "asm_helpers.h"
 #define VF_00162020(x) (*(volatile float *)&(x))
 struct M4_00162020 { float f[16]; };
 struct __declspec(align(16)) S_Matrix_00162330 { float m[16]; };
@@ -241,22 +242,17 @@ void func_00161D90(void);
 float func_00161F80(float param)
 {
     float v;
-    float f;
-    float fa;
-    int *p;
-    volatile float t;
-    if (D_002A8314 != 0) {
-        D_002A8314 = 0;
-        func_00161D90();
-    }
-    v = param;
-    v += D_00287B6C;
-    p = &D_002ED708;
-    t = v;
-    *p = _mm_cvttss_si32(*(__m128 *)&t);
+    float f, fa, fb;
+    int i;
+    if (D_002A8314) { D_002A8314 = 0; func_00161D90(); }
+    param = v = *(volatile float *)&param + D_00287B6C;
+    AsmFloatToInt(param, &D_002ED708);
     f = v - (float)D_002ED708;
-    fa = f * D_002ED710[D_002EEF28[D_002ED708 & 0xff]];
-    return fa + (D_002755EC - (f + f)) * f * f * ((f - D_00275460) * D_002ED710[D_002EEF28[(D_002ED708 + 1) & 0xff]] - fa);
+    i = D_002ED708 & 255;
+    fa = f * D_002ED710[D_002EEF28[i]];
+    fb = (f - D_00275460) * D_002ED710[D_002EEF28[(i + 1) & 255]];
+    v = (D_002755EC - (f + f)) * f * f;
+    return fa + v * (fb - fa);
 }
 
 void func_00162020(float *out, float *m, int transpose)
