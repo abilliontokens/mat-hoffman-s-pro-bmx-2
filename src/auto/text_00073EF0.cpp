@@ -334,3 +334,4 @@ C_00073EF0 *C_00073EF0::func_00073EF0(void *a0)
     return this;
 }
 static __forceinline void posf73(Txt_73 *p, float x, float y) { if (*(float *)&p->x != x || *(float *)&p->y != y) { *(float *)&p->y = y; *(float *)&p->x = x; p->flags |= 6; } }
+static __forceinline void posy73(Txt_73 *p, int x, float y) { if (p->x != x || *(float *)&p->y != y) { *(float *)&p->y = y; p->x = x; p->flags |= 6; } }
