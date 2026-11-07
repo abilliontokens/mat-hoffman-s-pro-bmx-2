@@ -2,6 +2,7 @@
 #include "common.h"
 #include <stdarg.h>
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 static __forceinline float Min_001AB670(float a, float b) { float r; _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
 static inline float Dot_001AB670(const float *a, const float *b) { return a[0] * b[0] + a[1] * b[1] + a[2] * b[2]; }
 struct V4_001AB670 { float x, y, z, w; V4_001AB670() { z = 0.0f; y = 0.0f; x = 0.0f; w = 1.0f; } };
@@ -53,6 +54,23 @@ struct Elem_001AB800 {
     int idx;
     unsigned char flags;
     char pad_55[3];
+};
+
+struct ElemView_001AB800 {
+    float n1;
+    float n2;
+    float n3;
+    float p0;
+    float p1;
+    float p2;
+    char pad_18[4];
+    void *mat;
+    int f44;
+    void *f48;
+    float f4c;
+    int idx;
+    unsigned char flags;
+    char pad_31[0x58 - 0x31];
 };
 
 struct Frame_001AB800 {
@@ -211,18 +229,20 @@ int SpringCollisionModel::func_001AB800(int arg)
     Elem_001AB800 *e;
     float dot;
 
-    if (f3c != 0 || f88 > 0) {
-        if (f6c == 0) {
-            func_00030AC0(f114, (float *)((char *)field_24 + 0x190), (float *)(field_24->f22c + 0xf0));
-        } else {
+    if (f3c == 0 && f88 > 0) {
+        if (f6c != 0) {
             func_00030AC0(f114, f104, (float *)(field_24->f22c + 0xf0));
+        } else {
+            func_00030AC0(f114, (float *)((char *)field_24 + 0x190), (float *)(field_24->f22c + 0xf0));
         }
     }
-    if (f3c != 0 && f80 > 0) {
-        for (i = 0; i < f80; i++) {
-            e = &field_84[i];
-            Xform_001AB800(&loc.x, e->in, (float *)((char *)e->mat + 0xf0));
-            dot = (e->p[0] - loc.x) * e->n[0] + (e->p[1] - loc.y) * e->n[1] + (e->p[2] - loc.z) * e->n[2] + e->f4c;
+    if (f3c != 0) {
+        for (e = field_84, i = 0; i < f80; e++, i++) {
+            AsmTransformPoint(&loc.x, e->in, (float *)((char *)e->mat + 0xf0));
+            dot = (e->p[0] - loc.x) * e->n[0];
+            dot += (e->p[1] - loc.y) * e->n[1];
+            dot += (e->p[2] - loc.z) * e->n[2];
+            dot += e->f4c;
             if (dot > D_00275544) {
                 f30 = 1;
                 f74 = 1;
@@ -253,23 +273,24 @@ int SpringCollisionModel::func_001AB800(int arg)
             }
         }
     }
-    for (i = 0; i < f88; i++) {
-        e = &field_90[i];
-        if (e->mat == 0) {
-            Xform_001AB800(&loc.x, e->in, (float *)(field_24->f22c + 0xf0));
+    for (e = field_90, i = 0; i < f88; e++, i++) {
+        if (e->mat != 0) {
+            AsmTransformPoint(&loc.x, e->in, (float *)((char *)e->mat + 0xf0));
         } else {
-            Xform_001AB800(&loc.x, e->in, (float *)((char *)e->mat + 0xf0));
+            AsmTransformPoint(&loc.x, e->in, (float *)(field_24->f22c + 0xf0));
         }
-        dot = (e->p[0] - loc.x) * e->n[0] + (e->p[1] - loc.y) * e->n[1] + (e->p[2] - loc.z) * e->n[2];
+        dot = (e->p[0] - loc.x) * e->n[0];
+        dot += (e->p[1] - loc.y) * e->n[1];
+        dot += (e->p[2] - loc.z) * e->n[2];
         if (dot > D_00275544) {
             f30 = 1;
             f78 = 1;
-            if (e->f48 == 0) {
+            if (e->f48 != 0) {
+                f38 = 1;
+            } else {
                 if (e->n[1] > D_002755F4) {
                     f34 = 1;
                 }
-            } else {
-                f38 = 1;
             }
             f144 = *(V4_001AB670 *)e->n;
             f134.x = dot * e->n[0] + loc.x;
