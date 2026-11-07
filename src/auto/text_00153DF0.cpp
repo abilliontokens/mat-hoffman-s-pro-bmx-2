@@ -44,7 +44,7 @@ struct C153DF0_Self {
     float f164[4];
     float f174[4];
     float f184[4];
-    char pad190[4];
+
     int f194;
     int f198;
     char pad19C[4];
