@@ -139,25 +139,21 @@ void BasicScene::func_0018A010()
 }
 
 C_0018A210 *C_0018A210::func_0018A210() {
- C_0018A210 * volatile p=this;
- *(void * volatile *)&vtbl=&D_002895E8;
- C_0018A210_Sub *q=&p->sub;
+ vtbl=&D_002895E8;
+ C_0018A210_Sub *q=&sub;
  q->vtbl=&D_002898FC;
  memset(q->v,0,16);
  q->f14=1.0f; q->f18=0.5f;
- *(volatile int *)&p->f4=0;
- volatile int bounds[2]; bounds[0]=0x103;
- int value=bounds[0];
- int limit=*(volatile int *)&f4+12;
- bounds[1]=value>limit?limit:value;
- int len=bounds[1];
- func_001E8920(p->name,D_0028A398,len);
- *(volatile char *)&p->name[len]=0;
- *(volatile int *)&p->f10C=0;
- *(volatile int *)&p->f114=2; *(volatile int *)&p->f11C=2; *(volatile int *)&p->f118=2; *(volatile int *)&p->f120=2;
- *(volatile int *)&p->f124=0; *(volatile int *)&p->f128=0; *(volatile int *)&p->f12C=0;
- p->bit0=1; p->bit1=1; p->bit2=1;
- return p;
+ f4=0;
+ int limit=sizeof(name)-1;
+ int len=AsmMinI(limit,12);
+ func_001E8920(name,D_0028A398,len);
+ name[len]=0;
+ f10C=0;
+ f114=2; f11C=2; f118=2; f120=2;
+ f124=0; f128=0; f12C=0;
+ bit0=1; bit1=1; bit2=1;
+ return this;
 }
 
 int C_0018A210::func_0018A320(S_0018A320_W *w, S_0018A320_P *p, int level)
