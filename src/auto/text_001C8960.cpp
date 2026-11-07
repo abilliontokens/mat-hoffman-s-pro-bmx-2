@@ -310,7 +310,7 @@ struct C_001C8960_Ini {
     char padC[4];
     C_001C8960_Ini14 s14;
     C_001C8960_Ini18 s18;
-    char rest[0x4a0];
+    char rest[0x4bd];
     void func_00168280();
     void func_001691E0();
     int func_00169710(char *name);
