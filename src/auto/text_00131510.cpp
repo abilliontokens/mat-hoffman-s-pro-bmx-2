@@ -110,7 +110,7 @@ static __forceinline void Cross_00131510(V4_00131510 *out, V4_00131510 *a, V4_00
     av = _mm_mul_ps(av, bs);
     av = _mm_sub_ps(av, bv);
     av = _mm_shuffle_ps(av, av, 0xc9);
-    _mm_storeu_ps(&out->x, av);
+    _mm_storeu_ps(&dest->x, av);
 }
 
 static __forceinline float Track_00131510(S_Node_00131510 *n, float target, float dt)
