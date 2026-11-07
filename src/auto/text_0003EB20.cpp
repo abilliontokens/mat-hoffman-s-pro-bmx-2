@@ -1,7 +1,7 @@
 /* 1 function from 0x0003EB20 to 0x00041560, found by Ghidra. */
 #include "common.h"
 struct V4 { float x,y,z,w; V4(){z=0;y=0;x=0;w=1;} };
-struct Obj3EB20 { void func_00197E70(V4*); void func_00197B40(V4*,V4*); void func_001A4100(int,int,int); void func_000363E0(V4); };
+struct Obj3EB20 { void func_00197E70(V4*); void func_00197B40(V4*,V4*); void func_001A4100(int,int,int); void func_000363E0(V4); void func_00038A70(void *, void **); int func_00038B10(void *, V4, V4, int *, int *, int *, int); };
 extern float D_00276CA8;
 int func_000262C0(V4 *,V4 *);
 struct G3EB20 { virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7(int); virtual void v8(); };
