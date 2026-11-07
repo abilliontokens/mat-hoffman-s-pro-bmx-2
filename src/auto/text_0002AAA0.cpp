@@ -245,7 +245,6 @@ void C_0002AAA0::func_0002AAA0(float dt)
         unsigned pad80;
         volatile float dy;
         volatile float dz;
-        unsigned pad8c;
     } s;
 
     f1e0->func_00174550(1, 1, 1);
