@@ -340,31 +340,35 @@ void C_001D2A40::func_001D2A40()
     int idx, alpha, w, x, h, y;
     int i;
     int off = 0;
+    int dst[4];
+    int src[4];
     if (this->f50 != 0) {
-        int rc[4] = {0, 0, 0x280, 0x1c0};
+        int rc[4];
+        rc[0] = 0;
+        rc[2] = 0x280;
+        rc[1] = 0;
+        rc[3] = 0x1c0;
         D_002EFDB8->v4(0, this->f50, rc, 0);
     }
     for (i = 0; i < this->f8; i++, off += 0x54) {
-        int dst[4];
-        int src[4];
         RtlEnterCriticalSection(this->f30);
         if (TRK_T->done != 0x3f) {
             S_001D2A40_Frame *q;
-            AsmFloatToIntRound(TRK_T->val[0], &idx);
+            RoundD_001D2A40(&idx, TRK_T->val[0]);
             q = &this->f14[idx];
-            AsmFloatToIntRound(TRK_T->val[1], &x);
-            AsmFloatToIntRound(TRK_T->val[2], &y);
-            AsmFloatToIntRound(TRK_T->val[3], &w);
-            AsmFloatToIntRound(TRK_T->val[4], &h);
-            AsmFloatToIntRound(TRK_T->val[5], &alpha);
+            RoundD_001D2A40(&x, TRK_T->val[1]);
+            RoundD_001D2A40(&y, TRK_T->val[2]);
+            RoundD_001D2A40(&w, TRK_T->val[3]);
+            RoundD_001D2A40(&h, TRK_T->val[4]);
+            RoundD_001D2A40(&alpha, TRK_T->val[5]);
             alpha = AsmMinI(alpha, 255);
             dst[0] = x - (w >> 1);
             dst[1] = y - (h >> 1);
             dst[2] = dst[0] + w;
             dst[3] = dst[1] + h;
             src[0] = 0;
-            src[1] = 0;
             src[2] = q->w;
+            src[1] = 0;
             src[3] = q->h;
             TRACK_CHT(TRK_T, 0, frameLo, frameHi, 1, 1, 0x10)
             TRACK_CHT(TRK_T, 1, posLo[0], posHi[0], 2, 2, 0x20)
