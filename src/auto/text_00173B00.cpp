@@ -55,9 +55,9 @@ struct S_00173B00_Rig {
     int f1b4;
 };
 
-static __forceinline float Min_00173B00(float a, float b) { return AsmMinF(a, b); }
-static __forceinline float Max_00173B00(float a, float b) { return AsmMaxF(a, b); }
-static __forceinline float Abs_00173B00(float x) { int i = *(int *)&x & 0x7fffffff; return *(float *)&i; }
+static inline float Min_00173B00(float a, float b) { return AsmMinF(a, b); }
+static inline float Max_00173B00(float a, float b) { return AsmMaxF(a, b); }
+static inline float Abs_00173B00(float x) { int i = *(int *)&x & 0x7fffffff; return *(float *)&i; }
 float func_00011170(float *v);
 
 extern Vec4 D_002EF740;
@@ -156,18 +156,19 @@ int PhObj::func_00173B00(float dt)
             float total = 0.0f;
             float step = Min_00173B00(dt, D_002A8BEC);
             *(Vec4 *)&fb4 = D_002A8BA0;
-            while (D_00275544 < dt) {
-                ((S_00173B00_Obj *)this)->v28(step);
-                ((S_00173B00_Obj *)fd0)->v13(step);
-                if (fabs(fc4->f170) > fabs(fb4)) fb4 = fc4->f170;
-                if (fabs(fc4->f174) > fabs(fb8)) fb8 = fc4->f174;
-                if (fabs(fc4->f178) > fabs(fbc)) fbc = fc4->f178;
-                ((S_00173B00_Obj *)fc4)->v13(step);
-                f124 = Max_00173B00(f124, Sqrt_001743A0(fc4->f6c.x * fc4->f6c.x + fc4->f6c.y * fc4->f6c.y + fc4->f6c.z * fc4->f6c.z));
-                f128 = Max_00173B00(f128, Sqrt_001743A0(fc4->f7c.x * fc4->f7c.x + fc4->f7c.y * fc4->f7c.y + fc4->f7c.z * fc4->f7c.z));
-                total += step;
-                step = Min_00173B00(D_002A8BEC, dt - total);
-                if (!(total < dt)) break;
+            if (D_00275544 < dt) {
+                do {
+                    ((S_00173B00_Obj *)this)->v28(step);
+                    ((S_00173B00_Obj *)fd0)->v13(step);
+                    if (Abs_00173B00(fc4->f170) > Abs_00173B00(fb4)) fb4 = fc4->f170;
+                    if (Abs_00173B00(fc4->f174) > Abs_00173B00(fb8)) fb8 = fc4->f174;
+                    if (Abs_00173B00(fc4->f178) > Abs_00173B00(fbc)) fbc = fc4->f178;
+                    ((S_00173B00_Obj *)fc4)->v13(step);
+                    f124 = Max_00173B00(f124, Sqrt_001743A0(fc4->f6c.x * fc4->f6c.x + fc4->f6c.y * fc4->f6c.y + fc4->f6c.z * fc4->f6c.z));
+                    f128 = Max_00173B00(f128, Sqrt_001743A0(fc4->f7c.x * fc4->f7c.x + fc4->f7c.y * fc4->f7c.y + fc4->f7c.z * fc4->f7c.z));
+                    total += step;
+                    step = Min_00173B00(D_002A8BEC, dt - total);
+                } while (total < dt);
             }
             func_001729D0();
             func_00172000();
