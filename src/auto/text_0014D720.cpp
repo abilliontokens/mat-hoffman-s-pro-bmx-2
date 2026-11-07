@@ -104,7 +104,7 @@ struct EcoSystem {
     EcoSystem *func_0014E3E0(int param_1);
     void func_0014E4E0(void);
     void func_00157660(void);
-    void func_0014D720(void);
+    int func_0014D720(void);
     void func_0014D670(void *ent);
 };
 struct EcoSub4 {
@@ -182,7 +182,7 @@ extern EcoGlobal *D_002EFDB8;
 void func_0013E1F0(EcoLog *log, int id, const char *fmt, ...);
 void func_0013E260(EcoLog *log, int id, const char *fmt, ...);
 
-void EcoSystem::func_0014D720(void)
+int EcoSystem::func_0014D720(void)
 {
     float q;
     float scale;
@@ -190,7 +190,7 @@ void EcoSystem::func_0014D720(void)
     int *outp;
     float la, lb, lc;
     if (D_002A7690 == 0 || unk3C == 0) {
-        return;
+        return D_002A7690;
     }
     D_002BF274 = (EcoSubB0 *)((char *)D_002EFDB8->f4 + 0xB0);
     q = D_00275460 / D_002EFDB8->f4->f200;
