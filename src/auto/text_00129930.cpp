@@ -258,16 +258,11 @@ struct BoxCollisionObject {
 extern float D_ZeroVec_probe[4];
 void BoxCollisionObject::func_00129930(Vec4 a1, Vec4 a2)
 {
-    struct { BoxCollisionObject * volatile self; float * volatile q; } L;
-    L.self = this;
     (**(code **)(*(int *)this + 0x6c))();
-    L.self->fF0 = a1;
-    L.self->f100 = a2;
-    L.q = L.self->matrix;
-    __m128 *v = (__m128 *)L.q;
-    v[3] = v[2] = v[1] = v[0] = *(__m128 *)D_ZeroVec_probe;
-    float *p = (float *)v;
-    p[0]=1.0f; p[5]=1.0f; p[10]=1.0f; p[15]=1.0f;
+    fF0 = a1;
+    f100 = a2;
+    float *m = matrix;
+    AsmIdentityMatrix(m);
 }
 
 void BoxCollisionObject::func_001299C0(Vec4 *p1, Vec4 *p2)
@@ -280,7 +275,7 @@ void BoxCollisionObject::func_001299C0(Vec4 *p1, Vec4 *p2)
 
 int C_00129A10::func_00129A10(S_00129A10_Arg *a)
 {
-    float v1[4], v2[4];
+    __declspec(align(16)) float v1[4], v2[4];
 
     v1[0] = 0.0f; v1[1] = 0.0f; v1[2] = 0.0f; v1[3] = 1.0f;
     v2[0] = 0.0f; v2[1] = 0.0f; v2[2] = 0.0f; v2[3] = 1.0f;
@@ -325,16 +320,12 @@ void BoxCollisionObject::func_00129E10(void)
 void BoxCollisionObject::func_00129E20(void *src)
 {
     if (src == 0) {
-        memset(matrix, 0, 0x40);
-        matrix[0] = 1.0f;
-        matrix[5] = 1.0f;
-        matrix[10] = 1.0f;
-        matrix[15] = 1.0f;
+        AsmIdentityMatrix(&matrix[0]);
     } else {
         ((C_000264C0_129E20 *)matrix)->func_000264C0(src);
     }
     f28 = fF0;
-    f48 = sqrtf(*(float *)&f100.z * *(float *)&f100.z + *(float *)&f100.y * *(float *)&f100.y + *(float *)&f100.x * *(float *)&f100.x);
+    f48 = AsmSqrtF(*(float *)&f100.z * *(float *)&f100.z + *(float *)&f100.y * *(float *)&f100.y + *(float *)&f100.x * *(float *)&f100.x);
     func_00030AC0(&f28, &f28, matrix);
 }
 
@@ -415,58 +406,62 @@ void func_0012A380(float *out, float *in) {
 
 Camera_12A3F0 *Camera_12A3F0::func_0012A3F0(int a)
 {
-    Camera_12A3F0 * volatile self = this;
     V4_12A3F0 v;
-    float *f;
+    unsigned char *b;
+    int *p;
+    float t;
 
     func_00157600(a);
-    f = (float *)self;
-    ((unsigned char *)self)[0x26] = 0xff;
-    *(unsigned short *)((char *)self + 0x24) = 0;
-    ((unsigned char *)self)[0x27] &= 0xf8;
-    *(int *)self = (int)&D_00284074;
-    Set4_12A3F0((V4_12A3F0 *)((char *)self + 0x170));
-    Set4_12A3F0((V4_12A3F0 *)((char *)self + 0x180));
-    Set4_12A3F0((V4_12A3F0 *)((char *)self + 0x190));
-    Set4_12A3F0((V4_12A3F0 *)((char *)self + 0x1a0));
-    Set4_12A3F0((V4_12A3F0 *)((char *)self + 0x1b0));
-    Set4_12A3F0((V4_12A3F0 *)((char *)self + 0x1c0));
-    f[135] = 109.0f;
-    f[136] = 10.0f;
-    f[116] = 77.0f;
-    *(int *)((char *)self + 0x224) = 0;
-    *(int *)((char *)self + 0x228) = 0;
-    *(int *)((char *)self + 0x22c) = 0;
-    f[127] = D_00284038;
-    f[128] = D_0028403C;
-    *(int *)((char *)self + 0x20c) = 0;
-    *(int *)((char *)self + 0x210) = 0;
-    memset((char *)self + 0x1e0, 0, 24);
-    Ident_12A3F0((float *)((char *)self + 0x30));
+    t = D_00284038;
+    b = (unsigned char *)this;
+    b[0x26] = 0xff;
+    b += 0x24;
+    *(unsigned short *)b = 0;
+    b[3] &= 0xf8;
+    *(int *)this = (int)&D_00284074;
+    Set4_12A3F0((V4_12A3F0 *)((char *)this + 0x170));
+    Set4_12A3F0((V4_12A3F0 *)((char *)this + 0x180));
+    Set4_12A3F0((V4_12A3F0 *)((char *)this + 0x190));
+    Set4_12A3F0((V4_12A3F0 *)((char *)this + 0x1a0));
+    Set4_12A3F0((V4_12A3F0 *)((char *)this + 0x1b0));
+    Set4_12A3F0((V4_12A3F0 *)((char *)this + 0x1c0));
+    ((float *)this)[0x21c / 4] = 109.0f;
+    ((float *)this)[0x220 / 4] = 10.0f;
+    ((float *)this)[0x1d0 / 4] = 77.0f;
+    *(int *)((char *)this + 0x224) = 0;
+    *(int *)((char *)this + 0x228) = 0;
+    *(int *)((char *)this + 0x22c) = 0;
+    ((float *)this)[0x1fc / 4] = t;
+    ((float *)this)[0x200 / 4] = D_0028403C;
+    *(int *)((char *)this + 0x20c) = 0;
+    *(int *)((char *)this + 0x210) = 0;
+    memset((char *)this + 0x1e0, 0, 24);
+    Ident_12A3F0((float *)((char *)this + 0x30));
     v.x = 0.0f; v.y = 0.0f; v.z = 1.0f; v.w = 1.0f;
-    *(V4_12A3F0 *)((char *)self + 0x180) = v;
+    *(V4_12A3F0 *)((char *)this + 0x180) = v;
     v.x = 0.0f; v.y = 1.0f; v.z = 0.0f; v.w = 1.0f;
-    *(V4_12A3F0 *)((char *)self + 0x190) = v;
+    *(V4_12A3F0 *)((char *)this + 0x190) = v;
     v.x = 0.0f; v.y = 0.0f; v.z = 0.0f; v.w = 1.0f;
-    *(V4_12A3F0 *)((char *)self + 0x170) = v;
-    *(int *)((char *)self + 0x1d4) = 0;
-    *(int *)((char *)self + 0x214) = 1;
-    *(int *)((char *)self + 0x218) = 1;
-    *(int *)((char *)self + 0x230) = 0;
-    *(int *)((char *)self + 0x23c) = 0;
-    *(int *)((char *)self + 0x234) = 0;
-    *(int *)((char *)self + 0x238) = 0;
-    *(int *)((char *)self + 0x240) = 0;
-    *(int *)((char *)self + 0x244) = 0;
-    *(V4_12A3F0 *)((char *)self + 0x1b0) = *(V4_12A3F0 *)((char *)self + 0x180);
-    *(V4_12A3F0 *)((char *)self + 0x1a0) = *(V4_12A3F0 *)((char *)self + 0x170);
-    f[112] = D_002A3E3C;
-    f[113] = D_002A3E40;
-    f[114] = D_002A3E44;
-    f[115] = D_002A3E48;
-    Ident_12A3F0((float *)((char *)self + 0x130));
-    *(int *)((char *)self + 0x28) = 0;
-    *(int *)((char *)self + 0x2c) = 0;
+    *(V4_12A3F0 *)((char *)this + 0x170) = v;
+    *(int *)((char *)this + 0x1d4) = 0;
+    *(int *)((char *)this + 0x214) = 1;
+    *(int *)((char *)this + 0x218) = 1;
+    *(int *)((char *)this + 0x230) = 0;
+    *(int *)((char *)this + 0x23c) = 0;
+    *(int *)((char *)this + 0x234) = 0;
+    *(int *)((char *)this + 0x238) = 0;
+    *(int *)((char *)this + 0x240) = 0;
+    *(int *)((char *)this + 0x244) = 0;
+    *(V4_12A3F0 *)((char *)this + 0x1b0) = *(V4_12A3F0 *)((char *)this + 0x180);
+    *(V4_12A3F0 *)((char *)this + 0x1a0) = *(V4_12A3F0 *)((char *)this + 0x170);
+    p = (int *)this + 0x1c0 / 4;
+    p[0] = D_002A3E3C;
+    p[1] = D_002A3E40;
+    p[2] = D_002A3E44;
+    p[3] = D_002A3E48;
+    Ident_12A3F0((float *)((char *)this + 0x130));
+    *(int *)((char *)this + 0x28) = 0;
+    *(int *)((char *)this + 0x2c) = 0;
     return this;
 }
 
