@@ -12,12 +12,12 @@ static __forceinline float Abs_2D730(float a)
 }
 static __forceinline void Cross_2D730(float *volatile out, float *volatile a, float *volatile b)
 {
-    __m128 va = _mm_loadu_ps(a);
-    __m128 vb = _mm_loadu_ps(b);
-    __m128 sa = _mm_shuffle_ps(va, va, 0xc9);
-    __m128 sb = _mm_shuffle_ps(vb, vb, 0xc9);
-    __m128 r = _mm_sub_ps(_mm_mul_ps(va, sb), _mm_mul_ps(vb, sa));
-    _mm_storeu_ps(out, _mm_shuffle_ps(r, r, 0xc9));
+    float *pa = a, *pb = b;
+    _mm_storeu_ps(out, _mm_shuffle_ps(
+        _mm_sub_ps(_mm_mul_ps(_mm_loadu_ps(pa), _mm_shuffle_ps(_mm_loadu_ps(pb), _mm_loadu_ps(pb), 0xc9)),
+                   _mm_mul_ps(_mm_loadu_ps(pb), _mm_shuffle_ps(_mm_loadu_ps(pa), _mm_loadu_ps(pa), 0xc9))),
+        _mm_sub_ps(_mm_mul_ps(_mm_loadu_ps(pa), _mm_shuffle_ps(_mm_loadu_ps(pb), _mm_loadu_ps(pb), 0xc9)),
+                   _mm_mul_ps(_mm_loadu_ps(pb), _mm_shuffle_ps(_mm_loadu_ps(pa), _mm_loadu_ps(pa), 0xc9))), 0xc9));
 }
 struct S_2D730_Transform {
     void func_00197EC0(void *out, void *in);
