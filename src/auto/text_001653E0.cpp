@@ -202,7 +202,6 @@ extern char D_00287E48[];
 
 static inline int min_165F70(const int &a, const int &b) { return a > b ? b : a; }
 static __forceinline int min_165F70_volatile(const volatile int &a, const volatile int &b) { int x = a, y = b; return x > y ? y : x; }
-static __forceinline const int &min_165F70_ref(const int &a, const int &b) { return a > b ? b : a; }
 
 /* axis mirror used by func_00165A20: flip one of y/z/w by mode, then negate all three */
 static __forceinline void mirror_165A20(Vec4_165EF0 *v, int mode)
