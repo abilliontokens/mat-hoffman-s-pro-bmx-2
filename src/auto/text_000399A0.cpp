@@ -50,8 +50,13 @@ struct C_000399A0 {
     float f4c0;
     char pad4c4[0xa0];
     S_000399A0_Slot *f564;
-    char pad568[0x3e0];
+    char pad568[0x3b0];
+    float f918;
+    char pad91c[8];
+    int f924;
+    S_000392B0_Vec4 f928, f938;
     float f948;
+    void func_000363E0(S_000392B0_Vec4);
     int func_00038A70(int *, void **);
     int func_000395A0(S_000392B0_Vec4 pos);
     int func_000399A0(int mode);
