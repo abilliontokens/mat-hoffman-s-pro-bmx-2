@@ -26,6 +26,7 @@ struct C_001B1980 {
     void func_001B1AB0(int a, int b);
     void func_001B1BF0(int a);
     void func_001B17D0(char *s);
+    void func_001B13A0(char *a, char *b, int c, int d);
 };
 extern const float D_00275998;
 
@@ -389,58 +390,50 @@ C_001033D0 *C_001033D0::func_001033D0(void *a, void *b)
 
 C_00103450 *C_00103450::func_00103450(int a, S_Cfg *cfg)
 {
-    S_00103_Vec4 v;
-    float f;
-    int i1;
-    S_00103_Vec4 c1;
-    int i2;
-    int i3;
-    S_00103_Vec4 c2;
-    char tmp[0x14];
-    char buf[0x190];
+    L_00103450 l;
 
     ((C_001BF600 *)this)->func_001BF600(cfg);
-    c1.Init();
-    c2.Init();
+    l.c1[0] = l.c1[1] = l.c1[2] = 0.0f; l.c1[3] = 1.0f;
+    l.c2[0] = l.c2[1] = l.c2[2] = 0.0f; l.c2[3] = 1.0f;
     cfg->func_00168550(D_0027DE5C, unk1B8, 0x104);
     cfg->func_00168BE0(D_0027DE4C, unk1B8, unkF0, 0x80);
     cfg->func_00168C20(D_0027DE38, 0, &unk3C4);
     cfg->func_00168C20(D_0027DE2C, 0, &unk3C8);
     cfg->func_00168C20(D_00282898, 1, &unk170);
-    cfg->func_00168BE0(D_00282880, D_00282890, tmp, 0x14);
-    v.Init();
-    cfg->func_00168CB0(D_00282874, &v, &vec3D4);
+    cfg->func_00168BE0(D_00282880, D_00282890, l.tmp, 0x14);
+    l.v[0] = 0.0f; l.v[1] = 0.0f; l.v[2] = 0.0f; l.v[3] = 1.0f;
+    cfg->func_00168CB0(D_00282874, (S_00103_Vec4 *)l.v, &vec3D4);
     cfg->func_00168C50(D_0028286C, 0.0f, &unk3E4);
-    cfg->func_00168C20(D_0028285C, 0, &i3);
-    cfg->func_00168C20(D_00282854, 0xff, &i1);
-    cfg->func_00168C20(D_00282844, 0, &i2);
-    cfg->func_00168C50(D_0028283C, 0.0f, &f);
-    unk3F0 = i2;
-    unk3EC = i1;
-    unk3E8 = i3;
-    unk3F4 = *(int *)&f;
-    v.x = 40.0f; v.y = 40.0f; v.z = 40.0f; v.w = 1.0f;
-    cfg->func_00168CB0(D_0027DE44, &v, &c1);
-    unk3C0 = ((func_001E8858(c1.x) | 0xffffff00) << 8 | (func_001E8858(c1.y) & 0xff)) << 8 | (func_001E8858(c1.z) & 0xff);
-    v.x = 255.0f; v.y = 255.0f; v.z = 255.0f; v.w = 1.0f;
-    if (cfg->func_00168CB0(D_0028282C, &v, &c2))
+    cfg->func_00168C20(D_0028285C, 0, &l.i3);
+    cfg->func_00168C20(D_00282854, 0xff, &l.i1);
+    cfg->func_00168C20(D_00282844, 0, &l.i2);
+    cfg->func_00168C50(D_0028283C, 0.0f, &l.f);
+    unk3F0 = l.i2;
+    unk3EC = l.i1;
+    unk3E8 = l.i3;
+    unk3F4 = *(int *)&l.f;
+    l.v[0] = 40.0f; l.v[1] = 40.0f; l.v[2] = 40.0f; l.v[3] = 1.0f;
+    cfg->func_00168CB0(D_0027DE44, (S_00103_Vec4 *)l.v, (S_00103_Vec4 *)l.c1);
+    unk3C0 = (((int)l.c1[0] | 0xffffff00) << 8 | ((int)l.c1[1] & 0xff)) << 8 | ((int)l.c1[2] & 0xff);
+    l.v[0] = 255.0f; l.v[1] = 255.0f; l.v[2] = 255.0f; l.v[3] = 1.0f;
+    if (cfg->func_00168CB0(D_0028282C, (S_00103_Vec4 *)l.v, (S_00103_Vec4 *)l.c2))
         unk3CC = 1;
-    unk3D0 = ((func_001E8858(c2.x) | 0xffffff00) << 8 | (func_001E8858(c2.y) & 0xff)) << 8 | (func_001E8858(c2.z) & 0xff);
+    unk3D0 = (((int)l.c2[0] | 0xffffff00) << 8 | ((int)l.c2[1] & 0xff)) << 8 | ((int)l.c2[2] & 0xff);
     cfg->func_00168C20(D_00282824, 0, &unk190);
     unk28 = a;
-    if (memcmp(buf, D_0028281C, 6) == 0)
+    if (strcmp(l.buf, "Right") == 0)
         unk178 = D_0028F5EC;
-    else if (memcmp(buf, D_00282810, 0xb) == 0)
+    else if (strcmp(l.buf, "CenterBoth") == 0)
         unk178 = D_0028F5E8;
-    else if (memcmp(buf, D_00282800, 0xf) == 0)
+    else if (strcmp(l.buf, "CenterVertical") == 0)
         unk178 = D_0028F5E4;
-    else if (memcmp(buf, D_002827EC, 0x11) == 0)
+    else if (strcmp(l.buf, "CenterHorizontal") == 0)
         unk178 = D_0028F5E0;
     else
         unk178 = D_0028F5DC;
-    cfg->func_00168550(D_0027C294, buf, 0x190);
+    cfg->func_00168550(D_0027C294, l.buf, 0x190);
     if (unk190 != 0) {
-        ((C_001C01E0 *)this)->func_001C01E0(buf);
+        ((C_001C01E0 *)this)->func_001C01E0(l.buf);
     } else {
         C_001B1980 *q;
 
@@ -452,16 +445,16 @@ C_00103450 *C_00103450::func_00103450(int a, S_Cfg *cfg)
         else
             q = 0;
         *unk1B0 = q;
-        C_001B13A0::func_001B13A0(unk1B8, unkF0, 0, strlen(buf));
+        C_001B13A0::func_001B13A0(unk1B8, unkF0, 0, strlen(l.buf));
         ((C_001577A0 *)this)->func_001577A0(*unk1B0, -1);
-        ((S_00103_Btn *)*unk1B0)->func_001B1860(0, -1.0f, 0xff, 1.0f, 0, 0, -1.0f, 0xff, 1.0f, 0, 0, 0, 0);
-        ((S_00103_Btn *)*unk1B0)->func_001B17D0(buf);
-        ((S_00103_Btn *)*unk1B0)->func_001B19A0(unk178);
-        ((S_00103_Btn *)*unk1B0)->func_001B2270(unk3C0);
-        ((S_00103_Btn *)*unk1B0)->func_001B19C0(unk3C4, unk3C8, 0);
-        ((S_00103_Btn *)*unk1B0)->func_001B1B80(unk3E4 * D_00275998, vec3D4, 0);
-        ((S_00103_Btn *)*unk1B0)->func_001B1AB0(i1, 0);
-        ((S_00103_Btn *)*unk1B0)->func_001B1BF0(*(int *)&f);
+        (*unk1B0)->func_001B1860(0, -1.0f, 0xff, 1.0f, 0, 0, -1.0f, 0xff, 1.0f, 0, 0, 0, 0);
+        (*unk1B0)->func_001B17D0(l.buf);
+        (*unk1B0)->func_001B19A0(unk178);
+        (*unk1B0)->func_001B2270(unk3C0);
+        (*unk1B0)->func_001B19C0(unk3C4, unk3C8, 0);
+        (*unk1B0)->func_001B1B80(D_00275998 * unk3E4, vec3D4, 0);
+        (*unk1B0)->func_001B1AB0(l.i1, 0);
+        (*unk1B0)->func_001B1BF0(*(int *)&l.f);
     }
     return this;
 }
