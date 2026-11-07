@@ -46,7 +46,16 @@ extern void *D_002A8490;
 extern void *D_002A829C;
 extern void *D_002AA6C0;
 
+struct C_00194740o { void *func_00194740(); void func_001947E0(char *,int,int,int); };
+struct C_00162B20o { int func_00162B20(char *,int); };
+extern void *D_002EF7D0;
+extern int func_001EA426(const char *,const char *);
+extern void func_00030F30(char *,const char *);
+extern char D_00284B7C[],D_00275F04[],D_00284B70[],D_00284B64[],D_00284B5C[],D_00284B54[],D_00284B48[],D_00284B34[],D_00284B20[],D_002A68C4[],D_00284B08[],D_00284AFC[];
+struct UIItem { float f0; int f4,f8,fc,f10,f14; void *f18,*f1c,*f20,*f24; int f28; };
 struct C_UI {
+    void func_00168A10(char *,int *);
+    void func_00168CB0(char *,void *,void *);
     void func_001691E0();
     void func_00169490(void *p, int a);
     void func_00169710(char *s);
