@@ -36,7 +36,8 @@ struct S_00122810_Box {
 };
 void func_0011F540(S_00122810_V3 *out, S_00122810_V4 pos, float *m);
 extern float D_002755E8;
-extern volatile float D_00275544;
+extern float D_00275544;
+static __forceinline float DotAxis_00122810(float x, float y, float z, const S_00122810_V3 &n) { return x*n.x + y*n.y + z*n.z; }
 void func_0011EFA0(float *out, float *in);
 S_00122810_V3 *func_0001E9B0(S_00122810_V3 *out, S_00122810_V3 *a, S_00122810_V3 *b);
 static __forceinline float Dot_00122810(const S_00122810_V3 &a, const S_00122810_V3 &b)
