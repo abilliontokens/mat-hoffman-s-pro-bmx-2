@@ -365,8 +365,6 @@ void C_0009FD60::func_0009FD60(int a0, float a1, float a2, float a3) {
     hi = AsmMaxF(a3, 60.0f);
     unk3C = AsmMinF(110.0f, hi);
 }
-#pragma optimize("", on)
-
 void C_0009FE40::func_0009FE40(undefined4 *param_1, undefined4 *param_2, undefined4 *param_3, undefined4 *param_4)
 {
   int in_ECX = (int)this;
