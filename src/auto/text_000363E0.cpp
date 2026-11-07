@@ -5,8 +5,8 @@ static __forceinline float Max_363E0(float a, float b) { return a > b ? a : b; }
 static __forceinline float Min_363E0(float a, float b) { return a < b ? a : b; }
 static __forceinline float Abs_363E0(float a) { unsigned int i = *(volatile unsigned int *)&a & 0x7fffffff; return *(float *)&i; }
 static __forceinline void Round_363E0(int *volatile out, float a) { *out = _mm_cvtss_si32(*(__m128 *)&a); }
-static __forceinline int MinI_363E0(int a, int b) { return a < b ? a : b; }
-static __forceinline int MaxI_363E0(int a, int b) { return a > b ? a : b; }
+static __forceinline const int &MinI_363E0(const int &a, const int &b) { return a < b ? a : b; }
+static __forceinline const int &MaxI_363E0(const int &a, const int &b) { return a > b ? a : b; }
 
 struct S_Vec4 {
     float x, y, z, w;
