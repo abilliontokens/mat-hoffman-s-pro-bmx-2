@@ -15,6 +15,14 @@ struct Vec4 {
     Vec4(f32 x_, f32 y_, f32 z_, f32 w_) : x(x_), y(y_), z(z_), w(w_) {}
     /* y and z arrive as doubles: this makes z a fld/fstp copy (as in the
        original) instead of an integer move. */
+    /* Only z arrives as a double: y stays a float param, z becomes a
+       fld/fstp copy (as in the original). */
+    Vec4(f32 x_, f32 y_, double z_, f32 w_) {
+        x = x_;
+        y = y_;
+        z = (f32)z_;
+        w = w_;
+    }
     Vec4(f32 x_, double y_, double z_, f32 w_) {
         x = x_;
         y = (f32)y_;
