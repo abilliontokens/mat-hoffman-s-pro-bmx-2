@@ -97,11 +97,17 @@ static __forceinline float Min_00131510(float a, float b)
 
 static __forceinline void Cross_00131510(V4_00131510 *out, V4_00131510 *a, V4_00131510 *b)
 {
-    _mm_storeu_ps(&out->x, _mm_shuffle_ps(
-        _mm_sub_ps(_mm_mul_ps(_mm_loadu_ps(&a->x), _mm_shuffle_ps(_mm_loadu_ps(&b->x), _mm_loadu_ps(&b->x), 0xc9)),
-                   _mm_mul_ps(_mm_loadu_ps(&b->x), _mm_shuffle_ps(_mm_loadu_ps(&a->x), _mm_loadu_ps(&a->x), 0xc9))),
-        _mm_sub_ps(_mm_mul_ps(_mm_loadu_ps(&a->x), _mm_shuffle_ps(_mm_loadu_ps(&b->x), _mm_loadu_ps(&b->x), 0xc9)),
-                   _mm_mul_ps(_mm_loadu_ps(&b->x), _mm_shuffle_ps(_mm_loadu_ps(&a->x), _mm_loadu_ps(&a->x), 0xc9))), 0xc9));
+    __m128 av = _mm_loadu_ps(&a->x);
+    __m128 bv = _mm_loadu_ps(&b->x);
+    __m128 as = av;
+    __m128 bs = bv;
+    as = _mm_shuffle_ps(as, as, 0xc9);
+    bs = _mm_shuffle_ps(bs, bs, 0xc9);
+    bv = _mm_mul_ps(bv, as);
+    av = _mm_mul_ps(av, bs);
+    av = _mm_sub_ps(av, bv);
+    av = _mm_shuffle_ps(av, av, 0xc9);
+    _mm_storeu_ps(&out->x, av);
 }
 
 static __forceinline float Track_00131510(S_Node_00131510 *n, float target, float dt)
