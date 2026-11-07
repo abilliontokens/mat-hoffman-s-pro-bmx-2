@@ -75,6 +75,12 @@ struct S_1E0_B03A0 {
     char name[0x104];   /* +0x28 */
     char pad12C[0x1a3 - 0x12C];
     u8 f1a3;
+    S_1E0_B03A0 *func_00143580(int);
+    void func_00199600(Vec_B03A0);
+    void func_00198F50(float*,float*,int,int,int);
+    void func_0019ABA0(int,int);
+    void func_0019AC50();
+    void func_0019A0A0(float,float,float);
 };
 
 struct C_000B03A0 {
