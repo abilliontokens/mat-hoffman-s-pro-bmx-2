@@ -86,7 +86,10 @@ struct C_000B6640 {
     void func_000B6840(float a0, float a1, C_000B6840_Arg *a2);
     void Box(V4_000B6840 *dst, V4_000B6840 *src)
     {
-        V4Init_000B6840 value(src->x, (0.0f - f7C) + src->y, src->z, 1.0f);
+        V4Init_000B6840 value;
+        value.y = (0.0f - f7C) + src->y;
+        value.x = src->x;
+        value.z = src->z;
         *dst = value;
     }
 };
