@@ -1,5 +1,15 @@
 /* 3 functions from 0x001C8960 to 0x001C9920, found by Ghidra. */
 #include "common.h"
+struct C_001C8960_Layer {
+    char pad0[0xac]; int type;
+    C_001C8960_Layer *func_00143940(float *, float *, int, float, float, float, float, float, float, float, int, int, int, float, float, int, int, float);
+    void func_00143A40(char *, char *);
+    void func_00194310(float, float);
+};
+struct C_001C8960_Slot {
+    char data[20];
+    void func_00144640();
+};
 extern float D_002F0BCC;
 extern char D_0028EB7C[];
 extern char D_0028EB68[];
