@@ -306,17 +306,16 @@ float func_00016D20(float x)
 float func_00016D60(float x)
 {
     int n;
-    int * volatile p = &n;
-    float t = x * D_002756EC;
+    int *p = &n;
     float r;
 
-    *p = (int)t;
+    AsmFloatToInt(*(volatile float *)&x * D_002756EC, p);
     r = x - (float)n * D_002756B8;
     if (r > D_002756D0) {
         return r - D_002756B8;
     }
     if (r < D_002756E8) {
-        r += D_002756B8;
+        return r + D_002756B8;
     }
     return r;
 }
