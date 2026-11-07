@@ -42,6 +42,7 @@ struct S_ObjectiveStorage {
     int func_00092A50(int*);
     int func_00092B40(int);
     int func_00092BE0();
+    int func_00092AC0();
 };
 struct S_00064BA0_Inner {
     char pad00[0x44];
