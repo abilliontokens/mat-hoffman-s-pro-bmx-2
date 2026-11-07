@@ -204,7 +204,7 @@ struct S_1A060_Owner {
     void func_00019480(void);
     void func_001C6DA0(int a, int b);
 };
-float func_00017600(char *p);
+float __stdcall func_00017600(char *p);
 float func_00011170(S_1A060_Vec *v);
 void func_00016DD0(S_1A060_Vec *out, S_1A060_Vec *in);
 extern float D_00275544;
@@ -234,6 +234,7 @@ static __forceinline void Dist_1A060(float * volatile d, const float *a, const f
 
 /* ---- func_000198E0: Tiki state set-up (config stream, sub-objects, animation slots) ---- */
 #include <string.h>
+#include "asm_helpers.h"
 void *func_001E8A44(unsigned int size);
 int func_001ADCC0(char *dst, int size, const char *fmt, ...);
 extern "C" char *func_001E8920(char *dst, const char *src, unsigned int n);
@@ -569,6 +570,67 @@ C_198E0 *C_198E0::func_000198E0(S_198E0_Stream * volatile stream, S_198E0_Cam *c
     return t.self;
 }
 
+void S_1A060_Owner::func_0001A060(float *pos, int damage)
+{
+    if (f4f4 == 1 || fc4 == f73c) {
+        return;
+    }
+    S_1A060_List *list = f4a0;
+    int best = -1;
+    float bestDist = 10000.0f;
+    for (int i = 0; i < list->f190; i++) {
+        if (list->f194[i] != 0) {
+            S_1A060_Node *n = list->f1a0[i];
+            float px = n->f13c;
+            float py = n->f14c;
+            float pz = n->f15c;
+            float dx = pos[0] - px;
+            float dy = pos[1] - py;
+            float dz = pos[2] - pz;
+            float d = AsmSqrtF(dz * dz + dy * dy + dx * dx);
+            if (d < bestDist) {
+                bestDist = d;
+                best = i;
+            }
+        }
+        list = f4a0;
+    }
+    if (best != -1) {
+        AsmFloatToIntRound(func_00017600(list->f1a0[best]->f1c0 + 0x28) * damage, &damage);
+    }
+    f4d4 -= damage;
+    if (f4d4 <= 0) {
+        func_00019480();
+        return;
+    }
+    if (fc4 != f73c && fc4 != f734 && fc4 != f738) {
+        S_1A060_Vec dir;
+        S_1A060_Vec up = { 0.0f, 0.0f, 0.0f, 1.0f };
+        S_1A060_Vec fwd = { 0.0f, 0.0f, 0.0f, 1.0f };
+        S_1A060_Vec side = { 0.0f, 0.0f, 0.0f, 1.0f };
+        dir.w = 1.0f;
+        dir.x = pos[0] - f508;
+        dir.y = pos[1] - f50c;
+        dir.z = pos[2] - f510;
+        func_00011170(&dir);
+        f3c->f4->func_00197B40(&up, &fwd);
+        func_00016DD0(&dir, &dir);
+        AsmVec3Cross((float *)&side, (const float *)&fwd, (const float *)&up);
+        int which = (dir.y * side.y + dir.x * side.x + dir.z * side.z > D_00275544) ? 2 : 1;
+        if (f4f0 == 1) {
+            func_001C6DA0(f760[which], 1);
+        } else {
+            func_001C6DA0(f754[which], 1);
+        }
+    }
+    f4c4 = (float)(1000 / f4d4) * D_00275AE8;
+    int k = func_00011260(0, 1);
+    if (f4a8[k]->func_1C() == 0) {
+        D_002A8490->f4->func_0001CE80(f4a8[k], &f508, &D_002A0718, 10.0f, 450.0f);
+    }
+    f4a8[k]->func_14(4);
+}
+
 undefined4 C_0001A3E0::func_0001A3E0(byte param_1)
 {
   int func_00019830(...);
@@ -594,7 +656,8 @@ void C_1A400::func_0001A400(S_1A400_Arg *a, float t)
  pos[0] += d[0]; pos[1] += d[1]; pos[2] += d[2];
  q = *pa;
  pos = &q->p->x;
- q->p->func_0011CA60(*(S_1A400_Vec4 *)pos);
+ S_1A400_Vec4 cur = *(S_1A400_Vec4 *)pos;
+ q->p->func_0011CA60(cur);
  int hit = 0;
  q = *pa;
  if (q->p->y <= q->f8) hit = 1;
@@ -606,7 +669,7 @@ void C_1A400::func_0001A400(S_1A400_Arg *a, float t)
  pos = &q->p->x;
  float x = pos[0] - p.x, y = pos[1] - p.y, z = pos[2] - p.z;
  float square = z*z + y*y + x*x;
- float dist = sqrtf(square);
+ float dist = AsmSqrtF(square);
  if (dist < D_002756C4) {
   dist = D_0027599C - dist;
   D_002B9120->p->func_00153D30((int)(dist*D_00275AEC));
