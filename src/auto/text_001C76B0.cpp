@@ -2,7 +2,7 @@
 #include "common.h"
 #include <xmmintrin.h>
 #include "asm_helpers.h"
-struct __declspec(align(16)) Mtx { float m[16]; };
+struct Mtx { float m[16]; };
 struct V4 { int v[4]; };
 extern int D_002A4334;
 extern int D_002F088C;
@@ -93,16 +93,18 @@ void Obj::func_001C76B0(int a, int b, int c, int d, int e, int f2, int g, int h,
     Node170 *s1;
     Node170 *s2;
     Node170 *node;
+    int *vv;
     char buf5[256];
     char buf1[256];
     char buf2[256];
     char buf3[256];
     char buf4[256];
     int flag;
-    int flag2;
-    int tmp14;
-    int tmp10;
+    int tmp;
+    int tmp2;
     int n;
+    int i;
+    int off;
     Mtx mat;
     Mtx mat2;
     void *mem;
@@ -126,15 +128,17 @@ void Obj::func_001C76B0(int a, int b, int c, int d, int e, int f2, int g, int h,
     ini->func_00168550(D_0028E820, buf4, -1);
     ini->func_00168550(D_0028E814, buf3, -1);
     f40 = f3C->f4->func_00198330(buf4);
-    v70.v[0] = f2;
-    v70.v[1] = g;
-    v70.v[2] = h;
-    v70.v[3] = i2;
+    vv = v70.v;
+    vv[0] = f2;
+    vv[1] = g;
+    vv[2] = h;
+    vv[3] = i2;
     f44 = f3C->f4->func_00198330(buf3);
-    vA0.v[0] = j;
-    vA0.v[1] = k;
-    vA0.v[2] = l;
-    vA0.v[3] = m;
+    vv = vA0.v;
+    vv[0] = j;
+    vv[1] = k;
+    vv[2] = l;
+    vv[3] = m;
     s1 = f40->f170;
     s2 = s1->f170;
     node = (Node170 *)func_001E8A44(0x54);
@@ -156,11 +160,11 @@ void Obj::func_001C76B0(int a, int b, int c, int d, int e, int f2, int g, int h,
             fC0[fBC].f48 = 0;
             ini->func_00168550(D_0028E7F0, &fC0[fBC], -1);
             ini->func_00168550(D_0027BC8C, buf2, -1);
-            ini->func_00168A10(D_0028E7D8, &tmp14);
-            ini->func_00168C20(D_0028E7D0, 1, &tmp10);
+            ini->func_00168A10(D_0028E7D8, &tmp2);
+            ini->func_00168C20(D_0028E7D0, 1, &tmp);
             fC0[fBC].f40 = ((G162Obj *)D_002EF7D0)->func_00162B20(buf2, 1);
-            fC0[fBC].f54 = tmp10;
-            if (tmp14 != 0)
+            fC0[fBC].f54 = tmp;
+            if (tmp2 != 0)
                 fC0[fBC].f44 = func_001C7250(fC0[fBC].f40);
             else
                 fC0[fBC].f44 = func_001C64A0(fC0[fBC].f40);
@@ -181,31 +185,37 @@ void Obj::func_001C76B0(int a, int b, int c, int d, int e, int f2, int g, int h,
     ini = mem ? ((MObj *)mem)->func_00168280() : 0;
     ini->func_00169490((int)buf1, 0);
     ini->func_00169710(D_00277298);
-    flag2 = 0;
-    ini->func_00168A10(D_00277288, &flag2);
-    if (flag2 <= 0)
+    tmp = 0;
+    ini->func_00168A10(D_00277288, &tmp);
+    if (tmp <= 0)
         return;
-    n = 1;
-    func_001ADCC0(buf5, 0x100, D_0028E7C4, n);
-    ini->func_00169710(buf5);
-    ini->func_00168550(D_00276980, buf2, -1);
-    for (n = 0; n < fBC; n++) {
-        if (func_001EA426(buf2, &fC0[n]) == 0)
-            return;
+    for (n = 1; n <= tmp; n++) {
+        func_001ADCC0(buf5, 0x100, D_0028E7C4, n);
+        ini->func_00169710(buf5);
+        ini->func_00168550(D_00276980, buf2, -1);
+        for (i = 0, off = 0; i < fBC; i++, off += 0x58) {
+            if (func_001EA426(buf2, (char *)fC0 + off) == 0)
+                return;
+        }
+        fC0 = (Elem58 *)func_001E83E8(fC0, (fBC + 1) * 0x58);
+        fC0[fBC].f54 = 1;
+        fC0[fBC].f44 = 0;
+        fC0[fBC].f48 = 0;
+        strcpy(fC0[fBC].name, buf2);
+        fC0[fBC].f40 = ((G162Obj *)D_002EF7D0)->func_00162B20(fC0[fBC].name, 1);
+        fC0[fBC].f44 = func_001C7250(fC0[fBC].f40);
+        fC0[fBC].f50 = 0;
+        fC0[fBC].f4C = 0;
+        fC0[fBC].func_001C6870();
+        fBC++;
     }
-    fC0 = (Elem58 *)func_001E83E8(fC0, (fBC + 1) * 0x58);
-    fC0[fBC].f54 = 1;
-    fC0[fBC].f44 = 0;
-    fC0[fBC].f48 = 0;
-    strcpy(fC0[fBC].name, buf2);
-    fC0[fBC].f40 = ((G162Obj *)D_002EF7D0)->func_00162B20(buf2, 1);
-    fC0[fBC].f50 = 0;
-    fC0[fBC].f4C = 0;
-    fC0[fBC].func_001C6870();
-    fBC++;
+    f3C->f10 = 1;
+    if (c != 0)
+        f3C->f4->func_00199790(c, 0);
     if (ini != 0) {
         ini->func_001691E0();
         func_001E891B(ini);
     }
+    func_00167750();
 }
 #pragma optimize("", on)
