@@ -1,6 +1,8 @@
 /* 2 functions from 0x0003D910 to 0x0003E660, found by Ghidra. */
 #include "common.h"
 #include <xmmintrin.h>
+extern "C" void _ReadWriteBarrier(void);
+#pragma intrinsic(_ReadWriteBarrier)
 struct V4 { float x, y, z, w; void identity(); };
 struct Blk { char pad[0x358]; int w; int h; int d; char pad2[4]; int flag; };
 struct Q { char pad[0x28]; void func_00197E70(V4*); void func_00197B40(V4*, V4*); };
