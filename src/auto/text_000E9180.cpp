@@ -161,7 +161,8 @@ struct C_000E9180 {
     int f4e4;
     int f4e8;
     float f4ec;
-    char pad4F0[0x50c - 0x4F0];
+    Vec_0E9180 f4f0;
+    char pad500[0xc];
     int f50c;
     char pad510[0x514 - 0x510];
     void *f514;
