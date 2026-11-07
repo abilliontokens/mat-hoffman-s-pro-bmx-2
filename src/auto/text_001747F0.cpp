@@ -15,6 +15,10 @@ struct Vec3_001747F0 {
     float x, y, z;
 };
 
+struct Vec4_001747F0_POD {
+    float x, y, z, w;
+};
+
 struct __declspec(align(16)) Mat4_001747F0 {
     Vec4_001747F0 r0, r1, r2, r3;
 };
@@ -118,40 +122,39 @@ int R_001747F0::func_001747F0(int a)
 {
     Vec4_001747F0 t1;
     Vec4_001747F0 t2;
-    Vec4_001747F0 t3;
     Mat4_001747F0 m;
     Mat4_001747F0 mSrc;
     float len2;
     float s;
+    float k;
+    float dx, dy, dz;
 
     if (p22C == 0 || i1B4 == 0) return 0;
     v5C = v238;
     v4C = *p22C->func_00197F70(&t1, &v190);
     v1A0 = *func_0011ADD0(&t2, (char *)p22C + 0xf0);
     if (f210 > D_00275544) {
-        v6C.x = f214 * v130.x;
-        v6C.y = f214 * v130.y;
-        v6C.z = f214 * v130.z;
-        v6C.w = 1.0f;
-    }
-    if (i280 == 0) { v238.x = 0; v6C.x = 0; v2BC.x = 0; }
-    if (i284 == 0) { v238.y = 0; v6C.y = 0; v2BC.y = 0; }
-    if (i288 == 0) { v238.z = 0; v6C.z = 0; v2BC.z = 0; }
-    len2 = v6C.x * v6C.x + v6C.y * v6C.y + v6C.z * v6C.z;
-    if (len2 > f218) {
-        s = AsmSqrtF(f218 / len2);
-        v6C.x *= s;
-        v6C.y *= s;
-        v6C.z *= s;
+        k = f214;
+        v6C = Vec4_001747F0(k * v130.x, k * v130.y, k * v130.z, 1.0f);
+        if (i280 == 0) { v238.x = 0; v6C.x = 0; v2BC.x = 0; }
+        if (i284 == 0) { v238.y = 0; v6C.y = 0; v2BC.y = 0; }
+        if (i288 == 0) { v238.z = 0; v6C.z = 0; v2BC.z = 0; }
+        len2 = v6C.x * v6C.x + v6C.y * v6C.y + v6C.z * v6C.z;
+        if (len2 > f218) {
+            s = AsmSqrtF(f218 / len2);
+            v6C.x *= s;
+            v6C.y *= s;
+            v6C.z *= s;
+        }
+        v2B0.x = v6C.x;
+        v2B0.y = v6C.y;
+        v2B0.z = v6C.z;
     } else {
         v6C = D_002A8C18;
         v2B0.x = 0;
         v2B0.y = 0;
         v2B0.z = 0;
     }
-    v2B0.x = v6C.x;
-    v2B0.y = v6C.y;
-    v2B0.z = v6C.z;
     ((Emit_001747F0 *)this)->fn(a, 3, &v238, (Vec4_001747F0 *)&v2B0);
 
     len2 = v238.x * v238.x + v238.y * v238.y + v238.z * v238.z;
@@ -195,25 +198,23 @@ int R_001747F0::func_001747F0(int a)
     ((Emit_001747F0 *)this)->fn(a, 4, &v1A0, &v2C8);
 
     v1A0 = *func_00174110(&t1, &v1A0);
-    m = *func_001741C0(&mSrc, &v1A0);
+    AsmCopyMatrix(&m, func_001741C0(&mSrc, &v1A0));
     p22C->func_0019AD60(0, &m);
     if (v160.x != 0.0f || v160.y != 0.0f || v160.z != 0.0f) {
         t1 = *p22C->func_00197EC0(&t2, &v160);
         float d = func_00011170(&t1);
         if (d != 0.0f) {
-            Vec4_001747F0 sv;
             float inv = 1.0f / d;
-            sv.x = t1.x * inv;
-            sv.y = t1.y * inv;
-            sv.z = t1.z * inv;
-            sv.w = t1.w;
-            p22C->func_00199CF0(&d, sv);
+            p22C->func_00199CF0(&d, Vec4_001747F0(t1.x * inv, t1.y * inv, t1.z * inv, t1.w));
         }
     }
-    t3 = *p22C->func_00197F70(&t3, &v190);
-    v4C.x = v4C.x + (v150.x - t3.x);
-    v4C.y = v4C.y + (v150.y - t3.y);
-    v4C.z = v4C.z + (v150.z - t3.z);
+    t1 = *p22C->func_00197F70(&t1, &v190);
+    dx = v150.x - t1.x;
+    dy = v150.y - t1.y;
+    dz = v150.z - t1.z;
+    v4C.x = v4C.x + dx;
+    v4C.y = v4C.y + dy;
+    v4C.z = v4C.z + dz;
     p22C->func_00199960(0, &v4C);
     p22C->func_0019AC50();
     v248 = *v41(&t2);
