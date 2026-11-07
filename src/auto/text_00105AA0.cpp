@@ -1,6 +1,14 @@
 /* 4 functions from 0x00105AA0 to 0x00106810, found by Ghidra. */
 #include "common.h"
 
+struct Vec4_00105B30;
+struct C_Button;
+struct FX_105CB0 { void func_0001CE80(C_Button *,void *,void *,float,float); };
+struct App_105CB0 { void *pad; FX_105CB0 *fx; };
+extern App_105CB0 *D_002A8490;
+extern float D_00275544,D_00282A58,D_002755E0,D_002755E8,D_00275994,D_00276538,D_0027599C,D_002A3A48;
+int func_00011260(int,int);
+float func_00011170(void*);
 struct C_Device {
     virtual void v0();  virtual void v1();  virtual void v2();  virtual void v3();
     virtual void v4();  virtual void v5();  virtual void v6();  virtual void v7();
