@@ -142,6 +142,15 @@ struct C_0002D730 {
     float f6fc, f700;
     void func_0002D730(float dt);
     void func_00027D60(void);
+    void func_0002AF90(void);
+    void func_0002CBC0(float);
+    void func_000298F0(float);
+    void func_00029E00(float);
+    void func_0002A010(float);
+    void func_0002C9A0(float);
+    void func_0002CB00(float);
+    void func_00027860(float);
+    void func_0002A250(float);
 };
 
 extern float D_00275AEC;
