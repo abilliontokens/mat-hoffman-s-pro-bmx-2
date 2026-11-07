@@ -288,6 +288,9 @@ void __fastcall func_001E7F90(int, int, int, int);
 void __fastcall func_001E70B0(int, int);
 void __fastcall func_001E7170(int, int);
 extern float D_002755E8;
+void __fastcall func_001E7E60(float *, int *, int, int *, int);
+void func_001E70B0(float *, int, int);
+void func_001E7170(float *, int, int);
 void __stdcall func_001E80C0(int n, int sign, int a2, int *h, int *d) {
     float *f = (float *)h;
     int q = h[0];
