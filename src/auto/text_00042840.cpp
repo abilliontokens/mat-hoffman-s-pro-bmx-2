@@ -60,6 +60,7 @@ struct S_Text {
     virtual void v5();
     virtual void v6();
     void func_0008B670(char *s);
+      void func_0008A970();
 };
 
 struct S_Btn {
