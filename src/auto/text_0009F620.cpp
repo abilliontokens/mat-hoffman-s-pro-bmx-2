@@ -2,6 +2,7 @@
 #include "common.h"
 #include "ghidra.h"
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 static __forceinline float Max(float a, float b) {
     return _mm_max_ss(_mm_set_ss(a), _mm_set_ss(b)).m128_f32[0];
 }
@@ -321,10 +322,10 @@ void C_0009FAD0::func_0009FAD0(int a0, int a1, float a2)
 
 int C_0009FB00::func_0009FB00(V4_0009FB00 a0, V4_0009FB00 a1, V4_0009FB00 a2, V4_0009FB00 a3, int a4)
 {
-    V4_0009FB00 v[2];
-    V4_0009FB00 d;
     C_0009FB00 * volatile self = this;
     C_0009FB00 *p;
+    V4_0009FB00 v[2];
+    V4_0009FB00 d;
     v[0] = a1;
     p = self;
     v[1] = p->v58;
@@ -355,12 +356,14 @@ int C_0009FB00::func_0009FB00(V4_0009FB00 a0, V4_0009FB00 a1, V4_0009FB00 a2, V4
     return 1;
 }
 
-#pragma optimize("t", off)
 void C_0009FD60::func_0009FD60(int a0, float a1, float a2, float a3) {
+    float lo, hi;
     unk8C = a0;
     unk90 = a1;
-    unk4C = Min(15.0f, Max(a2, 7.0f));
-    unk3C = Min(110.0f, Max(a3, 60.0f));
+    lo = AsmMaxF(a2, 7.0f);
+    unk4C = AsmMinF(15.0f, lo);
+    hi = AsmMaxF(a3, 60.0f);
+    unk3C = AsmMinF(110.0f, hi);
 }
 #pragma optimize("", on)
 
