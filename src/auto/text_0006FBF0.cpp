@@ -132,6 +132,7 @@ struct C_00070360 {
     C_001D5AD0 *unk158[5];
     C_001D5AD0 *unk16C[5];
     C_001D5AD0 *unk180[8];
+    char *func_0006FE60(int value, char *out);
     int func_0006FF80(void);
     void func_00070360(void);
     void func_00070450(void);
@@ -262,8 +263,6 @@ int C_00070360::func_0006FF80(void)
         n = n + 1;
     }
     if (fEC->f68->func_0005B960(1, fEC->f64->f4e0->f1a8->fa4c)) {
-        memset(&buf, 0, sizeof(buf));
-        func_0006FE60(fEC->f64->f4e0->f1a8->fa4c, (char *)&buf);
         func_001ADCC0(out, 0x104, D_00278C28, ((S_6FF80_Data *)D_002A8490->f2e8->f4)->f18,
                       (double)*(float *)&fEC->f64->f4e0->f1a8->fa4c, ((S_6FF80_Data *)D_002A8490->f2e8->f4)->fF68);
         unk180[n]->func_0005E840((int)out);
@@ -277,8 +276,6 @@ int C_00070360::func_0006FF80(void)
         n = n + 1;
     }
     if (fEC->f68->func_0005B960(2, fEC->f64->f4e0->f1a8->f1058)) {
-        memset(&buf, 0, sizeof(buf));
-        func_0006FE60(fEC->f64->f4e0->f1a8->f1058, (char *)&buf);
         func_001ADCC0(out, 0x104, D_00278C28, ((S_6FF80_Data *)D_002A8490->f2e8->f4)->f188,
                       (double)*(float *)&fEC->f64->f4e0->f1a8->f1058, ((S_6FF80_Data *)D_002A8490->f2e8->f4)->fF68);
         unk180[n]->func_0005E840((int)out);
@@ -292,8 +289,6 @@ int C_00070360::func_0006FF80(void)
         n = n + 1;
     }
     if (fEC->f68->func_0005B960(0, fEC->f64->f4e0->f1a8->fa54)) {
-        memset(&buf, 0, sizeof(buf));
-        func_0006FE60(fEC->f64->f4e0->f1a8->fa54, (char *)&buf);
         func_001ADCC0(out, 0x104, D_00278C28, ((S_6FF80_Data *)D_002A8490->f2e8->f4)->f20,
                       (double)*(float *)&fEC->f64->f4e0->f1a8->fa54, ((S_6FF80_Data *)D_002A8490->f2e8->f4)->fF68);
         unk180[n]->func_0005E840((int)out);
