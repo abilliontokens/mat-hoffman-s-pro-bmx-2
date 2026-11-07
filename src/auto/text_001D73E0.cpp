@@ -77,7 +77,7 @@ struct XboxVideoCard_001D7E30 {
 struct XboxVideoCard_001D7D50 {
     void *volatile vtbl;
     char pad4[0x68];
-    volatile int f6C;
+    int f6C;
     char pad70[0x5B4 - 0x70];
     int a5B4[0x40];
     int f6B4;
@@ -327,25 +327,27 @@ int XboxTextureMap::func_001D73E0(int file, int width, int height, int minDim, i
     if (func_001B2810(fmt)) {
         if (((VTexMap_001D73E0 *)self)->func_001D7910(0, width, height, width, minDim, fc, dxFmt, flags, 0) == 0)
             return 0;
-        count = 0;
         mult = 1;
+        count = 0;
         op = offsets;
         do {
             base = D_002BEAAC->func_0013AFD0(file);
             if (D_002BEAAC->func_0013C8A0(file, op, 4, 1) != 1)
                 return 0;
             *op += base;
+            mult <<= 1;
             count++;
             op++;
-            mult <<= 1;
         } while (mult <= width);
         base = D_002BEAAC->func_0013AFD0(file);
         op = &offsets[count];
         if (D_002BEAAC->func_0013C8A0(file, op, 4, 1) != 1)
             return 0;
         *op += base;
-        curW = 1;
-        curH = 1;
+        mult = 1;
+        count = mult;
+        curW = mult;
+        curH = mult;
         op = offsets;
         do {
             mipSize = op[1] - op[0];
@@ -718,7 +720,7 @@ int __stdcall func_001D8140(S_001D8140 *p, unsigned int index, int h)
 int XboxVideoCard_001D8240::func_001D8240(void)
 {
     volatile int *d = (volatile int *)&D_002F0BBC;
-    unsigned char two = 2;
+    static const int two = 2;
     if (f10 != 0)
         return 0;
     if (f14 == 1) {
@@ -740,7 +742,7 @@ wait:
     if (f9D4 & two) {
         func_001FFBB0();
         v7(f9D8);
-        f9D4 &= 0xFD;
+        f9D4 &= ~two;
     }
     return 1;
 }
