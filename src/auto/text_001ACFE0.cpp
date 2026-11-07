@@ -412,7 +412,7 @@ int func_001ADCC0(char *buf, int count, int a3, int a4)
     }
     range.cur = buf;
     range.end = buf + count - 1;
-    n = func_001ACFE0(&D_001ADCB0, &range, a3, &a4);
+    n = func_001ACFE0(&D_001ADCB0, &range, (const char *)a3, &a4);
     *range.cur = 0;
     if (n == -1) {
         n = count;
