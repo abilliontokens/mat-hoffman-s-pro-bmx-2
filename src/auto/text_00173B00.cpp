@@ -10,8 +10,7 @@ struct PhObj {
     void *vtbl; char pad4[0x2c];
     int f30, f34, f38;
     char pad3c[0x78];
-    float fb4, fb8, fbc;
-    char padc0[4];
+    float fb4, fb8, fbc, fc0;
     S_00173B00_Rig *fc4; PhIface *fc8; PhIface *fcc; PhObj *fd0; PhIface *fd4; PhIface *fd8;
     char padDC[0x40];
     float f11c, f120, f124, f128;
