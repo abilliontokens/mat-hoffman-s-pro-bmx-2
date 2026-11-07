@@ -100,6 +100,11 @@ static inline V4_00128120 ScaleD_00128120(const S_00127DD0_V4 &s)
     return V4_00128120(s.x * D_002755E8, s.y * D_002755E8, s.z * D_002755E8, 1.0f);
 }
 
+static inline V4_00128120 ScaleD2_00128120(const S_00127DD0_V4 &s)
+{
+    return V4_00128120(D_002755E8 * s.x, D_002755E8 * s.y, D_002755E8 * s.z, 1.0f);
+}
+
 struct __declspec(align(16)) M44_00128120 {
     __m128 m[4];
 };
@@ -206,10 +211,12 @@ void func_00128120(int a0, int a1, int a2, M44_00128120 *mat, S_00127DD0_Entry *
     }
     m = *mat;
     func_0011AC30(&m, &m);
+    n = count * 2;
     p = (float *)e;
-    for (n = count * 2; n > 0; n--) {
+    while (n > 0) {
         AsmTransformPoint(p, p, (const float *)m.m);
         p += 4;
+        n--;
     }
     func_00127DD0(a0, a1, a2, e, mid, count);
     func_001E8390(mid);
