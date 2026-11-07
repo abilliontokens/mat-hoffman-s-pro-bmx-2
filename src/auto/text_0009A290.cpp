@@ -18,6 +18,22 @@ struct C_0009A290 {
     int func_0009A290(int a1, char *a2, int *a3);
 };
 
+struct C_00168280 {
+    char pad0[0x4cc];
+    C_00168280 *func_00168280();
+    int func_00169490(const char *, int);
+    void func_00169710(const char *);
+    void func_00168A10(const char *, int *);
+    void func_00168BE0(const char *, const char *, char *, int);
+    void func_00168550(const char *, char *, int);
+    void func_00168C20(const char *, int, int *);
+};
+extern char D_002769F8[], D_0027A9BC[], D_0027A9A8[], D_0027A994[];
+extern char D_0027A980[], D_0027A968[], D_00275630[];
+extern char D_0027A958[], D_0027A944[], D_0027A934[];
+int func_001ADCC0(char *, int, const char *, ...);
+int func_001EA426(const char *, const char *);
+int func_001E8A44(int);
 extern char D_002A5870[];
 extern char D_0027A9D0[];
 extern C_0009A290_Obj *D_002BEAAC;
@@ -27,52 +43,22 @@ extern "C" char *__cdecl strcat(char *, const char *);
 #pragma intrinsic(strcat)
 int C_0009A290::func_0009A290(int a1, char *a2, int *a3)
 {
-    int func_001E8A44(...);
-    char buf[0x178];
-    char *p;
-    void *iniObj;
+    char buf[0x400];
 
-    w[0x198 / 4] = a1;
-    w[0] = 0;
-    w[1] = 0;
-    w[2] = 0;
-    w[3] = 0;
-    w[4] = 0;
-    w[5] = 0;
-    p = buf;
-    {
-        char *src = D_002A5870;
-        char c;
-        do {
-            c = *src;
-            *p++ = c;
-            src++;
-        } while (c != 0);
-        p--;
-    }
-    {
-        char *src = a2;
-        char c;
-        do {
-            c = *src;
-            *p++ = c;
-            src++;
-        } while (c != 0);
-        p--;
-    }
-    {
-        char *src = D_0027A9D0;
-        char c;
-        do {
-            c = *src;
-            *p++ = c;
-            src++;
-        } while (c != 0);
-    }
+    f198 = (void *)a1;
+    f194 = 0;
+    f0 = 0;
+    f4 = 0;
+    f8 = 0;
+    fC = 0;
+    f10 = 0;
+    f14 = 0;
+    strcpy(buf, D_002A5870);
+    strcat(buf, a2);
+    strcat(buf, D_0027A9D0);
     if (D_002BEAAC->func_0013B1A0(buf) == 0) {
-        a3[0x194 / 4] = 1;
-        return 0;
+        f194 = 1;
+        return (int)this;
     }
-    iniObj = (void *)func_001E8A44(0x4cc);
-    return 1;
+    return (int)this;
 }
