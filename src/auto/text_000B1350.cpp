@@ -126,9 +126,7 @@ struct S_000B1740_Widget { char pad0[0xC]; float fC; };
 /* four widget slots at +0xC..+0x18 */
 struct S_000B1740_Panel { char pad0[0xC]; S_000B1740_Widget *f0C; S_000B1740_Widget *f10; S_000B1740_Widget *f14; S_000B1740_Widget *f18; };
 
-#pragma optimize("g", off)
-static __forceinline int MinVol_000B1860(const volatile int &a, int b) { int x = a; return x > b ? b : x; }
-#pragma optimize("", on)
+static __forceinline int MinVol_000B1860(const volatile int &a, const volatile int &b) { int x = a; int y = b; return x > y ? y : x; }
 static __inline int Min_000B1740(int a, int b) { return a > b ? b : a; }
 static __inline int Max_000B1740(int a, int b) { return a < b ? b : a; }
 static __inline const int &MinRef_000B2020(const int &a, const int &b) { return (b < a) ? b : a; }
