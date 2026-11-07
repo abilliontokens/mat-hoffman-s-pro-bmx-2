@@ -2,6 +2,8 @@
 #include "common.h"
 
 #include <xmmintrin.h>
+#include "asm_helpers.h"
+static __forceinline void *Get_448D0(void **arr,int count,int i) { if(count>0 && arr && i<count) return arr[i]; return 0; }
 
 struct V4_000448D0 {
     float x, y, z, w;
