@@ -137,8 +137,12 @@ extern float D_002755E8, D_00275BF8;
    belong to, so all three live on the stack together */
 struct Home_001A9FA0 {
     This_001A9FA0 *self;
+    int pad[3];
     V4_001A96D0 a;
     V4_001A96D0 b;
+    int pad2;
+    V4_001A96D0 t;
+    float p[3];
 };
 
 struct V4 { float x, y, z, w; };
