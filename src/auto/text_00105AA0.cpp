@@ -6,7 +6,8 @@ struct C_Button;
 struct FX_105CB0 { void func_0001CE80(C_Button *,void *,void *,float,float); };
 struct App_105CB0 { void *pad; FX_105CB0 *fx; };
 extern App_105CB0 *D_002A8490;
-extern float D_00275544,D_00282A58,D_002755E0,D_002755E8,D_00275994,D_00276538,D_0027599C,D_002A3A48;
+extern const float D_00275544,D_00282A58,D_002755E0,D_002755E8,D_00275994,D_00276538,D_0027599C;
+extern float D_002A3A48;
 int func_00011260(int,int);
 float func_00011170(void*);
 struct C_Device {
