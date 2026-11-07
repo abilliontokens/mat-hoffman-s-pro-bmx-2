@@ -52,7 +52,9 @@ struct Sprite_6ECC0 {
     float u0,v0,u1,v1,w,h; int mode; unsigned char flags;
     Sprite_6ECC0 *func_001D5760();
     void func_001D5810(const char *name,float x,float y,int a);
-    void setPos(float a,float b) {if(x!=a || y!=b){flags|=1;x=a;y=b;}}
+    void setPos(float a,float b) {if(x!=a || y!=b){x=a;y=b;flags|=1;}}
+    void setUV(float a,float b,float c,float d) {u0=a;v1=d;v0=b;u1=c;flags|=4;}
+    void setAlpha(unsigned char a) {((unsigned char *)&color)[3]=a;flags|=2;}
     void setWidth(float a) {if(width!=a){width=a;flags|=1;}}
     void setHeight(float a) {if(height!=a){height=a;flags|=1;}}
     void setColor(unsigned int c) {color=(color&(c|0xff000000))|(c&0xffffff);flags|=2;}
