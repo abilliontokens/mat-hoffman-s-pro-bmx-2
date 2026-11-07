@@ -7,7 +7,8 @@ struct W_6ECC0 {
     void func_001B19A0(void *p);
     void func_001B2270(unsigned int color);
     void func_001B15F0(void);
-    void func_001B1800(void);
+    int func_001B1800(void);
+    W_6ECC0 *func_001B12C0(int a);
     void func_001B1810(float *out);
 };
 
@@ -43,3 +44,33 @@ extern void *D_0028F5E0;
 
 void *func_001E8A44(int size);
 void *func_001B12C0(void *p, int a);
+
+void C_0006ECC0::func_0006ECC0(int a)
+{
+    char *keys[2];
+    int n;
+    int m2;
+    W_6ECC0 *w;
+
+    fEC = a;
+    keys[0] = D_00278678;
+    keys[1] = D_00278690;
+    D_002A8490->func_0018C780(2, keys, 0);
+    {
+        void *p = D_002A8490->func_0018C160(D_00278690);
+        n = p ? *(int *)p : 0;
+    }
+    {
+        void *p = D_002A8490->func_0018C160(D_00278678);
+        m2 = p ? *(int *)p : 0;
+    }
+    w = (W_6ECC0 *)func_001E8A44(0x184);
+    w = w ? (W_6ECC0 *)func_001B12C0(w, 1) : 0;
+    fD0 = w;
+    w->func_001B13A0(D_00278690, D_00278690, 0, 0x32);
+    w->func_001B1A30(240.0f, 157.0f, 0);
+    w->func_001B19A0(&D_0028F5DC);
+    w->func_001B2270(0xffbfa35a);
+    w->func_001B15F0();
+    func_001577A0(w, -1);
+}
