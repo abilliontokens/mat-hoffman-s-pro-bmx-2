@@ -77,6 +77,7 @@ struct BmxObjectivesMenu {
     int f288;                       /* 0x288 */
     char pad28C[0x2B4 - 0x28C];
     int f2B4;                       /* 0x2B4 */
+    void func_000619F0(void*);
     void func_00061B20();
     void func_0005EA10(float dt);
     void func_00064BA0(float dt);
