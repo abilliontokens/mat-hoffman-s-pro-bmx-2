@@ -2,6 +2,7 @@
 #include "common.h"
 #include <xmmintrin.h>
 #include <string.h>
+#include "asm_helpers.h"
 extern float D_00275544;
 
 struct S_V4_27860 {
@@ -113,6 +114,14 @@ struct V4_00027C50 {
     float z;
     float w;
 };
+
+static __forceinline float Dot27C50(const V4_00027C50 &v)
+{
+    float d = v.y * -1.0f;
+    d += v.x * 0.0f;
+    d += v.z * 0.0f;
+    return d;
+}
 
 extern float D_00275544;
 extern float D_00275F58;
@@ -257,54 +266,53 @@ struct C_00027E40 {
 
 void C_00027860::func_00027860(float dt)
 {
-    C_00027860 *self = this;
     S_V4_27860 t;
-    float m[16];
+    __declspec(align(16)) float m[12];
 
     t.z = 0.0f;
-    if (self->f1E8->f68 != 0) {
+    if (this->f1E8->f68 != 0) {
+        S_V4_27860 v;
         S_V4Id_27860 v1;
         S_V4Id_27860 v2;
-        S_V4_27860 v;
         float s;
         float neg;
         float tmp;
 
-        Cross_27860(&v1.x, self->f10C, self->f1E8->f1A0);
-        Cross_27860(&v2.x, self->f1E8->f1A0, &v1.x);
+        AsmVec3Cross(&v1.x, this->f10C, this->f1E8->f1A0);
+        AsmVec3Cross(&v2.x, this->f1E8->f1A0, &v1.x);
         v.x = 0.0f;
         v.y = 0.0f;
         v.z = 0.0f;
         v.w = 0.0f;
-        func_000265C0(m, &v.x, &v2.x, self->f1E8->f1A0, 0, 1);
-        t = func_00026880(self->f748, m);
-        s = Min_27860(Max_27860(t.z * D_002756DC, -1.0f), 1.0f);
-        neg = -(Max_27860(self->f5CC, 0.0f) * self->f5D4);
-        tmp = Min_27860(self->f59C - self->f744, 0.0f);
+        func_000265C0(m, &v.x, &v2.x, this->f1E8->f1A0, 0, 1);
+        t = func_00026880(this->f748, m);
+        s = AsmMinF(AsmMaxF(t.z * D_002756DC, -1.0f), 1.0f);
+        neg = -(AsmMaxF(this->f5CC, 0.0f) * this->f5D4);
+        tmp = AsmMinF(this->f59C - this->f744, 0.0f);
         v.w = 1.0f;
         v.x = 0.0f;
         v.y = 0.0f;
-        v.z = (tmp * D_002A1150 + neg - self->f5D0) * self->f1E0->f210 * s * D_00275BF8 * self->f1E8->f80;
+        v.z = (tmp * D_002A1150 + neg - this->f5D0) * this->f1E0->f210 * s * D_00275BF8 * this->f1E8->f80;
         S_V4_27860 r = func_000267F0(&v.x, m);
-        float *p = self->f1E0->f130;
+        float *p = this->f1E0->f130;
         p[0] += r.x;
         p[1] += r.y;
         p[2] += r.z;
     }
-    if (self->f1E8->f50 != 0) {
-        self->f5D8 = t.z * self->f1E8->f80;
-    } else if (self->f5CC > D_00275544) {
-        self->f5D8 = 0.0f;
+    if (this->f1E8->f50 != 0) {
+        this->f5D8 = t.z * this->f1E8->f80;
+    } else if (this->f5CC > D_00275544) {
+        this->f5D8 = 0.0f;
     }
-    if (self->f1E8->f54 != 0) {
-        self->f5DC = t.z * self->f1E8->f80;
-    } else if (self->f5CC > D_00275544) {
-        self->f5DC = 0.0f;
+    if (this->f1E8->f54 != 0) {
+        this->f5DC = t.z * this->f1E8->f80;
+    } else if (this->f5CC > D_00275544) {
+        this->f5DC = 0.0f;
     }
-    self->f5E0 = dt * self->f5D8 + self->f5E0;
-    self->f5E4 = dt * self->f5DC + self->f5E4;
-    func_0014FD80(&self->f5E0);
-    func_0014FD80(&self->f5E4);
+    this->f5E0 = dt * this->f5D8 + this->f5E0;
+    this->f5E4 = dt * this->f5DC + this->f5E4;
+    func_0014FD80(&this->f5E0);
+    func_0014FD80(&this->f5E4);
 }
 
 void C_00027C30::func_00027C30(void) {
