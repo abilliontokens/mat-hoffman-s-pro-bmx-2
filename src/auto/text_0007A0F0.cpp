@@ -47,6 +47,8 @@ struct C_0007A0F0_L {
     void func_001D5FA0(int a, int b, int c, int d);
     void func_001D5FA0(int font, const char *s, int a, int b);
     void func_0005E840(int a);
+    void func_001D6190(int,int,const char *);
+    float func_0018C210();
 };
 
 struct C_0007A0F0_Obj {
@@ -125,160 +127,175 @@ extern int D_0028F5E0;
 extern int D_0028F5DC;
 void *BmxObjectivesMenu::func_0007A0F0(int a)
 {
-    int func_001E8A44(...);
-    C_0007A0F0_Obj *obj;
-    int *found;
-    int local[4];
-    int counter;
+    const char *names[1];
+    int v1;
+    int v2;
+    int *r;
+    void *mem;
     int i;
-    C_0007A0F0_W *wid;
-    C_0007A0F0_L *lab;
-    int **slot;
+    C_0007A0F0_W *o;
+    C_0007A0F0_L *l;
 
-    w[0x1d0 / 4] = a;
-    obj = (C_0007A0F0_Obj *)*(int *)((char *)D_002A8490 + 0x2ec);
-    local[1] = (int)D_00278678;
-    obj->func_0018C780(1, &local[1], 0);
-    obj = (C_0007A0F0_Obj *)*(int *)((char *)D_002A8490 + 0x2ec);
-    obj->func_0018C160(D_002786A0);
-    obj = (C_0007A0F0_Obj *)*(int *)((char *)D_002A8490 + 0x2ec);
-    found = obj->func_0018C160(D_00278690);
-    if (found != 0) {
-        local[0] = *found;
+    f1D0 = a;
+    names[0] = D_00278678;
+    D_002A8490->f2ec->func_0018C780(1, names, 0);
+    D_002A8490->f2ec->func_0018C160(D_002786A0);
+    r = D_002A8490->f2ec->func_0018C160(D_00278690);
+    if (r != 0) {
+        v1 = *r;
     } else {
-        local[0] = 0;
+        v1 = 0;
     }
-    obj = (C_0007A0F0_Obj *)*(int *)((char *)D_002A8490 + 0x2ec);
-    found = obj->func_0018C160(D_00278678);
-    if (found != 0) {
-        local[2] = *found;
+    r = D_002A8490->f2ec->func_0018C160(D_00278678);
+    if (r != 0) {
+        v2 = *r;
     } else {
-        local[2] = 0;
+        v2 = 0;
     }
     D_002A60B0 = D_00279018;
     D_002A60B4 = D_0027901C;
     D_002A60B8 = D_00279020;
     D_002A60BC = D_00279024;
-    wid = (C_0007A0F0_W *)func_001E8A44(0x64);
-    if (wid != 0) {
-        wid->func_001D5760();
-    } else {
-        wid = 0;
+    mem = func_001E8A44(0x64);
+    f0FC = mem ? ((C_0007A0F0_W *)mem)->func_001D5760() : 0;
+    f0FC->func_001D5810(D_00278658, 0.0f, 0.0f, 0);
+    o = f0FC;
+    o->f3C = o->f4C * D_00278654;
+    o->f58 |= 4;
+    o->f40 = o->f4C * D_00275544;
+    o->f44 = o->f50 * D_0027653C;
+    o->f48 = o->f50 * D_00275544;
+    o = f0FC;
+    if (o->f2C != 0x42480000) {
+        o->f2C = 0x42480000;
+        o->f58 |= 1;
     }
-    w[0xfc / 4] = (int)wid;
-    wid->func_001D5810((int)D_00278658, 0, 0, 0);
-    {
-        float t = *(float *)((char *)wid + 0x4c) * D_00278654;
-        *(float *)((char *)wid + 0x3c) = t;
-        *(char *)((char *)wid + 0x58) |= 4;
-        *(float *)((char *)wid + 0x40) = *(float *)((char *)wid + 0x4c) * D_00275544;
-        *(float *)((char *)wid + 0x44) = *(float *)((char *)wid + 0x50) * D_0027653C;
-        *(float *)((char *)wid + 0x48) = *(float *)((char *)wid + 0x50) * D_00275544;
+    o = f0FC;
+    if (o->f28 != 0x44200000) {
+        o->f28 = 0x44200000;
+        o->f58 |= 1;
     }
-    if (wid->w[0x2c / 4] != 0x42480000) {
-        wid->w[0x2c / 4] = 0x42480000;
-        *((char *)wid + 0x58) |= 1;
+    mem = func_001E8A44(0x64);
+    f100 = mem ? ((C_0007A0F0_W *)mem)->func_001D5760() : 0;
+    f100->func_001D5810(D_00278658, 0.0f, 398.0f, 0);
+    o = f100;
+    o->f3C = o->f4C * D_00278654;
+    o->f58 |= 4;
+    o->f40 = o->f4C * D_00275544;
+    o->f44 = o->f50 * D_0027653C;
+    o->f48 = o->f50 * D_00275544;
+    o = f100;
+    if (o->f28 != 0x44200000) {
+        o->f28 = 0x44200000;
+        o->f58 |= 1;
     }
-    if (wid->w[0x28 / 4] != 0x44200000) {
-        wid->w[0x28 / 4] = 0x44200000;
-        *((char *)wid + 0x58) |= 1;
+    o = f100;
+    if (o->f2C != 0x42480000) {
+        o->f2C = 0x42480000;
+        o->f58 |= 1;
     }
-    wid = (C_0007A0F0_W *)func_001E8A44(0x64);
-    if (wid != 0) {
-        wid->func_001D5760();
-    } else {
-        wid = 0;
-    }
-    w[0x100 / 4] = (int)wid;
-    wid->func_001D5810((int)D_00278658, 0x43c70000, 0, 0);
-    {
-        float t = *(float *)((char *)wid + 0x4c) * D_00278654;
-        *(float *)((char *)wid + 0x3c) = t;
-        *(char *)((char *)wid + 0x58) |= 4;
-        *(float *)((char *)wid + 0x40) = *(float *)((char *)wid + 0x4c) * D_00275544;
-        *(float *)((char *)wid + 0x44) = *(float *)((char *)wid + 0x50) * D_0027653C;
-        *(float *)((char *)wid + 0x48) = *(float *)((char *)wid + 0x50) * D_00275544;
-    }
-    if (wid->w[0x28 / 4] != 0x44200000) {
-        wid->w[0x28 / 4] = 0x44200000;
-        *((char *)wid + 0x58) |= 1;
-    }
-    if (wid->w[0x2c / 4] != 0x42480000) {
-        wid->w[0x2c / 4] = 0x42480000;
-        *((char *)wid + 0x58) |= 1;
-    }
-    counter = 0;
-    slot = (int **)((char *)this + 0x190);
     for (i = 0; i < 5; i++) {
-        int ebp;
-        float fv;
-        wid = (C_0007A0F0_W *)func_001E8A44(0x64);
-        if (wid != 0) {
-            wid->func_001D5760();
-        } else {
-            wid = 0;
+        float x;
+
+        mem = func_001E8A44(0x64);
+        f17C[i] = mem ? ((C_0007A0F0_W *)mem)->func_001D5760() : 0;
+        x = (float)i * D_00278650;
+        f17C[i]->func_001D5810(D_00278658, x, 50.0f, 0);
+        mem = func_001E8A44(0x64);
+        f190[i] = mem ? ((C_0007A0F0_W *)mem)->func_001D5760() : 0;
+        f190[i]->func_001D5810(D_00278658, x, 366.0f, 0);
+        o = f190[i];
+        o->f3C = 0.0f;
+        o->f48 = 0.0f;
+        o->f58 |= 4;
+        o->f40 = 1.0f;
+        o->f44 = 0.99f;
+    }
+    mem = func_001E8A44(0x60);
+    f200 = mem ? ((C_0007A0F0_L *)mem)->func_001D5E90() : 0;
+    f200->func_001D5FA0(v2, D_00278678, 0x18, 0);
+    l = f200;
+    if (l->f4 != 0x43a00000 || l->f8 != 0x42200000) {
+        l->f8 = 0x42200000;
+        l->f4 = 0x43a00000;
+        l->f4E |= 6;
+    }
+    l = f200;
+    if (l->f48 != 0xffcccccc) {
+        l->f48 = (l->f48 & 0xffcccccc) | 0xcccccc;
+        l->f4E |= 8;
+    }
+    l = f200;
+    if (l->f44 != D_0028F5E0) {
+        l->f44 = D_0028F5E0;
+        l->f4E |= 6;
+    }
+    mem = func_001E8A44(0x60);
+    f1C4 = mem ? ((C_0007A0F0_L *)mem)->func_001D5E90() : 0;
+    f1C4->func_001D5FA0(v1, D_00278690, 0x14, 0);
+    l = f1C4;
+    if (l->f4 != 0x41a00000 || l->f8 != 0x43c48000) {
+        l->f4 = 0x41a00000;
+        l->f8 = 0x43c48000;
+        l->f4E |= 6;
+    }
+    l = f1C4;
+    if (l->f48 != 0xff5eff5e) {
+        l->f48 = (l->f48 & 0xff5eff5e) | 0x5eff5e;
+        l->f4E |= 8;
+    }
+    l = f1C4;
+    if (l->f44 != D_0028F5DC) {
+        l->f44 = D_0028F5DC;
+        l->f4E |= 6;
+    }
+    mem = func_001E8A44(0x64);
+    f114 = mem ? ((C_0007A0F0_W *)mem)->func_001D5760() : 0;
+    f114->func_001D5810(D_00278648, 491.0f, 388.0f, 0);
+    mem = func_001E8A44(0x64);
+    f108 = mem ? ((C_0007A0F0_W *)mem)->func_001D5760() : 0;
+    f108->func_001D5810(D_00278624, 491.0f, 388.0f, 0);
+    mem = func_001E8A44(0x64);
+    f118 = mem ? ((C_0007A0F0_W *)mem)->func_001D5760() : 0;
+    f118->func_001D5810(D_00278638, 365.0f, 388.0f, 0);
+    mem = func_001E8A44(0x64);
+    f10C = mem ? ((C_0007A0F0_W *)mem)->func_001D5760() : 0;
+    f10C->func_001D5810(D_00278608, 365.0f, 388.0f, 0);
+    mem = func_001E8A44(0x64);
+    f11C = mem ? ((C_0007A0F0_W *)mem)->func_001D5760() : 0;
+    f11C->func_001D5810(D_00279008, 235.0f, 388.0f, 0);
+    mem = func_001E8A44(0x64);
+    f110 = mem ? ((C_0007A0F0_W *)mem)->func_001D5760() : 0;
+    f110->func_001D5810(D_00278FF0, 235.0f, 388.0f, 0);
+    mem = func_001E8A44(0x64);
+    f1B4 = mem ? ((C_0007A0F0_W *)mem)->func_001D5760() : 0;
+    f1B4->func_001D5810(D_00278FE0, 26.0f, 382.0f, 0);
+    mem = func_001E8A44(0x64);
+    f1B8 = mem ? ((C_0007A0F0_W *)mem)->func_001D5760() : 0;
+    f1B8->func_001D5810(D_00278FD0, 177.0f, 382.0f, 0);
+    for (i = 0; i < 2; i++) {
+        mem = func_001E8A44(0x60);
+        f1BC[i] = mem ? ((C_0007A0F0_L *)mem)->func_001D5E90() : 0;
+        f1BC[i]->func_001D5FA0(v1, D_00278690, 6, 0);
+        l = f1BC[i];
+        if (l->f48 != 0xffcccccc) {
+            l->f48 = (l->f48 & 0xffcccccc) | 0xcccccc;
+            l->f4E |= 8;
         }
-        fv = (float)counter * D_00278650;
-        ebp = *(int *)&fv;
-        slot[-5] = (int *)wid;
-        wid->func_001D5810((int)D_00278658, 0x42480000, ebp, 0);
-        wid = (C_0007A0F0_W *)func_001E8A44(0x64);
-        if (wid != 0) {
-            wid->func_001D5760();
-        } else {
-            wid = 0;
-        }
-        slot[0] = (int *)wid;
-        wid->func_001D5810((int)D_00278658, 0x43b70000, ebp, 0);
-        wid->w[0x3c / 4] = 0;
-        wid->w[0x48 / 4] = 0;
-        wid->w[0x40 / 4] = 0x3f800000;
-        wid->w[0x44 / 4] = 0x3f7d70a4;
-        *((char *)wid + 0x58) |= 4;
-        slot++;
-        counter += 0x14;
     }
-    lab = (C_0007A0F0_L *)func_001E8A44(0x60);
-    if (lab != 0) {
-        lab->func_001D5E90();
-    } else {
-        lab = 0;
+    l = f1BC[0];
+    if (l->f4 != 0x429c0000 || l->f8 != 0x43c48000) {
+        l->f4 = 0x429c0000;
+        l->f8 = 0x43c48000;
+        l->f4E |= 6;
     }
-    w[0x200 / 4] = (int)lab;
-    lab->func_001D5FA0(local[2], (int)D_00278678, 0x18, 0);
-    if (lab->w[4 / 4] != 0x43a00000 || lab->w[8 / 4] != 0x42200000) {
-        lab->w[8 / 4] = 0x42200000;
-        lab->w[4 / 4] = 0x43a00000;
-        *((char *)lab + 0x4e) |= 6;
+    l = f1BC[1];
+    if (l->f4 != 0x43650000 || l->f8 != 0x43c48000) {
+        l->f4 = 0x43650000;
+        l->f8 = 0x43c48000;
+        l->f4E |= 6;
     }
-    if (lab->w[0x48 / 4] != 0xffcccccc) {
-        lab->w[0x48 / 4] = (lab->w[0x48 / 4] & 0xffcccccc) | 0xcccccc;
-        *((char *)lab + 0x4e) |= 8;
-    }
-    if (lab->w[0x44 / 4] != D_0028F5E0) {
-        lab->w[0x44 / 4] = D_0028F5E0;
-        *((char *)lab + 0x4e) |= 6;
-    }
-    lab = (C_0007A0F0_L *)func_001E8A44(0x60);
-    if (lab != 0) {
-        lab->func_001D5E90();
-    } else {
-        lab = 0;
-    }
-    w[0x1c4 / 4] = (int)lab;
-    lab->func_001D5FA0(local[0], (int)D_00278690, 0x14, 0);
-    if (lab->w[4 / 4] != 0x41a00000 || lab->w[8 / 4] != 0x43c48000) {
-        lab->w[4 / 4] = 0x41a00000;
-        lab->w[8 / 4] = 0x43c48000;
-        *((char *)lab + 0x4e) |= 6;
-    }
-    if (lab->w[0x48 / 4] != 0xff5eff5e) {
-        lab->w[0x48 / 4] = (lab->w[0x48 / 4] & 0xff5eff5e) | 0x5eff5e;
-        *((char *)lab + 0x4e) |= 8;
-    }
-    if (lab->w[0x44 / 4] != D_0028F5DC) {
-        lab->w[0x44 / 4] = D_0028F5DC;
-        *((char *)lab + 0x4e) |= 6;
-    }
+    f1BC[0]->func_0005E840(D_002A8490->f2e8->f4->fF08);
+    f1BC[1]->func_0005E840(D_002A8490->f2e8->f4->f9B8);
     return this;
 }
