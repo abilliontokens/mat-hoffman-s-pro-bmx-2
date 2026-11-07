@@ -103,7 +103,7 @@ extern int D_00278664, D_00278668, D_0027866C, D_00278670;
 extern char D_00278674;
 extern int D_002A60B0, D_002A60B4, D_002A60B8, D_002A60BC;
 extern char D_002A60C0;
-extern float D_00278654, D_00275544, D_0027653C;
+extern const float D_00278654, D_00275544, D_0027653C;
 extern "C" void *__cdecl func_001E8A44(unsigned int);
 
 C_00066C90 *C_00066C90::func_00066C90(int a0)
