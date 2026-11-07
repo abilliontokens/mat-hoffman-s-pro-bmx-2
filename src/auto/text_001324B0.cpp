@@ -1,11 +1,6 @@
 /* 13 functions from 0x001324B0 to 0x00132DB8, found by Ghidra. */
 #include "common.h"
 
-static int AbsBits_001325D0(int v)
-{
-    return *(volatile int *)&v & 0x7fffffff;
-}
-
 struct CinematographerCam {
     void *vtbl;
     char pad_4[0x80 - 0x4];
