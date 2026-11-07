@@ -42,7 +42,9 @@ extern "C" char *strcpy(char *,const char *);
 #pragma intrinsic(strlen,strcpy)
 int func_001ADCC0(char *,int,const char *,...);
 struct C_0010F320 {
-    int w[0x121c/4];
+    int w[0x15a4/4];
+    void func_001577A0(void *,int);
+    C_0010F320 *func_00026B60(char *,Vec4_10F320,Vec4_10F320,Vec4_10F320,Vec4_10F320,int,int);
     void func_00104BE0();
     void func_00109F80();
     void func_0010F320(int a0,int a1,int a10,int a14,int a18,int a1c,int a20,int a24,Vec4_10F320 v28,Vec4_10F320 v38,Vec4_10F320 v48,int a58,int a5c);
