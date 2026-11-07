@@ -97,8 +97,11 @@ static __forceinline float Min_00131510(float a, float b)
 
 static __forceinline void Cross_00131510(V4_00131510 *out, V4_00131510 *a, V4_00131510 *b)
 {
-    __m128 av = _mm_loadu_ps(&a->x);
-    __m128 bv = _mm_loadu_ps(&b->x);
+    V4_00131510* volatile pa=a;
+    V4_00131510* volatile pb=b;
+    V4_00131510* volatile dest=out;
+    __m128 av = _mm_loadu_ps(&pa->x);
+    __m128 bv = _mm_loadu_ps(&pb->x);
     __m128 as = av;
     __m128 bs = bv;
     as = _mm_shuffle_ps(as, as, 0xc9);
