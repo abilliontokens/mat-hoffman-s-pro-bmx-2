@@ -285,10 +285,18 @@ void func_00162020(float *out, float *m, int transpose)
  if(transpose) {
  float * volatile p=t;
  float *src=p;
- __m128 r0 = _mm_loadh_pi(_mm_loadl_pi(r0, (__m64*)src), (__m64*)(src+4));
- __m128 r1 = _mm_loadh_pi(_mm_loadl_pi(r1, (__m64*)(src+2)), (__m64*)(src+6));
- __m128 r2 = _mm_loadh_pi(_mm_loadl_pi(r2, (__m64*)(src+8)), (__m64*)(src+12));
- __m128 r3 = _mm_loadh_pi(_mm_loadl_pi(r3, (__m64*)(src+10)), (__m64*)(src+14));
+ __m128 r0;
+ r0 = _mm_loadl_pi(r0, (__m64*)src);
+ r0 = _mm_loadh_pi(r0, (__m64*)(src+4));
+ __m128 r1;
+ r1 = _mm_loadl_pi(r1, (__m64*)(src+2));
+ r1 = _mm_loadh_pi(r1, (__m64*)(src+6));
+ __m128 r2;
+ r2 = _mm_loadl_pi(r2, (__m64*)(src+8));
+ r2 = _mm_loadh_pi(r2, (__m64*)(src+12));
+ __m128 r3;
+ r3 = _mm_loadl_pi(r3, (__m64*)(src+10));
+ r3 = _mm_loadh_pi(r3, (__m64*)(src+14));
  __m128 a0=_mm_shuffle_ps(r0,r2,0x88), a1=_mm_shuffle_ps(r0,r2,0xdd), a2=_mm_shuffle_ps(r1,r3,0x88), a3=_mm_shuffle_ps(r1,r3,0xdd);
  *(__m128*)out=a0; *(__m128*)(out+4)=a1; *(__m128*)(out+8)=a2; *(__m128*)(out+12)=a3;
  } else {
@@ -306,7 +314,7 @@ int func_00162210(float *out, float *m)
     __m128 v;
     __m128 *p;
     det = (m[10] * m[5] - m[9] * m[6]) * m[0] - (m[4] * m[10] - m[8] * m[6]) * m[1] + (m[9] * m[4] - m[8] * m[5]) * m[2];
-    if (det == 0.0f) {
+    if (det == D_00275544) {
         return 0;
     }
     func_00162020(out, m, 1);
@@ -377,47 +385,13 @@ static __forceinline void setprojcommon(float *m, float a2, float a3, float a4, 
     m[6] = (a4 + a5) / (a5 - a4);
 }
 
-float *func_00162470(float * const m, const float a2, const float a3, const float a4, const float a5, const float a6, const float a7, const int a8)
-{
-    if (a8 != 0) {
-        m[14] = 1.0f;
-        m[3] = 0.0f;
-        m[7] = 0.0f;
-        m[15] = 0.0f;
-        m[4] = 0.0f;
-        m[8] = 0.0f;
-        m[12] = 0.0f;
-        m[1] = 0.0f;
-        m[9] = 0.0f;
-        m[13] = 0.0f;
-        m[0] = (a6 + a6) / (a3 - a2);
-        m[5] = (a6 + a6) / (a5 - a4);
-        m[2] = (a2 + a3) / (a3 - a2);
-        m[6] = (a4 + a5) / (a5 - a4);
-        m[10] = a7 / (a7 - a6);
-        m[11] = -(a6 * a7 / (a7 - a6));
-    } else {
-        float num;
-        m[14] = 1.0f;
-        m[3] = 0.0f;
-        m[7] = 0.0f;
-        m[15] = 0.0f;
-        m[4] = 0.0f;
-        m[8] = 0.0f;
-        m[12] = 0.0f;
-        m[1] = 0.0f;
-        m[9] = 0.0f;
-        m[13] = 0.0f;
-        m[0] = (a6 + a6) / (a3 - a2);
-        m[5] = (a6 + a6) / (a5 - a4);
-        m[2] = (a2 + a3) / (a3 - a2);
-        m[6] = (a4 + a5) / (a5 - a4);
-        m[10] = (a6 + a7) / (a7 - a6);
-        num = a6 * a7;
-        m[11] = num * D_00287B80 / (a7 - a6);
-    }
-    return m;
-}
+float *func_00162470(float * const m, const float a2, const float a3, const float a4, const float a5, const float a6, const float a7, int a8) { if(a8) { m[14]=1.0f; m[3]=0.0f; m[7]=0.0f; m[15]=0.0f; m[4]=0.0f; m[8]=0.0f; m[12]=0.0f; m[1]=0.0f; m[9]=0.0f; m[13]=0.0f;
+m[0]=(a6+a6)/(a3-a2);
+volatile float &h=*(volatile float *)&a8; h=a5-a4;
+m[5]=(a6+a6)/h; m[2]=(a2+a3)/(a3-a2); m[6]=(a4+a5)/h; m[10]=a7/(a7-a6); m[11]=-(a6*a7/(a7-a6)); } else { m[14]=1.0f; m[3]=0.0f; m[7]=0.0f; m[15]=0.0f; m[4]=0.0f; m[8]=0.0f; m[12]=0.0f; m[1]=0.0f; m[9]=0.0f; m[13]=0.0f;
+m[0]=(a6+a6)/(a3-a2);
+volatile float &h=*(volatile float *)&a8; h=a5-a4;
+m[5]=(a6+a6)/h; m[2]=(a2+a3)/(a3-a2); m[6]=(a4+a5)/h; m[10]=(a6+a7)/(a7-a6); m[11]=a6*a7*-2.0f/(a7-a6); } return m; }
 
 void func_00162530(float *m, float a2, float a3, float a4, float a5, int a6)
 {
