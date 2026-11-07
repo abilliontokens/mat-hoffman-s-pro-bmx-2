@@ -461,7 +461,7 @@ u32 func_001780F0(u8 *dst, u8 *src, int width, int height, int dstPitch, int src
   d = dst;
   for (y = height; y > 0; y--) {
     for (p = d, q = s, x = width; x > 0; x--) {
-      *((unsigned)u16 *)p = ((*(u16 *)q & 0xffe0) << 1) | (*(u16 *)q & 0x1f);
+      *(u16 *)p = ((*(u16 *)q & 0xffe0) << 1) | (*(u16 *)q & 0x1f);
       p += 2;
       q += 2;
     }
