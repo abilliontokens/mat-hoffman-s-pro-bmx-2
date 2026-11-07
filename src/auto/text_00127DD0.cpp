@@ -90,9 +90,14 @@ static inline S_00127DD0_V4 AddP_00128120(const S_00127DD0_V4 &a, const S_00127D
     return r;
 }
 
-static inline V4_00128120 Scale_00128120(const S_00127DD0_V4 &s, const float &k)
+static inline V4_00128120 Scale_00128120(const S_00127DD0_V4 &s, float k)
 {
     return V4_00128120(s.x * k, s.y * k, s.z * k, 1.0f);
+}
+
+static inline V4_00128120 ScaleD_00128120(const S_00127DD0_V4 &s)
+{
+    return V4_00128120(s.x * D_002755E8, s.y * D_002755E8, s.z * D_002755E8, 1.0f);
 }
 
 struct __declspec(align(16)) M44_00128120 {
