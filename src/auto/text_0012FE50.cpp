@@ -137,6 +137,7 @@ struct C_0012FE50 {
     virtual void v40(); virtual void v41(); virtual void v42(); virtual void v43(); virtual void v44();
     virtual void v45(); virtual void v46(); virtual void v47(); virtual void v48(); virtual void v49();
     virtual void v50(); virtual float v51(float a, float b); virtual V4_0012FE50 v52(float t);
+    V4_0012FE50 *sample(V4_0012FE50 *out,float t) { typedef V4_0012FE50 *(__fastcall *Fn)(void*,int,V4_0012FE50*,float); return ((Fn)(*(void***)this)[52])(this,0,out,t); }
     char pad4[0x4c - 4];
     V4_0012FE50 f4c;
     char pad5c[0x190 - 0x5c];
