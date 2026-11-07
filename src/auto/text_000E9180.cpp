@@ -67,6 +67,13 @@ struct S_0E9180_270 {
 
 #include <xmmintrin.h>
 struct Vec_0E9180 { float x,y,z,w; };
+static __forceinline void cross_0E9180(Vec_0E9180 *out,const Vec_0E9180 *a,const float *b) {
+    _mm_storeu_ps(&out->x, _mm_shuffle_ps(
+        _mm_sub_ps(_mm_mul_ps(_mm_loadu_ps(&a->x), _mm_shuffle_ps(_mm_loadu_ps(b),_mm_loadu_ps(b),0xc9)),
+        _mm_mul_ps(_mm_loadu_ps(b),_mm_shuffle_ps(_mm_loadu_ps(&a->x),_mm_loadu_ps(&a->x),0xc9))),
+        _mm_sub_ps(_mm_mul_ps(_mm_loadu_ps(&a->x), _mm_shuffle_ps(_mm_loadu_ps(b),_mm_loadu_ps(b),0xc9)),
+        _mm_mul_ps(_mm_loadu_ps(b),_mm_shuffle_ps(_mm_loadu_ps(&a->x),_mm_loadu_ps(&a->x),0xc9))),0xc9));
+}
 struct V_0E9180 {
     virtual void v0(); virtual void v4(); virtual void v8(); virtual void vc();
     virtual void v10(); virtual void v14(); virtual void v18(); virtual void v1c();
