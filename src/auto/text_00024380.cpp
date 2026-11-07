@@ -46,6 +46,11 @@ struct Obj20C_Vtbl_24380 {
 };
 
 struct Obj20C_24380 {
+    virtual void v0();
+    virtual void v4();
+    virtual void v8();
+    virtual void vC();
+    virtual void v10(char *, int, int, int, int);
     void *vtbl;
     Obj20C_24380 *func_001CF740(void *a, int b, int c);
 };
