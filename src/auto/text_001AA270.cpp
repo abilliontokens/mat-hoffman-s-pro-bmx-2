@@ -22,6 +22,7 @@ void func_00030A30(V4_001AA270 *out, V4_001AA270 v, void *m);
 void func_00030AC0(V4_001AA270 *out, V4_001AA270 *a, void *m);
 void func_00030B20(V4_001AA270 *out, V4_001AA270 v, void *m);
 V4_001AA270 *func_000267F0(V4_001AA270 *out, V4_001AA270 *a, void *m);
+V4_001AA270 func_000267F0(V4_001AA270 *a, void *m);
 void func_00198040(V4_001AA270 *out, V4_001AA270 *a);
 
 
