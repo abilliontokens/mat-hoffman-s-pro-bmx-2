@@ -407,7 +407,7 @@ C_00103450 *C_00103450::func_00103450(int a, S_Cfg *cfg)
     cfg->func_00168C20(D_0028285C, 0, &l.i3);
     cfg->func_00168C20(D_00282854, 0xff, &l.i1);
     cfg->func_00168C20(D_00282844, 0, &l.i2);
-    cfg->func_00168C50(D_0028283C, 0.0f, &l.f);
+    cfg->func_00168C50(D_0028283C, 0.0f, (float *)&l.f);
     unk3E8 = l.i3;
     unk3F0 = l.i2;
     unk3EC = l.i1;
