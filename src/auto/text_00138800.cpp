@@ -126,6 +126,7 @@ struct ArrVec138 {
     virtual void v29();
     virtual void v30();
     virtual void v31(SceneVector v);
+    void func_0011CA60(SceneVector v);
 };
 struct C0_138 { C0_138 *func_0016ABE0(int); };
 struct C1_138 { C1_138 *func_0016B770(int); };
@@ -353,167 +354,161 @@ void CutScene::func_00138890() {
 
 void CutScene::func_00138950()
 {
-    int index = 0;
-    int *arrs[7];
-    int vec[4];
+    int *a0, *a1, *a2, *a3, *a4, *a5, *a6;
+    int index;
+    SceneVector vec;
+    SceneVector tmp;
     int i;
-    Cont138 *cont = (Cont138 *)f60;
+    int k;
+    Found138 *found;
+    void __stdcall func_0011CA60(SceneVector v);
 
-    if (cont->count <= 0)
-        return;
-    do {
-        Entry138 *e = cont->arr[index];
-        Obj138 *obj = e->obj8;
-        int **arr = 0;
-        if (func_001EA426((char *)obj + 0x214, (char *)&D_00284A98) != 0) {
-            e->typeC = obj->f8;
-            e->count10 = obj->count328;
-            e->f14 = obj->f32c;
-            if (e->count10 != 0 && (unsigned int)e->typeC <= 0xc) {
-                switch (e->typeC) {
-                case 0:
-                    arrs[0] = (int *)func_001E8A44(obj->count328 * 4);
-                    arr = (int **)arrs[0];
-                    for (i = 0; i < obj->count328; i++) {
-                        void *m = func_001E8A44(0x250);
-                        arrs[0][i] = (int)(m ? ((C0_138 *)m)->func_0016ABE0(1) : 0);
-                    }
-                    break;
-                case 1:
-                    arrs[1] = (int *)func_001E8A44(obj->count328 * 4);
-                    arr = (int **)arrs[1];
-                    for (i = 0; i < obj->count328; i++) {
-                        void *m = func_001E8A44(0x1f8);
-                        arrs[1][i] = (int)(m ? ((C1_138 *)m)->func_0016B770(1) : 0);
-                    }
-                    break;
-                case 2:
-                    arrs[2] = (int *)func_001E8A44(obj->count328 * 4);
-                    arr = (int **)arrs[2];
-                    for (i = 0; i < obj->count328; i++) {
-                        void *m = func_001E8A44(0x214);
-                        arrs[2][i] = (int)(m ? ((C2_138 *)m)->func_0016BE40(1) : 0);
-                    }
-                    break;
-                case 8:
-                    arrs[3] = (int *)func_001E8A44(obj->count328 * 4);
-                    arr = (int **)arrs[3];
-                    for (i = 0; i < obj->count328; i++) {
-                        void *m = func_001E8A44(0x21c);
-                        arrs[3][i] = (int)(m ? ((C3_138 *)m)->func_0016C5B0(1) : 0);
-                    }
-                    break;
-                case 9:
-                    arrs[4] = (int *)func_001E8A44(obj->count328 * 4);
-                    arr = (int **)arrs[4];
-                    for (i = 0; i < obj->count328; i++) {
-                        void *m = func_001E8A44(0x218);
-                        arrs[4][i] = (int)(m ? ((C4_138 *)m)->func_0016CE80(1) : 0);
-                    }
-                    break;
-                case 11:
-                    arrs[5] = (int *)func_001E8A44(obj->count328 * 4);
-                    arr = (int **)arrs[5];
-                    for (i = 0; i < obj->count328; i++) {
-                        void *m = func_001E8A44(0x230);
-                        arrs[5][i] = (int)(m ? ((C5_138 *)m)->func_0016D620(1) : 0);
-                    }
-                    break;
-                case 12:
-                    arrs[6] = (int *)func_001E8A44(obj->count328 * 4);
-                    arr = (int **)arrs[6];
-                    for (i = 0; i < obj->count328; i++) {
-                        void *m = func_001E8A44(0x238);
-                        arrs[6][i] = (int)(m ? ((C6_138 *)m)->func_0016DA40(1) : 0);
-                    }
-                    break;
-                default:
-                    break;
-                }
-                e->arr4 = (int *)arr;
-                vec[0] = obj->vec318[0];
-                vec[1] = obj->vec318[1];
-                vec[2] = obj->vec318[2];
-                vec[3] = obj->vec318[3];
-                if (func_001EA426((char *)obj + 0xc, (char *)&D_00284A98) != 0) {
-                    int k;
-                    for (k = 0; k < f54; k++) {
-                        if (func_001EA426((char *)obj + 0xc, (char *)((int *)f58)[k] + 0x138) == 0) {
-                            if (func_001EA426((char *)obj + 0x110, (char *)&D_00284A98) != 0) {
-                                Found138 *found = ((Elem138 *)((int *)f58)[k])->f4->func_00198330((char *)obj + 0x110);
-                                if (found != 0) {
-                                    int *v = found->func_00199B00(vec, 0);
-                                    vec[0] = v[0];
-                                    vec[1] = v[1];
-                                    vec[2] = v[2];
-                                    vec[3] = v[3];
-                                }
+    index = 0;
+    if (((Cont138 *)f60)->count > 0) {
+        do {
+            Entry138 *e = ((Cont138 *)f60)->arr[index];
+            if (func_001EA426((char *)e->obj8 + 0x214, (char *)&D_00284A98) != 0) {
+                e->typeC = e->obj8->f8;
+                e->count10 = e->obj8->count328;
+                e->f14 = e->obj8->f32c;
+                if (e->count10 != 0) {
+                    if ((unsigned int)e->typeC <= 0xc) {
+                        switch (e->typeC) {
+                        case 0:
+                            a0 = (int *)func_001E8A44(e->obj8->count328 * 4);
+                            for (i = 0; i < e->obj8->count328; i++) {
+                                void *m = func_001E8A44(0x250);
+                                a0[i] = (int)(m ? ((C0_138 *)m)->func_0016ABE0(1) : 0);
                             }
+                            e->arr4 = a0;
+                            break;
+                        case 1:
+                            a1 = (int *)func_001E8A44(e->obj8->count328 * 4);
+                            for (i = 0; i < e->obj8->count328; i++) {
+                                void *m = func_001E8A44(0x1f8);
+                                a1[i] = (int)(m ? ((C1_138 *)m)->func_0016B770(1) : 0);
+                            }
+                            e->arr4 = a1;
+                            break;
+                        case 2:
+                            a2 = (int *)func_001E8A44(e->obj8->count328 * 4);
+                            for (i = 0; i < e->obj8->count328; i++) {
+                                void *m = func_001E8A44(0x214);
+                                a2[i] = (int)(m ? ((C2_138 *)m)->func_0016BE40(1) : 0);
+                            }
+                            e->arr4 = a2;
+                            break;
+                        case 8:
+                            a3 = (int *)func_001E8A44(e->obj8->count328 * 4);
+                            for (i = 0; i < e->obj8->count328; i++) {
+                                void *m = func_001E8A44(0x21c);
+                                a3[i] = (int)(m ? ((C3_138 *)m)->func_0016C5B0(1) : 0);
+                            }
+                            e->arr4 = a3;
+                            break;
+                        case 9:
+                            a4 = (int *)func_001E8A44(e->obj8->count328 * 4);
+                            for (i = 0; i < e->obj8->count328; i++) {
+                                void *m = func_001E8A44(0x218);
+                                a4[i] = (int)(m ? ((C4_138 *)m)->func_0016CE80(1) : 0);
+                            }
+                            e->arr4 = a4;
+                            break;
+                        case 11:
+                            a5 = (int *)func_001E8A44(e->obj8->count328 * 4);
+                            for (i = 0; i < e->obj8->count328; i++) {
+                                void *m = func_001E8A44(0x230);
+                                a5[i] = (int)(m ? ((C5_138 *)m)->func_0016D620(1) : 0);
+                            }
+                            e->arr4 = a5;
+                            break;
+                        case 12:
+                            a6 = (int *)func_001E8A44(e->obj8->count328 * 4);
+                            for (i = 0; i < e->obj8->count328; i++) {
+                                void *m = func_001E8A44(0x238);
+                                a6[i] = (int)(m ? ((C6_138 *)m)->func_0016DA40(1) : 0);
+                            }
+                            e->arr4 = a6;
+                            break;
+                        default:
                             break;
                         }
+                        vec = *(SceneVector *)&e->obj8->vec318;
+                        found = 0;
+                        if (func_001EA426((char *)e->obj8 + 0xc, (char *)&D_00284A98) != 0) {
+                            for (k = 0; k < f54; k++) {
+                                if (func_001EA426((char *)e->obj8 + 0xc, (char *)((int *)f58)[k] + 0x138) == 0) {
+                                    found = ((Elem138 *)((int *)f58)[k])->f4;
+                                    if (func_001EA426((char *)e->obj8 + 0x110, (char *)&D_00284A98) != 0) {
+                                        found = ((Elem138 *)((int *)f58)[k])->f4->func_00198330((char *)e->obj8 + 0x110);
+                                        if (found != 0) {
+                                            vec = *(SceneVector *)found->func_00199B00((int *)&tmp, 0);
+                                        }
+                                    }
+                                    break;
+                                }
+                            }
+                        }
+                        switch (e->typeC) {
+                        case 0:
+                            for (i = 0; i < e->count10; i++) {
+                                if (e->v2(f4c, (void *)a0[i], found) == 1)
+                                    func_001577A0((void *)a0[i], 2);
+                            }
+                            break;
+                        case 1:
+                            for (i = 0; i < e->count10; i++) {
+                                if (e->v2(f4c, (void *)a1[i], found) == 1)
+                                    func_001577A0((void *)a1[i], 2);
+                            }
+                            break;
+                        case 2:
+                            for (i = 0; i < e->count10; i++) {
+                                if (e->v2(f4c, (void *)a2[i], found) == 1)
+                                    func_001577A0((void *)a2[i], 2);
+                            }
+                            break;
+                        case 8:
+                            for (i = 0; i < e->count10; i++) {
+                                if (e->v2(f4c, (void *)a3[i], found) == 1)
+                                    func_001577A0((void *)a3[i], 2);
+                            }
+                            break;
+                        case 9:
+                            for (i = 0; i < e->count10; i++) {
+                                if (e->v2(f4c, (void *)a4[i], found) == 1)
+                                    func_001577A0((void *)a4[i], 2);
+                            }
+                            break;
+                        case 11:
+                            for (i = 0; i < e->count10; i++) {
+                                if (e->v2(f4c, (void *)a5[i], found) == 1)
+                                    func_001577A0((void *)a5[i], 2);
+                            }
+                            break;
+                        case 12:
+                            for (i = 0; i < e->count10; i++) {
+                                if (e->v2(f4c, (void *)a6[i], found) == 1)
+                                    func_001577A0((void *)a6[i], 2);
+                            }
+                            break;
+                        default:
+                            break;
+                        }
+                        for (i = 0; i < e->count10; i++) {
+                            func_0011CA60(vec);
+                            func_0011CA60(vec);
+                            ((ArrVec138 *)e->arr4[i])->v31(vec);
+                            ((ArrVec138 *)e->arr4[i])->v4(vec);
+                        }
+                        func_001E891B(e->obj8);
+                        e->obj8 = 0;
                     }
                 }
-                {
-                    Found138 *found = 0;
-                    switch (e->typeC) {
-                    case 0:
-                        for (i = 0; i < e->count10; i++) {
-                            if (e->v2(f4c, (void *)arrs[0][i], found) == 1)
-                                func_001577A0((void *)arrs[0][i], 2);
-                        }
-                        break;
-                    case 1:
-                        for (i = 0; i < e->count10; i++) {
-                            if (e->v2(f4c, (void *)arrs[1][i], found) == 1)
-                                func_001577A0((void *)arrs[1][i], 2);
-                        }
-                        break;
-                    case 2:
-                        for (i = 0; i < e->count10; i++) {
-                            if (e->v2(f4c, (void *)arrs[2][i], found) == 1)
-                                func_001577A0((void *)arrs[2][i], 2);
-                        }
-                        break;
-                    case 8:
-                        for (i = 0; i < e->count10; i++) {
-                            if (e->v2(f4c, (void *)arrs[3][i], found) == 1)
-                                func_001577A0((void *)arrs[3][i], 2);
-                        }
-                        break;
-                    case 9:
-                        for (i = 0; i < e->count10; i++) {
-                            if (e->v2(f4c, (void *)arrs[4][i], found) == 1)
-                                func_001577A0((void *)arrs[4][i], 2);
-                        }
-                        break;
-                    case 11:
-                        for (i = 0; i < e->count10; i++) {
-                            if (e->v2(f4c, (void *)arrs[5][i], found) == 1)
-                                func_001577A0((void *)arrs[5][i], 2);
-                        }
-                        break;
-                    case 12:
-                        for (i = 0; i < e->count10; i++) {
-                            if (e->v2(f4c, (void *)arrs[6][i], found) == 1)
-                                func_001577A0((void *)arrs[6][i], 2);
-                        }
-                        break;
-                    default:
-                        break;
-                    }
-                }
-                for (i = 0; i < e->count10; i++) {
-                    func_0011CA60(vec[0], vec[1], vec[2], vec[3]);
-                    func_0011CA60(vec[0], vec[1], vec[2], vec[3]);
-                    ((ArrObj138 *)e->arr4[i])->v31();
-                    ((ArrObj138 *)e->arr4[i])->v4();
-                }
-                func_001E891B(obj);
-                e->obj8 = 0;
             }
-        }
-        index++;
-    } while (index < cont->count);
+            index++;
+        } while (index < ((Cont138 *)f60)->count);
+    }
 }
 
 void C_00139060::func_00139060(int a0, int a1) {
