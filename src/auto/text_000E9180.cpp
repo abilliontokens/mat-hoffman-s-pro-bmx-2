@@ -145,7 +145,12 @@ struct C_000E9180 {
     int f498;
     float f49c;
     float f4a0;
-    char pad4A4[0x4c8 - 0x4A4];
+    int f4a4;
+    int f4a8;
+    int f4ac;
+    int f4b0;
+    int f4b4;
+    char pad4b8[0x10];
     int f4c8;
     int f4cc;
     int f4d0;
