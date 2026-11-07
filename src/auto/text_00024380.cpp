@@ -144,7 +144,7 @@ extern char D_0027643C[], D_0027642C[], D_00276424[], D_00276410[];
 extern char D_002763F4[], D_002763E4[];
 extern char D_002A48F8[], D_002A5348[], D_002A47F0[], D_00275678[];
 extern void *D_002A8490;
-void func_001577A0(void *obj, int a);
+void __stdcall func_001577A0(void *obj, int a);
 char *func_001E8920(char *dst, const char *src, unsigned int n);
 extern char D_002763F4[], D_002763E4[], D_002763D0[], D_002763BC[];
 extern char D_002763AC[], D_00276388[], D_00276378[], D_00276370[];
