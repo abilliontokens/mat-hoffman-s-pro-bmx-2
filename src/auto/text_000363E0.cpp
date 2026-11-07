@@ -35,7 +35,14 @@ struct C_000363E0 {
     int f428, f42c, f430, f434;
     char pad438[0x43C - 0x438];
     int f43C;
-    char pad440[0x914 - 0x440];
+    char pad440[0x44c - 0x440];
+    int f44c, f450, f454, f458, f45c, f460;
+    float f464;
+    char pad468[0x49c - 0x468];
+    int *f49c;
+    char pad4a0[0x5f0 - 0x4a0];
+    S_Vec4 path[50];
+    char pad910[4];
     int f914;
     char pad918[0x920 - 0x918];
     int f920;
