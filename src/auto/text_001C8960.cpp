@@ -321,6 +321,18 @@ struct C_001C8960_Ini {
 };
 struct C_001C8960_Faces { int flags[6]; char *suffix[6]; };
 struct C_001C8960_Tables { int axis[6], flags[6]; char *suffix[6]; };
+struct C_001C8960_LayerParameters {
+    int kind,mode;
+    float offset;
+    int special;
+    float amount,sx,sy,rate,angle,rz;
+    int enabled;
+    float rx,frequency;
+    int param;
+    float gain,speed;
+    int extra;
+    float value;
+};
 struct C_001C8960_Parameters {
     int total,kind,mode;
     float offset;
