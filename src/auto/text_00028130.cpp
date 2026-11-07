@@ -8,8 +8,6 @@ extern float D_002756D4;
 extern float D_002756D0;
 extern float D_002756DC;
 extern float D_00275544;
-int strcmp(const char *a, const char *b);
-#pragma intrinsic(strcmp)
 void func_00026340(void *a, void *b);
 float func_0014F7E0(float a);
 
