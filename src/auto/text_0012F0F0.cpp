@@ -37,7 +37,6 @@ struct V4_0012FCF0 {
     f32 y;
     f32 z;
     f32 w;
-    V4_0012FCF0() {}
 };
 
 struct V4W_0012F0F0 {
