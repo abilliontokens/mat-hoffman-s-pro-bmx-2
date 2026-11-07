@@ -285,9 +285,8 @@ float LightEmitter::func_0015E4B0(float a1, S_0015E4B0_V4 v, LightEmitter *e)
     n.x = -e->f6C;
     n.y = -e->f70;
     n.z = -e->f74;
-    float *p = &v.x;
     float *q = &v.x;
-    func_0015CD90(p, q);
+    func_0015CD90(&v.x, q);
     float dot = v.x * n.x;
     dot += v.y * n.y;
     dot += v.z * n.z;
@@ -295,13 +294,10 @@ float LightEmitter::func_0015E4B0(float a1, S_0015E4B0_V4 v, LightEmitter *e)
     if (dot < t1) return D_002A80A4 * a1;
     float t2 = func_0014F510(e->f8C * 0.5f);
     if (dot > t2) return D_00275460 * a1;
-    float result;
-    {
-        float ratio = (t2 - dot) / (t2 - t1);
-        result = ratio;
-        result *= D_002A80A4;
-        result += D_00275460 - ratio;
-    }
+    float ratio = (t2 - dot) / (t2 - t1);
+    float result = ratio;
+    result *= D_002A80A4;
+    result += D_00275460 - ratio;
     return result * a1;
 }
 
@@ -430,6 +426,34 @@ void LightEmitter::func_0015E920(float *p)
             D_002E2930->f68++;
         }
     }
+}
+
+C_0015E990 *C_0015E990::func_0015E990(int a1, float x, float y, float z, float w, void *p6, void *p7, float *p8, float a9, int a10, int a11, int a12, int a13)
+{
+ 
+ func_001D3F50();
+ this->f28=a1; this->fBC=a13;
+ V4_0015E990 &v = *(V4_0015E990 *)&x;
+ v.x = v.x * 0.00392156886f;
+ v.y = v.y * 0.00392156886f;
+ v.z = v.z * 0.00392156886f;
+ v.w = v.w * 0.00392156886f;
+ this->func_0015E650(v);
+ if(p6) this->func_0015E850(p6);
+ if(p7) this->func_0015E920(p7);
+ if(p8) {
+ this->f80=p8[0]; this->f84=p8[1]; this->f88=p8[2];
+ C_0015E990 *s=this;
+ if(s->f88!=D_00275544) {
+ float d=s->f84*s->f84-(s->f80-D_00275600)*s->f88*D_00276DD4;
+ float q=AsmSqrtF(d);
+ this->func_0015E800((q-this->f84)/(this->f88+this->f88));
+ } else s->func_0015E800((D_00275600-s->f80)/s->f84);
+ } else {
+ this->func_0015E800(a9); this->f80=1.0f; this->f84=0.0f; this->f88=0.0f;
+ }
+ switch(a1) {case 0: case 3: case 4: return this; case 2:this->f2C=3;break;case 1:this->f2C=1;break;}
+ return this;
 }
 
 void LightEmitter::func_0015EB90(float dt)
