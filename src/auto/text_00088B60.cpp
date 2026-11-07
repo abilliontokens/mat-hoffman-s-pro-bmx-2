@@ -3,6 +3,7 @@
 #include "ghidra.h"
 #include <xmmintrin.h>
 #include <string.h>
+#include "asm_helpers.h"
 
 extern int D_002799BC;
 extern int D_00279A44;
@@ -219,10 +220,10 @@ void C_00088B60::func_00088B60()
     p = D_002EFDB8->f4;
     f30 = D_002AB66C->func_001C5C50(p, p->fF0, f34, v, 0);
     p = D_002EFDB8->f4;
-    h = (float)p->f1EC - v[1] - D_002756C4;
+    h = (float)(u32)p->f1EC - v[1] - D_002756C4;
     w = v[0] - D_002756C4;
     s = f2C;
-    if (w != s->f4 || h != s->f8) {
+    if (w != s->f4 || s->f8 != h) {
         s->f4 = w;
         s->f8 = h;
         s->b58 |= 1;
@@ -261,19 +262,19 @@ C_00088F70 *C_00088F70::func_00088DA0(int a0)
 
 C_00088DD0 *C_00088DD0::func_00088DD0(int a0, int a1, S_00088DD0_Arg *a2)
 {
- int one = 1, two = 2;
  f24=a0; f28=a1;
  func_001ADCC0(D_002A60B0,0x104,D_00275678,D_002A5348,D_002A5FA8);
  S_00088DD0_Sprite *p=(S_00088DD0_Sprite*)func_001E8A44(0x64);
  p=p?p->func_001D5760():0; f2C=p;
  p->func_001D5810(&D_00279A34,0,0,0);
+ unsigned two=2, one=1;
  unsigned h;
  if(f24==two) {
- f2C->SetWidthF(0x43a00000,one); h=0x43e00000;
+ f2C->SetWidth(0x43a00000); h=0x43e00000;
  } else {
- f2C->SetWidthF(0x44200000,one); h=0x43600000;
+ f2C->SetWidth(0x44200000); h=0x43600000;
  }
- f2C->SetHeightF(h,one);
+ f2C->SetHeight(h);
  p=f2C;
  if(f28==one)p->f38=(p->f38&0xffdd3737)|0xdd3737;
  else p->f38=(p->f38&0xffaaaaff)|0xaaaaff;
@@ -336,21 +337,25 @@ bool C_00089040::func_00089040(void)
 
 void C_00088F70::func_00089050(float dt)
 {
- float ratio = f34 / f30;
- volatile int value;
- if (f34 < f30) {
-  float t = ratio * ratio * 240.0f;
-  value = _mm_cvtss_si32(*(__m128 *)&t);
- } else value = 255;
- value = value < 255 ? value : 255;
- if (value != (int)f3C) f38 += dt;
- if (f38 > D_002755E0 && value != (int)f3C) {
-  if (value > (int)f3C) ++f3C; else --f3C;
-  f38 = 0;
-  if (value == (int)f3C) f40->v6(0);
- }
- if (f38 > D_00275AE8) f40->v6(0);
- func_00157A00(dt);
+    float ratio = f34 / f30;
+    int value;
+    int *p = &value;
+    int cur;
+    if (f34 < f30) {
+        *p = (int)(ratio * ratio * D_00278E60);
+    } else {
+        value = 255;
+    }
+    cur = value < 255 ? value : 255;
+    value = cur;
+    if (value != (int)f3C) f38 += dt;
+    if (f38 > D_002755E0 && value != (int)f3C) {
+        if (value > (int)f3C) ++f3C; else --f3C;
+        f38 = 0;
+        if (value == (int)f3C) f40->v6(0);
+    }
+    if (f38 > D_00275AE8) f40->v6(0);
+    func_00157A00(dt);
 }
 
 C_000891A0 *C_000891A0::func_000891A0(int unused)
