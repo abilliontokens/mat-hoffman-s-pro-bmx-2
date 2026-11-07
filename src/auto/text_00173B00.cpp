@@ -2,6 +2,7 @@
 #include "common.h"
 #include <math.h>
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 
 struct PhIface { virtual void v00(); void func_00133ED0(); };
 struct S_00173B00_Rig;
@@ -285,9 +286,10 @@ Vec4 *func_001743A0(Vec4 *dst, Vec4 *q)
     r.w = 1.0f;
     r.y = -func_0014FBA0(b, e);
     r.z = -func_0014FBA0(a, d);
-    float s = sqrtf(d * d + a * a);
+    d = d*d+a*a;
+    float s = sqrtf(d);
     r.x = -func_0014FBA0(-c, s);
-    *dst = r;
+    *dst=r;
     return dst;
 }
 
