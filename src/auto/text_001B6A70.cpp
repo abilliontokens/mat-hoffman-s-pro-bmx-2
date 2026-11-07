@@ -1,5 +1,6 @@
 /* 9 functions from 0x001B6A70 to 0x001B7570, found by Ghidra. */
 #include "common.h"
+#include "asm_helpers.h"
 
 struct C_6A70_V4 { float x, y, z, w; };
 
@@ -559,38 +560,31 @@ void C_001B6E70::func_001B73C0(C_001B73C0_Arg *arg) {
     }
 }
 
-C_001B7480 *C_001B7480::func_001B7480(void) {
-    C_001B7480 * volatile self = this;
-    volatile int tmp[2];
-    int lim;
-    int cap = 4;
-    int n;
-
+C_001B7480 *C_001B7480::func_001B7480(void)
+{
     vtbl = (void *)&D_0028CF30;
     {
-        S_001B7480_Quat *q = &self->f318;
+        S_001B7480_Quat *q = &f318;
         q->z = 0;
         q->y = 0;
         q->x = 0;
         q->w = 0x3f800000;
     }
-    tmp[0] = sizeof(fC) - 1;
-    lim = tmp[0];
-    tmp[1] = (lim > cap) ? cap : lim;
-    n = tmp[1];
-    func_001E8920(self->fC, (const char *)&D_002764F0, n);
-    self->fC[n] = 0;
-
-    tmp[1] = sizeof(f214) - 1;
-    lim = tmp[1];
-    tmp[0] = (lim > cap) ? cap : lim;
-    n = tmp[0];
-    func_001E8920(self->f214, (const char *)&D_002764F0, n);
-    self->f214[n] = 0;
-
-    self->f4 = 0;
-    self->f8 = 0;
-    self->f318 = D_002AA9F4;
-    return self;
+    {
+        int limit = sizeof(fC) - 1;
+        int count = AsmMinI(limit, 4);
+        func_001E8920(fC, (const char *)&D_002764F0, count);
+        fC[count] = 0;
+    }
+    {
+        int limit = sizeof(f214) - 1;
+        int count = AsmMinI(limit, 4);
+        func_001E8920(f214, (const char *)&D_002764F0, count);
+        f214[count] = 0;
+    }
+    f4 = 0;
+    f8 = 0;
+    f318 = D_002AA9F4;
+    return this;
 }
 
