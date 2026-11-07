@@ -7,6 +7,7 @@ extern float D_00276094;
 extern float D_002755E8;
 extern float D_002755F4;
 extern float D_00275460;
+extern float D_00275F58;
 extern int D_002B9108;
 extern int D_002B911C;
 extern char *D_002A8490;
