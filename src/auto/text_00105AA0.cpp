@@ -74,6 +74,9 @@ struct C_001067B0 {
     void func_001067B0(void);
     void func_00105AA0(void);
     void func_00105CB0(void);
+    int &I(int off) {return *(int*)((char*)this+off);}
+    float &F(int off) {return *(float*)((char*)this+off);}
+    char *P(int off) {return (char*)this+off;}
 };
 
 struct Vec4_00105B30 {
