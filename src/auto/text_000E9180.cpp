@@ -85,7 +85,9 @@ struct Query_0E9180 { int func_0005C1D0(int); };
 struct Timer_0E9180 { void func_001C4B60(int,int); int func_001C3F10(); };
 struct S_0E9180_Manager {
     char pad0[0x2c];
-    void *f2c;
+    List_0E9180 *f2c;
+    void func_0001BC00(int,void *);
+    int func_0001B3C0(void *);
     void func_0001C1E0(int, int, int, int);
     void func_0001BB00(int, void *, int);
     void func_0001B910(void *);
