@@ -69,7 +69,7 @@ struct C_0016FBC0 {
 
 struct O_0016F800 { char pad[0xa8]; int f; };
 struct S_16F800_Part { float x, y, z; char padc[0x14]; S_16F800_Part *next; int f24; };
-struct S_16F800_Bucket { int id; S_16F800_Part *node; };
+struct S_16F800_Bucket { unsigned int id; S_16F800_Part *node; };
 struct S_16F800_Range {
     char pad0[0x170]; float f170, f174, f178, f17c;
     float f180, f184, f188;
@@ -130,11 +130,16 @@ struct C_0016F7B0 {
     void func_0016F7B0(void);
 };
 
+extern char D_00288A3C[], D_00288A34[], D_00288A28[], D_00288A1C[], D_00288A14[], D_00288A0C[], D_00288A04[], D_002889FC[], D_002889F0[];
 int C_0016F110::func_0016F110(char *name)
 {
+    int i0, i1;
+    float fa, fb, fc, fd;
+    char sbuf[0x40];
     char buf[0x104];
     Rdr6F110 rdr;
     char buf2[0xf0];
+    int i;
 
     rdr.func_00168280();
     strcpy(buf, D_002A5558);
@@ -147,10 +152,35 @@ int C_0016F110::func_0016F110(char *name)
         rdr.func_00168C20(D_00288A50, 0, &f138);
         rdr.func_00168C50(D_00288A44, 255.0f, &f140);
         if (f138 > 0) {
-            f134 = func_001E8A44(f138 * 12);
+            int *item = (int *)func_001E8A44(f138 * 12);
+            f134 = item;
+            for (i = 0; i < f138; i++) {
+                func_001ADCC0(sbuf, 0x40, D_00288A3C, i);
+                rdr.func_00169710(sbuf);
+                rdr.func_00168A10(D_00288A34, &item[i * 3 + 0]);
+                rdr.func_00168A10(D_00288A28, &item[i * 3 + 1]);
+                rdr.func_00168A10(D_00288A1C, &item[i * 3 + 2]);
+            }
         }
         if (f14c > 0) {
-            f104 = func_001E8A44(f14c * 32);
+            float *q = (float *)func_001E8A44(f14c * 32);
+            f104 = q;
+            for (i = 0; i < f14c; i++) {
+                func_001ADCC0(sbuf, 0x40, D_00288A14, i);
+                rdr.func_00169710(sbuf);
+                rdr.func_00168B90(D_00288A0C, &fa);
+                rdr.func_00168B90(D_00288A04, &fb);
+                rdr.func_00168B90(D_002889FC, &fc);
+                rdr.func_00168B90(D_002889F0, &fd);
+                q[i * 8 + 0] = fa;
+                q[i * 8 + 1] = fc;
+                q[i * 8 + 2] = fb;
+                q[i * 8 + 3] = fc;
+                q[i * 8 + 4] = fb;
+                q[i * 8 + 5] = fd;
+                q[i * 8 + 6] = fa;
+                q[i * 8 + 7] = fd;
+            }
         }
         f150 = 0;
         rdr.func_001691E0();
@@ -185,17 +215,70 @@ void C_0016F7B0::func_0016F7B0(void)
 
 int C_0016F800::func_0016F800(void)
 {
+    S_16F800_Range *r;
     S_16F800_Obj *o;
+    S_16F800_Part *node;
+    S_16F800_Bucket *e;
+    float scale, f, inv, d;
+    float v1[4];
+    float v2[4];
+    __declspec(align(16)) float m[16];
+    int i, b;
+
     this->f144 = 0;
     if (this->obj170->f) func_001D7D00();
     if (this->count <= 0) return 1;
+
     o = (S_16F800_Obj *)D_002A829C->f14[this->f148->index].obj;
     o->func_001B07A0();
     this->f144 = D_002F0630[o->fD4 + 4];
+
+    r = (S_16F800_Range *)D_002EFDB8->obj;
+    scale = D_00275460 / (r->f200 - r->f1fc);
     this->used = 0;
     this->minb = 0x7fffffff;
     this->maxb = 0;
     this->frame++;
+    f = (float)D_002A88B8 * D_00288A7C;
+    inv = D_00275460 / f;
+
+    for (i = 0; i < this->count; i++) {
+        node = this->nodes[i];
+        d = node->y * r->f274 + node->z * r->f278 + node->x * r->f270 + r->f27c;
+        if (d > r->f200) continue;
+        if (d < r->f1fc) continue;
+        node->f24 = (float)(int)(d * f) * inv;
+        b = func_001E8858((float)(D_002A88B8 - 1) * d * scale);
+        if (b >= D_002A88B8) continue;
+        e = &this->buckets[b];
+        if (e->id < this->frame) {
+            e->node = node;
+            e->id = this->frame;
+            node->next = 0;
+        } else {
+            node->next = e->node;
+            e->node = node;
+        }
+        this->used++;
+        this->minb = b < this->minb ? b : this->minb;
+        this->maxb = b > this->maxb ? b : this->maxb;
+    }
+    if (this->used == 0) return 1;
+
+    v1[0] = r->f170 + r->f180 * D_00275994;
+    v1[1] = r->f174 + r->f184 * D_00275994;
+    v1[2] = r->f178 + r->f188 * D_00275994;
+    v1[3] = 1.0f;
+    v2[0] = -r->f180;
+    v2[1] = -r->f184;
+    v2[2] = -r->f188;
+    v2[3] = 1.0f;
+    func_000265C0(m, v1, v2, (char *)r + 0x190, 1, 1);
+    D_002E2930->func_0015DD80(m, 4, (char *)this + 0x44, (char *)this + 0x84, 0x10);
+    this->f97 = 0;
+    this->fB7 = 0;
+    this->fD7 = 0;
+    this->fF7 = 0;
     return 1;
 }
 
@@ -212,11 +295,9 @@ void C_0016FBC0::func_0016FBC0()
     volatile int i=index;
     if(index<0) return;
     do {
+        S_0016FBC0_Node *p;
         int *b=(int *)entries;
-        if(b[index*2] == id) {
-        int *e=b+index*2;
-        S_0016FBC0_Node *p=(S_0016FBC0_Node *)e[1];
-        if(p)
+        if(b[index*2] == id && (p=(S_0016FBC0_Node *)b[index*2+1]) != 0)
         do {
             float alpha=1.0f;
             if(p->flags & 0x2000) { alpha=f140; ++count1; }
@@ -270,10 +351,9 @@ positions:
             out[16]=p->x;out[17]=p->y;out[18]=p->z;out[22]=size;out[23]=alpha;out[21]=2.0f;
             out[24]=p->x;out[25]=p->y;out[26]=p->z;out[30]=size;out[31]=alpha;out[29]=3.0f;
             if(out==second) second+=32; else first+=32;
-            out=second;
             p=p->next;
+            out=second;
         } while(p);
-        }
         index=i-1;
         i=index;
     } while(index>=0);
