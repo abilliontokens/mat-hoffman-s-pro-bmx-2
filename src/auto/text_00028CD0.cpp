@@ -105,9 +105,6 @@ extern float D_00275544;
 extern float D_00275548;
 extern float D_002766A0;
 extern V4_000298F0 D_002A1110;
-extern float D_002A1114;
-extern float D_002A1118;
-extern float D_002A111C;
 
 float func_00011040(float a, float b);
 float func_00011020(float a, float b);
