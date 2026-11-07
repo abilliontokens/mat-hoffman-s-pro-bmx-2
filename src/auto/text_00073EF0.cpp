@@ -85,7 +85,7 @@ struct C_00073EF0 {
     Txt_73 *fFC;
     Txt_73 *f100;
     Txt_73 *f104;
-    char pad108[0x10];
+    Txt_73 *f108, *f10C, *f110, *f114;
     Txt_73 *f118;
     char pad11C[4];
     void *f120;
