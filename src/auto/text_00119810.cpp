@@ -1,6 +1,7 @@
 /* 4 functions from 0x00119810 to 0x0011A590, found by Ghidra. */
 #include "common.h"
 #include <xmmintrin.h>
+#include <math.h>
 #include "asm_helpers.h"
 
 extern int D_00283D5C;
