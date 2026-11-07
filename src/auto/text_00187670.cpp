@@ -648,24 +648,17 @@ C_00187F20 *C_00187F20::func_00187F20(void)
 int C_001880A0::func_001880A0(S_001880A0_Stream * volatile stream)
 {
     char buf[0x104];
-    C_001880A0 * volatile self = this;
-    volatile int lengths[2];
-    int count;
-    
-    int n;
+
     stream->func_00168BE0(&D_00276310, &D_002764F0, buf, -1);
-    lengths[0] = func_001E9040(buf, (char *)&D_0027CEF0);
-    count = 50;
-    if (lengths[0] < count) count = lengths[0];
-    lengths[1] = count;
-    n = lengths[1];
-    func_001E8920(self->f4, buf, n);
-    ((volatile char *)n)[(int)self->f4] = 0;
-    stream->func_00168CB0(&D_00275AD4, &D_002A90B4, self->f108);
-    stream->func_00168CB0(&D_00275AC8, &D_002A90E4, self->f118);
-    stream->func_00168CB0(&D_0027CEE4, &D_002A90D4, self->f128);
-    stream->func_00168C20(&D_0027CED8, 1, &self->f138);
-    stream->func_00168C20(&D_00289EB8, 0, &self->f13C);
+    int len = func_001E9040(buf, (char *)&D_0027CEF0);
+    int count = AsmMinI(len, 0x32);
+    func_001E8920(f4, buf, count);
+    ((char *)this)[count + 4] = 0;
+    stream->func_00168CB0(&D_00275AD4, &D_002A90B4, f108);
+    stream->func_00168CB0(&D_00275AC8, &D_002A90E4, f118);
+    stream->func_00168CB0(&D_0027CEE4, &D_002A90D4, f128);
+    stream->func_00168C20(&D_0027CED8, 1, &f138);
+    stream->func_00168C20(&D_00289EB8, 0, &f13C);
     return 1;
 }
 #pragma optimize("g", on)
