@@ -87,7 +87,9 @@ struct SceneNode {
     void func_001577A0(SceneNode*,int);
 };
 struct SceneBounds {
-    void **vt;
+    virtual void slot0();
+    virtual void slot1();
+    virtual void slot2();
     SceneBounds *func_001C4F40();
     SceneBounds *func_001923F0(int);
     void func_001C4F70(int,int,int,int,int,int,int);
