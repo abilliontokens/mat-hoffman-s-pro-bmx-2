@@ -16,7 +16,7 @@ struct S_001ACFE0_Range {
     char *end;
 };
 
-int func_001ACFE0(const u16 *fmt, S_001ACFE0_Range *range, int a, void *b);
+int func_001ACFE0(const u16 *fmt, S_001ACFE0_Range *range, const char *a, void *b);
 int func_001EA23F(int c);
 int func_001EA268(int c);
 int func_001E8BB0(const char *a, const char *b, int n);
