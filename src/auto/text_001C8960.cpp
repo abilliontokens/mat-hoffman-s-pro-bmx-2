@@ -1,5 +1,96 @@
 /* 3 functions from 0x001C8960 to 0x001C9920, found by Ghidra. */
 #include "common.h"
+
+struct C_001C8960_Slot;
+struct C_001C8960_Manager {
+    virtual void v0();
+    virtual void v4();
+    virtual void v8();
+    virtual void vc();
+    virtual void v10();
+    virtual void v14();
+    virtual void attach(int,int);
+    int func_001617F0(char *, int);
+};
+struct C_001C8960_Model {
+    virtual void v0();
+    virtual void v4();
+    virtual void v8();
+    virtual void vc();
+    virtual void v10();
+    virtual void v14();
+    virtual void v18();
+    virtual void v1c();
+    virtual void v20();
+    virtual void v24();
+    virtual void v28();
+    virtual void v2c();
+    virtual void v30();
+    virtual void v34();
+    virtual void v38();
+    virtual void v3c();
+    virtual void v40();
+    virtual void v44();
+    virtual void v48();
+    virtual void v4c();
+    virtual void v50();
+    virtual void v54();
+    virtual void v58();
+    virtual void v5c();
+    virtual void v60();
+    virtual void v64();
+    virtual void v68();
+    virtual void v6c();
+    virtual void v70();
+    virtual void v74();
+    virtual void v78();
+    virtual void v7c();
+    virtual void v80();
+    virtual void v84();
+    virtual void v88();
+    virtual C_001C8960_Model *load(char *, int, int);
+    C_001C8960_Model *func_001CAFD0(int);
+    void func_001995B0(float,float,float);
+    void func_00182020(int,int);
+};
+struct C_001C8960_SlotView {
+    virtual void v0();
+    virtual void load(char *,int);
+};
+struct C_001C8960_View {
+    virtual void v0();
+    virtual void v4();
+    virtual void v8();
+    virtual void vc();
+    virtual void v10();
+    virtual void v14();
+    virtual void v18();
+    virtual void v1c();
+    virtual void v20();
+    virtual void v24();
+    virtual void v28();
+    virtual void v2c();
+    virtual void v30();
+    virtual void v34();
+    virtual void v38();
+    virtual void v3c();
+    virtual void v40();
+    virtual void v44();
+    virtual void v48();
+    virtual void v4c();
+    virtual void v50();
+    virtual void v54();
+    virtual void v58();
+    virtual void v5c();
+    virtual void v60();
+    virtual void v64();
+    virtual void v68();
+    virtual void v6c();
+    virtual void v70();
+    virtual void attach(C_001C8960_Slot *);
+};
+extern int func_0014FF00(char *,int,char *,int,int);
+
 struct C_001C8960_Layer {
     char pad0[0xac]; int type;
     C_001C8960_Layer *func_00143940(float *, float *, int, float, float, float, float, float, float, float, int, int, int, float, float, int, int, float);
