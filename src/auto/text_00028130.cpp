@@ -1,6 +1,7 @@
 /* 1 function from 0x00028130 to 0x00028CD0, found by Ghidra. */
 #include "common.h"
 #include "asm_helpers.h"
+#include <string.h>
 
 struct V4 { float x; float y; float z; float w; };
 extern float D_002756D4;
@@ -151,6 +152,9 @@ int C_00028130::func_00028130(int *param1, int param2, int *param3)
     point.y = 0.0f;
     point.x = 0.0f;
     point.w = 1.0f;
+    V4 out;
+    V4 t1;
+    V4 t2;
     v1 = *(V4 *)((char *)this + 0x10c);
     v1.y = 0.0f;
     func_00026340(&v1, &v1);
@@ -212,14 +216,16 @@ int C_00028130::func_00028130(int *param1, int param2, int *param3)
         float dz = point.z - resF.z;
         float ssq = dz * dz + dx * dx + dy * dy;
         float dist = AsmSqrtF(ssq);
-        diff.x = cand->p20 - point.x;
-        diff.y = cand->p24 - point.y;
-        diff.z = cand->p28 - point.z;
-        diff.w = 1.0f;
-        diffB.x = cand->p30 - point.x;
-        diffB.y = cand->p34 - point.y;
-        diffB.z = cand->p38 - point.z;
-        diffB.w = 1.0f;
+        t1.w = 1.0f;
+        t1.x = cand->p20 - point.x;
+        t1.y = cand->p24 - point.y;
+        t1.z = cand->p28 - point.z;
+        t2.w = 1.0f;
+        t2.x = cand->p30 - point.x;
+        t2.y = cand->p34 - point.y;
+        t2.z = cand->p38 - point.z;
+        diff = t1;
+        diffB = t2;
         AsmVec3Normalize((float *)&diff, (float *)&diff);
         AsmVec3Normalize((float *)&diffB, (float *)&diffB);
         int flag = 1;
@@ -237,7 +243,7 @@ int C_00028130::func_00028130(int *param1, int param2, int *param3)
         if (dot < D_00275544 && dist < best1 && -f5A8 < resF.y - point.y && flag) {
             best1 = dist;
             best = cand;
-            V4 out = f230->func_00198120(&point);
+            f230->func_00198120(&point, &out);
             if (out.x <= D_00275544) {
                 flagResult = 1;
             } else {
@@ -324,8 +330,8 @@ lab_9c0:
     }
 lab_end:
     if (*param1 != 0 && *param1 != 1) {
-        func_0005DA40(best);
-        func_0005DA80(*param1);
+        f210->func_0005DA40(best);
+        f210->func_0005DA80(*param1);
         return 1;
     }
     if (f210->f30 != 0) {
@@ -334,8 +340,8 @@ lab_end:
             f488 = 0;
         }
     }
-    func_00026270(best);
-    func_0005DA50(*param1);
+    f210->func_00026270(best);
+    f210->func_0005DA50(*param1);
     f72C = 0;
     if (f720 == 0) {
         f730 = f72C;
