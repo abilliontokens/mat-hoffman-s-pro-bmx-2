@@ -577,31 +577,26 @@ void C_0015D070::func_0015D070(float a0, float a1)
 
 void C_0015D0A0::func_0015D0A0(int a0, int a1)
 {
-    float w;
-    float s;
-    C_001938C0 *obj;
-
-    s = f78 * D_002755E8;
-    V4_0015D0A0 pos = f94;
-    V4_0015D0A0 scl;
-    w = 1.0f;
+    L_0015D0A0 l;
+    float s = f78 * 0.5f;
+    l.pos = f94;
+    l.w = 1.0f;
     if (f2c == 3) {
-        pos.x += s * f6c;
-        pos.y += s * f70;
-        pos.z += s * f74;
-        scl = V4_0015D0A0(V3_0015D0A0(s, s, s), w);
+        l.pos.x += s * f6c;
+        l.pos.y += s * f70;
+        l.pos.z += s * f74;
+        l.t.x=s; l.t.y=s; l.t.z=s;
+        *(V3_0015D0A0 *)&l.scl = l.t; *(int *)&l.scl.w = *(int *)&l.w;
     } else {
-        scl = V4_0015D0A0(V3_0015D0A0(f78, f78, f78), w);
+        l.t.x=f78; l.t.y=f78; l.t.z=f78;
+        *(V3_0015D0A0 *)&l.scl = l.t; *(int *)&l.scl.w = *(int *)&l.w;
     }
-    obj = (C_001938C0 *)func_001E8A44(0x28);
-    if (obj != 0) {
-        obj = obj->func_00193490();
-    } else {
-        obj = 0;
-    }
+    C_001938C0 *obj = (C_001938C0 *)func_001E8A44(0x28);
+    if (obj) obj = obj->func_00193490();
+    else obj = 0;
     fc8 = a0;
     fc4 = obj;
-    obj->func_001938C0(f24, a0, a1, &pos, &scl, f78);
+    obj->func_001938C0(f24,a0,a1,&l.pos,&l.scl,f78);
 }
 
 C_0015D1B0 *C_0015D1B0::func_0015D1B0(void)
