@@ -49,6 +49,7 @@ struct C_00066C90 {
     void func_00157600(int a0);
     C_00066C90 *func_00066C90(int a0);
     void func_00066FA0(int a0);
+    void func_001577A0(void *, int);
 };
 
 struct Res_66C { void *func_0018C160(void *name); };
@@ -179,6 +180,9 @@ extern float D_00278650, D_00275800, D_00278870;
 extern char D_002786B0[];
 extern char D_002786B0[], D_00278648[];
 extern char D_002786B0[], D_00278648[], D_00278624[], D_00278638[], D_00278608[], D_00278600[];
+extern int D_0028F5E0;
+extern char D_002A5FA8[], D_002A5870[], D_00275678[];
+int func_001ADCC0(char *buf, int size, char *fmt, ...);
 void C_00066C90::func_00066FA0(int a0)
 {
     unk10C = a0;
@@ -273,5 +277,21 @@ void C_00066C90::func_00066FA0(int a0)
     s->flags |= 2;
     if (s->y != 448.0f) { s->y = 448.0f; s->flags |= 1; }
     if (s->x != 640.0f) { s->x = 640.0f; s->flags |= 1; }
+    Txt_66C *t = (Txt_66C *)func_001E8A44(0x60);
+    t = t ? t->func_001D5E90() : 0;
+    unk104 = (int)t;
+    t->func_001D5FA0(v10, D_00278678, 20.0f, 0);
+    if (t->color != 0xaaaaaaaa) { t->color = (t->color & 0xffaaaaaa) | 0xaaaaaa; t->flags |= 8; }
+    if (t->x != 320.0f || t->y != 40.0f) { t->x = 320.0f; t->y = 40.0f; t->flags |= 6; }
+    if (t->frame != D_0028F5E0) { t->frame = D_0028F5E0; t->flags |= 6; }
+    t->func_0005E840(*(void **)(*(char **)((char *)D_002A8490->unk2E8 + 4) + 0x740));
+    t = (Txt_66C *)func_001E8A44(0x60);
+    t = t ? t->func_001D5E90() : 0;
+    unk14C = (int)t;
+    t->func_001D6190(v14, *(void **)(*(char **)((char *)D_002A8490->unk2E8 + 4) + 0xac8), D_00278690);
+    if (t->x != 320.0f || t->y != 117.0f) { t->x = 320.0f; t->y = 117.0f; t->flags |= 6; }
+    if (t->color != 0xffcccccc) { t->color = (t->color & 0xffcccccc) | 0xcccccc; t->flags |= 8; }
+    if (t->frame != D_0028F5E0) { t->frame = D_0028F5E0; t->flags |= 6; }
+    func_001ADCC0((char *)&D_002A60B0, 0x104, D_00275678, D_002A5870, D_002A5FA8);
 }
 
