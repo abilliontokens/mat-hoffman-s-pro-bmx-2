@@ -88,7 +88,7 @@ struct C_000B6640 {
     {
         float y = 0.0f - f7C;
         y += src->y;
-        *dst = V4Init_000B6840(src->x, y, src->z, 1.0f);
+        *dst = V4Init_000B6840(((volatile V4_000B6840 *)src)->x, y, src->z, 1.0f);
     }
 };
 
