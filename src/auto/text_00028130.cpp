@@ -35,6 +35,7 @@ struct Obj24 { char pad0[0x530]; A530 *f530; };
 struct Node230 {
     V4 func_00197F70(V4 *in);
     void func_0019A8C0(V4 *a, V4 *b);
+    void func_00198120(V4 *in, V4 *out);
     V4 func_00198120(V4 *in);
 };
 struct TailObj {
