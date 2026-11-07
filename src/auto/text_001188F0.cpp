@@ -67,6 +67,7 @@ static __forceinline void Copy_001188F0(M4 * volatile dst, const M4 * volatile s
     d->r0 = r0; d->r1 = r1; d->r2 = r2; d->r3 = r3;
 }
 
+struct Manager1188F0 { void func_001048E0(); void func_001048C0(); };
 struct Self1188F0 {
     void func_0002D270();
     void func_0010DCB0();
