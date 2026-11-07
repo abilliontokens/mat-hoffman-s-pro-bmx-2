@@ -517,38 +517,31 @@ void C_00030CD0::func_00030CD0(int a0) {
 
 int C_00030CE0::func_00030CE0(float dt)
 {
-    if (f24 != 0 && f2C != 0) {
-        float d = f30 - f78->f28;
-        f50 = d * f4C;
-        if (f50 > D_00275460) {
-            f50 = 1.0f;
-            f54 = 0;
-        } else if (f50 < D_00275544) {
-            f54 = d * f48 * dt + f54;
-            f54 = _mm_min_ss(_mm_max_ss(_mm_set_ss(f54), _mm_set_ss(0.0f)), _mm_set_ss(1.0f)).m128_f32[0];
-            f50 = f54 + f50;
-            f50 = _mm_min_ss(_mm_max_ss(_mm_set_ss(f50), _mm_set_ss(0.0f)), _mm_set_ss(1.0f)).m128_f32[0];
-        } else {
-            f50 = 0;
-            f54 = 0;
-        }
-        float v = f50 * f44;
-        if (f28 != 0) {
-            v *= D_00276A90;
-        }
-        f60 = v;
-        return 1;
-    }
-    f54 = 0;
-    f50 = 0;
-    f60 = 0;
-    return 1;
+ if(f24 != 0 && f2C != 0) {
+ float d=f30-f78->f28;
+ f50=d*f4C;
+ if(f50>D_00275460) { f50=1.0f; f54=0; }
+ else if(f50<D_00275544) { f50=0; f54=0; }
+ else {
+ f54 += d*f48*dt;
+ f54=AsmMinF(AsmMaxF(f54,0.0f),1.0f);
+ f50+=f54;
+ f50=AsmMinF(AsmMaxF(f50,0.0f),1.0f);
+ }
+ float v=f50*f44;
+ if(f28 != 0) v*=D_00276A90;
+ f60=v;
+ return 1;
+ }
+ f54=0; f50=0; f60=0;
+ return 1;
 }
 
 int C_00030E70::func_00030E70(int a0)
 {
+    S_00030E70_Target *t = f78;
     float *p = &f58.x;
-    func_0001C750(f58, V4_00030E70(f78->f190 + f68, f78->f194 + p[5], f78->f198 + p[6], 1.0f));
+    func_0001C750(*(V4_00030E70 *)p, V4_00030E70(t->f190 + p[4], t->f194 + p[5], t->f198 + p[6], 1.0f));
     return 1;
 }
 
