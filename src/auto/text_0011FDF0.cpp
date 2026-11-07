@@ -1,9 +1,10 @@
 /* 5 functions from 0x0011FDF0 to 0x00120B20, found by Ghidra. */
 #include "common.h"
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 
-static __forceinline float Min_0011FDF0(float a, float b) { float r; _mm_store_ss(&r, _mm_min_ss(_mm_set_ss(a), _mm_set_ss(b))); return r; }
-static __forceinline float Max_0011FDF0(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_set_ss(a), _mm_set_ss(b))); return r; }
+static __forceinline float Min_0011FDF0(float a, float b) { return _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b)).m128_f32[0]; }
+static __forceinline float Max_0011FDF0(float a, float b) { return _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b)).m128_f32[0]; }
 static __forceinline float Abs_0011FDF0(const float &f) { int i = *(int *)&f & 0x7fffffff; return *(float *)&i; }
 
 static __forceinline float AbsVal_00120470(float f) { int i = *(int *)&f & 0x7fffffff; return *(float *)&i; }
@@ -67,21 +68,24 @@ int func_0011FF30(S_0011F4B0_V4 *p, void *t)
     a.z = 0.0f; a.y = 0.0f; a.x = 0.0f; a.w = 1.0f;
     b.z = 0.0f; b.y = 0.0f; b.x = 0.0f; b.w = 1.0f;
     c.z = 0.0f; c.y = 0.0f; c.x = 0.0f; c.w = 1.0f;
+    u.z = 0.0f; u.y = 0.0f; u.x = 0.0f;
+    v.z = 0.0f; v.y = 0.0f; v.x = 0.0f;
+    w.z = 0.0f; w.y = 0.0f; w.x = 0.0f;
     func_0011F0E0(&a, &b, &c, tri, D_002B92F4);
     u.x = b.x - a.x; u.y = b.y - a.y; u.z = b.z - a.z; u.w = 1.0f;
     v.x = c.x - a.x; v.y = c.y - a.y; v.z = c.z - a.z; v.w = 1.0f;
     w.x = p->x - a.x; w.y = p->y - a.y; w.z = p->z - a.z; w.w = 1.0f;
-    x.z = 0.0f; x.y = 0.0f; x.x = 0.0f; x.w = 1.0f;
-    Cross_0011FF30(&x, &u, &w);
+    x.w = 1.0f;
+    AsmVec3Cross(&x.x, &u.x, &w.x);
     if (!(x.y * n.y + x.x * n.x + x.z * n.z > D_00275544)) return 0;
-    Cross_0011FF30(&x, &w, &v);
+    AsmVec3Cross(&x.x, &w.x, &v.x);
     if (!(x.y * n.y + x.x * n.x + x.z * n.z > D_00275544)) return 0;
     u.x = c.x - b.x; u.y = c.y - b.y; u.z = c.z - b.z; u.w = 1.0f;
     v.x = a.x - b.x; v.y = a.y - b.y; v.z = a.z - b.z; v.w = 1.0f;
     w.x = p->x - b.x; w.y = p->y - b.y; w.z = p->z - b.z; w.w = 1.0f;
-    Cross_0011FF30(&x, &u, &w);
+    AsmVec3Cross(&x.x, &u.x, &w.x);
     if (!(x.y * n.y + x.x * n.x + x.z * n.z > D_00275544)) return 0;
-    Cross_0011FF30(&x, &w, &v);
+    AsmVec3Cross(&x.x, &w.x, &v.x);
     if (!(x.y * n.y + x.x * n.x + x.z * n.z > D_00275544)) return 0;
     return 1;
 }
@@ -90,7 +94,7 @@ int func_00120470(short *tri, S_0011F4B0_V4 pos, float radius, int unused, float
 {
     S_00120470_Triangle triangle;
     float delta[4], scaled[4];
-    volatile float absoluteInput;
+    volatile float absoluteInput[1];
     volatile int absoluteBits;
     float d;
     func_0011F540(&pos, pos, m);
@@ -103,8 +107,8 @@ int func_00120470(short *tri, S_0011F4B0_V4 pos, float radius, int unused, float
     func_0011F0E0(&triangle.a, &triangle.b, &triangle.c, tri, D_002B92F4);
     delta[0] = pos.x - triangle.a.x; delta[1] = pos.y - triangle.a.y; delta[2] = pos.z - triangle.a.z;
     d = delta[2] * triangle.n.z + (delta[0] * triangle.n.x + delta[1] * triangle.n.y);
-    absoluteInput = *(volatile float *)&d;
-    absoluteBits = *(volatile int *)&absoluteInput & 0x7fffffff;
+    absoluteInput[0] = *(volatile float *)&d;
+    absoluteBits = *(volatile int *)&absoluteInput[0] & 0x7fffffff;
     if (*(volatile float *)&absoluteBits > radius) return 0;
     scaled[0] = triangle.n.x * d; scaled[1] = triangle.n.y * d; scaled[2] = triangle.n.z * d;
     triangle.n.x = pos.x - scaled[0];
@@ -113,20 +117,22 @@ int func_00120470(short *tri, S_0011F4B0_V4 pos, float radius, int unused, float
     triangle.n.w = 1.0f;
     if (func_0011FF30(&triangle.n, tri)) return 1;
     d = func_0011FDF0(&pos, &triangle.a, &triangle.b);
-    absoluteInput = d;
-    absoluteBits = *(volatile int *)&absoluteInput & 0x7fffffff;
+    absoluteInput[0] = d;
+    absoluteBits = *(volatile int *)&absoluteInput[0] & 0x7fffffff;
     if (*(volatile float *)&absoluteBits < radius) return 1;
     d = func_0011FDF0(&pos, &triangle.b, &triangle.c);
-    absoluteInput = d;
-    absoluteBits = *(volatile int *)&absoluteInput & 0x7fffffff;
+    absoluteInput[0] = d;
+    absoluteBits = *(volatile int *)&absoluteInput[0] & 0x7fffffff;
     if (*(volatile float *)&absoluteBits < radius) return 1;
     d = func_0011FDF0(&pos, &triangle.c, &triangle.a);
-    absoluteInput = d;
-    absoluteBits = *(volatile int *)&absoluteInput & 0x7fffffff;
+    absoluteInput[0] = d;
+    absoluteBits = *(volatile int *)&absoluteInput[0] & 0x7fffffff;
     if (*(volatile float *)&absoluteBits < radius) return 1;
     return 0;
 }
 
+extern "C" void _ReadWriteBarrier(void);
+#pragma intrinsic(_ReadWriteBarrier)
 int func_001206E0(short *tri, S_0011F4B0_V4 pos, float radius, int unused, float *m)
 {
     int result = 0;
@@ -138,6 +144,7 @@ int func_001206E0(short *tri, S_0011F4B0_V4 pos, float radius, int unused, float
     float scaled[4];
     float delta[4];
     float t;
+    volatile int bits;
     S_001206E0_Hit *hit;
 
     func_0011F540(&pos, pos, m);
@@ -163,9 +170,24 @@ int func_001206E0(short *tri, S_0011F4B0_V4 pos, float radius, int unused, float
     proj.z = pos.z - scaled[2];
     proj.w = 1.0f;
     if (func_0011FF30(&proj, tri)) goto hit;
-    if (Abs_0011FDF0(func_0011FDF0(&pos, &v0, &v1)) < radius) goto hit;
-    if (Abs_0011FDF0(func_0011FDF0(&pos, &v1, &v2)) < radius) goto hit;
-    if (!(Abs_0011FDF0(func_0011FDF0(&pos, &v2, &v0)) < radius)) goto done;
+    {
+        float d = func_0011FDF0(&pos, &v0, &v1);
+        _ReadWriteBarrier();
+        bits = *(unsigned int *)&d & 0x7fffffff;
+        if (*(float *)&bits < radius) goto hit;
+    }
+    {
+        float d = func_0011FDF0(&pos, &v1, &v2);
+        _ReadWriteBarrier();
+        bits = *(unsigned int *)&d & 0x7fffffff;
+        if (*(float *)&bits < radius) goto hit;
+    }
+    {
+        float d = func_0011FDF0(&pos, &v2, &v0);
+        _ReadWriteBarrier();
+        bits = *(unsigned int *)&d & 0x7fffffff;
+        if (!(*(float *)&bits < radius)) goto done;
+    }
 hit:
     result = 1;
     hit = D_002B92EC;
@@ -183,7 +205,6 @@ hit:
 done:
     return result;
 }
-
 int func_001209F0(float *a, float *b, float *p, float r2)
 {
     float d[4];
