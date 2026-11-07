@@ -68,6 +68,10 @@ void func_00034820(float*,float*);
 struct Q64_000448D0 {
     char pad0[0x4e0];
     Q4E0_000448D0 *f4e0;
+    char pad4e4[0x5a4-0x4e4];
+    Table_448D0 *f5a4;
+    int f5a8;
+    Elem_448D0 **f5ac;
 };
 struct Q2FC_000448D0 {
     void func_00095200(int);
