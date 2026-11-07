@@ -65,7 +65,10 @@ struct C_0011D2F0 {
     int f44;
     char pad48[0x5c - 0x48];
     float f5C, f60, f64;
-    char pad68[0x84 - 0x68];
+    char pad68[4];
+    V4_0011D2F0 f6C;
+    float f7C;
+    char pad80[4];
     Body_0011D2F0 *f84;
     Node_0011D2F0 *f88;
     float f8C, f90;
