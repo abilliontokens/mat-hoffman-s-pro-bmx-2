@@ -44,7 +44,7 @@ inline void *operator new(unsigned int, void *place) { return place; }
 struct V4_0002B1C0 {
     float x, y, z, w;
     V4_0002B1C0() { x = y = z = 0.0f; w = 1.0f; }
-    void Init() { x = y = z = 0.0f; w = 1.0f; }
+    V4_0002B1C0 *Init() { x = y = z = 0.0f; w = 1.0f; return this; }
 };
 
 struct V4k_0002B1C0 {
@@ -80,11 +80,11 @@ static __forceinline void Identity_0002B1C0(S_0002B1C0_Mat *m)
 
 void *C_0002C100::func_0002B1C0(int param)
 {
+    S_0002B1C0_Mat mat1;
+    S_0002B1C0_Mat mat2;
     unsigned int * volatile p = (unsigned int *)this;
     V4_0002B1C0 *q4;
     int i;
-    S_0002B1C0_Mat mat1;
-    S_0002B1C0_Mat mat2;
     func_00157600(param);
     p[0] = (unsigned int)&D_0027661C;
     V4_AT(0x2c)->Init();
@@ -150,15 +150,15 @@ void *C_0002C100::func_0002B1C0(int param)
     mat1.r0 = _mm_setzero_ps(); mat1.r1 = _mm_setzero_ps(); mat1.r2 = _mm_setzero_ps(); mat1.r3 = _mm_setzero_ps();
     ((float *)&mat1)[0] = 1.0f; ((float *)&mat1)[5] = 1.0f; ((float *)&mat1)[10] = 1.0f; ((float *)&mat1)[15] = 1.0f;
     mat2 = mat1;
-    ((C_000264C0 *)((char *)this + 0x160))->func_000264C0(&mat2);
+    ((C_000264C0 *)((char *)p + 0x160))->func_000264C0(&mat2);
     mat2.r0 = _mm_setzero_ps(); mat2.r1 = _mm_setzero_ps(); mat2.r2 = _mm_setzero_ps(); mat2.r3 = _mm_setzero_ps();
     ((float *)&mat2)[0] = 1.0f; ((float *)&mat2)[5] = 1.0f; ((float *)&mat2)[10] = 1.0f; ((float *)&mat2)[15] = 1.0f;
     mat1 = mat2;
-    ((C_000264C0 *)((char *)this + 0x1a0))->func_000264C0(&mat1);
+    ((C_000264C0 *)((char *)p + 0x1a0))->func_000264C0(&mat1);
     V4_CPY(0x688, D_002A10F0);
     V4_CPY(0x7c, D_002A10F0);
     p[0x67c/4] = 0; p[0x680/4] = 0; p[0x684/4] = 0; p[0x490/4] = 0; p[0x5c8/4] = 0; p[0x698/4] = 0;
-    *(unsigned short *)((char *)this + 0x500) = D_002BA160;
+    *(unsigned short *)((char *)p + 0x500) = D_002BA160;
     p[0x504/4] = 0; p[0x508/4] = 0x3f800000; p[0x6ac/4] = 0x3f800000; p[0x6b0/4] = 0x3f400000; p[0x6b4/4] = 0x3f000000; p[0x6b8/4] = 0x3dcccccd; p[0x6bc/4] = 0x3f000000; p[0x6c0/4] = 0x3dcccccd; p[0x6c8/4] = 0; p[0x6c4/4] = 1; p[0x69c/4] = 0; p[0x6a4/4] = 0; p[0x6a8/4] = 0;
     V4_CPY(0x6cc, D_002A10F0);
     V4_CPY(0x6dc, D_002A10F0);
@@ -172,7 +172,7 @@ void *C_0002C100::func_0002B1C0(int param)
     V4_CPY(0x13c, D_002A10F0);
     V4_CPY(0x14c, D_002A10F0);
     p[0x214/4] = 0; p[0x218/4] = 0; p[0x210/4] = 0; p[0x78c/4] = 0;
-    return this;
+    return (void *)p;
 }
 
 void *C_0002C100::func_0002C100(unsigned int flags)
