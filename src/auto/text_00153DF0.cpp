@@ -5,7 +5,8 @@ struct C_00154BF0 {
     undefined4 func_00154BF0(byte param_1);
 };
 
-struct V153DF0 { virtual void v18(); virtual void v78(); };
+struct Vec153DF0 { float x,y,z,w; };
+struct V153DF0 { virtual void v00(); virtual void v04(); virtual void v08(); virtual void v0C(); virtual void v10(); virtual void v14(int); virtual void v18(); virtual void v1C(); virtual void v20(); virtual void v24(); virtual void v28(); virtual void v2C(); virtual void v30(); virtual void v34(); virtual void v38(); virtual void v3C(); virtual void v40(); virtual void v44(); virtual void v48(); virtual void v4C(); virtual void v50(); virtual void v54(); virtual void v58(); virtual void v5C(); virtual void v60(); virtual void v64(); virtual void v68(); virtual void v6C(); virtual void v70(); virtual void v74(); virtual void v78(); virtual void v7C(); virtual void v80(); };
 struct C153DF0_Eff {
     char pad0[0x150];
     V153DF0 *f150;
