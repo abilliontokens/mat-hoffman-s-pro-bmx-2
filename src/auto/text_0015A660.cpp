@@ -2,6 +2,7 @@
 #include "common.h"
 #include "ghidra.h"
 #include <string.h>
+#include "asm_helpers.h"
 
 struct C_0015A660 {
     char pad0[0x28];
@@ -401,23 +402,26 @@ struct JoystickDevice {
 
 void *C_0015A660::func_0015A660()
 {
-    unsigned __int64 freq, prev, cur, total;
-    unsigned __int64 t0, t1;
-    func_001D3F50();
-    if (func_001DD128(&freq) == 0)
-        return 0;
-    total = 0;
-    func_001DD117(&prev);
-    t0 = __rdtsc();
-    while ((__int64)freq > 0 && total < freq) {
-        func_001DD117(&cur);
-        total += cur - prev;
-        prev = cur;
-    }
-    t1 = __rdtsc();
-    t1 -= t0;
-    f28 = D_00276278 / (__int64)t1;
-    return this;
+ C_0015A660 *volatile self=this;
+ unsigned __int64 freq, prev, cur;
+ volatile unsigned __int64 t0, t1;
+ __int64 total;
+ func_001D3F50();
+ if (func_001DD128(&freq)) {
+ total=0;
+ func_001DD117(&prev);
+ t0=__rdtsc();
+ while (total < (__int64)freq) {
+ func_001DD117(&cur);
+ total += cur-prev;
+ prev=cur;
+ }
+ t1=__rdtsc();
+ t1-=t0;
+ self->f28=D_00276278/(__int64)t1;
+ return self;
+ }
+ return 0;
 }
 
 void C_0015A740::func_0015A740(void)
@@ -914,14 +918,11 @@ void *C_0015B310::func_0015B310(int flags)
     return this;
 }
 
-int C_0015B470::func_0015B370(volatile int n)
+int C_0015B470::func_0015B370(int n)
 {
-    C_0015B470 * volatile self = this;
-    volatile int tmp[2];
     S_0015B470_Entry *old;
-    C_0015B470 *s;
-    int cnt;
     int m;
+    int cnt;
     int i;
 
     if (n <= 0) {
@@ -930,29 +931,23 @@ int C_0015B470::func_0015B370(volatile int n)
     if (n < f4) {
         fC = n - 1;
     }
-    old = self->f0;
-    self->f0 = (S_0015B470_Entry *)func_001E8A44(n * 0x108);
-    s = self;
-    if (s->f0 == 0) {
+    old = f0;
+    f0 = (S_0015B470_Entry *)func_001E8A44(n * 0x108);
+    if (f0 == 0) {
         return 0;
     }
-    tmp[0] = s->f4;
-    m = tmp[0];
-    if (m > n) {
-        m = n;
-    }
-    tmp[1] = m;
-    cnt = tmp[1];
+    m = f4;
+    cnt = AsmMinI(m, n);
     for (i = 0; i < cnt; i++) {
-        self->f0[i] = old[i];
+        f0[i] = old[i];
     }
-    if (self->f4 < cnt && self->f10 != 0) {
-        for (i = self->f4; i < cnt; i++) {
-            self->f0[i] = self->dflt;
+    if (f4 < cnt && f10 != 0) {
+        for (i = f4; i < cnt; i++) {
+            f0[i] = dflt;
         }
     }
     func_001E891B(old);
-    self->f4 = n;
+    f4 = n;
     return 1;
 }
 
