@@ -46,7 +46,9 @@ struct C_000399A0 {
     int pad4a4;
     int f4a8;
     float f4ac, f4b0, f4b4;
-    char pad4b8[0xac];
+    int f4b8, f4bc;
+    float f4c0;
+    char pad4c4[0xa0];
     S_000399A0_Slot *f564;
     char pad568[0x3e0];
     float f948;
