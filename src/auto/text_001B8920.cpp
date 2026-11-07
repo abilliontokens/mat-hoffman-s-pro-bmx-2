@@ -3,6 +3,7 @@
 #include "ghidra.h"
 #include <math.h>
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 
 extern int D_0028D0BC;
 extern char D_00275630[];
@@ -17,6 +18,7 @@ extern float D_0028CA40;
 extern float D_0028CA30;
 
 struct V4_1B8920 { float x, y, z, w; };
+static __forceinline void init_1B8920(V4_1B8920 *v) { v->z=0.0f; v->y=0.0f; v->x=0.0f; v->w=1.0f; }
 extern V4_1B8920 D_002AAA14;
 extern "C" void func_00158390(float f, V4_1B8920 a, V4_1B8920 b, V4_1B8920 *out);
 extern "C" float func_0014F890(float x);
@@ -167,17 +169,17 @@ void C_1B8920_Mgr::func_001B8920(void)
                 P.y = dy;
                 P.z = dz;
                 float sq = dx * dx + dy * dy + dz * dz;
-                len = sqrtf(sq);
-                norm_1B8920(&P.x, &P.x);
+                len = AsmSqrtF(sq);
+                AsmVec3Normalize(&P.x, &P.x);
                 q = sub->f118;
                 if (q.x != *(float *)&D_002AA9F4.x && q.y != *(float *)&D_002AA9F8 && q.z != *(float *)&D_002AA9FC) {
                     rot = P;
-                    Cross_1B8920(&c3, &rot, &D_002AAA14);
-                    norm_1B8920(&c3.x, &c3.x);
-                    Cross_1B8920(&c2, &c3, &rot);
-                    norm_1B8920(&c2.x, &c2.x);
-                    Cross_1B8920(&c2, &c3, &rot);
-                    norm_1B8920(&c2.x, &c2.x);
+                    AsmVec3Cross(&c3.x, &rot.x, &D_002AAA14.x);
+                    AsmVec3Normalize(&c3.x, &c3.x);
+                    AsmVec3Cross(&c2.x, &c3.x, &rot.x);
+                    AsmVec3Normalize(&c2.x, &c2.x);
+                    AsmVec3Cross(&c2.x, &c3.x, &rot.x);
+                    AsmVec3Normalize(&c2.x, &c2.x);
                 } else {
                     obj->func_001994C0(0, &axis.x, &v2.x);
                     float d = q.y * axis.y + q.x * axis.x + q.z * axis.z;
@@ -186,18 +188,18 @@ void C_1B8920_Mgr::func_001B8920(void)
                     axis.y -= q.y * d;
                     axis.z -= q.z * d;
                     axis.w = 1.0f;
-                    norm_1B8920(&axis.x, &axis.x);
+                    AsmVec3Normalize(&axis.x, &axis.x);
                     float d2 = q.y * P.y + q.x * P.x + q.z * P.z;
                     P.x -= q.x * d2;
                     P.y -= q.y * d2;
                     P.z -= q.z * d2;
                     P.w = 1.0f;
-                    norm_1B8920(&P.x, &P.x);
+                    AsmVec3Normalize(&P.x, &P.x);
                     float angle = func_0014F890(axis.x * P.x + axis.y * P.y + axis.z * P.z);
-                    Cross_1B8920(&q, &axis, &P);
-                    norm_1B8920(&q.x, &q.x);
+                    AsmVec3Cross(&q.x, &axis.x, &P.x);
+                    AsmVec3Normalize(&q.x, &q.x);
                     func_00158390(angle, B, q, &rot);
-                    norm_1B8920(&rot.x, &rot.x);
+                    AsmVec3Normalize(&rot.x, &rot.x);
                 }
                 obj->func_00199110(0, &rot.x, &c2.x, 0, 1, 0);
                 int i0 = func_001E8858(sub->f10C);
@@ -231,45 +233,13 @@ void C_1B8920_Mgr::func_001B8920(void)
 }
 
 C_001B9460 *C_001B9460::func_001B9460(void) {
-    C_001B9460 * volatile self = this;
-    volatile int tmp[2];
-    int lim;
-    int len;
-    int n;
-
-    vtbl = (void *)&D_0028D0BC;
-    {
-        S_001B9460_Quat *q = &self->f320;
-        q->z = 0;
-        q->y = 0;
-        q->x = 0;
-        q->w = 0x3f800000;
-    }
-    tmp[0] = sizeof(f10) - 1;
-    lim = tmp[0];
-    len = (int)strlen("");
-    if (lim > len) {
-        lim = len;
-    }
-    tmp[1] = lim;
-    n = tmp[1];
-    func_001E8920(self->f10, (const char *)&D_00275630, n);
-    self->f10[n] = 0;
-
-    tmp[1] = sizeof(f218) - 1;
-    lim = tmp[1];
-    len = (int)strlen("");
-    if (lim > len) {
-        lim = len;
-    }
-    tmp[0] = lim;
-    n = tmp[0];
-    func_001E8920(self->f218, (const char *)&D_00275630, n);
-    self->f218[n] = 0;
-
-    self->f31C = 0;
-    self->f320 = D_002AA9F4;
-    self->f4 = 0;
-    self->fC = 0;
-    return self;
+ C_001B9460 * volatile self=this;
+ volatile int tmp[2]; int lim,len,n;
+ *(void * volatile *)&vtbl=(void *)&D_0028D0BC;
+ { volatile S_001B9460_Quat *q=&self->f320; q->z=0; q->y=0; q->x=0; q->w=0x3f800000; }
+ tmp[0]=sizeof(f10)-1; lim=tmp[0]; len=(int)strlen(""); lim &= (lim >> 31); tmp[1]=lim; n=tmp[1];
+ func_001E8920(self->f10,(const char *)&D_00275630,n); self->f10[n]=0;
+ tmp[1]=sizeof(f218)-1; lim=tmp[1]; len=(int)strlen(""); lim &= (lim >> 31); tmp[0]=lim; n=tmp[0];
+ func_001E8920(self->f218,(const char *)&D_00275630,n); *(volatile char *)&self->f218[n]=0;
+ *(volatile int *)&self->f31C=0; self->f320=D_002AA9F4; *(volatile int *)&self->f4=0; *(volatile int *)&self->fC=0; return self;
 }
