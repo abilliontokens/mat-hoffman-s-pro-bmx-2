@@ -26,7 +26,9 @@ struct BmxObjectivesMenu {
     S_00064BA0_Inner *f1D0;         /* 0x1D0 */
     char pad1D4[0x1D8 - 0x1D4];
     float f1D8;                     /* 0x1D8 */
-    char pad1DC[0x224 - 0x1DC];
+    char pad1DC[0x214 - 0x1DC];
+    int f214, f218, f21C;
+    int f220;
     int f224;                       /* 0x224 */
     int f228;                       /* 0x228 */
     char pad22C[0x280 - 0x22C];
