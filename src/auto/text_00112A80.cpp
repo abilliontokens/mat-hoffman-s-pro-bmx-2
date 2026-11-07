@@ -62,7 +62,7 @@ static __forceinline float Abs_00112A80(float x)
     return *(float *)&i;
 }
 
-static float AbsBits_00112A80(int x)
+static __forceinline float AbsBits_00112A80(int x)
 {
     int i = x & 0x7fffffff;
     return *(float *)&i;
@@ -315,9 +315,7 @@ void Obj::func_00113290(float dt)
                     AT(float, self, 0x20b0) -= dt;
                     if (AT(float, self, 0x20b0) <= D_00275544) {
                         AT(float, self, 0x20b0) = 0.25f;
-                        int v = AT(int, self, 0x744);
-                        int i = *(int *)&v & 0x7fffffff;
-                        float a = *(float *)&i;
+                        float a = AbsBits_00112A80(AT(int, self, 0x744));
                         float t = func_00161F80(AT(int, self, 0x113c)) * D_002756DC;
                         Obj_VF *o = AT(Obj_VF *, AT(char *, D_002A8490, 0x8), 0x14 + AT(int, self, 0x970) * 4);
                         o->v3C(1, func_0001C870(a, 0, 0, 30.0f, 0.26f, 200) + t, 200);
