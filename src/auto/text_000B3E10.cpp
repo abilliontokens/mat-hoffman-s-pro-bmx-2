@@ -297,6 +297,7 @@ struct C_000B4300 {
     void B4300_Reg(B4300_Cb cb, const char *a, const char *b, const char *c)
     {
         volatile B4300_Cb fn = cb;
+        _ReadWriteBarrier();
         D_002EFE08->func_0018CF40(f38, fn, a, b, c, 1);
     }
 };
