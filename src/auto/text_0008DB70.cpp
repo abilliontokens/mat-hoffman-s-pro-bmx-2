@@ -18,6 +18,7 @@ struct W_0008DB70 {
     int f38; char pad3c[0x40 - 0x3c]; int f40; int f44; float f48;
     char pad4c[0x58 - 0x4c]; unsigned char f58;
     W_0008DB70 *func_001D5760();
+    void func_00051140(float width);
     void func_001D5810(char *name, float x, float y, int z);
 };
 struct S_0008DB70 {
@@ -42,14 +43,21 @@ S_0008DB70 *S_0008DB70::func_0008DB70(char *a2, int a1, int a0, int a3, int a5, 
     fd4c = a4;
     fd98 = a0;
     if (a4 != 0) {
-        if (I4(P4(&D_002A8490, 0x2e0), 0x2d0) != 0) {
+        if (I4(P4((char *)D_002A8490, 0x2e0), 0x2d0) != 0) {
+            int t0, t1, t2, t3;
+            unsigned char t4;
             *(float *)((char *)this + 0xd50) = 1.0f;
             fd64 = I4(P4(a2, 0x52c), 0x6350);
-            I4(&D_002A60B0, 0) = I4(&D_00278664, 0);
-            I4(&D_002A60B0, 4) = I4(&D_00278664, 4);
-            I4(&D_002A60B0, 8) = I4(&D_00278664, 8);
-            I4(&D_002A60B0, 0xc) = I4(&D_00278664, 0xc);
-            B1(&D_002A60B0, 0x10) = B1(&D_00278664, 0x10);
+            t0 = I4(&D_00278664, 0);
+            t1 = I4(&D_00278668, 0);
+            t2 = I4(&D_0027866C, 0);
+            I4(&D_002A60B0, 0) = t0;
+            t3 = I4(&D_00278670, 0);
+            I4(&D_002A60B4, 0) = t1;
+            t4 = B1(&D_00278674, 0);
+            I4(&D_002A60B8, 0) = t2;
+            I4(&D_002A60BC, 0) = t3;
+            B1(&D_002A60C0, 0) = t4;
         }
     }
     p = func_001E8A44(100);
@@ -59,6 +67,7 @@ S_0008DB70 *S_0008DB70::func_0008DB70(char *a2, int a1, int a0, int a3, int a5, 
     if (a0 == 0) {
         w = (W_0008DB70 *)f164;
         w->func_001D5810(&D_0027A054, 80.0f, 381.0f, 0);
+        w = (W_0008DB70 *)f164;
         if (w->f28 != 241.0f) {
             unsigned char c = w->f58 | 1;
             w->f28 = 241.0f;
@@ -66,6 +75,7 @@ S_0008DB70 *S_0008DB70::func_0008DB70(char *a2, int a1, int a0, int a3, int a5, 
         }
         w = (W_0008DB70 *)f168;
         w->func_001D5810(&D_0027A054, 321.0f, 381.0f, 0);
+        w = (W_0008DB70 *)f168;
         if (w->f28 != 241.0f) {
             unsigned char c = w->f58 | 1;
             w->f28 = 241.0f;
@@ -75,6 +85,7 @@ S_0008DB70 *S_0008DB70::func_0008DB70(char *a2, int a1, int a0, int a3, int a5, 
         w = (W_0008DB70 *)f164;
         if (f40 != 0) {
             w->func_001D5810(&D_0027A054, 80.0f, 391.0f, 0);
+            w = (W_0008DB70 *)f164;
             if (w->f28 != 241.0f) {
                 unsigned char c = w->f58 | 1;
                 w->f28 = 241.0f;
@@ -84,6 +95,7 @@ S_0008DB70 *S_0008DB70::func_0008DB70(char *a2, int a1, int a0, int a3, int a5, 
             w->func_001D5810(&D_0027A054, 321.0f, 391.0f, 0);
         } else {
             w->func_001D5810(&D_0027A054, 80.0f, 167.0f, 0);
+            w = (W_0008DB70 *)f164;
             if (w->f28 != 241.0f) {
                 unsigned char c = w->f58 | 1;
                 w->f28 = 241.0f;
@@ -92,6 +104,7 @@ S_0008DB70 *S_0008DB70::func_0008DB70(char *a2, int a1, int a0, int a3, int a5, 
             w = (W_0008DB70 *)f168;
             w->func_001D5810(&D_0027A054, 321.0f, 167.0f, 0);
         }
+        w = (W_0008DB70 *)f168;
         if (w->f28 != 241.0f) {
             unsigned char c = w->f58 | 1;
             w->f28 = 241.0f;
@@ -101,6 +114,7 @@ S_0008DB70 *S_0008DB70::func_0008DB70(char *a2, int a1, int a0, int a3, int a5, 
         w = (W_0008DB70 *)f164;
         if (f40 != 0) {
             w->func_001D5810(&D_0027A054, 340.0f, 379.0f, 0);
+            w = (W_0008DB70 *)f164;
             if (w->f28 != 145.0f) {
                 unsigned char c = w->f58 | 1;
                 w->f28 = 145.0f;
@@ -110,6 +124,7 @@ S_0008DB70 *S_0008DB70::func_0008DB70(char *a2, int a1, int a0, int a3, int a5, 
             w->func_001D5810(&D_0027A054, 485.0f, 379.0f, 0);
         } else {
             w->func_001D5810(&D_0027A054, 20.0f, 379.0f, 0);
+            w = (W_0008DB70 *)f164;
             if (w->f28 != 145.0f) {
                 unsigned char c = w->f58 | 1;
                 w->f28 = 145.0f;
@@ -118,6 +133,7 @@ S_0008DB70 *S_0008DB70::func_0008DB70(char *a2, int a1, int a0, int a3, int a5, 
             w = (W_0008DB70 *)f168;
             w->func_001D5810(&D_0027A054, 165.0f, 379.0f, 0);
         }
+        w = (W_0008DB70 *)f168;
         if (w->f28 != 145.0f) {
             unsigned char c = w->f58 | 1;
             w->f28 = 145.0f;
@@ -141,8 +157,8 @@ S_0008DB70 *S_0008DB70::func_0008DB70(char *a2, int a1, int a0, int a3, int a5, 
     {
         int m = (w->f38 & 0xffbfa35a) | 0xbfa35a;
         unsigned char c = w->f58 | 2;
-        w->f58 = c;
         w->f38 = m;
+        w->f58 = c;
     }
     w = (W_0008DB70 *)f164;
     if (w->f34 != 6.0f) {
@@ -161,7 +177,7 @@ S_0008DB70 *S_0008DB70::func_0008DB70(char *a2, int a1, int a0, int a3, int a5, 
     f174 = (p != 0) ? ((W_0008DB70 *)p)->func_001D5760() : 0;
     if (a0 == 0) {
         w = (W_0008DB70 *)f170;
-        if (I4(P4(&D_002A8490, 0x2e0), 4) != 4) {
+        if (I4(P4((char *)D_002A8490, 0x2e0), 4) != 4) {
             w->func_001D5810(&D_002786B0, 430.0f, 73.0f, 0);
             w = (W_0008DB70 *)f174;
             w->func_001D5810(&D_002786B0, 526.0f, 73.0f, 0);
@@ -179,7 +195,8 @@ S_0008DB70 *S_0008DB70::func_0008DB70(char *a2, int a1, int a0, int a3, int a5, 
     } else if (a0 == 1) {
         w = (W_0008DB70 *)f170;
         if (f40 != 0) {
-            w->func_001D5810(&D_002786B0, 20.0f, 326.0f, 0);
+            w->func_001D5810(&D_002786B0, 326.0f, 102.0f, 0);
+            w = (W_0008DB70 *)f170;
             if (w->f28 != 96.0f) {
                 unsigned char c = w->f58 | 1;
                 w->f28 = 96.0f;
@@ -189,6 +206,7 @@ S_0008DB70 *S_0008DB70::func_0008DB70(char *a2, int a1, int a0, int a3, int a5, 
             w->func_001D5810(&D_002786B0, 116.0f, 326.0f, 0);
         } else {
             w->func_001D5810(&D_002786B0, 20.0f, 102.0f, 0);
+            w = (W_0008DB70 *)f170;
             if (w->f28 != 96.0f) {
                 unsigned char c = w->f58 | 1;
                 w->f28 = 96.0f;
@@ -197,6 +215,7 @@ S_0008DB70 *S_0008DB70::func_0008DB70(char *a2, int a1, int a0, int a3, int a5, 
             w = (W_0008DB70 *)f174;
             w->func_001D5810(&D_002786B0, 116.0f, 102.0f, 0);
         }
+        w = (W_0008DB70 *)f174;
         if (w->f28 != 96.0f) {
             unsigned char c = w->f58 | 1;
             w->f28 = 96.0f;
@@ -206,6 +225,7 @@ S_0008DB70 *S_0008DB70::func_0008DB70(char *a2, int a1, int a0, int a3, int a5, 
         w = (W_0008DB70 *)f170;
         if (f40 != 0) {
             w->func_001D5810(&D_002786B0, 429.0f, 149.0f, 0);
+            w = (W_0008DB70 *)f170;
             if (w->f28 != 96.0f) {
                 unsigned char c = w->f58 | 1;
                 w->f28 = 96.0f;
@@ -215,6 +235,7 @@ S_0008DB70 *S_0008DB70::func_0008DB70(char *a2, int a1, int a0, int a3, int a5, 
             w->func_001D5810(&D_002786B0, 524.0f, 149.0f, 0);
         } else {
             w->func_001D5810(&D_002786B0, 20.0f, 149.0f, 0);
+            w = (W_0008DB70 *)f170;
             if (w->f28 != 96.0f) {
                 unsigned char c = w->f58 | 1;
                 w->f28 = 96.0f;
@@ -223,6 +244,7 @@ S_0008DB70 *S_0008DB70::func_0008DB70(char *a2, int a1, int a0, int a3, int a5, 
             w = (W_0008DB70 *)f174;
             w->func_001D5810(&D_002786B0, 116.0f, 149.0f, 0);
         }
+        w = (W_0008DB70 *)f174;
         if (w->f28 != 96.0f) {
             unsigned char c = w->f58 | 1;
             w->f28 = 96.0f;
@@ -258,6 +280,24 @@ S_0008DB70 *S_0008DB70::func_0008DB70(char *a2, int a1, int a0, int a3, int a5, 
     if (w->f34 != 6.0f) {
         w->f34 = 6.0f;
         w->f58 |= 1;
+    }
+    if (a5 != 0) {
+        int t0, t1, t2, t3;
+        unsigned char t4;
+        t0 = I4(&D_00278664, 0);
+        t1 = I4(&D_00278668, 0);
+        t2 = I4(&D_0027866C, 0);
+        I4(&D_002A60B0, 0) = t0;
+        t3 = I4(&D_00278670, 0);
+        I4(&D_002A60B4, 0) = t1;
+        t4 = B1(&D_00278674, 0);
+        I4(&D_002A60B8, 0) = t2;
+        I4(&D_002A60BC, 0) = t3;
+        B1(&D_002A60C0, 0) = t4;
+        p = func_001E8A44(100);
+        fd84 = (p != 0) ? ((W_0008DB70 *)p)->func_001D5760() : 0;
+        p = func_001E8A44(100);
+        fd88 = (p != 0) ? ((W_0008DB70 *)p)->func_001D5760() : 0;
     }
     return this;
 }
