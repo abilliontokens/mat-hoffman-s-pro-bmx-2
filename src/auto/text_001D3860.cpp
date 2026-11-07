@@ -38,8 +38,6 @@ struct C_001D3E30 {
     void func_001D3EA0(int n, const char *a, const char *b, const char *c);
 };
 
-static __forceinline int Slot_001D40E0(int a) { return a >= 4; }
-
 struct C_001D4010 {
     int func_001D4010(int a);
 };
