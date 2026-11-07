@@ -69,18 +69,6 @@ static __forceinline int clamp_168550(const char *s, int size)
     }
     return n;
 }
-static __forceinline void copy_168550(char *dst, const char *s, int size)
-{
-    int n;
-
-    if (size != -1) {
-        func_001E8920(dst, s, size);
-        n = min_168550(size - 1, strlen(s));
-        dst[n] = 0;
-    } else {
-        strcpy(dst, (char *)s);
-    }
-}
 static __forceinline void makeKey_168550(char *key, const char *name)
 {
     char *p = (char *)name;
@@ -369,28 +357,18 @@ int C_00168280::func_00168550(const char *name, char *dst, int size)
     char *t;
     char *e;
     char *s;
-    char *p;
-    char c;
     int lo;
     int hi;
     int mid;
     int n;
     int i;
     int count;
-    int delta;
     char **list;
 
     if (f4 != 0) {
         if (f1c != 0) {
             if (f1c == 1) {
-                p = (char *)name;
-                delta = key - p;
-                do {
-                    c = *p;
-                    p[delta] = c;
-                    p++;
-                } while (c);
-                func_000347F0(key);
+                makeKey_168550(key, name);
                 t = f4c0;
                 if (strcmp(key, t) != 0) {
                     return 0;
@@ -399,14 +377,7 @@ int C_00168280::func_00168550(const char *name, char *dst, int size)
                 n = clamp_168550(s, size);
                 goto copy;
             }
-            p = (char *)name;
-            delta = key - p;
-            do {
-                c = *p;
-                p[delta] = c;
-                p++;
-            } while (c);
-            func_000347F0(key);
+            makeKey_168550(key, name);
             lo = 0;
             hi = f1c - 1;
             mid = hi >> 1;
