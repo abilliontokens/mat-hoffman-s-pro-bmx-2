@@ -67,11 +67,12 @@ struct Obj3D {
 };
 
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 static __forceinline void S_3D7B0_Round(int *out, float f)
 {
     int * volatile p = out;
 
-    *p = _mm_cvtss_si32(*(__m128 *)&f);
+    *p = _mm_cvtss_si32(_mm_load_ss(&f));
 }
 struct S_3D7B0_Vec4 { float x, y, z, w; };
 struct C_3D7B0 {
@@ -87,8 +88,9 @@ struct C_3D7B0 {
 int Obj3D::func_0003D220()
 {
     Obj3D *volatile self = this;
-    flag2cc = 1;
-    int idx = self->f64->f5a4[self->f47c].f44 + self->f480;
+    *(volatile int *)&flag2cc = 1;
+    Obj3D *s = self;
+    int idx = s->f64->f5a4[s->f47c].f44 + s->f480;
     Node_3D220 *node;
     Node_3D220 *m = (Node_3D220 *)func_001E8A44(0x1c);
     if (m) {
@@ -107,22 +109,22 @@ int Obj3D::func_0003D220()
     Obj_3D220 *obj = om ? om->func_00143580(1) : 0;
     Vec4_3D220 v = *(Vec4_3D220 *)(self->f564->f10 + 0x24);
     switch (self->f4a8) {
-    case 0: v.x -= 10.0f; break;
-    case 1: v.x += 10.0f; break;
-    case 2: v.z -= 10.0f; break;
-    case 3: v.z += 10.0f; break;
-    case 4: v.x -= 10.0f; v.z -= 10.0f; break;
-    case 5: v.x -= 10.0f; v.z += 10.0f; break;
-    case 6: v.x += 10.0f; v.z -= 10.0f; break;
-    case 7: v.x += 10.0f; v.z += 10.0f; break;
+    case 0: v.x -= D_00275AEC; break;
+    case 1: v.x = *(volatile float *)&v.x + D_00275AEC; break;
+    case 2: v.z -= D_00275AEC; break;
+    case 3: v.z = *(volatile float *)&v.z + D_00275AEC; break;
+    case 4: v.x -= D_00275AEC; v.z -= D_00275AEC; break;
+    case 5: v.x -= D_00275AEC; v.z = *(volatile float *)&v.z + D_00275AEC; break;
+    case 6: v.x = *(volatile float *)&v.x + D_00275AEC; v.z -= D_00275AEC; break;
+    case 7: v.x = *(volatile float *)&v.x + D_00275AEC; v.z = *(volatile float *)&v.z + D_00275AEC; break;
     }
     if (obj->v8c(self->f64->names.get(idx), 0, 1)) {
-        float a = ((self->f4bc.x > D_00275460) ? self->f4bc.x - D_00275548 : self->f4bc.x - D_00275460) * 0.2f + D_00275460;
-        float b = (self->f4bc.y - D_00275548) * 0.2f + D_00275460;
-        float c = ((self->f4bc.z > D_00275460) ? self->f4bc.z - D_00275548 : self->f4bc.z - D_00275460) * 0.2f + D_00275460;
-        int len = strlen(self->f64->names.get(idx));
-        int lim = 0x7f;
-        int n = Min_3D220(lim, len);
+        float a = ((self->f4bc.x > D_00275460) ? self->f4bc.x - D_00275548 : self->f4bc.x - D_00275460) * D_00275F64 + D_00275460;
+        float b = (self->f4bc.y - D_00275548) * D_00275F64 + D_00275460;
+        float c = ((self->f4bc.z > D_00275460) ? self->f4bc.z - D_00275548 : self->f4bc.z - D_00275460) * D_00275F64 + D_00275460;
+        volatile int len = strlen(self->f64->names.get(idx));
+        volatile int lim = 0x7f;
+        int n = AsmMinI(lim, len);
         func_001E8920(obj->name, self->f64->names.get(idx), n);
         obj->name[n] = 0;
         obj->func_00198F50(&self->f4cc, &self->f4dc, 1, 0, 0);
@@ -140,14 +142,14 @@ int Obj3D::func_0003D220()
     Obj2_3D220 *obj2 = om2 ? om2->func_001BB680(1) : 0;
     v = *(Vec4_3D220 *)(self->f564->f10 + 0x24);
     switch (self->f4a8) {
-    case 0: v.x -= 10.0f; break;
-    case 1: v.x += 10.0f; break;
-    case 2: v.z -= 10.0f; break;
-    case 3: v.z += 10.0f; break;
-    case 4: v.x -= 10.0f; v.z -= 10.0f; break;
-    case 5: v.x -= 10.0f; v.z += 10.0f; break;
-    case 6: v.x += 10.0f; v.z -= 10.0f; break;
-    case 7: v.x += 10.0f; v.z += 10.0f; break;
+    case 0: v.x -= D_00275AEC; break;
+    case 1: v.x = *(volatile float *)&v.x + D_00275AEC; break;
+    case 2: v.z -= D_00275AEC; break;
+    case 3: v.z = *(volatile float *)&v.z + D_00275AEC; break;
+    case 4: v.x -= D_00275AEC; v.z -= D_00275AEC; break;
+    case 5: v.x -= D_00275AEC; v.z = *(volatile float *)&v.z + D_00275AEC; break;
+    case 6: v.x = *(volatile float *)&v.x + D_00275AEC; v.z -= D_00275AEC; break;
+    case 7: v.x = *(volatile float *)&v.x + D_00275AEC; v.z = *(volatile float *)&v.z + D_00275AEC; break;
     }
     if (obj2->func_001BC040(v, self->f4bc, self->f4cc, self->f4dc, 0, 0, 0x64, 0)) {
         obj2->func_001BBAE0(*self->f64->f4ac);
