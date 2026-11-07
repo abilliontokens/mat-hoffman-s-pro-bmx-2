@@ -1,5 +1,6 @@
 /* 1 function from 0x0008FCB0 to 0x00091820, found by Ghidra. */
 #include "common.h"
+struct S_0008FCB0_Font { void func_001B1980(); void func_001B1860(int,float,int,float,int,int,int,int,float,int,int,float,int); };
 #include "overlay_0008FCB0_local.h"
 
 extern char *D_002A8490;
