@@ -271,7 +271,6 @@ u32 func_001779C0(u8 *dst, u8 *src, int width, int height, int dstPitch, int src
  return 1;
 }
 
-int func_00176630(unsigned char*, int, int, int, int, int, int, int, unsigned short*, int, int);
 int func_00177AB0(unsigned short* dst, unsigned char* src, int width, int height, int dstPitch, int srcPitch, int useBlit)
 {
     if (useBlit) {
@@ -376,15 +375,15 @@ u32 func_00177E50(u8 *dst, u8 *src, int width, int height, int dstPitch, int src
 {
  u8 *d; u8 *s; u8 *p; u8 *q; int x; int y; u8 *tbl;
  if (a7 && pal) { func_00176630(src, 0x22b, width, height, srcPitch, dstPitch, 0, 0, 0, dst, (int)pal); return 1; }
- if (!(srcPitch == width && srcPitch % 8 == 0)) {
-  s = src; d = dst;
-  tbl = (u8 *)pal->func_00135410();
-  for(y = height; y > 0; y--) {
-   for(q=s,p=d,x=width; x>0; x--) { *p = tbl[*(u16 *)q]; p++; q+=2; }
-   s += srcPitch*2; d += dstPitch;
-  }
- } else {
+ if (srcPitch == width && srcPitch % 8 == 0) {
   func_00177D60(width, (u16 *)dst, (u32 *)src, dstPitch, height, (u8 *)pal->func_00135410());
+  return 1;
+ }
+ s = src; d = dst;
+ tbl = (u8 *)pal->func_00135410();
+ for(y = height; y > 0; y--) {
+  for(q=s,p=d,x=width; x>0; x--) { *p = tbl[*(u16 *)q]; p++; q+=2; }
+  s += srcPitch*2; d += dstPitch;
  }
  return 1;
 }
@@ -455,14 +454,14 @@ u32 func_001780F0(u8 *dst, u8 *src, int width, int height, int dstPitch, int src
   u8 *d;
   u8 *s;
   u8 *p;
-  u8 *q;
+  register u8 *q;
   int x;
   int y;
   s = src;
   d = dst;
   for (y = height; y > 0; y--) {
     for (p = d, q = s, x = width; x > 0; x--) {
-      *(u16 *)p = ((*(u16 *)q & 0xffe0) << 1) | (*(u16 *)q & 0x1f);
+      *((unsigned)u16 *)p = ((*(u16 *)q & 0xffe0) << 1) | (*(u16 *)q & 0x1f);
       p += 2;
       q += 2;
     }
