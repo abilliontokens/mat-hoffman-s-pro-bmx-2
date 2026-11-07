@@ -1,5 +1,6 @@
 /* 10 functions from 0x0013B9C0 to 0x0013C960, found by Ghidra. */
 #include "common.h"
+#include "asm_helpers.h"
 int func_001EA426(const char *, const char *);
 extern char D_00010000[];
 extern char D_00020000[];
@@ -550,17 +551,13 @@ char *C_0013B9C0::func_0013C6E0(int idx, char *buf, int size)
 int C_0013B9C0::func_0013C8A0(int idx, int a2, int size, int count)
 {
  S_0013B9C0_Ent20 *e = &fE8[idx];
- C_0013B9C0 * volatile self = this;
- volatile int tmp[3];
  S_0013B9C0_Ent28 *t = &fC[e->f0];
  if (func_0013B760(t, e->fC + (int)e->f10)) {
- tmp[0] = (int)e->f14 - (int)e->f10;
- tmp[1] = size * count;
- int m = tmp[1]; int l = tmp[0];
- tmp[2] = m > l ? l : m;
- int n = tmp[2];
+ int avail = (int)e->f14 - (int)e->f10;
+ int want = size * count;
+ int n = AsmMinI(want, avail);
  if (n >= 1) {
- int r = self->func_0013BBA0(t,e->f4,a2,n);
+ int r = func_0013BBA0(t,e->f4,a2,n);
  e->f10 = (void *)((int)e->f10+r);
  if (r != n) { if (r) return n/r; }
  else return count;
