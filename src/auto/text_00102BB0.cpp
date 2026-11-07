@@ -150,6 +150,18 @@ struct C_00103450 {
     C_00103450 *func_00103450(int a, S_Cfg *cfg);
 };
 
+struct L_00103450 {
+    float v[4];
+    float f;
+    int i1;
+    float c1[4];
+    int i2;
+    int i3;
+    float c2[4];
+    char tmp[0x14];
+    char buf[0x190];
+};
+
 struct C_001BF6A0 {
     void func_001BF6A0();
 };
