@@ -153,7 +153,7 @@ static float fabs_00104A00(float x)
 {
     volatile int tmp;
     tmp = *(volatile int *)&x & 0x7fffffff;
-    return *(float *)&tmp;
+    return *(volatile float *)&tmp;
 }
 
 
