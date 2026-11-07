@@ -45,7 +45,16 @@ struct C_0002D730 {
     S_2D730_Node *f1e0;
     void *f1e4;
     S_2D730_State *f1e8;
-    char pad1ec[0x454 - 0x1ec];
+    void *f1ec, *f1f0, *f1f4, *f1f8, *f1fc, *f200;
+    S_2D730_Sub *f204;
+    void *f208, *f20c, *f210;
+    char pad214[0x230 - 0x214];
+    void *f230;
+    int f234;
+    int f238[4];
+    char pad248[0x440 - 0x248];
+    int f440;
+    char pad444[0x454 - 0x444];
     int f454;
     char pad458[0x468 - 0x458];
     int f468;
