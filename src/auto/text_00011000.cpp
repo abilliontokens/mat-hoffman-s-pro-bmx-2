@@ -193,7 +193,7 @@ static __forceinline void distance_119D0(float *d, const float *a, const float *
 }
 static __forceinline float dist_119D0(const float *a, const float *b) {
     float x = a[0]-b[0], y = a[1]-b[1], z = a[2]-b[2];
-    return sqrtf(z*z+y*y+x*x);
+    return AsmSqrtF(z*z+y*y+x*x);
 }
 static __forceinline float dist2_119D0(const float *a, const float *b) {
     float x = a[0]-b[0], y = a[1]-b[1], z = a[2]-b[2];
@@ -430,23 +430,27 @@ int C_000115F0::func_000115F0(float *pos, float radius, int start, int dir)
 
 float C_00011730::func_00011730(float *pos, int i)
 {
-    C_00011730 *volatile self = this;
     S_115F0_Path *path = D_002B9120->paths[pathIdx];
-    C_00017680_Vec a = ((C_00017680_Vec *)path->pts)[i];
+    float p[4];
+    C_00017680_Vec b;
+    float e[4];
+    C_00017680_Vec a;
+    float dir[4];
+    float seg[3];
+    float s[4], d[4];
+
+    a = ((C_00017680_Vec *)path->pts)[i];
     a.y = pos[1];
     int next = i + 1;
     if (next >= path->count) {
         next = 0;
     }
-    C_00017680_Vec b = ((C_00017680_Vec *)path->pts)[next];
-    float seg[3];
-    float dir[4];
+    b = ((C_00017680_Vec *)path->pts)[next];
     dir[0] = seg[0] = b.x - a.x;
     dir[1] = seg[1] = D_00275544;
     dir[3] = 1.0f;
     dir[2] = seg[2] = b.z - a.z;
     func_000111B0(dir, dir);
-    float e[4];
     float ez = pos[2] - a.z;
     float ey = pos[1] - a.y;
     float ex = pos[0] - a.x;
@@ -457,30 +461,23 @@ float C_00011730::func_00011730(float *pos, int i)
     func_000111B0(e, e);
     if (e[1] * dir[1] + e[0] * dir[0] + e[2] * dir[2] < D_00275544) {
         float x = pos[0] - a.x, y = pos[1] - a.y, z = pos[2] - a.z;
-        volatile float sq = z*z+y*y+x*x;
-        volatile float r = sqrtf(sq);
-        return r;
+        return AsmSqrtF(z*z+y*y+x*x);
     }
-    volatile float da;
+    float da;
     {
         float x = pos[0] - a.x, y = pos[1] - a.y, z = pos[2] - a.z;
-        volatile float sq = z*z+y*y+x*x;
-        da = sqrtf(sq);
+        da = AsmSqrtF(z*z+y*y+x*x);
     }
-    volatile float segLen;
+    float segLen;
     {
         float x = seg[0], y = seg[1], z = seg[2];
-        volatile float sq = z*z+y*y+x*x;
-        segLen = sqrtf(sq);
+        segLen = AsmSqrtF(z*z+y*y+x*x);
     }
     if (da > segLen) {
         b.y = a.y;
         float x = pos[0] - b.x, y = pos[1] - b.y, z = pos[2] - b.z;
-        volatile float sq = z*z+y*y+x*x;
-        volatile float r = sqrtf(sq);
-        return r;
+        return AsmSqrtF(z*z+y*y+x*x);
     }
-    float s[3], p[3], d[3];
     s[0] = da * dir[0];
     s[1] = dir[1] * da;
     s[2] = dir[2] * da;
@@ -491,9 +488,7 @@ float C_00011730::func_00011730(float *pos, int i)
     d[1] = pos[1] - p[1];
     d[2] = pos[2] - p[2];
     float x = d[0], y = d[1], z = d[2];
-    volatile float sq = z*z+y*y+x*x;
-    volatile float r = sqrtf(sq);
-    return r;
+    return AsmSqrtF(z*z+y*y+x*x);
 }
 
 extern "C" void _ReadWriteBarrier(void);
