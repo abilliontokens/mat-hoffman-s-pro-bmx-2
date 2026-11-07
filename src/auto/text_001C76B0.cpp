@@ -33,7 +33,7 @@ struct IniObj {
 struct RegObj { IniObj *func_00132E20(char *s); };
 struct MObj { IniObj *func_00168280(); IniObj *func_00164440(int a, int b); };
 struct G162Obj { int func_00162B20(char *s, int a); };
-struct Node170 { char pad0[0x40]; int f40; char pad44[0x170 - 0x44]; Node170 *f170; };
+struct Node170 { char pad0[0x40]; int f40; char pad44[0x170 - 0x44]; Node170 *f170; Node170 *func_0019FD20(V4 v, Node170 *a, Node170 *b, Node170 *c); };
 struct Sub4 {
     char pad0[0x180];
     unsigned char b180;
