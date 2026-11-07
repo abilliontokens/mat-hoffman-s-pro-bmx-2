@@ -82,7 +82,6 @@ int func_001EA426(char *s, void *p);
 extern "C" char *strcpy(char *dst, const char *src);
 #pragma intrinsic(strcpy)
 
-#pragma optimize("y", on)
 void Obj::func_001C76B0(int a, int b, int c, int d, int e, int f2, int g, int h, int i2, int j, int k, int l, int m)
 {
     IniObj *ini;
