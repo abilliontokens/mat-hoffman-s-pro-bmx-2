@@ -2,6 +2,7 @@
 #include "common.h"
 #include "ghidra.h"
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 struct S_1558_V4 { float x, y, z, w; };
 struct S_1558_Vec4 : S_1558_V4 { S_1558_Vec4() { x = y = z = 0; w = 1; } };
 struct S_1558_V4c : S_1558_V4 { S_1558_V4c(float x0, float y0, float z0, float w0) { x = x0; y = y0; z = z0; w = w0; } };
