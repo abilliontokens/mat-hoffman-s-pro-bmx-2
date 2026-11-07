@@ -2,6 +2,7 @@
 #include "common.h"
 #include <string.h>
 #include "ghidra.h"
+#include "asm_helpers.h"
 extern "C" int func_00135C70(int a, int b, unsigned int c, int d);
 struct C_000A33F0 {
     virtual void v00(); virtual void v01(); virtual void v02(); virtual void v03();
@@ -51,7 +52,7 @@ inline void str_copy(char *dst, const char *src, int size)
     dst[n] = 0;
 }
 void *func_001E83E8(void *block, unsigned int size);
-struct V4_000A3780 { float x, y, z, w; V4_000A3780() { x = y = z = 0; w = 1; } };
+struct V4_000A3780 { float x, y, z, w; V4_000A3780() { x = y = z = 0; w = 1; } V4_000A3780(float a, float b, float c, float d) { x = a; y = b; z = c; w = d; } };
 struct S_000A3780_Stream {
     char pad0[0x4CC];
     S_000A3780_Stream *func_00168280(void);
@@ -313,6 +314,147 @@ void C_000A2ED0::func_000A2F20()
             }
         }
     }
+}
+
+void C_000A2ED0::func_000A3170(void)
+{
+    int i;
+    S_000A2F20_List *list = unk3B4;
+    if (list == 0) {
+        return;
+    }
+    for (i = 0; i < list->count; i++) {
+        if (((S_000A3170_Obj *)list->items[i]->unk4)->name[0] != 0 &&
+            ((S_000A3170_Obj *)list->items[i]->unk4)->unk2DC == 0) {
+            char name[0x104];
+            char buf[0x104];
+            volatile int t[2];
+            volatile int len;
+            int found;
+            int j;
+            strcpy(name, ((S_000A3170_Obj *)list->items[i]->unk4)->name);
+            found = 0;
+            if (D_002B9134 != 0) {
+                for (j = 0; j < D_002B9134->unk38 && !found; j++) {
+                    len = strlen(D_002B9134->unk48[j]->name);
+                    t[0] = 0x103;
+                    int a = t[0];
+                    int b = len;
+                    if (a > b) {
+                        a = b;
+                    }
+                    t[1] = a;
+                    int n = t[1];
+                    func_001E8920(buf, D_002B9134->unk48[j]->name, n);
+                    buf[n] = 0;
+                    if (func_001EA426(buf, name) == 0) {
+                        ((S_000A3170_Obj *)list->items[i]->unk4)->unk2DC = D_002B9134->unk48[j]->unk3C->unk22C;
+                        found = 1;
+                    }
+                }
+                for (j = 0; j < D_002B9134->unk34 && !found; j++) {
+                    if (func_001EA426(D_002EFE08->unk158[D_002B9134->unk44[j]->unk38].name, name) == 0) {
+                        ((S_000A3170_Obj *)list->items[i]->unk4)->unk2DC = D_002B9134->unk44[j]->unk40->unk8;
+                        found = 1;
+                    }
+                }
+            }
+            for (j = 0; j < unk578 && !found; j++) {
+                if (func_001EA426(unk57C[j]->name, name) == 0) {
+                    ((S_000A3170_Obj *)list->items[i]->unk4)->unk2DC = unk57C[j]->unk3C->unk4;
+                    found = 1;
+                }
+            }
+        }
+    }
+}
+
+void C_000A33F0::func_000A33F0(unsigned int a, int b)
+{
+    if (func_00135C70(0x14, 0, a, 0xc)) {
+        if (v26(f134)) {
+            v2b();
+            v38();
+            func_00157BF0(a, b);
+        }
+    }
+}
+
+int C_000A3780::func_000A3780(int a1, const char *volatile path, S_000A3780_Out *out)
+{
+    V4_000A3780 pos0;
+    V4_000A3780 pos1;
+    char buf[0x104];
+    char secName[0x14];
+    char key1[0x1e];
+    char name[0x1e];
+    char key2[0x20];
+    int count;
+    int subCount;
+    int total = 0;
+    int idx = 0;
+    int i, j;
+    int len;
+    int lim;
+    int n;
+    char *dot;
+    S_000A3780_Stream *stream;
+
+    stream = (S_000A3780_Stream *)func_001E8A44(0x4CC);
+    if (stream)
+        stream = stream->func_00168280();
+    else
+        stream = 0;
+    if (stream->func_00169490(path, 0) == 0) {
+        if (stream) {
+            stream->func_001691E0();
+            func_001E891B(stream);
+        }
+        return 0;
+    }
+    len = strlen(path);
+    lim = 0x103;
+    n = AsmMinI(lim, len);
+    func_001E8920(buf, path, n);
+    buf[n] = 0;
+    dot = func_001E8AC0(buf, '.');
+    if (dot) memset(dot, 0, strlen(dot));
+    stream->func_00169710(D_00276DCC);
+    stream->func_00168A10(D_00276DBC, &count);
+    for (i = 0; i < count; i++) {
+        func_001ADCC0(secName, 0x14, D_00276DB0, i + 1);
+        stream->func_00169710(secName);
+        stream->func_00168A10(D_00276DA4, &subCount);
+        total = total + (subCount - 1);
+    }
+    if (out) {
+        out->f14 = total;
+        out->f18 = (void **)func_001E8A44(total * 4);
+    }
+    for (i = 0; i < count; i++) {
+        func_001ADCC0(secName, 0x14, D_00276DB0, i + 1);
+        stream->func_00169710(secName);
+        stream->func_00168550(D_00276D98, name, -1);
+        stream->func_00168A10(D_00276DA4, &subCount);
+        for (j = 0; j < subCount - 1; j++) {
+            V4_000A3780 d1;
+            V4_000A3780 d2;
+            void *line;
+            func_001ADCC0(key1, 0x1e, D_00276D8C, j + 1);
+            func_001ADCC0(key2, 0x1e, D_00276D8C, j + 2);
+            stream->func_00168CB0(key1, &d1, &pos0);
+            stream->func_00168CB0(key2, &d2, &pos1);
+            line = f530->func_00159E90(name, &pos0, &pos1, 0, 0, a1);
+            f530->func_00159C40(line);
+            if (out) out->f18[idx] = line;
+            idx = idx + 1;
+        }
+    }
+    if (stream) {
+        stream->func_001691E0();
+        func_001E891B(stream);
+    }
+    return 1;
 }
 
 void C_000A2ED0::func_000A3B00(int a)
