@@ -245,7 +245,7 @@ struct S_342C0_F1B8 {
     void *func_001CF740(void *a, void *b, int c);
 };
 struct S_342C0_F158 {
-    void func_001C3E50(int a);
+    S_342C0_F158 *func_001C3E50(int a);
     void func_001C3EA0(int a);
     void func_001C4A70();
     void func_001C4C30();
