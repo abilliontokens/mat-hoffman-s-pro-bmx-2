@@ -178,6 +178,13 @@ struct C_0001EDC0 {
 };
 
 extern u32 D_002A0C18[];
+static __forceinline u32 swap_shift_0001E260(u32 x)
+{
+    u32 r = ((unsigned char)x << 8) | (unsigned char)(x >> 8);
+    x >>= 16;
+    r = (r << 8) | (unsigned char)x;
+    return (r << 8) | (unsigned char)(x >> 8);
+}
 static inline u32 swap32(u32 x)
 {
     unsigned char b0 = (unsigned char)x;
@@ -274,12 +281,12 @@ GR_BitString *GR_BitString::func_0001E3F0(u32 *a0, u32 a1, int a2) {
     unk1C = 1;
     unkC = a0;
     unk10 = 0x80;
-    D_002B7D4C = a0;
     D_002B7D54 = 0;
+    D_002B7D4C = a0;
     u32 v = *a0;
     u32 b3 = ((u8 *)a0)[3];
     u16 b2 = ((u8 *)&v)[2] << 8;
-    D_002B7D50 = (((v << 16) | (v & 0xFF00)) << 8) | b2 | b3;
+    D_002B7D50 = (((v & 0xFF00) | (v << 16)) << 8) | b2 | b3;
     return this;
 }
 
@@ -310,20 +317,26 @@ void GR_BitString::func_0001E480(int *out) {
 
 #pragma optimize("y", off)
 u32 __stdcall func_0001E550(int a0) {
-    u32 v = D_002A0DAC[a0];
-    u32 cur = D_002B7D50;
-    D_002B7D54 += a0;
-    if (D_002B7D54 < 0x20) {
-        v &= cur >> (0x20 - D_002B7D54);
+    u32 *tab = D_002A0DAC;
+    int n = a0;
+    u32 cnt = D_002B7D54;
+    u32 bits = D_002B7D50;
+    u32 v = tab[n];
+    cnt += n;
+    D_002B7D54 = cnt;
+    if (cnt < 0x20) {
+        v &= bits >> (0x20 - cnt);
     } else {
-        D_002B7D54 -= 0x20;
-        D_002B7D4C += 1;
-        u32 next = *D_002B7D4C;
-        v &= cur << D_002B7D54;
-        next = _byteswap_ulong(next);
+        u32 *p = D_002B7D4C;
+        cnt -= 0x20;
+        D_002B7D54 = cnt;
+        p += 1;
+        v &= bits << cnt;
+        u32 next = _byteswap_ulong(*p);
+        D_002B7D4C = p;
         D_002B7D50 = next;
-        if (D_002B7D54 != 0) {
-            v |= next >> (0x20 - D_002B7D54);
+        if (cnt != 0) {
+            v |= next >> (0x20 - cnt);
         }
     }
     return v;
