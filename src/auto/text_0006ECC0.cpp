@@ -71,7 +71,7 @@ struct C_0006ECC0 {
     Sprite_6ECC0 *fC8, *fCC;
     W_6ECC0 *fD0;
     W_6ECC0 *fD4;
-    Sprite_6ECC0 *fD8;
+    Sprite_6ECC0 * volatile fD8;
     W_6ECC0 *fDC;
     Text_6ECC0 *fE0;
     int fE4; float fE8; int fEC;
