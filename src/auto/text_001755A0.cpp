@@ -84,34 +84,6 @@ int func_00175840(unsigned short *dst, unsigned short *src, int width, int heigh
 }
 
 #pragma optimize("y", off)
-static __forceinline void A9Row1(unsigned short *s, unsigned short *d, int n, int off)
-{
-    unsigned int sum, pair, a, b;
-    int x;
-    for (x = n; x != 0; --x) {
-        sum = 0;
-        pair = *(unsigned int *)s;
-        a = pair & (unsigned int)D_0000FFFF;
-        b = pair >> 16;
-        sum += (b * 0x8000) & 0x1f00000;
-        sum += (a & 0x3e0) << 15;
-        sum += b & 0x7c1f;
-        sum += a & 0x7c1f;
-        s = (unsigned short *)((char *)s + off);
-        pair = *(unsigned int *)s;
-        a = pair & (unsigned int)D_0000FFFF;
-        b = pair >> 16;
-        sum += (b * 0x8000) & 0x1f00000;
-        sum += (a & 0x3e0) << 15;
-        sum += b & 0x7c1f;
-        sum += a & 0x7c1f;
-        s = (unsigned short *)((char *)s - off);
-        sum >>= 2;
-        *d = (unsigned short)((sum & 0x7c1f) + ((sum >> 15) & 0x3e0));
-        s += 2;
-        ++d;
-    }
-}
 int func_00175A10(unsigned short *dst, unsigned short *src, int width, int height, int dstPitch, int srcPitch, unsigned char flags, unsigned short key)
 {
     unsigned short *srow;
