@@ -1,5 +1,6 @@
 /* 15 functions from 0x001A2C00 to 0x001A3BF0, found by Ghidra. */
 #include "common.h"
+#include "asm_helpers.h"
 
 extern "C" void *__cdecl memset(void *dst, int val, unsigned int size);
 
@@ -515,14 +516,12 @@ MaterialSoundEmitter::MaterialSoundEmitter(int arg0, int arg1, int arg2, int arg
 int MaterialSoundEmitter::func_001A33A0(int idx, S_001A33A0_Vec3 pos, int a4, int vol)
 {
     if (idx >= 1 && idx <= list1c0.count) {
-        int v = 0;
-        if (v < vol) {
-            v = vol;
-        }
-        if (v > 100) {
-            v = 100;
-        }
-        vol = v;
+        volatile int lo = 0;
+        volatile int v = lo < vol ? vol : lo;
+        v = v;
+        volatile int hi = 100;
+        volatile int r = v > hi ? hi : v;
+        vol = r;
         S_001A33A0_Elem *e = list1c0.at(idx - 1);
         if (e->snd->v7() == 0) {
             e->snd->v12(vol * 100 / 100);
@@ -605,6 +604,21 @@ int MaterialSoundEmitter::func_001A3610(int idx, S_001A2C00_Vec pos, int a5, int
     e->snd->v14(pitch);
     f1a4->func_0001CE80((S_001A33A0_Snd *)e->snd, (S_001A33A0_Vec3 *)&pos, D_002A9ECC, e->f24, e->f28);
     return e->snd->v5(4);
+}
+
+int MaterialSoundEmitter::func_001A3790(int idx)
+{
+    if (f200 != 0) {
+        if (idx < 1 || idx > a.count) {
+            return 0;
+        }
+        return a.at(idx - 1)->snd->v7();
+    } else {
+        if (idx < 1 || idx > b.count) {
+            return 0;
+        }
+        return b.at(idx - 1)->snd->v7();
+    }
 }
 
 int MaterialSoundEmitter::func_001A3B10(void)
