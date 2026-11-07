@@ -27,6 +27,10 @@ int __fastcall func_00109380(char *self, int unused, int arg);
 int __fastcall func_00109390(char *self, int unused, int arg);
 int __fastcall func_001093A0(char *self, int unused, int arg);
 struct C_0009CAD0_Calls {
+    int func_00109370();
+    int func_00109380(int);
+    int func_00109390(int);
+    int func_001093A0(int);
     int func_000988B0(char *, char *);
     void func_00096FE0(float);
     void func_00083A70(const char *);
