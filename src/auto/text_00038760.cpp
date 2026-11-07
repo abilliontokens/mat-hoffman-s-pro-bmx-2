@@ -55,12 +55,9 @@ extern "C" void _ReadWriteBarrier(void);
 static __forceinline void Round_00038850(int *out, float value)
 {
     S_00038760_Conv c;
-    int rounded;
     c.out = out;
     c.v = value;
-    rounded = _mm_cvtss_si32(*(__m128 *)&c.v);
-    _ReadWriteBarrier();
-    *(*(int * volatile *)&c.out) = rounded;
+    AsmFloatToIntRound(c.v, c.out);
 }
 extern char D_00276E90[];
 extern int D_002B911C;
