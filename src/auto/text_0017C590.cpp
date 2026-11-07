@@ -81,10 +81,7 @@ struct QuadTree {
     void *vtbl;
     char pad4[8];
     u16 stampC;
-    union {
-        u8 flagsE;
-        struct { u8 activeE : 1; u8 otherE : 7; };
-    };
+    u8 flagsE;
     char padF[0x94 - 0xF];
     S_QuadTreeFx *f94;
     char pad98[4];
