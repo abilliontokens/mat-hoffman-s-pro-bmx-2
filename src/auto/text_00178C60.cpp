@@ -112,20 +112,9 @@ static __forceinline void cross_179950(float *out, float *a, float *b)
 
 static __forceinline int edge_1793E0(Vec4 *p, Vec4 *q, Vec4 *r, Vec4 *n)
 {
-    Vec4 a;
-    Vec4 b;
-    Vec4 c;
-    Vec4 t;
-    t.x = q->x - p->x;
-    t.y = q->y - p->y;
-    t.z = q->z - p->z;
-    t.w = 1.0f;
-    a = t;
-    t.x = r->x - p->x;
-    t.y = r->y - p->y;
-    t.z = r->z - p->z;
-    t.w = 1.0f;
-    b = t;
+    Vec4 a = make_179950(q->x - p->x, q->y - p->y, q->z - p->z);
+    Vec4 b = make_179950(r->x - p->x, r->y - p->y, r->z - p->z);
+    Vec4 c = make_179950(0.0f, 0.0f, 0.0f);
     cross_179950(&c.x, &a.x, &b.x);
     float d = c.y * n->y + c.x * n->x + c.z * n->z;
     return *(int *)&d >= 0;
