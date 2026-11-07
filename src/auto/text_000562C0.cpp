@@ -12,7 +12,11 @@ extern float D_00277F44;
 extern float D_00275460;
 extern float D_00277D04;
 extern float D_002A1A64, D_002A1A68, D_002A1A6C;
+extern float D_002A1A70;
 extern float D_002A1A84, D_002A1A88, D_002A1A8C, D_002A1A90;
+extern float D_002755E8;
+extern float D_00277F38;
+extern int D_002B8FC0;
 
 void *__fastcall func_00026500(void *self, int guard, void *a, int b);
 void __fastcall func_00108B00(void *self, V4_000562C0 *out);
@@ -70,7 +74,7 @@ void __fastcall _func_000562C0(void *self, int a1, float dt, int a2, int a3, int
         void *b = *(void **)((char *)a + 0x950);
         if (*(int *)((char *)b + 0xbc) == 0 && *(int *)((char *)a + 0x1584) == -1) {
             void *e = *(void **)((char *)a + 0x1ec);
-            float f = *(float *)((char *)e + 0x3c) * D_00277D04;
+            float f = D_00277D04 * *(float *)((char *)e + 0x3c);
             *(u32 *)((char *)self + 0xc) = *(u32 *)((char *)a + 0x1e0);
             *(int *)((char *)self + 0x10) = 0;
             *(float *)((char *)self + 0x64) = f;
@@ -81,16 +85,15 @@ void __fastcall _func_000562C0(void *self, int a1, float dt, int a2, int a3, int
     }
     if (*(int *)((char *)self + 0xc) != 0) {
         void *a = *(void **)((char *)self + 0x4);
-        void *cam = *(void **)((char *)a + 0xa04);
         if (*(int *)((char *)a + 0x704) == 0 && *(int *)((char *)a + 0x70c) == 0) {
             if (*(int *)((char *)a + 0x11dc) != 0 && *(int *)((char *)a + 0x470) != 0)
                 func_00108B00(a, &vA8);
             else
-                func_00199A70(*(void **)((char *)cam + 0x4), 0, &vA8);
+                func_00199A70(*(void **)((char *)*(void **)((char *)a + 0xa04) + 4), 0, &vA8);
         } else {
             func_001089C0(a, &vA8);
         }
-        func_001994C0(*(void **)((char *)cam + 0x4), 0, &v24, &v34);
+        func_001994C0(*(void **)((char *)*(void **)((char *)a + 0xa04) + 4), 0, &v24, &v34);
         *(V4_000562C0 *)&v98 = *(V4_000562C0 *)((char *)*(void **)((char *)self + 0xc) + 0x238);
     } else {
         func_00199A70(*(void **)((char *)self + 0x10), 0, &vA8);
@@ -109,7 +112,7 @@ void __fastcall _func_000562C0(void *self, int a1, float dt, int a2, int a3, int
     }
     if (*(float *)((char *)self + 0x7c) == D_002A1A64
         && *(float *)((char *)self + 0x80) == D_002A1A68
-        && *(float *)((char *)self + 0x84) == D_002A1A6C) {
+        && *(float *)((char *)self + 0x84) != D_002A1A6C) {
         if (*(int *)((char *)self + 0x40) != 0) {
             *(V4_000562C0 *)((char *)self + 0x7c) = v24;
             *(V4_000562C0 *)((char *)self + 0x8c) = v34;
@@ -146,6 +149,32 @@ void __fastcall _func_000562C0(void *self, int a1, float dt, int a2, int a3, int
             *(V4_000562C0 *)&v24 = *func_000110B0(&t120, (float *)&v34);
             *(V4_000562C0 *)&v34 = old;
             func_0001EAB0((float *)&d, (float *)&v34, (float *)&v24);
+            {
+                V4_000562C0 g1;
+                g1.x = D_002A1A84;
+                g1.y = D_002A1A88;
+                g1.z = D_002A1A8C;
+                g1.w = D_002A1A90;
+                V4_000562C0 r1;
+                r1.x = v34.y;
+                r1.y = v24.y;
+                r1.z = v24.z;
+                r1.w = v24.w;
+                func_00158390(*(void **)((char *)self + 0x1ac), g1, r1, (float *)&v24);
+            }
+            {
+                V4_000562C0 r2;
+                r2.x = d.x;
+                r2.y = d.y;
+                r2.z = v24.w;
+                r2.w = v34.x;
+                V4_000562C0 r3;
+                r3.x = v34.x;
+                r3.y = v34.y;
+                r3.z = v24.z;
+                r3.w = v24.w;
+                func_00158390(*(void **)((char *)self + 0x1ac), r2, r3, (float *)&v34);
+            }
         }
     }
 }
