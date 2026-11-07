@@ -57,7 +57,7 @@ struct C_0002A010 {
 };
 extern float D_002766C0, D_002766B0, D_002A1160, D_00275548, D_002A115C, D_002A1158;
 extern double D_002766B8, D_002766A8;
-static inline float Abs_0002A010(float f)
+static __forceinline float Abs_0002A010(float f)
 {
     int i = *(int *)&f & 0x7fffffff;
     return *(float *)&i;
@@ -484,10 +484,10 @@ void C_0002A250::func_0002A250(float dt)
         f644 = D_002756D4 - func_0014F7E0(a.x * f10c.x + a.y * f10c.y + a.z * f10c.z);
         b.x = b.y = b.z = 0;
         b.w = 1.0f;
-        Cross_0002A7C0(&b.x, &a.x, &f10c.x);
+        AsmVec3Cross(&b.x, &a.x, &f10c.x);
         func_00026340(&b, &b);
         sign = -1;
-        if (D_00275544 <= b.y) {
+        if (b.y >= D_00275544) {
             sign = 1;
         }
         f644 = sign * f644 * D_002A1170;
