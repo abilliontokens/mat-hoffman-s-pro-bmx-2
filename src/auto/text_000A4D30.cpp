@@ -30,6 +30,12 @@ struct Ser_000A4D30 {
     void func_00168B90(char *name, void *ptr);
     void func_00168550(char *name, void *ptr, int n);
 };
+struct BindingNames_000A4D30 {
+    char squareSpecial[0x104];
+    char circleSpecial[0x104];
+    char circle[0x104];
+    char square[0x104];
+};
 struct S_000A4D30 {
     char pad0[0x7a90];
     void func_000A4AF0(int key, char *name);
