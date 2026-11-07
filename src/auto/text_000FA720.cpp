@@ -111,9 +111,12 @@ struct BmxUIPageRider {
     int f484;
     int f488;
     int f48c;
-    char pad490[0x498 - 0x490];
+    int f490;
+    int f494;
     int f498;
-    char pad49c[0x4a8 - 0x49c];
+    int f49c;
+    int f4a0;
+    int f4a4;
     int f4a8;
     int f4ac;
     int f4b0;
