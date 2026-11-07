@@ -33,7 +33,8 @@ static __forceinline void cross153(V153 *d, V153 *a, V153 *b) {
     _mm_storeu_ps(&dp->x,_mm_shuffle_ps(v,v,0xc9));
 }
 static __forceinline void norm153(V153 *v) {
-    __m128 x=_mm_loadu_ps(&v->x), q=_mm_mul_ps(x,x);
+    V153 * volatile src=v; V153 * volatile dst=v;
+    __m128 x=_mm_loadu_ps(&src->x), q=_mm_mul_ps(x,x);
     __m128 n=_mm_add_ss(_mm_movehl_ps(q,q),q);
     n=_mm_add_ss(n,_mm_shuffle_ps(q,q,0xe1));
     __m128 tiny=_mm_set_ss(1.17549435e-38f);
