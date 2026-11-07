@@ -55,8 +55,9 @@ struct S_00173B00_Rig {
     int f1b4;
 };
 
-static __forceinline float Min_00173B00(float a, float b) { float r; _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
-static __forceinline float Max_00173B00(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
+static __forceinline float Min_00173B00(float a, float b) { return AsmMinF(a, b); }
+static __forceinline float Max_00173B00(float a, float b) { return AsmMaxF(a, b); }
+static __forceinline float Abs_00173B00(float x) { int i = *(int *)&x & 0x7fffffff; return *(float *)&i; }
 float func_00011170(float *v);
 
 extern Vec4 D_002EF740;
