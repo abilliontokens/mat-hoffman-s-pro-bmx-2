@@ -109,6 +109,7 @@ struct S_0E9180_124 {
     int f28c;
     int func_000BE020(int);
     int func_000BDF30(int);
+    void *func_000BA9D0(int);
 };
 
 struct C_000E9180 {
