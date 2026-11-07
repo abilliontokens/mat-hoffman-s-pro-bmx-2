@@ -53,6 +53,8 @@ struct BmxObjectivesMenu {
 };
 
 extern float D_002756DC;
+extern float D_00275544;
+extern float D_002755E8;
 
 void BmxObjectivesMenu::func_00064BA0(float dt)
 {
