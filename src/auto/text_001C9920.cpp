@@ -137,6 +137,7 @@ struct S_002F08BC { char pad[0x9c]; float unk9C; };
 extern S_002F08BC *D_002F08BC;
 extern double D_002766B8;
 struct C_001CA1F0_elem { void func_00194520(float a0, int *a1); };
+extern void __stdcall func_00194520(float a0, int *a1);
 struct C_001CA1F0 {
     char pad0[0x38];
     float unk38;
@@ -335,10 +336,9 @@ C_001C9920 *C_001C9920::func_001C9B10(int a, int b, int c, int d, int e, int f, 
     arr = (char *)func_001E8A44(size);
     if (arr) {
         int *p = (int *)arr;
-        float one = 1.0f;
         for (int k = c - 1; k >= 0; k--) {
-            p[4] = 0; p[3] = 0; p[2] = 0; *(float *)&p[5] = one;
-            p[8] = 0; p[7] = 0; p[6] = 0; *(float *)&p[9] = one;
+            p[4] = 0; p[3] = 0; p[2] = 0; p[5] = 0x3f800000;
+            p[8] = 0; p[7] = 0; p[6] = 0; p[9] = 0x3f800000;
             p += 0x12;
         }
     } else {
