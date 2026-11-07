@@ -27,7 +27,8 @@ float func_0001E960(float);
 void func_0011F010(M153 *, float, float, float, float, float);
 void func_000263B0(M153 *, M153 *, M153 *);
 static __forceinline void cross153(V153 *d, V153 *a, V153 *b) {
-    __m128 x=_mm_loadu_ps(&a->x), y=_mm_loadu_ps(&b->x);
+    V153 * volatile ap=a; V153 * volatile bp=b; V153 * volatile dp=d;
+    __m128 x=_mm_loadu_ps(&ap->x), y=_mm_loadu_ps(&bp->x);
     __m128 v=_mm_sub_ps(_mm_mul_ps(x,_mm_shuffle_ps(y,y,0xc9)),_mm_mul_ps(y,_mm_shuffle_ps(x,x,0xc9)));
     _mm_storeu_ps(&d->x,_mm_shuffle_ps(v,v,0xc9));
 }
