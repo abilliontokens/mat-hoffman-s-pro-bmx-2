@@ -79,8 +79,8 @@ static __forceinline void EdgeEval(Vec4 &P, Vec4 &N, float *v0, float *v1, float
     Vec3 n1v(n1[0], n1[1], n1[2]);
     Vec3 pv = v0v * s + v1v * t;
     Vec3 nn = r * (t * s) + v0v * (s * s) + n1v * t;
-    P.x = pv.x; P.y = pv.y; P.z = pv.z;
-    N.x = nn.x; N.y = nn.y; N.z = nn.z;
+    P = Vec4(pv.x, pv.y, pv.z);
+    N = Vec4(nn.x, nn.y, nn.z);
 }
 
 void func_00124760(Vec4 *out, float *p, float *n, float *a, float *b, float *c, float *na, float *nb, float *nc)
