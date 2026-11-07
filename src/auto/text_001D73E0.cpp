@@ -177,7 +177,7 @@ int __stdcall func_001D6CB0(int id);
 void __stdcall func_001FCEA0(void *map, int index, void *out, int a, int b);
 unsigned __stdcall func_001FCFE0(void *map);
 void *__stdcall func_001FCE50(void *map, unsigned index);
-void __stdcall func_00201210(void *p, void *out, int a, int b);
+void __stdcall func_00201210(void *p, int *out, int a, int b);
 void __stdcall func_002011F0(void *p, void *out);
 void __stdcall func_00201100(void *p);
 
@@ -558,16 +558,14 @@ int XboxTextureMap::func_001D7C50()
     unsigned count = func_001FCFE0(field_b8);
     for (unsigned i = 0; i < count; i++) {
         void *p = func_001FCE50(field_b8, i);
-        if (p != 0) {
-            int dims[2];
-            S_001D7C50_desc desc;
-            func_00201210(p, dims, 0, 0x80);
-            func_002011F0(p, &desc);
-            ((C_001D6D00 *)this)->func_001D6D00(&desc, dims, 0);
-            func_00201100(p);
-        } else {
+        if (p == 0)
             return 0;
-        }
+        int dims[2];
+        S_001D7C50_desc desc;
+        func_00201210(p, dims, 0, 0x80);
+        func_002011F0(p, &desc);
+        func_001D6D00(&desc, dims, 0);
+        func_00201100(p);
     }
     return 1;
 }
