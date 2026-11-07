@@ -1,5 +1,35 @@
 /* 1 function from 0x0002D730 to 0x0002EB10, found by Ghidra. */
 #include "common.h"
+#include <xmmintrin.h>
+struct V4_2D730 {
+    float x, y, z, w;
+    V4_2D730() { z = y = x = 0.0f; w = 1.0f; }
+};
+static __forceinline float Abs_2D730(float a)
+{
+    unsigned int i = *(unsigned int *)&a & 0x7fffffff;
+    return *(float *)&i;
+}
+static __forceinline void Cross_2D730(float *volatile out, float *volatile a, float *volatile b)
+{
+    __m128 va = _mm_loadu_ps(a);
+    __m128 vb = _mm_loadu_ps(b);
+    __m128 sa = _mm_shuffle_ps(va, va, 0xc9);
+    __m128 sb = _mm_shuffle_ps(vb, vb, 0xc9);
+    __m128 r = _mm_sub_ps(_mm_mul_ps(va, sb), _mm_mul_ps(vb, sa));
+    _mm_storeu_ps(out, _mm_shuffle_ps(r, r, 0xc9));
+}
+struct S_2D730_Transform {
+    void func_00197EC0(void *out, void *in);
+    void func_001994C0(int, void *, void *);
+    void func_00199110(int, void *, void *, int, int, int);
+    float func_00026A10(float, float);
+    void func_000269B0(float, float, float);
+    void func_0001C5B0(void *);
+};
+void func_00026340(void *, void *);
+float func_00011220(void *, void *);
+void func_0001C5E0(void *, void *, float);
 
 struct S_2D730_Component {
     virtual void slot0();
