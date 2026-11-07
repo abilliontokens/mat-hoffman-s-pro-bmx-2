@@ -7,6 +7,8 @@ struct S_2D730_Mgr {
 
 struct S_2D730_Sub {
     void func_00025E50(float f);
+    void func_00133EF0(void *p);
+    void func_00134530(int mask, int *a, int *b, int n, int x, int y);
 };
 
 extern int D_002B7EA4;
