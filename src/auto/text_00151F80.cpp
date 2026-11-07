@@ -31,7 +31,7 @@ struct S_152BA0_Obj {
     virtual void v28(); virtual void v29(); virtual void v30(); virtual void v31(float *m);
     char pad4[0xa3];
     unsigned char fa7;
-    void func_00133F10(int a);
+    float func_00133F10(int a);
     void func_0011CA60(S_151F80_Vec v);
 };
 struct S_152BA0_Ctl {
@@ -181,11 +181,16 @@ void C_00151F80::func_00152300(float dt)
         f2c->f1a4->f4->func_00199B00(&v, 0);
     }
     if (f78 != 0) {
-        f94.x = D_002A789C.x; f94.y = D_002A78A0; f94.z = D_002A78A4; f94.w = D_002A78A8;
-        f84.x = D_002A789C.x; f84.y = D_002A78A0; f84.z = D_002A78A4; f84.w = D_002A78A8;
+        S_151F80_Vec *p;
+        p = &f94;
+        p->x = D_002A789C.x; p->y = D_002A78A0; p->z = D_002A78A4; p->w = D_002A78A8;
+        p = &f84;
+        p->x = D_002A789C.x; p->y = D_002A78A0; p->z = D_002A78A4; p->w = D_002A78A8;
         fc4 = 0;
-        f84.x = D_002A789C.x; f84.y = D_002A78A0; f84.z = D_002A78A4; f84.w = D_002A78A8;
-        f94.x = D_002A789C.x; f94.y = D_002A78A0; f94.z = D_002A78A4; f94.w = D_002A78A8;
+        p = &f84;
+        p->x = D_002A789C.x; p->y = D_002A78A0; p->z = D_002A78A4; p->w = D_002A78A8;
+        p = &f94;
+        p->x = D_002A789C.x; p->y = D_002A78A0; p->z = D_002A78A4; p->w = D_002A78A8;
         {
             S_151F80_Vec line[2];
             line[0] = f120;
@@ -196,18 +201,19 @@ void C_00151F80::func_00152300(float dt)
             f78->func_00133F10(0);
         }
         if (fc4 != 0) {
-            __declspec(align(16)) float m2[16];
+            S_151F80_Mat mat2;
             v = *(S_1528D0_Vec *)&f84;
             if (f60 != 0) {
-                __declspec(align(16)) float m[16];
+                S_151F80_Mat mat;
                 v.y = (D_00276288 - f34) + v.y;
-                AsmIdentityMatrix(m);
-                memcpy(m2, m, 0x40);
-                m2[3] = v.x;
-                m2[7] = v.y;
-                m2[11] = v.z;
-                f68.x = D_002A789C.x; f68.y = D_002A78A0; f68.z = D_002A78A4; f68.w = D_002A78A8;
-                f60->v31(m2);
+                AsmIdentityMatrix(mat.m);
+                mat2 = mat;
+                mat2.m[3] = v.x;
+                mat2.m[7] = v.y;
+                mat2.m[11] = v.z;
+                p = &f68;
+                p->x = D_002A789C.x; p->y = D_002A78A0; p->z = D_002A78A4; p->w = D_002A78A8;
+                f60->v31(mat2.m);
                 f60->func_00133F10(0);
             }
             {
@@ -222,11 +228,12 @@ void C_00151F80::func_00152300(float dt)
                         v.x -= t.x;
                         v.y -= t.y;
                         v.z -= t.z;
-                        m2[3] = v.x;
-                        m2[7] = v.y;
-                        m2[11] = v.z;
-                        f68.x = D_002A789C.x; f68.y = D_002A78A0; f68.z = D_002A78A4; f68.w = D_002A78A8;
-                        f60->v31(m2);
+                        mat2.m[3] = v.x;
+                        mat2.m[7] = v.y;
+                        mat2.m[11] = v.z;
+                        p = &f68;
+                        p->x = D_002A789C.x; p->y = D_002A78A0; p->z = D_002A78A4; p->w = D_002A78A8;
+                        f60->v31(mat2.m);
                         f60->func_00133F10(0);
                     }
                     if (f60->fa7 & 0x20) {
