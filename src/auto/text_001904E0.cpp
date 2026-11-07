@@ -103,6 +103,8 @@ struct C_00191270 {
     S_00191270_Entry *f158;
     char pad15c[8];
     S_1904E0_Table *f164;
+    char pad168[8];
+    S_1904E0_Ops *f170;
     int func_0018D580(unsigned int id);
     int func_0018E7D0(int kind, char *name, int *out);
     void func_0018EA50(unsigned int a, void *b);
