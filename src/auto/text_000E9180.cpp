@@ -161,6 +161,9 @@ struct C_000E9180 {
     char pad788[0x78c - 0x788];
     int f78c;
     void func_000E9180(float dt);
+    void func_000E8630();
+    void func_001BEB00();
+    void func_001BED00(float);
 };
 
 typedef void (__fastcall *VF_0E9180)(void *self, int dummy, int a, int b);
