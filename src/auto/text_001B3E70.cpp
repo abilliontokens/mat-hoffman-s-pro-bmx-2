@@ -133,12 +133,12 @@ struct S_TireTrackSurf {
 };
 struct V4_3E70 {
     float x, y, z, w;
-    V4_3E70() {}
-    V4_3E70(float a, float b, float c, float d = 1.0f) : x(a), y(b), z(c), w(d) {}
-    V4_3E70 operator+(const V4_3E70 &o) const { return V4_3E70(x+o.x,y+o.y,z+o.z); }
-    V4_3E70 operator-(const V4_3E70 &o) const { return V4_3E70(x-o.x,y-o.y,z-o.z); }
-    V4_3E70 operator-() const { return V4_3E70(-x,-y,-z); }
-    V4_3E70 operator*(float f) const { return V4_3E70(x*f,y*f,z*f); }
+    __forceinline V4_3E70() {}
+    __forceinline V4_3E70(float a, float b, float c, float d = 1.0f) : x(a), y(b), z(c), w(d) {}
+    __forceinline V4_3E70 operator+(const V4_3E70 &o) const { return V4_3E70(x+o.x,y+o.y,z+o.z); }
+    __forceinline V4_3E70 operator-(const V4_3E70 &o) const { return V4_3E70(x-o.x,y-o.y,z-o.z); }
+    __forceinline V4_3E70 operator-() const { return V4_3E70(-x,-y,-z); }
+    __forceinline V4_3E70 operator*(float f) const { return V4_3E70(x*f,y*f,z*f); }
 };
 static __forceinline float MinF_3E70(float a, float b) { float r; _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
 static __forceinline float MaxF_3E70(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
