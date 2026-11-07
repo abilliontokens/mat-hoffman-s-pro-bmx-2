@@ -83,6 +83,41 @@ extern S_000D1AE0_Str19 D_0027ED44;
 extern S_000D1AE0_Str17 D_0027ED30;
 extern S_000D1AE0_Str15 D_0027ED20;
 extern S_000D1AE0_Str15 D_0027ED10;
+/* the rest of each name string: the original copies it a dword/word/byte at a time from
+   separately named symbols, not as one object */
+extern int D_0027EE04, D_0027EE08;
+extern int D_0027EDF8;
+extern unsigned short D_0027EDFC;
+extern unsigned char D_0027EDFE;
+extern int D_0027EDE8, D_0027EDEC;
+extern unsigned short D_0027EDF0;
+extern int D_0027EDDC, D_0027EDE0;
+extern int D_0027EDCC, D_0027EDD0;
+extern unsigned short D_0027EDD4;
+extern int D_0027EDC0, D_0027EDC4;
+extern int D_0027EDB4;
+extern unsigned short D_0027EDB8;
+extern int D_0027EDA8;
+extern unsigned short D_0027EDAC;
+extern int D_0027ED94, D_0027ED98, D_0027ED9C;
+extern unsigned char D_0027EDA0;
+extern int D_0027ED84, D_0027ED88, D_0027ED8C;
+extern int D_0027ED70, D_0027ED74, D_0027ED78;
+extern unsigned short D_0027ED7C;
+extern unsigned char D_0027ED7E;
+extern int D_0027ED5C, D_0027ED60, D_0027ED64;
+extern unsigned char D_0027ED68;
+extern int D_0027ED48, D_0027ED4C, D_0027ED50;
+extern unsigned short D_0027ED54;
+extern unsigned char D_0027ED56;
+extern int D_0027ED34, D_0027ED38, D_0027ED3C;
+extern unsigned char D_0027ED40;
+extern int D_0027ED24, D_0027ED28;
+extern unsigned short D_0027ED2C;
+extern unsigned char D_0027ED2E;
+extern int D_0027ED14, D_0027ED18;
+extern unsigned short D_0027ED1C;
+extern unsigned char D_0027ED1E;
 /* BmxUIPageLevelSelection */
 struct C_000D2080 {
     char pad0[0x124];
@@ -251,47 +286,123 @@ inline int C_000D2300::Value(int i)
     return D_002A8490->f2E0->f2DC[i];
 }
 
-void C_000D2080::func_000D2080(void)
+void C_000D2080::func_000D1AE0(void)
 {
+    C_000D2080 * volatile self = this;
     char buf[0x104];
-    S_000D2080_Mgr *mgr = f124;
-    int off;
-    int poff;
+    S_000D2080_Mgr *mgr = this->f124;
+    int off1;
+    int poff1;
+    int off2;
+    int poff2;
     int j;
-    volatile int len;
-    volatile int lim;
-    volatile int res;
+    volatile int tmp[3];
 
-    *(S_000D2080_Str23 *)names[0] = D_0027EEDC;
-    *(S_000D2080_Str21 *)names[1] = D_0027EEC4;
-    *(S_000D2080_Str21 *)names[2] = D_0027EEAC;
-    *(S_000D2080_Str23 *)names[3] = D_0027EE94;
-    *(S_000D2080_Str21 *)names[4] = D_0027EE7C;
-    *(S_000D2080_Str20 *)names[5] = D_0027EE68;
-    *(S_000D2080_Str23 *)names[6] = D_0027EE50;
-    *(S_000D2080_Str22 *)names[7] = D_0027EE38;
-    *(S_000D2080_Str21 *)names[8] = D_0027EE20;
-    *(S_000D2080_Str18 *)names[9] = D_0027EE0C;
-    poff = 0x2048;
-    for (off = 0x474; off < 0xE9C; off += 0x104) {
+    *(S_000D1AE0_Str12 *)this->extraNames[0] = D_0027EE00;
+    *(S_000D1AE0_Str11 *)self->extraNames[1] = D_0027EDF4;
+    *(S_000D1AE0_Str14 *)self->extraNames[2] = D_0027EDE4;
+    *(S_000D1AE0_Str12 *)self->extraNames[3] = D_0027EDD8;
+    *(S_000D1AE0_Str14 *)self->extraNames[4] = D_0027EDC8;
+    *(S_000D1AE0_Str12 *)self->extraNames[5] = D_0027EDBC;
+    *(S_000D1AE0_Str10 *)self->extraNames[6] = D_0027EDB0;
+    *(S_000D1AE0_Str10 *)self->extraNames[7] = D_0027EDA4;
+    poff1 = 0x2070;
+    for (off1 = 0xe9c; off1 < 0x16bc; off1 += 0x104) {
         for (j = 0; j < (*mgr->f150->f3A8)->count; j++) {
             S_000D2080_Entry *e = (*mgr->f150->f3A8)->items[j];
             if (e != 0 && e->f4 == 1 && e->f8 != 0) {
-                len = strlen(e->f8->name);
-                lim = 0x103;
-                int a = lim;
-                int b = len;
-                res = b < a ? b : a;
-                int n = res;
+                tmp[0] = strlen(e->f8->name);
+                tmp[2] = 0x103;
+                int a = tmp[2];
+                int b = tmp[0];
+                tmp[1] = a > b ? b : a;
+                int n = tmp[1];
                 func_001E8920(buf, (*(S_000D2080_Item * volatile *)&e->f8)->name, n);
                 buf[n] = 0;
                 char *dot = func_001E8AC0(buf, '.');
                 if (dot != 0) {
                     memset(dot, 0, strlen(dot));
                 }
-                if (func_001EA426(buf, (char *)this + off) == 0) {
-                    *(S_000D2080_Item **)((char *)this + poff) = e->f8;
+                if (func_001EA426(buf, off1 + (char *)self) == 0) {
+                    *(S_000D2080_Item **)(poff1 + (char *)self) = e->f8;
                 }
+            }
+        }
+        poff1 += 4;
+    }
+    *(S_000D1AE0_Str17 *)self->extraNames[8] = D_0027ED90;
+    *(S_000D1AE0_Str16 *)self->extraNames[9] = D_0027ED80;
+    *(S_000D1AE0_Str19 *)self->extraNames[10] = D_0027ED6C;
+    *(S_000D1AE0_Str17 *)self->extraNames[11] = D_0027ED58;
+    *(S_000D1AE0_Str19 *)self->extraNames[12] = D_0027ED44;
+    *(S_000D1AE0_Str17 *)self->extraNames[13] = D_0027ED30;
+    *(S_000D1AE0_Str15 *)self->extraNames[14] = D_0027ED20;
+    *(S_000D1AE0_Str15 *)self->extraNames[15] = D_0027ED10;
+    poff2 = 0x2090;
+    for (off2 = 0x16bc; off2 < 0x1edc; off2 += 0x104) {
+        for (j = 0; j < (*mgr->f150->f3A8)->count; j++) {
+            S_000D2080_Entry *e = (*mgr->f150->f3A8)->items[j];
+            if (e != 0 && e->f4 == 1 && e->f8 != 0) {
+                tmp[0] = strlen(e->f8->name);
+                tmp[2] = 0x103;
+                int a = tmp[2];
+                int b = tmp[0];
+                tmp[1] = a > b ? b : a;
+                int n = tmp[1];
+                func_001E8920(buf, (*(S_000D2080_Item * volatile *)&e->f8)->name, n);
+                buf[n] = 0;
+                char *dot = func_001E8AC0(buf, '.');
+                if (dot != 0) {
+                    memset(dot, 0, strlen(dot));
+                }
+                if (func_001EA426(buf, off2 + (char *)self) == 0) {
+                    *(S_000D2080_Item **)(poff2 + (char *)self) = e->f8;
+                }
+            }
+        }
+        poff2 += 4;
+    }
+}
+
+void C_000D2080::func_000D2080(void)
+{
+    char buf[0x104];
+    C_000D2080 * volatile self = this;
+    volatile int lim;
+    S_000D2080_Mgr *mgr = *(S_000D2080_Mgr * volatile *)&f124;
+    int off;
+    int poff;
+    int j;
+    volatile int sizes[2];
+    
+    *(S_000D2080_Str23 *)names[0] = D_0027EEDC;
+    *(S_000D2080_Str21 *)self->names[1] = D_0027EEC4;
+    *(S_000D2080_Str21 *)self->names[2] = D_0027EEAC;
+    *(S_000D2080_Str23 *)self->names[3] = D_0027EE94;
+    *(S_000D2080_Str21 *)self->names[4] = D_0027EE7C;
+    *(S_000D2080_Str20 *)self->names[5] = D_0027EE68;
+    *(S_000D2080_Str23 *)self->names[6] = D_0027EE50;
+    *(S_000D2080_Str22 *)self->names[7] = D_0027EE38;
+    *(S_000D2080_Str21 *)self->names[8] = D_0027EE20;
+    *(S_000D2080_Str18 *)self->names[9] = D_0027EE0C;
+    poff = 0x2048;
+    for (off = 0x474; off < 0xE9C; off += 0x104) {
+        for (j = 0; j < (*mgr->f150->f3A8)->count; (*(volatile int *)&j)++) {
+            S_000D2080_Entry *e = (*mgr->f150->f3A8)->items[j];
+            if (e != 0 && e->f4 == 1 && e->f8 != 0) {
+                sizes[0] = strlen(e->f8->name);
+                lim = 0x103;
+                int a = lim;
+                int b = sizes[0];
+                if (a > b) a = b;
+                sizes[1] = a;
+                int n = sizes[1];
+                func_001E8920(buf, (*(S_000D2080_Item * volatile *)&e->f8)->name, n);
+                buf[n] = 0;
+                char *dot = func_001E8AC0(buf, '.');
+                if (dot != 0) memset(dot, 0, strlen(dot));
+                if (func_001EA426(buf, (char *)self + off) == 0)
+                    *(S_000D2080_Item **)((char *)self + poff) = e->f8;
             }
         }
         poff += 4;
