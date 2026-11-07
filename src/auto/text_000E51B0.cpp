@@ -2,12 +2,7 @@
 #include "common.h"
 
 
-struct RiderWidgetColor {
-char pad[0x3b];
-unsigned char alpha;
-char pad3c[0x1c];
-unsigned char flags;
-};
+
 struct RiderWidgetBits {
 char pad[0x3b];
 unsigned char alpha;
