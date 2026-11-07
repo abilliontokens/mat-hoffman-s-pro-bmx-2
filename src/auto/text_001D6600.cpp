@@ -3,6 +3,7 @@
 
 #include <xmmintrin.h>
 #include <string.h>
+#include "asm_helpers.h"
 
 extern int D_0028F644;
 struct TextureInit_001D6B70 {
@@ -216,7 +217,7 @@ struct XboxTextureMap {
     void *fBC;
     u32 arrC0[10];
     u32 arrE8[10];
-    void func_001B1200(void *param);
+    void *func_001B1200(void *param);
     void func_001B11D0(void);
     XboxTextureMap *func_001D6AD0(void *param);
     void func_001D6B00(void);
@@ -239,39 +240,36 @@ struct XboxTextureMapVtbl {
 
 void C_001D6600::func_001D6600(void)
 {
-    C_001D6600 * volatile self = this;
+    if (this->f4E & 2) {
+        this->func_001D6440();
+    }
     Vertex_001D6600 *verts = 0;
-    int i;
-
-    if (self->f4E & 2) {
-        self->func_001D6440();
+    if (this->f4E & 0xd) {
+        verts = (Vertex_001D6600 *)func_001FF410(this->f58->buf, 0);
     }
-    if (self->f4E & 0xd) {
-        verts = (Vertex_001D6600 *)func_001FF410(self->f58->buf, 0);
-    }
-    if (self->f4E & 5) {
-        Scale_001D6600 *sc = self->f40->func_0018C070();
-        int iw = sc->f8;
-        int ih = sc->fC;
+    if (this->f4E & 5) {
+        Scale_001D6600 *sc = this->f40->func_0018C070();
+        volatile int iw = sc->f8;
+        volatile int ih = sc->fC;
         float fw = (float)iw;
         float fh = (float)ih;
-        float x = self->x14;
-        float y = self->y18;
-        int z;
+        float x = this->x14;
+        float y = this->y18;
+        volatile int z;
 
-        if (self->f4E & 0x10) {
-            self->f4E &= ~0x10;
-            float r = D_00275460 / self->f34;
+        if (this->f4E & 0x10) {
+            float r = D_00275460 / this->f34;
+            this->f4E &= ~0x10;
             x = x * r;
             y = y * r;
         }
-        z = self->f3C;
-        for (i = 0; i < self->f50; i++) {
-            Glyph_001D6600 *e = self->f54[self->f0[i]];
+        z = this->f3C;
+        for (int i = 0; i < this->f50; i++) {
+            Glyph_001D6600 *e = this->f54[this->f0[i]];
             Vertex_001D6600 *v = &verts[i * 6];
 
             if (e == 0) {
-                e = self->f54[0];
+                e = this->f54[0];
                 if (e == 0) {
                     continue;
                 }
@@ -334,30 +332,23 @@ void C_001D6600::func_001D6600(void)
                 x = right;
             }
         }
-        self->f4E &= ~4;
-        self->f4E &= ~1;
+        this->f4E &= ~4;
+        this->f4E &= ~1;
     }
-    if (self->f4E & 8) {
-        for (i = 0; i < self->f50 * 6; i++) {
-            verts[i].color = self->f48;
+    if (this->f4E & 8) {
+        for (int j = 0; j < this->f50 * 6; j++) {
+            verts[j].color = this->f48;
         }
-        self->f4E &= ~8;
+        this->f4E &= ~8;
     }
-    self->f58->count = self->f50 * 6;
-    {
-        float *p = self->f58->mat.m;
-        memset(p, 0, 0x40);
-        p[0] = 1.0f;
-        p[5] = 1.0f;
-        p[10] = 1.0f;
-        p[15] = 1.0f;
-    }
-    self->f58->mat.m[3] = (float)D_002EFDB8->f4->w;
-    self->f58->mat.m[7] = (float)D_002EFDB8->f4->h;
-    self->f58->mat.m[0] = self->f34;
-    self->f58->mat.m[5] = self->f34;
+    this->f58->count = this->f50 * 6;
+    AsmIdentityMatrix(this->f58->mat.m);
+    this->f58->mat.m[3] = (float)D_002EFDB8->f4->w;
+    this->f58->mat.m[7] = (float)D_002EFDB8->f4->h;
+    this->f58->mat.m[0] = this->f34;
+    this->f58->mat.m[5] = this->f34;
     if (D_002ABDCC != 0) {
-        ((Draw_001D6600 *)self->f5C)->func_001446B0(self->f58, 0, -1);
+        ((Draw_001D6600 *)this->f5C)->func_001446B0(this->f58, 0, -1);
     }
 }
 
@@ -397,16 +388,16 @@ XboxTextureMap *XboxTextureMap::func_001D6B70(void)
         func_001FCEA0(fB8, 0, dims, 0, 0x80);
         p = (XboxTextureMap *)func_001E8A44(0x110);
         if (p != 0) {
-            p->func_001B1200((void *)1);
             q = p;
+            p->func_001B1200((void *)1);
         }
         if (q != 0) {
-            ((void **)q)[0] = (void *)&D_0028F644;
-            q->fB8 = 0;
-            q->fBC = 0;
-            if (p->slot8(dims[1], f8, fC, (dims[0] << 3) / func_001B2910(fA4), fA0, fA4, fA4, 0, 0))
-                return p;
-            p->slot0(1);
+            ((void **)p)[0] = (void *)&D_0028F644;
+            p->fB8 = 0;
+            p->fBC = 0;
+            if (q->slot8(dims[1], f8, fC, (dims[0] << 3) / func_001B2910(fA4), fA0, fA4, fA4, 0, 0))
+                return q;
+            q->slot0(1);
         }
     }
     return 0;
@@ -516,11 +507,12 @@ void *func_001D6E20(char *name, int arg2, unsigned int flags)
         S_001D6E20_Res *p = (S_001D6E20_Res *)func_001E8A44(0x144);
         obj = p ? p->func_0013E8C0(1) : 0;
         if (((S_001D6E20_Res *)obj)->slot23(name, arg2, flags & ~0x20)) {
-            void *res = obj;
-            D_002BEAAC->func_0013AC40(buf, 0, -1, 0, &key, 0);
-            D_002BEAAC->func_0013B1F0(key, res);
-            D_002BEAAC->func_0013C110(key);
-            return res;
+            S_001D6E20_Res *r = (S_001D6E20_Res *)obj;
+            int *pk = &key;
+            D_002BEAAC->func_0013AC40(buf, 0, -1, 0, pk, 0);
+            D_002BEAAC->func_0013B1F0(*pk, r);
+            D_002BEAAC->func_0013C110(*pk);
+            return r;
         }
         ((S_001D6E20_Res *)obj)->slot2();
         return 0;
@@ -589,7 +581,7 @@ int XboxTextureMap::func_001D7190(int a1, int a2, int a3)
     S_001D7190_Tex t;
     int desc[3];
     int dims[2];
-    int size = 0;
+    int size;
     int fmt;
     int n;
     int i;
@@ -639,7 +631,7 @@ int XboxTextureMap::func_001D7190(int a1, int a2, int a3)
         t.f8 = 1;
     }
     if ((a3 & 2) != 0 && n == 1) {
-        size = t.f10 < t.f14 ? t.f10 : t.f14;
+        size = AsmMinI(t.f10, t.f14);
         n = 0;
         while (size >= 4) {
             size >>= 1;
