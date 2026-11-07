@@ -186,6 +186,7 @@ struct C_0012FE50 {
     Spline_0012FE50 *f518;
     int func_00171230(float dt);
     V4_0012FE50 func_0012F0F0(float t);
+    V4_0012FE50 *func_0012F0F0(V4_0012FE50 *out,float t);
     int func_0012FE50(float dt, int b);
 };
 
