@@ -376,7 +376,7 @@ struct S_000B2630_List {
 
 struct S_000B2630_Game {
     char pad0[0x4E0];
-    S_000B2630_List *f4E0;
+    S_000B2630_List * volatile f4E0;
     char pad4E4[0x578 - 0x4E4];
     int f578;
     void **f57C;
@@ -564,61 +564,61 @@ void C_000B25D0::func_000B25D0(void)
 
 void C_000B2630::func_000B2630(void)
 {
-    C_000B2630 * volatile self = this;
+    S_000B2630_List * volatile *slot = &D_002B9120->f4E0;
     float best = 10000.0f;
     S_000B2630_Vec d;
     S_000B2630_Vec dir;
-    S_000B2630_Vec tmp;
     int i;
-    for (i = 0; i < D_002B9120->f4E0->f24; i++) {
-        float dx, dy, dz, dist;
-        d = *D_002B9120->f4E0->f1A8[i]->fA00->f4->func_00199B00(&tmp, 0);
-        dx = d.x - self->f7C;
-        dy = d.y - self->f80;
-        dz = d.z - self->f84;
-        dist = _mm_sqrt_ss(_mm_set_ss(dx * dx + dy * dy + dz * dz)).m128_f32[0];
+    for (i = 0; i < (*slot)->f24; i++) {
+        float dx, dy, dz, sum, dist;
+        d = *(*slot)->f1A8[i]->fA00->f4->func_00199B00(&dir, 0);
+        dx = d.x - this->f7C;
+        dy = d.y - this->f80;
+        dz = d.z - this->f84;
+        sum = dx * dx + dy * dy + dz * dz;
+        dist = AsmSqrtF(sum);
         if (dist > D_00275544 && dist < best) {
             best = dist;
         }
     }
     if (best < D_00275800) {
-        float * volatile pin;
-        float * volatile pout;
-        dir.x = 0.0f;
-        dir.y = 0.0f;
+        float *pin;
+        float *pout;
         dir.z = 0.0f;
+        dir.y = 0.0f;
+        dir.x = 0.0f;
         dir.w = 1.0f;
-        d.x = d.x - self->f7C;
-        d.y = d.y - self->f80;
-        d.z = d.z - self->f84;
+        d.z = d.z - this->f84;
+        d.y = d.y - this->f80;
+        d.x = d.x - this->f7C;
         d.w = 1.0f;
         pin = &d.x;
         pout = &dir.x;
-        Normalize_000B2630(pout, pin);
-        d = *(S_000B2630_Vec *)(self->f3C + 0x458);
+        AsmVec3Normalize(pout, pin);
+        d = *(S_000B2630_Vec *)(this->f3C + 0x458);
         if (d.y * dir.y + d.x * dir.x + d.z * dir.z >= D_002756D8) {
-            if (self->f2AA != 1 && self->f68 == 0x3F800000) {
-                if (func_00011260(0, 100) < 20 && self->f78) {
-                    ((S_000B25D0_Leaf *)self->f44->f28->f8)->func_001A2B40(4);
-                    self->f2AA = 1;
+            if (this->f2AA != 1 && this->f68 == 0x3F800000) {
+                if (func_00011260(0, 100) < 20 && this->f78) {
+                    this->f44->f28->f8->func_001A2B40(4);
+                    this->f2AA = 1;
                 }
             }
-            self->f68 = 0;
-            if (self->f5C != 0x5A) {
-                self->f1A1 = 1;
-                self->f58 = 0x5A;
+            this->f68 = 0;
+            if (this->f5C != 0x5A) {
+                this->f1A1 = 1;
+                this->f58 = 0x5A;
             }
             return;
         }
     }
-    if (self->f2AA == 1 && self->f78) {
-        self->f44->f28->f8->func_001A2B40(3);
-        self->f2AA = 0;
+    if (this->f2AA == 1 && this->f78) {
+        this->f44->f28->f8->func_001A2B40(3);
+        this->f2AA = 0;
     }
-    self->f68 = 0x3F800000;
-    if (self->f5C != 0) {
-        self->f1A1 = 1;
-        self->f58 = 0;
+    this->f68 = 0x3F800000;
+    if (this->f5C != 0) {
+        this->f1A1 = 1;
+        this->f58 = 0;
     }
 }
 
