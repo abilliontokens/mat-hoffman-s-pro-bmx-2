@@ -422,20 +422,18 @@ C_001D48A0* C_001D48A0::func_001D48A0(u8 param_1)
 }
 
 C_001D48E0::C_001D48E0(void)
-    : f54(0), f58(0), f5C(0), f60(0x1b02), f64(0), f68(0), f6C(0), f70(0)
 {
-    v74.x = 0;
-    v74.y = 0;
-    v74.z = 0;
-    v74.w = 1.0f;
+    *(volatile int *)&f60 = 0x1b02;
+    *(volatile int *)&f54 = 0; *(volatile int *)&f58 = 0; *(volatile int *)&f5C = 0;
+    *(volatile int *)&f68 = 0; *(volatile int *)&f64 = 0;
+    *(volatile int *)&f6C = 0; *(volatile int *)&f70 = 0;
+    *(volatile float *)&v74.w = 1.0f;
+    v74.x = 0; v74.y = 0; v74.z = 0;
     memset(idx, 0, sizeof(idx));
-    for (int i = 0; i < 300; i++) {
-        idx[i] = i;
-    }
-    f90 = -1;
-    f8C = 0;
-    f84 = 0;
-    f88 = 0;
+    for (int i = 0; i < 300; i++) idx[i] = i;
+    *(volatile int *)&f90 = -1;
+    *(volatile int *)&f8C = 0;
+    f84 = 0; f88 = 0;
 }
 
 XboxRenderTarget *XboxRenderTarget::func_001D4980(int a) {
@@ -487,7 +485,6 @@ int func_001D4B20(void)
 
 int XboxRenderTarget::func_001D4B40(int *rect, int *src, int *dst, int unused)
 {
-    int w, h;
     XboxRenderTarget * volatile p = this;
     S_001D5660_Mat mat;
     S_001D5660_Mat * volatile pm = &mat;
@@ -496,6 +493,7 @@ int XboxRenderTarget::func_001D4B40(int *rect, int *src, int *dst, int unused)
     float u0, u1, v0, v1;
     float f0, f1, f2, f3;
     int flag;
+    int w, h;
     S_001D4B40_Vtx *vt;
 
     pm->identity();
@@ -818,31 +816,19 @@ void C_001D5660::func_001D5660(int count, int arg2)
 {
     void *__stdcall func_001FF3C0(int size);
     void *func_001E8A44(int size);
-    C_001D5660 * volatile self = this;
-    S_001D5660_Mat * volatile p;
-    S_001D5660_Mat *q;
-    __m128 *v;
+    void **slot;
     int i;
 
-    self->f8 = count;
-    self->fC = count;
-    self->f14 = func_001FF3C0(self->f8 * 0x18);
-    self->f64 = (short *)func_001E8A44(self->fC * 2);
-    for (i = 0; i < self->fC; i++) {
-        self->f64[i] = (short)i;
+    f8 = count;
+    fC = count;
+    slot = &f14;
+    *slot = func_001FF3C0(f8 * 0x18);
+    f64 = (short *)func_001E8A44(2 * fC);
+    for (i = 0; i < fC; i++) {
+        f64[i] = (short)i;
     }
-    self->f10 = arg2;
-    p = &self->f20;
-    q = p;
-    v = (__m128 *)q;
-    v[0] = _mm_setzero_ps();
-    v[1] = _mm_setzero_ps();
-    v[2] = _mm_setzero_ps();
-    v[3] = _mm_setzero_ps();
-    q->m[0] = 1.0f;
-    q->m[5] = 1.0f;
-    q->m[10] = 1.0f;
-    q->m[15] = 1.0f;
+    f10 = arg2;
+    AsmIdentityMatrix(&f20);
 }
 
 void C_001D5660::func_001D5720(void)
