@@ -2,6 +2,7 @@
 #include "common.h"
 #include "ghidra.h"
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 
 extern int D_0028B84C;
 extern int D_0028B8DC;
@@ -173,29 +174,9 @@ static inline void Xform_001A53C0(f32 *out, const __m128 *mat, const S_001A53C0_
     out[3] = 1.0f;
 }
 
-static __forceinline void Xform_001A4B60(const S_001A53C0_V4 *volatile vArg, const __m128 *volatile matArg, f32 *volatile outArg)
+static __forceinline void Xform_001A4B60(S_001A53C0_V4 *dst, const float *v, const float *m)
 {
-    const S_001A53C0_V4 *v=vArg;
-    const __m128 *mat=matArg;
-    f32 *out=outArg;
-    __m128 t=_mm_loadu_ps(&v->x);
-    _mm_storeh_pi((__m64 *)&out[2],t);
-    out[3]=1.0f;
-    t=_mm_loadh_pi(t,(__m64 *)&out[2]);
-    __m128 r0=_mm_mul_ps(mat[0],t);
-    __m128 r1=_mm_mul_ps(mat[1],t);
-    __m128 r2=_mm_mul_ps(mat[2],t);
-    __m128 lo=_mm_unpacklo_ps(r0,r1);
-    __m128 hi=_mm_unpackhi_ps(r0,r1);
-    __m128 junk=_mm_movehl_ps(r2,r2);
-    lo=_mm_add_ps(lo,hi);
-    r2=_mm_add_ps(r2,junk);
-    hi=_mm_movehl_ps(hi,lo);
-    lo=_mm_movelh_ps(lo,r2);
-    hi=_mm_shuffle_ps(hi,r2,0x14);
-    lo=_mm_add_ps(lo,hi);
-    _mm_storeu_ps(out,lo);
-    out[3]=1.0f;
+    AsmTransformPoint(&dst->x, v, m);
 }
 
 static inline f32 Fabs_001A53C0(f32 x)
@@ -240,6 +221,54 @@ struct C_001A52C0 {
     void func_001A52C0(void);
 };
 
+
+int func_00122730(float *, float, float *, float *, float, float *);
+float *func_000110E0(float *, float *, float *);
+float *func_00011110(float *, float *, float *);
+float *func_0001C5E0(float *, float, float *);
+int C_SphereCollisionObject::func_001A4B60(char *o)
+{
+    S_001A53C0_V4 c;
+    float *m = matrix;
+    float *v = (float *)&fA8;
+    float *d = &c.x;
+    AsmTransformPoint(d, v, m);
+    switch (*(int *)(o + 0x50)) {
+    case 5:
+        return func_00122730((float *)&fA8, *(f32 *)&f100, matrix, (float *)(o + 0xa8), *(f32 *)(o + 0x100), (float *)(o + 0xc0));
+    case 6: {
+        S_001A53C0_V4 a;
+        a = *(S_001A53C0_V4 *)&fA8 * f10C;
+        func_00030AC0(&a.x, &a.x, matrix);
+        return func_001225C0(o + 0xf0, o + 0x100, &a, f100, *(int *)((char *)this + 0x104), o + 0xb0);
+    }
+    case 3: {
+        S_Matrix16 m2;
+        AsmIdentityMatrix(&m2);
+        return func_00122730((float *)&fA8, *(f32 *)&f100, matrix, (float *)(o + 0x28), *(f32 *)(o + 0xe8), (float *)&m2);
+    }
+    case 0: {
+        S_001A53C0_V4 a(*(float **)(o + 0x1c4) + 3);
+        S_001A53C0_V4 b(*(float **)(o + 0x1c4) + 6);
+        return func_001225C0(&a, &b, &c, f100, *(int *)((char *)this + 0x104), o + 0x130);
+    }
+    case 1:
+        return func_001225C0(o + 0xa8, o + 0xb8, &c, f100, *(int *)((char *)this + 0x104), o + 0x130);
+    case 2: {
+        S_001A53C0_V4 a, b;
+        if (*(float **)(o + 0xfc)) {
+            a.set(*(float **)(o + 0xfc) + 3);
+            b.set(*(float **)(o + 0xfc) + 6);
+        } else {
+            float t[4], u[4], vv[4], w[4];
+            a = *(S_001A53C0_V4 *)func_0001C5E0(u, 0.5f, func_000110E0(t, (float *)(*(char **)(o + 0x100) + 0x10), *(float **)(o + 0x100)));
+            b = *(S_001A53C0_V4 *)func_0001C5E0(w, 0.5f, func_00011110(vv, (float *)(*(char **)(o + 0x100) + 0x10), *(float **)(o + 0x100)));
+        }
+        return func_001225C0(&a, &b, &c, f100, *(int *)((char *)this + 0x104), o + 0xb0);
+    }
+    }
+    return 0;
+}
 
 int C_001A4FC0::func_001A4FC0(char *a)
 {
@@ -325,20 +354,32 @@ void C_SphereCollisionObject::func_001A5370(void)
 
 void C_SphereCollisionObject::func_001A53C0(f32 *center, f32 *extent)
 {
-    f32 r = f10C;
+    volatile f32 r = f10C;
+    volatile f32 scratch[4];
+    int bits;
     S_001A53C0_V4 v(*(f32 *)&fA8.x * r, *(f32 *)&fA8.y * r, *(f32 *)&fA8.z * r);
     f32 t = f108 * *(f32 *)&f100;
     S_001A53C0_V4 a[3];
     a[0] = S_001A53C0_V4(t, 0, 0);
     a[1] = S_001A53C0_V4(0, t, 0);
     a[2] = S_001A53C0_V4(0, 0, t);
-    Xform_001A4B60(&v, (const __m128 *)matrix, center);
-    func_0001C680(&a[0], *(Vec4 *)&a[0], matrix);
+    Vec4 c0 = *(Vec4 *)&a[0];
+    AsmTransformPoint(center, &v.x, matrix);
+    func_0001C680(&a[0], c0, matrix);
     func_0001C680(&a[1], *(Vec4 *)&a[1], matrix);
     func_0001C680(&a[2], *(Vec4 *)&a[2], matrix);
-    extent[0] = Fabs_001A53C0(a[2].x) + Fabs_001A53C0(a[1].x) + Fabs_001A53C0(a[0].x);
-    extent[1] = Fabs_001A53C0(a[2].y) + Fabs_001A53C0(a[1].y) + Fabs_001A53C0(a[0].y);
-    extent[2] = Fabs_001A53C0(a[2].z) + Fabs_001A53C0(a[1].z) + Fabs_001A53C0(a[0].z);
+    scratch[1] = a[0].x; bits = *(volatile int *)&scratch[1]; bits &= 0x7fffffff; *(volatile int *)&scratch[3] = bits;
+    scratch[1] = a[1].x; bits = *(volatile int *)&scratch[1]; bits &= 0x7fffffff; *(volatile int *)&scratch[2] = bits;
+    scratch[1] = a[2].x; bits = *(volatile int *)&scratch[1]; bits &= 0x7fffffff; *(volatile int *)&scratch[0] = bits;
+    extent[0] = scratch[0] + scratch[2] + scratch[3];
+    scratch[3] = a[0].y; bits = *(volatile int *)&scratch[3]; bits &= 0x7fffffff; *(volatile int *)&scratch[0] = bits;
+    scratch[3] = a[1].y; bits = *(volatile int *)&scratch[3]; bits &= 0x7fffffff; *(volatile int *)&scratch[1] = bits;
+    scratch[3] = a[2].y; bits = *(volatile int *)&scratch[3]; bits &= 0x7fffffff; *(volatile int *)&scratch[2] = bits;
+    extent[1] = scratch[2] + scratch[1] + scratch[0];
+    scratch[3] = a[0].z; bits = *(volatile int *)&scratch[3]; bits &= 0x7fffffff; *(volatile int *)&scratch[0] = bits;
+    scratch[3] = a[1].z; bits = *(volatile int *)&scratch[3]; bits &= 0x7fffffff; *(volatile int *)&scratch[1] = bits;
+    scratch[3] = a[2].z; bits = *(volatile int *)&scratch[3]; bits &= 0x7fffffff; *(volatile int *)&scratch[2] = bits;
+    extent[2] = scratch[2] + scratch[1] + scratch[0];
 }
 
 C_001A5730 *C_001A5730::func_001A5730(void)
@@ -393,21 +434,20 @@ void *C_SphereCollisionObject::func_001A57A0(unsigned int flags)
 void *func_001E8A44(unsigned int size);
 void C_SphereCollisionObject::func_001A57E0(int a, int b, int c, int d, f32 r, void *e)
 {
- volatile C_SphereCollisionObject *volatile self=this;
  int *p=(int*)func_001E8A44(0x90);
  if(p) p=(int*)((C_001A5730*)p)->func_001A5730();
  else p=0;
  p[0]=3; p[1]=0;
- self->f54=p;
- self->f110=e;
- volatile Vec4 *v=&self->fA8;
- v->x=a; v->y=b; v->z=c; v->w=d;
- *(float*)&self->f100=r;
- float q=*(float*)&self->f100;
- ((float*)&self->f100)[1]=q*q;
- self->f108=1.0f;
- self->f10C=1.0f;
- SetIdentity((float*)self->matrix);
+ f54=p;
+ f110=e;
+ int *v=(int*)&fA8;
+ v[0]=a; v[1]=b; v[2]=c; v[3]=d;
+ *(float*)&f100=r;
+ float q=*(float*)&f100;
+ ((float*)&f100)[1]=q*q;
+ f108=1.0f;
+ f10C=1.0f;
+ AsmIdentityMatrix((void *)matrix);
 }
 
 SplashScreenManager *SplashScreenManager::func_001A58D0(void *a)
