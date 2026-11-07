@@ -22,6 +22,12 @@ int func_001EA268(int c);
 int func_001E8BB0(const char *a, const char *b, int n);
 extern char D_0028C17C[];
 extern char D_0028C174[];
+extern char D_0028C168[];
+extern char D_0028C118[];
+extern char D_0028C12C[];
+char *func_001ACD40(int ndec, char fmt, double value, int alt, int *sign, char *buf, int *outlen);
+char *func_001ACB40(double value, int ndec, char *buf, int alt);
+char *func_001E9260(const char *s, int c);
 
 struct S_func_001ADD80_arg0 {
     char pad0[0x6c];
@@ -128,6 +134,273 @@ struct SpriteTweak {
     void func_001ADDF0(int a);
     void func_001ADF30(int a, int b);
 };
+
+int func_001ACFE0(const u16 *fn_, S_001ACFE0_Range *range, int fmt_, void *args_)
+{
+    typedef int (*OutFn)(S_001ACFE0_Range *);
+    OutFn fn = (OutFn)(void *)fn_;
+    const char *fmt = (const char *)fmt_;
+    unsigned *args = (unsigned *)args_;
+    char *out = range->cur;
+    char *end = range->end;
+    int count = 0;
+    char buf[512];
+    char sign;
+    char pad;
+    int left, plus, space, hash, width, prec, hasWidth, hasPrec, lenmod;
+    char *str;
+    int len;
+    int i;
+
+    for (;;) {
+        char c = *fmt;
+        if (c == 0) {
+            range->cur = out;
+            return count;
+        }
+        if (c != '%') {
+            if (end <= out) {
+                range->cur = out;
+                if (fn(range) != 0) return -1;
+                out = range->cur;
+                end = range->end;
+            }
+            *out++ = c;
+            count++;
+            fmt++;
+            continue;
+        }
+        left = 1;
+        plus = 0;
+        space = 0;
+        hash = 0;
+        width = 0;
+        prec = 0;
+        hasWidth = 0;
+        hasPrec = 0;
+        lenmod = 3;
+        sign = 0;
+        pad = ' ';
+        fmt++;
+        if (func_001EA23F((unsigned char)*fmt) == 0) {
+            for (;;) {
+                if (*fmt == '-') { left = 0; fmt++; }
+                else if (*fmt == '+') { plus = 1; fmt++; }
+                else if (*fmt == '#') { hash = 1; fmt++; }
+                else if (*fmt == ' ') { space = 1; fmt++; }
+                else if (*fmt == '0') { pad = '0'; fmt++; }
+                else break;
+            }
+            if (func_001EA268((unsigned char)*fmt) != 0) {
+                width = *fmt - '0';
+                fmt++;
+                hasWidth = 1;
+                while (func_001EA268((unsigned char)*fmt) != 0) {
+                    width = width * 10 + (*fmt - '0');
+                    fmt++;
+                }
+            } else if (*fmt == '*') {
+                width = (int)*args++;
+                fmt++;
+                hasWidth = 1;
+                if (width < 0) {
+                    width = -width;
+                    left = 0;
+                }
+            }
+            if (*fmt == '.') {
+                fmt++;
+                hasPrec = 1;
+                if (func_001EA268((unsigned char)*fmt) != 0) {
+                    prec = *fmt - '0';
+                    fmt++;
+                    while (func_001EA268((unsigned char)*fmt) != 0) {
+                        prec = prec * 10 + (*fmt - '0');
+                        fmt++;
+                    }
+                } else if (*fmt == '*') {
+                    prec = (int)*args++;
+                    fmt++;
+                    if (prec < 0) prec = 0;
+                } else {
+                    prec = 0;
+                }
+            }
+        }
+        if (func_001E8BB0(fmt, D_0028C17C, 3) == 0) {
+            fmt += 3;
+            lenmod = 0;
+        } else if (*fmt == 'q') {
+            fmt++;
+            lenmod = 0;
+        } else if (*fmt == 'l') {
+            fmt++;
+            lenmod = 1;
+        } else if (*fmt == 'h') {
+            fmt++;
+            lenmod = 2;
+        }
+        c = *fmt;
+        str = buf + sizeof(buf) - 1;
+        len = 0;
+        *str = 0;
+        switch (c) {
+        case 0:
+            range->cur = out;
+            return count;
+        case '%':
+            buf[0] = '%';
+            str = buf;
+            len = 1;
+            pad = ' ';
+            break;
+        case 'c':
+            buf[0] = (char)*args++;
+            str = buf;
+            len = 1;
+            pad = ' ';
+            break;
+        case 's':
+            str = (char *)*args++;
+            if (str == 0) {
+                str = D_0028C174;
+                len = 6;
+            } else {
+                len = 0;
+                while (str[len] != 0) len++;
+                if (hasPrec && prec < len) len = prec;
+            }
+            pad = ' ';
+            break;
+        case 'd':
+        case 'i': {
+            int v;
+            unsigned uv;
+            if (lenmod == 2) v = (short)*args++;
+            else v = (int)*args++;
+            if (v < 0) {
+                sign = '-';
+                uv = (unsigned)-v;
+            } else {
+                uv = (unsigned)v;
+                if (plus) sign = '+';
+                else if (space) sign = ' ';
+            }
+            if (uv == 0) {
+                *--str = '0';
+                len = 1;
+            } else {
+                while (uv != 0) {
+                    *--str = (char)('0' + (int)(uv % 10));
+                    uv /= 10;
+                    len++;
+                }
+            }
+            if (hasPrec) {
+                while (len < prec) {
+                    *--str = '0';
+                    len++;
+                }
+            }
+            break;
+        }
+        case 'u': {
+            unsigned uv = *args++;
+            if (uv == 0) {
+                *--str = '0';
+                len = 1;
+            } else {
+                while (uv != 0) {
+                    *--str = (char)('0' + (int)(uv % 10));
+                    uv /= 10;
+                    len++;
+                }
+            }
+            if (hasPrec) {
+                while (len < prec) {
+                    *--str = '0';
+                    len++;
+                }
+            }
+            break;
+        }
+        case 'x':
+        case 'X':
+        case 'o': {
+            unsigned uv = *args++;
+            unsigned base = (c == 'o') ? 8u : 16u;
+            const char *digits = (c == 'X') ? "0123456789ABCDEF" : "0123456789abcdef";
+            if (uv == 0) {
+                *--str = '0';
+                len = 1;
+            } else {
+                while (uv != 0) {
+                    *--str = digits[uv % base];
+                    uv /= base;
+                    len++;
+                }
+            }
+            if (hasPrec) {
+                while (len < prec) {
+                    *--str = '0';
+                    len++;
+                }
+            }
+            break;
+        }
+        case 'n':
+            *(int *)*args++ = count;
+            fmt++;
+            continue;
+        default:
+            buf[0] = '%';
+            buf[1] = c;
+            str = buf;
+            len = 2;
+            pad = ' ';
+            break;
+        }
+        if (sign != 0) {
+            *--str = sign;
+            len++;
+        }
+        if (hasWidth && left && len < width) {
+            for (i = 0; i < width - len; i++) {
+                if (end <= out) {
+                    range->cur = out;
+                    if (fn(range) != 0) return -1;
+                    out = range->cur;
+                    end = range->end;
+                }
+                *out++ = pad;
+                count++;
+            }
+        }
+        for (i = 0; i < len; i++) {
+            if (end <= out) {
+                range->cur = out;
+                if (fn(range) != 0) return -1;
+                out = range->cur;
+                end = range->end;
+            }
+            *out++ = str[i];
+            count++;
+        }
+        if (hasWidth && !left) {
+            for (i = 0; i < width - len; i++) {
+                if (end <= out) {
+                    range->cur = out;
+                    if (fn(range) != 0) return -1;
+                    out = range->cur;
+                    end = range->end;
+                }
+                *out++ = pad;
+                count++;
+            }
+        }
+        fmt++;
+    }
+}
 
 int func_001ADCC0(char *buf, int count, int a3, int a4)
 {
