@@ -218,6 +218,7 @@ struct C_0002A6B0 {
     void func_0002A6B0(float dt);
 };
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 struct V4_0002A7C0 {
     float x, y, z, w;
     V4_0002A7C0() {}
@@ -305,9 +306,7 @@ struct C_0002A250 {
 };
 static __forceinline float Length_0002A250(V4_0002A250 *v)
 {
-    float r;
-    _mm_store_ss(&r, _mm_sqrt_ss(_mm_set_ss(v->x * v->x + v->y * v->y + v->z * v->z)));
-    return r;
+    return AsmSqrtF(v->x * v->x + v->y * v->y + v->z * v->z);
 }
 struct Sub_00029E00 { char pad[0x50]; int f50; char pad54[0x64 - 0x54]; int f64; char pad68[4]; int f6c; char pad70[0x1a0 - 0x70]; V4_00029BD0 v1a0; };
 struct Obj1_00029E00 { char pad[0x23c]; float f23c; };
@@ -342,9 +341,12 @@ void func_00026340(V4_0002A250 *out, V4_0002A250 *in);
 float func_0014F7E0(float x);
 float func_0001C870(float a, int b, float c, float d, float e);
 
+extern "C" void *memcpy(void *, const void *, unsigned int);
+#pragma intrinsic(memcpy)
 int C_00029BD0::func_00029BD0()
 {
- V4_00029BD0 v=f1e8->v, temp;
+ V4_00029BD0 v, temp;
+ memcpy(&v, &f1e8->v, 16);
  v=*func_0001E9E0(&temp,&v);
  f464=v.y;
  if(v.y<D_002766A4) {
@@ -375,7 +377,6 @@ int C_00029BD0::func_00029BD0()
  f1fc->func_00133EF0(&f230->mat);
  return result;
 }
-
 extern V4_0002A250 D_002A1100;
 void C_00029E00::func_00029E00(float dt)
 {
@@ -564,22 +565,22 @@ void C_0002A7C0::func_0002A7C0()
     if (f1e8->f8c != 0) {
         VO_0002A7C0 *p = f1e8->f8c;
         V4_0002A7C0 pos;
+        V4_0002A7C0 a;
+        V4_0002A7C0 b;
+        V4_0002A7C0 r;
         p->f22c->func_00197F70(&pos, &p->f190);
         V4_0002A7C0 *t = &f1e0->f4c;
         V4_0002A7C0 d(t->x - pos.x, t->y - pos.y, t->z - pos.z, 1.0f);
-        V4_0002A7C0 a;
         p->v44(&a);
-        V4_0002A7C0 b;
         p->v42(&b);
         V4_0002A7C0 c(0.0f, 0.0f, 0.0f, 1.0f);
-        Cross_0002A7C0(&c.x, &a.x, &d.x);
+        AsmVec3Cross(&c.x, &a.x, &d.x);
         f768 = V4_0002A7C0(b.x + c.x, b.y + c.y, b.z + c.z, 1.0f);
         V4_0002A7C0 *q = &f1e0->f238;
         f748 = V4_0002A7C0(q->x - f768.x, q->y - f768.y, q->z - f768.z, 1.0f);
-        V4_0002A7C0 r;
         f758 = *f1e0->f22c->func_00198040(&r, &f748);
         float sq = f748.x * f748.x + f748.y * f748.y + f748.z * f748.z;
-        f744 = sqrtf(sq);
+        f744 = AsmSqrtF(sq);
     } else {
         *(int *)&f768.x = D_002A10F0;
         *(int *)&f768.y = D_002A10F4;
