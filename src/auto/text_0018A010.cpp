@@ -1,5 +1,6 @@
 /* 5 functions from 0x0018A010 to 0x0018B010, found by Ghidra. */
 #include "common.h"
+#include "asm_helpers.h"
 struct S_00185610_Out { char pad0[4]; float f4, f8, fC; int pad10; float f14, f18; };
 struct S_A010_Curve { float func_00026A10(float,float); };
 struct S_A010_Draw { void func_00150390(unsigned int,float,float,int); };
@@ -135,6 +136,28 @@ void BasicScene::func_0018A010()
   }
  }
  func_001578D0();
+}
+
+C_0018A210 *C_0018A210::func_0018A210() {
+ C_0018A210 * volatile p=this;
+ *(void * volatile *)&vtbl=&D_002895E8;
+ C_0018A210_Sub *q=&p->sub;
+ q->vtbl=&D_002898FC;
+ memset(q->v,0,16);
+ q->f14=1.0f; q->f18=0.5f;
+ *(volatile int *)&p->f4=0;
+ volatile int bounds[2]; bounds[0]=0x103;
+ int value=bounds[0];
+ int limit=*(volatile int *)&f4+12;
+ bounds[1]=value>limit?limit:value;
+ int len=bounds[1];
+ func_001E8920(p->name,D_0028A398,len);
+ *(volatile char *)&p->name[len]=0;
+ *(volatile int *)&p->f10C=0;
+ *(volatile int *)&p->f114=2; *(volatile int *)&p->f11C=2; *(volatile int *)&p->f118=2; *(volatile int *)&p->f120=2;
+ *(volatile int *)&p->f124=0; *(volatile int *)&p->f128=0; *(volatile int *)&p->f12C=0;
+ p->bit0=1; p->bit1=1; p->bit2=1;
+ return p;
 }
 
 int C_0018A210::func_0018A320(S_0018A320_W *w, S_0018A320_P *p, int level)
