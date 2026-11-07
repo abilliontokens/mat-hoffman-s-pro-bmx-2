@@ -1,5 +1,6 @@
 /* 7 functions from 0x0013C960 to 0x0013D780, found by Ghidra. */
 #include "common.h"
+#include "asm_helpers.h"
 
 template <class T> inline T Min(T a, T b) { if (a > b) a = b; return a; }
 
@@ -89,25 +90,18 @@ struct C_0013C960 {
 
 int C_0013C960::func_0013C960(int a0, int a1, int a2)
 {
-    struct { C_0013C960 * volatile self; volatile int avail; volatile int n; } t;
-    S_0013C960_Elem *elem;
-    S_0013C960_Rec *p;
-    int r;
-
-    t.self = this;
-    elem = &fE8[a0];
-    p = &fC[elem->f0];
-    if (func_0013B760(p, elem->fC + elem->f10) == 0) {
-        return 0;
+    S_0013C960_Elem *e = &fE8[a0];
+    S_0013C960_Rec *p = &fC[e->f0];
+    if (func_0013B760(p, e->fC + e->f10)) {
+        int avail = e->f14 - e->f10;
+        int n = AsmMinI(a2, avail);
+        if (n >= 1) {
+            int r = this->func_0013BBA0(p, e->f4, a1, n);
+            e->f10 += r;
+            return r;
+        }
     }
-    t.avail = elem->f14 - elem->f10;
-    t.n = Min(a2, t.avail);
-    if (t.n < 1) {
-        return 0;
-    }
-    r = t.self->func_0013BBA0(p, elem->f4, a1, t.n);
-    elem->f10 += r;
-    return r;
+    return 0;
 }
 
 int C_0013C960::func_0013C9F0(int a0, int a1)
@@ -218,29 +212,27 @@ init:
 int func_0013AB60(int a);
 void *func_0014FDF0(int a, void *b);
 extern int D_00282960;
-int __fastcall func_0013CC80(void *self, int edx, int a, int b, int c, int d, int e, int f, int g, int h)
+int __fastcall func_0013CC80(void *self, int edx, int a1, int a2, int a3, int a4, int a5, int a6, int a7, int a8)
 {
     char flag;
-    int zero;
     void *fp;
 
-    zero = 0;
-    flag = (char)func_0013AB60(a);
+    flag = (char)func_0013AB60(a1);
     (void)flag;
-    (void)zero;
-    (void)self;
-    (void)edx;
-    (void)b; (void)c; (void)d; (void)e;
-    if (g == 0)
+    if (a6 != 0) {
+        if (a7 <= 0)
+            return 0;
+        if (a5 == 0)
+            return 0;
+    } else if (a7 != 0) {
         return 0;
-    if ((unsigned int)g <= 0)
-        return 0;
-    if (f == 0)
-        return 0;
-    fp = func_0014FDF0(b, &D_00282960);
+    }
+    fp = func_0014FDF0(a1, &D_00282960);
     if (fp == 0)
         return 0;
-    (void)h;
+    (void)self;
+    (void)edx;
+    (void)a2; (void)a3; (void)a4; (void)a8;
     return 0;
 }
 
@@ -339,7 +331,6 @@ int C_0013C960::func_0013D550(int a0, int a1, int a2)
     int last;
     int failed;
     int r;
-    int ret;
     int *q;
     void *p;
 
@@ -357,16 +348,16 @@ int C_0013C960::func_0013D550(int a0, int a1, int a2)
         f8 = -1;
     } else {
         for (i = 0; i < f10; i++) {
-            *(int *)((char *)fC + (i * 0x28 + 0xc)) = 1;
-            *(int *)((char *)fC + (i * 0x28 + 0x4)) = 0;
-            *(int *)((char *)fC + (i * 0x28 + 0x8)) = 0;
-            *(int *)((char *)fC + (i * 0x28 + 0x14)) = 0;
-            *(int *)((char *)fC + (i * 0x28 + 0x10)) = 0;
-            *(int *)((char *)fC + (i * 0x28)) = i;
-            *(int *)((char *)fC + (i * 0x28 + 0x18)) = 0;
-            *(int *)((char *)fC + (i * 0x28 + 0x20)) = 0;
-            *(int *)((char *)fC + (i * 0x28 + 0x1c)) = 0;
-            *(char *)((char *)fC + (i * 0x28 + 0x24)) = 0;
+            fC[i].fC = 1;
+            fC[i].f4 = 0;
+            fC[i].f8 = 0;
+            fC[i].f14 = 0;
+            fC[i].f10 = 0;
+            fC[i].f0 = i;
+            fC[i].f18 = 0;
+            fC[i].f20 = 0;
+            fC[i].f1C = 0;
+            fC[i].f24 = 0;
         }
     }
     fEC = a1;
@@ -408,9 +399,8 @@ int C_0013C960::func_0013D550(int a0, int a1, int a2)
         }
         f80[i].f8 = 0xffffa000;
     }
-    ret = 0;
-    if (8 - failed >= 2) {
-        ret = r;
+    if (8 - failed < 2) {
+        r = 0;
     }
     fE0 = last;
     q = f24;
@@ -418,6 +408,6 @@ int C_0013C960::func_0013D550(int a0, int a1, int a2)
         *q = -1;
         q++;
     } while (q <= f28);
-    return ret;
+    return r;
 }
 
