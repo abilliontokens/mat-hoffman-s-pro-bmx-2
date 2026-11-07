@@ -319,6 +319,11 @@ struct C_001C8960_Ini {
     int func_00168C20(char *, int, void *);
     int func_00168BE0(char *, char *, void *, int);
 };
+struct C_001C8960_Storage {
+    char section[128];
+    C_001C8960_Ini ini;
+    char texture[132],path[260],resolved[260],fallback[256],saved[260],model[260],item[256];
+};
 struct C_001C8960_Frame {
     int total,kind,mode;
     float offset;
