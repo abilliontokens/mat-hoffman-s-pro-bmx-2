@@ -62,6 +62,7 @@ struct Menu_66C {
 extern int D_0028F5E0;
 extern char D_002A5FA8[], D_002A5870[], D_00275678[];
 extern float D_002757F0, D_0027886C, D_00278868;
+int func_001ADCC0(char *, int, const char *, ...);
 struct Res_66C { void *func_0018C160(void *name); };
 struct Txt_66C {
     char pad0[4];
