@@ -134,7 +134,7 @@ struct C_0003D910 {
     void func_000399A0(int a);
     void func_000392B0();
     __forceinline int Get_0003D910(int i) { if (f5B4 <= 0 || f5B8 == 0 || i >= f5B4) return 0; return f5B8[i]; }
-    __forceinline int Find_0003D910(NodeD *p) { for(int i=f5B4-1;i>=0;--i) if ((NodeD *)Get_0003D910(i)==p) return i; return -1; }
+    __forceinline int Find_0003D910(NodeD *p) { int result=-1; for(int i=f5B4-1;i>=0;--i) { if (p==(NodeD *)Get_0003D910(i)) { result=i; break; } } return result; }
 };
 
 #pragma optimize("y", on)
