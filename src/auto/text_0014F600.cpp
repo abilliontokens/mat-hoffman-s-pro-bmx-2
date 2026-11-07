@@ -264,7 +264,7 @@ float func_0014F7E0(float x)
     else if (x < D_00275F58)
         x = D_00275F58;
     v = (x + D_00275460) * D_002DF86C;
-    i = (int)v;
+    AsmFloatToInt(v, &i);
     f = v - (float)i;
     return (D_00275460 - f) * D_002DF87C[i] + f * D_002DF87C[i + 1];
 }
