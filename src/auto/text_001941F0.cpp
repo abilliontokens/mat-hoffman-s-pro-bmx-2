@@ -3,6 +3,7 @@
 #include "ghidra.h"
 #include <math.h>
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 extern int D_002A99B0;
 extern const float D_00275544;
 extern const float D_00275460;
@@ -434,42 +435,23 @@ void C_00194310::func_00194310(int a0, int a1) {
     unk44 = a1;
 }
 
-void SignatureWave::func_00194330(S_Vec4 *a1, S_Vec4 *a2, int a3, float a4, float a5, float a6, float a7, int a8, int a9, int a10, int a11, int a12, int a13, float a14, int a15, int a16, int a17, int a18)
-{
-    float inv4 = D_00275460 / a4;
-    float inv5;
-
-    *(S_Vec4 *)&f64 = *a1;
-    *(S_Vec4 *)&f74 = *a2;
-    f4C = a3;
-    f34 = a4;
-    f38 = a5;
-    f3C = inv4;
-    inv5 = D_00275460 / a5;
-    f40 = inv5;
-    f84 = 0;
-    f88 = 0;
-    f94 = 0;
-    f98 = 0;
-    f8C = a4 * a6 / (float)f28;
-    f9C = a9;
-    fA0 = a10;
-    fAC = a12;
-    fBC = 1.0f;
-    fB8 = 1.0f;
-    f50 = 0;
-    f54 = 0;
-    fA4 = a11 == 0 ? 3 : 1;
-    fE4 = a15;
-    fD0 = a13;
-    fE8 = a17;
-    fDC = a16;
-    fA8 = a11;
-    fD8 = a14;
-    fEC = a18;
-    f90 = a5 * a7 / (float)f28;
-    fB0 = inv4 * D_00278784;
-    fB4 = inv5 * D_0028AE80;
+void SignatureWave::func_00194330(S_Vec4 *a1, S_Vec4 *a2, int a3, float a4, float a5, float a6, float a7, int a8, int a9, int a10, int a11, int a12, int a13, float a14, int a15, int a16, int a17, int a18){
+float inv4 = D_00275460 / a4;
+float inv5 = D_00275460/a5;
+float t14 = a14;
+*(S_Vec4 *)&f64 = *a1;
+*(S_Vec4 *)&f74 = *a2;
+f4C=a3; f34=a4; f38=a5;
+f3C=inv4;
+f40=inv5;
+f84=0; f88=0; f94=0; f98=0;
+f8C=a4*a6/(float)f28;
+f9C=a9; fA0=a10; fAC=a12; fBC=1.0f; fB8=1.0f;
+f50=0; f54=0; fA4=a11==0?3:1;
+fE4=a15; fD0=a13; fE8=a17; fDC=a16; fA8=a11;
+fEC=a18; fD8=t14;
+f90=a5*a7/(float)f28;
+fB0=inv4*256.0f; fB4=inv5*-256.0f;
 }
 
 int SignatureWave::func_00194490(void)
@@ -581,9 +563,9 @@ int SimpleCutSceneCamera::func_001947E0(void *a0, int a1, int a2, int a3)
     return 1;
 }
 
+extern "C" void *__cdecl memset(void *, int, unsigned int);
 void SimpleCutSceneCamera::func_00194820(float dt, int *done, S_Vec4 *pos, int a3, float *fov, S_Vec4 *v2, S_Vec4 *v3, int a7)
 {
-    SimpleCutSceneCamera * volatile self = this;
     SimpleCutSceneCamera *q;
     S_Vec4 *c;
     S_Vec4 p;
@@ -611,33 +593,33 @@ void SimpleCutSceneCamera::func_00194820(float dt, int *done, S_Vec4 *pos, int a
     s.x = 0.0f;
     s.w = 1.0f;
     if (f24 == 0) {
-        *done = 0;
+        memset(done, 0, sizeof(int));
         return;
     }
     if (f14 == 1) {
         fC = fC - dt;
-        q = self;
+        q = this;
         t = q->fC * q->f8;
-        FloatToInt(&fl, t);
-        if (t <= (float)fl) {
-            self->f18 = fl;
+        AsmFloatToInt(t, &fl);
+        if ((float)fl >= t) {
+            f18 = fl;
         } else {
-            self->f18 = fl + 1;
+            f18 = fl + 1;
         }
-        q = self;
+        q = this;
         if (q->f18 <= q->f1C) {
             if (q->f2C != 0) {
                 q->f18 = q->f20;
-                q = self;
+                q = this;
                 q->fC = (float)q->f20 / q->f8;
             } else {
                 q->f18 = q->f1C;
-                q = self;
+                q = this;
                 q->fC = (float)q->f1C / q->f8;
-                self->f24 = 0;
+                memset(&q->f24, 0, sizeof(u32));
             }
         }
-        q = self;
+        q = this;
         if (q->f20 == q->f1C) {
             goto simple;
         }
@@ -645,9 +627,9 @@ void SimpleCutSceneCamera::func_00194820(float dt, int *done, S_Vec4 *pos, int a
         if (a == q->f1C) {
             goto simple;
         }
+        i1 = a - 1;
         frac = (float)a - q->fC * q->f8;
         i0 = a;
-        i1 = a - 1;
         if (a != q->f20) {
             i0 = a + 1;
         }
@@ -658,22 +640,22 @@ void SimpleCutSceneCamera::func_00194820(float dt, int *done, S_Vec4 *pos, int a
         }
     } else {
         fC = dt + fC;
-        q = self;
+        q = this;
         t = q->fC * q->f8;
-        FloatToInt(&q->f18, t);
-        q = self;
+        AsmFloatToInt(t, &q->f18);
+        q = this;
         if (q->f18 >= q->f20) {
             if (q->f2C != 0) {
                 q->f18 = q->f1C;
-                q = self;
+                q = this;
                 q->fC = (float)q->f1C / q->f8;
             } else {
                 q->f18 = q->f20;
-                q = self;
-                q->f24 = 0;
+                q = this;
+                memset(&q->f24, 0, sizeof(u32));
             }
         }
-        q = self;
+        q = this;
         if (q->f1C == q->f20) {
             goto simple;
         }
@@ -681,9 +663,9 @@ void SimpleCutSceneCamera::func_00194820(float dt, int *done, S_Vec4 *pos, int a
         if (a == q->f20) {
             goto simple;
         }
+        i1 = a + 1;
         frac = q->fC * q->f8 - (float)a;
         i0 = a;
-        i1 = a + 1;
         i2 = i1;
         if (a != q->f1C) {
             i0 = a - 1;
@@ -697,9 +679,10 @@ void SimpleCutSceneCamera::func_00194820(float dt, int *done, S_Vec4 *pos, int a
         goto tail;
     }
 simple:
+    q = this;
     q->f4->func_0012BF10(q->f18, &p, &r, &s, &f);
 tail:
-    q = self;
+    q = this;
     c = &q->f4->f30;
     p.x = p.x + c->x;
     p.y = p.y + c->y;
@@ -716,7 +699,7 @@ tail:
     if (fov != 0) {
         *fov = f;
     }
-    *done = 0;
+    memset(done, 0, sizeof(int));
 }
 
 void SimpleCutSceneCamera::func_00194B40(S_Vec4 *p)
@@ -873,6 +856,12 @@ void SimpleStillCamera::func_00194FA0(S_StillCamState *out, int a)
     out->f30 = 0;
     out->f38 = 0;
     out->f3C = 0;
+}
+
+void SimpleStillCamera::func_00195010(S_StillCamState *out)
+{
+ out->p0=f8; out->p1=f18; out->p2=f38; out->f34=*(int *)&f48;
+ out->f30=0; out->f38=0; out->f3C=0;
 }
 
 C_00195090 *C_00195090::func_00195090(void)
