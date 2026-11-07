@@ -1,6 +1,7 @@
 /* 6 functions from 0x001800A0 to 0x00180E00, found by Ghidra. */
 #include "common.h"
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 extern float D_002755E8;
 static __forceinline void Xform1800(float *out,const float *in,const float *m){__m128 v = _mm_loadu_ps(in);
 _mm_storeh_pi((__m64 *)(out + 2), v);
@@ -18,7 +19,7 @@ r0=_mm_movelh_ps(r0,r2);
 v=_mm_shuffle_ps(v,r2,0x14);
 _mm_storeu_ps(out,_mm_add_ps(r0,v));out[3]=1.0f;}
 
-struct V_1800 { float x,y,z,w; __forceinline V_1800(){x=y=z=0;w=1;} V_1800(const float &a,const float &b,const float &c){x=a;y=b;z=c;w=1;} };
+struct V_1800 { float x,y,z,w; V_1800(){x=y=z=0;w=1;} V_1800(const float &a,const float &b,const float &c){x=a;y=b;z=c;w=1;} };
 struct RayCollisionObject { char pad[0xB0]; float matrix[16]; char padF0[12]; float *pFC; float *p100; void func_001800A0(float *out,float *extent); };
 extern "C" void func_0001C680(V_1800 *,V_1800,float *);
 static __forceinline float Abs1800(float f){int i=*(int *)&f & 0x7fffffff;return *(float *)&i;}
@@ -93,6 +94,31 @@ struct C_00180600 {
 
 
 #pragma auto_inline(off)
+void RayCollisionObject::func_001800A0(float *out, float *extent)
+{
+    V_1800 axes[3];
+    V_1800 center;
+    V_1800 half;
+
+    if (pFC != 0) {
+        center = V_1800(pFC[3], pFC[4], pFC[5]);
+        half = V_1800(pFC[6], pFC[7], pFC[8]);
+    } else {
+        center = Mul1800(Add1800(p100 + 4, p100));
+        half = Mul1800(Sub1800(p100 + 4, p100));
+    }
+    axes[0] = V_1800(half.x, 0.0f, 0.0f);
+    axes[1] = V_1800(0.0f, half.y, 0.0f);
+    axes[2] = V_1800(0.0f, 0.0f, half.z);
+    AsmTransformPoint(out, &center.x, matrix);
+    func_0001C680(&axes[0], axes[0], matrix);
+    func_0001C680(&axes[1], axes[1], matrix);
+    func_0001C680(&axes[2], axes[2], matrix);
+    extent[0] = Abs1800(axes[2].x) + Abs1800(axes[1].x) + Abs1800(axes[0].x);
+    extent[1] = Abs1800(axes[2].y) + Abs1800(axes[1].y) + Abs1800(axes[0].y);
+    extent[2] = Abs1800(axes[2].z) + Abs1800(axes[1].z) + Abs1800(axes[0].z);
+}
+
 C_001804F0 *C_001804F0::func_001804F0(float *p) {
     extern float D_002F0798;
     extern float D_002891BC;
@@ -147,7 +173,8 @@ void C_00180600::func_00180600(int a0, volatile int handle)
     int n1;
     int n2;
     C_00180600 * volatile self = this;
-    F4_1800 P, Q, R;
+    F4_1800 P, Q, R, S;
+    C_001804F0 q1, q2, q3;
     if (handle == -1)
         return;
     func_000EBE90v();
@@ -181,7 +208,6 @@ void C_00180600::func_00180600(int a0, volatile int handle)
         int i;
         float x, y, z;
         float n[3];
-        C_001804F0 q1, q2, q3;
         for (i = 0; i < n1; i++) {
             Rec180600 *rec = (Rec180600 *)((char *)self->fFC + i * 0x24);
             D_002BEAAC->func_0013C8A0(handle, rec, 4, 1);
@@ -210,10 +236,10 @@ void C_00180600::func_00180600(int a0, volatile int handle)
                 C.y += D_00275460;
             if (C.z < z)
                 C.z += D_00275460;
-            R = UnpackF1800(q3.func_001804F0(&C.x));
-            rec->f18 = R.x;
-            rec->f1C = R.y;
-            rec->f20 = R.z;
+            S = UnpackF1800(q3.func_001804F0(&C.x));
+            rec->f18 = S.x;
+            rec->f1C = S.y;
+            rec->f20 = S.z;
             rec->f4 = sqrtf(C.z * C.z + C.y * C.y + C.x * C.x);
             D_002BEAAC->func_0013C8A0(handle, &rec->s8, 2, 1);
             D_002BEAAC->func_0013C8A0(handle, &rec->sA, 2, 1);
