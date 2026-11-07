@@ -333,6 +333,7 @@ struct C_001C8960_LayerParameters {
     int extra;
     float value;
 };
+static void AddLayerCount(int *total, int count) { *total += count; }
 struct C_001C8960_Parameters {
     int total,kind,mode;
     float offset;
