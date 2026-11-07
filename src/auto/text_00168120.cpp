@@ -81,6 +81,26 @@ static __forceinline void copy_168550(char *dst, const char *s, int size)
         strcpy(dst, (char *)s);
     }
 }
+static __forceinline int store_168550(char *dst, char *s, int size)
+{
+    int n;
+
+    if (*s == '"') {
+        s++;
+    }
+    n = strlen(s) - 1;
+    if (n >= 0 && s[n] == '"') {
+        s[n] = 0;
+    }
+    if (size != -1) {
+        func_001E8920(dst, s, size);
+        n = min_168550(size - 1, strlen(s));
+        dst[n] = 0;
+    } else {
+        strcpy(dst, s);
+    }
+    return 1;
+}
 
 struct C_001684B0 {
     char pad0[0x1c];
@@ -433,13 +453,7 @@ copy:
                 if (n >= 0 && s[n] == '"') {
                     s[n] = 0;
                 }
-                if (size != -1) {
-                    func_001E8920(dst, s, size);
-                    n = min_168550(size - 1, strlen(s));
-                    dst[n] = 0;
-                } else {
-                    strcpy(dst, s);
-                }
+                copy_168550(dst, s, size);
                 return 1;
             }
         }
