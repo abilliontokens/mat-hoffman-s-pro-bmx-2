@@ -10,7 +10,7 @@ static __forceinline float Abs_2D730(float a)
     unsigned int i = *(volatile unsigned int *)&a & 0x7fffffff;
     return *(float *)&i;
 }
-static __forceinline void Cross_2D730(float *out, float *a, float *b)
+static __forceinline void Cross_2D730(float *volatile out, float *volatile a, float *volatile b)
 {
     float *pa = a, *pb = b;
     _mm_storeu_ps(out, _mm_shuffle_ps(
