@@ -163,7 +163,12 @@ int C_00042260::func_00042260()
     func_001ADCC0(D_002A48F8, 0x104, D_00275678, D_002A5870, D_002A47F0);
     mem = func_001E8A44(0x1f0);
     this->f53C = mem ? ((C_001A2C00 *)mem)->func_001A2C00(D_002A8490->f4, this->f64->f4C0, 6, 1) : 0;
-    this->f53C->func_001A23F0(s, D_002A14D4, D_002A14D4, 2, 0x41a00000, 0x42c80000, 0, 1);
+    S16_42260 v;
+    v.a = D_002A14D4.a;
+    v.b = D_002A14D8;
+    v.c = D_002A14DC;
+    v.d = D_002A14E0;
+    this->f53C->func_001A23F0(s, v, v, 2, 0x41a00000, 0x42c80000, 0, 1);
     this->f53C->func_001A4640(D_00276FAC, D_00275630, -1);
     D_002BEAAC->func_0013DFF0(buf, 1);
     t = this;
