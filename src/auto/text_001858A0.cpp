@@ -410,15 +410,32 @@ int C_00185B10::func_00185B60(S_Stream *stream)
 
 C_00185BF0 *C_00185BF0::func_00185BF0(void)
 {
- volatile C_00185BF0 * volatile self=this;
- self->vtbl=&D_002896CC;
- self->f4=0; self->f8=0; self->fc=0;
- { volatile int limit=0x103; volatile int n; { int len=4; int max=limit; n=max>len?len:max; }; int count=n;
- func_001E8920((char *)self->f10,(const char *)&D_002764F0,count); self->f10[count]=0; }
- { volatile int n; volatile int limit=0x103; { int len=4; int max=limit; n=max>len?len:max; }; int count=n;
- func_001E8920((char *)self->f114,(const char *)&D_002764F0,count); self->f114[count]=0; }
- self->f524=0; self->f528=0; self->f52c=0; self->f530=0; self->f534=0; self->f538=0; self->f53c=0; self->f540=0; self->f544=0;
- return (C_00185BF0 *)self;
+    vtbl = (void *)&D_002896CC;
+    f4 = 0;
+    f8 = 0;
+    fc = 0;
+    {
+        int limit = 0x103;
+        int count = AsmMinI(limit, 4);
+        func_001E8920(f10, (const char *)&D_002764F0, count);
+        f10[count] = 0;
+    }
+    {
+        int limit = 0x103;
+        int count = AsmMinI(limit, 4);
+        func_001E8920(f114, (const char *)&D_002764F0, count);
+        f114[count] = 0;
+    }
+    f524 = 0;
+    f528 = 0;
+    f52c = 0;
+    f530 = 0;
+    f534 = 0;
+    f538 = 0;
+    f53c = 0;
+    f540 = 0;
+    f544 = 0;
+    return this;
 }
 
 void C_00185D00::func_00185D00(void)
