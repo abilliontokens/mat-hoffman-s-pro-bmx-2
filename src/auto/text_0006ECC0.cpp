@@ -55,6 +55,7 @@ struct Sprite_6ECC0 {
     void func_001D5810(const char *name,float x,float y,int a);
     void setPos(float a,float b) {if(x!=a || y!=b){x=a;y=b;flags|=1;}}
     void setUV(float a,float b,float c,float d) {u0=a;v1=d;v0=b;u1=c;flags|=4;}
+    void setUVScaled(float a,float b,float c,float d) {flags|=4;u0=w*a;v0=w*b;u1=h*c;v1=h*d;}
     void setAlpha(unsigned char a) {((unsigned char *)&color)[3]=a;flags|=2;}
     void setWidth(float a) {if(width!=a){width=a;flags|=1;}}
     void setHeight(float a) {if(height!=a){height=a;flags|=1;}}
