@@ -337,6 +337,8 @@ struct C_001D3700 {
 
 extern "C" void (__stdcall *__imp__RtlEnterCriticalSection)(void *cs);
 extern "C" void (__stdcall *__imp__RtlLeaveCriticalSection)(void *cs);
+extern "C" void (__stdcall *_imp__RtlEnterCriticalSection)(void *cs);
+extern "C" void (__stdcall *_imp__RtlLeaveCriticalSection)(void *cs);
 void C_001D2A40::func_001D2A40()
 {
     int idx, alpha, w, x, h, y;
@@ -353,7 +355,7 @@ void C_001D2A40::func_001D2A40()
         D_002EFDB8->v4(0, this->f50, rc, 0);
     }
     for (i = 0; i < this->f8; i++, off += 0x54) {
-        __imp__RtlEnterCriticalSection(this->f30);
+        _imp__RtlEnterCriticalSection(this->f30);
         if (TRK_T->done != 0x3f) {
             S_001D2A40_Frame *q;
             RoundD_001D2A40(&idx, TRK_T->val[0]);
@@ -378,7 +380,7 @@ void C_001D2A40::func_001D2A40()
             TRACK_CHT(TRK_T, 3, sizeLo[0], sizeHi[0], 8, 4, 0x40)
             TRACK_CHT(TRK_T, 4, sizeLo[1], sizeHi[1], 0x10, 4, 0x40)
             TRACK_CHT(TRK_T, 5, alphaLo, alphaHi, 0x20, 8, 0x80)
-            __imp__RtlLeaveCriticalSection(this->f30);
+            _imp__RtlLeaveCriticalSection(this->f30);
             D_002EFDB8->v4(dst, q->f0, src, 0);
         }
     }
