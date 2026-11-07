@@ -25,6 +25,9 @@ struct S_1904E0_Entry {
     int f4C;
 };
 
+struct S_1904E0_Param { char pad0[0xc]; unsigned int flags; int *types; int count; void *callee; };
+struct S_1904E0_Table { char pad0[0x20]; S_1904E0_Param *params; int pad24; int pad28; void *fields; char pad30[8]; };
+
 struct S_1904E0_Frame {
     int count;
     int recId;
