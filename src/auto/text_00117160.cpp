@@ -28,6 +28,15 @@ struct VSlot74_00117160 {
     virtual void p25(); virtual void p26(); virtual void p27(); virtual void p28();
     virtual void Slot74(int a, int b, int c);
 };
+struct VSlot74Two_00117160 {
+    virtual void p0(); virtual void p1(); virtual void p2(); virtual void p3(); virtual void p4();
+    virtual void p5(); virtual void p6(); virtual void p7(); virtual void p8(); virtual void p9();
+    virtual void p10(); virtual void p11(); virtual void p12(); virtual void p13(); virtual void p14();
+    virtual void p15(); virtual void p16(); virtual void p17(); virtual void p18(); virtual void p19();
+    virtual void p20(); virtual void p21(); virtual void p22(); virtual void p23(); virtual void p24();
+    virtual void p25(); virtual void p26(); virtual void p27(); virtual void p28();
+    virtual void Slot74(int a, int b);
+};
 struct Obj1E8_00117160 {
     int func_00026A70(int a);
 };
