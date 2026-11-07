@@ -382,13 +382,6 @@ struct C_00019070 {
     void func_00019070();
 };
 
-static __forceinline void CopyName_186F0(char *dst, const char *src, int lim)
-{
-    int n = AsmMinI(lim, strlen(src));
-    func_001E8920(dst, src, n);
-    dst[n] = 0;
-}
-
 void C_000186F0::func_000186F0(void *p)
 {
     char bufC[0x104];
