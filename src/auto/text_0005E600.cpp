@@ -1,6 +1,7 @@
 /* 13 functions from 0x0005E600 to 0x0005F3C0, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+#include "asm_helpers.h"
 extern "C" void *memset(void *dst, int c, unsigned int n);
 extern "C" void *memcpy(void *dst, const void *src, unsigned int n);
 extern int D_00278484;
@@ -497,21 +498,19 @@ void C_0005E800::func_0005E800(int param_1, int param_2)
 void C_0005E840::func_0005E840(const char *name)
 {
     int len = strlen(name);
-    C_0005E840 *p;
-    int n;
 
     if (unk50 == len && strcmp(unk0, name) == 0) {
         return;
     }
-    p = this;
-    n = len > p->unk4f ? p->unk4f : len;
-    p->unk50 = n;
-    func_001E8920(p->unk0, name, n);
-    p->unk0[n] = 0;
-    p->unk4e |= 2;
-    p->unk4e |= 4;
-    p->unk4e |= 1;
-    p->unk4e |= 8;
+    int maxlen = unk4f;
+    int n = AsmMinI(len, maxlen);
+    unk50 = n;
+    func_001E8920(unk0, name, unk50);
+    unk0[unk50] = 0;
+    unk4e |= 2;
+    unk4e |= 4;
+    unk4e |= 1;
+    unk4e |= 8;
 }
 
 void C_0005E920::func_0005E920(float param_1, float param_2)
@@ -588,8 +587,8 @@ void BmxMenu::func_0005EA10(int a0)
             y = D_002B9120->f4E4->f40;
         } else {
             C_5EA10_Rider *r = D_002A8490->f2A4->f64->f4E0->f1A8[i];
-            *(int *)&x = *(int *)&r->f9E8->f24;
-            *(int *)&y = *(int *)&r->f9EC->f24;
+            x = r->f9E8->f24;
+            y = r->f9EC->f24;
         }
         pad = mode->f300[i];
         moved = 0;
