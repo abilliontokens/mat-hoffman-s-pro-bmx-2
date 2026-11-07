@@ -125,7 +125,7 @@ struct ArrVec138 {
     virtual void v28();
     virtual void v29();
     virtual void v30();
-    virtual void v31(SceneVector v);
+    virtual void v31();
     void func_0011CA60(SceneVector v);
 };
 struct C0_138 { C0_138 *func_0016ABE0(int); };
