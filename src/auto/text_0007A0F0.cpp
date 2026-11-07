@@ -149,7 +149,7 @@ static __forceinline Button7 *CreateButton7() {
 extern "C" int func_001ADCC0(void *,int,const char *,void *,void *);
 extern "C" void func_00160C20(int *,int);
 extern char D_002A5FA8[],D_002A5870[],D_00275678[],D_00275630[];
-extern float D_002784FC,D_002779FC,D_00275800,D_00278AE8,D_00278F68,D_002756C8,D_00278F64,D_00278D40,D_00278F60;
+extern const float D_002784FC,D_002779FC,D_00275800,D_00278AE8,D_00278F68,D_002756C8,D_00278F64,D_00278D40,D_00278F60;
 extern char D_00278600[];
 extern char D_00278FC4[];
 extern char D_00278FB8[];
