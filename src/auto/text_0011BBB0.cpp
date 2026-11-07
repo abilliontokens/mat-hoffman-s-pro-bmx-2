@@ -184,6 +184,22 @@ struct C_0011C900 {
 
 extern float D_002756DC, D_002755E8, D_00278C48;
 extern V4_0011C3F0 D_002A3BCC;
+static __forceinline V4_0011C3F0 VScale_0011BBB0(const V4_0011C3F0 &a, float k)
+{
+    V4_0011C3F0 r;
+    r.x = a.x * k;
+    r.y = a.y * k;
+    r.z = a.z * k;
+    return r;
+}
+static __forceinline V4_0011C3F0 VAdd_0011BBB0(const V4_0011C3F0 &a, const V4_0011C3F0 &b)
+{
+    V4_0011C3F0 r;
+    r.x = a.x + b.x;
+    r.y = a.y + b.y;
+    r.z = a.z + b.z;
+    return r;
+}
 static inline void Cross_0011BBB0(V4_0011C3F0 *out, const V4_0011C3F0 *a, const V4_0011C3F0 *b)
 {
     __m128 vb = _mm_loadu_ps(&b->x);
@@ -268,10 +284,14 @@ void C_0011BBB0::func_0011BBB0(V4_0011C3F0 a)
         f1B4 = f1A8;
         f1C0 = t;
         f1F0 = u;
+        V4_0011C3F0 s;
+        s.x = a.x * D_002755E8;
+        s.y = a.y * D_002755E8;
+        s.z = a.z * D_002755E8;
         V4_0011C3F0 p;
-        p.x = a.x * D_002755E8 + t.x;
-        p.y = a.y * D_002755E8 + t.y;
-        p.z = a.z * D_002755E8 + t.z;
+        p.x = s.x + t.x;
+        p.y = s.y + t.y;
+        p.z = s.z + t.z;
         f108->func_001A0C90(p);
         if (f120 == 0) {
             f120 = 1;
@@ -296,10 +316,14 @@ void C_0011BBB0::func_0011BBB0(V4_0011C3F0 a)
             f1D0 = t;
             f200 = u;
         }
+        V4_0011C3F0 s;
+        s.x = a.x * D_00278C48;
+        s.y = a.y * D_00278C48;
+        s.z = a.z * D_00278C48;
         V4_0011C3F0 p;
-        p.x = a.x * D_00278C48 + t.x;
-        p.y = a.y * D_00278C48 + t.y;
-        p.z = a.z * D_00278C48 + t.z;
+        p.x = s.x + t.x;
+        p.y = s.y + t.y;
+        p.z = s.z + t.z;
         fF8->func_001A0C90(p);
     } else {
         f1B8 = 0;
@@ -319,10 +343,14 @@ void C_0011BBB0::func_0011BBB0(V4_0011C3F0 a)
             f1E0 = t;
             f210 = u;
         }
+        V4_0011C3F0 s;
+        s.x = a.x * D_00278C48;
+        s.y = a.y * D_00278C48;
+        s.z = a.z * D_00278C48;
         V4_0011C3F0 p;
-        p.x = a.x * D_00278C48 + t.x;
-        p.y = a.y * D_00278C48 + t.y;
-        p.z = a.z * D_00278C48 + t.z;
+        p.x = s.x + t.x;
+        p.y = s.y + t.y;
+        p.z = s.z + t.z;
         fFC->func_001A0C90(p);
     } else {
         f1BC = 0;
@@ -336,10 +364,14 @@ void C_0011BBB0::func_0011BBB0(V4_0011C3F0 a)
     fA4->func_00133F10(0);
     if (fA4->fA7 & 0x20) {
         V4_0011C3F0 t = *(V4_0011C3F0 *)((char *)fA4->f54 + 0x30);
+        V4_0011C3F0 s;
+        s.x = a.x * D_00278C48;
+        s.y = a.y * D_00278C48;
+        s.z = a.z * D_00278C48;
         V4_0011C3F0 p;
-        p.x = a.x * D_00278C48 + t.x;
-        p.y = a.y * D_00278C48 + t.y;
-        p.z = a.z * D_00278C48 + t.z;
+        p.x = s.x + t.x;
+        p.y = s.y + t.y;
+        p.z = s.z + t.z;
         f100->func_001A0C90(p);
     }
     f118->func_00199A70(0, &pos);
@@ -351,10 +383,14 @@ void C_0011BBB0::func_0011BBB0(V4_0011C3F0 a)
     fA4->func_00133F10(0);
     if (fA4->fA7 & 0x20) {
         V4_0011C3F0 t = *(V4_0011C3F0 *)((char *)fA4->f54 + 0x30);
+        V4_0011C3F0 s;
+        s.x = a.x * D_00278C48;
+        s.y = a.y * D_00278C48;
+        s.z = a.z * D_00278C48;
         V4_0011C3F0 p;
-        p.x = a.x * D_00278C48 + t.x;
-        p.y = a.y * D_00278C48 + t.y;
-        p.z = a.z * D_00278C48 + t.z;
+        p.x = s.x + t.x;
+        p.y = s.y + t.y;
+        p.z = s.z + t.z;
         f104->func_001A0C90(p);
     }
 }
