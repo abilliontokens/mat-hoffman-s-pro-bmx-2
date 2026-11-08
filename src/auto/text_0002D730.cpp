@@ -480,8 +480,8 @@ void C_0002D730::func_0002D730(float dt)
             *(int *)((char *)this + 0x444) = 0;
     }
     if (!*(int *)((char *)this + 0x680) && !f440 && !f1e8->f68 &&
-        Abs_2D730(*(float *)((char *)this + 0x120)) < 0.707f &&
-        f1e0->f23C >= 0.0f &&
+        Abs_2D730(*(float *)((char *)this + 0x120)) < D_00276080 &&
+        f1e0->f23C >= D_00275544 &&
         (f1e8->func_00026A70(D_002B9108) || f1e8->func_00026A70(D_002B911C))) {
         *(int *)((char *)this + 0x680) = 1;
         float *velocity = &f1e0->f238;
