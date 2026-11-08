@@ -186,7 +186,7 @@ struct S_Sub2_0002A6B0 {
     void func_00025E50(float dt);
 };
 
-extern int D_002A10F0, D_002A10F4, D_002A10F8, D_002A10FC;
+extern const int D_002A10F0, D_002A10F4, D_002A10F8, D_002A10FC;
 
 struct V4i_0002A6B0 {
     int a, b, c, d;
@@ -564,27 +564,28 @@ void C_0002A7C0::func_0002A7C0()
     if (f1e8->f8c != 0) {
         VO_0002A7C0 *p = f1e8->f8c;
         V4_0002A7C0 pos;
-        V4_0002A7C0 a;
-        V4_0002A7C0 b;
-        V4_0002A7C0 r;
         p->f22c->func_00197F70(&pos, &p->f190);
         V4_0002A7C0 *t = &f1e0->f4c;
         V4_0002A7C0 d(t->x - pos.x, t->y - pos.y, t->z - pos.z, 1.0f);
+        V4_0002A7C0 a;
         p->v44(&a);
+        V4_0002A7C0 b;
         p->v42(&b);
-        V4_0002A7C0 c(0.0f, 0.0f, 0.0f, 1.0f);
+        V4_0002A7C0 c;
+        c.z = 0.0f;
+        c.y = 0.0f;
+        c.x = 0.0f;
+        c.w = 1.0f;
         AsmVec3Cross(&c.x, &a.x, &d.x);
         f768 = V4_0002A7C0(b.x + c.x, b.y + c.y, b.z + c.z, 1.0f);
         V4_0002A7C0 *q = &f1e0->f238;
         f748 = V4_0002A7C0(q->x - f768.x, q->y - f768.y, q->z - f768.z, 1.0f);
+        V4_0002A7C0 &r = d;
         f758 = *f1e0->f22c->func_00198040(&r, &f748);
         float sq = f748.x * f748.x + f748.y * f748.y + f748.z * f748.z;
         f744 = AsmSqrtF(sq);
     } else {
-        *(int *)&f768.x = D_002A10F0;
-        *(int *)&f768.y = D_002A10F4;
-        *(int *)&f768.z = D_002A10F8;
-        *(int *)&f768.w = D_002A10FC;
+        f768 = *(V4_0002A7C0 *)&D_002A10F0;
         V4_0002A7C0 r;
         f748 = *f1e0->v42(&r);
         f758 = *f1e0->v41(&r);
