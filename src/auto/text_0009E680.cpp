@@ -24,6 +24,7 @@ struct Pool9E {
 struct Particle9E {
     char pad0[0x10];
     Vec4f v10;
+    float pad20[2];
     int f28;
     float f2C;
     float f30;
@@ -133,6 +134,9 @@ int C_0009EDF0::func_0009E680(C_0009EDF0 *arg)
     float t;
     int count;
     int i;
+    float dx;
+    float dy;
+    float dz;
 
     if (D_002A8490->f124 != 0)
         return 0;
@@ -144,17 +148,20 @@ int C_0009EDF0::func_0009E680(C_0009EDF0 *arg)
         return 1;
     }
 
-    diff[0] = v34.x - v24.x;
-    diff[1] = v34.y - v24.y;
-    diff[2] = v34.z - v24.z;
+    dz = v34.z - v24.z;
+    dy = v34.y - v24.y;
+    dx = v34.x - v24.x;
     diff[3] = 1.0f;
+    diff[0] = dx;
+    diff[1] = dy;
+    diff[2] = dz;
     len = func_00011170(diff);
     norm[0] = diff[0];
     norm[1] = diff[1];
     norm[2] = diff[2];
     norm[3] = len;
     func_0009DA90(norm, diff);
-    dot = len * arg->f204 + norm[1] * arg->f200 + norm[0] * arg->f1fc;
+    dot = norm[0] * arg->f1fc + norm[1] * arg->f200 + len * arg->f204;
     dot = func_0014F7E0(dot);
     if (dot < D_00277F40)
         return 0;
@@ -195,28 +202,51 @@ int C_0009EDF0::func_0009E680(C_0009EDF0 *arg)
     {
         Vec4f *base = func_0009DA50((float *)&arg->f64, norm, (float)count / len);
         Vec4f start = *base;
+        float step = (float)count / len;
         for (i = 0; i < count; i++) {
             Pool9E *pool = arg->f64;
             Particle9E *p;
-            float r1, r2, r3;
+            float r1, r2;
+            float s1[3];
+            float s2[3];
+            float s3[3];
+            float pos[3];
+            float vel[3];
             if (pool->count11C >= pool->cap124)
                 continue;
             r1 = (float)func_001E8833() * D_002754B0;
             p = (Particle9E *)pool->arr12C[pool->count11C];
             r1 = r1 * arg->f218 + arg->f20c;
-            p->v10.x = start.x + side[0] * r1;
-            p->v10.y = start.y + side[1] * r1;
-            p->v10.z = start.z + side[2] * r1;
+            s1[0] = side[0] * r1;
+            s1[1] = side[1] * r1;
+            s1[2] = side[2] * r1;
+            pos[0] = s1[0];
+            pos[1] = s1[1];
+            pos[2] = s1[2];
             r2 = (float)func_001E8833() * D_002754B0;
             r2 = arg->f210 * D_002755E8 - r2 * arg->f210;
-            p->f38 = (r2 + p->v10.x);
-            r3 = (float)func_001E8833() * D_002754B0;
-            p->f2C = arg->f170 * D_002755E8 * r3;
-            p->v10.x += arg->v34.x;
-            p->v10.y += arg->v34.y;
-            p->v10.z += arg->v34.z;
+            s2[0] = up[0] * r2;
+            s2[1] = up[1] * r2;
+            s2[2] = up[2] * r2;
+            pos[0] += s2[0];
+            pos[1] += s2[1];
+            pos[2] += s2[2];
+            s3[0] = norm[0] * -(t * arg->f214);
+            s3[1] = norm[1] * -(t * arg->f214);
+            s3[2] = norm[2] * -(t * arg->f214);
+            pos[0] += s3[0];
+            pos[1] += s3[1];
+            pos[2] += s3[2];
+            vel[0] = (pos[0] * step + start.x) * t;
+            vel[1] = (pos[1] * step + start.y) * t;
+            vel[2] = (pos[2] * step + start.z) * t;
+            p->f2C = arg->f170 * D_002755E8 * (float)func_001E8833() * D_002754B0;
+            p->v10.x = vel[0] + arg->v34.x;
+            p->v10.y = vel[1] + arg->v34.y;
+            p->v10.z = vel[2] + arg->v34.z;
+            p->v10.w = 1.0f;
             p->f28 = arg->f188;
-            p->f38 = (r3 + D_00275460) * arg->f178;
+            p->f38 = ((float)func_001E8833() * D_002754B0 + D_00275460) * arg->f178;
             p->f40 = arg->f174;
             p->f48 = (int)arg;
             p->f30 = arg->f170;
