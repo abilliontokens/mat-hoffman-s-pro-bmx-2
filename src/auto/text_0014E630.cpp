@@ -29,9 +29,9 @@ extern TrigEntry *D_002CF6B4;
 
 struct V4x { float x, y, z, w; };
 struct ObjB700 { ObjB700 *func_0019B700(int a); void func_0019D7B0(void *a, void *b); void func_00129920(int a); void func_001334E0(int a); void func_00011FF0(void *buf, int a, int b, void *cb); void func_0019C710(void *a, void *b, int c, int d); };
-struct ObjA50 { ObjA50 *func_001A4A50(int a); void func_00129920(int a); void func_001A57E0(int a, int b, V4x v); void func_001A57E0(V4x v, int a, int b); };
-struct ObjE620 { ObjE620 *func_0017E620(int a); void func_00129920(int a); void func_0017E6F0(V4x a, V4x b, int c); };
-struct Ent14E { char p0[0x20]; int type; float f24; int f28; void func_001577A0(void *a, int b); };
+struct ObjA50 { ObjA50 *func_001A4A50(int a); void func_00129920(int a); void func_001A57E0(V4x v, float a, int b); };
+struct ObjE620 { ObjE620 *func_0017E620(int a); void func_00129920(int a); void func_0017E6F0(V4x a, V4x b, float c); };
+struct Ent14E { char p0[0x20]; int type; float f24; float f28; void func_001577A0(void *a, int b); };
 void func_00129920(int a);
 extern int D_002BA150;
 extern int D_002BA574;
@@ -176,8 +176,6 @@ void __fastcall func_0014E630(void *self, int, S_0014E630_Holder *a)
         return;
     }
     a->out = (void **)func_001E8AA5(a->count * 4);
-    if (a->count <= 0)
-        return;
     off = 0;
     for (i = 0; i < a->count; i++) {
         Ent14E *e = (Ent14E *)((char *)a->items + off);
@@ -188,85 +186,111 @@ void __fastcall func_0014E630(void *self, int, S_0014E630_Holder *a)
             o->func_00129920(4);
             o->func_0019D7B0(*(void **)((char *)a + 0x1f8), a);
             a->out[i] = o;
-            *(int *)((char *)o + 0x68) = D_002BA150;
-            o->func_001334E0(1);
-            *(int *)((char *)o + 0x60) = 0;
-            *(int *)((char *)o + 0x64) = 0;
-            e->func_001577A0(o, -1);
+            *(int *)((char *)a->out[i] + 0x68) = D_002BA150;
+            ((ObjB700 *)a->out[i])->func_001334E0(1);
+            *(int *)((char *)a->out[i] + 0x60) = 0;
+            *(int *)((char *)a->out[i] + 0x64) = 0;
+            e->func_001577A0(a->out[i], -1);
         } else if (type == 2) {
             void *mem = func_001E8A44(0x120);
             ObjA50 *o = mem ? ((ObjA50 *)mem)->func_001A4A50(1) : 0;
             o->func_00129920(4);
-            o->func_001A57E0(e->f24, 0, *(V4x *)e->p0);
+            o->func_001A57E0(*(V4x *)e->p0, e->f24, 0);
             a->out[i] = o;
-            *(int *)((char *)o + 0x68) = D_002BA574;
-            e->func_001577A0(o, -1);
+            *(int *)((char *)a->out[i] + 0x68) = D_002BA574;
+            e->func_001577A0(a->out[i], -1);
         } else if (type == 3) {
             void *mem = func_001E8A44(0x120);
             ObjE620 *o = mem ? ((ObjE620 *)mem)->func_0017E620(1) : 0;
             o->func_00129920(4);
             o->func_0017E6F0(*(V4x *)((float *)e->p0 + 4), *(V4x *)e->p0, e->f24);
             a->out[i] = o;
-            *(int *)((char *)o + 0x68) = D_002BA574;
-            e->func_001577A0(o, -1);
+            *(int *)((char *)a->out[i] + 0x68) = D_002BA574;
+            e->func_001577A0(a->out[i], -1);
         } else if (type == 1) {
+            int k, t, c, d, s;
             void *mem = func_001E8A44(0x1e0);
             ObjB700 *o = mem ? ((ObjB700 *)mem)->func_0019B700(1) : 0;
             o->func_00129920(4);
             char grid[0x200];
             o->func_00011FF0(grid, 0x10, 0x20, (void *)func_00011060);
-            float *rec = (float *)grid;
-            for (int k = 0; k < 0x10; k++) {
+            float *p = (float *)grid;
+            float *q = (float *)((char *)grid + 0x100);
+            for (k = 0; k < 0x10; k++) {
                 float v = (float)k * D_00283E00;
+                float r[2];
                 if (v <= D_002756D0)
                     v -= D_002756B8;
                 else if (v < D_002756E8)
                     v += D_002756B8;
-                float r[2];
                 func_0014F670(v, grid, r);
-                rec[0] = r[0] * e->f24;
-                rec[1] = (float)e->f28;
-                rec[2] = r[1] * e->f24;
-                rec[3] = 0.0f;
-                *(float *)((char *)grid + 0x100 + 8 * k) = rec[0];
-                *(int *)((char *)grid + 0x104 + 0x10 * k) = 0;
-                rec += 4;
+                p[1] = (float)e->f28;
+                p[0] = q[0] = r[0] * e->f24;
+                q[1] = 0.0f;
+                p[2] = q[2] = r[1] * e->f24;
+                p += 4;
+                q += 4;
             }
-            float one = 1.0f;
             float *pv = (float *)grid;
-            for (int t = 0; t < 4; t++) {
-                for (int q = 0; q < 4; q++) {
-                    pv[0] += ((float *)e->p0)[0];
-                    pv[1] += ((float *)e->p0)[1];
-                    pv[2] += ((float *)e->p0)[2];
-                    pv[3] = one;
-                    pv += 4;
-                }
-                pv += 16;
-            }
+            t = 4;
+            do {
+                pv[0] += ((float *)e->p0)[0];
+                pv[1] += ((float *)e->p0)[1];
+                pv[2] += ((float *)e->p0)[2];
+                pv[3] = 1.0f;
+                pv[4] += ((float *)e->p0)[0];
+                pv[5] += ((float *)e->p0)[1];
+                pv[6] += ((float *)e->p0)[2];
+                pv[7] = 1.0f;
+                pv[8] += ((float *)e->p0)[0];
+                pv[9] += ((float *)e->p0)[1];
+                pv[10] += ((float *)e->p0)[2];
+                pv[11] = 1.0f;
+                pv[12] += ((float *)e->p0)[0];
+                pv[13] += ((float *)e->p0)[1];
+                pv[14] += ((float *)e->p0)[2];
+                pv[15] = 1.0f;
+                pv[16] += ((float *)e->p0)[0];
+                pv[17] += ((float *)e->p0)[1];
+                pv[18] += ((float *)e->p0)[2];
+                pv[19] = 1.0f;
+                pv[20] += ((float *)e->p0)[0];
+                pv[21] += ((float *)e->p0)[1];
+                pv[22] += ((float *)e->p0)[2];
+                pv[23] = 1.0f;
+                pv[24] += ((float *)e->p0)[0];
+                pv[25] += ((float *)e->p0)[1];
+                pv[26] += ((float *)e->p0)[2];
+                pv[27] = 1.0f;
+                pv[28] += ((float *)e->p0)[0];
+                pv[29] += ((float *)e->p0)[1];
+                pv[30] += ((float *)e->p0)[2];
+                pv[31] = 1.0f;
+                pv += 32;
+            } while (--t);
             int ixbuf[16][6];
-            int c = 0;
-            for (int n = 0; n < 0x10; n++) {
-                int d = c + 1;
-                int s = (d < 0x10) ? d : 0;
-                int s2 = s + 0x10;
-                int *ip = ixbuf[n];
+            int *ip = &ixbuf[0][0];
+            c = 0;
+            do {
+                d = c + 1;
+                s = d < 0x10 ? d : 0;
                 ip[0] = c;
-                ip[1] = s2;
-                ip[2] = s;
+                ip[1] = s;
+                ip[2] = s + 0x10;
                 ip[3] = c;
-                ip[4] = s2;
+                ip[4] = s + 0x10;
                 ip[5] = d + 0xf;
                 c = d;
-            }
+                ip += 6;
+            } while (c < 0x10);
             o->func_0019C710(grid, ixbuf, 0x20, 0x20);
             AsmIdentityMatrix((char *)o + 0x130);
             a->out[i] = o;
-            *(int *)((char *)o + 0x68) = D_002BA150;
-            o->func_001334E0(1);
-            *(int *)((char *)o + 0x60) = 0;
-            *(int *)((char *)o + 0x64) = 0;
-            e->func_001577A0(o, -1);
+            *(int *)((char *)a->out[i] + 0x68) = D_002BA150;
+            ((ObjB700 *)a->out[i])->func_001334E0(1);
+            *(int *)((char *)a->out[i] + 0x60) = 0;
+            *(int *)((char *)a->out[i] + 0x64) = 0;
+            e->func_001577A0(a->out[i], -1);
         }
         off += 0x2c;
     }
