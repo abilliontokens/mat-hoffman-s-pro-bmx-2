@@ -563,13 +563,12 @@ int C_001CB610::func_001CB7D0(void)
 int C_001CB610::func_001CB810(int idx)
 {
     char path[0x104];
-    S_001CB610_Entry *e = &f34[fa4];
 
-    if (e->f40 & 1) {
-        func_001ADCC0(path, sizeof(path), D_0028ED6C, D_002A48F8, e->f0[idx].name);
+    if (f34[fa4].f40 & 1) {
+        func_001ADCC0(path, sizeof(path), D_0028ED6C, D_002A48F8, f34[fa4].f0[idx].name);
         return func_001DCC3C(path, 0x80000000, 1, 0, 3, 0x80, 0);
     }
-    return func_001DDAEE(e->f0[idx].f10, 0);
+    return func_001DDAEE(f34[fa4].f0[idx].f10, 0);
 }
 #pragma auto_inline()
 unsigned int C_001CB610::func_001CB8A0(void)
@@ -744,15 +743,17 @@ void func_001CBC10(int hr, int a, int b)
 
 int C_001CBCF0::func_001CBCF0(int value)
 {
-    int i;
-
-    for (i = 0; i < count; i++) {
+    int n = count;
+    int i = 0;
+    if (n <= 0) return i;
+    do {
         if (items[i] == value) {
-            items[i] = items[count - 1];
-            count--;
+            items[i] = items[n - 1];
+            --count;
             return 1;
         }
-    }
+        ++i;
+    } while (i < count);
     return 0;
 }
 
@@ -912,19 +913,18 @@ void C_001CC0C0::func_001CC140(void)
     func_0001C970();
 }
 
+#pragma optimize("y", off)
 int C_001CC0C0::func_001CC1E0(void)
 {
     return f1A0;
 }
-
+#pragma optimize("", on)
 int C_001CC0C0::func_001CC320(unsigned int v)
 {
     int r;
-    unsigned int cur;
 
     if (f13C != 0) {
-        cur = f19C;
-        if (cur != v) {
+        if (f19C != v) {
             if (v < 0xbc || v > (unsigned int)&D_0002EDEF) {
                 return 0;
             }
@@ -936,8 +936,7 @@ int C_001CC0C0::func_001CC320(unsigned int v)
             f19C = v;
         }
     } else if (f140 != 0) {
-        cur = f19C;
-        if (cur != v) {
+        if (f19C != v) {
             if (v < 0xbc || v > (unsigned int)&D_0002EDEF) {
                 return 0;
             }
