@@ -257,6 +257,9 @@ extern int func_001968C0(void *self);
 extern void func_00195D40(float *out, float a, float b, float c, float d);
 extern void func_0015C7D0(float *out, float *a, float *b, float *c, float *d);
 extern int func_00016CF0(float v);
+struct V_00196C00 { int x,y,z,w; };
+extern V_00196C00 *func_00195D40(V_00196C00 *out, int a, int b, int c, int d);
+extern void func_0015C7D0(V_00196C00 *out, V_00196C00 *a, V_00196C00 *b, float t);
 void __fastcall func_00196C00(char *self, int, float dt)
 {
     C_001972B0 *o = (C_001972B0 *)self;
