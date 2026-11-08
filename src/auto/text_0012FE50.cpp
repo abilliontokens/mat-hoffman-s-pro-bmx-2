@@ -190,6 +190,7 @@ struct C_0012FE50 {
     int func_0012FE50(float dt, int b);
 };
 
+#pragma intrinsic(fmod)
 #pragma optimize("y", on)
 int C_0012FE50::func_0012FE50(float dt, int b)
 {
