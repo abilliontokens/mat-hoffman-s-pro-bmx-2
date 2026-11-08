@@ -34,8 +34,6 @@ static __forceinline void Normalize_0019B890(float *out, const float *in)
     _mm_storeu_ps(out, _mm_mul_ps(sq, v));
 }
 
-struct S_0019BA70_Row { float x, y, z, w; };
-
 struct C_0019BA70 {
     char pad0[0x54];
     char *f54;
@@ -264,21 +262,20 @@ extern "C" void _ReadWriteBarrier(void);
 #pragma intrinsic(_ReadWriteBarrier)
 void C_0019BA70::func_0019BA70()
 {
-    float *v = (float *)(f54 + 0x10);
-    struct { volatile float x, y, z, w; } t;
-    t.x = 0.0f; v[0] = t.x; _ReadWriteBarrier();
-    t.y = 0.0f; v[1] = t.y; _ReadWriteBarrier();
-    t.z = 0.0f; v[2] = t.z; _ReadWriteBarrier();
-    t.w = 1.0f; v[3] = t.w; _ReadWriteBarrier();
+    float *v = (float *)f54 + 4;
+    S_0019BBD0_V4 t;
+    *(S_0019BBD0_V4 *)v = t;
     for (int i = D_002B92F0; i < D_002B92E0; ++i) {
         float *p = D_002B9448 + i * 4;
         v[0] = p[-2] + v[0];
-        v[1] = p[-1] + v[1];
-        v[2] = p[0] + v[2];
+        float *r = p + 4;
+        v[1] = r[-5] + v[1];
+        v[2] = v[2] + r[-4];
     }
-    AsmVec3Normalize(v, v);
-    int n = D_002B92E0;
-    D_002B92F0 = n;
+    float *in = v;
+    float *out = v;
+    AsmVec3Normalize(out, in);
+    D_002B92F0 = D_002B92E0;
 }
 void SoultreeCollisionObject::func_0019BB80(void *arg1)
 {
