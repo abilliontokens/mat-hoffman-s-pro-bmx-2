@@ -192,6 +192,8 @@ struct C_0002D730 {
 };
 
 extern float D_00275AEC;
+extern float D_00275544;
+extern float D_00276080;
 extern float D_00275BF8;
 extern float D_002A118C;
 extern float D_002A1188;
