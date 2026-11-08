@@ -19,6 +19,8 @@ struct FadeBuf { char pad[0x1E0]; int r[6]; };
 struct FadeDev { void func_0012B2B0(int *rect, int *out); };
 #include <xmmintrin.h>
 #include "asm_helpers.h"
+extern "C" void _ReadWriteBarrier(void);
+#pragma intrinsic(_ReadWriteBarrier)
 
 struct FadeObj {
     virtual void v0();
