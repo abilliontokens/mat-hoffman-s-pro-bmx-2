@@ -3,7 +3,7 @@
 #include "asm_helpers.h"
 
 extern int D_0027CF8C;
-extern u32 D_002A2DC4;
+extern u32 D_002A2DC4[];
 extern u32 D_002A2DC8;
 extern u32 D_002A2DCC;
 extern u32 D_002A2DD0;
