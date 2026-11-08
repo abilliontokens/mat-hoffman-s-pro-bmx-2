@@ -62,8 +62,21 @@ struct C_00075F30 {
     C_00075F30 *func_00075F30(int a);
 };
 
+/* 0x60-byte image objects (f100..f118, ffc, f1BC, f_f8): f4/f8 at +4/+8, f44 at +0x44,
+   color at +0x48, flags at +0x4e. */
+struct I60_75F30 {
+    float f4;
+    float f8;
+    char padC[0x38];
+    int f44;
+    int color;
+    char pad4C[2];
+    unsigned char flags;
+};
+
 extern Mgr_75F30 *D_002A8490;
 
+extern float D_0027886C;
 C_00075F30 *C_00075F30::func_00075F30(int a)
 {
     int v1, v2, v3;
@@ -156,6 +169,98 @@ C_00075F30 *C_00075F30::func_00075F30(int a)
         }
         fDC[i]->color = (fDC[i]->color & 0xffbfa35a) | 0xbfa35a;
         fDC[i]->flags |= 2;
+    }
+
+    {
+        Img_75F30 *o = (Img_75F30 *)func_001E8A44(0x64);
+        o = o ? o->func_001D5760() : 0;
+        f1A0 = o;
+        o->func_001D5810(D_00278648, 491.0f, 96.0f, 0);
+    }
+    {
+        Img_75F30 *o = (Img_75F30 *)func_001E8A44(0x64);
+        o = o ? o->func_001D5760() : 0;
+        f198 = o;
+        o->func_001D5810(D_00278624, 491.0f, 96.0f, 0);
+    }
+    {
+        Img_75F30 *o = (Img_75F30 *)func_001E8A44(0x64);
+        o = o ? o->func_001D5760() : 0;
+        f1A4 = o;
+        o->func_001D5810(D_00278638, 379.0f, 96.0f, 0);
+    }
+    {
+        Img_75F30 *o = (Img_75F30 *)func_001E8A44(0x64);
+        o = o ? o->func_001D5760() : 0;
+        f19C = o;
+        o->func_001D5810(D_00278608, 379.0f, 96.0f, 0);
+    }
+    {
+        Img_75F30 *o = (Img_75F30 *)func_001E8A44(0x64);
+        o = o ? o->func_001D5760() : 0;
+        f4 = o;
+        o->func_001D5810(D_00278600, 0.0f, 0.0f, 0);
+        f4->color &= 0xff000000;
+        f4->flags |= 2;
+        ((unsigned char *)f4)[0x3b] = 0x80;
+        f4->flags |= 2;
+        if (f4->height != 448.0f) {
+            f4->height = 448.0f;
+            f4->flags |= 1;
+        }
+        if (f4->width != 640.0f) {
+            f4->width = 640.0f;
+            f4->flags |= 1;
+        }
+    }
+
+    {
+        Img_75F30 *o = (Img_75F30 *)func_001E8A44(0x60);
+        o = o ? o->func_001D5E90() : 0;
+        f100 = o;
+        o->func_001D5FA0((void *)v3, D_00278678, 0x14, 0);
+        int c = *(int *)((char *)f100 + 0x48);
+        if (c != (int)0xaaaaaaaa) {
+            *(unsigned char *)((char *)f100 + 0x4e) |= 8;
+            *(int *)((char *)f100 + 0x48) = (c & (int)0xffaaaaaa) | 0xaaaaaa;
+        }
+        if (*(float *)((char *)f100 + 4) == 640.0f) {
+            if (*(float *)((char *)f100 + 8) != 40.0f) {
+                *(float *)((char *)f100 + 8) = 40.0f;
+                *(float *)((char *)f100 + 4) = 640.0f;
+                *(unsigned char *)((char *)f100 + 0x4e) |= 6;
+            }
+        }
+        if (*(int *)((char *)f100 + 0x44) != D_0028F5E0) {
+            *(int *)((char *)f100 + 0x44) = D_0028F5E0;
+            *(unsigned char *)((char *)f100 + 0x4e) |= 6;
+        }
+        f100->func_0005E840(*(int *)(*(char **)((char *)D_002A8490->f2e8 + 4) + 0xfd8));
+    }
+    {
+        Img_75F30 *o = (Img_75F30 *)func_001E8A44(0x60);
+        o = o ? o->func_001D5E90() : 0;
+        f104 = o;
+        o->func_001D5FA0((void *)v2, D_00278690, 0x28, 0);
+        int c = *(int *)((char *)f104 + 0x48);
+        if (c != (int)0xaaaaaaaa) {
+            *(unsigned char *)((char *)f104 + 0x4e) |= 8;
+            *(int *)((char *)f104 + 0x48) = (c & (int)0xffaaaaaa) | 0xaaaaaa;
+        }
+        float t = (float)((C_00075F30 *)v2)->func_0018C210();
+        float y = t + t + D_0027886C;
+        if (*(float *)((char *)f104 + 4) == 120.0f) {
+            if (*(float *)((char *)f104 + 8) != y) {
+                *(float *)((char *)f104 + 8) = y;
+                *(float *)((char *)f104 + 4) = 120.0f;
+                *(unsigned char *)((char *)f104 + 0x4e) |= 6;
+            }
+        }
+        if (*(int *)((char *)f104 + 0x44) != D_0028F5DC) {
+            *(int *)((char *)f104 + 0x44) = D_0028F5DC;
+            *(unsigned char *)((char *)f104 + 0x4e) |= 6;
+        }
+        f104->func_0005E840(*(int *)(*(char **)((char *)D_002A8490->f2e8 + 4) + 0x1158));
     }
     return this;
 }
