@@ -225,7 +225,7 @@ static __forceinline S_1561_State *Init1561B(void *p) { S_1561_State *s = (S_156
 static __forceinline S_1561_State *Init1561C(void *p) { S_1561_State *s = (S_1561_State *)p; s->vtbl = &D_00286E74; s->kind = 3; s->owner = 0; return s; }
 static __forceinline S_1561_State *Init1561D(void *p) { S_1561_State *s = (S_1561_State *)p; s->vtbl = &D_00286E84; s->kind = 4; s->owner = 0; return s; }
 static __forceinline S_1561_State *Init1561E(void *p) { S_1561_State *s = (S_1561_State *)p; s->vtbl = &D_00286E94; s->kind = 5; s->owner = 0; return s; }
-static inline int min_1561(const int &a, const int &b) { return a > b ? b : a; }
+static inline int min_1561(const int &a, const int &b) { return AsmMinI(a, b); }
 #define CopyPath1561(dst, src, len, lim, res) { int ma, mb, n; len = strlen(src); lim = 0x103; ma = lim; mb = len; res = min_1561(ma, mb); n = res; func_001E8920(dst, src, n); (dst)[n] = 0; }
 struct C_1561 {
     char pad0[0x3c];
@@ -255,9 +255,9 @@ struct C_00156820 {
 int C_1558::func_00155890(float a)
 {
     C_1558 *volatile self = this;
-    S_1558_V4 *p;
     S_1558_Node *n;
     S_1558_V4 tmp;
+    S_1558_V4 pos;
     if (D_002A8490->unk124 == 1) {
         return 1;
     }
@@ -272,14 +272,11 @@ int C_1558::func_00155890(float a)
     self->func_001C7EB0(a);
     S_1558_Vec4 vA;
     S_1558_Vec4 vB;
-    p = self->unk39C->func_00016E40(&tmp);
-    S_1558_V4 pos = *p;
+    pos = *self->unk39C->func_00016E40(&tmp);
     self->unk39C->func_00150900(&vA, &vB);
     {
         S_1558_Vec4 vC;
-        vC.x = vA.y * vB.z - vA.z * vB.y;
-        vC.y = vA.z * vB.x - vA.x * vB.z;
-        vC.z = vA.x * vB.y - vA.y * vB.x;
+        AsmVec3Cross(&vC.x, &vA.x, &vB.x);
         *(S_1558_V4 *)&vC = *n->func_00198120(&tmp, &vC);
         n->func_00199CF0(S_1558_V4c(0.5f, 0.866f, 0.0f, 1.0f), -self->unk39C->unk48);
         *(S_1558_V4 *)&vB = *(S_1558_V4 *)&D_002A79D8;
