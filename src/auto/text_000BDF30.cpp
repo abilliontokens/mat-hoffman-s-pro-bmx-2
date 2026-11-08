@@ -128,7 +128,8 @@ struct S_000BDF30_F0 {
 struct S_000BDF30_Config {
     char pad0[0x18];
     int f18;
-    char pad1C[0x2e0];
+    int f1c;
+    char pad20[0x2dc];
     S_000BDF30_F2FC *f2FC;
     char pad300[0x24];
     int f324;
