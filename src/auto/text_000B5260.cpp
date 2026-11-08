@@ -98,10 +98,12 @@ struct V4_000B5260 {
 
 struct Vecs_000B5260 {
     float d[4];
+    float pad[1];
     float a[4];
     float b[4];
     float c[4];
     float e[4];
+    float pad2[1];
     float local[4];
     float scaled[4];
     float n[4];
@@ -127,17 +129,12 @@ struct Obj_000B58B0 {
 
 int C_000B5260::func_000B5260(float dt)
 {
-    float local[4];
     float len;
-    float d[4];
-    float a[4];
-    float b[4];
-    float c[4];
-    float e[4];
-    float scaled[4];
-    float n[4];
+    Vecs_000B5260 v;
     float dot, ang, t, sgn, absang;
-    void func_0001E9E0(float *out, float *v);
+    void func_0001E9E0(float *out, float *in);
+    float *d = v.d, *a = v.a, *b = v.b, *c = v.c, *e = v.e;
+    float *local = v.local, *scaled = v.scaled, *n = v.n;
 
     ((C_00197F70 *)*(int *)((char *)this + 0x30))->func_00197F70(local, (float *)((char *)this + 0x34));
     {
