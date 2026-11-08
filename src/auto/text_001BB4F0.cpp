@@ -196,7 +196,7 @@ struct V4_001BB680 {
         *(volatile int *)&x = 0;
         *(volatile int *)&w = 0x3f800000;
     }
-    void Set(float a, float b, float c, float d) volatile
+    void Set(const float &a, const float &b, const float &c, const float &d) volatile
     {
         x = a;
         y = b;
