@@ -26,6 +26,8 @@ extern char _D_002A5870[];
 extern char _D_002A47F0[];
 extern char _D_002A5348[];
 extern char _D_00275678[];
+extern char _D_00279FC0[];
+extern char _D_00279920[];
 extern char _D_002A48F8[];
 void func_001ADCC0(int a, ...);
 void func_001CF740(int a, int b, int c);
@@ -239,7 +241,7 @@ S_0008DB70 *S_0008DB70::func_0008DB70(char *a2, int a1, int a0, int a3, int a5, 
         w = (W_0008DB70 *)f170;
         if (I4(P4((void *)D_002A8490, 0x2e0), 4) == 4) {
             w->func_001D5810(&D_002786B0, 430.0f, 73.0f, 0);
-        w = (W_0008DB70 *)f170;
+        w = (W_0008DB70 *)f174;
             w = (W_0008DB70 *)f174;
             w->func_001D5810(&D_002786B0, 526.0f, 73.0f, 0);
         w = (W_0008DB70 *)f174;
@@ -536,6 +538,125 @@ S_0008DB70 *S_0008DB70::func_0008DB70(char *a2, int a1, int a0, int a3, int a5, 
         tt->func_001B1BF0(5.0f);
         tt->func_001B1AB0(0, 0);
         func_001577A0(tt, -1);
+    }
+    if (a0 == 1) {
+        I4(this, 0xd18) = 0x30;
+        I4(this, 0xd1c) = 0x56;
+        I4(this, 0xd2c) = 0;
+        I4(this, 0xd28) = (f40 ? 0xe0 : 0) + 0x8a;
+    } else if (a0 == 2) {
+        I4(this, 0xd18) = 0x40;
+        I4(this, 0xd1c) = 0x90;
+        I4(this, 0xd28) = 0x140;
+        if (f40 == 0) {
+            I4(this, 0xd20) = 0x140;
+            I4(this, 0xd2c) = 0;
+        } else {
+            I4(this, 0xd2c) = 0x140;
+            I4(this, 0xd20) = 0x280;
+        }
+    } else {
+        I4(this, 0xd18) = 0x40;
+        I4(this, 0xd1c) = 0x90;
+        I4(this, 0xd28) = 0x140;
+        I4(this, 0xd2c) = 0;
+    }
+    {
+        p = func_001E8A44(100);
+        W_0008DB70 *w10 = (W_0008DB70 *)(p ? ((W_0008DB70 *)p)->func_001D5760() : 0);
+        I4(this, 0xd10) = (int)w10;
+        w10->func_001D5810(_D_00279FD0, 480.0f, 224.0f, 0);
+        float fw = (float)I4(this, 0xd18);
+        if (w10->f28 != fw) { w10->f28 = fw; w10->f58 |= 1; }
+        fw = (float)I4(this, 0xd1c);
+        if (w10->f2c != fw) { w10->f2c = fw; w10->f58 |= 1; }
+        {
+            int m = w10->f38 | 0xffffff;
+            unsigned char c = w10->f58 | 2;
+            w10->f38 = m;
+            w10->f58 = c;
+        }
+        if (w10->f34 != 4.0f) { w10->f34 = 4.0f; w10->f58 |= 1; }
+    }
+    I4(this, 0xd30) = 0;
+    {
+        p = func_001E8A44(100);
+        W_0008DB70 *w14 = (W_0008DB70 *)(p ? ((W_0008DB70 *)p)->func_001D5760() : 0);
+        I4(this, 0xd14) = (int)w14;
+        w14->func_001D5810(_D_00279FE0, 477.0f, 311.0f, 0);
+        float fw = (float)I4(this, 0xd18);
+        if (w14->f28 != fw) { w14->f28 = fw; w14->f58 |= 1; }
+        fw = (float)I4(this, 0xd1c);
+        if (w14->f2c != fw) { w14->f2c = fw; w14->f58 |= 1; }
+        {
+            int m = w14->f38 | 0xffffff;
+            unsigned char c = w14->f58 | 2;
+            w14->f38 = m;
+            w14->f58 = c;
+        }
+        B1(w14, 0x3b) = 0;
+        if (w14->f34 != 7.0f) { w14->f34 = 7.0f; w14->f58 |= 1; }
+    }
+    {
+        p = func_001E8A44(100);
+        W_0008DB70 *w19 = (W_0008DB70 *)(p ? ((W_0008DB70 *)p)->func_001D5760() : 0);
+        I4(this, 0x194) = (int)w19;
+        w19->func_001D5810(_D_00279FE0, 477.0f, 311.0f, 0);
+        if (w19->f28 != 544.0f) { w19->f28 = 544.0f; w19->f58 |= 1; }
+        if (w19->f2c != 480.0f) { w19->f2c = 480.0f; w19->f58 |= 1; }
+        {
+            int m = w19->f38 | 0xffffff;
+            unsigned char c = w19->f58 | 2;
+            w19->f38 = m;
+            w19->f58 = c;
+        }
+        B1(w19, 0x3b) = 0x80;
+    }
+    I4(this, 0xc5c) = 0;
+    B1(this, 0xc64) = 0;
+    I4(this, 0xca0) = 0;
+    func_001ADCC0((int)&D_002A60B0, 0x104, (int)_D_00275678, (int)_D_002A5870, (int)_D_002A5FA8);
+    {
+        int fv = f40 ? 0x43f48000 : 0x43290000;
+        I4(this, 0x140) = fv;
+        I4(this, 0x148) = fv;
+    }
+    {
+        p = func_001E8A44(0x184);
+        T_0008DB70 *tt8 = (T_0008DB70 *)(p ? ((T_0008DB70 *)p)->func_001B12C0(1) : 0);
+        I4(this, 0xd08) = (int)tt8;
+        void *tn = a0 ? (void *)_D_002786A0 : (void *)_D_0027958C;
+        tt8->func_001B13A0(tn, tn, 0, 0x3c);
+        tt8->func_001B1A30(I4(this, 0x140), I4(this, 0x144), 0);
+        tt8->func_001B2270(0xffbfa35a);
+        tt8->func_001B19A0(_D_0028F5E0);
+        tt8->func_001B1BF0(5.0f);
+        tt8->func_001B1AB0(0, 0);
+        func_001577A0(tt8, -1);
+    }
+    {
+        p = func_001E8A44(0x184);
+        T_0008DB70 *ttc = (T_0008DB70 *)(p ? ((T_0008DB70 *)p)->func_001B12C0(1) : 0);
+        I4(this, 0xd0c) = (int)ttc;
+        void *tn = a0 ? (void *)_D_002786A0 : (void *)_D_0027958C;
+        ttc->func_001B13A0(tn, tn, 0, 0x3c);
+        ttc->func_001B1A30(I4(this, 0x14c), I4(this, 0x148), 0);
+        ttc->func_001B2270(0xffbfa35a);
+        ttc->func_001B19A0(_D_0028F5E0);
+        ttc->func_001B1BF0(5.0f);
+        ttc->func_001B1AB0(0, 0);
+        func_001577A0(ttc, -1);
+    }
+    func_000843E0(1);
+    func_001ADCC0((int)&D_002A60B0, 0x104, (int)_D_00275678, (int)_D_002A5348, (int)_D_002A47F0, (int)_D_002A48F8);
+    {
+        p = func_001E8A44(0x20c);
+        I4(this, 0xd34) = (int)p;
+    }
+    {
+        T2_0008DB70 *o50 = (T2_0008DB70 *)I4(this, 0xc50);
+        if (o50->f4 != 0x4415c000 || o50->f8 != 360.0f) { o50->f4 = 0x4415c000; o50->f8 = 360.0f; o50->f4e |= 6; }
+        if (o50->f44 != _D_0028F5EC) { o50->f44 = _D_0028F5EC; o50->f4e |= 6; }
     }
     return this;
 }
