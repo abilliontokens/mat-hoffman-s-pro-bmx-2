@@ -229,7 +229,7 @@ void C_0002D730::func_0002D730(float dt)
             velocity[0] += scaled[0];
             velocity[1] += scaled[1];
             velocity[2] += scaled[2];
-            moved = true;
+            moved = 1;
         }
         if (f1e8->f50 || f1e8->f54 || f468 || moved || !func_000292C0()) {
             f69c = 0;
