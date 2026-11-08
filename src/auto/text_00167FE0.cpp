@@ -109,9 +109,16 @@ struct C_00168280 {
 
 void func_00161910(float a, float *s, float *c);
 void func_00161910(float a, float *c, float *s);
+static __forceinline void rot_00167FE0(float *v, int i, int j, float s, float c)
+{
+    float t = c * v[i] - s * v[j];
+    v[j] = s * v[i] + c * v[j];
+    v[i] = t;
+}
+
 int func_00167FE0(float *f, float *u, float rx, float ry, float rz)
 {
-    float c, s, t;
+    float s, c, t;
 
     if (u == 0 || f == 0)
         return 0;
