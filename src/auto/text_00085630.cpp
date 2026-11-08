@@ -170,7 +170,7 @@ struct C_00086240_Item {
     C_00086240_Item *func_001D5E90();
     void func_001D5FA0(int parent, const char *name, int size, int flags);
     void SetPos(float a, float b) {
-        if (a != x || b != y) { x = a; y = b; flags |= 6; }
+        if (x != a || y != b) { x = a; y = b; flags |= 6; }
     }
     void SetFont(int a) { if (font != a) { font = a; flags |= 6; } }
     void SetZ(float a) { if (z != a) { z = a; flags |= 4; } }
