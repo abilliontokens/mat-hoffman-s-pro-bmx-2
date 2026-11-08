@@ -460,7 +460,7 @@ void C_00142D90::func_00142D90(int param_1)
     }
 }
 
-#pragma optimize("sa", on)
+#pragma optimize("s", on)
 void C_00142D00::func_00142D00(void *a0)
 {
     if (unk0 != a0) {
