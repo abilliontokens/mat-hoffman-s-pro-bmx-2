@@ -344,6 +344,10 @@ extern float D_00277240;
 void func_0004E410(S_0004E7B0_Vec *out, S_0004E7B0_Vec *in);
 float func_0014FBA0(float x, float z);
 
+static inline void Sub2_0004E7B0(S_0004E7B0_Vec *out, const S_0004E7B0_Vec &a, const S_0004E7B0_Vec &b)
+{
+ *out = S_0004E7B0_Vec(a.x - b.x, a.y - b.y, a.z - b.z);
+}
 static inline S_0004E7B0_Vec Sub_0004E7B0(const S_0004E7B0_Vec &a, const S_0004E7B0_Vec &b)
 {
     S_0004E7B0_Vec r(a.x - b.x, a.y - b.y, a.z - b.z);
