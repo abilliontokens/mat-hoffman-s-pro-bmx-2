@@ -249,6 +249,11 @@ static __forceinline unsigned int MakeColor_001AEBD0(int a, unsigned char r, uns
     return (((a << 8 | r) << 8 | g) << 8) | b;
 }
 
+static __forceinline unsigned int MakeColorF_001AEBD0(int a, float r, float g, float b)
+{
+    return MakeColor_001AEBD0(a, (unsigned char)(int)r, (unsigned char)(int)g, (unsigned char)(int)b);
+}
+
 struct C_001AE3E0;
 
 /* 8-byte back-reference object stored into C_001AE3E0_Sub::f8 */
@@ -387,7 +392,6 @@ struct C_001AE810 {
 void C_001ADFD0::func_001ADFD0(float *srcf, S_ADFD0_Tex *tex, int *rect, int a4, int a5, int a6)
 {
     int *src = (int *)srcf;
-    S_ADFD0_Tex *t = tex;
     S_ADFD0_Mat mat;
     S_ADFD0_Mat *volatile pm = &mat;
     C_001ADFD0 *volatile self = this;
@@ -409,8 +413,8 @@ void C_001ADFD0::func_001ADFD0(float *srcf, S_ADFD0_Tex *tex, int *rect, int a4,
     } else {
         x = 0;
         y = 0;
-        z = t->f8;
-        w = t->fC;
+        z = tex->f8;
+        w = tex->fC;
     }
     if (src != 0) {
         s0 = (int)((float)src[0] * D_002AA2E8);
@@ -425,8 +429,11 @@ void C_001ADFD0::func_001ADFD0(float *srcf, S_ADFD0_Tex *tex, int *rect, int a4,
     }
     D_0020C6E0 = 3;
     D_0020C6E4 = 3;
-    D_0020C6DC |= 1;
-    D_0020C6EC = 1;
+    {
+        int c6dc = D_0020C6DC | 1;
+        D_0020C6EC = 1;
+        D_0020C6DC = c6dc;
+    }
     D_0020C6F0 = 1;
     func_001FD020(&D_00040304, 1);
     func_001FD020(&D_00040344, 0x302);
@@ -435,14 +442,18 @@ void C_001ADFD0::func_001ADFD0(float *srcf, S_ADFD0_Tex *tex, int *rect, int a4,
     D_0020CA50 = 0;
     func_001FD020(&D_00040300, 0);
     func_001FE490(1);
-    func_001FD020(&D_00040354, a6 != 0 ? 0x203 : 0x207);
-    func_00200390(0, t->fB8);
+    if (a6 != 0) {
+        func_001FD020(&D_00040354, 0x203);
+    } else {
+        func_001FD020(&D_00040354, 0x207);
+    }
+    func_00200390(0, tex->fB8);
     fx = (float)s0;
     fy = (float)s1;
     fz = (float)s2;
     fw = (float)s3;
     b = 1;
-    switch (t->fA4) {
+    switch (tex->fA4) {
     case 6:
     case 0xc:
     case 0xe:
@@ -471,15 +482,15 @@ void C_001ADFD0::func_001ADFD0(float *srcf, S_ADFD0_Tex *tex, int *rect, int a4,
         u1 = (float)z;
         v1 = (float)w;
     } else {
-        u0 = (float)x / (float)t->f8;
-        v0 = (float)y / (float)t->fC;
-        u1 = (float)z / (float)t->f8;
-        v1 = (float)w / (float)t->fC;
+        u0 = (float)x / (float)tex->f8;
+        v0 = (float)y / (float)tex->fC;
+        u1 = (float)z / (float)tex->f8;
+        v1 = (float)w / (float)tex->fC;
     }
-    cr = self->f24;
+    p = (S_ADFD0_Vtx *)func_001FF410(self->f28, 0);
+    *(volatile unsigned char *)&cr = self->f24;
     cg = self->f25;
     cb = self->f26;
-    p = (S_ADFD0_Vtx *)func_001FF410(self->f28, 0);
     p[0].x = fx;
     p[0].y = fw;
     p[0].z = self->f68;
@@ -745,6 +756,7 @@ void C_001AE890::func_001AE890(void)
 {
     int desc[7];
     S_001AE890_View view;
+    S_001AE890_View * volatile vp;
     int rect2[4];
     int rect[4];
     struct { int pitch; int *bits; } lock;
@@ -754,7 +766,6 @@ void C_001AE890::func_001AE890(void)
     int texA, texB;
     int *p;
     int i, x, y, v;
-    S_001AE890_View * volatile vp;
 
     func_001ADD80(f18);
     AsmFloatToIntRound((float)f34 * f3C + (float)f2C, &right);
@@ -786,8 +797,10 @@ void C_001AE890::func_001AE890(void)
     func_002011F0(f20, desc);
     p = lock.bits + desc[5] * top + left;
     i = 0;
-    for (y = top; y < end; y++) {
-        for (x = 0; x < 2; x++) {
+    y = top;
+    while (y < end) {
+        x = 0;
+        do {
             v = *p++;
             f18->f64[i++] = (v == 0);
             v = *p++;
@@ -804,8 +817,10 @@ void C_001AE890::func_001AE890(void)
             f18->f64[i++] = (v == 0);
             v = *p++;
             f18->f64[i++] = (v == 0);
-        }
+            x++;
+        } while (x < 2);
         p += 624;
+        y++;
     }
     f18->func_001AE700();
     func_001FF940(*(void **)((char *)D_002EFDB8 + 0x58), *(void **)((char *)D_002EFDB8 + 0x5c));
@@ -847,10 +862,10 @@ undefined4 C_001AEBB0::func_001AEBB0(byte param_1)
 
 C_001AE3E0 *C_001AE3E0::func_001AEBD0(int a1, int a2, float *a3, int a4, float a5, int a6, int a7, int a8, float a9, float a10, float a11, int a12, char a13)
 {
+    char rgb[3];
     float tmp[4];
     void *mem;
     unsigned int color;
-    unsigned char rgb[3];
     C_001AE3E0_Sub *sub; S_001AEBD0_Ref *ref; C_001AE3E0_Entry *entry;
     f24 = a8;
     f40 = *(C_001AE3E0_Quat *)func_0001E9E0(tmp, a3);
@@ -862,9 +877,9 @@ C_001AE3E0 *C_001AE3E0::func_001AEBD0(int a1, int a2, float *a3, int a4, float a
     f54->func_001ADF30(a1, (int)this);
     f54->SetScale(f2C);
     f54->SetAlpha(0);
-    rgb[0] = (unsigned char)(int)a9;
-    rgb[1] = (unsigned char)(int)a10;
-    rgb[2] = (unsigned char)(int)a11;
+    rgb[0] = (char)(int)a9;
+    rgb[1] = (char)(int)a10;
+    rgb[2] = (char)(int)a11;
     color = MakeColor_001AEBD0(-1, rgb[0], rgb[1], rgb[2]);
     f54->col[0].rgba = color;
     f54->col[1].rgba = color;
