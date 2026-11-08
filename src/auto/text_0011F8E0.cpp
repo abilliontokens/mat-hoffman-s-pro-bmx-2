@@ -1,6 +1,7 @@
 /* 14 functions from 0x0011EDF0 to 0x0011FDF0, found by Ghidra. */
 #include "common.h"
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 
 float func_0014F510(float x);
 float func_0014F550(float x);
@@ -130,53 +131,123 @@ static __forceinline C_0011EDF0 MakeV_0011F210(s16 *q)
     return t;
 }
 
+static __forceinline float ClampDist_0011F8E0(float *a, float *b, float t1, float t2,
+                                              float *p1, float *p2, float *p3, float *p4)
+{
+    float v1[3], v2[3];
+    v1[0] = t1 * p2[0];
+    v1[1] = t1 * p2[1];
+    v1[2] = t1 * p2[2];
+    a[0] = v1[0] + p1[0];
+    a[1] = v1[1] + p1[1];
+    a[2] = v1[2] + p1[2];
+    v1[0] = t2 * p4[0];
+    v1[1] = t2 * p4[1];
+    v1[2] = t2 * p4[2];
+    b[0] = v1[0] + p3[0];
+    b[1] = v1[1] + p3[1];
+    b[2] = v1[2] + p3[2];
+    float s = (a[1] - p3[1]) * p4[1] + (a[0] - p3[0]) * p4[0] + (a[2] - p3[2]) * p4[2];
+    s = AsmMaxF(AsmMinF(s, 1.0f), 0.0f);
+    v1[0] = s * p4[0];
+    v1[1] = s * p4[1];
+    v1[2] = s * p4[2];
+    v2[0] = v1[0] + p3[0];
+    v2[1] = v1[1] + p3[1];
+    v2[2] = v1[2] + p3[2];
+    v1[0] = v2[0] - a[0];
+    v1[1] = v2[1] - a[1];
+    float dz = v2[2] - a[2];
+    float len1 = AsmSqrtF(dz * dz + v1[1] * v1[1] + v1[0] * v1[0]);
+    float u = (b[0] - p1[0]) * p2[0] + (b[1] - p1[1]) * p2[1] + (b[2] - p1[2]) * p2[2];
+    u = AsmMaxF(AsmMinF(u, 1.0f), 0.0f);
+    v2[0] = u * p2[0];
+    v2[1] = u * p2[1];
+    v2[2] = u * p2[2];
+    v1[0] = v2[0] + p1[0];
+    v1[1] = v2[1] + p1[1];
+    dz = v2[2] + p1[2];
+    v1[0] -= b[0];
+    v1[1] -= b[1];
+    dz -= b[2];
+    float len2 = AsmSqrtF(dz * dz + v1[1] * v1[1] + v1[0] * v1[0]);
+    if (len1 > len2) {
+        return len1;
+    }
+    return len2;
+}
+
 float func_0011F8E0(float *p1, float *p2, float *p3, float *p4)
 {
     V4_0011F8E0 n;
-    float result = D_00275544;
+    float t1, t2, num;
 
-    Cross_0011F8E0(&n.x, p2, p4);
-    if (n.y * n.y + n.z * n.z + n.x * n.x != result) {
+    AsmVec3Cross(&n.x, p2, p4);
+    if (n.x * n.x + n.z * n.z + n.y * n.y != D_00275544) {
+        float a[4], b[4], c[4], d[4], e[4];
         V4_0011F8E0 m;
-        float t1, t2;
 
-        Cross_0011F8E0(&m.x, p2, &n.x);
+        m.x = m.y = m.z = D_00275544;
+        m.w = 1.0f;
+        AsmVec3Cross(&m.x, p2, &n.x);
         func_0011EFA0(&m.x, &m.x);
-        t1 = -((-(m.x * p3[0] + m.y * p3[1] + m.z * p3[2]) + (m.y * p1[1] + m.x * p1[0]) + m.z * p1[2]) /
-               (m.x * p2[0] + m.y * p2[1] + m.z * p2[2]));
-        Cross_0011F8E0(&m.x, p4, &n.x);
+        num = -(m.x * p3[0] + m.y * p3[1] + m.z * p3[2]);
+        num += m.y * p1[1] + m.x * p1[0];
+        num += m.z * p1[2];
+        t1 = -(num / (m.x * p2[0] + m.y * p2[1] + m.z * p2[2]));
+        AsmVec3Cross(&m.x, p4, &n.x);
         func_0011EFA0(&m.x, &m.x);
-        t2 = -((-(m.y * p1[1] + m.x * p1[0] + m.z * p1[2]) + (m.x * p3[0] + m.y * p3[1]) + m.z * p3[2]) /
-               (m.y * p4[1] + m.x * p4[0] + m.z * p4[2]));
+        num = -(m.y * p1[1] + m.x * p1[0] + m.z * p1[2]);
+        num += m.x * p3[0] + m.y * p3[1];
+        num += m.z * p3[2];
+        t2 = -(num / (m.y * p4[1] + m.x * p4[0] + m.z * p4[2]));
         if (t1 >= D_00275544 && t1 <= D_00275460 && t2 >= D_00275544 && t2 <= D_00275460) {
-            return func_00011170(func_00011110(func_000110E0(func_0001C5E0(t1, p2, p1)),
-                                               func_000110E0(func_0001C5E0(t2, p4, p3))));
-        } else {
-            float ax = t1 * p2[0] + p1[0];
-            float ay = t1 * p2[1] + p1[1];
-            float az = t1 * p2[2] + p1[2];
-            float bx = t2 * p4[0] + p3[0];
-            float by = t2 * p4[1] + p3[1];
-            float bz = t2 * p4[2] + p3[2];
-            float s = (ay - p3[1]) * p4[1] + (ax - p3[0]) * p4[0] + (az - p3[2]) * p4[2];
-            float dx, dy, dz, len1, len2, u;
-
-            s = Max_0011F8E0(Min_0011F8E0(s, 1.0f), 0.0f);
-            dx = (s * p4[0] + p3[0]) - ax;
-            dy = (s * p4[1] + p3[1]) - ay;
-            dz = (s * p4[2] + p3[2]) - az;
-            len1 = Sqrt_0011F8E0(dz * dz + dy * dy + dx * dx);
-            u = (bx - p1[0]) * p2[0] + (by - p1[1]) * p2[1] + (bz - p1[2]) * p2[2];
-            u = Max_0011F8E0(Min_0011F8E0(u, 1.0f), 0.0f);
-            dx = (u * p2[0] + p1[0]) - bx;
-            dy = (u * p2[1] + p1[1]) - by;
-            dz = (u * p2[2] + p1[2]) - bz;
-            len2 = Sqrt_0011F8E0(dz * dz + dy * dy + dx * dx);
+            return func_00011170(func_00011110(e, func_000110E0(a, func_0001C5E0(b, t1, p2), p1),
+                                               func_000110E0(c, func_0001C5E0(d, t2, p4), p3)));
+        }
+        {
+            float v1[3], v2[3];
+            v1[0] = t1 * p2[0];
+            v1[1] = t1 * p2[1];
+            v1[2] = t1 * p2[2];
+            a[0] = v1[0] + p1[0];
+            a[1] = v1[1] + p1[1];
+            a[2] = v1[2] + p1[2];
+            v1[0] = t2 * p4[0];
+            v1[1] = t2 * p4[1];
+            v1[2] = t2 * p4[2];
+            b[0] = v1[0] + p3[0];
+            b[1] = v1[1] + p3[1];
+            b[2] = v1[2] + p3[2];
+            float s = (a[1] - p3[1]) * p4[1] + (a[0] - p3[0]) * p4[0] + (a[2] - p3[2]) * p4[2];
+            s = AsmMaxF(AsmMinF(s, 1.0f), 0.0f);
+            v1[0] = s * p4[0];
+            v1[1] = s * p4[1];
+            v1[2] = s * p4[2];
+            v2[0] = v1[0] + p3[0];
+            v2[1] = v1[1] + p3[1];
+            v2[2] = v1[2] + p3[2];
+            v1[0] = v2[0] - a[0];
+            v1[1] = v2[1] - a[1];
+            float dz = v2[2] - a[2];
+            float len1 = AsmSqrtF(dz * dz + v1[1] * v1[1] + v1[0] * v1[0]);
+            float u = (b[0] - p1[0]) * p2[0] + (b[1] - p1[1]) * p2[1] + (b[2] - p1[2]) * p2[2];
+            u = AsmMaxF(AsmMinF(u, 1.0f), 0.0f);
+            v2[0] = u * p2[0];
+            v2[1] = u * p2[1];
+            v2[2] = u * p2[2];
+            v1[0] = v2[0] + p1[0];
+            v1[1] = v2[1] + p1[1];
+            dz = v2[2] + p1[2];
+            v1[0] -= b[0];
+            v1[1] -= b[1];
+            dz -= b[2];
+            float len2 = AsmSqrtF(dz * dz + v1[1] * v1[1] + v1[0] * v1[0]);
             if (len1 > len2) {
                 return len1;
             }
             return len2;
         }
     }
-    return result;
+    return D_00275544;
 }
