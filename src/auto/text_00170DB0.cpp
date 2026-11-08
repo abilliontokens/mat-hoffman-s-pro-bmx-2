@@ -120,10 +120,10 @@ static __forceinline void SqrtR_00171BA0(float *r, const float &x) { _mm_store_s
 static __forceinline void MaxR_00171BA0(float *r, const float &a, const float &b) { _mm_store_ss(r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b))); }
 
 struct V3_00171BA0 {
-    float x, y, z;
+    float x, y, z, w;
     V3_00171BA0() {}
     V3_00171BA0(float a, float b, float c) : x(a), y(b), z(c) {}
-    V3_00171BA0 operator*(float s) const { return V3_00171BA0(x * s, y * s, z * s); }
+    V3_00171BA0 operator*(const float &s) const { return V3_00171BA0(x * s, y * s, z * s); }
     V3_00171BA0 operator+(const V3_00171BA0 &o) const { return V3_00171BA0(x + o.x, y + o.y, z + o.z); }
     V3_00171BA0 operator-(const V3_00171BA0 &o) const { return V3_00171BA0(x - o.x, y - o.y, z - o.z); }
     void operator+=(const V3_00171BA0 &o) { x += o.x; y += o.y; z += o.z; }
@@ -194,7 +194,8 @@ struct PhysicsAnimatedBody {
 V4_170DB0 PhysicsAnimatedBody::func_00170DB0()
 {
     local = getLocal();
-    world = model->func_00198040(&local);
+    V4_170DB0 input = local;
+    world = model->func_00198040(&input);
     return world;
 }
 
@@ -323,19 +324,19 @@ void C_00171A00::func_00171A00(void *param_1)
     func_00162210(&fF0, &fB0);
 }
 
-void C_00171BA0::func_00171BA0(float x, float y, float z, float w)
+void C_00171BA0::func_00171BA0(float x,float y,float z,float w)
 {
-    float v[4];
-    v[0]=0.0f; v[1]=0.0f; v[2]=0.0f; v[3]=1.0f;
-    func_001712D0(v, &f150);
-    V3_00171BA0 &up = *(V3_00171BA0 *)v;
-    float d=x*v[0]+y*v[1]+z*v[2];
-    V3_00171BA0 r=V3_00171BA0(x,y,z)-up*d;
-    float len2=f150*f150+f154*f154+f158*f158;
-    float len=AsmSqrtF(len2);
-    float zero=0.0f;
-    float t=AsmMaxF(d-len, zero);
-    C_00171BA0 *self=this;
-    *(V3_00171BA0 *)&self->f150 += up*t+r;
+ float v[4];
+ v[2]=0.0f; v[1]=0.0f; v[0]=0.0f; v[3]=1.0f;
+ func_001712D0(v,(char *)this+0x150);
+ V3_00171BA0 &up=*(V3_00171BA0 *)v;
+ float d=y*v[1]+x*v[0]+z*v[2];
+ V3_00171BA0 r=V3_00171BA0(x,y,z)-up*d;
+ float *f=(float *)((char *)this+0x150);
+ float len2=f[0]*f[0]+f[1]*f[1]+f[2]*f[2];
+ float len=AsmSqrtF(len2);
+ float zero=0.0f;
+ float t=AsmMaxF(d-len, zero);
+ *(V3_00171BA0 *)f+=up*t+r;
 }
 
