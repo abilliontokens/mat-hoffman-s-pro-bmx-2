@@ -41,13 +41,14 @@ struct DelObjC_000D4DD0 {
     DelObjC_000D4DD0 *func_001D5760();
     void func_001D5810(char *name, float x, float y, int z);
     void func_001D5AD0();
-    void SetIdentity() {
-        b58 |= 4;
-        m40 = 0;
-        m44 = 0;
-        m3c = 1.0f;
-        m48 = 1.0f;
-    }
+          void SetIdentity() {
+          m40 = 0;
+          m44 = 0;
+          unsigned char f = b58 | 4;
+          m3c = 1.0f;
+          m48 = 1.0f;
+          b58 = f;
+      }
     void SetX(int nx) {
         if (x != nx) {
             x = nx;
