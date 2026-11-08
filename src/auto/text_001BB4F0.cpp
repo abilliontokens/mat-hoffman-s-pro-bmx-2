@@ -196,7 +196,7 @@ struct V4_001BB680 {
         *(volatile int *)&x = 0;
         *(volatile int *)&w = 0x3f800000;
     }
-    void Set(const float &a, const float &b, const float &c, const float &d) volatile
+    void Set(float a, float b, float c, float d) volatile
     {
         x = a;
         y = b;
@@ -545,11 +545,11 @@ void C_001BB620::func_001BB620(void *a1, void *a2, int a3, int a4)
 
 C_001BBAA0 *C_001BBAA0::func_001BB680(int a)
 {
-    C_001BBAA0 * volatile self = this;
-    S_001BB680_Mat m;
     S_001BB680_Mat copy;
     S_001BB680_Mat * volatile p;
+    S_001BB680_Mat m;
     int i;
+    C_001BBAA0 * volatile self = this;
 
     ((C_00157600 *)this)->func_00157600(a);
     self->vtbl = &D_0028D2BC;
@@ -573,7 +573,7 @@ C_001BBAA0 *C_001BBAA0::func_001BB680(int a)
     self->f24.Set(D_002AAE04, D_002AAE08, D_002AAE0C, D_002AAE10);
     *(volatile int *)&self->unk2E0 = 0;
     p = &m;
-    p->identity();
+    p->identity(0x3f800000);
     copy = m;
     ((C_000264C0 *)((char *)self + 0x50))->func_000264C0(&copy);
     *(volatile int *)&self->unk94 = 0;
