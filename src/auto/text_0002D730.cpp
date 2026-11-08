@@ -265,8 +265,7 @@ void C_0002D730::func_0002D730(float dt)
     *(int *)((char *)f20c + 0x60) = *(int *)((char *)this + 0x5cc);
     *(int *)((char *)f20c + 0x28) = f1e8->f68;
     *(int *)((char *)f20c + 0x2c) = f1e8->f64;
-    for (int i = 0; i < 4; ++i)
-        ((int *)((char *)f20c + 0x64))[i] = f1e8->f1a0[i];
+    *(S_2D730_I4 *)((char *)f20c + 0x64) = *(S_2D730_I4 *)((char *)f1e8 + 0x1a0);
     *(int *)((char *)f20c + 0xa0) = f1e8->f8c;
     *(int *)((char *)f20c + 0x34) = f1e8->f68 &&
         ((f1e8->f1d8 && f1e8->f1d8->f68 == D_002B9108) ||
