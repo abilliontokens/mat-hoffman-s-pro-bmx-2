@@ -87,7 +87,7 @@ static __forceinline char *Get_3B0A0(int *p, int i)
 static __forceinline void Spawn_3B0A0(S_3B0A0_Obj *o, void *a1, void *a2, char *a4, float a5, int a6, int a7, int a8, int a9)
 {
     Vec4_3B0A0 v54, v24, v64, v34, v74;
-    int ex, ey, ez, m;
+    int m, ex, ey, ez;
     float t;
 
     if (a1 == 0)
