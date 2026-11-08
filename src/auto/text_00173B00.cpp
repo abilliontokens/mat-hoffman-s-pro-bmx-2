@@ -60,6 +60,7 @@ static inline float Abs_00173B00(float x) { int i = *(int *)&x & 0x7fffffff; ret
 static __forceinline float AbsV_00173B00(volatile float x) { int i = *(volatile int *)&x & 0x7fffffff; return *(float *)&i; }
 static __forceinline float MinV_00173B00(volatile float a, volatile float b) { return AsmMinF(a, b); }
 static __forceinline float MaxV_00173B00(volatile float a, volatile float b) { return AsmMaxF(a, b); }
+static __forceinline float AbsR_00173B00(float &x) { int i = *(int *)&x & 0x7fffffff; return *(float *)&i; }
 float func_00011170(float *v);
 
 extern Vec4 D_002EF740;
@@ -162,6 +163,7 @@ int PhObj::func_00173B00(float dt)
             if (D_00275544 < dt) {
                 do {
                     float a170, a174, a178, ab4, ab8, abc;
+                    float len1, len2, ma, mb, mc, md;
                     ((S_00173B00_Obj *)this)->v28(step);
                     ((S_00173B00_Obj *)fd0)->v13(step);
                     a170 = AbsV_00173B00(fc4->f170); ab4 = AbsV_00173B00(fb4);
@@ -171,8 +173,12 @@ int PhObj::func_00173B00(float dt)
                     a178 = AbsV_00173B00(fc4->f178); abc = AbsV_00173B00(fbc);
                     if (a178 > abc) fbc = fc4->f178;
                     ((S_00173B00_Obj *)fc4)->v13(step);
-                    f124 = Max_00173B00(f124, Sqrt_001743A0(fc4->f6c.x * fc4->f6c.x + fc4->f6c.y * fc4->f6c.y + fc4->f6c.z * fc4->f6c.z));
-                    f128 = Max_00173B00(f128, Sqrt_001743A0(fc4->f7c.x * fc4->f7c.x + fc4->f7c.y * fc4->f7c.y + fc4->f7c.z * fc4->f7c.z));
+                    len1 = Sqrt_001743A0(fc4->f6c.x * fc4->f6c.x + fc4->f6c.y * fc4->f6c.y + fc4->f6c.z * fc4->f6c.z);
+                    ma = f124; mb = len1;
+                    f124 = Max_00173B00(ma, mb);
+                    len2 = Sqrt_001743A0(fc4->f7c.x * fc4->f7c.x + fc4->f7c.y * fc4->f7c.y + fc4->f7c.z * fc4->f7c.z);
+                    mc = f128; md = len2;
+                    f128 = Max_00173B00(mc, md);
                     total += step;
                     step = Min_00173B00(D_002A8BEC, dt - total);
                 } while (total < dt);
