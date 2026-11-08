@@ -161,12 +161,14 @@ struct C_001160C0 {
  void func_001160C0(float dt);
 };
 
+static __forceinline float axis_f24(const S_001160C0_Axis *p) { return p->f24; }
+
 void C_001160C0::func_001160C0(float dt)
 {
  float value[6];
  if (!(f958 > D_00275544) && f95C == 0) {
- f964 = f9E8->f24;
- f968 = f9EC->f24;
+ f964 = ((volatile S_001160C0_Axis *)f9E8)->f24;
+ f968 = ((volatile S_001160C0_Axis *)f9EC)->f24;
  for (int i=0; i<32; ++i) {
  if (D_002A8490->f8->items[f970]->v3(i,63,value)) {
  if (value[1] >= D_00275544) input[i]=1;
