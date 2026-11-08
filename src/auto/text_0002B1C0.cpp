@@ -49,6 +49,7 @@ struct V4_0002B1C0 {
 
 struct V4k_0002B1C0 {
     float x, y, z, w;
+    V4k_0002B1C0() {}
     V4k_0002B1C0(float px, float py, float pz, float pw) { x = px; y = py; z = pz; w = pw; }
     __forceinline V4k_0002B1C0 &operator=(const V4k_0002B1C0 &v) {
         ((int *)this)[0] = ((const volatile int *)&v)[0];
