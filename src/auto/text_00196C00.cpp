@@ -262,14 +262,11 @@ struct C_00197820 {
 };
 
 
-extern float func_00196290(float v);
 extern int func_001968C0(void *self);
-extern void func_00195D40(float *out, float a, float b, float c, float d);
-extern void func_0015C7D0(float *out, float *a, float *b, float *c, float *d);
+struct Vec4_195D40 { int x, y, z, w; };
+extern Vec4_195D40 *func_00195D40(Vec4_195D40 *out, int x, int y, int z, int w);
+extern void func_0015C7D0(float *a, float *b, float *out, float t);
 extern int func_00016CF0(float v);
-struct V_00196C00 { int x,y,z,w; };
-extern V_00196C00 *func_00195D40(V_00196C00 *out, int a, int b, int c, int d);
-extern void func_0015C7D0(V_00196C00 *out, V_00196C00 *a, V_00196C00 *b, float t);
 void __fastcall func_00196C00(char *self, int, float dt)
 {
     C_001972B0 *o = (C_001972B0 *)self;
@@ -317,18 +314,19 @@ void __fastcall func_00196C00(char *self, int, float dt)
             {
                 int ty = ((int *)(self + 0x88))[i];
                 if (ty == 3) {
-                    float q1[4], q2[4], q3[4];
-                    func_00195D40(q1,
-                                  ((float *)(self + 0x9c))[i * 4],
-                                  ((float *)(self + 0x9c))[i * 4 + 1],
-                                  ((float *)(self + 0x9c))[i * 4 + 2],
-                                  ((float *)(self + 0x9c))[i * 4 + 3]);
-                    func_00195D40(q2,
-                                  ((float *)(self + 0xa0))[i * 4],
-                                  ((float *)(self + 0xa0))[i * 4 + 1],
-                                  ((float *)(self + 0xa0))[i * 4 + 2],
-                                  ((float *)(self + 0xa0))[i * 4 + 3]);
-                    func_0015C7D0(q3, q1, q2, 0, 0);
+                    int q1[4], q2[4];
+                    float q3[4];
+                    func_00195D40((Vec4_195D40 *)q1,
+                                  *(int *)&((float *)(self + 0x9c))[i * 4],
+                                  *(int *)&((float *)(self + 0x9c))[i * 4 + 1],
+                                  *(int *)&((float *)(self + 0x9c))[i * 4 + 2],
+                                  *(int *)&((float *)(self + 0x9c))[i * 4 + 3]);
+                    func_00195D40((Vec4_195D40 *)q2,
+                                  *(int *)&((float *)(self + 0xa0))[i * 4],
+                                  *(int *)&((float *)(self + 0xa0))[i * 4 + 1],
+                                  *(int *)&((float *)(self + 0xa0))[i * 4 + 2],
+                                  *(int *)&((float *)(self + 0xa0))[i * 4 + 3]);
+                    func_0015C7D0(q3, (float *)q1, (float *)q2, 0);
                     ((float *)(self + 0x7c))[i * 4] = q3[0];
                     continue;
                 }
