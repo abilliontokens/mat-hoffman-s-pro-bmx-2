@@ -116,12 +116,7 @@ struct S_19CCE0_Frame {
 extern "C" void *__cdecl memset(void *, int, unsigned int);
 static __forceinline void Identity_19C710(float *m)
 {
-    float *volatile p = m;
-    __m128 z = _mm_setzero_ps();
-    _mm_store_ps(p, z);
-    _mm_store_ps(p + 4, z);
-    _mm_store_ps(p + 8, z);
-    _mm_store_ps(p + 12, z);
+    memset(m, 0, 0x40);
     m[0] = 1.0f;
     m[5] = 1.0f;
     m[10] = 1.0f;
