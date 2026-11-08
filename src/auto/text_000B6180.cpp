@@ -91,17 +91,6 @@ struct C_000B6640 {
           float y = (0.0f - f7C) + src->y;
           *dst = V4Init_000B6840(src->x, y, src->z, 1.0f);
       }
-      void Box1(V4_000B6840 *dst, V4_000B6840 *src)
-      {
-          float y = (0.0f - f7C) + src->y;
-          _ReadWriteBarrier();
-          *dst = V4Init_000B6840(src->x, y, src->z, 1.0f);
-      }
-      void Box2(V4_000B6840 *dst, V4_000B6840 *src)
-      {
-          float y = (0.0f - f7C) + src->y;
-          *dst = V4Init_000B6840(0.0f, y, src->z, 1.0f);
-      }
 };
 
 struct C_000B6810 {
