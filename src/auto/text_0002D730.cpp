@@ -11,15 +11,7 @@ static __forceinline float Abs_2D730(float a)
     unsigned int i = *(volatile unsigned int *)&a & 0x7fffffff;
     return *(float *)&i;
 }
-static __forceinline void Cross_2D730(float *volatile out, float *volatile a, float *volatile b)
-{
-    float *pa = a, *pb = b;
-    _mm_storeu_ps(out, _mm_shuffle_ps(
-        _mm_sub_ps(_mm_mul_ps(_mm_loadu_ps(pa), _mm_shuffle_ps(_mm_loadu_ps(pb), _mm_loadu_ps(pb), 0xc9)),
-                   _mm_mul_ps(_mm_loadu_ps(pb), _mm_shuffle_ps(_mm_loadu_ps(pa), _mm_loadu_ps(pa), 0xc9))),
-        _mm_sub_ps(_mm_mul_ps(_mm_loadu_ps(pa), _mm_shuffle_ps(_mm_loadu_ps(pb), _mm_loadu_ps(pb), 0xc9)),
-                   _mm_mul_ps(_mm_loadu_ps(pb), _mm_shuffle_ps(_mm_loadu_ps(pa), _mm_loadu_ps(pa), 0xc9))), 0xc9));
-}
+
 struct S_2D730_Transform {
     void func_00197EC0(void *out, void *in);
     void func_001994C0(int, void *, void *);
