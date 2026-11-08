@@ -1,5 +1,6 @@
 /* 11 functions from 0x0018CF40 to 0x0018DE60, found by Ghidra. */
 #include "common.h"
+#include "asm_helpers.h"
 
 extern "C" int strcmp(const char *s1, const char *s2);
 extern "C" unsigned int strlen(const char *);
@@ -244,8 +245,7 @@ void C_0018D7B0::func_0018D330(int index, int a, int b, const char *str)
         const char *e = str;
         while (*e++) {}
         int len = e - (str + 1);
-        volatile int mx = 255;
-        int n = mx > len ? len : mx;
+        int n = ms_min(255, len);
         func_001E8920(buf, str, n);
         buf[n] = 0;
         if (buf[0]) {
@@ -382,14 +382,16 @@ int C_0018D580::func_0018DA00(int index, const char *name)
     return -1;
 }
 
+struct S38_0018DA90 { char pad2c[0x2c]; char *f2c; int f30; char pad34[4]; };
+
 void *__fastcall func_0018DA90(char *volatile self, int, void *result, int type, int index, const char *name, int *out)
 {
     int value[17];
     char buffer[256] = "";
     value[16] = -1;
-    volatile int length = strlen(name);
-    volatile int limit = 255;
-    volatile int size = limit > length ? length : limit;
+    int length = strlen(name);
+    int limit = 255;
+    int size = AsmMinI(limit, length);
     func_001E8920(buffer, name, size);
     buffer[size] = 0;
     int dots = 0;
