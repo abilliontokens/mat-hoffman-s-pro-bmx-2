@@ -3,6 +3,7 @@
 #include "ghidra.h"
 #include <string.h>
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 extern char D_002869B8[];
 struct S_0027C494 {
     char c[6];
@@ -112,6 +113,7 @@ extern float D_002A8F3C;
 
 extern "C" float __cdecl sqrtf(float);
 static __forceinline float Sqrt_00181E10(const float &x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(_mm_load_ss(&x))); return r; }
+static __forceinline void Copy4_00181E10(int *o, const int *i) { o[0]=i[0]; o[1]=i[1]; o[2]=i[2]; o[3]=i[3]; }
 static __forceinline float Max_00181E10(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
 
 struct C_00182750 {
@@ -453,46 +455,34 @@ void C_00181DB0::func_00181DB0(int a0)
 
 void C_00182750::func_00181E10(void)
 {
-    C_00182750 * volatile self = this;
-    float threshold;
-    const V4_00181E10 *p;
-    V4_00181E10 d;
-    int lvl;
-    int i;
-    int n;
-    float len;
-    float inv;
-    float t1;
-    float val2;
-    S_00181E10_Tbl *tbl;
-    S_00181E10_Ent *ent;
-
-    if (f190 == 1) {
-        threshold = f184;
-    } else {
-        threshold = f188;
-    }
-    p = (f190 == 1) ? &f130 : &f150;
-    d = *p - D_002EFDB8->f4->f170;
-    _mm_store_ss(&len, _mm_sqrt_ss(_mm_set_ss((d.z + fDC) * (d.z + fDC) + (d.y + fCC) * (d.y + fCC) + (d.x + fBC) * (d.x + fBC))));
-    self->f1B0 = len;
-    inv = D_00275460 / Max_00181E10(0.1f, self->f1B0 - threshold);
-    t1 = inv * D_002EFDB8->f4->f1d8;
-    val2 = inv * D_002EFDB8->f4->f1d8 * D_002A8F40 * threshold;
-    val2 = val2 + val2;
-    tbl = self->f1A4;
-    lvl = 0;
-    n = tbl->f8 - 1;
-    for (i = 0; i < n; i++) {
-        if (tbl->f10[i].f4 * tbl->fC * D_002A8F3C * t1 < D_00275460) {
-            lvl = i + 1;
-        }
-    }
-    self->f1A0 = lvl;
-    ent = &self->f1A4->f10[self->f1A0];
-    for (i = 0; i < ent->count; i++) {
-        ent->f8[i].v2(&self->f1A8[i], val2, t1, self->f1B8[i]);
-    }
+ float threshold, sq, len, diff, mn, inv, t1, val2;
+ int lvl, i, n;
+ V4_00181E10 temp, d;
+ const V4_00181E10 *p;
+ S_00181E10_Tbl *tbl;
+ S_00181E10_Ent *ent,*e;
+ *(int *)&threshold = f190 == 1 ? *(int *)&f184 : *(int *)&f188;
+ p = f190 == 1 ? &f130 : &f150;
+ temp = *p - D_002EFDB8->f4->f170;
+ d = temp;
+ sq=(d.z+fDC)*(d.z+fDC)+(d.y+fCC)*(d.y+fCC)+(d.x+fBC)*(d.x+fBC);
+ len=AsmSqrtF(sq);
+ f1B0=len;
+ mn=0.1f;
+ diff=f1B0-threshold;
+ inv=D_00275460/AsmMaxF(mn,diff);
+ t1=inv*D_002EFDB8->f4->f1d8;
+ val2=inv*D_002EFDB8->f4->f1d8*D_002A8F40*threshold;
+ val2=val2+val2;
+ tbl=f1A4;
+ lvl=0; i=0; n=tbl->f8-1;
+ if(n>0) { e=tbl->f10; do {
+ if(e->f4*tbl->fC*D_002A8F3C*t1<D_00275460) lvl=i+1;
+ i++; e++;
+ }while(i<n); }
+ f1A0=lvl;
+ ent=&f1A4->f10[f1A0];
+ i=0; if(ent->count>0) do { ent->f8[i].v2(&f1A8[i],val2,t1,f1B8[i]); ++i; } while(i<ent->count);
 }
 
 int C_00181DB0::func_00182020(int a0, int a1)
@@ -535,45 +525,54 @@ void C_00181DB0::func_001820B0(int a0, int a1, int a2)
 extern "C" float __cdecl sqrtf(float);
 void C_00182110::func_00182110(void)
 {
-    C_00182110 *self = this;
+    V4_00181E10 tmp;
     int i;
 
-    if (self->f180 & 0x10) {
+    if (this->f180 & 0x10) {
         func_00197AA0();
         V4_00181E10 pos(0, 0, 0);
         float s = 0;
-        V4_00181E10 tmp;
 
-        if (self->f180 & 4) {
-            pos = *func_00197F70(&tmp, &self->f130);
-            s = self->f184;
+        if (this->f180 & 4) {
+            pos = *func_00197F70(&tmp, &this->f130);
+            s = this->f184;
         }
-        for (i = 0; i < self->f190; i++)
-            self->f1AC[i]->func_00198440(&pos, &s, 0);
-        self->f150 = *func_00198120(&tmp, &pos);
-        self->f160.x = s;
-        self->f160.y = s;
-        self->f160.z = s;
-        self->f188 = s;
+        for (i = 0; i < this->f190; i++) {
+            C_00182110_Elem *e = this->f1AC[i];
+            e->func_00198440(&pos, &s, 0);
+        }
+        this->f150 = *func_00198120(&tmp, &pos);
+        this->f160.x = s;
+        this->f160.y = s;
+        this->f160.z = s;
+        this->f188 = s;
     } else {
         func_00197AA0();
-        V4_00181E10 mn(0, 0, 0);
         V4_00181E10 mx(0, 0, 0);
+        V4_00181E10 mn(0, 0, 0);
         int flag = 0;
 
-        if (self->f180 & 4) {
+        if (this->f180 & 4) {
             flag = 1;
-            mn = self->f130 - self->f140;
-            mx = V4_00181E10(self->f130.x + self->f140.x, self->f130.y + self->f140.y, self->f130.z + self->f140.z);
+            mn = this->f130 - this->f140;
+            mx = V4_00181E10(this->f140.x + this->f130.x, this->f140.y + this->f130.y, this->f140.z + this->f130.z);
         }
-        for (i = 0; i < self->f190; i++)
-            self->f1AC[i]->func_001985D0(&flag, &mn, &mx, self->fF0, 0);
-        self->f150 = V4_00181E10((mx.x + mn.x) * D_002755E8, (mx.y + mn.y) * D_002755E8, (mx.z + mn.z) * D_002755E8);
-        self->f160 = V4_00181E10((mx.x - mn.x) * D_002755E8, (mx.y - mn.y) * D_002755E8, (mx.z - mn.z) * D_002755E8);
-        self->f188 = sqrtf(self->f160.x * self->f160.x + self->f160.y * self->f160.y + self->f160.z * self->f160.z);
+        for (i = 0; i < this->f190; i++) {
+            C_00182110_Elem *e = this->f1AC[i];
+            e->func_001985D0(&flag, &mn, &mx, this->fF0, 0);
+        }
+        {
+            float dx = mx.x + mn.x, dy = mx.y + mn.y, dz = mx.z + mn.z;
+            this->f150 = V4_00181E10(dx * D_002755E8, dy * D_002755E8, dz * D_002755E8);
+        }
+        {
+            float ex = mx.x - mn.x, ey = mx.y - mn.y, ez = mx.z - mn.z;
+            this->f160 = V4_00181E10(ex * D_002755E8, ey * D_002755E8, ez * D_002755E8);
+        }
+        this->f188 = AsmSqrtF(this->f160.x * this->f160.x + this->f160.y * this->f160.y + this->f160.z * this->f160.z);
     }
-    if (self->f188 > D_00275544)
-        self->f180 |= 0x40;
+    if (this->f188 > D_00275544)
+        this->f180 |= 0x40;
 }
 
 C_001824E0_Vec C_001824E0::func_001824E0(int x, int y, int z)
