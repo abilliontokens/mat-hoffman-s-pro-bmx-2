@@ -72,6 +72,10 @@ struct I60_75F30 {
     int color;
     char pad4C[2];
     unsigned char flags;
+    I60_75F30 *func_001D5E90();
+    void func_001D5FA0(void *p, char *name, int a, int b);
+    void func_001D6190(int a, void *b, int c);
+    void func_0005E840(int x);
 };
 
 extern Mgr_75F30 *D_002A8490;
