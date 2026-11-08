@@ -3,6 +3,7 @@
 #include "ghidra.h"
 #include <string.h>
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 #pragma comment(linker, "/alternatename:??0C_00135470@@QAE@XZ=_func_00135470")
 #pragma comment(linker, "/alternatename:??2@YAPAXI@Z=_func_001E8A44")
 void *func_001E8A44(unsigned int size);
@@ -254,6 +255,36 @@ struct C_00135E00 {
     int func_00136170(int idx, int type, int row);
 };
 
+void C_001358A0::func_001358A0()
+{
+ C_001358A0 * volatile self=this;
+ V4_001358A0 d;
+ volatile float one=1.0f;
+ S_Vec3_001358A0 *c=fC;
+ if(c) { V4_001358A0 t; S_Vec3_001358A0 *a=&f14->pos;
+ t.x=a->x-c->x;t.y=a->y-c->y;t.z=a->z-c->z;t.w=one;d=t;
+ } else { V4_001358A0 t; S_Vec3_001358A0 *b=&f10->pos,*a=&f14->pos;
+ t.x=a->x-b->x;t.y=a->y-b->y;t.z=a->z-b->z;t.w=one;d=t; }
+ float l2=d.y*d.y+d.z*d.z+d.x*d.x;
+ if(!(l2<=D_00275544)) {
+ float len; _mm_store_ss(&len,_mm_sqrt_ss(_mm_set_ss(l2)));
+ float inv=D_00275460/len;
+ V4_001358A0 n;
+ n.x=d.x*inv;n.y=d.y*inv;n.z=d.z*inv;
+ C_001358A0 *p=self;
+ if(p->fC==0 && p->f4==0) {
+ float k=(p->f8-len)*D_002755E8;
+ S_Vec3_001358A0 t; S_Vec3_001358A0 *b=&p->f10->pos;
+ t.x=k*n.x;t.y=k*n.y;t.z=k*n.z;
+ b->x-=t.x;b->y-=t.y;b->z-=t.z;
+ S_Vec3_001358A0 *a=&self->f14->pos;
+ a->x+=t.x;a->y+=t.y;a->z+=t.z;
+ } else {float k=p->f8-len; S_Vec3_001358A0 t; S_Vec3_001358A0 *a=&p->f14->pos;
+ t.x=k*n.x;t.y=k*n.y;t.z=k*n.z;
+ a->x+=t.x;a->y+=t.y;a->z+=t.z;}
+ }
+}
+
 undefined4 C_00135A60::func_00135A60(byte param_1)
 {
   int func_00135740(...);
@@ -285,6 +316,26 @@ void C_00135A80::func_00135A80(int count, int n1, int *p1, int n2, int *p2, int 
     }
     f40 = a6;
     func_001D3F50();
+}
+
+void *C_00135B70::func_00135B70(unsigned int flags)
+{
+    if (flags & 2) {
+        int *base = (int *)this - 1;
+        int n = *base;
+        C_00135B70 *p = this + n;
+        while (--n >= 0) {
+            --p;
+            p->vtbl = &D_00284768;
+        }
+        if (flags & 1)
+            func_001E891B(base);
+        return base;
+    }
+    vtbl = &D_00284768;
+    if (flags & 1)
+        func_001E891B(this);
+    return this;
 }
 
 int func_00135C70(int param_1, int param_2, int *param_3, int param_4)
@@ -504,8 +555,11 @@ int C_00135E00::func_00136110(int a, int idx)
 {
     S_00136110_Dev *dev = f14[idx];
 
-    if (dev != 0 && dev->v3(a, 0x3f, 0) != 0)
-        return 1;
+    if (dev != 0) {
+        if (dev->v3(a, 0x3f, 0) != 0) {
+            return 1;
+        }
+    }
     return 0;
 }
 
