@@ -273,8 +273,7 @@ void C_0002D730::func_0002D730(float dt)
     *(int *)((char *)f208 + 0x4c) = *(int *)((char *)this + 0x680);
     *(int *)((char *)f208 + 0x50) = *(int *)((char *)this + 0x684);
     *(int *)((char *)f208 + 0x48) = f440;
-    for (int j = 0; j < 4; ++j)
-        ((int *)((char *)f208 + 0x9c))[j] = f1e8->f1a0[j];
+    *(S_2D730_I4 *)((char *)f208 + 0x9c) = *(S_2D730_I4 *)((char *)f1e8 + 0x1a0);
     *(int *)((char *)f208 + 0x38) = f468;
     *(int *)((char *)f208 + 0xac) = f69c;
     *(int *)((char *)f208 + 0xb0) = *(int *)((char *)this + 0x704) || *(int *)((char *)this + 0x70c);
