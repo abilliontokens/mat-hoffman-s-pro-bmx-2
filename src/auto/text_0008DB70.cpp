@@ -57,6 +57,11 @@ struct T_0008DB70 {
           void func_001B1AB0(int a, int b);
   };
   struct O_0008DB70 {
+      virtual void v0();
+      virtual void v1();
+      virtual void v2();
+      virtual void v3();
+      virtual void func_00000010(void *a, int b, int c, int d, int e);
       O_0008DB70 *func_001CF740(int a, int b, int c);
   };
   struct S_0008DB70 {
