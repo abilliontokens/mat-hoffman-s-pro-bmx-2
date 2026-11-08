@@ -27,6 +27,26 @@ void func_0011EFA0(float *out, float *in);
 extern float D_00275544;
 extern float D_002755E8;
 
+static __forceinline V4_001225C0 operator+(const V4_001225C0 &a, const V4_001225C0 &b)
+{
+    V4_001225C0 t;
+    t.x = b.x + a.x;
+    t.y = b.y + a.y;
+    t.z = b.z + a.z;
+    t.w = 1.0f;
+    return t;
+}
+
+static __forceinline V4_001225C0 operator*(const V4_001225C0 &a, float f)
+{
+    V4_001225C0 t;
+    t.x = a.x * f;
+    t.y = a.y * f;
+    t.z = a.z * f;
+    t.w = 1.0f;
+    return t;
+}
+
 static inline float dot_001225C0(const V4_001225C0 &a, const V4_001225C0 &b)
 {
     return a.x * b.x + a.y * b.y + a.z * b.z;
@@ -100,31 +120,111 @@ V4_001225C0 func_00104A00(const V4_001225C0 &v);
 extern "C" V4_001225C0 *func_0011EE50(V4_001225C0 *out, V4_001225C0 *in);
 extern "C" V4_001225C0 *func_0011EEE0(V4_001225C0 *out, V4_001225C0 *a, V4_001225C0 *b);
 
+extern int D_002B9CE4;
+extern V4_001225C0 D_002B9CD4, D_002B9CC4, D_002B9CB4, D_002B9CA4, D_002B9C94;
+extern V4_001225C0 D_002B9C84, D_002B9C74, D_002B9C64, D_002B9C54, D_002B9C44;
 extern "C" int func_001217F0(int a0, int a1, short *tri, float *m, int a4, int a5, float *pos, float *ext)
 {
-    static V4s_001217F0 s0, s1, s2, s3, s4, s5, s6, s7, s8, s9;
-    V4_001225C0 t, r, n;
+    V4_001225C0 t, r;
     V4_001225C0 *ax;
     float dx, dy, dz, proj, d;
     int i;
+    int f;
 
-    func_0011F0E0(&s4, &s5, &s6, tri, D_002B92F4);
-    AsmTransformPoint(&s0.x, &s4.x, m);
-    AsmTransformPoint(&s1.x, &s5.x, m);
-    AsmTransformPoint(&s2.x, &s6.x, m);
-    n.x = (float)tri[6] * D_002B9348;
-    n.y = (float)tri[7] * D_002B9348;
-    n.z = (float)tri[8] * D_002B9348;
-    n.w = 1.0f;
-    func_0001C680((V4_001225C0 *)&s3, n, m);
-    dx = s0.x - pos[0];
-    dy = s0.y - pos[1];
-    dz = s0.z - pos[2];
+    f = D_002B9CE4;
+    if (!(f & 1)) {
+        f |= 1;
+        D_002B9CE4 = f;
+        D_002B9CD4.z = 0.0f;
+        D_002B9CD4.y = 0.0f;
+        D_002B9CD4.x = 0.0f;
+        D_002B9CD4.w = 1.0f;
+    }
+    if (!(f & 2)) {
+        f |= 2;
+        D_002B9CE4 = f;
+        D_002B9CC4.z = 0.0f;
+        D_002B9CC4.y = 0.0f;
+        D_002B9CC4.x = 0.0f;
+        D_002B9CC4.w = 1.0f;
+    }
+    if (!(f & 4)) {
+        f |= 4;
+        D_002B9CE4 = f;
+        D_002B9CB4.z = 0.0f;
+        D_002B9CB4.y = 0.0f;
+        D_002B9CB4.x = 0.0f;
+        D_002B9CB4.w = 1.0f;
+    }
+    if (!(f & 8)) {
+        f |= 8;
+        D_002B9CE4 = f;
+        D_002B9CA4.z = 0.0f;
+        D_002B9CA4.y = 0.0f;
+        D_002B9CA4.x = 0.0f;
+        D_002B9CA4.w = 1.0f;
+    }
+    if (!(f & 0x10)) {
+        f |= 0x10;
+        D_002B9CE4 = f;
+        D_002B9C94.z = 0.0f;
+        D_002B9C94.y = 0.0f;
+        D_002B9C94.x = 0.0f;
+        D_002B9C94.w = 1.0f;
+    }
+    if (!(f & 0x20)) {
+        f |= 0x20;
+        D_002B9CE4 = f;
+        D_002B9C84.z = 0.0f;
+        D_002B9C84.y = 0.0f;
+        D_002B9C84.x = 0.0f;
+        D_002B9C84.w = 1.0f;
+    }
+    if (!(f & 0x40)) {
+        f |= 0x40;
+        D_002B9CE4 = f;
+        D_002B9C74.z = 0.0f;
+        D_002B9C74.y = 0.0f;
+        D_002B9C74.x = 0.0f;
+        D_002B9C74.w = 1.0f;
+    }
+    if (!(f & 0x80)) {
+        f |= 0x80;
+        D_002B9CE4 = f;
+        D_002B9C64.z = 0.0f;
+        D_002B9C64.y = 0.0f;
+        D_002B9C64.x = 0.0f;
+        D_002B9C64.w = 1.0f;
+    }
+    if (!(f & 0x100)) {
+        f |= 0x100;
+        D_002B9CE4 = f;
+        D_002B9C54.z = 0.0f;
+        D_002B9C54.y = 0.0f;
+        D_002B9C54.x = 0.0f;
+        D_002B9C54.w = 1.0f;
+    }
+    if (!(f & 0x200)) {
+        f |= 0x200;
+        D_002B9CE4 = f;
+        D_002B9C44.z = 0.0f;
+        D_002B9C44.y = 0.0f;
+        D_002B9C44.x = 0.0f;
+        D_002B9C44.w = 1.0f;
+    }
+    func_0011F0E0(&D_002B9C94, &D_002B9C84, &D_002B9C74, tri, D_002B92F4);
+    AsmTransformPoint(&D_002B9CD4.x, &D_002B9C94.x, m);
+    AsmTransformPoint(&D_002B9CC4.x, &D_002B9C84.x, m);
+    AsmTransformPoint(&D_002B9CB4.x, &D_002B9C74.x, m);
+    func_0001C680(&D_002B9CA4, V4t_001217F0((float)tri[6] * D_002B9348, (float)tri[7] * D_002B9348, (float)tri[8] * D_002B9348, 1.0f), m);
+    dx = D_002B9CD4.x - pos[0];
+    dy = D_002B9CD4.y - pos[1];
+    dz = D_002B9CD4.z - pos[2];
     ax = D_002B9350;
     for (i = 0; i < 13; i++, ax++) {
         switch (i) {
         case 0:
-            *ax = *(V4_001225C0 *)&s3;
+            *ax = D_002B9CA4;
             break;
         case 1:
             *ax = D_002A3C3C[0];
@@ -136,47 +236,47 @@ extern "C" int func_001217F0(int a0, int a1, short *tri, float *m, int a4, int a
             *ax = D_002A3C3C[2];
             break;
         case 4:
-            ax->y = -s7.z;
-            ax->z = s7.y;
+            ax->y = -D_002B9C64.z;
+            ax->z = D_002B9C64.y;
             break;
         case 5:
-            ax->x = s7.z;
-            ax->z = -s7.x;
+            ax->x = D_002B9C64.z;
+            ax->z = -D_002B9C64.x;
             break;
         case 6:
-            ax->y = s7.x;
-            ax->x = -s7.y;
+            ax->y = D_002B9C64.x;
+            ax->x = -D_002B9C64.y;
             break;
         case 7:
-            ax->y = -s8.z;
-            ax->z = s8.y;
+            ax->y = -D_002B9C54.z;
+            ax->z = D_002B9C54.y;
             break;
         case 8:
-            ax->x = s8.z;
-            ax->z = -s8.x;
+            ax->x = D_002B9C54.z;
+            ax->z = -D_002B9C54.x;
             break;
         case 9:
-            ax->y = s8.x;
-            ax->x = -s8.y;
+            ax->y = D_002B9C54.x;
+            ax->x = -D_002B9C54.y;
             break;
         case 10: {
             V4_001225C0 e;
-            e.x = s2.x - s1.x;
-            e.y = s2.y - s1.y;
-            e.z = s2.z - s1.z;
+            e.x = D_002B9CB4.x - D_002B9CC4.x;
+            e.y = D_002B9CB4.y - D_002B9CC4.y;
+            e.z = D_002B9CB4.z - D_002B9CC4.z;
             e.w = 1.0f;
-            func_0011EFA0(&s9.x, &e.x);
-            ax->z = s9.y;
-            ax->y = -s9.z;
+            func_0011EFA0(&D_002B9C44.x, &e.x);
+            ax->z = D_002B9C44.y;
+            ax->y = -D_002B9C44.z;
             break;
         }
         case 11:
-            ax->x = s9.z;
-            ax->z = -s9.x;
+            ax->x = D_002B9C44.z;
+            ax->z = -D_002B9C44.x;
             break;
         case 12:
-            ax->y = s9.x;
-            ax->x = -s9.y;
+            ax->y = D_002B9C44.x;
+            ax->x = -D_002B9C44.y;
             break;
         }
         t.x = ax->x * ext[0];
@@ -191,20 +291,20 @@ extern "C" int func_001217F0(int a0, int a1, short *tri, float *m, int a4, int a
             if (*(float *)&bits > proj)
                 return 0;
             V4_001225C0 e1;
-            e1.x = s0.x - s1.x;
-            e1.y = s0.y - s1.y;
-            e1.z = s0.z - s1.z;
+            e1.x = D_002B9CD4.x - D_002B9CC4.x;
+            e1.y = D_002B9CD4.y - D_002B9CC4.y;
+            e1.z = D_002B9CD4.z - D_002B9CC4.z;
             e1.w = 1.0f;
-            *(V4_001225C0 *)&s7 = e1;
+            D_002B9C64 = e1;
             V4_001225C0 e2;
-            e2.x = s0.x - s2.x;
-            e2.y = s0.y - s2.y;
-            e2.z = s0.z - s2.z;
+            e2.x = D_002B9CD4.x - D_002B9CB4.x;
+            e2.y = D_002B9CD4.y - D_002B9CB4.y;
+            e2.z = D_002B9CD4.z - D_002B9CB4.z;
             e2.w = 1.0f;
-            *(V4_001225C0 *)&s8 = e2;
+            D_002B9C54 = e2;
         } else {
-            float p7 = d - (s7.x * ax->x + s7.y * ax->y + s7.z * ax->z);
-            float p8 = d - (s8.x * ax->x + s8.y * ax->y + s8.z * ax->z);
+            float p7 = d - (D_002B9C64.x * ax->x + D_002B9C64.y * ax->y + D_002B9C64.z * ax->z);
+            float p8 = d - (D_002B9C54.x * ax->x + D_002B9C54.y * ax->y + D_002B9C54.z * ax->z);
             float lo = AsmMinF(p7, p8);
             if (proj < AsmMinF(d, lo))
                 return 0;
@@ -218,15 +318,14 @@ extern "C" int func_001217F0(int a0, int a1, short *tri, float *m, int a4, int a
 
 extern "C" int func_00122090(float *center, float *ext, float *p0, float *p1, float *m)
 {
-    V4_001225C0 a = { 0.0f, 0.0f, 0.0f, 1.0f };
-    V4_001225C0 b = { 0.0f, 0.0f, 0.0f, 1.0f };
-    V4_001225C0 mid, d, ad, e;
-    float sx, sy, sz;
     float f;
     int i;
+    V4s_001217F0 a, b;
+    V4_001225C0 e, mid, ad, d;
+    float sx, sy, sz;
 
-    xform_00122090(&a.x, p0, m);
-    xform_00122090(&b.x, p1, m);
+    AsmTransformPoint(&a.x, p0, m);
+    AsmTransformPoint(&b.x, p1, m);
     mid.w = 1.0f;
     d.w = 1.0f;
     a.x -= center[0];
