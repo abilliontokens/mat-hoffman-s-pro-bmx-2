@@ -222,9 +222,9 @@ void C_0002D730::func_0002D730(float dt)
         f6fc += dt;
         if (f6fc > f700) {
             float scaled[3];
-            scaled[0] = f6dc * D_00275AEC;
-            scaled[1] = f6e0 * D_00275AEC;
-            scaled[2] = f6e4 * D_00275AEC;
+            scaled[0] = f6dc * 10.0f;
+            scaled[1] = f6e0 * 10.0f;
+            scaled[2] = f6e4 * 10.0f;
             float *velocity = &f1e0->f238;
             velocity[0] += scaled[0];
             velocity[1] += scaled[1];
