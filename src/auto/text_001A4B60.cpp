@@ -67,7 +67,7 @@ struct Vec4 {
 
 struct S_001A4B60_Arg {
     char pad0[0x28];
-    float *f28;
+    float f28;
     char pad2c[0x24];
     int f50;
     char pad54[0x54];
