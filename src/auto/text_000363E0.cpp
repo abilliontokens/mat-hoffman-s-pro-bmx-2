@@ -263,4 +263,28 @@ void C_000363E0::func_000363E0(S_Vec4 target)
         self->f920 = 1;
     } else
         self->f914 = 0;
+    if (self->f914 > 2) {
+        float anchorHeight = path[0].y;
+        int anchor = 0;
+        for (int i = 1; i < self->f914; ++i) {
+            if (path[i].y > path[i - 1].y && i > anchor) {
+                float rise = (path[i].y - anchorHeight) / (float)(i - anchor);
+                for (int j = 1; j < i - anchor; ++j)
+                    path[anchor + j].y = path[anchor].y + j * rise;
+                anchorHeight = path[i].y;
+                anchor = i;
+            }
+        }
+        anchorHeight = path[self->f914 - 1].y;
+        int end = self->f914 - 1;
+        for (int i = self->f914 - 2; i >= anchor; --i) {
+            if (path[i].y > path[i + 1].y && i < end) {
+                float rise = (path[i].y - anchorHeight) / (float)(end - i);
+                for (int j = 1; j < end - i; ++j)
+                    path[end - j].y = path[end].y + j * rise;
+                anchorHeight = path[i].y;
+                end = i;
+            }
+        }
+    }
 }
