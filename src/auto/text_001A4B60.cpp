@@ -81,7 +81,9 @@ struct S_001A4B60_Arg {
     void *f100;
     int f104;
     float f10C;
-    char pad110[0xB4];
+    char pad110[0x20];
+    float *f130;
+    char pad134[0x90];
     void **f1c4;
 };
 
@@ -248,11 +250,12 @@ float *func_00011110(float *, float *, float *);
 float *func_0001C5E0(float *, float, float *);
 int C_SphereCollisionObject::func_001A4B60(char *o)
 {
+    S_001A4B60_Arg *arg = (S_001A4B60_Arg *)o;
     S_001A53C0_V4 c;
-    Xform_001A4B60(&c, (float *)&fA8, matrix);
-    switch (*(int *)(o + 0x50)) {
+    AsmTransformPoint(&c.x, (float *)&fA8, matrix);
+    switch (arg->f50) {
     case 5:
-        return func_00122730((float *)&fA8, *(f32 *)&f100, matrix, (float *)(o + 0xa8), *(f32 *)(o + 0x100), (float *)(o + 0xc0));
+        return func_00122730((float *)(o + 0xa8), *(f32 *)&f100, matrix, (float *)(o + 0xa8), *(f32 *)(o + 0x100), (float *)(o + 0xc0));
     case 6: {
         S_001A53C0_V4 a;
         a = *(S_001A53C0_V4 *)&fA8 * f10C;
