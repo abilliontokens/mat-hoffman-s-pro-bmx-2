@@ -2,7 +2,6 @@
 #include "common.h"
 #include <xmmintrin.h>
 #include "asm_helpers.h"
-static __forceinline int MinT_34EF0(volatile int *a, volatile int *b) { return AsmMinI(*(int *)a, *(int *)b); }
 
 /* PreviewPane (vtable 0x276CE4), virtual slot 12: swings the page's light around its anchor. */
 struct S_34EF0_V4 {
