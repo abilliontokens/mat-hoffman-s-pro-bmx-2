@@ -47,7 +47,7 @@ extern S_000D2080_Str20 D_0027EE68;
 extern S_000D2080_Str23 D_0027EE50;
 extern S_000D2080_Str22 D_0027EE38;
 extern S_000D2080_Str21 D_0027EE20;
-extern S_000D2080_Str18 D_0027EE0C;
+extern int D_0027EE0C;
 
 /* min taking references (so its operands live in stack temporaries), returning the value */
 template <class T>
