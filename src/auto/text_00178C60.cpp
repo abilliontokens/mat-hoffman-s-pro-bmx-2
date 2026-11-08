@@ -105,6 +105,16 @@ static __forceinline __m128 cross_ps_179950(__m128 va, __m128 vb)
     return _mm_shuffle_ps(va, va, 0xc9);
 }
 
+static __forceinline Vec4 vecsub2_179950(Vec4 *a, Vec4 *b)
+{
+    Vec4 r;
+    r.x = a->x - b->x;
+    r.y = a->y - b->y;
+    r.z = a->z - b->z;
+    r.w = 1.0f;
+    return r;
+}
+
 static __forceinline Vec4 vecsub_179950(Vec4 *a, Vec4 *b)
 {
     Vec4 r;
@@ -285,19 +295,16 @@ void C_00179820::func_00179880(void) {
 
 #pragma optimize("y", on)
 void C_00179820::func_00179950(void) {
-    float u[4], b[4], d[4];
+    Vec4 u, b;
     int i;
-    sub_179950(u, &v24[1], &v24[0]);
-    sub_179950(b, &v24[2], &v24[0]);
-    cross_179950(&v64.x, u, b);
+    sub_179950(&u.x, &v24[1], &v24[0]);
+    sub_179950(&b.x, &v24[2], &v24[0]);
+    AsmVec3Cross(&v64.x, &u.x, &b.x);
     func_00179370(&v64, &v64);
     for (i = 0; i < 4; i++) {
         Vec4 *n = &v24[(i + 1) % 4];
-        d[0] = n->x - v24[i].x;
-        d[1] = n->y - v24[i].y;
-        d[2] = n->z - v24[i].z;
-        d[3] = 1.0f;
-        cross_179950(&v74[i].x, d, &v64.x);
+        u = vecsub_179950(n, &v24[i]);
+        AsmVec3Cross(&v74[i].x, &u.x, &v64.x);
         AsmVec3Normalize(&v74[i].x, &v74[i].x);
     }
 }
