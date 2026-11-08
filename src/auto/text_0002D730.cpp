@@ -476,7 +476,7 @@ void C_0002D730::func_0002D730(float dt)
         *(int *)((char *)this + 0x680) = 1;
         float *velocity = &f1e0->f238;
         V4_2D730 projected;
-        func_0001C5E0(&projected, f1e8->f1a0, func_00011220(f1e8->f1a0, velocity));
+        func_0001C5E0(&projected, func_00011220(f1e8->f1a0, velocity), f1e8->f1a0);
         ((S_2D730_Transform *)velocity)->func_0001C5B0(&projected);
     }
     if (*(int *)((char *)this + 0x680) && (f1e8->f68 || f468)) {
