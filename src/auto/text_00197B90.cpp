@@ -106,6 +106,7 @@ struct C_00197EC0 {
     C_00197EC0_Vec4 func_00197EC0(float *v);
     C_00197EC0_Vec4 func_00197F70(float *v);
     C_00197EC0_Vec4 func_00198040(C_00197EC0_Vec4 *v);
+    C_00197EC0_Vec4 *func_00198040(C_00197EC0_Vec4 *out, C_00197EC0_Vec4 *v);
     C_00197EC0_Vec4 func_00198120(float *v);
 };
 
@@ -299,10 +300,8 @@ C_00197EC0_Vec4 C_00197EC0::func_00198040(C_00197EC0_Vec4 *v)
     C_00197EC0_Vec4 q;
     M_00198040 m;
     q.z = 0; q.y = 0; q.x = 0; q.w = 1.0f;
-    C_00197EC0 *self = this;
-    C_00197EC0 **pself = &self;
     func_00197AA0();
-    Copy4_00198040((__m128 *)&(*pself)->fF0, (__m128 *)&m);
+    AsmCopyMatrix(&m, &fF0);
     func_0011AC30(&m, &m);
     func_0001C680(&q, *v, (float *)&m);
     return q;
@@ -475,12 +474,12 @@ void C_00197EC0::func_00198440(float * volatile pos, float * volatile maxDist, i
   if (*maxDist > D_00275544) {
    v = func_00197F70(f130);
    float x = fabs_00198440(v.x-pos[0]);
-   volatile float d = x;
+   float m = x;
    float e = fabs_00198440(v.y-pos[1]);
-   if (e > x) d=e;
-   e=fabs_00198440(v.z-pos[2]);
-   if(e>d) d=e;
-   float r=d+self->f184;
+   if (e > m) m=e;
+   float f = fabs_00198440(v.z-pos[2]);
+   if (f > m) m=f;
+   float r=m+self->f184;
    if(r>*maxDist) *maxDist=r;
   } else {
    *maxDist=f184;
@@ -494,10 +493,9 @@ void C_00197EC0::func_001985D0(int *flag, C_00197EC0_Vec4 *mn, C_00197EC0_Vec4 *
 {
     C_00197EC0 * volatile self = this;
     if (self->f180 & 4) {
+        C_00197EC0_Vec4 p;
         C_00197EC0_Vec4 center;
         C_00197EC0_Vec4 ax, ay, az;
-        C_00197EC0_Vec4 p;
-        float ex, ey, ez;
         ax.x = self->f140[0]; ax.y = 0.0f; ax.z = 0.0f; ax.w = 1.0f;
         ay.x = 0.0f; ay.y = self->f140[1]; ay.z = 0.0f; ay.w = 1.0f;
         az.x = 0.0f; az.y = 0.0f; az.z = self->f140[2]; az.w = 1.0f;
@@ -509,21 +507,21 @@ void C_00197EC0::func_001985D0(int *flag, C_00197EC0_Vec4 *mn, C_00197EC0_Vec4 *
         func_00030A30(&ax, ax, m);
         func_00030A30(&ay, ay, m);
         func_00030A30(&az, az, m);
-        ex = fabs_00198440(ax.x) + fabs_00198440(ay.x) + fabs_00198440(az.x);
-        ey = fabs_00198440(ax.y) + fabs_00198440(ay.y) + fabs_00198440(az.y);
-        ez = fabs_00198440(ax.z) + fabs_00198440(ay.z) + fabs_00198440(az.z);
+        center.x = fabs_00198440(ax.x) + fabs_00198440(ay.x) + fabs_00198440(az.x);
+        center.y = fabs_00198440(ax.y) + fabs_00198440(ay.y) + fabs_00198440(az.y);
+        center.z = fabs_00198440(ax.z) + fabs_00198440(ay.z) + fabs_00198440(az.z);
         if (*flag == 0) {
-            mn->x = p.x - ex; mn->y = p.y - ey; mn->z = p.z - ez; mn->w = 1.0f;
-            mx->x = p.x + ex; mx->y = p.y + ey; mx->z = p.z + ez; mx->w = 1.0f;
+            mn->x = p.x - center.x; mn->y = p.y - center.y; mn->z = p.z - center.z; mn->w = 1.0f;
+            mx->x = p.x + center.x; mx->y = p.y + center.y; mx->z = p.z + center.z; mx->w = 1.0f;
             *flag = 1;
         } else {
             float lo, hi;
-            lo = p.x - ex; if (lo < mn->x) mn->x = lo;
-            lo = p.y - ey; if (lo < mn->y) mn->y = lo;
-            lo = p.z - ez; if (lo < mn->z) mn->z = lo;
-            hi = p.x + ex; if (hi > mx->x) mx->x = hi;
-            hi = p.y + ey; if (hi > mx->y) mx->y = hi;
-            hi = p.z + ez; if (hi > mx->z) mx->z = hi;
+            lo = p.x - center.x; mn->x = AsmMinF(mn->x, lo);
+            lo = p.y - center.y; mn->y = AsmMinF(mn->y, lo);
+            lo = p.z - center.z; mn->z = AsmMinF(mn->z, lo);
+            hi = p.x + center.x; mx->x = AsmMaxF(mx->x, hi);
+            hi = p.y + center.y; mx->y = AsmMaxF(mx->y, hi);
+            hi = p.z + center.z; mx->z = AsmMaxF(mx->z, hi);
         }
     }
     if (n) {
