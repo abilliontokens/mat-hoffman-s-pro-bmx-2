@@ -65,6 +65,26 @@ struct Vec4 {
     int x, y, z, w;
 };
 
+struct S_001A4B60_Arg {
+    char pad0[0x28];
+    float *f28;
+    char pad2c[0x24];
+    int f50;
+    char pad54[0x54];
+    float fA8, fAC, fB0, fB4, fB8, fBC, fC0;
+    char padC4[0x24];
+    float fE8;
+    char padEC[0x4];
+    float *fF0;
+    char padF4[0x8];
+    void *fFc;
+    void *f100;
+    int f104;
+    float f10C;
+    char pad110[0xB4];
+    void **f1c4;
+};
+
 struct C_000264C0 {
     void func_000264C0(void *param_1);
 };
@@ -267,12 +287,10 @@ int C_SphereCollisionObject::func_001A4B60(char *o)
     return 0;
 }
 
-int C_001A4FC0::func_001A4FC0(char *a)
+int __fastcall func_001A4FC0(char *self, int, char *a)
 {
-    char *self = (char *)this;
-    struct B2 { int lo, hi; };
+    int bounds[2];
     char *hit;
-    B2 bounds;
     int i;
     if (a[0x21] & 1) {
     switch (*(int *)(a+0x50)) {
@@ -280,8 +298,8 @@ int C_001A4FC0::func_001A4FC0(char *a)
         if (!func_001225C0(a+0xa8,a+0xb8,self+0x28,*(int *)(self+0x100),*(int *)(self+0x104),a+0x130)) return 0;
         for (i=0;i<*(int *)(a+0x190);i++) {
             hit=(*(char ***)(a+0x1a0))[i];
-            bounds.hi=*(int *)(hit+0x1c8); bounds.lo=*(int *)(hit+0x1c4);
-            if (func_00123940(self+0x28,*(int *)(self+0x100),*(int *)(self+0x104),0,&bounds,hit+0xb0,hit+0x1b0,1)) {
+            bounds[1]=*(int *)(hit+0x1c8); bounds[0]=*(int *)(hit+0x1c4);
+            if (func_00123940(self+0x28,*(int *)(self+0x100),*(int *)(self+0x104),0,bounds,hit+0xb0,hit+0x1b0,1)) {
                 char *out=D_002B92EC;
                 *(Vec4 *)(out+0x14)=*(Vec4 *)(self+0x28);
                 for(i=0;i<*(int *)(out+4);i++) if (!((int *)(out+0x84))[i]) {
@@ -294,9 +312,9 @@ int C_001A4FC0::func_001A4FC0(char *a)
         }
         return 0;
     case 0:
-        bounds.lo=*(int *)(a+0x1c4); bounds.hi=*(int *)(a+0x1c8);
+        bounds[0]=*(int *)(a+0x1c4); bounds[1]=*(int *)(a+0x1c8);
         hit=a+0xb0;
-        if (!func_00123940(self+0x28,*(int *)(self+0x100),*(int *)(self+0x104),0,&bounds,hit,a+0x1b0,1)) return 0;
+        if (!func_00123940(self+0x28,*(int *)(self+0x100),*(int *)(self+0x104),0,bounds,hit,a+0x1b0,1)) return 0;
         {
             char *out=D_002B92EC;
             *(Vec4 *)(out+0x14)=*(Vec4 *)(self+0x28);
