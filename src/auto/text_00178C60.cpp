@@ -118,9 +118,12 @@ static __forceinline Vec4 vecsub2_179950(Vec4 *a, Vec4 *b)
 static __forceinline Vec4 vecsub_179950(Vec4 *a, Vec4 *b)
 {
     Vec4 r;
-    r.z = a->z - b->z;
-    r.y = a->y - b->y;
-    r.x = a->x - b->x;
+    float dz = a->z - b->z;
+    float dy = a->y - b->y;
+    float dx = a->x - b->x;
+    r.x = dx;
+    r.y = dy;
+    r.z = dz;
     r.w = 1.0f;
     return r;
 }
