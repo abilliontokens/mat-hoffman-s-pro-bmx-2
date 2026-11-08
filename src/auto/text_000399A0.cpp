@@ -63,6 +63,7 @@ struct C_000399A0 {
 };
 
 int func_001E8858(float v);
+struct Vec4_399 { float x, y, z, w; };
 extern float D_002756DC, D_00275F64;
 extern float D_002A14D4v;
 int type;
