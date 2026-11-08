@@ -21,9 +21,9 @@ extern int D_00283D1C;
 
 int func_00135C70(int a, int b, int c, int d);
 
-static __forceinline float Dot3_118380(float *a, float *b)
+static __forceinline float Dot3_118380(float *a, float *b, float d2)
 {
-    return *(volatile float *)&a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
+    return *(volatile float *)&a[0] * b[0] + a[1] * b[1] + d2;
 }
 
 struct C_00157BF0 {
