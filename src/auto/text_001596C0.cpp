@@ -150,7 +150,7 @@ struct C_00193500 {
     void func_00193500(void);
 };
 
-struct V4 { float x, y, z, w; };
+struct V4 { float x, y, z, w; V4() { z=0; y=0; x=0; w=1; } };
 struct GL2;
 struct Xf { V4 *func_00197F70(V4 *out, V4 *in); V4 func_00197F70(V4 *in); };
 struct Sh {
