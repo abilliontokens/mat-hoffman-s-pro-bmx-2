@@ -7,7 +7,7 @@
 struct Vec_19FD20 {
     f32 x, y, z, w;
     Vec_19FD20() {}
-    Vec_19FD20(f32 ax, f32 ay, f32 az, f32 aw = 1.0f) { z = az; y = ay; x = ax; w = aw; }
+    Vec_19FD20(f32 ax, f32 ay, f32 az, f32 aw = 1.0f) { x = ax; y = ay; z = az; w = aw; }
 };
 
 static __forceinline void Cross_19FD20(Vec_19FD20 * volatile out, Vec_19FD20 * volatile a, Vec_19FD20 * volatile b)
