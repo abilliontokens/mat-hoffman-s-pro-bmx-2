@@ -163,7 +163,7 @@ struct GL2 {
     V4 p1;
     V4 d;
     char pad50[4];
-    Xf * volatile xf;
+    Xf *xf;
     V4 s0;
     V4 s1;
     Sh *sh;
