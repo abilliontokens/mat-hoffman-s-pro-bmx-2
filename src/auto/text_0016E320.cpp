@@ -31,7 +31,7 @@ struct C_0016E320 {
     char pad_60[4];
     void *f64;
     void *f68;
-    char pad_70[0x170 - 0x70];
+    char pad_70[0x170 - 0x6c];
     float f170, f174;
     int f178;
     float f17c, f180;
@@ -170,7 +170,7 @@ int C_0016E320::func_0016E320(float dt)
     return 1;
 }
 
-void func_0016EC80(Table *t, Body *b, const float dt)
+void func_0016EC80(Table *t, Body *b, float dt)
 {
     float v[4];
     int k;
