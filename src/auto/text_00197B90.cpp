@@ -105,7 +105,6 @@ struct C_00197EC0 {
     void func_00197AA0(void);
     C_00197EC0_Vec4 func_00197EC0(float *v);
     C_00197EC0_Vec4 func_00197F70(float *v);
-    C_00197EC0_Vec4 func_00198040(C_00197EC0_Vec4 *v);
     C_00197EC0_Vec4 *func_00198040(C_00197EC0_Vec4 *out, C_00197EC0_Vec4 *v);
     C_00197EC0_Vec4 func_00198120(float *v);
 };
@@ -295,7 +294,7 @@ C_00197EC0_Vec4 C_00197EC0::func_00197F70(float *vin)
 }
 
 void func_0001C680(C_00197EC0_Vec4 *out, C_00197EC0_Vec4 v, float *m);
-C_00197EC0_Vec4 C_00197EC0::func_00198040(C_00197EC0_Vec4 *v)
+C_00197EC0_Vec4 *C_00197EC0::func_00198040(C_00197EC0_Vec4 *out, C_00197EC0_Vec4 *v)
 {
     C_00197EC0_Vec4 q;
     M_00198040 m;
@@ -304,7 +303,12 @@ C_00197EC0_Vec4 C_00197EC0::func_00198040(C_00197EC0_Vec4 *v)
     AsmCopyMatrix(&m, &fF0);
     func_0011AC30(&m, &m);
     func_0001C680(&q, *v, (float *)&m);
-    return q;
+    int *d = (int *)out;
+    d[0] = ((int *)&q)[0];
+    d[1] = ((int *)&q)[1];
+    d[2] = ((int *)&q)[2];
+    d[3] = ((int *)&q)[3];
+    return out;
 }
 
 C_00197EC0_Vec4 C_00197EC0::func_00198120(float *v)
