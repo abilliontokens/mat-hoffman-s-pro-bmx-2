@@ -145,14 +145,16 @@ void func_00127DD0(S_00127DD0_Node *node0, int *nodes, S_00127DD0_V4 *a2, S_0012
     S_00127DD0_Entry *bufA, *bufB;
     S_00127DD0_V4 *posA, *posB;
     int i;
-    S_00127DD0_Node *node = node0;
-    int count = count0;
     S_00127DD0_Entry *e = e0;
+    int count = count0;
+    S_00127DD0_Node *node = node0;
     while (count != 1) {
-        func_00126A80(e, count * 2, (char *)node + 8, (char *)node + 0x18, node, (char *)node + 4, 0);
+        int *n4 = (int *)((char *)node + 4);
+        char *n8 = (char *)node + 8;
+        char *n18 = (char *)node + 0x18;
+        func_00126A80(e, count * 2, n8, n18, node, n4, 0);
         func_00127980(e, pos, count, &mode, &thr);
-        cntA = 0;
-        cntB = 0;
+        cntA = cntB = 0;
         bufA = (S_00127DD0_Entry *)func_001E8AA5(count << 5);
         bufB = (S_00127DD0_Entry *)func_001E8AA5(count << 5);
         posA = (S_00127DD0_V4 *)func_001E8AA5(count << 4);
@@ -201,9 +203,9 @@ void func_00128120(int a0, int a1, int a2, M44_00128120 *mat, S_00127DD0_Entry *
 {
     V4_00128120 *mid;
     M44_00128120 m;
-    float *p;
     int i;
     int n;
+    float *p;
 
     mid = (V4_00128120 *)func_001E8AA5(count << 4);
     for (i = 0; i < count; i++) {
@@ -211,10 +213,13 @@ void func_00128120(int a0, int a1, int a2, M44_00128120 *mat, S_00127DD0_Entry *
     }
     m = *mat;
     func_0011AC30(&m, &m);
-    p = (float *)e;
-    for (n = count * 2; n > 0; n--) {
-        AsmTransformPoint(p, p, (const float *)m.m);
-        p += 4;
+    n = count * 2;
+    if (n > 0) {
+        p = (float *)e;
+        do {
+            AsmTransformPoint(p, p, (const float *)m.m);
+            p += 4;
+        } while (--n != 0);
     }
     func_00127DD0(a0, a1, a2, e, mid, count);
     func_001E8390(mid);
@@ -241,7 +246,10 @@ void func_00128480(S_00128480_Entry *out, S_00127DD0_Node *node, int *count, int
         e->x = node->b.y;
         e->y = node->b.z;
         e->z = node->b.w;
-        e->length = AsmSqrtF(node->b.z * node->b.z + node->b.w * node->b.w + node->b.y * node->b.y);
+        float fw = node->b.w;
+        float fz = node->b.z;
+        float fy = node->b.y;
+        e->length = AsmSqrtF(fy * fy + fz * fz + fw * fw);
         e->left = ++*count;
         func_00128480(out, node->left, count, leaves);
         if (node->left->split < D_00275544) {
