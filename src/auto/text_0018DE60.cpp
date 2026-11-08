@@ -320,68 +320,58 @@ void *C_0018E1D0::func_0018E1D0()
 
 void C_0018E250::func_0018E250(const char * volatile name, unsigned int flags)
 {
-    volatile int slot[4];
-    int a;
-    int b;
-    int c;
-    int k;
-    int v;
-    unsigned int f;
-    C_0018E250 *self;
     const char *s = name;
+    C_0018E250 * volatile self;
+    int len;
+    int lim;
+    int k;
+    unsigned int f;
+    int v;
 
-    slot[0] = (int)this;
-    slot[1] = strlen(s);
-    slot[2] = 0x17;
-    a = slot[2];
-    b = slot[1];
-    c = a;
-    if (c > b) {
-        c = b;
-    }
-    slot[3] = c;
-    k = slot[3];
-    func_001E8920((void *)slot[0], name, k);
-    ((volatile char *)slot[0])[k] = 0;
-    ((C_0018E250 *)slot[0])->f18 = *(volatile unsigned int *)&flags;
+    self = this;
+    len = strlen(s);
+    lim = 0x17;
+    k = AsmMinI(lim, len);
+    func_001E8920((void *)self, name, k);
+    ((volatile char *)self)[k] = 0;
+    self->f18 = *(volatile unsigned int *)&flags;
     f = *(volatile unsigned int *)&flags;
 
     switch ((f >> 8) & 0xff) {
     case 1:
         v = D_002EFE08->f12C;
-        ((C_0018E250 *)slot[0])->f1C = v;
+        self->f1C = v;
         break;
     case 2:
         v = D_002EFE08->f130;
-        ((C_0018E250 *)slot[0])->f1C = v;
+        self->f1C = v;
         break;
     case 3:
         v = D_002EFE08->f134;
-        ((C_0018E250 *)slot[0])->f1C = v;
+        self->f1C = v;
         break;
     case 6:
         v = D_002EFE08->f140;
-        ((C_0018E250 *)slot[0])->f1C = v;
+        self->f1C = v;
         break;
     case 7:
         v = D_002EFE08->f144;
-        ((C_0018E250 *)slot[0])->f1C = v;
+        self->f1C = v;
         break;
     case 8:
         v = D_002EFE08->f148;
-        ((C_0018E250 *)slot[0])->f1C = v;
+        self->f1C = v;
         break;
     case 4:
         v = D_002EFE08->f138;
-        ((C_0018E250 *)slot[0])->f1C = v;
+        self->f1C = v;
         break;
     case 5:
         v = D_002EFE08->f13C;
-        ((C_0018E250 *)slot[0])->f1C = v;
+        self->f1C = v;
         break;
     case 9:
-        ((C_0018E250 *)slot[0])->f150.func_00191510(name, f);
-        self = (C_0018E250 *)slot[0];
+        self->f150.func_00191510(name, f);
         self->f1C = self->f150.f1C;
         break;
     }
@@ -389,90 +379,73 @@ void C_0018E250::func_0018E250(const char * volatile name, unsigned int flags)
 
 void Node_0018EA50::func_0018E3E0(int a, int b)
 {
-    volatile int self;
     int len;
     int cap;
     int min;
-    Node_0018EA50 *p;
     int v;
 
-    self = (int)this;
-    *(volatile unsigned int *)&flags = a;
-    p = (Node_0018EA50 *)self;
-    switch ((p->flags >> 8) & 0xff) {
+    flags = a;
+    switch ((this->flags >> 8) & 0xff) {
     case 1:
-        p->f18 = *(int *)b;
-        p = (Node_0018EA50 *)self;
-        p->f0C = &p->f18;
-        v = *(volatile int *)&D_002EFE08->f12C;
-        ((Node_0018EA50 *)self)->f4 = v;
+        this->f18 = *(int *)b;
+            this->f0C = &this->f18;
+        v = D_002EFE08->f12C;
+        this->f4 = v;
         break;
     case 2:
-        p->f1C = *(int *)b;
-        p = (Node_0018EA50 *)self;
-        p->f0C = &p->f1C;
-        v = *(volatile int *)&D_002EFE08->f130;
-        ((Node_0018EA50 *)self)->f4 = v;
+        this->f1C = *(int *)b;
+            this->f0C = &this->f1C;
+        v = D_002EFE08->f130;
+        this->f4 = v;
         break;
     case 3: {
         const char *s = *(const char **)b;
 
-        len = StrLen_0018E3E0(s);
+        len = strlen(s);
         cap = 0xff;
         min = AsmMinI(cap, len);
-        func_001E8920(((Node_0018EA50 *)self)->f24, s, min);
-        ((Node_0018EA50 *)self)->f24[min] = 0;
-        p = (Node_0018EA50 *)self;
-        p->f20 = p->f24;
-        p = (Node_0018EA50 *)self;
-        p->f0C = &p->f20;
-        v = *(volatile int *)&D_002EFE08->f134;
-        ((Node_0018EA50 *)self)->f4 = v;
+        func_001E8920(this->f24, s, min);
+        this->f24[min] = 0;
+            this->f20 = this->f24;
+            this->f0C = &this->f20;
+        v = D_002EFE08->f134;
+        this->f4 = v;
         break;
     }
+    case 6:
+        this->f124 = *(int *)b;
+            this->f0C = &this->f124;
+        v = D_002EFE08->f140;
+        this->f4 = v;
+        break;
+    case 7:
+        this->f128 = *(int *)b;
+            this->f0C = &this->f128;
+        v = D_002EFE08->f144;
+        this->f4 = v;
+        break;
+    case 8:
+        this->f12C = *(int *)b;
+            this->f0C = &this->f12C;
+        v = D_002EFE08->f148;
+        this->f4 = v;
+        break;
     case 4: {
-        int *src = (int *)b;
-
-        p->f130 = src[0];
-        v = src[1];
-        ((Node_0018EA50 *)self)->f134 = v;
-        p = (Node_0018EA50 *)self;
-        p->f0C = &p->f130;
-        v = *(volatile int *)&D_002EFE08->f138;
-        ((Node_0018EA50 *)self)->f4 = v;
+        *(__int64 *)&f130 = *(__int64 *)b;
+            this->f0C = &this->f130;
+        v = D_002EFE08->f138;
+        this->f4 = v;
         break;
     }
     case 5:
-        p->f138 = *(char *)b;
-        p = (Node_0018EA50 *)self;
-        p->f0C = &p->f138;
-        v = *(volatile int *)&D_002EFE08->f13C;
-        ((Node_0018EA50 *)self)->f4 = v;
-        break;
-    case 6:
-        p->f124 = *(int *)b;
-        p = (Node_0018EA50 *)self;
-        p->f0C = &p->f124;
-        v = *(volatile int *)&D_002EFE08->f140;
-        ((Node_0018EA50 *)self)->f4 = v;
-        break;
-    case 7:
-        p->f128 = *(int *)b;
-        p = (Node_0018EA50 *)self;
-        p->f0C = &p->f128;
-        v = *(volatile int *)&D_002EFE08->f144;
-        ((Node_0018EA50 *)self)->f4 = v;
-        break;
-    case 8:
-        p->f12C = *(int *)b;
-        p = (Node_0018EA50 *)self;
-        p->f0C = &p->f12C;
-        v = *(volatile int *)&D_002EFE08->f148;
-        ((Node_0018EA50 *)self)->f4 = v;
+        this->f138 = *(char *)b;
+            this->f0C = &this->f138;
+        v = D_002EFE08->f13C;
+        this->f4 = v;
         break;
     case 9:
-        v = p->v.func_001915A0(a, b, &p->f4);
-        ((Node_0018EA50 *)self)->f0C = (void *)v;
+        v = this->v.func_001915A0(a, b, &this->f4);
+        this->f0C = (void *)v;
         break;
     }
 }
