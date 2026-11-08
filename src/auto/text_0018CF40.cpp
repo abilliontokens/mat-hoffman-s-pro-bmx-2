@@ -382,8 +382,6 @@ int C_0018D580::func_0018DA00(int index, const char *name)
     return -1;
 }
 
-struct S38_0018DA90 { char pad2c[0x2c]; char *f2c; int f30; char pad34[4]; };
-
 void *__fastcall func_0018DA90(char *volatile self, int, void *result, int type, int index, const char *name, int *out)
 {
     int value[17];
