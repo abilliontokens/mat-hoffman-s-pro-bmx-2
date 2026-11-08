@@ -113,7 +113,7 @@ extern float D_002A8F3C;
 
 extern "C" float __cdecl sqrtf(float);
 static __forceinline float Sqrt_00181E10(const float &x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(_mm_load_ss(&x))); return r; }
-static __forceinline void Copy4_00181E10(int *o, const int *i) { o[0]=i[0]; o[1]=i[1]; o[2]=i[2]; o[3]=i[3]; }
+static __forceinline void Copy4_00181E10(int *o, const int *i) { o[3]=i[3]; o[0]=i[0]; o[1]=i[1]; o[2]=i[2]; }
 static __forceinline float Max_00181E10(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
 
 struct C_00182750 {
