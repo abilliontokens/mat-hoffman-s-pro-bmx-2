@@ -563,7 +563,7 @@ int C_001CB610::func_001CB7D0(void)
 int C_001CB610::func_001CB810(int idx)
 {
     char path[0x104];
-    S_001CB610_Entry *e = Entry();
+    S_001CB610_Entry *e = &f34[fa4];
 
     if (e->f40 & 1) {
         func_001ADCC0(path, sizeof(path), D_0028ED6C, D_002A48F8, e->f0[idx].name);
@@ -744,19 +744,16 @@ void func_001CBC10(int hr, int a, int b)
 
 int C_001CBCF0::func_001CBCF0(int value)
 {
-    int i = 0;
+    int i;
 
-    if (count > 0) {
-        for (; i < count; i++) {
-            if (items[i] == value) {
-                items[i] = items[count - 1];
-                count--;
-                return 1;
-            }
+    for (i = 0; i < count; i++) {
+        if (items[i] == value) {
+            items[i] = items[count - 1];
+            count--;
+            return 1;
         }
-        return 0;
     }
-    return i;
+    return 0;
 }
 
 C_001CBD40 *C_001CBD40::func_001CBD40()
@@ -920,39 +917,50 @@ int C_001CC0C0::func_001CC1E0(void)
     return f1A0;
 }
 
+static __forceinline int setFreq_001CC320(int h, int (*call)(int, unsigned int), unsigned int v, int line)
+{
+    int r;
+    if (v < 0xbc || v > (unsigned int)&D_0002EDEF) {
+        return -1;
+    }
+    r = call(h, v);
+    if (r < 0) {
+        func_001CBC10(r, &D_0028EECC, line);
+        return -1;
+    }
+    return 0;
+}
+
 int C_001CC0C0::func_001CC320(unsigned int v)
 {
     int r;
-    int h;
-    C_001CB9A0 *s;
+    unsigned int cur;
 
-    h = f13C;
-    if (h != 0) {
-        if (f19C != v) {
+    if (f13C != 0) {
+        cur = f19C;
+        if (cur != v) {
             if (v < 0xbc || v > (unsigned int)&D_0002EDEF) {
                 return 0;
             }
-            r = func_00221974(h, v);
+            r = func_00221974(f13C, v);
             if (r < 0) {
                 func_001CBC10(r, &D_0028EECC, 0x621);
                 return 0;
             }
             f19C = v;
         }
-    } else {
-        s = f140;
-        if (s != 0) {
-            if (f19C != v) {
-                if (v < 0xbc || v > (unsigned int)&D_0002EDEF) {
-                    return 0;
-                }
-                r = D_00221B4C(s->fC, v);
-                if (r < 0) {
-                    func_001CBC10(r, &D_0028EECC, 0x630);
-                    return 0;
-                }
-                f19C = v;
+    } else if (f140 != 0) {
+        cur = f19C;
+        if (cur != v) {
+            if (v < 0xbc || v > (unsigned int)&D_0002EDEF) {
+                return 0;
             }
+            r = D_00221B4C(f140->fC, v);
+            if (r < 0) {
+                func_001CBC10(r, &D_0028EECC, 0x630);
+                return 0;
+            }
+            f19C = v;
         }
     }
     return 1;
