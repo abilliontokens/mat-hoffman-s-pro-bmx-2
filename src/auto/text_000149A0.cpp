@@ -1,5 +1,6 @@
 /* 7 functions from 0x000149A0 to 0x00015980, found by Ghidra. */
 #include "common.h"
+#include <xmmintrin.h>
 
 struct AIPedestrian {
     void *func_00015960(unsigned int flags);
@@ -163,27 +164,35 @@ int AIPedScaredState_14B40::func_00014B40(float dt)
     Vec4_149A0 a, b, v, t;
     Vec4_149A0 *pos;
     float *m;
+    float dx, dy, dz;
+    int r = 1;
 
-    if (*(int *)(*(char **)((char *)D_002A8490 + 0x2a4) + 0x1c8) == 1)
-        return 1;
+    if (*(int *)(*(char **)((char *)D_002A8490 + 0x2a4) + 0x1c8) == r)
+        return r;
     owner->func_00011BE0((float *)&idx, (int *)&dist);
     if (idx == -1)
-        return 1;
-    id = *(int *)(*(char **)(*(char **)(D_002B9120 + 0x4e0) + idx * 4 + 0x1a8) + 0x1194);
-    if (*(int *)(*(char **)(*(char **)(*(char **)(D_002B9120 + 0x4e0) + idx * 4 + 0x1a8) + 0x950) + 0xbc) != 0)
-        v = *(*(VecSrc_14B40 **)(*(char **)(*(char **)(*(char **)(D_002B9120 + 0x4e0) + idx * 4 + 0x1a8) + 0xa00) + 4))->func_00199B00(&t, 0);
+        return r;
+    id = *(int *)((*(char * volatile *)(D_002B9120 + 0x4e0) + idx * 4 + 0x1a8) + 0x1194);
+    if (*(int *)(*(char **)((*(char * volatile *)(D_002B9120 + 0x4e0) + idx * 4 + 0x1a8) + 0x950) + 0xbc) != 0)
+        v = *(*(VecSrc_14B40 **)(*(char **)((*(char * volatile *)(D_002B9120 + 0x4e0) + idx * 4 + 0x1a8) + 0xa00) + 4))->func_00199B00(&t, 0);
     else
-        v = *(Vec4_149A0 *)(*(char **)(*(char **)(D_002B9120 + 0x4e0) + idx * 4 + 0x1a8) + 0x834);
+        v = *(Vec4_149A0 *)((*(char * volatile *)(D_002B9120 + 0x4e0) + idx * 4 + 0x1a8) + 0x834);
     pos = (Vec4_149A0 *)&owner->f3e4;
-    b.z = v.z - pos->z;
-    b.y = v.y - pos->y;
-    b.x = v.x - pos->x;
+    dz = v.z - pos->z;
+    dy = v.y - pos->y;
+    dx = v.x - pos->x;
+    b.z = dz;
+    b.y = dy;
+    b.x = dx;
     b.w = 1.0f;
     func_000111B0(&b, &b);
     m = (float *)(*(char **)(*(char **)(*(char **)(D_002B9120 + 0x588) + owner->f3b4 * 4) + 4) + owner->f3b0 * 16);
-    a.x = m[0] - owner->f3e4;
-    a.y = m[1] - owner->f3e8;
-    a.z = m[2] - owner->f3ec;
+    dz = m[2] - owner->f3ec;
+    dy = m[1] - owner->f3e8;
+    dx = m[0] - owner->f3e4;
+    a.x = dx;
+    a.y = dy;
+    a.z = dz;
     a.w = 1.0f;
     func_000111B0(&a, &a);
     dot = a.x * b.x + a.y * b.y + a.z * b.z;
@@ -200,7 +209,7 @@ int AIPedScaredState_14B40::func_00014B40(float dt)
     }
     if (owner->f3e2 != 2) {
         if (dist < D_002756BC &&
-            *(int *)(*(char **)(*(char **)(*(char **)(D_002B9120 + 0x4e0) + idx * 4 + 0x1a8) + 0x950) + 0xbc) == 0) {
+            *(int *)(*(char **)((*(char * volatile *)(D_002B9120 + 0x4e0) + idx * 4 + 0x1a8) + 0x950) + 0xbc) == 0) {
             func_000149A0(idx, -13.0f);
             if (IsLocal_151F0()) {
                 owner->f3bc = 6;
@@ -216,7 +225,7 @@ int AIPedScaredState_14B40::func_00014B40(float dt)
         }
     }
     owner->func_001C6B30(v, dt * D_002756B8);
-    return 1;
+    return r;
 }
 
 void AIPedFleeState::func_00014EA0()
@@ -296,36 +305,18 @@ int AIPedCurseState::func_000151F0(float dt)
         ((Ped_151F0 *)owner)->func_00011BE0(&idx, &dist);
         if (idx != -1) {
             Vec4_149A0 v;
-            char *ped = *(char **)(*(char **)(D_002B9120 + 0x4e0) + idx * 4 + 0x1a8);
-            ((Ped_151F0 *)owner)->func_001C6B30(*(*(Vec4Src_151F0 **)(*(char **)(ped + 0xa00) + 4))->func_00199B00(&v, 0), D_002756B8 * dt);
-            char *p;
-            char *o;
-            if (dist > D_002756C4) {
-                o = (char *)owner;
-                p = *(char **)((char *)D_002A8490 + 0x2a4);
-                if (p != 0 && *(int *)(p + 0x1c8) == 0) {
-                    *(int *)(o + 0x3bc) = 3;
-                }
-                (*(PedAnim **)(o + 0x384))->func_0008AB90(*(int *)(o + 0x39c));
-            } else {
-                o = (char *)owner;
-                if (*(int *)(*(char **)(o + 0x3c) + 0x10) == 1) {
-                    p = *(char **)((char *)D_002A8490 + 0x2a4);
-                    if (p != 0 && *(int *)(p + 0x1c8) == 0) {
-                        *(int *)(o + 0x3bc) = 2;
-                    }
-                    (*(PedAnim **)(o + 0x384))->func_0008AB90(*(int *)(o + 0x398));
-                }
+            ((Ped_151F0 *)owner)->func_001C6B30(
+                *(*(Vec4Src_151F0 **)(*(char **)(*(char **)(*(char **)(D_002B9120 + 0x4e0) + idx * 4 + 0x1a8) + 0xa00) + 4))->func_00199B00(&v, 0),
+                dt * D_002756B8);
+            if (dist <= D_002756C4) {
+                SetAnimState_14EF0((char *)owner, 3, 0x39c);
+            } else if (*(int *)(*(char **)((char *)owner + 0x3c) + 0x10) == 1) {
+                SetAnimState_14EF0((char *)owner, 2, 0x398);
             }
             if (*(unsigned char *)((char *)owner + 0x3e2) != 2) {
                 if (dist < D_002756BC && *(int *)(*(char **)(*(char **)(*(char **)(D_002B9120 + 0x4e0) + idx * 4 + 0x1a8) + 0x950) + 0xbc) == 0) {
                     ((Ped_151F0 *)owner)->func_000149A0(idx, -13.0f);
-                    p = *(char **)((char *)D_002A8490 + 0x2a4);
-                    o = (char *)owner;
-                    if (p != 0 && *(int *)(p + 0x1c8) == 0) {
-                        *(int *)(o + 0x3bc) = 6;
-                        (*(PedAnim **)(o + 0x384))->func_0008AB90(*(int *)(o + 0x390));
-                    }
+                    SetAnimState_14EF0((char *)owner, 6, 0x390);
                 }
             }
         }
