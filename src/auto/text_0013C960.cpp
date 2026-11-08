@@ -86,6 +86,7 @@ struct C_0013C960 {
     int func_0013C960(int a0, int a1, int a2);
     int func_0013B3E0(void *a, int b);
     int func_0013D550(int a0, int a1, int a2);
+    int func_0013C110(int a0);
 };
 
 int C_0013C960::func_0013C960(int a0, int a1, int a2)
