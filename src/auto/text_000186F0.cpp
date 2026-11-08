@@ -152,6 +152,7 @@ struct S_002A8490 {
 };
 extern S_002A8490 *D_002A8490;
 extern int D_002A0718;
+extern float D_002A071C, D_002A0720, D_002A0724;
 struct S_00019520_Dev {
     virtual void v0();
     virtual void v1();
@@ -615,7 +616,7 @@ int C_000192D0::func_000192D0(int volatile a, int volatile b) {
         if (a == 0 && func_00017AD0(pos, other, out, 0)) continue;
         float delta[3]; delta[0] = other[0] - pos[0]; delta[1] = other[1] - pos[1]; delta[2] = other[2] - pos[2];
         float sq = delta[2] * delta[2] + delta[1] * delta[1] + delta[0] * delta[0];
-        float d = sqrtf(sq);
+        float d = AsmSqrtF(sq);
         if (d < bestd && d > f49c[i].f0) { best = i; bestd = d; }
     }
     return best == f4dc ? -1 : best;
