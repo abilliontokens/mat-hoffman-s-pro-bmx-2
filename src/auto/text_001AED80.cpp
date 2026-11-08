@@ -492,9 +492,8 @@ void C_001AF530::func_001AF530(int a)
         } else if (fC < D_00275544) {
             if (f4 & 1) {
                 float t = (float)fmod(fC, flen);
-                int bits = *(int*)&t & 0x7fffffff;
-                int *pbits = &bits;
-                fC = *(float*)pbits;
+                int bits = *(int *)&t & 0x7fffffff;
+                fC = *(float *)&bits;
                 f4 &= 0xfb;
             } else if (f4 & 4) {
                 f4 |= 8;
