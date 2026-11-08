@@ -1,5 +1,6 @@
 /* 1 function from 0x0002D730 to 0x0002EB10, found by Ghidra. */
 #include "common.h"
+#include "asm_helpers.h"
 #include <xmmintrin.h>
 struct V4_2D730 {
     float x, y, z, w;
