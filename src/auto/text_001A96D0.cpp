@@ -30,9 +30,10 @@ struct Body_001A96D0 {
     char *f22c;
     void AddPos(V4_001A96D0 v)
     {
-        f130 += v.x;
-        f134 += v.y;
-        f138 += v.z;
+        float *f = &f130;
+        f[0] += v.x;
+        f[1] += v.y;
+        f[2] += v.z;
     }
 };
 
@@ -204,9 +205,10 @@ void This_001A96D0::func_001A96D0(Body_001A96D0 *body, V4_001A96D0 p, V4_001A96D
             t.z = a.z - f10c;
             a = t;
         } else {
-            t.x = a.x - f24->f190;
-            t.y = a.y - f24->f194;
-            t.z = a.z - f24->f198;
+            float *pv = &f24->f190;
+            t.x = a.x - pv[0];
+            t.y = a.y - pv[1];
+            t.z = a.z - pv[2];
             a = t;
         }
         V4_001A96D0 c;
@@ -291,20 +293,17 @@ void This_001A9D20::func_001A9D20(float s, V4_001A96D0 v, V4_001A96D0 q, Obj_001
     dd = AsmMinF(dd, f98);
     float k = AsmMaxF(m * a - dd * b, 0.0f);
     k = k * f8;
-    unsigned hit = f24->f204 & mask;
     V4_001A96D0 w;
     w.x = k * v.x;
     w.y = k * v.y;
     w.z = k * v.z;
-    w.w = 1.0f;
-    if (!hit)
+    if (!(f24->f204 & mask))
         func_001A96D0(f24, w, q, fb8);
     if (other && !(f7c & other->f204)) {
         V4_001A96D0 nw;
         nw.x = -w.x;
         nw.y = -w.y;
         nw.z = -w.z;
-        nw.w = 1.0f;
         func_001A96D0(other, nw, q, fb8);
     }
 }
