@@ -234,30 +234,32 @@ int C_00097FD0::func_00098080(const char *name) {
 
 void C_00097FD0::func_000981D0(void *a, void *b, int c)
 {
-    S_981D0_Arg *arg = (S_981D0_Arg *)a;
     S_981D0_Owner *owner;
     int mode;
+    int t;
     int i;
-    if (arg == 0) {
+
+    if (a == 0) {
         return;
     }
-    if (arg->arr28 == 0) {
+    if (((S_981D0_Arg *)a)->cnt24 == 0) {
         return;
     }
     owner = (S_981D0_Owner *)unk198;
     mode = owner->unk1C8 ? mode1 : mode0;
     if (mode != 3) {
+        t = mode * 15;
         for (i = 0; i < 15; i++) {
-            int idx = *(int *)((char *)this + 0x2c + (mode * 15 + i) * 4);
+            int idx = arr2c[t + i];
             if (idx != -1) {
                 S_981D0_Mid *mid = owner->unk64;
                 mid->unk484->func_0001B820(mid->unk3AC->arr28[idx]);
             }
-            idx = *(int *)((char *)this + 0xe0 + (mode * 15 + i) * 4);
+            idx = arrE0[t + i];
             if (idx == -1) {
                 break;
             }
-            ((S_981D0_Item *)arg->arr28[idx])->unk4->v4();
+            ((S_981D0_Item *)((S_981D0_Arg *)a)->arr28[idx])->unk4->v4();
         }
     }
 }
@@ -292,6 +294,11 @@ static __forceinline void Refresh_000988B0(char **lp, char *a, int flag)
         if (*(int *)((*(char ***)(*lp + 0x1c8))[j] + 0x40) == 0)
             flag = 0;
     }
+}
+
+static __forceinline void Refresh2_000988B0(char *a, char **lp, int flag)
+{
+    Refresh_000988B0(lp, a, flag);
 }
 
 int __fastcall func_000988B0(char *self, int unused, char *a, char *b)
