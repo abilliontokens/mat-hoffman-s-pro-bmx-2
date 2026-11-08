@@ -209,15 +209,15 @@ struct Icon_7D {
     float f40;
     float f44;
     float f48;
-    volatile float f4c;
-    volatile float f50;
+    float f4c;
+    float f50;
     void *f54;
     u8 f58;
     char pad59[0xb];
     Icon_7D *func_001D5760();
     void func_001D5810(int tex, float b, float c, int d);
-    float texW() { return f4c; }
-    float texH() { return f50; }
+    float texW() { return *(volatile float *)&f4c; }
+    float texH() { return *(volatile float *)&f50; }
     void setW(float v) { if (f28 != v) { u8 f = f58 | 1; f28 = v; f58 = f; } }
     void setH(float v) { if (f2c != v) { u8 f = f58 | 1; f2c = v; f58 = f; } }
     void updateUV() {
@@ -300,7 +300,8 @@ C_0007D6F0 *C_0007D6F0::func_0007D6F0(C_Arg_7D *arg)
 {
     Icon_7D *w;
     int i, j, y;
-    char bufA[12];
+    float fy;
+    char bufA[16];
     char bufB[8];
 
     {
@@ -341,7 +342,6 @@ C_0007D6F0 *C_0007D6F0::func_0007D6F0(C_Arg_7D *arg)
     f9c->updateUV();
 
     for (i = 0; i < 5; i++) {
-        float fy;
         w = (Icon_7D *)func_001E8A44(0x64);
         if (w != 0) {
             w = w->func_001D5760();
