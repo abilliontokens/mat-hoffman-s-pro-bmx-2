@@ -178,6 +178,7 @@ extern Obj *D_002BEAAC;
 extern Obj *D_002EF7D0;
 extern char D_002A5FA8[], D_002A5870[], D_00275678[], D_002A60B0[], D_00276C58[], D_00277300[], D_002772E8[], D_002772D4[], D_002772CC[], D_002A5348[], D_00276C34[], D_002772A8[], D_00277298[], D_00277288[], D_00275630[], D_00277274[], D_00277268[], D_00277244[], D_002A48F8[], D_002A47F0[], D_00276C48[];
 extern float D_00277318, D_00277314, D_00277310, D_002755E8;
+/* V15B0: identity colour passed by value to func_00199600 */
 extern Vec16 D_002A15B0;
 extern char D_00049B50[];
 void func_00049A50();
@@ -376,60 +377,60 @@ void BmxEventFPS::func_0004B760(float dt)
         return;
     }
     if (*D_002A8490->f2E0 <= 1) {
-        if (*(int *)((char *)this + 0x2e0) == 1 && *(int *)((char *)this + 0x2dc) == 0 &&
+        if (f2E0 == 1 && f2DC == 0 &&
             ((C_4B760_A *)*(void **)((char *)D_002A8490->f2E0 + 0x2c0))->func_0005C0A0() == 0) {
             func_0004A360();
-            this->i3();
-            *(int *)((char *)this + 0x2d4) = 1;
-            *(int *)((char *)this + 0x2dc) = 1;
-            ((V8Bmx *)*(char **)((char *)this + 0x2cc))->b2();
-            ((C_4B760_B *)*(char **)((char *)this + 0x2cc))->func_001394F0(-1);
-            *(int *)((char *)this + 0x2e0) = 0;
+            ((V45Bmx *)this)->i3();
+            f2D4 = 1;
+            f2DC = 1;
+            ((V8Bmx *)f2CC)->b2();
+            ((C_4B760_B *)f2CC)->func_001394F0(-1);
+            f2E0 = 0;
             {
                 Obj *r = (Obj *)D_002B9120->y0(D_00277140);
                 if (r) ((C_4B760_C *)r)->func_001983A0();
             }
         }
-        if (*(int *)((char *)this + 0x2d4) == 1) {
-            if (*(int *)(*(char **)((char *)this + 0x2cc) + 0x34) == 0) {
-                ((Obj *)*(char **)(*(char **)((char *)this + 0x2e4)))->func_001670C0(dt, 0, 0);
-                ((Obj *)*(char **)(*(char **)(*(char **)((char *)this + 0x2e4)) + 4))->func_0019AC50();
-                ((Obj *)*(char **)(*(char **)((char *)this + 0x2e8)))->func_001670C0(dt, 0, 0);
-                ((Obj *)*(char **)(*(char **)(*(char **)((char *)this + 0x2e8)) + 4))->func_0019AC50();
+        if (f2D4 == 1) {
+            if (*(int *)(f2CC + 0x34) == 0) {
+                ((Obj *)*(char **)f2E4)->func_001670C0(dt, 0, 0);
+                ((Obj *)*(char **)(*(char **)f2E4 + 4))->func_0019AC50();
+                ((Obj *)*(char **)f2E8)->func_001670C0(dt, 0, 0);
+                ((Obj *)*(char **)(*(char **)f2E8 + 4))->func_0019AC50();
                 goto L;
             }
-            *(int *)((char *)this + 0x2d4) = 0;
-            ((V8Bmx *)*(char **)((char *)this + 0x2cc))->b0();
-            this->g3();
+            f2D4 = 0;
+            ((V8Bmx *)f2CC)->b0();
+            ((V45Bmx *)this)->g3();
             func_0004A590();
-            this->i2();
-            this->j3();
+            ((V45Bmx *)this)->i2();
+            ((V45Bmx *)this)->j3();
             func_00031260(0.0f);
             return;
         }
-        if (*(int *)((char *)this + 0x2d8) == 1) {
-            if (*(int *)(*(char **)((char *)this + 0x2d0) + 0x34) == 0) {
-                ((Obj *)*(char **)(*(char **)((char *)this + 0x2e4)))->func_001670C0(dt, 0, 0);
-                ((Obj *)*(char **)(*(char **)(*(char **)((char *)this + 0x2e4)) + 4))->func_0019AC50();
+        if (f2D8 == 1) {
+            if (*(int *)(f2D0 + 0x34) == 0) {
+                ((Obj *)*(char **)f2E4)->func_001670C0(dt, 0, 0);
+                ((Obj *)*(char **)(*(char **)f2E4 + 4))->func_0019AC50();
                 goto L;
             }
-            ((V8Bmx *)*(char **)((char *)this + 0x2c8))->b1();
-            *(int *)((char *)this + 0x2d8) = 0;
-            ((V8Bmx *)*(char **)((char *)this + 0x2d0))->b0();
-            this->g3();
+            ((V8Bmx *)f2C8)->b1();
+            f2D8 = 0;
+            ((V8Bmx *)f2D0)->b0();
+            ((V45Bmx *)this)->g3();
             func_0004A590();
-            this->i2();
-            *(int *)(*(char **)((char *)this + 0x284) + 0x60) = 200;
-            ((C_4B760_D *)*(char **)((char *)this + 0x168))->func_000788D0();
+            ((V45Bmx *)this)->i2();
+            *(int *)(f284 + 0x60) = 200;
+            ((C_4B760_D *)f168)->func_000788D0();
             D_002A8490->f124 = 1;
         }
     } else {
-        if (*(int *)((char *)this + 0x114) == 1)
-            this->j3();
+        if (f114 == 1)
+            ((V45Bmx *)this)->j3();
     }
 L:
-    if (*(int *)((char *)this + 0x2d4) == 0 && *(int *)((char *)this + 0x2d8) == 0) {
-        *(float *)((char *)this + 0x2c4) += dt;
+    if (f2D4 == 0 && f2D8 == 0) {
+        f2C4 += dt;
         for (i = 0; i < D_002B9120->f560; i++) {
             if (((S_4B760_Item *)D_002B9120->f524[i])->f84 > D_00275544) {
                 ((S_4B760_Item *)D_002B9120->f524[i])->f84 -= dt;
