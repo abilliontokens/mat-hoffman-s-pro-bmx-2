@@ -62,6 +62,7 @@ extern char _D_0027958C[];
 extern char _D_002795B4[];
 extern int _D_0028F5EC;
 extern int _D_0028F5DC;
+extern int _D_0028F5E0;
 struct C2EC_0008DB70 {
     void func_0018C780(void *a, int b);
     int func_0018C160(void *a);
