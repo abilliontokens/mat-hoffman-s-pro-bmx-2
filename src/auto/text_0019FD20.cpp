@@ -218,7 +218,7 @@ void C_001A0510::func_001A0510(Vec_19FD20 target)
 
     Vec_19FD20 f(c.x - b.x, c.y - b.y, c.z - b.z);
     Vec_19FD20 e(a.x - b.x, a.y - b.y, a.z - b.z);
-    Vec_19FD20 h, g;
+    Vec_19FD20 g, h;
     h.z = 0; h.y = 0; h.x = 0; h.w = 1.0f;
     g.z = 0; g.y = 0; g.x = 0; g.w = 1.0f;
     func_0019FBD0(&g, &e);
