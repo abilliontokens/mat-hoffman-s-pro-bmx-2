@@ -140,6 +140,9 @@ struct V3_00104A00 {
     float x;
     float y;
     float z;
+    int func_00104A00_0() { return *(int *)&x; }
+    int func_00104A00_1() { return *(int *)&y; }
+    int func_00104A00_2() { return *(int *)&z; }
 };
 
 struct V4_00104A00 {
@@ -411,12 +414,12 @@ int C_00104900::func_001049A0(int param_1)
 
 V4_00104A00 func_00104A00(V3_00104A00 *src)
 {
- V4_00104A00 r; volatile int t[2]; V3_00104A00 *p=src;
- *(volatile float *)&r.w=1.0f;
- *(volatile int *)&src=*(int *)&p->x; t[0]=*(volatile int *)&src & 0x7fffffff; *(volatile int *)&r.x=t[0];
- *(volatile int *)&src=*(int *)&p->y; t[0]=*(volatile int *)&src & 0x7fffffff; *(volatile int *)&r.y=t[0];
- *(volatile int *)&src=*(int *)&p->z; t[0]=*(volatile int *)&src & 0x7fffffff; *(volatile int *)&r.z=t[0];
- return r;
+ struct { volatile int t; V4_00104A00 r; } s; V3_00104A00 *p=src;
+ *(volatile float *)&s.r.w=1.0f;
+ *(volatile int *)&src=*(int *)&src->x; s.t=*(volatile int *)&src & 0x7fffffff; *(volatile int *)&s.r.x=s.t;
+ *(volatile int *)&src=*(int *)&p->y; s.t=*(volatile int *)&src & 0x7fffffff; *(volatile int *)&s.r.y=s.t;
+ *(volatile int *)&src=*(int *)&p->z; s.t=*(volatile int *)&src & 0x7fffffff; *(volatile int *)&s.r.z=s.t;
+ return s.r;
 }
 
 void func_00104A90(float *out, float *in) {
