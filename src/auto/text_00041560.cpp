@@ -427,7 +427,7 @@ int BmxEventEditor::func_00041560()
     flag = 1;
     if (func_00038B10(&f564->obj->f28, a, b, &px, &py, &pz, 1) == 0)
         return -1;
-    FindBlock2(&f564->obj->f28, &blk);
+    FindBlock(&blk, &f564->obj->f28);
     if (blk == 0)
         return -1;
     w = ((S_41560_Block *)blk)->w;
