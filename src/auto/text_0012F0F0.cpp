@@ -45,7 +45,8 @@ struct V4W_0012F0F0 {
 };
 
 struct V4C_0012F0F0 : V4_0012FCF0 {
-    V4C_0012F0F0(f32 a, f32 b, f32 c, f32 d) { x = a; y = b; z = c; w = d; }
+V4C_0012F0F0() {}
+V4C_0012F0F0(f32 a, f32 b, f32 c, f32 d) { x = a; y = b; z = c; w = d; }
     V4C_0012F0F0 operator*(f32 s) const { return V4C_0012F0F0(x * s, y * s, z * s, 1.0f); }
     V4C_0012F0F0 operator+(const V4C_0012F0F0 &b) const { return V4C_0012F0F0(x + b.x, y + b.y, z + b.z, 1.0f); }
 };
@@ -290,7 +291,7 @@ V4_0012FCF0 C_CarProceduralExtended::func_0012F0F0(f32 t)
         ar = f518;
         cur = f4B8;
         keys = (S_0012F0F0_Key *)ar->arr;
-        k1 = &keys[j];
+        k1 = (S_0012F0F0_Key *)((char *)keys + j * 0x28);
         k0 = &keys[cur];
         const V4C_0012F0F0 &P0 = (const V4C_0012F0F0 &)k0->pos;
         const V4C_0012F0F0 &P1 = (const V4C_0012F0F0 &)k1->pos;
