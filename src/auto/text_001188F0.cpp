@@ -488,7 +488,11 @@ void Obj::func_001188F0(int arg)
 #pragma optimize("y", on)
 void Obj::func_00119680(int a)
 {
-    static int h = D_002A7CB8->func_00026500(D_00283D34, -1);
+    extern int D_002B9220, D_002B921C;
+    if (!(D_002B9220 & 1)) {
+        D_002B9220 |= 1;
+        D_002B921C = D_002A7CB8->func_00026500(D_00283D34, -1);
+    }
     if (*(int *)(p950 + 0xbc) == 0 || (c12a8 & 0x80))
         func_001188F0(a);
     int m = 0;
