@@ -239,6 +239,11 @@ struct S_001611C0_State {
     char *out;
 };
 
+static __forceinline void Put_001611C0(char **pp, char v)
+{
+    *(*pp)++ = v;
+}
+
 struct S_001B2340_Elem {
     virtual void v0();
     virtual void v1();
@@ -450,7 +455,8 @@ void func_001611C0(char *out, void *data, int size)
                 c = state.prev;
                 while (c > 0xff) {
                     hi = c >> 8; lo = c & 0xff; idx = (hi << 8) + lo;
-                    D_002E2980[len] = table[idx].unk8;
+                    char ch = table[idx].unk8;
+                    D_002E2980[len] = ch;
                     c = table[idx].unk4;
                     len++;
                 }
@@ -458,7 +464,8 @@ void func_001611C0(char *out, void *data, int size)
                 len = 0; c = code;
                 while (c > 0xff) {
                     hi = c >> 8; lo = c & 0xff; idx = (hi << 8) + lo;
-                    D_002E2980[len] = table[idx].unk8;
+                    char ch = table[idx].unk8;
+                    D_002E2980[len] = ch;
                     c = table[idx].unk4;
                     len++;
                 }
