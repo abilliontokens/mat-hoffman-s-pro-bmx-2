@@ -51,6 +51,7 @@ struct S_49470_F64 {
 };
 
 struct S_49470_F5C {
+    char pad0[4];
     int f4;
     void func_00194E60(V4_49470 v);
     void func_00194EB0(V4_49470 v);
