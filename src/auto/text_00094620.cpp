@@ -832,12 +832,6 @@ static __forceinline void ResetList_00094F40(S_00095060_List *l)
     l->grow = 0;
     l->flags = t & 0xfe;
 }
-static __forceinline void InitList_00094F40(S_00095060_List *l, int cap)
-{
-    l->cap = cap;
-    l->grow = 1;
-    l->flags |= 1;
-}
 void *C_00095060::func_00094F40(void *arg)
 {
     ((C_00157600 *)this)->func_00157600(1);
