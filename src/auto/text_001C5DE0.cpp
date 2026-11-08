@@ -90,6 +90,18 @@ static __forceinline S_001C64A0_Node *find_root(S_001C64A0_Node *&n)
     return root;
 }
 
+static __forceinline S_001C64A0_Node *find_root(S_001C64A0_Node **n)
+{
+    S_001C64A0_Node *root = *n;
+    int i;
+    for (i = 0; i < (*n)->f1C; i++) {
+        if ((*n)->f14[i]->f4 == 0) {
+            root = (*n)->f14[i];
+        }
+    }
+    return root;
+}
+
 static __forceinline Vec4 vec3_neg(Vec4 *v)
 {
     Vec4 r;
