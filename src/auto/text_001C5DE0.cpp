@@ -390,13 +390,9 @@ void C_001C65E0::func_001C65E0(S_001C64A0_Node *obj)
 {
     Vec4 a;
     int i;
-    S_001C64A0_Node *root = obj;
     S_001C64A0_Node *node;
+    S_001C64A0_Node *root = find_root(obj);
 
-    for (i = 0; i < obj->f1C; i++) {
-        if (obj->f14[i]->f4 == 0)
-            root = obj->f14[i];
-    }
     if (obj->f2C == 0) {
         void *mem = func_001E8A44(0x18);
         node = mem ? ((C_0015B660 *)mem)->func_0015B660() : 0;
@@ -559,7 +555,6 @@ void C_001C6B30::func_001C6B30(V4_001C6B30 target, float maxAngle)
     float sign;
     float ang;
     float d;
-
     f3C->f4->func_001994C0(0, &Q, &R);
     f3C->f4->func_00199A70(0, &P);
     target.y = P.y;
@@ -570,18 +565,22 @@ void C_001C6B30::func_001C6B30(V4_001C6B30 target, float maxAngle)
     func_001C6380((Vec4 *)&T, (Vec4 *)&T);
     AsmVec3Cross(&S.x, &Q.x, &R.x);
     sign = -1.0f;
-    if (!(S.x * T.x + S.y * T.y + S.z * T.z > D_00275544)) {
+    d = ((volatile Vec4 *)&T)->y * S.y;
+    d += ((volatile Vec4 *)&T)->x * S.x;
+    d += ((volatile Vec4 *)&T)->z * S.z;
+    if (!(d > D_00275544)) {
         sign = 1.0f;
     }
-    d = Q.x * T.x + Q.y * T.y + Q.z * T.z;
+    d = ((volatile Vec4 *)&T)->y * Q.y;
+    d += ((volatile Vec4 *)&T)->x * Q.x;
+    d += ((volatile Vec4 *)&T)->z * Q.z;
     if (d == D_00275544) {
         f3C->f4->func_00199110(0, (Vec4 *)&T, (Vec4 *)&R, 0, 1, 0);
         return;
     }
     ang = func_0014F7E0(AsmMaxF(-1.0f, AsmMinF(1.0f, d)));
-    if (ang > maxAngle) {
-        ang = maxAngle;
-    }
-    f3C->f4->func_00199CF0(R, ang * sign);
+    if (ang > maxAngle) ang = maxAngle;
+    ang *= sign;
+    f3C->f4->func_00199CF0(R, ang);
 }
 
