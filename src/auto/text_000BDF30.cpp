@@ -311,6 +311,8 @@ extern char D_002A5348[];
 extern char D_002A5FA8[];
 extern char D_002A63C8[];
 extern char D_002A60B0[0x104];
+extern char D_00100000[];
+extern char D_00040000[];
 extern int D_002A64D0;
 extern int D_0027DB9C;
 extern void *D_002A829C;
