@@ -33,9 +33,10 @@ struct C_0016E320 {
     void *f68;
     char pad_70[0x170 - 0x6c];
     float f170, f174;
-    int f178;
+    float f178;
     float f17c, f180;
-    int f184, f188;
+    float f184;
+    int f188;
     char pad_190[4];
     int f190;
     float f194;
