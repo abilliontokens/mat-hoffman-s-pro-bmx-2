@@ -221,11 +221,12 @@ struct Icon_7D {
     void setW(float v) { if (f28 != v) { u8 f = f58 | 1; f28 = v; f58 = f; } }
     void setH(float v) { if (f2c != v) { u8 f = f58 | 1; f2c = v; f58 = f; } }
     void updateUV() {
+        float left = texW() * D_00278654;
         u8 f = f58 | 4;
-        f3c = D_00278654 * texW();
-        f40 = D_00275544 * texW();
-        f44 = D_0027653C * texH();
-        f48 = D_00275544 * texH();
+        f3c = left;
+        f40 = texW() * D_00275544;
+        f44 = texH() * D_0027653C;
+        f48 = texH() * D_00275544;
         f58 = f;
     }
 };
