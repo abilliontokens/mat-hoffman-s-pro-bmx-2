@@ -182,6 +182,7 @@ static __forceinline void identity_ref_10E2A0(Mat44_10E2A0 * volatile &p)
     q->m[15] = 1.0f;
 }
 
+struct BmxVehicle_10DA70_F4 { void func_00108510(int *name, float x, float y, float z, float w); };
 struct C_10E2A0_Mat { void func_00199BE0(void *m); void func_00199BE0(const Mat44_10E2A0 &m); };
 struct C_10E2A0_230 { char pad0[0x174]; C_10E2A0_Mat *f174; };
 struct C_10E2A0_950 {
@@ -555,7 +556,7 @@ void BmxVehicle_10DA70::func_0010E2A0(void)
     *(int *)((char *)this + 0x2084) = 0;
     MEMBER_10E2A0(int, 0x2088) = -1;
     if (MEMBER_10E2A0(float, 0x11A4) <= D_00275460) {
-        func_00108510(0, D_002A3A3C);
+        func_00108510(0, Vec4(D_002A3A3C.x, D_002A3A40, D_002A3A44, D_002A3A48));
     }
     if (MEMBER_10E2A0(int, 0x11F4) == 1) {
         MEMBER_10E2A0(int, 0x11F4) = 2;
