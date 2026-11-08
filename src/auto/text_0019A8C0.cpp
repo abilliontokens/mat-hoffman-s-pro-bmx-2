@@ -387,17 +387,13 @@ void SoultreeObject::func_0019AE40(int volatile file) {
 void func_0013E4A0(void *dst, void *src);
 int SoultreeObject::func_0019B1A0(int file, SoultreeObject **arr)
 {
-    SoultreeObject * volatile self = this;
     int *parents;
     int i;
-
-    D_002BEAAC->func_0013C8A0(file, &self->f190, 4, 1);
-    *arr = self;
-    parents = (int *)func_001E8A44(self->f190 * 4);
-    for (i = 0; i < self->f190; i++) {
-        if (i != 0) {
-            ((S_0019B1A0_VThis *)self)->v29(&arr[i]);
-        }
+    D_002BEAAC->func_0013C8A0(file, &f190, 4, 1);
+    *arr = this;
+    parents = (int *)func_001E8A44(this->f190 * 4);
+    for (i = 0; i < this->f190; i++) {
+        if (i != 0) ((S_0019B1A0_VThis *)this)->v29(&arr[i]);
         D_002BEAAC->func_0013C8A0(file, &arr[i]->f28, 0x80, 1);
         D_002BEAAC->func_0013C8A0(file, &arr[i]->fB0, 0x40, 1);
         AsmTransposeMatrix(arr[i]->fB0, arr[i]->fB0);
@@ -409,29 +405,23 @@ int SoultreeObject::func_0019B1A0(int file, SoultreeObject **arr)
         D_002BEAAC->func_0013C8A0(file, &arr[i]->f184, 4, 1);
         D_002BEAAC->func_0013C8A0(file, &parents[i], 4, 1);
     }
-    for (i = 0; i < self->f190; i++) {
+    for (i = 0; i < this->f190; i++) {
         if (parents[i] != -1) {
             SoultreeObject *child = arr[i];
             SoultreeObject *parent = arr[parents[i]];
             S_0019A8C0_Child *sib;
-
-            if (child->f170 != 0) {
-                parent->f170->func_0019A210(child);
-            }
+            if (child->f170 != 0) parent->f170->func_0019A210(child);
             child->f170 = (S_0019A8C0_Mgr *)parent;
             sib = parent->f174;
-            if (sib == 0) {
-                parent->f174 = (S_0019A8C0_Child *)child;
-            } else if (sib->f178 == 0) {
+            if (sib == 0) parent->f174 = (S_0019A8C0_Child *)child;
+            else if (sib->f178 == 0) {
                 sib->f178 = (S_0019A8C0_Child *)child;
                 child->f17c = sib;
-            } else {
-                sib->f178->func_00198230(child);
-            }
+            } else sib->f178->func_00198230(child);
         }
     }
     func_001E891B(parents);
-    return self->f190;
+    return this->f190;
 }
 
 void SoultreeObject::func_0019B400(void)
