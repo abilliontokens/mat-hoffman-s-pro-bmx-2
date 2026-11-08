@@ -69,7 +69,8 @@ struct C_001972B0 {
     char *f50;
     char pad54[0x18];
     unsigned f6C;
-    char pad70[8];
+    char pad70[4];
+    unsigned f74;
     int *f78, *f7C, *f80, *f84, *f88, *f8C, *f90, *f94, *f98, *f9C, *fA0, *fA4, *fA8, *fAC, *fB0, *fB4;
     char *fB8;
     char *fBC;
