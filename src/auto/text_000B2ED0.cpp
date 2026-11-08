@@ -17,7 +17,7 @@ struct S_2ED0_Rd {
 struct S_2ED0_Own {
     char pad0[8];
     int f8;
-    char pad[0x37C];
+    char pad[0x378];
     char f384[1];
     void func_000B1A40(S_2ED0_Rd *rd);
 };
@@ -241,40 +241,33 @@ struct C_000B3DF0 {
 
 void C_000B2ED0::func_000B2ED0(S_2ED0_Rd * volatile rd)
 {
-    C_000B2ED0 * volatile self = this;
-    char bufC[0x100];
     char bufB[0x104];
     char bufA[0x104];
+    char bufC[0x104];
     int i;
     int len;
-    volatile int a;
-    volatile int b;
-    volatile int m;
 
     f3C->func_000B1A40(rd);
     rd->func_00168550(D_0027D160, bufA, 0x104);
-    func_001ADCC0(self->f64, 0x104, D_0027D158, self->f3C->f8 ? D_002A5348 : D_002A5870, D_002A5FA8, bufA);
+    func_001ADCC0(f64, 0x104, D_0027D158, f3C->f8 ? D_002A5348 : D_002A5870, D_002A5FA8, bufA);
     rd->func_00168550(D_0027D14C, bufA, 0x104);
-    func_001ADCC0(self->f168, 0x104, D_0027D158, self->f3C->f8 ? D_002A5348 : D_002A5870, D_002A5FA8, bufA);
+    func_001ADCC0(f168, 0x104, D_0027D158, f3C->f8 ? D_002A5348 : D_002A5870, D_002A5FA8, bufA);
     rd->func_00168BE0(D_0027D138, D_0027D144, bufB, 0x104);
-    a = (int)strlen(bufB);
-    b = 0x103;
-    m = b > a ? a : b;
-    len = m;
-    func_001E8920(self->f3C->f384, bufB, len);
-    self->f3C->f384[len] = 0;
-    rd->func_00168C20(D_0027D124, 0, &self->f58);
-    rd->func_00168C20(D_0027D114, 0, &self->f4C);
-    if (self->f48 != 0) {
-        for (i = 0; i < self->f4C; i++) {
-            func_001E891B(self->f48[i]);
+    len = AsmMinI(0x103, (int)strlen(bufB));
+    func_001E8920(f3C->f384, bufB, len);
+    f3C->f384[len] = 0;
+    rd->func_00168C20(D_0027D124, 0, &f58);
+    rd->func_00168C20(D_0027D114, 0, &f4C);
+    if (f48 != 0) {
+        for (i = 0; i < f4C; i++) {
+            func_001E891B(f48[i]);
         }
-        func_001E891B(self->f48);
-        self->f48 = 0;
+        func_001E891B(f48);
+        f48 = 0;
     }
-    if (self->f4C > 0) {
-        self->f48 = (S_2ED0_Item **)func_001E8A44(self->f4C * 4);
-        for (i = 0; i < self->f4C; i++) {
+    if (f4C > 0) {
+        f48 = (S_2ED0_Item **)func_001E8A44(f4C * 4);
+        for (i = 0; i < f4C; i++) {
             S_2ED0_Item *p = (S_2ED0_Item *)func_001E8A44(0x18);
             if (p) {
                 p->f10 = 0;
@@ -282,16 +275,16 @@ void C_000B2ED0::func_000B2ED0(S_2ED0_Rd * volatile rd)
                 p->f8 = 0;
                 p->f14 = 1.0f;
             }
-            self->f48[i] = p;
+            f48[i] = p;
         }
     }
-    for (i = 0; i < self->f4C; i++) {
+    for (i = 0; i < f4C; i++) {
         func_001ADCC0(bufC, 0x100, D_0027D104, i + 1);
-        rd->func_00168C20(bufC, 0, self->f48[i]);
-        self->f48[i]->f0--;
+        rd->func_00168C20(bufC, 0, f48[i]);
+        f48[i]->f0--;
         func_001ADCC0(bufC, 0x100, D_0027D0F4, i + 1);
-        rd->func_00168C50(bufC, 0, &self->f48[i]->f4);
-        self->f50 = 0;
+        rd->func_00168C50(bufC, 0, &f48[i]->f4);
+        f50 = 0;
     }
 }
 
@@ -351,6 +344,8 @@ void VehicleAI::func_000B3390(int param_1)
     f40->func_000B21B0(param_1);
 }
 
+extern "C" void _ReadWriteBarrier(void);
+#pragma intrinsic(_ReadWriteBarrier)
 void C_000B3410::func_000B3410(int a)
 {
     struct V {
@@ -371,44 +366,43 @@ void C_000B3410::func_000B3410(int a)
     func_001ADCC0(b.name, 260, D_0027C588, *(char **)((char *)this + 0x40) + 4);
     func_001ADCC0(b.path, 260, D_0027D170, *(char **)((char *)this + 0x40) + 4);
     {
-        int n = 0;
+        int n;
         int len = strlen(D_002A5EA0);
         int lim = 259;
         n = AsmMinI(lim, len);
         func_001E8920(b.old1, D_002A5EA0, n); b.old1[n] = 0;
     }
     {
-        int n = 0;
+        int n;
         int len = strlen(D_002A60B0);
         int lim = 259;
         n = AsmMinI(lim, len);
         func_001E8920(b.old2, D_002A60B0, n); b.old2[n] = 0;
     }
     {
-        int n = 0;
+        int n;
         int len = strlen(D_002A4C10);
         int lim = 259;
         n = AsmMinI(lim, len);
         func_001E8920(b.old3, D_002A4C10, n); b.old3[n] = 0;
     }
     {
-        int n = 0;
+        int n;
         int len = strlen(D_002A48F8);
         int lim = 259;
         n = AsmMinI(lim, len);
         func_001E8920(b.old4, D_002A48F8, n); b.old4[n] = 0;
     }
     {
-        int n = 0;
+        int n;
         int len = strlen(D_002A46E8);
         int lim = 259;
         n = AsmMinI(lim, len);
         func_001E8920(b.old5, D_002A46E8, n); b.old5[n] = 0;
     }
     {
-        int n = 0;
         int lim = 259;
-        n = AsmMinI(lim, 0);
+        int n = AsmMinI(lim, 0);
         func_001E8920(D_002A46E8, D_00275630, n); D_002A46E8[n] = 0;
     }
     if (*(int *)(*(char **)((char *)this + 0x40) + 0x108)) {
@@ -471,42 +465,36 @@ void C_000B3410::func_000B3410(int a)
     }
     *(void **)((char *)this + 0x40) = 0;
     {
-        int n = 0;
         int len = strlen(b.old1);
         int lim = 259;
-        n = AsmMinI(lim, len);
+        int n = AsmMinI(lim, len);
         func_001E8920(D_002A5EA0, b.old1, n); D_002A5EA0[n] = 0;
     }
     {
-        int n = 0;
         int len = strlen(b.old2);
         int lim = 259;
-        n = AsmMinI(lim, len);
+        int n = AsmMinI(lim, len);
         func_001E8920(D_002A60B0, b.old2, n); D_002A60B0[n] = 0;
     }
     {
-        int n = 0;
         int len = strlen(b.old3);
         int lim = 259;
-        n = AsmMinI(lim, len);
+        int n = AsmMinI(lim, len);
         func_001E8920(D_002A4C10, b.old3, n); D_002A4C10[n] = 0;
     }
     {
-        int n = 0;
         int len = strlen(b.old4);
         int lim = 259;
-        n = AsmMinI(lim, len);
+        int n = AsmMinI(lim, len);
         func_001E8920(D_002A48F8, b.old4, n); D_002A48F8[n] = 0;
     }
     {
-        int n = 0;
         int len = strlen(b.old5);
         int lim = 259;
-        n = AsmMinI(lim, len);
+        int n = AsmMinI(lim, len);
         func_001E8920(D_002A46E8, b.old5, n); D_002A46E8[n] = 0;
     }
 }
-
 void VehicleAI::func_000B3B40()
 {
     int i, j;
