@@ -69,7 +69,7 @@ struct C_0011A590_f28 {
     void func_00199900(void *a);
     void func_00197B40(void *a, void *b);
     void func_00198040(void *a, void *b);
-    void func_00199CF0(float a, Vec4 v);
+    void func_00199CF0(Vec4 v, float a);
 };
 float *func_0001E9E0(float *out, float *v);
 Vec4 func_0001C610(float *a, float *b);
@@ -102,11 +102,11 @@ int BmxWallPlantConstraint::func_0011A590(float dt)
     b.y = 0.0f;
     b.z = 0.0f;
     b.w = 1.0f;
-    len = sqrtf(d.z * d.z + d.y * d.y + d.x * d.x);
+    len = AsmSqrtF(d.z * d.z + d.y * d.y + d.x * d.x);
     if (len < f64) {
         if (!(len > f5c)) {
             float t = dt * f6c;
-            len = len < t ? len : t;
+            len = AsmMinF(len, t);
         }
         func_0001E9E0((float *)&n, (float *)&d);
         scaled.x = n.x * len;
