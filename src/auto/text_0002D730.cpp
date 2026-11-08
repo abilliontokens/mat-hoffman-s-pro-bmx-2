@@ -309,14 +309,16 @@ void C_0002D730::func_0002D730(float dt)
         D_002B7E8C = (int)((S_2D730_Mgr *)D_002A7CB8)->func_00026500(&D_00276774, -1);
     }
     ((S_2D730_Sub *)f1ec)->func_00030CE0(dt);
-    ((int *)((char *)this + 0x8c))[0] = D_002A10F0;
-    ((int *)((char *)this + 0x8c))[1] = D_002A10F4;
-    ((int *)((char *)this + 0x8c))[2] = D_002A10F8;
-    ((int *)((char *)this + 0x8c))[3] = D_002A10FC;
-    ((int *)((char *)this + 0x9c))[0] = D_002A10F0;
-    ((int *)((char *)this + 0x9c))[1] = D_002A10F4;
-    ((int *)((char *)this + 0x9c))[2] = D_002A10F8;
-    ((int *)((char *)this + 0x9c))[3] = D_002A10FC;
+    int *floor = (int *)((char *)this + 0x8c);
+    floor[0] = D_002A10F0;
+    floor[1] = D_002A10F4;
+    floor[2] = D_002A10F8;
+    floor[3] = D_002A10FC;
+    floor = (int *)((char *)this + 0x9c);
+    floor[0] = D_002A10F0;
+    floor[1] = D_002A10F4;
+    floor[2] = D_002A10F8;
+    floor[3] = D_002A10FC;
     float step = *(float *)&D_002B7E9C * dt;
     for (int iteration = 0; iteration < D_002A1190; ++iteration) {
     if (!(D_002B7EA4 & 64)) {
