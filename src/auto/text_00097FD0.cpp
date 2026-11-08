@@ -296,11 +296,6 @@ static __forceinline void Refresh_000988B0(char **lp, char *a, int flag)
     }
 }
 
-static __forceinline void Refresh2_000988B0(char *a, char **lp, int flag)
-{
-    Refresh_000988B0(lp, a, flag);
-}
-
 int __fastcall func_000988B0(char *self, int unused, char *a, char *b)
 {
     int i;
