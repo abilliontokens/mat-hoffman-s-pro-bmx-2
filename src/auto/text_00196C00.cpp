@@ -47,6 +47,8 @@ struct C_001975A0 {
     void func_00196560();
     void func_001975A0(f32 dt);
     void func_00196C00(f32 dt);
+    void func_00196290();
+    int func_001968C0();
     void func_00157A00(f32 dt);
     int func_00197610(f32 dt);
 };
@@ -257,42 +259,36 @@ extern void func_0015C7D0(float *out, float *a, float *b, float *c, float *d);
 extern int func_00016CF0(float v);
 void __fastcall func_00196C00(char *self, int, float dt)
 {
-    float t;
-    int i;
-    int n;
-    char *p;
-    int *arr;
+    C_001972B0 *o = (C_001972B0 *)self;
+    unsigned i;
 
     *(float *)(self + 0x2c) = *(float *)(self + 0x28);
     if (*(unsigned char *)(self + 0xc0) & 8) {
-        float v = func_00196290(*(float *)(self + 0x28));
-        float s = v - dt * *(float *)(self + 0x44);
-        *(float *)(self + 0x28) = s;
-        if (s < 0.0f) s = 0.0f;
-        *(float *)(self + 0x28) = s;
+        float v = *(float *)(self + 0x28);
+        o->func_00196290();
+        *(float *)(self + 0x28) = v - dt * *(float *)(self + 0x44);
+        *(float *)(self + 0x28) = AsmMaxF(*(float *)(self + 0x28), 0.0f);
     } else {
         *(float *)(self + 0x28) += dt * *(float *)(self + 0x44);
     }
 
     if (*(unsigned char *)(self + 0xc0) & 0x20) return;
 
-    for (;;) {
+    do {
         if (*(float *)(self + 0x28) >= *(float *)(self + 0x48)) {
             int r = func_001968C0(self);
             *(unsigned char *)(self + 0xc0) ^= (r << 5) & 0x20;
         }
-        if (!(*(unsigned char *)(self + 0xc0) & 0x20)) continue;
-        break;
-    }
+    } while (!(*(unsigned char *)(self + 0xc0) & 0x20));
+
     if (*(float *)(self + 0x48) == *(float *)(self + 0x30)) return;
 
-    t = (*(float *)(self + 0x28) - *(float *)(self + 0x30)) /
-        (*(float *)(self + 0x48) - *(float *)(self + 0x30));
-    n = *(int *)(self + 0x74);
-    if (n <= 0) return;
+    float t = (*(float *)(self + 0x28) - *(float *)(self + 0x30)) /
+              (*(float *)(self + 0x48) - *(float *)(self + 0x30));
+    if (*(unsigned *)(self + 0x74) == 0) return;
 
-    for (i = 0; i < n; i++) {
-        p = ((char **)(self + 0x7c))[i];
+    for (i = 0; i < *(unsigned *)(self + 0x74); i++) {
+        char *p = ((char **)(self + 0x7c))[i];
         if (p == 0) continue;
         if (((int *)(self + 0x84))[i] == 0) continue;
         if (((int *)(self + 0x80))[i] != 0) {
