@@ -81,6 +81,11 @@ static __forceinline int PrepStr_00166CA0(char *buf, char *src)
  buf[n] = 0;
  return n;
 }
+static __forceinline void CopyStr_166CA0(char *d, const char *s)
+{
+    char c;
+    do { c = *s++; *d++ = c; } while (c);
+}
 struct C_00166CA0 {
  int *vbptr;
  C_00166CA0_Obj *f4;
