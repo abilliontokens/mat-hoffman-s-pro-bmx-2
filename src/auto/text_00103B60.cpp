@@ -140,9 +140,6 @@ struct V3_00104A00 {
     float x;
     float y;
     float z;
-    __forceinline int func_00104A00_0() { return *(int *)&x; }
-    __forceinline int func_00104A00_1() { return *(int *)&y; }
-    __forceinline int func_00104A00_2() { return *(int *)&z; }
 };
 
 struct V4_00104A00 {
