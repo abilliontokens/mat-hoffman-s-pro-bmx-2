@@ -9,7 +9,7 @@ struct S_25240_V4 {
     S_25240_V4() {}
     S_25240_V4(const S_25240_Pt *p) { x = p->x; y = p->y; z = p->z; w = 1.0f; }
     S_25240_V4(float a, float b, float c) { x = a; y = b; z = c; w = 1.0f; }
-    S_25240_V4(const S_25240_Pt &p) { *(S_25240_V3 *)this = *(const S_25240_V3 *)&p; w = 1.0f; }
+    __forceinline S_25240_V4(const S_25240_Pt &p) { *(S_25240_V3 *)this = *(const S_25240_V3 *)&p; w = 1.0f; }
 };
 static __forceinline void SetV4_25240(S_25240_V4 *d, const S_25240_Pt *p)
 {
