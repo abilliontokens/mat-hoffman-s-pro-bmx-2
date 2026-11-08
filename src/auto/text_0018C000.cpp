@@ -753,9 +753,9 @@ int C_0018CC00::func_0018CC00(const char * volatile name)
 }
 int C_0018CE00::func_0018CE00(int id, char *name)
 {
+    int len, limit, n;
     int slot;
     int i;
-    int n;
 
     slot = -1;
     for (i = 0; i < count; i++) {
@@ -775,8 +775,9 @@ int C_0018CE00::func_0018CE00(int id, char *name)
         }
     }
     entries[slot].id = id;
-    n = strlen(name);
-    if (n > 0x3f) n = 0x3f;
+    len = strlen(name);
+    limit = 0x3f;
+    n = AsmMinI(limit, len);
     func_001E8920(entries[slot].name, name, n);
     entries[slot].name[n] = 0;
     entries[slot].f54 = 0;
