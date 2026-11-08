@@ -150,7 +150,7 @@ struct S_000D1980_Str10 {
     char c[10];
 };
 
-extern S_000D1980_Str10 D_0027ED04;
+extern S_000D1980_Str10 S_000D1980_Cpy;
 extern int D_0027ED08;
 extern short D_0027ED0C;
 char *func_001E8920(char *dst, const char *src, int n);
@@ -493,7 +493,7 @@ void C_000D0FD0::func_000D1980()
     int i;
 
     S_000D1980_Mgr *mgr = f124;
-    f1EDC = D_0027ED04;
+    f1EDC = S_000D1980_Cpy;
     i = 0;
     for (;;) {
         int cnt = (*mgr->f150->f3A8)->count;
