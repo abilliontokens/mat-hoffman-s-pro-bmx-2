@@ -6,3 +6,4 @@ build.ninja
 objdiff.json
 __pycache__/
 .decomp-wtf/
+*.tmp

@@ -1,5 +1,12 @@
 # Mat Hoffman's Pro BMX 2 decompilation
 
+**Progress: 40.6% of the code — 4,149 of 5,133 functions matched** (2026-11-08).
+
+The function map, one square per function of the game's program; green where the C++ in `src/` compiles to the game's
+code exactly (legend: to do, tried, close, working, matched, polished, set aside, not C):
+
+![Function map progress](docs/function-map.png)
+
 Started from scratch with [decompdecomp](https://github.com/n-delic/decompdecomp): the game's functions, found by Ghidra, are cut out of your
 copy of its program and compared with what `src/` compiles to, function by function, with objdiff.
 
