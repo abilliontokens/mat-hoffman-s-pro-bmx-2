@@ -491,18 +491,22 @@ void C_00102370::func_00102370(float dt)
                     D_002A8490->f2E0->f190 = r;
                     *(int *)(e + 0x124) = 0;
                     char *s = e + 0x104;
-                    int len = strlen(s);
-                    int lim = 7;
-                    int n = lim > len ? len : lim;
-                    func_001E8920(D_002A8490->f2E0->buf150, s, n);
-                    D_002A8490->f2E0->buf150[n] = 0;
+                    {
+                        int len = strlen(s);
+                        int lim = 7;
+                        int n = AsmMinI(lim, len);
+                        func_001E8920(D_002A8490->f2E0->buf150, s, n);
+                        D_002A8490->f2E0->buf150[n] = 0;
+                    }
                     D_002A8490->f2E0->f1B0 = 0;
                     s = (char *)b + x * 0x120 + 0x104;
-                    len = strlen(s);
-                    lim = 7;
-                    n = lim > len ? len : lim;
-                    func_001E8920(D_002A8490->f2E0->buf1F4, s, n);
-                    D_002A8490->f2E0->buf1F4[n] = 0;
+                    {
+                        int len = strlen(s);
+                        int lim = 7;
+                        int n = AsmMinI(lim, len);
+                        func_001E8920(D_002A8490->f2E0->buf1F4, s, n);
+                        D_002A8490->f2E0->buf1F4[n] = 0;
+                    }
                     f124->func_000BC3E0(0);
                     Obj102370_7E050 *o = (Obj102370_7E050 *)func_001E8A44(0x41a0);
                     D_002A8490->f2E0->f2C4 = (int *)(o ? o->func_0007E050() : 0);
