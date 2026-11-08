@@ -359,7 +359,6 @@ struct C_001AE700 {
     char pad58[0xC];
     int *f64;
     float f68;
-    struct { int left, top, right, bottom; } f6C;
     void func_001AE700(void);
 };
 
@@ -744,10 +743,8 @@ void C_001AE810::func_001AE810(void)
 
 void C_001AE890::func_001AE890(void)
 {
-    int desc[6];
+    int desc[7];
     S_001AE890_View view;
-    S_001AE890_View *vp;
-    S_001AE890_View * volatile vps;
     int rect2[4];
     int rect[4];
     struct { int pitch; int *bits; } lock;
@@ -757,12 +754,13 @@ void C_001AE890::func_001AE890(void)
     int texA, texB;
     int *p;
     int i, x, y, v;
+    S_001AE890_View * volatile vp;
 
     func_001ADD80(f18);
     AsmFloatToIntRound((float)f34 * f3C + (float)f2C, &right);
     AsmFloatToIntRound((float)f38 * f40 + (float)f30, &bottom);
     func_001FF940(f20, *(void **)((char *)D_002EFDB8 + 0x5c));
-    vp = vps = (S_001AE890_View *)((char *)D_002EFDB8->cam + 0x1e0);
+    vp = (S_001AE890_View *)((char *)D_002EFDB8->cam + 0x1e0);
     view = *vp;
     func_00200230(&view);
     {
@@ -783,7 +781,7 @@ void C_001AE890::func_001AE890(void)
     f64 = 255;
     f68 = 16758600.0f;
     f24 = 0xffffff;
-    func_001ADFD0((char *)f18 + 0x6c, texB, 0, 0, 0, 1);
+    func_001ADFD0((int *)((char *)f18 + 0x6c), texB, 0, 0, 0, 1);
     func_00201210(f20, &lock, 0, 0);
     func_002011F0(f20, desc);
     p = lock.bits + desc[5] * top + left;
@@ -811,7 +809,7 @@ void C_001AE890::func_001AE890(void)
     }
     f18->func_001AE700();
     func_001FF940(*(void **)((char *)D_002EFDB8 + 0x58), *(void **)((char *)D_002EFDB8 + 0x5c));
-    func_00200230(vps);
+    func_00200230(vp);
     rect2[0] = f2C;
     rect2[1] = f30;
     rect2[2] = right;
