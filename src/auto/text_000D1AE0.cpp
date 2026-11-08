@@ -1,6 +1,7 @@
 /* 8 functions from 0x000D1AE0 to 0x000D28D0, found by Ghidra. */
 #include "common.h"
 #include <string.h>
+#include "asm_helpers.h"
 
 /* a record whose name string sits at +0x28 */
 struct S_000D2080_Item {
@@ -367,45 +368,39 @@ void C_000D2080::func_000D1AE0(void)
 void C_000D2080::func_000D2080(void)
 {
     char buf[0x104];
-    C_000D2080 * volatile self = this;
-    volatile int lim;
+    int lim;
     S_000D2080_Mgr *mgr = *(S_000D2080_Mgr * volatile *)&f124;
+    int n;
+    int len;
+    int j;
     int off;
     int poff;
-    int j;
-    volatile int sizes[2];
     
     *(S_000D2080_Str23 *)names[0] = D_0027EEDC;
-    *(S_000D2080_Str21 *)self->names[1] = D_0027EEC4;
-    *(S_000D2080_Str21 *)self->names[2] = D_0027EEAC;
-    *(S_000D2080_Str23 *)self->names[3] = D_0027EE94;
-    *(S_000D2080_Str21 *)self->names[4] = D_0027EE7C;
-    *(S_000D2080_Str20 *)self->names[5] = D_0027EE68;
-    *(S_000D2080_Str23 *)self->names[6] = D_0027EE50;
-    *(S_000D2080_Str22 *)self->names[7] = D_0027EE38;
-    *(S_000D2080_Str21 *)self->names[8] = D_0027EE20;
-    *(S_000D2080_Str18 *)self->names[9] = D_0027EE0C;
-    poff = 0x2048;
-    for (off = 0x474; off < 0xE9C; off += 0x104) {
-        for (j = 0; j < (*mgr->f150->f3A8)->count; (*(volatile int *)&j)++) {
+    *(S_000D2080_Str21 *)this->names[1] = D_0027EEC4;
+    *(S_000D2080_Str21 *)this->names[2] = D_0027EEAC;
+    *(S_000D2080_Str23 *)this->names[3] = D_0027EE94;
+    *(S_000D2080_Str21 *)this->names[4] = D_0027EE7C;
+    *(S_000D2080_Str20 *)this->names[5] = D_0027EE68;
+    *(S_000D2080_Str23 *)this->names[6] = D_0027EE50;
+    *(S_000D2080_Str22 *)this->names[7] = D_0027EE38;
+    *(S_000D2080_Str21 *)this->names[8] = D_0027EE20;
+    *(S_000D2080_Str18 *)this->names[9] = D_0027EE0C;
+    for (poff = 0x2048, off = 0x474; off < 0xE9C; off += 0x104, poff += 4) {
+        for (j = 0; j < (*mgr->f150->f3A8)->count; j++) {
             S_000D2080_Entry *e = (*mgr->f150->f3A8)->items[j];
             if (e != 0 && e->f4 == 1 && e->f8 != 0) {
-                sizes[0] = strlen(e->f8->name);
+                len = strlen(e->f8->name);
                 lim = 0x103;
-                int a = lim;
-                int b = sizes[0];
-                if (a > b) a = b;
-                sizes[1] = a;
-                int n = sizes[1];
+                n = AsmMinI(lim, len);
                 func_001E8920(buf, (*(S_000D2080_Item * volatile *)&e->f8)->name, n);
                 buf[n] = 0;
                 char *dot = func_001E8AC0(buf, '.');
                 if (dot != 0) memset(dot, 0, strlen(dot));
-                if (func_001EA426(buf, (char *)self + off) == 0)
-                    *(S_000D2080_Item **)((char *)self + poff) = e->f8;
+                if (func_001EA426(buf, (char *)this + off) == 0)
+                    *(S_000D2080_Item **)((char *)this + poff) = e->f8;
             }
         }
-        poff += 4;
     }
 }
 
