@@ -185,7 +185,7 @@ extern float D_00275AEC, D_0028491C, D_002757FC;
     if (D_002757FC < (o)->f14 || (o)->f14 > (o)->f10) (o)->f14 = 8.0f; }
 #define CELL2(n) \
     idx = (j + (n)) / 4 + j + (n); \
-    if (!((vf[idx + 6] & vf[idx + 5] & vf[idx + 1] & vf[idx]) & 0xffffffef)) { \
+    if (!((vf[idx] & (vf[idx + 1] & (vf[idx + 5] & vf[idx + 6]))) & 0xffffffef)) { \
         *(unsigned short *)((char *)this->f28 + k * 0xfc + 0x12c) |= (unsigned short)(1 << (j + (n))); \
         o = ((S_137810_Clamp **)this->f28)[0x13 + k * 0x3f + j + (n)]; \
         if (o) CLAMP8_137810(o) \
