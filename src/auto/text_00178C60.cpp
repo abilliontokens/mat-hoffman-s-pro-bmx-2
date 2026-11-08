@@ -71,9 +71,12 @@ static __forceinline Vec4 make_179950(float x, float y, float z) {
 
 static __forceinline void sub_179950(float *out, Vec4 *a, Vec4 *b)
 {
-    out[2] = a->z - b->z;
-    out[1] = a->y - b->y;
-    out[0] = a->x - b->x;
+    float z = a->z - b->z;
+    float y = a->y - b->y;
+    float x = a->x - b->x;
+    out[0] = x;
+    out[1] = y;
+    out[2] = z;
     out[3] = 1.0f;
 }
 
@@ -287,10 +290,8 @@ C_00179820 *C_00179820::func_00179820(int a0) {
 void C_00179820::func_00179880(void) {
  float d1[3]={v24[2].x-v24[0].x,v24[2].y-v24[0].y,v24[2].z-v24[0].z};
  float d2[3]={v24[3].x-v24[1].x,v24[3].y-v24[1].y,v24[3].z-v24[1].z};
- float s1=(d1[1]*d1[1]+d1[2]*d1[2])+d1[0]*d1[0];
- float s2=(d2[1]*d2[1]+d2[2]*d2[2])+d2[0]*d2[0];
- float a=AsmSqrtF(s1);
- float b=AsmSqrtF(s2);
+ float a=AsmSqrtF(d1[1]*d1[1]+d1[0]*d1[0]+d1[2]*d1[2]);
+ float b=AsmSqrtF(d2[1]*d2[1]+d2[0]*d2[0]+d2[2]*d2[2]);
  fB4=AsmMaxF(a,b);
 }
 
@@ -299,14 +300,12 @@ void C_00179820::func_00179950(void) {
     Vec4 b, u;
     int i;
     sub_179950(&u.x, &v24[1], &v24[0]);
-    u.w = 1.0f;
     sub_179950(&b.x, &v24[2], &v24[0]);
-    b.w = 1.0f;
     AsmVec3Cross(&v64.x, &u.x, &b.x);
     func_00179370(&v64, &v64);
     for (i = 0; i < 4; i++) {
-        Vec4 *n = &v24[(i + 1) % 4];
-        u = vecsub2_179950(n, &v24[i]);
+        Vec4 *n = &v24[i];
+        u = vecsub2_179950(&v24[(i + 1) % 4], n);
         AsmVec3Cross(&v74[i].x, &u.x, &v64.x);
         AsmVec3Normalize(&v74[i].x, &v74[i].x);
     }
