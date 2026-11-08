@@ -289,7 +289,7 @@ void C_0002D730::func_0002D730(float dt)
     else if (f1e8->f64 || f468 || *(int *)((char *)this + 0x704) || *(int *)((char *)this + 0x70c))
         ((S_2D730_Component *)f1e4)->set_speed(32.2f);
     else {
-        if (!*(int *)((char *)this + 0x680) || !(Abs_2D730(f1e0->f23C) >= *(float *)((char *)this + 0x58c))) {
+        if (!*(int *)((char *)this + 0x680) || Abs_2D730(f1e0->f23C) < *(float *)((char *)this + 0x58c)) {
             if (f440) {
                 if (*(int *)((char *)this + 0x684))
                     ((S_2D730_Component *)f1e4)->set_speed(D_002A118C * 32.2f);
