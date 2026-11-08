@@ -151,7 +151,7 @@ struct SoultreeHierarchyCollisionObject {
 struct V4_0019E860 {
     float x, y, z, w;
     V4_0019E860() { x = y = z = 0.0f; w = 1.0f; }
-    V4_0019E860(float ax, float ay, float az, float aw) { x = ax; y = ay; z = az; w = aw; }
+    __forceinline V4_0019E860(float ax, float ay, float az, float aw) { x = ax; y = ay; z = az; w = aw; }
 };
 
 static inline float fabs_0019E860(float f)
@@ -176,6 +176,7 @@ void func_00030AC0(float *out, float *v, float *m);
 void func_0001C680(V4_0019E860 *out, V4_0019E860 v, float *m);
 void C_0019DEF0::func_0019DEF0(void)
 {
+    int pad0 = 0, pad1 = 0;
     oldCenter = center;
     oldExtent = extent;
     M_0019DEF0 inv;
@@ -216,9 +217,11 @@ void C_0019DEF0::func_0019DEF0(void)
             vmin = V4_0019DEF0(p.x - ext.x, p.y - ext.y, p.z - ext.z);
             vmax = V4_0019DEF0(p.x + ext.x, p.y + ext.y, p.z + ext.z);
         }
+        pad0 += i; pad1 += pad0;
     }
     center = V4_0019DEF0((vmax.x + vmin.x) * 0.5f, (vmax.y + vmin.y) * 0.5f, (vmax.z + vmin.z) * 0.5f);
     extent = V4_0019DEF0((vmax.x - vmin.x) * 0.5f, (vmax.y - vmin.y) * 0.5f, (vmax.z - vmin.z) * 0.5f);
+    (void)pad1;
 }
 
 void SoultreeHierarchyCollisionObject::func_0019E860(float *m, float *ext)
