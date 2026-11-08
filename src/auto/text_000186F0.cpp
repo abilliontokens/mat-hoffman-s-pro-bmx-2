@@ -388,20 +388,25 @@ void C_000186F0::func_000186F0(void *p)
     char bufC[0x104];
     char bufB[0x104];
     char bufA[0x104];
-    int len, lim, n;
 
     f3C->f4->func_0019ABA0(((G9120_186 *)D_002B9120)->f4A8[((G9120_186 *)D_002B9120)->f348], 2);
     f498 = f3C->f4->func_00198330(D_00275748);
-    len = strlen(D_002A5EA0);
-    lim = 0x103;
-    n = AsmMinI(lim, len);
-    func_001E8920(bufA, D_002A5EA0, n);
-    bufA[n] = 0;
-    len = strlen(D_002A60B0);
-    lim = 0x103;
-    n = AsmMinI(lim, len);
-    func_001E8920(bufB, D_002A60B0, n);
-    bufB[n] = 0;
+    {
+        int len, lim, n;
+        len = strlen(D_002A5EA0);
+        lim = 0x103;
+        n = AsmMinI(lim, len);
+        func_001E8920(bufA, D_002A5EA0, n);
+        bufA[n] = 0;
+    }
+    {
+        int n, lim, len;
+        len = strlen(D_002A60B0);
+        lim = 0x103;
+        n = AsmMinI(lim, len);
+        func_001E8920(bufB, D_002A60B0, n);
+        bufB[n] = 0;
+    }
     func_001ADCC0(D_002A5EA0, 0x104, D_00275678, D_002A5870, D_002A45E0);
     func_001ADCC0(D_002A60B0, 0x104, D_00275678, D_002A5870, D_002A5FA8);
     for (int off = 0; off < 0xF0; off += 0x28) {
@@ -418,16 +423,22 @@ void C_000186F0::func_000186F0(void *p)
     f494 = r ? r->func_0016CE80(1) : 0;
     f494->func_0016CF10(p, D_00275910, 0, 0);
     func_001577A0(f494, 2);
-    len = strlen(bufA);
-    lim = 0x103;
-    n = AsmMinI(lim, len);
-    func_001E8920(D_002A5EA0, bufA, n);
-    D_002A5EA0[n] = 0;
-    len = strlen(bufB);
-    lim = 0x103;
-    n = AsmMinI(lim, len);
-    func_001E8920(D_002A60B0, bufB, n);
-    D_002A60B0[n] = 0;
+    {
+        int n, lim, len;
+        len = strlen(bufA);
+        lim = 0x103;
+        n = AsmMinI(lim, len);
+        func_001E8920(D_002A5EA0, bufA, n);
+        D_002A5EA0[n] = 0;
+    }
+    {
+        int n, lim, len;
+        len = strlen(bufB);
+        lim = 0x103;
+        n = AsmMinI(lim, len);
+        func_001E8920(D_002A60B0, bufB, n);
+        D_002A60B0[n] = 0;
+    }
     func_001ADCC0(D_002A48F8, 0x104, D_00275678, D_002A5870, D_002A47F0);
     {
         Obj20C_186 *q = (Obj20C_186 *)func_001E8A44(0x20C);
@@ -603,20 +614,31 @@ void C_00019070::func_00019070()
 extern "C" float __cdecl sqrtf(float);
 #pragma intrinsic(sqrtf)
 int C_000192D0::func_000192D0(int volatile a, int volatile b) {
-    float other[4], pos[4], out[4];
-    int best = -1;
-    float bestd;
-    out[0] = out[1] = out[2] = 0.0f; out[3] = 1.0f;
-    if (!f398->f2c) { memcpy(other, D_002A0718f, 16); }
-    else f398->f2c->f1a4->f4->func_00199B00(other, 0);
+    float d, bestd, sq;
+    float pos[4], other[4], out[4];
+    int best;
+    out[0] = out[1] = out[2] = 0.0f;
+    out[3] = 1.0f;
+    if (!f398->f2c) {
+        *(int *)&other[0] = D_002A0718;
+        other[1] = D_002A071C;
+        other[2] = D_002A0720;
+        other[3] = D_002A0724;
+    } else {
+        f398->f2c->f1a4->f4->func_00199B00(other, 0);
+    }
     bestd = 10000.0f;
+    best = -1;
     for (int i = 0; i < f4d8; i++) {
-        if (b == 1 && i == f4dc) continue;
-        memcpy(pos, &f49c[i].f4, 16); pos[1] += D_002757FC;
-        if (a == 0 && func_00017AD0(pos, other, out, 0)) continue;
-        float delta[3]; delta[0] = other[0] - pos[0]; delta[1] = other[1] - pos[1]; delta[2] = other[2] - pos[2];
-        float sq = delta[2] * delta[2] + delta[1] * delta[1] + delta[0] * delta[0];
-        float d = AsmSqrtF(sq);
+        if (a == 1 && i == f4dc) continue;
+        memcpy(pos, &f49c[i].f4, 16);
+        pos[1] += D_002757FC;
+        if (b == 0 && func_00017AD0(pos, other, out, 0)) continue;
+        float z = other[2] - pos[2];
+        float y = other[1] - pos[1];
+        float x = other[0] - pos[0];
+        sq = z * z + y * y + x * x;
+        d = AsmSqrtF(sq);
         if (d < bestd && d > f49c[i].f0) { best = i; bestd = d; }
     }
     return best == f4dc ? -1 : best;
