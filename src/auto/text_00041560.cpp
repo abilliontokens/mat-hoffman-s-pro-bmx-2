@@ -392,11 +392,6 @@ struct BmxEventEditor {
         *out = 0;
         func_00038A70(p, out);
     }
-    __forceinline void FindBlock2(void *p, void **out)
-    {
-        *out = 0;
-        func_00038A70(p, out);
-    }
 };
 
 struct S_3D910_Base {
