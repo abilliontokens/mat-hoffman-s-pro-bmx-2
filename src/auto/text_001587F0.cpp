@@ -29,7 +29,6 @@ extern int D_00287520;
 struct Vec4_587F0 {
     float x, y, z, w;
     Vec4_587F0() {}
-    Vec4_587F0 &operator=(const Vec4_587F0 &o) { x=o.x; y=o.y; z=o.z; w=o.w; return *this; }
     Vec4_587F0(float ax, float ay, float az, float aw = 1.0f) { x = ax; y = ay; z = az; w = aw; }
     Vec4_587F0 operator*(float s) const { return Vec4_587F0(x * s, y * s, z * s); }
     Vec4_587F0 operator+(const Vec4_587F0 &o) const { return Vec4_587F0(x + o.x, y + o.y, z + o.z); }
