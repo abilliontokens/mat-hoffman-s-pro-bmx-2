@@ -815,30 +815,44 @@ void C_00094F10::func_00094F10(void)
 
 extern "C" void _ReadWriteBarrier(void);
 #pragma intrinsic(_ReadWriteBarrier)
-static __forceinline void ResetTracks_00094F40(C_00095060 *s)
+/* one of BmxMusicManager's two 0x14-byte list blocks: tracks at +0x54, ids at +0x68 */
+struct S_00095060_List {
+    int count;
+    void **items;
+    int cap;
+    int grow;
+    unsigned char flags;
+};
+static __forceinline void ResetList_00094F40(S_00095060_List *l)
 {
-    s->tracks.items = 0;
-    s->tracks.count = 0;
-    s->f5C = 0;
-    s->f60 = 0;
-    s->f64 &= 0xfe;
-}
-static __forceinline void ResetIds_00094F40(C_00095060 *s)
-{
-    s->ids.items = 0;
-    s->ids.count = 0;
-    s->f70 = 0;
-    s->f74 = 0;
-    s->f78 &= 0xfe;
+    unsigned char t = l->flags;
+    l->items = 0;
+    l->count = 0;
+    l->cap = 0;
+    l->grow = 0;
+    _ReadWriteBarrier();
+    l->flags = t & 0xfe;
 }
 void *C_00095060::func_00094F40(void *arg)
 {
+    unsigned char m = 0xfe;
     ((C_00157600 *)this)->func_00157600(1);
     vtbl = (void *)&D_0027A23C;
     _ReadWriteBarrier();
-    ResetTracks_00094F40(this);
+    unsigned char t64 = f64;
+    tracks.items = 0;
+    tracks.count = 0;
+    f5C = 0;
+    f60 = 0;
     _ReadWriteBarrier();
-    ResetIds_00094F40(this);
+    f64 = t64 & m;
+    unsigned char t78 = f78;
+    ids.items = 0;
+    ids.count = 0;
+    f70 = 0;
+    f74 = 0;
+    _ReadWriteBarrier();
+    f78 = t78 & m;
     _ReadWriteBarrier();
     f30 = 5;
     f34 = 0;
@@ -852,11 +866,11 @@ void *C_00095060::func_00094F40(void *arg)
     tracks.items = (S_00095060_Track **)func_001E8A44(4);
     f5C = 16;
     f60 = 1;
-    f64 |= 1;
+    f64b.b0 = 1;
     ids.items = (void **)func_001E8A44(4);
     f70 = 16;
     f74 = 1;
-    f78 |= 1;
+    f78b.b0 = 1;
     f7C = 0;
     f80 = arg;
     C_001CD770 *obj = (C_001CD770 *)func_001E8A44(0x4c);
