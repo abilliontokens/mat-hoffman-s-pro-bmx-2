@@ -104,6 +104,7 @@ struct S_00088DD0_Sprite {
     char pad3C[0x1c];
     unsigned char b58;
     void Dirty(unsigned char flags) { b58 |= flags; }
+    void SetFlags(int flags) { b58 |= flags; }
     void SetWidth(u32 w) { if(f28!=w) { f28=w; Dirty(1); } }
     void SetHeight(u32 h) { if(f2C!=h) { f2C=h; Dirty(1); } }
     void SetWidthF(u32 w, int flags) { if(f28!=w) { f28=w; b58 |= flags; } }
