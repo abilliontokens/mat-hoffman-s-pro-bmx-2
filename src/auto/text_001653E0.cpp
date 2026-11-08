@@ -199,6 +199,7 @@ struct C_00165A20 {
 extern "C" char *func_001E8920(char *dst, const char *src, unsigned int n);
 extern char D_00287E48[];
 #include <string.h>
+#include "asm_helpers.h"
 
 static inline int min_165F70(const int &a, const int &b) { return a > b ? b : a; }
 static __forceinline int min_165F70_volatile(const volatile int &a, const volatile int &b) { int x = a, y = b; return x > y ? y : x; }
@@ -447,58 +448,48 @@ Vec4_165EF0 C_00165EF0::func_00165EF0(C_00165EF0_Arg1 *a1, f32 a2, int a3, void 
 
 void C_00165F70::func_00165F70(void)
 {
-    C_00165F70 * volatile self = this;
     char buf[0x100];
     int id;
     int idx;
     char *p;
     char *tok;
-    int n;
 
     if (this->f1FC == 0) {
-        {
-            volatile int s1[3];
-            s1[0] = strlen(this->f190);
-            s1[1] = 0xff;
-            int a = s1[1];
-            int b = s1[0];
-            s1[2] = min_165F70(a, b);
-            C_00165F70 *source = self;
-            n = s1[2];
-            func_001E8920(buf, source->f190, n);
-        }
+        int l = strlen(this->f190);
+        int m = 0xff;
+        int n = AsmMinI(m, l);
+        func_001E8920(buf, this->f190, n);
         buf[n] = 0;
-        strcat(buf, self->f98);
+        strcat(buf, this->f98);
         id = D_002BEAAC->func_0013C9F0(buf, &D_00276274);
-        if (id != -1) {
+        if (id == -1) return;
+        {
             while (D_002BEAAC->func_0013C6E0(id, buf, 0xFF)) {
                 func_001EA1EE(buf);
-                idx = self->func_00164650(func_001E95A4(buf, D_00287E50));
+                idx = func_00164650(func_001E95A4(buf, D_00287E50));
                 if (idx != 0xff) {
-                    volatile int s2[3];
                     tok = func_001E95A4(0, D_00287E48);
-                    s2[1] = strlen(tok);
-                    s2[0] = 0x31;
-                    int a2 = s2[0];
-                    int b2 = s2[1];
-                    s2[2] = min_165F70(a2, b2);
-                    C_00165F70 *src2 = self;
-                    n = s2[2];
-                    func_001E8920(src2->f1EC[idx].name, tok, n);
-                    self->f1EC[idx].name[n] = 0;
-                    self->f1EC[idx].f38 = 0;
-                    self->f1EC[idx].f3C = 1;
+                    int l2 = strlen(tok);
+                    int m2 = 0x31;
+                    int n2 = AsmMinI(m2, l2);
+                    func_001E8920(this->f1EC[idx].name, tok, n2);
+                    C_00165F70_Elem *entry = &this->f1EC[idx];
+                    entry->name[n2] = 0;
+                    entry = &this->f1EC[idx];
+                    entry->f38 = 0;
+                    entry = &this->f1EC[idx];
+                    entry->f3C = 1;
                     p = func_001E95A4(0, D_00287E40);
                     if (p) {
                         func_001EA1EE(p);
                         if (*p == 'T')
-                            self->f1EC[idx].f38 = 1;
+                            this->f1EC[idx].f38 = 1;
                     }
                 }
             }
             D_002BEAAC->func_0013C110(id);
         }
-        self->f1FC = 1;
+        this->f1FC = 1;
     }
 }
 
