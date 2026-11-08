@@ -14,6 +14,7 @@ extern char D_002A60B4, D_002A60B8, D_002A60BC, D_002A60C0;
 extern char _D_0027A048[];
 extern char _D_0027A03C[];
 extern char _D_0027A030[];
+extern char _D_0027A01C[];
 void *func_001E8A44(int size);
 struct W_0008DB70 {
     char pad0[0x28];
@@ -380,10 +381,10 @@ S_0008DB70 *S_0008DB70::func_0008DB70(char *a2, int a1, int a0, int a3, int a5, 
             char *stt = P4((void *)D_002A8490, 0x2e0);
             C2EC_0008DB70 *mgr = (C2EC_0008DB70 *)P4((void *)D_002A8490, 0x2ec);
             int sel;
-            void *loc;
+            int locbuf[2];
             if (I4(stt, 8) != 0) {
-                loc = (void *)_D_002786A0;
-                mgr->func_0018C780(&loc, 1);
+                locbuf[1] = (int)_D_002786A0;
+                mgr->func_0018C780(locbuf, 1);
                 int c0 = mgr->func_0018C160(_D_002786A0);
                 sel = c0 ? *(int *)c0 : 0;
                 p = func_001E8A44(0x60);
@@ -393,8 +394,8 @@ S_0008DB70 *S_0008DB70::func_0008DB70(char *a2, int a1, int a0, int a3, int a5, 
                 t1->func_0005E840(I4(I4(P4((void *)D_002A8490, 0x2e8), 4), 0x1010));
                 if (t1->f48 != 0xffcccccc) { t1->f4e |= 8; t1->f48 = (t1->f48 & 0xffcccccc) | 0xcccccc; }
             }
-            loc = (void *)_D_00278690;
-            mgr->func_0018C780(&loc, 2);
+            locbuf[1] = (int)_D_00278690;
+            mgr->func_0018C780(locbuf, 2);
             int c1 = mgr->func_0018C160(_D_00278690);
             sel = c1 ? *(int *)c1 : 0;
             p = func_001E8A44(0x60);
