@@ -249,11 +249,6 @@ static __forceinline unsigned int MakeColor_001AEBD0(int a, unsigned char r, uns
     return (((a << 8 | r) << 8 | g) << 8) | b;
 }
 
-static __forceinline unsigned int MakeColorF_001AEBD0(int a, float r, float g, float b)
-{
-    return MakeColor_001AEBD0(a, (unsigned char)(int)r, (unsigned char)(int)g, (unsigned char)(int)b);
-}
-
 struct C_001AE3E0;
 
 /* 8-byte back-reference object stored into C_001AE3E0_Sub::f8 */
