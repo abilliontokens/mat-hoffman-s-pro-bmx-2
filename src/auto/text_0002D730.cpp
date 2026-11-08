@@ -65,8 +65,9 @@ struct S_2D730_Component {
 };
 
 struct S_2D730_Mgr {
-    void *func_00026500(int a, void *b);
-};
+      void *func_00026500(int a, void *b);
+      void *func_00026500(void *name, int a);
+  };
 
 struct S_2D730_Sub {
     void func_00025E50(float f);
