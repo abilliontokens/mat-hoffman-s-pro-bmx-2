@@ -452,7 +452,7 @@ void C_0002D730::func_0002D730(float dt)
         *(float *)((char *)this + 0x120) = ((S_2D730_Transform *)*(void **)((char *)this + 0x224))->func_00026A10(*(float *)((char *)this + 0x130), dt);
         *(float *)((char *)this + 0x124) = ((S_2D730_Transform *)*(void **)((char *)this + 0x228))->func_00026A10(*(float *)((char *)this + 0x134), dt);
         func_00026340((char *)this + 0x11c, (char *)this + 0x11c);
-        volatile V4_2D730 perpendicular;
+        V4_2D730 perpendicular;
         AsmVec3Cross((float *)&perpendicular.x, (float *)((char *)this + 0x10c), (float *)((char *)this + 0x11c));
         AsmVec3Cross((float *)((char *)this + 0x11c), (float *)&perpendicular.x, (float *)((char *)this + 0x10c));
         ((S_2D730_Transform *)f230)->func_00199110(0, (char *)this + 0x10c, (char *)this + 0x11c, 0, 1, 0);
