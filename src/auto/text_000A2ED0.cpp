@@ -320,49 +320,44 @@ void C_000A2ED0::func_000A2F20()
 void C_000A2ED0::func_000A3170(void)
 {
     int i;
-    S_000A2F20_List *list = unk3B4;
-    if (list == 0) {
+    if (!unk3B4) {
         return;
     }
-    for (i = 0; i < list->count; i++) {
-        if (((S_000A3170_Obj *)list->items[i]->unk4)->name[0] != 0 &&
-            ((S_000A3170_Obj *)list->items[i]->unk4)->unk2DC == 0) {
+    for (i = 0; i < unk3B4->count; i++) {
+        if (((S_000A3170_Obj *)unk3B4->items[i]->unk4)->name[0] != 0 &&
+            ((S_000A3170_Obj *)unk3B4->items[i]->unk4)->unk2DC == 0) {
             char name[0x104];
             char buf[0x104];
-            volatile int t[2];
-            volatile int len;
+            int lim; int n;
+            unsigned long len;
+            unsigned long index;
             int found;
             int j;
-            strcpy(name, ((S_000A3170_Obj *)list->items[i]->unk4)->name);
+            strcpy(name, ((S_000A3170_Obj *)unk3B4->items[i]->unk4)->name);
             found = 0;
             if (D_002B9134 != 0) {
                 for (j = 0; j < D_002B9134->unk38 && !found; j++) {
                     len = strlen(D_002B9134->unk48[j]->name);
-                    t[0] = 0x103;
-                    int a = t[0];
-                    int b = len;
-                    if (a > b) {
-                        a = b;
-                    }
-                    t[1] = a;
-                    int n = t[1];
+                    lim = 0x103;
+                    n = AsmMinI(lim, len);
                     func_001E8920(buf, D_002B9134->unk48[j]->name, n);
                     buf[n] = 0;
                     if (func_001EA426(buf, name) == 0) {
-                        ((S_000A3170_Obj *)list->items[i]->unk4)->unk2DC = D_002B9134->unk48[j]->unk3C->unk22C;
+                        ((S_000A3170_Obj *)unk3B4->items[i]->unk4)->unk2DC = D_002B9134->unk48[j]->unk3C->unk22C;
                         found = 1;
                     }
                 }
                 for (j = 0; j < D_002B9134->unk34 && !found; j++) {
-                    if (func_001EA426(D_002EFE08->unk158[D_002B9134->unk44[j]->unk38].name, name) == 0) {
-                        ((S_000A3170_Obj *)list->items[i]->unk4)->unk2DC = D_002B9134->unk44[j]->unk40->unk8;
+                    index = D_002B9134->unk44[j]->unk38;
+                    if (func_001EA426(D_002EFE08->unk158[index].name, name) == 0) {
+                        ((S_000A3170_Obj *)unk3B4->items[i]->unk4)->unk2DC = D_002B9134->unk44[j]->unk40->unk8;
                         found = 1;
                     }
                 }
             }
             for (j = 0; j < unk578 && !found; j++) {
                 if (func_001EA426(unk57C[j]->name, name) == 0) {
-                    ((S_000A3170_Obj *)list->items[i]->unk4)->unk2DC = unk57C[j]->unk3C->unk4;
+                    ((S_000A3170_Obj *)unk3B4->items[i]->unk4)->unk2DC = unk57C[j]->unk3C->unk4;
                     found = 1;
                 }
             }
