@@ -340,9 +340,6 @@ struct C_00108F50 {
 
 struct S_001091D0_V {
     float x, y, z, w;
-    S_001091D0_V() {}
-    S_001091D0_V(const S_001091D0_V &o) { x = o.x; y = o.y; z = o.z; w = o.w; }
-    S_001091D0_V &operator=(const S_001091D0_V &o) { x = o.x; y = o.y; z = o.z; w = o.w; return *this; }
 };
 struct S_001091D0_Ref {
     char pad0[0x68];
