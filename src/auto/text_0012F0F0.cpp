@@ -39,6 +39,24 @@ struct V4_0012FCF0 {
     f32 w;
     V4_0012FCF0() {}
     V4_0012FCF0(const V4_0012FCF0 &o) { x = o.x; y = o.y; z = o.z; w = o.w; }
+    V4_0012FCF0 operator*(f32 s) const
+    {
+        V4_0012FCF0 r;
+        r.x = x * s;
+        r.y = y * s;
+        r.z = z * s;
+        r.w = 1.0f;
+        return r;
+    }
+    V4_0012FCF0 operator+(const V4_0012FCF0 &b) const
+    {
+        V4_0012FCF0 r;
+        r.x = x + b.x;
+        r.y = y + b.y;
+        r.z = z + b.z;
+        r.w = 1.0f;
+        return r;
+    }
 };
 
 struct V4W_0012F0F0 {
