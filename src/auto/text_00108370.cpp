@@ -340,6 +340,9 @@ struct C_00108F50 {
 
 struct S_001091D0_V {
     float x, y, z, w;
+    S_001091D0_V() {}
+    S_001091D0_V(const S_001091D0_V &o) { x = o.x; y = o.y; z = o.z; w = o.w; }
+    S_001091D0_V &operator=(const S_001091D0_V &o) { x = o.x; y = o.y; z = o.z; w = o.w; return *this; }
 };
 struct S_001091D0_Ref {
     char pad0[0x68];
@@ -540,20 +543,20 @@ void C_00108690::func_00108690(float dt)
         V4_08690 dir;
         V4_08690 m2 = fA04->func_00165E20(f790, 0.98f, D_00276690, f794);
         V4_08690 q;
-        V4_08690 d = {0.0f, 0.0f, 0.0f, 0.0f};
+        V4_08690 delta;
         V4_08690 v1;
         V4_08690 v2;
         V4_08690 m3 = fA04->func_00165EF0(f790, 1.0f, D_00276690, f794);
         V4_08690 m4 = fA04->func_00165EF0(f790, 0.98f, D_00276690, f794);
         m2 = f230->func_00197F70(&m2);
         m1 = f230->func_00197F70(&m1);
-        d.x = m1.x - m2.x;
-        d.y = m1.y - m2.y;
-        d.z = m1.z - m2.z;
+        delta.x = m1.x - m2.x;
+        delta.y = m1.y - m2.y;
+        delta.z = m1.z - m2.z;
         float scale = 1.0f / (f790->f38 * 0.02f);
-        dir.x = d.x * scale;
-        dir.y = d.y * scale;
-        dir.z = d.z * scale;
+        dir.x = delta.x * scale;
+        dir.y = delta.y * scale;
+        dir.z = delta.z * scale;
         dir.w = 1.0f;
         f230->func_00197B90(&q);
         q = func_00104B00(&q, &m3);
@@ -833,10 +836,9 @@ Vec4_00108370 *C_00109180::func_00109180(Vec4_00108370 *out)
 
 int C_001091D0::func_001091D0(void)
 {
-    S_001091D0_V o;
     S_001091D0_V b;
-    S_001091D0_V *p = func_0001E9E0(&b, S_001091D0_V(f1e8->f1a0));
-    S_001091D0_V a = *p;
+    S_001091D0_V o;
+    S_001091D0_V a = *func_0001E9E0(&b, S_001091D0_V(f1e8->f1a0));
     b = f874;
     func_0001E9E0(&o, b);
     if (f1e8->f1d8 != 0 && f1e8->f1d8->f68 == D_002B9108) {
