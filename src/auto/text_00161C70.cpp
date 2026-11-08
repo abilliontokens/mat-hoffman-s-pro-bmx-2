@@ -271,12 +271,11 @@ void func_00162020(float *out, float *m, int transpose)
  t[1]=-d;
  t[5]=VF_00162020(m[0])*m[10]-VF_00162020(m[8])*m[2];
  t[9]=-(VF_00162020(m[6])*m[0]-VF_00162020(m[4])*m[2]);
- t[3]=0;
  _ReadWriteBarrier();
- t[7]=0;
+ t[3]=0; t[7]=0; t[11]=0;
+ float eA = VF_00162020(m[11])*m[4];
  _ReadWriteBarrier();
- t[11]=0;
- float e = VF_00162020(m[11])*m[4]-VF_00162020(m[7])*m[8];
+ float e = eA - VF_00162020(m[7])*m[8];
  t[13]=b*m[0]-e*m[2]+d*m[3];
  float f = VF_00162020(m[9])*m[4]-VF_00162020(m[8])*m[5];
  t[2]=f;
