@@ -84,6 +84,10 @@ extern int D_002767A4;
 extern int D_002A1190;
 extern float D_00275460;
 
+struct S_2D730_I4 {
+    int v[4];
+};
+
 struct S_2D730_Node {
     virtual void slot0();
     virtual void slot1();
