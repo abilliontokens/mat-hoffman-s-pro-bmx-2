@@ -190,7 +190,7 @@ extern int D_002A10F0, D_002A10F4, D_002A10F8, D_002A10FC;
 
 struct V4i_0002A6B0 {
     int a, b, c, d;
-    void Set(int x, int y, int z, int w) { d = w; c = z; b = y; a = x; }
+    void Set(int x, int y, int z, int w) { a = x; b = y; c = z; d = w; }
 };
 
 struct C_0002A6B0 {
