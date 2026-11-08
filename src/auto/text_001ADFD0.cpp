@@ -359,6 +359,7 @@ struct C_001AE700 {
     char pad58[0xC];
     int *f64;
     float f68;
+    struct { int left, top, right, bottom; } f6C;
     void func_001AE700(void);
 };
 
@@ -741,35 +742,32 @@ void C_001AE810::func_001AE810(void)
     vtbl = (void *)&D_00284E94;
 }
 
-void __fastcall func_001AE890(C_001AE890 * volatile self)
+void C_001AE890::func_001AE890(void)
 {
     int desc[6];
     S_001AE890_View view;
+    S_001AE890_View *vp;
+    S_001AE890_View * volatile vps;
     int rect2[4];
     int rect[4];
     struct { int pitch; int *bits; } lock;
     int bottom;
     int right;
-    C_001AE890 *q;
     int left, top, r, end;
     int texA, texB;
     int *p;
     int i, x, y, v;
 
-    q = self;
-    func_001ADD80(q->f18);
-    q = self;
-    AsmFloatToIntRound((float)q->f34 * q->f3C + (float)q->f2C, &right);
-    q = self;
-    AsmFloatToIntRound((float)q->f38 * q->f40 + (float)q->f30, &bottom);
-    q = self;
-    func_001FF940(q->f20, *(void **)((char *)D_002EFDB8 + 0x5c));
-    view = *(S_001AE890_View *)((char *)D_002EFDB8->cam + 0x1e0);
+    func_001ADD80(f18);
+    AsmFloatToIntRound((float)f34 * f3C + (float)f2C, &right);
+    AsmFloatToIntRound((float)f38 * f40 + (float)f30, &bottom);
+    func_001FF940(f20, *(void **)((char *)D_002EFDB8 + 0x5c));
+    vp = vps = (S_001AE890_View *)((char *)D_002EFDB8->cam + 0x1e0);
+    view = *vp;
     func_00200230(&view);
-    q = self;
     {
         int vy = view.v[1];
-        int *b = (int *)((char *)q->f18 + 0x6c);
+        int *b = (int *)((char *)f18 + 0x6c);
         left = b[0];
         top = b[1] + vy;
         r = b[2];
@@ -780,53 +778,45 @@ void __fastcall func_001AE890(C_001AE890 * volatile self)
     rect[2] = r;
     rect[3] = end;
     func_001FF4E0(1, rect, 240, 0, 0, 0);
-    q = self;
-    texB = *(int *)(D_002AA6C0->f14 + q->fC * 16 + 4);
-    texA = *(int *)(D_002AA6C0->f14 + q->f8 * 16 + 4);
-    q->f64 = 255;
-    q = self;
-    q->f68 = 16758600.0f;
-    q = self;
-    q->f24 = 0xffffff;
-    q = self;
-    q->func_001ADFD0((char *)q->f18 + 0x6c, texB, 0, 0, 0, 1);
-    q = self;
-    func_00201210(q->f20, &lock, 0, 0);
-    q = self;
-    func_002011F0(q->f20, desc);
+    texB = *(int *)(D_002AA6C0->f14 + fC * 16 + 4);
+    texA = *(int *)(D_002AA6C0->f14 + f8 * 16 + 4);
+    f64 = 255;
+    f68 = 16758600.0f;
+    f24 = 0xffffff;
+    func_001ADFD0((char *)f18 + 0x6c, texB, 0, 0, 0, 1);
+    func_00201210(f20, &lock, 0, 0);
+    func_002011F0(f20, desc);
     p = lock.bits + desc[5] * top + left;
     i = 0;
     for (y = top; y < end; y++) {
         for (x = 0; x < 2; x++) {
             v = *p++;
-            self->f18->f64[i++] = (v == 0);
+            f18->f64[i++] = (v == 0);
             v = *p++;
-            self->f18->f64[i++] = (v == 0);
+            f18->f64[i++] = (v == 0);
             v = *p++;
-            self->f18->f64[i++] = (v == 0);
+            f18->f64[i++] = (v == 0);
             v = *p++;
-            self->f18->f64[i++] = (v == 0);
+            f18->f64[i++] = (v == 0);
             v = *p++;
-            self->f18->f64[i++] = (v == 0);
+            f18->f64[i++] = (v == 0);
             v = *p++;
-            self->f18->f64[i++] = (v == 0);
+            f18->f64[i++] = (v == 0);
             v = *p++;
-            self->f18->f64[i++] = (v == 0);
+            f18->f64[i++] = (v == 0);
             v = *p++;
-            self->f18->f64[i++] = (v == 0);
+            f18->f64[i++] = (v == 0);
         }
         p += 624;
     }
-    q = self;
-    q->f18->func_001AE700();
+    f18->func_001AE700();
     func_001FF940(*(void **)((char *)D_002EFDB8 + 0x58), *(void **)((char *)D_002EFDB8 + 0x5c));
-    func_00200230((char *)D_002EFDB8->cam + 0x1e0);
-    q = self;
-    rect2[0] = q->f2C;
-    rect2[1] = q->f30;
+    func_00200230(vps);
+    rect2[0] = f2C;
+    rect2[1] = f30;
     rect2[2] = right;
     rect2[3] = bottom;
-    q->func_001ADFD0(rect2, texA, 0, 0, 0, 0);
+    func_001ADFD0(rect2, texA, 0, 0, 0, 0);
 }
 
 void *C_001AEB70::func_001AEB70(int flags)
@@ -862,8 +852,7 @@ C_001AE3E0 *C_001AE3E0::func_001AEBD0(int a1, int a2, float *a3, int a4, float a
     float tmp[4];
     void *mem;
     unsigned int color;
-    volatile unsigned char r;
-    unsigned char gb[2];
+    unsigned char rgb[3];
     C_001AE3E0_Sub *sub; S_001AEBD0_Ref *ref; C_001AE3E0_Entry *entry;
     f24 = a8;
     f40 = *(C_001AE3E0_Quat *)func_0001E9E0(tmp, a3);
@@ -875,10 +864,10 @@ C_001AE3E0 *C_001AE3E0::func_001AEBD0(int a1, int a2, float *a3, int a4, float a
     f54->func_001ADF30(a1, (int)this);
     f54->SetScale(f2C);
     f54->SetAlpha(0);
-    r = (unsigned char)(int)a9;
-    gb[0] = (unsigned char)(int)a10;
-    gb[1] = (unsigned char)(int)a11;
-    color = MakeColor_001AEBD0(-1, r, gb[0], gb[1]);
+    rgb[0] = (unsigned char)(int)a9;
+    rgb[1] = (unsigned char)(int)a10;
+    rgb[2] = (unsigned char)(int)a11;
+    color = MakeColor_001AEBD0(-1, rgb[0], rgb[1], rgb[2]);
     f54->col[0].rgba = color;
     f54->col[1].rgba = color;
     f54->col[2].rgba = color;
