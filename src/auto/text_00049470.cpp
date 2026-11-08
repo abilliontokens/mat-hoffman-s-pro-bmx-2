@@ -533,9 +533,7 @@ void E49Fps::func_00049C90() {
 
 void BmxEventFPS::func_00049F30()
 {
- bool active = f2D4 != 0;
- if(!active) { active = f2D8 != 0; }
- if(!active) func_00032A60();
+ if (f2D4 == 0 && f2D8 == 0) func_00032A60();
 }
 
 int C_0004A1A0::func_0004A1A0(void)
