@@ -371,6 +371,10 @@ struct C_001362A0 {
     C_001362A0 *func_001362A0(float a, float b, int c, int d, int e, float f);
 };
 
+struct SH_1362 {
+    void *func_001362A0(float a, float b, int c, int d, int e, float f);
+};
+
 struct C_001C3E50;
 struct C_000BEDC0;
 struct C_00092890;
