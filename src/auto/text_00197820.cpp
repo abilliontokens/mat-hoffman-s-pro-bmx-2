@@ -51,6 +51,7 @@ struct C_001975A0 {
     int func_00197610(f32 dt);
 };
 #include <string.h>
+#include "asm_helpers.h"
 extern "C" void *func_001E8A44(unsigned size);
 
 struct C_001972B0 {
@@ -255,47 +256,42 @@ extern void func_00195D40(float *out, float a, float b, float c, float d);
 extern void func_0015C7D0(float *out, float *a, float *b, float *c, float *d);
 extern int func_00016CF0(float v);
 
-#pragma optimize("y", on)
 C_00197820 *C_00197820::func_00197820(int a0)
 {
-    C_00197820 *volatile self = this;
-    S_00197820_Mat *volatile m;
-    S_00197820_HdrInit(&self->f24);
-    self->func_00157600(a0);
-    self->vtbl = &D_0028B0E4;
-    S_00197820_VecInit(&self->f130);
-    S_00197820_VecInit(&self->f140);
-    S_00197820_VecInit(&self->f150);
-    S_00197820_VecInit(&self->f160);
-    self->f170 = 0;
-    self->f174 = 0;
-    self->f17C = 0;
-    self->f178 = 0;
-    m = &self->fB0;
-    S_00197820_Identity(m);
-    m = &self->fF0;
-    S_00197820_Zero(m);
-    self->f180 &= 0xfe;
-    self->f180 |= 0x80;
-    self->f18C = 0;
-    self->f24.f3 &= 0xfb;
-    self->f180 &= 0xfd;
-    self->f180 &= 0xfb;
-    self->f180 &= 0xf7;
-    self->f180 &= 0xef;
-    self->f180 &= 0xdf;
-    self->f130.x = 0; self->f130.y = 0; self->f130.z = 0;
-    self->f140.x = 0; self->f140.y = 0; self->f140.z = 0;
-    self->f180 &= 0xbf;
-    self->f150.x = 0; self->f150.y = 0; self->f150.z = 0;
-    self->f160.x = 0; self->f160.y = 0; self->f160.z = 0;
-    self->f28 = 0;
-    self->f190 = 0;
-    self->f24.f2 = D_002AAEC8->func_001BC6E0(D_0028AB70);
-    self->f20 = self->f24.f2;
-    self->f181 |= 1;
-    self->f181 &= 0xfd;
-    self->f194 = 0;
-    return self;
+    S_00197820_HdrInit(&this->f24);
+    func_00157600(a0);
+    vtbl = &D_0028B0E4;
+    S_00197820_VecInit(&f130);
+    S_00197820_VecInit(&f140);
+    S_00197820_VecInit(&f150);
+    S_00197820_VecInit(&f160);
+    f170 = 0;
+    f174 = 0;
+    f17C = 0;
+    f178 = 0;
+    AsmIdentityMatrix(&fB0);
+    AsmZeroMatrix(&fF0);
+    f180 &= 0xfe;
+    f180 |= 0x80;
+    f18C = 0;
+    f24.f3 &= 0xfb;
+    f180 &= 0xfd;
+    f180 &= 0xfb;
+    f180 &= 0xf7;
+    f180 &= 0xef;
+    f180 &= 0xdf;
+    f130.x = 0; f130.y = 0; f130.z = 0;
+    f140.x = 0; f140.y = 0; f140.z = 0;
+    f180 &= 0xbf;
+    f150.x = 0; f150.y = 0; f150.z = 0;
+    f160.x = 0; f160.y = 0; f160.z = 0;
+    f28 = 0;
+    f190 = 0;
+    f24.f2 = D_002AAEC8->func_001BC6E0(D_0028AB70);
+    f20 = f24.f2;
+    f181 |= 1;
+    f181 &= 0xfd;
+    f194 = 0;
+    return this;
 }
 #pragma optimize("", on)
