@@ -392,6 +392,11 @@ struct BmxEventEditor {
         *out = 0;
         func_00038A70(p, out);
     }
+    __forceinline void FindBlock2(void *p, void **out)
+    {
+        *out = 0;
+        func_00038A70(p, out);
+    }
 };
 
 struct S_3D910_Base {
@@ -428,8 +433,8 @@ int BmxEventEditor::func_00041560()
     w = ((S_41560_Block *)blk)->w;
     h = ((S_41560_Block *)blk)->h;
     save48C = f48c;
-    save568 = f568;
     save564 = f564;
+    save568 = f568;
     f564 = 0;
     f568 = 0;
     save56C = 0;
@@ -445,15 +450,15 @@ int BmxEventEditor::func_00041560()
     for (i = 0; i < h; i++) {
         for (j = 0; j < w; j++) {
             if (b.x > D_00276E9C || b.x < D_00276E98) {
+                idx = ((f45C * (px + i) + py) * f460 + j) + pz;
                 pos.x = (float)(px + i) * D_00275AEC + (float)f428;
                 pos.y = (float)py * D_00275548 + (float)f42C;
                 pos.z = (float)(pz + j) * D_00275AEC + (float)f430;
-                idx = ((f45C * (px + i) + py) * f460 + j) + pz;
             } else {
+                idx = ((f45C * (px + j) + py) * f460 + i) + pz;
                 pos.x = (float)(px + j) * D_00275AEC + (float)f428;
                 pos.y = (float)py * D_00275548 + (float)f42C;
                 pos.z = (float)(i + pz) * D_00275AEC + (float)f430;
-                idx = ((f45C * (px + j) + py) * f460 + i) + pz;
             }
             if (f49C[idx] != 0) {
                 flag = 0;
