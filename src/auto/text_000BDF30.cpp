@@ -160,6 +160,10 @@ struct S_000BDF30_Audio {
     virtual void v8();
     char pad24[0xc];
     int f30;
+    void func_0013C1D0(int a);
+    void func_0013D780(char *name, int a1, int a2, int a3, int a4, int a5, int a6, int a7);
+    void func_0013B260(int a);
+    void func_0013DFF0(char *p, int a);
 };
 
 extern S_000BDF30_Game *D_002A8490;
