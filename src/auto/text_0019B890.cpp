@@ -3,6 +3,7 @@
 #include "ghidra.h"
 #include <math.h>
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 
 static __forceinline float Sqrt_0019C0E0(float x)
 {
@@ -32,6 +33,8 @@ static __forceinline void Normalize_0019B890(float *out, const float *in)
     sq = _mm_shuffle_ps(sq, sq, 0);
     _mm_storeu_ps(out, _mm_mul_ps(sq, v));
 }
+
+struct S_0019BA70_Row { float x, y, z, w; };
 
 struct C_0019BA70 {
     char pad0[0x54];
@@ -235,59 +238,48 @@ struct C_0019C320 {
 
 void C_0019BA70::func_0019B890(void)
 {
-    float *obj = (float *)f54;
-    float *sum = obj + 4;
-    int i;
-
-    sum[0] = 0.0f;
-    sum[1] = 0.0f;
-    sum[2] = 0.0f;
-    sum[3] = 1.0f;
-    if (D_002B92E0 > 0) {
-        const float *p = D_002B9448;
-        for (i = 0; i < D_002B92E0; i++) {
-            sum[0] = p[-2] + sum[0];
-            sum[1] = p[-1] + sum[1];
-            sum[2] = sum[2] + p[0];
-            p += 4;
-        }
-        Normalize_0019B890(sum, sum);
-    }
-    float t[4] = { 0.0f, 0.0f, 0.0f, 1.0f };
-    Normalize_0019B890(t, obj);
-    obj[0] = t[0] * D_0028B248 + obj[0];
-    obj[1] = t[1] * D_0028B248 + obj[1];
-    obj[2] = t[2] * D_0028B248 + obj[2];
+float *obj=(float*)f54;
+float *sum=obj+4;
+volatile float a=0.0f; sum[0]=a;
+volatile float b=0.0f; sum[1]=b;
+volatile float c=0.0f; sum[2]=c;
+volatile float d=1.0f; sum[3]=d;
+if(D_002B92E0>0) {
+const float *p=D_002B9448;
+for(int i=0;i<D_002B92E0;++i,p+=4) {
+sum[0]=p[-2]+sum[0];
+sum[1]=p[-1]+sum[1];
+sum[2]=sum[2]+p[0];
+}
+Normalize_0019B890(sum,sum);
+}
+S_0019BBD0_V4 t;
+Normalize_0019B890(&t.x,obj);
+float v[3]={t.x*D_0028B248,t.y*D_0028B248,t.z*D_0028B248};
+float x=v[0], y=v[1], z=v[2];
+obj[0]+=x;obj[1]+=y;obj[2]+=z;
 }
 
+extern "C" void _ReadWriteBarrier(void);
+#pragma intrinsic(_ReadWriteBarrier)
 void C_0019BA70::func_0019BA70()
 {
-    float *volatile saved = (float *)(f54 + 0x10);
     float *v = (float *)(f54 + 0x10);
-    volatile float x=0.0f, y=0.0f, z=0.0f, w=1.0f;
-    v[0]=x; v[1]=y; v[2]=z; v[3]=w;
-    for(int i=D_002B92F0;i<D_002B92E0;++i) {
-        v[0]=D_002B9448[i*4-2]+v[0];
-        v[1]=D_002B9448[i*4-1]+v[1];
-        v[2]=D_002B9448[i*4]+v[2];
+    struct { volatile float x, y, z, w; } t;
+    t.x = 0.0f; v[0] = t.x; _ReadWriteBarrier();
+    t.y = 0.0f; v[1] = t.y; _ReadWriteBarrier();
+    t.z = 0.0f; v[2] = t.z; _ReadWriteBarrier();
+    t.w = 1.0f; v[3] = t.w; _ReadWriteBarrier();
+    for (int i = D_002B92F0; i < D_002B92E0; ++i) {
+        float *p = D_002B9448 + i * 4;
+        v[0] = p[-2] + v[0];
+        v[1] = p[-1] + v[1];
+        v[2] = p[0] + v[2];
     }
-    float *volatile in = v;
-    float *volatile out = v;
-    __m128 a=_mm_loadu_ps(in);
-    __m128 b=_mm_mul_ps(a,a);
-    __m128 c=_mm_add_ss(_mm_movehl_ps(b,b),b);
-    c=_mm_add_ss(c,_mm_shuffle_ps(b,b,0xe1));
-    __m128 d=_mm_load_ss(&D_0028B1B0);
-    c=_mm_add_ss(c,_mm_and_ps(_mm_cmplt_ss(c,d),d));
-    __m128 r=_mm_rsqrt_ss(c);
-    c=_mm_mul_ss(c,r);
-    c=_mm_mul_ss(c,r);
-    r=_mm_mul_ss(r,_mm_load_ss(&D_0028B190));
-    r=_mm_mul_ss(r,_mm_sub_ss(_mm_load_ss(&D_0028B1A0),c));
-    _mm_storeu_ps(out,_mm_mul_ps(_mm_shuffle_ps(r,r,0),a));
-    D_002B92F0=D_002B92E0;
+    AsmVec3Normalize(v, v);
+    int n = D_002B92E0;
+    D_002B92F0 = n;
 }
-
 void SoultreeCollisionObject::func_0019BB80(void *arg1)
 {
     struct {
@@ -341,30 +333,37 @@ void C_0019BBD0::func_0019BD20(unsigned short idx, S_0019BBD0_Tree *tree, void *
     } while (!(idx & 0x8000));
 
     char *leaf = tree->leaves + (idx & 0x7fff) * 20;
-    S_0019BBD0_V4 a, b, c;
+    S_0019BBD0_Vec a;
+    S_0019BBD0_V4 v1, v2, v3;
     a.x = (float)*(short *)(leaf + 0xc) * D_002EFF1C;
     a.y = (float)*(short *)(leaf + 0xe) * D_002EFF1C;
     a.z = (float)*(short *)(leaf + 0x10) * D_002EFF1C;
-    func_0011F0E0((S_0019BBD0_Vec *)&a, (S_0019BBD0_Vec *)&b, (S_0019BBD0_Vec *)&c, leaf, p);
+    func_0011F0E0((S_0019BBD0_Vec *)&v3, (S_0019BBD0_Vec *)&v2, (S_0019BBD0_Vec *)&v1, leaf, p);
     S_0019BBD0_Vec centre;
-    centre.x = (a.x + b.x + c.x) * D_00283F50;
-    centre.y = (a.y + b.y + c.y) * D_00283F50;
-    centre.z = (a.z + b.z + c.z) * D_00283F50;
+    centre.x = (v2.x + v3.x + v1.x) * D_00283F50;
+    centre.y = (v2.y + v3.y + v1.y) * D_00283F50;
+    centre.z = (v2.z + v3.z + v1.z) * D_00283F50;
     centre.w = 1.0f;
     S_0019BBD0_Vec v;
     v.x = a.x * D_002755EC;
     v.y = a.y * D_002755EC;
     v.z = a.z * D_002755EC;
     v.w = 1.0f;
-    func_0001C680((S_0019C350_V4 *)&c, *(S_0019C350_V4 *)&v, m);
-    func_00030AC0(&b.x, &centre.x, m);
-    func_00030AC0(&centre.x, &a.x, m);
-    func_00030AC0(&a.x, &b.x, m);
+    func_0001C680((S_0019C350_V4 *)&v, *(S_0019C350_V4 *)&v, m);
+    func_00030AC0((float *)&v3, (float *)&v3, m);
+    func_00030AC0((float *)&v2, (float *)&v2, m);
+    func_00030AC0((float *)&v1, (float *)&v1, m);
+    func_00030AC0((float *)&centre, (float *)&centre, m);
     if (*(int *)((char *)p + 4) != 0) {
-        func_0011F210(p, leaf, &a.x, &b.x, &c.x);
-        func_0001C680((S_0019C350_V4 *)&a, *(S_0019C350_V4 *)&a, m);
-        func_0001C680((S_0019C350_V4 *)&b, *(S_0019C350_V4 *)&b, m);
-        func_0001C680((S_0019C350_V4 *)&c, *(S_0019C350_V4 *)&c, m);
+        S_0019BBD0_V4 d, c, b;
+        S_0019BBD0_Vec t;
+        func_0011F210(&d, &c, (float *)&b, (float *)leaf, (float *)p);
+        t = *(S_0019BBD0_Vec *)&d;
+        func_0001C680((S_0019C350_V4 *)&t, *(S_0019C350_V4 *)&d, m);
+        t = *(S_0019BBD0_Vec *)&c;
+        func_0001C680((S_0019C350_V4 *)&t, *(S_0019C350_V4 *)&c, m);
+        t = *(S_0019BBD0_Vec *)&b;
+        func_0001C680((S_0019C350_V4 *)&t, *(S_0019C350_V4 *)&b, m);
     }
 }
 
@@ -394,7 +393,7 @@ void SoultreeCollisionObject::func_0019C0E0(S_Matrix16 * volatile m)
     y = d[1];
     z = d[2];
     s = self;
-    *(float *)((char *)s + 0x48) = sqrtf(z * z + y * y + x * x);
+    *(float *)((char *)s + 0x48) = AsmSqrtF(z * z + y * y + x * x);
     s = self;
     func_00030AC0((float *)((char *)s + 0x28), (float *)((char *)s + 0x28), (float *)m);
     ((C_0019C2F0_VT *)self)->v31(m);
@@ -465,23 +464,20 @@ void C_0019C320::func_0019C320(undefined4 *param_1)
   return;
 }
 
+#pragma auto_inline(on)
 void SoultreeCollisionObject::func_0019C350(S_0019C350_V4 *centre, float *extent)
 {
     S_0019C350_Shape *s = (S_0019C350_Shape *)f1C4;
-    float ex = s->ex;
-    float ey = s->ey;
-    float ez = s->ez;
-    S_0019C350_V4 c;
+    S_0019C350_V4 c(s->cx, s->cy, s->cz, 1.0f);
     S_0019C350_V4 axes[3];
+    S_0019C350_V4 a0(s->ex, 0.0f, 0.0f, 1.0f);
+    S_0019C350_V4 a1(0.0f, s->ey, 0.0f, 1.0f);
+    S_0019C350_V4 a2(0.0f, 0.0f, s->ez, 1.0f);
 
-    c.x = s->cx;
-    c.y = s->cy;
-    c.z = s->cz;
-    c.w = 1.0f;
-    axes[0] = S_0019C350_V4(ex, 0.0f, 0.0f, 1.0f);
-    axes[1] = S_0019C350_V4(0.0f, ey, 0.0f, 1.0f);
-    axes[2] = S_0019C350_V4(0.0f, 0.0f, ez, 1.0f);
-    Xform_0019C350(centre, (S_0019C350_M *)fB0, &c.x);
+    axes[0] = a0;
+    axes[1] = a1;
+    axes[2] = a2;
+    AsmTransformPoint((float *)centre, &c.x, (float *)fB0);
     func_0001C680(&axes[0], axes[0], (float *)fB0);
     func_0001C680(&axes[1], axes[1], (float *)fB0);
     func_0001C680(&axes[2], axes[2], (float *)fB0);
@@ -489,7 +485,7 @@ void SoultreeCollisionObject::func_0019C350(S_0019C350_V4 *centre, float *extent
     extent[1] = Abs_0019C350(axes[2].y) + Abs_0019C350(axes[1].y) + Abs_0019C350(axes[0].y);
     extent[2] = Abs_0019C350(axes[2].z) + Abs_0019C350(axes[1].z) + Abs_0019C350(axes[0].z);
 }
-
+#pragma auto_inline(off)
 void SoultreeCollisionObject::func_0019C690(int a1, S_0019C690_Arg *a2)
 {
     S_0019C690_Arg *e = a2;
