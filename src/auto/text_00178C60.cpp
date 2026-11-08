@@ -129,6 +129,11 @@ static __forceinline void cross_179950(float *out, float *a, float *b)
     AsmVec3Cross(out, a, b);
 }
 
+static __forceinline void Cross_1793E0(float *a, float *b, float *out)
+{
+    AsmVec3Cross(out, a, b);
+}
+
 static __forceinline int edge_1793E0(Vec4 *p, Vec4 *q, Vec4 *r, Vec4 *n)
 {
     Vec4 a;
@@ -294,10 +299,12 @@ void C_00179820::func_00179880(void) {
 
 #pragma optimize("y", on)
 void C_00179820::func_00179950(void) {
-    Vec4 u, b;
+    Vec4 b, u;
     int i;
     sub_179950(&u.x, &v24[1], &v24[0]);
+    u.w = 1.0f;
     sub_179950(&b.x, &v24[2], &v24[0]);
+    b.w = 1.0f;
     AsmVec3Cross(&v64.x, &u.x, &b.x);
     func_00179370(&v64, &v64);
     for (i = 0; i < 4; i++) {
