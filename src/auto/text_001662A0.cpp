@@ -189,10 +189,10 @@ void C_00166CA0::func_001662A0(int param_1)
 {
  char buf[0x104];
  char saved[0x104];
- int len, n, max;
  if (*(volatile int *)&f188 == 0) {
   strcpy(saved, D_002A5EA0);
   D_002A5EA0[0] = 0;
+  int len, n, max;
   len = strlen(f190);
   max = 0x103;
   n = AsmMinI(max, len);
@@ -200,6 +200,7 @@ void C_00166CA0::func_001662A0(int param_1)
   buf[n] = 0;
   strcat(buf, f138);
  } else {
+  int n, max, len;
   saved[0] = 0;
   len = strlen(f138);
   max = 0x103;
@@ -208,8 +209,7 @@ void C_00166CA0::func_001662A0(int param_1)
   buf[n] = 0;
  }
  void *p = func_001E8A44(0x1e0);
- C_00166CA0_Obj *created;
- if (p) { int flag = *((unsigned char *)this + vbptr[1] + 0x21); flag &= 1; created = new (p) C_00166CA0_Obj(flag); } else created = 0;
+ C_00166CA0_Obj *created = p ? new (p) C_00166CA0_Obj(*((unsigned char *)this + vbptr[1] + 0x21) & 1) : 0;
  ((volatile C_00166CA0 *)this)->f4 = created;
  ((volatile C_00166CA0 *)this)->f4->v8C(buf, 1, param_1);
  ((C_00166CA0_Base *)((char *)this + vbptr[1]))->func_001577A0(((volatile C_00166CA0 *)this)->f4, 0);
