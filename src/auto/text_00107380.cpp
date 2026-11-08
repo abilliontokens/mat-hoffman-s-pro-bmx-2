@@ -1,6 +1,7 @@
 /* 7 functions from 0x00107380 to 0x00108370, found by Ghidra. */
 #include "common.h"
 extern float D_00282A78, D_002755E8;
+struct RawVec_107380 { float x,y,z,w; };
 struct Vec_107AE0 {
  float x,y,z,w;
  Vec_107AE0() { x=y=z=0; w=1; }
@@ -238,7 +239,7 @@ void C_107380::func_00107380()
 {
  Vec_107AE0 up,unused;
  (*(Obj_107AE0**)((char*)fa00+4))->func_00197B40(&unused,&up);
- up=D_002A3A5C; unused.y=0;
+ unused.x=D_002A3A5C.x;unused.y=D_002A3A60;unused.z=D_002A3A64;unused.w=D_002A3A68;
  char *mgr=*(char**)((char*)D_002A8490+0x2a4);
  char *item=*(char**)(mgr+0x44+4* *(int*)((char*)this+0xa2c));
  float *pos=(float*)(*(char**)(item+0x30)+0x170);
@@ -247,7 +248,7 @@ void C_107380::func_00107380()
  temp.x=pos[0]-origin.x;temp.y=pos[1]-origin.y;temp.z=pos[2]-origin.z;
  delta=temp;
  float square=forward.y*forward.y+forward.z*forward.z+forward.x*forward.x;
- volatile float length = AsmSqrtF(square);
+ float len=AsmSqrtF(square);
  temp.x=-delta.x;temp.y=-delta.y;temp.z=-delta.z;
  func_00104A90(&delta,&temp);func_00104A90(&up,&up);func_00104A90(&forward,&delta);
  AsmVec3Cross((float*)&right,(float*)&delta,(float*)&D_002A3A5C);func_00104A90(&right,&right);
@@ -256,7 +257,9 @@ void C_107380::func_00107380()
  if(*(int*)((char*)this+0x1e58)) {fa08->func_00199CF0(D_002A3A4C,-0.34906581f);fa14->func_00199CF0(D_002A3A4C,-0.34906581f);} else {fa0c->func_00199CF0(D_002A3A5C,1.57079613f);fa0c->func_00199CF0(D_002A3A6C,-0.34906581f);fa10->func_00199CF0(D_002A3A5C,1.57079613f);fa10->func_00199CF0(D_002A3A6C,-0.34906581f);fa14->func_00199CF0(D_002A3A5C,1.57079613f);fa14->func_00199CF0(D_002A3A6C,-0.34906581f);}
  float value;
  switch(*(int*)((char*)this+0x5e8)) {case 1:value=(*(Obj_107AE0**)((char*)this+0x5ec))->func_000260F0();break;case 3:value=(*(Obj_107AE0**)((char*)this+0x5f0))->func_000260F0();break;case 5:value=(*(Obj_107AE0**)((char*)this+0x5f4))->func_000260F0();break;default:value=D_00275544;}
- float a=(float)fabs(value);int r,g,b;
+ int bits=*(int*)&value & 0x7fffffff;
+ float a=*(float*)&bits;
+ int r,g,b;
  if(a<D_002755E8){r=(int)(a*D_002798A4+D_002755FC);g=(int)(D_0027989C-a*D_002798A0);b=(int)(D_00276524-a*D_00275AEC);}else {a-=D_002755E8;r=(int)(D_0027989C-D_00279054*a);g=(int)(D_00279894-D_00279898*a);b=(int)(a*D_00279890+D_002755FC);}
  fa14->func_00199CF0(D_002A3A5C,value*D_0027E144*D_00282A74);
  fa14->func_001824E0(&temp,r*D_0027A094,g*D_0027A094,b*D_0027A094);
