@@ -201,15 +201,14 @@ void C_0018F4D0::func_0018F390(char *n, unsigned int a, void **p)
         char *s = *(char **)p;
         int len = strlen(s);
         int cap = 255;
-        int m = minv(cap, len);
+        int m = AsmMinI(cap, len);
         func_001E8920(&f2C, s, m);
         (&f2C)[m] = 0;
         f28 = &f2C;
         break;
     }
     case 4:
-        f138 = ((int *)p)[0];
-        f13C = ((int *)p)[1];
+        *(__int64 *)&f138 = *(__int64 *)p;
         break;
     case 5:
         f140 = *(char *)p;
