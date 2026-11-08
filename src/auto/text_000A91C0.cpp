@@ -240,7 +240,6 @@ extern "C" unsigned int strlen(const char *);
 void C_A95D0::func_000A95D0(S_A95D0_arg *a)
 {
     char buf[0x104];
-
     if (num != 0) {
         for (int i = 0; i < num; i++) {
             int k = 0;
@@ -259,7 +258,9 @@ void C_A95D0::func_000A95D0(S_A95D0_arg *a)
                 for (int m = 0; m < (*a->f3A8)->num; m++) {
                     A9_Item *e = (A9_Item *)(*a->f3A8)->items[m];
                     if (e && e->kind == 1 && e->model) {
-                        int len = a9_min(0x103, strlen(e->model->name));
+                        int slen = (int)strlen(e->model->name);
+                        int lim = 0x103;
+                        int len = AsmMinI(lim, slen);
                         func_001E8920(buf, e->model->name, len);
                         buf[len] = 0;
                         char *p = func_001E8AC0(buf, '.');
