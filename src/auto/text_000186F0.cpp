@@ -358,7 +358,7 @@ static __forceinline float wrap_angle_00016D60(float x)
     float r;
 
     t = x * D_002756EC;
-    *p = _mm_cvttss_si32(_mm_load_ss(&t));
+    *p = _mm_cvttss_si32(*(__m128 *)&t);
     x -= (float)n * D_002756B8;
     r = x;
     if (r > D_002756D0) {
