@@ -75,5 +75,107 @@ struct C_000F83C0 {
     int f590;
     char pad594[0x20];
     int f5b4;
+    void func_000D0DD0();
     int func_000F83C0(void);
 };
+
+int C_000F83C0::func_000F83C0(void)
+{
+    int zero = 0;
+
+    if (f124->f25c->f74->func_000301D0() == zero) {
+        if (f590 != zero) {
+            (f498 != zero ? D_002B91AC->f68 : D_002B91AC->f50)->func_001D5AD0();
+        } else if (f5b4 != zero) {
+            (f498 != zero ? D_002B91AC->f68 : D_002B91AC->f50)->func_001D5AD0();
+            (f4a0 != zero ? D_002B91AC->f6c : D_002B91AC->f54)->func_001D5AD0();
+        } else if (f4f0 == zero && f4f4 == zero && f4e4 == zero && f558 == zero && f538 != zero && f588 == zero && f4ec == zero) {
+            if (f4e4 != zero) {
+                (f4a0 != zero ? D_002B91AC->f6c : D_002B91AC->f54)->func_001D5AD0();
+                (f49c != zero ? D_002B91AC->f70 : D_002B91AC->f58)->func_001D5AD0();
+            } else {
+                (f498 != zero ? D_002B91AC->f68 : D_002B91AC->f50)->func_001D5AD0();
+                (f4a0 != zero ? D_002B91AC->f6c : D_002B91AC->f54)->func_001D5AD0();
+            }
+        } else if (f57c == zero && f580 == zero) {
+            if (f4ec != zero) {
+                (f498 != zero ? D_002B91AC->f68 : D_002B91AC->f50)->func_001D5AD0();
+                (f4a0 != zero ? D_002B91AC->f6c : D_002B91AC->f54)->func_001D5AD0();
+            } else if (f510 == zero) {
+                (f498 != zero ? D_002B91AC->f68 : D_002B91AC->f50)->func_001D5AD0();
+                (f4a0 != zero ? D_002B91AC->f6c : D_002B91AC->f54)->func_001D5AD0();
+                if (f48c != 2 && f48c != 4 && f48c != 7 && f48c != 9 && f48c != 0xd &&
+                    f48c != 0x10 && f43c[f48c] == zero) {
+                    (f49c != zero ? D_002B91AC->f70 : D_002B91AC->f58)->func_001D5AD0();
+                }
+            }
+        }
+        if (f538 != zero) {
+            (f498 != zero ? D_002B91AC->f68 : D_002B91AC->f50)->func_001D5AD0();
+        }
+        if (f560 != zero && f510 == zero && f4f0 == zero && f4f4 == zero && f4e4 == zero && f51c == zero && f518 == zero && f578 == zero &&
+            f558 == zero && f57c == zero && f580 == zero && f538 == zero && f4ec == zero && f5b4 == zero) {
+            (f4a4 != zero ? D_002B91AC->f74 : D_002B91AC->f5c)->func_001D5AD0();
+        }
+    }
+
+    if (f124->f25c->f74->func_000301D0() == zero && f484 == zero) {
+        for (int i = 0; i < 8; i++) {
+            if (i == f490) {
+                int idx = *(int *)(D_002A8490->f2e0 + 0x300 + i * 4);
+                if (idx != -1) {
+                    S_F83C0_Node *n = *(S_F83C0_Node **)((char *)this + 0x3b0 + idx * 4);
+                    n->f38 = (n->f38 & 0xffffff) | ((int)*(short *)((char *)this + 0x4cc) << 24);
+                    n->f58 |= 2;
+                    n->func_001D5AD0();
+                }
+            }
+            S_F83C0_Node *n = f390[i];
+            n->f38 = (n->f38 & 0xffffff) | ((int)*(short *)((char *)this + 0x4cc) << 24);
+            n->f58 |= 2;
+            n->func_001D5AD0();
+        }
+    }
+
+    D_002B91AC->f24->func_001D5AD0();
+    D_002B91AC->f28->func_001D5AD0();
+    D_002B91AC->f2c->func_001D5AD0();
+    D_002B91AC->f30->func_001D5AD0();
+
+    if (f124->f25c->f74->func_000301D0() == zero && f484 == zero) {
+        for (int i = 0; i < 2; i++) {
+            S_F83C0_Node *n = *(S_F83C0_Node **)((char *)this + 0x3f8 + i * 4);
+            n->f38 = (n->f38 & 0xffffff) | ((int)*(short *)((char *)this + 0x4cc) << 24);
+            n->f58 |= 2;
+            n->func_001D5AD0();
+        }
+        int idx = *(int *)(*(int *)(*(int *)((char *)this + 0x140) + 4) + 0x30);
+        S_F83C0_Node *n = *(S_F83C0_Node **)((char *)this + 0x3fc + idx * 4);
+        n->f38 = (n->f38 & 0xffffff) | ((int)*(short *)((char *)this + 0x4cc) << 24);
+        n->f58 |= 2;
+        (*(S_F83C0_Node **)((char *)this + 0x400 + (idx - 1) * 4))->func_001D5AD0();
+    }
+
+    if (f510 == zero && f4f0 == zero && f4f4 == zero && f4e4 == zero && f51c == zero && f558 == zero && f538 == zero && f57c == zero &&
+        f4ec == zero && f590 == zero && f580 == zero && f5b4 == zero) {
+        if (f58c != zero) {
+            func_000D0DD0();
+        }
+        return 1;
+    }
+
+    if (f58c != zero) {
+        S_F83C0_Node *n = (S_F83C0_Node *)f550;
+        n->f38 = (n->f38 & 0xffffff) | ((int)*(short *)((char *)this + 0x544) << 24);
+        n->f58 |= 2;
+        n->func_001D5AD0();
+    } else {
+        f540 = 0;
+        f544 = 0;
+        f548 = 0;
+        f53c = 0xb2;
+        f54c = 0x3e800000;
+        f58c = 1;
+    }
+    return 1;
+}
