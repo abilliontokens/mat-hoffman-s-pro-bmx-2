@@ -7,12 +7,7 @@ struct Sub { void func_00199E30(Vec4 v, float f); };
 /* func_00119680: wrap an angle into [-pi, pi] with literal constants */
 static __forceinline float Wrap_00119680(float x)
 {
-    float r = x;
-    if (x > 3.14159274f)
-        r = x - 6.28318548f;
-    else if (x < -3.14159274f)
-        r = x + 6.28318548f;
-    return r;
+    return x > 3.14159274f ? x - 6.28318548f : (x < -3.14159274f ? x + 6.28318548f : x);
 }
 
 struct Obj {
@@ -490,6 +485,7 @@ void Obj::func_001188F0(int arg)
         }
     }
 }
+#pragma optimize("y", on)
 void Obj::func_00119680(int a)
 {
     static int h = D_002A7CB8->func_00026500(D_00283D34, -1);
@@ -514,16 +510,7 @@ void Obj::func_00119680(int a)
         m = 8;
         break;
     }
-    if (f5e0 > D_002756D0)
-        f5e0 -= D_002756B8;
-    else if (f5e0 < D_002756E8)
-        f5e0 += D_002756B8;
-    s159c->func_00199E30(D_002A3A4C, f5e0);
-    if (f5e4 > D_002756D0)
-        f5e4 -= D_002756B8;
-    else if (f5e4 < D_002756E8)
-        f5e4 += D_002756B8;
-    s15a0->func_00199E30(D_002A3A4C, f5e4);
+    s159c->func_00199E30(D_002A3A4C, Wrap_00119680(f5e0));
+    s15a0->func_00199E30(D_002A3A4C, Wrap_00119680(f5e4));
     func_00106810(ia04, m);
 }
-
