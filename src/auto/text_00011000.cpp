@@ -238,7 +238,7 @@ float func_00011020(float a, float b)
 
 float func_00011040(float a, float b)
 {
-    return AsmMaxF(*(float *)&a, *(float *)&b);
+    return AsmMaxF(a, b);
 }
 
 C_00011060* C_00011060::func_00011060(void) {
