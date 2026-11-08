@@ -48,7 +48,6 @@ struct S_0019A680_V4 {
     float x, y, z, w;
     S_0019A680_V4() { z = 0.0f; y = 0.0f; x = 0.0f; w = 1.0f; }
     S_0019A680_V4(float px, float py, float pz, float pw) { x = px; y = py; z = pz; w = pw; }
-    S_0019A680_V4 &operator=(const S_0019A680_V4 &v) { ((int*)this)[0]=((const int*)&v)[0]; ((int*)this)[1]=((const int*)&v)[1]; ((int*)this)[2]=((const int*)&v)[2]; ((int*)this)[3]=((const int*)&v)[3]; return *this; }
 };
 
 static inline S_0019A680_V4 Vec_0019A680(float x, float y, float z) { return S_0019A680_V4(x, y, z, 1.0f); }
