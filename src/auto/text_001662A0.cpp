@@ -81,11 +81,6 @@ static __forceinline int PrepStr_00166CA0(char *buf, char *src)
  buf[n] = 0;
  return n;
 }
-static __forceinline void CopyStr_166CA0(char *d, const char *s)
-{
-    char c;
-    do { c = *s++; *d++ = c; } while (c);
-}
 struct C_00166CA0 {
  int *vbptr;
  C_00166CA0_Obj *f4;
@@ -379,10 +374,12 @@ void C_00166CA0::func_00166CA0(C_00166CA0 *volatile src, int arg) {
  this->f138[count]=0;
  this->f10=src->f10; this->f14=src->f14; this->f18=src->f18; this->f38=src->f38; this->f30=src->f30;
  { const char *s0=src->f48; char *d0=this->f48; char c0; do { c0=*s0++; *d0++=c0; } while(c0); }
- const char *s; char *d; char c;
- s=src->f98; d=this->f98; do { c=*s++; *d++=c; } while(c);
- s=src->fE8; d=this->fE8; do { c=*s++; *d++=c; } while(c);
- s=src->f190; d=this->f190; do { c=*s++; *d++=c; } while(c);
+ {
+  const char *s; char *d; char c;
+  s=src->f98; d=this->f98; do { c=*s++; *d++=c; } while(c);
+  s=src->fE8; d=this->fE8; do { c=*s++; *d++=c; } while(c);
+  s=src->f190; d=this->f190; do { c=*s++; *d++=c; } while(c);
+ }
  this->func_001662A0(arg);
  if(!this->f1F8) this->f1F8=(S_00166CA0_Item *)func_001E8AA5(this->f1E8*64);
  for(int i=0;i<this->f1E8;i++) this->f1F8[i].func_000264C0(&src->f1F8[i]);
