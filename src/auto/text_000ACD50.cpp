@@ -96,11 +96,10 @@ extern "C" char *func_001E8920(char *dst, const char *src, unsigned int n);
 
 static inline int C_000ACF30_strlen(const char *s)
 {
-    const char *p = s + 1;
     const char *q = s;
     while (*q++) {
     }
-    return q - p;
+    return q - s - 1;
 }
 
 template <class T> inline T C_000ACF30_min(const volatile T &a, const volatile T &b)
