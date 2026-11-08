@@ -494,7 +494,10 @@ void C_000D0FD0::func_000D1980()
 
     S_000D1980_Mgr *mgr = f124;
     f1EDC = D_0027ED04;
-    for (i = 0; i < (*mgr->f150->f3A8)->count; (*(volatile int *)&i)++) {
+    i = 0;
+    for (;;) {
+        int cnt = (*mgr->f150->f3A8)->count;
+        if (i >= cnt) break;
         S_000D1980_Entry *e = (*mgr->f150->f3A8)->items[i];
         if (e != 0 && e->f4 == 1 && e->f8 != 0) {
             int len = strlen(e->f8->name);
@@ -510,6 +513,7 @@ void C_000D0FD0::func_000D1980()
                 f20B0 = e->f8;
             }
         }
+        i++;
     }
 }
 
