@@ -2,8 +2,8 @@
 #include "common.h"
 extern float D_00282A78, D_002755E8;
 struct RawVec_107380 { float x,y,z,w; };
-struct Vec_107AE0 {
- float x,y,z,w;
+struct RawVec_107AE0 { float x,y,z,w; };
+struct Vec_107AE0 { float x,y,z,w;
  Vec_107AE0() { x=y=z=0; w=1; }
  Vec_107AE0(float a,float b,float c) { w=1;x=a;y=b;z=c; }
 };
@@ -237,20 +237,23 @@ extern float D_002755E8, D_002755FC, D_0027989C, D_002798A0, D_00276524, D_00275
 extern float func_000260F0(void);
 void C_107380::func_00107380()
 {
- Vec_107AE0 up,unused;
+ Vec_107AE0 up;
+ float temp[4];
+ Vec_107AE0 unused;
  (*(Obj_107AE0**)((char*)fa00+4))->func_00197B40(&unused,&up);
- unused.x=D_002A3A5C.x;unused.y=D_002A3A60;unused.z=D_002A3A64;unused.w=D_002A3A68;
+ up.x=D_002A3A5C.x;up.y=D_002A3A60;up.z=D_002A3A64;up.w=D_002A3A68;
  char *mgr=*(char**)((char*)D_002A8490+0x2a4);
  char *item=*(char**)(mgr+0x44+4* *(int*)((char*)this+0xa2c));
- float *pos=(float*)(*(char**)(item+0x30)+0x170);
- Vec_107AE0 origin,delta,forward,right,temp;
+ char *src=*(char**)(item+0x30);
+ Vec_107AE0 origin,delta,forward,right;
  fa08->func_00197E70(&origin);
- temp.x=pos[0]-origin.x;temp.y=pos[1]-origin.y;temp.z=pos[2]-origin.z;
- delta=temp;
+ temp[0]=*(float*)(src+0x170)-origin.x;temp[1]=*(float*)(src+0x174)-origin.y;temp[2]=*(float*)(src+0x178)-origin.z;
+ temp[3]=1.0f;
+ delta=*(Vec_107AE0*)temp;
  float square=forward.y*forward.y+forward.z*forward.z+forward.x*forward.x;
  float len=AsmSqrtF(square);
- temp.x=-delta.x;temp.y=-delta.y;temp.z=-delta.z;
- func_00104A90(&delta,&temp);func_00104A90(&up,&up);func_00104A90(&forward,&delta);
+ temp[0]=-delta.x;temp[1]=-delta.y;temp[2]=-delta.z;
+ func_00104A90(&delta,(Vec_107AE0*)temp);func_00104A90(&up,&up);func_00104A90(&forward,&delta);
  AsmVec3Cross((float*)&right,(float*)&delta,(float*)&D_002A3A5C);func_00104A90(&right,&right);
  AsmVec3Cross((float*)&up,(float*)&right,(float*)&forward);func_00104A90(&up,&up);
  fa08->func_00199110(0,&forward,&up,0,1,0);fa0c->func_00199110(0,&forward,&up,0,1,0);fa10->func_00199110(0,&forward,&up,0,1,0);fa14->func_00199110(0,&forward,&up,0,1,0);
@@ -260,9 +263,9 @@ void C_107380::func_00107380()
  int bits=*(int*)&value & 0x7fffffff;
  float a=*(float*)&bits;
  int r,g,b;
- if(a<D_002755E8){r=(int)(a*D_002798A4+D_002755FC);g=(int)(D_0027989C-a*D_002798A0);b=(int)(D_00276524-a*D_00275AEC);}else {a-=D_002755E8;r=(int)(D_0027989C-D_00279054*a);g=(int)(D_00279894-D_00279898*a);b=(int)(a*D_00279890+D_002755FC);}
+ if(a<D_002755E8){r=(int)(a*D_002798A4+D_002755FC);g=(int)(D_0027989C-a*D_002798A0);b=(int)(D_00276524-a*D_00275AEC);}else {r=(int)(D_0027989C-D_00279054*(a-D_002755E8));g=(int)(D_00279894-D_00279898*(a-D_002755E8));b=(int)((a-D_002755E8)*D_00279890+D_002755FC);}
  fa14->func_00199CF0(D_002A3A5C,value*D_0027E144*D_00282A74);
- fa14->func_001824E0(&temp,r*D_0027A094,g*D_0027A094,b*D_0027A094);
+ fa14->func_001824E0((Vec_107AE0*)temp,r*D_0027A094,g*D_0027A094,b*D_0027A094);
 }
 
 void C_00107A40::func_00107A40(int a0) {
