@@ -1,6 +1,7 @@
 /* 25 functions from 0x0018C000 to 0x0018CF40, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+#include "asm_helpers.h"
 
 void *func_001E8A44(int size);
 void func_001E891B(void *p);
@@ -343,15 +344,15 @@ void C_0018C120::func_0018C120(void) {
 
 C_0018C120_Node *C_0018C120::func_0018C160(const char *name)
 {
-    C_0018C120_Node *n = head;
+    C_0018C120_Node *n;
+    const char *key = name;
 
-    if (n != 0) {
-        while (n != 0) {
-            if (strcmp(name, ((C_0018C000 *)n->value)->unk4) == 0) {
-                break;
-            }
-            n = n->next;
+    n = this->head;
+    while (n != 0) {
+        if (strcmp(key, ((C_0018C000 *)n->value)->unk4) == 0) {
+            break;
         }
+        n = n->next;
     }
     return n;
 }
@@ -722,25 +723,24 @@ void C_0018C960::func_0018CA20()
     func_00157660();
 }
 
-int C_0018CC00::func_0018CC00(const char *name)
+extern "C" unsigned int strlen(const char *);
+#pragma intrinsic(strlen)
+int C_0018CC00::func_0018CC00(const char * volatile name)
 {
-    volatile int len;
-    volatile int limit;
-    volatile int n;
+    int len, limit, n;
     int slot;
 
     if (capacity < count + 1) {
-        C_0018CC00 * volatile s = this;
         capacity = count + 10;
-        s->entries = (S_0018CC00_Entry *)func_001E83E8(s->entries, s->capacity * 0x38);
-        if (s->entries == 0) {
+        entries = (S_0018CC00_Entry *)func_001E83E8(entries, capacity * 0x38);
+        if (entries == 0) {
             return -1;
         }
     }
     slot = count;
     len = strlen(name);
     limit = 0x1f;
-    n = limit > len ? len : limit;
+    n = AsmMinI(limit, len);
     func_001E8920((char *)&entries[count], name, n);
     ((char *)&entries[count])[n] = 0;
     entries[count].f20 = 0;
@@ -754,7 +754,6 @@ int C_0018CC00::func_0018CC00(const char *name)
     count++;
     return slot;
 }
-
 int C_0018CE00::func_0018CE00(int id, char *name)
 {
     int slot;
