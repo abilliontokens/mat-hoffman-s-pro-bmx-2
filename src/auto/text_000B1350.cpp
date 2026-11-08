@@ -399,8 +399,7 @@ void C_000B1350::func_000B1350(void)
         for (k = 0; k < f44[i]->f4C; k++) {
             S_000B1350_Sub *s = f44[i]->f48[k];
             int cur = (int)s->f4;
-            unsigned int ni = s->f0;
-            S_000B1350_Node *node = f4C[ni];
+            S_000B1350_Node *node = f4C[s->f0];
             if (node->f4 > 0) {
                 float t = s->f4 - (float)cur;
                 S_000B1350_Tbl *tbl = node->fC[0]->f3C->f518;
@@ -507,16 +506,18 @@ void C_000B1B80::func_000B1B80(void)
 {
     char buf[0x104];
     S_000B1B80_Mat mat;
-    struct { int limit; int cnt; int len; } t;
-    int n;
 
     if (func_001EA426(name, D_002764F0) != 0) {
-        t.len = strlen(D_002A4C10);
-        t.limit = 0x103;
-        t.cnt = AsmMinI(t.limit, t.len);
-        n = t.cnt;
-        func_001E8920(buf, D_002A4C10, n);
-        buf[n] = 0;
+        {
+            int len;
+            int cnt;
+            int limit;
+            len = strlen(D_002A4C10);
+            limit = 0x103;
+            cnt = AsmMinI(limit, len);
+            func_001E8920(buf, D_002A4C10, cnt);
+            buf[cnt] = 0;
+        }
         func_001ADCC0(D_002A4C10, 0x104, D_00275678, (this->f3C->f8 == 0) ? D_002A5870 : D_002A5348, D_002A45E0);
         {
             void *mem = func_001E8A44(0x1e0);
@@ -536,12 +537,16 @@ void C_000B1B80::func_000B1B80(void)
             this->f44->f8->v31(&mat);
             this->f44->f8->func_00133140(D_002B9120->f4AC[D_002B9120->f348], 1);
         }
-        t.cnt = strlen(buf);
-        t.limit = 0x103;
-        t.len = AsmMinI(t.limit, t.cnt);
-        n = t.len;
-        func_001E8920(D_002A4C10, buf, n);
-        D_002A4C10[n] = 0;
+        {
+            int cnt;
+            int len;
+            int limit;
+            cnt = strlen(buf);
+            limit = 0x103;
+            len = AsmMinI(limit, cnt);
+            func_001E8920(D_002A4C10, buf, len);
+            D_002A4C10[len] = 0;
+        }
     }
 }
 
@@ -625,37 +630,38 @@ void func_000B2010(void) {
 }
 
 C_000B2020 *C_000B2020::func_000B2020(void) {
-    C_000B2020 * volatile self = this;
-    int limit;
     int count;
+    int limit1;
+    int limit2;
+    int limit3;
     ((C_001B4AF0 *)this)->func_001B4AF0();
-    self->vtbl = (void *)&D_0027D004;
-    limit = 0x103;
-    count = AsmMinI(limit, 4);
-    func_001E8920(self->f250, (const char *)&D_002764F0, count);
-    self->f250[count] = 0;
-    limit = 0x103;
-    count = AsmMinI(limit, 4);
-    func_001E8920(self->f14C, (const char *)&D_002764F0, count);
-    self->f14C[count] = 0;
-    limit = 0x103;
-    count = AsmMinI(limit, 4);
-    func_001E8920(self->f354, (const char *)&D_002764F0, count);
-    self->f354[count] = 0;
-    self->f13C = 1;
-    self->f140 = 1;
-    self->f11C = -1;
-    self->f120 = -1;
-    self->f144 = 0;
-    self->f148 = 0;
-    self->f118 = 0x41100000;
-    self->f114 = 0;
-    self->f124 = 0;
-    self->f12C = 0;
-    self->f130 = 1;
-    self->f134 = 0;
-    self->f128 = 0;
-    self->f138 = 0;
-    return self;
+    vtbl = (void *)&D_0027D004;
+    limit1 = 0x103;
+    count = AsmMinI(limit1, 4);
+    func_001E8920(f250, (const char *)&D_002764F0, count);
+    f250[count] = 0;
+    limit2 = 0x103;
+    count = AsmMinI(limit2, 4);
+    func_001E8920(f14C, (const char *)&D_002764F0, count);
+    f14C[count] = 0;
+    limit3 = 0x103;
+    count = AsmMinI(limit3, 4);
+    func_001E8920(f354, (const char *)&D_002764F0, count);
+    f354[count] = 0;
+    f13C = 1;
+    f140 = 1;
+    f11C = -1;
+    f120 = -1;
+    f144 = 0;
+    f148 = 0;
+    f118 = 0x41100000;
+    f114 = 0;
+    f124 = 0;
+    f12C = 0;
+    f130 = 1;
+    f134 = 0;
+    f128 = 0;
+    f138 = 0;
+    return this;
 }
 
