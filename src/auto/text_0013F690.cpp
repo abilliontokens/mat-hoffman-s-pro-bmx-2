@@ -755,32 +755,31 @@ C_001401C0 *C_001401C0::func_0013FD50(S_001401C0_Info *info)
 
 void C_0013FF50::func_0013FF50(int a0)
 {
-    C_0013FF50 * volatile self = this;
+    int p = a0;
     S_001401C0_Mat m;
     S_001401C0_Mat t;
-
     AsmIdentityMatrix(&m);
     AsmTransposeMatrix((float *)&t, (float *)&m);
-    if (self->f1A0->f4C == 0) {
-        func_000263B0((float *)self->f90, (float *)&m, (float *)(a0 + 0x250));
+    if (f1A0->f4C != 0) {
+        func_000263B0((float *)f90, (float *)&m, (float *)(p + 0x290));
     } else {
-        func_000263B0((float *)self->f90, (float *)&m, (float *)(a0 + 0x290));
+        func_000263B0((float *)f90, (float *)&m, (float *)(p + 0x250));
     }
-    self->f190[0] = *(float *)(a0 + 0x170) - m.m[3];
-    self->f190[1] = *(float *)(a0 + 0x174) - m.m[7];
-    self->f190[2] = *(float *)(a0 + 0x178) - m.m[11];
-    AsmTransformPoint(self->f190, self->f190, (float *)&t);
-    if (self->f1A0->f30 == 0) {
-        func_00030AC0((float *)self->f150, (float *)self->fD0, (float *)&t);
-    } else if (self->f1A0->f39 & 1) {
-        AsmZeroMatrix(self->f110);
-        ((float *)self->f110)[3] = self->f1A0->f50;
-        ((float *)self->f110)[7] = self->f1A0->f54;
-        ((float *)self->f110)[11] = self->f1A0->f58;
-        ((float *)self->f110)[15] = self->f1A0->f5C;
-        self->f1A0->f39 &= 0xfe;
+    f190[0] = *(float *)(a0 + 0x170) - m.m[3];
+    f190[1] = *(float *)(a0 + 0x174) - m.m[7];
+    f190[2] = *(float *)(a0 + 0x178) - m.m[11];
+    AsmTransformPoint(f190, f190, (float *)&t);
+    if (f1A0->f30 == 0) {
+        func_00030AC0((float *)f150, (float *)fD0, (float *)&t);
+    } else if (f1A0->f39 & 1) {
+        AsmZeroMatrix(f110);
+        ((float *)f110)[3] = f1A0->f50;
+        ((float *)f110)[7] = f1A0->f54;
+        ((float *)f110)[11] = f1A0->f58;
+        ((float *)f110)[15] = f1A0->f5C;
+        f1A0->f39 &= 0xfe;
     }
-    func_0011ACC0(self->f10, &m, (void *)(a0 + 0xb0));
+    func_0011ACC0(f10, &m, (void *)(a0 + 0xb0));
 }
 
 extern "C" void _ReadWriteBarrier(void);
