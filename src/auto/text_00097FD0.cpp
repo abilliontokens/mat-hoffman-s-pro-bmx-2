@@ -323,6 +323,35 @@ static __forceinline void Refresh6_000988B0(char **lp, char *a, int flag)
     }
 }
 
+static __forceinline void Refresh7_000988B0(char **lp, char *a, int flag)
+{
+    int j;
+    int k;
+    char *o;
+
+    for (j = 0; j < *(int *)(*lp + 0x1b8); j++) {
+        if (*(int *)(*(char ***)(*lp + 0x1c8))[j] == 1) {
+            for (k = 0; k < *(int *)((*(char ***)(*lp + 0x1c8))[j] + 0x2554); k++) {
+                o = *(char **)((*(char ***)(a + 0x28))[*(int *)((*(char ***)(*lp + 0x1c8))[j] + 0x2558 + k * 4)] + 4);
+                ((void (__fastcall *)(void *))(*(void ***)o)[6])(o);
+                if (!flag) {
+                    o = *(char **)((*(char ***)(a + 0x28))[*(int *)((*(char ***)(*lp + 0x1c8))[j] + 0x2558 + k * 4)] + 4);
+                    ((void (__fastcall *)(void *))(*(void ***)o)[4])(o);
+                }
+            }
+        } else {
+            o = *(char **)((*(char ***)(a + 0x28))[*(int *)((*(char ***)(*lp + 0x1c8))[j] + 0x268)] + 4);
+            ((void (__fastcall *)(void *))(*(void ***)o)[6])(o);
+            if (!flag) {
+                o = *(char **)((*(char ***)(a + 0x28))[*(int *)((*(char ***)(*lp + 0x1c8))[j] + 0x268)] + 4);
+                ((void (__fastcall *)(void *))(*(void ***)o)[4])(o);
+            }
+        }
+        if (*(int *)((*(char ***)(*lp + 0x1c8))[j] + 0x40) == 0)
+            flag = 0;
+    }
+}
+
 int __fastcall func_000988B0(char *self, int unused, char *a, char *b)
 {
     int i;
@@ -422,7 +451,7 @@ int __fastcall func_000988B0(char *self, int unused, char *a, char *b)
         }
         for (p = 0; p < count; p++) {
             if (*(int *)(list[p] + 0x48e0) == 0 && *(int *)(list[p] + 0x1bc) != 0)
-                Refresh_000988B0(&list[p], a, 1);
+                Refresh6_000988B0(&list[p], a, 1);
         }
     }
     return 1;
