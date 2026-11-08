@@ -1,5 +1,6 @@
 /* 7 functions from 0x001B82A0 to 0x001B8920, found by Ghidra. */
 #include "common.h"
+#include "asm_helpers.h"
 
 extern int D_0028CF94;
 extern int D_0028D04C;
@@ -289,11 +290,9 @@ C_001B84E0 *C_001B84E0::func_001B84E0(void) {
 
 void C_001B8550::func_001B8550(Arg_001B8550 *arg)
 {
-    C_001B8550 *volatile self = this;
     char buf[0x104];
     int i, j, k, m;
-    volatile int limit, len, n;
-    Clamp_001B8550 b;
+    int limit, len, n;
     Voice_001B8550 *voice;
     Entry1_001B8550 *e;
     Entry2_001B8550 *e2;
@@ -301,40 +300,40 @@ void C_001B8550::func_001B8550(Arg_001B8550 *arg)
     void *mem;
 
     if (this->f24 != 0) {
-        for (i = 0; i < self->f24; i++) {
+        for (i = 0; i < this->f24; i++) {
             k = 0;
-            if (self->f28[i]->f104 == 0) {
-                func_001ADCC0(buf, 0x104, D_0027C588, self->f28[i]);
+            if (this->f28[i]->f104 == 0) {
+                func_001ADCC0(buf, 0x104, D_0027C588, this->f28[i]);
                 mem = func_001E8A44(0x1e0);
                 voice = mem ? (Voice_001B8550 *)((Ctor_001B8550 *)mem)->func_00143580(1) : 0;
-                self->f28[i]->f158[0] = voice;
-                voice = (Voice_001B8550 *)self->f28[i]->f158[0];
+                this->f28[i]->f158[0] = voice;
+                voice = (Voice_001B8550 *)this->f28[i]->f158[0];
                 if (voice->v35(buf, 0, 1) == 0) {
                     continue;
                 }
                 len = strlen(buf);
                 limit = 0x7f;
-                n = Min_001B8550(limit, len);
+                n = AsmMinI(limit, len);
                 func_001E8920(voice->name, buf, n);
                 voice->name[n] = 0;
-                voice->func_00199600(self->f28[i]->f128);
-                voice->func_00198F50(&self->f28[i]->f138, &self->f28[i]->f148, 1, 0, 0);
+                voice->func_00199600(this->f28[i]->f128);
+                voice->func_00198F50(&this->f28[i]->f138, &this->f28[i]->f148, 1, 0, 0);
                 voice->func_0019ABA0(arg->f4A8[arg->f348], 1);
                 arg->f3A8[arg->f348]->func_001577A0(voice, 0);
-                self->f28[i]->f104 = 1;
+                this->f28[i]->f104 = 1;
             } else {
                 for (j = 0; j < arg->f3AC->f24; j++) {
                     e = (Entry1_001B8550 *)arg->f3AC->f28[j];
                     if (e == 0 || e->f4 != 1) {
                         continue;
                     }
-                    func_0014FF00(0, (char *)e->f1A4->f4 + 0x28, 0, buf, 0);
-                    if (func_001EA426(buf, (char *)self->f28[i]) != 0) {
+                    func_0014FF00((int)((char *)e->f1A4->f4 + 0x28), 0, 0, buf, 0);
+                    if (func_001EA426(buf, (char *)this->f28[i]) != 0) {
                         continue;
                     }
-                    self->f28[i]->f158[k] = e->f1A4->f4;
+                    this->f28[i]->f158[k] = e->f1A4->f4;
                     k++;
-                    if (k >= self->f28[i]->f104) {
+                    if (k >= this->f28[i]->f104) {
                         break;
                     }
                 }
@@ -346,19 +345,20 @@ void C_001B8550::func_001B8550(Arg_001B8550 *arg)
                     if (e2 == 0 || e2->f4 != 1 || e2->f8 == 0) {
                         continue;
                     }
-                    b.len = strlen((char *)e2->f8 + 0x28);
-                    b.limit = 0x103;
-                    b.n = Min_001B8550(b.limit, b.len);
-                    func_001E8920((char *)e2->f8 + 0x28, buf, b.n);
-                    buf[b.n] = 0;
+                    int len2, lim2, n2;
+                    len2 = strlen((char *)e2->f8 + 0x28);
+                    lim2 = 0x103;
+                    n2 = AsmMinI(lim2, len2);
+                    func_001E8920(buf, (char *)e2->f8 + 0x28, n2);
+                    buf[n2] = 0;
                     dot = func_001E8AC0(buf, '.');
                     if (dot != 0) {
                         memset(dot, 0, strlen(dot));
                     }
-                    if (func_001EA426(buf, (char *)self->f28[i]) == 0) {
-                        self->f28[i]->f158[k] = e2->f8;
+                    if (func_001EA426(buf, (char *)this->f28[i]) == 0) {
+                        this->f28[i]->f158[k] = e2->f8;
                         k++;
-                        if (k >= self->f28[i]->f104) {
+                        if (k >= this->f28[i]->f104) {
                             break;
                         }
                     }
