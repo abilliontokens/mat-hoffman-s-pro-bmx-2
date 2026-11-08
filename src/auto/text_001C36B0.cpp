@@ -30,6 +30,8 @@ struct FadeObj {
     FadeSprite *f24; char pad28[8];
     float f30; int f34; int f38; int f3C; int f40;
     int func_001C4240(void);
+    int func_00157920(void);
+    int func_00157960(void);
 };
 
 static void FtoI2_001C4240(int *dst, float src)
