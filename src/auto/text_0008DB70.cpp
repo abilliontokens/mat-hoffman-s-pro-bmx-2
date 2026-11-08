@@ -33,6 +33,15 @@ struct W_0008DB70 {
     }
     void func_001D5810(char *name, float x, float y, int z);
 };
+struct T_0008DB70 {
+    T_0008DB70 *func_001B12C0(int a);
+    void func_001B13A0(void *a, void *b, int c, int d);
+    void func_001B1A30(int a, int b, int c);
+    void func_001B2270(int c);
+    void func_001B19A0(int f);
+    void func_001B1BF0(float s);
+    void func_001B1AB0(int a, int b);
+};
 struct S_0008DB70 {
     char pad0[0x40];
     int f40; int f44; char *f48;
