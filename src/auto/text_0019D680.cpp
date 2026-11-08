@@ -175,7 +175,7 @@ struct SoultreeCollisionObject {
     void func_0019CBF0(int param_1, int param_2);
     int func_0019D680(void *param_1);
     void func_00157A00(int param_1);
-    void *func_0019BB80(void *param_1);
+    int func_0019BB80(void *param_1);
     void func_0019BA70();
     void func_0019B890();
     void func_0019B760();
@@ -188,7 +188,7 @@ extern "C" void __stdcall func_0019BD20(unsigned short param_1, int *param_2, ch
 
 int SoultreeCollisionObject::func_0019D680(void *param_1)
 {
-    void *result;
+    int result;
     if (((int *)param_1)[0x14] != 6) {
         return 0;
     }
@@ -197,5 +197,5 @@ int SoultreeCollisionObject::func_0019D680(void *param_1)
         func_0019BA70();
         func_0019B890();
     }
-    return (int)result;
+    return result;
 }
