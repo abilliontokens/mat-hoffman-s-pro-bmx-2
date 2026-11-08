@@ -421,7 +421,7 @@ void C_0002D730::func_0002D730(float dt)
     if (f468) {
         S_2D730_Node *node = f1e0;
         V4_2D730 impulse;
-        impulse.z = -*(float *)((char *)node + 0x250) * *(float *)((char *)this + 0x5c4);
+        impulse.z = -(*(float *)((char *)node + 0x250) * *(float *)((char *)this + 0x5c4));
         if (*(void **)((char *)node + 0x22c)) {
             V4_2D730 transformed;
             ((S_2D730_Transform *)*(void **)((char *)node + 0x22c))->func_00197EC0(&transformed, &impulse);
