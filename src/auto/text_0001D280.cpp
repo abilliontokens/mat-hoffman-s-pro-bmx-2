@@ -1,6 +1,7 @@
 /* 20 functions from 0x0001D280 to 0x0001E260, found by Ghidra. */
 #include "common.h"
 #include <algorithm>
+#include "asm_helpers.h"
 struct C_0001E0A0 {
     char pad0[0x140];
     float unk140;
