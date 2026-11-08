@@ -13,7 +13,6 @@ struct Widget_6AA90 {
  void func_001B1860(int,float,int,float,int,int,float,int,float,int,int,float,int);
 };
 struct Entry_6AA90 { char *s; int v; };
-struct YS_6AA90 { float pad; float y; };
 struct Res_6AA90 { int pad; Entry_6AA90 *entries; };
 struct Save_6AA90 { char enabled[16]; char names[8][50]; };
 struct Player_6AA90 { char pad[0x2c8]; Save_6AA90 *save; };
