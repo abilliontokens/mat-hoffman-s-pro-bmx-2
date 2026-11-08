@@ -917,20 +917,6 @@ int C_001CC0C0::func_001CC1E0(void)
     return f1A0;
 }
 
-static __forceinline int setFreq_001CC320(int h, int (*call)(int, unsigned int), unsigned int v, int line)
-{
-    int r;
-    if (v < 0xbc || v > (unsigned int)&D_0002EDEF) {
-        return -1;
-    }
-    r = call(h, v);
-    if (r < 0) {
-        func_001CBC10(r, &D_0028EECC, line);
-        return -1;
-    }
-    return 0;
-}
-
 int C_001CC0C0::func_001CC320(unsigned int v)
 {
     int r;
