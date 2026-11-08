@@ -612,23 +612,6 @@ struct C_001AE890 {
 };
 struct S_001AE890_View { int v[6]; };
 static inline void setint_1AE890(int *out, float f) { *out = (int)f; }
-static inline void Fill_1AE890(C_001AE890 *self, int *p, int i0, int top, int end)
-{
-    int i = i0;
-    for (int y = top; y < end; y++) {
-        for (int x = 0; x < 2; x++) {
-            int v = *p++; self->f18->f64[i++] = (v == 0);
-            v = *p++; self->f18->f64[i++] = (v == 0);
-            v = *p++; self->f18->f64[i++] = (v == 0);
-            v = *p++; self->f18->f64[i++] = (v == 0);
-            v = *p++; self->f18->f64[i++] = (v == 0);
-            v = *p++; self->f18->f64[i++] = (v == 0);
-            v = *p++; self->f18->f64[i++] = (v == 0);
-            v = *p++; self->f18->f64[i++] = (v == 0);
-        }
-        p += 624;
-    }
-}
 void func_001ADD80(void *);
 void __stdcall func_001FF940(void *, void *);
 void __stdcall func_00200230(void *);
