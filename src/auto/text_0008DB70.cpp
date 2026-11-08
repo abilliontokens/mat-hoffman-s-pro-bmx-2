@@ -15,6 +15,8 @@ extern char _D_0027A048[];
 extern char _D_0027A03C[];
 extern char _D_0027A030[];
 extern char _D_0027A01C[];
+extern char _D_00279FF8[];
+extern char _D_00279FE0[];
 void *func_001E8A44(int size);
 struct W_0008DB70 {
     char pad0[0x28];
@@ -475,6 +477,14 @@ S_0008DB70 *S_0008DB70::func_0008DB70(char *a2, int a1, int a0, int a3, int a5, 
                 fd3c = p ? ((W_0008DB70 *)p)->func_001D5760() : 0;
                 ((W_0008DB70 *)fd3c)->func_001D5810(_D_0027A048, 475.0f, 120.0f, 0);
             }
+        }
+    }
+    {
+        char *stt = P4((void *)D_002A8490, 0x2e0);
+        if (I4(stt, 0) > 1 && a6 == 0) {
+            p = func_001E8A44(100);
+            fd48 = p ? ((W_0008DB70 *)p)->func_001D5760() : 0;
+            ((W_0008DB70 *)fd48)->func_001D5810(_D_0027A01C, 492.0f, 91.0f, 0);
         }
     }
     return this;
