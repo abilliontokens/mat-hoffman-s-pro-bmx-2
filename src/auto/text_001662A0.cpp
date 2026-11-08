@@ -72,6 +72,15 @@ struct Str_00166CA0 {
   s[n] = 0;
  }
 };
+static __forceinline int PrepStr_00166CA0(char *buf, char *src)
+{
+ int len = strlen(src);
+ int max = 0x103;
+ int n = min_00166CA0(max, len);
+ func_001E8920(buf, src, n);
+ buf[n] = 0;
+ return n;
+}
 struct C_00166CA0 {
  int *vbptr;
  C_00166CA0_Obj *f4;
@@ -178,44 +187,39 @@ struct C_00166E70_Outer {
 
 void C_00166CA0::func_001662A0(int param_1)
 {
- C_00166CA0 *volatile self = this;
- int locals[3];
  char buf[0x104];
  char saved[0x104];
+ int len, n, max;
  if (*(volatile int *)&f188 == 0) {
   strcpy(saved, D_002A5EA0);
   D_002A5EA0[0] = 0;
-  locals[2] = strlen(f190);
-  locals[0] = 0x103;
-  locals[1] = AsmMinI(locals[0], locals[2]);
-  func_001E8920(buf, self->f190, locals[1]);
-  buf[locals[1]] = 0;
-  strcat(buf, self->f138);
+  len = strlen(f190);
+  max = 0x103;
+  n = AsmMinI(max, len);
+  func_001E8920(buf, f190, n);
+  buf[n] = 0;
+  strcat(buf, f138);
  } else {
   saved[0] = 0;
-  locals[1] = strlen(f138);
-  locals[0] = 0x103;
-  locals[2] = AsmMinI(locals[0], locals[1]);
-  func_001E8920(buf, self->f138, locals[2]);
-  buf[locals[2]] = 0;
+  len = strlen(f138);
+  max = 0x103;
+  n = AsmMinI(max, len);
+  func_001E8920(buf, f138, n);
+  buf[n] = 0;
  }
  void *p = func_001E8A44(0x1e0);
- C_00166CA0 *obj;
  C_00166CA0_Obj *created;
- if (p) { obj = self; int flag = *((unsigned char *)obj + obj->vbptr[1] + 0x21); flag &= 1; created = new (p) C_00166CA0_Obj(flag); } else created = 0;
- ((volatile C_00166CA0 *)self)->f4 = created;
- self->f4->v8C(buf, 1, param_1);
- obj = self;
- ((C_00166CA0_Base *)((char *)obj + obj->vbptr[1]))->func_001577A0(obj->f4, 0);
- int count = self->f4->func_00198270() - 1;
- ((volatile C_00166CA0 *)self)->f1E8 = count;
- ((volatile C_00166CA0 *)self)->f1EC = (int)func_001E8A44(self->f1E8 << 6);
- obj = self;
- func_00164270(0, obj->f1EC, obj->f4->f174);
- obj = self;
- if (obj->f1F4) obj->func_00166190();
- self->func_00165F70();
- if (self->f188 == 0) strcpy(D_002A5EA0, saved);
+ if (p) { int flag = *((unsigned char *)this + vbptr[1] + 0x21); flag &= 1; created = new (p) C_00166CA0_Obj(flag); } else created = 0;
+ ((volatile C_00166CA0 *)this)->f4 = created;
+ ((volatile C_00166CA0 *)this)->f4->v8C(buf, 1, param_1);
+ ((C_00166CA0_Base *)((char *)this + vbptr[1]))->func_001577A0(((volatile C_00166CA0 *)this)->f4, 0);
+ int count = ((volatile C_00166CA0 *)this)->f4->func_00198270() - 1;
+ *(volatile int *)&f1E8 = count;
+ *(volatile int *)&f1EC = (int)func_001E8A44(*(volatile int *)&f1E8 << 6);
+ func_00164270(0, *(volatile int *)&f1EC, ((volatile C_00166CA0 *)this)->f4->f174);
+ if (((volatile C_00166CA0 *)this)->f1F4) func_00166190();
+ func_00165F70();
+ if (*(volatile int *)&f188 == 0) strcpy(D_002A5EA0, saved);
 }
 
 void C_166830::func_001664C0(float t, int *b, int flag)
