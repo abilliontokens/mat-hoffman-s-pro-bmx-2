@@ -489,7 +489,7 @@ int __fastcall func_000988B0(char *self, int unused, char *a, char *b)
         }
         for (p = 0; p < count; p++) {
             if (*(int *)(list[p] + 0x48e0) == 0 && *(int *)(list[p] + 0x1bc) != 0)
-                Refresh4_000988B0(&list[p], a, 1);
+                Refresh_000988B0(&list[p], a, 1);
         }
     }
     return 1;
