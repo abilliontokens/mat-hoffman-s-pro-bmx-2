@@ -135,7 +135,10 @@ int BmxSinglePlayerInGameMenu::func_00079800(float dt)
             switch (unk100) {
             case 0:
                 unk104->f64->p4C0->v31(0, 1);
-                if (unk104->f64->f594 != 0 && unk104->f118 != 0) {
+                if (unk104->f64->f594 == 0) {
+                    D_002A8490->p2E0->p2FC->v18(0);
+                    func_00060220();
+                } else if (unk104->f118 != 0) {
                     D_002A8490->p2E0->p2FC->v18(0);
                     func_00060220();
                 } else {
@@ -176,9 +179,9 @@ int BmxSinglePlayerInGameMenu::func_00079800(float dt)
                     case 11: v = 7; break;
                     case 13: v = 8; break;
                     case 14: v = 9; break;
-                    default: v = 0; break;
+                    default: v = *(int *)&dt; break;
                     }
-                    D_002A8490->p2E0->p2C0->func_0005C310(dt, 8);
+                    D_002A8490->p2E0->p2C0->func_0005C310(v, 8);
                     unk184 = 0;
                     return 1;
                 }
@@ -186,8 +189,10 @@ int BmxSinglePlayerInGameMenu::func_00079800(float dt)
                     unk104->f64->p4E0->arr1a8[i]->func_001067B0();
                 }
                 unk104->f64->p4C0->v31(0, 1);
-                if (unk104->f64->f594 != 0 && unk104->f118 != 0)
+                if (unk104->f64->f594 == 0 || unk104->f118 == 0) {
+                } else {
                     D_002A8490->p2E0->p2FC->v18(0);
+                }
                 unk104->func_00032720();
                 unk104->v39();
                 unk104->func_00032740();
@@ -215,8 +220,10 @@ int BmxSinglePlayerInGameMenu::func_00079800(float dt)
                 unk104->f1C4->func_001041C0();
                 unk104->func_00032530();
                 unk104->f64->p4C0->v31(0, 1);
-                if (unk104->f64->f594 != 0 && unk104->f118 != 0)
+                if (unk104->f64->f594 == 0 || unk104->f118 == 0) {
+                } else {
                     D_002A8490->p2E0->p2FC->v18(0);
+                }
                 if (unk104->f90 == 1) {
                     if (unk104->f68->func_0005B960(3, (float)unk104->f64->p4E0->arr1a8[0]->fA58) != 0) goto fail4;
                     if (unk104->f68->func_0005B960(1, unk104->f64->p4E0->arr1a8[0]->fA4C) != 0) goto fail4;
@@ -238,8 +245,14 @@ int BmxSinglePlayerInGameMenu::func_00079800(float dt)
             unkF4 = 0;
             unkF0 = 0;
         }
-        D_002A8490->p2E0->p2FC->v18(0);
-        func_00060220();
+        if (unkF8 != 0 && unkF0 >= D_00278500) {
+            unk104->f64->p4C0->v31(0, 1);
+            if (unk104->f64->f594 == 0 || unk104->f118 == 0) {
+            } else {
+                D_002A8490->p2E0->p2FC->v18(0);
+            }
+            func_00060220();
+        }
     }
     return func_0005EA10(dt);
 }
