@@ -43,6 +43,7 @@ struct V4_1A {
     float x, y, z, w;
     V4_1A() {}
     V4_1A(float a, float b, float c) { x = a; y = b; z = c; w = 1.0f; }
+    V4_1A(float a, float b, float c, float d) { x = a; y = b; z = c; w = d; }
     V4_1A operator-(V4_1A o) const { return V4_1A(x - o.x, y - o.y, z - o.z); }
     V4_1A operator*(float s) const { return V4_1A(x * s, y * s, z * s); }
 };
@@ -581,7 +582,7 @@ int C_001A1D20::func_001A1D20(const char * volatile name, int b)
     t.cnt = a > c ? c : a;
     n = t.cnt;
     func_001E8920(t.self->f9c, name, n);
-    *(n + (volatile char *)t.self->f9c) = 0;
+    *(volatile char *)(t.self->f9c + n) = 0;
     p = t.self;
     if (p->f1bc != 0) {
         if (p->f98 & 4) p->v30(p->f3c);
@@ -593,17 +594,20 @@ int C_001A1D20::func_001A1D20(const char * volatile name, int b)
     return 0;
 }
 
-void C_001A1E60::func_001A1E60() {
-    ObjV2 *p = unk1BC;
-    int r = 0;
-    if (p != 0) {
+void C_001A1E60::func_001A1E60()
+{
+    ObjV2 **slot = &unk1BC;
+    int zero = 0;
+    int r = zero;
+    ObjV2 *p = *slot;
+    if ((int)p != zero) {
         r = p->v2();
     }
-    unk1BC = 0;
-    if (r != 0) {
+    *slot = (ObjV2 *)zero;
+    if (r != zero) {
         return;
     }
-    unk1BC = 0;
+    *slot = (ObjV2 *)zero;
 }
 
 extern "C" void __fastcall func_001A1E90(int *self)
@@ -679,9 +683,11 @@ void C_001A22E0::func_001A22E0(int a0) {
 
 #pragma optimize("g", off)
 void C_001A22F0::func_001A22F0(void) {
- if (f1bc == 0) return;
- if (f98 & 8) f1b4 = 1;
- f1bc->v5(0);
+    if (f1bc == 0)
+        return;
+    if (f98 & 8)
+        f1b4 = 1;
+    f1bc->v5(0);
 }
 #pragma optimize("", on)
 
@@ -727,17 +733,22 @@ bool C_001A2500::func_001A2500(void)
 
 int C_001A2510::func_001A2510(S_001A2510_Arg *arg, int a1, int a2)
 {
-    if (arg != 0) goto body;
-fail:
+    if (arg != 0) {
+        while (1) {
+            f0 = arg;
+            f4 = arg->fb4->func_001CBEF0();
+            if (f4 == 0)
+                break;
+            if (func_001A14A0(a1) == 0)
+                break;
+            if (func_001A14F0(a2) == 0)
+                break;
+            if (func_001A1450(0.3048f) == 0)
+                break;
+            return func_001A1410() != 0;
+        }
+    }
     return 0;
-body:
-    f0 = arg;
-    f4 = arg->fb4->func_001CBEF0();
-    if (f4 == 0) goto fail;
-    if (func_001A14A0(a1) == 0) goto fail;
-    if (func_001A14F0(a2) == 0) goto fail;
-    if (func_001A1450(0.3048f) == 0) goto fail;
-    return func_001A1410() != 0;
 }
 
 C_001A2580 *C_001A2580::func_001A2580(int a0, int a1, int a2, int a3)
