@@ -365,6 +365,8 @@ void C_000D2080::func_000D1AE0(void)
     }
 }
 
+extern int D_0027EE10, D_0027EE14, D_0027EE18;
+extern unsigned short D_0027EE1C;
 void C_000D2080::func_000D2080(void)
 {
     char buf[0x104];
@@ -385,7 +387,14 @@ void C_000D2080::func_000D2080(void)
     *(S_000D2080_Str23 *)this->names[6] = D_0027EE50;
     *(S_000D2080_Str22 *)this->names[7] = D_0027EE38;
     *(S_000D2080_Str21 *)this->names[8] = D_0027EE20;
-    *(S_000D2080_Str18 *)this->names[9] = D_0027EE0C;
+    {
+        int *p = (int *)&this->names[9][0];
+        p[0] = *(int *)&D_0027EE0C;
+        p[1] = D_0027EE10;
+        p[2] = D_0027EE14;
+        p[3] = D_0027EE18;
+        *(unsigned short *)(p + 4) = D_0027EE1C;
+    }
     for (poff = 0x2048, off = 0x474; off < 0xE9C; off += 0x104, poff += 4) {
         for (j = 0; j < (*mgr->f150->f3A8)->count; j++) {
             S_000D2080_Entry *e = (*mgr->f150->f3A8)->items[j];
