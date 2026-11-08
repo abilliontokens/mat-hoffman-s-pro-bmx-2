@@ -296,6 +296,38 @@ static __forceinline void Refresh_000988B0(char **lp, char *a, int flag)
     }
 }
 
+static __forceinline void Refresh4_000988B0(char **lp, char *a, int flag)
+{
+    int j;
+    int k;
+    char *o;
+    int n;
+
+    for (j = 0; j < *(int *)(*lp + 0x1b8); j++) {
+        if (*(int *)(*(char ***)(*lp + 0x1c8))[j] == 1) {
+            for (k = 0; k < *(int *)((*(char ***)(*lp + 0x1c8))[j] + 0x2554); k++) {
+                n = *(int *)((*(char ***)(*lp + 0x1c8))[j] + 0x2558 + k * 4);
+                o = *(char **)((*(char ***)(a + 0x28))[n] + 4);
+                ((void (__fastcall *)(void *))(*(void ***)o)[6])(o);
+                if (!flag) {
+                    o = *(char **)((*(char ***)(a + 0x28))[n] + 4);
+                    ((void (__fastcall *)(void *))(*(void ***)o)[4])(o);
+                }
+            }
+        } else {
+            n = *(int *)((*(char ***)(*lp + 0x1c8))[j] + 0x268);
+            o = *(char **)((*(char ***)(a + 0x28))[n] + 4);
+            ((void (__fastcall *)(void *))(*(void ***)o)[6])(o);
+            if (!flag) {
+                o = *(char **)((*(char ***)(a + 0x28))[n] + 4);
+                ((void (__fastcall *)(void *))(*(void ***)o)[4])(o);
+            }
+        }
+        if (*(int *)((*(char ***)(*lp + 0x1c8))[j] + 0x40) == 0)
+            flag = 0;
+    }
+}
+
 static __forceinline void Refresh3_000988B0(char **lp, char *a, int flag)
 {
     int j;
