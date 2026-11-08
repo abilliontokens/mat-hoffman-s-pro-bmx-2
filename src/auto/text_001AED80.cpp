@@ -102,7 +102,6 @@ extern float D_00275544, D_002755E4, D_00276098;
 extern S_001AF530_Tbl *D_002AA6C0;
 extern S_001AF530_Time *D_002A8490;
 extern "C" double func_001E9092(double a, double b);
-static __forceinline float FloatFromBits_001AF530(int b) { return *(float *)&b; }
 struct C_001AF530 {
     float f0;
     unsigned char f4;
