@@ -263,9 +263,9 @@ void C_00027860::func_00027860(float dt)
 
     t.z = 0.0f;
     if (this->f1E8->f68 != 0) {
-        S_V4_27860 v;
         S_V4Id_27860 v1;
         S_V4Id_27860 v2;
+        S_V4_27860 v;
         float s;
         float neg;
         float tmp;
@@ -278,7 +278,7 @@ void C_00027860::func_00027860(float dt)
         v.w = 0.0f;
         func_000265C0(m, &v.x, &v2.x, this->f1E8->f1A0, 0, 1);
         t = func_00026880(this->f748, m);
-        s = AsmMinF(AsmMaxF(t.z * D_002756DC, -1.0f), 1.0f);
+        s = AsmMinF(AsmMaxF(D_002756DC * t.z, -1.0f), 1.0f);
         neg = -(AsmMaxF(this->f5CC, 0.0f) * this->f5D4);
         tmp = AsmMinF(this->f59C - this->f744, 0.0f);
         v.w = 1.0f;
@@ -315,10 +315,11 @@ void C_00027C30::func_00027C30(void) {
 }
 
 void C_00027C50::func_00027C50(float scale) {
-    float d;
     V4_00027C50 a;
     V4_00027C50 b;
     V4_00027C50 c;
+    float d;
+    float tz;
 
     a.z = 0.0f;
     a.y = 0.0f;
@@ -331,9 +332,9 @@ void C_00027C50::func_00027C50(float scale) {
     unk230->func_00197B40(&a.x, &b.x);
     a = *(V4_00027C50 *)func_0001E9E0(&c.x, &a.x);
     d = a.y * -1.0f;
-    d = d + a.x * 0.0f;
-    d = d + a.z * 0.0f;
-    unk580 = d * scale;
+    d += a.x * 0.0f;
+    tz = a.z * 0.0f;
+    unk580 = (d + tz) * scale;
     if (unk580 < 0.0f) {
         unk580 = 0.0f;
     }
@@ -348,42 +349,51 @@ void C_00027D40::func_00027D40(void) {
 }
 
 void C_00028070::func_00027D60(void) {
- int state;
- if (unk468 != 0) { unk5E8 = (unk470 != 0) ? 5 : 1; }
- else {
- state = unk5E8;
- if (state == 1 && unk4F8 != 0) unk5E8 = 2;
- else if (unk454 != 0) unk5E8 = 3;
- else if (state == 3 && unk698 != 0) unk5E8 = 4;
- else if (unk1E8->unk64 != 0 && unk45C == D_00275544) unk5E8 = 0;
- }
- if (unk5E8 == 0) {
- unk5EC->func_00026130();
- unk5F0->func_00026130();
- unk5F4->func_00026130();
- unk724 = 0;
- }
+    int state;
+
+    if (unk468 != 0) {
+        unk5E8 = (unk470 != 0) ? 5 : 1;
+    } else {
+        state = unk5E8;
+        if (state == 1 && unk4F8 != 0) {
+            unk5E8 = 2;
+        } else if (unk454 != 0) {
+            unk5E8 = 3;
+        } else if (state == 3 && unk698 != 0) {
+            unk5E8 = 4;
+        } else if (unk1E8->unk64 != 0 && unk45C == D_00275544) {
+            unk5E8 = 0;
+        }
+    }
+    if (unk5E8 == 0) {
+        unk5EC->func_00026130();
+        unk5F0->func_00026130();
+        unk5F4->func_00026130();
+        unk724 = 0;
+    }
 }
 
 void C_00027E40::func_00027E40() {
- C_00027E40 *self=this;
- self->u468=1; self->u444=0; self->u48c=0;
- if(self->u470==0) {
-  self->u478=0;
-  self->mid->func_00012140();
-  E_Phys *p=self->phys; E_Vec *v=self->mid->vec;
-  float dot=p->x*v->x+p->y*v->y+p->z*v->z;
+ this->u468=1; this->u444=0; this->u48c=0;
+ if(this->u470==0) {
+  this->u478=0;
+  this->mid->func_00012140();
+  E_Vec *v=this->mid->vec; E_Phys *p=this->phys;
+  float dot=(p->y*v->y)+((p->x*v->x)+(p->z*v->z));
   S_V4_27860 t; t.x=dot*v->x;t.y=dot*v->y;t.z=dot*v->z;
   p->x-=t.x;p->y-=t.y;p->z-=t.z;
-  float f=Min_E(Max_E(dot,-self->lim->lim),self->lim->lim);
-  v=self->mid->vec;
-  t.x=f*v->x;t.y=f*v->y;t.z=f*v->z;
-  p=self->phys;p->x+=t.x;p->y+=t.y;p->z+=t.z;
+  float f=AsmMinF(AsmMaxF(dot,-this->lim->lim),this->lim->lim);
+  v=this->mid->vec;
+  float *src=&v->x;
+  t.x=f*src[0];t.y=f*src[1];t.z=f*src[2];
+  p=this->phys;
+  float *dst=&p->x;
+  dst[0]+=t.x;dst[1]+=t.y;dst[2]+=t.z;
  }
- if(self->u5e8==2 && self->u724 && strcmp(self->u724->name,self->mid->vec->name)==0) {
-  if(self->u718==self->u71c) self->u5ec->func_000261F0(self->u5f8*2);
-  else self->u5ec->func_000261F0(self->u5f8);
- } else self->u5ec->func_000261F0(-self->u5fc);
+ if(this->u5e8==2 && this->u724 && strcmp(this->u724->name,this->mid->vec->name)==0) {
+  if(this->u718==this->u71c) this->u5ec->func_000261F0(this->u5f8*2);
+  else this->u5ec->func_000261F0(this->u5f8);
+ } else this->u5ec->func_000261F0(-this->u5fc);
 }
 
 extern "C" void func_000262B0(void);
