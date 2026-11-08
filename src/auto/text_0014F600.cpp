@@ -404,8 +404,6 @@ float func_0014FBA0(volatile float y, volatile float x)
     extern float D_00286AC4;
     float q;
     float d;
-    int a;
-    int b;
 
     if (x != D_00275544) {
         if (y == D_00275544) {
@@ -417,9 +415,7 @@ float func_0014FBA0(volatile float y, volatile float x)
         if (y > D_00275544) {
             if (x > D_00275544) {
                 q = y / x;
-                a = *(int *)&q;
-                b = a & 0x7fffffff;
-                *(int *)&x = b;
+                *(int *)&x = *(int *)&q & 0x7fffffff;
                 if (x > D_00275460) {
                     d = x * x + D_00286AC0;
                     return D_002756D4 - x / d;
@@ -428,9 +424,7 @@ float func_0014FBA0(volatile float y, volatile float x)
                 return x / d;
             }
             q = y / x;
-            a = *(int *)&q;
-            b = a & 0x7fffffff;
-            *(int *)&x = b;
+            *(int *)&x = *(int *)&q & 0x7fffffff;
             if (x > D_00275460) {
                 d = x * x + D_00286AC0;
                 return x / d + D_002756D4;
@@ -440,9 +434,7 @@ float func_0014FBA0(volatile float y, volatile float x)
         }
         if (x > D_00275544) {
             q = y / x;
-            a = *(int *)&q;
-            b = a & 0x7fffffff;
-            *(int *)&x = b;
+            *(int *)&x = *(int *)&q & 0x7fffffff;
             if (x > D_00275460) {
                 d = x * x + D_00286AC0;
                 return x / d - D_002756D4;
@@ -451,9 +443,7 @@ float func_0014FBA0(volatile float y, volatile float x)
             return -(x / d);
         }
         q = y / x;
-        a = *(int *)&q;
-        b = a & 0x7fffffff;
-        *(int *)&x = b;
+        *(int *)&x = *(int *)&q & 0x7fffffff;
         if (x > D_00275460) {
             d = x * x + D_00286AC0;
             return D_00286AC4 - x / d;
@@ -560,17 +550,17 @@ void func_0014FED0(void)
 
 void func_0014FF00(char *path, char *drive, char *dir, char *fname, char *ext)
 {
- char *slash; char *dot=0; char *p; int len; int n;
+ char *dot=0; char *p; char *slash; int n;
  if(strlen(path)>=1 && path[1]==':') { if(drive) {func_001E8920(drive,path,2); drive[2]=0;} path+=3; }
  else if(drive) *drive=0;
  slash=0; p=path;
  char c=*p;
  if(c) do { if(c=='/' || c=='\\') slash=p+1; else if(c=='.') dot=p; c=p[1]; ++p; } while(c);
- if(slash) {if(dir) {len=slash-path; n=AsmMinI(len,255); func_001E8920(dir,path,n); dir[n]=0;} path=slash;} else if(dir) *dir=0;
+ if(slash) {if(dir) {n=AsmMinI(slash-path,255); func_001E8920(dir,path,n); dir[n]=0;} path=slash;} else if(dir) *dir=0;
  if(dot && dot>=path) {
- if(fname) {len=dot-path; n=AsmMinI(len,255); func_001E8920(fname,path,n); fname[n]=0;}
- if(ext) {len=p-dot; n=AsmMinI(len,255); func_001E8920(ext,dot,n); ext[n]=0;}
- } else {if(fname) {len=p-path; n=AsmMinI(len,255); func_001E8920(fname,path,n); fname[n]=0;} if(ext) *ext=0;}
+ if(fname) {n=AsmMinI(dot-path,255); func_001E8920(fname,path,n); fname[n]=0;}
+ if(ext) {n=AsmMinI(p-dot,255); func_001E8920(ext,dot,n); ext[n]=0;}
+ } else {if(fname) {n=AsmMinI(p-path,255); func_001E8920(fname,path,n); fname[n]=0;} if(ext) *ext=0;}
 }
 
 C_001500A0 *C_001500A0::func_001500A0(void)
@@ -592,7 +582,7 @@ void C_001500A0::func_001500D0(int a, int *b, V_1500 *c, int d, float *e, V_1500
  if (f4) {
  V_1500 v,u,r;
  
- float m[16],n[16],o[16]; V_1500 p;
+ float m[16]; V_1500 p;
  p=((T_1500 *)self->f4)->func_00199B00(0);
  ((T_1500 *)self->f4)->func_00197B40(&v,&u);
  p.y+=*(float *)&self->f8;
@@ -602,6 +592,7 @@ void C_001500A0::func_001500D0(int a, int *b, V_1500 *c, int d, float *e, V_1500
  float s=func_0014F510(angle);
  float co=func_0014F550(angle);
  func_0011F400(m,ax,ay,az,s,co);
+ float n[16],o[16];
  angle=*(float *)&self->f10;
  s=func_0014F510(angle);
  co=func_0014F550(angle);
@@ -647,13 +638,11 @@ void C_00150360::func_001503E0(float a, float b, float c)
     double s;
     double t;
 
+    f30 = (float)(s = f30);
+    f34 = (float)(t = f34);
     f44 = a;
     f48 = b;
     f4C = c;
-    s = f30;
-    f30 = (float)s;
-    t = f34;
-    f34 = (float)t;
     f2C = (a - b) * s + b;
     f28 = (D_00275460 - t) * (f2C - c);
     D_002EFDB8->f2C = f24;
