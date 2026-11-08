@@ -105,6 +105,7 @@ struct S_00049A50_Global {
 extern S_00049A50_Global *D_002B9120;
 
 struct C_00198390 {
+    char pad0[0x28];
     void func_00198390(void);
     void func_001983A0(void);
     void func_00198E60(void);
@@ -300,24 +301,26 @@ struct C_00049BD0 {
 extern "C" float sqrtf(float);
 void S_00049470_This::func_00049470()
 {
-    S_00049470_This *volatile self = this;
-    S_49470_F64 *f = (S_49470_F64 *)self->f64;
-    S_49470_F540 *sub = (S_49470_F540 *)self->f540;
+    S_49470_F64 *f;
+    S_49470_F540 *sub;
+    S_49470_Table *tab;
     S_49470_Elem *a, *b, *c, *d;
     int idx, i;
 
-    self->f47c = 15;
-    self->f480 = 0;
-    self->f478 = 3;
-    self->f474 = 3;
-    self->func_0003AD50();
+    this->f47c = 15;
+    this->f480 = 0;
+    this->f478 = 3;
+    this->f474 = 3;
+    this->func_0003AD50();
 
-    i = self->f47c;
-    idx = f->f5a4[i].f44 + self->f480;
+    f = (S_49470_F64 *)this->f64;
+    i = this->f47c;
+    tab = &f->f5a4[i];
+    idx = tab->f44 + this->f480;
     a = get49470(f->f5ac, f->f5a8, idx);
     b = get49470(f->f5ac, f->f5a8, idx);
     c = get49470(f->f5ac, f->f5a8, idx);
-    d = get49470((S_49470_Elem **)self->f5cc, self->f5c8, idx);
+    d = get49470((S_49470_Elem **)this->f5cc, this->f5c8, idx);
 
     if (d != 0) {
         V4_49470 v30 = {0,0,0,1}, v40 = {0,0,0,1}, v60 = {0,0,0,1}, v70 = {0,0,0,1}, v80 = {0,0,0,1};
@@ -325,7 +328,8 @@ void S_00049470_This::func_00049470()
         int m, n;
         float t, len, fy;
 
-        fy = *(float *)&self->f440;
+        sub = (S_49470_F540 *)this->f540;
+        fy = *(float *)&this->f440;
         D_002EFDB8->v7(1);
         D_002EFDB8->v8();
 
@@ -353,12 +357,12 @@ void S_00049470_This::func_00049470()
         } else {
             m = a->f35c;
         }
-        if (f->f5a4[i].f3c <= f->f5a4[i].f40) {
-            if (f->f5a4[i].f40 <= f->f5a4[i].f38) n = f->f5a4[i].f38;
-            else n = (m > f->f5a4[i].f40) ? m : f->f5a4[i].f40;
+        if (tab->f3c <= tab->f40) {
+            if (tab->f40 <= tab->f38) n = tab->f38;
+            else n = (m > tab->f40) ? m : tab->f40;
         } else {
-            if (f->f5a4[i].f3c <= f->f5a4[i].f38) n = f->f5a4[i].f38;
-            else n = (m > f->f5a4[i].f3c) ? m : f->f5a4[i].f3c;
+            if (tab->f3c <= tab->f38) n = tab->f38;
+            else n = (m > tab->f3c) ? m : tab->f3c;
         }
         t = (float)n * D_0027653C;
         v50.x = 0.0f;
@@ -383,17 +387,17 @@ void S_00049470_This::func_00049470()
         sub->f34->f5c->func_00194EB0(v40);
         sub->f34->f5c->func_00194F60(v70);
 
-        if (!self->func_00042840()) {
+        if (!this->func_00042840()) {
             func_000361F0(1);
             return;
         }
     }
-    if (self->f564 != 0 && ((S_49470_F564 *)self->f564)->f0 != 0) {
-        if (((S_49470_F564 *)self->f564)->f0 >= 3)
-            ((S_49470_Obj *)self->f554)->func_0008A920();
-        ((S_49470_Obj *)self->f550)->func_0008A0A0();
+    if (this->f564 != 0 && ((S_49470_F564 *)this->f564)->f0 != 0) {
+        if (((S_49470_F564 *)this->f564)->f0 >= 3)
+            ((S_49470_Obj *)this->f554)->func_0008A920();
+        ((S_49470_Obj *)this->f550)->func_0008A0A0();
     }
-    ((S_49470_Obj *)self->f53c)->func_001A4100(2, 1, 0);
+    ((S_49470_Obj *)this->f53c)->func_001A4100(2, 1, 0);
 }
 
 void func_000499B0(float *out, float *in) {
