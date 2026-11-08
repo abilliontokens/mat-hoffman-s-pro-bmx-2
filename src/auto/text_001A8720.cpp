@@ -267,10 +267,10 @@ int C_001A8720::func_001A8720(int a)
 
     if (f24 != 0) {
         if (f54 != 0 || (f24->f3c != 0 && f28 != 0)) {
-            V4_001A8720 mn;
-            V4_001A8720 mx;
             V4_001A8720 tmp;
             V4_001A8720 v;
+            V4_001A8720 mn;
+            V4_001A8720 mx;
             S_001A8720_Item *it;
 
             mn.x = 3.402823466e+38f;
@@ -281,10 +281,10 @@ int C_001A8720::func_001A8720(int a)
             mx.z = -3.402823466e+38f;
             it = f24->f84;
             for (i = 0, j = 0; i < f24->f80; i++, j += 0x20, it++) {
-                int flags;
-
                 v = *it->f40->func_00197F70(&tmp, &it->f10);
                 if (f28 != 0 && f24->f3c != 0) {
+                    int flags;
+
                     it->f30 = v;
                     f28->func_000BA430(&it->f30, &it->f20, 0, &flags);
                     it->f50 = flags & 7;

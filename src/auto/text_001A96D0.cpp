@@ -304,6 +304,7 @@ void This_001A9D20::func_001A9D20(float s, V4_001A96D0 v, V4_001A96D0 q, Obj_001
         nw.x = -w.x;
         nw.y = -w.y;
         nw.z = -w.z;
+        nw.w = 1.0f;
         func_001A96D0(other, nw, q, fb8);
     }
 }

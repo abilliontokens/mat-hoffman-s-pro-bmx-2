@@ -379,7 +379,7 @@ void C_000269B0::func_000269B0(float a, float b, float c)
 float C_00026A10::func_00026A10(float a, float b)
 {
     f8 = min_ss_00026A10(b, f4) / f4;
-    f0 = f8 * (a - f0) + f0;
+    f0 = (a - f0) * f8 + f0;
     return f0;
 }
 

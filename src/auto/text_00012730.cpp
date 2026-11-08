@@ -358,8 +358,8 @@ void S_11FF0_Owner::func_00012960(float *p, int a, int b)
         return;
     }
     vec[0] = *(S_12590_Vec4f *)p;
-    vec[1] = *(S_12590_Vec4f *)p;
     vec[0].y += 3.0f;
+    vec[1] = *(S_12590_Vec4f *)p;
     vec[1].y = (float)*(int *)(*(char **)((char *)D_002B9120 + 0x4dc) + 0x124);
     vec[2].z = 0; vec[2].y = 0; vec[2].x = 0; vec[2].w = 1;
     if (func_00012730((V4_00012730 *)&vec[0], (V4_00012730 *)&vec[1], (V4_00012730 *)&vec[2], 0, 1) == 1 && vec[2].y > vec[1].y)

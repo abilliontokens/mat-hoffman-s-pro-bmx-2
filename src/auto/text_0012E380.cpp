@@ -284,7 +284,6 @@ int C_0012EF30::func_0012E710(char *name, char *arg)
     node = 0;
     if (D_002BEAAC->func_0013D310(name, D_00275FB4, &h, &node, 1)) {
         if (node != 0) {
-tail:
             f414 = (S_0012E5F0 *)node;
             f414->f4++;
             return 1;
@@ -300,7 +299,9 @@ tail:
     node = 0;
     if (D_002BEAAC->func_0013D310(name, D_00276274, &h, &node, 1)) {
         if (node != 0) {
-            goto tail;
+            f414 = (S_0012E5F0 *)node;
+            f414->f4++;
+            return 1;
         }
         f414 = (S_0012E5F0 *)func_001E8A44(0x18);
         f414->count = 0;

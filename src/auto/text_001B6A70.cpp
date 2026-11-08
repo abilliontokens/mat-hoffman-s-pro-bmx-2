@@ -488,8 +488,16 @@ void C_001B6E70::func_001B70D0(S_001B70D0_Arg *arg) {
                             S_001B70D0_Mgr *mgr = e->f1A4;
                             int id = mgr->f4->func_00198330(
                                 ((S_001B70D0_Obj *)((C_001B7370_item * volatile *)f28)[i]->f4)->f1D8);
-                            if (ResolveSlot_001B70D0(this, i, mgr, id))
-                                found = 1;
+                            int k = 0;
+                            while (k < mgr->f284) {
+                                if (mgr->f280[k]->f1C0 == id) {
+                                    ((S_001B70D0_Obj *)((C_001B7370_item * volatile *)f28)[i]->f4)->f2DC =
+                                        mgr->f280[k]->f64->f22C;
+                                    found = 1;
+                                    break;
+                                }
+                                k++;
+                            }
                         }
                     } else {
                         S_001B70D0_Entry *p = arg->f28[j];

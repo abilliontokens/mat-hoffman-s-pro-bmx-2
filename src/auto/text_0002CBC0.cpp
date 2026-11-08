@@ -4,6 +4,7 @@
 #include <string.h>
 #include <math.h>
 #include <stdlib.h>
+#include "asm_helpers.h"
 
 struct V4_2D270 {
     float x, y, z, w;
@@ -130,7 +131,6 @@ static __forceinline void Cross_2D270(V4_2D270 *volatile out, const V4_2D270 *vo
 #pragma optimize("y", on)
 void S2CBC0::func_0002CBC0(float dt)
 {
-    S2CBC0 *self = this;
     volatile V4_2CBC0 a;
     volatile V4_2CBC0 b;
     volatile V4_2CBC0 v;
@@ -141,109 +141,110 @@ void S2CBC0::func_0002CBC0(float dt)
 
     b.z = 0; b.y = 0; b.x = 0; b.w = 1.0f;
     a.z = 0; a.y = 0; a.x = 0; a.w = 1.0f;
-    if (self->f468 == 0) {
+    if (this->f468 == 0) {
         return;
     }
-    if (self->f730 > D_00275544) {
-        self->f730 = self->f730 - dt;
+    if (this->f730 > D_00275544) {
+        this->f730 = this->f730 - dt;
     }
-    if (self->f730 <= D_00275544 && self->f73c == 0 && self->f720 != 0 && self->f720->fn7c != 0) {
-        self->f720->fn7c(self->f1f4->f2c, self->f720, self->f720->f80, 1);
-        self->f73c = 1;
+    if (this->f730 <= D_00275544 && this->f73c == 0 && this->f720 != 0 && this->f720->fn7c != 0) {
+        this->f720->fn7c(this->f1f4->f2c, this->f720, this->f720->f80, 1);
+        this->f73c = 1;
     }
-    self->f210->f30->fC = 1;
-    self->f5ec->func_00025E50(dt);
-    self->f5c0 = self->f5ec->func_000260F0() * self->f5b8;
+    this->f210->f30->fC = 1;
+    this->f5ec->func_00025E50(dt);
+    this->f5c0 = this->f5ec->func_000260F0() * this->f5b8;
 
-    p = self->f230->func_00197F70((void *)&mat, self->f210->mat38);
+    p = this->f230->func_00197F70((void *)&mat, this->f210->mat38);
     m.x = p->x; m.y = p->y; m.z = p->z; m.w = p->w;
     m.w = 1.0f;
-    v.x = self->f210->f30->v20[0] - m.x;
-    v.y = self->f210->f30->v20[1] - m.y;
-    v.z = self->f210->f30->v20[2] - m.z;
+    v.x = this->f210->f30->v20[0] - m.x;
+    v.y = this->f210->f30->v20[1] - m.y;
+    v.z = this->f210->f30->v20[2] - m.z;
     v.w = 1.0f;
-    dot = v.y * self->f210->f30->v40[1] + v.x * self->f210->f30->v40[0] + v.z * self->f210->f30->v40[2];
-    cx = self->f210->f30->v20[0] - dot * self->f210->f30->v40[0];
-    cy = self->f210->f30->v20[1] - dot * self->f210->f30->v40[1];
-    cz = self->f210->f30->v20[2] - dot * self->f210->f30->v40[2];
-    v.x = self->f210->f30->v20[0] - cx;
-    v.y = self->f210->f30->v20[1] - cy;
-    v.z = self->f210->f30->v20[2] - cz;
+    dot = v.y * this->f210->f30->v40[1] + v.x * this->f210->f30->v40[0] + v.z * this->f210->f30->v40[2];
+    cx = this->f210->f30->v20[0] - dot * this->f210->f30->v40[0];
+    cy = this->f210->f30->v20[1] - dot * this->f210->f30->v40[1];
+    cz = this->f210->f30->v20[2] - dot * this->f210->f30->v40[2];
+    v.x = this->f210->f30->v20[0] - cx;
+    v.y = this->f210->f30->v20[1] - cy;
+    v.z = this->f210->f30->v20[2] - cz;
     v.w = 1.0f;
     b.x = v.x; b.y = v.y; b.z = v.z; b.w = v.w;
-    a.x = self->f210->f30->v30[0] - cx;
-    a.y = self->f210->f30->v30[1] - cy;
-    a.z = self->f210->f30->v30[2] - cz;
+    a.x = this->f210->f30->v30[0] - cx;
+    a.y = this->f210->f30->v30[1] - cy;
+    a.z = this->f210->f30->v30[2] - cz;
     s = v.z * v.z + v.y * v.y + v.x * v.x;
-    lp = sqrtf(s);
+    lp = AsmSqrtF(s);
     s = a.y * a.y + a.z * a.z + a.x * a.x;
-    la = sqrtf(s);
-    t = __min(lp, la);
+    la = AsmSqrtF(s);
+    t = AsmMinF(lp, la);
     func_00026340((void *)&b, (void *)&b);
     func_00026340((void *)&a, (void *)&a);
-    if (a.y * b.y + a.x * b.x + a.z * b.z > D_00275544 && t > self->f5bc) {
-        int r = func_00028130(self->f210->f78, 0, 0);
-        self->f210->f30->fC = 0;
+    if (a.y * b.y + a.x * b.x + a.z * b.z > D_00275544 && t > this->f5bc) {
+        int r = func_00028130(this->f210->f78, 0, 0);
+        this->f210->f30->fC = 0;
         if (r == 0) {
-            self->func_00028070();
+            this->func_00028070();
             return;
         }
-        self->f724 = self->f210->f30;
-        p = self->f230->func_00197F70((void *)&mat, self->f210->mat48);
+        this->f724 = this->f210->f30;
+        p = this->f230->func_00197F70((void *)&mat, this->f210->mat48);
         m.x = p->x; m.y = p->y; m.z = p->z; m.w = p->w;
         m.w = 1.0f;
-        v.x = self->f210->f34->v20[0] - m.x;
-        v.y = self->f210->f34->v20[1] - m.y;
-        v.z = self->f210->f34->v20[2] - m.z;
+        v.x = this->f210->f34->v20[0] - m.x;
+        v.y = this->f210->f34->v20[1] - m.y;
+        v.z = this->f210->f34->v20[2] - m.z;
         v.w = 1.0f;
-        dot = v.y * self->f210->f34->v40[1] + v.x * self->f210->f34->v40[0] + v.z * self->f210->f34->v40[2];
-        cx = self->f210->f34->v20[0] - dot * self->f210->f34->v40[0];
-        cy = self->f210->f34->v20[1] - dot * self->f210->f34->v40[1];
-        cz = self->f210->f34->v20[2] - dot * self->f210->f34->v40[2];
-        v.x = self->f210->f34->v20[0] - cx;
-        v.y = self->f210->f34->v20[1] - cy;
-        v.z = self->f210->f34->v20[2] - cz;
+        dot = v.y * this->f210->f34->v40[1] + v.x * this->f210->f34->v40[0] + v.z * this->f210->f34->v40[2];
+        cx = this->f210->f34->v20[0] - dot * this->f210->f34->v40[0];
+        cy = this->f210->f34->v20[1] - dot * this->f210->f34->v40[1];
+        cz = this->f210->f34->v20[2] - dot * this->f210->f34->v40[2];
+        v.x = this->f210->f34->v20[0] - cx;
+        v.y = this->f210->f34->v20[1] - cy;
+        v.z = this->f210->f34->v20[2] - cz;
         v.w = 1.0f;
         b.x = v.x; b.y = v.y; b.z = v.z; b.w = v.w;
-        a.x = self->f210->f34->v30[0] - cx;
-        a.y = self->f210->f34->v30[1] - cy;
-        a.z = self->f210->f34->v30[2] - cz;
+        a.x = this->f210->f34->v30[0] - cx;
+        a.y = this->f210->f34->v30[1] - cy;
+        a.z = this->f210->f34->v30[2] - cz;
         s = v.y * v.y + v.x * v.x + v.z * v.z;
-        lp = sqrtf(s);
+        lp = AsmSqrtF(s);
         s = a.y * a.y + a.z * a.z + a.x * a.x;
-        la = sqrtf(s);
-        t = __min(lp, la);
+        la = AsmSqrtF(s);
+        t = AsmMinF(lp, la);
         func_00026340((void *)&b, (void *)&b);
         func_00026340((void *)&a, (void *)&a);
-        if (a.y * b.y + a.x * b.x + a.z * b.z > D_00275544 && t > self->f5bc) {
-            if (func_00028130(self->f210->f7c, 0, 0) == 0) {
-                self->func_00028070();
+        if (a.y * b.y + a.x * b.x + a.z * b.z > D_00275544 && t > this->f5bc) {
+            if (func_00028130(this->f210->f7c, 0, 0) == 0) {
+                this->func_00028070();
                 return;
             }
         }
     }
-    self->f484 = self->f484 + dt;
+    this->f484 = this->f484 + dt;
     {
-        float tt = self->f744;
+        float tt = this->f744;
         int ti = *(int *)&tt & 0x7fffffff;
         float av = *(float *)&ti;
-        self->f488 = self->f488 + av * dt;
+        this->f488 = this->f488 + av * dt;
     }
     {
-        float tt = self->f744;
+        float tt = this->f744;
         int ti = *(int *)&tt & 0x7fffffff;
         float av = *(float *)&ti;
-        self->f48c = self->f48c + av * dt;
+        this->f48c = this->f48c + av * dt;
     }
 }
+#pragma optimize("", on)
 void S2CBC0::func_0002D270()
 {
     S2CBC0 *volatile self = this;
+    V3_2D270 out1, out2, v;
     V4_2D270 m1w;
     V4_2D270 d;
     V4_2D270 m1y, m2y, m1z, m2z;
     V4_2D270 c1, c2, c3;
-    V3_2D270 v, out1, out2;
     V3_2D270 *r;
     float s;
 

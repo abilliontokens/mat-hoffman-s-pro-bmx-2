@@ -302,12 +302,14 @@ int __fastcall func_000988B0(char *self, int unused, char *a, char *b)
     char **list;
     int count;
     int p;
+    int n;
     int j;
     int k;
     int m;
     int off;
     int found;
     char *mgr;
+    char *o;
 
     for (i = 0; i < 3; i++) {
         switch (i) {
@@ -394,8 +396,32 @@ int __fastcall func_000988B0(char *self, int unused, char *a, char *b)
         default: count = 0; break;
         }
         for (p = 0; p < count; p++) {
-            if (*(int *)(list[p] + 0x48e0) == 0 && *(int *)(list[p] + 0x1bc) != 0)
-                Refresh_000988B0(&list[p], a, 1);
+            if (*(int *)(list[p] + 0x48e0) == 0 && *(int *)(list[p] + 0x1bc) != 0) {
+                found = 1;
+                for (j = 0; j < *(int *)(list[p] + 0x1b8); j++) {
+                    if (*(int *)(*(char ***)(list[p] + 0x1c8))[j] == 1) {
+                        for (k = 0; k < *(int *)((*(char ***)(list[p] + 0x1c8))[j] + 0x2554); k++) {
+                            n = *(int *)((*(char ***)(list[p] + 0x1c8))[j] + 0x2558 + k * 4);
+                            o = *(char **)((*(char ***)(a + 0x28))[n] + 4);
+                            ((void (__fastcall *)(void *))(*(void ***)o)[6])(o);
+                            if (!found) {
+                                o = *(char **)((*(char ***)(a + 0x28))[n] + 4);
+                                ((void (__fastcall *)(void *))(*(void ***)o)[4])(o);
+                            }
+                        }
+                    } else {
+                        n = *(int *)((*(char ***)(list[p] + 0x1c8))[j] + 0x268);
+                        o = *(char **)((*(char ***)(a + 0x28))[n] + 4);
+                        ((void (__fastcall *)(void *))(*(void ***)o)[6])(o);
+                        if (!found) {
+                            o = *(char **)((*(char ***)(a + 0x28))[n] + 4);
+                            ((void (__fastcall *)(void *))(*(void ***)o)[4])(o);
+                        }
+                    }
+                    if (*(int *)((*(char ***)(list[p] + 0x1c8))[j] + 0x40) == 0)
+                        found = 0;
+                }
+            }
         }
     }
     return 1;

@@ -330,7 +330,8 @@ name=e+14736;if(*name)((Q_MgrCalls*)mgr)->func_00033090(name,*(Q_Vec*)((char*)v+
 if(*(int*)(s-144)!=-1&&*(int*)(s-96)!=-1){Q_List*l=*(Q_List**)((char*)mgr->f64+0x3c0);char*g=l->items[*(int*)(s-144)-1];Q_Actor*a=(*(Q_Actor***)(g+4))[*(int*)(s-96)-1];a->v32();a->v30();a->v6();}
 if(*(int*)(s-0x46e0)!=-1)(*(Q_Indices**)((char*)mgr+104))->func_0005C280(*(int*)(s-0x46e0));if(*(int*)(s-0x4650)!=-1)(*(Q_Indices**)((char*)mgr+104))->func_0005C1E0(*(int*)(s-0x4650));
 if(*(int*)(s-0x4680)!=-1){char*p=(*(Q_Indices**)((char*)mgr+104))->func_0005C020(*(int*)(*(char**)((char*)D_002A8490+736)+728));*(int*)(p+1592+*(int*)(s-0x4680)*4)=1;}
-if(*(int*)(s-0x46b0)!=-1){char*p=(*(Q_Indices**)((char*)mgr+104))->func_0005C020(*(int*)(*(char**)((char*)D_002A8490+736)+728));*(int*)(p+1580+*(int*)(s-0x46b0)*4)=1;}}while(v++,i++,s+=4,delta-=120,e+=120,i<f1cc);}
+if(*(int*)(s-0x46b0)!=-1){char*p=(*(Q_Indices**)((char*)mgr+104))->func_0005C020(*(int*)(*(char**)((char*)D_002A8490+736)+728));*(int*)(p+1580+*(int*)(s-0x46b0)*4)=1;}
+{Q_Vec*nv=v+1;int nd=delta-120;char*ne=e+120;v=nv;i++;s+=4;delta=nd;e=ne;}}while(i<f1cc);}
 
 void C_00096FE0::func_00096FE0(float dt) {
     int i;

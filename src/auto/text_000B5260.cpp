@@ -116,22 +116,94 @@ struct Obj_000B58B0 {
 
 int C_000B5260::func_000B5260(float dt)
 {
-    float vec3[4];
-    float d[4];
-    float *m;
     float len;
+    float d[4];
+    float a[4];
+    float b[4];
+    float c[4];
+    float e[4];
+    float local[4];
+    float scaled[4];
+    float n[4];
+    float dot, ang, t, sgn, absang;
+    void func_0001E9E0(float *out, float *v);
 
-    ((C_00197F70 *)*(int *)((char *)this + 0x30))->func_00197F70(vec3, (float *)((char *)this + 0x34));
-    m = (float *)*(int *)((char *)this + 0x24);
-    d[0] = unk54 * m[16] + m[8];
-    d[1] = unk54 * m[17] + m[9];
-    d[2] = unk54 * m[18] + m[10];
-    d[0] -= vec3[0];
-    d[1] -= vec3[1];
-    d[2] -= vec3[2];
-    len = sqrtf(d[0] * d[0] + d[1] * d[1] + d[2] * d[2]);
-    if (len > *(float *)((char *)this + 0x60))
-        return 1;
+    ((C_00197F70 *)*(int *)((char *)this + 0x30))->func_00197F70(local, (float *)((char *)this + 0x34));
+    {
+        float *mm = (float *)*(int *)((char *)this + 0x24);
+        float s = unk54;
+        float p0 = s * mm[16] + mm[8];
+        float p1 = s * mm[17] + mm[9];
+        float p2 = s * mm[18] + mm[10];
+        d[0] = p0 - local[0];
+        d[1] = p1 - local[1];
+        d[2] = p2 - local[2];
+    }
+    d[3] = 1.0f;
+    e[0] = 0.0f; e[1] = 1.0f; e[2] = 0.0f; e[3] = 1.0f;
+    a[0] = 0.0f; a[1] = 0.0f; a[2] = 0.0f; a[3] = 1.0f;
+    b[0] = 0.0f; b[1] = 0.0f; b[2] = 0.0f; b[3] = 1.0f;
+    len = AsmSqrtF(d[2] * d[2] + d[1] * d[1] + d[0] * d[0]);
+    if (len > *(float *)((char *)this + 0x60)) {
+        if (len > *(float *)((char *)this + 0x58)) {
+            t = dt * *(float *)((char *)this + 0x68);
+            len = AsmMinF(len, t);
+        }
+        func_0001E9E0(n, d);
+        scaled[0] = n[0] * len;
+        scaled[1] = n[1] * len;
+        scaled[2] = n[2] * len;
+        scaled[3] = 1.0f;
+        ((C_000B59E0_f30 *)*(int *)((char *)this + 0x30))->func_00199900(scaled);
+    }
+    ((C_000B59E0_f30 *)*(int *)((char *)this + 0x30))->func_00197B40(a, b);
+    func_0001C610(n, e, (float *)*(int *)((char *)this + 0x24) + 16);
+    func_0001E9E0(d, n);
+    dot = d[0] * a[0] + d[1] * a[1] + d[2] * a[2];
+    if (!(dot > D_00275544)) {
+        d[0] *= D_00275F58;
+        d[1] *= D_00275F58;
+        d[2] *= D_00275F58;
+    }
+    func_0001E9E0(n, a);
+    a[0] = n[0]; a[1] = n[1]; a[2] = n[2]; a[3] = n[3];
+    func_0001E9E0(scaled, d);
+    d[0] = scaled[0]; d[1] = scaled[1]; d[2] = scaled[2]; d[3] = scaled[3];
+    func_0001E9E0(e, func_0001C610(n, d, a));
+    ang = func_0014F7E0(d[0] * a[0] + d[1] * a[1] + d[2] * a[2]);
+    *(int *)&absang = *(int *)&ang & 0x7fffffff;
+    if (absang > *(float *)((char *)this + 0x64)) {
+        if (absang > *(float *)((char *)this + 0x5c)) {
+            sgn = ang < D_00275544 ? -1.0f : 1.0f;
+            *(int *)&len = *(int *)&ang & 0x7fffffff;
+            t = dt * *(float *)((char *)this + 0x6c);
+            len = AsmMinF(len, t);
+            ang = len * sgn;
+        }
+    }
+    ((C_000B59E0_f30 *)*(int *)((char *)this + 0x30))->func_00198040(d, c);
+    ((C_000B59E0_f30 *)*(int *)((char *)this + 0x30))->func_00199CF0(*(V4_000B5260 *)d, ang);
+    ((C_000B59E0_f30 *)*(int *)((char *)this + 0x30))->func_00197B40(a, b);
+    func_0001E9E0(n, b);
+    b[0] = n[0]; b[1] = n[1]; b[2] = n[2]; b[3] = n[3];
+    func_0001E9E0(scaled, e);
+    e[0] = scaled[0]; e[1] = scaled[1]; e[2] = scaled[2]; e[3] = scaled[3];
+    func_0001C610(n, c, e);
+    func_0001E9E0(d, n);
+    c[0] = d[0]; c[1] = d[1]; c[2] = d[2]; c[3] = d[3];
+    ang = func_0014F7E0(e[0] * b[0] + e[1] * b[1] + e[2] * b[2]);
+    *(int *)&absang = *(int *)&ang & 0x7fffffff;
+    if (absang > *(float *)((char *)this + 0x64)) {
+        if (absang > *(float *)((char *)this + 0x5c)) {
+            sgn = ang < D_00275544 ? -1.0f : 1.0f;
+            *(int *)&len = *(int *)&ang & 0x7fffffff;
+            t = dt * *(float *)((char *)this + 0x6c);
+            len = AsmMinF(len, t);
+            ang = len * sgn;
+        }
+        ((C_000B59E0_f30 *)*(int *)((char *)this + 0x30))->func_00198040(e, c);
+        ((C_000B59E0_f30 *)*(int *)((char *)this + 0x30))->func_00199CF0(*(V4_000B5260 *)d, ang);
+    }
     return 1;
 }
 
@@ -238,13 +310,13 @@ int __fastcall func_000B59E0(char *thiz, int, float dt)
     m[8] = 0.0f; m[9] = 0.0f; m[10] = 0.0f; m[11] = 1.0f;
     ap = func_0001E9E0(m + 13, m);
     m[0] = ap[0]; m[1] = ap[1]; m[2] = ap[2]; m[3] = ap[3];
-    len = sqrtf(d[0] * d[0] + d[1] * d[1] + d[2] * d[2]);
+    len = AsmSqrtF(d[0] * d[0] + d[1] * d[1] + d[2] * d[2]);
     if (!(len > *(float *)(self + 0x60))) {
         return 1;
     }
     if (!(len < *(float *)(self + 0x58))) {
         t = dt * *(float *)(self + 0x68);
-        len = len < t ? len : t;
+        len = AsmMinF(len, t);
     }
     func_0001E9E0(w, d);
     V[0] = len * w[0];
@@ -265,7 +337,7 @@ int __fastcall func_000B59E0(char *thiz, int, float dt)
             sgn = ang < D_00275544 ? -1.0f : 1.0f;
             *(int *)&len = *(int *)&ang & 0x7fffffff;
             t = dt * *(float *)(self + 0x6c);
-            len = len < t ? len : t;
+            len = AsmMinF(len, t);
             step = len * sgn;
         }
         ((C_000B59E0_f30 *)*(int *)(self + 0x30))->func_00199CF0(*(V4_000B5260 *)V, step);
@@ -294,7 +366,7 @@ int __fastcall func_000B59E0(char *thiz, int, float dt)
             sgn = ang < D_00275544 ? -1.0f : 1.0f;
             *(int *)&len = *(int *)&ang & 0x7fffffff;
             t = dt * *(float *)(self + 0x6c);
-            len = len < t ? len : t;
+            len = AsmMinF(len, t);
             step = len * sgn;
         }
         ((C_000B59E0_f30 *)*(int *)(self + 0x30))->func_00199CF0(fin, step);

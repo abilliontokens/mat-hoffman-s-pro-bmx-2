@@ -311,7 +311,7 @@ void C_000549F0::func_000549F0(float dt)
             float dy = v1.y - v0.y;
             float dz = v1.z - v0.z;
             float sum = dx * dx + dy * dy + dz * dz;
-            float dist = sqrtf(sum);
+            float dist = AsmSqrtF(sum);
             if (dist <= f2e0 && f2cc <= D_00275544) {
                 f2c4 = (f2c4 == 0);
                 f2cc = f2e4;

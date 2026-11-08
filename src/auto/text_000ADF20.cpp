@@ -176,72 +176,80 @@ void *BMXCameraFacingObjects::func_000AE760(unsigned int flags)
     return this;
 }
 
-void C_000AE780::func_000AE780(C_000AE780Parser *parser)
+void C_000AE780::func_000AE780(C_000AE780Parser * volatile parser)
 {
-    int total;
+    C_000AE780 * volatile self = this;
     int i;
+    int end;
+    int j;
     char buf[0x104];
 
     if (parser->func_00169710(D_0027CBAC)) {
+        int f104, f110, f118, f108, total, f114, f10c;
         parser->func_00168C20(D_0027CB90, 0, &total);
         if (total > 0) {
-            if (arr != 0) {
-                i = count;
-                count = total + i;
-                arr = (C_000AE780Elem **)func_001E83E8(arr, count * 4);
+            if (self->arr != 0) {
+                i = self->count;
+                self->count = total + i;
+                end = self->count;
+                self->arr = (C_000AE780Elem **)func_001E83E8(self->arr, end * 4);
             } else {
-                count = total;
+                self->count = total;
                 i = 0;
-                arr = (C_000AE780Elem **)func_001E8A44(count * 4);
+                end = self->count;
+                self->arr = (C_000AE780Elem **)func_001E8A44(end * 4);
             }
-            int n = 1 - i;
-            for (; i < count; i++) {
-                func_001ADCC0(buf, 0x104, D_0027CB78, i + n);
-                if (parser->func_00169710(buf)) {
-                    Vec4_000AEC90 v11c;
-                    Vec4_000AEC90 v12c;
-                    Vec4_000AEC90 v13c;
-                    Vec4_000AEC90 v14c;
-                    char name[0x104];
-                    int f104, f108, f10c, f110, f114, f118;
-                    parser->func_00168BE0(D_0027C4D0, D_002764F0, name, -1);
-                    parser->func_00168C20(D_0027C4BC, 1, &f104);
-                    parser->func_00168C20(D_00275680, 0, &f108);
-                    parser->func_00168C20(D_0027CB6C, 1, &f10c);
-                    parser->func_00168C50(D_0027CB60, 0, &f110);
-                    parser->func_00168C50(D_0027CB54, 0, &f114);
-                    parser->func_00168C50(D_0027CB44, 0, &f118);
-                    parser->func_00168CB0(D_0027CB38, D_002A2734, &v11c);
-                    parser->func_00168CB0(D_00275AD4, D_002A2734, &v12c);
-                    parser->func_00168CB0(D_0027CB30, D_002A2734, &v13c);
-                    parser->func_00168CB0(D_0027CB2C, D_002A2734, &v14c);
-                    void *mem = func_001E8A44(0x160);
-                    arr[i] = mem ? ((C_000AE780Elem *)mem)->func_000A9A00() : 0;
-                    volatile int len = (int)strlen(name);
-                    volatile int maxlen = 0x103;
-                    int n2 = min_000AE780((int)maxlen, (int)len);
-                    func_001E8920(arr[i]->name, name, n2);
-                    arr[i]->name[n2] = 0;
-                    arr[i]->f104 = f104;
-                    arr[i]->f108 = f108;
-                    arr[i]->f10c = f10c;
-                    arr[i]->f110 = f110;
-                    arr[i]->f114 = f114;
-                    arr[i]->f118 = f118;
-                    arr[i]->v11c = v11c;
-                    arr[i]->v12c = v12c;
-                    arr[i]->v13c = v13c;
-                    arr[i]->v14c = v14c;
-                    if (f104 == 0) {
-                        arr[i]->f15c = (int *)func_001E8A44(4);
-                        arr[i]->f15c[0] = 0;
-                    } else {
-                        arr[i]->f15c = (int *)func_001E8A44(f104 << 2);
-                        for (int j = 0; j < f110; j++) {
-                            arr[i]->f15c[j] = 0;
+            if (i < end) {
+                volatile int n = 1 - i;
+                do {
+                    func_001ADCC0(buf, 0x104, D_0027CB78, i + n);
+                    if (parser->func_00169710(buf)) {
+                        Vec4_000AEC90 v11c;
+                        Vec4_000AEC90 v12c;
+                        Vec4_000AEC90 v13c;
+                        Vec4_000AEC90 v14c;
+                        char name[0x104];
+                        int n2[1];
+                        parser->func_00168BE0(D_0027C4D0, D_002764F0, name, -1);
+                        parser->func_00168C20(D_0027C4BC, 1, &f104);
+                        parser->func_00168C20(D_00275680, 0, &f108);
+                        parser->func_00168C20(D_0027CB6C, 1, &f10c);
+                        parser->func_00168C50(D_0027CB60, 0, &f110);
+                        parser->func_00168C50(D_0027CB54, 0, &f114);
+                        parser->func_00168C50(D_0027CB44, 0, &f118);
+                        parser->func_00168CB0(D_0027CB38, D_002A2734, &v11c);
+                        parser->func_00168CB0(D_00275AD4, D_002A2734, &v12c);
+                        parser->func_00168CB0(D_0027CB30, D_002A2734, &v13c);
+                        parser->func_00168CB0(D_0027CB2C, D_002A2734, &v14c);
+                        void *mem = func_001E8A44(0x160);
+                        self->arr[i] = mem ? ((C_000AE780Elem *)mem)->func_000A9A00() : 0;
+                        volatile int len = (int)strlen(name);
+                        volatile int maxlen = 0x103;
+                        n2[0] = min_000AE780((int)maxlen, (int)len);
+                        func_001E8920(self->arr[i]->name, name, n2[0]);
+                        self->arr[i]->name[n2[0]] = 0;
+                        self->arr[i]->f104 = f104;
+                        self->arr[i]->f108 = f108;
+                        self->arr[i]->f10c = f10c;
+                        self->arr[i]->f110 = f110;
+                        self->arr[i]->f114 = f114;
+                        self->arr[i]->f118 = f118;
+                        self->arr[i]->v11c = v11c;
+                        self->arr[i]->v12c = v12c;
+                        self->arr[i]->v13c = v13c;
+                        self->arr[i]->v14c = v14c;
+                        if (f104 == 0) {
+                            self->arr[i]->f15c = (int *)func_001E8A44(4);
+                            self->arr[i]->f15c[0] = 0;
+                        } else {
+                            self->arr[i]->f15c = (int *)func_001E8A44(f104 << 2);
+                            for (j = 0; j < f110; j++) {
+                                self->arr[i]->f15c[j] = 0;
+                            }
                         }
                     }
-                }
+                    ++i;
+                } while (i < end);
             }
         }
     }

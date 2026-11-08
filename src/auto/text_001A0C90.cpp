@@ -3,6 +3,7 @@
 #include "ghidra.h"
 #include <string.h>
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 struct Q_001A1930 { float x,y,z,w; };
 static inline Q_001A1930 Sub_001A1930(const Q_001A1930 &a,const Q_001A1930 &b) { Q_001A1930 q; q.x=a.x-b.x;q.y=a.y-b.y;q.z=a.z-b.z;q.w=1;return q; }
 struct I3_001A1930 { float x,y,z; };
@@ -311,10 +312,9 @@ struct C_001A1860 {
 
 void C_001A0C90::func_001A0C90(V4_001A0C90 v)
 {
-    C_001A0C90 * volatile self = this;
-    V4_001A0C90 a, b, c, d, e;
+    V4_001A0C90 b, c, d, e;
+    __declspec(align(16)) Mat_001A0C90 mat;
     float len, t, dot, ang, sn, cs, s2, sum;
-    Mat_001A0C90 mat;
 
     if (f10 == 0) {
         func_001A0510(v);
@@ -336,58 +336,60 @@ void C_001A0C90::func_001A0C90(V4_001A0C90 v)
         }
         D_002A7CB8->func_0019FC40(h);
     }
-    self->f0->func_00199A70(0, &a);
+    V4_001A0C90 a = { 0.0f, 0.0f, 0.0f, 1.0f };
+    f0->func_00199A70(0, &a);
     b = Sub_001A0C90(v, a);
     sum = b.z * b.z + b.y * b.y + b.x * b.x;
-    _mm_store_ss(&len, _mm_sqrt_ss(_mm_load_ss(&sum)));
-    t = (len * len - self->f1c) * self->f20;
+    len = AsmSqrtF(sum);
+    t = (len * len - f1c) * f20;
     if (t > D_00275460)
         t = D_00275460;
     else if (t < D_00275F58)
         t = D_00275F58;
-    ang = func_0014F890(t) + self->f2c;
+    ang = func_0014F890(t) + f2c;
     sn = func_0014F510(ang);
     cs = func_0014F550(ang);
-    func_0011F400(&mat, self->f44.x, self->f44.y, self->f44.z, sn, cs);
-    mat.m[3] = self->f30;
-    mat.m[7] = self->f34;
-    mat.m[11] = self->f38;
-    self->f4->func_00199BE0(&mat);
+    func_0011F400(&mat, f44.x, f44.y, f44.z, sn, cs);
+    mat.m[3] = f30;
+    mat.m[7] = f34;
+    mat.m[11] = f38;
+    f4->func_00199BE0(&mat);
 
-    self->f8->func_00199A70(0, &d);
+    f8->func_00199A70(0, &d);
     e = Sub_001A0C90(d, a);
     func_0019FBD0(&e, &e);
     func_0019FBD0(&b, &b);
-    Cross_001A0C90(&c, &e, &b);
+    AsmVec3Cross((float *)&c, (float *)&e, (float *)&b);
     func_0019FBD0(&c, &c);
-    c = self->f0->func_00198040(&c);
+    c = f0->func_00198040(&c);
     dot = e.x * b.x + e.y * b.y + e.z * b.z;
     if (dot * dot < D_00275460) {
         sum = D_00275460 - dot * dot;
-        _mm_store_ss(&s2, _mm_sqrt_ss(_mm_load_ss(&sum)));
+        s2 = AsmSqrtF(sum);
     } else {
         s2 = 0.0f;
     }
-    self->f0->func_00199C90(c, dot, s2);
-    if (self->f40 != 0) {
-        V4_001A0C90 f_, g_;
+    f0->func_00199C90(c, dot, s2);
+    if (f40 != 0) {
+        V4_001A0C90 f_;
         float d1, d2, d3;
 
         D_002A7CB8->func_0019FC80(D_002A9D80);
-        g_ = self->f4->func_00197EC0(&self->f44);
-        self->f4->func_00199A70(0, &f_);
+        V4_001A0C90 g_ = { 0.0f, 0.0f, 0.0f, 1.0f };
+        g_ = f4->func_00197EC0(&f44);
+        f4->func_00199A70(0, &f_);
         g_.x = f_.x + g_.x * D_002755EC;
         g_.y = f_.y + g_.y * D_002755EC;
         g_.z = f_.z + g_.z * D_002755EC;
-        self->f8->func_00199A70(0, &d);
+        f8->func_00199A70(0, &d);
         sum = (d.x - a.x) * (d.x - a.x) + (d.y - a.y) * (d.y - a.y) + (d.z - a.z) * (d.z - a.z);
-        _mm_store_ss(&d1, _mm_sqrt_ss(_mm_load_ss(&sum)));
-        self->f8->func_00199A70(0, &d);
+        d1 = AsmSqrtF(sum);
+        f8->func_00199A70(0, &d);
         sum = (d.x - a.x) * (d.x - a.x) + (d.y - a.y) * (d.y - a.y) + (d.z - a.z) * (d.z - a.z);
-        _mm_store_ss(&d2, _mm_sqrt_ss(_mm_load_ss(&sum)));
+        d2 = AsmSqrtF(sum);
         sum = (a.x - d.x) * (a.x - d.x) + (a.y - d.y) * (a.y - d.y) + (a.z - d.z) * (a.z - d.z);
-        _mm_store_ss(&d3, _mm_sqrt_ss(_mm_load_ss(&sum)));
-        func_0013E260(D_002A8490->f18, D_002A9D84, &self->f8->f28);
+        d3 = AsmSqrtF(sum);
+        func_0013E260(D_002A8490->f18, D_002A9D84, &f8->f28);
         func_0013E1F0(D_002A8490->f18, D_002A9D84, D_0028B334, d1 - len);
         func_0013E1F0(D_002A8490->f18, D_002A9D84, D_0028B324, d2 - d1);
         func_0013E1F0(D_002A8490->f18, D_002A9D84, D_0028B37C, d3);
@@ -643,9 +645,10 @@ void C_001A1930::func_001A1930(int count, N_001A1930 **nodes)
   }
  }else if((distance>=1.2f*unk4C)) return;
  state |=2;
+ O_001A1930 *po;
  O_001A1930 *vo=*(O_001A1930 * volatile *)&nearest->obj;
  if(vo){velocity.x=vo->vel.x;velocity.y=vo->vel.y;velocity.z=vo->vel.z;}
- O_001A1930 *po=nearest->obj;
+ po=nearest->obj;
  if(po){
   I3i t;
   t.a=((const int*)&po->pos)[0]; t.b=((const int*)&po->pos)[1]; t.c=((const int*)&po->pos)[2];

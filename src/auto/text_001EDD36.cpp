@@ -510,19 +510,19 @@ int func_001EE4BD(int fh, int pos, int mthd)
     return newpos;
 }
 
+void func_001EE5B6(void);
 int func_001EE52F(int fh, int pos, int mthd)
 {
     int retval;
-
     if ((unsigned int)fh >= D_002FB240 ||
-        (*((unsigned char *)D_002FB260[fh >> 5] + (fh & 0x1f) * 0x28 + 4) & 1) == 0) {
+        ((((S_Ioinfo *)D_002FB260[fh >> 5]) + (fh & 0x1f))->osfile & 1) == 0) {
         *func_001ED075() = 9;
         *func_001ED07E() = 0;
         return -1;
     }
     func_001EE70F(fh);
     __try {
-        if (*((unsigned char *)D_002FB260[fh >> 5] + (fh & 0x1f) * 0x28 + 4) & 1) {
+        if ((((S_Ioinfo *)D_002FB260[fh >> 5]) + (fh & 0x1f))->osfile & 1) {
             retval = func_001EE4BD(fh, pos, mthd);
         } else {
             *func_001ED075() = 9;
@@ -530,7 +530,7 @@ int func_001EE52F(int fh, int pos, int mthd)
             retval = -1;
         }
     } __finally {
-        func_001EE782(fh);
+        func_001EE5B6();
     }
     return retval;
 }

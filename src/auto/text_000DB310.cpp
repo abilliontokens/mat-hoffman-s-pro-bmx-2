@@ -206,6 +206,24 @@ C_000DB5B0 *C_000DB5B0::func_000DB5B0(int a) {
     return this;
 }
 
+void C_DB6::func_000DB6C0() {
+    char *p = (char *)this;
+    int *owner = *(int **)(p + 0x124);
+    *(int *)(p+0x2a0)=0; *(int *)(p+0x290)=0; *(int *)(p+0x28c)=0;
+    *(int *)(p+0x294)=0; *(int *)(p+0x2ac)=0; *(int *)(p+0x2a8)=0;
+    *(int *)(p+0x2bc)=owner[0x274/4];
+    *(int *)(p+0x2c4)=1; *(int *)(p+0x2c0)=0; *(int *)(p+0x2cc)=-1;
+    *(int *)(p+0x2e8)=0; *(int *)(p+0x2e4)=0; *(int *)(p+0x2d0)=0; *(int *)(p+0x2d4)=0;
+    *(int *)(p+0x2f0)=0; *(int *)(p+0x2f4)=0; *(int *)(p+0x2f8)=0; *(int *)(p+0x2fc)=0;
+    *(int *)(p+0x300)=0; *(int *)(p+0x304)=0; *(int *)(p+0x308)=0; *(int *)(p+0x30c)=0;
+    ((C_DB6_Manager *)D_002B91AC)->func_000BF860(0,491,388,0);
+    (*(C_DB6_Widget **)((char *)D_002B91AC+0x38))->func_0005E840((*(int **)(*(char **)((char *)D_002A8490+0x2e8)+4))[0x7b8/4]);
+    ((C_DB6_Manager *)D_002B91AC)->func_000BF860(1,365,388,0);
+    (*(C_DB6_Widget **)((char *)D_002B91AC+0x3c))->func_0005E840((*(int **)(*(char **)((char *)D_002A8490+0x2e8)+4))[0x7c0/4]);
+    (*(C_DB6_Widget **)((char *)D_002B91AC+0x80))->func_0005E840((*(int **)(*(char **)((char *)D_002A8490+0x2e8)+4))[0x918/4]);
+    (*(C_DB6_Widget **)((char *)D_002B91AC+0x84))->func_0005E840((*(int **)(*(char **)((char *)D_002A8490+0x2e8)+4))[0x928/4]);
+}
+
 int C_000DB310::func_000DBC00() {
     S_000DBC00_A *a = f124;
     int idx = a->f150->f484->func_0001B3C0(D_0027F7D4);
@@ -242,5 +260,29 @@ void C_000DBC40::func_000DBD20() {
     }
     f2B4->func_001B1980();
     f2B4->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, 0, 0, 1.45f, 0, 0.25f, 0.2f, 0);
+}
+
+void C_Pg::func_000DBE00() {
+    char *names[3];
+    int i;
+    names[0] = D_002786A0; names[1] = D_00278690; names[2] = D_00278678;
+    for (i = 0; i < 3; i++) {
+        C_Lst *lst = D_002A8490->f2ec;
+        C_Lim *p = lst->func_0018C160(names[i]);
+        if (p) {
+            C_Ptr **q = (C_Ptr **)p;
+            if (*q) {
+                C_Lim *l = (*q)->func_0018C070();
+                if (D_00275AEC > l->f10) l->f10 = 10.0f;
+                if (D_00275AEC < l->f14 || l->f14 > l->f10) l->f14 = 10.0f;
+            }
+        }
+    }
+    if (f29c) {
+        C_Lim *l = f29c->func_001D5AA0();
+        if (D_00275AEC > l->f10) l->f10 = 10.0f;
+        if (D_00275AEC < l->f14 || l->f14 > l->f10) l->f14 = 10.0f;
+    }
+    func_001578D0();
 }
 

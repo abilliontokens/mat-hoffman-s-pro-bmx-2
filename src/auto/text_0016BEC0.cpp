@@ -31,6 +31,7 @@ struct V4f {
 
 #include <xmmintrin.h>
 #include <math.h>
+#include "asm_helpers.h"
 
 extern float D_00278C48;
 extern u16 D_002EFE50;
@@ -248,15 +249,14 @@ C_0016BEC0 *C_0016BEC0::func_0016BEC0(void *a, char *name, void *b, u32 *c)
         f1AC = 0x2f;
         f204 = V4f(1.0f, 0.0f, 1.0f, 1.0f);
     } else {
-        register char *path = &f6C;
         f64 = a;
-        strcpy(path, D_002A5558);
+        strcpy(&f6C, D_002A5558);
         if (!name) {
             ((ParticleEmitterResetVT *)this)->v2();
             return 0;
         }
-        strcat(path, name);
-        if (((C_0016A330 *)this)->func_0016A330(path)) return this;
+        strcat(&f6C, name);
+        if (((C_0016A330 *)this)->func_0016A330(&f6C)) return this;
         f1F4 = V4f(-1.0f, 0.0f, -1.0f, 1.0f);
         f204 = V4f(1.0f, 0.0f, 1.0f, 1.0f);
     }
@@ -272,7 +272,7 @@ int C_0016C0D0::func_0016C0D0(float dt)
     C_Particle *p;
     float r1, r2, r3;
     float px, py, pz;
-    float sq, len, f, fv, maxv, v;
+    float sq, len, f, maxv, v;
     int i;
 
     if (((C_00169E10 *)this)->func_00169E10(dt)) return 1;
@@ -284,21 +284,20 @@ int C_0016C0D0::func_0016C0D0(float dt)
         void *o = *(void **)((char *)f68 + 0x18C);
         if (o) {
             if (D_002EFE50 != *(u16 *)(*(char **)((char *)o + 4) + 0x90)) {
-                if (o) goto done;
+                if (*(void **)((char *)f68 + 0x18C)) goto done;
             }
         }
     }
     sq = f5C * f5C + f58 * f58 + f54 * f54;
-    len = sqrtf(sq);
+    len = AsmSqrtF(sq);
     f = dt * f17C;
     if (len < D_00275548 && f1F0) {
         if (len < D_002755E8)
             f = D_00275544;
         else
-            f = f * (len * D_00275F64);
+            f = (len * D_00275F64) * f;
     }
-    *(u32 *)&fv = f180;
-    _mm_store_ss(&maxv, _mm_max_ss(_mm_set_ss(fv), _mm_set_ss(f)));
+    maxv = AsmMaxF(*(float *)&f180, f);
     i = 0;
     if (D_00275544 < maxv) {
         do {

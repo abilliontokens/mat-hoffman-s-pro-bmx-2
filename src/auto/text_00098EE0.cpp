@@ -155,6 +155,7 @@ void C_00097FD0::func_00098EE0(S_00099A60_arg *a, int b)
     char buf[0x104];
 
     for (pass = 0; pass < 3; pass++) {
+        count = 0;
         switch (pass) {
         case 0: list = arr0; break;
         case 1: list = arr1; break;
@@ -165,15 +166,15 @@ void C_00097FD0::func_00098EE0(S_00099A60_arg *a, int b)
         case 0: count = cnt0; break;
         case 1: count = cnt1; break;
         case 2: count = cnt2; break;
-        default: count = 0; break;
         }
         slotp = (int *)((char *)this + 0x2c) + pass * 15;
         for (k = 0; k < 15; k++) {
-            int id = slotp[k];
+            int id = *slotp;
             if (id != -1) {
                 S_00098EE0_mgr *mgr = (S_00098EE0_mgr *)unk198->f64;
                 mgr->f484->func_0001B8A0(mgr->f3ac->arr[id]);
             }
+            slotp++;
         }
         for (j = 0; j < count; j++) {
             if (list[j]->f48e0 == 0)
@@ -181,8 +182,12 @@ void C_00097FD0::func_00098EE0(S_00099A60_arg *a, int b)
             active = 0;
             if (unk198->unk1c8 != 0 && list[j]->f1b4 != 0)
                 active = 1;
-            x = FLD(int, list[j], 0x1a8) != 0;
-            y = FLD(int, list[j], 0x1ac) != 0;
+            x = 0;
+            y = 0;
+            if (FLD(int, list[j], 0x1a8) != 0)
+                x = 1;
+            if (FLD(int, list[j], 0x1ac) != 0)
+                y = 1;
             special = 0;
             if (y && list[j]->f48e0 == 0 && !active && !x)
                 special = 1;
@@ -258,7 +263,7 @@ void C_00097FD0::func_00098EE0(S_00099A60_arg *a, int b)
                         found = 0;
                         for (q = 0; q < ((S_00098EE0_mgr *)unk198->f64)->f3ac->count && !found; q++) {
                             void *item = ((S_00098EE0_mgr *)unk198->f64)->f3ac->arr[q];
-                            if (!func_001EA426(buf, (char *)item + 0xa0)) {
+                            if (!func_001EA426((char *)item + 0xa0, buf)) {
                                 S_00098EE0_mgr *mgr = (S_00098EE0_mgr *)unk198->f64;
                                 mgr->f484->func_0001B8A0(item);
                                 found = 1;

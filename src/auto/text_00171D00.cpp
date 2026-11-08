@@ -303,10 +303,10 @@ extern "C" float sqrtf(float);
 void PhysicsBody::func_00171D00(float x,float y,float z,float w)
 {
  float v[4];
- v[0]=0.0f; v[1]=0.0f; v[2]=0.0f; v[3]=1.0f;
+ v[2]=0.0f; v[1]=0.0f; v[0]=0.0f; v[3]=1.0f;
  func_001712D0(v,(char *)this+0x160);
  V3_00171BA0 &up=*(V3_00171BA0 *)v;
- float d=y*v[1]+x*v[0]+z*v[2];
+ float d=v[1]*y+v[0]*x+v[2]*z;
  V3_00171BA0 r=V3_00171BA0(x,y,z)-up*d;
  float *f=(float *)((char *)this+0x160);
  float len2=f[0]*f[0]+f[1]*f[1]+f[2]*f[2];
@@ -554,14 +554,14 @@ extern "C" void *memcpy(void *dst, const void *src, unsigned int n);
 void PhysicsBody::func_001729D0(void)
 {
     char *p = (char *)this;
-    W3_001729D0 *src = (W3_001729D0 *)(p + 0x84);
-    W3_001729D0 v;
+    V3_00171BA0 *src = (V3_00171BA0 *)(p + 0x84);
+    V3_00171BA0 v;
 
     v.z = 0.0f; v.y = 0.0f; v.x = 0.0f; v.w = 1.0f;
     ((C_001729D0_Cam *)*(void **)(*(char **)(p + 0xc4) + 0x22c))->func_00199A70(0, &src->x);
-    W3_001729D0 *dst = (W3_001729D0 *)(p + 0x74);
+    V3_00171BA0 *dst = (V3_00171BA0 *)(p + 0x74);
     if (dst->x == D_002A8BA0 && dst->y == D_002A8BA4 && dst->z == D_002A8BA8) {
-        *(W3_001729D0 *)(p + 0x74) = *(W3_001729D0 *)(p + 0x84);
+        *(V3_00171BA0 *)(p + 0x74) = *(V3_00171BA0 *)(p + 0x84);
     }
     ((C_001729D0_Obj *)fDC)->func_0014AC30(&dst->x, 0);
     ((C_001729D0_Obj *)fDC)->func_00133ED0();
@@ -572,9 +572,11 @@ void PhysicsBody::func_001729D0(void)
     }
     if (((C_001729D0_Obj *)fDC)->fA7 & 0x20) {
         C_001729D0_Node *n = ((C_001729D0_Obj *)fDC)->f54;
-        W3_001729D0 *m = (W3_001729D0 *)((char *)n + 0x20);
-        *(W3_001729D0 *)(p + 0x94) = *m;
-        v = *m * D_002A8BE8 + *(W3_001729D0 *)((char *)n + 0x30);
+        V3_00171BA0 *m = (V3_00171BA0 *)((char *)n + 0x20);
+        *(V3_00171BA0 *)(p + 0x94) = *m;
+        V3_00171BA0 w = *m * D_002A8BE8 + *(V3_00171BA0 *)((char *)n + 0x30);
+        v = w;
+        w.w = 1.0f;
         ((C_001729D0_Cam *)f14C)->func_00199790(0, &v.x);
         ((C_001729D0_Cam *)f14C)->func_0019AC50();
         *dst = v;

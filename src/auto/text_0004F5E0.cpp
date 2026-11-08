@@ -383,7 +383,8 @@ int C_0004FC20::func_0004FC20(int *a, int b)
                     for (i = 0; i < f90; ++i)
                         f64->f4E0->f1A8[i]->f958 = 0.5f;
                 } else {
-                    f64->f4C0->v31(1, 1);
+                    V_4FC20 *p = f64->f4C0;
+                    p->v31(1, 1);
                     ((G_4FC20 *)D_002A8490)->f2E0->f2FC->v18(1);
                     for (i = 0; i < f90; ++i)
                         f64->f4E0->f1A8[i]->f958 = 0.5f;

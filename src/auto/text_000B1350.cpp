@@ -591,8 +591,6 @@ int VehicleAI::func_000B1DA0(int a) {
     }
     return 1;
 }
-
-#pragma optimize("g", on)
 VehicleAI *VehicleAI::func_000B1EE0(int a0) {
     u32 *p;
 

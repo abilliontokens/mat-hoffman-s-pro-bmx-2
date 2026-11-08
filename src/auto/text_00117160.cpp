@@ -87,20 +87,20 @@ void Rider_00117160::func_00117160(float dt)
                 int sign = -1;
                 if (!(RF(0x968) < D_00275544))
                     sign = 1;
-                float av = Abs_00117160(RF(0x968));
-                RF(0x968) = func_0001C870(*(int *)&av, 0, RI(0x4d8), 0x3f800000, 0x3f800000) * sign;
+                volatile float av = Abs_00117160(RF(0x968));
+                RF(0x968) = func_0001C870(*(volatile int *)&av, RI(0x4d8), 0, 0x3f800000, 0x3f800000) * sign;
             }
         } else {
             int sign = -1;
             if (!(RF(0x964) < D_00275544))
                 sign = 1;
-            float av = Abs_00117160(RF(0x964));
-            RF(0x964) = func_0001C870(*(int *)&av, 0, RI(0x4d8), 0x3f800000, 0x3f800000) * sign;
+            volatile float av = Abs_00117160(RF(0x964));
+            RF(0x964) = func_0001C870(*(volatile int *)&av, RI(0x4d8), 0, 0x3f800000, 0x3f800000) * sign;
             RF(0x968) = 0;
         }
     }
-    float amax = dt * RF(0x4d0);
-    float bmax = dt * RF(0x4d4);
+    float amax = RF(0x4d0) * dt;
+    float bmax = RF(0x4d4) * dt;
     float amin = -amax;
     float d1 = RF(0x964) - RF(0x9f8);
     d1 = AsmMaxF(d1, amin);
@@ -117,7 +117,7 @@ void Rider_00117160::func_00117160(float dt)
         *(int *)(RP(0x1ec) + 0x24) = 0;
         func_00027850(0x3f800000);
         float av1 = Abs_00117160(RF(0x760));
-        RF(0x1248) = func_0001C870(*(int *)&av1, RI(0x4b8), RI(0x4c0), RI(0x4bc), RI(0x4c4));
+        RF(0x1248) = func_0001C870(*(volatile int *)&av1, RI(0x4b8), RI(0x4c0), RI(0x4bc), RI(0x4c4));
         RF(0x4b0) = RF(0x9f8) * D_00276094;
         RF(0x4b4) = RF(0x1248) * RF(0x4b0);
         *(int *)(RP(0x208) + 0x2c) = 0;
@@ -151,13 +151,13 @@ void Rider_00117160::func_00117160(float dt)
     } else if (RF(0x99c) == D_00275544) {
         *(int *)(RP(0x1ec) + 0x24) = 1;
         *(int *)(RP(0x1ec) + 0x28) = 0;
-        *(float *)(RP(0x1ec) + 0x30) = *(float *)(RP(0x1ec) + 0x3c) * RF(0x20c0);
+        *(float *)(RP(0x1ec) + 0x30) = RF(0x20c0) * *(float *)(RP(0x1ec) + 0x3c);
         func_00027850(0);
         RI(0x9cc) = 1;
     } else if (RI(0x454) != 0) {
         *(int *)(RP(0x1ec) + 0x24) = 1;
         *(int *)(RP(0x1ec) + 0x28) = (RI(0x20ac) != 0);
-        *(float *)(RP(0x1ec) + 0x30) = *(float *)(RP(0x1ec) + 0x40) * RF(0x20c0);
+        *(float *)(RP(0x1ec) + 0x30) = RF(0x20c0) * *(float *)(RP(0x1ec) + 0x40);
         func_00027850(0);
     } else if (RF(0x760) < D_00275544) {
         *(int *)(RP(0x1ec) + 0x24) = 0;
@@ -187,33 +187,79 @@ void Rider_00117160::func_00117160(float dt)
     *(int *)(RP(0x208) + 0x40) = (int)RF(0x9a8);
     *(int *)(RP(0x208) + 0x44) = (int)RF(0x9ac);
     *(int *)(RP(0x208) + 0x3c) = (RF(0x9bc) == D_00275544) ? 1 : 0;
-    int garbage;
-    ((VSlot74_00117160 *)RP(0x208))->Slot74(RI(0x964), RI(0x968), garbage);
+    ((VSlot74Two_00117160 *)RP(0x208))->Slot74(RI(0x964), RI(0x968));
+    Obj1E8_00117160 *obj1e8 = (Obj1E8_00117160 *)RP(0x1e8);
     if (RI(0x9d4) != 0 && *(int *)(RP(0x1e8) + 0x68) != 0
-        && ((Obj1E8_00117160 *)RP(0x1e8))->func_00026A70(D_002B9108) == 0
-        && ((Obj1E8_00117160 *)RP(0x1e8))->func_00026A70(D_002B911C) == 0)
+        && obj1e8->func_00026A70(D_002B9108) == 0
+        && obj1e8->func_00026A70(D_002B911C) == 0)
         *(int *)(RP(0x20c) + 0x30) = 1;
     else
         *(int *)(RP(0x20c) + 0x30) = 0;
     if (RI(0x11f4) == 1)
-        RF(0x4b0) = RF(0x4b0) * D_002755F4;
+        RF(0x4b0) = D_002755F4 * RF(0x4b0);
     else
         RF(0x4b0) = RF(0x9f8) * D_00276094;
     {
         float av760 = Abs_00117160(RF(0x760));
-        RF(0x1248) = func_0001C870(*(int *)&av760, RI(0x4b8), RI(0x4c0), RI(0x4bc), RI(0x4c4));
+        RF(0x1248) = func_0001C870(*(volatile int *)&av760, RI(0x4b8), RI(0x4c0), RI(0x4bc), RI(0x4c4));
     }
-    if (Abs_00117160(RF(0x9f8)) < D_00275460) {
-        RF(0x1250) += dt;
-        RF(0x4b4) = func_0001C870(RI(0x1250), 0, RI(0x1254), RI(0x124c), RI(0x1258)) * RF(0x1248) * RF(0x9f8);
-    } else {
+    if (!(Abs_00117160(RF(0x9f8)) < D_00275460)) {
         RF(0x4b4) = RF(0x1254) * RF(0x1248) * RF(0x9f8);
         RI(0x1250) = 0;
+    } else {
+        RF(0x1250) += dt;
+        RF(0x4b4) = func_0001C870(RI(0x1250), 0, RI(0x1254), RI(0x124c), RI(0x1258)) * RF(0x1248) * RF(0x9f8);
     }
-    int matched = 0;
-    int flag = 1;
+    if (RF(0x9b0) != D_00275544 || RF(0x9b8) == D_00275544) {
+        if (RF(0x9a0) != D_00275544 || RI(0x11dc)) {
+            if (!RI(0x470)) {
+                if (RF(0x9b8) != D_00275544) {
+                    RI(0x11f4) = 1;
+                    char *data = *(char **)(RP(0x24) + 0x52c);
+                    func_0010DD90((float)*(int *)(data + 0x6520), 1.0f, data + 0x64ec, -1, 12, 0);
+                    func_0002C120(1, RI(0x964));
+                } else {
+                    RI(0x97c) = 1;
+                    func_0002C120(0, RI(0x964));
+                }
+                RI(0x9b0) = 0;
+                func_0010DCB0();
+            }
+            if (RI(0x11dc) && RI(0x470) && RI(0x47c) == 2) {
+                RI(0x47c) = 3;
+                RF(0x15f4) = func_00104BB0(RI(0x718));
+                RI(0x1608) = 1; RI(0x1610) = 1;
+            }
+        }
+    }
+    if (RI(0x448)) {
+        func_00107A40(0);
+        if (((Obj5xx_00117160 *)RP(0x5f0))->func_000260F0() == D_00275F58) {
+            if (RI(0x1134) != -1) func_0010E2A0();
+            func_0010DCB0(); func_00107AB0();
+        } else if (((Obj5xx_00117160 *)RP(0x5f0))->func_000260F0() == D_00275460) {
+            func_0010E2A0(); func_0010DCB0();
+        }
+    } else if (RI(0x44c)) {
+        func_00107A40(0);
+        if (((Obj5xx_00117160 *)RP(0x5f0))->func_000260F0() == D_00275460) {
+            func_00107AB0();
+            if (RI(0x1134) != -1) func_0010E2A0();
+            func_0010DCB0();
+        } else if (((Obj5xx_00117160 *)RP(0x5f0))->func_000260F0() == D_00275F58) {
+            func_0010E2A0(); func_0010DCB0();
+        }
+    } else if (RI(0x450)) {
+        func_00107A40(0);
+        if (((Obj5xx_00117160 *)RP(0x5f0))->func_000260F0() == D_00275460 ||
+            ((Obj5xx_00117160 *)RP(0x5f0))->func_000260F0() == D_00275F58) {
+            func_00107AB0(); func_0010E2A0(); func_0010DCB0();
+        }
+    }
+
     int l18;
     int l1c = 0;
+    if (RF(0x9bc) != D_00275544 && !RI(0x468) && !RI(0x69c) && !RI(0x704) && !RI(0x70c)) {
     if (func_00028130(&l1c, 1, &l18) != 0) {
         func_00028CD0(*(void **)(RP(0x210) + 0x30));
         if (RI(0x470) == 0) {
@@ -237,139 +283,154 @@ trickReset:
         if (RI(0x69c) == 0)
             func_000295D0(1);
     }
+    } else if (RI(0x11dc)) {
+        if (!RI(0x470)) func_00107A40(1);
+        if (RI(0x470) && RI(0x47c) == 2) func_00107A40(0);
+        if (RI(0x470) && RI(0x47c) != 2) func_00107AB0();
+        float value;
+        if (RI(0x470) && RI(0x47c) == 2)
+            value = ((Obj5xx_00117160 *)RP(0x5f4))->func_000260F0();
+        else value = ((Obj5xx_00117160 *)RP(0x5ec))->func_000260F0();
+        if (Abs_00117160(value) >= D_00275460) func_0010E2A0();
+    }
 scoring:
-    if (RI(0x11dc) == 0) {
-        int trickId = *(int *)(RP(0x1084) + 0x2c);
-        if (trickId == -1 || trickId >= 0x3e8)
-            return;
-        switch (RI(0x9d8)) {
-        case 0:
-            if (*(int *)((char *)*(int **)(RP(0x24) + 0x52c) + trickId * 4 + 0x2434) != 0) {
-                matched = 1;
-                if (*(int *)((char *)*(int **)(RP(0x24) + 0x52c) + trickId * 4 + 0x254c) != 0)
-                    flag = 0;
-            }
-            break;
-        case 2:
-            matched = *(int *)((char *)*(int **)(RP(0x24) + 0x52c) + trickId * 4 + 0x2664);
-            flag = 0;
-            break;
-        case 3:
-            matched = *(int *)((char *)*(int **)(RP(0x24) + 0x52c) + trickId * 4 + 0x277c);
-            flag = 0;
-            break;
-        case 5:
-            if (*(int *)((char *)*(int **)(RP(0x24) + 0x52c) + trickId * 4 + 0x29ac) != 0) {
-                matched = 1;
-                if (*(int *)((char *)*(int **)(RP(0x24) + 0x52c) + trickId * 4 + 0x2894) != 0)
-                    flag = 0;
-            }
-            break;
-        case 6:
-            if (*(int *)((char *)*(int **)(RP(0x24) + 0x52c) + trickId * 4 + 0x2ac4) != 0) {
-                matched = 1;
-                if (*(int *)((char *)*(int **)(RP(0x24) + 0x52c) + trickId * 4 + 0x2bdc) != 0)
-                    flag = 0;
-            }
-            break;
-        }
-    } else if (RI(0x470) == 0) {
-        switch (RI(0x9d8)) {
-        case 0:
-            if (*(int *)((char *)*(int **)(RP(0x24) + 0x52c) + RI(0x718) * 4 + 0x6a28) != 0) {
-                matched = 1;
-                if (*(int *)((char *)*(int **)(RP(0x24) + 0x52c) + RI(0x718) * 4 + 0x6a48) != 0)
-                    flag = 0;
-            }
-            break;
-        case 2:
-            matched = *(int *)((char *)*(int **)(RP(0x24) + 0x52c) + RI(0x718) * 4 + 0x6a68);
-            flag = 0;
-            break;
-        case 3:
-            matched = *(int *)((char *)*(int **)(RP(0x24) + 0x52c) + RI(0x718) * 4 + 0x6a88);
-            flag = 0;
-            break;
-        case 5:
-            if (*(int *)((char *)*(int **)(RP(0x24) + 0x52c) + RI(0x718) * 4 + 0x6ac8) != 0) {
-                matched = 1;
-                if (*(int *)((char *)*(int **)(RP(0x24) + 0x52c) + RI(0x718) * 4 + 0x6aa8) != 0)
-                    flag = 0;
-            }
-            break;
-        case 6:
-            if (*(int *)((char *)*(int **)(RP(0x24) + 0x52c) + RI(0x718) * 4 + 0x6ae8) != 0) {
-                matched = 1;
-                if (*(int *)((char *)*(int **)(RP(0x24) + 0x52c) + RI(0x718) * 4 + 0x6b08) != 0)
-                    flag = 0;
-            }
-            break;
-        }
-    } else if (RI(0x480) != 0) {
-        switch (RI(0x9d8)) {
-        case 0:
-            if (*(int *)((char *)*(int **)(RP(0x24) + 0x52c) + RI(0x718) * 4 + 0x7808) != 0) {
-                matched = 1;
-                if (*(int *)((char *)*(int **)(RP(0x24) + 0x52c) + RI(0x718) * 4 + 0x7828) != 0)
-                    flag = 0;
-            }
-            break;
-        case 2:
-            matched = *(int *)((char *)*(int **)(RP(0x24) + 0x52c) + RI(0x718) * 4 + 0x7848);
-            flag = 0;
-            break;
-        case 3:
-            matched = *(int *)((char *)*(int **)(RP(0x24) + 0x52c) + RI(0x718) * 4 + 0x7868);
-            flag = 0;
-            break;
-        case 5:
-            if (*(int *)((char *)*(int **)(RP(0x24) + 0x52c) + RI(0x718) * 4 + 0x78a8) != 0) {
-                matched = 1;
-                if (*(int *)((char *)*(int **)(RP(0x24) + 0x52c) + RI(0x718) * 4 + 0x7888) != 0)
-                    flag = 0;
-            }
-            break;
-        case 6:
-            if (*(int *)((char *)*(int **)(RP(0x24) + 0x52c) + RI(0x718) * 4 + 0x78c8) != 0) {
-                matched = 1;
-                if (*(int *)((char *)*(int **)(RP(0x24) + 0x52c) + RI(0x718) * 4 + 0x78e8) != 0)
-                    flag = 0;
-            }
-            break;
-        }
-    } else {
+    if (RI(0xa44) != -1) return;
+    int trickId = *(int *)(RP(0x1084) + 0x2c);
+    volatile int matched = 0;
+    int flag = 1;
+    if (RI(0x454)) {
+        if (RI(0x1134) != -1) matched = *(int *)(*(char **)(D_002A8490 + 0x2e0) + 0x394);
+        else matched = 0;
+    } else if (RI(0x11dc)) {
+        if (RI(0x470)) {
+            if (!RI(0x480)) {
         switch (RI(0x9d8)) {
         case 0:
             if (*(int *)((char *)*(int **)(RP(0x24) + 0x52c) + RI(0x718) * 4 + 0x7968) != 0) {
                 matched = 1;
                 if (*(int *)((char *)*(int **)(RP(0x24) + 0x52c) + RI(0x718) * 4 + 0x7988) != 0)
-                    flag = 0;
+                    goto clear_flag;
             }
-            break;
+            goto score_done;
         case 2:
-            matched = *(int *)((char *)*(int **)(RP(0x24) + 0x52c) + RI(0x718) * 4 + 0x7988);
-            flag = 0;
-            break;
-        case 3:
             matched = *(int *)((char *)*(int **)(RP(0x24) + 0x52c) + RI(0x718) * 4 + 0x79a8);
-            flag = 0;
-            break;
+            goto clear_flag;
+        case 3:
+            matched = *(int *)((char *)*(int **)(RP(0x24) + 0x52c) + RI(0x718) * 4 + 0x79c8);
+            goto clear_flag;
         case 5:
             if (*(int *)((char *)*(int **)(RP(0x24) + 0x52c) + RI(0x718) * 4 + 0x7a08) != 0) {
                 matched = 1;
                 if (*(int *)((char *)*(int **)(RP(0x24) + 0x52c) + RI(0x718) * 4 + 0x79e8) != 0)
-                    flag = 0;
+                    goto clear_flag;
             }
-            break;
+            goto score_done;
         case 6:
             if (*(int *)((char *)*(int **)(RP(0x24) + 0x52c) + RI(0x718) * 4 + 0x7a28) != 0) {
                 matched = 1;
                 if (*(int *)((char *)*(int **)(RP(0x24) + 0x52c) + RI(0x718) * 4 + 0x7a48) != 0)
-                    flag = 0;
+                    goto clear_flag;
             }
-            break;
+            goto score_done;
+        }
+            } else {
+        switch (RI(0x9d8)) {
+        case 0:
+            if (*(int *)((char *)*(int **)(RP(0x24) + 0x52c) + RI(0x718) * 4 + 0x7808) != 0) {
+                matched = 1;
+                if (*(int *)((char *)*(int **)(RP(0x24) + 0x52c) + RI(0x718) * 4 + 0x7828) != 0)
+                    goto clear_flag;
+            }
+            goto score_done;
+        case 2:
+            matched = *(int *)((char *)*(int **)(RP(0x24) + 0x52c) + RI(0x718) * 4 + 0x7848);
+            goto clear_flag;
+        case 3:
+            matched = *(int *)((char *)*(int **)(RP(0x24) + 0x52c) + RI(0x718) * 4 + 0x7868);
+            goto clear_flag;
+        case 5:
+            if (*(int *)((char *)*(int **)(RP(0x24) + 0x52c) + RI(0x718) * 4 + 0x78a8) != 0) {
+                matched = 1;
+                if (*(int *)((char *)*(int **)(RP(0x24) + 0x52c) + RI(0x718) * 4 + 0x7888) != 0)
+                    goto clear_flag;
+            }
+            goto score_done;
+        case 6:
+            if (*(int *)((char *)*(int **)(RP(0x24) + 0x52c) + RI(0x718) * 4 + 0x78c8) != 0) {
+                matched = 1;
+                if (*(int *)((char *)*(int **)(RP(0x24) + 0x52c) + RI(0x718) * 4 + 0x78e8) != 0)
+                    goto clear_flag;
+            }
+            goto score_done;
+        }
+            }
+        } else {
+        switch (RI(0x9d8)) {
+        case 0:
+            if (*(int *)((char *)*(int **)(RP(0x24) + 0x52c) + RI(0x718) * 4 + 0x6a28) != 0) {
+                matched = 1;
+                if (*(int *)((char *)*(int **)(RP(0x24) + 0x52c) + RI(0x718) * 4 + 0x6a48) != 0)
+                    goto clear_flag;
+            }
+            goto score_done;
+        case 2:
+            matched = *(int *)((char *)*(int **)(RP(0x24) + 0x52c) + RI(0x718) * 4 + 0x6a68);
+            goto clear_flag;
+        case 3:
+            matched = *(int *)((char *)*(int **)(RP(0x24) + 0x52c) + RI(0x718) * 4 + 0x6a88);
+            goto clear_flag;
+        case 5:
+            if (*(int *)((char *)*(int **)(RP(0x24) + 0x52c) + RI(0x718) * 4 + 0x6ac8) != 0) {
+                matched = 1;
+                if (*(int *)((char *)*(int **)(RP(0x24) + 0x52c) + RI(0x718) * 4 + 0x6aa8) != 0)
+                    goto clear_flag;
+            }
+            goto score_done;
+        case 6:
+            if (*(int *)((char *)*(int **)(RP(0x24) + 0x52c) + RI(0x718) * 4 + 0x6ae8) != 0) {
+                matched = 1;
+                if (*(int *)((char *)*(int **)(RP(0x24) + 0x52c) + RI(0x718) * 4 + 0x6b08) != 0)
+                    goto clear_flag;
+            }
+            goto score_done;
+        }
+        }
+    } else {
+        if (trickId == -1 || trickId >= 0x3e8) return;
+        switch (RI(0x9d8)) {
+        case 0:
+            if (*(int *)((char *)*(int **)(RP(0x24) + 0x52c) + trickId * 4 + 0x2434) != 0) {
+                matched = 1;
+                if (*(int *)((char *)*(int **)(RP(0x24) + 0x52c) + trickId * 4 + 0x254c) != 0)
+                    goto clear_flag;
+            }
+            goto score_done;
+        case 2:
+            matched = *(int *)((char *)*(int **)(RP(0x24) + 0x52c) + trickId * 4 + 0x2664);
+            goto clear_flag;
+        case 3:
+            matched = *(int *)((char *)*(int **)(RP(0x24) + 0x52c) + trickId * 4 + 0x277c);
+            goto clear_flag;
+        case 5:
+            if (*(int *)((char *)*(int **)(RP(0x24) + 0x52c) + trickId * 4 + 0x29ac) != 0) {
+                matched = 1;
+                if (*(int *)((char *)*(int **)(RP(0x24) + 0x52c) + trickId * 4 + 0x2894) != 0)
+                    goto clear_flag;
+            }
+            goto score_done;
+        case 6:
+            if (*(int *)((char *)*(int **)(RP(0x24) + 0x52c) + trickId * 4 + 0x2ac4) != 0) {
+                matched = 1;
+                if (*(int *)((char *)*(int **)(RP(0x24) + 0x52c) + trickId * 4 + 0x2bdc) != 0)
+                    goto clear_flag;
+            }
+            goto score_done;
         }
     }
+    goto score_done;
+clear_flag:
+    flag = 0;
+score_done:
     if (matched == 0)
         return;
     if (RI(0x9d8) != -1) {
@@ -390,16 +451,18 @@ scoring:
         RI(0xa44) = 2;
         break;
     case 3:
+        flag = 4 - (flag != 0);
         RI(0x1614) = 0; RI(0x1618) = 0; RI(0x161c) = 0; RI(0x1e64) = 0; RI(0x113c) = 0;
-        RI(0xa44) = 4 - (flag != 0);
+        RI(0xa44) = flag;
         break;
     case 5:
         RI(0x1614) = 0; RI(0x1618) = 0; RI(0x161c) = 0; RI(0x1e64) = 0; RI(0x113c) = 0;
         RI(0xa44) = 5;
         break;
     case 6:
+        flag = 7 - (flag != 0);
         RI(0x1614) = 0; RI(0x1618) = 0; RI(0x161c) = 0; RI(0x1e64) = 0; RI(0x113c) = 0;
-        RI(0xa44) = 7 - (flag != 0);
+        RI(0xa44) = flag;
         break;
     }
     RI(0x1624) = 1;

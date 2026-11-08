@@ -212,7 +212,6 @@ int C_0012FE50::func_0012FE50(float dt, int b)
     if (f4a4 == 0) {
         float vv[8];
         V4_0012FE50 *p = (V4_0012FE50 *)vv;
-        V4_0012FE50 tmp;
         unsigned int i;
 
         func_00011FF0(vv, 0x10, 2, (void *)func_00011060);
@@ -221,6 +220,7 @@ int C_0012FE50::func_0012FE50(float dt, int b)
         p[0].y = D_002A4110.y + f4d8;
         p[1].y = D_002A4110.y - f4d8;
         f408->func_00180E00(1, p, 0, 0);
+        V4_0012FE50 tmp;
         for (i = 0; i < f4b4; i++) {
             f500[i]->func_00197E70(&tmp);
             if (tmp.z > D_00275544) {
@@ -234,8 +234,12 @@ int C_0012FE50::func_0012FE50(float dt, int b)
     } else {
         t = f510;
     }
-    f438 = v52(t);
-    V4_0012FE50 d;
+    float sampleData[4];
+    V4_0012FE50 *sample=(V4_0012FE50*)sampleData;
+    f438 = *this->sample(sample,t);
+    float ddata[4];
+    V4_0012FE50 &d=*(V4_0012FE50*)ddata;
+    d.w=1.0f;
     d.x = f438.x - f428.x;
     d.y = f438.y - f428.y;
     d.z = f438.z - f428.z;
@@ -247,7 +251,9 @@ int C_0012FE50::func_0012FE50(float dt, int b)
     f428 = f438;
     d.y = 0.0f;
     if (f4b4 > 0) {
-        V4_0012FE50 o1;
+        float o1data[4];
+        V4_0012FE50 &o1=*(V4_0012FE50*)o1data;
+        o1.z=0.0f;
         func_00030A30(&o1, d, (char *)f400 + 0xf0);
         f4dc += (f518->f10 + f514) * f4d4 * o1.z * dt;
         f4dc = (float)fmod((double)f4dc, D_002843A0);
@@ -267,13 +273,17 @@ int C_0012FE50::func_0012FE50(float dt, int b)
         f458 = f458 * f4f0 + buf * (D_00275460 - f4f0);
     }
     if (f4a0 != 0 && f4b4 > 0) {
+        const V4_0012FE50 *position=&f438;
         float t2 = v51(t, -f4e4);
-        V4_0012FE50 rr = v52(t2);
-        V4_0012FE50 d2;
-        d2.x = rr.x - f438.x;
-        d2.y = rr.y - f438.y;
-        d2.z = rr.z - f438.z;
-        V4_0012FE50 o2;
+        const V4_0012FE50 &rr = *sample2(sample,t2);
+        float o2data[4];
+        V4_0012FE50 &o2=*(V4_0012FE50*)o2data;
+        o2.x=o2.z=0.0f;
+        V4_0012FE50 &d2=d;
+        d2.w=1.0f;
+        d2.x = rr.x - position->x;
+        d2.y = rr.y - position->y;
+        d2.z = rr.z - position->z;
         func_00030A30(&o2, d2, (char *)f400 + 0xf0);
         f4e0 = func_0014FBA0(o2.x, o2.z);
         f4e0 = AsmMinF(AsmMaxF(f4e0, -0.5235988f), 0.5235988f);

@@ -395,6 +395,11 @@ struct C_001C04D0 {
     void func_001C04D0(int idx);
 };
 
+void C_001BFF40::func_001BFF40(void)
+{
+    unk68->unk4->func_00198E60();
+}
+
 C_001C0110 *C_001C0110::func_001C0110(int a1, int a2)
 {
     int i;
@@ -440,6 +445,7 @@ void C_001C0110::func_001C01B0(void)
 }
 
 void *func_001E83E8(void *, unsigned int);
+void *func_001E8A44(unsigned int);
 void C_001C05F0::func_001C01E0(char *text)
 {
     if (unk68) {
@@ -452,8 +458,7 @@ void C_001C05F0::func_001C01E0(char *text)
     }
     unk170 = 0;
     int index = -1;
-    int len = strlen(text);
-    char *end = text + len;
+    char *end = text + strlen(text);
     if (end) {
         char *next;
         do {

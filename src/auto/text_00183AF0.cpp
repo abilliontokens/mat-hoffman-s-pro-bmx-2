@@ -273,7 +273,76 @@ void BmxScene::func_00183E90(void)
     }
 }
 
-int _func_00183EC0(void) { return 1; }
+int BmxScene::func_00183EC0()
+{
+    int i;
+    void *m=func_001E8A44(0x24);
+    f4a4=m?((SceneNode*)m)->func_00157600(1):0;
+    f4a8=(SceneNode**)func_001E8A44(f340*4);
+    f4ac=(SceneNode**)func_001E8A44(f340*4);
+    D_002E2930->func_0015D850(f340,0,0,0,0,0,0,0,0);
+    for(i=0;i<f340;i++){
+        m=func_001E8A44(0xa0);
+        f4a8[i]=m?((SceneNode*)m)->func_00192900(1):0;
+        m=func_001E8A44(0xa0);
+        f4ac[i]=m?((SceneNode*)m)->func_00192900(1):0;
+        f4a8[i]->f3c=i;
+        f4ac[i]->f3c=i;
+        int *r=f344+i*0x58;
+        if(r[0x128/4]>0) f4a8[i]->func_00192AF0(r[0x124/4],r[0x128/4]);
+    }
+    if(f34c>0){
+    for(i=0;i<f34c;i++){
+        m=func_001E8A44(0xb8);
+        SceneNode *n=m?((SceneNode*)m)->func_00179820(1):0;
+        f4a4->func_001577A0(n->func_0017A310(f384+i*19+1),0);
+        int a=f384[i*19+17];
+        int b=f384[i*19+18];
+        --a;--b;
+        f4a8[a]->func_00192A50(f4a8[b],n);
+        f4ac[a]->func_00192A50(f4ac[b],n);
+        f4a8[b]->func_00192A50(f4a8[a],n);
+        f4ac[b]->func_00192A50(f4ac[a],n);
+        if(D_002E2930) D_002E2930->func_0015DA60(a,b,n);
+    }
+    func_001E891B(f384);f384=0;
+    }
+    if(f340==1 && f344[0x11c/4]==2 && f344[0x114/4]==2){
+        m=func_001E8A44(0x8b8);
+        D_002F07E8=m?((SceneBounds*)m)->func_001C4F40():0;
+        D_002F07E8->func_001C4F70(f388[0x538/4],0xff7fffff,f388[0x540/4],f388[0x53c/4],0x7f7fffff,f388[0x544/4],f388[0x548/4]);
+        D_002F07E8->func_001C4FA0(5000);
+        m=func_001E8A44(0x44);
+        SceneBounds *v=m?((SceneBounds*)m)->func_001923F0(0x400):0;
+        f4a8[0]->f3c=0;f4ac[0]->f3c=0;
+        f4a8[0]->func_00192A90(D_002F07E8);
+        f4a8[0]->func_00192AC0(v);
+        f4ac[0]->func_00192A90(D_002F07E8);
+        f4ac[0]->func_00192AC0(v);
+        f4a4->func_001577A0(f4a8[0],0);
+        f4a4->func_001577A0(f4ac[0],0);
+        D_002F07E8->slot2();
+        v->slot2();
+    }else{
+        f4b0=(void**)func_001E8A44(f340*4);
+        f4b4=(void**)func_001E8A44(f340*4);
+        f4b8=(void**)func_001E8A44(f340*4);
+        f4bc=(void**)func_001E8A44(f340*4);
+        for(i=0;i<f340;i++){
+            f4a4->func_001577A0(f4a8[i],0x400);
+            f4a4->func_001577A0(f4ac[i],0);
+            f4b0[i]=0;f4b4[i]=0;f4b8[i]=0;f4bc[i]=0;
+            ((SceneDispatch*)this)->slot66(i);
+            ((SceneDispatch*)this)->slot67(i);
+        }
+        if(f350) ((SceneDispatch*)this)->slot65();
+    }
+    m=func_001E8A44(0x28);
+    D_002EFE78=m?((SceneResult*)m)->func_00193490():0;
+    D_002EFE78->f4=f4ac[0];
+    D_002EFE78->f8=D_002F07E8;
+    return 1;
+}
 
 int BmxScene::func_00184880(void)
 {

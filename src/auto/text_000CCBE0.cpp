@@ -74,7 +74,6 @@ struct C_000CCBE0 {
 void C_000CCBE0::func_000CCBE0(int a, int b, int c)
 {
     void *mem;
-    int i;
     S_CCBE0_Sprite *o;
 
     func_001BE4F0(a, b, c);
@@ -97,7 +96,7 @@ void C_000CCBE0::func_000CCBE0(int a, int b, int c)
     o = f550;
     *((unsigned char *)&o->f38 + 3) = 0;
     o->f58 |= 2;
-    for (i = 0; i < 2; i++) {
+    for (int i = 0; i < 2; i++) {
         mem = func_001E8A44(0x64);
         f3F8[i] = mem ? ((S_CCBE0_Sprite *)mem)->func_001D5760() : 0;
     }
@@ -119,15 +118,16 @@ void C_000CCBE0::func_000CCBE0(int a, int b, int c)
     o = f3F8[1];
     o->f3C = 0x3f800000;
     o->f48 = 0x3f800000;
-    o->f40 = 0.0f;
-    o->f44 = 0.0f;
-    o->f58 |= 4;
+    unsigned char transformFlags = *(volatile unsigned char *)&o->f58;
+    o->f40 = 0;
+    o->f44 = 0;
+    o->f58 = transformFlags | 4;
     o = f3F8[1];
     o->f38 = (o->f38 & 0xffcccccc) | 0xcccccc;
     o->f58 |= 2;
-    for (i = 0; i < 16; i++) {
+    for (int j = 0; j < 16; j++) {
         mem = func_001E8A44(0x64);
-        f400[i] = mem ? ((S_CCBE0_Sprite *)mem)->func_001D5760() : 0;
+        f400[j] = mem ? ((S_CCBE0_Sprite *)mem)->func_001D5760() : 0;
     }
     f400[0]->func_001D5810(D_0027E7B8, 80.0f, 141.0f, 0);
     f400[1]->func_001D5810(D_0027E7A8, 80.0f, 141.0f, 0);
@@ -160,9 +160,10 @@ void C_000CCBE0::func_000CCBE0(int a, int b, int c)
     f390[0]->func_001D5810(D_0027E6B8, 0.0f, 0.0f, 0);
     o = f390[0];
     if (o->f4 != 0x44048000 || o->f8 != 0x42480000) {
+        unsigned char flags = o->f58 | 1;
         o->f4 = 0x44048000;
         o->f8 = 0x42480000;
-        o->f58 |= 1;
+        o->f58 = flags;
     }
     o = f390[0];
     if (o->f24 != 0x3f2b851f) {
@@ -178,9 +179,10 @@ void C_000CCBE0::func_000CCBE0(int a, int b, int c)
     f390[1]->func_001D5810(D_0027E6B4, 0.0f, 0.0f, 0);
     o = f390[1];
     if (o->f4 != 0x44048000 || o->f8 != 0x42480000) {
+        unsigned char flags = o->f58 | 1;
         o->f4 = 0x44048000;
         o->f8 = 0x42480000;
-        o->f58 |= 1;
+        o->f58 = flags;
     }
     o = f390[1];
     if (o->f24 != 0x3f2b851f) {
@@ -196,9 +198,10 @@ void C_000CCBE0::func_000CCBE0(int a, int b, int c)
     f390[2]->func_001D5810(D_0027E6B0, 0.0f, 0.0f, 0);
     o = f390[2];
     if (o->f4 != 0x44048000 || o->f8 != 0x42480000) {
+        unsigned char flags = o->f58 | 1;
         o->f4 = 0x44048000;
         o->f8 = 0x42480000;
-        o->f58 |= 1;
+        o->f58 = flags;
     }
     o = f390[2];
     if (o->f24 != 0x3f2b851f) {
@@ -214,9 +217,10 @@ void C_000CCBE0::func_000CCBE0(int a, int b, int c)
     f390[3]->func_001D5810(D_0027E6AC, 0.0f, 0.0f, 0);
     o = f390[3];
     if (o->f4 != 0x44048000 || o->f8 != 0x42480000) {
+        unsigned char flags = o->f58 | 1;
         o->f4 = 0x44048000;
         o->f8 = 0x42480000;
-        o->f58 |= 1;
+        o->f58 = flags;
     }
     o = f390[3];
     if (o->f24 != 0x3f2b851f) {
@@ -232,9 +236,10 @@ void C_000CCBE0::func_000CCBE0(int a, int b, int c)
     f390[4]->func_001D5810(D_0027E6A8, 0.0f, 0.0f, 0);
     o = f390[4];
     if (o->f4 != 0x44048000 || o->f8 != 0x42480000) {
+        unsigned char flags = o->f58 | 1;
         o->f4 = 0x44048000;
         o->f8 = 0x42480000;
-        o->f58 |= 1;
+        o->f58 = flags;
     }
     o = f390[4];
     if (o->f24 != 0x3f2b851f) {
@@ -250,9 +255,10 @@ void C_000CCBE0::func_000CCBE0(int a, int b, int c)
     f390[5]->func_001D5810(D_0027E6A4, 0.0f, 0.0f, 0);
     o = f390[5];
     if (o->f4 != 0x44048000 || o->f8 != 0x42480000) {
+        unsigned char flags = o->f58 | 1;
         o->f4 = 0x44048000;
         o->f8 = 0x42480000;
-        o->f58 |= 1;
+        o->f58 = flags;
     }
     o = f390[5];
     if (o->f24 != 0x3f2b851f) {
@@ -263,4 +269,211 @@ void C_000CCBE0::func_000CCBE0(int a, int b, int c)
         }
         o->f58 |= 1;
     }
+    mem = func_001E8A44(0x64);
+    f390[6] = mem ? ((S_CCBE0_Sprite *)mem)->func_001D5760() : 0;
+    f390[6]->func_001D5810(D_0027E6A0, 0.0f, 0.0f, 0);
+    o = f390[6];
+    if (o->f4 != 0x44048000 || o->f8 != 0x42480000) {
+        unsigned char flags = o->f58 | 1;
+        o->f4 = 0x44048000;
+        o->f8 = 0x42480000;
+        o->f58 = flags;
+    }
+    o = f390[6];
+    if (o->f24 != 0x3f2b851f) {
+        int t = o->f54;
+        o->f24 = 0x3f2b851f;
+        if (t != 0) {
+            o->f24 = 0x3eab851f;
+        }
+        o->f58 |= 1;
+    }
+    mem = func_001E8A44(0x64);
+    f390[7] = mem ? ((S_CCBE0_Sprite *)mem)->func_001D5760() : 0;
+    f390[7]->func_001D5810(D_0027E69C, 0.0f, 0.0f, 0);
+    o = f390[7];
+    if (o->f4 != 0x44048000 || o->f8 != 0x42480000) {
+        unsigned char flags = o->f58 | 1;
+        o->f4 = 0x44048000;
+        o->f8 = 0x42480000;
+        o->f58 = flags;
+    }
+    o = f390[7];
+    if (o->f24 != 0x3f2b851f) {
+        int t = o->f54;
+        o->f24 = 0x3f2b851f;
+        if (t != 0) {
+            o->f24 = 0x3eab851f;
+        }
+        o->f58 |= 1;
+    }
+    mem = func_001E8A44(0x64);
+    f390[8] = mem ? ((S_CCBE0_Sprite *)mem)->func_001D5760() : 0;
+    f390[8]->func_001D5810(D_0027E684, 0.0f, 0.0f, 0);
+    o = f390[8];
+    if (o->f4 != 0x44048000 || o->f8 != 0x43960000) {
+        unsigned char flags = o->f58 | 1;
+        o->f4 = 0x44048000;
+        o->f8 = 0x43960000;
+        o->f58 = flags;
+    }
+    o = f390[8];
+    if (o->f24 != 0x3f2b851f) {
+        int t = o->f54;
+        o->f24 = 0x3f2b851f;
+        if (t != 0) {
+            o->f24 = 0x3eab851f;
+        }
+        o->f58 |= 1;
+    }
+    mem = func_001E8A44(0x64);
+    f390[9] = mem ? ((S_CCBE0_Sprite *)mem)->func_001D5760() : 0;
+    f390[9]->func_001D5810(D_0027E66C, 0.0f, 0.0f, 0);
+    o = f390[9];
+    if (o->f4 != 0x44048000 || o->f8 != 0x43960000) {
+        unsigned char flags = o->f58 | 1;
+        o->f4 = 0x44048000;
+        o->f8 = 0x43960000;
+        o->f58 = flags;
+    }
+    o = f390[9];
+    if (o->f24 != 0x3f2b851f) {
+        int t = o->f54;
+        o->f24 = 0x3f2b851f;
+        if (t != 0) {
+            o->f24 = 0x3eab851f;
+        }
+        o->f58 |= 1;
+    }
+    mem = func_001E8A44(0x64);
+    f390[10] = mem ? ((S_CCBE0_Sprite *)mem)->func_001D5760() : 0;
+    f390[10]->func_001D5810(D_0027E654, 0.0f, 0.0f, 0);
+    o = f390[10];
+    if (o->f4 != 0x44048000 || o->f8 != 0x43960000) {
+        unsigned char flags = o->f58 | 1;
+        o->f4 = 0x44048000;
+        o->f8 = 0x43960000;
+        o->f58 = flags;
+    }
+    o = f390[10];
+    if (o->f24 != 0x3f2b851f) {
+        int t = o->f54;
+        o->f24 = 0x3f2b851f;
+        if (t != 0) {
+            o->f24 = 0x3eab851f;
+        }
+        o->f58 |= 1;
+    }
+    mem = func_001E8A44(0x64);
+    f390[11] = mem ? ((S_CCBE0_Sprite *)mem)->func_001D5760() : 0;
+    f390[11]->func_001D5810(D_0027E63C, 0.0f, 0.0f, 0);
+    o = f390[11];
+    if (o->f4 != 0x44048000 || o->f8 != 0x43960000) {
+        unsigned char flags = o->f58 | 1;
+        o->f4 = 0x44048000;
+        o->f8 = 0x43960000;
+        o->f58 = flags;
+    }
+    o = f390[11];
+    if (o->f24 != 0x3f2b851f) {
+        int t = o->f54;
+        o->f24 = 0x3f2b851f;
+        if (t != 0) {
+            o->f24 = 0x3eab851f;
+        }
+        o->f58 |= 1;
+    }
+    mem = func_001E8A44(0x64);
+    f390[12] = mem ? ((S_CCBE0_Sprite *)mem)->func_001D5760() : 0;
+    f390[12]->func_001D5810(D_0027E624, 0.0f, 0.0f, 0);
+    o = f390[12];
+    if (o->f4 != 0x44048000 || o->f8 != 0x43960000) {
+        unsigned char flags = o->f58 | 1;
+        o->f4 = 0x44048000;
+        o->f8 = 0x43960000;
+        o->f58 = flags;
+    }
+    o = f390[12];
+    if (o->f24 != 0x3f2b851f) {
+        int t = o->f54;
+        o->f24 = 0x3f2b851f;
+        if (t != 0) {
+            o->f24 = 0x3eab851f;
+        }
+        o->f58 |= 1;
+    }
+    mem = func_001E8A44(0x64);
+    f390[13] = mem ? ((S_CCBE0_Sprite *)mem)->func_001D5760() : 0;
+    f390[13]->func_001D5810(D_0027E60C, 0.0f, 0.0f, 0);
+    o = f390[13];
+    if (o->f4 != 0x44048000 || o->f8 != 0x43960000) {
+        unsigned char flags = o->f58 | 1;
+        o->f4 = 0x44048000;
+        o->f8 = 0x43960000;
+        o->f58 = flags;
+    }
+    o = f390[13];
+    if (o->f24 != 0x3f2b851f) {
+        int t = o->f54;
+        o->f24 = 0x3f2b851f;
+        if (t != 0) {
+            o->f24 = 0x3eab851f;
+        }
+        o->f58 |= 1;
+    }
+    mem = func_001E8A44(0x64);
+    f390[14] = mem ? ((S_CCBE0_Sprite *)mem)->func_001D5760() : 0;
+    f390[14]->func_001D5810(D_0027E5F4, 0.0f, 0.0f, 0);
+    o = f390[14];
+    if (o->f4 != 0x44048000 || o->f8 != 0x43960000) {
+        unsigned char flags = o->f58 | 1;
+        o->f4 = 0x44048000;
+        o->f8 = 0x43960000;
+        o->f58 = flags;
+    }
+    o = f390[14];
+    if (o->f24 != 0x3f2b851f) {
+        int t = o->f54;
+        o->f24 = 0x3f2b851f;
+        if (t != 0) {
+            o->f24 = 0x3eab851f;
+        }
+        o->f58 |= 1;
+    }
+    mem = func_001E8A44(0x64);
+    f390[15] = mem ? ((S_CCBE0_Sprite *)mem)->func_001D5760() : 0;
+    f390[15]->func_001D5810(D_0027E5DC, 0.0f, 0.0f, 0);
+    o = f390[15];
+    if (o->f4 != 0x44048000 || o->f8 != 0x43960000) {
+        unsigned char flags = o->f58 | 1;
+        o->f4 = 0x44048000;
+        o->f8 = 0x43960000;
+        o->f58 = flags;
+    }
+    o = f390[15];
+    if (o->f24 != 0x3f2b851f) {
+        int t = o->f54;
+        o->f24 = 0x3f2b851f;
+        if (t != 0) {
+            o->f24 = 0x3eab851f;
+        }
+        o->f58 |= 1;
+    }
+
+    mem = func_001E8A44(0x184);
+    *(S_CCBE0_Text **)((char *)this + 0x568) = mem ? ((S_CCBE0_Text *)mem)->func_001B12C0(1) : 0;
+    (*(S_CCBE0_Text **)((char *)this + 0x568))->func_001B13A0(D_002786A0, D_002786A0, 0, 0x28);
+    (*(S_CCBE0_Text **)((char *)this + 0x568))->func_001B1A30(30.0f, 320.0f, 0.0f);
+    (*(S_CCBE0_Text **)((char *)this + 0x568))->func_001B2270(0xffcccccc);
+    func_001577A0(*(S_CCBE0_Text **)((char *)this + 0x568), -1);
+    mem = func_001E8A44(0x184);
+    *(S_CCBE0_Text **)((char *)this + 0x594) = mem ? ((S_CCBE0_Text *)mem)->func_001B12C0(1) : 0;
+    (*(S_CCBE0_Text **)((char *)this + 0x594))->func_001B13A0(D_0027958C, D_0027958C, 0, 0x28);
+    (*(S_CCBE0_Text **)((char *)this + 0x594))->func_001B1A30(320.0f, 120.0f, 0.0f);
+    (*(S_CCBE0_Text **)((char *)this + 0x594))->func_001B2270(0xffcccccc);
+    (*(S_CCBE0_Text **)((char *)this + 0x594))->func_001B1C10(D_0028F5E0);
+    char *settings = *(char **)((char *)D_002A8490 + 0x2e8);
+    (*(S_CCBE0_Text **)((char *)this + 0x594))->func_001B17D0(*(int *)(*(char **)(settings + 4) + 0xfc8));
+    func_001577A0(*(S_CCBE0_Text **)((char *)this + 0x594), -1);
+    (*(S_CCBE0_Text **)((char *)this + 0x594))->func_001B1980();
 }

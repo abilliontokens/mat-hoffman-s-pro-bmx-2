@@ -166,29 +166,23 @@ int func_001ADCC0(char *buf, int size, const char *fmt, ...);
 
 void C_000448D0::func_000448D0(void)
 {
-    void *mem;
-
     D_002A8490->f234 = 1;
-    func_00012140();
-    mem = func_001E8A44(0x54);
-    f1d4 = mem ? ((Obj54_000448D0 *)mem)->func_001D1BB0() : 0;
+    ::func_00012140();
+    Obj54_000448D0 *p = (Obj54_000448D0 *)func_001E8A44(0x54);
+    f1d4 = p ? p->func_001D1BB0() : 0;
     f1d4->v0(D_00276C90, 0);
     f1d4->v5();
     func_001D3F50();
-    if (func_001D7D00() == 0) return;
+    if (!func_001D7D00()) return;
     func_00033680();
     func_00042260();
     D_002EFDB8->f30 = 1;
     D_002F07B8->f8 = 1;
-    func_00012140();
+    ::func_00012140();
     v33();
-    if (D_002A8490->f230 & 0x20) {
-        D_002F0670->v32();
-    }
+    if (D_002A8490->f230 & 0x20) D_002F0670->v32();
     D_002A8490->f4->fB4->v6();
-    if (D_002A8490->f2e4 == 0) {
-        D_002A8490->f2e0->f2fc->func_00095200(0x13);
-    }
+    if (!D_002A8490->f2e4) D_002A8490->f2e0->f2fc->func_00095200(0x13);
     func_001ADCC0(D_002A48F8, 0x104, D_00275678, D_002A5348, D_002A47F0);
     D_002A829C->func_001616F0();
     D_002A8490->f4->v6();
@@ -201,4 +195,64 @@ void C_000448D0::func_000448D0(void)
     f550->func_0008A060();
     f554->func_0008A910();
     func_0003AD50();
+
+    Q64_000448D0 *f = f64;
+    int i = f47c;
+    int idx = f->f5a4[i].f44 + f480;
+    Elem_448D0 *a = (Elem_448D0*)Get_448D0((void**)f->f5ac,f->f5a8,idx);
+    Elem_448D0 *b = (Elem_448D0*)Get_448D0((void**)f->f5ac,f->f5a8,idx);
+    Elem_448D0 *c = (Elem_448D0*)Get_448D0((void**)f->f5ac,f->f5a8,idx);
+    Object_448D0 *d = (Object_448D0*)Get_448D0((void**)f5cc,f5c8,idx);
+    int av=a->f35c, bv=b->f358, cv=c->f360;
+    float fy = f440;
+    Sub_448D0 *sub = f540;
+    V4_000448D0 v60,v30,v70,v40,v80;
+    if (d) {
+        D_002EFDB8->v7(1);
+        D_002EFDB8->v8();
+        int x=f->f5a4[i].f38,y=f->f5a4[i].f3c,z=f->f5a4[i].f40;
+        if(sub->f24) {
+            sub->f24->func_00198390();
+            if(sub->f2c) sub->f2c->func_00198390();
+            sub->f24=0;
+        } else if(sub->f28) {
+            sub->f28->f1a4->f4->func_00198390();
+            sub->f28->f1a4->v4();
+            sub->f28=0;
+        }
+        sub->f24=d;
+        sub->f24->func_001983A0();
+        sub->f24->func_0019A8C0(&v40,&v80);
+        if(func_001E8AF0((char*)sub->f24+0x28,D_00276D54)) v40.z-=D_00275AEC;
+        sub->f2c=0;
+        int m;
+if (cv > bv) { m=av; if (cv>av) m=cv; }
+else {m=bv; if(av>bv) m=av; }
+        int n;
+if (y>z) {if(y>x) n=m>y?m:y; else n=m>x?m:x;}
+else {if(z>x) n=m>z?m:z; else n=m>x?m:x;}
+        float t=(float)n * D_0027653C;
+        V4_000448D0 v50;
+        v50.x=0.0f;
+        v40.y=fy;
+        v60.x=v40.x;
+        v60.y=D_00276220*(t*D_002766C8)+fy;
+        v60.z=v40.z-(t*D_002766C8)*D_00276D50;
+        v30.x=v50.x;
+        v30.y=fy-v60.y;
+        v30.z=v40.z-v60.z;
+        v30.w=v50.w;
+        t=v30.z*v30.z+v30.y*v30.y+v50.x*v50.x;
+        sub->f38=AsmSqrtF(t);
+        func_00034820(&v30.x,&v30.x);
+        AsmVec3Cross(&v70.x,&v30.x,D_002A14E4);
+        sub->f34->f5c->func_00194E60(v60);
+        sub->f34->f5c->f4=0;
+        sub->f34->f5c->func_00194F90(60.0f);
+        sub->f34->f5c->func_00194EB0(v30);
+        sub->f34->f5c->func_00194F60(v70);
+    }
+    func_000399A0(0);
+    v27();
+    f158->func_001C4D10(0,1000);
 }

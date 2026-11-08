@@ -118,11 +118,14 @@ static __forceinline void uv73(Img_73 *p) { float a = p->w * D_00278654; p->flag
 static __forceinline void width73(Img_73 *p, int v) { if (p->width != v) { p->width = v; p->flags |= 1; } }
 static __forceinline void height73(Img_73 *p, int v) { if (p->height != v) { p->height = v; p->flags |= 1; } }
 
+static __forceinline void posy73(Txt_73 *p, int x, float y);
+static __forceinline void posf73(Txt_73 *p, float x, float y);
+extern char D_00278DC8[];
 C_00073EF0 *C_00073EF0::func_00073EF0(void *a0)
 {
     Font_73 *fontA, *fontB, *fontC;
     Font_73 **r;
-    int i;
+    int i, j;
     Img_73 *o;
     Txt_73 *t;
 
@@ -142,14 +145,14 @@ C_00073EF0 *C_00073EF0::func_00073EF0(void *a0)
     fAC->func_001D5810(D_00278658, 0, 0, 0);
     width73(fAC, 0x44200000);
     height73(fAC, 0x42480000);
-    uv73(fAC);
+    { Img_73 *p = fAC; float a = p->w * 127.0f; p->flags |= 4; p->a = a; p->b = p->w * 0.0f; p->c = p->h * 15.0f; p->d = p->h * 0.0f; }
 
     o = (Img_73 *)func_001E8A44(0x64);
     fB0 = o ? o->func_001D5760() : 0;
     fB0->func_001D5810(D_00278658, 0, 398.0f, 0);
     width73(fB0, 0x44200000);
     height73(fB0, 0x42480000);
-    uv73(fB0);
+    { Img_73 *p = fB0; float a = p->w * 127.0f; p->flags |= 4; p->a = a; p->b = p->w * 0.0f; p->c = p->h * 15.0f; p->d = p->h * 0.0f; }
 
     for (i = 0; i < 5; i++) {
         float x;
@@ -171,16 +174,14 @@ C_00073EF0 *C_00073EF0::func_00073EF0(void *a0)
     for (i = 0; i < 6; i++) {
         o = (Img_73 *)func_001E8A44(0x64);
         fDC[i] = o ? o->func_001D5760() : 0;
-        fDC[i]->func_001D5810(D_002786B0, (i % 2) ? 321.0f : 100.0f, (i / 2) * D_002757F0 + D_00278870, 0);
+        if (i % 2 == 0)
+            fDC[i]->func_001D5810(D_002786B0, 100.0f, (i / 2) * D_002757F0 + D_00278870, 0);
+        else
+            fDC[i]->func_001D5810(D_002786B0, 321.0f, (i / 2) * D_002757F0 + D_00278870, 0);
         o = fDC[i];
-        o->a = 1.0f;
-        o->b = 0;
-        o->c = 0;
-        o->d = 1.0f;
-        o->flags |= 4;
+        { unsigned char fl = o->flags; o->b = 0; o->c = 0; fl |= 4; o->a = 1.0f; o->d = 1.0f; o->flags = fl; }
         width73(fDC[i], 0x435d0000);
-        fDC[i]->color = (fDC[i]->color & 0xffbfa35a) | 0xbfa35a;
-        fDC[i]->flags |= 2;
+        { Img_73 *p = fDC[i]; p->color = (p->color & 0xffbfa35a) | 0xbfa35a; p->flags |= 2; }
     }
 
     o = (Img_73 *)func_001E8A44(0x64);
@@ -193,11 +194,11 @@ C_00073EF0 *C_00073EF0::func_00073EF0(void *a0)
 
     o = (Img_73 *)func_001E8A44(0x64);
     f1A4 = o ? o->func_001D5760() : 0;
-    f1A4->func_001D5810(D_00278638, 491.0f, 379.0f, 0);
+    f1A4->func_001D5810(D_00278638, 379.0f, 388.0f, 0);
 
     o = (Img_73 *)func_001E8A44(0x64);
     f19C = o ? o->func_001D5760() : 0;
-    f19C->func_001D5810(D_00278608, 491.0f, 379.0f, 0);
+    f19C->func_001D5810(D_00278608, 379.0f, 388.0f, 0);
 
     o = (Img_73 *)func_001E8A44(0x64);
     fF4 = o ? o->func_001D5760() : 0;
@@ -231,12 +232,42 @@ C_00073EF0 *C_00073EF0::func_00073EF0(void *a0)
     f104 = t ? t->func_001D5E90() : 0;
     f104->func_001D5FA0((int)fontB, D_00278690, 0x28, 0);
     color73(f104, 0xaaaaaaaa);
-    {
-        float y = fontA->func_0018C210() * 2.0f + 117.0f;
-        if (f104->x != 0x42f00000 || *(float *)&f104->y != y) { *(float *)&f104->y = y; f104->x = 0x42f00000; f104->flags |= 6; }
-    }
+    posy73(f104, 0x42f00000, fontA->func_0018C210() * 2.0f + 117.0f);
     align73(f104, D_0028F5DC);
     f104->func_0005E840(D_002A8490->f2E8->f4->f1158);
+
+
+    t = (Txt_73 *)func_001E8A44(0x60);
+    f108 = t ? t->func_001D5E90() : 0;
+    f108->func_001D5FA0((int)fontB, D_00278690, 0x28, 0);
+    color73(f108, 0xaaaaaaaa);
+    posy73(f108, 0x42f00000, fontA->func_0018C210() * 4.0f + 117.0f);
+    align73(f108, D_0028F5DC);
+    f108->func_0005E840(*(int *)((char *)D_002A8490->f2E8->f4 + 0x1000));
+
+    t = (Txt_73 *)func_001E8A44(0x60);
+    f10C = t ? t->func_001D5E90() : 0;
+    f10C->func_001D5FA0((int)fontB, D_00278690, 0x28, 0);
+    color73(f10C, 0xaaaaaaaa);
+    posy73(f10C, 0x42f00000, fontA->func_0018C210() * 6.0f + 117.0f);
+    align73(f10C, D_0028F5DC);
+    f10C->func_0005E840(*(int *)((char *)D_002A8490->f2E8->f4 + 0x1008));
+
+    t = (Txt_73 *)func_001E8A44(0x60);
+    f110 = t ? t->func_001D5E90() : 0;
+    f110->func_001D5FA0((int)fontB, D_00278690, 0x28, 0);
+    color73(f110, 0xaaaaaaaa);
+    pos73(f110, 0x43820000, 0x429a0000);
+    align73(f110, D_0028F5DC);
+    f110->func_0005E840(*(int *)((char *)D_002A8490->f2E8->f4 + 0xA10));
+
+    t = (Txt_73 *)func_001E8A44(0x60);
+    f114 = t ? t->func_001D5E90() : 0;
+    f114->func_001D5FA0((int)fontB, D_00278690, 0x28, 0);
+    color73(f114, 0xaaaaaaaa);
+    pos73(f114, 0x43a00000, 0x429a0000);
+    align73(f114, D_0028F5DC);
+    f114->func_0005E840((int)D_00278DC8);
 
     t = (Txt_73 *)func_001E8A44(0x60);
     f118 = t ? t->func_001D5E90() : 0;
@@ -247,8 +278,7 @@ C_00073EF0 *C_00073EF0::func_00073EF0(void *a0)
 
     func_001ADCC0(D_002A60B0, 0x104, D_00275678, D_002A5870, D_002A5FA8);
 
-    f94 = (Obj_73 *)func_001E8A44(0x184);
-    f94 = f94 ? f94->func_001B12C0(1) : 0;
+    { Obj_73 *p = (Obj_73 *)func_001E8A44(0x184); f94 = p ? p->func_001B12C0(1) : 0; }
     f94->func_001B1580((int)D_00278690, (int)D_00278690, D_002A8490->f2E8->f4->f7D8, 0);
     fA0 = 0x43910000;
     f94->func_001B1A30(0, 290.0f, 0);
@@ -256,8 +286,7 @@ C_00073EF0 *C_00073EF0::func_00073EF0(void *a0)
     f94->func_001B19A0(D_0028F5E0);
     func_001577A0(f94, -1);
 
-    f9C = (Obj_73 *)func_001E8A44(0x184);
-    f9C = f9C ? f9C->func_001B12C0(1) : 0;
+    { Obj_73 *p = (Obj_73 *)func_001E8A44(0x184); f9C = p ? p->func_001B12C0(1) : 0; }
     f9C->func_001B1580((int)D_00278690, (int)D_00278690, D_002A8490->f2E8->f4->fF20, 0);
     fA8 = 0x43a40000;
     f9C->func_001B1A30(0, 328.0f, 0);
@@ -265,8 +294,7 @@ C_00073EF0 *C_00073EF0::func_00073EF0(void *a0)
     f9C->func_001B19A0(D_0028F5E0);
     func_001577A0(f9C, -1);
 
-    f98 = (Obj_73 *)func_001E8A44(0x184);
-    f98 = f98 ? f98->func_001B12C0(1) : 0;
+    { Obj_73 *p = (Obj_73 *)func_001E8A44(0x184); f98 = p ? p->func_001B12C0(1) : 0; }
     f98->func_001B1580((int)D_00278690, (int)D_00278690, D_002A8490->f2E8->f4->f7E8, 0);
     fA4 = 0x43a50000;
     f98->func_001B1A30(0, 330.0f, 0);
@@ -286,44 +314,25 @@ C_00073EF0 *C_00073EF0::func_00073EF0(void *a0)
     pos73(f1BC, 0x43d08000, 0x43c48000);
     color73(f1BC, 0xffcccccc);
 
-    for (i = 0; i < 2; i++) {
-        float x = i * 210.0f + 285.0f;
+    for (i = 0, j = 0; j < 420; i++, j += 210) {
+        float x;
         float yv;
         t = (Txt_73 *)func_001E8A44(0x60);
         f64[i] = t ? t->func_001D5E90() : 0;
         f64[i]->func_001D5FA0((int)fontB, D_00278690, 0x28, 0);
-        if (*(float *)&f64[i]->x != x || f64[i]->y != 0x42ea0000) {
-            f64[i]->y = 0x42ea0000;
-            *(float *)&f64[i]->x = x;
-            f64[i]->flags |= 6;
-        }
-        yv = fontA->func_0018C210() * 2.0f + 117.0f;
+        posf73(f64[i], i * 210.0f + 285.0f, 117.0f);
         t = (Txt_73 *)func_001E8A44(0x60);
         f70[i] = t ? t->func_001D5E90() : 0;
         f70[i]->func_001D5FA0((int)fontB, D_00278690, 0x28, 0);
-        if (*(float *)&f70[i]->x != x || *(float *)&f70[i]->y != yv) {
-            *(float *)&f70[i]->y = yv;
-            *(float *)&f70[i]->x = x;
-            f70[i]->flags |= 6;
-        }
-        yv = fontA->func_0018C210() * 4.0f + 117.0f;
+        posf73(f70[i], x = j + 285.0f, fontA->func_0018C210() * 2.0f + 117.0f);
         t = (Txt_73 *)func_001E8A44(0x60);
         f7C[i] = t ? t->func_001D5E90() : 0;
         f7C[i]->func_001D5FA0((int)fontB, D_00278690, 0x28, 0);
-        if (*(float *)&f7C[i]->x != x || *(float *)&f7C[i]->y != yv) {
-            *(float *)&f7C[i]->y = yv;
-            *(float *)&f7C[i]->x = x;
-            f7C[i]->flags |= 6;
-        }
-        yv = fontA->func_0018C210() * 6.0f + 117.0f;
+        posf73(f7C[i], x, fontA->func_0018C210() * 4.0f + 117.0f);
         t = (Txt_73 *)func_001E8A44(0x60);
         f88[i] = t ? t->func_001D5E90() : 0;
         f88[i]->func_001D5FA0((int)fontB, D_00278690, 0x28, 0);
-        if (*(float *)&f88[i]->x != x || *(float *)&f88[i]->y != yv) {
-            *(float *)&f88[i]->y = yv;
-            *(float *)&f88[i]->x = x;
-            f88[i]->flags |= 6;
-        }
+        posf73(f88[i], x, fontA->func_0018C210() * 6.0f + 117.0f);
     }
 
     t = (Txt_73 *)func_001E8A44(0x60);

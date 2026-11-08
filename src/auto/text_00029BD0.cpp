@@ -345,8 +345,7 @@ extern "C" void *memcpy(void *, const void *, unsigned int);
 #pragma intrinsic(memcpy)
 int C_00029BD0::func_00029BD0()
 {
- V4_00029BD0 v, temp;
- memcpy(&v, &f1e8->v, 16);
+ V4_00029BD0 v=f1e8->v, temp;
  v=*func_0001E9E0(&temp,&v);
  f464=v.y;
  if(v.y<D_002766A4) {

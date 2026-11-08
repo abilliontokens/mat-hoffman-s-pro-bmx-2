@@ -190,7 +190,8 @@ C_000378D0 *C_000378D0::func_000378D0(int a)
     for (i = 0; i < 9; i++) v4AC[i].init();
     arr[0].init(); arr[1].init(); arr[2].init(); arr[3].init();
     V4_378D0 *v = v5F0;
-    for (i = 50; i != 0; i--) { v->init(); v++; }
+    i = 50;
+    while (i--) { v->init(); v++; }
     v928.init2();
     v938.init2();
     f284 = 0;
@@ -285,34 +286,73 @@ void BmxEventEditor::func_000380B0()
 
 void BmxEventEditor::func_000382D0(int mode)
 {
-    V4_378D0 a, b, c, d;
+    V4_382D0 a, b, c, d;
+    int idx;
+    float t1, t2, t3;
 
-    a.x = 0.0f; a.y = 0.0f; a.z = 0.0f; a.w = 1.0f;
-    b.x = 0.0f; b.y = 0.0f; b.z = 0.0f; b.w = 1.0f;
-    c.x = 0.0f; c.y = 0.0f; c.z = 0.0f; c.w = 1.0f;
-    d.x = 0.0f; d.y = 0.0f; d.z = 0.0f; d.w = 1.0f;
+    a.init();
+    b.init();
+    c.init();
+    d.init();
+
+    a = *(V4_382D0 *)((char *)f564->f10 + 0x24);
+    d = v4BC;
+    b = v4CC;
+    c = v4DC;
+
+    idx = *(int *)((char *)f64->f5A4 + f47C * 0x48 + 0x44) + f480;
+
     switch (mode) {
     case 0:
+        d = *(V4_382D0 *)((char *)((f64->f5A8 > 0 && f64->f5AC != 0 && idx < f64->f5A8)
+                                   ? f64->f5AC[idx] : 0) + 0x348);
+        b.x = 1.0f; b.y = 0.0f; b.z = 0.0f;
+        c.x = 0.0f; c.y = 1.0f; c.z = 0.0f;
         break;
     case 1:
-        if (b.z > D_00275460) {
-            b.z = b.z - D_00275460;
+        if (d.z > D_00275460) {
+            d.z = d.z - D_00275460;
         }
         break;
     case 2:
-        if (b.z < D_00275AE8) {
-            b.z = b.z + D_00275460;
+        if (d.z < D_00275AE8) {
+            d.z = D_00275460 + d.z;
         }
         break;
     case 3:
-        if (b.y < D_00275AE8) {
-            b.y = b.y + D_00275548;
+        if (d.y < D_00275AE8) {
+            d.y = D_00275548 + d.y;
         }
         break;
     case 4:
-        if (b.y > D_00275548) {
-            b.y = b.y - D_00275548;
+        if (d.y > D_00275548) {
+            d.y = d.y - D_00275548;
         }
         break;
     }
+
+    if (v4BC.x != d.x || v4BC.y != d.y || v4BC.z != d.z) {
+        t1 = (d.x > D_00275460 ? d.x - D_00275548 : d.x - D_00275460) * D_00275F64 + D_00275460;
+        t2 = (d.y - D_00275548) * D_00275F64 + D_00275460;
+        t3 = (d.z > D_00275460 ? d.z - D_00275548 : d.z - D_00275460) * D_00275F64 + D_00275460;
+        f564->f8->func_0019A0A0(t1, t2, t3);
+    }
+    a.y = a.y - d.y;
+    f564->f8->func_00199600(a);
+    if (mode == 0) {
+        f564->f8->func_00198F50(&b, &c, 0, 1, 0);
+        f564->f8->func_0019AC50();
+    }
+    f564->f10->func_001BB950(&a, &d, &b, &c, 0);
+    if (mode == 0) {
+        f564->f8->func_00198F50(&b, &c, 0, 1, 0);
+        f564->f8->func_0019AC50();
+        f564->f8->func_0019AC50();
+    }
+    if (v4BC.x != d.x || v4BC.y != d.y || v4BC.z != d.z) {
+        f53C->func_001A4100(3, 1, 0);
+    }
+    v4BC = d;
+    v4CC = b;
+    v4DC = c;
 }

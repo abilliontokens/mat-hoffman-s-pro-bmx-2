@@ -343,24 +343,11 @@ void C_000A2620::func_000A2620(void)
 
 void C_000A26B0::func_000A26B0(void)
 {
-    char s2[0x100];
-    char buf3[0x104];
-    char s1[0x100];
-    char line[0x400];
-    char buf0[0x104];
-    char buf5[0x104];
-    char buf1[0x104];
-    char buf4[0x104];
-    char name2[0x78];
-    char buf2[0x78];
-    char name[0x78];
-    int vc4;
-    float tmp[9];
     V4_26B0 v70;
-    int n1, m, X, v6c, v60, v68, n3, h, first, start, i, j, count;
-    float v48, v5c;
+    int n1, m, X, v6c, v60, v68, n3, h, first, start, end, count, j, i, adj;
 
     if (f28->func_00169710(D_0027B110)) {
+        char buf1[0x104];
         f28->func_00168C20(D_0027B0FC, 0, &n1);
         f28->func_00168BE0(D_0027B0EC, D_00275630, buf1, 0x104);
         if (n1 == 0) {
@@ -389,67 +376,82 @@ void C_000A26B0::func_000A26B0(void)
             m = f578;
             f57C = (C_26B0_Ped **)func_001E83E8(f57C, f578 * 4);
         }
-        for (i = start; i < m; i++) {
-            func_001ADCC0(name, 0x78, D_0027B0BC, i - start + 1);
-            void *mem = func_001E8A44(0x44c);
-            f57C[i] = mem ? ((C_26B0_Ped *)mem)->func_000112E0(1) : 0;
-            if (f28->func_00169710(name)) {
-                f28->func_00168C20(D_0027B0AC, 1, &v6c);
-                f28->func_00168C20(D_00275680, 1, &v60);
-                f28->func_00168550(D_00275AE4, buf0, 0x104);
-                f28->func_00168550(D_00276980, buf2, 0x78);
-                f28->func_00168550(D_00276310, buf3, 0x104);
-                f28->func_00168CB0(D_00275AD4, &D_002A2734, &v70);
-                f28->func_00168C20(D_0027B0A0, 0, &X);
-                f28->func_00168C20(D_0027B090, 0, &v68);
-                f28->func_00168550(D_0027B084, buf4, 0x104);
-                f28->func_00168C50(D_0027B078, 12.0f, &v5c);
-                f28->func_00168C20(D_0027B070, 1, &vc4);
-                f28->func_00168BE0(D_0027B064, D_002764F0, buf5, 0x104);
-                f28->func_00168C50(D_0027B058, 100.0f, &v48);
-                f57C[i]->func_00014170(buf2, v6c, v60, buf0, buf1, buf5, v48, first + X - 1, v68 - 1, 0, &v70);
-                V4_26B0 fwd = V4_26B0(0.0f, 0.0f, 1.0f, 1.0f);
-                V4_26B0 up = V4_26B0(0.0f, 1.0f, 0.0f, 1.0f);
-                f57C[i]->f3C->f4->func_00199110(0, &fwd, &up, 0, 1, 0);
-                if (f584 < f580 && f584 <= first + X - 1) {
-                    h = D_002BEAAC->func_0013C9F0(buf4, D_00276274);
-                    if (h != -1) {
-                        count = 0;
-                        while (!D_002BEAAC->func_0013AFB0(h)) {
-                            D_002BEAAC->func_0013C6E0(h, line, 0x400);
-                            if (func_001E8BB0(line, D_0027626C, 5) == 0) {
-                                count++;
-                            }
-                        }
-                        if (count > 0) {
-                            f588[f584] = (S_26B0_Trk *)func_001E8A44(0xc);
-                            f588[f584]->f0 = count;
-                            f588[f584]->f8 = v60;
-                            V4_26B0 *arr = (V4_26B0 *)func_001E8A44(count << 4);
-                            if (arr != 0) {
-                                func_00011FF0(arr, 0x10, count, (void *)func_00011060);
-                            } else {
-                                arr = 0;
-                            }
-                            f588[f584]->f4 = arr;
-                            D_002BEAAC->func_0013AFF0(h, 0, 0);
-                            j = -1;
+        if (start < m) {
+            adj = 1 - start;
+            for (i = start; i < m; i++) {
+                char name[0x78];
+                func_001ADCC0(name, 0x78, D_0027B0BC, i + adj);
+                void *mem = func_001E8A44(0x44c);
+                f57C[i] = mem ? ((C_26B0_Ped *)mem)->func_000112E0(1) : 0;
+                if (f28->func_00169710(name)) {
+                    char buf0[0x104];
+                    char buf2[0x78];
+                    char buf3[0x104];
+                    char buf4[0x104];
+                    char buf5[0x104];
+                    int vc4;
+                    float v48, v5c;
+                    f28->func_00168C20(D_0027B0AC, 1, &v6c);
+                    f28->func_00168C20(D_00275680, 1, &v60);
+                    f28->func_00168550(D_00275AE4, buf0, 0x104);
+                    f28->func_00168550(D_00276980, buf2, 0x78);
+                    f28->func_00168550(D_00276310, buf3, 0x104);
+                    f28->func_00168CB0(D_00275AD4, &D_002A2734, &v70);
+                    f28->func_00168C20(D_0027B0A0, 0, &X);
+                    f28->func_00168C20(D_0027B090, 0, &v68);
+                    f28->func_00168550(D_0027B084, buf4, 0x104);
+                    f28->func_00168C50(D_0027B078, 12.0f, &v5c);
+                    f28->func_00168C20(D_0027B070, 1, &vc4);
+                    f28->func_00168BE0(D_0027B064, D_002764F0, buf5, 0x104);
+                    f28->func_00168C50(D_0027B058, 100.0f, &v48);
+                    f57C[i]->func_00014170(buf2, v6c, v60, buf0, buf1, buf5, v48, first + X - 1, v68 - 1, 0, &v70);
+                    V4_26B0 fwd = MakeV4_26B0(0.0f, 0.0f, 1.0f, 1.0f);
+                    V4_26B0 up = MakeV4_26B0(0.0f, 1.0f, 0.0f, 1.0f);
+                    f57C[i]->f3C->f4->func_00199110(0, &fwd, &up, 0, 1, 0);
+                    if (f584 < f580 && first + X - 1 >= f584) {
+                        h = D_002BEAAC->func_0013C9F0(buf4, D_00276274);
+                        if (h != -1) {
+                            char line[0x400];
+                            count = 0;
                             while (!D_002BEAAC->func_0013AFB0(h)) {
                                 D_002BEAAC->func_0013C6E0(h, line, 0x400);
                                 if (func_001E8BB0(line, D_0027626C, 5) == 0) {
-                                    j++;
-                                    if (j >= count) {
-                                        j = count - 1;
-                                    }
-                                } else if (func_001E8BB0(line, D_00276260, 9) == 0) {
-                                    V4_26B0 a;
-                                    func_001E8B76(line, D_00276234, s1, s2, &tmp[0], &tmp[1], &tmp[2], &tmp[3], &tmp[4], &tmp[5], &tmp[6], &tmp[7], &tmp[8], &a.x, &a.z, &a.y);
-                                    f588[f584]->f4[j] = a;
+                                    count++;
                                 }
                             }
-                            f584++;
+                            if (count > 0) {
+                                f588[f584] = (S_26B0_Trk *)func_001E8A44(0xc);
+                                f588[f584]->f0 = count;
+                                f588[f584]->f8 = v60;
+                                V4_26B0 *arr = (V4_26B0 *)func_001E8A44(count << 4);
+                                if (arr != 0) {
+                                    func_00011FF0(arr, 0x10, count, (void *)func_00011060);
+                                } else {
+                                    arr = 0;
+                                }
+                                f588[f584]->f4 = arr;
+                                D_002BEAAC->func_0013AFF0(h, 0, 0);
+                                j = -1;
+                                while (!D_002BEAAC->func_0013AFB0(h)) {
+                                    D_002BEAAC->func_0013C6E0(h, line, 0x400);
+                                    if (func_001E8BB0(line, D_0027626C, 5) == 0) {
+                                        j++;
+                                        if (j >= count) {
+                                            j = count - 1;
+                                        }
+                                    } else if (func_001E8BB0(line, D_00276260, 9) == 0) {
+                                        char s1[0x100];
+                                        char s2[0x100];
+                                        float tmp[9];
+                                        V4_26B0 a;
+                                        func_001E8B76(line, D_00276234, s1, s2, &tmp[0], &tmp[1], &tmp[2], &tmp[3], &tmp[4], &tmp[5], &tmp[6], &tmp[7], &tmp[8], &a.x, &a.z, &a.y);
+                                        f588[f584]->f4[j] = a;
+                                    }
+                                }
+                                f584++;
+                            }
+                            D_002BEAAC->func_0013C110(h);
                         }
-                        D_002BEAAC->func_0013C110(h);
                     }
                 }
             }
@@ -461,16 +463,18 @@ void C_000A26B0::func_000A26B0(void)
             if (f590 == 0) {
                 start = 0;
                 f58C = n3;
-                m = n3;
+                end = n3;
                 f590 = (S_26B0_Mark **)func_001E8A44(n3 * 4);
             } else {
                 start = f58C;
-                m = n3 + start;
-                f58C = m;
-                f590 = (S_26B0_Mark **)func_001E83E8(f590, m * 4);
+                n3 += start;
+                f58C = n3;
+                end = n3;
+                f590 = (S_26B0_Mark **)func_001E83E8(f590, n3 * 4);
             }
-            if (start < m) {
-                for (i = start; i < m; i++) {
+            if (start < end) {
+                for (i = start; i < end; i++) {
+                    char name2[0x78];
                     int q1, q2, q3;
                     func_001ADCC0(name2, 0x78, D_0027B020, i - start + 1);
                     f590[i] = (S_26B0_Mark *)func_001E8A44(0xc);

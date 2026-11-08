@@ -231,6 +231,8 @@ struct C_0013DFF0 {
 
 extern "C" unsigned int strlen(const char *s);
 extern "C" char *strcpy(char *d, const char *s);
+extern "C" void *__cdecl memcpy(void *, const void *, unsigned int);
+#pragma intrinsic(memcpy)
 int C_0013D780::func_0013D780(char *name, int a2, int a3, int *a4, void *a5, int a6, int *a7, int a8)
 {
     int result = 1;
@@ -241,12 +243,12 @@ int C_0013D780::func_0013D780(char *name, int a2, int a3, int *a4, void *a5, int
     char key = 0;
     void *fp = 0;
     int idx;
-    int i;
+    int i = 0;
     int ok;
     int version;
     int hdr[2];
     int hdr2[2];
-    int chunk[2];
+    __int64 chunk;
     char buf[256];
     S_0013D780_Ent *row;
     char *cacheBuf;
@@ -257,25 +259,24 @@ int C_0013D780::func_0013D780(char *name, int a2, int a3, int *a4, void *a5, int
     int field1;
     int field2;
 
-    if (a8 == 0) {
-        if (count > 1) {
-            S_0013D780_Ent *e = ents;
-            S_0013D780_Ent *last = &ents[count - 1];
-            do {
-                if (e->name && func_001EA426(e->name, (int)name) == 0) {
-                    if (!(e->flagsC & 0x20)) return 1;
-                    func_0013C5D0(e, 1);
-                }
-                e++;
-            } while (e != last + 1);
-        }
-        if (active != -1) {
-            caches[active].f4 = -1;
-            selected = active;
-            caches[active].f8 = -0x6000;
-            active = -1;
-            goto have_cache;
-        }
+    if (a8 == 0 && count > 1) {
+        S_0013D780_Ent *e = ents;
+        S_0013D780_Ent *last = &ents[count - 1];
+        do {
+            if (e->name != 0 && func_001EA426(e->name, (int)name) == 0) {
+                if (!(e->flagsC & 0x20)) return 1;
+                func_0013C5D0(e, 1);
+                e = last;
+            }
+            e++;
+        } while (e != last);
+    }
+    if (active != -1) {
+        caches[active].f4 = -1;
+        selected = active;
+        caches[active].f8 = -0x6000;
+        active = -1;
+        goto have_cache;
     }
     {
         int found = 0;
@@ -298,6 +299,7 @@ have_cache:
         ents = (S_0013D780_Ent *)func_001E83E8(ents, count * 40);
         if (ents == 0) return 0;
         idx = count - 1;
+        cur = -1;
         row = &ents[idx];
         row->flagsC = 1;
         row->f10 = 0;
@@ -354,10 +356,10 @@ have_cache:
         fileSize -= n;
     }
     if (fileSize > 0) func_0014FED0(fp, fileSize, 1);
-    func_0014FE60(chunk, 8, fp);
-    field1 = chunk[0];
-    field2 = chunk[1];
-    chunk[1] = D_0014FEE0(fp) + field2;
+    func_0014FE60(&chunk, 8, fp);
+    field1 = (int)chunk;
+    field2 = (int)(chunk >> 32);
+    remain = (int)D_0014FEE0(fp) + field2;
     ok = 1;
     if (field1 == -1) {
         remain = field2;
@@ -392,12 +394,7 @@ have_cache:
                     n = *(int *)curp;
                     curp += 4;
                     if (end - curp <= n + 8) break;
-                    {
-                        char *dst = buf;
-                        char *src = curp;
-                        int k = n;
-                        while (k-- > 0) *dst++ = *src++;
-                    }
+                    memcpy(buf, curp, n);
                     buf[n] = 0;
                     curp += n;
                     if (flags & 0x400) func_0013AC00((unsigned char *)buf, n, (unsigned char)key);
@@ -407,12 +404,7 @@ have_cache:
                     if (!func_0013AC40(buf, idx, field1, field2, 0, remain)) ok = 0;
                     cnt++;
                 }
-                {
-                    char *dst = cacheBuf;
-                    char *src = curp;
-                    int k = (int)(end - curp - 1);
-                    while (k-- > 0) *dst++ = *src++;
-                }
+                memcpy(cacheBuf, curp, end - curp - 1);
             }
         } while (cnt < remain);
         goto chunks_done;
@@ -426,12 +418,7 @@ have_cache:
     do {
         n = *(int *)ptr;
         ptr += 4;
-        {
-            char *dst = buf;
-            char *src = ptr;
-            int k = n;
-            while (k-- > 0) *dst++ = *src++;
-        }
+        memcpy(buf, ptr, n);
         buf[n] = 0;
         ptr += n;
         if (flags & 0x400) func_0013AC00((unsigned char *)buf, n, (unsigned char)key);
@@ -482,7 +469,6 @@ done:
     }
     return result;
 }
-
 int C_0013DFF0::func_0013DFF0(int a1, int a2) {
     C_0013DFF0_elem *p = unkC;
     C_0013DFF0_elem *end;

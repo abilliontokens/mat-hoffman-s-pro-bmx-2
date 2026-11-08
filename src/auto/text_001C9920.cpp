@@ -348,8 +348,8 @@ C_001C9920 *C_001C9920::func_001C9B10(int a, int b, int c, int d, int e, int f, 
     vt->func_001D3F50();
     if (!vt->func_001C8960(a))
         return 0;
-    *(int *)(self + 0xbc) = d;
     *(float *)(self + 0xc0) = (float)d * D_002755E8;
+    *(int *)(self + 0xbc) = d;
     if (*(char **)(self + 0x2c) == 0)
         return 0;
 #define E(o) ((*(char (**)[0x48])(self + 0x2c))[i] + (o))

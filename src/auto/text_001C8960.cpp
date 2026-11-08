@@ -436,107 +436,177 @@ extern char D_0028E964[];
 extern char D_0028E95C[];
 int C_001C8960::func_001C8960(char *name)
 {
-    int func_001ADCC0(char *, int, char *, ...);
-    int func_001E8A44(...);
-    char pre[0x13c];
-    C_001C8960_Ini ini;
-    char buf[0x100];
-    char secbuf[0x80];
-    float loc[32];
-    int tmpi;
-    int i;
-    int count;
-
-    {
-        char *dst = (char *)this + 0x110;
-        char *src = name;
-        char c;
-        do {
-            c = *src;
-            dst[src - name] = c;
-            src++;
-        } while (c != 0);
-    }
-    ini.func_00168280();
-    if (ini.s8.func_00169490(name, 0) == 0) {
-        ini.func_001691E0();
-        return 0;
-    }
-    ini.func_00169710(D_0028EBA4);
-    ini.s14.func_00168C50(D_0028EB94, 20.0f, (float *)((char *)this + 0x28));
-    D_002AC5CC = *(float *)((char *)this + 0x28);
-    ini.s14.func_00168C50(D_0028EB7C, 2304.0f, &D_002F0BCC);
-    ini.s14.func_00168C50(D_0028EB68, 40.0f, &D_002F08B0);
-    ini.s14.func_00168C50(D_0028EB5C, 32.0f, (float *)((char *)this + 0x48));
-    ini.s14.func_00168C50(D_0028EB50, 64.0f, (float *)((char *)this + 0x4c));
-    ini.s14.func_00168C50(D_0028EB44, 10.0f, &D_002F08AC);
-    ini.s14.func_00168C50(D_0028EB34, 4.0f, &D_002F08D0);
-    ini.s14.func_00168C50(D_0028EB28, 100.0f, &D_002F08A8);
-    ini.s14.func_00168C50(D_0028EB10, 0.0f, &D_002F0BD8);
-    ini.s14.func_00168C50(D_0028EAF8, 5.0f, &D_002F0BD4);
-    ini.s14.func_00168C20(D_0028EAE4, 1, &D_002F0BD0);
-    ini.s14.func_00168C20(D_0028EACC, 1, (char *)this + 0x210);
-    ini.s14.func_00168C20(D_0028EAB8, 0, (char *)this + 0x68);
-    ini.s14.func_00168C20(D_0028EAAC, 0, (char *)this + 0x50);
-    ini.s18.func_00168BE0(D_0028EA90, D_0028EA9C, &tmpi, -1);
-    ini.s14.func_00168C20(D_0028A730, 0x10, (char *)this + 0x104);
-    ini.func_00169710(D_0028EA84);
-    ini.s14.func_00168C50(D_0028EA78, 0.25f, &D_002AB800);
-    ini.s14.func_00168C50(D_0028EA68, 40.0f, &D_002F08A4);
-    ini.s14.func_00168C50(D_0028EA58, 0.1f, &D_002AB7FC);
-    ini.s14.func_00168C50(D_0028EA4C, 0.0006f, &D_002F08B8);
-    ini.s14.func_00168C50(D_0028EA3C, 2.0f, &D_002F08B4);
-    {
-        float scale = D_0028E850 * D_00287B68;
-        D_002F08AC = D_002F08AC * scale;
-        D_002F08B0 = D_002F08B0 * scale;
-    }
-    count = *(int *)((char *)this + 0x68);
-    if (count != 0) {
-        float v1[4];
-        float v2[4];
-        int *arr;
-        v1[0] = 0.0f;
-        v1[1] = 0.0f;
-        v1[2] = 0.0f;
-        v1[3] = 1.0f;
-        v2[0] = 0.0f;
-        v2[1] = 0.0f;
-        v2[2] = 1.0f;
-        v2[3] = 1.0f;
-        arr = (int *)func_001E8A44(count * 24 + 4);
-        *(int **)((char *)this + 0xd0) = arr;
-        *(int *)((char *)this + 0x6c) = 1;
+    C_001C8960_Parameters parameters;
+    float v[8];
+    int axis[6];
+    C_001C8960_Faces faces;
+    C_001C8960_Storage storage;
+    char *src = name, *dst = (char *)this + 0x110;
+    while ((*dst++ = *src++) != 0) {}
+    storage.ini.func_00168280();
+    if (!storage.ini.func_00169490(name, 0)) { storage.ini.func_001691E0(); return 0; }
+    storage.ini.func_00169710(D_0028EBA4);
+    storage.ini.func_00168C50(D_0028EB94, 20.0f, (float *)&w[0x28/4]);
+    D_002AC5CC = *(float *)&w[0x28/4];
+    storage.ini.func_00168C50(D_0028EB7C, 2304.0f, &D_002F0BCC);
+    storage.ini.func_00168C50(D_0028EB68, 40.0f, &D_002F08B0);
+    storage.ini.func_00168C50(D_0028EB5C, 32.0f, (float *)&w[0x48/4]);
+    storage.ini.func_00168C50(D_0028EB50, 64.0f, (float *)&w[0x4c/4]);
+    storage.ini.func_00168C50(D_0028EB44, 10.0f, &D_002F08AC);
+    storage.ini.func_00168C50(D_0028EB34, 4.0f, &D_002F08D0);
+    storage.ini.func_00168C50(D_0028EB28, 100.0f, &D_002F08A8);
+    storage.ini.func_00168C50(D_0028EB10, 0.0f, &D_002F0BD8);
+    storage.ini.func_00168C50(D_0028EAF8, 5.0f, &D_002F0BD4);
+    storage.ini.func_00168C20(D_0028EAE4, 1, &D_002F0BD0);
+    storage.ini.func_00168C20(D_0028EACC, 1, &w[0x210/4]);
+    storage.ini.func_00168C20(D_0028EAB8, 0, &w[0x68/4]);
+    storage.ini.func_00168C20(D_0028EAAC, 0, &w[0x50/4]);
+    storage.ini.func_00168BE0(D_0028EA90, D_0028EA9C, storage.fallback, -1);
+    storage.ini.func_00168C20(D_0028A730, 16, &w[0x104/4]);
+    storage.ini.func_00169710(D_0028EA84);
+    storage.ini.func_00168C50(D_0028EA78, 0.25f, &D_002AB800);
+    storage.ini.func_00168C50(D_0028EA68, 40.0f, &D_002F08A4);
+    storage.ini.func_00168C50(D_0028EA58, 0.1f, &D_002AB7FC);
+    storage.ini.func_00168C50(D_0028EA4C, 0.0003f, &D_002F08B8);
+    storage.ini.func_00168C50(D_0028EA3C, 2.0f, &D_002F08B4);
+    D_002F08AC = (D_0028E850 * D_00287B68) * D_002F08AC;
+    D_002F08B0 = (D_0028E850 * D_00287B68) * D_002F08B0;
+    parameters.total = 0;
+    if (w[0x68/4]) {
+        v[0]=0; v[1]=0; v[2]=0; v[3]=1; v[4]=0; v[5]=0; v[6]=1; v[7]=1;
+        w[0xd0/4] = (int)func_001E8A44(w[0x68/4]*24+4);
+        w[0x6c/4] = 1;
         D_002AB85C = D_002F08AC * D_0027A060;
-        D_002EFEA0 = (int)D_002F08AC;
-        for (i = 0; i < count; i++) {
-            func_001ADCC0(secbuf, 0x80, D_0028EA28, i + 1);
-            ini.func_00169710(secbuf);
-            ini.s18.func_00168BE0(D_0028EA1C, D_00275630, &tmpi, -1);
-            ini.s14.func_00168C50(D_0028EA10, 0.0f, &loc[19]);
-            ini.s14.func_00168C50(D_0028EA04, 0.0f, &loc[20]);
-            ini.s14.func_00168C50(D_0028E9F8, 0.0f, &loc[21]);
-            ini.s14.func_00168C50(D_0028E9F0, 0.0f, &loc[6]);
-            ini.s14.func_00168C50(D_0028E9E8, 0.0f, &loc[7]);
-            ini.s14.func_00168C20(D_0028E9DC, 0, &loc[1]);
-            ini.s14.func_00168C50(D_0028E9D0, 0.0f, &loc[12]);
-            ini.s14.func_00168C50(D_0028E9C4, 0.0f, &loc[10]);
-            ini.s14.func_00168C50(D_0028E9B8, 0.0f, &loc[9]);
-            ini.s14.func_00168C50(D_0028E9B0, 1.0f, &loc[8]);
-            ini.s14.func_00168C50(D_0028E9A8, 1.0f, &loc[15]);
-            ini.s14.func_00168C20(D_0028E9A0, 1, &loc[11]);
-            ini.s14.func_00168C20(D_0028E998, 0, &loc[2]);
-            ini.s14.func_00168C20(D_0028E98C, 0, &loc[18]);
-            ini.s14.func_00168C50(D_0028E984, 0.0f, &loc[17]);
-            ini.s14.func_00168C50(D_00278118, 0.0f, &loc[3]);
-            ini.s14.func_00168C20(D_0028E978, 0, &loc[4]);
-            ini.s14.func_00168C50(D_0028E96C, 1.0f, &loc[5]);
-            ini.s14.func_00168C50(D_0028E964, 0.0f, &loc[13]);
-            ini.s14.func_00168C20(D_0028E95C, -0x4b, &loc[14]);
-            arr[i] = 0;
+        D_002EFEA0 = *(int *)&D_002F08AC;
+        int index = 0;
+        for (int i=0; i<w[0x68/4]; ++i) {
+            func_001ADCC0(storage.section,128,D_0028EA28,i+1);
+            storage.ini.func_00169710(storage.section);
+            storage.ini.func_00168BE0(D_0028EA1C,D_00275630,storage.texture,-1);
+    storage.ini.func_00168C50(D_0028EA10, 0.0f, &v[0]);
+    storage.ini.func_00168C50(D_0028EA04, 0.0f, &v[1]);
+    storage.ini.func_00168C50(D_0028E9F8, 0.0f, &v[2]);
+    storage.ini.func_00168C50(D_0028E9F0, 0.0f, &parameters.sx);
+    storage.ini.func_00168C50(D_0028E9E8, 0.0f, &parameters.sy);
+    storage.ini.func_00168C20(D_0028E9DC, 0, &parameters.kind);
+    storage.ini.func_00168C50(D_0028E9D0, 0.0f, &parameters.rx);
+    storage.ini.func_00168C50(D_0028E9C4, 0.0f, &parameters.rz);
+    storage.ini.func_00168C50(D_0028E9B8, 0.0f, &parameters.angle);
+    storage.ini.func_00168C50(D_0028E9B0, 1.0f, &parameters.rate);
+    storage.ini.func_00168C50(D_0028E9A8, 1.0f, &parameters.gain);
+    storage.ini.func_00168C20(D_0028E9A0, 1, &parameters.enabled);
+    storage.ini.func_00168C20(D_0028E998, 0, &parameters.mode);
+    storage.ini.func_00168C20(D_0028E98C, 0, &parameters.extra);
+    storage.ini.func_00168C50(D_0028E984, 0.0f, &parameters.speed);
+    storage.ini.func_00168C50(D_00278118, 0.0f, &parameters.offset);
+    storage.ini.func_00168C20(D_0028E978, 0, &parameters.special);
+    storage.ini.func_00168C50(D_0028E96C, 1.0f, &parameters.amount);
+    storage.ini.func_00168C50(D_0028E964, 0.0f, &parameters.frequency);
+    storage.ini.func_00168C20(D_0028E95C, -75, &parameters.param);
+            v[4]=*(volatile float *)&parameters.sx*D_002755E8; v[6]=*(volatile float *)&parameters.sy*D_002755E8;
+            if (!parameters.mode) {
+                if (parameters.offset == D_00275544) {
+                    ++w[0x84/4]; ++w[0x88/4]; ++w[0x8c/4];
+                } else {
+                    w[0x84/4]+=2; w[0x88/4]+=2; w[0x8c/4]+=2;
+                }
+                ++w[0x6c/4];
+                faces.suffix[0]=D_0028E950;faces.suffix[1]=D_0028E944;faces.suffix[2]=D_0028E93C;
+                faces.suffix[3]=D_0028E934;faces.suffix[4]=D_0028E92C;faces.suffix[5]=D_0028E924;
+                axis[0]=0;axis[1]=0;axis[2]=1;axis[3]=1;axis[4]=2;axis[5]=2;
+                faces.flags[0]=0;faces.flags[1]=1;faces.flags[2]=0;faces.flags[3]=1;faces.flags[4]=0;faces.flags[5]=1;
+                int first=parameters.special ? 2 : 0;
+                if (first < 6) {
+                parameters.total -= first - 6;
+                for(int j=first;j<6;++j) {
+                    if (!axis[j]) { float speed = D_0028E850*D_00287B68; speed *= parameters.speed; parameters.value = speed; }
+                    else parameters.value = parameters.amount;
+                    C_001C8960_Layer *layer=(C_001C8960_Layer *)func_001E8A44(0x104);
+                    ((C_001C8960_Layer **)w[0xd0/4])[index]=layer ? layer->func_00143940(v,v+4,parameters.kind,parameters.sx,parameters.sy,parameters.rx,parameters.rz,parameters.angle,parameters.rate,parameters.gain,parameters.enabled,axis[j],parameters.extra,parameters.value,parameters.offset,faces.flags[j],parameters.param,parameters.frequency) : 0;
+                    func_001ADCC0(storage.resolved,256,D_0028E918,D_002A5A80,storage.texture);
+                    ((C_001C8960_Layer **)w[0xd0/4])[index]->func_00143A40(storage.resolved,faces.suffix[j]);
+                    ++index;
+                }
+                }
+            } else {
+                parameters.mode+=2; ++parameters.total;
+                if (parameters.offset == D_00275544) ++w[0x84/4+parameters.mode]; else w[0x84/4+parameters.mode]+=2;
+                ++w[0x6c/4+parameters.mode];
+                C_001C8960_Layer *layer=(C_001C8960_Layer *)func_001E8A44(0x104);
+                ((C_001C8960_Layer **)w[0xd0/4])[index]=layer ? layer->func_00143940(v,v+4,parameters.kind,parameters.sx,parameters.sy,parameters.rx,parameters.rz,parameters.angle,parameters.rate,parameters.gain,parameters.enabled,parameters.mode,parameters.extra,parameters.speed,parameters.offset,1,parameters.param,parameters.frequency) : 0;
+                func_001ADCC0(storage.path,256,D_0028E918,D_002A5A80,storage.texture);
+                ((C_001C8960_Layer **)w[0xd0/4])[index]->func_00143A40(storage.path,D_00275630);
+                ++index;
+            }
+        }
+        ((C_001C8960_Layer **)w[0xd0/4])[index]=0;
+        for(int j=0;j<index;++j) {
+            C_001C8960_Layer *layer=((C_001C8960_Layer **)w[0xd0/4])[j];
+            layer->func_00194310(D_00275460/w[0x6c/4+layer->type],D_00275460/w[0x84/4+layer->type]);
         }
     }
-    ini.func_001691E0();
+    w[0x68/4]=parameters.total;
+    if (w[0x50/4]) {
+        func_0014FF00(name,0,storage.resolved,0,0);
+        char *src=D_002A60B0, *dst=storage.saved;
+        while ((*dst++=*src++)!=0) {}
+        func_001ADCC0(D_002A60B0,260,D_0028E910,storage.resolved);
+        for(int i=0;i<w[0x38/4];++i) {
+            func_001ADCC0(storage.path,260,D_0028E8F8,D_002A60B0,i*2);
+            int object=((C_001C8960_Manager *)D_002A829C)->func_001617F0(storage.path,1);
+            w[0x58/4+i]=object;
+            ((C_001C8960_Manager *)D_002A829C)->attach(object,D_002AA46C);
+            func_001ADCC0(storage.path,260,D_0028E8F8,D_002A60B0,i*2+1);
+            object=((C_001C8960_Manager *)D_002A829C)->func_001617F0(storage.path,1);
+            w[0x60/4+i]=object;
+            ((C_001C8960_Manager *)D_002A829C)->attach(object,D_002AA46C);
+        }
+        w[0x54/4]=(int)func_001E8A44(w[0x50/4]*4+4);
+        int i;
+        for(i=0;i<w[0x50/4];++i) {
+            func_001ADCC0(storage.section,260,D_0028E8F0,i+1);
+            storage.ini.func_00169710(storage.section);
+            storage.ini.func_00168BE0(D_0028EA1C,D_00275630,storage.texture,-1);
+            storage.ini.func_00168C50(D_0028EA10,0.0f,(float *)&parameters.kind);
+            storage.ini.func_00168C50(D_0028EA04,0.0f,(float *)&parameters.special);
+            storage.ini.func_00168C50(D_0028E9F8,0.0f,&parameters.amount);
+            func_001ADCC0(storage.model,260,D_00275678,D_002A5A80,storage.texture,i+4);
+            C_001C8960_Model *object=(C_001C8960_Model *)func_001E8A44(0x1f0);
+            object=object ? object->func_001CAFD0(1) : 0;
+            object=object->load(storage.model,1,1);
+            ((C_001C8960_Model **)w[0x54/4])[i]=object;
+            ((C_001C8960_Model **)w[0x54/4])[i]->func_001995B0(*(float *)&parameters.kind,*(float *)&parameters.special,parameters.amount);
+            object=((C_001C8960_Model **)w[0x54/4])[i];
+            object->func_00182020(**(int **)((char *)object+0x1b8),w[0x58/4]);
+        }
+        ((C_001C8960_Model **)w[0x54/4])[i]=0;
+        src=storage.saved;dst=D_002A60B0;
+        while ((*dst++=*src++)!=0) {}
+    }
+    int count=w[0x104/4];
+    int *allocation=(int *)func_001E8A44(count*20+4);
+    C_001C8960_Slot *slots;
+    if (allocation) {
+        slots=(C_001C8960_Slot *)(allocation+1);
+        *allocation=count;
+        C_001C8960_Slot *p = slots;
+        for(int i=count-1;i>=0;--i) { p->func_00144640(); ++p; }
+    } else slots = 0;
+    w[0x220/4]=(int)slots;
+    w[0x108/4]=(int)func_001E8A44(w[0x104/4]*4);
+    for(int i=0;i<w[0x104/4];++i) {
+        func_001ADCC0(storage.section,128,D_0028E8E8,i+1);
+        if (storage.ini.func_00169710(storage.section)) {
+            storage.ini.func_00168BE0(D_0028EA90,storage.fallback,storage.item,-1);
+            storage.ini.func_00168C20(D_0028E8DC,1,&((int *)w[0x108/4])[i]);
+            ((C_001C8960_SlotView *)&((C_001C8960_Slot *)w[0x220/4])[i])->load(storage.item,D_002AA46C);
+        } else {
+            ((int *)w[0x108/4])[i]=1;
+            ((C_001C8960_SlotView *)&((C_001C8960_Slot *)w[0x220/4])[i])->load(storage.fallback,D_002AA46C);
+        }
+        ((C_001C8960_View *)this)->attach(&((C_001C8960_Slot *)w[0x220/4])[i]);
+    }
+    storage.ini.func_001691E0();
     return 1;
 }
 

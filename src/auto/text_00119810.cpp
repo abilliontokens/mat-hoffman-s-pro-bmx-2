@@ -188,6 +188,7 @@ struct BmxWallPlantConstraint {
 int BmxVehicle::func_00119810(int a)
 {
     float sv;
+    Vec4 vd;
     __declspec(align(16)) char v70[0x28];
     Vec4 ve;
 
@@ -380,13 +381,16 @@ int BmxVehicle::func_00119810(int a)
     }
 
     {
-        Vec4 vd(0.0f, 0.0f, 0.0f, 1.0f);
         Vec4 pos;
         Vec4 v;
         ve.x = 0.0f;
         ve.y = 0.0f;
         ve.z = 0.0f;
         ve.w = 1.0f;
+        vd.x = 0.0f;
+        vd.y = 0.0f;
+        vd.z = 0.0f;
+        vd.w = 1.0f;
         v = *((S119_Obj *)*(void **)(VF(0x1e0, char *) + 0x22c))->func_00199B00(&pos, 0);
         ((S119_Obj *)*(void **)(VF(0x1e0, char *) + 0x22c))->func_001994C0(0, &ve, &vd);
         S119_Entry *e = (S119_Entry *)((char *)this + 0x12ac) + VF(0x157c, int);
@@ -396,7 +400,7 @@ int BmxVehicle::func_00119810(int a)
         float sum = dx * dx + dy * dy + dz * dz;
         float len = AsmSqrtF(sum);
         e->d = len;
-        if (len >= 1.0f) {
+        if (len > 1.0f) {
             VF(0x157c, int) = VF(0x1580, int);
             e = (S119_Entry *)((char *)this + 0x12ac) + VF(0x157c, int);
             e->a = v;
@@ -449,9 +453,9 @@ void BmxWallPlantConstraint::func_0011A4B0()
     obj->func_00199A70(f28, &v);
     f32 h = obj->f144;
     Vec4 t;
-    t.x = h - h;
     double dy = v.y;
     t.y = (float)dy;
+    t.x = 0.0f;
     t.z = v.z + h;
     t.w = 1.0f;
     f2C = t;

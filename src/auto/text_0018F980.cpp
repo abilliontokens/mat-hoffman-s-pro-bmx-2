@@ -208,7 +208,7 @@ struct C_0018F980 {
 
 void C_0018F980::func_0018F980(int a1, char *volatile str)
 {
-    C_0018F980 *volatile self = this;
+    C_0018F980 *volatile self;
     struct {
         volatile int a;
         volatile int b;
@@ -220,6 +220,7 @@ void C_0018F980::func_0018F980(int a1, char *volatile str)
     char c;
     int n;
 
+    self = this;
     this->f24 = a1;
     end = str;
     s1 = end + 1;
@@ -300,8 +301,6 @@ int C_0018FF10::func_0018FF10(char *src, char *volatile name, volatile int idx, 
     C_0018FF10 *volatile self = this;
     struct { volatile int a, b, r; } t;
     Node0018FF10 *n;
-    Node0018FF10 *tl;
-    C_0018FF10 *s;
     int count;
     int found = 0;
     if (!key || strcmp(key, "") == 0) return 0;
@@ -328,8 +327,8 @@ int C_0018FF10::func_0018FF10(char *src, char *volatile name, volatile int idx, 
         func_001E8920(n, name, count);
         ((volatile char *)n->name)[count] = 0;
         self->ents[idx].node = n;
-        s = self;
-        tl = s->tail;
+        C_0018FF10 *s = self;
+        Node0018FF10 *tl = s->tail;
         if (!tl) { s->head = n; self->tail = n; *out = 1; return 1; }
         tl->next = n;
         self->tail = n;
@@ -349,18 +348,18 @@ void C_00190200::func_001900E0(int a0, int a1, int a2, C_190200_Rec *rec, unsign
   if(func_0018E7D0(0,rec,&idx)==1) tbl=named[idx].f0;
   else { ctx->func_0018F4D0(flags); return; }
  } else { tbl=a0; idx=a2; }
- register unsigned int original=flags;
+ register int original=flags;
  switch(original&255) {
  case 2: {
- flags=rec->f40;
  unsigned int offset=(unsigned int)rec->f40 >> 16;
- C_190200_Elem *base=named[idx].f54;
+ flags=rec->f40;
+ register C_190200_Elem *base=named[idx].f54;
  offset &= 255;
  char *ptr=(char *)(base+(flags&255))->func_0018E1D0()+(unsigned char)offset;
  ctx->func_0018F390((char *)D_00275630,original&0xffff00,ptr); break;
  }
  case 1: {
- flags=rec->f40;
+ register flags=rec->f40;
  C_190200_Cell *cells=f164[named[idx].f44].f2c;
  char *ptr=cells[flags&255].f4+((flags>>16)&255)+tbl;
  ctx->func_0018F390((char *)D_00275630,original&0xffff00,ptr); break;

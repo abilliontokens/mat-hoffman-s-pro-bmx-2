@@ -17,7 +17,10 @@ struct C_00148770 : Sec_00148770 {
 void __fastcall func_00148770(int self, int unused, void *param);
 void __fastcall func_00149040(int self, int unused, void *param);
 
-void __fastcall func_00148770(int self, int unused, void *param)
+void C_00148770::func_00148770(void *param)
 {
-    func_00149040(self - 0xC, unused, param);
+    unsigned int self = (unsigned int)this;
+
+    self -= 0xC;
+    ((C_00149040 *)self)->func_00149040(param);
 }

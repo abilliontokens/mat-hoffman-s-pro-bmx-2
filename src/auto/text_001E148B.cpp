@@ -198,10 +198,12 @@ int __stdcall func_001E1D36(void *a0, S_AnsiString_1E148B *a1, const char *a2, i
     oa.Attributes = 0x40;
     oa.ObjectName = a1;
     st = _imp__NtCreateFile(&h, (u32)D_00100001, &oa, &iosb, 0, 0x80, 3, 3, 0x4021);
-    if (st >= 0)
+    if (st >= 0) {
         _imp__NtClose(h);
-    else if (st == 0xC0000103)
-        st = 0;
+    } else {
+        if (st == 0xC0000103)
+            st = 0;
+    }
     if (st < 0)
         return st;
 
@@ -228,8 +230,7 @@ int __stdcall func_001E1D36(void *a0, S_AnsiString_1E148B *a1, const char *a2, i
     oa.RootDirectory = 0;
     oa.Attributes = 0x40;
     st = _imp__NtCreateFile(&h, (u32)D_00120117, &oa, &iosb, 0, 0x80, 3, (a3 != 0) + (a3 != 0) + 1, 0x4021);
-    if (st < 0)
-        return st;
+    if (st >= 0) {
     if (a5) {
         s64 fbi[5];
         memset(fbi, 0, 0x28);
@@ -263,8 +264,9 @@ int __stdcall func_001E1D36(void *a0, S_AnsiString_1E148B *a1, const char *a2, i
                         st = _imp__NtWriteFile(hf, 0, 0, 0, &iosb, buf, func_001E2850(h2), 0);
                         func_001E27FC(h2);
                     } else {
-                        int n = func_001EAA6D(text, 0x8e, D_0028FBB0, D_0000FEFF, D_0028FED8, 0x3d, a4, D_0028FF1C);
-                        st = _imp__NtWriteFile(hf, 0, 0, 0, &iosb, text, n * 2, 0);
+                        unsigned int n = func_001EAA6D(text, 0x8e, D_0028FBB0, D_0000FEFF, D_0028FED8, 0x3d, a4, D_0028FF1C);
+                        n *= sizeof(u16);
+                        st = _imp__NtWriteFile(hf, 0, 0, 0, &iosb, text, n, 0);
                     }
                 }
                 _imp__NtClose(hf);
@@ -281,6 +283,7 @@ int __stdcall func_001E1D36(void *a0, S_AnsiString_1E148B *a1, const char *a2, i
     _imp__NtClose(h);
     if (st >= 0)
         st = _imp__IoCreateSymbolicLink(a0, &as);
+    }
     return st;
 }
 #pragma optimize("", on)
@@ -383,8 +386,8 @@ void __stdcall func_001E2213(void)
 {
     int local[12];
     int st;
-    unsigned int v;
-    int a, b, c;
+    int a, b;
+    unsigned int c;
 
     func_001E2703();
     memset(local, 0, sizeof(local));
@@ -401,35 +404,37 @@ void __stdcall func_001E2213(void)
             return;
         }
     }
-    if (!(D_00010124 & 8)) {
+    if (!(*(volatile unsigned char *)&D_00010124 & 8)) {
         if (func_001E2202((S_AnsiString_1E148B *)D_002ACBF4) < 0)
             goto err12;
-        if (!(((unsigned char *)_imp__XboxHardwareInfo)[1] & 4)) {
-            st = _imp__IoCreateSymbolicLink(D_002ACBE4, (S_AnsiString_1E148B *)D_002ACBEC);
-            if (st < 0 && st != 0xC0000035) {
-                a = 1; b = 1; c = 0;
-                goto fail;
-            }
+    }
+    if (!(((unsigned char *)_imp__XboxHardwareInfo)[1] & 1)) {
+        st = _imp__IoCreateSymbolicLink(D_002ACBE4, (S_AnsiString_1E148B *)D_002ACBEC);
+        if (st < 0 && st != 0xC0000035) {
+            a = 1; b = 1; c = 0;
+            goto fail;
         }
     }
-    if (!(D_00010124 & 0x18)) {
+    if (!(*(volatile unsigned char *)&D_00010124 & 0x18)) {
         st = func_001E206A(*(int *)((char *)D_00010118 + 8), (int)((char *)D_00010118 + 0xc));
         if (st < 0) {
             if (st == 0xC000007F) {
                 a = 2; b = 0x54; c = 0x10;
-            } else {
-err12:
-                a = 1; b = 2; c = 0;
+                goto fail;
             }
-            goto fail;
+err12:
+            b = 2; c = 0;
+            goto set_a;
         }
     }
-    if (!(D_00010124 & 8) && (D_00010124 & 4) && func_001DEC61(D_00010124 & 2) == 0)
+    if (!(D_00010124 & 8) && (D_00010124 & 1) && func_001DEC61(D_00010124 & 2) == 0)
         func_001E20BF(1, 2, 0);
-    v = *(unsigned int *)((char *)D_00010118 + 0xa4);
-    if (v >= func_001DF4BC())
+    c = *(unsigned int *)((char *)D_00010118 + 0xa4);
+    if (c >= func_001DF4BC())
         return;
-    a = 1; b = 4; c = v;
+    b = 4;
+set_a:
+    a = 1;
 fail:
     func_001E20BF(a, b, c);
 }

@@ -78,13 +78,15 @@ extern const float D_002A1508;
 extern const float D_002A1504, D_002A1508, D_002A14F4, D_002A14F0;
 int func_000262C0(S_Vec4 *, S_Vec4 *);
 S_Vec4 *func_000110B0(S_Vec4 *, S_Vec4 *);
+extern const float D_002A14F4, D_002A14F0, D_002A1504, D_002A1508;
 void C_000363E0::func_000363E0(S_Vec4 target)
 {
-    C_000363E0 *volatile self = this;
+    C_000363E0 *self = this;
     float &x = target.x, &y = target.y, &z = target.z, &w = target.w;
     S_Vec4 current;
     current.z = current.y = current.x = 0.0f;
     current.w = 1.0f;
+    volatile S_Vec4 delta;
     S_Vec4 direction = *(const S_Vec4 *)&D_002A14D4;
     self->f44->f5C->func_00194E90((S_Vec4Int *)&current);
     x += D_002755E8;
@@ -93,7 +95,6 @@ void C_000363E0::func_000363E0(S_Vec4 target)
     x = AsmMinF(x, (float)self->f434 + D_00276DD4);
     z = AsmMaxF(z, (float)self->f430 - D_00276DD4);
     z = AsmMinF(z, (float)self->f43C + D_00276DD4);
-    volatile S_Vec4 delta;
     delta.x = x - current.x;
     delta.y = y - current.y;
     delta.z = z - current.z;
@@ -108,11 +109,11 @@ void C_000363E0::func_000363E0(S_Vec4 target)
     }
     self->f914 = 0;
     if (Abs_363E0(delta.x) >= Abs_363E0(delta.z) && Abs_363E0(delta.x) >= D_00275AEC)
-        direction.x = delta.x >= 0.0f ? D_002A14E4 : -D_002A14E4;
+        direction.x = delta.x >= D_00275544 ? D_002A14E4 : -D_002A14E4;
     else if (Abs_363E0(delta.z) > Abs_363E0(delta.x) && Abs_363E0(delta.z) >= D_00275AEC)
-        direction.z = delta.z >= 0.0f ? D_002A150C : -D_002A150C;
+        direction.z = delta.z >= D_00275544 ? D_002A150C : -D_002A150C;
     else
-        direction.y = delta.y >= 0.0f ? D_002A14F8 : -D_002A14F8;
+        direction.y = delta.y >= D_00275544 ? D_002A14F8 : -D_002A14F8;
     if (direction.x == D_002A14E4 && direction.y == D_002A14E8 && direction.z == D_002A14EC) {
         while (current.x - D_002756DC <= x) {
             delta.x = current.x - (float)self->f428;
@@ -123,15 +124,10 @@ void C_000363E0::func_000363E0(S_Vec4 target)
             ix = (int)(delta.x * D_002756DC);
             iy = (int)(delta.y * D_00275F64);
             iz = (int)(delta.z * D_002756DC);
-            ix += self->f44c;
-            iy += self->f450;
-            iz += self->f454;
-            ix = AsmMinI(ix, self->f458 + self->f44c);
-            ix = AsmMaxI(ix, self->f44c);
-            iy = AsmMinI(iy, self->f45c + self->f450);
-            iy = AsmMaxI(iy, self->f450);
-            iz = AsmMinI(iz, self->f460 + self->f454);
-            iz = AsmMaxI(iz, self->f454);
+            ix += self->f44c; iy += self->f450; iz += self->f454;
+            ix = AsmMinI(ix, self->f458 + self->f44c); ix = AsmMaxI(ix, self->f44c);
+            iy = AsmMinI(iy, self->f45c + self->f450); iy = AsmMaxI(iy, self->f450);
+            iz = AsmMinI(iz, self->f460 + self->f454); iz = AsmMaxI(iz, self->f454);
             float height = 0.0f;
             while (self->f49c[(ix * self->f45c + iy) * self->f460 + iz]) {
                 ++iy;
@@ -154,15 +150,10 @@ void C_000363E0::func_000363E0(S_Vec4 target)
             ix = (int)(delta.x * D_002756DC);
             iy = (int)(delta.y * D_00275F64);
             iz = (int)(delta.z * D_002756DC);
-            ix += self->f44c;
-            iy += self->f450;
-            iz += self->f454;
-            ix = AsmMinI(ix, self->f458 + self->f44c);
-            ix = AsmMaxI(ix, self->f44c);
-            iy = AsmMinI(iy, self->f45c + self->f450);
-            iy = AsmMaxI(iy, self->f450);
-            iz = AsmMinI(iz, self->f460 + self->f454);
-            iz = AsmMaxI(iz, self->f454);
+            ix += self->f44c; iy += self->f450; iz += self->f454;
+            ix = AsmMinI(ix, self->f458 + self->f44c); ix = AsmMaxI(ix, self->f44c);
+            iy = AsmMinI(iy, self->f45c + self->f450); iy = AsmMaxI(iy, self->f450);
+            iz = AsmMinI(iz, self->f460 + self->f454); iz = AsmMaxI(iz, self->f454);
             float height = 0.0f;
             while (self->f49c[(ix * self->f45c + iy) * self->f460 + iz]) {
                 ++iy;
@@ -185,15 +176,10 @@ void C_000363E0::func_000363E0(S_Vec4 target)
             ix = (int)(delta.x * D_002756DC);
             iy = (int)(delta.y * D_00275F64);
             iz = (int)(delta.z * D_002756DC);
-            ix += self->f44c;
-            iy += self->f450;
-            iz += self->f454;
-            ix = AsmMinI(ix, self->f458 + self->f44c);
-            ix = AsmMaxI(ix, self->f44c);
-            iy = AsmMinI(iy, self->f45c + self->f450);
-            iy = AsmMaxI(iy, self->f450);
-            iz = AsmMinI(iz, self->f460 + self->f454);
-            iz = AsmMaxI(iz, self->f454);
+            ix += self->f44c; iy += self->f450; iz += self->f454;
+            ix = AsmMinI(ix, self->f458 + self->f44c); ix = AsmMaxI(ix, self->f44c);
+            iy = AsmMinI(iy, self->f45c + self->f450); iy = AsmMaxI(iy, self->f450);
+            iz = AsmMinI(iz, self->f460 + self->f454); iz = AsmMaxI(iz, self->f454);
             float height = 0.0f;
             while (self->f49c[(ix * self->f45c + iy) * self->f460 + iz]) {
                 ++iy;
@@ -218,15 +204,10 @@ void C_000363E0::func_000363E0(S_Vec4 target)
                 ix = (int)(delta.x * D_002756DC);
                 iy = (int)(delta.y * D_00275F64);
                 iz = (int)(delta.z * D_002756DC);
-                ix += self->f44c;
-                iy += self->f450;
-                iz += self->f454;
-                ix = AsmMinI(ix, self->f458 + self->f44c);
-                ix = AsmMaxI(ix, self->f44c);
-                iy = AsmMinI(iy, self->f45c + self->f450);
-                iy = AsmMaxI(iy, self->f450);
-                iz = AsmMinI(iz, self->f460 + self->f454);
-                iz = AsmMaxI(iz, self->f454);
+                ix += self->f44c; iy += self->f450; iz += self->f454;
+                ix = AsmMinI(ix, self->f458 + self->f44c); ix = AsmMaxI(ix, self->f44c);
+                iy = AsmMinI(iy, self->f45c + self->f450); iy = AsmMaxI(iy, self->f450);
+                iz = AsmMinI(iz, self->f460 + self->f454); iz = AsmMaxI(iz, self->f454);
                 float height = 0.0f;
                 while (self->f49c[(ix * self->f45c + iy) * self->f460 + iz]) {
                     ++iy;

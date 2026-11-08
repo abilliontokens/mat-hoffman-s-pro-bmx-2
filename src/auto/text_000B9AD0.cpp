@@ -295,6 +295,7 @@ void BmxUIMain::func_000B9D90(int type, int a2)
     void *m;
     void *obj = 0;
     unsigned k = type - 1;
+    V_B9D90 *v;
     if (k > 0x1f) {
         return;
     }
@@ -332,7 +333,8 @@ void BmxUIMain::func_000B9D90(int type, int a2)
     UI_CASE(30, 0x2c4, 000F1D00)
     UI_CASE(31, 0x318, 000D9820)
     }
-    func_001577A0(((V_B9D90 *)obj)->vf31(&f154, a2, this), -1);
+    v = (V_B9D90 *)obj;
+    func_001577A0(v->vf31(&f154, a2, this), -1);
 }
 
 void func_000BA290(void) {

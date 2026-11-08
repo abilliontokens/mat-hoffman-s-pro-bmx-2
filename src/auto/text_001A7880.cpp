@@ -225,8 +225,9 @@ void func_001A7FE0(State_001A7FE0 *state, Contact_001A7FE0 *contact)
     switch (state->f50) {
     case 5: {
         Shape_001A7FE0 *shape = (Shape_001A7FE0 *)state->f54;
+        V4_001A7FE0 b(0);
         V4_001A7FE0 a = xform_001A7FE0(shape->f14, (float *)(body->f22c + 0xf0));
-        V4_001A7FE0 b;
+        b.z = 0; b.y = 0; b.x = 0; b.w = 1;
         for (int i=0; i<shape->f4; ++i) {
             V4_001A7FE0 t = shape->f14 - shape->f24[i] * state->f100;
             func_0011F540(&b, t, (float *)(body->f22c + 0xf0));

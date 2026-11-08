@@ -783,7 +783,7 @@ void *_func_001F06E9(void *o)
             if (c == 'X') {
                 D_002F6A28++;
                 aux.func_001EF9B2((char *)&D_0027D1D8);
-            } else if (c == '$' && D_002F6A28[1] != c) {
+            } else if (c == '$' && D_002F6A28[1] != '$') {
                 D_002F6A28++;
                 aux.func_001EEF4F((int)_func_001F046A(&dq));
             } else if (c == '?') {

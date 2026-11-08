@@ -197,7 +197,6 @@ void __stdcall func_0012B950(S_0012B950_Vec4 *out, float t, S_0012B950_Vec4 p0, 
     float d;
     S_0012B950_V3 m0;
     S_0012B950_V3 m1;
-    S_0012B950_V3 s;
 
     t2 = t * t;
     t3 = t * t2;
@@ -208,12 +207,11 @@ void __stdcall func_0012B950(S_0012B950_Vec4 *out, float t, S_0012B950_Vec4 p0, 
     d = t3 - t2;
     m0 = V3Scale_0012B950(V3Sub_0012B950(*(S_0012B950_V3 *)&p2, *(S_0012B950_V3 *)&p0), D_002755E8);
     m1 = V3Scale_0012B950(V3Sub_0012B950(*(S_0012B950_V3 *)&p3, *(S_0012B950_V3 *)&p1), D_002755E8);
-    s = V3Scale_0012B950(m1, d);
     V3AddInto_0012B950(out,
             V3Add_0012B950(
                 V3Add_0012B950(V3Scale_0012B950(*(S_0012B950_V3 *)&p1, a), V3Scale_0012B950(*(S_0012B950_V3 *)&p2, b)),
                 V3Scale_0012B950(m0, c)),
-            s);
+            V3Scale_0012B950(m1, d));
 }
 #pragma optimize("a", off)
 float __stdcall func_0012BAE0(float t, float p0, float p1, float p2, float p3) {
@@ -291,68 +289,65 @@ void C_0012B8F0::func_0012BF10(int idx, u32 *a, u32 *b, u32 *c, int *d) {
     *d = f44[idx];
 }
 
-void C_0012B8F0::func_0012BF90(int i0, int i1, int i2, int i3, S_0012B950_Vec4 *a, S_0012B950_Vec4 *b, S_0012B950_Vec4 *c, float *d, float t)
-{
-    Vec_0012BF90 p[4], q[4], r[4];
-    float f[4];
-    S_0012B950_Vec4 tmp;
-
-    p[0].x = *(float *)(f2C + i1 * 12 + 0);
-    p[0].y = *(float *)(f2C + i1 * 12 + 4);
-    p[0].z = *(float *)(f2C + i1 * 12 + 8);
-    p[0].w = 1.0f;
-    p[1].x = *(float *)(f2C + i0 * 12 + 0);
-    p[1].y = *(float *)(f2C + i0 * 12 + 4);
-    p[1].z = *(float *)(f2C + i0 * 12 + 8);
-    p[1].w = 1.0f;
-    p[2].x = *(float *)(f2C + i2 * 12 + 0);
-    p[2].y = *(float *)(f2C + i2 * 12 + 4);
-    p[2].z = *(float *)(f2C + i2 * 12 + 8);
-    p[2].w = 1.0f;
-    p[3].x = *(float *)(f2C + i3 * 12 + 0);
-    p[3].y = *(float *)(f2C + i3 * 12 + 4);
-    p[3].z = *(float *)(f2C + i3 * 12 + 8);
-    p[3].w = 1.0f;
-    q[0].x = *(float *)(f24 + i1 * 12 + 0);
-    q[0].y = *(float *)(f24 + i1 * 12 + 4);
-    q[0].z = *(float *)(f24 + i1 * 12 + 8);
-    q[0].w = 1.0f;
-    q[1].x = *(float *)(f24 + i0 * 12 + 0);
-    q[1].y = *(float *)(f24 + i0 * 12 + 4);
-    q[1].z = *(float *)(f24 + i0 * 12 + 8);
-    q[1].w = 1.0f;
-    q[2].x = *(float *)(f24 + i2 * 12 + 0);
-    q[2].y = *(float *)(f24 + i2 * 12 + 4);
-    q[2].z = *(float *)(f24 + i2 * 12 + 8);
-    q[2].w = 1.0f;
-    q[3].x = *(float *)(f24 + i3 * 12 + 0);
-    q[3].y = *(float *)(f24 + i3 * 12 + 4);
-    q[3].z = *(float *)(f24 + i3 * 12 + 8);
-    q[3].w = 1.0f;
-    r[0].x = *(float *)(f28 + i1 * 12 + 0);
-    r[0].y = *(float *)(f28 + i1 * 12 + 4);
-    r[0].z = *(float *)(f28 + i1 * 12 + 8);
-    r[0].w = 1.0f;
-    r[1].x = *(float *)(f28 + i0 * 12 + 0);
-    r[1].y = *(float *)(f28 + i0 * 12 + 4);
-    r[1].z = *(float *)(f28 + i0 * 12 + 8);
-    r[1].w = 1.0f;
-    r[2].x = *(float *)(f28 + i2 * 12 + 0);
-    r[2].y = *(float *)(f28 + i2 * 12 + 4);
-    r[2].z = *(float *)(f28 + i2 * 12 + 8);
-    r[2].w = 1.0f;
-    r[3].x = *(float *)(f28 + i3 * 12 + 0);
-    r[3].y = *(float *)(f28 + i3 * 12 + 4);
-    r[3].z = *(float *)(f28 + i3 * 12 + 8);
-    r[3].w = 1.0f;
-    f[0] = ((float *)f44)[i1];
-    f[1] = ((float *)f44)[i0];
-    f[2] = ((float *)f44)[i2];
-    f[3] = ((float *)f44)[i3];
-    *a = *((S_0012B950_Vec4 *(__stdcall *)(S_0012B950_Vec4 *, float, S_0012B950_Vec4, S_0012B950_Vec4, S_0012B950_Vec4, S_0012B950_Vec4))func_0012B950)(&tmp, t, *(S_0012B950_Vec4 *)&p[0], *(S_0012B950_Vec4 *)&p[1], *(S_0012B950_Vec4 *)&p[2], *(S_0012B950_Vec4 *)&p[3]);
-    *b = *((S_0012B950_Vec4 *(__stdcall *)(S_0012B950_Vec4 *, float, S_0012B950_Vec4, S_0012B950_Vec4, S_0012B950_Vec4, S_0012B950_Vec4))func_0012B950)(&tmp, t, *(S_0012B950_Vec4 *)&q[0], *(S_0012B950_Vec4 *)&q[1], *(S_0012B950_Vec4 *)&q[2], *(S_0012B950_Vec4 *)&q[3]);
-    *c = *((S_0012B950_Vec4 *(__stdcall *)(S_0012B950_Vec4 *, float, S_0012B950_Vec4, S_0012B950_Vec4, S_0012B950_Vec4, S_0012B950_Vec4))func_0012B950)(&tmp, t, *(S_0012B950_Vec4 *)&r[0], *(S_0012B950_Vec4 *)&r[1], *(S_0012B950_Vec4 *)&r[2], *(S_0012B950_Vec4 *)&r[3]);
-    *d = func_0012BAE0(t, f[0], f[1], f[2], f[3]);
+void C_0012B8F0::func_0012BF90(int i0,int i1,int i2,int i3,S_0012B950_Vec4 *a,S_0012B950_Vec4 *b,S_0012B950_Vec4 *c,float *d,float t) {
+ Vec_0012BF90 p[4],q[4],r[4];
+ float f[4]; S_0012B950_Vec4 tmp;
+ p[0].x=*(float *)(f2C+i1*12+0);
+ p[0].y=*(float *)(f2C+i1*12+4);
+ p[0].z=*(float *)(f2C+i1*12+8);
+ p[0].w=1.0f;
+ p[1].x=*(float *)(f2C+i0*12+0);
+ p[1].y=*(float *)(f2C+i0*12+4);
+ p[1].z=*(float *)(f2C+i0*12+8);
+ p[1].w=1.0f;
+ p[2].x=*(float *)(f2C+i2*12+0);
+ p[2].y=*(float *)(f2C+i2*12+4);
+ p[2].z=*(float *)(f2C+i2*12+8);
+ p[2].w=1.0f;
+ p[3].x=*(float *)(f2C+i3*12+0);
+ p[3].y=*(float *)(f2C+i3*12+4);
+ p[3].z=*(float *)(f2C+i3*12+8);
+ p[3].w=1.0f;
+ q[0].x=*(float *)(f24+i1*12+0);
+ q[0].y=*(float *)(f24+i1*12+4);
+ q[0].z=*(float *)(f24+i1*12+8);
+ q[0].w=1.0f;
+ q[1].x=*(float *)(f24+i0*12+0);
+ q[1].y=*(float *)(f24+i0*12+4);
+ q[1].z=*(float *)(f24+i0*12+8);
+ q[1].w=1.0f;
+ q[2].x=*(float *)(f24+i2*12+0);
+ q[2].y=*(float *)(f24+i2*12+4);
+ q[2].z=*(float *)(f24+i2*12+8);
+ q[2].w=1.0f;
+ q[3].x=*(float *)(f24+i3*12+0);
+ q[3].y=*(float *)(f24+i3*12+4);
+ q[3].z=*(float *)(f24+i3*12+8);
+ q[3].w=1.0f;
+ r[0].x=*(float *)(f28+i1*12+0);
+ r[0].y=*(float *)(f28+i1*12+4);
+ r[0].z=*(float *)(f28+i1*12+8);
+ r[0].w=1.0f;
+ r[1].x=*(float *)(f28+i0*12+0);
+ r[1].y=*(float *)(f28+i0*12+4);
+ r[1].z=*(float *)(f28+i0*12+8);
+ r[1].w=1.0f;
+ r[2].x=*(float *)(f28+i2*12+0);
+ r[2].y=*(float *)(f28+i2*12+4);
+ r[2].z=*(float *)(f28+i2*12+8);
+ r[2].w=1.0f;
+ r[3].x=*(float *)(f28+i3*12+0);
+ r[3].y=*(float *)(f28+i3*12+4);
+ r[3].z=*(float *)(f28+i3*12+8);
+ r[3].w=1.0f;
+ f[0]=((float *)f44)[i1];
+ f[1]=((float *)f44)[i0];
+ f[2]=((float *)f44)[i2];
+ f[3]=((float *)f44)[i3];
+ *a=*((S_0012B950_Vec4 *(__stdcall *)(S_0012B950_Vec4 *,float,S_0012B950_Vec4,S_0012B950_Vec4,S_0012B950_Vec4,S_0012B950_Vec4))func_0012B950)(&tmp,t,*(S_0012B950_Vec4 *)&p[0],*(S_0012B950_Vec4 *)&p[1],*(S_0012B950_Vec4 *)&p[2],*(S_0012B950_Vec4 *)&p[3]);
+ *b=*((S_0012B950_Vec4 *(__stdcall *)(S_0012B950_Vec4 *,float,S_0012B950_Vec4,S_0012B950_Vec4,S_0012B950_Vec4,S_0012B950_Vec4))func_0012B950)(&tmp,t,*(S_0012B950_Vec4 *)&q[0],*(S_0012B950_Vec4 *)&q[1],*(S_0012B950_Vec4 *)&q[2],*(S_0012B950_Vec4 *)&q[3]);
+ *c=*((S_0012B950_Vec4 *(__stdcall *)(S_0012B950_Vec4 *,float,S_0012B950_Vec4,S_0012B950_Vec4,S_0012B950_Vec4,S_0012B950_Vec4))func_0012B950)(&tmp,t,*(S_0012B950_Vec4 *)&r[0],*(S_0012B950_Vec4 *)&r[1],*(S_0012B950_Vec4 *)&r[2],*(S_0012B950_Vec4 *)&r[3]);
+ *d=func_0012BAE0(t,f[0],f[1],f[2],f[3]);
 }
 
 void C_0012B8F0::func_0012C4E0(void) {

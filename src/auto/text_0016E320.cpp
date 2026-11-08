@@ -1,6 +1,7 @@
 /* 3 functions from 0x0016E320 to 0x0016F110, found by Ghidra. */
 #include "common.h"
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 static __forceinline void FloatToInt_16EC80(int *out, float f) { int * volatile p = out; *p = _mm_cvttss_si32(*(__m128 *)&f); }
 static __forceinline void FloatToIntV_16EC80(int *out, float f) { *out = _mm_cvttss_si32(*(__m128 *)&f); }
 
@@ -120,6 +121,7 @@ void func_0013E1F0(S_16EEA0_Log *log, int id, const char *fmt, ...);
 int C_0016E320::func_0016E320(float dt)
 {
     float acc;
+    float a;
     float r1, r2, r3;
     float px, py, pz;
 
@@ -128,21 +130,32 @@ int C_0016E320::func_0016E320(float dt)
         f194 = 0.0f;
         return 1;
     }
-    if (!(f194 < D_00278C48)) {
+    if (f194 > D_00278C48) {
         f34 = f24;
         f38 = f28;
         f3c = f2c;
         f40 = f30;
         return 1;
     }
-    acc = dt * f17c;
-    if (f20c != 0) {
-        float d = func_00011170(&f54);
-        if (d > D_002A8898) {
-            acc = acc / D_002A8898;
+    if (f68 != 0) {
+        void *p = *(void **)((char *)f68 + 0x18C);
+        if (p != 0) {
+            void *q = *(void **)((char *)p + 4);
+            if (D_002EFE50 != *(short *)((char *)q + 0x90)) {
+                f184 = f178;
+                f194 = 0.0f;
+                return 1;
+            }
         }
     }
-    acc = acc > f180 ? acc : f180;
+    acc = dt * f17c;
+    a = 1.0f;
+    if (f20c != 0) {
+        float d = func_00011170(&f54);
+        if (d < D_002A8898) a = d / D_002A8898;
+    }
+    acc = AsmMaxF(f180, acc);
+    if (D_00275544 >= acc) return 1;
     r1 = (float)func_001E8833() * D_002754B0;
     r2 = (float)func_001E8833() * D_002754B0;
     r3 = (float)func_001E8833() * D_002754B0;
@@ -157,7 +170,7 @@ int C_0016E320::func_0016E320(float dt)
     return 1;
 }
 
-void func_0016EC80(Table *t, Body *b, float dt)
+void func_0016EC80(Table *t, Body *b, const float dt)
 {
     float v[4];
     int k;
@@ -225,11 +238,8 @@ void func_0016EC80(Table *t, Body *b, float dt)
                 k = b->frame - base;
                 int m = (int)((float)k * o->unk_1b8);
                 FloatToInt_16EC80(pk, b->cur / (b->len * o->unk_1b8));
-                int kk = k;
-                if (kk > 0) {
-                    kk--;
-                    b->frame = m * n + kk + base;
-                }
+                if (k > 0)
+                    b->frame = m * n + (k - 1) + base;
             }
         }
     }

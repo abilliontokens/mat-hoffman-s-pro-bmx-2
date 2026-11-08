@@ -379,3 +379,24 @@ BmxUIPageMedia *BmxUIPageMedia::func_000EB570(int a, int b, int c)
     return this;
 }
 
+void BmxUIPageMedia::func_000EB6B0()
+{
+ int ids[3]; int i; int *r; C_NumHorse_Clamp *o; S_000EB420_Obj **e; C_NumHorse_Lookup *lk;
+ ids[0]=(int)&D_002786A0; ids[1]=(int)&D_00278690; ids[2]=(int)&D_00278678;
+ for(i=0;i<3;i++) {
+ lk=D_002A8490->p2EC; r=lk->func_0018C160(ids[i]);
+ if(r && *r) {
+ o=((C_NumHorse_Mid *)*r)->func_0018C070();
+ if(D_00275AEC>o->f10) *(int *)&o->f10=0x41200000;
+ if(D_00275AEC<o->f14 || o->f14>o->f10) *(int *)&o->f14=0x41200000;
+ }
+ }
+ e=unk280; i=4;
+ do { if(*e) {
+ o=((C_NumHorse_Sub *)*e)->func_001D5AA0();
+ if(D_00275AEC>o->f10) *(int *)&o->f10=0x41200000;
+ if(D_00275AEC<o->f14 || o->f14>o->f10) *(int *)&o->f14=0x41200000;
+ } e++; i--; }while(i);
+ func_001578D0();
+}
+

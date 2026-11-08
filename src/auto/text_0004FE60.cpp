@@ -217,6 +217,36 @@ struct BmxEventMountVert {
 extern char D_00277830;
 int func_001EA426(const char *a, const char *b);
 
+BmxEventMountVert *BmxEventMountVert::func_0004FE60()
+{
+    unk284 = D_002A8490->unk2e0->pad4;
+    func_000342C0();
+    func_001EA426((char *)unk64 + 0x134, &D_00277830);
+    int i;
+    for (i = 0; i < unk64->list->count; i++) {
+        if (unk284 == 9) {
+            unk64->list->items[i]->func_00108680(0);
+            unk64->list->items[i]->vf5();
+        }
+        unk64->list->items[i]->unk11a8 = 1;
+    }
+    if (unk284 == 9) {
+        unk120 = unk64->list->count - 1;
+        func_0004FAC0();
+        unk2a8->func_00086C10(0);
+        unk2a8->func_00086C20(0);
+        unk2a8->func_000867F0(1);
+        unk64->list->items[unk120]->unk95c = 1;
+        unk110 = 0;
+        unk2dc = 0;
+        for (i = 0; i < unk64->list->count; i++) {
+            unk64->list->items[i]->unk95c = 1;
+        }
+        unk110 = 0;
+    }
+    return this;
+}
+
 int BmxEventMountVert::func_000508C0() {
     int i;
     func_00034090();

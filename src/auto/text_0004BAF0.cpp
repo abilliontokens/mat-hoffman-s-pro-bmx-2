@@ -289,11 +289,12 @@ void C_0004C560::func_0004C130(void)
     int cnt[8];
     char buf[0x104];
     char buf2[0x104];
+    char *name;
     int i, j, n = 0, m;
 
     memset(cnt, 0, sizeof(cnt));
     for (i = 0; i < *(int *)((char *)f64->f3ac + 0x24); i++) {
-        char *name = (char *)f64->f3ac->f28[i] + 0xa0;
+        name = (char *)f64->f3ac->f28[i] + 0xa0;
         for (j = 0; j < 8; j++) {
             func_001ADCC0(buf, 0x104, D_002774C0, j + 1, cnt[j] + 1);
             if (!func_001EA426(buf, name)) {
@@ -308,7 +309,7 @@ void C_0004C560::func_0004C130(void)
         }
     }
     for (i = 0; i < f90; i++) {
-        __noop;
+        f1250 = i;
     }
     f1250 = n;
     m = 0;

@@ -356,6 +356,7 @@ void S_00049470_This::func_00049470()
             sub->f24 = 0;
         } else if (sub->f28 != 0) {
             sub->f28->f1a4->f4->func_00198390();
+            sub->f28->f1a4->vobj->w4();
             sub->f28 = 0;
         }
         sub->f24 = (C_00198390 *)d;

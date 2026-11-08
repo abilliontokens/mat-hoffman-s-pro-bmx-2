@@ -217,7 +217,7 @@ void C_0004AD10::func_0004AD10()
             char *e = *(char **)((*(char ***)(t + 0x28))[idx] + 8);
             if (e) {
                 v[0] = *(float *)(e + 0x28) - D_00277318;
-                *(volatile float *)&v[3] = 1.0f;
+                v[3] = 1.0f;
                 v[1] = *(float *)(e + 0x2c) - D_00277314;
                 v[2] = *(float *)(e + 0x30) - D_00277310;
                 if (func_00011170(v) < D_002755E8) {

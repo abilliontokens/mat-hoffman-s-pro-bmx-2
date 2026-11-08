@@ -147,15 +147,8 @@ int func_00135C70(int a, int b, int c, int d);
 int __stdcall func_0015D340(int a, int b)
 {
     int r = func_00157BF0(a, b);
-
-    if (func_00135C70(0x1e, 0, a, 0x80)) {
-        D_002E2928 = 1 - D_002E2928;
-        return 1;
-    }
-    if (func_00135C70(0x26, 0, a, 0x80)) {
-        D_002E292C = 1 - D_002E292C;
-        return 1;
-    }
+    if (func_00135C70(0x1e, 0, a, 0x80)) { int t = D_002E2928; D_002E2928 = 1 - t; return 1; }
+    if (func_00135C70(0x26, 0, a, 0x80)) { int t = D_002E292C; D_002E292C = 1 - t; return 1; }
     return r;
 }
 
@@ -298,6 +291,51 @@ void C_0015DA60::func_0015DCC0(C_0015DCC0_Item *item)
             unk88 = 1;
             return;
         }
+    }
+}
+
+void C_0015DA60::func_0015DD80(float *matrix, int count, char *in, char *out, int stride)
+{
+    C_0015DA60 *volatile self = this;
+    volatile float color[3];
+    volatile V4_15D850 dir;
+    __declspec(align(16)) float m[16];
+    color[0]=0; color[2]=0; color[1]=0;
+    dir.z=0; dir.y=0; dir.x=0; dir.w=1;
+    __m128 *volatile dst=(__m128*)m;
+    __m128 *src=(__m128*)matrix;
+    __m128 ma=src[0], mb=src[1], mc=src[2], md=src[3];
+    __m128 *p=dst; p[0]=ma; p[1]=mb; p[2]=mc; p[3]=md;
+    func_0011AC30(m,m);
+    C_0015DA60 *s=self;
+    for(int i=0;i<s->unk7C;s=self,++i) {
+        C_0015DCC0_Item *item=s->unk84[i];
+        if(item->unk28==2) {
+            color[0]=*(float*)&item->unk30; color[2]=*(float*)&item->unk34; color[1]=*(float*)&item->unk38;
+            Xform_DD80((float*)&dir.x,(float*)((char*)item+0x94),m);
+            Normalize_DD80((float*)&dir.x,(float*)&dir.x);
+        }
+    }
+    for(int j=0;j<count;s=self,++j) {
+        float dist=-(dir.y*(*(float*)(in+4))+dir.x*(*(float*)in)+dir.z*(*(float*)(in+8)));
+        if(dist>D_00275544) {
+            float cy=dist*color[2]+s->unk40.y;
+            float cz=dist*color[1]+s->unk40.z;
+            float fr=Min_DD80(dist*color[0]+s->unk40.x,1.0f);
+            float fg=Min_DD80(cy,1.0f);
+            float fb=Min_DD80(cz,1.0f);
+            unsigned col=(((int)(fr*D_0027A060)|0xffffff00)<<8);
+            col=(col|((int)(fg*D_0027A060)&255))<<8;
+            col|=(int)(fb*D_0027A060)&255;
+            *(unsigned*)(out+16)=col;
+        } else {
+            unsigned col=(((int)(s->unk40.x*D_0027A060)|0xffffff00)<<8);
+            col=(col|((int)(s->unk40.y*D_0027A060)&255))<<8;
+            col|=(int)(s->unk40.z*D_0027A060)&255;
+            *(unsigned*)(out+16)=col;
+        }
+        *(int*)(out+20)=0;
+        in+=stride; out+=32;
     }
 }
 

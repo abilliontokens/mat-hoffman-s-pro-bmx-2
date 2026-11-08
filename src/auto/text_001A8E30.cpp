@@ -308,9 +308,9 @@ float __stdcall func_001A90B0(float a, float b, float c)
     if (b > D_00275544 && c > D_00275544) {
         volatile float temp[2];
         temp[0] = b * c;
-        temp[1] = sqrtf(temp[0]);
-        float r = temp[1] * a;
-        return r + r;
+        *(float *)&temp[1] = AsmSqrtF(*(float *)&temp[0]);
+        float s = *(float *)&temp[1] * a;
+        return s + s;
     }
     return D_00275544;
 }
@@ -319,14 +319,15 @@ void C_001A8B80::func_001A9110(int a, float b, float c, float d, float e, float 
 {
  float t;
  C_001A8B80 *self = this;
+ C_001A8B80 * volatile vself = this;
  C_001A8B80 **pself = &self;
  if (*(void **)((char *)*pself + 0x24)) {
   *(int *)((char *)*pself + 0x94) = a;
   t = *(float *)(*(char **)((char *)*pself + 0x24) + 0x210) * b;
-  *(float *)((char *)*pself + 0xA0) = Abs_001A9110(t * D_00275BF8);
+  *(float *)((char *)*(C_001A8B80 * volatile *)&vself + 0xA0) = Abs_001A9110(t * D_00275BF8);
   *(float *)((char *)*pself + 0xA4) = func_001A90B0(c, *(float *)(*(char **)((char *)*pself + 0x24) + 0x210), *(float *)((char *)*pself + 0xA0));
   t = *(float *)(*(char **)((char *)*pself + 0x24) + 0x210) * d;
-  *(float *)((char *)*pself + 0xA8) = Abs_001A9110(t * D_00275BF8);
+  *(float *)((char *)*(C_001A8B80 * volatile *)&vself + 0xA8) = Abs_001A9110(t * D_00275BF8);
   *(float *)((char *)*pself + 0xAC) = func_001A90B0(e, *(float *)(*(char **)((char *)*pself + 0x24) + 0x210), *(float *)((char *)*pself + 0xA8));
   *(float *)((char *)*pself + 0xBC) = f;
   *(float *)((char *)*pself + 0xC0) = g;

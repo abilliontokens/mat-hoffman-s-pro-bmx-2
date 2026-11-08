@@ -66,3 +66,30 @@ struct C_000E21E0 {
     S_000E21E0_Elem *f2E0[8];
     void func_000E21E0(void);
 };
+
+void C_000E21E0::func_000E21E0(void)
+{
+    f2A4 = 0;
+    f2A8 = 0;
+    f2AC = 0;
+    f2B0 = 1;
+    f2BC = 0;
+    f280 = *D_002A8490->f2E0;
+    f2C0 = -1;
+    f2DC = 0;
+    f2D8 = 0;
+    f2C4 = 0;
+    f2C8 = 0;
+    f2CC = 0;
+    f2D0 = 0;
+    f2D4 = 0;
+    f284 = 0;
+    for (int i = 0; i < 8; i++) {
+        f2E0[i]->func_001B1980();
+    }
+    D_002B91AC->f34->func_0005E840(D_002A8490->f2E8->f4->fAB0);
+    D_002B91AC->func_000BF860(0, 0x1EB, 0x184, 0);
+    D_002B91AC->f38->func_0005E840(D_002A8490->f2E8->f4->f7C8);
+    D_002B91AC->func_000BF860(1, 0x17B, 0x184, 0);
+    D_002B91AC->f3C->func_0005E840(D_002A8490->f2E8->f4->f838);
+}

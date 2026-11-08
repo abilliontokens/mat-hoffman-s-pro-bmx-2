@@ -81,6 +81,7 @@ void C153DF0_Self::func_00153DF0(float dt)
     float va[4];
     float vb[4];
     int i;
+    Vec153DF0 outa, outb;
 
     if (D_002A8490->f124 != 0)
         return;
@@ -88,19 +89,23 @@ void C153DF0_Self::func_00153DF0(float dt)
         D_002B9120->f528->func_00017A40((void *)v4c);
     v18[0] = 0; v18[1] = 0; v18[2] = 0; v18[3] = 1;
     v4c[0] = 0; v4c[1] = 0; v4c[2] = 0; v4c[3] = 1;
-    if (f194 == 0)
-        return;
+    for (int slot = 0; slot < 7; ++slot) {
+    C153DF0_Self *o = (C153DF0_Self *)((char *)this + slot * 0x60);
+    if (o->f194 == 0)
+        continue;
     for (i = 0; i < 2; i++) {
         vec2[i][0] = 0; vec2[i][1] = 0; vec2[i][2] = 0; vec2[i][3] = 1;
     }
-    f1A0 += dt;
-    if (f198 == 0)
-        return;
-    if (f1A0 > D_002756DC) {
-        f198 = 0;
-        ((X153DF0_50900 *)f2C)->func_00150900((void *)v18, (void *)v4c);
-        f150->f150->v18();
-        fC0[0] = 0;
+    o->f1A0 += dt;
+    if (o->f198 == 0) {
+        o->f154[0] += dt * o->f184[0]; o->f154[1] += dt * o->f184[1]; o->f154[2] += dt * o->f184[2];
+        continue;
+    }
+    if (o->f1A0 > D_002756DC) {
+        o->f198 = 0;
+        ((X153DF0_50900 *)this)->func_00150900((void *)v18, (void *)v4c);
+        ((V153DF0 *)o->f150)->v18();
+        *(int *)((char *)this + 0xC4) = 0;
         f84[0] = D_002A789C;
         f84[1] = D_002A78A0;
         f84[2] = D_002A78A4;
@@ -110,24 +115,36 @@ void C153DF0_Self::func_00153DF0(float dt)
         f94[2] = D_002A78A4;
         f94[3] = D_002A78A8;
         va[0] = 1.5f; va[1] = -2.0f; va[2] = 0.0f; va[3] = 1.0f;
-        ((X153DF0_F *)f2C->f1A4_2[1])->func_00197F70((void *)va);
+        *(Vec153DF0 *)va = *((X153DF0_F *)f2C->f1A4_2[1])->func_00197F70(&outa, (void *)va);
         vb[0] = 1.5f; vb[1] = -2.0f; vb[2] = 6.0f; vb[3] = 1.0f;
-        ((X153DF0_F *)f2C->f1A4_2[1])->func_00197F70((void *)vb);
+        *(Vec153DF0 *)vb = *((X153DF0_F *)f2C->f1A4_2[1])->func_00197F70(&outb, (void *)vb);
         fC8[0] = va[0]; fC8[1] = va[1]; fC8[2] = va[2]; fC8[3] = va[3];
         ((X153DF0_78 *)f78)->func_0014AC30((void *)vec2, 0);
         ((X153DF0_78 *)f78)->func_00133ED0();
         ((X153DF0_78 *)f78)->func_00133F10(0);
-        if (fC0[0] == 0) {
-            f154[0] = va[0]; f154[1] = va[1]; f154[2] = va[2]; f154[3] = va[3];
+        if (*(int *)((char *)this + 0xC4) != 0) {
+            o->f154[0] = va[0]; o->f154[1] = va[1]; o->f154[2] = va[2]; o->f154[3] = va[3];
         } else {
-            f154[0] = vb[0]; f154[1] = vb[1]; f154[2] = vb[2]; f154[3] = vb[3];
+            o->f154[0] = vb[0]; o->f154[1] = vb[1]; o->f154[2] = vb[2]; o->f154[3] = vb[3];
         }
-        f150->f150->v18();
-        f150->func_00199600(&f154[0]);
-        f150->func_00198F50(&v18[0], &v4c[0], 0, 1, 0);
-        f150->func_0019AC50();
-        f164[0] = v18[0]; f164[1] = v18[1]; f164[2] = v18[2]; f164[3] = v18[3];
-        f174[0] = v4c[0]; f174[1] = v4c[1]; f174[2] = v4c[2]; f174[3] = v4c[3];
+        ((V153DF0 *)o->f150)->v18();
+        o->f150->func_00199600(*(Vec153DF0 *)o->f154);
+        o->f150->func_00198F50(&v18[0], &v4c[0], 0, 1, 0);
+        o->f150->func_0019AC50();
+        o->f164[0] = v18[0]; o->f164[1] = v18[1]; o->f164[2] = v18[2]; o->f164[3] = v18[3];
+        o->f174[0] = v4c[0]; o->f174[1] = v4c[1]; o->f174[2] = v4c[2]; o->f174[3] = v4c[3];
+        for (i=0; i<3; ++i) o->f184[i] = v18[i] * 250.0f;
+        o->f184[3] = 1.0f;
+        ((V153DF0 *)o->f1AC)->v18();
+        ((V153DF0 *)o->f1AC)->v78();
+        o->f1AC->func_0011CA60(*(Vec153DF0 *)o->f154);
+        o->f1AC->func_0011CA60(*(Vec153DF0 *)o->f154);
+        ((V153DF0 *)o->f1A8)->v18();
+        ((V153DF0 *)o->f1A8)->v78();
+        o->f1A8->func_0011CA60(*(Vec153DF0 *)o->f154);
+        o->f1A8->func_0011CA60(*(Vec153DF0 *)o->f154);
+        o->f150->func_001983A0();
+    }
     }
     return;
 }

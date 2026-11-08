@@ -564,14 +564,13 @@ void C_000B25D0::func_000B25D0(void)
 
 void C_000B2630::func_000B2630(void)
 {
-    S_000B2630_List * volatile *slot = &D_002B9120->f4E0;
     float best = 10000.0f;
     S_000B2630_Vec d;
     S_000B2630_Vec dir;
     int i;
-    for (i = 0; i < (*slot)->f24; i++) {
+    for (i = 0; i < D_002B9120->f4E0->f24; i++) {
         float dx, dy, dz, sum, dist;
-        d = *(*slot)->f1A8[i]->fA00->f4->func_00199B00(&dir, 0);
+        d = *(*(S_000B2630_Bike **)((char *)D_002B9120->f4E0 + 0x1a8 + i * 4))->fA00->f4->func_00199B00(&dir, 0);
         dx = d.x - this->f7C;
         dy = d.y - this->f80;
         dz = d.z - this->f84;

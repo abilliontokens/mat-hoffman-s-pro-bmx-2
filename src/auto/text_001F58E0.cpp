@@ -247,11 +247,9 @@ void func_001F5B7B(char *s, unsigned int n, S_U12 *x)
 #pragma optimize("a", on)
 int __cdecl func_001F5C49(unsigned long lo, unsigned long hi, unsigned long se, int ndigits, unsigned int flags, S_I10_Fos *fos)
 {
-    int retval;
-    int cnt;
-    unsigned char tenth[12] = { 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xfb, 0x3f };
-    S_I10_Ld12 ld12;
-    S_U12 tmp;
+    struct L_I10 { S_U12 tmp; unsigned char tenth[12]; S_I10_Ld12 ld12; int cnt; int retval; } L;
+    int cnt8;
+    int nd;
     unsigned long *plo = &lo;
     char *p;
     char *r;
@@ -263,7 +261,10 @@ int __cdecl func_001F5C49(unsigned long lo, unsigned long hi, unsigned long se, 
     unsigned short sign;
     unsigned short expn;
 
-    retval = 1;
+    L.tenth[0] = 0xcc; L.tenth[1] = 0xcc; L.tenth[2] = 0xcc; L.tenth[3] = 0xcc;
+    L.tenth[4] = 0xcc; L.tenth[5] = 0xcc; L.tenth[6] = 0xcc; L.tenth[7] = 0xcc;
+    L.tenth[8] = 0xcc; L.tenth[9] = 0xcc; L.tenth[10] = 0xfb; L.tenth[11] = 0x3f;
+    L.retval = 1;
     sign = (unsigned short)(se & 0x8000);
     expn = (unsigned short)(se & 0x7fff);
     if (sign) {
@@ -291,17 +292,17 @@ int __cdecl func_001F5C49(unsigned long lo, unsigned long hi, unsigned long se, 
             *(S_I10_Str7 *)fos->man = *(S_I10_Str7 *)D_0029634C;
             fos->manlen = 6;
         }
-        retval = 0;
+        L.retval = 0;
     } else {
-        ld12.w0 = 0;
-        ld12.lo = *plo;
-        ld12.hi = hi;
-        ld12.exp = expn;
+        L.ld12.w0 = 0;
+        L.ld12.lo = *plo;
+        L.ld12.hi = hi;
+        L.ld12.exp = expn;
         decexp = (short)(((((expn >> 8) + (int)(hi >> 24) * 2) * 0x4d) + expn * 0x4d10 - 0x134312f4) >> 16);
-        func_001F60E2((S_Ld12_001F60E2 *)&ld12, -decexp, 1);
-        if (ld12.exp >= 0x3fff) {
+        func_001F60E2((S_Ld12_001F60E2 *)&L.ld12, -decexp, 1);
+        if (L.ld12.exp >= 0x3fff) {
             decexp++;
-            func_001F5EC0((S_Ld12_001F60E2 *)&ld12, (S_Ld12_001F60E2 *)tenth);
+            func_001F5EC0((S_Ld12_001F60E2 *)&L.ld12, (S_Ld12_001F60E2 *)L.tenth);
         }
         fos->exp = decexp;
         if (flags & 1) {
@@ -315,31 +316,32 @@ zero_digit:
         if (ndigits > 0x15) {
             ndigits = 0x15;
         }
-        e = ld12.exp - 0x3ffe;
-        ld12.exp = 0;
-        cnt = 8;
+        e = L.ld12.exp - 0x3ffe;
+        L.ld12.exp = 0;
+        cnt8 = 8;
         do {
-            func_001F5B20((S_U12 *)&ld12);
-        } while (--cnt);
+            func_001F5B20((S_U12 *)&L.ld12);
+        } while (--cnt8);
         if (e < 0) {
             n = -e & 0xff;
             while (n > 0) {
-                func_001F5B4E((S_U12 *)&ld12);
+                func_001F5B4E((S_U12 *)&L.ld12);
                 n--;
             }
         }
-        cnt = ndigits + 1;
+        nd = ndigits + 1;
         p = fos->man;
-        if (cnt > 0) {
+        if (nd > 0) {
+            L.cnt = nd;
             do {
-                tmp = *(S_U12 *)&ld12;
-                func_001F5B20((S_U12 *)&ld12);
-                func_001F5B20((S_U12 *)&ld12);
-                func_001F5AC2((S_U12 *)&ld12, &tmp);
-                func_001F5B20((S_U12 *)&ld12);
-                *p++ = *((unsigned char *)&ld12 + 11) + '0';
-                *((unsigned char *)&ld12 + 11) = 0;
-            } while (--cnt);
+                L.tmp = *(S_U12 *)&L.ld12;
+                func_001F5B20((S_U12 *)&L.ld12);
+                func_001F5B20((S_U12 *)&L.ld12);
+                func_001F5AC2((S_U12 *)&L.ld12, &L.tmp);
+                func_001F5B20((S_U12 *)&L.ld12);
+                *p++ = *((unsigned char *)&L.ld12 + 11) + '0';
+                *((unsigned char *)&L.ld12 + 11) = 0;
+            } while (--L.cnt);
         }
         man = fos->man;
         r = p;
@@ -374,7 +376,7 @@ zero_digit:
         fos->manlen = (char)(r - fos->man + 1);
         fos->man[fos->manlen] = 0;
     }
-    return retval;
+    return L.retval;
 zero_tail:
     fos->exp = 0;
     fos->man[1] = 0;

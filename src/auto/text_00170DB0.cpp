@@ -333,8 +333,9 @@ void C_00171BA0::func_00171BA0(float x, float y, float z, float w)
     float d=x*v[0]+y*v[1]+z*v[2];
     V3_00171BA0 r=V3_00171BA0(x,y,z)-up*d;
     float len2=f150*f150+f154*f154+f158*f158;
-    float len=_mm_sqrt_ss(_mm_set_ss(len2)).m128_f32[0];
-    float t=_mm_max_ss(_mm_set_ss(d-len),_mm_setzero_ps()).m128_f32[0];
+    float len=AsmSqrtF(len2);
+    float zero=0.0f;
+    float t=AsmMaxF(d-len, zero);
     *(V3_00171BA0 *)&f150 += up*t+r;
 }
 

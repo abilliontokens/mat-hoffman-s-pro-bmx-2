@@ -483,10 +483,10 @@ void C_0012AB70R::func_0012AB70(S_0012AB70Vec *param1, S_0012AB70Vec *param2, S_
         f170 = *param1;
     }
     if (param2 != 0) {
-        func_0012A380(&f180, param2);
+        func_0012A380(f180p(), param2);
     }
     if (param3 != 0) {
-        func_0012A380(&f190, param3);
+        func_0012A380(f190p(), param3);
     }
     if (param4 != 0) {
         f1d4 = *param4;

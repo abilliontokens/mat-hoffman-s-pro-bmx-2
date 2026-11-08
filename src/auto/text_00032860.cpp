@@ -275,8 +275,9 @@ void BmxEvent::func_00032A60(void)
 #define GLOB ((char *)D_002A8490)
 #define MGR (*(char **)(GLOB + 0x2e0))
     char *self = (char *)this;
-    int n = *(int *)(self + 0x90);
-    int i;
+    volatile int n = *(int *)(self + 0x90);
+    int i = 0;
+    const float half = 0.5f;
 
     if (*(int *)(self + 0x11c) != 0) {
         char *obj = *(char **)(*(char **)(GLOB + 0x8) + 0x14 + *(int *)(MGR + 0x300 + *(int *)(self + 0x120) * 4) * 4);
@@ -291,7 +292,7 @@ void BmxEvent::func_00032A60(void)
                         int k;
                         for (k = 0; k < *(int *)(self + 0x90); k++) {
                             char *a = *(char **)(*(char **)(self + 0x64) + 0x4e0);
-                            *(float *)(*(char **)(a + 0x1a8 + k * 4) + 0x958) = 0.5f;
+                            *(float *)(*(char **)(a + 0x1a8 + k * 4) + 0x958) = half;
                         }
                     }
                     ((O_33320 *)*(char **)(self + 0x15c))->func_000602B0();
@@ -300,9 +301,9 @@ void BmxEvent::func_00032A60(void)
             }
         }
     }
-    for (i = 0; i < n; i++) {
+    for (; i < n; i++) {
         char *arr = *(char **)(GLOB + 0x8);
-        int id = *(int *)(MGR + i * 4);
+        int id = *(int *)(MGR + 0x300 + i * 4);
         char *obj = *(char **)(arr + 0x14 + id * 4);
         int mode;
         if (((V_32A60 *)obj)->v16() != 0) {
@@ -360,7 +361,7 @@ void BmxEvent::func_00032A60(void)
                 int k;
                 for (k = 0; k < *(int *)(self + 0x90); k++) {
                     char *a = *(char **)(*(char **)(self + 0x64) + 0x4e0);
-                    *(float *)(*(char **)(a + 0x1a8 + k * 4) + 0x958) = 0.5f;
+                    *(float *)(*(char **)(a + 0x1a8 + k * 4) + 0x958) = half;
                 }
             }
             ((O_33320 *)*(char **)(self + 0x15c))->func_000602B0();
@@ -378,7 +379,7 @@ void BmxEvent::func_00032A60(void)
                 int k;
                 for (k = 0; k < *(int *)(self + 0x90); k++) {
                     char *a = *(char **)(*(char **)(self + 0x64) + 0x4e0);
-                    *(float *)(*(char **)(a + 0x1a8 + k * 4) + 0x958) = 0.5f;
+                    *(float *)(*(char **)(a + 0x1a8 + k * 4) + 0x958) = half;
                 }
             }
             ((O_33320 *)*(char **)(self + 0x160))->func_000602B0();
@@ -520,34 +521,33 @@ int BmxEvent::func_00033300(void)
 
 int BmxEvent::func_00033320(void *a, int b)
 {
- int one = 1;
  if(*(int*)((char*)this+0x1f4)) return func_00157BF0(a,b);
  if(func_001361E0(0x17,2,a,0x80000000)) {
- if((*(int**)((char*)D_002A8490+0x2e0))[1] && (*(int*)((char*)this+0x90)!=one || *(int*)((char*)a+8)==(*(int**)((char*)D_002A8490+0x2e0))[0xc0])) {
+ if((*(int**)((char*)D_002A8490+0x2e0))[1] && (*(int*)((char*)this+0x90)!=1 || *(int*)((char*)a+8)==(*(int**)((char*)D_002A8490+0x2e0))[0xc0])) {
  if(*(int*)(*(int*)((char*)this+0x15c)+0xfc) || (*(int*)((char*)this+0x190) && *(int*)(*(int*)((char*)this+0x190)+0x168)) || (*(int*)((char*)this+0x1a8) && *(int*)(*(int*)((char*)this+0x1a8)+0x1c0)) || (*(int*)((char*)this+0x1ac) && *(int*)(*(int*)((char*)this+0x1ac)+0x1c0)) || (*(int*)((char*)this+0x164) && *(int*)(*(int*)((char*)this+0x164)+0x19c))) goto reject;
  ((C_00032A20*)this)->func_00032A20();
- (*(V_33320**)((char*)f64+0x4c0))->v31(one,one);
- (*(V_33320**)(*(int**)((char*)D_002A8490+0x2e0)+0xbf))->v18(one);
+ (*(V_33320**)((char*)f64+0x4c0))->v31(1,1);
+ (*(V_33320**)(*(int**)((char*)D_002A8490+0x2e0)+0xbf))->v18(1);
  if((*(int**)((char*)D_002A8490+0x2e0))[1]!=10) {
  for(int i=0;i<*(int*)((char*)this+0x90);i++) *(float*)(*(int*)(*(int*)((char*)f64+0x4e0)+0x1a8+i*4)+0x958)=0.5f;
 }
  (*(O_33320**)((char*)this+0x15c))->func_000602B0();
  (*(O_33320**)((char*)this+0x15c))->func_00060350(*(int*)((char*)a+8));
- return one;
+ return 1;
  } else {
  if(*(int*)((char*)a+8)!=(*(int**)((char*)D_002A8490+0x2e0))[0xc0] || (*(int*)((char*)this+0x16c) && *(int*)(*(int*)((char*)this+0x16c)+0x1c8)) || (*(int*)((char*)this+0x190) && *(int*)(*(int*)((char*)this+0x190)+0x168))) goto reject;
  ((C_00032A20*)this)->func_00032A20();
  if(*(int*)((char*)f64+0x594)) {
- if(((O_33320*)(*(V_33320**)(*(int**)((char*)D_002A8490+0x2e0)+0xbf)))->func_00094EE0() && !*(int*)((char*)(*(V_33320**)(*(int**)((char*)D_002A8490+0x2e0)+0xbf))+0x24)) *(int*)((char*)this+0x118)=one;
- else { *(int*)((char*)this+0x118)=0; (*(V_33320**)(*(int**)((char*)D_002A8490+0x2e0)+0xbf))->v18(one); }
- } else (*(V_33320**)(*(int**)((char*)D_002A8490+0x2e0)+0xbf))->v18(one);
- (*(V_33320**)((char*)f64+0x4c0))->v31(one,one);
+ if(((O_33320*)(*(V_33320**)(*(int**)((char*)D_002A8490+0x2e0)+0xbf)))->func_00094EE0() && !*(int*)((char*)(*(V_33320**)(*(int**)((char*)D_002A8490+0x2e0)+0xbf))+0x24)) *(int*)((char*)this+0x118)=1;
+ else { *(int*)((char*)this+0x118)=0; (*(V_33320**)(*(int**)((char*)D_002A8490+0x2e0)+0xbf))->v18(1); }
+ } else (*(V_33320**)(*(int**)((char*)D_002A8490+0x2e0)+0xbf))->v18(1);
+ (*(V_33320**)((char*)f64+0x4c0))->v31(1,1);
  if((*(int**)((char*)D_002A8490+0x2e0))[1]!=10) {
  for(int i=0;i<*(int*)((char*)this+0x90);i++) *(float*)(*(int*)(*(int*)((char*)f64+0x4e0)+0x1a8+i*4)+0x958)=0.5f;
 }
  (*(O_33320**)((char*)this+0x160))->func_000602B0();
  (*(O_33320**)((char*)this+0x160))->func_00060350(*(int*)((char*)a+8));
- return one;
+ return 1;
  }
 reject:;
  }

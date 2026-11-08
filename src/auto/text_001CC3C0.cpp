@@ -550,11 +550,7 @@ int C_001CC3C0::func_001CCE10(int a, int b, int c, int d)
                 return 0;
             }
         }
-        int *p = &f1E8;
-        p[0] = a;
-        p[1] = b;
-        p[2] = c;
-        p[3] = d;
+        ((S_V4_001CCE10 *)&f1E8)->Set(a, b, c, d);
     }
     return 1;
 }

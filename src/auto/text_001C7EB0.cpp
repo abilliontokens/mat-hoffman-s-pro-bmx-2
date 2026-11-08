@@ -172,47 +172,38 @@ void Walker::func_001C7EB0(float dt)
             C.y = E.y;
             unk3C->unk4->func_00199790(0, &C);
             if (unkC0[unkC4].f54 != 0) {
-                int ns = func_001C6820(unkCC);
-                if (ns != unkB8) {
-                    int old = unkB8;
-                    int b1 = 0;
-                    int b2 = 0;
+                int state = func_001C6820(unkCC);
+                int old = unkB8;
+                if (state != old) {
+                    int flag1 = 0;
+                    int flag2 = 0;
                     if (old == 1) {
-                        b1 = 1;
+                        flag1 = 1;
                     } else if (old == 2) {
-                        b2 = 1;
+                        flag2 = 1;
                     } else if (old == 3) {
-                        b2 = 1;
-                        b1 = 1;
+                        flag2 = 1;
+                        flag1 = 1;
                     }
-                    unkB8 = ns;
-                    Vec4W A;
-                    if (!b1) {
-                        if (ns == 1 || ns == 3) {
+                    unkB8 = state;
+                    if (!flag1) {
+                        if (state == 1 || state == 3) {
                             func_001C6EA0(unk40, &f50, &f60);
-                            A = unk40->func_00199B00(0);
-                            for (int i = 9; i > 0; i--) hist[i] = hist[i - 1];
-                            hist[0] = A;
+                            PushHist(0, unk40->func_00199B00(0));
                         }
                     } else {
-                        if (ns == 2 || ns == 0) {
-                            A = unk40->func_00199B00(0);
-                            for (int i = 9; i > 0; i--) hist[20 + i] = hist[20 + i - 1];
-                            hist[20] = A;
+                        if (state == 2 || state == 0) {
+                            PushHist(20, unk40->func_00199B00(0));
                         }
                     }
-                    if (!b2) {
-                        if (ns == 2 || ns == 3) {
+                    if (!flag2) {
+                        if (state == 2 || state == 3) {
                             func_001C6EA0(unk44, &f80, &f90);
-                            A = unk44->func_00199B00(0);
-                            for (int i = 9; i > 0; i--) hist[10 + i] = hist[10 + i - 1];
-                            hist[10] = A;
+                            PushHist(10, unk44->func_00199B00(0));
                         }
                     } else {
-                        if (ns == 1 || ns == 0) {
-                            A = unk44->func_00199B00(0);
-                            for (int i = 9; i > 0; i--) hist[30 + i] = hist[30 + i - 1];
-                            hist[30] = A;
+                        if (state == 1 || state == 0) {
+                            PushHist(30, unk44->func_00199B00(0));
                         }
                     }
                 }

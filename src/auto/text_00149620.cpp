@@ -258,7 +258,6 @@ int C_0014A3A0::func_00149ED0(int param_1, int param_2)
     void __stdcall func_001FF4E0(int a, int b, int c, int d, float e, int f);
     void __stdcall func_001FEE00(int a, void *b, int c);
 
-    V_149ED0 vtx;
     int h1;
     Vec4f_149620 m[4];
     int h2;
@@ -340,28 +339,31 @@ int C_0014A3A0::func_00149ED0(int param_1, int param_2)
     if (param_1 > unk58)
         param_1 = unk58;
 
-    for (i = 0; i < param_1; i++) {
-        vtx.f0 = 0;
-        vtx.f4 = 0;
-        vtx.f8 = unk9C[i];
-        vtx.fC = unkBC[i];
-        vtx.f10 = 0;
-        vtx.f14 = 0x3f800000;
-        func_001FF940(unk28[i], 0);
-        func_00200230(&vtx);
-        func_001FF4E0(0, 0, 0xf0, 0xfff020f0, 1.0f, 0);
-        if (i == 0) {
-            func_00200390(0, unk48);
-            func_00200390(1, unk48);
-            func_00200390(2, unk48);
-            func_00200390(3, unk48);
-        } else {
-            func_00200390(0, unk8[i - 1]);
-            func_00200390(1, unk8[i - 1]);
-            func_00200390(2, unk8[i - 1]);
-            func_00200390(3, unk8[i - 1]);
+    {
+        V_149ED0 vtx;
+        for (i = 0; i < param_1; i++) {
+            vtx.f0 = 0;
+            vtx.f4 = 0;
+            vtx.f8 = unk9C[i];
+            vtx.fC = unkBC[i];
+            vtx.f10 = 0;
+            vtx.f14 = 0x3f800000;
+            func_001FF940(unk28[i], 0);
+            func_00200230(&vtx);
+            func_001FF4E0(0, 0, 0xf0, 0xfff020f0, 1.0f, 0);
+            if (i == 0) {
+                func_00200390(0, unk48);
+                func_00200390(1, unk48);
+                func_00200390(2, unk48);
+                func_00200390(3, unk48);
+            } else {
+                func_00200390(0, unk8[i - 1]);
+                func_00200390(1, unk8[i - 1]);
+                func_00200390(2, unk8[i - 1]);
+                func_00200390(3, unk8[i - 1]);
+            }
+            func_00200A90(8, 0, 4);
         }
-        func_00200A90(8, 0, 4);
     }
 
     if (D_002A74D0 != 0) {

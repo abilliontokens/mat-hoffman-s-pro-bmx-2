@@ -107,6 +107,7 @@ int func_001B2910(int param_1)
             case 0x3f:
             case 0x40:
             case 0x41:
+            ret20:
                 return 0x20;
             case 0x64:
                 return 0;
@@ -117,13 +118,13 @@ int func_001B2910(int param_1)
     } else {
         switch (param_1) {
         case 0x22b8:
-            return 0x20;
-        case 0x378:
-            return 0x18;
+            goto ret20;
         case 0x235:
         case 0x613:
         case 0x115c:
             return 0x10;
+        case 0x378:
+            return 0x18;
         }
         return 0;
     }
@@ -302,89 +303,62 @@ int func_001B2CD0(S_001B3560 *item, int a)
 
 int func_001B2F10(S_001B3560 *item, int a)
 {
-    unsigned int size;
-    register int count;
-    unsigned char *p;
-    unsigned char *end;
-
-    size = item->fE * item->f10 * 4;
-    count = item->fE * item->f10;
+    unsigned int count = item->f10 * item->fE;
+    unsigned int size = count * 4;
+    unsigned int *p;
     if (size > (unsigned int)item->f18) {
-        if (item->f14 != 0) {
-            func_001E8390(item->f14);
-        }
+        if (item->f14) func_001E8390(item->f14);
         item->f14 = 0;
         item->f18 = 0;
     }
-    if (item->f14 == 0) {
+    if (!item->f14) {
         item->f14 = func_001E8AA5(size);
-        if (item->f14 == 0) {
-            return 0;
-        }
+        if (!item->f14) return 0;
         item->f18 = size;
     }
-    p = (unsigned char *)item->f14;
-    end = p + size;
+    p = (unsigned int *)item->f14;
+    size += (unsigned int)p;
     if (item->f2 == 2) {
-        if (D_002BEAAC->func_0013C8A0(a, p, 4, count) != count) {
-            return 0;
-        }
-    } else if (p < end) {
-        do {
-            unsigned char hdr;
-            D_002BEAAC->func_0013C8A0(a, &hdr, 1, 1);
-            count = hdr;
-            if (count & 0x80) {
-                unsigned int pixel;
-                count &= 0x7f;
-                if (D_002BEAAC->func_0013C8A0(a, &pixel, 4, 1) != 1) {
-                    return 0;
-                }
-                do {
-                    *(unsigned int *)p = pixel;
-                    p += 4;
-                } while (count-- != 0);
+        if (D_002BEAAC->func_0013C8A0(a, p, 4, count) != (int)count) return 0;
+    } else {
+        unsigned char packet;
+        unsigned int pixel;
+        while (p < (unsigned int *)size) {
+            D_002BEAAC->func_0013C8A0(a, &packet, 1, 1);
+            unsigned int n = packet;
+            if (n & 0x80) {
+                n &= 0x7f;
+                if (D_002BEAAC->func_0013C8A0(a, &pixel, 4, 1) != 1) return 0;
+                do { *p++ = pixel; } while (n--);
             } else {
-                count++;
+                ++n;
                 do {
-                    if (D_002BEAAC->func_0013C8A0(a, p, 4, 1) != 1) {
-                        return 0;
-                    }
-                    p += 4;
-                } while (--count != 0);
+                    if (D_002BEAAC->func_0013C8A0(a, p, 4, 1) != 1) return 0;
+                    ++p;
+                } while (--n);
             }
-        } while (p < end);
+        }
     }
     if (!(item->f13 & 0x20)) {
-        int stride;
-        int i;
-        unsigned char *top = (unsigned char *)item->f14;
-        unsigned char *bot = top + (item->f10 - 1) * item->fE * 4;
-        unsigned char *tmp;
-
-        if (item->f120 != 0 && (unsigned int)item->f124 < (unsigned int)(item->fE * 4)) {
+        char *first = (char *)item->f14;
+        char *last = first + (item->f10 - 1) * item->fE * 4;
+        if (item->f120 && (unsigned int)item->f124 < (unsigned int)(item->fE * 4)) {
             func_001E8390((void *)item->f120);
             item->f124 = 0;
             item->f120 = 0;
         }
-        if (item->f120 == 0) {
+        if (!item->f120) {
             item->f120 = (int)func_001E8AA5(item->fE * 4);
-            if (item->f120 == 0) {
-                return 0;
-            }
+            if (!item->f120) return 0;
             item->f124 = item->fE * 4;
         }
-        tmp = (unsigned char *)item->f120;
-        for (i = 0; i < item->f10 / 2; i++) {
-            stride = item->fE * 4;
-            memcpy(tmp, top, stride);
-            stride = item->fE * 4;
-            memcpy(top, bot, stride);
-            stride = item->fE * 4;
-            memcpy(bot, tmp, stride);
-            stride = item->fE * 4;
-            bot -= stride;
-            top += stride;
+        void *tmp = (void *)item->f120;
+        for (int i = 0; i < item->f10 / 2; ++i) {
+            memcpy(tmp, first, item->fE * 4);
+            memcpy(first, last, item->fE * 4);
+            memcpy(last, tmp, item->fE * 4);
+            last -= item->fE * 4;
+            first += item->fE * 4;
         }
         item->f13 |= 0x20;
     }
@@ -393,8 +367,8 @@ int func_001B2F10(S_001B3560 *item, int a)
 
 int func_001B3150(S_001B3560 *item, int a)
 {
-    int count = item->f10;
-    count *= item->fE;
+    int count = item->fE;
+    count *= item->f10;
     unsigned int size = count * 2;
     if (size > (unsigned int)item->f18) {
         if (item->f14) func_001E8390(item->f14);
@@ -406,12 +380,12 @@ int func_001B3150(S_001B3560 *item, int a)
         if (!item->f14) return 0;
         item->f18 = size;
     }
-    unsigned char *p = (unsigned char *)item->f14;
-    unsigned char *end = p + size;
+    unsigned short *p = (unsigned short *)item->f14;
+    unsigned short *end = p + count;
     if (item->f2 == 2) {
         for (int i = 0; i < item->f10; i++) {
             if (D_002BEAAC->func_0013C8A0(a, p, 2, item->fE) != item->fE) return 0;
-            p += item->fE * 2;
+            p += item->fE;
         }
     } else {
         do {
@@ -422,11 +396,11 @@ int func_001B3150(S_001B3560 *item, int a)
             if (n & 0x80) {
                 n &= 0x7f;
                 if (D_002BEAAC->func_0013C8A0(a, &pixel, 2, 1) != 1) return 0;
-                do { *(unsigned short *)p = pixel; p += 2; } while (n--);
+                do { *p++ = pixel; } while (n--);
             } else {
                 ++n;
                 if (D_002BEAAC->func_0013C8A0(a, p, 2, n) != (int)n) return 0;
-                p += n * 2;
+                p += n;
             }
         } while (p < end);
     }

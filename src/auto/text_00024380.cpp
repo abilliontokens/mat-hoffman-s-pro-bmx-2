@@ -151,41 +151,60 @@ extern char D_002763AC[], D_00276388[], D_00276378[], D_00276370[];
 extern char D_0027635C[], D_0027634C[], D_00276328[], D_00276314[];
 extern char D_00276310[], D_00275630[], D_00276300[], D_00276218[];
 extern V4_24380 D_002A0F74;
-void AmbientDebris::func_00024380(Ini_24380 *ini)
+extern "C" unsigned int __cdecl strlen(const char *);
+extern char D_00276410[],D_00276404[],D_002763F4[],D_002763E4[],D_002A48F8[],D_00275678[],D_002A5348[],D_002A47F0[];
+extern void *D_002A8490,*D_002B9120;
+extern char D_002763D0[];
+extern char D_002763BC[];
+extern char D_002763AC[];
+extern char D_00276398[];
+extern char D_00276388[];
+extern char D_00276378[];
+extern char D_00276370[];
+extern char D_0027635C[];
+extern char D_0027634C[];
+extern char D_00276338[];
+extern char D_00276328[];
+extern char D_00276314[];
+extern char D_00276218[];
+extern char D_00276310[];
+extern char D_00275630[];
+extern char D_00276300[];
+extern char D_00276424[];
+void AmbientDebris::func_00024380(Ini_24380 * volatile ini)
 {
-    char buf[0x104];
-    char buf2[0x104];
+    AmbientDebris * volatile self = this;
+    char buf[0x20];
+    char key[0x40];
+    char path[0x104];
+    char saved[0x104];
+    int base;
     int cnt;
     int n;
     int start;
     int i;
     int t;
     int idx;
-    int j;
-    int k;
-    int total;
+    int toggle;
 
-    idx = -1;
-    if (!ini->func_00169710(D_00276510))
-        return;
+    base = -1;
+    if (ini->func_00169710(D_00276510)) {
     ini->func_00168C20(D_00276504, 0, &cnt);
-    if (cnt <= 0)
-        return;
-    if (f64 == 0) {
-        f34 = cnt;
-        n = f34;
+    if (cnt > 0) {
+    if (self->f64 == 0) {
+        self->f34 = cnt;
+        n = self->f34;
         start = 0;
-        idx = 0;
-        f64 = (Debris_24380 **)func_001E8A44(n * 4);
+        base = 0;
+        self->f64 = (Debris_24380 **)func_001E8A44(n * 4);
     } else {
-        start = f34;
-        f34 = start + cnt;
-        n = f34;
-        f64 = (Debris_24380 **)func_001E83E8(f64, n * 4);
-        idx = n;
+        start = self->f34;
+        self->f34 = start + cnt;
+        n = self->f34;
+        self->f64 = (Debris_24380 **)func_001E83E8(self->f64, n * 4);
+        base = start;
     }
-    if (start >= n)
-        return;
+    
     for (i = start; i < n; i++) {
         void *m = func_001E8A44(0x134);
         Debris_24380 *o;
@@ -198,266 +217,176 @@ void AmbientDebris::func_00024380(Ini_24380 *ini)
         } else {
             o = 0;
         }
-        f64[i] = o;
+        self->f64[i] = o;
         func_001ADCC0(buf, 0x20, D_002764F8, i - start + 1);
         ini->func_00169710(buf);
-        ini->func_00168BE0(D_002764EC, D_002764F0, o->f30, 0x104);
+        ini->func_00168BE0(D_002764EC, D_002764F0, self->f64[i]->f30, 0x104);
         ini->func_00168C20(D_002764DC, 1, &idx);
-        o->f2C = (unsigned char)idx;
-        ini->func_00168C50(D_002764D8, 60.0f, &o->f0);
-        ini->func_00168CB0(D_002764C8, &D_002A0FA4, &o->f1C);
-        ini->func_00168C20(D_002764B4, 0, &t);
-        o->f2E = (unsigned char)t;
+        self->f64[i]->f2C = (unsigned char)idx;
+        ini->func_00168C50(D_002764D8, 60.0f, &self->f64[i]->f0);
+        ini->func_00168CB0(D_002764C8, &D_002A0FA4, &self->f64[i]->f1C);
+        ini->func_00168C20(D_002764B4, 0, &toggle);
+        self->f64[i]->f2E = (unsigned char)toggle;
         ini->func_00168C20(D_002764A8, 0, &t);
-        o->f8 = t - 1;
-        if (o->f8 != -1)
-            o->f8 += start;
+        self->f64[i]->f8 = t - 1;
+        if (self->f64[i]->f8 != -1)
+            self->f64[i]->f8 += start;
         ini->func_00168C20(D_0027649C, 0, &t);
-        o->fC = t - 1;
+        self->f64[i]->fC = t - 1;
         ini->func_00168C20(D_00276490, 0, &t);
-        o->f10 = t - 1;
-        if (o->f10 != -1)
-            o->f10 += start;
+        self->f64[i]->f10 = t - 1;
+        if (self->f64[i]->f10 != -1)
+            self->f64[i]->f10 += start;
         ini->func_00168C20(D_00276488, 0, &t);
-        o->f14 = t - 1;
-        o->f18 = 0;
-        o->f4 = 0;
-        o->f2D = 0;
-        o->f2F = 0;
+        self->f64[i]->f14 = t - 1;
+        self->f64[i]->f18 = 0;
+        self->f64[i]->f4 = 0;
+        self->f64[i]->f2D = 0;
+        self->f64[i]->f2F = 0;
+    }
+    }
     }
     if (ini->func_00169710(D_0027647C)) {
         ini->func_00168C20(D_00276470, 0, &cnt);
-        if (cnt > 0 && start != -1) {
-            if (f68 == 0) {
-                f38 = cnt;
-                n = f38;
-                start = 0;
-                f68 = (Seg_24380 **)func_001E8A44(n * 4);
-            } else {
-                start = f38;
-                f38 = start + cnt;
-                n = f38;
-                f68 = (Seg_24380 **)func_001E83E8(f68, n * 4);
-            }
-            if (start < n) {
-                for (i = start; i < n; i++) {
-                    Seg_24380 *s = (Seg_24380 *)func_001E8A44(0x14);
-                    f68[i] = s;
-                    s->f4 = 0;
-                    func_001ADCC0(buf, 0x10, D_00276464, i - start + 1);
-                    ini->func_00169710(buf);
-                    ini->func_00168C20(D_00276454, 0, s);
-                    ini->func_00168C20(D_002764A8, 0, &t);
-                    s->f8 = t - 1;
-                    if (s->f8 != -1)
-                        s->f8 += start;
-                    ini->func_00168C20(D_00276490, 0, &t);
-                    s->fC = t - 1;
-                    if (s->fC != -1)
-                        s->fC += start;
-                    f64[s->f8]->f2F = 1;
-                    f64[s->fC]->f2F = 1;
-                    if (s->f0 > 0) {
-                        V4_24380 *arr = (V4_24380 *)func_001E8A44(s->f0 * 16);
-                        if (arr)
-                            func_00011FF0(arr, 0x10, s->f0, D_00021290);
-                        s->f10 = arr;
-                        for (k = 0; k < s->f0; k++) {
-                            V4_24380 v;
-                            v.x = 0.0f;
-                            v.y = 0.0f;
-                            v.z = 0.0f;
-                            v.w = 1.0f;
-                            func_001ADCC0(buf, 0x20, D_00276444, i + 1, k + 1);
-                            ini->func_00168CB0(buf, &D_002A0F74, &v);
-                            ((V4_24380 *)s->f10)[k] = v;
-                            ((V4_24380 *)s->f10)[k].w = 0.0f;
-                        }
-                    } else {
-                        s->f10 = 0;
-                    }
-                }
-            }
-        }
-    }
-    if (ini->func_00169710(D_0027643C)) {
-        ini->func_00168C20(D_0027642C, 0, &cnt);
-        if (cnt > 0 && start != -1) {
-            if (f60 == 0) {
-                f30 = cnt;
-                n = f30;
-                start = 0;
-                f60 = (D217F0_24380 **)func_001E8A44(n * 4);
-            } else {
-                start = f30;
-                f30 = start + cnt;
-                n = f30;
-                f60 = (D217F0_24380 **)func_001E83E8(f60, n * 4);
-            }
-            if (start < n) {
-                for (i = start; i < n; i++) {
-                    void *m = func_001E8A44(0x7c);
-                    D217F0_24380 *o = m ? ((D217F0_24380 *)m)->func_000217F0(1) : 0;
-                    f60[i] = o;
-                    func_001ADCC0(buf, 0x10, D_00276424, i - start + 1);
-                    ini->func_00169710(buf);
-                    o->func_001D3F50();
-                    o->func_00021890(ini, start);
-                    func_001577A0(f60[i], -1);
-                }
-            }
-        }
-        ini->func_00168C20(D_00276410, 0, &cnt);
-        if (cnt > 0 && start != -1) {
-            if (f5C == 0) {
-                f40 = cnt;
-                n = f40;
-                start = 0;
-                f5C = (Seg5C_24380 **)func_001E8A44(n * 4);
-            } else {
-                start = f40;
-                f40 = start + cnt;
-                n = f40;
-                f5C = (Seg5C_24380 **)func_001E83E8(f5C, n * 4);
-            }
-            if (start < n) {
-                int len = 0;
-                char *p = D_002A48F8;
-                while (*p++)
-                    len++;
-                if (len > 0x103)
-                    len = 0x103;
-                func_001E8920(buf2, D_002A48F8, len);
-                func_001ADCC0(D_002A48F8, 0x104, D_00275678, D_002A5348, D_002A47F0);
-                buf2[len] = 0;
-                ini->func_00169710(D_002A48F8);
-                for (i = start; i < n; i++) {
-                    Seg5C_24380 *s = (Seg5C_24380 *)func_001E8A44(8);
-                    void *m;
-                    f5C[i] = s;
-                    func_001ADCC0(buf, 0x20, D_002763F4, i + 1);
-                    ini->func_00168BE0(buf, 0, buf2, -1);
-                    ini->func_00168C20(D_002763E4, 0, &t);
-                    s->f0 = t - 1;
-                    m = func_001E8A44(0x20c);
-                    s->f4 = m ? ((Obj20C_24380 *)m)->func_001CF740(
-                                   *(void **)((char *)D_002A8490 + 4),
-                                   0, 1) : 0;
-                    ((Obj20C_Vtbl_24380 *)s->f4->vtbl)->v10(1, 1, 0, 0, buf2);
-                }
-                len = 0;
-                p = buf2;
-                while (*p++)
-                    len++;
-                if (len > 0x103)
-                    len = 0x103;
-                func_001E8920(D_002A48F8, buf2, len);
-                D_002A48F8[len] = 0;
-            }
-        }
-    }
-    if (ini->func_00169710(D_002763D0)) {
-        ini->func_00168C20(D_002763BC, 0, &cnt);
-        if (cnt > 0 && start != -1) {
-            if (f6C == 0) {
-                f3C = cnt;
-                n = f3C;
-                start = 0;
-                f6C = (int (*)[2])func_001E8A44(n * 8);
-            } else {
-                start = f3C;
-                f3C = start + cnt;
-                n = f3C;
-                f6C = (int (*)[2])func_001E83E8(f6C, n * 8);
-            }
-            if (start < n) {
-                total = 0;
-                for (i = start; i < n; i++) {
-                    func_001ADCC0(buf, 0x40, D_002763AC, i - start + 1);
-                    ini->func_00169710(buf);
-                    ini->func_00168C20(D_00276388, 0, &t);
-                    ini->func_00168C20(D_00276378, 0, &j);
-                    t += start;
-                    if (t < 0)
-                        t = 0;
-                    ((int *)f6C)[i * 2] = t;
-                    ((int *)f6C)[i * 2 + 1] = j;
-                    total += j;
-                }
-                if (total > 0) {
-                    if (f60 == 0) {
-                        f60 = (D217F0_24380 **)func_001E8A44((f30 + total) * 4);
-                    } else {
-                        f60 = (D217F0_24380 **)func_001E83E8(f60, (f30 + total) * 4);
-                    }
-                    i = f30;
-                    for (k = 0; k < n; k++) {
-                        func_001ADCC0(buf, 0x20, D_00276378, k + 1);
-                        ini->func_00169710(buf);
-                        for (j = 0; j < ((int *)f6C)[k * 2 + 1]; j++) {
-                            void *m = func_001E8A44(0x7c);
-                            D217F0_24380 *o = m ? ((D217F0_24380 *)m)->func_000217F0(1) : 0;
-                            f60[i] = o;
-                            o->f7a = 1;
-                            o->func_001D3F50();
-                            o->func_00021890(ini, start);
-                            func_001577A0(f60[i], -1);
-                            i++;
-                        }
-                    }
-                    f30 += total;
-                }
-            }
-        }
-    }
-    if (ini->func_00169710(D_00276370)) {
-        ini->func_00168C20(D_0027635C, 0, &f44);
-        if (f44 > 0) {
-            f70 = (Obj138_24380 **)func_001E8A44(f44 * 4);
-            k = 1;
-            for (i = 0; i < f44; i++) {
-                Obj138_24380 *o;
-                int t20;
-                int t14;
-                func_001ADCC0(buf, 0x10, D_0027634C, k);
+        if (cnt > 0 && base != -1) {
+            if (!self->f68) { self->f38=cnt; n=self->f38; start=0; self->f68=(Seg_24380**)func_001E8A44(n*4); }
+            else { start=self->f38; self->f38=start+cnt; n=self->f38; self->f68=(Seg_24380**)func_001E83E8(self->f68,n*4); }
+            for(i=start;i<n;i++) {
+                self->f68[i]=(Seg_24380*)func_001E8A44(0x14);
+                self->f68[i]->f4=0;
+                func_001ADCC0(buf,0x10,D_00276464,i-start+1);
                 ini->func_00169710(buf);
-                ini->func_00168C20(D_00276328, 0, &t20);
-                ini->func_00168C20(D_00276314, 0, &t14);
-                {
-                    void *m = func_001E8A44(0x138);
-                    if (m) {
-                        o = (Obj138_24380 *)m;
-                        o->vtbl = D_00276218;
-                        o->f8 = t20;
-                        o->f10 = t14;
-                        o->f14 = f50;
-                        o->f18 = (void **)func_001E8A44(f50 * 4);
-                        o->fC = (void **)func_001E8A44(o->f8 * 4);
-                        o->f4 = 0;
-                        o->f34[0] = 0;
-                        o->f1C = 4.0f;
-                        o->f20 = 1.3f;
-                        o->f24 = 20.0f;
-                        o->f28 = 10.0f;
-                        o->f2C = 10.0f;
-                        o->f30 = 10.0f;
-                    } else {
-                        o = 0;
+                ini->func_00168C20(D_00276454,0,&self->f68[i]->f0);
+                ini->func_00168C20(D_002764A8,0,&t);
+                self->f68[i]->f8=t-1;
+                if(self->f68[i]->f8!=-1) self->f68[i]->f8+=base;
+                ini->func_00168C20(D_00276490,0,&t);
+                self->f68[i]->fC=t-1;
+                if(self->f68[i]->fC!=-1) self->f68[i]->fC+=base;
+                self->f64[self->f68[i]->f8]->f2F=1;
+                self->f64[self->f68[i]->fC]->f2F=1;
+                if(self->f68[i]->f0>0) {
+                    int count=self->f68[i]->f0;
+                    void *p=func_001E8A44(count*16);
+                    if(p) func_00011FF0(p,16,count,D_00021290); else p=0;
+                    self->f68[i]->f10=p;
+                    for(int j=0;j<self->f68[i]->f0;j++) {
+                        func_001ADCC0(key,0x20,D_00276444,i+1,j+1);
+                        V4_24380 v; v.z=v.y=v.x=0.0f; v.w=1.0f;
+                        ini->func_00168CB0(key,&D_002A0F74,&v);
+                        ((V4_24380*)self->f68[i]->f10)[j].x=v.x;
+                        ((V4_24380*)self->f68[i]->f10)[j].y=v.y;
+                        ((V4_24380*)self->f68[i]->f10)[j].z=v.z;
+                        ((V4_24380*)self->f68[i]->f10)[j].w=0.0f;
+                    }
+                } else self->f68[i]->f10=0;
+            }
+        }
+    }
+    if(ini->func_00169710(D_0027643C)) {
+        ini->func_00168C20(D_0027642C,0,&cnt);
+        if(cnt>0 && base!=-1) {
+            if(!self->f60) { self->f30=cnt; n=self->f30; start=0; self->f60=(D217F0_24380**)func_001E8A44(n*4); }
+            else { start=self->f30; self->f30=start+cnt; n=self->f30; self->f60=(D217F0_24380**)func_001E83E8(self->f60,n*4); }
+            for(i=start;i<n;i++) {
+                D217F0_24380 *p=(D217F0_24380*)func_001E8A44(0x7c);
+                self->f60[i]=p?p->func_000217F0(1):0;
+                func_001ADCC0(buf,0x10,D_00276424,i-start+1);
+                ini->func_00169710(buf);
+                p=self->f60[i]; p->func_001D3F50(); p->func_00021890(ini,base);
+                func_001577A0(self->f60[i],-1);
+            }
+        }
+        ini->func_00168C20(D_00276410,0,&cnt);
+        if(cnt>0 && base!=-1) {
+            int first;
+            if(!self->f5C) { self->f40=cnt;n=self->f40;first=0;self->f5C=(Seg5C_24380**)func_001E8A44(n*4); }
+            else { first=self->f30; self->f40+=cnt;n=self->f40;self->f5C=(Seg5C_24380**)func_001E83E8(self->f5C,n*4); }
+            int len=strlen(D_002A48F8);
+            int size=len<0x103?len:0x103;
+            func_001E8920(saved,D_002A48F8,size);saved[size]=0;
+            func_001ADCC0(D_002A48F8,0x104,D_00275678,D_002A5348,D_002A47F0);
+            ini->func_00169710(D_00276404);
+            for(i=first;i<n;i++) {
+                self->f5C[i]=(Seg5C_24380*)func_001E8A44(8);
+                func_001ADCC0(buf,0x20,D_002763F4,i-first+1);
+                ini->func_00168BE0(buf,0,path,-1);
+                func_001ADCC0(buf,0x20,D_002763E4,i-first+1);
+                ini->func_00168C20(buf,0,&t);
+                self->f5C[i]->f0=t-1;
+                Obj20C_24380 *p=(Obj20C_24380*)func_001E8A44(0x20c);
+                self->f5C[i]->f4=p?p->func_001CF740(*(void**)((char*)*(void**)((char*)D_002A8490+4)+0xb4),*(int*)((char*)D_002B9120+0x4c0),1):0;
+                p=self->f5C[i]->f4;
+                p->v10(path,1,1,0,0);
+            }
+            len=strlen(saved);
+            size=len<0x103?len:0x103;
+            func_001E8920(D_002A48F8,saved,size);D_002A48F8[size]=0;
+        }
+    }
+    if(ini->func_00169710(D_002763D0)) {
+        ini->func_00168C20(D_002763BC,0,&cnt);
+        if(cnt>0 && base!=-1) {
+            if(!self->f6C) { self->f3C=cnt;n=self->f3C;start=0;self->f6C=(int(*)[2])func_001E8A44(n*8); }
+            else {start=self->f3C;self->f3C=start+cnt;n=self->f3C;self->f6C=(int(*)[2])func_001E83E8(self->f6C,n*8);}
+            int sum=0;
+            for(i=start;i<n;i++) {
+                func_001ADCC0(key,0x40,D_002763AC,i-start+1);
+                ini->func_00169710(key);
+                ini->func_00168C20(D_00276398,0,&t);
+                ini->func_00168C20(D_00276388,0,&idx);
+                t+=base-1; if(t<0)t=0;
+                self->f6C[i][0]=t;self->f6C[i][1]=idx;sum+=idx;
+            }
+            if(sum>0) {
+                if(!self->f60) self->f60=(D217F0_24380**)func_001E8A44((self->f30+sum)*4);
+                else self->f60=(D217F0_24380**)func_001E83E8(self->f60,(self->f30+sum)*4);
+                int k=self->f30;
+                for(i=start;i<n;i++) {
+                    func_001ADCC0(key,0x20,D_00276378,i-start+1);
+                    ini->func_00169710(key);
+                    for(int j=0;j<self->f6C[i][1];k++,j++) {
+                        D217F0_24380 *p=(D217F0_24380*)func_001E8A44(0x7c);
+                        self->f60[k]=p?p->func_000217F0(1):0;
+                        *((char*)self->f60[k]+0x7a)=1;
+                        p=self->f60[k];p->func_001D3F50();p->func_00021890(ini,base);
+                        func_001577A0(self->f60[k],-1);
                     }
                 }
-                f70[i] = o;
-                ini->func_00168BE0(D_00276310, D_00275630, o->f34, 0x104);
-                for (j = 1; j <= o->f8; j++) {
-                    func_001ADCC0(buf, 0x20, D_00276300, j);
-                    ini->func_00168BE0(D_00275630, buf, buf2, 0x104);
-                    ini->func_00168BE0(D_00275630, buf2, buf, 0x104);
+                self->f30+=sum;
+            }
+        }
+    }
+    if(ini->func_00169710(D_00276370)) {
+        ini->func_00168C20(D_0027635C,0,&self->f44);
+        if(self->f44>0) {
+            self->f70=(Obj138_24380**)func_001E8A44(self->f44*4);
+            for(i=0;i<self->f44;i++) {
+                func_001ADCC0(buf,0x10,D_0027634C,i+1);
+                ini->func_00169710(buf);
+                ini->func_00168C20(D_00276338,0,&cnt);
+                ini->func_00168C20(D_00276328,0,&idx);
+                ini->func_00168C20(D_00276314,0,&self->f50);
+                Obj138_24380 *p=(Obj138_24380*)func_001E8A44(0x138);
+                if(p) {
+                    p->f14=self->f50;p->vtbl=D_00276218;p->f8=cnt;p->f10=idx;
+                    p->f18=(void**)func_001E8A44(p->f14*4);
+                    p->fC=(void**)func_001E8A44(p->f8*4);
+                    p->f4=0;p->f34[0]=0;p->f1C=4.0f;p->f20=1.3f;p->f24=20.0f;
+                    p->f2C=p->f30=p->f28=10.0f;
+                } else p=0;
+                self->f70[i]=p;
+                ini->func_00168BE0(D_00276310,D_00275630,self->f70[i]->f34,0x104);
+                for(int j=0;j<self->f70[i]->f8;j++) {
+                    func_001ADCC0(key,0x20,D_00276300,j+1);
+                    ini->func_00168BE0(key,D_00275630,path,0x104);
+                    self->func_00021600(path,i+1);
                 }
-                for (j = 0; j < f50; j++) {
-                    void *m = func_001E8A44(0x38);
-                    o->f18[j] = m ? ((AmbientDebris *)m)->func_00024140(j, f50 / 3) : 0;
-                    func_001577A0(o->f18[j], -1);
+                for(int k=0;k<self->f50;k++) {
+                    AmbientDebris *a=(AmbientDebris*)func_001E8A44(0x38);
+                    self->f70[i]->f18[k]=a?a->func_00024140(k,self->f50/3):0;
+                    func_001577A0(self->f70[i]->f18[k],-1);
                 }
-                k++;
             }
         }
     }

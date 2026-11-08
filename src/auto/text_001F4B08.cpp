@@ -96,6 +96,18 @@ struct S_001F4_FILE {
     char *tmpfname;
 };
 
+unsigned int func_001F4B96(unsigned int newv, unsigned int mask)
+{
+    unsigned int func_001F4A76(void);
+    unsigned int func_001F4B08(unsigned int v);
+    unsigned int cur;
+    unsigned int result;
+    cur = func_001F4A76();
+    result = (cur & ~mask) | (newv & mask);
+    func_001F4B08(result);
+    return result;
+}
+
 unsigned int func_001F4BC8(unsigned int newv, unsigned int mask)
 {
     unsigned int func_001F4B96(unsigned int newv, unsigned int mask);
@@ -195,8 +207,9 @@ int func_001F4D18(int cp)
             retval = 0;
         }
     } __finally {
-        func_001F4E30();
+        return retval;
     }
+    func_001F4E30();
     return retval;
 }
 #pragma auto_inline(on)
@@ -331,6 +344,136 @@ done:
         return;
     func_001F37B0(*info);
 }
+
+#pragma optimize("y", off)
+int func_001F5059(char *out, char **end, char *input, int mult, int scale, int dec, int implicit)
+{
+ char buf[28]; char ld[12];
+ char *p=buf; int sign=0; int expsign=1; unsigned int n=0;
+ int found=0; int point=0; int expfound=0; int exponent=0; int adjust=0; int result=0;
+ int state=0; char c; char *s=input; char *str=s; int e; int v; int lo,hi,top,extra;
+ while (*s==' ' || *s=='\t' || *s=='\n' || *s=='\r') ++s;
+ while(state!=10) {
+ c=*s++;
+ switch(state) {
+ case 0:
+ if(c>='1' && c<='9') {state=3; --s; break;}
+ if(c==D_002AEA3C) {state=5;break;}
+ switch(c) {
+ case '-': state=2; sign=0x8000;break;
+ case '+': state=2;sign=0;break;
+ case '0': state=1;break;
+ default: --s;goto done;
+ } break;
+ case 1:
+ found=1;
+ if(c>='1' && c<='9') {state=3;--s;break;}
+ if(c==D_002AEA3C) {state=4;break;}
+ if(c=='+' || c=='-') {--s;state=11;break;}
+ if(c=='0') {state=1;break;}
+ if((c>'C' && c<='E') || (c>'c' && c<='e')) {state=6;break;}
+ state=10;--s;break;
+ case 2:
+ if(c>='1' && c<='9') {state=3;--s;break;}
+ if(c==D_002AEA3C) {state=5;break;}
+ if(c=='0') {state=1;break;}
+ goto maybeimplicit;
+ case 3:
+ found=1;
+ while(DIGIT_1F(c)) {
+ if(n<25) {++n;*p++=c-'0';} else ++adjust;
+ c=*s++;
+ }
+ if(c==D_002AEA3C) {state=4;break;}
+ goto afterdigits;
+ case 4:
+ found=1;point=1;
+ if(n==0) while(c=='0') {--adjust;c=*s++;}
+ while(DIGIT_1F(c)) {
+ if(n<25) {++n;*p++=c-'0';--adjust;}
+ c=*s++;
+ }
+ afterdigits:
+ if(c=='+' || c=='-') {--s;state=11;break;}
+ marker:
+ if((c>'C' && c<='E') || (c>'c' && c<='e')) {state=6;break;}
+ state=10;--s;break;
+ case 5:
+ point=1;
+ if(DIGIT_1F(c)) {state=4;--s;break;}
+ goto maybeimplicit;
+ case 6:
+ str=s-2;
+ if(c>='1' && c<='9') {state=9;--s;break;}
+ switch(c) {
+ case '+': state=7;break;
+ case '-':expsign=-1;state=7;break;
+ case '0':state=8;break;
+ default:s=str;goto done;
+ } break;
+ case 7:
+ expfound=1;
+ while(c=='0') c=*s++;
+ if(c>='1' && c<='9') {state=9;--s;break;}
+ state=10;--s;break;
+ case 8:
+ if(c>='1' && c<='9') {state=9;--s;break;}
+ if(c=='0') {expfound=1;state=8;break;}
+ s=str;goto done;
+ case 9:
+ expfound=1;v=0;
+ while(DIGIT_1F(c)) {
+ v=v*10+c-'0';
+ if(v>5200) {v=5201;break;}
+ c=*s++;
+ }
+ exponent=v;
+ while(DIGIT_1F(c)) c=*s++;
+ state=10;--s;break;
+ case 11:
+ maybeimplicit:
+ if(implicit) {
+ str=s-1;
+ switch(c) {
+ case '-':expsign=-1;state=7;break;
+ case '+':state=7;break;
+ default:s=str;goto done;
+ }
+ break;
+ }
+ state=10;--s;break;
+ }
+ }
+ done:
+ *end=s;
+ if(found) {
+ if(n>24) {
+ if(buf[23]>=5) ++buf[23];
+ n=24;--p;++adjust;
+ }
+ if(n>0) {
+ while(*--p==0) {--n;++adjust;}
+ func_001F5B7B(buf,n,ld);
+ e=exponent;
+ if(expsign<0) e=-e;
+ e+=adjust;
+ if(!expfound) e+=scale;
+ if(!point) e-=dec;
+ if(e>5200) {
+ lo=0;top=0x7fff;hi=0x80000000;extra=0;result=2;
+ } else if(e< -5200) {
+ result=1;extra=0;top=0;hi=0;lo=0;
+ } else {
+ func_001F60E2(ld,e,mult);
+ extra=*(int *)ld;lo=*(int *)(ld+2);hi=*(int *)(ld+6);top=*(int *)(ld+10);
+ }
+ } else {extra=0;top=0;hi=0;lo=0;}
+ } else {result=4;extra=0;top=0;hi=0;lo=0;}
+ top|=sign;
+ *(int *)(out+6)=hi;*(int *)(out+2)=lo;*(short *)(out+10)=(short)top;*(short *)out=(short)extra;
+ return result;
+}
+#pragma optimize("", on)
 
 static int func_001F54D0(int *punlock_flag, int *pfh, const char *path, int oflag, int shflag, int pmode)
 {

@@ -292,6 +292,59 @@ void C_000EBE30::func_000EBE30()
     func_001BE3F0();
 }
 
+void C_000EBE30::func_000EBE90()
+{
+    S_EBE90_Ctx *ctx = (S_EBE90_Ctx *)unk124;
+    int i;
+    int v274;
+
+    unk30C = 0;
+    unk310 = 0;
+    unk308 = 0;
+    unk314 = 0;
+    unk324 = 0;
+    for (i = 0; i < 8; i++) {
+        D_002A8490->f2E0->f2C8->flags[i] = 0;
+        arr2E0[i] = 0;
+    }
+    unk330 = 0;
+    unk334 = 0;
+    v274 = ctx->f274;
+    unk344 = v274;
+    if (func_00092A10() != 0) {
+        unk340 = 0;
+        unk374 = 1;
+        unk334 = 1;
+        unk330 = 1;
+        unk32C = 0;
+        unk348 = 1;
+    } else {
+        unk340 = 0;
+        unk374 = 1;
+        unk334 = 1;
+        unk348 = 0;
+    }
+    unk394 = 0;
+    unk35C = 0;
+    unk360 = 0;
+    unk364 = 0;
+    unk368 = 0;
+    unk358 = 0;
+    unk37C = -1;
+    unk39C = 0;
+    unk398 = 0;
+    unk380 = 0;
+    unk384 = 0;
+    unk388 = 0;
+    unk38C = 0;
+    unk390 = 0;
+    D_002B91AC->unk34->func_0005E840(D_002A8490->f2E8->f4->fa50);
+    D_002B91AC->func_000BF860(0, 0x1eb, 0x184, 0);
+    D_002B91AC->unk38->func_0005E840(D_002A8490->f2E8->f4->f7c8);
+    D_002B91AC->func_000BF860(1, 0x17b, 0x184, 0);
+    D_002B91AC->unk3C->func_0005E840(D_002A8490->f2E8->f4->f838);
+}
+
 void C_000EBE30::func_000EC320()
 {
     int n;

@@ -99,6 +99,28 @@ static __forceinline int Item_000C0480(BmxUIPageDemo *p, int idx)
     return p->items[idx];
 }
 
+void BmxUIPageDemo::func_000BFBA0()
+{
+    char buf[0x104];
+    S_BFBA0_Pg *page = (S_BFBA0_Pg *)f124;
+    unk280 = 0;
+    page->f270->f34 = 0;
+    page->f270->f38 = 0;
+    page->f270->func_00093280(1.0f);
+    if (!((S_BFBA0_G *)D_002A8490)->f2e0->f2c0->func_0005C360() &&
+        ((S_BFBA0_G *)D_002A8490)->f2e0->f2c0->func_0005C380() == 1 &&
+        ((S_BFBA0_G *)D_002A8490)->f2e0->f4 == 10) {
+        func_001ADCC0(buf, 0x104, D_00275678, D_002A64D0, D_0027DFF0);
+        ((S_BFBA0_G *)D_002A8490)->f2e0->f2c0->func_0005C370();
+    } else {
+        func_001ADCC0(buf, 0x104, D_00275678, D_002A64D0, D_0027DFE4);
+    }
+    page->f270->func_000BC4A0(1.0f, 1.0f);
+    page->f270->func_000BC4C0(0, 0);
+    page->f270->func_000BC5D0(buf, 1);
+    unk284 = page->f270->func_000BC670();
+}
+
 BmxUIPageDemo *BmxUIPageDemo::func_000BFE90(int a0)
 {
     int i;

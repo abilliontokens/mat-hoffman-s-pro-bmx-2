@@ -334,57 +334,68 @@ C_0017AA90 *C_0017AA90::func_0017ABE0(const char *name)
 
 void C_0017AA90::func_0017AD20()
 {
+    if (fF0 == 0) return;
+    V4_0017AD20 corners[3];
+    V4_0017AD20 upper, lower;
+    V4_0017AD20 mx, mn;
     V4_0017AD20 ext;
     V4_0017AD20 pt;
-    V4_0017AD20 corners[3];
-    float mnx, mny, mnz;
-    float mxx, mxy, mxz;
     int i;
 
-    if (fF0 == 0) {
-        return;
-    }
-    mnx = 3.402823466e+38f;
-    mny = 3.402823466e+38f;
-    mnz = 3.402823466e+38f;
-    mxx = -3.402823466e+38f;
-    mxy = -3.402823466e+38f;
-    mxz = -3.402823466e+38f;
+    mn.x = 3.402823466e+38f;
+    mn.y = 3.402823466e+38f;
+    mn.z = 3.402823466e+38f;
+    mx.x = -3.402823466e+38f;
+    mx.y = -3.402823466e+38f;
+    mx.z = -3.402823466e+38f;
     for (i = 0; i < fF4; i++) {
         Obj_0017AD20 *obj = ((Node_0017AD20 *)fF0[i])->f4;
-        V4_0017AD20 a;
-        V4_0017AD20 b;
-        V4_0017AD20 t1, t2, t3;
+        unsigned int a0, m0, a1, m1, a2, m2;
+        unsigned int a3, m3, a4, m4, a5, m5;
+        unsigned int a6, m6, a7, m7, a8, m8;
+        V4_0017AD20 t0, t1, t2;
 
-        obj->func_00198B70(&a, &b);
-        func_0001C680(&t1, a, obj->mat);
-        func_0001C680(&t2, b, obj->mat);
-        func_0001C680(&t3, pt, obj->mat);
-        ext.x = ((t1.x < 0 ? -t1.x : t1.x) + (t2.x < 0 ? -t2.x : t2.x)) + (t3.x < 0 ? -t3.x : t3.x);
-        ext.y = ((t1.y < 0 ? -t1.y : t1.y) + (t2.y < 0 ? -t2.y : t2.y)) + (t3.y < 0 ? -t3.y : t3.y);
-        ext.z = ((t1.z < 0 ? -t1.z : t1.z) + (t2.z < 0 ? -t2.z : t2.z)) + (t3.z < 0 ? -t3.z : t3.z);
+        obj->func_00198B70(&pt, &ext);
+        t0.x = ext.x;
+        t1.y = ext.y;
+        t2.z = ext.z;
+        corners[0] = t0;
+        corners[1] = t1;
+        corners[2] = t2;
+        func_0001C680(&corners[0], corners[0], obj->mat);
+        func_0001C680(&corners[1], corners[1], obj->mat);
+        func_0001C680(&corners[2], corners[2], obj->mat);
+        a0 = *(unsigned int *)&corners[2].x; m0 = a0 & 0x7fffffff;
+        a1 = *(unsigned int *)&corners[1].x; m1 = a1 & 0x7fffffff;
+        a2 = *(unsigned int *)&corners[0].x; m2 = a2 & 0x7fffffff;
+        ext.x = *(float *)&m0 + *(float *)&m1 + *(float *)&m2;
+        a3 = *(unsigned int *)&corners[2].y; m3 = a3 & 0x7fffffff;
+        a4 = *(unsigned int *)&corners[1].y; m4 = a4 & 0x7fffffff;
+        a5 = *(unsigned int *)&corners[0].y; m5 = a5 & 0x7fffffff;
+        ext.y = *(float *)&m3 + *(float *)&m4 + *(float *)&m5;
+        a6 = *(unsigned int *)&corners[2].z; m6 = a6 & 0x7fffffff;
+        a7 = *(unsigned int *)&corners[1].z; m7 = a7 & 0x7fffffff;
+        a8 = *(unsigned int *)&corners[0].z; m8 = a8 & 0x7fffffff;
+        ext.z = *(float *)&m6 + *(float *)&m7 + *(float *)&m8;
         Xform_0017AD20(&pt.x, &pt.x, obj->mat);
-        if (pt.x - ext.x < mnx) mnx = pt.x - ext.x;
-        if (pt.y - ext.y < mny) mny = pt.y - ext.y;
-        if (pt.z - ext.z < mnz) mnz = pt.z - ext.z;
-        if (pt.x + ext.x > mxx) mxx = pt.x + ext.x;
-        if (pt.y + ext.y > mxy) mxy = pt.y + ext.y;
-        if (pt.z + ext.z > mxz) mxz = pt.z + ext.z;
+        lower.x=pt.x-ext.x; lower.y=pt.y-ext.y; lower.z=pt.z-ext.z;
+        upper.x=pt.x+ext.x; upper.y=pt.y+ext.y; upper.z=pt.z+ext.z;
+        if (lower.x < mn.x) mn.x=lower.x;
+        if (lower.y < mn.y) mn.y=lower.y;
+        if (lower.z < mn.z) mn.z=lower.z;
+        if (upper.x > mx.x) mx.x=upper.x;
+        if (upper.y > mx.y) mx.y=upper.y;
+        if (upper.z > mx.z) mx.z=upper.z;
     }
-    fD0 = mnx;
-    fD4 = mny;
-    fD8 = mnz;
-    fDC = 1.0f;
-    fE0 = mxx;
-    fE4 = mxy;
-    fE8 = mxz;
-    fEC = 1.0f;
-    fC0 = (mxx + mnx) * D_002755E8;
-    fC4 = (mxy + mny) * D_002755E8;
-    fC8 = (mxz + mnz) * D_002755E8;
-    fB0 = (mxx - mnx) * D_002755E8;
-    fB4 = (mxy - mny) * D_002755E8;
-    fB8 = (mxz - mnz) * D_002755E8;
+    *(V4_0017AD20 *)&fD0 = mn;
+    *(V4_0017AD20 *)&fE0 = mx;
+    V4_0017AD20 sum, diff, work;
+    sum.x=mx.x+mn.x; sum.y=mx.y+mn.y; sum.z=mx.z+mn.z;
+    work.x=sum.x*D_002755E8; work.y=sum.y*D_002755E8; work.z=sum.z*D_002755E8;
+    *(V4_0017AD20 *)&fC0=work;
+    diff.x=mx.x-mn.x; diff.y=mx.y-mn.y; diff.z=mx.z-mn.z;
+    work.x=diff.x*D_002755E8; work.y=diff.y*D_002755E8; work.z=diff.z*D_002755E8;
+    *(V4_0017AD20 *)&fB0=work;
     {
         float sq = fB0 * fB0 + fB4 * fB4 + fB8 * fB8;
         float len;
@@ -392,6 +403,47 @@ void C_0017AA90::func_0017AD20()
         f12C = len * f134;
         f130 = D_00275460 / f12C;
     }
+
+    Camera_0017AD20 *cam = (Camera_0017AD20 *)fFC;
+    V4_0017AD20 tmp;
+    float angle;
+    if (f118 == 3) {
+        tmp.x = fC0 - D_002A8CE0 * cam->direction.x;
+        tmp.y = fC4 - D_002A8CE0 * cam->direction.y;
+        tmp.z = fC8 - D_002A8CE0 * cam->direction.z;
+        cam->position = tmp;
+        angle = func_0014FBA0(f12C, D_002A8CE0) * D_00289080;
+        cam->func_0012AB70(0,0,0,0,&angle);
+        cam->v28();
+        cam = (Camera_0017AD20 *)fFC;
+        tmp.x = fC0 - D_002A8CE0 * cam->direction.x;
+        tmp.y = fC4 - D_002A8CE0 * cam->direction.y;
+        tmp.z = fC8 - D_002A8CE0 * cam->direction.z;
+        cam->position = tmp;
+        float result[16];
+        ((Matrix_0017AD20 *)(fFC + 0xb0))->func_000264C0(func_00161AE0(result, cam->position, cam->direction, cam->up, cam->f1D4));
+        float *m = (float *)(fFC + 0x70);
+        __m128 zero = _mm_setzero_ps();
+        _mm_store_ps(m, zero); _mm_store_ps(m+4, zero); _mm_store_ps(m+8, zero); _mm_store_ps(m+12, zero);
+        m[0]=m[5]=m[10]=m[15]=1.0f;
+        *(float *)(fFC+0x70) = f130;
+        *(float *)(fFC+0x84) = f130;
+    } else if (f118 == 1) {
+        float x = fC0-cam->position.x, y=fC4-cam->position.y, z=fC8-cam->position.z;
+        float sq=x*x+y*y+z*z, len;
+        _mm_store_ss(&len, _mm_sqrt_ss(_mm_load_ss(&sq)));
+        angle=func_0014FBA0(f12C,len)*D_00289080;
+        cam->func_0012AB70(0,0,0,0,&angle);
+    }
+    cam=(Camera_0017AD20 *)fFC;
+    cam->v30(*(V4_0017AD20 *)&fC0);
+    ((Camera_0017AD20 *)fFC)->v28();
+    __declspec(align(16)) float m[16];
+    __m128 zero=_mm_setzero_ps();
+    _mm_store_ps(m,zero); _mm_store_ps(m+4,zero); _mm_store_ps(m+8,zero); _mm_store_ps(m+12,zero);
+    m[0]=m[5]=m[10]=m[15]=1.0f;
+    m[0]=f130*D_002755E8; m[6]=-m[0]; m[3]=0.5f; m[7]=0.5f; m[10]=1.0f; m[11]=0;
+    func_000263B0((char *)this+0x70,fFC+0xb0,m);
 }
 
 int C_0017AA90::func_0017B800()

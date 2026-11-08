@@ -344,12 +344,13 @@ void TikiEvadeState::func_00018340()
 
 void TikiBlockState::func_00018390()
 {
-    if (owner->f4d4 > 500) {
+    S_TikiOwner *o = owner;
+    if (o->f4d4 > 500) {
         fc = D_002A8490->f238 + 2000;
     } else {
         fc = D_002A8490->f238 + 0xdac;
     }
-    owner->func_001C6DA0(owner->f73c, 1);
+    o->func_001C6DA0(o->f73c, 1);
 }
 
 extern int D_00275854;

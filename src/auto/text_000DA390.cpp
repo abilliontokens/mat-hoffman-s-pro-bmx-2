@@ -134,6 +134,73 @@ struct C_000DA390 {
     void func_001577A0(void *w, int v);
 };
 
+C_000DA390 *C_000DA390::func_000DA390(int a, int b, int c)
+{
+    int i;
+    int j;
+
+    func_001BE4F0(a, b, c);
+    D_002A8490->p2EC->func_0018C160((int)&D_00278690);
+    D_002A8490->p2EC->func_0018C160((int)&D_002786A0);
+    D_002A8490->p2EC->func_0018C160((int)&D_00278678);
+    for (i = 0; i < 11; i++) {
+        S_000DA390_Text *p = (S_000DA390_Text *)func_001E8A44(0x184);
+        p = p ? p->func_001B12C0(1) : 0;
+        w2E8[i] = p;
+        w2E8[i]->func_001B13A0((const char *)&D_002786A0, D_0027F6F4, 0, 0x28);
+        float y = i * D_002757F0 + D_0027F6F0;
+        positions[i] = y;
+        w2E8[i]->func_001B1A30(320.0f, y, 0);
+        w2E8[i]->func_001B2270(0xffcccccc);
+        w2E8[i]->func_001B19A0(D_0028F5E0);
+        func_001577A0(w2E8[i], -1);
+    }
+    w2E8[0]->func_001B17D0(D_0027F6E4);
+    w2E8[1]->func_001B17D0(D_0027F6D8);
+    w2E8[2]->func_001B17D0(D_0027F6CC);
+    w2E8[3]->func_001B17D0(D_0027F6C0);
+    w2E8[4]->func_001B17D0(D_0027F6B0);
+    w2E8[5]->func_001B17D0(D_0027F6A0);
+    w2E8[6]->func_001B17D0(D_0027F694);
+    w2E8[7]->func_001B17D0(D_0027F684);
+    w2E8[8]->func_001B17D0(D_0027F678);
+    w2E8[9]->func_001B17D0(D_0027F66C);
+    w2E8[10]->func_001B17D0(D_0027F65C);
+    for (i = 0; i < 4; i++) {
+        S_000DA390_Obj *p = (S_000DA390_Obj *)func_001E8A44(0x64);
+        w314[i] = p ? p->func_001D5760() : 0;
+    }
+    w314[0]->func_001D5810(D_002786B0, 100.0f, 90.0f, 0);
+    w314[0]->depth(0x435d0000);
+    w314[0]->color();
+    w314[1]->func_001D5810(D_002786B0, 321.0f, 90.0f, 0);
+    w314[1]->depth(0x435d0000);
+    w314[1]->color();
+    w314[1]->coords(1.0f, 0.0f, 0.0f, 1.0f);
+    w314[2]->func_001D5810(D_002786B0, 321.0f, 361.0f, 0);
+    w314[2]->depth(0x435d0000);
+    w314[2]->color();
+    w314[2]->pos(0x43a08000, 0x43b48000);
+    w314[2]->angle(0x40490fd9);
+    w314[2]->coords(1.0f, 0.0f, 0.0f, 1.0f);
+    w314[3]->func_001D5810(D_002786B0, 542.0f, 361.0f, 0);
+    w314[3]->depth(0x435d0000);
+    w314[3]->color();
+    w314[3]->pos(0x44078000, 0x43b48000);
+    w314[3]->angle(0x40490fd9);
+    for (j = 0; j < 2; j++) {
+        S_000DA390_Obj *p = (S_000DA390_Obj *)func_001E8A44(0x64);
+        w324[j] = p ? p->func_001D5760() : 0;
+        if (j == 0) {
+            w324[j]->func_001D5810(D_0027E328, 309.0f, 82.0f, 0);
+        } else {
+            w324[j]->func_001D5810(D_0027E31C, 309.0f, 350.0f, 0);
+        }
+        w324[j]->color();
+    }
+    return this;
+}
+
 int DA_Page::func_000DAAB0(int a, int key) {
  char *o=owner;
  DA_Call *sound=*(DA_Call **)(o+0x24);

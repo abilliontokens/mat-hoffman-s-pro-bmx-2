@@ -188,19 +188,24 @@ int EcoSystem::func_0014D720(void)
     float scale;
     int count;
     int *outp;
-    float la, lb, lc;
+    float lb, la, lc;
+    int edi;
+    int bucket;
+    int fade;
     if (D_002A7690 == 0 || unk3C == 0) {
         return D_002A7690;
     }
+    float range = D_002EFDB8->f4->f200;
     D_002BF274 = (EcoSubB0 *)((char *)D_002EFDB8->f4 + 0xB0);
-    q = D_00275460 / D_002EFDB8->f4->f200;
+    q = D_00275460 / range;
     f58C = D_002869C0 * q;
-    f590 = D_002EFDB8->f4->f200 * D_002869BC;
+    range *= 1.52590219e-05f;
+    f590 = range;
     scale = q * f590;
     unk56C = 0;
     unk570 = 0;
     unk574 = 0;
-    scale = scale * D_0027D264;
+    scale *= 600.0f;
     D_002F07E8->v13();
     AsmFloatToInt(f57C * f560, &D_002BF258);
     AsmFloatToInt(f57C * f564, &D_002BF25C);
@@ -209,20 +214,25 @@ int EcoSystem::func_0014D720(void)
     AsmFloatToInt(D_002EFDB8->f4->f170 * f57C, &D_002BF268);
     AsmFloatToInt(D_002EFDB8->f4->f178 * f57C, &D_002BF26C);
     D_002BF270 = D_0027988C / (float)(D_002BF258 - D_002BF25C);
+    EcoSub4 *camera = D_002EFDB8->f4;
+    edi = 0;
     count = 0;
     outp = D_002F07E8->f890;
     la = D_002BF274->f20 * f58C;
     lb = D_002BF274->f28 * f58C;
     lc = D_002BF274->f2C * f58C;
-    D_002BF280 = func_0001E960(D_002EFDB8->f4->f180 * D_002EFDB8->f4->f180 + D_002EFDB8->f4->f188 * D_002EFDB8->f4->f188) * D_002869B0;
+    float camLen = camera->f180 * camera->f180 + camera->f188 * camera->f188;
+    D_002BF280 = func_0001E960(camLen) * D_002869B0;
     unk21C0 = 0x7fffffff;
     unk21C4 = 0;
     unk59C++;
-    if (D_002F07E8->f890 != 0) {
-        int edi = 0;
-        while (edi < D_002F07E8->f898) {
-            Ent14 *ent = (Ent14 *)(outp[edi] & 0xfffffffe);
-            int raw = outp[edi];
+    {
+        int *input;
+
+        while ((input = D_002F07E8->f890) != 0) {
+            if (edi >= D_002F07E8->f898) break;
+            int raw = input[edi];
+            Ent14 *ent = (Ent14 *)(raw & 0xfffffffe);
             edi++;
             if (ent == 0) {
                 break;
@@ -232,14 +242,162 @@ int EcoSystem::func_0014D720(void)
                 count++;
                 continue;
             }
-            break;
+            int dx = D_002BF268 - (unsigned short)ent->f8;
+            int dz = D_002BF26C - (unsigned short)ent->fC;
+            int dist = dx * dx + dz * dz;
+            int distant = 0;
+            if (dist > D_002BF264) { distant = 1; fade = 64; }
+            else if (dist < D_002BF260) fade = 0;
+            else AsmFloatToInt((AsmSqrtF((float)dist) - D_002BF25C) * D_002BF270, &fade);
+            char *model = (char *)arr54[ent->fE];
+            int posX = ent->f8;
+            int posZ = ent->fC;
+            float pos[4] = {0,0,0,1};
+            float end[4] = {0,0,0,1};
+            pos[0] = posX * D_002BF250->f578;
+            pos[2] = posZ * D_002BF250->f578;
+            if (!distant) {
+                if (!(raw & 1)) ent->f18 = 0;
+                else {
+                    float z = (*(float *)(model+0x194) - *(float *)(model+0x18c)) * ent->f11 * D_0027A094 + *(float *)(model+0x18c);
+                    float y = ((*(float *)(model+0x180) - *(float *)(model+0x184)) * ent->f10 * D_0027A094 + *(float *)(model+0x180)) * D_002755E8;
+                    pos[1] = (unsigned short)ent->fA * D_002BF250->f578 + y;
+                    ent->f18 = 0;
+                    end[0] = z; end[1] = y; end[2] = z;
+                    if (!D_002AB66C->func_001C5DE0(&camera->fF0, pos, end, 0)) continue;
+                }
+            }
+            if (distant != (ent->f12 & 1) && distant < *(int *)(model+0x1d8)) {
+                float x, z;
+                if (camera->f188 != D_00275544) {
+                    x = D_002BF280 * camera->f188;
+                    z = -(D_002BF280 * camera->f180);
+                } else { x = D_002869B0; z = 0; }
+                int ix, iz;
+                AsmFloatToInt(x, &ix); ent->f14 = ix;
+                AsmFloatToInt(z, &iz); ent->f16 = iz;
+            }
+            ent->f12 = distant;
+            ent->fF = fade;
+            if (!distant && fade && ((unk59C & 65535) - (unsigned short)ent->f6) >= 4) { fade = 0; ent->fF = 0; }
+            float depth = pos[2] * lb + pos[0] * la + lc;
+            if (depth < D_00275544) ent->f4 = 0;
+            else if (depth >= D_002869C0) ent->f4 = -1;
+            else { int z; AsmFloatToInt(depth, &z); ent->f4 = z; }
+            AsmFloatToInt(depth * scale, &bucket);
+            bucket = AsmMaxI(AsmMinI(bucket, 599), 0);
+            if ((unsigned)entries[bucket].unk0 < (unsigned)unk59C) {
+                entries[bucket].unk0 = unk59C;
+                entries[bucket].unk4 = (int)ent;
+                entries[bucket].unk8 = 1;
+                ent->f6 = -1;
+                unk21C0 = AsmMinI(unk21C0, bucket);
+                unk21C4 = AsmMaxI(unk21C4, bucket);
+            } else {
+                Ent14 *head = (Ent14 *)entries[bucket].unk4;
+                if ((unsigned short)ent->f4 >= (unsigned short)head->f4) {
+                    ent->f6 = ((unsigned)head - (unsigned)unk40) / 28;
+                    entries[bucket].unk4 = (int)ent;
+                } else {
+                    Ent14 *prev = head;
+                    while ((unsigned short)ent->f4 < (unsigned short)head->f4) {
+                        if ((unsigned short)head->f6 == 65535) {
+                            head->f6 = ((unsigned)ent - (unsigned)unk40) / 28;
+                            ent->f6 = -1;
+                            goto inserted;
+                        }
+                        prev = head;
+                        head = (Ent14 *)((char *)unk40 + (unsigned short)head->f6 * 28);
+                    }
+                    ent->f6 = prev->f6;
+                    prev->f6 = ((unsigned)ent - (unsigned)unk40) / 28;
+                }
+inserted:
+                ++entries[bucket].unk8;
+            }
         }
     }
-    (void)scale;
-    (void)count;
-    (void)la;
-    (void)lb;
-    (void)lc;
+    D_002F07E8->f898 = count;
+    if (unk21C0 != 0x7fffffff) {
+        int total = 0;
+        for (int i = unk21C0; i <= unk21C4; ++i) {
+            if (entries[i].unk0 == unk59C) {
+                entries[i].unk8 += total;
+                total = entries[i].unk8;
+            }
+        }
+    }
+    for (int b = unk21C4; b >= unk21C0; --b) {
+        if (entries[b].unk0 != unk59C || entries[b].unk8 >= 1500) continue;
+        Ent14 *ent = (Ent14 *)entries[b].unk4;
+        while (ent) {
+            if (ent->fF == 64) {
+                if ((int)unk56C == unk580) {
+                    unk44 = func_001E83E8(unk44, unk580 * 4 + 400);
+                    if (!unk44) goto mark_entry;
+                    unk580 += 100;
+                }
+                ((Ent14 **)unk44)[(int)unk56C] = ent;
+                unk56C = (void *)((int)unk56C + 1);
+            } else {
+                if (ent->fF) {
+                    if (ent->fF > 48) {
+                        if ((int)unk56C == unk580) {
+                            unk44 = func_001E83E8(unk44, unk580 * 4 + 400);
+                            if (!unk44) goto draw_entry;
+                            unk580 += 100;
+                        }
+                        {
+                            ((Ent14 **)unk44)[(int)unk56C] = ent;
+                            unk56C = (void *)((int)unk56C + 1);
+                        }
+                    } else {
+                        if ((int)unk574 == f588) {
+                            unk4C = func_001E83E8(unk4C, f588 * 4 + 80);
+                            if (!unk4C) goto draw_entry;
+                            f588 += 20;
+                        }
+                        {
+                            ((Ent14 **)unk4C)[(int)unk574] = ent;
+                            unk574 = (void *)((int)unk574 + 1);
+                        }
+                    }
+                }
+draw_entry:
+                func_0014D670(ent);
+            }
+mark_entry:
+            if (ent->f6 != 65535) {
+                unsigned next = ent->f6;
+                ent->f6 = unk59C;
+                ent = (Ent14 *)((char *)unk40 + next * 28);
+            } else {
+                ent->f6 = unk59C;
+                break;
+            }
+        }
+    }
+    for (int k = 0; k < 256; ++k) {
+        char *model = (char *)arr54[k];
+        if (model) {
+            char *a = *(char **)(model+0x1fc);
+            char *v = *(char **)(a+8);
+            int idx = *(int *)(v+4);
+            char *c = *(char **)(model+0x1f8);
+            int id = (*(int **)(c+0x1b8))[idx];
+            EcoRender *r = *(EcoRender **)(*(char **)(D_002A829C+0x14) + id*16 +4);
+            r->func_001B07A0();
+            model = (char *)arr54[k];
+            *(int *)(model+0x200) = *(int *)(D_002F0630 + r->fD4*4+0x10);
+            model = (char *)arr54[k];
+            *(void **)(model+0x204) = *(void **)(*(char **)(model+0x1fc)+8);
+        }
+    }
+    int id = *(int *)((char *)unk21C8+4);
+    EcoRender *r = *(EcoRender **)(*(char **)(D_002A829C+0x14) + id*16 +4);
+    r->func_001B07A0();
+    unk21D0 = *(int *)(D_002F0630 + r->fD4*4+0x10);
+    return 1;
 }
 
 void C_0014E1C0::func_0014E1C0(C_0013E9B0 **param_1, int param_2)

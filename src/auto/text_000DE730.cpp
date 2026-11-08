@@ -79,3 +79,60 @@ struct C_000DE730 {
     DE_Obj *a8DC[18];
     void func_000DE730();
 };
+
+void C_000DE730::func_000DE730()
+{
+    int i;
+    int j;
+    int *p;
+    int n;
+
+    f294 = 0;
+    f298 = 0;
+    f2A0 = 0;
+    f2BC = 0;
+    f29C = 0;
+    f2C0 = 1;
+    f2D0 = 0;
+    f2D4 = 0;
+    f2D8 = 0;
+    f2E4 = 0;
+    f2F0 = 0;
+    f2EC = 0;
+    f284 = D_002A8490->f2E0->f2FC->func_00094870();
+    memset(a2F4, 0, sizeof(a2F4));
+    for (i = 0; i < 7; i++) {
+        if (D_002A8490->f2E0->f2C0->func_0005C200(i) == 0) {
+            a2F4[11 + i] = 1;
+        }
+    }
+    p = a2F4;
+    j = 1;
+    n = 18;
+    do {
+        if (*p != 0) {
+            D_002A8490->f2E0->f2FC->func_00095110(j);
+        } else {
+            if (D_002A8490->f2E0->f2FC->func_00095250(j) != 0) {
+                D_002A8490->f2E0->f2FC->func_00095160(j);
+            }
+        }
+        p++;
+        j++;
+        n--;
+    } while (n != 0);
+    for (i = 0; i < 18; i++) {
+        a33C[i] = D_002A8490->f2E0->f2FC->func_000952A0(i + 1);
+    }
+    for (i = 0, j = 1; i < 18; i++, j++) {
+        a894[i]->func_001B17D0(D_002A8490->f2E0->f2FC->func_00095430(j));
+        a8DC[i]->func_001B17D0(D_002A8490->f2E0->f2FC->func_00095390(j));
+    }
+    D_002B91AC->f34->func_0005E840(D_002A8490->f2E8->f4->f9F0);
+    D_002B91AC->func_000BF860(3, 0xE9, 0x184, 0);
+    D_002B91AC->f44->func_0005E840(D_002A8490->f2E8->f4->fA00);
+    D_002B91AC->f40->func_0005E840(D_002A8490->f2E8->f4->f9F8);
+    D_002B91AC->func_000BF860(2, 0x34, 0x184, 0);
+    D_002B91AC->func_000BF860(1, 0x17B, 0x184, 0);
+    D_002B91AC->f3C->func_0005E840(D_002A8490->f2E8->f4->f838);
+}

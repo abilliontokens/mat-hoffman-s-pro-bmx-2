@@ -201,6 +201,87 @@ struct C_000EE1F0 {
 };
 
 
+int C_000ED850::func_000ED850(int a0, int a1)
+{
+    C_000B9A80 *p = unk124->unk24;
+    int i;
+    if (unk2A0 || unk2A4 || unk28C || !unk3D0 || unk45C) goto done;
+    {
+        if (a1 == ((S_000ED850_Mgr *)D_002A8490)->f8->func_00136170(2, 2, 0)) {
+            if (unk280 == 0) {
+                unk454 = 1;
+                return 1;
+            }
+            p->func_000B9A80(2, 1);
+            if (unk280 > 0) {
+                unk3D4 = unk280--;
+            }
+            unk3CC = 1;
+            unk444 = 1;
+            if (unk448 == unk280) {
+                unk448 = unk280 - 1;
+                unk44C--;
+                unk458 = 0;
+                if (unk454 == 0) {
+                    for (i = 0; i < unk29C; i++) {
+                        unk450 = 1;
+                        arr460[i] += D_00279F6C;
+                    }
+                    unk45C = 1;
+                    if (unk280 == 0) {
+                        unk454 = 1;
+                        return 1;
+                    }
+                }
+            }
+            return 0;
+        }
+        if (a1 == ((S_000ED850_Mgr *)D_002A8490)->f8->func_00136170(3, 2, 0)) {
+            if (unk29C > 7 && unk280 == unk29C - 1) {
+                unk458 = 1;
+                return 1;
+            }
+            p->func_000B9A80(2, 1);
+            unk3CC = 1;
+            if (unk280 < unk29C - 1) {
+                unk3D4 = unk280++;
+            }
+            unk444 = 1;
+            if (unk280 > 3 && unk280 <= unk29C + 1 && unk44C == unk280) {
+                unk448++;
+                unk44C = unk280 + 1;
+                unk454 = 0;
+                if (unk458 == 0) {
+                    for (i = 0; i < unk29C; i++) {
+                        unk450++;
+                        arr460[i] -= D_00279F6C;
+                    }
+                    unk45C = 1;
+                    return 1;
+                }
+            }
+            return 0;
+        }
+        if (a1 == ((S_000ED850_Mgr *)D_002A8490)->f8->func_00136170(4, 2, 0) ||
+            a1 == ((S_000ED850_Mgr *)D_002A8490)->f8->func_00136170(0x17, 2, 0)) {
+            p->func_000B9A80(4, 1);
+            unk2A0 = 1;
+            unk2A8 = 0;
+            return 1;
+        }
+        if (a1 == ((S_000ED850_Mgr *)D_002A8490)->f8->func_00136170(5, 2, 0) ||
+            a1 == ((S_000ED850_Mgr *)D_002A8490)->f8->func_00136170(0x18, 2, 0)) {
+            unk3C8 = 1;
+            p->func_000B9A80(1, 1);
+            unk2A4 = 1;
+            unk2A8 = 0;
+            return 1;
+        }
+    }
+done:
+    return 0;
+}
+
 void C_000EE060::func_000EDB70(void)
 {
     int i;

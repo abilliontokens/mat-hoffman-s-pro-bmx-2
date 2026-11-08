@@ -469,10 +469,7 @@ void PreviewPane::func_00034EF0(float dt)
         }
     }
     f34->f5c->func_00194E90(&pos);
-    dir.x = pos.x - from.x;
-    dir.y = pos.y - from.y;
-    dir.z = pos.z - from.z;
-    dir.w = 1.0f;
+    dir = S_34EF0_V4(pos.x - from.x, pos.y - from.y, pos.z - from.z, 1.0f);
     func_00034820(&dir.x, &dir.x);
     func_00158390(0.025f, D_002A14F4, dir, &dir);
     f34->f5c->func_00194EB0(S_34EF0_V4(-dir.x, -dir.y, -dir.z, 1.0f));

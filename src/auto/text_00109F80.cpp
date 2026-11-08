@@ -19,8 +19,9 @@ struct V4_109F80 { int a, b, c, d; };
 
 void Cls109F80::func_00109F80()
 {
-    I(0x824) = 0; I(0x828) = 0; I(0x82c) = 0; I(0x830) = 0x3f800000;
+    int minus = -1;
     int one = 1;
+    I(0x824) = 0; I(0x828) = 0; I(0x82c) = 0; I(0x830) = 0x3f800000;
     I(0xa34) = 0; I(0x45c) = 0; I(0x11a4) = 0; I(0x1214) = 0; I(0x1fc0) = 0; I(0xa50) = 0;
     I(0x1050) = 0; I(0x108c) = 0; I(0x1088) = 0; I(0x1e54) = one; I(0x1e60) = 0; I(0x1e5c) = 0;
     I(0x15f8) = 0; I(0x1650) = 0x3f800000; I(0x163c) = 0; I(0x1644) = 0; I(0x1648) = 0; I(0x1640) = 0;
@@ -39,27 +40,20 @@ void Cls109F80::func_00109F80()
     I(0x1624) = 0; I(0x1628) = 0; I(0x162c) = 0; I(0x1630) = 0; I(0x1118) = 0;
     I(0x11d8) = 0; I(0x11d0) = 0; I(0x11dc) = 0; I(0x11e0) = 0; I(0x11e4) = 0; I(0x11e8) = 0;
     I(0x704) = 0; I(0x70c) = 0; I(0x454) = 0; I(0x458) = 0;
-    int minus = -1;
     I(0x9d8) = minus; I(0xa44) = minus; I(0x1134) = minus; I(0x1158) = minus; I(0x115c) = minus;
     I(0x44c) = 0; I(0x450) = 0; I(0x448) = 0; I(0x11d4) = 0; I(0x69c) = 0; I(0x468) = 0; I(0x470) = 0;
     I(0x9d0) = 0; I(0x9d4) = 0; I(0x460) = 0; I(0x1124) = 0; I(0x1120) = 0; I(0x644) = 0; I(0x684) = 0; I(0x490) = 0;
     if (I(0x208)) ((Obj208*)I(0x208))->func_0001EED0();
     I(0x1128) = 0; I(0x2020) = one;
-    int* a = (int*)((char*)this + 0x2028);
-    a[0] = D_002A3A3C; a[1] = D_002A3A40; a[2] = D_002A3A44; a[3] = D_002A3A48;
-    a = (int*)((char*)this + 0x2038);
-    a[0] = D_002A3A3C; a[1] = D_002A3A40; a[2] = D_002A3A44; a[3] = D_002A3A48;
+    *(V4_109F80*)((char*)this + 0x2028) = *(V4_109F80*)&D_002A3A3C;
+    *(V4_109F80*)((char*)this + 0x2038) = *(V4_109F80*)&D_002A3A3C;
     I(0x2048) = 0; I(0x20b0) = 0x3e800000; I(0x20b4) = 0; I(0x20b8) = 0; I(0x20bc) = 0; I(0x20c0) = 0x3f800000;
     I(0x7cc) = 0; I(0x78c) = 0;
     int* q = P(0x1084);
     if (q) {
         q[0] = 0;
         for (int i = 0; i < 5; i++) { q[1 + i] = minus; q[6 + i] = 0; }
-        if (q[1] != minus) q[0]++;
-        if (q[2] != minus) q[0]++;
-        if (q[3] != minus) q[0]++;
-        if (q[4] != minus) q[0]++;
-        if (q[5] != minus) q[0]++;
+        for (int k = 1; k <= 5; k++) { if (q[k] != minus) q[0]++; }
     }
     P(0x1084)[0xb] = minus;
     func_001056E0();

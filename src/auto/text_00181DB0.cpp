@@ -472,10 +472,10 @@ void C_00182750::func_00181E10(void)
  diff=f1B0-threshold;
  inv=D_00275460/AsmMaxF(mn,diff);
  t1=inv*D_002EFDB8->f4->f1d8;
- val2=inv*D_002EFDB8->f4->f1d8*D_002A8F40*threshold;
- val2=val2+val2;
  tbl=f1A4;
  lvl=0; i=0; n=tbl->f8-1;
+ val2=inv*D_002EFDB8->f4->f1d8*D_002A8F40*threshold;
+ val2=val2+val2;
  if(n>0) { e=tbl->f10; do {
  if(e->f4*tbl->fC*D_002A8F3C*t1<D_00275460) lvl=i+1;
  i++; e++;

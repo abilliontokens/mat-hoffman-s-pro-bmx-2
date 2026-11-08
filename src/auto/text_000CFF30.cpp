@@ -188,8 +188,8 @@ void C_000D0DD0::func_000D0110(void)
                 D_002B91AC->f3c->func_001D6600();
             } else if (AT(int, this, 0x538) != 0) {
                 D_002B91AC->func_000BF860(0, 0x140, 0x184, 0);
-                D_002B91AC->f3c->func_0005E840(AT(int, AT(void *, AT(void *, D_002A8490, 0x2e8), 4), 0x1128));
-                D_002B91AC->f3c->func_001D6600();
+                D_002B91AC->f38->func_0005E840(AT(int, AT(void *, AT(void *, D_002A8490, 0x2e8), 4), 0x1128));
+                D_002B91AC->f38->func_001D6600();
             } else {
                 D_002B91AC->func_000BF860(0, 0x1eb, 0x184, 0);
                 D_002B91AC->f38->func_0005E840(AT(int, AT(void *, AT(void *, D_002A8490, 0x2e8), 4), 0x7b8));
@@ -215,15 +215,17 @@ void C_000D0DD0::func_000D0110(void)
             D_002B91AC->f40->func_0005E840(AT(int, AT(void *, AT(void *, D_002A8490, 0x2e8), 4), 0x950));
             D_002B91AC->f38->func_001D6600();
             D_002B91AC->f3c->func_001D6600();
-            if (AT(int, this, 0x48c) == 2 || AT(int, this, 0x48c) == 4 ||
-                AT(int, this, 0x48c) == 7 || AT(int, this, 0x48c) == 9 ||
-                AT(int, this, 0x48c) == 0xd || AT(int, this, 0x48c) == 0x10 ||
-                AT(int, this, 0x43c + AT(int, this, 0x48c) * 4) != 0) {
-                D_002B91AC->func_000BF860(0, 0x1eb, 0x184, 0);
-                D_002B91AC->f38->func_0005E840(AT(int, AT(void *, AT(void *, D_002A8490, 0x2e8), 4), 0x940));
-                D_002B91AC->f38->func_001D6600();
-            } else {
-                D_002B91AC->f40->func_001D6600();
+            {
+                if (AT(int, this, 0x48c) == 2 || AT(int, this, 0x48c) == 4 ||
+                    AT(int, this, 0x48c) == 7 || AT(int, this, 0x48c) == 9 ||
+                    AT(int, this, 0x48c) == 0xd || AT(int, this, 0x48c) == 0x10 ||
+                    AT(int, this, 0x43c + AT(int, this, 0x48c) * 4) != 0) {
+                    D_002B91AC->func_000BF860(0, 0x1eb, 0x184, 0);
+                    D_002B91AC->f38->func_0005E840(AT(int, AT(void *, AT(void *, D_002A8490, 0x2e8), 4), 0x940));
+                    D_002B91AC->f38->func_001D6600();
+                } else {
+                    D_002B91AC->f40->func_001D6600();
+                }
             }
         }
         if (AT(int, this, 0x560) != 0 && AT(int, this, 0x510) == 0 &&
@@ -245,102 +247,22 @@ void C_000D0DD0::func_000D0110(void)
         AT(int, this, 0x4d0) = 0;
         AT(int, this, 0x4d4) = 0x3e800000;
         switch (AT(int, AT(void *, AT(void *, this, 0x140), 4), 0x30)) {
-        case 1:
-            w = ((C_000BA9B0 *)hw)->func_000BA9B0(6);
-            w = *(void **)((char *)w + 0x1b0);
-            w = *(void **)w;
-            ((C_000CFF30_Text *)w)->func_001B1980();
-            break;
-        case 2:
-            w = ((C_000BA9B0 *)hw)->func_000BA9B0(7);
-            w = *(void **)((char *)w + 0x1b0);
-            w = *(void **)w;
-            ((C_000CFF30_Text *)w)->func_001B1980();
-            break;
-        case 3:
-            w = ((C_000BA9B0 *)hw)->func_000BA9B0(8);
-            w = *(void **)((char *)w + 0x1b0);
-            w = *(void **)w;
-            ((C_000CFF30_Text *)w)->func_001B1980();
-            break;
-        case 4:
-            w = ((C_000BA9B0 *)hw)->func_000BA9B0(9);
-            w = *(void **)((char *)w + 0x1b0);
-            w = *(void **)w;
-            ((C_000CFF30_Text *)w)->func_001B1980();
-            break;
-        case 5:
-            w = ((C_000BA9B0 *)hw)->func_000BA9B0(10);
-            w = *(void **)((char *)w + 0x1b0);
-            w = *(void **)w;
-            ((C_000CFF30_Text *)w)->func_001B1980();
-            break;
-        case 6:
-            w = ((C_000BA9B0 *)hw)->func_000BA9B0(11);
-            w = *(void **)((char *)w + 0x1b0);
-            w = *(void **)w;
-            ((C_000CFF30_Text *)w)->func_001B1980();
-            break;
-        case 7:
-            w = ((C_000BA9B0 *)hw)->func_000BA9B0(12);
-            w = *(void **)((char *)w + 0x1b0);
-            w = *(void **)w;
-            ((C_000CFF30_Text *)w)->func_001B1980();
-            break;
-        case 8:
-            w = ((C_000BA9B0 *)hw)->func_000BA9B0(13);
-            w = *(void **)((char *)w + 0x1b0);
-            w = *(void **)w;
-            ((C_000CFF30_Text *)w)->func_001B1980();
-            break;
-        case 9:
-            w = ((C_000BA9B0 *)hw)->func_000BA9B0(14);
-            w = *(void **)((char *)w + 0x1b0);
-            w = *(void **)w;
-            ((C_000CFF30_Text *)w)->func_001B1980();
-            break;
-        case 10:
-            w = ((C_000BA9B0 *)hw)->func_000BA9B0(15);
-            w = *(void **)((char *)w + 0x1b0);
-            w = *(void **)w;
-            ((C_000CFF30_Text *)w)->func_001B1980();
-            break;
-        case 11:
-            w = ((C_000BA9B0 *)hw)->func_000BA9B0(16);
-            w = *(void **)((char *)w + 0x1b0);
-            w = *(void **)w;
-            ((C_000CFF30_Text *)w)->func_001B1980();
-            break;
-        case 12:
-            w = ((C_000BA9B0 *)hw)->func_000BA9B0(17);
-            w = *(void **)((char *)w + 0x1b0);
-            w = *(void **)w;
-            ((C_000CFF30_Text *)w)->func_001B1980();
-            break;
-        case 13:
-            w = ((C_000BA9B0 *)hw)->func_000BA9B0(18);
-            w = *(void **)((char *)w + 0x1b0);
-            w = *(void **)w;
-            ((C_000CFF30_Text *)w)->func_001B1980();
-            break;
-        case 14:
-            w = ((C_000BA9B0 *)hw)->func_000BA9B0(19);
-            w = *(void **)((char *)w + 0x1b0);
-            w = *(void **)w;
-            ((C_000CFF30_Text *)w)->func_001B1980();
-            break;
-        case 15:
-            w = ((C_000BA9B0 *)hw)->func_000BA9B0(20);
-            w = *(void **)((char *)w + 0x1b0);
-            w = *(void **)w;
-            ((C_000CFF30_Text *)w)->func_001B1980();
-            break;
-        case 16:
-            w = ((C_000BA9B0 *)hw)->func_000BA9B0(21);
-            w = *(void **)((char *)w + 0x1b0);
-            w = *(void **)w;
-            ((C_000CFF30_Text *)w)->func_001B1980();
-            break;
+        case 1: w = C_000D0DD0_TipW(hw, 6); ((C_000CFF30_Text *)w)->func_001B1980(); break;
+        case 2: w = C_000D0DD0_TipW(hw, 7); ((C_000CFF30_Text *)w)->func_001B1980(); break;
+        case 3: w = C_000D0DD0_TipW(hw, 8); ((C_000CFF30_Text *)w)->func_001B1980(); break;
+        case 4: w = C_000D0DD0_TipW(hw, 9); ((C_000CFF30_Text *)w)->func_001B1980(); break;
+        case 5: w = C_000D0DD0_TipW(hw, 10); ((C_000CFF30_Text *)w)->func_001B1980(); break;
+        case 6: w = C_000D0DD0_TipW(hw, 11); ((C_000CFF30_Text *)w)->func_001B1980(); break;
+        case 7: w = C_000D0DD0_TipW(hw, 12); ((C_000CFF30_Text *)w)->func_001B1980(); break;
+        case 8: w = C_000D0DD0_TipW(hw, 13); ((C_000CFF30_Text *)w)->func_001B1980(); break;
+        case 9: w = C_000D0DD0_TipW(hw, 14); ((C_000CFF30_Text *)w)->func_001B1980(); break;
+        case 10: w = C_000D0DD0_TipW(hw, 15); ((C_000CFF30_Text *)w)->func_001B1980(); break;
+        case 11: w = C_000D0DD0_TipW(hw, 16); ((C_000CFF30_Text *)w)->func_001B1980(); break;
+        case 12: w = C_000D0DD0_TipW(hw, 17); ((C_000CFF30_Text *)w)->func_001B1980(); break;
+        case 13: w = C_000D0DD0_TipW(hw, 18); ((C_000CFF30_Text *)w)->func_001B1980(); break;
+        case 14: w = C_000D0DD0_TipW(hw, 19); ((C_000CFF30_Text *)w)->func_001B1980(); break;
+        case 15: w = C_000D0DD0_TipW(hw, 20); ((C_000CFF30_Text *)w)->func_001B1980(); break;
+        case 16: w = C_000D0DD0_TipW(hw, 21); ((C_000CFF30_Text *)w)->func_001B1980(); break;
         }
         if (((C_000301D0 *)AT(void *, AT(void *, hw, 0x25c), 0x74))->func_000301D0() == 0) {
             if (!(AT(int, this, 0x48c) == 2 || AT(int, this, 0x48c) == 4 ||
@@ -358,100 +280,68 @@ void C_000D0DD0::func_000D0110(void)
             }
             switch (AT(int, AT(void *, AT(void *, this, 0x140), 4), 0x30)) {
             case 1:
-                w = ((C_000BA9B0 *)hw)->func_000BA9B0(6);
-                w = *(void **)((char *)w + 0x1b0);
-                w = *(void **)w;
-                ((C_000D0D_Widget *)w)->func_001B1860(0, -1.0f, 0, 1.45f, 0, 0, 0, 255, 1.45f, 0, 0.25f, 0.0f, 0);
+                ((C_000D0D_Widget *)*(void **)*(void **)((char *)((C_000BA9B0 *)hw)->func_000BA9B0(6) + 0x1b0))
+                    ->func_001B1860(0, -1.0f, 0, 1.45f, 0, 0, 0, 255, 1.45f, 0, 0.25f, 0.0f, 0);
                 break;
             case 2:
-                w = ((C_000BA9B0 *)hw)->func_000BA9B0(7);
-                w = *(void **)((char *)w + 0x1b0);
-                w = *(void **)w;
-                ((C_000D0D_Widget *)w)->func_001B1860(0, -1.0f, 0, 1.45f, 0, 0, 0, 255, 1.45f, 0, 0.25f, 0.0f, 0);
+                ((C_000D0D_Widget *)*(void **)*(void **)((char *)((C_000BA9B0 *)hw)->func_000BA9B0(7) + 0x1b0))
+                    ->func_001B1860(0, -1.0f, 0, 1.45f, 0, 0, 0, 255, 1.45f, 0, 0.25f, 0.0f, 0);
                 break;
             case 3:
-                w = ((C_000BA9B0 *)hw)->func_000BA9B0(8);
-                w = *(void **)((char *)w + 0x1b0);
-                w = *(void **)w;
-                ((C_000D0D_Widget *)w)->func_001B1860(0, -1.0f, 0, 1.45f, 0, 0, 0, 255, 1.45f, 0, 0.25f, 0.0f, 0);
+                ((C_000D0D_Widget *)*(void **)*(void **)((char *)((C_000BA9B0 *)hw)->func_000BA9B0(8) + 0x1b0))
+                    ->func_001B1860(0, -1.0f, 0, 1.45f, 0, 0, 0, 255, 1.45f, 0, 0.25f, 0.0f, 0);
                 break;
             case 4:
-                w = ((C_000BA9B0 *)hw)->func_000BA9B0(9);
-                w = *(void **)((char *)w + 0x1b0);
-                w = *(void **)w;
-                ((C_000D0D_Widget *)w)->func_001B1860(0, -1.0f, 0, 1.45f, 0, 0, 0, 255, 1.45f, 0, 0.25f, 0.0f, 0);
+                ((C_000D0D_Widget *)*(void **)*(void **)((char *)((C_000BA9B0 *)hw)->func_000BA9B0(9) + 0x1b0))
+                    ->func_001B1860(0, -1.0f, 0, 1.45f, 0, 0, 0, 255, 1.45f, 0, 0.25f, 0.0f, 0);
                 break;
             case 5:
-                w = ((C_000BA9B0 *)hw)->func_000BA9B0(10);
-                w = *(void **)((char *)w + 0x1b0);
-                w = *(void **)w;
-                ((C_000D0D_Widget *)w)->func_001B1860(0, -1.0f, 0, 1.45f, 0, 0, 0, 255, 1.45f, 0, 0.25f, 0.0f, 0);
+                ((C_000D0D_Widget *)*(void **)*(void **)((char *)((C_000BA9B0 *)hw)->func_000BA9B0(10) + 0x1b0))
+                    ->func_001B1860(0, -1.0f, 0, 1.45f, 0, 0, 0, 255, 1.45f, 0, 0.25f, 0.0f, 0);
                 break;
             case 6:
-                w = ((C_000BA9B0 *)hw)->func_000BA9B0(11);
-                w = *(void **)((char *)w + 0x1b0);
-                w = *(void **)w;
-                ((C_000D0D_Widget *)w)->func_001B1860(0, -1.0f, 0, 1.45f, 0, 0, 0, 255, 1.45f, 0, 0.25f, 0.0f, 0);
+                ((C_000D0D_Widget *)*(void **)*(void **)((char *)((C_000BA9B0 *)hw)->func_000BA9B0(11) + 0x1b0))
+                    ->func_001B1860(0, -1.0f, 0, 1.45f, 0, 0, 0, 255, 1.45f, 0, 0.25f, 0.0f, 0);
                 break;
             case 7:
-                w = ((C_000BA9B0 *)hw)->func_000BA9B0(12);
-                w = *(void **)((char *)w + 0x1b0);
-                w = *(void **)w;
-                ((C_000D0D_Widget *)w)->func_001B1860(0, -1.0f, 0, 1.45f, 0, 0, 0, 255, 1.45f, 0, 0.25f, 0.0f, 0);
+                ((C_000D0D_Widget *)*(void **)*(void **)((char *)((C_000BA9B0 *)hw)->func_000BA9B0(12) + 0x1b0))
+                    ->func_001B1860(0, -1.0f, 0, 1.45f, 0, 0, 0, 255, 1.45f, 0, 0.25f, 0.0f, 0);
                 break;
             case 8:
-                w = ((C_000BA9B0 *)hw)->func_000BA9B0(13);
-                w = *(void **)((char *)w + 0x1b0);
-                w = *(void **)w;
-                ((C_000D0D_Widget *)w)->func_001B1860(0, -1.0f, 0, 1.45f, 0, 0, 0, 255, 1.45f, 0, 0.25f, 0.0f, 0);
+                ((C_000D0D_Widget *)*(void **)*(void **)((char *)((C_000BA9B0 *)hw)->func_000BA9B0(13) + 0x1b0))
+                    ->func_001B1860(0, -1.0f, 0, 1.45f, 0, 0, 0, 255, 1.45f, 0, 0.25f, 0.0f, 0);
                 break;
             case 9:
-                w = ((C_000BA9B0 *)hw)->func_000BA9B0(14);
-                w = *(void **)((char *)w + 0x1b0);
-                w = *(void **)w;
-                ((C_000D0D_Widget *)w)->func_001B1860(0, -1.0f, 0, 1.45f, 0, 0, 0, 255, 1.45f, 0, 0.25f, 0.0f, 0);
+                ((C_000D0D_Widget *)*(void **)*(void **)((char *)((C_000BA9B0 *)hw)->func_000BA9B0(14) + 0x1b0))
+                    ->func_001B1860(0, -1.0f, 0, 1.45f, 0, 0, 0, 255, 1.45f, 0, 0.25f, 0.0f, 0);
                 break;
             case 10:
-                w = ((C_000BA9B0 *)hw)->func_000BA9B0(15);
-                w = *(void **)((char *)w + 0x1b0);
-                w = *(void **)w;
-                ((C_000D0D_Widget *)w)->func_001B1860(0, -1.0f, 0, 1.45f, 0, 0, 0, 255, 1.45f, 0, 0.25f, 0.0f, 0);
+                ((C_000D0D_Widget *)*(void **)*(void **)((char *)((C_000BA9B0 *)hw)->func_000BA9B0(15) + 0x1b0))
+                    ->func_001B1860(0, -1.0f, 0, 1.45f, 0, 0, 0, 255, 1.45f, 0, 0.25f, 0.0f, 0);
                 break;
             case 11:
-                w = ((C_000BA9B0 *)hw)->func_000BA9B0(16);
-                w = *(void **)((char *)w + 0x1b0);
-                w = *(void **)w;
-                ((C_000D0D_Widget *)w)->func_001B1860(0, -1.0f, 0, 1.45f, 0, 0, 0, 255, 1.45f, 0, 0.25f, 0.0f, 0);
+                ((C_000D0D_Widget *)*(void **)*(void **)((char *)((C_000BA9B0 *)hw)->func_000BA9B0(16) + 0x1b0))
+                    ->func_001B1860(0, -1.0f, 0, 1.45f, 0, 0, 0, 255, 1.45f, 0, 0.25f, 0.0f, 0);
                 break;
             case 12:
-                w = ((C_000BA9B0 *)hw)->func_000BA9B0(17);
-                w = *(void **)((char *)w + 0x1b0);
-                w = *(void **)w;
-                ((C_000D0D_Widget *)w)->func_001B1860(0, -1.0f, 0, 1.45f, 0, 0, 0, 255, 1.45f, 0, 0.25f, 0.0f, 0);
+                ((C_000D0D_Widget *)*(void **)*(void **)((char *)((C_000BA9B0 *)hw)->func_000BA9B0(17) + 0x1b0))
+                    ->func_001B1860(0, -1.0f, 0, 1.45f, 0, 0, 0, 255, 1.45f, 0, 0.25f, 0.0f, 0);
                 break;
             case 13:
-                w = ((C_000BA9B0 *)hw)->func_000BA9B0(18);
-                w = *(void **)((char *)w + 0x1b0);
-                w = *(void **)w;
-                ((C_000D0D_Widget *)w)->func_001B1860(0, -1.0f, 0, 1.45f, 0, 0, 0, 255, 1.45f, 0, 0.25f, 0.0f, 0);
+                ((C_000D0D_Widget *)*(void **)*(void **)((char *)((C_000BA9B0 *)hw)->func_000BA9B0(18) + 0x1b0))
+                    ->func_001B1860(0, -1.0f, 0, 1.45f, 0, 0, 0, 255, 1.45f, 0, 0.25f, 0.0f, 0);
                 break;
             case 14:
-                w = ((C_000BA9B0 *)hw)->func_000BA9B0(19);
-                w = *(void **)((char *)w + 0x1b0);
-                w = *(void **)w;
-                ((C_000D0D_Widget *)w)->func_001B1860(0, -1.0f, 0, 1.45f, 0, 0, 0, 255, 1.45f, 0, 0.25f, 0.0f, 0);
+                ((C_000D0D_Widget *)*(void **)*(void **)((char *)((C_000BA9B0 *)hw)->func_000BA9B0(19) + 0x1b0))
+                    ->func_001B1860(0, -1.0f, 0, 1.45f, 0, 0, 0, 255, 1.45f, 0, 0.25f, 0.0f, 0);
                 break;
             case 15:
-                w = ((C_000BA9B0 *)hw)->func_000BA9B0(20);
-                w = *(void **)((char *)w + 0x1b0);
-                w = *(void **)w;
-                ((C_000D0D_Widget *)w)->func_001B1860(0, -1.0f, 0, 1.45f, 0, 0, 0, 255, 1.45f, 0, 0.25f, 0.0f, 0);
+                ((C_000D0D_Widget *)*(void **)*(void **)((char *)((C_000BA9B0 *)hw)->func_000BA9B0(20) + 0x1b0))
+                    ->func_001B1860(0, -1.0f, 0, 1.45f, 0, 0, 0, 255, 1.45f, 0, 0.25f, 0.0f, 0);
                 break;
             case 16:
-                w = ((C_000BA9B0 *)hw)->func_000BA9B0(21);
-                w = *(void **)((char *)w + 0x1b0);
-                w = *(void **)w;
-                ((C_000D0D_Widget *)w)->func_001B1860(0, -1.0f, 0, 1.45f, 0, 0, 0, 255, 1.45f, 0, 0.25f, 0.0f, 0);
+                ((C_000D0D_Widget *)*(void **)*(void **)((char *)((C_000BA9B0 *)hw)->func_000BA9B0(21) + 0x1b0))
+                    ->func_001B1860(0, -1.0f, 0, 1.45f, 0, 0, 0, 255, 1.45f, 0, 0.25f, 0.0f, 0);
                 break;
             }
         }

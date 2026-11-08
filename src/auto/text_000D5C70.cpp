@@ -280,6 +280,7 @@ BmxUIPageHOF2 *BmxUIPageHOF2::func_000D5E80(int a, int b, int c)
         arr2FC[j] = mem ? ((ElemHOF2 *)mem)->func_001D5760() : 0;
         if (j % 2 == 0) {
             arr2FC[j]->func_001D5810(D_0027F29C, 110.0f, 147.0f, 0);
+            _ReadWriteBarrier();
         } else {
             arr2FC[j]->func_001D5810(D_0027F29C, 321.0f, 147.0f, 0);
         }

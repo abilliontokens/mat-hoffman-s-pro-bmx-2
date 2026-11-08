@@ -475,32 +475,32 @@ void C_001D5760::func_001D5AD0()
  Vertex_001D5AD0 *v=0;
  if(f58&7) v=(Vertex_001D5AD0*)func_001FF410(*(void**)((char*)f60+0x14),0);
  if(f58&1) {
-  float u=f28*f24,vv=f2c*f24;
-  float p,q,s,t;
-  if(f54) { p=v4.x-u; q=v4.y-vv; s=v4.x+u; t=v4.y+vv; }
-  else { p=v4.x; q=v4.y; s=p+u; t=vv+q; }
-  volatile int zz=f34;
+  float w=f28*f24,h=f2c*f24;
+  float x,y,r,b;
+  if(f54) { x=v4.x-w; y=v4.y-h; r=v4.x+w; b=v4.y+h; }
+  else { x=v4.x; y=v4.y; r=x+w; b=h+y; }
+  volatile int z=f34;
   if(*(float*)&f30 != D_00275544) {
    float cs=0,sn=0;
-   p-=v14.x;q-=v14.y;s-=v14.x;t-=v14.y;
+   x-=v14.x;y-=v14.y;r-=v14.x;b-=v14.y;
    func_0014F670(*(float*)&f30,&sn,&cs);
-   float pc=p*cs,ps=p*sn,qc=q*cs,qs=q*sn,sc=s*cs,ss=s*sn,tc=t*cs,ts=t*sn;
-   v[0].x=(pc-qs+v14.x)*D_002ABDD0;
-   v[0].y=(qc+ps+v14.y)*D_002ABDD4; v[0].z=zz;
-   v[1].x=(pc-ts+v14.x)*D_002ABDD0;
-   v[1].y=(tc+ps+v14.y)*D_002ABDD4; v[1].z=zz;
-   v[2].x=(sc-qs+v14.x)*D_002ABDD0;
-   v[2].y=(ss+qc+v14.y)*D_002ABDD4; v[2].z=zz;
-   v[3].x=(sc-ts+v14.x)*D_002ABDD0;
-   v[3].y=(tc+ss+v14.y)*D_002ABDD4;
+   float xc=x*cs,xs=x*sn,yc=y*cs,ys=y*sn,rc=r*cs,rs=r*sn,bc=b*cs,bs=b*sn;
+   v[0].x=(xc-ys+v14.x)*D_002ABDD0;
+   v[0].y=(yc+xs+v14.y)*D_002ABDD4; v[0].z=z;
+   v[1].x=(xc-bs+v14.x)*D_002ABDD0;
+   v[1].y=(bc+xs+v14.y)*D_002ABDD4; v[1].z=z;
+   v[2].x=(rc-ys+v14.x)*D_002ABDD0;
+   v[2].y=(rs+yc+v14.y)*D_002ABDD4; v[2].z=z;
+   v[3].x=(rc-bs+v14.x)*D_002ABDD0;
+   v[3].y=(bc+rs+v14.y)*D_002ABDD4;
   } else {
-   v[1].x=v[0].x=p*D_002ABDD0;
-   v[2].y=v[0].y=D_002ABDD4*q;
-   v[3].y=v[1].y=D_002ABDD4*t;
-   v[3].x=v[2].x=D_002ABDD0*s;
-   v[0].z=zz;v[1].z=zz;v[2].z=zz;
+   v[1].x=v[0].x=x*D_002ABDD0;
+   v[2].y=v[0].y=D_002ABDD4*y;
+   v[3].y=v[1].y=D_002ABDD4*b;
+   v[3].x=v[2].x=D_002ABDD0*r;
+   v[0].z=z;v[1].z=z;v[2].z=z;
   }
-  v[3].z=zz; f58&=~1;
+  v[3].z=z; f58&=~1;
  }
  if(f58&2) { v[0].color=f38;v[1].color=f38;v[2].color=f38;v[3].color=f38;f58&=~2; }
  if(f58&4) { v[0].u=f3c;v[0].v=f44;v[1].u=f3c;v[1].v=*(int*)&f48;v[2].u=*(int*)&f40;v[2].v=f44;v[3].u=*(int*)&f40;v[3].v=*(int*)&f48;f58&=~4; }
@@ -653,8 +653,8 @@ int C_001D61E0::func_001D61E0(void)
 
 int C_001D6290::func_001D6290(void)
 {
-    int result;
     float total = D_00275544;
+    int result;
     C_001D6290Sub *last = 0;
     int i;
 
@@ -676,10 +676,10 @@ int C_001D6290::func_001D6290(void)
         }
     }
     if (last != 0 && last->f8 == 0) {
-        FloatToInt(&result, (float)unk40->func_0018C070()->f8 * unk34 * total);
+        AsmFloatToInt((float)unk40->func_0018C070()->f8 * unk34 * total, &result);
         return result;
     }
-    FloatToInt(&result, total * unk34);
+    AsmFloatToInt(total * unk34, &result);
     return result;
 }
 
@@ -733,22 +733,21 @@ void C_001D6410::func_001D6410(void)
 
 void C_001D5E90::func_001D6440(void)
 {
- C_001D5E90 * volatile self = this;
- C_001D5E90 *obj;
- struct { int tmp; float w; float h; } l;
+ float w, h;
+ int tmp;
  if (this->f44 != 0 && *this->f0 != 0) {
- l.w = (float)((C_001D6290 *)self)->func_001D6290();
- l.h = (float)((C_001D61E0 *)self)->func_001D61E0();
- switch ((obj = self)->f44) {
- case 0: self->v14.x = obj->v4.x; self->v14.y = obj->v4.y; goto done;
- case 1: l.tmp = (int)(obj->v4.x - l.w * 0.5f); self->v14.x = (float)l.tmp; break;
- case 2: self->v14.x = obj->v4.x; l.tmp = (int)(obj->v4.y - l.h * 0.5f); self->v14.y = (float)l.tmp; goto done;
- case 3: l.tmp = (int)(obj->v4.x - l.w * 0.5f); self->v14.x = (float)l.tmp; l.tmp = (int)(obj->v4.y - l.h * 0.5f); self->v14.y = (float)l.tmp; goto done;
- default: l.tmp = (int)(obj->v4.x - l.w); self->v14.x = (float)l.tmp; break;
+ w = (float)((C_001D6290 *)this)->func_001D6290();
+ h = (float)((C_001D61E0 *)this)->func_001D61E0();
+ switch (this->f44) {
+ case 0: this->v14.x = this->v4.x; this->v14.y = this->v4.y; goto done;
+ case 1: AsmFloatToInt(this->v4.x - *(volatile float *)&w * D_002755E8, &tmp); this->v14.x = (float)tmp; break;
+ case 2: this->v14.x = this->v4.x; AsmFloatToInt(this->v4.y - *(volatile float *)&h * D_002755E8, &tmp); this->v14.y = (float)tmp; goto done;
+ case 3: AsmFloatToInt(this->v4.x - *(volatile float *)&w * D_002755E8, &tmp); this->v14.x = (float)tmp; AsmFloatToInt(this->v4.y - *(volatile float *)&h * D_002755E8, &tmp); this->v14.y = (float)tmp; goto done;
+ default: AsmFloatToInt(this->v4.x - w, &tmp); this->v14.x = (float)tmp; break;
  }
- } else { self->v14.x = obj->v4.x; }
- self->v14.y = obj->v4.y;
- self->f4e |= 4;
-done: self->f4e &= ~2; self->f4e |= 0x10;
+ } else { this->v14.x = this->v4.x; }
+ this->v14.y = this->v4.y;
+ this->f4e |= 4;
+done: this->f4e &= ~2; this->f4e |= 0x10;
 }
 

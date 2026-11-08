@@ -338,9 +338,8 @@ void GameObject::func_001576E0(void)
 
     f21 &= 0xfc;
     for (c = f10; c != 0; c = c->fC) {
-        if (!(c->f21 & 8)) {
+        if ((c->f21 & 8) == 0)
             c->v5();
-        }
     }
 }
 

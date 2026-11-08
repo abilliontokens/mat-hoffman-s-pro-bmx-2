@@ -344,7 +344,7 @@ struct C_001B08B0 {
 
 int C_001AFEC0::func_001AFEC0()
 {
-    register int i;
+    int i;
     if (D_002A8490->unk238 == unk8) {
         return 1;
     }
@@ -771,20 +771,18 @@ void *C_001B08B0::func_001B08B0(unsigned int flags)
 
 C_001B08B0::C_001B08B0(const C_001B08B0 &src)
 {
-    extern int D_0028C444;
-    int i;
-    const C_001B08B0 *s;
-
-    vtbl = (void *)&D_0028C444;
-    s = &src;
-    unk4 = s->unk4;
-    unk8 = s->unk8;
-    for (i = 0; i < 4; i++) {
-        items[i] = 0;
-        if (s->items[i] != 0) {
-            items[i] = new S_001B08F0_Item(*s->items[i]);
-        }
-    }
+ extern int D_0028C444;
+ vtbl = (void *)&D_0028C444;
+ unk4 = src.unk4;
+ unk8 = src.unk8;
+ S_001B08F0_Item **dst = items;
+ S_001B08F0_Item *const *s = src.items;
+ int n = 4;
+ do {
+  *dst = 0;
+  if (*s) *dst = new S_001B08F0_Item(**s);
+  ++dst; ++s;
+ } while (--n);
 }
 
 void C_001B08B0::func_001B0970(void)

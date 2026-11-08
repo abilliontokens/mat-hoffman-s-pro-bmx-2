@@ -499,11 +499,9 @@ int DXShaderDescriptor::func_00148910(int a0, Parser_00148910 *p, int id, int id
             f20[i] = flag2;
         }
     }
-    Item12_00148910 *dst;
-    size = count1 * 12;
-    dst = (Item12_00148910 *)func_001E8A44(size);
-    f2C = dst;
-    memcpy(dst, items, size);
+    size = (*(volatile int *)&count1) * 12;
+    f2C = (Item12_00148910 *)func_001E8A44(size);
+    memcpy(f2C, items, size);
     f38 = count1;
     fl0 = (fA == 2);
     func_001458E0(p, sd, (Entry8_00148910 *)items, &count2);
@@ -809,8 +807,8 @@ void C_00149480::func_00149480(void)
  func_001FEBD0(0,v); func_001FEBD0(one,v+4);
  func_001FEBD0(0x21,(void*)(p+0x170)); func_001FEBD0(3,(void*)(D_002EFDB8+0x74));
  int n=self->unk4;
- if(n>0) { char *off=(char*)0x10; for(;n>0;--n) {
- Item_00149480 *obj=*(Item_00149480**)(off+(int)self);
+ if(n>0) { int off=0x10; for(;n>0;--n) {
+ Item_00149480 *obj=*(Item_00149480**)(off+(char*)self);
  if(obj) {
  if(obj->f4 && !obj->fC) ((VObj_00148780*)((char*)obj->f4+12))->f1();
  int frame=obj->f18;

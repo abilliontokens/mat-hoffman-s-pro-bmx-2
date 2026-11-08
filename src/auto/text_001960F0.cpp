@@ -10,6 +10,7 @@ extern float D_0028B010;
 extern float D_002755E8;
 extern "C" unsigned __int64 __ftol2(double x);
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 static __forceinline void Trunc_00196560(int *out, const float &f)
 {
     int * volatile p = out;
@@ -224,91 +225,86 @@ void C_00196290::func_001963D0(void)
 
 void C_00196290::func_00196560(void)
 {
-    C_00196290 * volatile self = this;
     u32 i;
     if ((u32)(f60 + f68 + 8) < fc8) {
-        {
-            int hdr[2];
-            hdr[0] = f24;
-            hdr[1] = f64;
-            f64 = 0;
-            self->func_00196360((u8 *)hdr);
-        }
-        int sign;
-        float v;
-        float diff;
         int q;
-        C_00196290 *p = self;
+        int hdr[2];
+        hdr[0] = f24;
+        hdr[1] = f64;
+        f64 = 0;
+        func_00196360((u8 *)hdr);
+        C_00196290 *p = this;
         for (i = 0; i < p->f74; i++) {
             int type = p->f80[i];
             if (type == 0) {
-                v = *(float *)p->f78[i];
-                sign = -1;
+                float v = *(float *)p->f78[i];
+                float diff;
+                hdr[0] = -1;
                 diff = v - ((float *)p->f98)[i];
                 if (!(diff < D_00275544)) {
-                    sign = 1;
+                    hdr[0] = 1;
                 }
-                q = (int)(diff * p->f90[i] + sign * D_002755E8);
+                q = (int)(diff * p->f90[i] + hdr[0] * D_002755E8);
                 if (q <= 126 && q >= -127) {
                     signed char c = (signed char)q;
                     *p->f54 = c;
-                    self->f54++;
-                    self->f68++;
-                    self->f64++;
-                    ((float *)self->f98)[i] = c * self->f94[i] + v - diff;
+                    f54++;
+                    f68++;
+                    f64++;
+                    ((float *)f98)[i] = c * f94[i] + v - diff;
                 } else {
                     *p->f54 = 0x7f;
-                    self->f54++;
-                    self->f68++;
-                    self->f64++;
-                    self->f54[0] = ((u8 *)&v)[0];
-                    self->f54[1] = ((u8 *)&v)[1];
-                    self->f54[2] = (u8)((u16 *)&v)[1];
-                    self->f54[3] = (u8)(((u16 *)&v)[1] >> 8);
-                    self->f54 += 4;
-                    self->f68 += 4;
-                    self->f64 += 4;
-                    ((float *)self->f98)[i] = v;
+                    f54++;
+                    f68++;
+                    f64++;
+                    f54[0] = ((u8 *)&v)[0];
+                    f54[1] = ((u8 *)&v)[1];
+                    f54[2] = (u8)((u16 *)&v)[1];
+                    f54[3] = (u8)(((u16 *)&v)[1] >> 8);
+                    f54 += 4;
+                    f68 += 4;
+                    f64 += 4;
+                    ((float *)f98)[i] = v;
                 }
             } else if (type == 1) {
                 int iv = *(int *)p->f78[i];
                 int idiff = iv - p->fac[i];
                 float fd = (float)idiff;
-                sign = -1;
+                hdr[0] = -1;
                 if (!(fd < D_00275544)) {
-                    sign = 1;
+                    hdr[0] = 1;
                 }
-                Trunc_00196560(&q, fd * p->f90[i] + sign * D_002755E8);
+                AsmFloatToInt(fd * p->f90[i] + hdr[0] * D_002755E8, &q);
                 if (q <= 126 && q >= -127) {
                     signed char c = (signed char)q;
-                    *self->f54 = c;
-                    self->f54++;
-                    self->f68++;
-                    self->f64++;
+                    *f54 = c;
+                    f54++;
+                    f68++;
+                    f64++;
                     int r;
-                    Trunc_00196560(&r, c * self->f94[i]);
-                    self->fac[i] = r - idiff + iv;
+                    AsmFloatToInt(c * f94[i], &r);
+                    fac[i] = r - idiff + iv;
                 } else {
-                    *self->f54 = 0x7f;
-                    self->f54++;
-                    self->f68++;
-                    self->f64++;
-                    self->f54[0] = ((u8 *)&iv)[0];
-                    self->f54[1] = ((u8 *)&iv)[1];
-                    self->f54[2] = (u8)((u16 *)&iv)[1];
-                    self->f54[3] = (u8)(((u16 *)&iv)[1] >> 8);
-                    self->f54 += 4;
-                    self->f68 += 4;
-                    self->f64 += 4;
-                    self->fac[i] = iv;
+                    *f54 = 0x7f;
+                    f54++;
+                    f68++;
+                    f64++;
+                    f54[0] = ((u8 *)&iv)[0];
+                    f54[1] = ((u8 *)&iv)[1];
+                    f54[2] = (u8)((u16 *)&iv)[1];
+                    f54[3] = (u8)(((u16 *)&iv)[1] >> 8);
+                    f54 += 4;
+                    f68 += 4;
+                    f64 += 4;
+                    fac[i] = iv;
                 }
             } else if (type == 2) {
                 *p->f54 = *(u8 *)p->f78[i];
-                self->f54++;
-                self->f68++;
-                self->f64++;
+                f54++;
+                f68++;
+                f64++;
             }
-            p = self;
+            p = this;
         }
         S_001968C0_Hdr h;
         h.a = -999.0f;

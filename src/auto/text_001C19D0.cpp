@@ -332,11 +332,11 @@ void C_001C21F0::func_001C21F0(int a0) {
 
 void C_001C2210::func_001C2210() {
     unk2C = 1;
-    if (unk30 == 0 || unk34 == 0) {
-        if (unk30 != 0) {
+    if (!(unk30 && unk34)) {
+        if (unk30) {
             ((VCall8 *)this)->v7();
         }
-        if (unk34 != 0) {
+        if (unk34) {
             ((VCall8 *)this)->v5();
         }
     }
@@ -374,8 +374,9 @@ UIWidgetSoultreeCharacter *UIWidgetSoultreeCharacter::func_001C22C0(int arg,char
  float v[4];
  char buf[0x100];
  func_001BF600(cfg);
- Config1C22C0 *other=(Config1C22C0*)func_001E8A44(0x4cc);
- if(other) other=other->func_00168280();
+ Config1C22C0 *mem=(Config1C22C0*)func_001E8A44(0x4cc);
+ Config1C22C0 *other;
+ if(mem) other=mem->func_00168280();
  else other=0;
  v[0]=1;v[1]=1;v[2]=1;v[3]=1;
  cfg->func_00168CB0(D_00275AD4,v,v6C);
@@ -385,22 +386,22 @@ UIWidgetSoultreeCharacter *UIWidgetSoultreeCharacter::func_001C22C0(int arg,char
  cfg->func_00168CB0(D_0027CEE4,v,v8C);
  other->func_00169490(path,0);
  memcpy(str19C,D_00284A98,5);
- if(cfg->func_00168C20(D_0028E23C,0,&id)&&id>0){
-  func_001ADCC0(buf,0x100,D_00277268,id);
-  other->func_00169710(buf);
-  other->func_00168550(D_0028E234,str19C,0x100);
+ if(cfg->func_00168C20(D_0028E23C,0,&id) && id>0){
+ func_001ADCC0(buf,0x100,D_00277268,id);
+ other->func_00169710(buf);
+ other->func_00168550(D_0028E234,str19C,0x100);
  }
  memcpy(str29C,D_00284A98,5);
- if(cfg->func_00168C20(D_0028E220,0,&id)&&id>0){
-  func_001ADCC0(buf,0x100,D_00277268,id);
-  other->func_00169710(buf);
-  other->func_00168550(D_0028E234,str29C,0x100);
+ if(cfg->func_00168C20(D_0028E220,0,&id) && id>0){
+ func_001ADCC0(buf,0x100,D_00277268,id);
+ other->func_00169710(buf);
+ other->func_00168550(D_0028E234,str29C,0x100);
  }
  memcpy(str9C,D_00284A98,5);
- if(cfg->func_00168C20(D_0028E210,0,&id)&&id>0){
-  func_001ADCC0(buf,0x100,D_00277268,id);
-  other->func_00169710(buf);
-  other->func_00168550(D_0028E234,str9C,0x100);
+ if(cfg->func_00168C20(D_0028E210,0,&id) && id>0){
+ func_001ADCC0(buf,0x100,D_00277268,id);
+ other->func_00169710(buf);
+ other->func_00168550(D_0028E234,str9C,0x100);
  }
  cfg->func_00168C20(D_0028E1F8,0,&count);
  if(count>0){

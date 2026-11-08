@@ -1,5 +1,6 @@
 /* 7 functions from 0x000ACD50 to 0x000AD5C0, found by Ghidra. */
 #include "common.h"
+#include "asm_helpers.h"
 
 struct C_000ACE60_s4 {
     int a;
@@ -333,13 +334,6 @@ void *C_000ACF00::func_000ACF00(int flags) {
 int C_000ACE60::func_000ACF30(C_000ACF30_Game * volatile game, int count, int volatile flag3, int volatile flag4)
 {
     void *func_001E8A44(...);
-    C_000ACE60 * volatile self = this;
-    struct {
-        volatile int res;
-        volatile int lim;
-        volatile int len;
-    } t;
-    C_000ACE60 *me;
     C_000ACE60_s4 *p;
     C_000ACF30_Stage *stage;
     C_000ACF30_Obj *obj;
@@ -347,8 +341,6 @@ int C_000ACE60::func_000ACF30(C_000ACF30_Game * volatile game, int count, int vo
     int i;
     int n;
     int cnt;
-    int ma;
-    int mb;
     int idx;
     char buf[0x104];
     char name[0x104];
@@ -359,30 +351,26 @@ int C_000ACE60::func_000ACF30(C_000ACF30_Game * volatile game, int count, int vo
     stage = (C_000ACF30_Stage *)func_001E8A44(0x7a90);
     game->f52C = stage ? stage->func_000A4570() : 0;
     game->f52C->func_000A4D30();
-    me = self;
-    cnt = me->unk24;
-    for (i = 0; i < cnt; i++, cnt = (me = self)->unk24) {
+    cnt = unk24;
+    for (i = 0; i < cnt; i++, cnt = unk24) {
         func_001ADCC0(name, 0x104, D_002772CC, D_002A8490->f2E0->names150[i], D_002A8490->f2E0->f1B0[i] + 1);
         func_001ADCC0(buf, 0x104, D_00276C34, D_002A5348, name);
         D_002BEAAC->func_0013D780(buf, 1, 0, 0, 0, 0, 0, 0);
-        self->arr2[i].func_000A4150(name);
+        arr2[i].func_000A4150(name);
         D_002A829C->func_00161680();
         D_002AA6C0->func_001B2640();
         D_002BEAAC->func_0013DFF0(buf, 1);
     }
-    cnt = me->unk24;
-    for (i = 0; i < cnt; i++, cnt = (me = self)->unk24) {
-        t.len = C_000ACF30_strlen(D_002A8490->f2E0->names1F4[i]);
-        t.lim = 0x103;
-        ma = t.lim;
-        mb = t.len;
-        t.res = ma > mb ? mb : ma;
-        n = t.res;
+    cnt = unk24;
+    for (i = 0; i < cnt; i++, cnt = unk24) {
+        int lim = 0x103;
+        int len = C_000ACF30_strlen(D_002A8490->f2E0->names1F4[i]);
+        n = AsmMinI(lim, len);
         func_001E8920(name, D_002A8490->f2E0->names1F4[i], n);
         name[n] = 0;
         func_001ADCC0(buf, 0x104, D_00276C34, D_002A5348, name);
         D_002BEAAC->func_0013D780(buf, 1, 0, 0, 0, 0, 0, 0);
-        self->arr1[i].func_000A4400(name);
+        arr1[i].func_000A4400(name);
         D_002A829C->func_00161680();
         D_002AA6C0->func_001B2640();
         D_002BEAAC->func_0013DFF0(buf, 1);
@@ -390,53 +378,48 @@ int C_000ACE60::func_000ACF30(C_000ACF30_Game * volatile game, int count, int vo
     func_001ADCC0(buf, 0x104, D_0027CAC4, D_002A5348);
     D_002BEAAC->func_0013D780(buf, 1, 0, 0, 0, 0, 0, 0);
     D_002BEAAC->func_0013B260(0);
-    me = self;
-    cnt = me->unk24;
-    for (i = 0; i < cnt; i++, cnt = (me = self)->unk24) {
+    cnt = unk24;
+    for (i = 0; i < cnt; i++, cnt = unk24) {
         if (flag3) {
             if (i == 0) {
-                me->arr3[0].func_000A4250();
-                p = &self->arr3[0];
-                self->func_001577A0((void *)p->a, 2);
-                self->func_001577A0((void *)p->b, 2);
-                self->func_001577A0((void *)p->c, 2);
-                self->func_001577A0((void *)p->d, 2);
+                arr3[0].func_000A4250();
+                p = &arr3[0];
+                func_001577A0((void *)p->a, 2);
+                func_001577A0((void *)p->b, 2);
+                func_001577A0((void *)p->c, 2);
+                func_001577A0((void *)p->d, 2);
             }
         } else {
-            me->arr3[i].func_000A4250();
-            p = &self->arr3[i];
-            self->func_001577A0((void *)p->a, 2);
-            self->func_001577A0((void *)p->b, 2);
-            self->func_001577A0((void *)p->c, 2);
-            self->func_001577A0((void *)p->d, 2);
+            arr3[i].func_000A4250();
+            p = &arr3[i];
+            func_001577A0((void *)p->a, 2);
+            func_001577A0((void *)p->b, 2);
+            func_001577A0((void *)p->c, 2);
+            func_001577A0((void *)p->d, 2);
         }
         obj = (C_000ACF30_Obj *)func_001E8A44(0x20d0);
-        self->arr4[i] = obj ? obj->func_0010E920(1) : 0;
+        arr4[i] = obj ? obj->func_0010E920(1) : 0;
         idx = i;
         if (flag3) idx = 0;
         {
             C_000ACF30_Game *g = game;
-            C_000ACE60 *s = self;
-            self->arr4[i]->func_0010F320(g, s->arr1[i].a, s->arr2[i].a, *p, g->f488,
-                                         g->f4DC->a[idx], g->f4DC->b[idx], D_002A2754, g->f3E4, i);
+            arr4[i]->func_0010F320(g, arr1[i].a, arr2[i].a, *p, g->f488,
+                                   g->f4DC->a[idx], g->f4DC->b[idx], D_002A2754, g->f3E4, i);
         }
         if (D_002A8490->f2E4) {
             game->f4E0->arr4[i]->func_0010DA70(&D_002A8490->f2E0->f398[i]);
         }
         func_001ADCC0(D_002A48F8, 0x104, D_00275678, D_002A5870, D_002A47F0);
-        self->arr4[i]->f1244 = D_002A8490->f4->func_0001CD90(game->f4C0);
-        f = self->arr4[i]->f1244;
+        arr4[i]->f1244 = D_002A8490->f4->func_0001CD90(game->f4C0);
+        f = arr4[i]->f1244;
         if (f) {
             game->v89(f);
-            game->v91(self->arr4[i]->f1244);
+            game->v91(arr4[i]->f1244);
         }
-        {
-            C_000ACE60 *s = self;
-            s->func_001577A0(s->arr4[i], 0x40e);
-        }
+        func_001577A0(arr4[i], 0x40e);
         if (D_002A8490->f2E0->f190[i] == 3 || D_002A8490->f2E0->f45C) {
-            self->arr4[i]->func_00108370();
-            self->arr4[i]->func_001083E0();
+            arr4[i]->func_00108370();
+            arr4[i]->func_001083E0();
         }
     }
     if (flag4) {
@@ -444,7 +427,7 @@ int C_000ACE60::func_000ACF30(C_000ACF30_Game * volatile game, int count, int vo
         if (flag3) {
             game->v82(1);
         } else {
-            game->v82(self->unk24);
+            game->v82(unk24);
         }
         func_001ADCC0(D_002A60B0, 0x104, D_00275678, D_002A5870, D_002A5FA8);
     }

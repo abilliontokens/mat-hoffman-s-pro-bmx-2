@@ -275,11 +275,12 @@ void DrawableCube::func_00137810()
     ((int *)D_002BEA50.m)[11] = this->f28->f10;
     func_000263B0(D_002BEA10, D_002BEA50.m, (float *)(D_002EFDB8->f4 + 0xf0));
     for (k = 0; k < 6; k++) {
-        float *p = &D_002BE9A8[k * 4];
+        float *ph = &D_002BE9A8[k * 4];
+        float *pq = &D_002BE9A8[k * 4 - 2];
         float *vp;
         int *op;
         *(unsigned short *)((char *)this->f28 + k * 0xfc + 0x12c) = 0;
-        if (!(v.y * p[-1] + v.x * p[-2] + v.z * p[0]
+        if (!(v.y * pq[1] + v.x * pq[0] + v.z * ph[0]
               > (*(float *)(D_002EFDB8->f4 + 0x1d0) - D_00275AEC) * D_0028491C)) {
             vp = &D_002BE040[k * 100];
             op = vf;

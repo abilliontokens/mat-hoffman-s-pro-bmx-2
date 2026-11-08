@@ -278,25 +278,27 @@ float func_0014F870(float x)
 }
 
 float func_0014F890(float x) {
- volatile float sign, offset;
- if (x > D_00275460) { x = D_00275460; goto positive; }
- if (x < D_00275F58) { x = D_00275F58; goto negative; }
- if (x < D_00275544) goto negative;
+    int *p;
+    float v;
+    volatile float sign, offset;
+    if (x > D_00275460) { x = D_00275460; goto positive; }
+    if (x < D_00275F58) { x = D_00275F58; goto negative; }
+    if (x < D_00275544) goto negative;
 positive:
- offset = 0.0f; sign = 1.0f; x = D_00275460 - x;
- goto lookup;
+    offset = 0.0f; x = D_00275460 - x; sign = 1.0f;
+    goto lookup;
 negative:
- offset = 3.14159265358979323846f; sign = -1.0f; x += D_00275460;
+    offset = 3.14159265358979323846f; sign = -1.0f; x += D_00275460;
 lookup:
- int n = ((*(unsigned int *)&x >> 23) & 255) - 102;
- if (n > 24) n = 24;
- else if (n < 0) n = 0;
- float v = (x - D_002DF740[n * 3]) * D_002DF744[n * 3];
- int * volatile p = (int *)&x;
- *p = (int)v;
- float f = v - (float)*(volatile int *)&x;
- float *table = (float *)D_002DF748[n].f0 + *(int *)&x;
- return ((D_00275460 - f) * table[0] + f * table[1]) * sign + offset;
+    int n = ((*(unsigned int *)&x >> 23) & 255) - 102;
+    if (n > 24) n = 24;
+    else if (n < 0) n = 0;
+    v = (x - D_002DF740[n * 3]) * D_002DF744[n * 3];
+    p = (int *)&x;
+    AsmFloatToInt(v, p);
+    float f = v - (float)*p;
+    float *table = (float *)D_002DF748[n].f0 + *p;
+    return ((D_00275460 - f) * table[0] + f * table[1]) * sign + offset;
 }
 
 float func_0014F990(float x)
@@ -558,17 +560,17 @@ void func_0014FED0(void)
 
 void func_0014FF00(char *path, char *drive, char *dir, char *fname, char *ext)
 {
- char *dot=0; char *p; char *slash; int n; volatile int lens[3]; lens[2]=255;
+ char *slash; char *dot=0; char *p; int len; int n;
  if(strlen(path)>=1 && path[1]==':') { if(drive) {func_001E8920(drive,path,2); drive[2]=0;} path+=3; }
  else if(drive) *drive=0;
  slash=0; p=path;
  char c=*p;
  if(c) do { if(c=='/' || c=='\\') slash=p+1; else if(c=='.') dot=p; c=p[1]; ++p; } while(c);
- if(slash) {if(dir) {lens[0]=slash-path; lens[1]=min_0014FF00(lens[2],lens[0]); n=lens[1]; func_001E8920(dir,path,n); dir[n]=0;} path=slash;} else if(dir) *dir=0;
+ if(slash) {if(dir) {len=slash-path; n=AsmMinI(len,255); func_001E8920(dir,path,n); dir[n]=0;} path=slash;} else if(dir) *dir=0;
  if(dot && dot>=path) {
- if(fname) {lens[0]=dot-path; lens[1]=min_0014FF00(lens[2],lens[0]); n=lens[1]; func_001E8920(fname,path,n); fname[n]=0;}
- if(ext) {lens[0]=p-dot; lens[1]=min_0014FF00(lens[2],lens[0]); n=lens[1]; func_001E8920(ext,dot,n); ext[n]=0;}
- } else {if(fname) {lens[0]=p-path; lens[1]=min_0014FF00(lens[2],lens[0]); n=lens[1]; func_001E8920(fname,path,n); fname[n]=0;} if(ext) *ext=0;}
+ if(fname) {len=dot-path; n=AsmMinI(len,255); func_001E8920(fname,path,n); fname[n]=0;}
+ if(ext) {len=p-dot; n=AsmMinI(len,255); func_001E8920(ext,dot,n); ext[n]=0;}
+ } else {if(fname) {len=p-path; n=AsmMinI(len,255); func_001E8920(fname,path,n); fname[n]=0;} if(ext) *ext=0;}
 }
 
 C_001500A0 *C_001500A0::func_001500A0(void)

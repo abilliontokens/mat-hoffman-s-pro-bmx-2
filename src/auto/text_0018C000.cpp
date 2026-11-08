@@ -344,12 +344,9 @@ void C_0018C120::func_0018C120(void) {
 
 C_0018C120_Node *C_0018C120::func_0018C160(const char *name)
 {
-    C_0018C120_Node *n;
-    const char *key = name;
-
-    n = this->head;
+    C_0018C120_Node *n = head;
     while (n != 0) {
-        if (strcmp(key, ((C_0018C000 *)n->value)->unk4) == 0) {
+        if (strcmp(name, ((C_0018C000 *)n->value)->unk4) == 0) {
             break;
         }
         n = n->next;

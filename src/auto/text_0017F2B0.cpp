@@ -19,6 +19,7 @@ struct Vec4_0017F2B0 {
 };
 
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 
 /* two-pointer tree header (nodes, leaves), as func_00129350 and func_00123C80 take it */
 struct S_0017F550_Pair {
@@ -228,11 +229,16 @@ int C_0017F2B0::func_0017F2B0(char *a)
         ts.tmp.x = o[6]; ts.tmp.y = o[7]; ts.tmp.z = o[8]; ts.tmp.w = 1.0f;
         b = ts.tmp;
     } else {
+        const Vec4_0017F2B0 *hi;
+        const Vec4_0017F2B0 *lo;
+
         q = *(Aabb_0017F2B0 **)(t + 0x100);
-        Add_0017F2B0(&ts.s, &q->mn, &q->mx);
+        hi = &q->mx;
+        lo = &q->mn;
+        Add_0017F2B0(&ts.s, hi, lo);
         Half_0017F2B0(&ts.tmp, &ts.s);
         p = ts.tmp;
-        Sub_0017F2B0(&ts.s, &q->mx, &q->mn);
+        Sub_0017F2B0(&ts.s, hi, lo);
         Half_0017F2B0(&ts.tmp, &ts.s);
         b = ts.tmp;
     }
@@ -311,12 +317,12 @@ int C_0017F2B0::func_0017F550(S_0017F550_Shape *a)
                             func_00030AC0(&g->f30.x, &g->f30.x, e->mB0);
                             g->f98 |= 1;
                         }
-                        mn.x = Min_0017F550(mn.x, g->f50.x);
-                        mn.y = Min_0017F550(mn.y, g->f50.y);
-                        mn.z = Min_0017F550(mn.z, g->f50.z);
-                        mx.x = Max_0017F550(mx.x, g->f50.x);
-                        mx.y = Max_0017F550(mx.y, g->f50.y);
-                        mx.z = Max_0017F550(mx.z, g->f50.z);
+                        mn.x = AsmMinF(mn.x, g->f50.x);
+                        mn.y = AsmMinF(mn.y, g->f50.y);
+                        mn.z = AsmMinF(mn.z, g->f50.z);
+                        mx.x = AsmMaxF(mx.x, g->f50.x);
+                        mx.y = AsmMaxF(mx.y, g->f50.y);
+                        mx.z = AsmMaxF(mx.z, g->f50.z);
                         g->f50 = D_002A8EE8;
                         g->f50 = D_002A8EE8;
                         g->f40.x = mx.x + mn.x;

@@ -185,9 +185,9 @@ void C_0018D7B0::func_0018CF40(volatile int index, int a, int b, const char *str
 
     char buffer[256] = "";
     char packed[256] = "";
-    volatile int length = strlen(str);
-    volatile int limit = 255;
-    volatile int size = limit > length ? length : limit;
+    int length = strlen(str);
+    int limit = 255;
+    int size = AsmMinI(limit, length);
     func_001E8920(buffer, str, size);
     buffer[size] = 0;
     volatile int parts = 1;
@@ -384,6 +384,8 @@ int C_0018D580::func_0018DA00(int index, const char *name)
 
 void *__fastcall func_0018DA90(char *volatile self, int, void *result, int type, int index, const char *name, int *out)
 {
+    int slot;
+    int i = 0;
     int value[17];
     char buffer[256] = "";
     value[16] = -1;
@@ -394,8 +396,6 @@ void *__fastcall func_0018DA90(char *volatile self, int, void *result, int type,
     buffer[size] = 0;
     int dots = 0;
     for (int k = 0; buffer[k]; k++) if (buffer[k] == '.') dots++;
-    int i = 0;
-    int slot;
     value[0] = 0;
     char *token = func_001E95A4(buffer, D_0027CEF0);
     if (type == 1) {

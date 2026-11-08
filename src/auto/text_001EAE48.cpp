@@ -17,6 +17,29 @@ extern double D_002766A8;
 extern void (__stdcall *__imp__RtlEnterCriticalSection)(void *cs);
 extern "C" void (__stdcall *__imp__RtlLeaveCriticalSection)(void *cs);
 
+int _func_001EAE48(int *buf, int n, int a, int b)
+{
+    int i;
+    buf[8] = 0x56433230;
+    buf[9] = 0;
+    buf[6] = *(int *)0;
+    if (buf[6] == -1) {
+        buf[7] = -1;
+    } else if (n == 0) {
+        buf[7] = *(int *)(buf[9] + 0xc);
+    } else {
+        buf[9] = a;
+        if (n == 1) {
+            buf[7] = *(int *)(a + 0xc);
+        } else {
+            buf[7] = b;
+            for (i = 0; i < n - 2 && i < 6; i++)
+                buf[10 + i] = (&b)[1 + i];
+        }
+    }
+    return 0;
+}
+
 void func_001EAEC3(void) {
     int func_001EB390(...);
     func_001EB390(8);
@@ -64,8 +87,7 @@ void func_001EAED5(int code, int quick, int retcaller) {
 }
 
 void func_001EAF7F(int code) {
-    int func_001EAED5(...);
-    func_001EAED5(code, 1);
+    func_001EAED5(code, 1, 0);
 }
 
 double func_001EAF91(unsigned int xlo, unsigned int xhi, unsigned int ylo, unsigned int yhi) {

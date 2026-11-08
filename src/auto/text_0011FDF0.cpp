@@ -94,9 +94,8 @@ int func_00120470(short *tri, S_0011F4B0_V4 pos, float radius, int unused, float
 {
     S_00120470_Triangle triangle;
     float delta[4], scaled[4];
-    volatile float absoluteInput[1];
-    volatile int absoluteBits;
-    float d;
+    float d, absD;
+    int absI;
     func_0011F540(&pos, pos, m);
     triangle.n.x = (float)tri[6] * D_002B9348;
     triangle.n.y = (float)tri[7] * D_002B9348;
@@ -107,27 +106,33 @@ int func_00120470(short *tri, S_0011F4B0_V4 pos, float radius, int unused, float
     func_0011F0E0(&triangle.a, &triangle.b, &triangle.c, tri, D_002B92F4);
     delta[0] = pos.x - triangle.a.x; delta[1] = pos.y - triangle.a.y; delta[2] = pos.z - triangle.a.z;
     d = delta[2] * triangle.n.z + (delta[0] * triangle.n.x + delta[1] * triangle.n.y);
-    absoluteInput[0] = *(volatile float *)&d;
-    absoluteBits = *(volatile int *)&absoluteInput[0] & 0x7fffffff;
-    if (*(volatile float *)&absoluteBits > radius) return 0;
+    absI = *(int *)&d & 0x7fffffff;
+    absD = *(float *)&absI;
+    if (absD > radius) return 0;
     scaled[0] = triangle.n.x * d; scaled[1] = triangle.n.y * d; scaled[2] = triangle.n.z * d;
     triangle.n.x = pos.x - scaled[0];
     triangle.n.y = pos.y - scaled[1];
     triangle.n.z = pos.z - scaled[2];
     triangle.n.w = 1.0f;
     if (func_0011FF30(&triangle.n, tri)) return 1;
-    d = func_0011FDF0(&pos, &triangle.a, &triangle.b);
-    absoluteInput[0] = d;
-    absoluteBits = *(volatile int *)&absoluteInput[0] & 0x7fffffff;
-    if (*(volatile float *)&absoluteBits < radius) return 1;
-    d = func_0011FDF0(&pos, &triangle.b, &triangle.c);
-    absoluteInput[0] = d;
-    absoluteBits = *(volatile int *)&absoluteInput[0] & 0x7fffffff;
-    if (*(volatile float *)&absoluteBits < radius) return 1;
-    d = func_0011FDF0(&pos, &triangle.c, &triangle.a);
-    absoluteInput[0] = d;
-    absoluteBits = *(volatile int *)&absoluteInput[0] & 0x7fffffff;
-    if (*(volatile float *)&absoluteBits < radius) return 1;
+    {
+        float e = func_0011FDF0(&pos, &triangle.a, &triangle.b);
+        absI = *(int *)&e & 0x7fffffff;
+        absD = *(float *)&absI;
+        if (absD < radius) return 1;
+    }
+    {
+        float e = func_0011FDF0(&pos, &triangle.b, &triangle.c);
+        absI = *(int *)&e & 0x7fffffff;
+        absD = *(float *)&absI;
+        if (absD < radius) return 1;
+    }
+    {
+        float e = func_0011FDF0(&pos, &triangle.c, &triangle.a);
+        absI = *(int *)&e & 0x7fffffff;
+        absD = *(float *)&absI;
+        if (absD < radius) return 1;
+    }
     return 0;
 }
 

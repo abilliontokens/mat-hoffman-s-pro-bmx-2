@@ -391,7 +391,7 @@ void __stdcall func_001DED66(char c)
     RtlInitAnsiString(&name, buf);
     status = IoDeleteSymbolicLink(&name);
     if (c == 'X' && status >= 0) {
-        D_002F41C8 &= 0xFFFFFF00;
+        D_002F41C8 = 0;
     }
     RtlNtStatusToDosError(status);
 }

@@ -511,9 +511,9 @@ void C_0008BA00::func_0008BA00(void)
         return;
     }
     int *res = ((C_0008B850_Res *)D_002A8490[0x2ec / 4])->func_0018C160(D_00278690);
-    int font = res ? *res : 0;
+    S_0008BA00_Font *font = res ? (S_0008BA00_Font *)*res : 0;
     if (font != 0) {
-        S_0008BA00_Rect *r = ((S_0008BA00_Font *)font)->func_0018C070();
+        S_0008BA00_Rect *r = font->func_0018C070();
         if (D_00275AEC > r->f10) {
             r->f10 = 10.0f;
         }

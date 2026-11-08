@@ -13,27 +13,39 @@ void func_001ECDE7(int param_1, int param_2, int param_3, int param_4)
     func_001ECE2F();
 }
 
+void func_001ECE2F()
+{
+    volatile unsigned char *p = (volatile unsigned char *)0;
+    p[0] = (unsigned char)(p[0] & 0xfe);
+}
+
+long double func_001ECFB0(double value)
+{
+    return value;
+}
+
 #pragma optimize("s", on)
 void *func_001ECFEC(unsigned int size)
 {
     void func_001EB390(int);
-    void func_001EB302(int);
+    void func_001ED03C(void);
     void *func_001DF5B3(void);
     void * __stdcall func_001E013E(void *, int, unsigned int);
     extern int D_002FB364;
-    void *pvReturn;
+    int fSbh;
+    void *res;
     if (D_002FB364 == 3) {
         func_001EB390(4);
         __try {
-            pvReturn = 0;
+            fSbh = 0;
         } __finally {
-            func_001EB302(4);
         }
-        if (pvReturn) {
-            return pvReturn;
-        }
+        func_001ED03C();
+        if (fSbh) goto done;
     }
-    return func_001E013E(func_001DF5B3(), 0, size);
+    res = func_001E013E(func_001DF5B3(), 0, size);
+done:
+    return res;
 }
 #pragma optimize("", on)
 void func_001ED03C(void) {

@@ -93,10 +93,7 @@ int C_00043F00::func_00043F00(int arg)
                 } else {
                     v1.y += D_00275548;
                 }
-                {
-                    V4_43 tmp2 = v1;
-                    f564->f8->func_00199600(tmp2);
-                }
+                f564->f8->func_00199600(v1);
                 if (f564->fC != 0) {
                     f564->fC->func_00199600(v1);
                     f564->fC->func_0019AC50();
@@ -128,12 +125,55 @@ int C_00043F00::func_00043F00(int arg)
             }
             if (f564->f0 == 0 || f564->f0 >= 3) {
                 if (func_000392B0() == 0) {
-                    return 0;
+                    goto shared;
                 }
             } else {
+                f53C->func_001A4100(2, 1, 0);
+                goto done;
+            }
+        } else {
+            goto shared;
+        }
+    } else {
+        return 0;
+    }
+shared:
+    if (func_001E8AF0((char *)f564->f8 + 0x28, D_00276F78) != 0) {
+        if (f288 == 8) {
+            if (f48C == -1) {
+                f53C->func_001A4100(1, 1, 0);
+                return 0;
+            }
+        } else if (f48C == -1) {
+            f288 = f288 + 1;
+            if (f288 < 8) {
+                int edi = f64->f5A4->f47C;
+                if (f64->f5A8 > 0 && f64->f5AC != 0 && edi < f64->f5A8) {
+                    edi = f64->f5AC[edi];
+                } else {
+                    edi = 0;
+                }
+                func_001ADCC0(edi + 0x314, 0x32, D_00276F9C, f288);
                 f53C->func_001A4100(2, 1, 0);
             }
         }
     }
+    f564->f8->func_001824E0(&v4, 1.0f, 1.0f, 1.0f);
+    if (f564->f0 == 3 || f564->f0 == 5) {
+        f564->fC->func_001824E0(&v4, 1.0f, 1.0f, 1.0f);
+    }
+    if (f564->f0 == 0) {
+        if (func_001E8AF0((char *)f564->f8 + 0x28, D_00276F78) != 0) {
+            if (f48C == -1 && f290 == 0) {
+                V4_43 local;
+                f290 = 1;
+                f564->f8->func_00199B00(&local, 0);
+                f294 = *(V4_43 *)f564;
+                f564->f8->func_00197B40(&f2A4, &f2B4);
+                f28C = f5A0;
+            }
+        }
+    }
+done:
     return 0;
 }

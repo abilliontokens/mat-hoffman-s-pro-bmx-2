@@ -108,6 +108,31 @@ struct BmxSinglePlayerInGameMenu {
     }
 };
 
+extern "C" void _ReadWriteBarrier(void);
+#pragma intrinsic(_ReadWriteBarrier)
+int BmxSinglePlayerInGameMenu::func_00060370(int *a, int b) {
+ if(unk128) { D_002B9014=a[2]; unk128=0; }
+ if(unkF4 || unkF8) return 1;
+ if(unk11C!=-1 && a[2]!=unk11C) return func_00157BF0(a,b);
+ unk12C=0;
+ if(func_001361E0(2,2,a,0x80000000)) {
+ if(unk120) return 0;
+ unk104->func_00031610(2,1); unk114=unk100;
+ if(--unk100<0) unk100=3;
+ unk110=1;
+ } else if(func_001361E0(3,2,a,0x80000000)) {
+ if(unk120) return 0;
+ unk104->func_00031610(2,1); unk114=unk100;
+ if(++unk100>3) unk100=0;
+ unk110=1;
+ } else if(func_001361E0(4,2,a,0x80000000) || func_001361E0(23,2,a,0x80000000)) {
+ unk104->func_00031610(4,1); unkF0=0; unkF4=1; return 0;
+ } else if(func_001361E0(5,2,a,0x80000000) || func_001361E0(24,2,a,0x80000000)) {
+ if(unk120) { unk104->func_00031610(4,1); unkF8=1; _ReadWriteBarrier(); unkF0=0; }
+ unk104->func_00031610(4,1); unkF8=1; _ReadWriteBarrier(); unkF0=0; return 0;
+ }
+ return func_00157BF0(a,b);
+}
 void BmxSinglePlayerInGameMenu::func_00060D80(void) {
     int i;
     for (i = 0; i < 10; i++) {
@@ -121,6 +146,25 @@ void BmxSinglePlayerInGameMenu::func_00060D80(void) {
             }
         }
     }
+}
+
+void BmxSinglePlayerInGameMenu::func_00060DE0()
+{
+ if(unk118) {
+  for(int i=0;i<5;i++) {
+   items[i]->func_001B1980();
+   if(i==unk100) {
+    items[i]->func_001B2270(0xFFBFA35A);
+    items[i]->func_001B1A30(320.0f,positions[i]+D_00275600,0);
+    items[i]->func_001B1860(0,-1,255,1.3f,0,0,-1,255,1,0,0,0,0);
+   } else {
+    items[i]->func_001B2270(0xFFCCCCCC);
+    items[i]->func_001B19C0(320,positions[i],0);
+    items[i]->func_001B1860(0,-1,255,1,0,0,-1,255,1,0,0,0,0);
+   }
+  }
+  unk118=0;
+ }
 }
 
 int BmxSinglePlayerInGameMenu::func_00061030(void) {

@@ -136,7 +136,13 @@ unsigned char *__stdcall func_001DF7FA(S_HeapRoot *root, S_HeapBlock *blk, unsig
     long status;
 
     for (run = *link; run != 0; run = run->next) {
-        if (run->size >= *size && (a3 == 0 || run->addr == (unsigned int)a3)) {
+        if (run->size >= *size && (a3 == 0 || run->addr == (unsigned int)a3)) goto found;
+        prev = run;
+        link = &run->next;
+    }
+    return 0;
+found:
+    {
             addr = run->addr;
             if (root->commit != 0) {
                 status = root->commit(root, &addr, size);
@@ -158,7 +164,7 @@ unsigned char *__stdcall func_001DF7FA(S_HeapRoot *root, S_HeapBlock *blk, unsig
             if (prev == 0) {
                 cur = (S_HeapEntry *)blk->tail;
             } else {
-                cur = (S_HeapEntry *)(prev->size + prev->addr);
+                cur = (S_HeapEntry *)(prev->size + (*(S_FreeNode *volatile *)&prev)->addr);
             }
             if (!(cur->flags & 0x10)) {
                 do {
@@ -207,10 +213,6 @@ unsigned char *__stdcall func_001DF7FA(S_HeapRoot *root, S_HeapBlock *blk, unsig
             }
             return (unsigned char *)ent;
         }
-        prev = run;
-        link = &run->next;
-    }
-    return 0;
 }
 
 #pragma optimize("sy", on)
@@ -364,7 +366,8 @@ unsigned char __stdcall func_001DFD40(S_HeapRoot *root, unsigned int flags, S_He
         n = 0;
     }
     if (eflags & 2) {
-        entry[index - 1] = entry[entry->size - 1];
+        *(S_HeapEntry *)((unsigned char *)entry + index * 16 - 0x10) =
+            *(S_HeapEntry *)((unsigned char *)entry + *(unsigned short *)entry * 16 - 0x10);
     }
     entry->size = (unsigned short)index;
     *((unsigned char *)entry + 6) = (unsigned char)(index * 16 - size);

@@ -2,6 +2,7 @@
 #include "common.h"
 #include "ghidra.h"
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 struct C_00129900 {
     void func_00129900(void);
 };
@@ -260,13 +261,13 @@ int func_00128930(S_00128930_Leaf *leaf, float *seg, short id, S_00128930_Mat *m
     sx = (float)leaf->sx * D_002B9348;
     sy = (float)leaf->sy * D_002B9348;
     sz = (float)leaf->sz * D_002B9348;
-    Xform_00128930(&q[0], mat, seg);
+    AsmTransformPoint(&q[0].x, seg, &mat->m[0][0]);
     func_00030AC0(&q[1], seg + 4, mat);
     d.x = q[1].x - q[0].x;
     d.y = q[1].y - q[0].y;
     d.z = q[1].z - q[0].z;
     t = -1.0f;
-    len = Sqrt_00128930(d.z * d.z + d.y * d.y + d.x * d.x);
+    len = AsmSqrtF(d.z * d.z + d.y * d.y + d.x * d.x);
     inv = D_00275460 / len;
     dn.x = d.x * inv;
     dn.y = d.y * inv;
@@ -295,12 +296,30 @@ int func_00128930(S_00128930_Leaf *leaf, float *seg, short id, S_00128930_Mat *m
             h->count++;
             k = dn.z * len * u * sz + len * dn.x * u * sx + dn.y * len * u * sy;
             sx = sx * k; sy = sy * k; sz = sz * k;
-            h->minv[0] = Min_00128930(sx, h->minv[0]);
-            h->minv[1] = Min_00128930(sy, h->minv[1]);
-            h->minv[2] = Min_00128930(sz, h->minv[2]);
-            h->maxv[0] = Max_00128930(sx, h->maxv[0]);
-            h->maxv[1] = Max_00128930(sy, h->maxv[1]);
-            h->maxv[2] = Max_00128930(sz, h->maxv[2]);
+            {
+                float m0 = h->minv[0];
+                h->minv[0] = AsmMinF(sx, m0);
+            }
+            {
+                float m1 = h->minv[1];
+                h->minv[1] = AsmMinF(sy, m1);
+            }
+            {
+                float m2 = h->minv[2];
+                h->minv[2] = AsmMinF(sz, m2);
+            }
+            {
+                float m0 = h->maxv[0];
+                h->maxv[0] = AsmMaxF(sx, m0);
+            }
+            {
+                float m1 = h->maxv[1];
+                h->maxv[1] = AsmMaxF(sy, m1);
+            }
+            {
+                float m2 = h->maxv[2];
+                h->maxv[2] = AsmMaxF(sz, m2);
+            }
         }
         if (t <= h->t) {
             h->fl0 = 0; h->t = t;
@@ -480,7 +499,7 @@ void func_001294E0(int a0, int a1, int a2, int a3, int a4) {
     func_001293F0(a0, a1, a2, a3);
 }
 
-void func_00129510(S_00129510_Node **a0, S_00129510_Leaf **a1, S_00129510_M44 * volatile m, S_00129510_V4 *verts, int *tris, int ntri, int nverts)
+void func_00129510(S_00129510_Node **a0, S_00129510_Leaf **a1, S_00129510_M44 *m, S_00129510_V4 *verts, int *tris, int ntri, int nverts)
 {
     S_00129510_Tri *t;
     S_00129510_M44 inv;
@@ -489,9 +508,9 @@ void func_00129510(S_00129510_Node **a0, S_00129510_Leaf **a1, S_00129510_M44 * 
     S_00129510_V4 s;
     S_00129510_V4 r;
     S_00129510_V4 a;
-    S_00129510_V4 * volatile vin;
-    S_00129510_V4 * volatile vout;
-    S_00129510_M44 * volatile vm;
+    S_00129510_V4 *vin;
+    S_00129510_V4 *vout;
+    S_00129510_M44 *vm;
     int idx;
     int i;
 
@@ -502,30 +521,30 @@ void func_00129510(S_00129510_Node **a0, S_00129510_Leaf **a1, S_00129510_M44 * 
         t[i].i2 = tris[i * 3 + 2];
         func_001619D0(&verts[tris[i * 3]], &verts[tris[i * 3 + 1]], &verts[tris[i * 3 + 2]], &t[i].normal, &t[i].d);
     }
-    Identity_00129510(m);
+    AsmIdentityMatrix(m);
     inv = *m;
     func_0011AC30(&inv, &inv);
-    vm = &inv;
     for (i = 0; i < nverts; i++) {
         vin = &verts[i];
         vout = &verts[i];
-        Xform_00129510(vout, vm, vin);
+        vm = &inv;
+        AsmTransformPoint((float *)vout, (const float *)vin, (const float *)vm);
     }
-    r.w = 1.0f;
     for (i = 0; i < ntri; i++) {
+        func_0001C680(&t[i].normal, t[i].normal, &inv);
         S_00129510_V4 *v0 = &verts[t[i].i0];
         S_00129510_V4 *v1 = &verts[t[i].i1];
-        S_00129510_V4 *v2 = &verts[t[i].i2];
-        func_0001C680(&t[i].normal, t[i].normal, &inv);
         a.x = v1->x + v0->x;
         a.y = v0->y + v1->y;
         a.z = v0->z + v1->z;
+        S_00129510_V4 *v2 = &verts[t[i].i2];
         s.x = a.x + v2->x;
         s.y = a.y + v2->y;
         s.z = a.z + v2->z;
-        r.x = s.x * D_00283F50;
-        r.y = s.y * D_00283F50;
-        r.z = s.z * D_00283F50;
+        r.x = s.x * (1.0f / 3.0f);
+        r.y = s.y * (1.0f / 3.0f);
+        r.z = s.z * (1.0f / 3.0f);
+        r.w = 1.0f;
         t[i].center = r;
     }
     nodes = new S_00129510_Node[ntri];

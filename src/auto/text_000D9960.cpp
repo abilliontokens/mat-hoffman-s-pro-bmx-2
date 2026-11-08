@@ -136,6 +136,26 @@ struct C_000DA140 {
     void func_000DA140();
 };
 
+void S_D9960_Page::func_000D9960()
+{
+    u29C = 1;
+    u280 = 0;
+    u284 = 0;
+    u294 = 0;
+    u298 = 0;
+    u2A4 = 0;
+    u2AC = 0;
+    u2A8 = 0;
+    u2B0 = 0;
+    u2B4 = 0;
+    u2B8 = 0;
+    u2BC = 0;
+    u2C0 = 0;
+    D_002B91AC->unk34->func_0005E840(D_002A8490->q->p4->f928);
+    D_002B91AC->func_000BF860(1, 0x17b, 0x184, 0);
+    D_002B91AC->unk3C->func_0005E840(D_002A8490->q->p4->f838);
+}
+
 void C_000DA140::func_000D9DC0()
 {
     S_000D9FE0_Owner *owner = f124;

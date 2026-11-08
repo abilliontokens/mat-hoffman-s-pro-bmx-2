@@ -133,7 +133,74 @@ void BmxUIPageHOF4D::func_000D7B70()
     func_001BE3F0();
 }
 
-int func_000D7BF0(void) { return 0; }
+BmxUIPageHOF4D *BmxUIPageHOF4D::func_000D7BF0(int a, int b, int c)
+{
+    char buf[8];
+    func_001BE4F0(a,b,c);
+    (*(HOFResource **)((char *)D_002A8490+0x2ec))->func_0018C160(D_00278690);
+    (*(HOFResource **)((char *)D_002A8490+0x2ec))->func_0018C160(D_002786A0);
+    (*(HOFResource **)((char *)D_002A8490+0x2ec))->func_0018C160(D_00278678);
+    for(int i=0;i<5;i++) {
+        HOFWidget *w=(HOFWidget *)func_001E8A44(0x184);
+        w=w ? w->func_001B12C0(1) : 0;
+        arr2CC[i]=(S_000D8A40_Widget *)w;
+        ((HOFWidget *)arr2CC[i])->func_001B13A0(D_002786A0,D_002786A0,0,30);
+        float y=i*D_0027F2BC;
+        ((HOFWidget *)arr2CC[i])->func_001B1A30(198.0f,y+152.0f,0);
+        ((HOFWidget *)arr2CC[i])->func_001B2270(0xffcccccc);
+        func_001577A0(arr2CC[i],-1);
+        w=(HOFWidget *)func_001E8A44(0x184);
+        w=w ? w->func_001B12C0(1) : 0;
+        arr2E0[i]=(S_000D8A40_Widget *)w;
+        ((HOFWidget *)arr2E0[i])->func_001B13A0(D_002786A0,D_002786A0,0,50);
+        ((HOFWidget *)arr2E0[i])->func_001B1A30(380.0f,y+154.0f,0);
+        ((HOFWidget *)arr2E0[i])->func_001B2270(0xffcccccc);
+        func_001577A0(arr2E0[i],-1);
+        w=(HOFWidget *)func_001E8A44(0x184);
+        w=w ? w->func_001B12C0(1) : 0;
+        arr30C[i]=(S_000D8A40_Widget *)w;
+        ((HOFWidget *)arr30C[i])->func_001B13A0(D_002786A0,D_002786A0,0,5);
+        ((HOFWidget *)arr30C[i])->func_001B1A30(178.0f,y+163.0f,0);
+        ((HOFWidget *)arr30C[i])->func_001B2270(0xffcccccc);
+        func_001ADCC0(buf,5,D_0027F2AC,i+1,D_0027CEF0);
+        ((HOFWidget *)arr30C[i])->func_001B17D0(buf);
+        func_001577A0(arr30C[i],-1);
+    }
+    for(int i=0;i<2;i++) {
+        HOFSprite *s=(HOFSprite *)func_001E8A44(0x64);
+        s=s ? s->func_001D5760() : 0;
+        arr304[i]=(DelObjHOF4 *)s;
+        if(i%2==0) s->func_001D5810(D_0027F29C,110.0f,147.0f,0);
+        else {
+            s->func_001D5810(D_0027F29C,321.0f,147.0f,0);
+            s=(HOFSprite *)arr304[i]; s->f40=0; s->f44=0; s->f3c=1; s->f48=1; s->b58|=4;
+        }
+        s=(HOFSprite *)arr304[i];
+        if(s->f28!=0x435d0000) { s->f28=0x435d0000; s->b58|=1; }
+        s=(HOFSprite *)arr304[i];
+        s->f38=(s->f38&0xffbfa35a)|0xbfa35a;
+        s->b58|=2;
+    }
+    HOFSprite *s=(HOFSprite *)func_001E8A44(0x64);
+    s=s ? s->func_001D5760() : 0;
+    arr2F4[0]=(DelObjHOF4 *)s;
+    s->func_001D5810(D_00279B00,114,114,0);
+    s=(HOFSprite *)arr2F4[0]; s->f38=(s->f38&0xffbfa35a)|0xbfa35a; s->b58|=2;
+    s=(HOFSprite *)func_001E8A44(0x64);
+    s=s ? s->func_001D5760() : 0;
+    arr2FC[0]=(DelObjHOF4 *)s;
+    s->func_001D5810(D_00279AF0,114,114,0);
+    s=(HOFSprite *)func_001E8A44(0x64);
+    s=s ? s->func_001D5760() : 0;
+    arr2F4[1]=(DelObjHOF4 *)s;
+    s->func_001D5810(D_00279AE0,511,114,0);
+    s=(HOFSprite *)arr2F4[1]; s->f38=(s->f38&0xffbfa35a)|0xbfa35a; s->b58|=2;
+    s=(HOFSprite *)func_001E8A44(0x64);
+    s=s ? s->func_001D5760() : 0;
+    arr2FC[1]=(DelObjHOF4 *)s;
+    s->func_001D5810(D_00279AD0,511,114,0);
+    return this;
+}
 
 void BmxUIPageHOF4D::func_000D85C0()
 {

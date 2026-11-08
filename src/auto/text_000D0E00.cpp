@@ -490,30 +490,23 @@ void C_000D0FD0::func_000D1050()
 void C_000D0FD0::func_000D1980()
 {
     char buf[0x104];
-    S_000D1980_Mgr *mgr = f124;
     int i;
-    volatile int t[3];
 
+    S_000D1980_Mgr *mgr = f124;
     f1EDC = D_0027ED04;
     for (i = 0; i < (*mgr->f150->f3A8)->count; (*(volatile int *)&i)++) {
         S_000D1980_Entry *e = (*mgr->f150->f3A8)->items[i];
         if (e != 0 && e->f4 == 1 && e->f8 != 0) {
-            t[2] = strlen(e->f8->name);
-            t[0] = 0x103;
-            int a = t[0];
-            int b = t[2];
-            if (a > b) {
-                a = b;
-            }
-            t[1] = a;
-            int n = t[1];
+            int len = strlen(e->f8->name);
+            int lim = 0x103;
+            int n = AsmMinI(lim, len);
             func_001E8920(buf, (*(S_000D1980_Item * volatile *)&e->f8)->name, n);
             buf[n] = 0;
             char *dot = func_001E8AC0(buf, '.');
             if (dot != 0) {
                 memset(dot, 0, strlen(dot));
             }
-            if (func_001EA426(buf, f1EDC.c) == 0) {
+            if (func_001EA426(buf, (const char *)&f1EDC) == 0) {
                 f20B0 = e->f8;
             }
         }

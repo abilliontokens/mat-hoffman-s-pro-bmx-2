@@ -212,16 +212,18 @@ struct C_0005B880 {
 };
 
 
+extern "C" int __cdecl strcmp(const char *, const char *);
+#pragma intrinsic(strcmp)
 int BmxGame::func_0005A8F0()
 {
     void *mem;
     S_ModeObj *obj;
-    int r;
 
     ((S_GGame *)D_002A8490)->f4->fB4->v7(D_002781D4);
     D_002F07B8->func_001D7FB0(1.1f, 1.1f, 1.15f, 0);
     int n = -1;
     int m = 0;
+    int r = 0;
     if (((S_GGame *)D_002A8490)->f4->fB4->func_001CB170(D_002781C4, &n))
         return 0;
     func_001ADCC0(D_002A48F8, 0x104, D_00276F28, D_002A47F0);
@@ -237,46 +239,46 @@ int BmxGame::func_0005A8F0()
     mem = func_001E8A44(0x46c);
     f2E0 = mem ? ((S_LevelInfo *)mem)->func_0005D6A0() : 0;
 
-    if (!memcmp(name1, D_00278190, 7) || !func_001EA426(name1, D_00278188) || !func_001EA426(name1, D_0027817C))
+    if (!strcmp(name1, "miniui") || !func_001EA426(name1, D_00278188) || !func_001EA426(name1, D_0027817C))
         f2E0->f324 = 1;
     else if (!func_001EA426(name1, D_00278170))
         f2E0->f324 = 0;
 
     if (!func_001EA426(name2, D_00278164) || !func_001EA426(name2, D_0027815C)) {
-        if (!memcmp(name1, D_002780F0, 8) || !memcmp(name1, D_002780E8, 7) || !memcmp(name1, D_002780E4, 3) || !memcmp(name1, D_002780DC, 7))
+        if (!strcmp(name1, "daytona") || !strcmp(name1, "austin") || !strcmp(name1, "sf") || !strcmp(name1, "london"))
             f2E0->f4 = 1;
-        else if (!memcmp(name1, D_00277830, 9)) {
+        else if (!strcmp(name1, "halfpipe")) {
             f2E0->f4 = 8;
             f2D8 = 2;
         } else
             f2E0->f4 = 0;
-    } else if (!memcmp(name2, D_00278150, 9))
+    } else if (!strcmp(name2, "freeride"))
         f2E0->f4 = 1;
-    else if (!memcmp(name2, D_00278148, 8))
+    else if (!strcmp(name2, "session"))
         f2E0->f4 = 2;
-    else if (!memcmp(name2, D_00278140, 5))
+    else if (!strcmp(name2, "gwar"))
         f2E0->f4 = 3;
-    else if (!memcmp(name2, D_00278138, 6))
+    else if (!strcmp(name2, "horse"))
         f2E0->f4 = 4;
-    else if (!memcmp(name2, D_00278134, 4))
+    else if (!strcmp(name2, "tag"))
         f2E0->f4 = 5;
-    else if (!memcmp(name2, D_0027812C, 5))
+    else if (!strcmp(name2, "hunt"))
         f2E0->f4 = 6;
-    else if (!memcmp(name2, D_00278124, 5))
+    else if (!strcmp(name2, "push"))
         f2E0->f4 = 7;
-    else if (!memcmp(name2, D_00276D7C, 5))
+    else if (!strcmp(name2, "vert"))
         f2E0->f4 = 8;
-    else if (!memcmp(name2, D_0027811C, 8))
+    else if (!strcmp(name2, "verthot"))
         f2E0->f4 = 9;
-    else if (!memcmp(name2, D_00278118, 4))
+    else if (!strcmp(name2, "fps"))
         f2E0->f4 = 10;
-    else if (!memcmp(name2, D_0027810C, 9) || !memcmp(name2, D_002780F8, 10)) {
+    else if (!strcmp(name2, "fpsbuild") || !strcmp(name2, "editbuild")) {
         m = 14;
         r = AsmMinI(m, 5);
         func_001E8920(name2, D_0027815C, r);
         name2[r] = 0;
         f2E0->f4 = 10;
-    } else if (!memcmp(name2, D_00278104, 5))
+    } else if (!strcmp(name2, "edit"))
         f2E0->f4 = 11;
 
     f2E0->f0 = f2D8;
@@ -288,13 +290,13 @@ int BmxGame::func_0005A8F0()
         f2E0->f8 = 0;
 
     if (f2E0->f4 == 11) {
-        if (!memcmp(name1, D_002780F0, 8) || !memcmp(name1, D_002780E8, 7) || !memcmp(name1, D_002780E4, 3)) {
+        if (!strcmp(name1, "daytona") || !strcmp(name1, "austin") || !strcmp(name1, "sf")) {
             strcpy(f2E0->f4C, name1);
-            if (!memcmp(name1, D_002780F0, 8))
+            if (!strcmp(name1, "daytona"))
                 f2E0->f48 = 8;
-            if (!memcmp(name1, D_002780E8, 7))
+            if (!strcmp(name1, "austin"))
                 f2E0->f48 = 10;
-            if (!memcmp(name1, D_002780E4, 3))
+            if (!strcmp(name1, "sf"))
                 f2E0->f48 = 9;
         }
     }
@@ -377,7 +379,6 @@ int BmxGame::func_0005A8F0()
     f2A4 = f14->func_001577A0((void *)r, -1);
     return 1;
 }
-
 void C_0005B220::func_0005B220(void)
 {
   int in_ECX = (int)this;

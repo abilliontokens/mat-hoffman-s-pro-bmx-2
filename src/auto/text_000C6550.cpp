@@ -214,6 +214,59 @@ void BmxUIPageParkLevel::func_000C66E0()
     func_001BE3F0();
 }
 
+extern "C" unsigned int __cdecl strlen(const char *s);
+#pragma intrinsic(strlen)
+BmxUIPageParkLevel *BmxUIPageParkLevel::func_000C6720(int a, int b, int c)
+{
+    int lengths[3];
+    func_001BE4F0(a, b, c);
+    D_002A8490->lookup->func_0018C160(D_00278690);
+    D_002A8490->lookup->func_0018C160(D_002786A0);
+    D_002A8490->lookup->func_0018C160(D_00278678);
+    ParkStrings *strings = D_002A8490->data->strings;
+    lengths[0] = strlen(strings->names[0][0]);
+    lengths[1] = strlen(strings->names[1][0]);
+    lengths[2] = strlen(strings->names[2][0]);
+    for (int i = 0; i < 3; i++) {
+        C_000C6CA0_Widget *w = (C_000C6CA0_Widget *)func_001E8A44(0x184);
+        if (w) w = w->func_001B12C0(1);
+        else w = 0;
+        w2e4[i] = w;
+        w->func_001B13A0(D_002786A0, D_002786A0, 0, lengths[i]);
+        f280[i] = (float)i * D_002757F0 + D_0027E284;
+        w2e4[i]->func_001B1A30(320.0f, f280[i], 0.0f);
+        w2e4[i]->func_001B2270(0xffcccccc);
+        w2e4[i]->func_001B1C10(D_0028F5E0);
+        w2e4[i]->func_001B1AB0(0, 0);
+        func_001577A0(w2e4[i], -1);
+    }
+    w2e4[0]->func_001B17D0(D_002A8490->data->strings->names[0][0]);
+    w2e4[1]->func_001B17D0(D_002A8490->data->strings->names[1][0]);
+    w2e4[2]->func_001B17D0(D_002A8490->data->strings->names[2][0]);
+    for (int j = 0; j < 6; j++) {
+        ParkDrawable *d = (ParkDrawable *)func_001E8A44(0x64);
+        if (d) d = d->func_001D5760();
+        else d = 0;
+        f2f0[j] = (PageObj *)d;
+        if (j % 2 == 0)
+            d->func_001D5810(D_002786B0, 100.0f, (float)((j / 2) * 40) + D_0027E140, 0);
+        else
+            d->func_001D5810(D_002786B0, 321.0f, (float)((j / 2) * 40) + D_0027E140, 0);
+        d = (ParkDrawable *)f2f0[j];
+        d->f3c = 1.0f;
+        d->f48 = 1.0f;
+        unsigned char flags = d->f58 | 4;
+        d->f40 = 0;
+        d->f44 = 0;
+        d->f58 = flags;
+        d = (ParkDrawable *)f2f0[j];
+        if (*(int *)&d->f28 != 0x435d0000) {
+            d->f28 = 221.0f;
+            d->f58 |= 1;
+        }
+    }
+    return this;
+}
 void BmxUIPageParkLevel::func_000C6AD0()
 {
     int i;

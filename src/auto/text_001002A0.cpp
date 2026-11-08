@@ -600,6 +600,7 @@ void *C_00100CD0::func_00100CD0(unsigned int flags) {
 extern "C" void *memset(void *, int, unsigned int);
 void C_00100CF0::func_00100CF0(float dt) {
  O_101010 *p = owner;
+ VP_101010 *q = (VP_101010 *)this;
  if (f29c || f2a0) { for(int i=0;i<8;i++) clear148[i]=0; }
  if (f2bc != f2d0->b3B) {
   if (f2c8 >= f2cc) f2c4 = f2bc;
@@ -609,7 +610,7 @@ void C_00100CF0::func_00100CF0(float dt) {
   f28c += dt;
   if (f28c >= D_0027DE74) {
    if (f290 && p->f2A4) { f290=0; f2a8=0; }
-   else { f298=1; ((VP_101010*)this)->v70(f288, f284); f28c=0; }
+   else { f298=1; q->v70(f288, f284); f28c=0; }
   }
  }
  if (f2b8 && !f2b0) {

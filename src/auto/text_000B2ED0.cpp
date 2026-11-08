@@ -366,32 +366,52 @@ void C_000B3410::func_000B3410(int a)
         virtual int v53(char *name, char *path, int a, char *b, char *c, char *d, int e, int f, int g, float h, float i, int j, int k, int l, int m, int n, int o, int p, int q, int r)=0;
     };
     struct Locals {
-        char *self;
         char old3[260], old4[260], old5[260], old2[260], old1[260], name[260], path[260];
     } b;
-    int n, len;
-    b.self = (char *)this;
-    func_001ADCC0(b.name, 260, D_0027C588, *(char **)(b.self + 0x40) + 4);
-    func_001ADCC0(b.path, 260, D_0027D170, *(char **)(b.self + 0x40) + 4);
-    int lim = 259;
-    len = strlen(D_002A5EA0);
-    n = AsmMinI(lim, len);
-    func_001E8920(b.old1, D_002A5EA0, n); b.old1[n] = 0;
-    len = strlen(D_002A60B0);
-    n = AsmMinI(lim, len);
-    func_001E8920(b.old2, D_002A60B0, n); b.old2[n] = 0;
-    len = strlen(D_002A4C10);
-    n = AsmMinI(lim, len);
-    func_001E8920(b.old3, D_002A4C10, n); b.old3[n] = 0;
-    len = strlen(D_002A48F8);
-    n = AsmMinI(lim, len);
-    func_001E8920(b.old4, D_002A48F8, n); b.old4[n] = 0;
-    len = strlen(D_002A46E8);
-    n = AsmMinI(lim, len);
-    func_001E8920(b.old5, D_002A46E8, n); b.old5[n] = 0;
-    n = AsmMinI(lim, 0);
-    func_001E8920(D_002A46E8, D_00275630, n); D_002A46E8[n] = 0;
-    if (*(int *)(*(char **)(b.self + 0x40) + 0x108)) {
+    func_001ADCC0(b.name, 260, D_0027C588, *(char **)((char *)this + 0x40) + 4);
+    func_001ADCC0(b.path, 260, D_0027D170, *(char **)((char *)this + 0x40) + 4);
+    {
+        int n = 0;
+        int len = strlen(D_002A5EA0);
+        int lim = 259;
+        n = AsmMinI(lim, len);
+        func_001E8920(b.old1, D_002A5EA0, n); b.old1[n] = 0;
+    }
+    {
+        int n = 0;
+        int len = strlen(D_002A60B0);
+        int lim = 259;
+        n = AsmMinI(lim, len);
+        func_001E8920(b.old2, D_002A60B0, n); b.old2[n] = 0;
+    }
+    {
+        int n = 0;
+        int len = strlen(D_002A4C10);
+        int lim = 259;
+        n = AsmMinI(lim, len);
+        func_001E8920(b.old3, D_002A4C10, n); b.old3[n] = 0;
+    }
+    {
+        int n = 0;
+        int len = strlen(D_002A48F8);
+        int lim = 259;
+        n = AsmMinI(lim, len);
+        func_001E8920(b.old4, D_002A48F8, n); b.old4[n] = 0;
+    }
+    {
+        int n = 0;
+        int len = strlen(D_002A46E8);
+        int lim = 259;
+        n = AsmMinI(lim, len);
+        func_001E8920(b.old5, D_002A46E8, n); b.old5[n] = 0;
+    }
+    {
+        int n = 0;
+        int lim = 259;
+        n = AsmMinI(lim, 0);
+        func_001E8920(D_002A46E8, D_00275630, n); D_002A46E8[n] = 0;
+    }
+    if (*(int *)(*(char **)((char *)this + 0x40) + 0x108)) {
         func_001ADCC0(D_002A5EA0, 260, D_00275678, D_002A5348, D_002A45E0);
         func_001ADCC0(D_002A60B0, 260, D_00275678, D_002A5348, D_002A5FA8);
         func_001ADCC0(D_002A4C10, 260, D_00275678, D_002A5348, D_002A45E0);
@@ -403,68 +423,88 @@ void C_000B3410::func_000B3410(int a)
         func_001ADCC0(D_002A48F8, 260, D_00275678, D_002A5870, D_002A47F0);
     }
     void *mem = func_001E8A44(0x520);
-    *(void **)(b.self + 0x3c) = mem ? ((C_0012EF30 *)mem)->func_0012EF30(1) : 0;
-    char *t = *(char **)(b.self + 0x40);
-    if (!(*(V **)(b.self + 0x3c))->v53(b.name, b.path, 0, t + 0x250, t + 0x354, D_002A2DC4,
+    *(void **)((char *)this + 0x3c) = mem ? ((C_0012EF30 *)mem)->func_0012EF30(1) : 0;
+    char *t = *(char **)((char *)this + 0x40);
+    if (!(*(V **)((char *)this + 0x3c))->v53(b.name, b.path, 0, t + 0x250, t + 0x354, D_002A2DC4,
             *(int *)(t + 0x114), *(int *)(t + 0x130), *(int *)(t + 0x12c), (float)*(int *)(t + 0x124), 1.0f,
             *(int *)(t + 0x128), 0, 0, 0, *(int *)(t + 0x134), *(int *)(t + 0x138), *(int *)(t + 0x13c), *(int *)(t + 0x140), a)) {
-        (*(V **)(b.self + 0x3c))->v2();
-        *(void **)(b.self + 0x3c) = 0;
-        t = *(char **)(b.self + 0x40);
+        (*(V **)((char *)this + 0x3c))->v2();
+        *(void **)((char *)this + 0x3c) = 0;
+        t = *(char **)((char *)this + 0x40);
         if (t) {
             *(void **)t = &D_0027D004;
             ((C_001B4B70 *)t)->func_001B4B70();
             func_001E891B(t);
         }
-        *(void **)(b.self + 0x40) = 0;
+        *(void **)((char *)this + 0x40) = 0;
         return;
     }
-    ((C_0019ABA0 *)*(void **)(*(char **)(b.self + 0x3c) + 0x400))->func_0019ABA0(**(int **)(D_002B9120 + 0x4a8), 2);
-    (*(V **)(*(char **)(b.self + 0x3c) + 0x40c))->v32();
-    ((C_00133140 *)*(void **)(*(char **)(b.self + 0x3c) + 0x40c))->func_00133140(**(int **)(D_002B9120 + 0x4ac), 2);
-    V *o = *(V **)(*(char **)(b.self + 0x3c) + 0x410);
+    ((C_0019ABA0 *)*(void **)(*(char **)((char *)this + 0x3c) + 0x400))->func_0019ABA0(**(int **)(D_002B9120 + 0x4a8), 2);
+    (*(V **)(*(char **)((char *)this + 0x3c) + 0x40c))->v32();
+    ((C_00133140 *)*(void **)(*(char **)((char *)this + 0x3c) + 0x40c))->func_00133140(**(int **)(D_002B9120 + 0x4ac), 2);
+    V *o = *(V **)(*(char **)((char *)this + 0x3c) + 0x410);
     if (o) {
         o->v32();
-        ((C_00133140 *)*(void **)(*(char **)(b.self + 0x3c) + 0x410))->func_00133140(**(int **)(D_002B9120 + 0x4ac), 2);
+        ((C_00133140 *)*(void **)(*(char **)((char *)this + 0x3c) + 0x410))->func_00133140(**(int **)(D_002B9120 + 0x4ac), 2);
     }
-    ((C_001577A0 *)D_002B9120)->func_001577A0(*(void **)(b.self + 0x3c), 0);
-    char *q = *(char **)(b.self + 0x44);
+    ((C_001577A0 *)D_002B9120)->func_001577A0(*(void **)((char *)this + 0x3c), 0);
+    char *q = *(char **)((char *)this + 0x44);
     if (q) {
         int flag = (*(char **)(*(char **)(q + 0x28) + 0xc))[0x26c] != 0;
-        ((V *)q)->v28(D_002B9120, *(void **)(*(char **)(b.self + 0x3c) + 0x400), D_00275630, *(int *)(D_002B9120 + 0x4c0));
-        if (*(C_001A2A10 **)(*(char **)(*(char **)(b.self + 0x44) + 0x28) + 8) && flag == 1)
-            (*(C_001A2A10 **)(*(char **)(*(char **)(b.self + 0x44) + 0x28) + 8))->func_001A2A10(flag);
-        *(int *)(b.self + 0x78) = flag;
+        ((V *)q)->v28(D_002B9120, *(void **)(*(char **)((char *)this + 0x3c) + 0x400), D_00275630, *(int *)(D_002B9120 + 0x4c0));
+        if (*(C_001A2A10 **)(*(char **)(*(char **)((char *)this + 0x44) + 0x28) + 8) && flag == 1)
+            (*(C_001A2A10 **)(*(char **)(*(char **)((char *)this + 0x44) + 0x28) + 8))->func_001A2A10(flag);
+        *(int *)((char *)this + 0x78) = flag;
     }
-    *(int *)(b.self + 0x50) = *(int *)(*(char **)(b.self + 0x40) + 0x11c) - 1;
-    *(int *)(b.self + 0x4c) = *(int *)(b.self + 0x50);
-    *(int *)(b.self + 0x54) = *(int *)(*(char **)(b.self + 0x40) + 0x120) - 1;
-    if (*(int *)(b.self + 0x54) < 0 || *(int *)(b.self + 0x54) >= *(int *)((char *)D_002B9134 + 0x3c))
-        *(int *)(b.self + 0x54) = -1;
-    b.self[0x2a7] = (*(char **)(b.self + 0x40))[0x148];
-    ((C_000B3410 *)b.self)->func_000B1F70();
-    t = *(char **)(b.self + 0x40);
+    *(int *)((char *)this + 0x50) = *(int *)(*(char **)((char *)this + 0x40) + 0x11c) - 1;
+    *(int *)((char *)this + 0x4c) = *(int *)((char *)this + 0x50);
+    *(int *)((char *)this + 0x54) = *(int *)(*(char **)((char *)this + 0x40) + 0x120) - 1;
+    if (*(int *)((char *)this + 0x54) < 0 || *(int *)((char *)this + 0x54) >= *(int *)((char *)D_002B9134 + 0x3c))
+        *(int *)((char *)this + 0x54) = -1;
+    ((char *)this)[0x2a7] = (*(char **)((char *)this + 0x40))[0x148];
+    ((C_000B3410 *)this)->func_000B1F70();
+    t = *(char **)((char *)this + 0x40);
     if (t) {
         *(void **)t = &D_0027D004;
         ((C_001B4B70 *)t)->func_001B4B70();
         func_001E891B(t);
     }
-    *(void **)(b.self + 0x40) = 0;
-    len = strlen(b.old1);
-    n = AsmMinI(lim, len);
-    func_001E8920(D_002A5EA0, b.old1, n); D_002A5EA0[n] = 0;
-    len = strlen(b.old2);
-    n = AsmMinI(lim, len);
-    func_001E8920(D_002A60B0, b.old2, n); D_002A60B0[n] = 0;
-    len = strlen(b.old3);
-    n = AsmMinI(lim, len);
-    func_001E8920(D_002A4C10, b.old3, n); D_002A4C10[n] = 0;
-    len = strlen(b.old4);
-    n = AsmMinI(lim, len);
-    func_001E8920(D_002A48F8, b.old4, n); D_002A48F8[n] = 0;
-    len = strlen(b.old5);
-    n = AsmMinI(lim, len);
-    func_001E8920(D_002A46E8, b.old5, n); D_002A46E8[n] = 0;
+    *(void **)((char *)this + 0x40) = 0;
+    {
+        int n = 0;
+        int len = strlen(b.old1);
+        int lim = 259;
+        n = AsmMinI(lim, len);
+        func_001E8920(D_002A5EA0, b.old1, n); D_002A5EA0[n] = 0;
+    }
+    {
+        int n = 0;
+        int len = strlen(b.old2);
+        int lim = 259;
+        n = AsmMinI(lim, len);
+        func_001E8920(D_002A60B0, b.old2, n); D_002A60B0[n] = 0;
+    }
+    {
+        int n = 0;
+        int len = strlen(b.old3);
+        int lim = 259;
+        n = AsmMinI(lim, len);
+        func_001E8920(D_002A4C10, b.old3, n); D_002A4C10[n] = 0;
+    }
+    {
+        int n = 0;
+        int len = strlen(b.old4);
+        int lim = 259;
+        n = AsmMinI(lim, len);
+        func_001E8920(D_002A48F8, b.old4, n); D_002A48F8[n] = 0;
+    }
+    {
+        int n = 0;
+        int len = strlen(b.old5);
+        int lim = 259;
+        n = AsmMinI(lim, len);
+        func_001E8920(D_002A46E8, b.old5, n); D_002A46E8[n] = 0;
+    }
 }
 
 void VehicleAI::func_000B3B40()

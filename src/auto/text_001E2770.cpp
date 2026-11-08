@@ -330,7 +330,7 @@ int __stdcall func_001E29CD(S_func_001E29CD_arg0 *obj)
         v = obj->f420 + 0x200;
         break;
     case 0x100:
-        v = obj->f41C + 0x400;
+        v = obj->f41C + 0x401;
         break;
     case 0x200:
         v = obj->f418 + 0x800;

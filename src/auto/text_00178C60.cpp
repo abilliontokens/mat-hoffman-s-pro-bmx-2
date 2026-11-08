@@ -279,15 +279,9 @@ C_00179820 *C_00179820::func_00179820(int a0) {
 void C_00179820::func_00179880(void) {
  float d1[3]={v24[2].x-v24[0].x,v24[2].y-v24[0].y,v24[2].z-v24[0].z};
  float d2[3]={v24[3].x-v24[1].x,v24[3].y-v24[1].y,v24[3].z-v24[1].z};
- float yy=d1[1]*d1[1];
- float xx=d1[0]*d1[0];
- float zz=d1[2]*d1[2];
- float s1=yy+xx+zz;
+ float s1=(d1[1]*d1[1]+d1[2]*d1[2])+d1[0]*d1[0];
+ float s2=(d2[1]*d2[1]+d2[2]*d2[2])+d2[0]*d2[0];
  float a=AsmSqrtF(s1);
- float y2=d2[1]*d2[1];
- float x2=d2[0]*d2[0];
- float z2=d2[2]*d2[2];
- float s2=y2+x2+z2;
  float b=AsmSqrtF(s2);
  fB4=AsmMaxF(a,b);
 }

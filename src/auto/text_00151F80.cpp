@@ -181,16 +181,23 @@ void C_00151F80::func_00152300(float dt)
         f2c->f1a4->f4->func_00199B00(&v, 0);
     }
     if (f78 != 0) {
-        S_151F80_Vec *p;
-        p = &f94;
-        p->x = D_002A789C.x; p->y = D_002A78A0; p->z = D_002A78A4; p->w = D_002A78A8;
-        p = &f84;
-        p->x = D_002A789C.x; p->y = D_002A78A0; p->z = D_002A78A4; p->w = D_002A78A8;
+        {
+            S_151F80_Vec *p = &f94;
+            p->x = D_002A789C.x; p->y = D_002A78A0; p->z = D_002A78A4; p->w = D_002A78A8;
+        }
+        {
+            S_151F80_Vec *p = &f84;
+            p->x = D_002A789C.x; p->y = D_002A78A0; p->z = D_002A78A4; p->w = D_002A78A8;
+        }
         fc4 = 0;
-        p = &f84;
-        p->x = D_002A789C.x; p->y = D_002A78A0; p->z = D_002A78A4; p->w = D_002A78A8;
-        p = &f94;
-        p->x = D_002A789C.x; p->y = D_002A78A0; p->z = D_002A78A4; p->w = D_002A78A8;
+        {
+            S_151F80_Vec *p = &f84;
+            p->x = D_002A789C.x; p->y = D_002A78A0; p->z = D_002A78A4; p->w = D_002A78A8;
+        }
+        {
+            S_151F80_Vec *p = &f94;
+            p->x = D_002A789C.x; p->y = D_002A78A0; p->z = D_002A78A4; p->w = D_002A78A8;
+        }
         {
             S_151F80_Vec line[2];
             line[0] = f120;
@@ -211,8 +218,10 @@ void C_00151F80::func_00152300(float dt)
                 mat2.m[3] = v.x;
                 mat2.m[7] = v.y;
                 mat2.m[11] = v.z;
-                p = &f68;
-                p->x = D_002A789C.x; p->y = D_002A78A0; p->z = D_002A78A4; p->w = D_002A78A8;
+                {
+                    S_151F80_Vec *p = &f68;
+                    p->x = D_002A789C.x; p->y = D_002A78A0; p->z = D_002A78A4; p->w = D_002A78A8;
+                }
                 f60->v31(mat2.m);
                 f60->func_00133F10(0);
             }
@@ -231,8 +240,10 @@ void C_00151F80::func_00152300(float dt)
                         mat2.m[3] = v.x;
                         mat2.m[7] = v.y;
                         mat2.m[11] = v.z;
-                        p = &f68;
-                        p->x = D_002A789C.x; p->y = D_002A78A0; p->z = D_002A78A4; p->w = D_002A78A8;
+                        {
+                            S_151F80_Vec *p = &f68;
+                            p->x = D_002A789C.x; p->y = D_002A78A0; p->z = D_002A78A4; p->w = D_002A78A8;
+                        }
                         f60->v31(mat2.m);
                         f60->func_00133F10(0);
                     }
@@ -289,11 +300,11 @@ void C_00151F80::func_001528D0(float dt)
         f2c->f1a4->f4->func_00199B00(&q, 0);
     }
     S_151F80_Vec d = fe8 * dt;
-    S_1528D0_Vec p = q;
-    p.x += d.x;
-    p.y += d.y;
-    p.z += d.z;
-    f2c->f1a4->f4->func_00199600(p);
+    S_1528D0_Vec dest = q;
+    dest.x += d.x;
+    dest.y += d.y;
+    dest.z += d.z;
+    f2c->f1a4->f4->func_00199600(dest);
     f2c->f1a4->func_00132D20();
 }
 

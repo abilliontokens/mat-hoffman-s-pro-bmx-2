@@ -132,9 +132,14 @@ struct C_0016F7B0 {
 };
 
 extern char D_00288A3C[], D_00288A34[], D_00288A28[], D_00288A1C[], D_00288A14[], D_00288A0C[], D_00288A04[], D_002889FC[], D_002889F0[];
+extern float D_00278C48;
+extern float D_0027AA20;
+extern float D_00279B54;
+extern float D_0027A098;
+extern float D_002755E8;
 int C_0016F110::func_0016F110(char *name)
 {
-    int i0, i1;
+    float a, b;
     float fa, fb, fc, fd;
     char sbuf[0x40];
     char buf[0x104];
@@ -189,6 +194,54 @@ int C_0016F110::func_0016F110(char *name)
     }
     f14c = 0x3d;
     f104 = func_001E8A44(0x7a0);
+    for (i = 0; i < 14; i++) {
+        a = (float)(i / 4) * D_00278C48;
+        b = (float)(i % 4) * D_00278C48;
+        ((float *)f104)[i * 8 + 0] = b;
+        ((float *)f104)[i * 8 + 1] = a;
+        ((float *)f104)[i * 8 + 2] = b + D_00278C48;
+        ((float *)f104)[i * 8 + 3] = a;
+        ((float *)f104)[i * 8 + 4] = b + D_00278C48;
+        ((float *)f104)[i * 8 + 5] = a + D_00278C48;
+        ((float *)f104)[i * 8 + 6] = b;
+        ((float *)f104)[i * 8 + 7] = a + D_00278C48;
+    }
+    for (i = 0xe; i < 0x12; i++) {
+        a = (float)((i - 0xe) / 2) * D_0027AA20 + D_00279B54;
+        b = (float)((i - 0xe) % 2) * D_0027AA20 + D_00278C48;
+        ((float *)f104)[i * 8 + 0] = b;
+        ((float *)f104)[i * 8 + 1] = a;
+        ((float *)f104)[i * 8 + 2] = b + D_0027AA20;
+        ((float *)f104)[i * 8 + 3] = a;
+        ((float *)f104)[i * 8 + 4] = b + D_0027AA20;
+        ((float *)f104)[i * 8 + 5] = a + D_0027AA20;
+        ((float *)f104)[i * 8 + 6] = b;
+        ((float *)f104)[i * 8 + 7] = a + D_0027AA20;
+    }
+    for (i = 0x1d; i < 0x2d; i++) {
+        a = (float)((i - 0x1d) / 4) * D_0027A098 + D_00279B54;
+        b = (float)((i - 0x1d) % 4) * D_0027A098 + D_002755E8;
+        ((float *)f104)[i * 8 + 0] = b;
+        ((float *)f104)[i * 8 + 1] = a;
+        ((float *)f104)[i * 8 + 2] = b + D_0027A098;
+        ((float *)f104)[i * 8 + 3] = a;
+        ((float *)f104)[i * 8 + 4] = b + D_0027A098;
+        ((float *)f104)[i * 8 + 5] = a + D_0027A098;
+        ((float *)f104)[i * 8 + 6] = b;
+        ((float *)f104)[i * 8 + 7] = a + D_0027A098;
+    }
+    for (i = 0x2d; i < 0x3d; i++) {
+        a = (float)((i - 0x2d) / 4) * D_0027A098 + D_00279B54;
+        b = (float)((i - 0x2d) % 4) * D_0027A098 + D_00279B54;
+        ((float *)f104)[i * 8 + 0] = b;
+        ((float *)f104)[i * 8 + 1] = a;
+        ((float *)f104)[i * 8 + 2] = b + D_0027A098;
+        ((float *)f104)[i * 8 + 3] = a;
+        ((float *)f104)[i * 8 + 4] = b + D_0027A098;
+        ((float *)f104)[i * 8 + 5] = a + D_0027A098;
+        ((float *)f104)[i * 8 + 6] = b;
+        ((float *)f104)[i * 8 + 7] = a + D_0027A098;
+    }
     f150 = 1;
     rdr.func_001691E0();
     return 0;

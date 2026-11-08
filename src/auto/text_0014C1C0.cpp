@@ -403,6 +403,38 @@ undefined4 C_0014CA60::func_0014CA60(void)
   return *(undefined4 *)(*(int *)(D_002BF250 + 0x54 + (uint)*(byte *)(in_ECX + 0xe) * 4) + 0x1ec);
 }
 
+void *C_0014CA80::func_0014CA80(int index) {
+    extern undefined4 D_002BF250;
+    C_0014C720 *obj = *(C_0014C720 **)(D_002BF250 + 0x54 + bE * 4);
+    C_0014CA80_Obj *p = ((C_0014CA80_Obj **)obj->f1F4)[index];
+    if (!p) return 0;
+    float px = x * *(float *)(D_002BF250 + 0x578);
+    float py = y * *(float *)(D_002BF250 + 0x578);
+    float pz = z * *(float *)(D_002BF250 + 0x578);
+    float sy = ((obj->f194 - obj->f18C) * (int)b11 * D_0027A094 + obj->f18C) / obj->f18C;
+    float sx = ((obj->f180 - obj->f184) * (int)b10 * D_0027A094 + obj->f180) / obj->f180;
+    if (p->type == 5) {
+        p->f108=sy;
+        p->fCC=px;
+        p->f10C=sx;
+        p->fDC=py;
+        p->fEC=pz;
+    } else if (p->type == 4) {
+        p->f118=sy;
+        p->fBC=px;
+        p->f11C=sx;
+        p->fCC=py;
+        p->fDC=pz;
+    } else if (p->type == 0) {
+        C_0014CA80_Matrix matrix;
+        matrix.func_000264C0(p->matrix);
+        matrix.m[3]=px; matrix.m[7]=py; matrix.m[11]=pz;
+        p->matrix[3]=px; p->matrix[7]=py; p->matrix[11]=pz;
+        ((C_0014CA80_Obj *)p)->setMatrix(&matrix);
+    }
+    return p;
+}
+
 f32 C_0014CC20::func_0014CC20(void)
 {
     extern undefined4 D_002BF250;

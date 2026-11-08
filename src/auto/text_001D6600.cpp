@@ -388,13 +388,13 @@ XboxTextureMap *XboxTextureMap::func_001D6B70(void)
         func_001FCEA0(fB8, 0, dims, 0, 0x80);
         p = (XboxTextureMap *)func_001E8A44(0x110);
         if (p != 0) {
-            q = p;
             p->func_001B1200((void *)1);
-        }
-        if (q != 0) {
             ((void **)p)[0] = (void *)&D_0028F644;
             p->fB8 = 0;
             p->fBC = 0;
+            q = p;
+        }
+        if (q != 0) {
             if (q->slot8(dims[1], f8, fC, (dims[0] << 3) / func_001B2910(fA4), fA0, fA4, fA4, 0, 0))
                 return q;
             q->slot0(1);
@@ -507,12 +507,10 @@ void *func_001D6E20(char *name, int arg2, unsigned int flags)
         S_001D6E20_Res *p = (S_001D6E20_Res *)func_001E8A44(0x144);
         obj = p ? p->func_0013E8C0(1) : 0;
         if (((S_001D6E20_Res *)obj)->slot23(name, arg2, flags & ~0x20)) {
-            S_001D6E20_Res *r = (S_001D6E20_Res *)obj;
-            int *pk = &key;
-            D_002BEAAC->func_0013AC40(buf, 0, -1, 0, pk, 0);
-            D_002BEAAC->func_0013B1F0(*pk, r);
-            D_002BEAAC->func_0013C110(*pk);
-            return r;
+            D_002BEAAC->func_0013AC40(buf, 0, -1, 0, &key, 0);
+            D_002BEAAC->func_0013B1F0(key, obj);
+            D_002BEAAC->func_0013C110(key);
+            return obj;
         }
         ((S_001D6E20_Res *)obj)->slot2();
         return 0;

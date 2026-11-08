@@ -406,12 +406,14 @@ struct C_0001B440 {
     int func_001B5720(void);
 };
 
+extern "C" void _ReadWriteBarrier(void);
+#pragma intrinsic(_ReadWriteBarrier)
 void C_0001B790::func_0001B440(S_0001B790_Obj *obj, int r)
 {
-    C_0001B910 *p = (C_0001B910 *)obj;
-    S_0001B910_Anim *anim = p->f1A4;
+    C_0001B440 *p = (C_0001B440 *)obj;
+    S_0001B440_Anim *anim = p->f1A4;
     int flag = 0;
-    int i;
+    int k;
 
     if (anim->f18 != 0) {
         if (anim->f18->f38 - p->f9C < anim->f18->f3c)
@@ -420,26 +422,25 @@ void C_0001B790::func_0001B440(S_0001B790_Obj *obj, int r)
             flag = 0;
     }
     if (p->f88 == -1) {
-        i = p->f84;
+        int i = p->f84;
         p->f88 = i;
         if (p->f78[i] == 0) {
             int j = i;
-            for (;;) {
-                j++;
-                if (j >= p->f60) j = 0;
-                if (j == i) break;
-                if (p->f78[j] == 0) continue;
-                if (p->f78[j] != 1) break;
-                break;
+            while (p->f78[j] == 0) {
+                if (++j >= *(volatile int *)&p->f60) {
+                    j = 0;
+                    if (j == i) goto Lbc;
+                }
             }
+            if (p->f78[j] != 1) goto Lbc;
             p->f88 = j;
         }
-        p->f90 = -1;
+    Lbc:
+        *(volatile int *)&p->f90 = -1;
         if (p->f78[p->f88] == 1) {
-            int *cnt = &p->f64[i];
+            int *cnt = p->f64 + i;
             for (;;) {
-                p->f90++;
-                if (p->f90 < *cnt) continue;
+                if (++p->f90 < *cnt) continue;
                 if (p->f70[p->f88] == 0) {
                     p->f78[p->f88] = 0;
                     p->f90--;
@@ -450,31 +451,54 @@ void C_0001B790::func_0001B440(S_0001B790_Obj *obj, int r)
                 if (r >= p->f6C[p->f88][p->f90]) continue;
                 break;
             }
+        }
+        *(volatile int *)&p->f88 = -1;
+        if ((*(int * volatile *)&p->f78)[*(volatile int *)&p->f88] == 1) {
+            p->f98 = (p->func_001B5720() != (int)p->func_001B56F0());
+        }
+    }
+    *(volatile int *)&p->f90 = (*(volatile int *)&p->f88 = -1);
+    if (*(unsigned char *)(*(int *)(*(int *)anim + 4) + (int)anim + 0x21) & 1) {
+        if (anim->f10 != 0 || (flag != 0 && p->f98 != 0)) {
+            int slot = *(volatile int *)&p->f88;
+            if (p->f78[slot] == 1) {
+                p->f84 = slot;
+                p->f8C = *(volatile int *)&p->f90;
+                *(volatile int *)&p->f88 = -1;
+                p->f9C = 0;
+                if (p->f98 != 0 && p->f94[*(volatile int *)&p->f84] != 0)
+                    anim->func_00166C80(p->func_001B56F0(), 0);
+                else
+                    anim->func_00164820(p->func_001B56F0());
+            }
+        }
+    }
+    if ((*(unsigned char *)(*(int *)(*(int *)anim + 4) + (int)anim + 0x21) & 1) && anim->f10 == 0) {
+        int e = anim->f18->func_001628A0(anim->f34 + this->f24);
+        int edi = (e != 0 && (anim->f18->f24 & 1));
+        p->f9C += this->f24;
+        anim->func_001670C0(this->f24, 0, 0);
+        if (edi) {
+            if (anim->f4->f18c->f4 != p->f44) {
+                anim->func_00132D70();
+                anim->func_00132CC0(p->f44, p->f48, 2);
+            }
         } else {
-            p->f88 = -1;
-            p->f90 = -1;
-        }
-        p->f88 = -1;
-        if (p->f78[p->f88] == 1) {
-            int a = p->func_001B5720();
-            int b = (int)p->func_001B56F0();
-            p->f98 = (a != b);
+            anim->func_00132D20();
         }
     }
-    if (flag != 0) {
-        p->f84 = p->f88;
-        p->f8C = p->f90;
-    }
-    for (i = 0; i < p->f4C; i++) {
-        S_0001B910_Child *c = p->f50[i];
-        if (c->f108 < (float)anim->f34 && anim->f10 == 0 && c->f10C == 0) {
-            c->f110->v20(anim->f220);
-            p->f50[i]->v0();
-            p->f50[i]->f10C = 1;
+    for (k = 0; k < p->f4C; k++) {
+        S_0001B910_Child *c = p->f50[k];
+        int f10C = c->f10C;
+        if (c->f108 < anim->f34 || anim->f10 != 0) {
+            if (f10C == 0) {
+                c->f110->v20(anim->f220);
+                p->f50[k]->v0();
+                p->f50[k]->f10C = 1;
+            }
         }
     }
 }
-
 int C_0001B790::func_0001B790(float dt)
 {
     int i;
@@ -809,13 +833,12 @@ int C_0001C1E0::func_0001BE90(S_0001C1E0_Slot *obj, volatile int a, int b, int c
     return 0;
 }
 
+#pragma optimize("y", off)
 void __cdecl func_0001C020(int a, int b, C_0001B910 *obj, int flag)
 {
-    if (flag != 0) {
-        D_002B7C88->func_0001B9E0(obj, 0, 0);
-    }
+    if (flag != 0) D_002B7C88->func_0001B9E0(obj, 0, 0);
 }
-
+#pragma optimize("", on)
 int C_0001C1E0::func_0001C1E0(int idx, int b, int c, int d)
 {
     S_0001C1E0_List *list = f2c;

@@ -161,21 +161,130 @@ void C_00105B30::func_00105B30(int unused)
 #pragma optimize("", on)
 void C_001067B0::func_00105CB0(void)
 {
-    if (f15A4 == 0) {
-        return;
-    }
-    {
-        C_Button *b = f15A4->func_001A2EF0(3);
-        if (*(int *)((char *)this + 0x5c8) == 0 &&
-            *(int *)((char *)this + 0x11dc) == 0 &&
-            *(int *)((char *)this + 0x69c) == 0 &&
-            b->v7() != 0) {
-            f15A4->func_001A2DD0(3);
+    int range,random;
+    float base,original;
+    if(!f15A4) return;
+    C_Button *b=f15A4->func_001A2EF0(3);
+    if(!I(0x5c8) && !I(0x11dc) && !I(0x69c) &&
+       ((!f1178 && f117C && F(0x5dc)>D_00275544) || (f1178 && F(0x1fa0)==D_00275544 && F(0x744)>D_00282A58))) {
+        if(!b->v7()) {
+            *(volatile int*)&base=b->v17();base=(float)*(int*)&base;
+            original=base; base*=0.01f;
+            range=(int)(base*0.5f);
+            random=func_00011260(0,range);
+            int value=(int)((F(0x744)-D_00275994)*range-random+original);
+            int amount=(int)(F(0x744) / *(float*)(I(0x1ec)+0x3c)*D_00275994);
+            if(amount>100)amount=100;else if(amount<0)amount=0;
+            b->v14(value);b->v12(amount);
+            D_002A8490->fx->func_0001CE80(b,P(0x834),&D_002A3A3C,10.0f,30.0f);
+            f15A4->func_001A4100(3,0,0);
+        } else {
+            *(volatile int*)&base=b->v17();base=(float)*(int*)&base;
+            original=base; base*=0.01f;
+            range=(int)(base*0.5f);
+            random=func_00011260(0,range);
+            int value=(int)((F(0x744)-D_00275994)*range-random+original);
+            int amount=(int)(F(0x744) / *(float*)(I(0x1ec)+0x3c)*D_00275994);
+            if(amount>100)amount=100;else if(amount<0)amount=0;
+            b->v8(value);b->v9(amount);
+            D_002A8490->fx->func_0001CE80(b,P(0x834),&D_002A3A3C,10.0f,30.0f);
         }
     }
-    if (f15A4->func_001A2EF0(2)->v7()) {
-        f15A4->func_001A2DD0(2);
+    if((f1178 && !f117C) || F(0x9a0)>D_00275544 || F(0x5dc)==D_00275544 || I(0x11dc) || I(0x69c) ||
+       (f1178 && F(0x1fa0)!=D_00275544) ||
+       (f1178 && F(0x1fa0)==D_00275544 && F(0x744)<D_00282A58) || I(0x5c8)) {
+        if(b->v7())f15A4->func_001A2DD0(3);
     }
+    if(I(0x11dc) && !I(0x470) && F(0x744)>D_00275544 && !I(0x5c8)) {
+        if(!I(0x11e0)) {
+            b=f15A4->func_001A2EF0(1);
+            int base=b->v17();
+            range=(int)((base/50)*D_00276538);
+            random=func_00011260(0,range);
+            int value=(int)((F(0x744)-D_0027599C)*range-random+base);
+            int amount=(int)(F(0x744) / *(float*)(I(0x1ec)+0x3c)*D_00275994);
+            if(amount>100)amount=100;else if(amount<0)amount=0;
+            b->v14(value);b->v12(amount);
+            D_002A8490->fx->func_0001CE80(b,P(0x834),&D_002A3A3C,10.0f,30.0f);
+            f15A4->func_001A4100(1,0,0);
+        } else {
+            b=f15A4->func_001A2EF0(2);
+            int value=b->v17();
+            int random=func_00011260(0,(int)((value/20)*D_002755E8));
+            if(func_00011260(0,1))value+=random;else value-=random;
+            int amount=(int)(F(0x744) / *(float*)(I(0x1ec)+0x3c)*D_00275994);
+            if(amount>100)amount=100;else if(amount<0)amount=0;
+            if(!b->v7()) {
+                b->v14(value);b->v12(amount);
+                D_002A8490->fx->func_0001CE80(b,P(0x834),&D_002A3A3C,10.0f,30.0f);
+                f15A4->func_001A4100(2,0,0);
+            }else {
+                b->v8(value);b->v9(amount);
+                D_002A8490->fx->func_0001CE80(b,P(0x834),&D_002A3A3C,10.0f,30.0f);
+            }
+        }
+    } else {
+        if(!I(0x11dc) && I(0x11e0) && !I(0x474)) {
+            D_002A8490->fx->func_0001CE80(f15A4->func_001A2EF0(6),P(0x834),&D_002A3A3C,10.0f,30.0f);
+            f15A4->func_001A4100(6,0,0);
+        }
+        if(f15A4->func_001A2EF0(2)->v7() && (I(0x11e0)||I(0x5c8)))f15A4->func_001A2DD0(2);
+    }
+    if(*(int*)(I(0x20c)+0x30) && f1160 && !I(0x11d0)){
+        D_002A8490->fx->func_0001CE80(f15A4->func_001A2EF0(4),P(0x834),&D_002A3A3C,10.0f,30.0f);
+        f15A4->func_001A4100(4,0,0);
+    }
+    if(f15A4->func_001A2EF0(4)->v7()){
+        D_002A8490->fx->func_0001CE80(f15A4->func_001A2EF0(4),P(0x834),&D_002A3A3C,10.0f,30.0f);
+    }
+    Vec4_00105B30 v;
+    v=*(Vec4_00105B30*)&D_002A3A3C;
+    if(!I(0x11dc) && !I(0x5c8)) {
+        int src=I(0x1f0);
+        if(*(int*)(src+0x30) && *(int*)(src+0x154) && *(unsigned char*)(*(int*)(src+0x154)+0x6d)>0){
+            int amount=(int)(func_00011170(P(0x9c)) / *(float*)(I(0x1ec)+0x3c)*100.0f);
+            if(amount<0)amount=0;else if(amount>100)amount=100;
+            v=*(Vec4_00105B30*)(I(0x1f0)+0x134);
+            f1244->v38(*(unsigned char*)(*(int*)(*(int*)(I(0x1f4)+0x24)+0x154)+0x6d),*(Vec4_00105B30*)(I(0x1f0)+0x134),amount);
+            *(int*)(*(int*)(I(0x1f4)+0x24)+0x154)=0;
+        } else if(f1178) {
+            if(!f117C) {
+                int amount=(int)(F(0x744) / *(float*)(I(0x1ec)+0x3c)*D_00275994);
+                if(amount<0)amount=0;else if(amount>100)amount=100;
+                {Vec4_00105B30*src;
+                if(f1168){src=(Vec4_00105B30*)((char*)f1E8+0x120);goto copyVec;}
+                if(f1170){src=(Vec4_00105B30*)((char*)f1E8+0x130);copyVec:*(int*)&v.x=*(volatile int*)&src->x;*(int*)&v.y=*(volatile int*)&src->y;*(int*)&v.z=*(volatile int*)&src->z;*(int*)&v.w=*(volatile int*)&src->w;}}
+                f1244->v38(4,v,amount);
+            }
+        }
+    }
+    if(f1178 && F(0x2018)<=D_00282A58 && F(0x744)>D_00282A58) {
+        D_002A8490->fx->func_0001CE80(f15A4->func_001A2EF0(5),P(0x834),&D_002A3A3C,10.0f,30.0f);
+        f15A4->func_001A4100(5,0,0);
+    }
+    if(!I(0x5c8) && !I(0x11dc) && f1178 && F(0x744)>D_00282A58 && *(int*)((char*)f1E8+0x1d8) && *(unsigned char*)(*(int*)((char*)f1E8+0x1d8)+0x6d)>0) {
+        int id=*(unsigned char*)(*(int*)((char*)f1E8+0x1d8)+0x6d);
+        if(I(0x2014)>0 && I(0x2014)!=id)f1244->v47(I(0x2014));
+        if(!f1244->v43(id)) {
+            float value=D_00275544;
+            if(F(0x744)>D_00282A58)value=F(0x744);
+            if(f1168)v=*(Vec4_00105B30*)((char*)f1E8+0x120);
+            else if(f1170)v=*(Vec4_00105B30*)((char*)f1E8+0x130);
+            f1244->v41(id,v,(int)value,100,1);
+            I(0x2014)=*(volatile int*)&id;
+        }else {
+            float value=D_00275544;
+            if(F(0x744)>D_00282A58)value=F(0x744);
+            if(f1168){Vec4_00105B30*src=(Vec4_00105B30*)((char*)f1E8+0x120);*(int*)&v.x=*(volatile int*)&src->x;*(int*)&v.y=*(volatile int*)&src->y;*(int*)&v.z=*(volatile int*)&src->z;*(int*)&v.w=*(volatile int*)&src->w;}
+            else if(f1170){Vec4_00105B30*src=(Vec4_00105B30*)((char*)f1E8+0x130);*(int*)&v.x=*(volatile int*)&src->x;*(int*)&v.y=*(volatile int*)&src->y;*(int*)&v.z=*(volatile int*)&src->z;*(int*)&v.w=*(volatile int*)&src->w;}
+            f1244->v44(v,(int)value,100);
+            I(0x2014)=*(volatile int*)&id;
+        }
+    }else if(I(0x2014)){
+        f1244->v47(I(0x2014));I(0x2014)=0;
+    }
+    if(!f1178 && I(0x2014)){f1244->v47(I(0x2014));I(0x2014)=0;}
+    F(0x2018)=F(0x744);I(0x474)=I(0x470);
 }
 
 void C_001067B0::func_001067B0(void)

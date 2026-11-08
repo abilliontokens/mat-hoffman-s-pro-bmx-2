@@ -71,6 +71,7 @@ struct S_Light_0016FEE0 {
 extern int D_00040344, D_00040348;
 extern float D_002A88C0;
 #include <string.h>
+#include "asm_helpers.h"
 extern int D_002A88B8, D_002AA46C, D_00288A84;
 extern char D_002A60B0[], D_002A5558[], D_002EFB80[], D_00288B04[];
 extern float D_002755E8, D_002889B0, D_002889A0, D_00288990;
@@ -332,6 +333,8 @@ C_001703B0 *C_001703B0::func_001704B0(char *path, int count)
     char saved[128];
     char buf[128];
     u32 tbl[5];
+    int n;
+
     func_001D3F50();
     f124 = count;
     {
@@ -339,30 +342,35 @@ C_001703B0 *C_001703B0::func_001704B0(char *path, int count)
         f170 = p ? ((S_Obj *)p)->func_001425B0() : 0;
     }
     f10c = count / 2;
-    if (f10c > 0) {
+    if (f10c > 0)
         f110 = func_001E8A44(f10c * 8);
-    }
     D_002A88B8 = f10c;
     for (int i = 0; i < f10c; i++) {
-        ((int *)f110)[i * 2] = 0;
-        ((int *)f110)[i * 2 + 1] = 0;
+        ((u32 *)f110)[i * 2] = 0;
+        ((u32 *)f110)[i * 2 + 1] = 0;
     }
     if (f124 > 0) {
-        f12c = func_001E8A44(f124 << 2);
-        int n = f124;
-        S_Slot_001704B0 *blk = (S_Slot_001704B0 *)func_001E8A44(n * 100);
-        if (blk) {
-            for (int k = n - 1; k >= 0; k--) {
-                blk[n - 1 - k].a = V4_0016FEE0();
-                blk[n - 1 - k].b = V4_0016FEE0();
+        f12c = func_001E8A44(f124 * 4);
+        n = f124;
+        {
+            S_Slot_001704B0 *blk = (S_Slot_001704B0 *)func_001E8A44(n * 100);
+            if (blk) {
+                S_Slot_001704B0 *s = blk;
+                for (int k = n - 1; k >= 0; k--, s++) {
+                    s->a.x = 0;
+                    s->a.y = 0;
+                    s->a.z = 0;
+                    s->a.w = 1.0f;
+                    s->b.x = 0;
+                    s->b.y = 0;
+                    s->b.z = 0;
+                    s->b.w = 1.0f;
+                }
             }
+            f130 = blk;
         }
-        f130 = blk;
-        int off = 0;
-        for (int i = 0; i < f124; i++) {
-            ((int *)f12c)[i] = (int)f130 + off;
-            off += 100;
-        }
+        for (int i = 0, off = 0; i < f124; i++, off += 100)
+            ((u32 *)f12c)[i] = (u32)f130 + off;
     }
     func_0016F110(path);
     {
@@ -394,12 +402,10 @@ C_001703B0 *C_001703B0::func_001704B0(char *path, int count)
             d++;
         } while (c != 0);
     }
-    char *ext = func_001E8AC0(buf, '.');
-    if (ext) {
-        char *e = ext;
-        while (*e++) {
-        }
-        memset(ext, 0, e - ext - 1);
+    {
+        char *ext = func_001E8AC0(buf, '.');
+        if (ext)
+            memset(ext, 0, strlen(ext));
     }
     {
         void *p = func_001E8A44(0x14);
@@ -437,15 +443,17 @@ C_001703B0 *C_001703B0::func_001704B0(char *path, int count)
         }
         f158 = (S_Obj *)p;
     }
-    f158->f4 = this;
+    f158->f4 = (void *)this;
     f148->f10 = f158;
     f148->fC &= 0xfe;
     if (f124 > 0) {
-        f15c = func_001FF3C0(f124 << 7);
+        void **slot = &f15c;
+        *slot = func_001FF3C0(f124 << 7);
     }
     f16c = (int)(f124 * D_002755E8);
     if (f16c > 0) {
-        f160 = func_001FF3C0(f16c << 7);
+        void **slot = &f160;
+        *slot = func_001FF3C0(f16c << 7);
     }
     f84 = 0xbf800000;
     f88 = 0x3f800000;
@@ -461,19 +469,19 @@ C_001703B0 *C_001703B0::func_001704B0(char *path, int count)
     lights[2].dirz = 0;
     {
         V4_0016FEE0 q(-1.0f, 1.0f, 0.25f, 1.0f);
-        Normalize_001704B0((float *)vectors[0], &q.x);
+        AsmVec3Normalize((float *)vectors[0], &q.x);
     }
     {
         V4_0016FEE0 q(-1.0f, -1.0f, 0.25f, 1.0f);
-        Normalize_001704B0((float *)vectors[1], &q.x);
+        AsmVec3Normalize((float *)vectors[1], &q.x);
     }
     {
         V4_0016FEE0 q(1.0f, 1.0f, 0.25f, 1.0f);
-        Normalize_001704B0((float *)vectors[2], &q.x);
+        AsmVec3Normalize((float *)vectors[2], &q.x);
     }
     {
         V4_0016FEE0 q(1.0f, -1.0f, 0.25f, 1.0f);
-        Normalize_001704B0((float *)vectors[3], &q.x);
+        AsmVec3Normalize((float *)vectors[3], &q.x);
     }
     return this;
 }
@@ -524,15 +532,16 @@ void C_00170B50::func_00170B50(void) {
 void C_00170B60::func_00170B60() {
  C_00170B60 * volatile self = this;
  S_00170B60_Mat * volatile qv;
- Copy_00170B60((int *)((char *)this+304));
- Copy_00170B60((int *)((char *)self+320));
- Copy_00170B60((int *)((char *)self+108));
- Copy_00170B60((int *)((char *)self+124));
- Copy_00170B60((int *)((char *)self+568));
- Copy_00170B60((int *)((char *)self+584));
- Copy_00170B60((int *)((char *)self+92));
- Copy_00170B60((int *)((char *)self+616));
- Copy_00170B60((int *)((char *)self+600));
+ int *p;
+ p=(int *)((char *)this+304); Copy_00170B60(p);
+ p=(int *)((char *)self+320); Copy_00170B60(p);
+ p=(int *)((char *)self+108); Copy_00170B60(p);
+ p=(int *)((char *)self+124); Copy_00170B60(p);
+ p=(int *)((char *)self+568); Copy_00170B60(p);
+ p=(int *)((char *)self+584); Copy_00170B60(p);
+ p=(int *)((char *)self+92); Copy_00170B60(p);
+ p=(int *)((char *)self+616); Copy_00170B60(p);
+ p=(int *)((char *)self+600); Copy_00170B60(p);
  __declspec(align(16)) S_00170B60_Mat a,b;
  S_00170B60_Mat *q;
  qv = &a;

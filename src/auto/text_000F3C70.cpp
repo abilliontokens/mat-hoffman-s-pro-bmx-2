@@ -284,6 +284,236 @@ undefined4 C_000F3EE0::func_000F3EE0(byte param_1)
   return in_ECX;
 }
 
+int BmxUIPageTwoPlayer::func_000F3F00(int a, int b)
+{
+    Owner_000F3C70 *owner = p124;
+    Obj24_000F3C70 * volatile savedObj = owner->f24;
+    int savedVal = (int)savedObj;
+    if (owner->p25C->p74->func_000301D0() != 0) {
+        return 0;
+    }
+    if (p124->f138 == 4) {
+        return 0;
+    }
+    if (p124->f138 == 3) {
+        return 0;
+    }
+    if (f2AC == 0) {
+        return 0;
+    }
+    if (!(((f284 == 0 && f280 == 0) || f290 != 0) && f2F8 == 0)) {
+        return 0;
+    }
+    if (savedVal == ((Obj136_000F3C70 *)D_002A8490->arr)->func_00136170(4, 2, 0) ||
+        savedVal == ((Obj136_000F3C70 *)D_002A8490->arr)->func_00136170(0x17, 2, 0)) {
+        if (owner->f2A4 == 0 || f2DC == 7) {
+            if (f284 == 0) {
+                f29C = 1;
+                savedObj->func_000B9A80(4, 1);
+            }
+            if (f290 != 0) {
+                switch (f2DC) {
+                case 0:
+                    f2A8 = 0;
+                    D_002A8490->p2E0->f0 = 2;
+                    owner->f264 = 1;
+                    D_002A8490->p2E0->f20 = 0;
+                    D_002A8490->p2E0->f8 = D_002A8490->p2E0->fC;
+                    D_002A8490->p2E0->f4 = 2;
+                    break;
+                case 1:
+                    f2A8 = 1;
+                    D_002A8490->p2E0->f0 = 2;
+                    owner->f264 = 1;
+                    D_002A8490->p2E0->f20 = 0;
+                    D_002A8490->p2E0->f8 = D_002A8490->p2E0->fC;
+                    D_002A8490->p2E0->f4 = 3;
+                    break;
+                case 4:
+                    f2A8 = 4;
+                    D_002A8490->p2E0->f8 = 0;
+                    D_002A8490->p2E0->f4 = 4;
+                    p124->f138 = 7;
+                    p124->f134 = 0xd;
+                    return 1;
+                case 2:
+                    f2A8 = 2;
+                    D_002A8490->p2E0->f0 = 2;
+                    owner->f264 = 1;
+                    D_002A8490->p2E0->f8 = D_002A8490->p2E0->fC;
+                    D_002A8490->p2E0->f4 = 1;
+                    D_002A8490->p2E0->f20 = 1;
+                    p124->f138 = 7;
+                    p124->f134 = 3;
+                    D_002A8490->p2E0->func_0005B220();
+                    owner->func_000BB7C0(D_002A8490->p2E0->f190);
+                    return 1;
+                case 3:
+                    f2A8 = 3;
+                    D_002A8490->p2E0->f0 = 2;
+                    owner->f264 = 1;
+                    D_002A8490->p2E0->f8 = D_002A8490->p2E0->fC;
+                    D_002A8490->p2E0->f4 = 5;
+                    break;
+                case 6:
+                    f2A8 = 6;
+                    D_002A8490->p2E0->f0 = 2;
+                    owner->f264 = 1;
+                    D_002A8490->p2E0->f8 = D_002A8490->p2E0->fC;
+                    D_002A8490->p2E0->f4 = 6;
+                    p124->f138 = 7;
+                    owner->func_000BA9D0(0xf)->f2CC = 1.0f;
+                    p124->f134 = 0xf;
+                    return 1;
+                case 7:
+                    f2A8 = 7;
+                    D_002A8490->p2E0->f0 = 2;
+                    owner->f264 = 1;
+                    D_002A8490->p2E0->f8 = 2;
+                    D_002A8490->p2E0->f4 = 7;
+                    p124->f138 = 7;
+                    owner->func_000BA9D0(0xf)->f2CC = 1.0f;
+                    p124->f134 = 0xf;
+                    return 1;
+                case 5:
+                    f2A8 = 5;
+                    f284 = 0;
+                    if (f2B8 == 1) {
+                        D_002A8490->p2E0->f8 = 0;
+                        D_002A8490->p2E0->f4 = 9;
+                        D_002A8490->p2E0->f20 = 0;
+                        *(int *)&D_002A8490->p2E0->f10 = 0x42700000;
+                        p124->f138 = 7;
+                        p124->f134 = 0x14;
+                        return 1;
+                    }
+                    p124->f138 = 7;
+                    p124->f134 = 0x1f;
+                    return 1;
+                case 8:
+                    f284 = 0;
+                    f2A8 = 8;
+                    D_002A8490->p2E0->f4 = 10;
+                    D_002A8490->p2E0->f0 = 2;
+                    D_002A8490->p2E0->f20 = 1;
+                    D_002A8490->p2E0->f48 = 7;
+                    D_002A8490->p2E0->f8 = D_002A8490->p2E0->fC;
+                    p124->f138 = 7;
+                    p124->f134 = 0x15;
+                    return 1;
+                default:
+                    return 1;
+                }
+                p124->f138 = 7;
+                owner->func_000BA9D0(0xf)->f2CC = 1.0f;
+                p124->f134 = 0xf;
+                return 1;
+            }
+            f288 = 0.0f;
+            f284 = 1;
+            f294 = a;
+            f28C = b;
+            return 0;
+        }
+        return 0;
+    } else if (savedVal == ((Obj136_000F3C70 *)D_002A8490->arr)->func_00136170(2, 2, 0)) {
+        if (f2DC == 0) {
+            f2F0 = 1;
+            return 1;
+        }
+        savedObj->func_000B9A80(2, 1);
+        f2E0 = f2DC;
+        f300 = 1;
+        if (f2B8 != 1) {
+            f2DC = f2DC - 1;
+            f2A8 = f2DC;
+            if (f2E4 != f2DC) {
+                return 1;
+            }
+            f2F4 = 0;
+            f2E4 = f2DC - 1;
+            f2E8 = f2E8 - 1;
+            a368[0] = a368[0] + 40.0f;
+            a368[1] = a368[1] + 40.0f;
+            a368[2] = a368[2] + 40.0f;
+            a368[3] = a368[3] + 40.0f;
+            a368[4] = a368[4] + 40.0f;
+            a368[5] = a368[5] + 40.0f;
+            a368[6] = a368[6] + 40.0f;
+            a368[7] = a368[7] + 40.0f;
+            a368[8] = a368[8] + 40.0f;
+            f2EC = 1;
+            f2F8 = 1;
+            return 1;
+        }
+        f2DC = (f2DC == 4) + 4;
+        return 0;
+    } else if (savedVal == ((Obj136_000F3C70 *)D_002A8490->arr)->func_00136170(3, 2, 0)) {
+        int rr = D_002A8490->p2E0->p2C0->func_0005C0F0();
+        if (rr == 0) {
+            if (f2DC == 7) {
+                f2F4 = 1;
+                return 1;
+            }
+        } else {
+            if (f2DC == 8) {
+                f2F4 = 1;
+                return 1;
+            }
+        }
+        savedObj->func_000B9A80(2, 1);
+        f2E0 = f2DC;
+        f300 = 1;
+        if (f2B8 == 1) {
+            f2DC = (f2DC == 4) + 4;
+            return 0;
+        }
+        f2DC = f2DC + 1;
+        f2A8 = f2DC;
+        if (f2DC > 8) {
+            return 1;
+        }
+        if (f2E8 != f2DC) {
+            return 1;
+        }
+        f2E8 = f2DC + 1;
+        f2E4 = f2E4 + 1;
+        f2F0 = 0;
+        if (f2F4 == 0) {
+            f2EC = 1;
+            a368[0] = a368[0] - 40.0f;
+            a368[1] = a368[1] - 40.0f;
+            a368[2] = a368[2] - 40.0f;
+            a368[3] = a368[3] - 40.0f;
+            a368[4] = a368[4] - 40.0f;
+            a368[5] = a368[5] - 40.0f;
+            a368[6] = a368[6] - 40.0f;
+            a368[7] = a368[7] - 40.0f;
+            a368[8] = a368[8] - 40.0f;
+        }
+        f2F8 = 1;
+        return 1;
+    } else if (savedVal == ((Obj136_000F3C70 *)D_002A8490->arr)->func_00136170(5, 2, 0) ||
+               savedVal == ((Obj136_000F3C70 *)D_002A8490->arr)->func_00136170(0x18, 2, 0)) {
+        if (f280 == 0) {
+            f29C = 1;
+            savedObj->func_000B9A80(1, 1);
+        }
+        f280 = 1;
+        f288 = 0.0f;
+        f28C = savedVal;
+        f294 = a;
+        if (f290 == 0) {
+            return 0;
+        }
+        owner->func_000BA9D0(1)->f360 = 10;
+        p124->f138 = 7;
+        p124->f134 = 1;
+        return 1;
+    }
+    return 1;
+}
+
 void BmxUIPageTwoPlayer::func_000F4860(float dt)
 {
     Owner_000F3C70 *owner = p124;

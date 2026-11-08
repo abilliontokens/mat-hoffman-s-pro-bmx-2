@@ -92,7 +92,7 @@ void BmxObjectivesMenu::func_00064BA0(float dt)
 {
     if (f64 == 4 && f280 != 0) {
         f288 = 1;
-        if (f228 >= 0 && f228 < f224 && f1D8 >= D_002756DC) {
+        if (f228 >= 0 && f228 < f224 && f1D8 > D_002756DC) {
             f1D0->func_00052C10(0);
             f228++;
             f1D8 = 0.0f;
@@ -105,11 +105,89 @@ void BmxObjectivesMenu::func_00064BA0(float dt)
             f1D0->f158->func_001C4D50(1000);
             f1D8 = 0.0f;
             f288 = 0;
-            func_0005EA10(dt);
-            return;
+        } else {
+            f1D8 += dt;
         }
-        f1D8 += dt;
         func_0005EA10(dt);
         return;
+    }
+
+
+    if (f214 && !f1D0->f44->f74->func_000301D0()) {
+        if (f1D0->f1C0->func_000976A0() == 3) {
+            f214 = 0;
+            f218 = 1;
+            S_ObjectiveRecord *record = D_002A8490->f2E0->f2C0->func_0005C020(D_002A8490->f2E0->f2D8);
+            record->flags[D_002A8490->f2E0->f48] = 1;
+        } else {
+            int count = f1D0->f1C0->func_00097C60();
+            S_ObjectiveEntry **entries = f1D0->f1C0->func_00097C20();
+            do {
+                ++f21C;
+                if (f21C >= count) f21C = 0;
+            } while (entries[f21C]->func_00096740() == 1 || entries[f21C]->f1A8);
+            f214 = 1;
+            func_000619F0((char*)entries[f21C] + 0xB4);
+            f1D0->f158->func_001C4D50(1000);
+        }
+    } else if (f218 && !f1D0->f44->f74->func_000301D0()) {
+        func_00061B20();
+    }
+    if (f1D8 == D_00275544 && (f64 == 2 || f64 == 6 || f64 == 4) && !f22C) {
+        f258 = 0;
+        f25C = 0;
+        f260 = 0;
+        f254 = f250->func_00092A10();
+        if (f254 && (f64 == 2 || f64 == 6 || f64 == 4)) {
+            f258 = f250->func_00092A50(&f268);
+            if (f258) {
+                f25C = f250->func_00092B40(-1);
+                f260 = f250->func_00092BE0();
+            } else if (f270 != 8 && f270 != 5 && f270 != 1) {
+                f270 = 8;
+            }
+        } else if (f270 != 6 && f270 != 7 && f270 != 12 && f270 != 11) {
+            f270 = 0;
+        }
+    }
+
+    switch (f64) {
+    case 2: case 6:
+        switch (f270) {
+        case 0:
+            if (f254) {
+                if (f64 == 2) {
+                    f26C = 0;
+                    for (int i = 0; i < 10; ++i) {
+                        if (!D_002A8490->f2E0->f2C0->func_0005C020(i)->value && !f250->func_00092B40(i))
+                            ++f26C;
+                    }
+                } else {
+                    f26C = 0x10C;
+                    for (int i = 0; i < 10; ++i) {
+                        if (!D_002A8490->f2E0->f2C0->func_0005C020(i)->value && !f250->func_00092B40(i))
+                            ++f26C;
+                    }
+                    if (!f250->func_00092AC0()) f26C += 4;
+                }
+                if (f25C && f64 == 2) {
+                    f270 = 2;
+                } else if (f260 && f64 == 6) {
+                    f270 = 2; f228 = 0;
+                } else if (f25C && !f260 && f64 == 6 && f258) {
+                    if (f268 < 0x10C) { f26C = 0x10C; f270 = 4; }
+                    else f270 = 9;
+                } else if (f268 < f26C && f258) f270 = 4;
+                else f270 = (f64 != 2) + 8;
+            }
+            break;
+        case 1:
+            if (!f254) f270 = 0;
+            break;
+        case 2:
+            if (f1D8 > D_002755E8 && f268 < f26C) f270 = 4;
+            break;
+        }
+        break;
     }
 }

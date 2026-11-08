@@ -195,17 +195,22 @@ int C_3A990::func_0003A990(S_0003AC20_Vec a, S_0003AC20_Vec b)
 
 int C_0003AC20::func_0003AC20(S_0003AC20_Vec pos) {
  struct { C_0003AC20 *self; int result; int index; } L;
- S_0003AC20_Vec p = pos;
+ struct { S_0003AC20_Vec v; S_0003AC20_Vec p; } B;
  L.self = this;
+ B.p = pos;
  for(int i=L.self->f450;i<L.self->f45C;i++) {
-  p.y=i*D_00275548+L.self->f440;
-  if(L.self->func_00038760(p,&L.index)) {
-   S_0003AC20_Entry *e=L.self->at(L.index);
-   S_0003AC20_Vec v=e->owner->fE8->pos;
+  B.p.y=i*D_00275548+L.self->f440;
+  if(L.self->func_00038760(B.p,&L.index)) {
+   int idx = L.index;
+   S_0003AC20_Entry *e=L.self->at(idx);
+   B.v=e->owner->fE8->pos;
+   float t = B.v.y+B.v.y;
    L.self->f574=e;
-   L.self->f578=L.index;
+   L.self->f578=idx;
+   t = t+B.p.y;
    L.self->f2D4=1;
-   Round_0003AC20(&L.result, v.y+v.y+p.y-L.self->f440);
+   t = t-L.self->f440;
+   L.result = (int)t;
    return L.result;
   }
  }
@@ -231,7 +236,8 @@ void C_0003AD50::func_0003AD50(void)
 void C_3AE40::func_0003AE40(S_3AE40_Rec * volatile dst)
 {
     int n = 0;
-    for (int i = f484; i < list.count; i++, n++) {
+    int i;
+    for (i = f484; i < list.count; i++, n++) {
         S_3AE40_Ent *e = list.at(i);
         dst[n].idx = n;
         dst[n].kind = e->kind + 1;

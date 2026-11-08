@@ -2,9 +2,8 @@
 #include "common.h"
 
 void __fastcall func_001ECA71(void *a, void *b);
-void func_001E8F84(double x)
+void func_001E8F84(void)
 {
-    func_001ECA71(0, &x);
 }
 
 void func_001E8F8D(void)

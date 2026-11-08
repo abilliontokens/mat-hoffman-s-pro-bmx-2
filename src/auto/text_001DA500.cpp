@@ -437,6 +437,7 @@ void C_001DB080::func_001DB080()
     int tex;
     int n;
     int f;
+    int cur;
     float v[4];
     float d0, d1;
     float k;
@@ -464,10 +465,11 @@ void C_001DB080::func_001DB080()
     v[1] = 0.0f;
     v[0] = 0.0f;
     v[3] = 1.0f;
-    ((S_001DB080_Obj *)self->f30[self->cur])->func_00199A70(v, 0);
-    M = &D_002F100C[self->cur * 4];
-    d0 = M[0] - v[0];
-    d1 = M[2] - v[2];
+    ((S_001DB080_Obj *)self->f30[self->cur])->func_00199A70(0, v);
+    cur = self->cur;
+    d0 = D_002F100C[cur * 4] - v[0];
+    d1 = D_002F100C[cur * 4 + 2] - v[2];
+    M = &D_002F100C[cur * 4];
     M[0] = v[0];
     M[1] = v[1];
     M[2] = v[2];
@@ -491,6 +493,7 @@ void C_001DB080::func_001DB080()
     func_001FE490(0);
     ((C_001DAAD0 *)self)->func_001DAAD0(((S_001DAC10_Tex *)e->f30)->fB8,
         (S_001DAAD0_Block *)D_002F10F8, (void *)D_002AC770);
+    k = -D_0028F8E4;
     for (i = 0; i < self->f214; i++) {
         float *a = (float *)((char *)self->f20C + i * 0x14);
         float dx = a[0] - v[0];
@@ -502,7 +505,6 @@ void C_001DB080::func_001DB080()
         if (Abs_001DB080(dy) > D_0028F97C) {
             continue;
         }
-        k = -D_0028F8E4;
         f = D_002F1148;
         if (!(f & 2)) {
             f |= 2;

@@ -50,48 +50,50 @@ static __forceinline float Dot_00120FF0(S_0011F4B0_V4 *a, S_0011F4B0_V4 *b) { re
 
 int func_00120B20(S_001206E0_Tri *tri, S_00120B20_Seg *seg, float radius, int unused, float *m)
 {
+    S_0011F4B0_V4 e;
     S_0011F4B0_V4 n;
     S_0011F4B0_V4 d;
     S_0011F4B0_V4 v0;
     S_0011F4B0_V4 p;
     S_0011F4B0_V4 v1;
     S_0011F4B0_V4 v2;
-    S_0011F4B0_V4 tmp;
-    S_0011F4B0_V4 proj;
-    S_0011F4B0_V4 e;
-    float hx, hy, hz, t, dist;
+    S_0011F4B0_V4 hit;
+    float t, dist;
     int adist;
 
     n.x = tri->x * D_002B9348;
     n.y = tri->y * D_002B9348;
     n.z = tri->z * D_002B9348;
-    d.x = 0.0f; d.y = 0.0f; d.z = 0.0f; d.w = 1.0f;
-    v0.x = 0.0f; v0.y = 0.0f; v0.z = 0.0f; v0.w = 1.0f;
-    p.x = 0.0f; p.y = 0.0f; p.z = 0.0f; p.w = 1.0f;
-    v1.x = 0.0f; v1.y = 0.0f; v1.z = 0.0f; v1.w = 1.0f;
-    v2.x = 0.0f; v2.y = 0.0f; v2.z = 0.0f; v2.w = 1.0f;
+    p.x = p.y = p.z = 0.0f;
+    p.w = 1.0f;
+    d.x = d.y = d.z = 0.0f;
+    d.w = 1.0f;
+    v0.x = v0.y = v0.z = 0.0f;
+    v0.w = 1.0f;
+    v1.x = v1.y = v1.z = 0.0f;
+    v1.w = 1.0f;
+    v2.x = v2.y = v2.z = 0.0f;
+    v2.w = 1.0f;
     func_0011F0E0(&v0, &v1, &v2, tri, D_002B92F4);
     func_0011F540(&p, seg->a, m);
-    tmp.x = seg->b.x - seg->a.x;
-    tmp.y = seg->b.y - seg->a.y;
-    tmp.z = seg->b.z - seg->a.z;
-    tmp.w = 1.0f;
+    S_0011F4B0_V4 tmp = { seg->b.x - seg->a.x, seg->b.y - seg->a.y, seg->b.z - seg->a.z, 1.0f };
     func_00030A30(&d, tmp, m);
     t = -((n.x * p.x + n.y * p.y + n.z * p.z + tri->t) / (n.x * d.x + n.y * d.y + n.z * d.z));
-    t = Max_00120B20(Min_00120B20(t, 1.0f), 0.0f);
-    hx = d.x * t + p.x;
-    hy = d.y * t + p.y;
-    hz = d.z * t + p.z;
-    dist = (hx - v0.x) * n.x + (hy - v0.y) * n.y + (hz - v0.z) * n.z;
+    t = AsmMaxF(AsmMinF(t, 1.0f), 0.0f);
+    hit.x = d.x * t + p.x;
+    hit.y = d.y * t + p.y;
+    hit.z = d.z * t + p.z;
+    hit.w = 1.0f;
+    dist = (hit.x - v0.x) * n.x + (hit.y - v0.y) * n.y + (hit.z - v0.z) * n.z;
     adist = *(int *)&dist & 0x7fffffff;
     if (*(float *)&adist < radius) {
         return 0;
     }
-    proj.x = hx - n.x * dist;
-    proj.y = hy - n.y * dist;
-    proj.z = hz - n.z * dist;
-    proj.w = 1.0f;
-    if (func_0011FF30(&proj, tri) != 0) {
+    n.x = hit.x - n.x * dist;
+    n.y = hit.y - n.y * dist;
+    n.z = hit.z - n.z * dist;
+    n.w = 1.0f;
+    if (func_0011FF30(&n, tri) != 0) {
         return 1;
     }
     e.x = v1.x - v0.x;
@@ -154,8 +156,7 @@ int func_00120FF0(float *p0, float *extA, float *p1, float *extB, float *m)
     d.x = p1[0] - p0[0];
     d.y = p1[1] - p0[1];
     d.z = p1[2] - p0[2];
-    j = 0;
-    do {
+    for (j = 0; j < 15; j++) {
         switch (j) {
         case 0:
             D_002B9350[0] = D_002A3C3C[0];
@@ -215,8 +216,7 @@ int func_00120FF0(float *p0, float *extA, float *p1, float *extB, float *m)
         sumB = rB2 + rB1 + rB0;
         if (sumB + sumA < dist)
             return 0;
-        j++;
-    } while (j < 15);
+    }
     return 1;
 }
 

@@ -853,9 +853,10 @@ void *C_00095060::func_00094F40(void *arg)
     f60 = 1;
     f64b.b0 = 1;
     ids.items = (void **)func_001E8A44(4);
+    unsigned char t2 = f78;
     f70 = 16;
     f74 = 1;
-    f78b.b0 = 1;
+    f78 = t2 | 1;
     f7C = 0;
     f80 = arg;
     C_001CD770 *obj = (C_001CD770 *)func_001E8A44(0x4c);

@@ -166,12 +166,11 @@ struct C_0014F170 {
 extern void func_0014F670(float value, void *grid, float *out);
 extern void func_00011060();
 extern float D_00283E00, D_002756D0, D_002756B8, D_002756E8;
-void __fastcall func_0014E630(void *self, int edx_, S_0014E630_Holder *a)
+void __fastcall func_0014E630(void *self, int, S_0014E630_Holder *a)
 {
     int i;
     int off;
     (void)self;
-    (void)edx_;
     if (a->count == 0) {
         a->out = 0;
         return;
@@ -198,9 +197,7 @@ void __fastcall func_0014E630(void *self, int edx_, S_0014E630_Holder *a)
             void *mem = func_001E8A44(0x120);
             ObjA50 *o = mem ? ((ObjA50 *)mem)->func_001A4A50(1) : 0;
             o->func_00129920(4);
-            V4x v;
-            v.x = ((float *)e->p0)[0]; v.y = ((float *)e->p0)[1]; v.z = ((float *)e->p0)[2]; v.w = ((float *)e->p0)[3];
-            o->func_001A57E0(e->f24, 0, v);
+            o->func_001A57E0(e->f24, 0, *(V4x *)e->p0);
             a->out[i] = o;
             *(int *)((char *)o + 0x68) = D_002BA574;
             e->func_001577A0(o, -1);
@@ -208,10 +205,7 @@ void __fastcall func_0014E630(void *self, int edx_, S_0014E630_Holder *a)
             void *mem = func_001E8A44(0x120);
             ObjE620 *o = mem ? ((ObjE620 *)mem)->func_0017E620(1) : 0;
             o->func_00129920(4);
-            V4x v1, v2;
-            v1.x = ((float *)e->p0)[4]; v1.y = ((float *)e->p0)[5]; v1.z = ((float *)e->p0)[6]; v1.w = ((float *)e->p0)[7];
-            v2.x = ((float *)e->p0)[0]; v2.y = ((float *)e->p0)[1]; v2.z = ((float *)e->p0)[2]; v2.w = ((float *)e->p0)[3];
-            o->func_0017E6F0(v1, v2, e->f24);
+            o->func_0017E6F0(*(V4x *)((float *)e->p0 + 4), *(V4x *)e->p0, e->f24);
             a->out[i] = o;
             *(int *)((char *)o + 0x68) = D_002BA574;
             e->func_001577A0(o, -1);
@@ -266,15 +260,7 @@ void __fastcall func_0014E630(void *self, int edx_, S_0014E630_Holder *a)
                 c = d;
             }
             o->func_0019C710(grid, ixbuf, 0x20, 0x20);
-            float *ident = (float *)((char *)o + 0x130);
-            *(__m128 *)(ident + 0) = _mm_setzero_ps();
-            *(__m128 *)(ident + 4) = _mm_setzero_ps();
-            *(__m128 *)(ident + 8) = _mm_setzero_ps();
-            *(__m128 *)(ident + 12) = _mm_setzero_ps();
-            ident[0] = 1.0f;
-            ident[5] = 1.0f;
-            ident[10] = 1.0f;
-            ident[15] = 1.0f;
+            AsmIdentityMatrix((char *)o + 0x130);
             a->out[i] = o;
             *(int *)((char *)o + 0x68) = D_002BA150;
             o->func_001334E0(1);
@@ -290,21 +276,9 @@ C_0014ECD0 *C_0014ECD0::func_0014ECD0(int a0, char * volatile name, int a2, int 
 {
     C_0014ECD0 * volatile self = this;
     C_0014ECD0 *p;
-    struct {
-        union {
-            int var;
-            volatile int res;
-            volatile float m;
-        };
-        union {
-            volatile int len;
-            volatile float ta;
-        };
-        union {
-            volatile int lim;
-            volatile float tb;
-        };
-    } t;
+    float tb;
+    float ta;
+    float m;
     char buf[260];
     int n;
     int i;
@@ -313,6 +287,10 @@ C_0014ECD0 *C_0014ECD0::func_0014ECD0(int a0, char * volatile name, int a2, int 
     int mb;
     int r;
     int v;
+    int len;
+    int lim;
+    int var;
+    int res;
     S_0014ECD0_Item *items;
     S_0014ECD0_Item *mem;
     S_0014ECD0_Base *base;
@@ -322,19 +300,19 @@ C_0014ECD0 *C_0014ECD0::func_0014ECD0(int a0, char * volatile name, int a2, int 
     self->f564 = f6;
     self->f50 = a0;
     self->f55c = a2;
-    t.tb = D_002F07E8->f44;
-    t.ta = D_002F07E8->f40;
-    t.m = AsmMaxF(t.ta, t.tb);
-    self->f57c = *(volatile float *)&D_00286A9C / t.m;
-    self->f578 = t.m * D_00286A90;
+    tb = D_002F07E8->f44;
+    ta = D_002F07E8->f40;
+    m = AsmMaxF(ta, tb);
+    self->f57c = *(volatile float *)&D_00286A9C / m;
+    self->f578 = m * D_00286A90;
     if (func_001E8AF0(name, D_00286A94) == 0) {
         if (func_001E8AF0(name, D_00286A88) != 0) {
-            t.len = strlen(name);
-            t.lim = 0x103;
-            ma = t.lim;
-            mb = t.len;
-            t.res = AsmMinI(ma, mb);
-            n = t.res;
+            len = strlen(name);
+            lim = 0x103;
+            ma = lim;
+            mb = len;
+            res = AsmMinI(ma, mb);
+            n = res;
             func_001E8920(buf, name, n);
             buf[n] = 0;
             func_00030F30(buf, D_00286A94);
@@ -343,8 +321,8 @@ C_0014ECD0 *C_0014ECD0::func_0014ECD0(int a0, char * volatile name, int a2, int 
             }
         }
     }
-    t.var = -1;
-    if (self->func_0014CC60(name, &t.var) == 0) {
+    var = -1;
+    if (self->func_0014CC60(name, &var) == 0) {
         self->v2();
         return 0;
     }
@@ -400,7 +378,7 @@ C_0014ECD0 *C_0014ECD0::func_0014ECD0(int a0, char * volatile name, int a2, int 
         }
         self->f21dc = self->func_0013F690();
         self->f21e0 = func_0013F7B0();
-        v = t.var;
+        v = var;
         self->func_0014D360(v, a7);
         D_002BEAAC->func_0013C110(v);
         S_0014ECD0_Vec a;

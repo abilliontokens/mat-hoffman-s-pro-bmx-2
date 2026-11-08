@@ -1,6 +1,7 @@
 /* 4 functions from 0x0019DEF0 to 0x0019EEC0, found by Ghidra. */
 #include "common.h"
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 
 struct V4_0019DEF0 {
     float x, y, z, w;
@@ -171,6 +172,53 @@ static inline S_0019EB10_Node **alloc_node_list_0019ECB0(int bytes)
 
 void func_00030AC0(float *out, float *v, float *m);
 void func_0001C680(V4_0019E860 *out, V4_0019E860 v, float *m);
+void C_0019DEF0::func_0019DEF0(void)
+{
+    oldCenter = center;
+    oldExtent = extent;
+    M_0019DEF0 inv;
+    AsmCopyMatrix(&inv, &xf);
+    func_0011AC30(&inv, &inv);
+    V4_0019DEF0 vmin, vmax;
+    int i;
+    for (i = 0; i < count; i++) {
+        if (active[i] == 0)
+            continue;
+        Obj_0019DEF0 *o = objs[i];
+        V4_0019DEF0 axes[3];
+        Shape_0019DEF0 *s = o->f1c4;
+        float ex = s->ex, ey = s->ey, ez = s->ez;
+        axes[0] = V4_0019DEF0(ex, 0.0f, 0.0f);
+        axes[1] = V4_0019DEF0(0.0f, ey, 0.0f);
+        axes[2] = V4_0019DEF0(0.0f, 0.0f, ez);
+        axes[0] = func_0001C680(axes[0], &o->xf);
+        axes[0] = func_0001C680(axes[0], &inv);
+        axes[1] = func_0001C680(axes[1], &o->xf);
+        axes[1] = func_0001C680(axes[1], &inv);
+        axes[2] = func_0001C680(axes[2], &o->xf);
+        axes[2] = func_0001C680(axes[2], &inv);
+        V4_0019DEF0 ext;
+        ext.x = Abs_0019DEF0(axes[2].x) + Abs_0019DEF0(axes[1].x) + Abs_0019DEF0(axes[0].x);
+        ext.y = Abs_0019DEF0(axes[2].y) + Abs_0019DEF0(axes[1].y) + Abs_0019DEF0(axes[0].y);
+        ext.z = Abs_0019DEF0(axes[2].z) + Abs_0019DEF0(axes[1].z) + Abs_0019DEF0(axes[0].z);
+        V4_0019DEF0 p;
+        V4_0019DEF0 c(s->cx, s->cy, s->cz);
+        AsmTransformPoint(&p.x, &c.x, (float *)&o->xf);
+        AsmTransformPoint(&p.x, &p.x, (float *)&inv);
+        if (i != 0) {
+            V4_0019DEF0 lo(p.x - ext.x, p.y - ext.y, p.z - ext.z);
+            vmin = func_0019D9A0(&vmin, &lo);
+            V4_0019DEF0 hi(p.x + ext.x, p.y + ext.y, p.z + ext.z);
+            vmax = func_0019DA10(&vmax, &hi);
+        } else {
+            vmin = V4_0019DEF0(p.x - ext.x, p.y - ext.y, p.z - ext.z);
+            vmax = V4_0019DEF0(p.x + ext.x, p.y + ext.y, p.z + ext.z);
+        }
+    }
+    center = V4_0019DEF0((vmax.x + vmin.x) * 0.5f, (vmax.y + vmin.y) * 0.5f, (vmax.z + vmin.z) * 0.5f);
+    extent = V4_0019DEF0((vmax.x - vmin.x) * 0.5f, (vmax.y - vmin.y) * 0.5f, (vmax.z - vmin.z) * 0.5f);
+}
+
 void SoultreeHierarchyCollisionObject::func_0019E860(float *m, float *ext)
 {
     SoultreeHierarchyCollisionObject * volatile self = this;
@@ -191,18 +239,18 @@ void SoultreeHierarchyCollisionObject::func_0019E860(float *m, float *ext)
 void C_0019EB10::func_0019EB10(int h)
 {
     struct { S_0019EB10_Node **list; int count; int dummy; } c;
-    S_0019EB10_Node *node;
-    int fh;
-    int i;
     void *mem;
     S_0019EB10_Obj *obj;
+    long i;
+    S_0019EB10_Node *node;
+    int fh;
 
     node = f19c;
     while (node->f170 != 0) {
         node = node->f170;
     }
-    c.list = (S_0019EB10_Node **)func_001E8A44(node->func_00198270() * 4);
     *c.list = node;
+    c.list = (S_0019EB10_Node **)func_001E8A44(node->func_00198270() * 4);
     c.count = 1;
     node->func_001982A0(&c.count, c.list);
     fh = h;
@@ -243,7 +291,11 @@ void C_0019EB10::func_0019ECB0(S_0019EB10_Node *root, S_0019EB10_Sub *d)
             node = node->f170;
         } while (node->f170 != 0);
     }
-    (*(list = (S_0019EB10_Node **)func_001E8A44(node->func_00198270() * 4)) = node)->func_001982A0(&(count = 1), list);
+    mem = func_001E8A44(node->func_00198270() * 4);
+    list = (S_0019EB10_Node **)mem;
+    count = 1;
+    *list = node;
+    node->func_001982A0(&count, list);
     dd = d;
     f190 = d->f8;
     f1a0 = (S_0019EB10_Obj **)func_001E8AA5(f190 * 4);

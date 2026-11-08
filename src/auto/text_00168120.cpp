@@ -357,18 +357,29 @@ int C_00168280::func_00168550(const char *name, char *dst, int size)
     char *t;
     char *e;
     char *s;
+    char *p;
+    char c;
+    char *k2;
     int lo;
     int hi;
     int mid;
     int n;
     int i;
     int count;
+    int delta;
     char **list;
 
     if (f4 != 0) {
         if (f1c != 0) {
             if (f1c == 1) {
-                makeKey_168550(key, name);
+                p = (char *)name;
+                delta = key - p;
+                do {
+                    c = *p;
+                    p[delta] = c;
+                    p++;
+                } while (c);
+                func_000347F0(key);
                 t = f4c0;
                 if (strcmp(key, t) != 0) {
                     return 0;
@@ -377,7 +388,15 @@ int C_00168280::func_00168550(const char *name, char *dst, int size)
                 n = clamp_168550(s, size);
                 goto copy;
             }
-            makeKey_168550(key, name);
+            p = (char *)name;
+            delta = key - p;
+            do {
+                c = *p;
+                p[delta] = c;
+                p++;
+            } while (c);
+            k2 = key;
+            func_000347F0(k2);
             lo = 0;
             hi = f1c - 1;
             mid = hi >> 1;

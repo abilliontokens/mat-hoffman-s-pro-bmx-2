@@ -245,33 +245,27 @@ void Obj_00133ED0::func_00133EF0(int a)
 
 float __fastcall func_00133F10(void *self, int unused, void *arg)
 {
-    unsigned char *s = (unsigned char *)self;
-    float *f = (float *)self;
-    Mgr_00134770 *o = (Mgr_00134770 *)self;
-
-    if (!(s[0xa7] & 2)) {
-        s[0xa7] &= 0xdf;
+    if (!(((unsigned char *)self)[0xa7] & 2)) {
+        ((unsigned char *)self)[0xa7] &= 0xdf;
         return D_00276610;
     }
-    float v[3];
-    v[0] = f[10] - f[14];
-    v[1] = f[11] - f[15];
-    v[2] = f[12] - f[16];
-    float d = v[1] * v[1] + v[2] * v[2] + v[0] * v[0];
-    f[19] -= Sqrt_133F10(d);
-    *(V4_00134980 *)(f + 14) = *(V4_00134980 *)(f + 10);
-    if (arg && f[19] > D_00275544)
-        return f[19];
-    f[19] = 0;
-    V4_00134980 a, b, c, e;
+    float dx = ((float *)self)[10] - ((float *)self)[14];
+    float dy = ((float *)self)[11] - ((float *)self)[15];
+    float dz = ((float *)self)[12] - ((float *)self)[16];
+    ((float *)self)[19] -= AsmSqrtF(dy * dy + dz * dz + dx * dx);
+    *(V4_00134980 *)((float *)self + 14) = *(V4_00134980 *)((float *)self + 10);
+    if (arg && ((float *)self)[19] > D_00275544)
+        return ((float *)self)[19];
+    ((float *)self)[19] = 0;
+    V4_00134980 a, b, e, c;
     S_00134530_Iter iter;
     iter.func_001A46F0();
-    o->v28();
-    s[0xa7] |= 16;
-    o->v30(&a.x, &b.x);
-    iter.func_001A4790(o->f98, 1, &a.x, &b.x, (int)&e, (int)&c, 1);
-    float m1 = e.x - (b.x + a.x), m2 = e.z - (b.z + a.z), m3 = a.z - b.z - c.z, m4 = a.x - b.x - c.x;
-    float best = Min_133F10(Min_133F10(Min_133F10(m4, m3), m1), m2);
+    ((Mgr_00134770 *)self)->v28();
+    ((unsigned char *)self)[0xa7] |= 16;
+    ((Mgr_00134770 *)self)->v30(&a.x, &b.x);
+    iter.func_001A4790(((Mgr_00134770 *)self)->f98, 1, &a.x, &b.x, (int)&e, (int)&c, 1);
+    float m1 = c.x - (a.x + b.x), m2 = c.z - (a.z + b.z), m3 = a.z - b.z - e.z, m4 = a.x - b.x - e.x;
+    float best = AsmMinF(AsmMinF(AsmMinF(m4, m3), m1), m2);
     Ent_00134770 *node;
     while ((node = iter.func_001A4840()) != 0) {
         float distance;
@@ -281,16 +275,16 @@ float __fastcall func_00133F10(void *self, int unused, void *arg)
             distance = func_00133DF0((Coll_00133D90 *)self, (Coll_00133D90 *)other);
             if (distance == D_00275544) {
                 best = 0;
-                if (o->func_001332E0(other) && o->v29(other)) {
-                    s[0xa7] |= 32;
-                    if (o->cb9c) o->cb9c(self, other);
+                if (((Mgr_00134770 *)self)->func_001332E0(other) && ((Mgr_00134770 *)self)->v29(other)) {
+                    ((unsigned char *)self)[0xa7] |= 32;
+                    if (((Mgr_00134770 *)self)->cb9c) ((Mgr_00134770 *)self)->cb9c(self, other);
                     if (other->cbA0) other->cbA0(other, self);
                 }
             } else if (distance < best) {
                 best = distance;
-                if (arg && distance < f[19]) arg = (void *)((unsigned int)arg * 2);
+                if (arg && distance < ((float *)self)[19]) arg = (void *)((unsigned int)arg * 2);
             }
-        } else if (!(s[0xa7] & 1) && node->b2 == D_002A4331) {
+        } else if (!(((unsigned char *)self)[0xa7] & 1) && node->b2 == D_002A4331) {
             V4_00134980 pos;
             pos.x = node->w8 * *(float *)(D_002BF250 + 0x578);
             pos.z = node->wC * *(float *)(D_002BF250 + 0x578);
@@ -301,46 +295,46 @@ float __fastcall func_00133F10(void *self, int unused, void *arg)
                     if (other) {
                         other->flags |= 16;
                         best = 0;
-                        if (o->v29(other)) {
-                            s[0xa7] |= 32;
-                            if (o->cb9c) o->cb9c(self, other);
+                        if (((Mgr_00134770 *)self)->v29(other)) {
+                            ((unsigned char *)self)[0xa7] |= 32;
+                            if (((Mgr_00134770 *)self)->cb9c) ((Mgr_00134770 *)self)->cb9c(self, other);
                             if (other->cbA0) other->cbA0(other, self);
                         }
                     }
                 }
             } else if (arg && distance < best) {
                 best = distance;
-                if (distance < f[19]) arg = (void *)((unsigned int)arg * 2);
+                if (distance < ((float *)self)[19]) arg = (void *)((unsigned int)arg * 2);
             }
         }
     }
     int active = 0;
-    for (int *p = (int *)o->f98; p; p = (int *)*p) {
+    for (int *p = (int *)((Mgr_00134770 *)self)->f98; p; p = (int *)*p) {
         int *q = (int *)p[1];
         if (q[10] != q[11]) active = 1;
     }
     if (active) {
-        iter.func_001A4790(o->f98, 2, &a.x, &b.x, 0, 0, 0);
+        iter.func_001A4790(((Mgr_00134770 *)self)->f98, 2, &a.x, &b.x, 0, 0, 0);
         while ((node = iter.func_001A4840()) != 0) {
             if (node->b2 == D_002A4330) {
                 Ent_00134770 *other = (Ent_00134770 *)((char *)node - 0x24);
                 other->flags |= 16;
                 if (func_00133DF0((Coll_00133D90 *)self, (Coll_00133D90 *)other) == D_00275544 &&
-                    o->func_001332E0(other) && o->v29(other)) {
-                    s[0xa7] |= 32;
-                    if (o->cb9c) o->cb9c(self, other);
+                    ((Mgr_00134770 *)self)->func_001332E0(other) && ((Mgr_00134770 *)self)->v29(other)) {
+                    ((unsigned char *)self)[0xa7] |= 32;
+                    if (((Mgr_00134770 *)self)->cb9c) ((Mgr_00134770 *)self)->cb9c(self, other);
                     if (other->cbA0) other->cbA0(other, self);
                 }
             }
         }
     }
-    if (s[0xa7] & 32) {
+    if (((unsigned char *)self)[0xa7] & 32) {
         V4_00134980 pos;
         pos.y = -10000;
-        *(V4_00134980 *)(f + 14) = pos;
-        return f[19] = D_00275544;
+        *(V4_00134980 *)((float *)self + 14) = pos;
+        return ((float *)self)[19] = D_00275544;
     }
-    return f[19] = best;
+    return ((float *)self)[19] = best;
 }
 
 void Mgr_00134770::func_00134530(int max, int *cnt, Ent_00134770 **list, int type, int noDist, int noSub)

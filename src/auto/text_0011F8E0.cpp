@@ -205,49 +205,7 @@ float func_0011F8E0(float *p1, float *p2, float *p3, float *p4)
             return func_00011170(func_00011110(e, func_000110E0(a, func_0001C5E0(b, t1, p2), p1),
                                                func_000110E0(c, func_0001C5E0(d, t2, p4), p3)));
         }
-        {
-            float v1[3], v2[3];
-            v1[0] = t1 * p2[0];
-            v1[1] = t1 * p2[1];
-            v1[2] = t1 * p2[2];
-            a[0] = v1[0] + p1[0];
-            a[1] = v1[1] + p1[1];
-            a[2] = v1[2] + p1[2];
-            v1[0] = t2 * p4[0];
-            v1[1] = t2 * p4[1];
-            v1[2] = t2 * p4[2];
-            b[0] = v1[0] + p3[0];
-            b[1] = v1[1] + p3[1];
-            b[2] = v1[2] + p3[2];
-            float s = (a[1] - p3[1]) * p4[1] + (a[0] - p3[0]) * p4[0] + (a[2] - p3[2]) * p4[2];
-            s = AsmMaxF(AsmMinF(s, 1.0f), 0.0f);
-            v1[0] = s * p4[0];
-            v1[1] = s * p4[1];
-            v1[2] = s * p4[2];
-            v2[0] = v1[0] + p3[0];
-            v2[1] = v1[1] + p3[1];
-            v2[2] = v1[2] + p3[2];
-            v1[0] = v2[0] - a[0];
-            v1[1] = v2[1] - a[1];
-            float dz = v2[2] - a[2];
-            float len1 = AsmSqrtF(dz * dz + v1[1] * v1[1] + v1[0] * v1[0]);
-            float u = (b[0] - p1[0]) * p2[0] + (b[1] - p1[1]) * p2[1] + (b[2] - p1[2]) * p2[2];
-            u = AsmMaxF(AsmMinF(u, 1.0f), 0.0f);
-            v2[0] = u * p2[0];
-            v2[1] = u * p2[1];
-            v2[2] = u * p2[2];
-            v1[0] = v2[0] + p1[0];
-            v1[1] = v2[1] + p1[1];
-            dz = v2[2] + p1[2];
-            v1[0] -= b[0];
-            v1[1] -= b[1];
-            dz -= b[2];
-            float len2 = AsmSqrtF(dz * dz + v1[1] * v1[1] + v1[0] * v1[0]);
-            if (len1 > len2) {
-                return len1;
-            }
-            return len2;
-        }
+        return ClampDist_0011F8E0(a, b, t1, t2, p1, p2, p3, p4);
     }
     return D_00275544;
 }

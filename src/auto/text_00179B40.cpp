@@ -224,12 +224,11 @@ int C_00179B40::func_00179B40(C_0017BB10 *a0, char *a1)
     C_00179B40 *p;
     V4_0017A8F0 *q;
     int i, n, all, any;
-    float d;
     int ad;
     selfp[0] = this;
     for (i = 0; i < 10; i++) { v[i].z = 0; v[i].y = 0; v[i].x = 0; v[i].w = 1.0f; }
     p = selfp[0];
-    d = (p->f68 * p->f28 + p->f64 * p->f24 + p->f6c * p->f2c) - (p->f68 * *(float *)(a1 + 0x174) + p->f64 * *(float *)(a1 + 0x170) + p->f6c * *(float *)(a1 + 0x178));
+    const float d = (p->f68 * p->f28 + p->f64 * p->f24 + p->f6c * p->f2c) - (p->f68 * *(float *)(a1 + 0x174) + p->f64 * *(float *)(a1 + 0x170) + p->f6c * *(float *)(a1 + 0x178));
     ad = *(int *)&d & 0x7fffffff;
     if (*(float *)&ad < *(float *)(a1 + 0x1fc)) {
         a0->func_0017BB10((C_0017B9E0 *)&D_002EFD38);
@@ -269,7 +268,7 @@ int C_00179B40::func_00179B40(C_0017BB10 *a0, char *a1)
         a0->func_0017BE40();
         return 1;
     }
-    float minx = v[0].x, maxx = v[0].x, miny = v[0].y, maxy = v[0].y;
+    float miny = v[0].y, minx = v[0].x, maxx = v[0].x, maxy = v[0].y;
     q = &v[1];
     for (i = 1; i < n; i++) {
         if (q->x < minx) minx = q->x;
@@ -278,10 +277,10 @@ int C_00179B40::func_00179B40(C_0017BB10 *a0, char *a1)
         if (q->y > maxy) maxy = q->y;
         q++;
     }
-    *(float *)&t[0].unk0 = minx; *(float *)&t[0].unk4 = miny;
-    *(float *)&t[1].unk0 = maxx; *(float *)&t[1].unk4 = miny;
-    *(float *)&t[2].unk0 = maxx; *(float *)&t[2].unk4 = maxy;
-    *(float *)&t[3].unk0 = minx; *(float *)&t[3].unk4 = maxy;
+    *(float *)&t[0].unk0 = minx; *(float *)&t[0].unk4 = maxy;
+    *(float *)&t[1].unk0 = maxx; *(float *)&t[1].unk4 = maxy;
+    *(float *)&t[2].unk0 = maxx; *(float *)&t[2].unk4 = miny;
+    *(float *)&t[3].unk0 = minx; *(float *)&t[3].unk4 = miny;
     a0->func_0017BB10(t);
     return 1;
 }

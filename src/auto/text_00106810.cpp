@@ -218,6 +218,7 @@ void __fastcall func_00106B20(C_00106B20 * volatile self) {
     int active;
     float amount;
     float ratio;
+    int bits;
     float strength;
     float rate;
     if (D_002A8490->f2a4->f1c8 == 0) {
@@ -249,8 +250,8 @@ void __fastcall func_00106B20(C_00106B20 * volatile self) {
     q = self;
     if (*(int *)(q->f1e8 + 0x54) == 1 && active) {
         ratio = q->f744 / *(float *)(q->f1ec + 0x3c);
-        *(int *)&strength = *(int *)&ratio & 0x7fffffff;
-        strength = strength * amount;
+        bits = *(int *)&ratio & 0x7fffffff;
+        strength = *(float *)&bits * amount;
         rate = .1f;
         q = self;
         if (q->f1598 || *(int *)(*(char **)((char *)D_002A8490 + 0x2e0) + 0x190 + q->fa28 * 4) == 12) {
@@ -342,7 +343,6 @@ void C_00107070::func_00107070(float dt)
     int on;
     int on2;
     float t;
-    float v;
     int w;
 
     l.b.z = 0.0f; l.b.y = 0.0f; l.b.x = 0.0f; l.b.w = 1.0f;
@@ -379,12 +379,11 @@ void C_00107070::func_00107070(float dt)
         if (f1648 == 0x3f666666) f1648 = 0;
     }
     if (f1fa0 > D_00275544) {
-        if (l.b.y * f74c + l.b.x * f748 + l.b.z * f750 > D_00275544) {
-            t = f744 * f1654 * dt;
+        if (*(volatile float *)&l.b.y * f74c + l.b.x * f748 + l.b.z * f750 > D_00275544) {
+            t = *(volatile float *)&f744 * f1654 * dt;
             if (t > D_00282A70) t = D_00282A70;
-            v = t * f1fa0 + f163c;
-            f163c = v;
-            if (v > D_00275460) f163c = v - D_00275460;
+            f163c += t * f1fa0;
+            if (f163c > D_00275460) f163c -= D_00275460;
         }
     }
     if (f1644 > *(float *)&f1648) {

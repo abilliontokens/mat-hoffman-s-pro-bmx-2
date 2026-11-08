@@ -157,21 +157,23 @@ extern "C" void _ReadWriteBarrier(void);
 C_0001AE60* C_0001AE60::func_0001AE60(const Vec3* volatile v) {
     int tmp;
 
-    AsmFloatToIntRound(v->x * D_00275AFC, &tmp);
-    this->r = (s8)tmp;
-    AsmFloatToIntRound(v->y * D_00275AFC, &tmp);
-    this->g = (s8)tmp;
-    AsmFloatToIntRound(v->z * D_00275AFC, &tmp);
-    this->b = (s8)tmp;
+    AsmFloatToIntRound(D_00275AFC * v->x, &tmp);
+    this->r = tmp;
+    AsmFloatToIntRound(D_00275AFC * v->y, &tmp);
+    this->g = tmp;
+    AsmFloatToIntRound(D_00275AFC * v->z, &tmp);
+    this->b = tmp;
     return this;
 }
 C_0001AF00* C_0001AF00::func_0001AF00(const Vec3* volatile v) {
     int tmp;
 
     AsmFloatToIntRound(D_00275B00 * v->x, &tmp);
-    this->r = (s16)tmp, AsmFloatToIntRound(D_00275B00 * v->y, &tmp);
-    this->g = (s16)tmp, AsmFloatToIntRound(D_00275B00 * v->z, &tmp);
-    this->b = (s16)tmp;
+    this->r = *(s16 *)&tmp;
+    AsmFloatToIntRound(D_00275B00 * v->y, &tmp);
+    this->g = *(s16 *)&tmp;
+    AsmFloatToIntRound(D_00275B00 * v->z, &tmp);
+    this->b = *(s16 *)&tmp;
     return this;
 }
 

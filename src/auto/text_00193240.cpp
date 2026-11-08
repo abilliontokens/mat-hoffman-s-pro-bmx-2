@@ -244,6 +244,7 @@ void func_001930F0(void);
 
 void func_001E8390(void *p);
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 static inline float sqrtf(float x)
 {
     float r;
@@ -547,6 +548,64 @@ void Node_00193240::func_00193530(void *a1, void *a2, void *a3, void *a4)
     }
 }
 
+extern "C" double __cdecl sqrt(double);
+#pragma intrinsic(sqrt)
+void Node_00193240::func_00193600(void * volatile a1, void * volatile a2, void * volatile a3, void * volatile a4)
+{
+    S_00193240_V4 *v = (S_00193240_V4 *)a2;
+    float dx = v->x - f18, dy = v->y - f1C, dz = v->z - f20;
+    Node_00193240 * volatile self = this;
+    void *result;
+    float dist = AsmSqrtF(dz * dz + dy * dy + dx * dx);
+    Node_00193240 *s0 = self;
+    Link_00193530 *link = ((C_00192B50 *)s0->f4)->f24;
+    Handler_00193240 *h = s0->f8;
+    while (link) {
+        *(float *)&link->fC -= dist;
+        *(float *)&link->f10 = dist + *(float *)&link->f10;
+        Node_00193240 **cursor = &self->f0;
+        Node_00193240 *n = *cursor;
+        while (n && n->f4 != link->owner)
+            n = n->f0;
+        if (link->query->func_0017A1D0(a2, a4, &result)) {
+            n = self->f0;
+            if (n) {
+                Handler_00193240 *h2 = n->f8;
+                int r = h2->v6(a2, a3, n->f14);
+                if (r != n->f14) {
+                    h2->v9(a1, n->f14);
+                    h2->v7(a1, r, a2, a3);
+                    n->f14 = r;
+                } else
+                    h2->v8(a1, r, a2, a3);
+            } else {
+                C_00192B50 *owner = link->owner;
+                link->f10 = result;
+                link->fC = result;
+                h = owner->func_00192B50(((int *)h)[2]);
+                int r = h->v6(a2, a3, 0);
+                if (r) {
+                    h->v7(a1, r, a2, a3);
+                    Node_00193240 *nn = D_002EFE70->func_0001E8A0();
+                    nn->f14 = r;
+                    nn->f4 = owner;
+                    nn->f8 = h;
+                    nn->fC = link->query;
+                    nn->f10 = result;
+                    nn->f0 = self->f0;
+                    self->f0 = nn;
+                }
+            }
+        } else if (n) {
+            *(float *)&link->fC = 0;
+            *(u32 *)&link->f10 = 0x7f7fffff;
+            n->f8->v9(a1, n->f14);
+            *cursor = n->f0;
+            D_002EFE70->func_0001E790(n);
+        }
+        link = link->next;
+    }
+}
 void Node_00193240::func_001937F0(void *a1, void *a2, void *a3)
 {
     Handler_00193240 *h = f8;
@@ -739,15 +798,14 @@ void Cam_00193C20::func_00193C20(int count, float dt, int a3, Env_00193C20 *env,
     for (i = 0; i < f24; i++) {
         p = func_001E8A44(0x1e0);
         f4c[i] = p ? ((Seg_00193C20 *)p)->func_00143580(1) : 0;
-        if (last != 0 && i == f24 - 1) {
-            val = last;
-        } else {
-            val = a3;
-        }
+        if (*(volatile int *)&last != 0 && i == f24 - 1)
+            val = *(volatile int *)&last;
+        else
+            val = *(volatile int *)&a3;
         f4c[i]->v35(val, 0, 0);
         f4c[i]->func_00199600(v);
         f4c[i]->func_00198F50(&D_002A9934, &D_002A9924, 0, 1, 0);
-        f4c[i]->func_0019ABA0((void *)f48->f4a8[a5], 2);
+        f4c[i]->func_0019ABA0((void *)f48->f4a8[*(volatile int *)&a5], 2);
         func_001577A0(f4c[i], 0);
         v.y = v.y - dt;
         p = func_001E8A44(0x18);

@@ -133,12 +133,11 @@ extern "C" void _ReadWriteBarrier(void);
 #pragma intrinsic(_ReadWriteBarrier)
 V4_0011EE50 *func_0011EE50(V4_0011EE50 *out, V4_0011EE50 *in)
 {
-    volatile float v; volatile int tmp;
-    int *p = (int *)in;
-    v=*(float *)&p[0]; tmp=*(volatile int *)&v & 0x7fffffff; _ReadWriteBarrier(); p[0]=tmp;
-    v=*(float *)&p[1]; tmp=*(volatile int *)&v & 0x7fffffff; _ReadWriteBarrier(); p[1]=tmp;
-    v=*(float *)&p[2]; tmp=*(volatile int *)&v & 0x7fffffff; _ReadWriteBarrier(); p[2]=tmp;
-    v=*(float *)&p[3]; tmp=*(volatile int *)&v & 0x7fffffff; _ReadWriteBarrier(); p[3]=tmp;
+    volatile int tmp; volatile float v;
+    v=in->x; tmp=*(volatile int *)&v & 0x7fffffff; _ReadWriteBarrier(); in->x=*(float *)&tmp;
+    v=in->y; tmp=*(volatile int *)&v & 0x7fffffff; _ReadWriteBarrier(); in->y=*(float *)&tmp;
+    v=in->z; tmp=*(volatile int *)&v & 0x7fffffff; _ReadWriteBarrier(); in->z=*(float *)&tmp;
+    v=in->w; tmp=*(volatile int *)&v & 0x7fffffff; _ReadWriteBarrier(); in->w=*(float *)&tmp;
     *out=*in; return out;
 }
 V4_0011EE50 *func_0011EEE0(V4_0011EE50 *out, V4_0011EE50 *a, V4_0011EE50 *b)

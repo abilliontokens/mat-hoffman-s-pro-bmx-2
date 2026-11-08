@@ -119,10 +119,13 @@ struct C_000B6A70 {
     void func_000B67C0();
 };
 
+void func_000B60D0(Vec4B *, Vec4B *);
+#pragma optimize("y", on)
 void C_000B6A70::func_000B6A70(int a0)
 {
-    Vec4B l1;
     Vec4B l2;
+    Vec4B tv;
+    Vec4B l1;
     l2.z = 0.0f;
     l2.y = 0.0f;
     l2.x = 0.0f;
@@ -132,16 +135,14 @@ void C_000B6A70::func_000B6A70(int a0)
     l1.x = 0.0f;
     l1.w = 1.0f;
     f88->f22c->func_001994C0(0, &l2, &l1);
-    if (f74 == 0) {
-        f1D0->func_00133660(D_002B911C);
-        f1D4->func_00133660(D_002B911C);
-    } else {
+    if (f74 != 0) {
         f1D0->func_00133700();
         f1D4->func_00133700();
         f1D0->func_00133660(D_002BA154);
         f1D4->func_00133660(D_002BA154);
         f1D0->func_00133660(D_002BA148);
         f1D4->func_00133660(D_002BA148);
+    } else {
         f1D0->func_00133660(D_002B911C);
         f1D4->func_00133660(D_002B911C);
     }
@@ -154,7 +155,7 @@ void C_000B6A70::func_000B6A70(int a0)
     f38 = 0;
     f3C = 0;
     f8C = 0;
-    void *src = (char *)f88->f22c + 0xf0;
+    void * volatile src = (char *)f88->f22c + 0xf0;
     func_00030AC0(&vC0, &vA0, src);
     func_00030AC0(&vD0, &vB0, src);
     func_00030AC0(&v100, &vE0, src);
@@ -164,16 +165,16 @@ void C_000B6A70::func_000B6A70(int a0)
         f90->func_000BA430(&v120, &v180, 0, 0);
         v130 = v110;
         f90->func_000BA430(&v130, &v190, 0, &f9C);
-        if (v100.y - v120.y < f78 - f7C) {
+        if (f78 - f7C > v100.y - v120.y) {
             f28 = 1;
         }
-        if (v110.y - v130.y < f78 - f7C) {
+        if (f78 - f7C > v110.y - v130.y) {
             f30 = 1;
         }
     }
     if ((D_002B9154 & 1) == 0) {
         D_002B9154 = D_002B9154 | 1;
-        D_002B9150 = func_0014F550(0.52359879f);
+        D_002B9150 = func_0014F550(0.52359873f);
     }
     if (f24 != 0) {
         MatB mat;
@@ -194,8 +195,8 @@ void C_000B6A70::func_000B6A70(int a0)
             f1D0->func_00133F10(0);
         }
         if (f1D0->fA7 & 0x20) {
-            MatSrcB *s = f1D0->f54;
-            int raw = *(int *)&s->v20.w;
+            MatSrcB * volatile s = f1D0->f54;
+            int raw = *(int *)&s->v20.y;
             if (D_00278C48 < *(float *)&(raw = raw & 0x7fffffff, raw) ||
                 f1E4->f68 == D_002B9108 || f1E4->f68 == D_002B911C || f1E4->f68 == D_002B910C) {
                 v180 = s->v20;
@@ -212,8 +213,8 @@ void C_000B6A70::func_000B6A70(int a0)
             }
         }
         if (f1D4->fA7 & 0x20) {
-            MatSrcB *s = f1D4->f54;
-            int raw = *(int *)&s->v20.w;
+            MatSrcB * volatile s = f1D4->f54;
+            int raw = *(int *)&s->v20.y;
             if (D_00278C48 < *(float *)&(raw = raw & 0x7fffffff, raw) ||
                 f1E8->f68 == D_002B9108 || f1E8->f68 == D_002B911C || f1E8->f68 == D_002B910C) {
                 v190 = s->v20;
@@ -233,8 +234,10 @@ void C_000B6A70::func_000B6A70(int a0)
         float dx = v120.x - vC0.x;
         float dy = v120.y - vC0.y;
         float dz = v120.z - vC0.z;
-        float len = dx * dx + dy * dy + dz * dz;
-        if (len <= f7C + D_002756DC) {
+        float square = dz * dz + (dy * dy + dx * dx);
+        float len;
+        _mm_store_ss(&len, _mm_sqrt_ss(_mm_load_ss(&square)));
+        if (f7C + D_002756DC >= len) {
             f5C = 0;
         }
     }
@@ -242,8 +245,10 @@ void C_000B6A70::func_000B6A70(int a0)
         float dx = v130.x - vD0.x;
         float dy = v130.y - vD0.y;
         float dz = v130.z - vD0.z;
-        float len = dx * dx + dy * dy + dz * dz;
-        if (len <= f7C + D_002756DC) {
+        float square = dz * dz + (dy * dy + dx * dx);
+        float len;
+        _mm_store_ss(&len, _mm_sqrt_ss(_mm_load_ss(&square)));
+        if (f7C + D_002756DC >= len) {
             f60 = 0;
         }
     }
@@ -263,19 +268,20 @@ void C_000B6A70::func_000B6A70(int a0)
         }
         f54 = 1;
     }
-    Vec4B tv;
     tv.x = 0.0f;
     tv.y = 0.0f;
     tv.z = 0.0f;
     tv.w = 1.0f;
     if (f50 != 0) {
-        float d = func_0014F7E0(v140.x * v180.x + v140.y * v180.y + v140.z * v180.z);
-        tv.x = v120.x - v160.x;
-        tv.y = v120.y - v160.y;
-        tv.z = v120.z - v160.z;
-        tv.w = 1.0f;
-        tv.func_000B60D0();
-        if (f84 < d && D_00275544 < tv.x * v180.z + tv.y * v180.x + tv.z * v180.y) {
+        volatile float d = func_0014F7E0(v140.z * v180.z + (v140.y * v180.y + v140.x * v180.x));
+        Vec4B delta;
+        delta.x = v120.x - v160.x;
+        delta.y = v120.y - v160.y;
+        delta.z = v120.z - v160.z;
+        delta.w = 1.0f;
+        tv = delta;
+        func_000B60D0(&tv, &tv);
+        if (f84 < d && D_00275544 < tv.x * v180.x + tv.y * v180.y + tv.z * v180.z) {
             f50 = 0;
             f5C = 1;
         }
@@ -283,13 +289,15 @@ void C_000B6A70::func_000B6A70(int a0)
         v160 = v120;
     }
     if (f54 != 0) {
-        float d = func_0014F7E0(v150.x * v190.x + v150.y * v190.y + v150.z * v190.z);
-        tv.x = v130.x - v170.x;
-        tv.y = v130.y - v170.y;
-        tv.z = v130.z - v170.z;
-        tv.w = 1.0f;
-        tv.func_000B60D0();
-        if (D_00275544 < tv.x * v190.z + tv.y * v190.x + tv.z * v190.y && f84 < d) {
+        volatile float d = func_0014F7E0(v150.z * v190.z + (v150.y * v190.y + v150.x * v190.x));
+        Vec4B delta;
+        delta.x = v130.x - v170.x;
+        delta.y = v130.y - v170.y;
+        delta.z = v130.z - v170.z;
+        delta.w = 1.0f;
+        tv = delta;
+        func_000B60D0(&tv, &tv);
+        if (D_00275544 < tv.x * v190.x + tv.y * v190.y + tv.z * v190.z && f84 < d) {
             f54 = 0;
             f60 = 1;
         }
@@ -298,3 +306,4 @@ void C_000B6A70::func_000B6A70(int a0)
     }
     func_000B67C0();
 }
+#pragma optimize("", on)

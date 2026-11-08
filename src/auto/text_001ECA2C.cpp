@@ -25,18 +25,27 @@ int __fastcall func_001ECA58(unsigned int flags)
     return 1;
 }
 
+extern "C" double func_001ECA71(double *p)
+{
+    return *p;
+}
+
 unsigned int func_001ECAB4(unsigned int lo, unsigned int hi)
 {
     unsigned int e = hi & 0x7ff00000;
-    if (e != 0x7ff00000) {
-        return e;
+    if (e == 0x7ff00000) {
+        return hi;
     }
-    return hi;
+    return e;
 }
 
 void func_001ECACA(void)
 {
   return;
+}
+
+void func_001ECAD7(void)
+{
 }
 
 unsigned int func_001ECB01(unsigned int lo, unsigned int hi)

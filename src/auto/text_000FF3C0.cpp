@@ -383,7 +383,6 @@ void *C_000FF550::func_000FF550(int flags)
 int func_001E8858(float f);
 void C_000FF590::func_000FF590(float dt)
 {
-    typedef void (__fastcall *VF590)(void *self, int dummy, int a, int b);
     PhotoOwner *owner = this->owner;
 
     if (f28c || f290) {
@@ -391,25 +390,26 @@ void C_000FF590::func_000FF590(float dt)
     }
     if (f2e8 && !f2c0) {
         f2e4 = f2e4 + dt;
-        if (!(f2e4 < 1.0f)) {
+        if (f2e4 >= D_00278C48) {
             f2c0 = 1;
             f2e8 = 0;
         }
     }
     switch (f2d4) {
-    case 1:
+    case 5:
         if (f2d0 == 1) {
-            if (!(f2b8 < D_002755E8)) {
-                if (f30c == 0) {
-                    if (func_000DCC20() != 0) {
-                        f2d4 = 4;
-                        owner->ui->messages->func_0001BC50(D_0027A144, D_00282638, 0);
-                        break;
-                    }
+            if (f2b8 > D_00275544 && f308 == 0) {
+                f298 = 1;
+                f2d4 = 4;
+                if (f2e0 != 0) {
+                    owner->ui->messages->func_0001BC50(D_0027F7D4, D_00282668, 0);
+                } else {
+                    owner->ui->messages->func_0001BC50(D_0027F7D4, D_00282658, 0);
                 }
-                f30c = 1;
+                break;
             }
-        } else if (f2d0 == 0) {
+        }
+        if (f2d0 == 0) {
             f2d4 = 1;
             owner->ui->messages->func_0001BC50(D_0027A144, D_00282648, 0);
             if (f2d8 > f2dc) {
@@ -420,32 +420,34 @@ void C_000FF590::func_000FF590(float dt)
             f2a8 = 0;
         }
         break;
-    case 3:
+    case 1:
         if (f2d0 != 0) {
             f2d4 = 2;
             if (f2bc->func_00092A50(0) && f2bc->func_00092BE0()) {
                 f2d4 = 3;
                 f2b8 = f2b8 + dt;
-                if (!(f2b8 < D_00275460) && owner->dev->f74->func_000301D0() == 0) {
+                if (f2b8 >= D_00275460 && owner->dev->f74->func_000301D0() == 0) {
                     f2d0 = f2bc->func_00092A10();
                     f2b8 = 0;
                 }
             }
         }
         break;
-    case 5:
+    case 3:
         if (f2d0 == 1) {
-            if (!(f2b8 < D_00275544) && f308 == 0) {
-                f298 = 1;
-                f2d4 = 4;
-                if (f2e0 == 0) {
-                    owner->ui->messages->func_0001BC50(D_0027F7D4, D_00282658, 0);
-                } else {
-                    owner->ui->messages->func_0001BC50(D_0027F7D4, D_00282668, 0);
+            if (f2b8 > D_002755E8) {
+                if (f30c == 0) {
+                    if (func_000DCC20() != 0) {
+                        f2d4 = 4;
+                        owner->ui->messages->func_0001BC50(D_0027A144, D_00282638, 0);
+                        break;
+                    }
                 }
+                f30c = 1;
                 break;
             }
-        } else if (f2d0 == 0) {
+        }
+        if (f2d0 == 0) {
             f2d4 = 1;
             owner->ui->messages->func_0001BC50(D_0027A144, D_00282648, 0);
             if (f2d8 > f2dc) {
@@ -459,34 +461,33 @@ void C_000FF590::func_000FF590(float dt)
     }
     if (f290 || f28c) {
         f280 = f280 + dt;
-        if (!(f280 < D_0027DE74)) {
+        if (f280 >= D_0027DE74) {
             if (f2d4 == 0) {
                 f294 = 1;
-                ((VF590)(*(void ***)this)[0x1C])(this, 0, f288, f284);
+                ((C_000FF590Vt *)this)->v28(f288, f284);
             } else if (f2d4 == 4) {
-                int n = f2d8;
                 if (f290) {
-                    if (n < 7) {
-                        if (n > f2dc) f2d4 = 5;
-                        f2d8 = n + 1;
+                    if (f2d8 < 7) {
+                        if (f2d8 > f2dc) f2d4 = 5;
+                        f2d8 = f2d8 + 1;
                         f2e0 = 0;
                     }
-                } else if (n > 0) {
-                    if (n < f2dc) f2d4 = 5;
-                    f2d8 = n - 1;
+                } else if (f2d8 > 0) {
+                    if (f2d8 < f2dc) f2d4 = 5;
+                    f2d8 = f2d8 - 1;
                     f2e0 = 1;
-                    f2dc = n;
+                    f2dc = f2d8 + 1;
                 }
                 if (f2d4 != 5) {
-                    if (f2e0 == 0) {
-                        owner->ui->messages->func_0001BC50(D_0027F7D4, D_00282658, 0);
-                    } else {
+                    if (f2e0 != 0) {
                         owner->ui->messages->func_0001BC50(D_0027F7D4, D_00282668, 0);
+                    } else {
+                        owner->ui->messages->func_0001BC50(D_0027F7D4, D_00282658, 0);
                     }
                     f2b8 = 0;
                 } else {
                     f294 = 1;
-                    ((VF590)(*(void ***)this)[0x1C])(this, 0, f288, f284);
+                    ((C_000FF590Vt *)this)->v28(f288, f284);
                 }
             }
             f290 = 0;
@@ -498,7 +499,7 @@ void C_000FF590::func_000FF590(float dt)
         f280 = f280 + dt;
         if (owner->busy) {
             f2c8 = 0;
-        } else if (!(f280 < D_0027DE74)) {
+        } else if (f280 >= D_0027DE74) {
             switch (f2d4) {
             case 0:
                 f2d0 = f2bc->func_00092A10();
@@ -519,6 +520,11 @@ void C_000FF590::func_000FF590(float dt)
             case 4:
                 f2d4 = 0;
                 break;
+            case 6:
+                f2d4 = 6;
+                f2ec = 1;
+                owner->func_000BB3B0(D_0028261C, D_0028262C);
+                break;
             case 5: {
                 int n = ++f2ec;
                 if (n == 2) {
@@ -535,23 +541,13 @@ void C_000FF590::func_000FF590(float dt)
                 f2ac = 0;
                 break;
             }
-            case 6:
-                f2d4 = 6;
-                f2ec = 1;
-                owner->func_000BB3B0(D_0028261C, D_0028262C);
-                break;
             }
         }
     }
     if (f2b0) {
         f280 = f280 + dt;
-        if (!(f280 < D_0027DE74)) {
-            if (f2d4 == 0) {
-                if (D_002A8490->f2E0->f324 == 1) {
-                    f294 = 1;
-                    ((VF590)(*(void ***)this)[0x1C])(this, 0, f288, f284);
-                }
-            } else if (f2d4 == 4) {
+        if (f280 >= D_0027DE74) {
+            if (f2d4 == 4) {
                 f2d4 = 0;
                 owner->ui->messages->func_0001BC50(D_0027A144, D_00282648, 0);
                 if (f2d8 > f2dc) {
@@ -560,18 +556,23 @@ void C_000FF590::func_000FF590(float dt)
                 f2d8 = 0;
                 f2dc = 1;
                 f2a8 = 0;
+            } else if (f2d4 == 0) {
+                if (D_002A8490->f2E0->f324 == 1) {
+                    f294 = 1;
+                    ((C_000FF590Vt *)this)->v28(f288, f284);
+                }
             }
             f2b0 = 0;
             f280 = 0;
         }
     }
     if (f2f0 != f2f8) {
-        if (!(f2fc < f300)) {
+        if (f2fc >= f300) {
             f2f8 = f2f0;
             f308 = 0;
         } else {
             int b = f2f4;
-            f2f8 = func_001E8858((float)(f2f0 - b) * (f2fc / f300)) + b;
+            f2f8 = (int)((float)(f2f0 - b) * (f2fc / f300)) + b;
             f2fc = f2fc + dt;
         }
     }

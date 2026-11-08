@@ -294,15 +294,13 @@ u32 func_00178990(u16 *dst, u16 *src, int width, int height, int dstPitch, int s
   u16 c;
   int x;
   int y;
-  int off;
 
   c = (u16)(((key & 0xf80000) >> 9) | ((key & 0xf800) >> 6) | ((key & 0xf8) >> 3));
   s = src;
   d = dst;
   for (y = height; y > 0; y--) {
-    off = (char *)s - (char *)d;
     for (p = d, q = s, x = width; x > 0; x--) {
-      *p = *(u16 *)((char *)p + off);
+      *p = *q;
       if (*q == 0x7c1f) {
         *p = c;
       } else {

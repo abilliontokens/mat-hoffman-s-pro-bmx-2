@@ -1,5 +1,6 @@
 /* 14 functions from 0x001C4560 to 0x001C4FB0, found by Ghidra. */
 #include "common.h"
+#include "asm_helpers.h"
 struct C_001C4F70 {
     void func_0017C300(void);
     void func_0017C360(int a1, int a2, int a3, int a4, int a5);
@@ -367,6 +368,94 @@ C_001C4F40::C_001C4F40(void)
     f880 = 0;
     f8C = 0;
     f8B4 = 0;
+}
+
+int S_001C4560_This::func_001C4560()
+{
+    void __stdcall func_0012B2B0(void *a, void *b);
+    void __stdcall func_001D5AD0(void *fx);
+    S_001C4560_This *volatile self = this;
+    char *mgr;
+    char *fx;
+    int rect[8];
+    int rect2[2];
+    float x;
+    float y;
+    int result;
+    int v;
+
+    if (f34 != D_002A8490->f10 && f34 != -1) {
+        ((S_1C4560_Call *)this)->func_00157920();
+        return 0;
+    }
+    if (f34 == -1) {
+        if (D_002A8490->f274 < D_002A8490->f270 - 1)
+            goto realwork;
+    }
+    x = f30;
+    y = D_00275818 - x * x * x * D_00275818;
+    AsmFloatToIntRound(y, &result);
+    if (result == 0) {
+        ((C_001C4D50_Fx *)self)->v4();
+        return 1;
+    }
+realwork:
+    mgr = D_002EFDB8->f4;
+    if (self->f34 == -1 && D_002A8490->f270 > 1) {
+        *(int *)((char *)rect + 0x00) = *(int *)(mgr + 0x1e0);
+        *(int *)((char *)rect + 0x04) = *(int *)(mgr + 0x1e4);
+        *(int *)((char *)rect + 0x08) = *(int *)(mgr + 0x1e8);
+        *(int *)((char *)rect + 0x0c) = *(int *)(mgr + 0x1ec);
+        *(int *)((char *)rect + 0x10) = *(int *)(mgr + 0x1f0);
+        *(int *)((char *)rect + 0x14) = *(int *)(mgr + 0x1f4);
+        rect[0] = 0;
+        rect[1] = 0;
+        rect[4] = 0x280;
+        rect[5] = 0x1c0;
+        func_0012B2B0(rect, rect2);
+    }
+    fx = (char *)self->f24;
+    if (*(float *)(fx + 0x4) == D_00275544 && *(float *)(fx + 0x8) == D_00275544) {
+        *(int *)(fx + 0x4) = 0;
+        *(int *)(fx + 0x8) = 0;
+        *(unsigned char *)(fx + 0x58) |= 1;
+    }
+    v = *(int *)(mgr + 0x1e8);
+    if (v < 0)
+        y = (float)(v + 0x10000) / D_002AB4EC;
+    else
+        y = (float)v / D_002AB4EC;
+    fx = (char *)self->f24;
+    if (*(float *)(fx + 0x28) != y) {
+        *(float *)(fx + 0x28) = y;
+        *(unsigned char *)(fx + 0x58) |= 1;
+    }
+    v = *(int *)(mgr + 0x1ec);
+    if (v < 0)
+        y = (float)(v + 0x10000) / D_002AB4F0;
+    else
+        y = (float)v / D_002AB4F0;
+    fx = (char *)self->f24;
+    if (*(float *)(fx + 0x2c) != y) {
+        *(float *)(fx + 0x2c) = y;
+        *(unsigned char *)(fx + 0x58) |= 1;
+    }
+    fx = (char *)self->f24;
+    *(int *)(fx + 0x38) = (*(int *)(fx + 0x38) & 0xffffff) | ((int)(*(short *)((char *)rect + 0x08)) << 24);
+    *(unsigned char *)(fx + 0x58) |= 2;
+    if (self->f34 != -1) {
+        *(float *)(fx + 0x3c) = (float)(*(int *)(mgr + 0x1e4) + *(int *)(mgr + 0x1ec));
+        *(float *)(fx + 0x40) = (float)*(int *)(mgr + 0x1e4);
+        *(float *)(fx + 0x44) = (float)(*(int *)(mgr + 0x1e0) + *(int *)(mgr + 0x1e8));
+        *(float *)(fx + 0x48) = (float)*(int *)(mgr + 0x1e0);
+        *(unsigned char *)(fx + 0x58) |= 4;
+    }
+    fx = (char *)self->f24;
+    func_001D5AD0(fx);
+    if (self->f34 == -1 && D_002A8490->f270 > 1)
+        func_0012B2B0(rect, 0);
+    ((S_1C4560_Call *)self)->func_00157960();
+    return 0;
 }
 
 void C_001C4A70::func_001C4A70(void)

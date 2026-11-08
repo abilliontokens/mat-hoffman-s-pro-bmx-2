@@ -310,7 +310,7 @@ void XboxWaterDisplacement::func_001DC560() {
  v[0xc8/4]=p[0x1d0/4];
  S_WaterVector *src=(S_WaterVector*)(p+0x190/4), *dst=(S_WaterVector*)(v+0xb4/4);
  memcpy(dst,src,16);
- v[0xc4/4]=p[0x1d4/4]; v[0xcc/4]=p[0x1f8/4]; v[0xd0/4]=p[0x1dc/4];
+ v[0xc4/4]=p[0x1d4/4]; v[0xcc/4]=p[0x1f8/4]; v[0xd0/4]=*(int *)((char *)p + 0x1dc);
  if(D_002AB7F0 && !D_002A8490[0x124/4]) {func_001DAC10(); if(D_002A99B0) func_001DB080();}
  func_001DC010();
  if(D_002AC5C0 && v[0x4c/4]) {

@@ -342,7 +342,7 @@ void __stdcall func_00017810(C_00017810_Obj *obj, C_00017680_Vec *pos)
     u.x = -D_002A0738;
     u.y = -D_002A073C;
     u.z = -D_002A0740;
-    vec3_set(&t.x, u.x * D_002757F4, u.y * D_002757F4, u.z * D_002757F4);
+    vec3_set(&t.x, u.x * 180.0f, u.y * 180.0f, u.z * 180.0f);
     obj->f18 = t;
     obj->f14 = D_002A8490->f238 + 10000;
     obj->fC = 1;

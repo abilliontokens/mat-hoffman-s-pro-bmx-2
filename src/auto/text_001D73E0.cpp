@@ -550,7 +550,9 @@ int XboxTextureMap::func_001D7C50()
             return 0;
         int dims[2];
         S_001D7C50_desc desc;
-        LoadLevel_001D7C50((C_001D6D00 *)this, p, dims, &desc);
+        func_00201210(p, dims, 0, 0x80);
+        func_002011F0(p, &desc);
+        ((C_001D6D00 *)this)->func_001D6D00(&desc, dims, 0);
         func_00201100(p);
     }
     return 1;

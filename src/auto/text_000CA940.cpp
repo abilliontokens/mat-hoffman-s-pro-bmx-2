@@ -308,6 +308,195 @@ void BmxUIPageGameOptions::func_000CAA80()
     D_002B91AC->unk3C->func_0005E840(D_002A8490->p2E8->p4->f838);
 }
 
+int BmxUIPageGameOptions::func_000CAB90(int a, int b)
+{
+    int v;
+    UiObj_CA *ui;
+    int i;
+    ui = f124->f24;
+    if (f308 == 0) {
+        if (f124->f25C->f74->func_000301D0() == 0) {
+            if (f124->f138 != 4 && f124->f138 != 3 && f2C0 != 0 && (f280 == 0 || f284 != 0)) {
+                if (b == D_002A8490->f8->func_00136170(0, 2, 0)) {
+                    switch (f2A4) {
+                    case 1:
+                        f2BC = 1;
+                        D_002A8490->p2E0->f18 += -10;
+                        if (D_002A8490->p2E0->f18 < 0)
+                            D_002A8490->p2E0->f18 = 100;
+                        D_002A8490->p2E0->f2FC->f28->v30(D_002A8490->p2E0->f18);
+                        return 1;
+                    case 2:
+                        ui->func_000B9A80(5, 1);
+                        f2BC = 1;
+                        D_002A8490->p2E0->f1C += -10;
+                        if (D_002A8490->p2E0->f1C < 0)
+                            D_002A8490->p2E0->f1C = 100;
+                        f124->f150->f4C0->v30(D_002A8490->p2E0->f1C);
+                        return 1;
+                    case 3:
+                        ui->func_000B9A80(2, 1);
+                        v = (f2E4 == 0);
+                        f2BC = 1;
+                        f2E4 = v;
+                        if (v == 0) {
+                            for (i = 0; i < 8; i++) {
+                                if (D_002A8490->f8->arr14[i] != 0)
+                                    D_002A8490->f8->arr14[i]->func_0015ABF0(0);
+                            }
+                        } else {
+                            for (i = 0; i < 8; i++) {
+                                if (D_002A8490->f8->arr14[i] != 0)
+                                    D_002A8490->f8->arr14[i]->func_0015ABF0(1);
+                            }
+                        }
+                        D_002A8490->p2E0->f460 = f2E4;
+                        return 1;
+                    case 4:
+                        ui->func_000B9A80(2, 1);
+                        v = (f320 == 0);
+                        f2BC = 1;
+                        f320 = v;
+                        if (v == 0)
+                            D_002A8490->p2E0->f38C = 0;
+                        else
+                            D_002A8490->p2E0->f38C = 1;
+                        return 1;
+                    case 0:
+                        ui->func_000B9A80(2, 1);
+                        f2BC = 1;
+                        if (D_002A8490->p2E0->fC == 2) {
+                            f2D4 = 1;
+                            D_002A8490->p2E0->fC = 1;
+                        } else {
+                            f2D4 = 2;
+                            D_002A8490->p2E0->fC = 2;
+                        }
+                        return 1;
+                    case 5:
+                        ui->func_000B9A80(2, 1);
+                        v = (f2E8 == 0);
+                        f2BC = 1;
+                        f2E8 = v;
+                        D_002A8490->p2E0->f464 = v;
+                        return 1;
+                    }
+                    return 0;
+                }
+                if (b == D_002A8490->f8->func_00136170(1, 2, 0)) {
+                    switch (f2A4) {
+                    case 0:
+                        ui->func_000B9A80(2, 1);
+                        f2BC = 1;
+                        if (D_002A8490->p2E0->fC == 2) {
+                            f2D4 = 1;
+                            D_002A8490->p2E0->fC = 1;
+                        } else {
+                            f2D4 = 2;
+                            D_002A8490->p2E0->fC = 2;
+                        }
+                        return 1;
+                    case 1:
+                        f2BC = 1;
+                        D_002A8490->p2E0->f18 += 10;
+                        if (D_002A8490->p2E0->f18 > 100)
+                            D_002A8490->p2E0->f18 = 0;
+                        D_002A8490->p2E0->f2FC->f28->v30(D_002A8490->p2E0->f18);
+                        D_002A8490->p2E0->f2FC->f28->v30(D_002A8490->p2E0->f18);
+                        return 1;
+                    case 2:
+                        ui->func_000B9A80(5, 1);
+                        f2BC = 1;
+                        D_002A8490->p2E0->f1C += 10;
+                        if (D_002A8490->p2E0->f1C > 100)
+                            D_002A8490->p2E0->f1C = 0;
+                        f124->f150->f4C0->v30(D_002A8490->p2E0->f1C);
+                        return 1;
+                    case 3:
+                        ui->func_000B9A80(2, 1);
+                        v = (f2E4 == 0);
+                        f2BC = 1;
+                        f2E4 = v;
+                        if (v == 0) {
+                            for (i = 0; i < 8; i++) {
+                                if (D_002A8490->f8->arr14[i] != 0)
+                                    D_002A8490->f8->arr14[i]->func_0015ABF0(0);
+                            }
+                        } else {
+                            for (i = 0; i < 8; i++) {
+                                if (D_002A8490->f8->arr14[i] != 0)
+                                    D_002A8490->f8->arr14[i]->func_0015ABF0(1);
+                            }
+                        }
+                        D_002A8490->p2E0->f460 = f2E4;
+                        return 1;
+                    case 5:
+                        ui->func_000B9A80(2, 1);
+                        v = (f2E8 == 0);
+                        f2BC = 1;
+                        f2E8 = v;
+                        D_002A8490->p2E0->f464 = v;
+                        return 1;
+                    case 4:
+                        ui->func_000B9A80(2, 1);
+                        v = (f320 == 0);
+                        f2BC = 1;
+                        f320 = v;
+                        if (v == 0)
+                            D_002A8490->p2E0->f38C = 0;
+                        else
+                            D_002A8490->p2E0->f38C = 1;
+                        return 1;
+                    }
+                    return 0;
+                }
+                if (b == D_002A8490->f8->func_00136170(2, 2, 0)) {
+                    ui->func_000B9A80(2, 1);
+                    f2C4 = f2A4;
+                    f2A4--;
+                    if (f2A4 < 0)
+                        f2A4 = 5;
+                    if (f2A4 != 1)
+                        f328 = 1;
+                    f2D0 = f2A4 + 1;
+                    f328 = 1;
+                    func_001BEC10(a);
+                    return 1;
+                }
+                if (b == D_002A8490->f8->func_00136170(3, 2, 0)) {
+                    ui->func_000B9A80(2, 1);
+                    f2C4 = f2A4;
+                    f2A4++;
+                    if (f2A4 > 5)
+                        f2A4 = 0;
+                    if (f2A4 != 1)
+                        f328 = 1;
+                    f2D0 = f2A4 + 1;
+                    f328 = 1;
+                    func_001BEB90(a);
+                    return 1;
+                }
+                if (b == D_002A8490->f8->func_00136170(5, 2, 0) || b == D_002A8490->f8->func_00136170(0x18, 2, 0)) {
+                    if (f280 == 0) {
+                        ui->func_000B9A80(1, 1);
+                        f2B0 = 1;
+                        f290 = a;
+                        f280 = 1;
+                        f288 = 0;
+                        f28C = b;
+                        if (f284 == 0)
+                            return 0;
+                    }
+                    f124->f138 = 7;
+                    f124->f134 = 4;
+                    return 1;
+                }
+            }
+        }
+    }
+    return 0;
+}
+
 void BmxUIPageGameOptions::func_000CB2D0()
 {
     int n = 2;
@@ -358,16 +547,14 @@ void BmxUIPageGameOptions::func_000CB3B0()
 
 C_000CB480 *C_000CB480::func_000CB480(int a0)
 {
-    int k;
-    u32 *q;
+    int k = 0;
     func_001BE360(a0);
-    at(0x2BC) = 0;
+    at(0x2BC) = k;
     vtbl = (void *)&D_0027E49C;
     at(0x2C4) = 0x3f000000;
     at(0x2C0) = 1;
-    q = &at(0x298);
-    for (k = 0; k < 2; k++) {
-        q[k] = 0;
+    for (; k < 2; k++) {
+        (&at(0x298))[k] = 0;
     }
     at(0x304) = -1;
     at(0x308) = -1;

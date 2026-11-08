@@ -35,7 +35,7 @@ void func_001E4D60(int n, float *a, float *w)
     wn4r = w[1];
     csc1 = w[2];
     csc3 = w[3];
-    wd1r = 1;
+    wd1r = D_00275460;
     wd1i = 0;
     wd3r = 1;
     wd3i = 0;
@@ -160,12 +160,12 @@ void func_001E4D60(int n, float *a, float *w)
     a[j1 - 1] = x0i + x2i;
     x0r = x1r + x3i;
     x0i = x1i + x3r;
-    a[j2 - 2] = wd1r * x0r - wd1i * x0i;
-    a[j2 - 1] = wd1r * x0i + wd1i * x0r;
+    a[j2 - 2] = wk1r * x0r - wk1i * x0i;
+    a[j2 - 1] = wk1r * x0i + wk1i * x0r;
     x0r = x1r - x3i;
     x0i = x1i - x3r;
-    a[j3 - 2] = wd3i * x0r + wd3r * x0i;
-    a[j3 - 1] = wd3i * x0i - wd3r * x0r;
+    a[j3 - 2] = wk3i * x0r + wk3r * x0i;
+    a[j3 - 1] = wk3i * x0i - wk3r * x0r;
     x0r = a[j0] + a[j2];
     x0i = -a[j0 + 1] - a[j2 + 1];
     x1r = a[j0] - a[j2];
@@ -180,12 +180,32 @@ void func_001E4D60(int n, float *a, float *w)
     a[j1 + 1] = x0i + x2i;
     x0r = x1r + x3i;
     x0i = x1i + x3r;
-    a[j2] = wk1r * x0r - wk1i * x0i;
-    a[j2 + 1] = wk1r * x0i + wk1i * x0r;
+    a[j2] = (x0r - x0i) * wn4r;
+    a[j2 + 1] = (x0i + x0r) * wn4r;
     x0r = x1r - x3i;
     x0i = x1i - x3r;
-    a[j3] = wk3i * x0r + wk3r * x0i;
-    a[j3 + 1] = wk3i * x0i - wk3r * x0r;
+    a[j3] = (x0r + x0i) * -wn4r;
+    a[j3 + 1] = (x0i - x0r) * -wn4r;
+    x0r = a[j0 + 2] + a[j2 + 2];
+    x0i = -a[j0 + 3] - a[j2 + 3];
+    x1r = a[j0 + 2] - a[j2 + 2];
+    x1i = -a[j0 + 3] + a[j2 + 3];
+    x2r = a[j1 + 2] + a[j3 + 2];
+    x2i = a[j1 + 3] + a[j3 + 3];
+    x3r = a[j1 + 2] - a[j3 + 2];
+    x3i = a[j1 + 3] - a[j3 + 3];
+    a[j0 + 2] = x0r + x2r;
+    a[j0 + 3] = x0i - x2i;
+    a[j1 + 2] = x0r - x2r;
+    a[j1 + 3] = x0i + x2i;
+    x0r = x1r + x3i;
+    x0i = x1i + x3r;
+    a[j2 + 2] = wd1r * x0r - wd1i * x0i;
+    a[j2 + 3] = wd1r * x0i + wd1i * x0r;
+    x0r = x1r - x3i;
+    x0i = x1i - x3r;
+    a[j3 + 2] = wd3i * x0r + wd3r * x0i;
+    a[j3 + 3] = wd3i * x0i - wd3r * x0r;
 }
 
 void func_001E55E0(int n, float *a, float *w)

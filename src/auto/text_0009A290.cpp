@@ -52,26 +52,156 @@ extern char D_0027A9D0[];
 extern C_0009A290_Obj *D_002BEAAC;
 extern "C" char *__cdecl strcpy(char *, const char *);
 extern "C" char *__cdecl strcat(char *, const char *);
-#pragma intrinsic(strcpy)
-#pragma intrinsic(strcat)
+#pragma optimize("y", off)
+#pragma optimize("p", on)
 int C_0009A290::func_0009A290(int a1, char *a2, int *a3)
 {
-    char buf[0x400];
-
-    f198 = (void *)a1;
-    f194 = 0;
-    f0 = 0;
-    f4 = 0;
-    f8 = 0;
-    fC = 0;
-    f10 = 0;
-    f14 = 0;
-    strcpy(buf, D_002A5870);
-    strcat(buf, a2);
-    strcat(buf, D_0027A9D0);
-    if (D_002BEAAC->func_0013B1A0(buf) == 0) {
-        f194 = 1;
+    char buf[0x178];
+    char key[0x28], value[0x100];
+    C_00168280 *iniObj;
+    w[0x198/4] = a1;
+    w[0x194/4] = 0;
+    w[0]=0; w[1]=0; w[2]=0; w[3]=0; w[4]=0; w[5]=0;
+    int i=0;
+    char c;
+    do { c=D_002A5870[i]; buf[i]=c; ++i; } while(c);
+    strcat(buf,a2);
+    strcat(buf,".sol");
+    if (!D_002BEAAC->func_0013B1A0(buf)) {
+        w[0x194/4]=1;
         return (int)this;
+    }
+    iniObj=(C_00168280 *)func_001E8A44(0x4cc);
+    iniObj=iniObj ? iniObj->func_00168280() : 0;
+    iniObj->func_00169490(buf,0);
+    iniObj->func_00169710(D_002769F8);
+    w[6]=(int)a3; w[7]=(int)a3;
+    iniObj->func_00168A10(D_0027A9BC,&w[3]);
+    iniObj->func_00168A10(D_0027A9A8,&w[4]);
+    iniObj->func_00168A10(D_0027A994,&w[5]);
+    for(int group=0;group<3;group++) {
+        for(int slot=0;slot<15;slot++) {
+            int index=group*15+slot;
+            w[0x2c/4+index]=-1;
+            func_001ADCC0(key,0x28,D_0027A980,group+1,slot+1);
+            iniObj->func_00168BE0(key,D_00275630,value,0x77);
+            if(value[0]) {
+                int found=-1;
+                for(int n=0;n<(*(int **)(*(int *)(w[0x198/4]+0x64)+0x3ac))[9] && found==-1;n++) {
+                    int *list=*(int **)(*(int *)(w[0x198/4]+0x64)+0x3ac);
+                    int obj=((int *)list[10])[n];
+                    if(*(int *)(obj+4)==1 && !func_001EA426(value,(char *)(obj+0xa0))) found=n;
+                }
+                w[0x2c/4+index]=found;
+            }
+            w[0xe0/4+index]=-1;
+            func_001ADCC0(key,0x28,D_0027A968,group+1,slot+1);
+            iniObj->func_00168BE0(key,D_00275630,value,0x77);
+            if(value[0]) {
+                int found=-1;
+                for(int n=0;n<(*(int **)(*(int *)(a1+0x64)+0x3b4))[9] && found==-1;n++) {
+                    int *list=*(int **)(*(int *)(a1+0x64)+0x3b4);
+                    int obj=((int *)list[10])[n];
+                    if(!func_001EA426(value,(char *)(obj+0x18))) found=n;
+                }
+                w[0xe0/4+index]=found;
+            }
+        }
+    }
+    iniObj->func_00168A10(D_0027A958,&w[8]);
+    iniObj->func_00168A10(D_0027A944,&w[9]);
+    iniObj->func_00168A10(D_0027A934,&w[10]);
+    int count;
+    char prefix[0x28], section[0x28], format[0x104];
+    C_00097A80 **objects;
+    for(int kind=0;kind<3;kind++) {
+        switch(kind) {
+        case 0: count=w[3]; strcpy(prefix,"EasyObjective"); break;
+        case 1: count=w[4]; strcpy(prefix,"MediumObjective"); break;
+        case 2: count=w[5]; strcpy(prefix,"HardObjective"); break;
+        }
+        if(count>0) {
+            switch(kind) {
+            case 0: w[0]=func_001E8A44(count*4); objects=(C_00097A80 **)w[0]; break;
+            case 1: w[1]=func_001E8A44(count*4); objects=(C_00097A80 **)w[1]; break;
+            case 2: w[2]=func_001E8A44(count*4); objects=(C_00097A80 **)w[2]; break;
+            }
+            for(int j=0;j<count;j++) {
+                func_001ADCC0(section,0x28,D_002772CC,prefix,j+1);
+                iniObj->func_00169710(section);
+                C_00097A80 *mem=(C_00097A80 *)func_001E8A44(0x48e4);
+                objects[j]=mem ? mem->func_00097A80() : 0;
+                func_0009A1F0(iniObj,D_0027A8FC,D_00276980,objects[j]->data,0x3c);
+                func_0009A1F0(iniObj,D_0027A8E0,D_0027A8F0,objects[j]->data+0x3c,0x3c);
+                func_0009A1F0(iniObj,D_0027A8CC,D_0027A8D8,objects[j]->data+0x78,0x3c);
+                iniObj->func_00168550(D_0027A8C4,objects[j]->data+0xb4,0x77);
+                iniObj->func_00168550(D_0027A8B0,objects[j]->data+0x12c,0x77);
+                iniObj->func_00168C20(D_0027A8A4,1,(int *)(objects[j]->data+0x1b8));
+                iniObj->func_00168C20(D_0027A894,0,(int *)(objects[j]->data+0x1bc));
+                iniObj->func_00168C20(D_0027A888,0,(int *)(objects[j]->data+0x1a8));
+                iniObj->func_00168C20(D_0027A878,0,(int *)(objects[j]->data+0x1ac));
+                iniObj->func_00168C20(D_0027A85C,0,(int *)(objects[j]->data+0x1b0));
+                iniObj->func_00168C20(D_0027A84C,0,(int *)(objects[j]->data+0x1cc));
+                for(int k=0;k<*(int *)(objects[j]->data+0x1cc);k++) {
+                    func_001ADCC0(format,0x104,D_0027A83C,k+1);
+                    iniObj->func_00168550(format,objects[j]->data+0x290+k*0x78,0x77);
+                    func_001ADCC0(format,0x104,D_0027A828,k+1);
+                    iniObj->func_00168C20(format,-1,(int *)(objects[j]->data+0x1d0+k*4));
+                    func_001ADCC0(format,0x104,D_0027A810,k+1);
+                    iniObj->func_00168C20(format,-1,(int *)(objects[j]->data+0x260+k*4));
+                    func_001ADCC0(format,0x104,D_0027A7F8,k+1);
+                    iniObj->func_00168C20(format,-1,(int *)(objects[j]->data+0x230+k*4));
+                    func_001ADCC0(format,0x104,D_0027A7E0,k+1);
+                    iniObj->func_00168C20(format,-1,(int *)(objects[j]->data+0x200+k*4));
+                    func_001ADCC0(format,0x104,D_0027A7CC,k+1);
+                    iniObj->func_00168550(format,objects[j]->data+0x830+k*0x78,0x77);
+                    func_001ADCC0(format,0x104,D_0027A7BC,k+1);
+                    iniObj->func_00168550(format,objects[j]->data+0xdd0+k*0x78,0x77);
+                    func_001ADCC0(format,0x104,D_0027A7A4,k+1);
+                    iniObj->func_00168550(format,objects[j]->data+0x1910+k*0x78,0x77);
+                    func_001ADCC0(format,0x104,D_0027A78C,k+1);
+                    iniObj->func_00168550(format,objects[j]->data+0x1370+k*0x78,0x77);
+                    func_001ADCC0(format,0x104,D_0027A774,k+1);
+                    iniObj->func_00168550(format,objects[j]->data+0x1eb0+k*0x78,0x77);
+                    func_001ADCC0(format,0x104,D_0027A760,k+1);
+                    iniObj->func_00168550(format,objects[j]->data+0x2450+k*0x78,0x77);
+                    func_001ADCC0(format,0x104,D_0027A748,k+1);
+                    iniObj->func_00168550(format,objects[j]->data+0x29f0+k*0x78,0x77);
+                    func_001ADCC0(format,0x104,D_0027A730,k+1);
+                    iniObj->func_00168550(format,objects[j]->data+0x2f90+k*0x78,0x77);
+                    func_001ADCC0(format,0x104,D_0027A718,k+1);
+                    iniObj->func_00168550(format,objects[j]->data+0x3530+k*0x78,0x77);
+
+                    func_001ADCC0(format,0x104,D_0027A700,k+1);
+                    iniObj->func_00168C50(format,0.0f,(float *)(objects[j]->data+0x3b00+k*4));
+                    func_001ADCC0(format,0x104,D_0027A6E0,k+1);
+                    iniObj->func_00168550(format,objects[j]->data+0x3b30+k*0x78,0x77);
+                    func_001ADCC0(format,0x104,D_0027A6C0,k+1);
+                    iniObj->func_00168A10(format,(int *)(objects[j]->data+0x40d0+k*4));
+                    float vec[4]={0,0,0,1};
+                    func_001ADCC0(format,0x104,D_0027A6A8,k+1);
+                    iniObj->func_00168CB0(format,D_002A2400,vec);
+                    if(vec[0]!=D_002A2400[0] || vec[1]!=D_002A2400[1] || vec[2]!=D_002A2400[2]) {
+                        *(float *)(objects[j]->data+0x4100+k*16)=(float)(int)vec[0];
+                        *(float *)(objects[j]->data+0x4104+k*16)=(float)(int)vec[1];
+                        *(float *)(objects[j]->data+0x4108+k*16)=(float)(int)vec[2];
+                    }
+                    func_001ADCC0(format,0x104,D_0027A694,k+1);
+                    iniObj->func_00168CB0(format,D_002A2400,(float *)(objects[j]->data+0x4760+k*16));
+                    func_001ADCC0(format,0x104,D_0027A678,k+1);
+                    iniObj->func_00168550(format,objects[j]->data+0x41c0+k*0x78,0x77);
+                    func_001ADCC0(format,0x104,D_0027A658,k+1);
+                    iniObj->func_00168C20(format,-1,(int *)(objects[j]->data+0x4820+k*4));
+                    func_001ADCC0(format,0x104,D_0027A638,k+1);
+                    iniObj->func_00168C20(format,-1,(int *)(objects[j]->data+0x4850+k*4));
+                }
+            }
+        }
+    }
+    if(iniObj) {
+        iniObj->func_001691E0();
+        func_001E891B(iniObj);
     }
     return (int)this;
 }
+#pragma optimize("", on)

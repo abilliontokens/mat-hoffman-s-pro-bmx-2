@@ -265,6 +265,83 @@ void BmxUIPageHOF3::func_000D6D50(void)
     func_001BE3F0();
 }
 
+BmxUIPageHOF3 *BmxUIPageHOF3::func_000D6DD0(int a, int b, int c)
+{
+    char buf[8];
+    func_001BE4F0(a, b, c);
+    ((S_6DD0_Mgr *)D_002A8490)->s->func_0018C160(D_00278690);
+    ((S_6DD0_Mgr *)D_002A8490)->s->func_0018C160(D_002786A0);
+    ((S_6DD0_Mgr *)D_002A8490)->s->func_0018C160(D_00278678);
+    for (int i = 0; i < 5; i++) {
+        S_6DD0_W *&w0 = (S_6DD0_W *&)unk2d4[i];
+        S_6DD0_W *&w1 = (S_6DD0_W *&)unk2e8[i];
+        S_6DD0_W *&w2 = (S_6DD0_W *&)unk304[i];
+        S_6DD0_W *w = (S_6DD0_W *)func_001E8A44(0x184);
+        w0 = w ? w->func_001B12C0(1) : 0;
+        w0->func_001B13A0(D_002786A0, D_002786A0, 0, 30);
+        w0->func_001B2270(0xffcccccc);
+        w0->func_001B1A30(191.0f, i * D_0027F2BC + D_00279F74, 0);
+        func_001577A0((int)w0, -1);
+        w = (S_6DD0_W *)func_001E8A44(0x184);
+        w1 = w ? w->func_001B12C0(1) : 0;
+        w1->func_001B13A0(D_002786A0, D_002786A0, 0, 50);
+        w1->func_001B2270(0xffcccccc);
+        w1->func_001B1A30(380.0f, i + D_0027F2B8, 0);
+        func_001577A0((int)w1, -1);
+        w = (S_6DD0_W *)func_001E8A44(0x184);
+        w2 = w ? w->func_001B12C0(1) : 0;
+        w2->func_001B13A0(D_002786A0, D_002786A0, 0, 5);
+        w2->func_001B1A30(175.0f, i + D_0027F2B4, 0);
+        w2->func_001B2270(0xffcccccc);
+        func_001ADCC0(buf, 5, D_0027F2AC, i + 1, D_0027CEF0);
+        w2->func_001B17D0(buf);
+        func_001577A0((int)w2, -1);
+    }
+    for (int i = 0; i < 2; i++) {
+        S_6DD0_Spr *&p = (S_6DD0_Spr *&)unk2fc[i];
+        S_6DD0_Spr *q = (S_6DD0_Spr *)func_001E8A44(0x64);
+        p = q ? q->func_001D5760() : 0;
+        if (i % 2 == 0) {
+            p->func_001D5810(D_0027F29C, 110.0f, 147.0f, 0);
+        } else {
+            char *nm = D_0027F29C;
+            p->func_001D5810(nm, 321.0f, 147.0f, 0);
+        }
+        p->f40 = 0;
+        p->f44 = 0;
+        p->b58 |= 4;
+        p->f3c = 1.0f;
+        p->f48 = 1.0f;
+        if (p->f28 != 221.0f) {
+            p->f28 = 221.0f;
+            p->b58 |= 1;
+        }
+        p->f38 = (p->f38 & 0xffbfa35a) | 0xbfa35a;
+        p->b58 |= 2;
+    }
+    S_6DD0_Spr *&s0 = (S_6DD0_Spr *&)unk2c4[0];
+    S_6DD0_Spr *&s1 = (S_6DD0_Spr *&)unk2cc[0];
+    S_6DD0_Spr *&s2 = (S_6DD0_Spr *&)unk2c4[1];
+    S_6DD0_Spr *&s3 = (S_6DD0_Spr *&)unk2cc[1];
+    S_6DD0_Spr *q = (S_6DD0_Spr *)func_001E8A44(0x64);
+    s0 = q ? q->func_001D5760() : 0;
+    s0->func_001D5810(D_00279B00, 198.0f, 114.0f, 0);
+    s0->f38 = (s0->f38 & 0xffbfa35a) | 0xbfa35a;
+    s0->b58 |= 2;
+    q = (S_6DD0_Spr *)func_001E8A44(0x64);
+    s1 = q ? q->func_001D5760() : 0;
+    s1->func_001D5810(D_00279AF0, 198.0f, 114.0f, 0);
+    q = (S_6DD0_Spr *)func_001E8A44(0x64);
+    s2 = q ? q->func_001D5760() : 0;
+    s2->func_001D5810(D_00279AE0, 427.0f, 114.0f, 0);
+    s2->f38 = (s2->f38 & 0xffbfa35a) | 0xbfa35a;
+    s2->b58 |= 2;
+    q = (S_6DD0_Spr *)func_001E8A44(0x64);
+    s3 = q ? q->func_001D5760() : 0;
+    s3->func_001D5810(D_00279AD0, 427.0f, 114.0f, 0);
+    return this;
+}
+
 void BmxUIPageHOF3::func_000D75D0(void)
 {
     C_000D6D50_Item *e;

@@ -63,6 +63,15 @@ struct C_000399A0 {
 };
 
 int func_001E8858(float v);
+extern float D_002756DC, D_00275F64;
+extern float D_002A14D4v;
+int type;
+void *f4;
+S_000392B0_Obj *obj;
+void *f0c;
+void *f10;
+void *fE8;
+void *fEC;
 int C_000399A0::func_000399A0(int mode) {
     S_000392B0_Vec4 a, b, c, d;
     S_000392B0_Block *blk;
@@ -91,16 +100,16 @@ int C_000399A0::func_000399A0(int mode) {
             c = *pc;
             d = *pd;
             if (c.x > d.x || c.z > d.z) {
-                dx = func_001E8858(d.x - c.x);
-                dz = func_001E8858(d.z - c.z);
+                dx = (int)(d.x - c.x);
+                dz = (int)(d.z - c.z);
                 a.x = c.x + (float)(dx / 2);
-                a.y = c.y + (float)(func_001E8858(d.y - c.y) / 2);
+                a.y = c.y + (float)((int)(d.y - c.y) / 2);
                 a.z = c.z + (float)(dz / 2);
             } else {
-                dx = func_001E8858(c.x - d.x);
-                dz = func_001E8858(c.z - d.z);
+                dx = (int)(c.x - d.x);
+                dz = (int)(c.z - d.z);
                 a.x = d.x + (float)(dx / 2);
-                a.y = d.y + (float)(func_001E8858(c.y - d.y) / 2);
+                a.y = d.y + (float)((int)(c.y - d.y) / 2);
                 a.z = d.z + (float)(dz / 2);
             }
             if (dx > 0) f4a0 = ((dx / 5) % 2) != 0;

@@ -393,9 +393,7 @@ static __forceinline S_0002FA80_Sub *CurSub_00030120(C_0002FA80 *m)
 bool C_0002FA80::func_00030120(const char *subName)
 {
     int func_001EA426(...);
-    int c = cur;
-    S_0002FA80_Entry *ents = *(S_0002FA80_Entry *volatile *)&entries;
-    S_0002FA80_Entry *e = ents + c;
+    S_0002FA80_Entry *e = &entries[cur];
     int idx = e->curSub;
     S_0002FA80_Sub *s = &e->subs[idx];
 

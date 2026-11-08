@@ -431,23 +431,34 @@ int C_000A85C0::func_000A85C0(S_GrindsStream *stream, int a2, int a3, int a4)
     return 1;
 }
 
-void func_000A8710(S_000A8710_Arg0 *a0, int a1, S_000A8710_Arg2 *a2, int a3)
+void func_000A8710(S_000A8710_Arg0 *a0, int a1, S_000A8710_Arg2 *a2, int volatile a3)
 {
     S_000A8710_List *list;
+    S_000A8710_Item **it;
     int count;
     int found;
     int i;
     int id;
 
     if (a3 != 0) {
+        int tmp = a3;
         id = a0->f64;
         list = D_002A8490->f2A4->f64->f4E0;
         count = list->count;
         found = 0;
-        for (i = 0; i < count && !found; i++) {
-            if (list->items[i]->f1E0 == id) {
-                found = 1;
-            }
+        i = 0;
+        if (0 < count) {
+            it = list->items;
+            do {
+                if (found) {
+                    break;
+                }
+                if ((*it)->f1E0 == id) {
+                    found = 1;
+                }
+                i++;
+                it++;
+            } while (i < count);
         }
         func_00118410(a2->name, -1, (float)a2->f148);
     }
@@ -474,6 +485,21 @@ C_000A88A0 *C_000A88A0::func_000A88A0() {
     unk1C0[2] = D_002A273C;
     unk1C0[3] = D_002A2740;
     return this;
+}
+
+extern char D_0027C2A8[];
+void C_000A88A0::func_000A8920(S_TriggerStream *a, void *b)
+{
+    extern float D_002A2734;
+    extern char D_0027C2A8[];
+    char buf[0x3c];
+    int i;
+    for (i = 0; i < 3; i++) {
+        func_001ADCC0(buf, 0x3c, D_0027C2B4, i + 1);
+        ((C_00168550 *)a)->func_00168550(buf, (char *)&items[i], 0x3b);
+    }
+    a->func_00168CB0(D_0027C2A8, &D_002A2734, &unk1C0);
+    ((C_001B5A00 *)this)->func_001B5A00(a, b);
 }
 
 C_000A89F0 *C_000A89F0::func_000A89F0()
@@ -551,10 +577,8 @@ C_000A8AF0 *C_000A8AF0::func_000A8AF0() {
 
 int C_000A8B70::func_000A8B70(void *param1, void *param2) {
     extern int D_000A8A60;
-    int __stdcall func_001BBAA0(void *, void *);
-    void *self = this;
     if (param2 != 0) {
-        func_001BBAA0(self, &D_000A8A60);
+        ((S_000A8D90_Mgr *)param2)->func_001BBAA0(this, &D_000A8A60);
     }
     return 1;
 }
@@ -703,8 +727,10 @@ void C_000A9030::func_000A9050(S_TriggerStream *stream, void *b)
 {
     extern int D_0027C3EC;
     extern int D_0027C3F8;
+
     stream->func_00168BE0(&D_0027C3EC, &D_0027C3F8, &unk10C, 0x3b);
     func_001B5A00(stream, b);
+    return;
 }
 
 C_000A90B0 *C_000A90B0::func_000A90B0() {

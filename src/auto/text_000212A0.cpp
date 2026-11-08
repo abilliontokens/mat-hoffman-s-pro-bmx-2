@@ -606,8 +606,9 @@ float func_00021AB0(V4_000212A0 *v, float maxLen)
     V4_000212A0 n;
     V4_000212A0 r;
     float len;
+    float diff;
 
-    len = sqrtf(v->x * v->x + v->y * v->y + v->z * v->z);
+    len = AsmSqrtF(v->x * v->x + v->y * v->y + v->z * v->z);
     if (len > maxLen) {
         n.z = 0.0f;
         n.y = 0.0f;
@@ -618,37 +619,115 @@ float func_00021AB0(V4_000212A0 *v, float maxLen)
         r.y = n.y * maxLen;
         r.z = n.z * maxLen;
         r.w = 1.0f;
+        diff = len - maxLen;
         *v = r;
-        return len - maxLen;
+        return diff;
     }
     return D_00275544;
 }
 
-int func_00021B90(void *self, float dt, int a2, int a3, int a4, int a5, float a6)
+extern "C" int __cdecl func_001E8833(void);
+void func_00158390(float r, V4_000212A0 a, V4_000212A0 b, V4_000212A0 *out);
+V4_000212A0 *func_0001E9E0(V4_000212A0 *a, V4_000212A0 *b);
+int C_00021B90::func_00021B90(float dt, V4_000212A0 v, float a6)
 {
-    V4_000212A0 v;
-    V4_000212A0 v74;
+    V4_000212A0 p;
+    V4_000212A0 q;
+    V4_000212A0 d;
+    V4_000212A0 d1;
+    V4_000212A0 d2;
     float len;
+    float t;
+    int n, m, id, a, b;
+    int idx;
+    void *o;
+    V4_000212A0 *pv;
 
-    *(float *)((char *)self + 0x40) += dt;
-    v.x = *(float *)&D_002A0F74;
-    v.y = *(float *)&D_002A0F78;
-    v.z = *(float *)&D_002A0F7C;
-    v.w = *(float *)&D_002A0F80;
-    if (a6 != D_002755EC)
-        return 0;
-    {
-        int idx = *(int *)((char *)*(void **)((char *)D_002A8490 + 0x2a4) + 0x120);
-        void *o = *(void **)((char *)*(void **)((char *)*(void **)((char *)D_002B9120 + 0x4e0) + idx * 4 + 0x1a8) + 0x1e0);
-        V4_000212A0 *p = (V4_000212A0 *)((char *)o + 0x238);
-        len = sqrtf(p->x * p->x + p->y * p->y + p->z * p->z);
+    f40 += dt;
+    p.x = *(float *)&D_002A0F74;
+    p.y = *(float *)&D_002A0F78;
+    p.z = *(float *)&D_002A0F7C;
+    p.w = *(float *)&D_002A0F80;
+    if (a6 < D_002755EC) {
+        idx = *(int *)((char *)*(void **)((char *)D_002A8490 + 0x2a4) + 0x120);
+        o = *(void **)((char *)*(void **)((char *)*(void **)((char *)D_002B9120 + 0x4e0) + idx * 4 + 0x1a8) + 0x1e0);
+        pv = (V4_000212A0 *)((char *)o + 0x238);
+        len = AsmSqrtF(pv->x * pv->x + pv->y * pv->y + pv->z * pv->z);
+        if (f50->f1c + f50->f1c < len) {
+            func_000212C0(&v, &v);
+            d.x = D_00275AEC * v.x;
+            d.y = D_00275AEC * v.y;
+            d.z = D_00275AEC * v.z;
+            p.x += d.x;
+            p.y += d.y;
+            p.z += d.z;
+            len = AsmSqrtF(D_002B7E18->f84 * D_002B7E18->f84 + D_002B7E18->f88 * D_002B7E18->f88 + D_002B7E18->f8c * D_002B7E18->f8c);
+            if (len == f50->f20) {
+                for (;;) {
+                    q.x = 0;
+                    q.y = 0;
+                    q.z = 0;
+                    q.w = 1.0f;
+                    t = (float)func_001E8833() * D_002754B0;
+                    func_00158390(t * D_0027622C, *(V4_000212A0 *)&D_002A0F94, *(V4_000212A0 *)&D_002B7E18->f84, &q);
+                    t = (float)func_001E8833() * D_002754B0;
+                    d1.x = q.x * D_00276228 * f40;
+                    d1.y = q.y * D_00276228 * f40;
+                    d1.z = q.z * D_00276228 * f40;
+                    d2.x = q.x * t * D_00275800;
+                    d2.y = q.y * t * D_00275800;
+                    d2.z = q.z * t * D_00275800;
+                    p.x += d1.x - d2.x;
+                    p.y += d1.y - d2.y;
+                    p.z += d1.z - d2.z;
+                    p.y = p.y - f40 * D_00276224;
+                    if (f10 != 0) {
+                        q.x = 0;
+                        q.y = 0;
+                        q.z = 0;
+                        q.w = 1.0f;
+                        func_00021330(&q, (V4_000212A0 *)this, &f30);
+                        len = AsmSqrtF(q.y * q.y + q.z * q.z + q.x * q.x);
+                        if (D_00276220 / f50->f1c * f40 == len) {
+                            p.x -= q.x;
+                            p.y -= q.y;
+                            p.z -= q.z;
+                            break;
+                        }
+                        n = D_002B7E18->f4c;
+                        m = D_002B7E18->f50;
+                        id = f48;
+                        a = (n * 3) % m;
+                        b = (n * 3 + 3) % m;
+                        if (b < a)
+                            b += m;
+                        if (id < a)
+                            id += m;
+                        if (id < b)
+                            continue;
+                        return 0;
+                    }
+                    {
+                        V4_000212A0 *e;
+                        float u;
+                        e = func_0001E9E0((V4_000212A0 *)((char *)&p + 0x40), &q);
+                        u = D_00276220 / f50->f1c * f40;
+                        p.x -= u * e->x;
+                        p.y -= u * e->y;
+                        p.z -= u * e->z;
+                        q.w = 1.0f;
+                        f0 = p.x + q.x;
+                        f4 = p.y + q.y;
+                        f8 = p.z + q.z;
+                        fC = 1.0f;
+                        f4 += ((float (__cdecl *)(void *, float, int))func_00021AB0)(this, f50->f24, f48) * D_0027621C;
+                        f40 = 0;
+                        return 1;
+                    }
+                }
+            }
+        }
     }
-    if (*(float *)(*(char **)((char *)self + 0x50) + 0x1c) * 2.0f != len)
-        return 0;
-    func_000212C0(&v74, &v74);
-    v.y += v74.w * D_00275AEC;
-    v.z += v74.z * D_00275AEC;
-    v.w += v74.z * D_00275AEC;
     return 0;
 }
 

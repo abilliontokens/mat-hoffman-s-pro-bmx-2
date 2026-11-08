@@ -305,25 +305,94 @@ void func_001ADCC0(char *buf, int size, const char *fmt, ...);
 
 void C_000342C0::func_000342C0()
 {
+    struct F4 { char pad0[0xb4]; S_342C0_1D4B *fB4; };
     C_000342C0 *volatile self;
+    volatile int len, n;
     char buf[0x104];
     void *p;
 
     self = this;
     D_002A8490->f234 = 1;
     p = func_001E8A44(0x54);
-    self->f1d4 = p ? ((S_342C0_1D4 *)p)->func_001D1BB0() : 0;
-    ((S_342C0_1D4 *)self->f1d4)->v0(0, D_00276C90);
-    ((S_342C0_1D4 *)self->f1d4)->v5();
+    self->f1d4 = p ? ((S_342C0_1D4B *)p)->func_001D1BB0() : 0;
+    ((S_342C0_1D4B *)self->f1d4)->v0(D_00276C90, 0);
+    ((S_342C0_1D4B *)self->f1d4)->v5();
     p = func_001E8A44(0x188);
     D_002EFE08 = p ? ((S_342C0_FE08 *)p)->func_0018C960(1) : 0;
     ((S_342C0_FE08 *)D_002EFE08)->func_0018F980(0, D_00276C84);
     self->func_001577A0(D_002EFE08, -1);
     self->f68 = D_002A8490->f2e0->f2c0;
-    self->func_00012140();
+    ::func_00012140();
     self->f90 = D_002A8490->f2e0->f0;
     self->func_001D3F50();
+    ((S_342C0_Self *)self)->v29();
     self->func_00033680();
+    if (D_002A8490->f2e0->f4 == 0xa)
+        func_001ADCC0(buf, 0x104, D_00276C64, D_002A5870, self->f90);
+    else
+        func_001ADCC0(buf, 0x104, D_00276C74, D_002A5870);
+    ((S_342C0_Game *)D_002BEAAC)->func_0013C1D0(0x20000);
+    if (((S_342C0_Game *)D_002BEAAC)->func_0013D780(buf, 1, 0, 0, 0, 0, 0, 0))
+        ((S_342C0_Game *)D_002BEAAC)->func_0013B260(0);
+    ((S_342C0_Self *)self)->v31();
+    len = 0x103;
+    n = len > 9 ? 9 : len;
+    func_001E8920(D_002A60B0, D_00276C58, n);
+    D_002A60B0[n] = 0;
+    p = func_001E8A44(0x70);
+    self->f158 = p ? ((S_342C0_F158 *)p)->func_001C3E50(1) : 0;
+    ((S_342C0_F158 *)self->f158)->func_001C3EA0(self->f90);
+    ((S_342C0_F158 *)self->f158)->func_001C4A70();
+    ((S_342C0_F158 *)self->f158)->func_001C4C30();
+    func_001ADCC0(D_002A60B0, 0x104, D_00275678, D_002A5870, D_002A5FA8);
+    ((S_342C0_Self *)self)->v36();
+    ((S_342C0_Self *)self)->v37();
+    if (self->f1d4)
+        ((S_342C0_1D4B *)self->f1d4)->v3(D_00276C08, 0x19c, 0x10);
+    if (self->f1d4)
+        ((S_342C0_1D4B *)self->f1d4)->v2(D_00276C08, 0x140, 0x187);
+    ((S_342C0_Game *)D_002BEAAC)->func_0013DFF0(buf, 1);
+    if (D_002A8490->f2e0->f4)
+        ((S_342C0_Game *)D_002BEAAC)->func_0013B280(1);
+    ((S_342C0_Game *)D_002BEAAC)->func_0013B260(0);
+    ((S_342C0_FDB8 *)D_002EFDB8)->f30 = 1;
+    ((S_342C0_F07B8 *)D_002F07B8)->f8 = 1;
+    ::func_00012140();
+    ((S_342C0_Self *)self)->v33();
+    if (D_002A8490->f230 & 0x20)
+        ((S_342C0_Self *)D_002F0670)->v32();
+    ((S_342C0_1D4B *)((F4 *)D_002A8490->f4)->fB4)->v6();
+    ((S_342C0_F158 *)self->f158)->func_001C4D50(0x3e8);
+    func_001ADCC0(D_002A48F8, 0x104, D_00275678, D_002A5348, D_002A47F0);
+    if (D_002A8490->f2e0->f4 == 0xa)
+        ((S_342C0_F2FC *)D_002A8490->f2e0->f2fc)->func_000951B0(0x13);
+    else
+        ((S_342C0_F2FC *)D_002A8490->f2e0->f2fc)->func_00095200(0x13);
+    ((S_342C0_A829C *)D_002A829C)->func_001616F0();
+    if (self->f1d4) {
+        int t0 = func_001DC974();
+        int t1 = func_001DC974();
+        if (t1 - t0 > 0x20)
+            ((S_342C0_1D4B *)self->f1d4)->v6();
+        if (self->f1d4) {
+            ((S_342C0_1D4B *)self->f1d4)->func_001D35E0();
+            func_001E891B(self->f1d4);
+        }
+        self->f1d4 = 0;
+        ((S_342C0_Self *)self)->v27();
+    }
+    if (self->f1c4)
+        ((S_342C0_F1C4 *)self->f1c4)->func_001046B0();
+    if (((S_342C0_F64 *)self->f64)->f4e0) {
+        for (int i = 0; i < self->f90; i++)
+            ((S_342C0_F64 *)self->f64)->f4e0->arr[i]->f958 = 0.2f;
+    }
+    func_001ADCC0(D_002A48F8, 0x104, D_00275678, D_002A5870, D_002A47F0);
+    p = func_001E8A44(0x20c);
+    self->f1b8 = p ? ((S_342C0_F1B8 *)p)->func_001CF740(((F4 *)D_002A8490->f4)->fB4, ((S_342C0_F64 *)self->f64)->f4c0, 1) : 0;
+    ((S_342C0_F1B8 *)self->f1b8)->v4(D_00276C48, 1, 1, 0, 0);
+    ((S_342C0_1D4B *)((F4 *)D_002A8490->f4)->fB4)->v6();
+    func_001ADCC0(D_002A48F8, 0x104, D_00275678, D_002A5348, D_002A47F0);
 }
 
 void func_000347F0(char *param_1)
@@ -358,11 +427,13 @@ C_00034890* C_00034890::func_00034890(void) {
     return this;
 }
 
+extern "C" void _ReadWriteBarrier(void);
+#pragma intrinsic(_ReadWriteBarrier)
 void func_000348B0(Vec4 *out, float t, Vec4 p0, Vec4 p1, Vec4 p2, Vec4 p3)
 {
     float t2 = t * t;
     float t3 = t * t2;
-    float t6 = 2.0f * t3;
+    float t6 = t3 + t3;
     float k = t2 * 3.0f;
     float a = (t6 - k) + D_00275460;
     float b = k - t6;
@@ -375,8 +446,10 @@ void func_000348B0(Vec4 *out, float t, Vec4 p0, Vec4 p1, Vec4 p2, Vec4 p3)
     Vec4 q2;
     q2.x = p2.x * b;
     q2.y = p2.y * b;
-    q2.z = p2.z * b;
+    _ReadWriteBarrier();
     out->w = 1.0f;
+    q2.z = p2.z * b;
+    _ReadWriteBarrier();
     Vec4 q1 = Vec3Scale(p1, a);
     Vec4 s = Vec3Add(q1, q2);
     Vec4 u = Vec3Add(s, n0);
@@ -384,7 +457,6 @@ void func_000348B0(Vec4 *out, float t, Vec4 p0, Vec4 p1, Vec4 p2, Vec4 p3)
     out->y = u.y + n1.y;
     out->z = u.z + n1.z;
 }
-
 void C_00034A40::func_00034A40(void *a1, void *a2, void *a3, S_00034A40_Tab *a4, float a5, int a6, int a7, int a8, int a9)
 {
     Vec4 v24, v34, v54, v64, v74;

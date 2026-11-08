@@ -1,6 +1,7 @@
 /* 3 functions from 0x0014CC60 to 0x0014D720, found by Ghidra. */
 #include "common.h"
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 static __forceinline void FloatToInt(int *out, float f)
 {
     int * volatile p = out;
@@ -183,7 +184,7 @@ int C_0014CC60::func_0014CC60(const char *name, int *out)
             D_002BEAAC->func_0013C8A0(h, (char *)slots[f594]->f1F0 + j * 0x2c + 0x24, 4, 1);
             D_002BEAAC->func_0013C8A0(h, (char *)slots[f594]->f1F0 + j * 0x2c + 0x28, 4, 1);
         }
-        *(int *)((char *)this + 0x594) += 1;
+        f594++;
     }
     D_002BEAAC->func_0013C8A0(h, &flag, 1, 1);
     if (flag) {
@@ -205,12 +206,9 @@ int C_0014CC60::func_0014CC60(const char *name, int *out)
 
 int C_0014CC60::func_0014D360(int handle, int flag)
 {
-    C_0014CC60 *self = this;
     int i;
-    C_0014CC60 ** volatile pself = &self;
-    int * volatile ph = &handle;
-    int * volatile pi = &i;
-    for (i = 0; i < self->f558; i++) {
+    int *pi = &i;
+    for (*pi = 0; *pi < this->f558; (*pi)++) {
         unsigned char index;
         signed char a, b;
         S_0014D360_Pos pos;
@@ -224,8 +222,8 @@ int C_0014CC60::func_0014D360(int handle, int flag)
             index &= 0x7f;
             special = 1;
         }
-        if (self->f598) {
-            type = self->f598[index];
+        if (this->f598) {
+            type = this->f598[index];
         } else {
             type = index;
         }
@@ -235,29 +233,29 @@ int C_0014CC60::func_0014D360(int handle, int flag)
         if (flag || special) {
             transformed.x = transformed.y = transformed.z = 0;
             transformed.w = 1;
-            transformed.x = pos.x * self->f578;
-            transformed.y = pos.y * self->f578;
-            transformed.z = pos.z * self->f578;
-            self->f50->func_000BA430(&transformed, 0, 0, 0);
-            FloatToInt(&scratch, transformed.y * self->f57C);
+            transformed.x = pos.x * this->f578;
+            transformed.y = pos.y * this->f578;
+            transformed.z = pos.z * this->f578;
+            this->f50->func_000BA430(&transformed, 0, 0, 0);
+            AsmFloatToInt(transformed.y * this->f57C, &scratch);
             pos.y = (unsigned short)scratch;
         }
-        rec = &self->f40[i];
+        rec = &this->f40[*pi];
         rec->type = type;
         rec->pos = pos;
         rec->b = b;
         rec->a = a;
-        rec->flag0 |= 1;
+        rec->flags |= 1;
         position.x = position.y = position.z = 0;
         position.w = 1;
         bounds.x = bounds.y = bounds.z = 0;
         bounds.w = 1;
-        bounds.z = bounds.x = (self->f54[type]->f194 - self->f54[type]->f18C) * b * D_0027A094 + self->f54[type]->f18C;
-        bounds.y = ((self->f54[type]->f180 - self->f54[type]->f184) * a * D_0027A094 + self->f54[type]->f180) * D_002755E8;
-        position.x = self->f40[i].pos.x * D_002BF250->f578;
-        position.y = self->f40[i].pos.y * D_002BF250->f578 + bounds.y;
-        position.z = self->f40[i].pos.z * D_002BF250->f578;
-        D_002F07E8->v7(&self->f40[i], D_002F07E8->v6(&position, &bounds, 0), &position, &bounds);
+        bounds.z = bounds.x = (this->f54[type]->f194 - this->f54[type]->f18C) * b * D_0027A094 + this->f54[type]->f18C;
+        bounds.y = ((this->f54[type]->f180 - this->f54[type]->f184) * a * D_0027A094 + this->f54[type]->f180) * D_002755E8;
+        position.x = this->f40[*pi].pos.x * D_002BF250->f578;
+        position.y = this->f40[*pi].pos.y * D_002BF250->f578 + bounds.y;
+        position.z = this->f40[*pi].pos.z * D_002BF250->f578;
+        D_002F07E8->v7(&this->f40[*pi], D_002F07E8->v6(&position, &bounds, 0), &position, &bounds);
     }
     return 1;
 }

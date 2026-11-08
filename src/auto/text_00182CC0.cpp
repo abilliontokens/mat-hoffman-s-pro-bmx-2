@@ -282,13 +282,20 @@ struct C_00183450 {
 
 void C_00183450::func_00183450(int param)
 {
-    V4 pos = {0, 0, 0, 1}, a = {0, 0, 0, 1}, b = {0, 0, 0, 1};
-    int cnt = 0, i, j, ok, ia = 0, n, old;
+    V4 pos, a, b;
+    int cnt = 0, i, j, ok, ia = 0, old;
+    register int n;
     char name[0x40];
-    char s1[0x104], s2[0x104], s3[0x104];
+    char s1[0x104], s2[0x104];
+    char s3[0x40];
+    char s4[0x40], s5[0x40], s6[0x40];
     char buf1[0x80], buf2[0x80];
     V4 p1, p2, p3, p4, v1, v2, v3, v4;
     C_001AE3E0 *obj;
+
+    pos.x = pos.y = pos.z = 0; pos.w = 1.0f;
+    a.x = a.y = a.z = 0; a.w = 1.0f;
+    b.x = b.y = b.z = 0; b.w = 1.0f;
 
     f28->func_00169710(D_00289504);
     f28->func_00168C20(D_002894F0, 0, &cnt);
@@ -330,21 +337,21 @@ void C_00183450::func_00183450(int param)
                 f48C[i] = obj;
                 obj->func_001AEBD0(s1, s2, &b, &p1, &p2, buf1, buf2, f340, a, param);
                 if (ia) {
-                    int e1 = f28->func_00168550(D_00289440, s1, -1);
-                    int e2 = f28->func_00168550(D_0028942C, s2, -1);
+                    int e1 = f28->func_00168550(D_00289440, s4, -1);
+                    int e2 = f28->func_00168550(D_0028942C, s5, -1);
                     if (e1 && e2) {
-                        v1 = *func_00182980(&v1, s2);
-                        v2 = *func_00182980(&v2, s1);
+                        v1 = *func_00182980(&v1, s5);
+                        v2 = *func_00182980(&v2, s4);
                         for (j = 0; j < f340; j++)
                             obj->func_001AE4D0(v1, v2, j);
                     } else {
                         for (j = 0; j < f340; j++) {
                             func_001ADCC0(name, 0x40, D_002867E8, D_00289410, j + 1);
-                            f28->func_00168550(name, s1, -1);
-                            v3 = *func_00182980(&v3, s1);
+                            f28->func_00168550(name, s6, -1);
+                            v3 = *func_00182980(&v3, s6);
                             func_001ADCC0(name, 0x40, D_002867E8, D_002893F4, j + 1);
-                            f28->func_00168550(name, s2, -1);
-                            v4 = *func_00182980(&v4, s2);
+                            f28->func_00168550(name, s6, -1);
+                            v4 = *func_00182980(&v4, s6);
                             obj->func_001AE4D0(v3, v4, j);
                         }
                     }

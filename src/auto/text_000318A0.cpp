@@ -698,6 +698,64 @@ void C_00032550::func_00032550(void)
     }
 }
 
+int C_00032560::func_00032560(int delta)
+{
+    S_32560_Root *root = (S_32560_Root *)D_002A8490;
+    int ret = 1;
+    int s;
+
+    switch (root->f2e0->f8) {
+    default:
+        return 0;
+    case 1:
+        s = f24->f1ec;
+        if (s != 0 && s != 0x1c0) {
+            s += delta;
+            if (s <= 0) {
+                ret = 0;
+                s = 0;
+                root->v0F(f28, 0, 0, 0);
+                f28->func_0012B190(0, 0, f28->f204, f28->f208);
+            } else if (s >= 0x1c0) {
+                ret = 0;
+                s = 0x1c0;
+                root->v0F(f24, 0, 0, 0);
+                f24->func_0012B190(0, 0, s, s);
+            } else {
+                f24->func_0012B190(0, 0, f24->f204, s);
+                f28->func_0012B190(0, s, f28->f204, f28->f208 - s);
+            }
+        } else {
+            s = delta;
+        }
+        fE4->fF0 = s;
+        return ret;
+    case 2:
+        s = f24->f1e8;
+        if (s != 0 && s != 0x280) {
+            s += delta;
+            if (s <= 0) {
+                ret = 0;
+                s = 0;
+                root->v0F(f28, 0, 0, 0);
+                f28->func_0012B190(0, 0, f28->f204, f28->f208);
+            } else if (s >= 0x280) {
+                ret = 0;
+                s = 0x280;
+                root->v0F(f24, 0, 0, 0);
+                f24->func_0012B190(0, 0, s, f24->f208);
+            } else {
+                f24->func_0012B190(0, 0, s, f24->f208);
+                f28->func_0012B190(s, 0, f28->f204 - s, f28->f208);
+            }
+        } else {
+            s = delta;
+        }
+        fE4->fF0 = s;
+        return ret;
+    }
+}
+
 void C_00032720::func_00032720(void)
 {
   int func_0001BE50(...);

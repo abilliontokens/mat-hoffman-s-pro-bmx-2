@@ -12,5 +12,7 @@ struct C_00148750 {
 
 void C_00148750::func_00148750(unsigned int flags)
 {
-    (((C_00148780 *)this) - 1)->func_00148780(flags);
+    C_00148780 *p;
+    *(unsigned int *)&p = (unsigned int)this - 0x1Cu;
+    p->func_00148780(flags);
 }

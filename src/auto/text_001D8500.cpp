@@ -206,12 +206,17 @@ void C_001D8340::func_001D8500(int amount)
 {
     unsigned char ramp[0x300];
     C_001D8340 * volatile self = this;
-    float scale = (float)amount * D_00284758;
+    int tmp;
     int acc = 0;
+    volatile float k;
+    float scale = (float)amount * D_00284758;
     if (amount == 0) {
-        func_001FF960(2, &self->r[0]);
+        func_001FF960(2, &r[0]);
     } else {
         unsigned int t0 = func_001DC974();
+        int * volatile pr = &tmp;
+        int * volatile pg = &tmp;
+        int * volatile pb = &tmp;
         do {
             unsigned int t1 = func_001DC974();
             float d = (float)(t1 - t0);
@@ -221,11 +226,14 @@ void C_001D8340::func_001D8500(int amount)
                 t0 = t1;
                 acc = Min_001D8340(acc, 0xff);
             }
-            float k = (float)acc * D_00284758;
+            k = (float)acc * D_00284758;
             for (int i = 0; i < 0x100; i++) {
-                ramp[i] = (unsigned char)(int)((float)self->r[i] * k);
-                ramp[0x100 + i] = (unsigned char)(int)((float)self->g[i] * k);
-                ramp[0x200 + i] = (unsigned char)(int)((float)self->b[i] * k);
+                *pr = (int)((float)self->r[i] * k);
+                ramp[i] = (unsigned char)tmp;
+                *pg = (int)((float)self->g[i] * k);
+                ramp[0x100 + i] = (unsigned char)tmp;
+                *pb = (int)((float)self->b[i] * k);
+                ramp[0x200 + i] = (unsigned char)tmp;
             }
             func_001FF960(2, ramp);
         } while (acc < 0xff);

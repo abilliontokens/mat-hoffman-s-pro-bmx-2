@@ -428,7 +428,7 @@ void func_001611C0(char *out, void *data, int size)
 {
     S_001611C0_State state;
     S_001611C0_BitReader br;
-    S_00161170 table[0x8900];
+    S_00161170 table[0x88d0];
     unsigned int code, len, c, n, idx, hi, lo;
     int first;
     state.out = out;

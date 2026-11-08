@@ -267,7 +267,7 @@ void C_001358A0::func_001358A0()
  t.x=a->x-b->x;t.y=a->y-b->y;t.z=a->z-b->z;t.w=one;d=t; }
  float l2=d.y*d.y+d.z*d.z+d.x*d.x;
  if(!(l2<=D_00275544)) {
- float len; _mm_store_ss(&len,_mm_sqrt_ss(_mm_set_ss(l2)));
+ float len=AsmSqrtF(l2);
  float inv=D_00275460/len;
  V4_001358A0 n;
  n.x=d.x*inv;n.y=d.y*inv;n.z=d.z*inv;

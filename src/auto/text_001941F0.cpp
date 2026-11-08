@@ -438,7 +438,6 @@ void C_00194310::func_00194310(int a0, int a1) {
 void SignatureWave::func_00194330(S_Vec4 *a1, S_Vec4 *a2, int a3, float a4, float a5, float a6, float a7, int a8, int a9, int a10, int a11, int a12, int a13, float a14, int a15, int a16, int a17, int a18){
 float inv4 = D_00275460 / a4;
 float inv5 = D_00275460/a5;
-float t14 = a14;
 *(S_Vec4 *)&f64 = *a1;
 *(S_Vec4 *)&f74 = *a2;
 f4C=a3; f34=a4; f38=a5;
@@ -449,7 +448,7 @@ f8C=a4*a6/(float)f28;
 f9C=a9; fA0=a10; fAC=a12; fBC=1.0f; fB8=1.0f;
 f50=0; f54=0; fA4=a11==0?3:1;
 fE4=a15; fD0=a13; fE8=a17; fDC=a16; fA8=a11;
-fEC=a18; fD8=t14;
+fD8=a14; fEC=a18;
 f90=a5*a7/(float)f28;
 fB0=inv4*256.0f; fB4=inv5*-256.0f;
 }

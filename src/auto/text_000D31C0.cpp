@@ -61,79 +61,146 @@ struct C_000D31C0 {
 
 void C_000D31C0::func_000D31C0(float dt)
 {
-    char *self = (char *)this;
-    char *g = M(char *, self, 0x124);
-    int k;
-    int score;
-
-    if (M(int, self, 0x28c) != 0 || M(int, self, 0x290) != 0 || M(int, self, 0x2bc) != 0 || M(int, self, 0x294) != 0) {
-        M(float, self, 0x2a4) = dt + M(float, self, 0x2a4);
-        if (M(float, self, 0x2a4) >= D_0027DE74) {
-            if (M(S_000D31C0_Vt *, M(char *, g, 0x24), 0x30)->v27() == 0) {
-                if (M(int, g, 0x2a4) != 0) {
-                    if (M(int, self, 0x2bc) != 0) {
-                        M(int, self, 0x2bc) = 0;
-                        M(int, self, 0x3d4) = 0;
-                        goto after_timer;
-                    }
-                    if (M(int, self, 0x28c) != 0 || M(int, self, 0x290) != 0 || M(int, self, 0x294) != 0) {
-                        func_000D2860();
-                    }
-                } else if (M(int, self, 0x290) != 0 || M(int, self, 0x2bc) != 0 || M(int, self, 0x294) != 0) {
-                    func_000D2860();
+    char *self=(char *)this;
+    char name[260];
+    char *page=M(char *,self,0x124);
+    char *ctx=M(char *,page,0x24);
+    if (M(int,self,0x28c) || M(int,self,0x290) || M(int,self,0x2bc) || M(int,self,0x294)) {
+        M(float,self,0x2a4)+=dt;
+        if (M(float,self,0x2a4)>=D_0027DE74 && !M(S_000D31C0_Vt *,ctx,0x30)->v27()) {
+            if (M(int,page,0x2a4)) {
+                if (M(int,self,0x2bc)) {
+                    M(int,self,0x2bc)=0; M(int,self,0x3d4)=0;
+                    goto done_transition;
                 }
-                M(int, self, 0x298) = 1;
-                ((S_000D31C0_Vt *)self)->v28(M(int, self, 0x2a0), M(int, self, 0x29c));
-                M(int, self, 0x2a4) = 0;
-                M(int, self, 0x28c) = 0;
-            }
+                if (M(int,self,0x28c) || M(int,self,0x290) || M(int,self,0x294)) func_000D2860();
+            } else if (M(int,self,0x290) || M(int,self,0x2bc) || M(int,self,0x294)) func_000D2860();
+            M(int,self,0x298)=1;
+            ((S_000D31C0_Vt *)this)->v28(M(int,self,0x2a0),M(int,self,0x29c));
+            M(int,self,0x2a4)=0;
+            M(int,self,0x28c)=0;
         }
     }
-after_timer:
-    M(float, self, 0x420) = dt + M(float, self, 0x420);
-    if (M(int, self, 0x3dc) != 0) {
-        M(float, self, 0x3c8) = dt + M(float, self, 0x3c8);
-        if (M(float, self, 0x3c8) >= D_002755E8) {
-            if (M(C_000301D0 *, M(char *, g, 0x25c), 0x74)->func_000301D0() == 0) {
-                if (M(int, self, 0x3cc) != 0 || M(int, self, 0x41c) != 0) {
-                    if (M(int, self, 0x41c) == 1) {
-                        M(int, self, 0x280) = 1;
-                    }
-                    M(C_000BC5D0 *, g, 0x270)->func_000BC5D0(self + 0x2c4, 0);
-                    M(int, self, 0x3cc) = 0;
-                    M(int, self, 0x420) = 0;
-                    M(int, self, 0x41c) = 0;
-                }
-            }
+done_transition:
+    M(float,self,0x420)+=dt;
+    if (M(int,self,0x3dc)) {
+        M(float,self,0x3c8)+=dt;
+        if (M(float,self,0x3c8)>=D_002755E8 && !M(C_000301D0 *,M(char *,page,0x25c),0x74)->func_000301D0()
+            && (M(int,self,0x3cc) || M(int,self,0x41c))) {
+            if (M(int,self,0x41c)==1) M(int,self,0x280)=1;
+            M(C_000BC5D0 *,page,0x270)->func_000BC5D0(self+0x2c4,0);
+            M(int,self,0x3cc)=0; M(int,self,0x420)=0; M(int,self,0x41c)=0;
         }
     }
-    if (M(int, self, 0x1fec) != 0 && M(C_000BC5D0 *, g, 0x270)->func_000B5870() != 0 && M(float, self, 0x420) >= D_002755E8) {
-        M(int, self, 0x1fec) = 0;
+    if (M(int,self,0x1fec) && M(C_000BC5D0 *,page,0x270)->func_000B5870() && M(float,self,0x420)>=D_002755E8) {
+        M(int,self,0x1fec)=0;
         func_000D2860();
+        ((C_0005B3F0 *)D_002A8490->f2e0)->func_0005B3F0();
+        M(int,M(char *,self,0x124),0x138)=8;
     }
-    M(C_0005B3F0 *, D_002A8490, 0x2e0)->func_0005B3F0();
-    M(int, M(char *, self, 0x124), 0x138) = 8;
-    if (M(int, self, 0x2018) != M(unsigned char, M(char *, self, 0x284), 0x3b)) {
-        if (M(float, self, 0x2024) >= M(float, self, 0x2028)) {
-            M(int, self, 0x2020) = M(int, self, 0x2018);
-        } else {
-            M(int, self, 0x2020) = (int)((float)(M(int, self, 0x2018) - M(int, self, 0x201c)) * (M(float, self, 0x2024) / M(float, self, 0x2028))) + M(int, self, 0x201c);
-            M(float, self, 0x2024) = dt + M(float, self, 0x2024);
+    int index=M(int,self,0x2018);
+    if (index!=M(unsigned char,M(char *,self,0x284),0x3b)) {
+        if (M(float,self,0x2024)>=M(float,self,0x2028)) M(int,self,0x2020)=index;
+        else {
+            float amount=(float)(index-M(int,self,0x201c));
+            amount *= M(float,self,0x2024)/M(float,self,0x2028);
+            M(int,self,0x2020)=M(int,self,0x201c)+(int)amount;
+            M(float,self,0x2024)+=dt;
         }
     }
-    if (M(int, self, 0x410) != 0) {
-        D_002EFDB8->v7(1);
-        D_002EFDB8->v8();
-        for (k = 0; k < 10; k++) {
-            S_000D31C0_Name buf;
-            int a;
-            int b;
-            S_000D31C0_Item *item = M(S_000D31C0_Item *, self, 0x2048 + k * 4);
-            buf = (M(int, self, 0x424 + k * 4) == 1) ? D_0027F1E8 : D_0027F1C8;
-            a = **item->f1b8;
-            b = D_002A829C->func_001617F0(&buf, 1);
-            M(S_000D31C0_Item *, self, 0x2048 + k * 4)->func_00182020(a, b);
+    if (M(int,self,0x410)) {
+        D_002EFDB8->v7(1); D_002EFDB8->v8();
+        S_000D31C0_Item **it=(S_000D31C0_Item **)(self+0x2048);
+        for (int n=10;n;n--,it++) {
+            int v,id;
+            if (M(int,it,-0x1c24)==1) {
+                strcpy(name,"tracks\\ui\\textures\\solid_white");
+                v=M(int,(*it)->f1b8,0);
+                id=D_002A829C->func_001617F0(name,1);
+            } else {
+                strcpy(name,"tracks\\ui\\textures\\dotted_line");
+                v=M(int,(*it)->f1b8,0);
+                id=D_002A829C->func_001617F0(name,1);
+            }
+            (*it)->func_00182020(v,id);
         }
-        score = M(C_0005C020 *, D_002A8490->f2e0, 0x2c0)->func_0005C020(D_002A8490->f2e0->f2d8)[1];
+        int score=D31_PROFILE[1];
+        for (int i=0;i<8;i++) {
+            if (i==M(int,self,0x418)) {
+                M(int,self,0x450+i*4)=2;
+                if (M(int,self,0x1ff0+i*4)) M(int,self,0x470)=3;
+                else if (M(int,self,0x3e8+i*4)) M(int,self,0x470)=1;
+                else if (M(int,D31_MANAGER,4)==0 && score>=M(int,D31_MANAGER,0x2dc+i*4)) {
+                    if (i==2 || i==5) M(int,self,0x470)=M(int,D31_PROFILE,0x618)==1?4:0;
+                    else if (i==7) M(int,self,0x470)=M(int,self,0x2040)<i ? 0:4;
+                    else if (i==6) {
+                        if (M(int,D31_PROFILE,0x610)!=1 && M(int,D31_PROFILE,0x61c)==1) M(int,self,0x470)=4;
+                        else M(int,self,0x470)=0;
+                    } else M(int,self,0x470)=0;
+                } else M(int,self,0x470)=0;
+            } else if (M(int,self,0x1ff0+i*4)) M(int,self,0x450+i*4)=3;
+            else if (M(int,self,0x3e8+i*4)) M(int,self,0x450+i*4)=1;
+            else if (M(int,self,0x450+i*4)!=4) M(int,self,0x450+i*4)=0;
+            if (M(int,D31_MANAGER,4)==0) {
+                switch(i) {
+case 0: if (score>=M(int,D31_MANAGER,0x2e8) && M(int,self,0x45c)!=1 && M(int,self,0x45c)!=3) M(int,self,0x45c)=4;if (score>=M(int,D31_MANAGER,0x2e0) && M(int,self,0x454)!=2 && M(int,self,0x454)!=1 && M(int,self,0x454)!=3) M(int,self,0x454)=4;if (score>=M(int,D31_MANAGER,0x2ec) && M(int,self,0x460)!=2 && M(int,self,0x460)!=1 && M(int,self,0x460)!=3) M(int,self,0x460)=4; break;
+case 3: if (M(int,D31_PROFILE,0x618)==1) { if (score>=M(int,D31_MANAGER,0x2e4) && M(int,self,0x458)!=2 && M(int,self,0x458)!=1 && M(int,self,0x458)!=3) M(int,self,0x458)=4; if (score>=M(int,D31_MANAGER,0x2f0) && M(int,self,0x464)!=2 && M(int,self,0x464)!=1 && M(int,self,0x464)!=3) M(int,self,0x464)=4; } break;
+case 2: if (score>=M(int,D31_MANAGER,0x2f0) && M(int,self,0x464)!=1 && M(int,self,0x464)!=3 && (M(int,D31_PROFILE,0x618)==1)) M(int,self,0x464)=4;if (score>=M(int,D31_MANAGER,0x2f8) && M(int,self,0x46c)!=1 && M(int,self,0x2040)>=7 && M(int,self,0x46c)!=3 && M(int,D31_MANAGER,4)==0 && M(int,D31_PROFILE,0x614)==1) M(int,self,0x46c)=4; break;
+case 5: if (M(int,D31_PROFILE,0x618)==1 && M(int,self,0x458)!=1 && M(int,self,0x458)!=3 && score>=M(int,D31_MANAGER,0x2e4) && M(int,self,0x458)!=2) M(int,self,0x458)=4; break;
+case 7: if (score>=M(int,D31_MANAGER,0x2f8) && M(int,self,0x46c)!=2 && M(int,self,0x46c)!=1 && M(int,self,0x46c)!=3 && (M(int,self,0x2040)>=7)) M(int,self,0x46c)=4; break;
+case 4: if (score>=M(int,D31_MANAGER,0x2e0) && M(int,self,0x454)!=2 && M(int,self,0x454)!=1 && M(int,self,0x454)!=3) M(int,self,0x454)=4;if (score>=M(int,D31_MANAGER,0x2f4) && M(int,self,0x468)!=1 && M(int,self,0x468)!=3 && (M(int,D31_MANAGER,4)==0 && (M(int,D31_PROFILE,0x610)==1 || M(int,D31_PROFILE,0x61c)==1))) M(int,self,0x468)=4; break;
+case 1: if (score>=M(int,D31_MANAGER,0x2ec) && M(int,self,0x460)!=2 && M(int,self,0x460)!=1 && M(int,self,0x460)!=3) M(int,self,0x460)=4;if (score>=M(int,D31_MANAGER,0x2f4) && M(int,self,0x468)!=2 && M(int,self,0x468)!=1 && M(int,self,0x468)!=3 && M(int,D31_MANAGER,4)==0 && (M(int,D31_PROFILE,0x610)==1 || M(int,D31_PROFILE,0x61c)==1)) M(int,self,0x468)=4; break;
+case 6: if (score>=M(int,D31_MANAGER,0x2ec) && M(int,self,0x460)!=2 && M(int,self,0x460)!=1 && M(int,self,0x460)!=3) M(int,self,0x460)=4;if (score>=M(int,D31_MANAGER,0x2e0) && M(int,self,0x454)!=2 && M(int,self,0x454)!=1 && M(int,self,0x454)!=3) M(int,self,0x454)=4; break;
+                }
+            }
+        }
+        switch(M(int,self,0x418)) {
+        case 0: strcpy(name,"tracks\\ui\\textures\\marqueeok"); break;
+        case 1: strcpy(name,"tracks\\ui\\textures\\marqueechicago"); break;
+        case 2: strcpy(name,"tracks\\ui\\textures\\marqueela"); break;
+        case 3: strcpy(name,"tracks\\ui\\textures\\marqueelv"); break;
+        case 4: strcpy(name,"tracks\\ui\\textures\\marqueeno"); break;
+        case 5: strcpy(name,"tracks\\ui\\textures\\marqueeportland"); break;
+        case 6: strcpy(name,"tracks\\ui\\textures\\marqueeboston"); break;
+        case 7: strcpy(name,"tracks\\ui\\textures\\marqueetiki"); break;
+        }
+        S_000D31C0_Item *item=M(S_000D31C0_Item *,self,0x20b0);
+        int texture=M(int,item->f1b8,0);
+        int id=D_002A829C->func_001617F0(name,1);
+        M(S_000D31C0_Item *,self,0x20b0)->func_00182020(texture,id);
+        int j = 0;
+        S_000D31C0_Item **entry=(S_000D31C0_Item **)(self+0x2090);
+        for (;j<8;j++,entry++) {
+            if (j==M(int,self,0x418)) strcpy(name,"tracks\\ui\\textures\\ui_mapglowon");
+            else strcpy(name,"tracks\\ui\\textures\\ui_mapglowoff");
+            texture=M(int,(*entry)->f1b8,0);
+            id=D_002A829C->func_001617F0(name,1);
+            (*entry)->func_00182020(texture,id);
+        }
+        int *state=(int *)(self+0x450);
+        for (int n=8;n;n--,state++) {
+            if (*state==2) {
+                if (M(int,self,0x470)==3) strcpy(name,"tracks\\ui\\textures\\ui_mapcompletedon");
+                else if (M(int,self,0x470)==1) strcpy(name,"tracks\\ui\\textures\\ui_mapunlockedon");
+                else if (M(int,self,0x470)==4) strcpy(name,"tracks\\ui\\textures\\ui_mapunlockableon");
+                else strcpy(name,"tracks\\ui\\textures\\ui_maplockedon");
+            } else if (*state==3) strcpy(name,"tracks\\ui\\textures\\ui_mapcompletedoff");
+            else if (*state==4) strcpy(name,"tracks\\ui\\textures\\ui_mapunlockableoff");
+            else if (*state==1) strcpy(name,"tracks\\ui\\textures\\ui_mapunlockedoff");
+            else strcpy(name,"tracks\\ui\\textures\\ui_maplockedoff");
+            item=M(S_000D31C0_Item *,state,0x1c20);
+            texture=M(int,item->f1b8,0);
+            id=D_002A829C->func_001617F0(name,1);
+            M(S_000D31C0_Item *,state,0x1c20)->func_00182020(texture,id);
+        }
+        M(int,self,0x410)=0;
     }
+    if (M(int,self,0x3e4) && !M(int,self,0x3dc)) {
+        M(float,self,0x3e0)+=dt;
+        if (M(float,self,0x3e0)>=D_00278C48) {
+            M(int,self,0x3dc)=1; M(int,self,0x3e4)=0;
+        }
+    }
+    M(float,self,0x20b4)+=dt;
+    func_001BED00(dt);
 }

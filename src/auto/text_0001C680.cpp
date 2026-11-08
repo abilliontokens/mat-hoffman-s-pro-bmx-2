@@ -625,12 +625,11 @@ void *C_0001CA30::func_0001CAB0(unsigned char flags)
 
 float func_0001CAF0(float *a, float *b)
 {
-    float dx, dy, dz;
-
-    dx = vec3_abs(a[0] - b[0]);
-    dy = vec3_abs(a[1] - b[1]);
+    float d[2], dz;
+    d[0] = vec3_abs(a[0] - b[0]);
+    d[1] = vec3_abs(a[1] - b[1]);
     dz = vec3_abs(a[2] - b[2]);
-    return sqrtf(dx * dx + dy * dy + dz * dz);
+    return AsmSqrtF(d[0] * d[0] + d[1] * d[1] + dz * dz);
 }
 
 void func_0001CB80(char *s) {

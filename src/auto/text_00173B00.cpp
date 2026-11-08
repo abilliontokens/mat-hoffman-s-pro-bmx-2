@@ -217,15 +217,15 @@ Vec4 func_00174110(Vec4 *src) {
 Vec4 r;
 Vec4 *dst=&r;
 int w,z,y,x;
-struct Q { float root, a, b, c, d; } q;
 float sum=LengthSq(src->x,src->y,src->z,src->w);
 if(sum!=D_00275544) {
-q.root=AsmSqrtF(sum);
-float inv=D_00275460/q.root;
-q.a=inv*src->x; x=*(int*)&q.a;
-q.b=inv*src->y; y=*(int*)&q.b;
-q.c=inv*src->z; z=*(int*)&q.c;
-q.d=inv*src->w; w=*(int*)&q.d;
+float root=AsmSqrtF(sum);
+float inv=D_00275460/root;
+float p[4];
+p[0]=inv*src->x; x=*(int*)&p[0];
+p[1]=inv*src->y; y=*(int*)&p[1];
+p[2]=inv*src->z; z=*(int*)&p[2];
+p[3]=inv*src->w; w=*(int*)&p[3];
 } else { w=0; x=w; y=w; z=w; }
 ((int*)dst)[0]=x; ((int*)dst)[1]=y; ((int*)dst)[2]=z; ((int*)dst)[3]=w;
 return r;
@@ -272,8 +272,7 @@ Vec4 *func_001742F0(Vec4 *dst, Vec4 *a, Vec4 *b)
     r.y = (a->x * b->x + a->z * b->z - a->w * b->y) * D_002755E8;
     r.z = (a->x * b->y + b->x * a->w - a->y * b->z) * D_002755E8;
     r.w = (a->y * b->y + b->z * a->x - a->z * b->x) * D_002755E8;
-    *dst = r;
-    return dst;
+    return *dst = r, dst;
 }
 
 float func_0014FBA0(float a0, float a1);

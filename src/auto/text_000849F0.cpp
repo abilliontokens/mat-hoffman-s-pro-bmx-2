@@ -334,19 +334,19 @@ void C_00084FF0::func_000851C0()
 {
  const char *names[3]={D_00279630,D_00278690,D_0027958C};
  if(D_002A8490->f10!=f3C && D_002A8490->f2E0->f4) {func_001578D0(); return;}
- S_851C0_Values *v=f2C->func_001D5AA0();
- if(D_00275AEC>v->f10) v->f10=10.0f;
- if(D_00275AEC<v->f14 || v->f14>v->f10) v->f14=10.0f;
- v=f30->func_001D5AA0();
- if(D_00275AEC>v->f10) v->f10=10.0f;
- if(D_00275AEC<v->f14 || v->f14>v->f10) v->f14=10.0f;
+ S_851C0_Values *val=f2C->func_001D5AA0();
+ if(D_00275AEC>val->f10) val->f10=10.0f;
+ if(D_00275AEC<val->f14 || val->f14>val->f10) val->f14=10.0f;
+ val=f30->func_001D5AA0();
+ if(D_00275AEC>val->f10) val->f10=10.0f;
+ if(D_00275AEC<val->f14 || val->f14>val->f10) val->f14=10.0f;
  for(int i=0;i<3;i++) {
  S_851C0_List *list=D_002A8490->f2EC;
  S_851C0_Item **p=list->func_0018C160(names[i]);
  if(p && *p) {
- v=(*p)->func_0018C070();
- if(D_00275AEC>v->f10) v->f10=10.0f;
- if(D_00275AEC<v->f14 || v->f14>v->f10) v->f14=10.0f;
+ val=(*p)->func_0018C070();
+ if(D_00275AEC>val->f10) val->f10=10.0f;
+ if(D_00275AEC<val->f14 || val->f14>val->f10) val->f14=10.0f;
  }
  }
  func_001578D0();

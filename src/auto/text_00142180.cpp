@@ -300,7 +300,7 @@ void C_001425B0::func_00142180(int buffer, int dst, int src, int count, int clea
     int s = src + 1;
 
 #define COPY_00142180(D, S) \
-    out[D].x = *(int *)&((Particle_00142180 *)f10)[S]; \
+    out[D].x = ((Particle_00142180 *)f10)[S].x; \
     out[D].y = ((Particle_00142180 *)f10)[S].y; \
     out[D].z = ((Particle_00142180 *)f10)[S].z; \
     out[D].a = *(float *)&f58 - ((Particle_00142180 *)f10)[S].d; \

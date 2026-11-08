@@ -442,11 +442,11 @@ void C_00059290::func_00059290(int a0, int a1, int a2, int a3, int a4, int a5, i
 {
     C_00059290 * volatile self = this;
     volatile float scratch[2];
-    C_00059290 *p;
-    register int bits;
+    int bits;
+    register C_00059290 *p;
     float old, t;
 
-    if (f58 <= 0) {
+    if (*(volatile int *)&f58 <= 0) {
         if (D_002A8490->f8->v5(0x2e, 0, 0xc, 0) == 0) goto setup;
         p = self;
         func_000590F0(p->f50);
@@ -474,13 +474,14 @@ setup:
                 p = self;
                 p->f54++;
             } else {
-                p->f54 = 0;
                 p = self;
+                p->f54 = 0;
+                t = *(volatile float *)&p->f4->f1ec->f3c * D_00277D04;
                 p->f0c = p->f4->f1e0;
                 p = self;
                 p->f10 = 0;
                 p = self;
-                p->f64 = p->f4->f1ec->f3c * D_00277D04;
+                p->f64 = t;
                 p = self;
                 p->f68 = 3.0f;
             }
@@ -531,11 +532,14 @@ after:
                 else
                     p->f18c = 0.0f;
             }
-        } else {
-            if (p->f18c < D_00275544)
-                p->f18c = p->f18c - D_002756B8;
-            else
-                p->f18c = 0.0f;
+        } else if (p->f18c < D_00275544) {
+            if (p->f18c >= D_002756E8) {
+                p->f18c = p->f18c + a10 * p->f194 * 2.0f;
+                p = self;
+                if (p->f18c > D_00275544) p->f18c = 0.0f;
+            } else if (p->f18c > D_00277FB4) {
+                p->f18c = *(volatile float *)&p->f18c + D_002756B8;
+            } else p->f18c = 0.0f;
         }
     }
     scratch[1] = a9; bits = *(volatile int *)&scratch[1]; bits &= 0x7fffffff; *(volatile int *)&scratch[0] = bits;
@@ -544,27 +548,12 @@ after:
         *(volatile float *)&p->f190 = a9 * p->f194 * a10 + p->f190;
         p = self;
         t = p->f190 + p->f14c + D_002756DC;
-        if (t > D_00277FB8) {
-            t = D_00277FB8;
-            if (t < D_00275544) {
-                if (p->f18c >= D_002756E8) {
-                    p->f18c = p->f18c + a10 * p->f194 * 2.0f;
-                    p = self;
-                    if (p->f18c > D_00275544)
-                        p->f18c = 0.0f;
-                } else if (p->f18c > D_00277FB4) {
-                    p->f18c = p->f18c + D_002756B8;
-                } else {
-                    p->f18c = 0.0f;
-                }
-            }
-        } else {
-            if (p->f18c < D_002756B8)
-                p->f18c = p->f18c - D_002756B8;
-            else
-                p->f18c = 0.0f;
-        }
+        if (t > D_00277FB8) t = D_00277FB8;
+        else if (!(t < D_00277FB0)) goto pitch_done;
+        else t = D_00277FB0;
+        p->f190 = t - p->f14c - D_002756DC;
     }
+pitch_done:
     p = self;
     if (p->f1dc == 0 && a9 < D_002755E8 && a9 > D_00277FBC) {
         if (p->f190 > D_00275544) {

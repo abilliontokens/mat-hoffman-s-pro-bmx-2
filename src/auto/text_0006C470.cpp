@@ -353,6 +353,8 @@ C_6C570 *C_6C570::func_0006C570(int a)
     void *p;
     int v1, v2, *r;
     int i;
+    int zero = 0;
+    Wid_6C570 **e;
     fD4 = a;
     r = D_002A8490->f2EC->func_0018C160((int)D_002786A0);
     v1 = r ? *r : 0;
@@ -398,46 +400,49 @@ C_6C570 *C_6C570::func_0006C570(int a)
     p = func_001E8A44(0x64);
     w = p ? ((Wid_6C570 *)p)->func_001D5760() : 0;
     wBC = w;
-    w->func_001D5810(D_00278648, 491.0f, 388.0f, 0);
+    w->func_001D5810(D_00278648, 491.0f, 388.0f, zero);
     p = func_001E8A44(0x64);
     w = p ? ((Wid_6C570 *)p)->func_001D5760() : 0;
     wC0 = w;
-    w->func_001D5810(D_00278624, 491.0f, 388.0f, 0);
+    w->func_001D5810(D_00278624, 491.0f, 388.0f, zero);
     p = func_001E8A44(0x64);
     w = p ? ((Wid_6C570 *)p)->func_001D5760() : 0;
     wB4 = w;
-    w->func_001D5810(D_00278600, 0, 0, 0);
+    w->func_001D5810(D_00278600, zero, zero, zero);
     wB4->SetRGB(0);
     wB4->SetAlpha(0x80);
     wB4->SetH(448.0f);
     wB4->SetW(640.0f);
-    for (i = 0; i < 4; i++) {
+    for (i = 0, e = arrA4; i < 4; i++, e++) {
         p = func_001E8A44(0x64);
         w = p ? ((Wid_6C570 *)p)->func_001D5760() : 0;
-        arrA4[i] = w;
-        w->func_001D5810(D_002786B0, (i % 2) ? 321.0f : 100.0f, (i / 2) * D_002757F0 + D_00278A60, 0);
-        w = arrA4[i];
+        *e = w;
+        if (i % 2)
+            w->func_001D5810(D_002786B0, 321.0f, (i / 2) * D_002757F0 + D_00278A60, zero);
+        else
+            w->func_001D5810(D_002786B0, 100.0f, (i / 2) * D_002757F0 + D_00278A60, zero);
+        w = *e;
         w->f3c = 1.0f;
         w->f48 = 1.0f;
         w->f40 = 0;
         w->f44 = 0;
         w->b58 |= 4;
-        arrA4[i]->SetW(221.0f);
+        (*e)->SetW(221.0f);
     }
     func_001ADCC0((char *)&D_002A60B0, 0x104, D_00275678, D_002A5870, D_002A5FA8);
     p = func_001E8A44(0x184);
     f64 = p ? ((Obj184_6C570 *)p)->func_001B12C0(1) : 0;
-    f64->func_001B1580(D_002786A0, D_002786A0, *(int *)(((Data6C570 *)*(void **)((char *)D_002A8490 + 0x2E8))->p4 + 0x7D8), 0);
+    f64->func_001B1580(D_002786A0, D_002786A0, *(int *)(((Data6C570 *)*(void **)((char *)D_002A8490 + 0x2E8))->p4 + 0x7D8), zero);
     f74 = 0x115;
-    f64->func_001B19C0(0x140, 0x115, 0);
+    f64->func_001B19C0(0x140, 0x115, zero);
     f64->func_001B2270(0xffcccccc);
     f64->func_001B19A0(D_0028F5E0);
     func_001577A0(f64, -1);
     p = func_001E8A44(0x184);
     f68 = p ? ((Obj184_6C570 *)p)->func_001B12C0(1) : 0;
-    f68->func_001B1580(D_002786A0, D_002786A0, *(int *)(((Data6C570 *)*(void **)((char *)D_002A8490 + 0x2E8))->p4 + 0x7E8), 0);
+    f68->func_001B1580(D_002786A0, D_002786A0, *(int *)(((Data6C570 *)*(void **)((char *)D_002A8490 + 0x2E8))->p4 + 0x7E8), zero);
     f78 = 0x13d;
-    f68->func_001B19C0(0x140, 0x13d, 0);
+    f68->func_001B19C0(0x140, 0x13d, zero);
     f68->func_001B2270(0xffcccccc);
     f68->func_001B19A0(D_0028F5E0);
     func_001577A0(f68, -1);
@@ -450,7 +455,7 @@ C_6C570 *C_6C570::func_0006C570(int a)
     p = func_001E8A44(0x60);
     t = p ? ((Txt_6C570 *)p)->func_001D5E90() : 0;
     tC4 = t;
-    t->func_001D5FA0(v1, D_002786A0, 0x14, 0);
+    t->func_001D5FA0(v1, D_002786A0, 0x14, zero);
     ((C210_6C570 *)v1)->func_0018C210();
     tC4->SetPos(320.0f, (float)(func_001E8858() * 2 + 0x5C));
     D_002A829C->func_00161680();

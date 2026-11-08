@@ -118,10 +118,136 @@ struct C_0010F320 {
 };
 
 
-void __fastcall func_0010F320(char* self, int edx, void* a0, void* a1, int a2, int a3, int a4, int a5, int a6, int a7, int a8, int a9, int aa, int ab, int ac, int ad, int ae, int af, int b0, int b1, int b2, int b3, int a58, int a5c)
+#pragma optimize("y", on)
+#pragma optimize("p", on)
+void C_0010F320::func_0010F320(int a0,int a1,int a10,int a14,int a18,int a1c,int a20,int a24,Vec4_10F320 v28,Vec4_10F320 v38,Vec4_10F320 v48,int a58,int a5c)
 {
-    *(int*)(self + 0xa2c) = a5c;
-    *(int*)(self + 0xa28) = a5c;
-    *(int*)(self + 0x1218) = a5c + 1;
-    *(void**)(self + 0x24) = a0;
+    char filename[0x200], path[0x100];
+    int size=0x100;
+    w[0xa2c/4]=a5c;
+    w[0xa28/4]=a5c;
+    w[0x1218/4]=a5c+1;
+    w[0x24/4]=a0;
+    func_00104BE0();
+    func_00109F80();
+    D_002A8490->get(D_00283CD0,D_00283CDC,filename,&size);
+    int len=strlen(D_002A4A00);
+    int max=0x103;
+    int n=max<len?max:len;
+    func_001E8920(D_002A4C10,D_002A4A00,n);
+    D_002A4C10[n]=0;
+    func_001ADCC0(path,0x100,D_00275678,D_002A4A00,filename);
+    strcpy((char *)this+0xa18,"Default Rider");
+    w[0x22c/4]=a58;
+    *(Vec4_10F320 *)((char *)this+0x854)=v38;
+    *(Vec4_10F320 *)((char *)this+0x874)=v48;
+    S_2EF70_Ent *mem=(S_2EF70_Ent *)func_001E8A44(0x3c);
+    w[0x9e8/4]=(int)(mem?mem->func_001362A0(-1.0f,1.0f,0,D_002A8490->f8->func_00135E80(),0,0.2f):0);
+    mem=(S_2EF70_Ent *)func_001E8A44(0x3c);
+    w[0x9ec/4]=(int)(mem?mem->func_001362A0(-1.0f,1.0f,0,D_002A8490->f8->func_00135E80(),1,0.2f):0);
+    mem=(S_2EF70_Ent *)func_001E8A44(0x3c);
+    w[0x9f0/4]=(int)(mem?mem->func_001362A0(-2.0f,2.0f,0,D_002A8490->f8->func_00135E80(),2,0.4f):0);
+    mem=(S_2EF70_Ent *)func_001E8A44(0x3c);
+    w[0x9f4/4]=(int)(mem?mem->func_001362A0(-2.0f,2.0f,0,D_002A8490->f8->func_00135E80(),5,0.4f):0);
+    w[0x970/4]=a5c;
+    if(D_002A8490->f8->items[w[0x970/4]]) {
+        D_002A8490->f8->items[w[0x970/4]]->func_0015B060((void *)w[0x9e8/4],0.01f,0.01f);
+        D_002A8490->f8->items[w[0x970/4]]->func_0015B060((void *)w[0x9ec/4],0.01f,0.01f);
+        D_002A8490->f8->items[w[0x970/4]]->func_0015B060((void *)w[0x9f0/4],0.01f,0.01f);
+        D_002A8490->f8->items[w[0x970/4]]->func_0015B060((void *)w[0x9f4/4],0.01f,0.01f);
+    }
+    w[0xa04/4]=a1;
+    Actor10F320 *actor=(Actor10F320 *)w[0xa04/4];
+    void *adjusted=actor?(char *)actor+actor->vtable[1]:0;
+    func_001577A0(adjusted,2);
+    ((Actor10F320 *)w[0xa04/4])->model->func_00199790(0,&v28);
+    ((Actor10F320 *)w[0xa04/4])->func_001646B0();
+    ((Actor10F320 *)w[0xa04/4])->model->func_00199110(0,D_002A3A6C,D_002A3A5C,0,1,0);
+    *(Vec4_10F320 *)((char *)this+0x7f4)=v28;
+    *(Vec4_10F320 *)((char *)this+0x804)=v38;
+    *(Vec4_10F320 *)((char *)this+0x814)=v48;
+    __declspec(align(16)) Vec4_10F320 zero={0,0,0,1};
+    func_00026B60(path,v28,v38,zero,zero,a58,(int)((Actor10F320 *)w[0xa04/4])->model);
+    ((Actor10F320 *)w[0x1e0/4])->model->func_00199A70(0,(Vec4_10F320 *)((char *)this+0x7e4));
+    Vec4_10F320 offset={0,2.01f,-0.2f,1};
+    *(Vec4_10F320 *)((char *)this+0x7e4)=offset;
+    int modelId=((Actor10F320 *)w[0xa04/4])->model->func_00198330(D_00276690);
+
+    char name1[0x100],name2[0x100],name3[0x100],name4[0x100];
+    func_001ADCC0(name1,0x100,D_00283CB4);
+    UI10F320 *ui=(UI10F320 *)func_001E8A44(0x1e0);
+    w[0x11b8/4]=(int)(ui?ui->func_0019B700(1):0);
+    ((UI10F320 *)w[0x11b8/4])->func_00129920(5);
+    ((UI10F320 *)w[0x11b8/4])->f68=D_002BA15C|1;
+    ((UI10F320 *)w[0x11b8/4])->func_0019D7B0(modelId,name1);
+    ((UI10F320 *)w[0x11b8/4])->activate();
+    ((UI10F320 *)w[0x11b8/4])->func_00133140(**(int **)(a0+0x4ac),2);
+    ((UI10F320 *)w[0x11b8/4])->owner=this;
+    ((UI10F320 *)w[0x11b8/4])->f64=w[0x1e0/4];
+    func_001577A0((void *)w[0x11b8/4],2);
+    func_001ADCC0(name2,0x100,D_00283CA0);
+    ui=(UI10F320 *)func_001E8A44(0x110);
+    w[0x11b0/4]=(int)(ui?ui->func_0017F050(1):0);
+    ((UI10F320 *)w[0x11b0/4])->func_0017F0A0(2);
+    ((UI10F320 *)w[0x11b0/4])->f68=D_002BA15C;
+    ((UI10F320 *)w[0x11b0/4])->func_00181140(modelId,name2,0);
+    func_001577A0((void *)w[0x11b0/4],2);
+    ((UI10F320 *)w[0x1f4/4])->func_001A86D0((UI10F320 *)w[0x11b0/4]);
+    func_001ADCC0(name3,0x100,D_00283C94);
+    ui=(UI10F320 *)func_001E8A44(0x110);
+    w[0x11ac/4]=(int)(ui?ui->func_0017F050(1):0);
+    ((UI10F320 *)w[0x11ac/4])->func_0017F0A0(2);
+    ((UI10F320 *)w[0x11ac/4])->f68=D_002BA15C;
+    ((UI10F320 *)w[0x11ac/4])->func_00181140(modelId,name3,0);
+    func_001577A0((void *)w[0x11ac/4],2);
+    func_001ADCC0(name4,0x100,D_00283C84);
+    ui=(UI10F320 *)func_001E8A44(0x110);
+    w[0x11b4/4]=(int)(ui?ui->func_0017F050(1):0);
+    ((UI10F320 *)w[0x11b4/4])->func_0017F0A0(2);
+    ((UI10F320 *)w[0x11b4/4])->f68=D_002BA15C;
+    ((UI10F320 *)w[0x11b4/4])->func_00181140(modelId,name4,0);
+    func_001577A0((void *)w[0x11b4/4],2);
+    Vec4_10F320 bounds={0,0,0,1}, position={0,0,0,1};
+    ((Model10F320 *)w[0x230/4])->func_00198B70(&position,&bounds);
+    ((UI10F320 *)w[0x204/4])->func_001A57E0(position,bounds.x,0);
+    ((UI10F320 *)w[0x204/4])->activate();
+    ((UI10F320 *)w[0x204/4])->func_00133140(**(int **)(a0+0x4ac),2);
+    Vec4_10F320 transforms[6];
+    for(int i=0;i<6;i++) {
+        transforms[i].x=0; transforms[i].y=0;
+        transforms[i].z=0; transforms[i].w=1;
+    }
+    transforms[0]=D_002A3A3C;
+    transforms[1].x=*(float *)((char *)this+0x1080);
+    transforms[1].y=0;
+    transforms[1].z=0;
+    transforms[1].w=1;
+    transforms[2]=D_002A3A3C;
+    transforms[3].x=-*(float *)((char *)this+0x1080);
+    transforms[3].y=0; transforms[3].z=0; transforms[3].w=1;
+    ((UI10F320 *)w[0x1fc/4])->func_00180E00(2,transforms,0,w[0x230/4]);
+    ((UI10F320 *)w[0x1fc/4])->activate();
+    ((UI10F320 *)w[0x1fc/4])->func_00133140(**(int **)(a0+0x4ac),1);
+    transforms[0]=D_002A3A3C;
+    transforms[1].x=0; transforms[1].y=0;
+    transforms[1].z=*(float *)((char *)this+0x1080);
+    transforms[1].w=1;
+    transforms[2]=D_002A3A3C;
+    transforms[3].x=*(float *)((char *)this+0x1080);
+    transforms[3].y=0; transforms[3].z=0; transforms[3].w=1;
+    transforms[4]=D_002A3A3C;
+    transforms[5].x=-*(float *)((char *)this+0x1080);
+    transforms[5].y=0; transforms[5].z=0; transforms[5].w=1;
+    ((UI10F320 *)w[0x200/4])->func_00180E00(3,transforms,0,w[0x230/4]);
+    ((UI10F320 *)w[0x200/4])->activate();
+    ((UI10F320 *)w[0x200/4])->func_00133140(**(int **)(a0+0x4ac),1);
+    ui=(UI10F320 *)func_001E8A44(0x120);
+    w[0x11bc/4]=(int)(ui?ui->func_001A4A50(1):0);
+    ((UI10F320 *)w[0x11bc/4])->func_00129920(3);
+    ((UI10F320 *)w[0x11bc/4])->f68=D_002BA154;
+    ((UI10F320 *)w[0x11bc/4])->func_001A57E0(position,bounds.x+D_00275AE8,0);
+    ((UI10F320 *)w[0x11bc/4])->activate();
+    ((UI10F320 *)w[0x11bc/4])->func_00133140(**(int **)(a0+0x4ac),2);
+    func_001577A0((void *)w[0x11bc/4],2);
 }
+#pragma optimize("", on)

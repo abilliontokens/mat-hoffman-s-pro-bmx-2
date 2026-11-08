@@ -437,7 +437,10 @@ int BmxInGameMenu::func_0005FC30(void)
                 AT(Obj_5FC *, 0x124)->func_001D6600();
                 int c = D_002A8490->f2E0->f4;
                 int *q = D_002A8490->f2E8->f4;
-                v = c == 0 ? *(int *)((char *)q + 0xfb8) : *(int *)((char *)q + 0xec0);
+                if (c == 0)
+                    v = *(int *)((char *)q + 0xfb8);
+                else
+                    v = *(int *)((char *)q + 0xec0);
             } else {
                 char *q = *(char **)(*(char **)((char *)D_002A8490 + 0x2e8) + 4);
                 v = *(int *)(q + 0xe98);
@@ -551,7 +554,7 @@ void BmxInGameMenu::func_00060220(void)
 void BmxInGameMenu::func_000602B0(void)
 {
     if (unk130 != 0) {
-        (*(S_0005F3C0_2E0 * volatile *)&D_002A8490->f2E0)->f4;
+        *(volatile int *)&D_002A8490->f2E0->f4;
         unk100 = 0;
         unk110 = 1;
         unk130 = 0;

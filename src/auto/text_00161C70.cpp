@@ -255,6 +255,8 @@ float func_00161F80(float param)
     return fa + v * (fb - fa);
 }
 
+extern "C" void _ReadWriteBarrier(void);
+#pragma intrinsic(_ReadWriteBarrier)
 void func_00162020(float *out, float *m, int transpose)
 {
  __declspec(align(16)) float t[16];
@@ -269,7 +271,11 @@ void func_00162020(float *out, float *m, int transpose)
  t[1]=-d;
  t[5]=VF_00162020(m[0])*m[10]-VF_00162020(m[8])*m[2];
  t[9]=-(VF_00162020(m[6])*m[0]-VF_00162020(m[4])*m[2]);
- t[3]=0; t[7]=0; t[11]=0;
+ t[3]=0;
+ _ReadWriteBarrier();
+ t[7]=0;
+ _ReadWriteBarrier();
+ t[11]=0;
  float e = VF_00162020(m[11])*m[4]-VF_00162020(m[7])*m[8];
  t[13]=b*m[0]-e*m[2]+d*m[3];
  float f = VF_00162020(m[9])*m[4]-VF_00162020(m[8])*m[5];
@@ -278,31 +284,14 @@ void func_00162020(float *out, float *m, int transpose)
  t[10]=VF_00162020(m[0])*m[5]-VF_00162020(m[4])*m[1];
  t[14]=-(c*m[0]-e*m[1]+f*m[3]);
  t[15]=a*m[0]-d*m[1]+f*m[2];
- if(transpose) {
- float * volatile p=t;
- float *src=p;
- __m128 r0;
- r0 = _mm_loadl_pi(r0, (__m64*)src);
- r0 = _mm_loadh_pi(r0, (__m64*)(src+4));
- __m128 r1;
- r1 = _mm_loadl_pi(r1, (__m64*)(src+2));
- r1 = _mm_loadh_pi(r1, (__m64*)(src+6));
- __m128 r2;
- r2 = _mm_loadl_pi(r2, (__m64*)(src+8));
- r2 = _mm_loadh_pi(r2, (__m64*)(src+12));
- __m128 r3;
- r3 = _mm_loadl_pi(r3, (__m64*)(src+10));
- r3 = _mm_loadh_pi(r3, (__m64*)(src+14));
- __m128 a0=_mm_shuffle_ps(r0,r2,0x88), a1=_mm_shuffle_ps(r0,r2,0xdd), a2=_mm_shuffle_ps(r1,r3,0x88), a3=_mm_shuffle_ps(r1,r3,0xdd);
- *(__m128*)out=a0; *(__m128*)(out+4)=a1; *(__m128*)(out+8)=a2; *(__m128*)(out+12)=a3;
+ if (transpose) {
+     float *p = t;
+     AsmTransposeMatrix(out, p);
  } else {
- float * volatile p=t;
- float *src=p;
- __m128 a0=*(__m128*)src,a1=*(__m128*)(src+4),a2=*(__m128*)(src+8),a3=*(__m128*)(src+12);
- *(__m128*)out=a0; *(__m128*)(out+4)=a1; *(__m128*)(out+8)=a2; *(__m128*)(out+12)=a3;
+     float *p = t;
+     AsmCopyMatrix(out, p);
  }
 }
-
 int func_00162210(float *out, float *m)
 {
     float det;
@@ -599,27 +588,14 @@ void C_001628C0::func_001628C0(int count) {
     }
 }
 
-void *LinearPositionController::func_001629A0(unsigned char flags)
-{
-    if (flags & 2) {
-        int count = ((int *)this)[-1];
-        char *base = (char *)this - 4;
-        PositionElement *p = (PositionElement *)((char *)this + count * 0x18);
-        if (--count >= 0) {
-            int k = count + 1;
-            do {
-                p = (PositionElement *)((char *)p - 0x18);
-                p->func_0015B680();
-            } while (--k);
-        }
-        if (flags & 1)
-            func_001E891B(base);
-        return base;
-    }
-    ((PositionElement *)this)->func_0015B680();
-    if (flags & 1)
-        func_001E891B(this);
-    return this;
+void *LinearPositionController::func_001629A0(unsigned char flags) {
+ if(flags & 2) {
+ unsigned count=((unsigned *)this)[-1]; char *base=(char *)this-4;
+ PositionElement *p=(PositionElement *)((char *)this+count*0x18);
+ if ((--count & 0x80000000u) == 0) { unsigned k=count+1; do { --p; p->func_0015B680(); } while(--k); }
+ if(flags&1) func_001E891B(base); return base;
+ }
+ ((PositionElement *)this)->func_0015B680(); if(flags&1) func_001E891B(this); return this;
 }
 
 void C_00162A80::func_00162A80(C_00162790 *item)

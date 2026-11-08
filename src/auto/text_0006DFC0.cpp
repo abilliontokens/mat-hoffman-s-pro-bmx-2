@@ -236,8 +236,7 @@ void C_0006D590::func_0006DFC0() {
  ((Text_6D*)*out)->func_001D6600();
  ++out;
  }
- ++i;
- } while(i<*(volatile int*)&count);
+ } while(++i<*(volatile int*)&count);
  }
  }
  }

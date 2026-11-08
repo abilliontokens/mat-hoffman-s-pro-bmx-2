@@ -316,6 +316,191 @@ void C_000717E0::func_000717E0(void)
     f8C = b;
 }
 
+C_000724E0 *C_000724E0::func_00071880(int a0)
+{
+    ObjB_71880 **slot;
+    int edi;
+    int ids[2];
+    int *r;
+    int saved;
+    int ebxval;
+    void *mem;
+    int i;
+
+    ids[0] = (int)&D_00278678;
+    ids[1] = (int)&D_00278690;
+    D_002A8490->p2EC->func_0018C780(2, ids, 0);
+    r = D_002A8490->p2EC->func_0018C160((int)&D_00278690);
+    saved = r ? *r : 0;
+    r = D_002A8490->p2EC->func_0018C160((int)&D_00278678);
+    ebxval = r ? *r : 0;
+    fA4 = a0;
+    edi = 0x75;
+    slot = arrCC;
+    do {
+        mem = func_001E8A44(0x184);
+        *slot = mem ? ((ObjB_71880 *)mem)->func_001B12C0(1) : 0;
+        (*slot)->func_001B13A0((int)&D_00278690, (int)&D_00278690, 0, 0x28);
+        ((int *)slot)[4] = edi;
+        (*slot)->func_001B19C0(0x140, edi, 0);
+        (*slot)->func_001B2270(0xffcccccc);
+        (*slot)->func_001B19A0(D_0028F5E0);
+        func_001577A0(*slot, -1);
+        edi += 0x28;
+        slot++;
+    } while (edi < 0x115);
+
+    mem = func_001E8A44(0x60);
+    unk70 = (Resource_716F0 *)(mem ? ((ObjD5_71880 *)mem)->func_001D5E90() : 0);
+    ((ObjD5_71880 *)unk70)->func_001D5FA0(ebxval, (int)&D_00278678, 0x32, (int)D_002A8490->p2E8->p4->fEA0);
+    if (((ObjD5_71880 *)unk70)->f4 != 0x43a00000 || ((ObjD5_71880 *)unk70)->f8 != 0x42280000) {
+        ((ObjD5_71880 *)unk70)->f4 = 0x43a00000;
+        ((ObjD5_71880 *)unk70)->f8 = 0x42280000;
+        ((ObjD5_71880 *)unk70)->b4E |= 6;
+    }
+    if (((ObjD5_71880 *)unk70)->f48 != 0xaaaaaaaa) {
+        ((ObjD5_71880 *)unk70)->b4E |= 8;
+        ((ObjD5_71880 *)unk70)->f48 = (((ObjD5_71880 *)unk70)->f48 & 0xffaaaaaa) | 0x00aaaaaa;
+    }
+    if (((ObjD5_71880 *)unk70)->f44 != D_0028F5E0) {
+        ((ObjD5_71880 *)unk70)->f44 = D_0028F5E0;
+        ((ObjD5_71880 *)unk70)->b4E |= 6;
+    }
+
+    mem = func_001E8A44(0x60);
+    unk74 = (Resource_716F0 *)(mem ? ((ObjD5_71880 *)mem)->func_001D5E90() : 0);
+    ((ObjD5_71880 *)unk74)->func_001D5FA0(saved, (int)&D_00278690, 4, 0);
+    if (((ObjD5_71880 *)unk74)->f48 != -0x333334) {
+        ((ObjD5_71880 *)unk74)->b4E |= 8;
+        ((ObjD5_71880 *)unk74)->f48 = (((ObjD5_71880 *)unk74)->f48 & -0x333334) | 0x00cccccc;
+    }
+    ((ObjD5_71880 *)unk74)->func_0005E840(D_002A8490->p2E8->p4->f838);
+    if (((ObjD5_71880 *)unk74)->f4 != 0x43d08000 || ((ObjD5_71880 *)unk74)->f8 != 0x43c48000) {
+        ((ObjD5_71880 *)unk74)->f8 = 0x43c48000;
+        ((ObjD5_71880 *)unk74)->f4 = 0x43d08000;
+        ((ObjD5_71880 *)unk74)->b4E |= 6;
+    }
+
+    D_002A60B0 = D_00278664;
+    D_002A60B4 = D_00278668;
+    D_002A60B8 = D_0027866C;
+    D_002A60BC = D_00278670;
+    D_002A60C0 = D_00278674;
+
+    mem = func_001E8A44(0x64);
+    unk134 = (Sprite_724E0 *)(mem ? ((ObjD57_71880 *)mem)->func_001D5760() : 0);
+    ((ObjD57_71880 *)unk134)->func_001D5810((int)&D_00278658, 0.0f, 0.0f, 0);
+    ((ObjD57_71880 *)unk134)->f3c = ((ObjD57_71880 *)unk134)->f4c * D_00278654;
+    ((ObjD57_71880 *)unk134)->b58 |= 4;
+    ((ObjD57_71880 *)unk134)->f40 = ((ObjD57_71880 *)unk134)->f4c * D_00275544;
+    ((ObjD57_71880 *)unk134)->f44 = ((ObjD57_71880 *)unk134)->f50 * D_0027653C;
+    ((ObjD57_71880 *)unk134)->f48 = ((ObjD57_71880 *)unk134)->f50 * D_00275544;
+    if (((ObjD57_71880 *)unk134)->f2c != 0x42480000) {
+        ((ObjD57_71880 *)unk134)->f2c = 0x42480000;
+        ((ObjD57_71880 *)unk134)->b58 |= 1;
+    }
+    if (((ObjD57_71880 *)unk134)->f28 != 0x44200000) {
+        ((ObjD57_71880 *)unk134)->f28 = 0x44200000;
+        ((ObjD57_71880 *)unk134)->b58 |= 1;
+    }
+
+    mem = func_001E8A44(0x64);
+    unk138 = (Sprite_724E0 *)(mem ? ((ObjD57_71880 *)mem)->func_001D5760() : 0);
+    ((ObjD57_71880 *)unk138)->func_001D5810((int)&D_00278658, 0.0f, 398.0f, 0);
+    if (((ObjD57_71880 *)unk138)->f28 != 0x44200000) {
+        ((ObjD57_71880 *)unk138)->f28 = 0x44200000;
+        ((ObjD57_71880 *)unk138)->b58 |= 1;
+    }
+    if (((ObjD57_71880 *)unk138)->f2c != 0x42480000) {
+        ((ObjD57_71880 *)unk138)->f2c = 0x42480000;
+        ((ObjD57_71880 *)unk138)->b58 |= 1;
+    }
+    ((ObjD57_71880 *)unk138)->f3c = ((ObjD57_71880 *)unk138)->f4c * D_00278654;
+    ((ObjD57_71880 *)unk138)->b58 |= 4;
+    ((ObjD57_71880 *)unk138)->f40 = ((ObjD57_71880 *)unk138)->f4c * D_00275544;
+    ((ObjD57_71880 *)unk138)->f44 = ((ObjD57_71880 *)unk138)->f50 * D_0027653C;
+    ((ObjD57_71880 *)unk138)->f48 = ((ObjD57_71880 *)unk138)->f50 * D_00275544;
+
+    i = 0;
+    {
+        Sprite_724E0 **sp = arr120;
+        do {
+            float fv;
+            mem = func_001E8A44(0x64);
+            sp[-5] = (Sprite_724E0 *)(mem ? ((ObjD57_71880 *)mem)->func_001D5760() : 0);
+            fv = (float)i * D_00278650;
+            ((ObjD57_71880 *)sp[-5])->func_001D5810((int)&D_00278658, fv, 50.0f, 0);
+            mem = func_001E8A44(0x64);
+            *sp = (Sprite_724E0 *)(mem ? ((ObjD57_71880 *)mem)->func_001D5760() : 0);
+            ((ObjD57_71880 *)*sp)->func_001D5810((int)&D_00278658, fv, 366.0f, 0);
+            ((ObjD57_71880 *)*sp)->f3c = 0.0f;
+            ((ObjD57_71880 *)*sp)->f48 = 0.0f;
+            ((ObjD57_71880 *)*sp)->b58 |= 4;
+            ((ObjD57_71880 *)*sp)->f40 = 1.0f;
+            ((ObjD57_71880 *)*sp)->f44 = 0.99f;
+            i++;
+            sp++;
+        } while (i < 5);
+    }
+
+    i = 0;
+    {
+        Sprite_724E0 **sp = arrEC;
+        do {
+            mem = func_001E8A44(0x64);
+            *sp = (Sprite_724E0 *)(mem ? ((ObjD57_71880 *)mem)->func_001D5760() : 0);
+            if (i % 2 == 0) {
+                float fv = (float)i * D_002755E8 * D_002757F0 + D_002786B8;
+                ((ObjD57_71880 *)*sp)->func_001D5810((int)&D_002786B0, 100.0f, fv, 0);
+            } else {
+                float fv = (float)(i - 1) * D_002755E8 * D_002757F0 + D_002786B8;
+                ((ObjD57_71880 *)*sp)->func_001D5810((int)&D_002786B0, 321.0f, fv, 0);
+                ((ObjD57_71880 *)*sp)->f3c = 1.0f;
+                ((ObjD57_71880 *)*sp)->f48 = 1.0f;
+                ((ObjD57_71880 *)*sp)->b58 |= 4;
+                ((ObjD57_71880 *)*sp)->f40 = 0.0f;
+                ((ObjD57_71880 *)*sp)->f44 = 0.0f;
+            }
+            if (((ObjD57_71880 *)*sp)->f28 != 0x435d0000) {
+                ((ObjD57_71880 *)*sp)->f28 = 0x435d0000;
+                ((ObjD57_71880 *)*sp)->b58 |= 1;
+            }
+            i++;
+            sp++;
+        } while (i < 8);
+    }
+
+    mem = func_001E8A44(0x64);
+    unk80 = (Sprite_724E0 *)(mem ? ((ObjD57_71880 *)mem)->func_001D5760() : 0);
+    ((ObjD57_71880 *)unk80)->func_001D5810((int)&D_00278600, 0.0f, 0.0f, 0);
+    ((ObjD57_71880 *)unk80)->f38 &= 0xff000000;
+    ((ObjD57_71880 *)unk80)->b58 |= 2;
+    ((ObjD57_71880 *)unk80)->b58 |= 2;
+    ((char *)&((ObjD57_71880 *)unk80)->f38)[3] = (char)0x80;
+    if (((ObjD57_71880 *)unk80)->f2c != 0x43e00000) {
+        ((ObjD57_71880 *)unk80)->f2c = 0x43e00000;
+        ((ObjD57_71880 *)unk80)->b58 |= 1;
+    }
+    if (((ObjD57_71880 *)unk80)->f28 != 0x44200000) {
+        ((ObjD57_71880 *)unk80)->f28 = 0x44200000;
+        ((ObjD57_71880 *)unk80)->b58 |= 1;
+    }
+
+    mem = func_001E8A44(0x64);
+    unk78 = (Sprite_724E0 *)(mem ? ((ObjD57_71880 *)mem)->func_001D5760() : 0);
+    ((ObjD57_71880 *)unk78)->func_001D5810((int)&D_00278638, 379.0f, 388.0f, 0);
+
+    mem = func_001E8A44(0x64);
+    unk7C = (Sprite_724E0 *)(mem ? ((ObjD57_71880 *)mem)->func_001D5760() : 0);
+    ((ObjD57_71880 *)unk7C)->func_001D5810((int)&D_00278608, 379.0f, 388.0f, 0);
+
+    func_001ADCC0((char *)&D_002A60B0, 0x104, D_00275678, (char *)&D_002A5870, (char *)&D_002A5FA8);
+    f88 = ((C_00094890 *)D_002A8490->f2E0->f2FC)->func_00094890();
+    f8C = ((C_00094870 *)D_002A8490->f2E0->f2FC)->func_00094870();
+    f94 = 1;
+    return this;
+}
+
 void C_000724E0::func_00071F40() {
 int ids[2]; int i; int *r; Clamp_716 *o; Sprite_724E0 **e; Lookup_716 *lk;
 ids[0]=(int)&D_00278690; ids[1]=(int)&D_00278678;

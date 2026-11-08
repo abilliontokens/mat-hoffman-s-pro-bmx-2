@@ -133,6 +133,7 @@ extern float D_00277D04;
 extern char D_002831F8[], D_002831EC[], D_0028310C[], D_002830F8[], D_002830E4[], D_002830C8[], D_00283030[];
 
 float func_0014F510(float a);
+#pragma optimize("y", on)
 void Owner10C::func_0010C210()
 {
     char *volatile s;
@@ -175,9 +176,9 @@ void Owner10C::func_0010C210()
     (*(VObj10 **)(s + 0x1e0))->v28(v38 * D_00283A7C);
     Q10C q2;
     Q10C q1;
-    (*(Node230 **)(s + 0x230))->func_0019A680(&q1, s + 0x7c);
-    M44C matA;
-    M44C matB;
+    { char *t=s; (*(Node230 **)(t + 0x230))->func_0019A680(&q1, t + 0x7c); }
+    __declspec(align(16)) M44C matA;
+    __declspec(align(16)) M44C matB;
     AsmZeroMatrix(&matA);
     matB = matA;
     ((Mat10 *)(s + 0x8d0))->func_000264C0(&matB);
@@ -200,11 +201,9 @@ void Owner10C::func_0010C210()
     *(unsigned char *)(*(char **)(s + 0x230) + 0x180) &= 0xbf;
     *(unsigned char *)(*(char **)(s + 0x230) + 0x180) |= 0x10;
     (*(Node230 **)(s + 0x230))->func_00198B70(&q1, &q2);
-    M44C matC;
-    M44C matD;
-    AsmZeroMatrix(&matC);
-    matD = matC;
-    ((Mat10 *)(s + 0x910))->func_000264C0(&matD);
+    AsmZeroMatrix(&matA);
+    matB = matA;
+    ((Mat10 *)(s + 0x910))->func_000264C0(&matB);
     {
         char *t = s;
         float obj210 = *(float *)(*(char **)(t + 0x1e0) + 0x210);
@@ -240,8 +239,8 @@ void Owner10C::func_0010C210()
     cfg->func_00169710(D_002839B8);
     cfg->func_00168B90(D_002839A8, s + 0x658);
     cfg->func_00168B90(D_0028399C, s + 0x660);
-    *(float *)(s + 0x658) = *(float *)(s + 0x658) * D_00275998;
-    *(float *)(s + 0x660) = *(float *)(s + 0x660) * D_00275998;
+    { char *t = s; *(float *)(t + 0x658) *= D_00275998; }
+    { char *t = s; *(float *)(t + 0x660) *= D_00275998; }
     cfg->func_00169710(D_0028398C);
     (*(Sub261 **)(s + 0x5ec))->func_00026170(cfg);
     cfg->func_00168B90(D_00283978, s + 0x5f8);
@@ -277,16 +276,94 @@ void Owner10C::func_0010C210()
     cfg->func_00168B90(D_00283820, s + 0x530);
     cfg->func_00168B90(D_00283814, s + 0x534);
     cfg->func_00168B90(D_00283800, s + 0x508);
-    cfg->func_00168B90(D_00283800, s + 0x52c);
-    cfg->func_00168B90(D_00283800, s + 0x49c);
-    cfg->func_00168B90(D_00283800, s + 0x4a0);
-    *(float *)(s + 0x50c) = *(float *)(s + 0x50c) * D_00275998;
-    *(float *)(s + 0x510) = *(float *)(s + 0x510) * D_00275998;
+    cfg->func_00168B90(D_002837F0, s + 0x52c);
+    cfg->func_00168B90(D_002837DC, s + 0x49c);
+    cfg->func_00168B90(D_002837C4, s + 0x4a0);
+    { char *t = s; *(float *)(t + 0x50c) *= D_00275998; }
+    { char *t = s; *(float *)(t + 0x510) *= D_00275998; }
     cfg->func_00168B90(D_002837B4, s + 0x590);
     cfg->func_00168B90(D_002837A4, s + 0x58c);
-    *(float *)(s + 0x618) = *(float *)(s + 0x618) * D_00275998;
-    *(float *)(s + 0x614) = *(float *)(s + 0x614) * D_00275998;
-    *(float *)(s + 0x638) = *(float *)(s + 0x638) * D_00275998;
+    cfg->func_00168B90(D_00283790, s + 0x594);
+    cfg->func_00168B90(D_00283778, s + 0x578);
+    cfg->func_00168B90(D_00283760, s + 0x584);
+    ((Extra10 *)(s+0x778))->func_0002B140(cfg);
+    cfg->func_00169710(D_00276748);
+    float v50, v58, v54, v2c, v34, v30, v28, v24, v20, v1c;
+    cfg->func_00168B90(D_0028374C, &v50);
+    cfg->func_00168B90(D_00283744, &v58);
+    cfg->func_00168B90(D_0028373C, &v54);
+    cfg->func_00168B90(D_00283734, &v2c);
+    cfg->func_00168B90(D_00283728, &v34);
+    cfg->func_00168B90(D_00283718, *(char **)(s+0x1e8) + 0x84);
+    { char *t=s; (*(Extra10 **)(t+0x1e8))->func_000B6840(v34,v2c,*(int *)(t+0x24)); }
+    { char *t = *(char **)(s+0x1e8); *(float *)(t + 0x84) *= D_00275998; }
+    cfg->func_00169710(D_0028370C);
+    cfg->func_00168B90(D_00283700, s + 0x8c0);
+    cfg->func_00168B90(D_002836E8, &v30);
+    cfg->func_00168B90(D_002836D8, &v28);
+    cfg->func_00168B90(D_002836C4, &v24);
+    cfg->func_00168B90(D_002836B0, &v20);
+    cfg->func_00168B90(D_002836A0, s + 0x4ec);
+    cfg->func_00168B90(D_00283680, s + 0x8c4);
+    cfg->func_00168B90(D_0028366C, s + 0x8c8);
+    { char *t=s; float f=*(float *)(t+0x8c0); (*(Extra10 **)(t+0x1f0))->func_001A9110(v30,v28,v24,v28,v24,f,f,f); }
+    (*(Extra10 **)(s+0x1f0))->func_001A9220(0.0f,v20);
+    *(int *)(*(char **)(s+0x1f0)+0xc8)=0;
+    { char *t=s; *(int *)(*(char **)(t+0x1f0)+0xb4)=*(int *)(t+0x8c8); }
+    { char *t=s; *(int *)(*(char **)(t+0x1f0)+0xbc)=*(int *)(t+0x8c0); }
+    { char *t=s; *(int *)(*(char **)(t+0x1f0)+0xc0)=*(int *)(t+0x8c0); }
+    { char *t=s; *(int *)(*(char **)(t+0x1f0)+0xc4)=*(int *)(t+0x8c0); }
+    cfg->func_00169710(D_00283664);
+    cfg->func_00168B90(D_00283650, *(char **)(s+0x1ec) + 0x34);
+    cfg->func_00168B90(D_0028363C, *(char **)(s+0x1ec) + 0x38);
+    cfg->func_00168B90(D_0028362C, *(char **)(s+0x1ec) + 0x3c);
+    cfg->func_00168B90(D_00283618, *(char **)(s+0x1ec) + 0x40);
+    cfg->func_00168B90(D_00283604, *(char **)(s+0x1ec) + 0x44);
+    cfg->func_00168B90(D_002835F4, *(char **)(s+0x1ec) + 0x48);
+    cfg->func_00168B90(D_002835E0, *(char **)(s+0x1ec) + 0x4c);
+    { float q[4]={0,0,0,1}; cfg->func_00168CB0(D_002835D0,q,*(char **)(s+0x1ec)+0x68); }
+    cfg->func_00168B90(D_002835BC, s + 0x59c);
+    { char *t = *(char **)(s+0x1ec); *(float *)(t + 0x34) *= D_00277D04; }
+    { char *t = *(char **)(s+0x1ec); *(float *)(t + 0x38) *= D_00277D04; }
+    { char *t = *(char **)(s+0x1ec); *(float *)(t + 0x3c) *= D_00277D04; }
+    { char *t = s; *(float *)(t + 0x59c) *= D_00277D04; }
+    { char *t=s; *(int *)(*(char **)(t+0x210)+0xcc)=*(int *)(*(char **)(t+0x1ec)+0x3c); }
+    cfg->func_00169710(D_002835B4);
+    cfg->func_00168B90(D_002835A4, *(char **)(s+0x20c) + 0x38);
+    { float q[4]={0,0,0,1}; cfg->func_00168CB0(D_00283590,q,*(char **)(s+0x20c)+0x74); }
+    { float q[4]={0,0,0,1}; cfg->func_00168CB0(D_0028357C,q,*(char **)(s+0x20c)+0x84); }
+    cfg->func_00168B90(D_00283564, *(char **)(s+0x20c) + 0x40);
+    cfg->func_00168B90(D_0028354C, *(char **)(s+0x20c) + 0x44);
+    cfg->func_00168B90(D_0028353C, s + 0x5d4);
+    cfg->func_00168B90(D_0028352C, s + 0x5d0);
+    cfg->func_00168B90(D_0028351C, *(char **)(s+0x20c) + 0x58);
+    cfg->func_00168B90(D_00283508, *(char **)(s+0x20c) + 0xa4);
+    cfg->func_00168B90(D_002834F8, *(char **)(s+0x20c) + 0xa8);
+    cfg->func_00168B90(D_002834E8, *(char **)(s+0x20c) + 0xac);
+    cfg->func_00168B90(D_002834D4, *(char **)(s+0x20c) + 0xb0);
+    cfg->func_00168B90(D_002834C0, *(char **)(s+0x20c) + 0xb4);
+    cfg->func_00168B90(D_002834A8, *(char **)(s+0x20c) + 0xb8);
+    { char *t = *(char **)(s+0x20c); *(float *)(t + 0xa4) *= D_00275998; }
+    { char *t = *(char **)(s+0x20c); *(float *)(t + 0xa8) *= D_00275998; }
+    { char *t = *(char **)(s+0x20c); *(float *)(t + 0xac) *= D_00275998; }
+    cfg->func_00169710(D_00283490);
+    cfg->func_00168B90(D_00283480, s + 0x60c);
+    cfg->func_00168B90(D_00283470, s + 0x610);
+    cfg->func_00168B90(D_00283460, s + 0x61c);
+    cfg->func_00168B90(D_00283454, s + 0x618);
+    cfg->func_00168B90(D_00283444, s + 0x620);
+    cfg->func_00168B90(D_00283434,&v1c);
+    cfg->func_00168B90(D_0028341C, s + 0x630);
+    cfg->func_00168B90(D_00283408, s + 0x638);
+    cfg->func_00168B90(D_002833F0, s + 0x614);
+    { char *t = s; *(float *)(t + 0x610) *= D_00275998; }
+    { char *t = s; *(float *)(t + 0x61c) *= D_00275998; }
+    { char *t = s; *(float *)(t + 0x618) *= D_00275998; }
+    { char *t = s; *(float *)(t + 0x614) *= D_00275998; }
+    { char *t = s; *(float *)(t + 0x638) *= D_00275998; }
+    (*(Extra10 **)(s+0x220))->func_000269B0(0.0f,v1c,3.402823466e38f);
+    (*(Extra10 **)(s+0x224))->func_000269B0(1.0f,v1c,3.402823466e38f);
+    (*(Extra10 **)(s+0x228))->func_000269B0(0.0f,v1c,3.402823466e38f);
     cfg->func_00169710(D_0027C280);
     cfg->func_00168B90(D_002833E0, s + 0x5a0);
     cfg->func_00168B90(D_002833C8, s + 0x5a4);
@@ -304,12 +381,12 @@ void Owner10C::func_0010C210()
     cfg->func_00168B90(D_00283308, *(char **)(s + 0x210) + 0xc8);
     cfg->func_00168B90(D_002832F4, s + 0x4ac);
     cfg->func_00168B90(D_002832E4, s + 0x728);
-    *(float *)(s + 0x5ac) = *(float *)(s + 0x5ac) * D_00275998;
-    *(float *)(s + 0x5b4) = *(float *)(s + 0x5b4) * D_00275998;
-    *(float *)(s + 0x5b8) = *(float *)(s + 0x5b8) * D_00275998;
-    *(float *)(s + 0x5b0) = *(float *)(s + 0x5b0) * D_00275998;
-    *(float *)(s + 0x4ac) = *(float *)(s + 0x4ac) * D_00275998;
-    *(float *)(s + 0x4a4) = *(float *)(s + 0x4a4) * D_00277D04;
+    { char *t = s; *(float *)(t + 0x5ac) *= D_00275998; }
+    { char *t = s; *(float *)(t + 0x5b4) *= D_00275998; }
+    { char *t = s; *(float *)(t + 0x5b8) *= D_00275998; }
+    { char *t = s; *(float *)(t + 0x5b0) *= D_00275998; }
+    { char *t = s; *(float *)(t + 0x4ac) *= D_00275998; }
+    { char *t = s; *(float *)(t + 0x4a4) *= D_00277D04; }
     {
         char *t = *(char **)(s + 0x210);
         *(float *)(t + 0xc8) = *(float *)(t + 0xc8) * D_00277D04;
@@ -322,19 +399,19 @@ void Owner10C::func_0010C210()
     cfg->func_00168B90(D_00283280, s + 0x700);
     cfg->func_00168B90(D_00283260, s + 0x6b4);
     cfg->func_00168B90(D_00283240, s + 0x6b8);
-    cfg->func_00168B90(D_0028321C, s + 0x6bc);
+    cfg->func_00168B90(D_0028321C, s + 0x6c0);
     cfg->func_00168B90(D_002831F8, s + 0x6c0);
-    *(float *)(s + 0x6b4) = func_0014F510(*(float *)(s + 0x6b4) * D_00275998);
-    *(float *)(s + 0x6b8) = func_0014F510(*(float *)(s + 0x6b8) * D_00275998);
-    *(float *)(s + 0x6bc) = func_0014F510(*(float *)(s + 0x6bc) * D_00275998);
-    *(float *)(s + 0x6c0) = func_0014F510(*(float *)(s + 0x6c0) * D_00275998);
+    { char *t = s; float v = *(float *)(t + 0x6b4) * D_00275998; v = func_0014F510(v); *(float *)(s + 0x6b4) = v; }
+    { char *t = s; float v = *(float *)(t + 0x6b8) * D_00275998; v = func_0014F510(v); *(float *)(s + 0x6b8) = v; }
+    { char *t = s; float v = *(float *)(t + 0x6bc) * D_00275998; v = func_0014F510(v); *(float *)(s + 0x6bc) = v; }
+    { char *t = s; float v = *(float *)(t + 0x6c0) * D_00275998; v = func_0014F510(v); *(float *)(s + 0x6c0) = v; }
     cfg->func_00169710(D_002831EC);
     cfg->func_00168B90(D_002831D0, *(char **)(s + 0x208) + 0xb8);
     cfg->func_00168B90(D_002831BC, s + 0x6f8);
     cfg->func_00168B90(D_0028319C, s + 0x6ec);
     cfg->func_00168B90(D_00283178, s + 0x6f0);
-    *(float *)(s + 0x6ec) = func_0014F510(*(float *)(s + 0x6ec) * D_00275998);
-    *(float *)(s + 0x6f0) = func_0014F510(*(float *)(s + 0x6f0) * D_00275998);
+    { char *t = s; float v = *(float *)(t + 0x6ec) * D_00275998; v = func_0014F510(v); *(float *)(s + 0x6ec) = v; }
+    { char *t = s; float v = *(float *)(t + 0x6f0) * D_00275998; v = func_0014F510(v); *(float *)(s + 0x6f0) = v; }
     cfg->func_00169710(D_0028316C);
     cfg->func_00168B90(D_00283160, s + 0x4b8);
     cfg->func_00168B90(D_00283154, s + 0x4c0);
@@ -344,10 +421,10 @@ void Owner10C::func_0010C210()
     cfg->func_00168B90(D_0028311C, s + 0x1258);
     cfg->func_00168B90(D_0028310C, s + 0x124c);
     cfg->func_00168B90(D_002830F8, *(char **)(s + 0x20c) + 0x48);
-    *(float *)(s + 0x4b8) = *(float *)(s + 0x4b8) * D_00277D04;
-    *(float *)(s + 0x4bc) = *(float *)(s + 0x4bc) * D_00277D04;
-    *(float *)(s + 0x1254) = *(float *)(s + 0x1254) * D_00275998;
-    *(float *)(s + 0x1258) = *(float *)(s + 0x1258) * D_00275998;
+    { char *t = s; *(float *)(t + 0x4b8) *= D_00277D04; }
+    { char *t = s; *(float *)(t + 0x4bc) *= D_00277D04; }
+    { char *t = s; *(float *)(t + 0x1254) *= D_00275998; }
+    { char *t = s; *(float *)(t + 0x1258) *= D_00275998; }
     cfg->func_00169710(D_002830F0);
     cfg->func_00168B90(D_002830E4, s + 0x4dc);
     cfg->func_00168B90(D_002830D0, s + 0x1f9c);
@@ -360,10 +437,10 @@ void Owner10C::func_0010C210()
     cfg->func_00168B90(D_002830B4, s + 0x7c4);
     cfg->func_00168B90(D_00283084, s + 0x8a4);
     cfg->func_00168B90(D_00283070, s + 0x8a8);
-    *(float *)(s + 0x8a0) = *(float *)(s + 0x8a0) * D_00275998;
-    *(float *)(s + 0x7c4) = *(float *)(s + 0x7c4) * D_00275998;
-    *(float *)(s + 0x8a8) = *(float *)(s + 0x8a8) * D_00275998;
-    *(float *)(s + 0x8a4) = *(float *)(s + 0x8a4) * D_00277D04;
+    { char *t = s; *(float *)(t + 0x8a0) *= D_00275998; }
+    { char *t = s; *(float *)(t + 0x7c4) *= D_00275998; }
+    { char *t = s; *(float *)(t + 0x8a8) *= D_00275998; }
+    { char *t = s; *(float *)(t + 0x8a4) *= D_00277D04; }
     {
         char *t = s;
         *(int *)(t + 0x7ac) = *(int *)(t + 0x8a0);

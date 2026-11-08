@@ -188,19 +188,19 @@ int C_0012D620::func_0012D620(float dt)
 {
     int ret = func_00171230(dt);
     V4_0012D620 a;
+    float vv[8];
     V4_0012D620 b;
     float t;
 
-    if (dt > D_00275544) {
+    if (dt <= D_00275544) return ret;
+    {
         if (f404) {
+            f414->f14 = D_00275460 / dt;
             Anim_0012D620 *an = f414;
-            an->f14 = D_00275460 / dt;
             an->fC = (float)fmod((double)(dt + an->fC), (double)(an->arr[an->count - 1].time * f4c4));
         }
         if (f4a4 == 0) {
-            float vv[8];
             V4_0012D620 *p = (V4_0012D620 *)vv;
-            V4_0012D620 tmp;
             unsigned int i;
 
             func_00011FF0(vv, 0x10, 2, (void *)func_00011060);
@@ -209,6 +209,7 @@ int C_0012D620::func_0012D620(float dt)
             p[0].y = D_002A3FD8.y + f4d8;
             p[1].y = D_002A3FD8.y - f4d8;
             f408->func_00180E00(1, p, 0, 0);
+            V4_0012D620 tmp;
             for (i = 0; i < f4b4; i++) {
                 f500[i]->func_00197E70(&tmp);
                 if (tmp.z > D_00275544) {
@@ -230,7 +231,7 @@ int C_0012D620::func_0012D620(float dt)
         d.z = f438.z - f428.z;
         f428 = f438;
         if (f4b4 > 0) {
-            V4_0012D620 o1;
+            V4_0012D620 &o1 = a;
             func_00030A30(&o1, d, (char *)f400 + 0xf0);
             f4dc += o1.z * f4d4 * dt;
             f4dc = (float)fmod((double)f4dc, D_002843A0);
@@ -244,15 +245,15 @@ int C_0012D620::func_0012D620(float dt)
         }
         if (f4a0 != 0 && f4b4 > 0) {
             float t2 = v51(t, -f4e4);
-            V4_0012D620 rr = v52(t2);
+            const V4_0012D620 &rr = v52(t2);
             V4_0012D620 d2;
             d2.x = rr.x - f438.x;
             d2.y = rr.y - f438.y;
             d2.z = rr.z - f438.z;
-            V4_0012D620 o2;
+            V4_0012D620 &o2 = a;
             func_00030A30(&o2, d2, (char *)f400 + 0xf0);
             f4e0 = func_0014FBA0(o2.x, o2.z);
-            f4e0 = AsmMinF(AsmMaxF(f4e0, -0.5235988f), 0.5235988f);
+            f4e0 = AsmMinF(AsmMaxF(f4e0, -0.52359877f), 0.52359877f);
         }
         V4_0012D620 o;
         f400->func_00199A70(0, &o);
@@ -269,7 +270,7 @@ int C_0012D620::func_0012D620(float dt)
                 func_000265C0(m, &o, &D_002A4008, &D_002A3FF8, 1, 1);
                 f408->v31(m);
                 f408->func_00133F10(0);
-                if (f408->fA4 & 0x20000000) {
+                if (((unsigned char *)f408)[0xa7] & 0x20) {
                     CamData_0012D620 *cd = f408->f54;
                     float s = (D_00275460 - cd->f94) * f4d8;
                     s = s + s - f4d8;
@@ -317,7 +318,7 @@ int C_0012D620::func_0012D620(float dt)
             h = g - f4c;
             f400->func_00199790(0, &h);
         }
-        for (int i = 0; i < f4b4; i++) {
+        for (unsigned int i = 0; i < f4b4; i++) {
             if (f4a0 != 0 && i < 2) {
                 func_00167FE0(&a, &b, f4e0, -f4dc, 0);
             } else {

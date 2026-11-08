@@ -148,8 +148,7 @@ void C_0003D910::func_0003D910(int a0)
     if (f564 == 0) {
         return;
     }
-    int id = f48C;
-    if (id != -1 && a0 == 0) {
+    if (f48C != -1 && a0 == 0) {
         if (f2D8 != 0) {
             f2D8 = 0;
             f59C->f1A4->func_00164820(f59C->f1AC->f4);
@@ -168,6 +167,7 @@ void C_0003D910::func_0003D910(int a0)
                 f568->func_00133EF0((V4 *)(L + 4));
             }
             f564->f8->func_001824E0((V4 *)L, 1.0f, 1.0f, 1.0f);
+            goto apply;
         } else if (st == 2) {
             RetD *r = func_00038A10(f564->f4->fEC, 0);
             if (r != 0) {
@@ -183,6 +183,7 @@ void C_0003D910::func_0003D910(int a0)
             *(int *)&f44->f5C->f4 = 1;
             f4A0 = 0;
             func_000399A0(0);
+            goto restored;
         } else if (st >= 3) {
             f564->f8->func_00199600(v4EC);
             f564->f8->func_00198F50(&v4FC, &v50C, 0, 1, 0);
@@ -201,9 +202,12 @@ void C_0003D910::func_0003D910(int a0)
             }
             if (f564->a == 4 || f564->a == 5) {
                 f570->func_00133EF0((V4 *)(L + 4));
-                func_000392B0();
+
             }
+        apply:
+            func_000392B0();
         }
+        restored:
         int i;
         if (f564->f14 > 0) {
             for (i = 0; i < f564->f14; i++) {
@@ -211,10 +215,10 @@ void C_0003D910::func_0003D910(int a0)
             }
         }
         f48C = -1;
-        f564 = 0;
-        f568 = 0;
-        f56C = 0;
         f570 = 0;
+        f56C = 0;
+        f568 = 0;
+        f564 = 0;
         return;
     }
     if ((f2D0 != 0 && f2DC == 0) || (f2D8 != 0 && f2E0 == 0)) {
@@ -232,11 +236,9 @@ void C_0003D910::func_0003D910(int a0)
         }
         func_001E891B(f564);
         f564 = 0;
+        goto clear;
     } else {
-        *(int *)&v51C.x = *(int *)&D_002A14D4;
-        *(int *)&v51C.y = *(int *)&D_002A14D8;
-        *(int *)&v51C.z = *(int *)&D_002A14DC;
-        *(int *)&v51C.w = *(int *)&D_002A14E0;
+        v51C = *(V4 *)&D_002A14D4;
         if (f564->a == 0) {
             int i;
             if (f564->f14 > 0) {
@@ -250,21 +252,21 @@ void C_0003D910::func_0003D910(int a0)
             f564->f8->nv2();
             f564->f8 = 0;
         } else if (f564->a == 1) {
-            if (id != -1) {
-                ((ArrObjD *)((char *)this + 0x5a0))->func_000377F0(id);
+            if (f48C != -1) {
+                ((ArrObjD *)((char *)this + 0x5a0))->func_000377F0(f48C);
                 f48C = -1;
             }
             f564->f8->func_00198E60();
             f564->f8->func_00157810();
             f564->f8->nv2();
-            ((NodeD *)((char *)f564->f10 + 0x2e4))->func_001332A0();
+            (*(NodeD **)((char *)f564->f10 + 0x2e4))->func_001332A0();
             f564->f10->func_00157810();
             f564->f10->nv2();
             f564->f10 = 0;
         } else if (f564->a == 2) {
             int key[2];
-            if (id != -1) {
-                ((ArrObjD *)((char *)this + 0x5a0))->func_000377F0(id);
+            if (f48C != -1) {
+                ((ArrObjD *)((char *)this + 0x5a0))->func_000377F0(f48C);
                 f48C = -1;
             }
             RetD *r = func_00038A10(f564->f4->fE8, key);
@@ -272,23 +274,24 @@ void C_0003D910::func_0003D910(int a0)
             r->f8->func_00157810();
             r->f8->nv2();
             func_001E891B(r);
-            ((ArrObjD *)((char *)this + 0x5a0))->func_000377F0(key[1]);
+            ((ArrObjD *)((char *)this + 0x5a0))->func_000377F0(key[0]);
             RetD *r2 = func_00038A10(f564->f4->fEC, key);
             r2->f8->func_00198E60();
             r2->f8->func_00157810();
             r2->f8->nv2();
             func_001E891B(r2);
-            ((ArrObjD *)((char *)this + 0x5a0))->func_000377F0(key[1]);
-            f564->f4->func_000A3B60(9999);
-            f564->f4->func_001332A0();
-            f564->f4->func_001332A0();
-            f564->f4->func_00157810();
+            ((ArrObjD *)((char *)this + 0x5a0))->func_000377F0(key[0]);
+            f64->func_000A3B60(f564->f4);
+            (*(NodeD **)((char *)f564->f4->fE8 + 0x2e4))->func_001332A0();
+            (*(NodeD **)((char *)f564->f4->fEC + 0x2e4))->func_001332A0();
             f564->f4->fE8->func_00157810();
-            f564->f4->fE8->nv2();
             f564->f4->fEC->func_00157810();
+            f564->f4->fE8->nv2();
             f564->f4->fEC->nv2();
+            f564->f4->func_00157810();
+            ((NodeD *)f564->f4)->nv2();
             f564->f4 = 0;
-        } else if (f564->a > 2) {
+        } else if (f564->a >= 3) {
             int i;
             if (f564->f14 > 0) {
                 for (i = 0; i < f564->f14; i++) {
@@ -310,22 +313,11 @@ void C_0003D910::func_0003D910(int a0)
         f564 = 0;
     }
     if (f48C != -1) {
-        int idx568 = -1;
-        int i;
-        for (i = f5B4 - 1; i >= 0; i--) {
-            int e = (f5B4 < 1 || f5B8 == 0 || f5B4 <= i) ? 0 : f5B8[i];
-            if (f568 == (NodeD *)e) { idx568 = i; break; }
-        }
-        int idx56C = -1;
-        for (i = f5B4 - 1; i >= 0; i--) {
-            int e = (f5B4 < 1 || f5B8 == 0 || f5B4 <= i) ? 0 : f5B8[i];
-            if (f56C == (NodeD *)e) { idx56C = i; break; }
-        }
-        int idx570 = -1;
-        for (i = f5B4 - 1; i >= 0; i--) {
-            int e = (f5B4 < 1 || f5B8 == 0 || f5B4 <= i) ? 0 : f5B8[i];
-            if (f570 == (NodeD *)e) { idx570 = i; break; }
-        }
+        int idx568 = Find_0003D910(f568);
+        int idx56C=-1;
+        if(f56C) for(int search1=f5B4-1; search1>=0;--search1) { if(f56C==(NodeD *)Get_0003D910(search1)) {idx56C=search1;break;} }
+        int idx570=-1;
+        if(f570) for(int search2=f5B4-1; search2>=0;--search2) { if(f570==(NodeD *)Get_0003D910(search2)) {idx570=search2;break;} }
         if (f5A0 > 0 && f5A4 != 0 && f48C < f5A0) {
             f5A4[f48C] = f5A4[f5A0 - 1];
             f5A0 = f5A0 - 1;
@@ -361,7 +353,10 @@ void C_0003D910::func_0003D910(int a0)
         f570->nv2();
         f570 = 0;
     }
+clear:
+    f564=0;f568=0;f56C=0;f570=0;
 }
+#pragma optimize("", on)
 int Obj::_func_0003E410()
 {
     V4 a, b, c;

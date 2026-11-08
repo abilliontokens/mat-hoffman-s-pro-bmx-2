@@ -488,6 +488,32 @@ void C_000E1770::func_000E1810()
     func_001BE3F0();
 }
 
+void C_000E1770::func_000E1850()
+{
+    f294 = 0;
+    f28C = 0;
+    f290 = 0;
+    *(int *)((char *)this + 0x2B0) = 1;
+    f2AC = 0;
+    f2A8 = 0;
+    f2BC = 0;
+    f2B8 = 0;
+    *(int *)((char *)this + 0x2B4) = 0;
+    f2C0 = 0;
+    f2C4 = 0;
+    f2C8 = 0;
+    f2CC = 0;
+    f2D0 = 0;
+    f29C = **(int **)((char *)D_002A8490 + 0x2E0);
+    if (f29C == 1)
+        f29C = 2;
+    (*(C_E1850_Text **)((char *)D_002B91AC + 0x34))->func_0005E840(*(int *)((char *)D_002A8490->p2E8->p4 + 0xA18));
+    ((C_E1850_Ui *)D_002B91AC)->func_000BF860(0, 0x1EB, 0x184, 0);
+    (*(C_E1850_Text **)((char *)D_002B91AC + 0x38))->func_0005E840(*(int *)((char *)D_002A8490->p2E8->p4 + 0x7C8));
+    ((C_E1850_Ui *)D_002B91AC)->func_000BF860(1, 0x17B, 0x184, 0);
+    (*(C_E1850_Text **)((char *)D_002B91AC + 0x3C))->func_0005E840(*(int *)((char *)D_002A8490->p2E8->p4 + 0x838));
+}
+
 void C_000E1770::func_000E1C20()
 {
     char dest[0x40];

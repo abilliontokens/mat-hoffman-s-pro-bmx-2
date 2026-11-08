@@ -103,6 +103,150 @@ struct C_00072C90 {
 };
 
 
+int C_000725B0::func_000725B0(int a, int b)
+{
+    int a8 = *(int *)(a + 8);
+
+    if (fC0) {
+        D_002B903C = a8;
+        fC0 = 0;
+    }
+    if (fC4 != -1 && a8 != fC4)
+        return func_00157BF0(a, b);
+    fC8 = 0;
+    if (f98)
+        return 0;
+    if (func_001361E0(2, 2, a, 0x80000000)) {
+        fA4->func_00031610(2, 1);
+        f68 = f64;
+        f6C = f64;
+        if (--f64 < 0)
+            f64 = 3;
+        fBC = 0;
+        f9C = 1;
+        return func_00157BF0(a, b);
+    }
+    if (func_001361E0(3, 2, a, 0x80000000)) {
+        fA4->func_00031610(2, 1);
+        f68 = f64;
+        f6C = f64;
+        if (++f64 > 3)
+            f64 = 0;
+        fBC = 0;
+        f9C = 1;
+        return func_00157BF0(a, b);
+    }
+    if (func_001361E0(5, 2, a, 0x80000000) || func_001361E0(24, 2, a, 0x80000000)) {
+        f6C = f64;
+        fA4->func_00031610(4, 1);
+        f98 = 1;
+        fB8 = 0;
+        return 1;
+    }
+    if (func_001361E0(0, 2, a, 0x80000000)) {
+        fA0 = 1;
+        switch (f64) {
+        case 2:
+            fA4->func_00031610(2, 1);
+            fAC -= 10;
+            if (fAC < 0)
+                fAC = 100;
+            D_002A8490_g->cur->list->s28->setv(fAC);
+            D_002A8490_g->cur->f18 = fAC;
+            return func_00157BF0(a, b);
+        case 3:
+            fA4->func_00031610(5, 1);
+            fB0 -= 10;
+            if (fB0 < 0)
+                fB0 = 100;
+            D_002A8490_g->opt->o64->s4c0->setv(fB0);
+            fA4->s1b4->setv(fB0);
+            D_002A8490_g->cur->f1c = fB0;
+            return func_00157BF0(a, b);
+        case 0:
+            if (D_002A8490_g->cur->f4 != 10) {
+                D_002A8490_g->cur->list->func_00094960(0);
+                fA4->func_00031610(2, 1);
+                do {
+                    f84 = D_002A8490_g->cur->list->func_000947B0();
+                } while (D_002A8490_g->cur->list->func_000952F0() <= 0);
+                f88 = 1;
+                f8C = D_002A8490_g->cur->list->func_00094870();
+                f90 = 1;
+                func_00072280();
+                return func_00157BF0(a, b);
+            }
+            return 1;
+        case 1:
+            if (D_002A8490_g->cur->f4 != 10) {
+                fA4->func_00031610(2, 1);
+                if (D_002A8490_g->cur->list->func_000952F0() > 0) {
+                    f90 = 1;
+                    if (--f88 < 1) {
+                        f88 = D_002A8490_g->cur->list->func_00094870();
+                        func_00072280();
+                    }
+                    return func_00157BF0(a, b);
+                }
+                fA4->func_00031610(3, 1);
+                return func_00157BF0(a, b);
+            }
+            return 1;
+        }
+    } else if (func_001361E0(1, 2, a, 0x80000000)) {
+        fA0 = 1;
+        switch (f64) {
+        case 2:
+            fA4->func_00031610(2, 1);
+            fAC += 10;
+            if (fAC > 100)
+                fAC = 0;
+            D_002A8490_g->cur->list->s28->setv(fAC);
+            D_002A8490_g->cur->f18 = fAC;
+            return func_00157BF0(a, b);
+        case 3:
+            fA4->func_00031610(5, 1);
+            fB0 += 10;
+            if (fB0 > 100)
+                fB0 = 0;
+            D_002A8490_g->opt->o64->s4c0->setv(fB0);
+            fA4->s1b4->setv(fB0);
+            D_002A8490_g->cur->f1c = fB0;
+            return func_00157BF0(a, b);
+        case 0:
+            if (D_002A8490_g->cur->f4 != 10) {
+                D_002A8490_g->cur->list->func_00094960(0);
+                fA4->func_00031610(2, 1);
+                do {
+                    f84 = D_002A8490_g->cur->list->func_00094760();
+                } while (D_002A8490_g->cur->list->func_000952F0() <= 0);
+                f88 = 1;
+                f8C = D_002A8490_g->cur->list->func_00094870();
+                f90 = 1;
+                func_000721D0();
+                return func_00157BF0(a, b);
+            }
+            return 1;
+        case 1:
+            if (D_002A8490_g->cur->f4 != 10) {
+                fA4->func_00031610(2, 1);
+                if (D_002A8490_g->cur->list->func_000952F0() > 0) {
+                    f90 = 1;
+                    if (++f88 > D_002A8490_g->cur->list->func_00094870()) {
+                        f88 = 1;
+                        func_000721D0();
+                    }
+                    return func_00157BF0(a, b);
+                }
+                fA4->func_00031610(3, 1);
+                return func_00157BF0(a, b);
+            }
+            return 1;
+        }
+    }
+    return func_00157BF0(a, b);
+}
+
 C_00072C90 *C_00072C90::func_00072C90(int flags)
 {
     int i;

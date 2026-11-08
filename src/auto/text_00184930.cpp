@@ -350,6 +350,35 @@ struct C_00185790 {
     int func_00185800(S_Stream *stream);
 };
 
+int C_00184930::func_00184930(float a, float b)
+{
+    S_00184930_Col *p = f390;
+    if (p) {
+        int c = (int)p->f4 & 0xff;
+        c = (c | ((int)p->f10 << 8)) << 8;
+        c = (c | ((int)p->f8 & 0xff)) << 8;
+        c |= (int)p->fC & 0xff;
+        S_00184930_Fx *o = (S_00184930_Fx *)func_001E8A44(0x54);
+        S_00184930_Fx *r;
+        if (o)
+            r = o->func_00150360(1);
+        else
+            r = 0;
+        f3dc = r;
+        float x = a, y = b;
+        if (a == D_00275F58) x = D_0028937C;
+        if (b == D_00275F58) y = D_00289380;
+        if (!func_00150810(c, f390->f14, f390->f18, x, y, 64.0f)) {
+            f3dc->v2();
+            f3dc = 0;
+            return 0;
+        }
+        func_001E891B(f390);
+        f390 = 0;
+    }
+    return 1;
+}
+
 void C_00184930::func_00184BB0(void)
 {
     int i;
@@ -375,8 +404,10 @@ int C_00184930::func_00184C00(void)
 
 int C_00184930::func_00184C60(void)
 {
-    if (f3c0 != 0) {
-        f3c0->v28(this);
+    S_00184C00_Obj *p = f3c0;
+
+    if (p != 0) {
+        p->v28(this);
     }
     return 1;
 }
@@ -415,6 +446,23 @@ int C_00184930::func_00184D10(void)
         return 0;
     }
     return 1;
+}
+
+int C_00184930::func_00184DD0(int a0, int a1, int a2)
+{
+ char buf[0x104]; char *name; int n;
+ if (!f388) return 1;
+ name=(char*)f388+0x114;
+ if (strcmp(name,"none")==0) return 1;
+ n=0x5a; switch((unsigned)a0) { case 0: n=0x78; break; case 1u: n=0x5a; break; }
+ func_001ADCC0(buf,0x104,D_00275678,f30,name);
+ if(D_002BEAAC->func_0013B1A0(buf)) {
+ if(!D_002F07E8) { f350=1; ((S_00184DD0_Vt*)this)->v65(); }
+ void *mem=func_001E8A44(0x30c);
+ f3e8=mem ? ((S_00184EF0_Holder*)mem)->func_001D8B40(1):0;
+ f3e8->v27(buf,D_002E2930,a1,n,2.0f,1.0f,0);
+ }
+ return f3e8!=0;
 }
 
 int C_00184930::func_00184EF0(int a0, int a1)
@@ -520,29 +568,27 @@ int C_00184930::func_00185200(void)
 
 void S_00185610_Scene::func_00185610(S_00185610_Out *out)
 {
-    struct Q4 { float f[4]; };
     S_00185610_Cam *cam = D_002EFDB8->f4;
     S_00185610_Node *node = cam->f28->node;
     void *pos = cam->f170;
-    S_00185610_Elem *o = &f344[node->f3c];
-    S_00185610_Vec4 v = o->f134;
-    float px = o->f144;
-    float py = o->f148;
+    S_00185610_Elem *e = &f344[node->f3c];
+    S_00185610_Vec4 v = e->f134;
+    float px = e->f144;
+    float py = e->f148;
     float total = 1.0f;
     S_00185610_Link *l = node->f24;
     float dist;
     float inv;
-    Q4 q;
 
     for (; l != 0; l = l->next) {
         if (l->test->func_0017A1D0(pos, D_002A9118, &dist) != 0) {
             float w = (D_002A9118 - dist) / D_002A9118;
-            o = &f344[l->node->f3c];
-            q = *(Q4 *)&o->f134;
+            S_00185610_Elem *o = &f344[l->node->f3c];
+            S_00185610_Vec4 q = o->f134;
             total += w;
-            v.x += q.f[0] * w;
-            v.y += q.f[1] * w;
-            v.z += q.f[2] * w;
+            v.x += q.x * w;
+            v.y += q.y * w;
+            v.z += q.z * w;
             px += w * o->f144;
             py += w * o->f148;
         }

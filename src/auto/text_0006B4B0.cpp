@@ -269,11 +269,10 @@ struct C_0006BB90 {
     void func_0006BB90(void);
 };
 
-void C_0006B4B0::func_0006B4B0(void)
+int C_0006B4B0_R::func_0006B4B0(void)
 {
     int i;
     Wid_B4B0 *w;
-    C_001D5AD0 **p;
 
     unk98->func_001D5AD0();
     unk9C->func_001D5AD0();
@@ -283,15 +282,15 @@ void C_0006B4B0::func_0006B4B0(void)
     }
     if (unk164) {
         i = 0;
-        for (p = unk10C; i < 16; p++) {
+        do {
             if (i == unk154 * 2 || i == unk154 * 2 + 1) {
-                w = (Wid_B4B0 *)*p;
+                w = (Wid_B4B0 *)unk10C[i];
                 w->color = (w->color & 0xffbfa35a) | 0xbfa35a;
                 w->b58 |= 2;
             }
-            (*p)->func_001D5AD0();
+            unk10C[i]->func_001D5AD0();
             i++;
-        }
+        } while (i < 16);
         if (unk168) {
             for (i = 0; i < 2; i++) {
                 unkB8[i]->func_001D5AD0();
@@ -345,29 +344,30 @@ void C_0006B4B0::func_0006B4B0(void)
             if (unk1B8) unkB0->func_001D5AD0(); else unkA4->func_001D5AD0();
             break;
         }
-    } else if (unk164) {
+    } else if (unk168) {
         unkA0->SetPos(501.0f, 388.0f);
         unkAC->SetPos(501.0f, 388.0f);
         if (unk1B4) unkAC->func_001D5AD0(); else unkA0->func_001D5AD0();
         unkA4->SetPos(380.0f, 388.0f);
         unkB0->SetPos(380.0f, 388.0f);
         if (unk1B8) unkB0->func_001D5AD0(); else unkA4->func_001D5AD0();
-    } else if (unk1FC) {
-        unkA0->SetPos(501.0f, 388.0f);
-        unkAC->SetPos(501.0f, 388.0f);
-        if (unk1B4) unkAC->func_001D5AD0(); else unkA0->func_001D5AD0();
-        unkA4->SetPos(375.0f, 388.0f);
-        unkB0->SetPos(375.0f, 388.0f);
-        if (unk1B8) unkB0->func_001D5AD0(); else unkA4->func_001D5AD0();
-    } else {
+    } else if (unk164) {
         unkA0->SetPos(496.0f, 388.0f);
         unkAC->SetPos(496.0f, 388.0f);
         if (unk1B4) unkAC->func_001D5AD0(); else unkA0->func_001D5AD0();
         unkA4->SetPos(375.0f, 388.0f);
         unkB0->SetPos(375.0f, 388.0f);
         if (unk1B8) unkB0->func_001D5AD0(); else unkA4->func_001D5AD0();
+    } else {
+        unkA0->SetPos(501.0f, 388.0f);
+        unkAC->SetPos(501.0f, 388.0f);
+        if (unk1B4) unkAC->func_001D5AD0(); else unkA0->func_001D5AD0();
+        unkA4->SetPos(375.0f, 388.0f);
+        unkB0->SetPos(375.0f, 388.0f);
+        if (unk1B8) unkB0->func_001D5AD0(); else unkA4->func_001D5AD0();
     }
     if (unk14C) unk14C->func_001D5AD0();
+    return 1;
 }
 
 void C_0006BB90::func_0006BB90(void) {
@@ -443,10 +443,10 @@ int C_0006BD40::func_0006BD40(S_0006BD40_Msg *m, int a)
     if (unk1b8 != 0) return 0;
 
     if (unk168 != 0) {
+        len = strlen(*unk174);
         p = *unk174;
-        len = strlen(p);
         q = tmp;
-        while ((*q++ = *p++) != 0) {}
+        while ((*q++ = *p++) != 0) { }
         *(S26 *)alpha = *(S26 *)D_002789C4;
 
         if (func_001361E0(2, 2, mm, 0x80000000)) {
@@ -482,7 +482,7 @@ int C_0006BD40::func_0006BD40(S_0006BD40_Msg *m, int a)
             if (len > 0) {
                 p = *unk174;
                 q = name;
-                while ((*q++ = *p++) != 0) {}
+                while ((*q++ = *p++) != 0) { }
                 tmp[len - 1] = 0;
                 unk178->func_0005E840(&name[len - 1]);
                 unk188 = (int)(func_001E8AF0(alpha, &name[len - 1]) - (alpha + 8));
@@ -500,7 +500,7 @@ int C_0006BD40::func_0006BD40(S_0006BD40_Msg *m, int a)
             if (len < 0xf) {
                 p = *(char **)unk178;
                 q = tmp;
-                while ((*q++ = *p++) != 0) {}
+                while ((*q++ = *p++) != 0) { }
                 ((C_0005E840 *)unk174)->func_0005E840(tmp);
                 unk184 = 1;
                 unk180 = 0;

@@ -39,7 +39,7 @@ int C_001B7570::func_001B7570(Reader_1B7570 *r)
     r->func_00168C20(D_0028CA68, 0, &f4);
     r->func_00168C20(D_00288A34, 0, &f8);
     r->func_00168BE0(D_0028CF6C, D_00284A98, fC, -1);
-    if (strcmp(fC, "NONE") == 0) {
+    if (strcmp(fC, D_00284A98) == 0) {
         r->func_00168CB0(D_00275AD4, &D_002AA9F4, &f318);
         f328 = 1;
     } else {

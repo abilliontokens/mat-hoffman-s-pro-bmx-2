@@ -355,6 +355,7 @@ void C_00136BE0::func_00136BE0(char *name)
  }
  local.cfg.func_001691E0();
 }
+extern Vtx_00136FE0 D_002BA728[], D_002BA740[], D_002BA758[], D_002BA770[], D_002BA788[], D_002BA7A0[];
 int func_00136FE0(void)
 {
     Vtx_00136FE0 v[25];
@@ -365,7 +366,6 @@ int func_00136FE0(void)
     int n;
     int idx;
     int row;
-    Vtx_00136FE0 *p;
 
     for (face = 0; face < 6; face++) {
         for (i = 0; i < 5; i++) {
@@ -374,79 +374,77 @@ int func_00136FE0(void)
                 int au = j * 128 - 256;
                 int b = 256 - i * 128;
                 int bu = i * 128 - 256;
-                p = &v[i * 5 + j];
                 switch (face) {
                 case 0:
-                    p->pos.z = 25600.0f;
+                    v[i * 5 + j].pos.y = b * D_00275994;
+                    v[i * 5 + j].pos.z = 25600.0f;
                     D_002BE9A0[0][1] = 0;
                     D_002BE9A0[0][0] = 0;
                     D_002BE9A0[0][2] = -1.0f;
-                    p->pos.x = au * D_00275994;
-                    p->pos.y = b * D_00275994;
+                    v[i * 5 + j].pos.x = au * D_00275994;
                     break;
                 case 1:
-                    p->pos.x = -25600.0f;
+                    v[i * 5 + j].pos.x = -25600.0f;
                     D_002BE9A0[1][1] = 0;
                     D_002BE9A0[1][2] = 0;
                     D_002BE9A0[1][0] = 1.0f;
-                    p->pos.y = b * D_00275994;
-                    p->pos.z = au * D_00275994;
+                    v[i * 5 + j].pos.y = b * D_00275994;
+                    v[i * 5 + j].pos.z = au * D_00275994;
                     break;
                 case 2:
-                    p->pos.z = -25600.0f;
+                    v[i * 5 + j].pos.z = -25600.0f;
                     D_002BE9A0[2][1] = 0;
                     D_002BE9A0[2][0] = 0;
                     D_002BE9A0[2][2] = 1.0f;
-                    p->pos.x = a * D_00275994;
-                    p->pos.y = b * D_00275994;
+                    v[i * 5 + j].pos.x = a * D_00275994;
+                    v[i * 5 + j].pos.y = b * D_00275994;
                     break;
                 case 3:
-                    p->pos.x = 25600.0f;
+                    v[i * 5 + j].pos.x = 25600.0f;
                     D_002BE9A0[3][1] = 0;
                     D_002BE9A0[3][2] = 0;
                     D_002BE9A0[3][0] = -1.0f;
-                    p->pos.y = b * D_00275994;
-                    p->pos.z = a * D_00275994;
+                    v[i * 5 + j].pos.y = b * D_00275994;
+                    v[i * 5 + j].pos.z = a * D_00275994;
                     break;
                 case 4:
-                    p->pos.y = 25600.0f;
+                    v[i * 5 + j].pos.y = 25600.0f;
                     D_002BE9A0[4][2] = 0;
                     D_002BE9A0[4][0] = 0;
                     D_002BE9A0[4][1] = -1.0f;
-                    p->pos.x = au * D_00275994;
-                    p->pos.z = bu * D_00275994;
+                    v[i * 5 + j].pos.x = au * D_00275994;
+                    v[i * 5 + j].pos.z = bu * D_00275994;
                     break;
                 case 5:
-                    p->pos.y = -25600.0f;
+                    v[i * 5 + j].pos.y = -25600.0f;
                     D_002BE9A0[5][2] = 0;
                     D_002BE9A0[5][0] = 0;
                     D_002BE9A0[5][1] = 1.0f;
-                    p->pos.x = au * D_00275994;
-                    p->pos.z = b * D_00275994;
+                    v[i * 5 + j].pos.x = au * D_00275994;
+                    v[i * 5 + j].pos.z = b * D_00275994;
                     break;
                 }
-                p->color = -1;
-                p->u = j * D_00278C48;
-                p->v = i * D_00278C48;
+                v[i * 5 + j].color = -1;
+                v[i * 5 + j].u = j * D_00278C48;
+                v[i * 5 + j].v = i * D_00278C48;
             }
         }
         n = 0;
         idx = 0;
         for (row = 0; row < 4; row++) {
             for (k = 0; k < 4; k++) {
-                Vtx_00136FE0 *d = &D_002BA728[face * 96 + n];
-                d[0].pos = v[idx].pos;
-                d[1].pos = v[idx + 1].pos;
-                d[2].pos = v[idx + 6].pos;
-                d[3].pos = v[idx + 5].pos;
-                d[4].pos = v[idx].pos;
-                d[5].pos = v[idx + 6].pos;
-                d[0].color = -1;
-                d[1].color = -1;
-                d[2].color = -1;
-                d[3].color = -1;
-                d[4].color = -1;
-                d[5].color = -1;
+                D_002BA728[face * 96 + n].pos = v[idx].pos;
+                D_002BA740[face * 96 + n].pos = v[idx + 1].pos;
+                D_002BA758[face * 96 + n].pos = v[idx + 6].pos;
+                D_002BA770[face * 96 + n].pos = v[idx + 5].pos;
+                D_002BA788[face * 96 + n].pos = v[idx].pos;
+                D_002BA7A0[face * 96 + n].pos = v[idx + 6].pos;
+                D_002BA728[face * 96 + n].color = -1;
+                D_002BA740[face * 96 + n].color = -1;
+                D_002BA758[face * 96 + n].color = -1;
+                D_002BA770[face * 96 + n].color = -1;
+                D_002BA788[face * 96 + n].color = -1;
+                D_002BA7A0[face * 96 + n].color = -1;
                 n += 6;
                 idx++;
             }
@@ -455,6 +453,63 @@ int func_00136FE0(void)
         for (k = 0; k < 25; k++)
             *(Vec3_00136FE0 *)&D_002BE040[face * 100 + k * 4] = v[k].pos;
     }
+    return 1;
+}
+
+int C_001376B0::func_001376B0(Cube *arg)
+{
+    float *p;
+    int i, j;
+    f28 = arg;
+    arg->func_001369E0(f7C0);
+    if (func_001B2810(f28->unk3C)) {
+        p = D_002BA73C;
+        do {
+            for (j = 0; j < 4; j++) {
+                float *q = p;
+                p += 0x240 / 4;
+                for (i = 0; i < 4; i++, q += 0x90 / 4) {
+                    q[-1] = 0.03125f;
+                    q[0] = 0.03125f;
+                    q[5] = 0.96875f;
+                    q[6] = 0.03125f;
+                    q[0xB] = 0.96875f;
+                    q[0xC] = 0.96875f;
+                    q[0x11] = 0.03125f;
+                    q[0x12] = 0.96875f;
+                    q[0x17] = 0.03125f;
+                    q[0x18] = 0.03125f;
+                    q[0x1D] = 0.96875f;
+                    q[0x1E] = 0.96875f;
+                }
+            }
+        } while ((int)p < (int)D_002BDD3C);
+        return 1;
+    }
+    int g = 0;
+    p = D_002BA73C;
+    do {
+        for (j = 0; j < 4; j++) {
+            float *q = p;
+            p += 0x240 / 4;
+            for (i = 0; i < 4; i++, q += 0x90 / 4) {
+                float v = D_00275460 / (float)func_00136460(f28->groups[g].sizes, i, j);
+                q[-1] = v;
+                q[0] = v;
+                q[5] = D_00275460 - v;
+                q[6] = v;
+                q[0xB] = D_00275460 - v;
+                q[0xC] = D_00275460 - v;
+                q[0x11] = v;
+                q[0x12] = D_00275460 - v;
+                q[0x17] = v;
+                q[0x18] = v;
+                q[0x1D] = D_00275460 - v;
+                q[0x1E] = D_00275460 - v;
+            }
+        }
+        g++;
+    } while ((int)p < (int)D_002BDD3C);
     return 1;
 }
 

@@ -1,5 +1,6 @@
 /* 8 functions from 0x000AADB0 to 0x000ABD80, found by Ghidra. */
 #include "common.h"
+#include "asm_helpers.h"
 extern char D_0027C7DC[], D_0027C7BC[], D_0027C7A4[], D_0027C4D0[], D_0027C4BC[], D_00275680[], D_0027C790[];
 void * __cdecl func_001E8920(void *, const void *, unsigned int);
 extern "C" unsigned int __cdecl strlen(const char *);
@@ -252,15 +253,12 @@ void C_000AADB0::func_000AB030(S_000AB030_Arg *arg)
 {
     C_000AADB0 * volatile self = this;
     int i;
-    struct {
-        volatile int len;
-        volatile int res;
-        volatile int lim;
-    } t;
+    int len;
+    int res;
+    int lim;
     char buf[260];
     int k;
     int j;
-    int n;
 
     if (f24 != 0) {
         for (i = 0; i < arg->f3AC->count; i++) {
@@ -283,12 +281,11 @@ void C_000AADB0::func_000AB030(S_000AB030_Arg *arg)
         for (i = 0; i < (*arg->f3A8)->count; i++) {
             S_000AB030_ObjB *obj = (*arg->f3A8)->items[i];
             if (obj != 0 && obj->f4 == 1 && obj->f8 != 0) {
-                t.len = strlen(obj->f8->name);
-                t.lim = 0x103;
-                t.res = t.lim > t.len ? t.len : t.lim;
-                n = t.res;
-                func_001E8920(buf, obj->f8->name, n);
-                buf[n] = 0;
+                len = strlen(obj->f8->name);
+                lim = 0x103;
+                res = AsmMinI(lim, len);
+                func_001E8920(buf, obj->f8->name, res);
+                buf[res] = 0;
                 char *dot = func_001E8AC0(buf, '.');
                 if (dot != 0) {
                     memset(dot, 0, strlen(dot));
@@ -355,7 +352,73 @@ void C_000AB490::func_000AB490(void)
     ((C_00157660 *)this)->func_00157660();
 }
 
-void C_000ABBC0::func_000AB790(S_000AB030_Arg *arg)
+void C_000ABBC0::func_000AB4F0(C_000AADB0_Parser * volatile p)
+{
+    C_000ABBC0 * volatile self = this;
+    struct {
+        int count;
+        int n;
+        int pb;
+        int pa;
+        volatile int bias;
+        int res;
+        int len;
+        int lim;
+    } t;
+    char item[260], name[260];
+    int start, total;
+    C_000ABBC0_Obj **result;
+
+    if (!p->func_00169710(D_0027C7DC)) return;
+    p->func_00168C20(D_0027C7BC, 0, &t.count);
+    if (t.count <= 0) return;
+    C_000ABBC0 *initial = self;
+    if (initial->f28) {
+        start = initial->f24;
+        initial->f24 = t.count + start;
+        C_000ABBC0 *obj = self;
+        total = obj->f24;
+        result = (C_000ABBC0_Obj **)func_001E83E8(obj->f28, total * 4);
+    } else {
+        initial->f24 = t.count;
+        C_000ABBC0 *obj = self;
+        total = obj->f24;
+        start = 0;
+        result = (C_000ABBC0_Obj **)func_001E8A44(total * 4);
+    }
+    self->f28 = result;
+    if (start < total) {
+        t.bias = 1 - start;
+        for (int i = start; i < total; i++) {
+            func_001ADCC0(name, 260, D_0027C7A4, t.bias + i);
+            if (p->func_00169710(name)) {
+                p->func_00168BE0(D_0027C4D0, D_002764F0, item, -1);
+                p->func_00168C20(D_0027C4BC, 1, &t.n);
+                p->func_00168C20(D_00275680, 0, &t.pa);
+                p->func_00168C20(D_0027C790, 0, &t.pb);
+                self->f28[i] = (C_000ABBC0_Obj *)func_001E8A44(0x114);
+                t.len = strlen(item);
+                t.lim = 0x103;
+                t.res = AsmMinI(t.lim, t.len);
+                int k = t.res;
+                func_001E8920(self->f28[i], item, k);
+                *(volatile char *)&self->f28[i]->name[k] = 0;
+                *(volatile int *)&self->f28[i]->f104 = t.n;
+                *(volatile int *)&self->f28[i]->f108 = t.pa;
+                *(volatile int *)&self->f28[i]->f10C = t.pb;
+                if (t.n == 0) {
+                    *(void * volatile *)&self->f28[i]->f110 = func_001E8A44(4);
+                    *(void * volatile *)&self->f28[i]->f110[0] = 0;
+                } else {
+                    *(void * volatile *)&self->f28[i]->f110 = func_001E8A44(t.n * 4);
+                    for (int j = 0; j < t.n; j++) *(void * volatile *)&self->f28[i]->f110[j] = 0;
+                }
+            }
+        }
+    }
+}
+
+void C_000ABBC0::func_000AB790(S_000AB030_Arg * volatile arg)
 {
     C_000ABBC0 * volatile self = this;
     struct {
@@ -370,12 +433,17 @@ void C_000ABBC0::func_000AB790(S_000AB030_Arg *arg)
     int k;
     int n;
     int cnt;
+    C_000ABBC0 *me;
+    S_000AB030_ListA *la;
+    S_000AB030_ListB *lb;
+    S_000AB030_Named *src;
     char buf[260];
 
-    cnt = f24;
+    me = this;
+    cnt = me->f24;
     if (cnt != 0) {
-        for (i = 0; i < cnt; i++, cnt = self->f24) {
-            C_000ABBC0_Obj *obj = self->f28[i];
+        for (i = 0; i < cnt; i++, cnt = (me = self)->f24) {
+            C_000ABBC0_Obj *obj = me->f28[i];
             k = 0;
             if (obj->f104 == 0) {
                 if (obj->f108 != 0) {
@@ -387,13 +455,12 @@ void C_000ABBC0::func_000AB790(S_000AB030_Arg *arg)
                 }
                 func_001ADCC0(buf, 0x104, D_0027C588, self->f28[i]);
                 void *m = func_001E8A44(0x1e0);
-                self->f28[i]->f110[0] = m ? ((C_00143580_000AB790 *)m)->func_00143580(1) : 0;
+                *(void * volatile *)&self->f28[i]->f110[0] = m ? ((C_00143580_000AB790 *)m)->func_00143580(1) : 0;
                 C_000ABBC0_Sub *s = (C_000ABBC0_Sub *)self->f28[i]->f110[0];
                 if (s->v35(buf, 0, 1)) {
-                    VOL_000AB790(j2) = strlen(buf);
-                    VOL_000AB790(k) = 0x7f;
-                    t.res1 = VOL_000AB790(k) > VOL_000AB790(j2) ? VOL_000AB790(j2) : VOL_000AB790(k);
-                    n = t.res1;
+                    j2 = strlen(buf);
+                    k = 0x7f;
+                    n = AsmMinI(k, j2);
                     func_001E8920(s->name, buf, n);
                     s->name[n] = 0;
                     s->func_00199650(&D_002A2734);
@@ -403,8 +470,8 @@ void C_000ABBC0::func_000AB790(S_000AB030_Arg *arg)
                     self->f28[i]->f104 = 1;
                 }
             } else {
-                for (j = 0; j < arg->f3AC->count; j++) {
-                    S_000AB030_ObjA *o = arg->f3AC->items[j];
+                for (j = 0; j < (la = arg->f3AC)->count; j++) {
+                    S_000AB030_ObjA *o = la->items[j];
                     if (o != 0 && o->f4 == 1) {
                         func_0014FF00(o->f1A4->f4->name, 0, 0, buf, 0);
                         if (func_001EA426(buf, (char *)self->f28[i]) == 0) {
@@ -415,14 +482,14 @@ void C_000ABBC0::func_000AB790(S_000AB030_Arg *arg)
                     }
                 }
                 if (k == 0) {
-                    for (j2 = 0; j2 < (*arg->f3A8)->count; j2++) {
-                        S_000AB030_ObjB *o = (*arg->f3A8)->items[j2];
+                    for (j2 = 0; j2 < (lb = *arg->f3A8)->count; j2++) {
+                        S_000AB030_ObjB *o = lb->items[j2];
                         if (o != 0 && o->f4 == 1 && o->f8 != 0) {
                             t.len2 = strlen(o->f8->name);
                             t.lim2 = 0x103;
-                            t.res2 = t.lim2 > t.len2 ? t.len2 : t.lim2;
-                            n = t.res2;
-                            func_001E8920(buf, o->f8->name, n);
+                            n = AsmMinI(t.lim2, t.len2);
+                            src = *(S_000AB030_Named * volatile *)&o->f8;
+                            func_001E8920(buf, src->name, n);
                             buf[n] = 0;
                             char *dot = func_001E8AC0(buf, '.');
                             if (dot != 0) {
@@ -439,6 +506,30 @@ void C_000ABBC0::func_000AB790(S_000AB030_Arg *arg)
             }
         }
     }
+}
+
+void C_000ABBC0::func_000ABBC0(void)
+{
+    C_000AB340_Vec a = D_002EFDB8->f4->f170;
+    C_000AB340_Vec c = D_002EFDB8->f4->f180;
+    C_000AB340_Vec b = D_002EFDB8->f4->f190;
+    int i;
+    int j;
+
+    for (i = 0; i < f24; i++) {
+        if (f28[i]->f110 != 0) {
+            for (j = 0; j < f28[i]->f104; j++) {
+                if (((C_000ABBC0_Sub *)f28[i]->f110[j]) != 0) {
+                    ((C_000ABBC0_Sub *)f28[i]->f110[j])->func_00199650(&a);
+                    if (f28[i]->f10C != 0) {
+                        ((C_000ABBC0_Sub *)f28[i]->f110[j])->func_00198F50(&c, &b, 0, 1, 0);
+                    }
+                    ((C_000ABBC0_Sub *)f28[i]->f110[j])->func_0019AC50();
+                }
+            }
+        }
+    }
+    func_001578D0();
 }
 
 C_000ABD60 *C_000ABD60::func_000ABD60()

@@ -310,6 +310,8 @@ void C_000A4500::func_000A4500(int param_1, int param_2)
     }
 }
 
+extern "C" void _ReadWriteBarrier(void);
+#pragma intrinsic(_ReadWriteBarrier)
 C_000A4570 *C_000A4570::func_000A4570(void)
 {
     int i, j, k;
@@ -318,17 +320,23 @@ C_000A4570 *C_000A4570::func_000A4570(void)
     F(float, 4) = 1.0f; F(float, 8) = 1.0f; F(int, 0) = 0;
     F(float, 0xc) = 0.2f; F(float, 0x10) = 7.0f; F(float, 0x14) = 0.07f; F(int, 0x18) = 0;
     p = (char *)this + 0xdc8;
-    for (i = 0; i < 70; i++) {
+    q = (int *)((char *)this + 0x1c8c);
+    for (i = 0; i < 70; i++, q++, p += 0x32) {
         func_001ADCC0(p - 0xdac, 0x32, D_0027B4F0, i);
         func_001ADCC0(p, 0x32, D_0027B4D8, i);
-        q = (int *)((char *)this + 0x1c8c) + i;
-        q[0] = 0; q[-0x118 / 4] = 0; q[0x118 / 4] = 0; q[0x230 / 4] = 0;
-        q[0x460 / 4] = 0; q[0x348 / 4] = 0; q[0x7a8 / 4] = 0; q[0x8c0 / 4] = 1;
-        q[0x9d8 / 4] = 0; q[0xaf0 / 4] = 0; q[0xc08 / 4] = 1;
-        q[0xd20 / 4] = 0; q[0xe38 / 4] = 0; q[0xf50 / 4] = 1;
         q[0x578 / 4] = -1;
         q[0x690 / 4] = -1;
-        p += 0x32;
+        q[-0x118 / 4] = 0; q[0] = 0; q[0x118 / 4] = 0; q[0x230 / 4] = 0;
+        q[0x460 / 4] = 0; q[0x348 / 4] = 0;
+        q[0x7a8 / 4] = 0;
+        _ReadWriteBarrier();
+        q[0x8c0 / 4] = 1;
+        q[0x9d8 / 4] = 0; q[0xaf0 / 4] = 0;
+        _ReadWriteBarrier();
+        q[0xc08 / 4] = 1;
+        q[0xd20 / 4] = 0; q[0xe38 / 4] = 0;
+        _ReadWriteBarrier();
+        q[0xf50 / 4] = 1;
     }
     for (i = 0; i < 8; i++) {
         int *e = (int *)((char *)this + 0x2ff0) + i;
@@ -337,8 +345,8 @@ C_000A4570 *C_000A4570::func_000A4570(void)
             e += 8;
         }
     }
-    s = (int *)((char *)this + 0x39f0);
     p = (char *)this + 0x49a4;
+    s = (int *)((char *)this + 0x39f0);
     q = (int *)((char *)this + 0x5944);
     for (k = 0; k < 5; k++) {
         *s = 0;
@@ -406,10 +414,10 @@ C_000A4570 *C_000A4570::func_000A4570(void)
     F(int, 0x66c0) = 0;
     return this;
 }
-
 int __stdcall func_000A4AF0(int flags, char *buf)
 {
-    int n = 1;
+    int ok = 1;
+    int n = ok;
     int i;
     int shift = 8;
     u8 v;
@@ -436,6 +444,6 @@ int __stdcall func_000A4AF0(int flags, char *buf)
         v = (u8)(flags >> shift);
         shift += 8;
     }
-    return 1;
+    return ok;
 }
 

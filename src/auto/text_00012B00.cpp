@@ -2,6 +2,7 @@
 #include "common.h"
 #include <xmmintrin.h>
 #include <math.h>
+#include "asm_helpers.h"
 
 struct S_13910_Vec { float x, y, z, w; S_13910_Vec() {} S_13910_Vec(float a,float b,float c,float d=1.0f):x(a),y(b),z(c),w(d) {} };
 struct S_13910_Obj2 { S_13910_Vec *func_00199B00(S_13910_Vec *out, int a); };
@@ -67,78 +68,90 @@ static __forceinline float sqrt12(float f) { return _mm_sqrt_ss(*(__m128 *)&f).m
 
 void AIPedFightState::func_00012B00(int a0)
 {
- struct Fr { AIPedFightState *volatile self; int tmp; int a; int b; } fr;
- fr.self = this;
+ int a, b;
  this->f1c=D_002A8490->f238+375;
- fr.self->f8->func_00011BE0(&fr.a,&fr.b);
- if(fr.a==-1) return;
- S_13910_Row *row=D_002B9120->f588[fr.self->f8->f3b4];
- S_13910_Vec pos=fr.self->f8->pos;
+ f8->func_00011BE0(&a,&b);
+ if(a==-1) return;
+ S_13910_Row *row=D_002B9120->f588[f8->f3b4];
+ S_13910_Vec pos=f8->pos;
  S_13910_Vec target;
  int moving;
- if(D_002B9120->f4e0->ents[fr.a]->f950->fbc) {
+ if(D_002B9120->f4e0->ents[a]->f950->fbc) {
   S_13910_Vec t;
-  target=*D_002B9120->f4e0->ents[fr.a]->fa00->f4->func_00199B00(&t,0);
+  target=*D_002B9120->f4e0->ents[a]->fa00->f4->func_00199B00(&t,0);
   moving=1;
- } else {target=D_002B9120->f4e0->ents[fr.a]->f834; moving=0;}
+ } else {target=D_002B9120->f4e0->ents[a]->f834; moving=0;}
  S_13910_Vec forward,up;
- forward.z=forward.y=forward.x=0; forward.w=1;
- up.z=up.y=up.x=0; up.w=1;
- (*(S_12B00_Motion **)((char *)D_002B9120->f4e0->ents[fr.a]+0x230))->func_00197B40(&forward,&up);
+ forward.z=0; forward.y=0; forward.x=0; forward.w=1;
+ up.z=0; up.y=0; up.x=0; up.w=1;
+ (*(S_12B00_Motion **)((char *)D_002B9120->f4e0->ents[a]+0x230))->func_00197B40(&forward,&up);
  S_13910_Vec toSelf=sub12(pos,target); func_000111B0(&toSelf,&toSelf);
  S_13910_Vec toTarget=sub12(target,pos); func_000111B0(&toTarget,&toTarget);
- float speed=*(float *)((char *)D_002B9120->f4e0->ents[fr.a]+0x1194);
+ float speed=*(float *)((char *)D_002B9120->f4e0->ents[a]+0x1194);
  S_13910_Vec dir;
  float distance;
  if(!a0) {
-  int index=fr.self->f8->func_000119D0(&fr.self->f8->pos);
-  S_13910_Vec d=sub12(row->points[index],fr.self->f8->pos); func_000111B0(&d,&d);
+  int index=f8->func_000119D0(&f8->pos);
+  S_13910_Vec d=sub12(row->points[index],f8->pos); func_000111B0(&d,&d);
   int next=index+1; if(next>=row->count) next=0;
-  S_13910_Vec e=sub12(row->points[next],fr.self->f8->pos); func_000111B0(&e,&e);
+  S_13910_Vec e=sub12(row->points[next],f8->pos); func_000111B0(&e,&e);
   if(e.y*d.y+e.x*d.x+e.z*d.z>0) {next=index; if(--index<0) index=row->count-1;}
   else {
    S_13910_Vec along=sub12(row->points[next],row->points[index]);func_000111B0(&along,&along);
-   S_13910_Vec offset=sub12(fr.self->f8->pos,row->points[index]);func_000111B0(&offset,&offset);
+   S_13910_Vec offset=sub12(f8->pos,row->points[index]);func_000111B0(&offset,&offset);
    if(dot12(offset,along)<0.3535f){next=index;if(--index<0)index=row->count-1;}
   }
   S_13910_Vec along=sub12(row->points[next],row->points[index]);func_000111B0(&along,&along);
-  S_13910_Vec previous=sub12(*(S_13910_Vec *)((char *)fr.self+0xc),fr.self->f8->pos);func_000111B0(&previous,&previous);
+  S_13910_Vec previous=sub12(*(S_13910_Vec *)((char *)this+0xc),f8->pos);func_000111B0(&previous,&previous);
   int direction;
   if(along.x*toSelf.x+along.y*toSelf.y+along.z*toSelf.z>0 && previous.y*toTarget.y+previous.x*toTarget.x+previous.z*toTarget.z<0.875f) {direction=1;index=next;}else direction=0;
-  S_13910_Vec delta=sub12(row->points[index],fr.self->f8->pos);
-  distance=sqrtf(delta.z*delta.z+delta.y*delta.y+delta.x*delta.x);
+  S_13910_Vec delta=sub12(row->points[index],f8->pos);
+  float sq=delta.z*delta.z+delta.y*delta.y+delta.x*delta.x;
+  distance=AsmSqrtF(sq);
   if(distance<2) {
    if(direction==1){if(++index>=row->count)index=0;}
    else if(--index<0)index=row->count-1;
   }
-  dir=sub12(row->points[index],fr.self->f8->pos);func_000111B0(&dir,&dir);
-  fr.self->f8->func_00011440(dir);
+  dir=sub12(row->points[index],f8->pos);func_000111B0(&dir,&dir);
+  f8->func_00011440(dir);
   if(speed>0.1f) {
-   distance=distance<row->f8?distance:row->f8;
-   distance=distance>2.0f?distance:2.0f;
-   *(S_13910_Vec *)((char *)fr.self+0xc)=add12(fr.self->f8->pos,mul12(dir,distance));
-  }else *(S_13910_Vec *)((char *)fr.self+0xc)=row->points[index];
+   distance=AsmMinF(distance,row->f8);
+   distance=AsmMaxF(distance,2.0f);
+   *(S_13910_Vec *)((char *)this+0xc)=add12(f8->pos,mul12(dir,distance));
+  }else *(S_13910_Vec *)((char *)this+0xc)=row->points[index];
+  if(D_002B9134) {
+   for(int i=0;i<D_002B9134->count;i++) {
+    S_13910_Vec delta=sub12(D_002B9134->items[i]->pos,f8->pos);
+    float sq=delta.x*delta.x+delta.y*delta.y+delta.z*delta.z;
+    float len=AsmSqrtF(sq);
+    if(len<=12) {
+     func_000111B0(&delta,&delta);
+     if(delta.y*dir.y+delta.x*dir.x+delta.z*dir.z>0.7071f)goto stop;
+    }
+   }
+  }
+  return;
  } else {
   S_13910_Vec side, cross;
-  side.z=side.y=side.x=0;side.w=1;
-  cross.z=cross.y=cross.x=0;cross.w=1;
-  cross12(&cross,&up,&forward);
+  side.z=0; side.y=0; side.x=0; side.w=1;
+  cross.z=0; cross.y=0; cross.x=0; cross.w=1;
+  AsmVec3Cross((float *)&cross,(float *)&up,(float *)&forward);
   int direction=dot12(cross,toSelf)>0?0:1;
   int attempts=1;
   for(;;++attempts) {
    if(direction==1) {
-    cross12(&side,&D_002A051C,&toTarget);
+    AsmVec3Cross((float *)&side,(float *)&D_002A051C,(float *)&toTarget);
     distance=row->f8*0.8f;
     S_13910_Vec candidate=add12(pos,mul12(side,distance));
-    if(fr.self->f8->func_00012510((int *)&candidate,fr.self->f8->f3b0)>row->f8) {
+    if(f8->func_00012510((int *)&candidate,f8->f3b0)>row->f8) {
      if(dot12(toSelf,forward)>=0.85f) {if(attempts!=1)break;direction=0;}
      else direction=-1;
     }else goto fb;
    }else if(direction==0) {
-    cross12(&side,&toTarget,&D_002A051C);
+    AsmVec3Cross((float *)&side,(float *)&toTarget,(float *)&D_002A051C);
     distance=row->f8*0.8f;
     S_13910_Vec candidate=add12(pos,mul12(side,distance));
-    if(fr.self->f8->func_00012510((int *)&candidate,fr.self->f8->f3b0)>row->f8) {
+    if(f8->func_00012510((int *)&candidate,f8->f3b0)>row->f8) {
      if(dot12(toSelf,forward)>=0.85f) {if(attempts!=1)break;direction=1;}
      else direction=-1;
     }else goto fb;
@@ -150,35 +163,23 @@ fb:
      side=S_13910_Vec(-forward.x,-forward.y,-forward.z);
      distance=row->f8*0.8f;
      func_000110E0(&candidate,&pos,func_00011140(&scaled,&side,distance));
-    } while(fr.self->f8->func_00012510((int *)&candidate,fr.self->f8->f3b0)<=row->f8);
+    } while(f8->func_00012510((int *)&candidate,f8->f3b0)<=row->f8);
     if(moving) {
-     fr.self->f8->func_00011440(side);
-     *(S_13910_Vec *)((char *)fr.self+0xc)=add12(fr.self->f8->pos,mul12(side,distance));
+     f8->func_00011440(side);
+     *(S_13910_Vec *)((char *)this+0xc)=add12(f8->pos,mul12(side,distance));
     }
-    goto obstacles;
+    goto stop;
     }
    }
   }
   if(moving) goto fb;
-stop:
-  *(S_13910_Vec *)((char *)fr.self+0xc)=fr.self->f8->pos;
-  void *g=*(void **)((char *)D_002A8490+0x2a4);
-  if(g&&!*(int *)((char *)g+0x1c8)) {
-   *(int *)((char *)fr.self->f8+0x3bc)=8;
-   (*(S_12B00_Anim **)((char *)fr.self->f8+0x384))->func_0008AB90(*(int *)((char *)fr.self->f8+0x3a8));
-  }
-  return;
  }
-obstacles:
- if(D_002B9134) {
-  for(int i=0;i<D_002B9134->count;i++) {
-   S_13910_Vec delta=sub12(D_002B9134->items[i]->pos,fr.self->f8->pos);
-   float len=sqrtf(delta.x*delta.x+delta.y*delta.y+delta.z*delta.z);
-   if(len<=12) {
-    func_000111B0(&delta,&delta);
-    if(delta.y*dir.y+delta.x*dir.x+delta.z*dir.z>0.7071f)goto stop;
-   }
-  }
+stop:
+ *(S_13910_Vec *)((char *)this+0xc)=f8->pos;
+ void *g=*(void **)((char *)D_002A8490+0x2a4);
+ if(g&&!*(int *)((char *)g+0x1c8)) {
+  *(int *)((char *)f8+0x3bc)=8;
+  (*(S_12B00_Anim **)((char *)f8+0x384))->func_0008AB90(*(int *)((char *)f8+0x3a8));
  }
 }
 

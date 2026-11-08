@@ -331,7 +331,6 @@ void C_00067DA0::func_00067DA0(void)
     int num;
     int n;
     int i;
-    int j;
     int score;
     unsigned int c;
 
@@ -344,32 +343,32 @@ void C_00067DA0::func_00067DA0(void)
     n = (r10C->unk90 == 1) ? 3 : 2;
     if (f150 == 0) {
         if (f15C != 0) {
-            for (j = 0; j < n; j++) {
-                ((M_67DA0 *)arr[5 + j])->func_001B1980();
+            for (i = 0; i < n; i++) {
+                ((M_67DA0 *)arr[5 + i])->func_001B1980();
                 if (n == 3) {
                     fs[0] = 290.0f;
                 } else {
                     fs[0] = 320.0f;
                 }
-                if (j == f108) {
-                    ((M_67DA0 *)arr[5 + j])->func_001B2270(0xffbfa35a);
-                    ((M_67DA0 *)arr[5 + j])->func_001B19C0(0x140, (int)(fs[j] - D_00276DD4), 0);
-                    ((M_67DA0 *)arr[5 + j])->func_001B1860(0, -1.0f, 0xff, 1.0f, 0, 0, 0.0f, 0xff, 1.3f, 0, 0, 0.2f, 0);
-                } else if (j == f158) {
-                    ((M_67DA0 *)arr[5 + j])->func_001B2270(0xffcccccc);
-                    ((M_67DA0 *)arr[5 + j])->func_001B19C0(0x140, (int)fs[j], 0);
-                    ((M_67DA0 *)arr[5 + j])->func_001B1860(0, -1.0f, 0xff, 1.3f, 0, 0, 0.0f, 0xff, 1.0f, 0, 0, 0.2f, 0);
+                if (i == f108) {
+                    ((M_67DA0 *)arr[5 + i])->func_001B2270(0xffbfa35a);
+                    ((M_67DA0 *)arr[5 + i])->func_001B19C0(0x140, (int)(fs[i] - D_00276DD4), 0);
+                    ((M_67DA0 *)arr[5 + i])->func_001B1860(0, -1.0f, 0xff, 1.0f, 0, 0, 0.0f, 0xff, 1.3f, 0, 0, 0.2f, 0);
+                } else if (i == f158) {
+                    ((M_67DA0 *)arr[5 + i])->func_001B2270(0xffcccccc);
+                    ((M_67DA0 *)arr[5 + i])->func_001B19C0(0x140, (int)fs[i], 0);
+                    ((M_67DA0 *)arr[5 + i])->func_001B1860(0, -1.0f, 0xff, 1.3f, 0, 0, 0.0f, 0xff, 1.0f, 0, 0, 0.2f, 0);
                 } else {
-                    ((M_67DA0 *)arr[5 + j])->func_001B2270(0xffcccccc);
-                    ((M_67DA0 *)arr[5 + j])->func_001B19C0(0x140, (int)fs[j], 0);
-                    ((M_67DA0 *)arr[5 + j])->func_001B1860(0, -1.0f, 0xff, 1.0f, 0, 0, -1.0f, 0xff, 1.0f, 0, 0, 0.0f, 0);
+                    ((M_67DA0 *)arr[5 + i])->func_001B2270(0xffcccccc);
+                    ((M_67DA0 *)arr[5 + i])->func_001B19C0(0x140, (int)fs[i], 0);
+                    ((M_67DA0 *)arr[5 + i])->func_001B1860(0, -1.0f, 0xff, 1.0f, 0, 0, -1.0f, 0xff, 1.0f, 0, 0, 0.0f, 0);
                 }
             }
             f15C = 0;
         }
     } else {
-        for (j = 0; j < n; j++) {
-            ((M_67DA0 *)arr[5 + j])->func_001B1980();
+        for (i = 0; i < n; i++) {
+            ((M_67DA0 *)arr[5 + i])->func_001B1980();
         }
         t14C->func_001D6600();
     }

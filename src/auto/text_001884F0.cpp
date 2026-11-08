@@ -425,7 +425,7 @@ void C_00188700::func_001888F0(void)
     } else {
         q = 0;
     }
-    *(volatile int *)&unkC = (int)q;
+    unkC = (int)q;
     q->v0();
 }
 

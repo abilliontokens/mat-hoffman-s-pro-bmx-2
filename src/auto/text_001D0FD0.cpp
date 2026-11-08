@@ -289,8 +289,8 @@ int XboxGame::func_001D1060(void)
     D_0020C728 = 2;
     func_001FD020(&D_0004037C, 0x1d01);
     for (i = 0; i < *(unsigned int *)((char *)D_002F07B8 + 0x108); i++) {
-        D_0020C6DC |= 1 << i;
         ((volatile int *)&D_0020C6E4)[i * 0x20 - 1] = 3;
+        D_0020C6DC |= 1 << i;
         ((volatile int *)&D_0020C6E4)[i * 0x20] = 3;
         ((volatile int *)&D_0020C6E4)[i * 0x20 + 1] = 3;
         func_00200390(i, 0);
@@ -511,8 +511,8 @@ int S_15D0_Pad::func_001D15D0(float dt)
                 mask <<= 1;
             }
         }
-        f6BC = st.buttons;
         axis[0] = st.lx * D_00287B68 + D_00278650;
+        f6BC = st.buttons;
         axis[1] = D_00278784 - (st.ly * D_00287B68 + D_00278650);
         axis[2] = st.rx * D_00287B68 + D_00278650;
         axis[5] = D_00278784 - (st.ry * D_00287B68 + D_00278650);
@@ -523,8 +523,8 @@ int S_15D0_Pad::func_001D15D0(float dt)
                 v = axis[i];
             func_0015AFC0(i, v, 256.0f);
         }
-        changedLeft = 0;
         changedRight = 0;
+        changedLeft = 0;
         if (f6D8 != 0) {
             f6C4 -= dt;
             if (f6C4 <= D_00275544) {
@@ -534,7 +534,7 @@ int S_15D0_Pad::func_001D15D0(float dt)
                 f6C4 = 0.0f;
             }
         } else if (f6C4 > D_00275544) {
-            rumble.left = (unsigned short)(int)(f6CC * D_00278784);
+            rumble.left = (unsigned short)(int)((double)f6CC * D_00278784);
             changedLeft = 1;
             f6D8 = 1;
         }
@@ -547,7 +547,7 @@ int S_15D0_Pad::func_001D15D0(float dt)
                 f6C8 = 0.0f;
             }
         } else if (f6C8 > D_00275544) {
-            rumble.right = (unsigned short)(int)(f6D0 * D_00278784);
+            rumble.right = (unsigned short)(int)((double)f6D0 * D_00278784);
             changedRight = 1;
             f6DC = 1;
         }

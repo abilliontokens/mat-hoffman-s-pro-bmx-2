@@ -27,8 +27,9 @@
   ],
   "rebuild": {
     "identical": true,
-    "detail": "identical: the whole program (2,919,503 bytes); its 6,827 functions (2,488,614 bytes of code), 0 of them from C",
-    "what": "The game's program, rebuilt from the project,"
+    "detail": "identical: the whole program (2,919,503 bytes); its 6,821 functions (2,488,427 bytes of code), 3,969 of them from C",
+    "what": "The game's program, rebuilt from the project,",
+    "t": 1794010125.413564
   },
   "ltcg_detected": {
     "ltcg": false,

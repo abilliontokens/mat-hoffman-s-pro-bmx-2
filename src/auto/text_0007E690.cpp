@@ -186,6 +186,23 @@ struct C_0007E690 {
     undefined4 func_0007E690(void);
 };
 
+undefined4 C_0007E690::func_0007E690(void)
+{
+ if(D_002A8490->f274<D_002A8490->f270-1)return 1;
+ C_12B2B0 *view=(C_12B2B0*)D_002EFDB8->f4;
+ C_Rect24 rect,saved;
+ if(D_002A8490->f270>1){rect=view->rect;rect.x=0;rect.y=0;rect.w=640;rect.h=448;view->func_0012B2B0(&rect,&saved);}
+ func_00072330();
+ if(fA8 && fB4>=D_00275460){
+  if(D_002A8490->f2e0->f2fc->func_00094A00())D_002A8490->f2e0->f2fc->func_00094960(0);
+  if(D_002A8490->f2e0->f2fc->func_000952A0(f88)&&!D_002A8490->f2e0->f2fc->func_00095250(f88))D_002A8490->f2e0->f2fc->func_00095A00(f88);
+  fA8=0;
+ }
+ func_000724E0();func_0007E2B0();func_00157960();
+ if(D_002A8490->f270>1)view->func_0012B2B0(&saved,0);
+ return 1;
+}
+
 undefined4 C_0007EAE0::func_0007EAE0(byte param_1)
 {
   int func_00072D30(...);

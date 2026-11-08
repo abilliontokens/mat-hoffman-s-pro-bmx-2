@@ -232,15 +232,13 @@ float func_00011000(float x)
 }
 float func_00011020(float a, float b)
 {
-    const __m128 &x = *(const __m128 *)&a;
-    const __m128 &y = *(const __m128 *)&b;
-    return _mm_min_ss(x, y).m128_f32[0];
+    float r = AsmMinF(a, b);
+    return r;
 }
 
 float func_00011040(float a, float b)
 {
-    __m128 r = _mm_max_ss(*(__m128 *)&a, *(__m128 *)&b);
-    return *(float *)&r;
+    return AsmMaxF(*(float *)&a, *(float *)&b);
 }
 
 C_00011060* C_00011060::func_00011060(void) {
@@ -511,7 +509,7 @@ void C_00011BE0::func_00011BE0(int * volatile index, float * volatile distance) 
         t[0] = sqrtf(t[1]);
         int *ix = index;
         float *dp;
-        if (*ix == -1 || (dp = distance, _ReadWriteBarrier(), *dp > t[0])) { *distance = (*ix = i, t[0]); }
+        if (*ix == -1 || (dp = distance, _ReadWriteBarrier(), *dp > t[0])) { *distance = (*ix = (unsigned short)i, t[0]); }
     }
 }
 int C_00011D30::func_00011D30(void)
@@ -550,11 +548,13 @@ C_00017680_Vec C_00011E30::func_00011E30(void)
  if(actor->state->fBC) a=*D_002B9120->list->actors[L.idx]->mid->f4->func_00199B00(&tmp,0);
  else a=actor->pos;
  int c=((C_000115F0*)this)->func_000115F0((float*)&a,33.0f,f3B8,1);
- ret=((C_00017680_Vec*)D_002B9120->paths[f3B4]->pts)[c];
  L.cur=c;
- f3C->f4->func_00199600(ret); f3B0=L.cur;
+ ret=((C_00017680_Vec*)D_002B9120->paths[f3B4]->pts)[c];
  }
- } else ret=pos;
+ f3C->f4->func_00199600(ret);
+ f3B0=L.cur;
+ }
+ else ret=pos;
  return ret;
 }
 

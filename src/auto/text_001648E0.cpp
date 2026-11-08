@@ -64,12 +64,13 @@ void C_001648E0::func_001648E0(C_001648E0_Arg *a1, float time, int transform, in
 {
  Vec4_165EF0 pos;
  int i, idx;
+ float t;
  f18 = 0;
- time *= a1->f38;
+ t = time * a1->f38;
  for (i=0;i<a1->f20;i++) {
   if (mask && mask[a1->f18[i]->f4]) continue;
   Vec4_165EF0 quat;
-  a1->f18[i]->v2(time,&quat);
+  a1->f18[i]->v2(t,&quat);
   if (transform) {
    func_001641B0((void *)fC,&quat);
    idx=f1F0[a1->f18[i]->f4];
@@ -84,7 +85,7 @@ void C_001648E0::func_001648E0(C_001648E0_Arg *a1, float time, int transform, in
  for (i=0;i<a1->f1C;i++) {
   if (mask && mask[a1->f14[i]->f4]) continue;
   pos.x=pos.y=pos.z=0.0f; pos.w=1.0f;
-  a1->f14[i]->v3(time,&pos);
+  a1->f14[i]->v3(t,&pos);
   if (transform) {
    func_001640D0(f4,f1EC[f1F0[a1->f14[i]->f4]].f34->f170,(void *)fC,&pos);
    idx=f1F0[a1->f14[i]->f4];
@@ -93,7 +94,6 @@ void C_001648E0::func_001648E0(C_001648E0_Arg *a1, float time, int transform, in
    Vec4_165EF0 old;
    old = f204[idx];
    pos = (old-pos)*blend+pos;
-
   }
   f1EC[idx].f34->func_00199650(&pos);
  }
@@ -157,25 +157,26 @@ void C_001648E0::func_00164BA0(C_001648E0_Arg *a, C_001648E0_Arg *b, float time,
 void C_001648E0::func_00164F80(C_001648E0_Arg *a, C_001648E0_Arg *b, float s0, float s1, float t, int flag, int *mask, float w)
 {
     int i, idx;
-    float k0, k1;
+    float k[2];
     f18 = 0;
-    k1 = s0 * a->f38;
-    k0 = s1 * b->f38;
+    k[1] = s0 * a->f38;
+    k[0] = s1 * b->f38;
     for (i = 0; i < a->f20; i++) {
         Vec4_165EF0 v[2];
-        a->f18[i]->v2(k1, &v[0]);
-        b->f18[i]->v2(k0, &v[1]);
+        a->f18[i]->v2(k[1], &v[0]);
+        b->f18[i]->v2(k[0], &v[1]);
         if (mask && mask[b->f18[i]->f4]) {
             v[1] = v[0];
         } else {
             func_0015C7D0(&v[1], &v[0], &v[1], t);
         }
         if (flag) {
-            float y = v[1].y, z = v[1].z, ww = v[1].w;
+            float y = v[1].y;
+            float ww = v[1].w;
             if (fC == 0) y = -y;
-            else if (fC == 1) z = -z;
+            else if (fC == 1) v[1].z = -v[1].z;
             else if (fC == 2) ww = -ww;
-            v[1].y = -y; v[1].z = -z; v[1].w = -ww;
+            v[1].y = -y; v[1].z = -v[1].z; v[1].w = -ww;
             idx = f1F0[a->f18[i]->f4];
         } else {
             idx = a->f18[i]->f4;
@@ -190,8 +191,8 @@ void C_001648E0::func_00164F80(C_001648E0_Arg *a, C_001648E0_Arg *b, float s0, f
         Vec4_165EF0 v[2];
         v[0].x = v[0].y = v[0].z = 0.0f; v[0].w = 1.0f;
         v[1].x = v[1].y = v[1].z = 0.0f; v[1].w = 1.0f;
-        a->f14[i]->v3(k1, &v[0]);
-        b->f14[i]->v3(k0, &v[1]);
+        a->f14[i]->v3(k[1], &v[0]);
+        b->f14[i]->v3(k[0], &v[1]);
         if (!(mask && mask[b->f14[i]->f4]))
             v[0] = v[1] - (v[1] - v[0]) * t;
         if (flag) {

@@ -259,7 +259,7 @@ Ret_001CA480 WaterDisplacement::func_001CA480(Plane_001CA480 *plane, void *arg1)
     Vec3_001CA480 V = *(Vec3_001CA480 *)&unk54 * tr;
     Vec3_001CA480 t;
     float s;
-    float l1, l2, l3, l4;
+    float l1, l2;
 
     t = U + P;
     B[0] = Vec4_001CA480(t.x, t.y, t.z, 1.0f);
@@ -302,7 +302,7 @@ Ret_001CA480 WaterDisplacement::func_001CA480(Plane_001CA480 *plane, void *arg1)
         Vec3_001CA480 e2 = *(Vec3_001CA480 *)&A[2] - cam->pos;
         l2 = AsmSqrtF(e2.z * e2.z + e2.y * e2.y + e2.x * e2.x);
         l1 = AsmSqrtF(e1.z * e1.z + e1.y * e1.y + e1.x * e1.x);
-        Vec3_001CA480 w = V2 * (l2 / l1);
+        Vec4_001CA480 w = Vec4_001CA480(V2 * (l2 / l1), 1.0f);
         *(Vec4_001CA480 *)&unk74[flip != 0] = Vec4_001CA480(A[2].x - w.x, A[2].y - w.y, A[2].z - w.z, 1.0f);
         *(Vec4_001CA480 *)&unk74[(flip != 0) + 2] = Vec4_001CA480(A[2].x + w.x, A[2].y + w.y, A[2].z + w.z, 1.0f);
         ret = 1;
@@ -310,9 +310,9 @@ Ret_001CA480 WaterDisplacement::func_001CA480(Plane_001CA480 *plane, void *arg1)
     if (r4) {
         Vec3_001CA480 e1 = C1 - cam->pos;
         Vec3_001CA480 e2 = *(Vec3_001CA480 *)&A[3] - cam->pos;
-        l4 = AsmSqrtF(e2.z * e2.z + e2.y * e2.y + e2.x * e2.x);
-        l3 = AsmSqrtF(e1.z * e1.z + e1.y * e1.y + e1.x * e1.x);
-        Vec3_001CA480 w = V2 * (l4 / l3);
+        l2 = AsmSqrtF(e2.z * e2.z + e2.y * e2.y + e2.x * e2.x);
+        l1 = AsmSqrtF(e1.z * e1.z + e1.y * e1.y + e1.x * e1.x);
+        Vec4_001CA480 w = Vec4_001CA480(V2 * (l2 / l1), 1.0f);
         *(Vec4_001CA480 *)&unk74[!flip] = Vec4_001CA480(A[3].x - w.x, A[3].y - w.y, A[3].z - w.z, 1.0f);
         *(Vec4_001CA480 *)&unk74[3 - (flip != 0)] = Vec4_001CA480(A[3].x + w.x, A[3].y + w.y, A[3].z + w.z, 1.0f);
         ret = 1;

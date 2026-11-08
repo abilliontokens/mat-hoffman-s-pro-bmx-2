@@ -225,9 +225,8 @@ BmxMenu* BmxMenu::func_0007CA00(void* a0)
     s138->func_001D5810(D_00278600, 0, 0, 0);
     {
         BmxSprite *p = s138;
-        unsigned int c;
+        unsigned int c = p->color;
         p->flags |= 2;
-        c = p->color;
         p->color = c & 0xff000000;
     }
     {

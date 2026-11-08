@@ -353,6 +353,103 @@ void C_0013ECF0::func_0013ECF0(int a1, int a2, C_0013ECF0_Arg *a3, int a4, int a
     f21D0->func_00149310((int)a3, a4, a5, 0);
 }
 
+void C_0013ED30::func_0013ED30(void)
+{
+    float *o = (float *)D_002EFDB8->f4;
+    func_0001E960(o[0x188 / 4] * o[0x188 / 4] + o[0x180 / 4] * o[0x180 / 4]);
+    float b[4], a[4], c[4];
+    a[0] = 0.0f; a[1] = 0.0f; a[2] = 0.0f;
+    b[0] = 0.0f; b[1] = 0.0f; b[2] = 0.0f;
+    c[0] = 0.0f; c[1] = 0.0f; c[2] = 0.0f;
+    a[3] = 1.0f; b[3] = 1.0f; c[3] = 1.0f;
+    a[0] = -o[0x188 / 4];
+    a[1] = 0.0f;
+    a[2] = o[0x180 / 4];
+    b[0] = o[0x188 / 4];
+    b[1] = 0.0f;
+    b[2] = -o[0x180 / 4];
+    char *g = (char *)D_002E2930;
+    c[0] = -o[0x180 / 4];
+    c[1] = 0.0f;
+    c[2] = -o[0x188 / 4];
+    a[1] = 0.0f;
+    b[1] = 0.0f;
+    float v[4];
+    v[2] = 0.0f; v[1] = 0.0f; v[0] = 0.0f; v[3] = 1.0f;
+    float fx = c[0] * D_002756DC;
+    float fz = c[2] * D_002756DC;
+    a[0] -= fx;
+    a[2] -= fz;
+    b[0] -= fx;
+    b[2] -= fz;
+    v[0] = (*(float **)(g + 0x34))[0x6c / 4];
+    v[1] = 0.0f;
+    v[2] = (*(float **)(g + 0x34))[0x74 / 4];
+    func_0013E920((V4_0013ED30 *)v, (V4_0013ED30 *)v);
+    func_0013E920((V4_0013ED30 *)a, (V4_0013ED30 *)a);
+    func_0013E920((V4_0013ED30 *)b, (V4_0013ED30 *)b);
+    func_0013E920((V4_0013ED30 *)c, (V4_0013ED30 *)c);
+    char *g2 = (char *)D_002E2930;
+    float col[4];
+    col[0] = ((float *)(g2 + 0x40))[0];
+    col[1] = ((float *)(g2 + 0x40))[1];
+    col[2] = ((float *)(g2 + 0x40))[2];
+    col[3] = ((float *)(g2 + 0x40))[3];
+    unsigned int base = (((unsigned char)func_001E8858(col[0] * D_0027A060) << 8)
+        | (unsigned char)func_001E8858(col[1] * D_0027A060)) << 8;
+    base |= func_001E8858(col[2] * D_0027A060) & 0xff;
+    float *l = *(float **)(g2 + 0x34);
+    float L[3];
+    L[0] = l[0x30 / 4];
+    L[1] = l[0x34 / 4];
+    L[2] = l[0x38 / 4];
+    unsigned int ca, cb, cc;
+    float d, r, gg, bb;
+    d = -(v[1] * a[1] + v[0] * a[0] + v[2] * a[2]);
+    if (d > D_00275544) {
+        r = MinF_0013ED30(d * L[0] + col[0], 1.0f);
+        gg = MinF_0013ED30(d * L[1] + col[1], 1.0f);
+        bb = MinF_0013ED30(d * L[2] + col[2], 1.0f);
+        ca = (((unsigned char)func_001E8858(r * D_0027A060) << 8)
+            | (unsigned char)func_001E8858(gg * D_0027A060)) << 8;
+        ca |= func_001E8858(bb * D_0027A060) & 0xff;
+    } else {
+        ca = base;
+    }
+    d = -(v[1] * c[1] + v[0] * c[0] + v[2] * c[2]);
+    if (d > D_00275544) {
+        r = MinF_0013ED30(d * L[0] + col[0], 1.0f);
+        gg = MinF_0013ED30(d * L[1] + col[1], 1.0f);
+        bb = MinF_0013ED30(d * L[2] + col[2], 1.0f);
+        cc = (((unsigned char)func_001E8858(r * D_0027A060) << 8)
+            | (unsigned char)func_001E8858(gg * D_0027A060)) << 8;
+        cc |= func_001E8858(bb * D_0027A060) & 0xff;
+    } else {
+        cc = base;
+    }
+    d = -(v[1] * b[1] + v[0] * b[0] + v[2] * b[2]);
+    if (d > D_00275544) {
+        r = MinF_0013ED30(d * L[0] + col[0], 1.0f);
+        gg = MinF_0013ED30(d * L[1] + col[1], 1.0f);
+        bb = MinF_0013ED30(d * L[2] + col[2], 1.0f);
+        cb = (((unsigned char)func_001E8858(r * D_0027A060) << 8)
+            | (unsigned char)func_001E8858(gg * D_0027A060)) << 8;
+        cb |= func_001E8858(bb * D_0027A060) & 0xff;
+    } else {
+        cb = base;
+    }
+    f21F8++;
+    if (f21F8 >= 3)
+        f21F8 = 0;
+    int *p = func_001FF410(f21EC[f21F8], 0);
+    p[5] = cc;
+    p[0] = cc;
+    p[4] = cb;
+    p[3] = cb;
+    p[2] = ca;
+    p[1] = ca;
+}
+
 void __stdcall func_001FEE00(int a, int b, int c);
 void __stdcall func_001FEE00(int, int, int);
 void func_0013F2F0(void)

@@ -381,36 +381,32 @@ undefined4 C_001A3D80::func_001A3D80(byte param_1)
 int C_001A4590::func_001A3DA0(int volatile a0)
 {
     struct {
-        char buf2[0x104];
-        char buf[0x104];
-        char buf3[0x104];
-    } s;
-    C_00168280 obj;
-    struct {
         C_001A4590 * volatile self;
         union {
-            volatile int len;
+            int len;
             int i;
         };
         int b;
         int c;
         int a;
         int d;
-        volatile int limit;
-        volatile int cnt;
+        int limit;
+        int cnt;
     } t;
+    struct {
+        char buf2[0x104];
+        char buf[0x104];
+        char buf3[0x104];
+    } s;
+    C_00168280 obj;
     int j;
-    int ma;
-    int mb;
     int n;
 
     t.self = this;
     obj.func_00168280();
     t.len = strlen((const char *)a0);
     t.limit = 0x103;
-    ma = t.limit;
-    mb = t.len;
-    t.cnt = ma > mb ? mb : ma;
+    t.cnt = AsmMinI(t.limit, t.len);
     n = t.cnt;
     func_001E8920(t.self->name9c, (const char *)a0, n);
     t.self->name9c[n] = 0;
@@ -670,9 +666,9 @@ void C_001A4790::func_001A4790(void *a1, u32 flags, u32 *a3, u32 *a4, int a5, in
     if (a1 == 0) {
         a1 = D_002EFE78;
     }
-    d = (V4_001A3BF0 *)&vec0[0];
     f2C = a1;
     f30 = (Mat_001A4790 *)a1;
+    d = (V4_001A3BF0 *)&vec0[0];
     *d = *(V4_001A3BF0 *)a3;
     d = (V4_001A3BF0 *)&vec10[0];
     *d = *(V4_001A3BF0 *)a4;

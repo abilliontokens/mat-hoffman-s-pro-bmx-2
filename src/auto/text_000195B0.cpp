@@ -387,8 +387,7 @@ int TikiEvadeState::func_000195B0(float dt)
             p = self;
             if (p->f10 > p->f14) {
                 p->f10 = p->f14;
-                p = self;
-                p->f8->func_00017700();
+                self->f8->func_00017700();
                 p = self;
                 o = p->f8;
                 if (o->f4d4 <= 0) o->func_00017D00();
@@ -414,8 +413,7 @@ int TikiEvadeState::func_000195B0(float dt)
         float dy = v->y - o->f50c;
         float dz = v->z - o->f510;
         float square = dz*dz + dy*dy + dx*dx;
-        float dist;
-        _mm_store_ss(&dist, _mm_sqrt_ss(*(__m128 *)&square));
+        float dist = AsmSqrtF(square);
         p = self;
         if ((dist < D_00275804 || dist <= p->f8->f49c[p->f8->f4dc].f0) && p->f8->f4d4 > 0) {
             int r = p->f8->func_000192D0(1,1);
@@ -484,90 +482,117 @@ void C_00019830::func_00019830(void)
 
 C_198E0 *C_198E0::func_000198E0(S_198E0_Stream * volatile stream, S_198E0_Cam *cam)
 {
+    int len, lim, res;
     struct { char save3[0x104]; char save1[0x104]; char save2[0x104]; char bufA[0x104]; char bufB[0x104]; } L;
     S_198E0_Vec4 v;
-    struct { C_198E0 * volatile self; volatile int s0; volatile int s1; volatile int s2; } t;
     void *mem;
-    C_198E0 *p;
 
-    t.self = this;
     stream->func_00168BE0(D_00275AE4, D_00275630, L.bufA, 0x104);
     stream->func_00168BE0(D_00275AE0, D_00275630, L.bufB, 0x104);
-    stream->func_00168CB0(D_00275AD4, &D_002A0718, &t.self->f4F8);
+    stream->func_00168CB0(D_00275AD4, &D_002A0718, &this->f4F8);
     stream->func_00168CB0(D_00275AC8, &D_002A0748, &v);
-    t.self->func_00018D40(stream);
-    t.self->f398 = cam;
-    CopyPathV_198E0(L.save1, D_002A5EA0, t.s0, t.s1, t.s2);
-    CopyPathV_198E0(L.save2, D_002A4C10, t.s2, t.s1, t.s0);
-    CopyPathV_198E0(L.save3, D_002A60B0, t.s2, t.s1, t.s0);
+    this->func_00018D40(stream);
+    this->f398 = cam;
+    {
+        len = strlen(D_002A5EA0);
+        lim = 0x103;
+        res = AsmMinI(lim, len);
+        func_001E8920(L.save1, D_002A5EA0, res);
+        L.save1[res] = 0;
+    }
+    {
+        int len = strlen(D_002A4C10);
+        int lim = 0x103;
+        int n = AsmMinI(lim, len);
+        func_001E8920(L.save2, D_002A4C10, n);
+        L.save2[n] = 0;
+    }
+    {
+        int len = strlen(D_002A60B0);
+        int lim = 0x103;
+        int n = AsmMinI(lim, len);
+        func_001E8920(L.save3, D_002A60B0, n);
+        L.save3[n] = 0;
+    }
     func_001ADCC0(D_002A5EA0, 0x104, D_00275678, D_002A5870, D_002A45E0);
     func_001ADCC0(D_002A4C10, 0x104, D_00275678, D_002A5870, D_002A45E0);
     func_001ADCC0(D_002A60B0, 0x104, D_00275678, D_002A5870, D_002A5FA8);
-    t.self->func_001C76B0(L.bufA, 0, &t.self->f4F8, 0, 0, D_002A0728, D_002A0728);
-    t.self->f3C->f4->func_00199110(0, &v, &D_002A0738, 0, 1, 0);
+    this->func_001C76B0(L.bufA, 0, &this->f4F8, 0, 0, D_002A0728, D_002A0728);
+    this->f3C->f4->func_00199110(0, &v, &D_002A0738, 0, 1, 0);
     mem = func_001E8A44(0x1b0);
-    t.self->f4A0 = mem ? ((S_198E0_Obj *)mem)->func_0019DA80(1) : 0;
-    t.self->f4A0->func_00129920(5);
-    t.self->f4A0->f68 = D_002BA148;
-    t.self->f4A0->func_0019F9B0(t.self->f3C->f4, L.bufB);
-    p = t.self;
-    p->f4A0->f60 = p;
-    p = t.self;
-    p->f4A0->f64 = p;
+    this->f4A0 = mem ? ((S_198E0_Obj *)mem)->func_0019DA80(1) : 0;
+    this->f4A0->func_00129920(5);
+    this->f4A0->f68 = D_002BA148;
+    this->f4A0->func_0019F9B0(this->f3C->f4, L.bufB);
+    this->f4A0->f60 = this;
+    this->f4A0->f64 = this;
     mem = func_001E8A44(0x6c);
-    t.self->f384 = mem ? ((S_198E0_Machine *)mem)->func_001AC080() : 0;
+    this->f384 = mem ? ((S_198E0_Machine *)mem)->func_001AC080() : 0;
     mem = func_001E8A44(0x10);
-    t.self->f388 = mem ? InitA_198E0(mem) : 0;
-    p = t.self;
-    p->f388->owner = p;
+    this->f388 = mem ? InitA_198E0(mem) : 0;
+    this->f388->owner = this;
     mem = func_001E8A44(0x1c);
-    t.self->f38C = mem ? InitB_198E0(mem) : 0;
-    p = t.self;
-    p->f38C->owner = p;
+    this->f38C = mem ? InitB_198E0(mem) : 0;
+    this->f38C->owner = this;
     mem = func_001E8A44(0x18);
-    t.self->f390 = mem ? InitC_198E0(mem) : 0;
-    p = t.self;
-    p->f390->owner = p;
+    this->f390 = mem ? InitC_198E0(mem) : 0;
+    this->f390->owner = this;
     mem = func_001E8A44(0x10);
-    t.self->f394 = mem ? InitD_198E0(mem) : 0;
-    p = t.self;
-    p->f394->owner = p;
-    p = t.self;
-    p->f384->func_001AC0A0(p->f388, D_00275AC0);
-    t.self->f730 = t.self->func_001C6E30(D_00275AB4);
-    t.self->fC0[0].f54 = 0;
-    t.self->f74C = t.self->func_001C6E30(D_00275AA8);
-    t.self->fC0[7].f54 = 0;
-    t.self->f750 = t.self->func_001C6E30(D_00275A9C);
-    t.self->fC0[8].f54 = 0;
-    t.self->f73C = t.self->func_001C6E30(D_00275A8C);
-    t.self->fC0[3].f54 = 0;
-    t.self->f744 = t.self->func_001C6E30(D_00275A80);
-    t.self->fC0[5].f54 = 0;
-    t.self->f734 = t.self->func_001C6E30(D_00275A6C);
-    t.self->fC0[1].f54 = 0;
-    t.self->f754 = t.self->func_001C6E30(D_00275A54);
-    t.self->fC0[9].f54 = 0;
-    t.self->f758 = t.self->func_001C6E30(D_00275A3C);
-    t.self->fC0[10].f54 = 0;
-    t.self->f75C = t.self->func_001C6E30(D_00275A24);
-    t.self->fC0[11].f54 = 0;
-    t.self->f748 = t.self->func_001C6E30(D_00275A18);
-    t.self->fC0[6].f54 = 1;
-    t.self->f740 = t.self->func_001C6E30(D_00275A04);
-    t.self->fC0[4].f54 = 1;
-    t.self->f738 = t.self->func_001C6E30(D_002759F0);
-    t.self->fC0[2].f54 = 1;
-    t.self->f760 = t.self->func_001C6E30(D_002759D4);
-    t.self->fC0[12].f54 = 1;
-    t.self->f764 = t.self->func_001C6E30(D_002759BC);
-    t.self->fC0[13].f54 = 1;
-    t.self->f768 = t.self->func_001C6E30(D_002759A0);
-    t.self->fC0[14].f54 = 1;
-    CopyPathV_198E0(D_002A5EA0, L.save1, t.s2, t.s1, t.s0);
-    CopyPathV_198E0(D_002A4C10, L.save2, t.s2, t.s1, t.s0);
-    CopyPathV_198E0(D_002A60B0, L.save3, t.s2, t.s1, t.s0);
-    return t.self;
+    this->f394 = mem ? InitD_198E0(mem) : 0;
+    this->f394->owner = this;
+    this->f384->func_001AC0A0(this->f388, D_00275AC0);
+    this->f730 = this->func_001C6E30(D_00275AB4);
+    this->fC0[0].f54 = 0;
+    this->f74C = this->func_001C6E30(D_00275AA8);
+    this->fC0[7].f54 = 0;
+    this->f750 = this->func_001C6E30(D_00275A9C);
+    this->fC0[8].f54 = 0;
+    this->f73C = this->func_001C6E30(D_00275A8C);
+    this->fC0[3].f54 = 0;
+    this->f744 = this->func_001C6E30(D_00275A80);
+    this->fC0[5].f54 = 0;
+    this->f734 = this->func_001C6E30(D_00275A6C);
+    this->fC0[1].f54 = 0;
+    this->f754 = this->func_001C6E30(D_00275A54);
+    this->fC0[9].f54 = 0;
+    this->f758 = this->func_001C6E30(D_00275A3C);
+    this->fC0[10].f54 = 0;
+    this->f75C = this->func_001C6E30(D_00275A24);
+    this->fC0[11].f54 = 0;
+    this->f748 = this->func_001C6E30(D_00275A18);
+    this->fC0[6].f54 = 1;
+    this->f740 = this->func_001C6E30(D_00275A04);
+    this->fC0[4].f54 = 1;
+    this->f738 = this->func_001C6E30(D_002759F0);
+    this->fC0[2].f54 = 1;
+    this->f760 = this->func_001C6E30(D_002759D4);
+    this->fC0[12].f54 = 1;
+    this->f764 = this->func_001C6E30(D_002759BC);
+    this->fC0[13].f54 = 1;
+    this->f768 = this->func_001C6E30(D_002759A0);
+    this->fC0[14].f54 = 1;
+    {
+        int len = strlen(L.save1);
+        int lim = 0x103;
+        int n = AsmMinI(lim, len);
+        func_001E8920(D_002A5EA0, L.save1, n);
+        D_002A5EA0[n] = 0;
+    }
+    {
+        int len = strlen(L.save2);
+        int lim = 0x103;
+        int n = AsmMinI(lim, len);
+        func_001E8920(D_002A4C10, L.save2, n);
+        D_002A4C10[n] = 0;
+    }
+    {
+        int len = strlen(L.save3);
+        int lim = 0x103;
+        int n = AsmMinI(lim, len);
+        func_001E8920(D_002A60B0, L.save3, n);
+        D_002A60B0[n] = 0;
+    }
+    return this;
 }
 
 void S_1A060_Owner::func_0001A060(float *pos, int damage)
@@ -581,13 +606,11 @@ void S_1A060_Owner::func_0001A060(float *pos, int damage)
     for (int i = 0; i < list->f190; i++) {
         if (list->f194[i] != 0) {
             S_1A060_Node *n = list->f1a0[i];
-            float px = n->f13c;
-            float py = n->f14c;
-            float pz = n->f15c;
-            float dx = pos[0] - px;
-            float dy = pos[1] - py;
-            float dz = pos[2] - pz;
-            float d = AsmSqrtF(dz * dz + dy * dy + dx * dx);
+            float dx = pos[0] - n->f13c;
+            float dy = pos[1] - n->f14c;
+            float dz = pos[2] - n->f15c;
+            float sq = dz * dz + dy * dy + dx * dx;
+            float d = AsmSqrtF(sq);
             if (d < bestDist) {
                 bestDist = d;
                 best = i;
@@ -605,13 +628,13 @@ void S_1A060_Owner::func_0001A060(float *pos, int damage)
     }
     if (fc4 != f73c && fc4 != f734 && fc4 != f738) {
         S_1A060_Vec dir;
-        S_1A060_Vec up = { 0.0f, 0.0f, 0.0f, 1.0f };
         S_1A060_Vec fwd = { 0.0f, 0.0f, 0.0f, 1.0f };
+        S_1A060_Vec up = { 0.0f, 0.0f, 0.0f, 1.0f };
         S_1A060_Vec side = { 0.0f, 0.0f, 0.0f, 1.0f };
-        dir.w = 1.0f;
-        dir.x = pos[0] - f508;
-        dir.y = pos[1] - f50c;
         dir.z = pos[2] - f510;
+        dir.y = pos[1] - f50c;
+        dir.x = pos[0] - f508;
+        dir.w = 1.0f;
         func_00011170(&dir);
         f3c->f4->func_00197B40(&up, &fwd);
         func_00016DD0(&dir, &dir);
@@ -667,13 +690,13 @@ void C_1A400::func_0001A400(S_1A400_Arg *a, float t)
  else e->p->p->func_00199B00(&p, 0);
  q = *pa;
  pos = &q->p->x;
- float x = pos[0] - p.x, y = pos[1] - p.y, z = pos[2] - p.z;
- float square = z*z + y*y + x*x;
- float dist = AsmSqrtF(square);
- if (dist < D_002756C4) {
-  dist = D_0027599C - dist;
-  D_002B9120->p->func_00153D30((int)(dist*D_00275AEC));
-  D_002B9120->p->score += (int)(dist*D_00275AEC);
+ float dx = pos[0] - p.x, dy = pos[1] - p.y, dz = pos[2] - p.z;
+ float square = dz*dz + dy*dy + dx*dx;
+ float range = AsmSqrtF(square);
+ if (range < D_002756C4) {
+  range = D_0027599C - range;
+  D_002B9120->p->func_00153D30((int)(range*D_00275AEC));
+  D_002B9120->p->score += (int)(range*D_00275AEC);
   self->func_00017D20(50);
   hit = 1;
  }

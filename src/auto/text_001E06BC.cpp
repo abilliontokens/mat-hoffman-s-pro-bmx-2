@@ -200,9 +200,225 @@ int __stdcall func_001E06BC(u32 flags, void *base, u32 reserve, u32 commit, void
     return 1;
 }
 
-void *__stdcall func_001E0AE0(void *heap, unsigned int flags, unsigned int size)
+void *__stdcall func_001E0AE0(S_Heap *heapArg, u32 flagsArg, u32 sizeArg)
 {
-    if (size == 0) size = 1;
+    S_Heap *heap = heapArg;
+    u32 flags;
+    u32 allocSize;
+    u32 index;
+    u8 locked = 0;
+    S_HeapEntry *entry;
+    S_ListEntry *listHead;
+    u8 entryFlags;
+    void *result;
+
+    flags = flagsArg | heap->flags;
+    flagsArg = flags;
+    if (sizeArg == 0) {
+        sizeArg = 1;
+    }
+    allocSize = (sizeArg + 0x1f) & 0xfffffff0;
+    index = allocSize >> 4;
+    __try {
+        if (!(flags & 1)) {
+            RtlEnterCriticalSection(heap->lockVariable);
+            locked = 1;
+        }
+        if (index < 0x80) {
+            listHead = &heap->freeLists[index];
+            if (listHead->flink != listHead) {
+                entry = (S_HeapEntry *)((char *)listHead->blink - 8);
+                entryFlags = entry->flags;
+                {
+                    S_ListEntry *fl = entry->freeList.flink;
+                    S_ListEntry *bl = entry->freeList.blink;
+                    bl->flink = fl;
+                    fl->blink = bl;
+                    if (fl == bl) {
+                        u32 bit = entry->size;
+                        u32 byteIndex = bit >> 3;
+                        u32 mask = 1 << (bit & 7);
+                        heap->freeListsInUse[byteIndex] ^= (u8)mask;
+                    }
+                }
+                heap->totalFreeSize -= index;
+                entry->flags = (u8)((entryFlags & 0x10) | 1);
+                entry->unusedBytes = (u8)(allocSize - sizeArg);
+                entry->segmentIndex = 0;
+                result = entry + 1;
+                goto done;
+            }
+        } else {
+            u32 word = index >> 5;
+            u32 *inUse = (u32 *)&heap->freeListsInUse[word * 4];
+            u32 bits = *inUse & ~((1u << (index & 0x1f)) - 1);
+            inUse++;
+            switch (word) {
+            case 0:
+                if (bits != 0) {
+                    listHead = &heap->freeLists[0];
+                    break;
+                }
+                bits = *inUse++;
+                if (bits != 0) {
+                    listHead = &heap->freeLists[32];
+                    break;
+                }
+                bits = *inUse++;
+                if (bits != 0) {
+                    listHead = &heap->freeLists[64];
+                    break;
+                }
+                bits = *inUse++;
+                if (bits == 0) {
+                    goto bigBlock;
+                }
+                listHead = &heap->freeLists[96];
+                break;
+            case 1:
+                bits = *inUse++;
+                if (bits != 0) {
+                    listHead = &heap->freeLists[32];
+                    break;
+                }
+                bits = *inUse++;
+                if (bits != 0) {
+                    listHead = &heap->freeLists[64];
+                    break;
+                }
+                bits = *inUse++;
+                if (bits == 0) {
+                    goto bigBlock;
+                }
+                listHead = &heap->freeLists[96];
+                break;
+            case 2:
+                bits = *inUse++;
+                if (bits != 0) {
+                    listHead = &heap->freeLists[64];
+                    break;
+                }
+                bits = *inUse++;
+                if (bits == 0) {
+                    goto bigBlock;
+                }
+                listHead = &heap->freeLists[96];
+                break;
+            case 3:
+                bits = *inUse++;
+                if (bits == 0) {
+                    goto bigBlock;
+                }
+                listHead = &heap->freeLists[96];
+                break;
+            default:
+                goto bigBlock;
+            }
+            listHead = listHead + (signed char)func_001E2770(bits);
+            entry = (S_HeapEntry *)((char *)listHead->blink - 8);
+            {
+                S_ListEntry *fl = entry->freeList.flink;
+                S_ListEntry *bl = entry->freeList.blink;
+                bl->flink = fl;
+                fl->blink = bl;
+                if (fl == bl) {
+                    u32 bit = entry->size;
+                    u32 byteIndex = bit >> 3;
+                    u32 mask = 1 << (bit & 7);
+                    heap->freeListsInUse[byteIndex] ^= (u8)mask;
+                }
+            }
+            goto haveEntry;
+        }
+bigBlock:
+        if (index > heap->maximumAllocationSize) {
+            goto tooBig;
+        }
+        listHead = &heap->freeLists[0];
+        {
+            S_ListEntry *cur = listHead->blink;
+            while (listHead != cur) {
+                entry = (S_HeapEntry *)((char *)cur - 8);
+                if (entry->size >= index) {
+                    goto foundLarge;
+                }
+                cur = listHead->flink;
+                if (listHead == cur) {
+                    break;
+                }
+                for (;;) {
+                    entry = (S_HeapEntry *)((char *)cur - 8);
+                    if (entry->size >= index) {
+                        S_ListEntry *fl = entry->freeList.flink;
+                        S_ListEntry *bl = entry->freeList.blink;
+                        bl->flink = fl;
+                        fl->blink = bl;
+                        goto haveEntry;
+                    }
+                    cur = cur->flink;
+                }
+            }
+        }
+        entry = func_001E028B(heap, allocSize);
+        if (entry == 0) {
+            goto noMemory;
+        }
+        {
+            S_ListEntry *fl = entry->freeList.flink;
+            S_ListEntry *bl = entry->freeList.blink;
+            bl->flink = fl;
+            fl->blink = bl;
+        }
+foundLarge:
+haveEntry:
+        entryFlags = entry->flags;
+        heap->totalFreeSize -= entry->size;
+        entry->flags = 1;
+        {
+            u32 extra = entry->size - index;
+            entry->size = (u16)index;
+            entry->unusedBytes = (u8)(allocSize - sizeArg);
+            entry->segmentIndex = 0;
+            if (extra != 0) {
+                if (extra == 1) {
+                    entry->size = (u16)(entry->size + 1);
+                    entry->unusedBytes = (u8)(entry->unusedBytes + 0x10);
+                } else {
+                    S_HeapEntry *split = (S_HeapEntry *)((char *)entry + index * 16);
+                    split->flags = entryFlags;
+                    split->prevSize = (u16)index;
+                    split->unusedBytes = entry->unusedBytes;
+                    split->size = (u16)extra;
+                    if (entryFlags & 0x10) {
+                        func_001DFC2A(heap, split, extra);
+                        entryFlags = 0;
+                        if (split->flags & 0x10) {
+                            heap->lookaside[split->unusedBytes]->lastEntry = split;
+                        }
+                    } else {
+                        func_001DFC2A(heap, split, extra);
+                    }
+                }
+            }
+        }
+        if (entryFlags & 0x10) {
+            entry->flags |= 0x10;
+        }
+        result = entry + 1;
+done:
+        ;
+    } __finally {
+        if (locked) {
+            RtlLeaveCriticalSection(heap->lockVariable);
+            locked = 0;
+        }
+    }
+    if (flagsArg & 8) {
+        memset(result, 0, sizeArg);
+    }
+    return result;
+tooBig:
+noMemory:
     return 0;
 }
 

@@ -425,14 +425,12 @@ extern "C" char *strcpy(char*,const char*);
 #pragma intrinsic(strcpy)
 void C_14170::func_00014170(char *volatile name,unsigned char flag,int mode,int a,char *path,char *type,float value,int b,int c,int d,S_00014850_Vec4 *vec)
 {
- C_14170 *volatile self=this;
- self->f404=*vec; self->f3b8=c;self->f3e3=flag;
+ f404.x=vec->x; f404.y=vec->y; f404.z=vec->z; f404.w=vec->w;
+ f3b8=c; f3e3=flag;
  char save0[0x104],save1[0x104];
  int limit=0x103;
- int len=0;
- int n;
- len=(int)strlen(D_002A5EA0);n=AsmMinI(limit,len);func_001E8920(save0,D_002A5EA0,n);save0[n]=0;
- len=(int)strlen(D_002A60B0);n=AsmMinI(limit,len);func_001E8920(save1,D_002A60B0,n);save1[n]=0;
+ int n=AsmMinI(limit,(int)strlen(D_002A5EA0));func_001E8920(save0,D_002A5EA0,n);save0[n]=0;
+ n=AsmMinI(limit,(int)strlen(D_002A60B0));func_001E8920(save1,D_002A60B0,n);save1[n]=0;
  if(mode==1) {
  func_001ADCC0(D_002A5EA0,0x104,D_00275678,D_002A5348,D_002A45E0);
  func_001ADCC0(D_002A60B0,0x104,D_00275678,D_002A5348,D_002A5FA8);
@@ -440,35 +438,35 @@ void C_14170::func_00014170(char *volatile name,unsigned char flag,int mode,int 
  func_001ADCC0(D_002A5EA0,0x104,D_00275678,D_002A5870,D_002A45E0);
  func_001ADCC0(D_002A60B0,0x104,D_00275678,D_002A5870,D_002A5FA8);
  }
- self->func_001C76B0(a,d,vec,0,0,D_002A050C,D_002A050C);
- self->f3b4=b;self->f3b0=c;
- strcpy(self->f42c,name);
- self->f3cc=value+0.0f;
+ func_001C76B0(a,d,vec,0,0,D_002A050C,D_002A050C);
+ f3b4=b;f3b0=c;
+ strcpy(f42c,name);
+ f3cc=value+0.0f;
  Machine_14170 *machine=(Machine_14170*)func_001E8A44(0x6c);
- self->f384=machine?machine->func_001AC080():0;
- self->f388=Make_14170(0xc,&D_00275554,0);self->f388->owner=self;
- self->f38c=Make_14170(0xc,&D_00275564,5);self->f38c->owner=this;
- self->f390=Make_14170(0xc,&D_00275574,6);self->f390->owner=this;
- self->f398=Make_14170(0xc,&D_00275594,2);self->f398->owner=this;
- self->f394=Make_14170(0xc,&D_00275584,1);self->f394->owner=this;
+ f384=machine?machine->func_001AC080():0;
+ f388=Make_14170(0xc,&D_00275554,0);f388->owner=this;
+ f38c=Make_14170(0xc,&D_00275564,5);f38c->owner=this;
+ f390=Make_14170(0xc,&D_00275574,6);f390->owner=this;
+ f398=Make_14170(0xc,&D_00275594,2);f398->owner=this;
+ f394=Make_14170(0xc,&D_00275584,1);f394->owner=this;
  State_14170 *state=(State_14170*)func_001E8A44(0x20);
  if(state) {
  state->vtbl=&D_002755A4;state->vec.z=0;state->vec.y=0;state->vec.x=0;state->vec.w=1;
  state->kind=3;state->owner=0;state->vec=D_002A04FC;
  }
- self->f39c=state;self->f39c->owner=this;
- self->f3a0=Make_14170(0xc,&D_002755B4,4);self->f3a0->owner=this;
- self->f3a4=Make_14170(0xc,&D_002755C4,7);self->f3a4->owner=this;
- self->f3a8=Make_14170(0x10,&D_002755D4,8);self->f3a8->owner=this;
- self->f384->func_001AC0A0(self->f388,self->f42c);
- self->f414=0;self->f418=1;self->f41c=2;self->f420=3;self->f424=4;self->f428=5;
- if(self->f3e2==2) {
- *(int*)(self->fc0+0x54)=0;*(int*)(self->fc0+0xac)=0;*(int*)(self->fc0+0x104)=0;
- *(int*)(self->fc0+0x15c)=0;*(int*)(self->fc0+0x1b4)=0;*(int*)(self->fc0+0x20c)=0;
+ f39c=state;f39c->owner=this;
+ f3a0=Make_14170(0xc,&D_002755B4,4);f3a0->owner=this;
+ f3a4=Make_14170(0xc,&D_002755C4,7);f3a4->owner=this;
+ f3a8=Make_14170(0x10,&D_002755D4,8);f3a8->owner=this;
+ f384->func_001AC0A0(f388,f42c);
+ f414=0;f418=1;f41c=2;f420=3;f424=4;f428=5;
+ if(f3e2==2) {
+ *(int*)(fc0+0x54)=0;*(int*)(fc0+0xac)=0;*(int*)(fc0+0x104)=0;
+ *(int*)(fc0+0x15c)=0;*(int*)(fc0+0x1b4)=0;*(int*)(fc0+0x20c)=0;
  }
  if(D_002A8490->f4) {
- if(func_001EA426(type,D_002756AC)==0) self->f3e2=1;
- else self->f3e2=func_001EA426(type,D_002756A0)==0?2:0;
+ if(func_001EA426(type,D_002756AC)==0) f3e2=1;
+ else f3e2=func_001EA426(type,D_002756A0)==0?2:0;
  if(!D_002AF44C) {
  C_00013F50 *shared=(C_00013F50*)func_001E8A44(0x28);
  if(shared) { shared->f4=0;shared->f8=0;shared->fC=0;shared->f0=0;shared->f1c=0;shared->f10=0;shared->f20=0;shared->f14=0;shared->f24=0;shared->f18=0; }
@@ -477,10 +475,10 @@ void C_14170::func_00014170(char *volatile name,unsigned char flag,int mode,int 
  ((C_00013F50*)D_002AF44C)->func_00013A40(path);
  }
  S_00014850_Player *player=D_002A8490->f2a4;
- if(player && !player->f1c8) self->f3bc=0;
- self->f384->func_0008AB90(self->f388);self->f3bc=0;self->func_001C6DA0(self->f414,1);
- len=(int)strlen(save0);n=AsmMinI(limit,len);func_001E8920(D_002A5EA0,save0,n);D_002A5EA0[n]=0;
- len=(int)strlen(save1);n=AsmMinI(limit,len);func_001E8920(D_002A60B0,save1,n);D_002A60B0[n]=0;
+ if(player && !player->f1c8) f3bc=0;
+ f384->func_0008AB90(f388);f3bc=0;func_001C6DA0(f414,1);
+ n=AsmMinI(limit,(int)strlen(save0));func_001E8920(D_002A5EA0,save0,n);D_002A5EA0[n]=0;
+ n=AsmMinI(limit,(int)strlen(save1));func_001E8920(D_002A60B0,save1,n);D_002A60B0[n]=0;
 }
 void C_00014020::func_00014850(int arg)
 {

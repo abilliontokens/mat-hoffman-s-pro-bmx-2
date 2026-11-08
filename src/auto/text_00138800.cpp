@@ -432,9 +432,10 @@ void CutScene::func_00138950()
                         default:
                             break;
                         }
-                        vec = *(SceneVector *)&e->obj8->vec318;
+                        Obj138 *o = e->obj8;
+                        vec = o->vec318;
                         found = 0;
-                        if (func_001EA426((char *)e->obj8 + 0xc, (char *)&D_00284A98) != 0) {
+                        if (func_001EA426((char *)o + 0xc, (char *)&D_00284A98) != 0) {
                             for (k = 0; k < f54; k++) {
                                 if (func_001EA426((char *)e->obj8 + 0xc, (char *)((int *)f58)[k] + 0x138) == 0) {
                                     found = ((Elem138 *)((int *)f58)[k])->f4;

@@ -21,6 +21,8 @@ extern char D_00281A58, D_0027F2AC;
 int func_001ADCC0(char *,int,const char *,...);
 static __forceinline void Round_000E8740(int * volatile out,float f) { *out=_mm_cvt_ss2si(*(__m128 *)&f); }
 
+extern "C" void _ReadWriteBarrier(void);
+#pragma intrinsic(_ReadWriteBarrier)
 void C_000E8740::func_000E8740() {
  C_000E8740_Model *m=model;
  m->func_000BC130();
@@ -56,8 +58,7 @@ ui[2]->SetAlpha(a2);
 ui[3]->SetAlpha(a3);
 ui[4]->SetAlpha(a4);
 float *b=m->func_000BC320();
-float b0=ui[10]->alpha*b[0];
-float b1=ui[11]->alpha*b[1];
+float b0 = ui[10]->alpha*b[0], b1 = ui[11]->alpha*b[1];
 float b2=ui[12]->alpha*b[2];
 float b3=ui[13]->alpha*b[3];
 float b4=ui[14]->alpha*b[4];
@@ -70,7 +71,8 @@ char buf[5];int n;
 AsmFloatToIntRound(b[0]*100.0f,&n);func_001ADCC0(buf,5,&D_0027F2AC,n,&D_00281A58);ui[20]->func_0005E840(buf);
 AsmFloatToIntRound(b[1]*100.0f,&n);func_001ADCC0(buf,5,&D_0027F2AC,n,&D_00281A58);ui[21]->func_0005E840(buf);
 AsmFloatToIntRound(b[2]*100.0f,&n);func_001ADCC0(buf,5,&D_0027F2AC,n,&D_00281A58);ui[22]->func_0005E840(buf);
-AsmFloatToIntRound(b[3]*100.0f,&n);func_001ADCC0(buf,5,&D_0027F2AC,n,&D_00281A58);ui[23]->func_0005E840(buf);
+AsmFloatToIntRound(b[3]*100.0f,&n);_ReadWriteBarrier();func_001ADCC0(buf,5,&D_0027F2AC,n,&D_00281A58);ui[23]->func_0005E840(buf);
+_ReadWriteBarrier();
 AsmFloatToIntRound(b[4]*100.0f,&n);func_001ADCC0(buf,5,&D_0027F2AC,n,&D_00281A58);ui[24]->func_0005E840(buf);
 float c0=ui[15]->alpha*b[0];
 float c1=ui[16]->alpha*b[1];

@@ -270,11 +270,11 @@ C_00088DD0 *C_00088DD0::func_00088DD0(int a0, int a1, S_00088DD0_Arg *a2)
  unsigned two=2, one=1;
  unsigned h;
  if(f24==two) {
- f2C->SetWidth(0x43a00000); h=0x43e00000;
+ f2C->SetWidthF(0x43a00000,one); h=0x43e00000;
  } else {
- f2C->SetWidth(0x44200000); h=0x43600000;
+ f2C->SetWidthF(0x44200000,one); h=0x43600000;
  }
- f2C->SetHeight(h);
+ f2C->SetHeightF(h,one);
  p=f2C;
  if(f28==one)p->f38=(p->f38&0xffdd3737)|0xdd3737;
  else p->f38=(p->f38&0xffaaaaff)|0xaaaaff;
@@ -339,15 +339,17 @@ void C_00088F70::func_00089050(float dt)
 {
     float ratio = f34 / f30;
     int value;
-    int *p = &value;
     int cur;
     if (f34 < f30) {
-        *p = (int)(ratio * ratio * D_00278E60);
+        int *p = &value;
+        float r2 = ratio * ratio;
+        float t = r2 * D_00278E60;
+        AsmFloatToIntRound(t, p);
     } else {
         value = 255;
+        cur = AsmMinI(value, 255);
+        value = cur;
     }
-    cur = value < 255 ? value : 255;
-    value = cur;
     if (value != (int)f3C) f38 += dt;
     if (f38 > D_002755E0 && value != (int)f3C) {
         if (value > (int)f3C) ++f3C; else --f3C;

@@ -463,8 +463,8 @@ void VehicleAI::func_000B2930(void)
     float nearv;
     float dx, dy, dz, sq, d;
     float range, thr, dot;
-    VehicleV4 temp, plane;
-    float *p, *n;
+    VehicleV4 t;
+    float *pout, *pin;
     int i;
 
     v[0] = D_002A2DC4[0];
@@ -473,11 +473,11 @@ void VehicleAI::func_000B2930(void)
     v[3] = D_002A2DC4[3];
     nearv = 10000.0f;
     for (i = 0; i < D_002B9120->f578; i++) {
-        if (((char *)D_002B9120->f57C[i])[0x3e0] != 0) {
-            *(VehicleV4 *)v = *((S_000B2930_Item *)D_002B9120->f57C[i])->func_00011E30(&temp);
-            dx = v[0] - *(float *)((char *)this + 0x7c);
-            dy = v[1] - *(float *)((char *)this + 0x80);
-            dz = v[2] - *(float *)((char *)this + 0x84);
+        if (*(volatile char *)&((S_000B2930_Item *)D_002B9120->f57C[i])->f3E0 != 0) {
+            *(VehicleV4 *)v = *((S_000B2930_Item *)D_002B9120->f57C[i])->func_00011E30(&t);
+            dx = v[0] - this->f7C;
+            dy = v[1] - this->f80;
+            dz = v[2] - this->f84;
             sq = dx * dx + dy * dy + dz * dz;
             d = AsmSqrtF(sq);
             if (d > D_00275544 && d < nearv) {
@@ -485,36 +485,43 @@ void VehicleAI::func_000B2930(void)
             }
         }
     }
-    range = D_002B9134->f24;
-    if (D_00278C48 >= *(float *)((char *)this + 0x64)) {
-        range *= D_002755E8;
+    if (*(float *)((char *)this + 0x64) < D_00278C48) {
+        range = *(volatile float *)((char *)D_002B9134 + 0x24) * D_002755E8;
         thr = 0.7f;
     } else {
+        range = *(volatile float *)((char *)D_002B9134 + 0x24);
         thr = 0.2f;
     }
-    if (range >= nearv) {
-        p = v;
-        p[2] -= *(float *)((char *)this + 0x84);
-        p[1] -= *(float *)((char *)this + 0x80);
-        p[0] -= *(float *)((char *)this + 0x7c);
-        p[3] = 1.0f;
-        AsmVec3Normalize(p, p);
-        plane = *(VehicleV4 *)f3C->f458;
-        n = (float *)&plane;
-        dot = n[1] * p[1] + n[0] * p[0] + n[2] * p[2];
+    if (nearv < range) {
+        pin = &v[0];
+        pout = &v[0];
+        pout[2] = pin[2] - this->f84,
+        pout[1] = pin[1] - this->f80,
+        pout[0] = pin[0] - this->f7C,
+        pout[3] = 1.0f;
+        AsmVec3Normalize(pout, pin);
+        *(VehicleV4 *)&t = *(VehicleV4 *)this->f3C->f458;
+        {
+            float *n = (float *)&t;
+            dot = n[1] * pout[1] + n[0] * pout[0] + n[2] * pout[2];
+        }
         if (dot >= thr) {
-            f2AB = 1;
-            f68 = 0;
+            this->f2AB = 1;
+            this->f68 = 0;
             SetState(0x5a);
             return;
         }
-    } else if (!(D_00275544 < thr) && nearv <= D_002B9134->f24 + D_00275548) {
-        return;
+    } else if (!(D_00275544 < thr)) {
+        if (nearv <= *(volatile float *)((char *)D_002B9134 + 0x24) + D_00275548) {
+            return;
+        }
     }
-    f2AB = 0;
-    if (f2AA == 0) {
-        f68 = 0x3f800000;
-        SetState(0);
+    this->f2AB = 0;
+    if (this->f2AA == 0) {
+        this->f68 = 0x3f800000;
+        if (this->f5C) {
+            SetState(0);
+        }
     }
 }
 

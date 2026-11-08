@@ -165,6 +165,13 @@ struct C_00173550 {
     void *func_00173550(int flags);
 };
 
+void func_001578D0(void *);
+void __fastcall func_00172BA0(int *self)
+{
+    self[0x38 / 4] = 1;
+    func_001578D0(self);
+}
+
 void C_001730B0::func_001730B0(float dt)
 {
     if (f130 > D_00275544) {

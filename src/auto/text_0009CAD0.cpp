@@ -69,19 +69,16 @@ int S_0009CAD0::func_0009CAD0(float dt, char *a, char *b)
     int count;
     int group;
     int j;
-    int k;
     int flag;
-    char *elem;
     char *sub;
 
     if (a == 0)
-        return 0;
+        goto invalid;
     if (I4(a, 0x24) == 0)
-        return 0;
-    func_000988B0(self, 0, a, b);
+        goto invalid;
+    ((C_0009CAD0_Calls *)self)->func_000988B0(a, b);
     mgr = P4(P4(P4(self, 0x198), 0x64), 0x4e0);
     mgr = P4(mgr, 0x1a8);
-
     for (group = 0; ; group++) {
         switch (group) {
         case 0: list = *(char ***)(self + 0); break;
@@ -96,62 +93,61 @@ int S_0009CAD0::func_0009CAD0(float dt, char *a, char *b)
         default: count = 0; break;
         }
         for (j = 0; j < count; j++) {
-            elem = list[j];
-            func_00096FE0(elem, 0, dt);
-            if (I4(elem, 0x1a8) != 0) {
+
+            ((C_0009CAD0_Calls *)(list[j]))->func_00096FE0( dt);
+            if (group != (I4(P4(self, 0x198), 0x1c8) ? I4(self, 0x1c) : I4(self, 0x18)) && I4(list[j], 0x1a8) == 0) continue;
+            {
+
                 flag = 1;
-                if (F4(elem, 0x1c0) > 0.0f) {
+                if (F4(list[j], 0x1c0) > D_00275544) {
                     if ((I4(mgr, 0x1178) != 0 || I4(mgr, 0x5c8) != 0) &&
-                        (I4(mgr, 0x454) == 0 || I4(elem, 0x1c4) != 0)) {
-                        F4(elem, 0x1c0) = F4(elem, 0x1c0) - dt;
-                        if (F4(elem, 0x1c0) <= 0.0f) {
+                        (I4(mgr, 0x454) == 0 || I4(list[j], 0x1c4) != 0)) {
+                        F4(list[j], 0x1c0) = F4(list[j], 0x1c0) - dt;
+                        if (F4(list[j], 0x1c0) <= D_00275544) {
                             int cleared = 0;
                             int any = 0;
                             int kk;
                             if (I4(mgr, 0x5c8) != 0)
                                 flag = 0;
-                            for (kk = 0; kk < I4(elem, 0x1b8); kk++) {
-                                sub = (*(char ***)(elem + 0x1c8))[kk];
-                                if (I4(sub, 0x40) != 0) {
+                            for (kk = 0; kk < I4(list[j], 0x1b8); kk++) {
+                                if (I4((*(char ***)(list[j] + 0x1c8))[kk], 0x40) != 0) {
                                     cleared++;
                                     continue;
                                 }
-                                if (I4(sub, 0x44) == 0)
+                                if (I4((*(char ***)(list[j] + 0x1c8))[kk], 0x44) == 0)
                                     continue;
                                 if (flag != 0) {
-                                    I4(sub, 0x2f0) = 0;
-                                    I4(sub, 0x2f4) = 0;
-                                    I4(sub, 0x2f8) = 0;
-                                    I4(sub, 0x2fc) = 0;
-                                    I4(sub, 0x40) = 1;
+                                    I4((*(char ***)(list[j] + 0x1c8))[kk], 0x2f0) = 0;
+                                    I4((*(char ***)(list[j] + 0x1c8))[kk], 0x2f4) = 0;
+                                    I4((*(char ***)(list[j] + 0x1c8))[kk], 0x2f8) = 0;
+                                    I4((*(char ***)(list[j] + 0x1c8))[kk], 0x2fc) = 0;
+                                    I4((*(char ***)(list[j] + 0x1c8))[kk], 0x40) = 1;
                                     cleared++;
                                     any = 1;
-                                    if (B1(sub, 0x84) != 0)
-                                        func_00083A70(P4(P4(self, 0x198), 0x170), 0, sub + 0x84);
-                                    if (I4(elem, 0x1b8) > 1)
-                                        func_00095D70(sub, 0);
+                                    if (B1((*(char ***)(list[j] + 0x1c8))[kk], 0x84) != 0)
+                                        ((C_0009CAD0_Calls *)(P4(P4(self, 0x198), 0x170)))->func_00083A70( (*(char ***)(list[j] + 0x1c8))[kk] + 0x84);
+                                    if (I4(list[j], 0x1b8) > 1)
+                                        ((C_0009CAD0_Calls *)((*(char ***)(list[j] + 0x1c8))[kk]))->func_00095D70();
                                 }
-                                I4(sub, 0x44) = 0;
+                                I4((*(char ***)(list[j] + 0x1c8))[kk], 0x44) = 0;
                             }
-                            *(int *)(elem + 0x1c0) = 0;
-                            I4(elem, 0x1c4) = 0;
-                            if (any != 0 && cleared < I4(elem, 0x1b8)) {
-                                char buf1[0x58];
-                                char buf2[0x10];
-                                char buf3[0x100];
+                            *(int *)(list[j] + 0x1c0) = 0;
+                            I4(list[j], 0x1c4) = 0;
+                            if (any != 0 && cleared < I4(list[j], 0x1b8)) {
+                                char buf1[8];
+                                char buf2[0x100];
                                 func_001ADCC0(buf1, 5, &D_00277038, cleared);
-                                if (func_001AC330(buf2, elem + 0x78, buf3))
-                                    func_00083A70(P4(P4(self, 0x198), 0x170), 0, buf2);
+                                if (func_001AC330(buf2, list[j] + 0x78, buf1))
+                                    ((C_0009CAD0_Calls *)(P4(P4(self, 0x198), 0x170)))->func_00083A70( buf2);
                             }
                         }
                     }
                 }
             }
-            flag = 0;
-            if (I4(elem, 0x48e0) == 0) {
+            if (I4(list[j], 0x48e0) == 0) {
                 int kk;
-                for (kk = 0; kk < I4(elem, 0x1b8); kk++) {
-                    sub = (*(char ***)(elem + 0x1c8))[kk];
+                for (kk = 0; kk < I4(list[j], 0x1b8); kk++) {
+                    sub = (*(char ***)(list[j] + 0x1c8))[kk];
                     if (I4(sub, 0x40) != 0)
                         continue;
                     if (I4(mgr, 0x1178) == 0 && I4(mgr, 0x117c) != 0) {
@@ -200,7 +196,7 @@ int S_0009CAD0::func_0009CAD0(float dt, char *a, char *b)
                                     int lok = 0;
                                     int v1 = I4(sub, 0x2aa8 + e * 4);
                                     int v2;
-                                    if (v1 != -1 && I4(mgr, 0x718) == v1)
+                                    if (v1 == -1 || I4(mgr, 0x718) == v1)
                                         l48 = 1;
                                     v2 = I4(sub, 0x2ad0 + e * 4);
                                     if (I4(mgr, 0xa44) == v2)
@@ -210,11 +206,11 @@ int S_0009CAD0::func_0009CAD0(float dt, char *a, char *b)
                                     if (l48 != 0 && lok != 0) {
                                         float fv = F4(sub, 0x2af8 + e * 4);
                                         int ok = 1;
-                                        if (fv > 0.0f) {
+                                        if (fv != D_00275544) {
                                             if (fv > F4(mgr, 0x484)) {
                                                 float fv2 = F4(sub, 0x2b20 + e * 4);
                                                 ok = 0;
-                                                if (fv2 > 0.0f && fv2 <= F4(mgr, 0x488))
+                                                if (fv2 == D_00275544 || fv2 <= F4(mgr, 0x488))
                                                     ok = 1;
                                             }
                                         }
@@ -232,7 +228,7 @@ int S_0009CAD0::func_0009CAD0(float dt, char *a, char *b)
                                     char *t2 = P4(mgr, 0x20c);
                                     if (I4(t2, 0x30) == 0) {
                                         char *t3 = P4(mgr, 0x1ec);
-                                        if ((F4(mgr, 0x744) - (F4(t3, 0x3c) - D_00275548)) == 0.0f)
+                                        if (F4(mgr, 0x744) >= F4(t3, 0x3c) - D_00275548)
                                             l28 = 0;
                                     }
                                 }
@@ -245,8 +241,9 @@ int S_0009CAD0::func_0009CAD0(float dt, char *a, char *b)
                                 continue;
                             }
                             I4(sub, 0x6388 + e * 4) = 1;
-                            func_00096450(sub, 0, l2c);
+                            ((C_0009CAD0_Calls *)(sub))->func_00096450( l2c);
                             I4(sub, 0x63b0 + e * 4) = I4(P4((char *)D_002A8490, 0x2a4), 0x124);
+                            l24 = 1;
                             l34++;
                             l2c++;
                         }
@@ -254,12 +251,11 @@ int S_0009CAD0::func_0009CAD0(float dt, char *a, char *b)
                             if (l24 == 0) {
                                 flag = 0;
                             } else {
-                                char buf1[0x58];
-                                char buf2[0x10];
-                                char buf3[0x100];
+                                char buf1[8];
+                                char buf2[0x100];
                                 func_001ADCC0(buf1, 5, &D_00277038, l34);
-                                if (func_001AC330(buf2, elem + 0x78, buf3))
-                                    func_00083A70(P4(P4(self, 0x198), 0x170), 0, buf2);
+                                if (func_001AC330(buf2, list[j] + 0x78, buf1))
+                                    ((C_0009CAD0_Calls *)(P4(P4(self, 0x198), 0x170)))->func_00083A70( buf2);
                             }
                         }
                     } else {
@@ -267,10 +263,10 @@ int S_0009CAD0::func_0009CAD0(float dt, char *a, char *b)
                         switch (type) {
                         case 0:
                             if ((B1(P4((*(char ***)(a + 0x28))[I4(sub, 0x268)], 4), 0x2ec) & 0x10) == 0 ||
-                                (I4(elem, 0x1bc) != 0 && flag == 0)) {
+                                (I4(list[j], 0x1bc) != 0 && flag == 0)) {
                                 flag = 0;
-                            } else if (I4(elem, 0x1b8) > 1) {
-                                func_00083A70(P4(P4(self, 0x198), 0x170), 0, sub + 0x84);
+                            } else if (I4(list[j], 0x1b8) > 1) {
+                                ((C_0009CAD0_Calls *)(P4(P4(self, 0x198), 0x170)))->func_00083A70( sub + 0x84);
                             }
                             break;
                         case 7: {
@@ -285,29 +281,29 @@ int S_0009CAD0::func_0009CAD0(float dt, char *a, char *b)
                                 if (I4(mgr, 0x1178) != 0)
                                     B1(o, 0x2ec) = bv & 0xef;
                             } else {
-                                if (I4(elem, 0x1b8) > 1)
-                                    func_00083A70(P4(P4(self, 0x198), 0x170), 0, sub + 0x84);
+                                if (I4(list[j], 0x1b8) > 1)
+                                    ((C_0009CAD0_Calls *)(P4(P4(self, 0x198), 0x170)))->func_00083A70( sub + 0x84);
                                 I4(sub, 0x40) = 1;
                             }
                             break;
                         }
                         case 4: {
-                            int v = func_00097CA0(self, 0, elem + 0xb4);
+                            int v = ((C_0009CAD0_Calls *)(self))->func_00097CA0( list[j] + 0xb4);
                             char *o = P4((*(char ***)(a + 0x28))[I4(sub, 0x268)], 4);
-                            if ((B1(o, 0x2ec) & 0x10) != 0 && v <= I4(mgr, 0xa40))
+                            if ((B1(o, 0x2ec) & 0x10) != 0 && I4(P4(P4(P4(P4(self, 0x198), 0x64), 0x4e0), 0x1a8), 0xa40) >= v)
                                 flag = 1;
                             else
                                 flag = 0;
                             break;
                         }
                         case 2: {
-                            int v = func_00097CA0(self, 0, elem + 0xb4);
-                            flag = (v <= I4(mgr, 0xa40)) ? 1 : 0;
+                            int v = ((C_0009CAD0_Calls *)(self))->func_00097CA0( list[j] + 0xb4);
+                            flag = (I4(P4(P4(P4(P4(self, 0x198), 0x64), 0x4e0), 0x1a8), 0xa40) >= v) ? 1 : 0;
                             break;
                         }
                         case 3: {
-                            int v = func_00097CA0(self, 0, elem + 0xb4);
-                            flag = (v <= I4(mgr, 0xa58)) ? 1 : 0;
+                            int v = ((C_0009CAD0_Calls *)(self))->func_00097CA0( list[j] + 0xb4);
+                            flag = (I4(P4(P4(P4(P4(self, 0x198), 0x64), 0x4e0), 0x1a8), 0xa58) >= v) ? 1 : 0;
                             break;
                         }
                         case 5: {
@@ -329,11 +325,11 @@ int S_0009CAD0::func_0009CAD0(float dt, char *a, char *b)
                             I4(sub, 0x2f0) = 1;
                             I4(sub, 0x2f8) = 1;
                             I4(sub, 0x2fc) = 1;
-                            if (l20 != 0 && F4(elem, 0x1c0) > 0.0f) {
-                                F4(elem, 0x1c0) = 0.2f;
+                            if (l20 != 0 && F4(list[j], 0x1c0) > D_00275544) {
+                                F4(list[j], 0x1c0) = 0.2f;
                                 I4(sub, 0x44) = 1;
                                 if (I4(sub, 0x2ec) == 0)
-                                    I4(elem, 0x1c4) = 1;
+                                    I4(list[j], 0x1c4) = 1;
                             }
                             flag = 0;
                             break;
@@ -346,23 +342,23 @@ int S_0009CAD0::func_0009CAD0(float dt, char *a, char *b)
                                 I4(sub, 0x2f8) = 1;
                                 break;
                             case 1:
-                                if (I4(mgr, 0x1200) > 0xb3)
+                                if (I4(mgr, 0x1200) >= 180)
                                     I4(sub, 0x2f8) = 1;
                                 break;
                             case 2:
-                                if (I4(mgr, 0x1200) > 0x167)
+                                if (I4(mgr, 0x1200) >= 360)
                                     I4(sub, 0x2f8) = 1;
                                 break;
                             case 3:
-                                if (I4(mgr, 0x1200) > 0x21b)
+                                if (I4(mgr, 0x1200) >= 540)
                                     I4(sub, 0x2f8) = 1;
                                 break;
                             case 4:
-                                if (I4(mgr, 0x1200) > 0x2cf)
+                                if (I4(mgr, 0x1200) >= 720)
                                     I4(sub, 0x2f8) = 1;
                                 break;
                             case 5:
-                                if (I4(mgr, 0x1200) > 899)
+                                if (I4(mgr, 0x1200) >= 900)
                                     I4(sub, 0x2f8) = 1;
                                 break;
                             case 6:
@@ -377,7 +373,7 @@ int S_0009CAD0::func_0009CAD0(float dt, char *a, char *b)
                             if (I4(sub, 0x2f0) != 0 && I4(sub, 0x2f4) != 0 &&
                                 I4(sub, 0x2f8) != 0 && I4(sub, 0x2fc) != 0 &&
                                 I4(sub, 0x44) == 0) {
-                                F4(elem, 0x1c0) = 0.2f;
+                                F4(list[j], 0x1c0) = 0.2f;
                                 I4(sub, 0x44) = 1;
                             }
                             flag = 0;
@@ -387,17 +383,18 @@ int S_0009CAD0::func_0009CAD0(float dt, char *a, char *b)
                             break;
                         }
                     }
-                    flag = 0;
                 }
                 if (flag != 0) {
-                    func_00098080(self, 0, elem + 0xb4);
-                    func_00096AB0(self, 0);
+                    ((C_0009CAD0_Calls *)(self))->func_00098080( list[j] + 0xb4);
+                    ((C_0009CAD0_Calls *)(self))->func_00096AB0();
                 }
             }
         }
         if (group >= 2)
             return 1;
     }
+invalid:
+    return 0;
 }
 
 void func_0009DA50(float *out, float *in, float s)

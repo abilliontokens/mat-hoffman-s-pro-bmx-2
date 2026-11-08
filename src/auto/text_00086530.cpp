@@ -552,7 +552,6 @@ extern "C" void *memset(void *, int, unsigned int);
 void BestScoreOverlay::func_000873C0(void) {
  char buf[15];
  char out[15];
- register char *p;
  memset(buf,0,15);
  memset(out,0,15);
  f3C = *(int *)(f34 + 0xA40);
@@ -560,11 +559,12 @@ void BestScoreOverlay::func_000873C0(void) {
  func_001ADCC0(buf, 15, D_00277038, f40);
  int rem = strlen(buf) % 3;
  int i=0;
- if ((int)strlen(buf)>0) {
- p=out;
+ if (0 < (int)strlen(buf)) {
+ char *p=out;
  do {
   if (i > rem-1 && i && ((i-rem)==0 || (i-rem)%3==0)) {
-   *p++ = ',';
+   *p = ',';
+   p++;
    *p = buf[i];
   } else *p = buf[i];
   p++;

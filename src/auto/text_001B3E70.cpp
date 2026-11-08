@@ -377,11 +377,11 @@ char *C_001B4A70::func_001B4A70(char *delims) {
  f4++;
  c=*f4;
  if(c==0) {f4=0;return f0;}
+ if(func_001E9260(delims,c)) {
  int d;
- char *r = func_001E9260(delims,c);
- while(r) {
+ do {
  d=*(f4=f4+1);
- r=func_001E9260(delims,d);
+ } while(func_001E9260(delims,d));
  }
  }
  return f0;

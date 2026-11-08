@@ -196,6 +196,15 @@ struct C_000A1990 {
     void func_001577A0(void *obj, int flags);
 };
 
+int C_000A11A0::func_000A11A0(void) {
+    func_001ADCC0(D_002A60B0, 0x104, D_00275678, D_002A5870, D_002A5FA8);
+    func_001ADCC0(D_002A5EA0, 0x104, D_00275678, D_002A5870, D_002A5D98);
+    int r = func_00189AA0();
+    D_002A829C->func_00161680();
+    D_002AA6C0->func_001B2640();
+    return r;
+}
+
 int C_000A17E0::func_000A17E0(void) {
     int r;
 

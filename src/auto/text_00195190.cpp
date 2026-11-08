@@ -188,7 +188,8 @@ void SimpleTVCamera::func_00195190(float dt, int *ok, V4f_001956F0 *out, V4f_001
  else {
   fallback->func_00199A70(0,&current);
   if(previous.x==D_002A9B44.x && previous.y==D_002A9B48 && previous.z==D_002A9B4C) {
-   velocity.x=0.0f; velocity.y=0.0f; velocity.z=0.0f; velocity.w=1.0f;
+   V4f_001956F0 *vel = &velocity;
+   vel->x=0.0f; vel->y=0.0f; vel->z=0.0f; vel->w=1.0f;
   } else {
    float dx=current.x-previous.x;
    float dy=current.y-previous.y;

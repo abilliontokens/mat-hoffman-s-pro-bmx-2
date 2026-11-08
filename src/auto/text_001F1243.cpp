@@ -37,6 +37,62 @@ S_001EF734 *func_001F1243(S_001EF734 *, S_001EF734 *);
 
 #pragma optimize("sy", on)
 #pragma optimize("y", off)
+int func_001EEA34();
+void func_001EFCF7(void *a, int b, void *c);
+S_001EF734 *func_001F1243(S_001EF734 *out, S_001EF734 *arg)
+{
+    S_001EF734 type;
+    S_001EF734 a, b, c, d;
+    int code;
+    int f1;
+    int isClass;
+    int flag8;
+
+    type.value = 0;
+    type.flags &= 0xfffffe00;
+    code = func_001EEA34();
+    f1 = arg->func_001EF1FC();
+    if (code == -1) {
+        out->func_001EF170(1);
+        return out;
+    }
+    if (code == -2) {
+        func_001EFCF7(out, 2, arg);
+        return out;
+    }
+    if (code == -3) {
+        out->func_001EEEE6(arg);
+        return out;
+    }
+    isClass = code & 0x8000;
+    if (isClass == 0) {
+        return out;
+    }
+    flag8 = ((code & 0x1800) == 0x800);
+    if (flag8) {
+        if ((code & 0x400) && (code & 0x1b00) == 0x1000) {
+            return out;
+        }
+    } else {
+        if ((code & 0x1000) && (code & 0x1b00) == 0x1000) {
+            return out;
+        }
+    }
+    if (flag8) {
+        if ((code & 0x400) && ((code & 0x1b00) == 0x1100 || (code & 0x1b00) == 0x1200)) {
+            return out;
+        }
+    } else {
+        if ((code & 0x1000) && ((code & 0x1b00) == 0x1100 || (code & 0x1b00) == 0x1200)) {
+            return out;
+        }
+    }
+    (void)f1;
+    (void)a; (void)b; (void)c; (void)d;
+    out->func_001EEEE6(&type);
+    return out;
+}
+
 S_001EF734 *func_001F1C3A(S_001EF734 *out)
 {
  S_001EF734 a, b, c, d;

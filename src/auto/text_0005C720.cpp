@@ -165,74 +165,226 @@ void C_0005C720::func_0005C720(void)
 
 void C_0005CBD0::func_0005CBD0()
 {
-    char *base = (char *)this;
-    int i, j;
-    *(int *)&g0.s[0] = 0x4283999a; CopyName_5CBD0(g0.n[0], "allen", (int)strlen("allen"));
-    *(int *)&g0.s[1] = 0x425ccccd; CopyName_5CBD0(g0.n[1], "lori", (int)strlen("lori"));
-    *(int *)&g0.s[2] = 0x42493333; CopyName_5CBD0(g0.n[2], "rick", (int)strlen("rick"));
-    *(int *)&g0.s[3] = 0x4237999a; CopyName_5CBD0(g0.n[3], "roman", (int)strlen("roman"));
-    *(int *)&g0.s[4] = 0x42226666; CopyName_5CBD0(g0.n[4], "eric d", (int)strlen("eric d"));
-    *(int *)&g1.s[0] = 0x426f3333; CopyName_5CBD0(g1.n[0], "mat", (int)strlen("mat"));
-    *(int *)&g1.s[1] = 0x4243999a; CopyName_5CBD0(g1.n[1], "mike", (int)strlen("mike"));
-    *(int *)&g1.s[2] = 0x422a6666; CopyName_5CBD0(g1.n[2], "brian", (int)strlen("brian"));
-    *(int *)&g1.s[3] = 0x421b3333; CopyName_5CBD0(g1.n[3], "vinnie", (int)strlen("vinnie"));
-    *(int *)&g1.s[4] = 0x42013333; CopyName_5CBD0(g1.n[4], "paul", (int)strlen("paul"));
-    *(int *)&g2.s[0] = 0x43fa0000; CopyName_5CBD0(g2.n[0], "lorna", (int)strlen("lorna"));
-    *(int *)&g2.s[1] = 0x43e14000; CopyName_5CBD0(g2.n[1], "alfred", (int)strlen("alfred"));
-    *(int *)&g2.s[2] = 0x43c8199a; CopyName_5CBD0(g2.n[2], "thomas", (int)strlen("thomas"));
-    *(int *)&g2.s[3] = 0x43af7333; CopyName_5CBD0(g2.n[3], "jessica", (int)strlen("jessica"));
-    *(int *)&g2.s[4] = 0x43964ccd; CopyName_5CBD0(g2.n[4], "jared", (int)strlen("jared"));
-    g4.s[0] = 0x1e6e0; CopyName_5CBD0(g4.n[0], "jared", (int)strlen("jared"));
-    g4.s[1] = 0x13b3c; CopyName_5CBD0(g4.n[1], "kristina", (int)strlen("kristina"));
-    g4.s[2] = 0xb3b0; CopyName_5CBD0(g4.n[2], "ron", (int)strlen("ron"));
-    g4.s[3] = 0x5014; CopyName_5CBD0(g4.n[3], "michael", (int)strlen("michael"));
-    g4.s[4] = 0x2a94; CopyName_5CBD0(g4.n[4], "jeff", (int)strlen("jeff"));
-    g3.s[0] = 0x3d860; CopyName_5CBD0(g3.n[0], "dakota", (int)strlen("dakota"));
-    g3.s[1] = 0x24b80; CopyName_5CBD0(g3.n[1], "troy", (int)strlen("troy"));
-    g3.s[2] = 0x1a838; CopyName_5CBD0(g3.n[2], "pete", (int)strlen("pete"));
-    g3.s[3] = 0x13a1a; CopyName_5CBD0(g3.n[3], "eric c", (int)strlen("eric c"));
-    g3.s[4] = 0xc67a; CopyName_5CBD0(g3.n[4], "brennen", (int)strlen("brennen"));
-    g5.s[0] = 0x3d860; CopyName_5CBD0(g5.n[0], "brian b", (int)strlen("brian b"));
-    g5.s[1] = 0x24b80; CopyName_5CBD0(g5.n[1], "scott", (int)strlen("scott"));
-    g5.s[2] = 0x1a838; CopyName_5CBD0(g5.n[2], "wil", (int)strlen("wil"));
-    g5.s[3] = 0x13a1a; CopyName_5CBD0(g5.n[3], "josh", (int)strlen("josh"));
-    g5.s[4] = 0xc67a; CopyName_5CBD0(g5.n[4], "andre", (int)strlen("andre"));
+    *(int *)&g0.s[0] = 0x4283999a;
+    {
+        int lim = 15;
+        int n = AsmMinI(lim, 5);
+        func_001E8920(g0.n[0], D_00278424, n); g0.n[0][n] = 0;
+    }
+    *(int *)&g0.s[1] = 0x425ccccd;
+    {
+        int lim = 15;
+        int n = AsmMinI(lim, 4);
+        func_001E8920(g0.n[1], D_0027841C, n); g0.n[1][n] = 0;
+    }
+    *(int *)&g0.s[2] = 0x42493333;
+    {
+        int lim = 15;
+        int n = AsmMinI(lim, 4);
+        func_001E8920(g0.n[2], D_00278414, n); g0.n[2][n] = 0;
+    }
+    *(int *)&g0.s[3] = 0x4237999a;
+    {
+        int lim = 15;
+        int n = AsmMinI(lim, 5);
+        func_001E8920(g0.n[3], D_0027840C, n); g0.n[3][n] = 0;
+    }
+    *(int *)&g0.s[4] = 0x42226666;
+    {
+        int lim = 15;
+        int n = AsmMinI(lim, 6);
+        func_001E8920(g0.n[4], D_00278404, n); g0.n[4][n] = 0;
+    }
+    *(int *)&g1.s[0] = 0x426f3333;
+    {
+        int lim = 15;
+        int n = AsmMinI(lim, 3);
+        func_001E8920(g1.n[0], D_00278400, n); g1.n[0][n] = 0;
+    }
+    *(int *)&g1.s[1] = 0x4243999a;
+    {
+        int lim = 15;
+        int n = AsmMinI(lim, 4);
+        func_001E8920(g1.n[1], D_002783F8, n); g1.n[1][n] = 0;
+    }
+    *(int *)&g1.s[2] = 0x422a6666;
+    {
+        int lim = 15;
+        int n = AsmMinI(lim, 5);
+        func_001E8920(g1.n[2], D_002783F0, n); g1.n[2][n] = 0;
+    }
+    *(int *)&g1.s[3] = 0x421b3333;
+    {
+        int lim = 15;
+        int n = AsmMinI(lim, 6);
+        func_001E8920(g1.n[3], D_002783E8, n); g1.n[3][n] = 0;
+    }
+    *(int *)&g1.s[4] = 0x42013333;
+    {
+        int lim = 15;
+        int n = AsmMinI(lim, 4);
+        func_001E8920(g1.n[4], D_002783E0, n); g1.n[4][n] = 0;
+    }
+    *(int *)&g2.s[0] = 0x43fa0000;
+    {
+        int lim = 15;
+        int n = AsmMinI(lim, 5);
+        func_001E8920(g2.n[0], D_002783D8, n); g2.n[0][n] = 0;
+    }
+    *(int *)&g2.s[1] = 0x43e14000;
+    {
+        int lim = 15;
+        int n = AsmMinI(lim, 6);
+        func_001E8920(g2.n[1], D_002783D0, n); g2.n[1][n] = 0;
+    }
+    *(int *)&g2.s[2] = 0x43c8199a;
+    {
+        int lim = 15;
+        int n = AsmMinI(lim, 6);
+        func_001E8920(g2.n[2], D_002783C8, n); g2.n[2][n] = 0;
+    }
+    *(int *)&g2.s[3] = 0x43af7333;
+    {
+        int lim = 15;
+        int n = AsmMinI(lim, 4);
+        func_001E8920(g2.n[3], D_002783C0, n); g2.n[3][n] = 0;
+    }
+    *(int *)&g2.s[4] = 0x43964ccd;
+    {
+        int lim = 15;
+        int n = AsmMinI(lim, 7);
+        func_001E8920(g2.n[4], D_002783B8, n); g2.n[4][n] = 0;
+    }
+    g4.s[0] = (int)D_0001E6E0;
+    {
+        int lim = 15;
+        int n = AsmMinI(lim, 5);
+        func_001E8920(g4.n[0], D_002783B0, n); g4.n[0][n] = 0;
+    }
+    g4.s[1] = (int)D_00013B3C;
+    {
+        int lim = 15;
+        int n = AsmMinI(lim, 8);
+        func_001E8920(g4.n[1], D_002783A4, n); g4.n[1][n] = 0;
+    }
+    g4.s[2] = 0xb3b0;
+    {
+        int lim = 15;
+        int n = AsmMinI(lim, 3);
+        func_001E8920(g4.n[2], D_002783A0, n); g4.n[2][n] = 0;
+    }
+    g4.s[3] = 0x5014;
+    {
+        int lim = 15;
+        int n = AsmMinI(lim, 7);
+        func_001E8920(g4.n[3], D_00278398, n); g4.n[3][n] = 0;
+    }
+    g4.s[4] = 0x2a94;
+    {
+        int lim = 15;
+        int n = AsmMinI(lim, 4);
+        func_001E8920(g4.n[4], D_00278390, n); g4.n[4][n] = 0;
+    }
+    {
+        int c67a = 0xc67a;
+        g3.s[0] = (int)D_0003D860;
+        {
+            int lim = 15;
+            int n = AsmMinI(lim, 6);
+            func_001E8920(g3.n[0], D_00278388, n); g3.n[0][n] = 0;
+        }
+        g3.s[1] = (int)D_00024B80;
+        {
+            int lim = 15;
+            int n = AsmMinI(lim, 4);
+            func_001E8920(g3.n[1], D_00278380, n); g3.n[1][n] = 0;
+        }
+        g3.s[2] = (int)D_0001A838;
+        {
+            int lim = 15;
+            int n = AsmMinI(lim, 4);
+            func_001E8920(g3.n[2], D_00278378, n); g3.n[2][n] = 0;
+        }
+        g3.s[3] = (int)D_00013A1A;
+        {
+            int lim = 15;
+            int n = AsmMinI(lim, 6);
+            func_001E8920(g3.n[3], D_00278370, n); g3.n[3][n] = 0;
+        }
+        g3.s[4] = c67a;
+        {
+            int lim = 15;
+            int n = AsmMinI(lim, 7);
+            func_001E8920(g3.n[4], D_00278368, n); g3.n[4][n] = 0;
+        }
+        g5.s[0] = (int)D_0003D860;
+        {
+            int lim = 15;
+            int n = AsmMinI(lim, 7);
+            func_001E8920(g5.n[0], D_00278360, n); g5.n[0][n] = 0;
+        }
+        g5.s[1] = (int)D_00024B80;
+        {
+            int lim = 15;
+            int n = AsmMinI(lim, 5);
+            func_001E8920(g5.n[1], D_00278358, n); g5.n[1][n] = 0;
+        }
+        g5.s[2] = (int)D_0001A838;
+        {
+            int lim = 15;
+            int n = AsmMinI(lim, 3);
+            func_001E8920(g5.n[2], D_00278352, n); g5.n[2][n] = 0;
+        }
+        g5.s[3] = (int)D_00013A1A;
+        {
+            int lim = 15;
+            int n = AsmMinI(lim, 4);
+            func_001E8920(g5.n[3], D_0027834A, n); g5.n[3][n] = 0;
+        }
+        g5.s[4] = c67a;
+        {
+            int lim = 15;
+            int n = AsmMinI(lim, 5);
+            func_001E8920(g5.n[4], D_00278344, n); g5.n[4][n] = 0;
+        }
+    }
     f258 = 50; f25C = 100; f260 = 2; f264 = 1; f268 = 1; f26C = 0;
     fCD0 = 0x20;
+    int i, j;
     for (i = 0; i < 0x90; i += 8) {
-        *(int *)(base + 0xCF0 + i) = 1;
-        *(int *)(base + 0xCF4 + i) = (i >= 0x60) ? 1 : 0;
+        *(int *)((char *)this + 0xCF0 + i) = 1;
+        *(int *)((char *)this + 0xCF4 + i) = (i >= 0x60) ? 1 : 0;
     }
     for (i = 0x270; i < 0x810; i += 4)
-        *(int *)(base + i) = 0;
+        *(int *)((char *)this + i) = 0;
     for (i = 0; i < 16; i++) {
-        *(int *)(base + 0xA10 + i * 12) = 1;
-        *(int *)(base + 0xA14 + i * 12) = 0;
-        *(int *)(base + 0xA18 + i * 12) = 0;
+        *(int *)((char *)this + 0xA10 + i * 12) = 1;
+        *(int *)((char *)this + 0xA14 + i * 12) = 0;
+        *(int *)((char *)this + 0xA18 + i * 12) = 0;
     }
     for (i = 0xAD0; i < 0xB10; i += 4)
-        *(int *)(base + i) = 0;
+        *(int *)((char *)this + i) = 0;
     for (i = 0xB58; i < 0xCC0; i += 4)
-        *(int *)(base + i) = 0;
-    *(int *)(base + 0xCC0) = 1;
-    *(int *)(base + 0xCC4) = 0;
-    *(int *)(base + 0xCC8) = 0;
-    *(int *)(base + 0xCCC) = 1;
+        *(int *)((char *)this + i) = 0;
+    *(int *)((char *)this + 0xCC0) = 1;
+    *(int *)((char *)this + 0xCC4) = 0;
+    *(int *)((char *)this + 0xCC8) = 0;
+    *(int *)((char *)this + 0xCCC) = 1;
     for (i = 0xB10; i < 0xB30; i += 4)
-        *(int *)(base + i) = 0;
-    *(int *)(base + 0xB30) = 0;
-    *(int *)(base + 0xB34) = 0;
+        *(int *)((char *)this + i) = 0;
+    *(int *)((char *)this + 0xB30) = 0;
+    *(int *)((char *)this + 0xB34) = 0;
     for (i = 0; i < 16; i++) {
-        *(int *)(base + 0x810 + i * 32) = 1;
+        *(int *)((char *)this + 0x810 + i * 32) = 1;
         for (j = 1; j < 8; j++)
-            *(int *)(base + 0x810 + i * 32 + j * 4) = 0;
+            *(int *)((char *)this + 0x810 + i * 32 + j * 4) = 0;
     }
-    *(int *)(base + 0xB38) = 1;
+    *(int *)((char *)this + 0xB38) = 1;
     for (i = 1; i < 8; i++)
-        *(int *)(base + 0xB38 + i * 4) = 0;
-    *(int *)(base + 0xCE0) = 0;
-    *(int *)(base + 0xCE4) = 0;
-    *(int *)(base + 0xCEC) = 0;
+        *(int *)((char *)this + 0xB38 + i * 4) = 0;
+    *(int *)((char *)this + 0xCE0) = 0;
+    *(int *)((char *)this + 0xCE4) = 0;
+    *(int *)((char *)this + 0xCEC) = 0;
     func_0005C3A0(-1);
 }
 

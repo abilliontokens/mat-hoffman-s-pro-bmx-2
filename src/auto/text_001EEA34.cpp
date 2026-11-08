@@ -481,7 +481,8 @@ S_001EEFE3 *S_001EEFE3::func_001EEFE3(S_001EEFE3 *n)
 
 int func_001EF00C(void)
 {
-    return 1;
+    int v = 1;
+    return v;
 }
 
 S_001EF033 *__fastcall func_001EF033(S_001EF033 *self, int unused, BitObj *p)

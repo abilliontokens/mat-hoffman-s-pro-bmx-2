@@ -184,7 +184,6 @@ void C_28CD0::func_00028CD0(void *arg0)
     V4_000298F0 a, b, c, d, e, f, g, h, up;
     V4_000298F0 neg, cross;
     V4_000298F0 *p;
-#define THIS ((S_28CD0 *)this)
 #define SELF (*(S_28CD0 *volatile *)&self)
 #define ARG (*(S_28CD0_Arg *volatile *)&arg0)
 
@@ -197,14 +196,14 @@ void C_28CD0::func_00028CD0(void *arg0)
     g.z = g.y = g.x = 0; g.w = 1;
     h.z = h.y = h.x = 0; h.w = 1;
     up.x = 0; up.y = 1; up.z = 0; up.w = 1;
-    if (THIS->f478 == 0) {
+    if (SELF->f478 == 0) {
         return;
     }
-    if (THIS->f760 < D_00275544 || ARG->f8 == 0) {
-        THIS->f470 = 0;
+    if (SELF->f760 < D_00275544 || ARG->f8 == 0) {
+        SELF->f470 = 0;
         return;
     }
-    THIS->f230->func_00197B40((Q_292C0 *)&a, (Q_292C0 *)&b);
+    SELF->f230->func_00197B40((Q_292C0 *)&a, (Q_292C0 *)&b);
     f = a;
     f.y = 0;
     func_00026340((Q_292C0 *)&f, (Q_292C0 *)&f);
@@ -262,13 +261,12 @@ void C_28CD0::func_00028CD0(void *arg0)
     }
     SELF->f468 = 1;
     SELF->f470 = 1;
-    func_00027C30();
+    ((C_28CD0 *)SELF)->func_00027C30();
     SELF->f47c = 1;
     SELF->f738 = 0;
     SELF->f740 = 0;
     p = (V4_000298F0 *)&SELF->f1e0->f238;
     *p = *(V4_000298F0 *)&D_002A10F0;
-#undef THIS
 #undef SELF
 #undef ARG
 }
@@ -336,7 +334,7 @@ int C_295D0::func_000295D0(int activate) {
  if (f200->fa7 & 0x20) {
  char *s=(char*)f200->f54;
  f6cc=**(Q_292C0**)(s+0x78); f6dc=**(Q_292C0**)(s+0x74);
- Q_292C0 v[8]; Q_292C0 *normal=&f6dc;
+ Q_292C0 v[8]; Q_292C0 *normal=&f6dc; Q_292C0 *origin=&f6cc;
  f6f4=0; f230->func_00198120(&v[5],&f6cc);
  v[0].x=v[0].y=v[0].z=0; v[0].w=1; v[2].x=v[2].y=v[2].z=0; v[2].w=1;
  f230->func_00197B40(&v[0],&v[2]);
@@ -344,7 +342,10 @@ int C_295D0::func_000295D0(int activate) {
  v[4]=*func_0001E9E0(&v[6],func_0001C610(&v[1],&v[0],&v[2]));
  v[1]=f1e0->f238; v[1]=*func_0001E9E0(&v[7],&v[1]);
  v[3].x=v[3].y=v[3].z=0; v[3].w=1; f230->func_00197E70(&v[3]);
- if (!((v[3].x-f6cc.x)*normal->x+(v[3].y-f6cc.y)*normal->y+(v[3].z-f6cc.z)*normal->z < D_00275544)) {
+ v[3].x-=origin->x;
+ v[3].y-=origin->y;
+ v[3].z-=origin->z;
+ if (!(v[3].z*normal->z + (v[3].x*normal->x + v[3].y*normal->y) < D_00275544)) {
  float p=v[0].z*normal->z+(v[0].y*normal->y+v[0].x*normal->x);
  float q=v[1].y*normal->y+v[1].x*normal->x+v[1].z*normal->z;
  if (-f6f0 < q) { f704=0; f70c=0; return 0; }
@@ -354,7 +355,6 @@ int C_295D0::func_000295D0(int activate) {
  f714=0; f21c->func_0011A550(&f6cc,&f6dc); func_00027C30(); return 1;
  }
  }
-reset:
  f704=0; f70c=0;
  }
  }

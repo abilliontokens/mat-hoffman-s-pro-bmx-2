@@ -91,8 +91,9 @@ S_0001C610_V4 func_0001C610(float *a, float *b);
 
 void Obj::func_00112A80(float dt)
 {
-    Obj *self = this;
-    D_gSelfSink = (char *)&self;
+    struct Home { Obj *self; char pad[0x1c]; Vec4_00108370 v; } h;
+    h.self = this;
+    Obj *&self = h.self;
     float fv;
     int el;
     if (AT(int, self, 0x5c8) == 0) {
@@ -177,25 +178,24 @@ no_calls:
         AT(int, self, 0x1178) != 0 || AT(int, self, 0x5c8) != 0)
         goto final_check;
     {
-        Vec4_00108370 v;
-        ((C_00109180 *)self)->func_00109180(&v);
+        ((C_00109180 *)self)->func_00109180(&h.v);
         float *p = (float *)((char *)self + 0x1fac);
-        float t0 = v.x * dt;
-        float t1 = v.y * dt;
-        float t2 = v.z * dt;
+        float t0 = h.v.x * dt;
+        float t1 = h.v.y * dt;
+        float t2 = h.v.z * dt;
         p[0] += t0;
         p[1] += t1;
         p[2] += t2;
         V4_00104A00 q;
         func_00104A00(&q, (V3_00104A00 *)p);
         if (AT(int, self, 0x680) != 0) {
-            S_0001C610_V4 dir = func_0001C610((float *)&v.z, (float *)((char *)self + 0x748));
+            S_0001C610_V4 dir = func_0001C610((float *)&h.v.z, (float *)((char *)self + 0x748));
             float rbuf[4];
             float *r = func_0001E9E0(rbuf, (float *)&dir);
             float s = 1.0f;
             if (r[1] <= D_00275544)
                 s = -1.0f;
-            float g = Abs_00112A80(v.y) * s * dt + D_002B9200;
+            float g = Abs_00112A80(h.v.y) * s * dt + D_002B9200;
             D_002B9200 = g;
             if (g > D_00275544)
                 q.y = q.y - AT(float, AT(void *, self, 0x208), 0x134);

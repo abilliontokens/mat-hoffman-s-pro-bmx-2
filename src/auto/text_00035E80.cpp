@@ -180,28 +180,28 @@ void C_000361F0::func_000361F0(int flag)
     Vec4_000361F0 tmp;
 
     if (flag != 0) {
-        if (f4A4 == 1) {
+        if (f4A4 != 1) {
+            f44->f5C->func_00194F10(&f52C);
+            tmp.x = (float)((f434 - f428) / 2 + f428);
+            tmp.y = f440;
+            tmp.z = (float)((f43C - f430) / 2 + f430);
+            f44->f5C->func_00194EE0(tmp);
+            tmp.x = tmp.x - f470;
+            tmp.y = tmp.y + f46C;
+            f44->f5C->func_00194E60(tmp);
+            f44->f5C->f4 = 1;
+            f4A4 = 1;
+        }
+    } else {
+        if (f4A4 != 0) {
+            f44->f5C->func_00194E60(f4AC);
+            if (f52C.x != D_002A14D4 || f52C.y != D_002A14D8 || f52C.z != D_002A14DC) {
+                f44->f5C->func_00194EE0(f52C);
+            }
+            f44->f5C->f4 = 1;
+            f4A4 = 0;
+        } else {
             return;
         }
-        f44->f5C->func_00194F10(&f52C);
-        tmp.x = (float)((f434 - f428) / 2 + f428);
-        tmp.y = f440;
-        tmp.z = (float)((f43C - f430) / 2 + f430);
-        f44->f5C->func_00194EE0(tmp);
-        tmp.x = tmp.x - f470;
-        tmp.y = tmp.y + f46C;
-        f44->f5C->func_00194E60(tmp);
-        f44->f5C->f4 = 1;
-        f4A4 = 1;
-        return;
     }
-    if (f4A4 == 0) {
-        return;
-    }
-    f44->f5C->func_00194E60(f4AC);
-    if (f52C.x != D_002A14D4 || f52C.y != D_002A14D8 || f52C.z != D_002A14DC) {
-        f44->f5C->func_00194EE0(f52C);
-    }
-    f44->f5C->f4 = 1;
-    f4A4 = 0;
 }

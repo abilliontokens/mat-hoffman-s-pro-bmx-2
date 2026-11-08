@@ -356,7 +356,7 @@ int C_000AF0D0::func_000AF0D0(void)
     int subCount;
     int total;
     int i, j;
-    int len, limit, cnt, n;
+    int limit, cnt, n, len;
 
     if (f530 != 0) {
         return 0;

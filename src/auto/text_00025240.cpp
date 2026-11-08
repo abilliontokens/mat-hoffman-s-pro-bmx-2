@@ -406,9 +406,8 @@ int C_00025240::func_00025240(void)
     for (i = 0; i < f3c; i++) {
         n1 = (int)((float)f64[f6c[i].f0]->f4 / ((float)f6c[i].f4 * D_0027651C));
         n2 = (int)((float)f6c[i].f4 * D_0027651C + D_00275460);
-        acc = 0;
         j = 0;
-        for (m = 0; m < n2; m++, acc += n1) {
+        for (m = 0, acc = 0; m < n2; m++, acc += n1) {
             if (j >= f6c[i].f4)
                 break;
             cnt = 0;
@@ -571,6 +570,8 @@ void *AmbientDebris::func_00025920(unsigned int flags)
 }
 
 extern float D_002A0F80;
+extern "C" void _ReadWriteBarrier(void);
+#pragma intrinsic(_ReadWriteBarrier)
 int C_00025980::func_00025980(float dt)
 {
     Vec4_257E0 n;
@@ -601,6 +602,7 @@ int C_00025980::func_00025980(float dt)
                     pos.z = pt->z;
                     pos.w = 1.0f;
                     func_000255D0(&pos, 32.0f, 0.0f, 1);
+                    _ReadWriteBarrier();
                     idx++;
                     if (idx >= f34) {
                         idx -= f34;
@@ -661,7 +663,6 @@ int C_00025980::func_00025980(float dt)
     }
     return 1;
 }
-
 C_00025E10* C_00025E10::func_00025E10(void) {
     extern int D_00276534;
     unk0 = (int)&D_00276534;

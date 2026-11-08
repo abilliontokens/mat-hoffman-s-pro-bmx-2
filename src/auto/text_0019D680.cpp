@@ -188,8 +188,7 @@ extern "C" void __stdcall func_0019BD20(unsigned short param_1, int *param_2, ch
 
 int SoultreeCollisionObject::func_0019D680(void *param_1)
 {
-    register int result;
-
+    int result;
     if (((int *)param_1)[0x14] != 6) {
         return 0;
     }

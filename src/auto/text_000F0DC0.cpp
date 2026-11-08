@@ -226,6 +226,60 @@ struct C_000F1580 {
     int func_000F1580(int a1, int a2);
 };
 
+#pragma optimize("t", on)
+C_000F0DC0 *C_000F0DC0::func_000F0DC0(int a, int b, int c)
+{
+    Elem_000F0DC0 *p;
+    int i, j, k;
+    float y;
+
+    func_001BE4F0(a, b, c);
+    D_002A8490->p2EC->func_0018C160((int)&D_00278690);
+    D_002A8490->p2EC->func_0018C160((int)&D_002786A0);
+    D_002A8490->p2EC->func_0018C160((int)&D_00278678);
+    for (i = 0; i < 2; i++) {
+        p = (Elem_000F0DC0 *)func_001E8A44(100);
+        a3f8[i] = p ? p->func_001D5760() : 0;
+        if (i == 0)
+            a3f8[i]->func_001D5810((int)&D_0027E328, 309.0f, 82.0f, 0);
+        else
+            a3f8[i]->func_001D5810((int)&D_0027E31C, 309.0f, 350.0f, 0);
+        a3f8[i]->setColor();
+    }
+    for (j = 0; j < 4; j++) {
+        p = (Elem_000F0DC0 *)func_001E8A44(100);
+        a3e8[j] = p ? p->func_001D5760() : 0;
+    }
+    a3e8[0]->func_001D5810((int)&D_002786B0, 100.0f, 90.0f, 0);
+    a3e8[0]->setWidth(0x435d0000);
+    a3e8[0]->setColor();
+    a3e8[1]->func_001D5810((int)&D_002786B0, 321.0f, 90.0f, 0);
+    a3e8[1]->setWidth(0x435d0000);
+    a3e8[1]->setColor();
+    a3e8[1]->setMatrix();
+    a3e8[2]->func_001D5810((int)&D_002786B0, 321.0f, 361.0f, 0);
+    a3e8[2]->setWidth(0x435d0000);
+    a3e8[2]->setColor();
+    a3e8[2]->setPos(0x43a08000, 0x43b48000);
+    a3e8[2]->setAngle(0x40490fd9);
+    a3e8[2]->setMatrix();
+    a3e8[3]->func_001D5810((int)&D_002786B0, 542.0f, 361.0f, 0);
+    a3e8[3]->setWidth(0x435d0000);
+    a3e8[3]->setColor();
+    a3e8[3]->setPos(0x44078000, 0x43b48000);
+    a3e8[3]->setAngle(0x40490fd9);
+    for (k = 0; k < 4; k++) {
+        p = (Elem_000F0DC0 *)func_001E8A44(100);
+        a400[k] = p ? p->func_001D5760() : 0;
+        y = k * D_002757F0 + D_0027F978;
+        a400[k]->func_001D5810((int)&D_00281DB4, 220.0f, y, 0);
+        p = (Elem_000F0DC0 *)func_001E8A44(100);
+        a410[k] = p ? p->func_001D5760() : 0;
+        a410[k]->func_001D5810((int)&D_00281DC0, 220.0f, y, 0);
+    }
+    return this;
+}
+#pragma optimize("", on)
 int C_000F1580::func_000F1580(int a1, int a2)
 {
     S_Ctx_000F1580 *ctx = f124;

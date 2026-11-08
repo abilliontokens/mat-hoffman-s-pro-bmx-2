@@ -189,11 +189,11 @@ C_00150810 *C_00150810::func_00150810(int a0, float a1, float a2, float a3, floa
     unk4C = a5;
     unk44 = a3;
     unk48 = a4;
-    unk2C = (a3 - a4) * a1 + a4;
     unk30 = a1;
+    unk2C = (a3 - a4) * a1 + a4;
     float t = (unk2C - a5) * (D_00275460 - a2);
-    unk24 = a0;
     unk3C = 1;
+    unk24 = a0;
     unk38 = 0x100;
     unk34 = a2;
     unk28 = t;
@@ -242,6 +242,40 @@ void func_00150970(char *a, char *b) {
  *(float *)(data+0x94) = 1.0f;
  } else a[0xa7] &= ~0x20;
 }
+
+#pragma optimize("g", off)
+void func_00150A80(Arg_150A80 *a, Arg_150A80 *b)
+{
+    Vec4_150900 t;
+    if (b->f68 == D_002B911C || b->f68 == D_002B9110)
+        return;
+    {
+        State_150A80 *state = a->f60;
+        state->f64 = b;
+        Path_150A80 *path = a->f54;
+        Vec4_150900 *p94 = &state->f94;
+        Vec4_150900 *p84 = &state->f84;
+        t = *(Vec4_150900 *)&D_002A789C;
+        *p94 = t;
+        t = *(Vec4_150900 *)&D_002A789C;
+        *p84 = t;
+        if (path->f80 > 0) {
+            *p84 = path->f78[0];
+            *p94 = path->f74[0];
+        }
+        state->fd8 = 1;
+        if (b->f50 == 1 && b->f68 == D_002BA148) {
+            Check_150A80 *check = *(Check_150A80 **)((char *)D_002B9120 + 0x528);
+            if (check) {
+                if (check->f4f4 == 1)
+                    state->fd8 = 0;
+                else
+                    state->fdc = 1;
+            }
+        }
+    }
+}
+#pragma optimize("", on)
 
 void C_00150F60::func_00150F60(int a0, int a1) {
     int func_001D3F50(...);

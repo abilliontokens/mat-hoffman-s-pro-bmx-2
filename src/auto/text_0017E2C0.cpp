@@ -371,39 +371,40 @@ void RadiusLineCollisionObject::func_0017E8E0(int param_1)
 void C_0017E920::func_0017E920(V4C_0017E7C0 *centre, float *extent)
 {
     V4C_0017E7C0 v[3];
-    V4C_0017E7C0 c;
+    V4C_0017E7C0 b;
     V4C_0017E7C0 a;
+    V4C_0017E7C0 c;
     float s = f11C;
-    float bx, by, bz, r;
+    float r;
     float minx, maxx, miny, maxy, minz, maxz;
     float ex, ey, ez;
 
     a.x = s * fF0;
     a.y = s * fF4;
     a.z = s * fF8;
-    bx = s * f100;
-    by = s * f104;
-    bz = s * f108;
+    b.x = s * f100;
+    b.y = s * f104;
+    b.z = s * f108;
     r = f118 * f110;
-    if (a.x < bx) {
+    if (a.x < b.x) {
         minx = a.x - r;
-        maxx = bx + r;
+        maxx = b.x + r;
     } else {
-        minx = bx - r;
+        minx = b.x - r;
         maxx = a.x + r;
     }
-    if (a.y < by) {
+    if (a.y < b.y) {
         miny = a.y - r;
-        maxy = by + r;
+        maxy = b.y + r;
     } else {
-        miny = by - r;
+        miny = b.y - r;
         maxy = a.y + r;
     }
-    if (a.z < bz) {
+    if (a.z < b.z) {
         minz = a.z - r;
-        maxz = bz + r;
+        maxz = b.z + r;
     } else {
-        minz = bz - r;
+        minz = b.z - r;
         maxz = a.z + r;
     }
     c = V4C_0017E7C0((maxx + minx) * D_002755E8, (maxy + miny) * D_002755E8, (maxz + minz) * D_002755E8, 1.0f);

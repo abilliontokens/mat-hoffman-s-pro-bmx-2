@@ -523,6 +523,7 @@ int __stdcall func_001F4419(int *p)
 
 #pragma inline_depth(0)
 void func_001F44D6(void);
+#pragma inline_depth(0)
 int func_001F445B(void)
 {
     int count = 0;
@@ -708,9 +709,9 @@ int func_001F46F0(int a, int b, int c)
   if(exp < fmt[1]-fmt[2]) {
    for(int i=0;i<3;i++) x[i]=0; exponent=0; result=2;
   } else if(exp <= fmt[1]) {
-   exp=fmt[1]-exp;
+   int shift = ((volatile int*)fmt)[1]-exp;
    func_001F4641(x,saved);
-   func_001F4675(x,exp);
+   func_001F4675(x,shift);
    func_001F45CF(x,fmt[2]);
    func_001F4675(x,fmt[3]+1);
    exponent=0; result=2;

@@ -281,7 +281,7 @@ static __declspec(noinline) char *func_001AC940(int *sign, char *buf, double arg
             dp--;
         }
     }
-    p1 = buf + ndigits;
+    p1 = ndigits + buf;
     if (eflag == 0)
         p1 += dp;
     *decpt = dp;
@@ -408,7 +408,6 @@ static __declspec(noinline) char *func_001ACD40(int ndec, char fmt, double value
     char *src;
     char *p = buf;
     int esign;
-    int len;
 
     if (fmt == 'f')
         src = func_001AC940(sign, digits, value, ndec, &decpt, 0);
@@ -452,20 +451,25 @@ static __declspec(noinline) char *func_001ACD40(int ndec, char fmt, double value
     while (*src)
         *p++ = *src++;
     if (fmt != 'f') {
+        int d;
         *p++ = fmt;
-        if (decpt == 1) {
-            *p++ = '+';
-            *p++ = '0';
-            *p++ = '0';
-        } else {
-            src = func_001ACCF0(0, &esign, decpt - 1, expbuf + 10, &decpt);
+        if ((d = decpt - 1) != 0) {
+            src = func_001ACCF0(0, &esign, d, expbuf + 10, &decpt);
             *p++ = esign ? '-' : '+';
             if (decpt == 1)
                 *p++ = '0';
-            for (len = 0; len < decpt; len++)
+            else if (decpt == 0)
+                goto done;
+            do {
                 *p++ = *src++;
+            } while (--decpt);
+        } else {
+            *p++ = '+';
+            *p++ = '0';
+            *p++ = '0';
         }
     }
+done:
     *outlen = p - buf;
     return buf;
 }

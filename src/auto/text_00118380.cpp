@@ -141,6 +141,78 @@ void C_00118380::func_00118410(int a, int b, int c)
     }
 }
 
+void C_00118380::func_001184E0(float dt)
+{
+    char *m = (char *)this;
+    C_0010E2A0 *self = (C_0010E2A0 *)this;
+    float x[4], w[4], v[4];
+
+    *(float *)(m + 0x894) = 0.0f;
+    if (f5C8 == 0) {
+        if (*(int *)(m + 0x1178) != 0 && *(int *)(m + 0x117c) == 0 && *(int *)(m + 0x11e0) == 0) {
+            *(float *)(m + 0x894) = func_00011170(func_00011110(v, (float *)(m + 0x748), (float *)(m + 0x884)));
+            float *b = (float *)(m + 0x10c);
+            {
+                float *p = (float *)(*(int *)(m + 0x1e8) + 0x1a0);
+                float d2 = p[2] * b[2];
+                func_00011110(w, b, func_0001C5E0(v, p[0] * b[0] + p[1] * b[1] + d2, p));
+            }
+            func_00104A90(w, w);
+            float *c = (float *)(m + 0x884);
+            {
+                float *p = (float *)(*(int *)(m + 0x1e8) + 0x1a0);
+                float d2 = p[2] * c[2];
+                func_00011110(x, c, func_0001C5E0(v, p[0] * c[0] + p[1] * c[1] + d2, p));
+            }
+            func_00104A90(x, x);
+            float d2 = x[2] * w[2];
+            float ang = func_0014F7E0(x[0] * w[0] + x[1] * w[1] + d2);
+            if (ang > D_002756D4) {
+                ang = D_002756D0 - ang;
+            }
+            if (*(float *)(m + 0x744) > *(float *)(m + 0x8a4) && ang > *(float *)(m + 0x8a0)) {
+                self->func_0010E2A0();
+            }
+        }
+        if (*(int *)(m + 0x1fc0) != 0) {
+            self->func_0010E2A0();
+            *(int *)(m + 0x1fc0) = 0;
+        }
+    }
+    if (*(int *)(m + 0x468) != 0 && *(int *)(*(int *)(m + 0x1f0) + 0x30) != 0 &&
+        *(int *)(*(int *)(m + 0x1f4) + 0x2c) == *(int *)(m + 0x11b4)) {
+        self->func_0010E2A0();
+    }
+    if (*(int *)(*(int *)(m + 0x1f0) + 0x34) != 0 && *(float *)(m + 0x120) < D_00276080 &&
+        *(int *)(m + 0x1134) == -1 && *(int *)(m + 0x468) == 0) {
+        self->func_0010E2A0();
+    }
+    if (*(int *)(m + 0x470) != 0) {
+        C_000B5950 *o = (C_000B5950 *)(*(int *)(m + 0x480) == 0 ? *(int *)(m + 0x218) : *(int *)(m + 0x214));
+        if (o->func_000B5950() != 0) {
+            self->func_0010E2A0();
+        }
+    }
+    if (*(int *)(m + 0x78c) != 0) {
+        self->func_0010E2A0();
+        *(int *)(m + 0x78c) = 0;
+    }
+    if (*(int *)(*(int *)(m + 0x1f0) + 0x30) != 0) {
+        D_002B920C = D_002B920C + dt;
+        if (D_002B920C >= D_002A3AAC) {
+            self->func_0010E2A0();
+            D_002B920C = 0.0f;
+        }
+    }
+    if (*(int *)(*(int *)(m + 0x1e8) + 0x50) != 0 && *(int *)(*(int *)(m + 0x1e8) + 0x54) != 0 &&
+        ((C_001091D0 *)this)->func_001091D0() != 0 && f5C8 == 0 && *(int *)(m + 0x11f4) == 0) {
+        *(V4_118380 *)(m + 0x7f4) = *(V4_118380 *)(m + 0x834);
+        *(V4_118380 *)(m + 0x804) = *(V4_118380 *)(m + 0x854);
+        *(V4_118380 *)(m + 0x814) = *(V4_118380 *)(m + 0x874);
+        *(V4_118380 *)(m + 0x884) = *(V4_118380 *)(m + 0x748);
+    }
+}
+
 void C_00118380::func_00118840(int a)
 {
     if (f1218 != 0 && f5C8 == 0 && f20A0 == 0) {

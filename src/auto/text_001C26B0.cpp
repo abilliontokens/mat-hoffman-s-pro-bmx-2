@@ -497,9 +497,9 @@ void UIWidgetStaticUserRotate::func_001C3440(int p)
     }
     if (f1E0 != 0) {
         func_001C2F90(p);
-    } else {
-        func_00157A00(p);
+        return;
     }
+    func_00157A00(p);
 }
 
 int __stdcall func_001FF3C0(int size);
@@ -580,11 +580,12 @@ void *DXVertexBuffer::func_001C35F0(S_001C35F0_Src *src, int b, int c, int d)
 
 char *DXVertexBuffer::func_001C3650(int index, int count, int flags)
 {
-    if (count == 0) {
+    int offset;
+
+    if (count == 0)
         count = f10 - index;
-    }
     if (index >= 0 && index < f10 && count + index <= f10) {
-        int offset = fC * index;
+        offset = fC * index;
         return (char *)func_001FF410((void *)f14, flags) + offset;
     }
     return 0;

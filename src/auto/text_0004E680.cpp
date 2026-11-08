@@ -385,13 +385,13 @@ void C_0004E7B0::func_0004E7B0(void)
     S_0004E7B0_Vec b;
     float angle;
 
-    a = Sub_0004E7B0(f290[f288], f64->f4e0->f1a8[0]->f834);
+    Sub2_0004E7B0(&a, f290[f288], f64->f4e0->f1a8[0]->f834);
     func_0004E410(&a, &a);
     a = f64->f4e0->f1a8[0]->f230->func_00198040(&a);
     angle = func_0014FBA0(a.x, a.z) * D_00277240;
     b = f290[f288];
     fD30[0]->func_00088A40((int)angle, &b);
-    a = Sub_0004E7B0(f290[f288], f64->f4e0->f1a8[1]->f834);
+    Sub2_0004E7B0(&a, f290[f288], f64->f4e0->f1a8[1]->f834);
     func_0004E410(&a, &a);
     a = f64->f4e0->f1a8[1]->f230->func_00198040(&a);
     angle = func_0014FBA0(a.x, a.z) * D_00277240;

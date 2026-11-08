@@ -3,6 +3,7 @@
 #include "ghidra.h"
 #include <math.h>
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 extern int D_00284274;
 extern int D_002A3FD8, D_002A3FDC, D_002A3FE0, D_002A3FE4;
 extern int D_002A3FF8, D_002A3FFC, D_002A4000, D_002A4004;
@@ -346,9 +347,10 @@ extern "C" void *memcpy(void *, const void *, unsigned int);
 #pragma intrinsic(memcpy)
 void *S_12CD10::func_0012CD10(char *volatile model, char *volatile animation, int a2, char *a3, Vec16C *a4, float a5, int a6, int a7, float a8, int a9, unsigned int count, int a11, float a12, float a13, int a14, int a15)
 {
-    __declspec(align(16)) float matrix[16], identity[16];
+    Mat_12CD10 matrix, identity;
     char path[260], check[260], animpath[260];
-    struct { S_12CD10 * volatile self; Vec16C lo; volatile int result; Vec16C hi; volatile int length, limit; } t;
+    struct { S_12CD10 * volatile self; Vec16C lo; Vec16C hi; } t;
+    int limit, length;
     t.self = this;
     t.hi.z = 0; t.hi.y = 0; t.hi.x = 0; t.hi.w = 1;
     t.lo.z = 0; t.lo.y = 0; t.lo.x = 0; t.lo.w = 1;
@@ -358,10 +360,9 @@ void *S_12CD10::func_0012CD10(char *volatile model, char *volatile animation, in
     if (!D_002BEAAC->func_0013B1A0(check))
         animation[0] = 0;
     func_001ADCC0(path, 260, D_00275678, D_002A46E8, a3);
-    t.length = strlen(model);
-    t.limit = 255;
-    { int a = t.limit, b = t.length; t.result = a > b ? b : a; }
-    int n = t.result;
+    length = strlen(model);
+    limit = 255;
+    int n = AsmMinI(limit, length);
     func_001E8920(t.self->name, model, n);
     t.self->name[n] = 0;
     M_12CD10 *m = (M_12CD10 *)func_001E8A44(0x1e0);
@@ -378,25 +379,19 @@ void *S_12CD10::func_0012CD10(char *volatile model, char *volatile animation, in
     }
     t.self->f448 = *a4;
     t.self->f4e8 = a8;
-    t.self->f458[0] = D_002A3FD8; t.self->f458[1] = D_002A3FDC; t.self->f458[2] = D_002A3FE0; t.self->f458[3] = D_002A3FE4;
+    *(V4i_12CD10 *)t.self->f458 = *(V4i_12CD10 *)&D_002A3FD8;
     t.self->f4dc = 0;
     t.self->f498 = a6;
     t.self->f4a0 = a7;
     part->func_00197E70((char *)t.self + 0x190);
     part->func_001983E0(&t.hi, &t.lo);
-    float *id = identity;
-    __m128 zero = _mm_setzero_ps();
-    _mm_store_ps(id, zero);
-    _mm_store_ps(id + 4, zero);
-    _mm_store_ps(id + 8, zero);
-    _mm_store_ps(id + 12, zero);
-    id[0] = id[5] = id[10] = id[15] = 1;
-    memcpy(matrix, identity, 64);
+    identity.identity();
+    memcpy(matrix.m, identity.m, 64);
     float z = t.lo.z * t.lo.z, y = t.lo.y * t.lo.y, x = t.lo.x * t.lo.x;
-    matrix[0] = (y + z) * t.self->f210 * D_00283A78;
-    matrix[5] = (x + z) * t.self->f210 * D_00283A78;
-    matrix[10] = (x + y) * t.self->f210 * D_00283A78;
-    t.self->slot29(matrix);
+    matrix.m[0] = (y + z) * t.self->f210 * D_00283A78;
+    matrix.m[5] = (x + z) * t.self->f210 * D_00283A78;
+    matrix.m[10] = (x + y) * t.self->f210 * D_00283A78;
+    t.self->slot29(matrix.m);
     t.self->f4b4 = count;
     if (t.self->f4b4 > 0) {
         t.self->f500 = (M_12CD10 **)func_001E8A44(t.self->f4b4 * 4);

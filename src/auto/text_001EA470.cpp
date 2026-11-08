@@ -18,12 +18,9 @@ int func_001EDD36(S_001EA_FILE *stream, const char *fmt, va_list args);
 int func_001F3C55(S_001EA_FILE *stream, const unsigned short *fmt, va_list args);
 int func_001ED8A7(int ch, S_001EA_FILE *stream);
 
-unsigned __int64 __stdcall func_001EA470(unsigned int lo1, unsigned int hi1, unsigned int lo2, unsigned int hi2)
+unsigned __int64 __stdcall func_001EA470(unsigned __int64 a, unsigned __int64 b)
 {
-    if (hi2 == 0 && hi1 == 0) {
-        return (unsigned __int64)lo1 * lo2;
-    }
-    return ((unsigned __int64)(((unsigned int)(((unsigned __int64)lo1 * lo2) >> 32)) + hi1 * lo2 + lo1 * hi2) << 32) | (unsigned int)((unsigned __int64)lo1 * lo2);
+    return a * b;
 }
 
 #pragma optimize("y", on)

@@ -636,11 +636,7 @@ C_001A1FB0 *C_001A1FB0::func_001A1FB0(int a0, int a1, S36_1A s0, S16_1A s1, S16_
 
 void C_001A2060::func_001A2060(float dt)
 {
-    V4_1A v;
-    v.x = *(float *)&D_002A9ECC;
-    v.y = D_002A9ED0;
-    v.z = D_002A9ED4;
-    v.w = D_002A9ED8;
+    V4_1A v = D_002A9ECC;
     if (unk1C0) {
         unk1C0->func_00199A70(0, &v);
     } else if (unk1C4) {
@@ -657,11 +653,11 @@ void C_001A2060::func_001A2060(float dt)
         V4_1A o = *prev;
         d.x = cur->x - o.x;
         d.y = cur->y - o.y;
-        d.w = o.w;
         d.z = cur->z - o.z;
+        d.w = o.w;
         if (dt > D_00275544) {
             float inv = D_00275460 / dt;
-            unk80 = V4_1A(d.x * inv, d.y * inv, d.z * inv, 1.0f);
+            unk80 = V4_1A(d.x * inv, d.y * inv, d.z * inv);
         }
     }
     func_00157A00(dt);
@@ -687,11 +683,9 @@ void C_001A22E0::func_001A22E0(int a0) {
 
 #pragma optimize("g", off)
 void C_001A22F0::func_001A22F0(void) {
-    if (f1bc == 0)
-        return;
-    if (f98 & 8)
-        f1b4 = 1;
-    f1bc->v5(0);
+ if (f1bc == 0) return;
+ if (f98 & 8) f1b4 = 1;
+ f1bc->v5(0);
 }
 #pragma optimize("", on)
 

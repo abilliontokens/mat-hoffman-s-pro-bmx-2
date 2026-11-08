@@ -768,11 +768,12 @@ void __fastcall func_001AE890(C_001AE890 * volatile self)
     func_00200230(&view);
     q = self;
     {
+        int vy = view.v[1];
         int *b = (int *)((char *)q->f18 + 0x6c);
         left = b[0];
-        top = b[1] + view.v[1];
+        top = b[1] + vy;
         r = b[2];
-        end = b[3] + view.v[1];
+        end = b[3] + vy;
     }
     rect[0] = left;
     rect[1] = top;

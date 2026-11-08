@@ -23,7 +23,7 @@ struct Class_00294F04 {
     void *func_001E88FF(unsigned int flags);
 };
 
-unsigned __int64 __ftol2(double x) { return (unsigned __int64)x; }
+unsigned __int64 func_001E8858(double x) { return (unsigned __int64)x; }
 
 void func_001E88CD(void) {
     int func_001EB9F3(...);
@@ -48,6 +48,31 @@ void func_001E891B(void) {
     func_001E8390();
 }
 
+extern "C" char *strncpy(char *dst, const char *src, unsigned int n);
+#pragma intrinsic(strncpy)
+char *func_001E8920(char *dst, const char *src, unsigned int count)
+{
+    char *start = dst;
+
+    if (count == 0) {
+        return start;
+    }
+    for (;;) {
+        char c = *src++;
+
+        *dst++ = c;
+        if (--count == 0) {
+            return start;
+        }
+        if (c == 0) {
+            break;
+        }
+    }
+    while (count-- != 0) {
+        *dst++ = 0;
+    }
+    return start;
+}
 void func_001E8A44(int a0) { func_001E8A79(a0, 1); }
 
 int func_001E8A52(unsigned int size) {

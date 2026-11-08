@@ -319,7 +319,6 @@ void C_00027C50::func_00027C50(float scale) {
     V4_00027C50 b;
     V4_00027C50 c;
     float d;
-    float tz;
 
     a.z = 0.0f;
     a.y = 0.0f;
@@ -330,11 +329,16 @@ void C_00027C50::func_00027C50(float scale) {
     b.x = 0.0f;
     b.w = 1.0f;
     unk230->func_00197B40(&a.x, &b.x);
-    a = *(V4_00027C50 *)func_0001E9E0(&c.x, &a.x);
+    {
+        __int64 *dst = (__int64 *)&a.x;
+        const __int64 *src = (const __int64 *)func_0001E9E0(&c.x, &a.x);
+        dst[0] = src[0];
+        dst[1] = src[1];
+    }
     d = a.y * -1.0f;
-    d += a.x * 0.0f;
-    tz = a.z * 0.0f;
-    unk580 = (d + tz) * scale;
+    d = d + a.x * 0.0f;
+    d = d + a.z * 0.0f;
+    unk580 = d * scale;
     if (unk580 < 0.0f) {
         unk580 = 0.0f;
     }

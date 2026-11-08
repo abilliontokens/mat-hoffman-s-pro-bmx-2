@@ -75,7 +75,7 @@ int __stdcall func_001E233F(void *name, unsigned int bytesPerCluster) {
     int st2;
     unsigned char is16;
     unsigned int *buf;
-    int (__stdcall *ioctl)(void *, void *, void *, void *, void *, unsigned int, void *, unsigned int, void *, unsigned int);
+    int (__stdcall *pfn)(void *, void *, void *, void *, void *, unsigned int, void *, unsigned int, void *, unsigned int);
 
     oa.name = name;
     oa.root = 0;
@@ -85,15 +85,15 @@ int __stdcall func_001E233F(void *name, unsigned int bytesPerCluster) {
         func_001DD659(st);
         return 0;
     }
-    ioctl = _imp__NtDeviceIoControlFile;
-    st = ioctl(handle, 0, 0, 0, iosb, (unsigned int)&D_00070000, 0, 0, geom, 0x18);
+    pfn = _imp__NtDeviceIoControlFile;
+    st = pfn(handle, 0, 0, 0, iosb, (unsigned int)&D_00070000, 0, 0, geom, 0x18);
     if (st < 0) {
         _imp__NtClose(handle);
         func_001DD659(st);
         return 0;
     }
     status = func_001E2770(geom[5]);
-    st2 = ioctl(handle, 0, 0, 0, iosb, (unsigned int)&D_00074004, 0, 0, part, 0x20);
+    st2 = pfn(handle, 0, 0, 0, iosb, (unsigned int)&D_00074004, 0, 0, part, 0x20);
     if (st2 < 0) {
         _imp__NtClose(handle);
         func_001DD659(st2);

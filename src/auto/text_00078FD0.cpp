@@ -319,20 +319,23 @@ void BmxInGameMenu::func_00078FD0(float dt)
     if (unkF4 != 0) {
         if (unkF0 >= D_00278500) {
             if (unk120 != 0) {
-                if (D_002A8490->p2E0->f4 == 2 || D_002A8490->p2E0->f4 == 0) {
-                    if (unk104->f90 == 1 &&
-                        (unk104->f68->func_0005B960(3, (float)unk104->f64->p4E0->arr1a8[0]->fA58) != 0 ||
-                         unk104->f68->func_0005B960(1, unk104->f64->p4E0->arr1a8[0]->fA4C) != 0 ||
-                         unk104->f68->func_0005B960(5, (float)unk104->f64->p4E0->arr1a8[0]->fA5C) != 0 ||
-                         unk104->f68->func_0005B960(4, (float)unk104->f64->p4E0->arr1a8[0]->fA40) != 0 ||
-                         unk104->f68->func_0005B960(2, unk104->f64->p4E0->arr1a8[0]->f1058) != 0 ||
-                         unk104->f68->func_0005B960(0, unk104->f64->p4E0->arr1a8[0]->fA54) != 0)) {
-                        func_00060220();
-                        unk104->f164->fFC = 2;
-                        unkF4 = 0;
-                        goto done;
-                    }
+                if (D_002A8490->p2E0->f4 == 2 || D_002A8490->p2E0->f4 == 0)
+                    goto checks;
+                goto save;
+checks:
+                if (unk104->f90 == 1 &&
+                    (unk104->f68->func_0005B960(3, (float)unk104->f64->p4E0->arr1a8[0]->fA58) != 0 ||
+                     unk104->f68->func_0005B960(1, unk104->f64->p4E0->arr1a8[0]->fA4C) != 0 ||
+                     unk104->f68->func_0005B960(5, (float)unk104->f64->p4E0->arr1a8[0]->fA5C) != 0 ||
+                     unk104->f68->func_0005B960(4, (float)unk104->f64->p4E0->arr1a8[0]->fA40) != 0 ||
+                     unk104->f68->func_0005B960(2, unk104->f64->p4E0->arr1a8[0]->f1058) != 0 ||
+                     unk104->f68->func_0005B960(0, unk104->f64->p4E0->arr1a8[0]->fA54) != 0)) {
+                    func_00060220();
+                    unk104->f164->fFC = 2;
+                    unkF4 = 0;
+                    goto done;
                 }
+save:
                 D_002A8490->p2E0->p2FC->func_00094960(0);
                 D_002A8490->p2A4->p64->p4C0->v31(0, 1);
                 D_002A8490->p2E0->p2FC->v18(0);

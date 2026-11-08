@@ -319,30 +319,30 @@ void *C_00162ED0::func_00162ED0(unsigned int flags)
 }
 
 void *func_001E8AA5(int size);
-int __stdcall func_00162FB0(Src162FB0 *src, char *name, Pack162FB0 *pack)
+int __stdcall func_00162FB0(Src162FB0 * volatile src, char *name, Pack162FB0 * volatile pack)
 {
-    int handle;
     int table[0x100];
     char buf[0x100];
-    float v20[4];
-    float v30[4];
+    char out[0x10];
+    float buf2[4];
+    Vec4_162FB0 pos;
     float v44[4];
-    char out[0x20];
-    float r4[4];
-    int found;
     int count2;
+    float v30[4];
+    float v20[4];
+    float scale;
+    int hc[3];
     int i;
-    int n;
-    int cnt;
+    int found;
     float *mats;
-    handle = ((Mgr162FB0 *)D_002BEAAC)->func_0013C9F0(name, D_00276274);
-    if (handle == -1)
+    hc[0] = ((Mgr162FB0 *)D_002BEAAC)->func_0013C9F0(name, D_00276274);
+    if (hc[0] == -1)
         return 0;
     for (i = 0; i < 0x40; i++)
         table[i] = 0;
     found = 0;
     count2 = 0;
-    while (((Mgr162FB0 *)D_002BEAAC)->func_0013C6E0(handle, buf, 0xff)) {
+    while (((Mgr162FB0 *)D_002BEAAC)->func_0013C6E0(hc[0], buf, 0xff)) {
         char *s;
         func_001EA1EE(buf);
         s = func_001E95A4(buf, D_002789B8);
@@ -400,18 +400,20 @@ int __stdcall func_00162FB0(Src162FB0 *src, char *name, Pack162FB0 *pack)
             }
         }
     }
-    ((Mgr162FB0 *)D_002BEAAC)->func_0013AFF0(handle, 0, 0);
+    ((Mgr162FB0 *)D_002BEAAC)->func_0013AFF0(hc[0], 0, 0);
     v20[0] = 0; v20[1] = 0; v20[2] = 0; v20[3] = 1.0f;
     v30[0] = 0; v30[1] = 0; v30[2] = 0; v30[3] = 1.0f;
     v44[0] = 0; v44[1] = 0; v44[2] = 0; v44[3] = 1.0f;
-    cnt = 0;
-    if (((Mgr162FB0 *)D_002BEAAC)->func_0013C6E0(handle, buf, 0xff) && cnt < pack->f34) {
+    hc[2] = 0;
+    while (((Mgr162FB0 *)D_002BEAAC)->func_0013C6E0(hc[0], buf, 0xff)) {
+        if (hc[2] >= pack->f34)
+            break;
         func_001EA1EE(buf);
         func_001E95A4(buf, D_002789B8);
         if (count2 > 0) {
-            n = count2;
+            hc[1] = count2;
             do {
-                ((Mgr162FB0 *)D_002BEAAC)->func_0013C6E0(handle, buf, 0xff);
+                ((Mgr162FB0 *)D_002BEAAC)->func_0013C6E0(hc[0], buf, 0xff);
                 func_001E95A4(buf, D_002789B8);
                 i = (unsigned char)src->func_00164650(func_001E95A4(0, D_00287D00));
                 if (i == 0xff)
@@ -431,24 +433,46 @@ int __stdcall func_00162FB0(Src162FB0 *src, char *name, Pack162FB0 *pack)
                 v20[2] = (float)func_001E9649(func_001E95A4(0, D_002789B8));
                 v20[1] = (float)func_001E9649(func_001E95A4(0, D_002789B8));
                 func_000265C0(mats + (i << 4), v20, v30, v44, 1, 1);
-                n--;
-            } while (n != 0);
+                hc[1]--;
+            } while (hc[1] != 0);
         }
-        for (i = 0; i < src->count1E8; i++) {
-            Entry162FB0 *e = &src->entries1EC[i];
-            float *m = mats + i * 16;
-            if (e->f3C != 0 && e->f38 == 0) {
-                float *r = (float *)((EObj_00162FB0 *)e->f34)->func_00199B00(src->f4, out);
-                r4[0] = r[0]; r4[1] = r[1]; r4[2] = r[2]; r4[3] = r[3];
-                v20[0] = r[0]; v20[1] = r[1]; v20[2] = r[2]; v20[3] = r[3];
-                m[3] = r4[0];
-                m[7] = r4[1];
-                m[11] = r4[2];
-                ((EObj_00162FB0 *)e->f34)->func_0019AD60(src->f4, m);
+        {
+            float *m = mats;
+            for (i = 0; i < src->count1E8; i++, m += 16) {
+                Entry162FB0 *e = &src->entries1EC[i];
+                if (e->f3C != 0 || e->f38 != 0) {
+                    if (e->f38 == 0) {
+                        float *r = (float *)((EObj_00162FB0 *)e->f34)->func_00199B00(src->f4, out);
+                        *(Vec4_162FB0 *)v20 = *(Vec4_162FB0 *)r;
+                        pos = *(Vec4_162FB0 *)r;
+                        m[3] = pos.x;
+                        m[7] = pos.y;
+                        m[11] = pos.z;
+                    }
+                    ((EObj_00162FB0 *)e->f34)->func_0019AD60(src->f4, m);
+                }
             }
         }
+        scale = (float)hc[2] / pack->f30;
+        for (i = 0; i < pack->countA; i++) {
+            Obj162FB0 *o = pack->listA[i];
+            Entry162FB0 *e = &src->entries1EC[o->unk4];
+            ((EObj_00162FB0 *)e->f34)->func_00197E70(v20);
+            o->vt->v2(v20, scale);
+        }
+        for (i = 0; i < pack->countB; i++) {
+            Obj162FB0 *o = pack->listB[i];
+            Entry162FB0 *e = &src->entries1EC[o->unk4];
+            ((EObj_00162FB0 *)e->f34)->func_00197B90(buf2);
+            o->vt->v1(buf2, scale);
+        }
+        hc[2]++;
     }
-    ((Mgr162FB0 *)D_002BEAAC)->func_0013C110(handle);
+    ((Mgr162FB0 *)D_002BEAAC)->func_0013C110(hc[0]);
+    if (pack->f2C == 1) {
+        for (i = 0; i < pack->countA; i++)
+            func_0015BB70(pack->listA[i]);
+    }
     return 1;
 }
 

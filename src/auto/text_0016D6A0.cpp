@@ -455,9 +455,10 @@ int C_0016DD70::func_0016DD70(float dt)
     return 1;
 }
 
+extern "C" void _ReadWriteBarrier(void);
+#pragma intrinsic(_ReadWriteBarrier)
 void C_0016DEA0::func_0016DEA0(void)
 {
-    float base[3];
     int i;
     int count;
     float r1, r2, r3;
@@ -471,6 +472,7 @@ void C_0016DEA0::func_0016DEA0(void)
     }
     f220[0] = AsmMaxF(f180, f220[0]);
     for (count = 0; (float)count < f220[0]; count++) {
+        float base[3];
         if (f64->count >= f64->max) {
             break;
         }
@@ -508,7 +510,8 @@ void C_0016DEA0::func_0016DEA0(void)
         }
         p->f48 = this;
         p->f30 = f170;
-        p->f34 = D_00275460 / *(float *)&p->f30;
+        _ReadWriteBarrier();
+        p->f34 = D_00275460 / p->f30;
         p->f2C = f198;
         p->f28 = f188;
         p->f40 = 0;
@@ -532,7 +535,6 @@ void C_0016DEA0::func_0016DEA0(void)
         f188 = func_00011260(f1A8, f1AC);
     }
 }
-
 void *C_0016E2E0::func_0016E2E0(unsigned int flags)
 {
     vtbl = (void *)&D_00288084;

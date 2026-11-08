@@ -2,6 +2,7 @@
 #include "common.h"
 #include "ghidra.h"
 #include <string.h>
+#include "asm_helpers.h"
 struct C_00097050_V16 { int a, b, c, d; };
 struct C_00097050_Mgr {
     void func_0001B820(char *item);
@@ -333,7 +334,7 @@ void C_00097050::func_00097050(C_00097050_Arg *a)
     if (*(int *)(self + 0x1b0) == 0)
         return;
 #define ITEM ((*(char ***)(self + 0x1c8))[m])
-#define S(it, o) (((char (*)[0x78])((it) + (o)))[k])
+#define S(it, o) ((char *)((it) + ((o) + k * 0x78)))
     for (int m = 0; m < *(int *)(self + 0x1b8); m++) {
         if (*(int *)ITEM != 1)
             continue;
@@ -363,16 +364,14 @@ void C_00097050::func_00097050(C_00097050_Arg *a)
                     }
                 }
             }
-            char *it1 = ITEM;
-            strcpy(b2, S(it1, 0x5578));
-            strcpy(b3, S(it1, 0x50c8));
+            strcpy(b2, S(ITEM, 0x5578));
+            strcpy(b3, S(ITEM, 0x50c8));
             if (b3[0] && b2[0])
-                ((C_00097050_Obj **)(it1 + 0x63d8))[k]->func_001B65D0();
-            char *it2 = ITEM;
-            strcpy(b2, S(it2, 0x5ed8));
-            strcpy(b3, S(it2, 0x5a28));
+                ((C_00097050_Obj **)(ITEM + 0x63d8))[k]->func_001B65D0();
+            strcpy(b2, S(ITEM, 0x5ed8));
+            strcpy(b3, S(ITEM, 0x5a28));
             if (b2[0] && b3[0])
-                ((C_00097050_Obj **)(it2 + 0x6400))[k]->func_001B65D0();
+                ((C_00097050_Obj **)(ITEM + 0x6400))[k]->func_001B65D0();
         }
     }
 #undef S
@@ -475,35 +474,29 @@ void __stdcall func_00097770(const char *name)
 
 void __stdcall func_00097890(const char *name)
 {
+    C_00097770_List *list;
+    C_00097770_Entry *e;
+    C_00097770_Obj *obj;
+    int len, lim;
+    int res, n, i;
     char buf[0x104];
-    volatile int lim;
-    volatile int res;
-    volatile int len;
-    struct { C_00097770_List *list; int i; } it;
-    C_00097770_2A4 *a = D_002A8490->f2A4;
-    if (a == 0 || a->f64 == 0)
-        return;
-    it.list = a->f64->f3A8->f0;
-    for (it.i = 0; it.i < it.list->count; it.i++) {
-        C_00097770_Entry *&e = it.list->items[it.i];
+
+    if (!D_002A8490->f2A4 || !D_002A8490->f2A4->f64) return;
+    list = D_002A8490->f2A4->f64->f3A8->f0;
+    for (i = 0; i < list->count; i++) {
+        e = list->items[i];
         if (e->f4 == 2) {
-            C_00097770_Obj *obj = e->f8;
-            const char *src = obj->f14C->name;
+            obj = e->f8;
+            const char *src = (*(C_00097770_Named **)((char *)obj + 0x14c))->name;
             len = strlen(src);
             lim = 0x103;
-            int x = lim;
-            int y = len;
-            res = min_val(x, y);
-            int n = res;
+            res = AsmMinI(lim, len);
+            n = res;
             func_001E8920(buf, src, n);
             buf[n] = 0;
             char *ext = func_001E8AC0(buf, '.');
-            if (ext != 0) {
-                memset(ext, 0, strlen(ext));
-            }
-            if (func_001EA426(name, buf) == 0) {
-                obj->v6();
-            }
+            if (ext) memset(ext, 0, strlen(ext));
+            if (func_001EA426(name, buf) == 0) obj->v6();
         }
     }
 }

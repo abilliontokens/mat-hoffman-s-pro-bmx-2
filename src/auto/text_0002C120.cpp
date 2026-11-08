@@ -196,7 +196,14 @@ void C_0002C120::func_0002C120(int param_1, float param_2)
     V4_0002C120 tmp;
     float s;
     int *fp;
+    float t1;
+    float t2;
 
+    lc = 0;
+    t1 = 0;
+    t2 = 0;
+    s = 0;
+    v = 0;
     if (!(this->f504 < this->f508 || this->f468 != 0 || this->f69c != 0)) {
         return;
     }
@@ -330,11 +337,11 @@ void C_0002C120::func_0002C120(int param_1, float param_2)
             } else {
                 s = D_00275460;
             }
-            lc = s * this->f4a4 + d;
-            s = -this->f1ec->f3c;
-            v = AsmMaxF(lc, s);
-            lc = this->f1ec->f3c;
-            v = AsmMinF(v, lc);
+            t1 = s * this->f4a4 + d;
+            t2 = -this->f1ec->f3c;
+            v = AsmMaxF(t1, t2);
+            t1 = this->f1ec->f3c;
+            v = AsmMinF(v, t1);
             b->f238.x = v * n->vx + b->f238.x;
             b->f238.y = v * n->vy + b->f238.y;
             b->f238.z = v * n->vz + b->f238.z;

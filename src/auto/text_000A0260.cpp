@@ -236,6 +236,80 @@ struct C_000A0A80 {
 };
 
 
+void C_000A0260::func_000A0260(int a1, int *a2, Vec_A0260 *a3, Vec_A0260 *a4, int *a5, Vec_A0260 *a6, Vec_A0260 *a7, int *a8)
+{
+    Vec_A0260 off;
+    Vec_A0260 tmp;
+    Vec_A0260 right;
+    Vec_A0260 up;
+    Vec_A0260 side;
+    Vec_A0260 pos;
+    Vec_A0260 dir;
+    float f;
+
+    if (!(D_002B90EC & 1)) {
+        D_002B90EC |= 1;
+        D_002B90E8 = D_002A7CB8->func_00026500(D_00277F44, -1);
+    }
+    Init_A0260(&pos);
+    Init_A0260(&dir);
+    Init_A0260(&up);
+    if (f8) {
+        f4->holder->cam->func_00199A70(0, &pos);
+        f4->holder->cam->func_001994C0(0, &dir, &up);
+    } else {
+        fC->func_00199A70(0, &pos);
+        fC->func_001994C0(0, &dir, &up);
+    }
+    Init_A0260(&tmp);
+    AsmVec3Cross(&tmp.x, &dir.x, &f28.x);
+    f18 = pos;
+    f28 = dir;
+    Init_A0260(&side);
+    func_00158390(f8C, D_002A2600, dir, &f68);
+    func_0009F5B0(&f68, &f68);
+    AsmVec3Cross(&side.x, &D_002A2600.x, &f68.x);
+    func_0009F5B0(&side, &side);
+    func_00158390(f90, side, f68, &f68);
+    func_0009F5B0(&f68, &f68);
+    AsmVec3Cross(&f78.x, &f68.x, &side.x);
+    func_0009F5B0(&f78, &f78);
+    Vec_A0260 tgt = D_002A25E0;
+    if (f8) {
+        tgt.y = D_002A25E0.y + f88;
+        tgt = *f4->holder->cam->func_00197F70(&off, &tgt);
+    } else {
+        tgt = pos;
+    }
+    f = f4C;
+    off.x = f68.x * f;
+    off.y = f68.y * f;
+    off.z = f68.z * f;
+    tmp.x = tgt.x - off.x;
+    tmp.y = tgt.y - off.y;
+    tmp.z = tgt.z - off.z;
+    tmp.w = 1.0f;
+    f58 = tmp;
+    Init_A0260(&right);
+    AsmVec3Cross(&right.x, &dir.x, &up.x);
+    func_0009FB00(right, tgt, dir, up, a1);
+    *a2 = 0;
+    if (a5)
+        *a5 = f3C;
+    if (a3)
+        *a3 = f58;
+    if (a6)
+        *a6 = f68;
+    if (a7)
+        *a7 = f78;
+    if (a4)
+        *a4 = tgt;
+    if (a8)
+        *a8 = 0;
+    if (f38)
+        f38 = 0;
+}
+
 int C_000A08D0::func_000A08D0(S_000A08D0 s, int a5) {
     S_000A08D0_5 *p = (S_000A08D0_5 *)func_001E8A44(0x14);
     fDC = p ? init_000A08D0(p, 0.02f) : 0;
@@ -312,10 +386,10 @@ void func_000A0B80(void) {
 
 int Scene_A0B::func_000A0BA0() {
 Link_A0B* p=0;
-List_A0B* l=(List_A0B*)func_001E8A44(0x24); list=l!=(List_A0B*)p?l->func_00157600(1):(List_A0B*)p;
+List_A0B* l=(List_A0B*)func_001E8A44(0x24); list=l?l->func_00157600(1):0;
 nodes=(Node_A0B**)func_001E8A44(count*4); other=(Node_A0B**)func_001E8A44(count*4);
 D_002E2930->func_0015D850(count,bounds->a,0xff7fffff,bounds->c,bounds->b,0x7f7fffff,bounds->d,0x42c80000,1);
-for(int i=0;i<count;i++){Node_A0B* n=(Node_A0B*)func_001E8A44(0xa0); nodes[i]=n!=(Node_A0B*)p?n->func_00192900(1):(Node_A0B*)p; n=(Node_A0B*)func_001E8A44(0xa0); other[i]=n!=(Node_A0B*)p?n->func_00192900(1):(Node_A0B*)p; nodes[i]->id=i;other[i]->id=i;if(sectors[i].count>0)nodes[i]->func_00192AF0(sectors[i].data,sectors[i].count);}
+for(int i=0;i<count;i++){Node_A0B* n=(Node_A0B*)func_001E8A44(0xa0); nodes[i]=n?n->func_00192900(1):0; n=(Node_A0B*)func_001E8A44(0xa0); other[i]=n?n->func_00192900(1):0; nodes[i]->id=i;other[i]->id=i;if(sectors[i].count>0)nodes[i]->func_00192AF0(sectors[i].data,sectors[i].count);}
 if(edges>0){int j=0; do {p=(Link_A0B*)func_001E8A44(0xb8); p=p?p->func_00179820(1):0; list->func_001577A0(p->func_0017A310(edge[j].data),0);int a=edge[j].a-1,b=edge[j].b-1;nodes[a]->func_00192A50(nodes[b],p);other[a]->func_00192A50(other[b],p);nodes[b]->func_00192A50(nodes[a],p);other[b]->func_00192A50(other[a],p);if(D_002E2930)D_002E2930->func_0015DA60(a,b,p);++j;}while(j<edges);}
 func_001E891B(edge);p=0;edge=0;
 if(count==1 && sectors->c==2 && sectors->a==2){Special_A0B* p=(Special_A0B*)func_001E8A44(0x8b8);D_002F07E8=p?p->func_001C4F40():0;if(!D_002F07E8->func_001C4F70(bounds->a,0xff7fffff,bounds->c,bounds->b,0x7f7fffff,bounds->d,0x42c00000))func_00012140();D_002F07E8->func_001C4FA0(5000);nodes[0]->id=0;other[0]->id=0;nodes[0]->func_00192A90(D_002F07E8);nodes[0]->func_00192AC0(D_002F07E8);other[0]->func_00192A90(D_002F07E8);other[0]->func_00192AC0(D_002F07E8);list->func_001577A0(nodes[0],0);list->func_001577A0(other[0],0);D_002F07E8->v2();}

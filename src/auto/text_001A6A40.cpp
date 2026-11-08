@@ -374,15 +374,18 @@ void C_001A6B70::func_001A6B70()
 
 void C_001A6D30::func_001A6BA0()
 {
+    static const unsigned SET_X = 0x43fa0000;
+    static const unsigned SET_Y = 0x43c48000;
+
     if (f6C == 9) {
         f48->func_0005E840(D_002A8490->f2e8->f4->f1248);
         f48->func_001D6600();
         if (f60) f40->func_001D5AD0(); else f38->func_001D5AD0();
         f44->func_0005E840(D_002A8490->f2e8->f4->f7a0);
         C_001D6410 *q = f44;
-        if (!(q->x == 0x43fa0000 && q->yi == 0x43c48000)) {
-            q->yi = 0x43c48000;
-            q->x = 0x43fa0000;
+        if (!(q->x == SET_X && q->yi == SET_Y)) {
+            q->yi = SET_Y;
+            q->x = SET_X;
             q->flags |= 6;
         }
         f44->func_001D6600();
@@ -399,10 +402,10 @@ void C_001A6D30::func_001A6BA0()
         }
         unsigned x;
         if (f6C == 3) { f44->func_0005E840(D_002A8490->f2e8->f4->f11a0); x = 0x43af0000; }
-        else { f44->func_0005E840(D_002A8490->f2e8->f4->f7a0); x = 0x43fa0000; }
+        else { f44->func_0005E840(D_002A8490->f2e8->f4->f7a0); x = SET_X; }
         C_001D6410 *p = f44;
-        if (!(p->x == x && p->yi == 0x43c48000)) {
-            p->yi = 0x43c48000;
+        if (!(p->x == x && p->yi == SET_Y)) {
+            p->yi = SET_Y;
             p->x = x;
             p->flags |= 6;
         }
@@ -454,6 +457,7 @@ void C_001A6E90::func_001A6E90(float dt)
     S_001A6E90_Msg msg;
     float sum;
     int s;
+    float t2;
 
     sum = dt + f54;
     f54 = sum;
@@ -516,8 +520,9 @@ void C_001A6E90::func_001A6E90(float dt)
     }
 after_draw:
     if (f5C != 0 || f60 != 0) {
-        f64 += dt;
-        if (f64 >= D_002755E8) {
+        t = dt + f64;
+        f64 = (t2 = t);
+        if (t >= D_002755E8) {
             if (f5C != 0) {
                 if (f6C == 3) {
                     if (f78->func_00092A10() == 0) {
@@ -530,7 +535,7 @@ after_draw:
                     f4C->f24 = 9;
                     f5C = 0;
                 }
-            } else if (f60 != 0 && f64 >= D_00278C48) {
+            } else if (f60 != 0 && t >= D_00278C48) {
                 if (f6C == 9) {
                     msg.type = 2;
                     msg.code = 0x55;
@@ -636,7 +641,6 @@ C_001A7260 *C_001A7260::func_001A7320(C_Holder24 *owner)
     int font;
     void *m;
     int i;
-    int idx;
 
     D_002A8490->f234 = 1;
     D_002EFDB8->v8();
@@ -737,7 +741,7 @@ C_001A7260 *C_001A7260::func_001A7320(C_Holder24 *owner)
         func_001ADCC0(bufB, 0x104, D_00276F28, f24->f1d4[i]);
         func_001A5C30(bufB, f34, 0x1e, 8);
     } else {
-        idx = func_00011260(0, f24->f1d0 - 1);
+        int idx = func_00011260(0, f24->f1d0 - 1);
         func_001ADCC0(bufB, 0x104, D_00276F28, f24->f1cc[idx]);
         func_001A5C30(bufB, f34, 0x1e, 8);
     }

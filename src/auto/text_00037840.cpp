@@ -137,9 +137,12 @@ struct S_00037840_B {
 
 void func_00037840(S_00037840_A *a1, S_00037840_B *a2, int a3, int a4)
 {
-    if (a4 == 0 || CurrentOwner() != a1->f64)
-        return;
-    func_00035300(&a2->f24, a2->fDC);
-    a2->func_001BB4D0(0);
+    if (a4 != 0 &&
+        *(int *)(*(int *)(*(int *)(*(int *)(*(int *)(D_002A8490 + 0x2a4) + 0x64) + 0x4e0) + 0x1a8) + 0x1e0) == a1->f64) {
+        int *p = &a2->f24;
+
+        func_00035300(p, a2->fDC);
+        a2->func_001BB4D0(0);
+    }
 }
 

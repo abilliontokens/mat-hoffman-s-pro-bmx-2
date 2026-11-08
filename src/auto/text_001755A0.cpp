@@ -52,7 +52,7 @@ int _func_001755A0(unsigned short *dst, unsigned short *src, int w, int h, int d
     }
     return 1;
 }
-#pragma optimize("", on)
+#pragma optimize("y", on)
 int func_00175840(unsigned short *dst, unsigned short *src, int width, int height, int dstStride, int srcStride)
 {
     unsigned short *srcRow = src, *dstRow = dst;
@@ -82,7 +82,6 @@ int func_00175840(unsigned short *dst, unsigned short *src, int width, int heigh
     }
     return 1;
 }
-
 #pragma optimize("y", off)
 int func_00175A10(unsigned short *dst, unsigned short *src, int width, int height, int dstPitch, int srcPitch, unsigned char flags, unsigned short key)
 {

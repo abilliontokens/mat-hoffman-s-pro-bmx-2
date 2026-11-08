@@ -278,7 +278,6 @@ int __stdcall func_001DDF52(int a0, void *a1, char *a2, int a3)
     unsigned short buf[0x8d];
     unsigned short *p;
     unsigned short *found;
-    unsigned short *endp;
     unsigned int total;
     unsigned int off;
     unsigned int rem;
@@ -327,22 +326,22 @@ int __stdcall func_001DDF52(int a0, void *a1, char *a2, int a3)
             skipRead = 1;
             continue;
         }
-        p = found + nameLen + 1;
-        endp = func_001EA9DD(p, D_0028FB88);
-        if (endp == 0) {
+        p = SkipPast_001DDF52(found, nameLen * 2);
+        found = func_001EA9DD(p, D_0028FB88);
+        if (found == 0) {
             partial = 1;
             p = buf;
             room = 0x8c;
             continue;
         }
-        x = endp - p;
+        x = found - p;
         n = a3 - 1;
         if (n >= x) {
             n = x;
         }
         func_001EA4A4((unsigned short *)a2, p, n);
         ((unsigned short *)a2)[n] = 0;
-        off = ((char *)endp - (char *)buf) + 4;
+        off = ((char *)found - (char *)buf) + 4;
         if (off < total) {
             func_001DD3A1(a0, off - total, 0, 1);
         }
@@ -354,56 +353,37 @@ int __stdcall func_001DDF52(int a0, void *a1, char *a2, int a3)
 
 int __stdcall func_001DE0DD(int a0, void *a1, int a2)
 {
-    char *p = (char *)a0;
-    int result = 0;
-    char *q;
-    char *s;
-    char *t;
-    char *d;
-    char *e;
-    int len;
-    bool m;
-    int h;
-
-    m = *(unsigned int *)p & 0x10;
-    if (!m) {
-        return 0;
-    }
-    q = p + 0x2c;
-    s = q;
-    t = s + 1;
-    while (*s++) {
-    }
-    len = s - t;
-    s = (char *)a1;
-    d = p + 0x140;
-    while ((*d++ = *s++) != 0) {
-    }
-    d = p + 0x140 + a2;
-    while ((*d++ = *q++) != 0) {
-    }
-    if ((unsigned int)(len + a2) < 0x103) {
-        p[len + a2 + 0x141] = 0;
-        p[len + a2 + 0x140] = '\\';
-        if (len + a2 < 0xf7) {
-            e = p + len + a2;
-            s = D_0028FAD0;
-            d = e + 0x140;
-            while ((*d++ = *s++) != 0) {
-            }
-            h = func_001DCC3C((int)(p + 0x140), 0x80000000, 1, 0, 3, 0x80, 0);
-            a0 = h;
-            if (h != -1) {
-                result = func_001DDF0A(h, 1);
-                if (result) {
-                    result = func_001DDF52(a0, &D_0028FB38, p + 0x244, 0x80);
-                }
-                func_001DD13C(a0);
-            }
-            e[0x141] = 0;
-        }
-    }
-    return result;
+ char *p=(char *)a0;
+ int result=0;
+ const char *q;
+ int len;
+ int e;
+ int end; int h;
+ unsigned int mask=(*(S_001DE0DD *)p).flags & 0x10;
+ if (!(unsigned char)mask) return 0;
+ q=p+0x2c;
+ len=strlen(q);
+ strcpy(p+0x140,(char *)a1);
+ strcpy(p+0x140+a2,q);
+ end=len+a2;
+ if ((unsigned int)end < 0x103) {
+  (p+len)[a2+0x141]=0;
+  (p+len)[a2+0x140]='\\';
+ }
+ if (end < 0xf7) {
+  e=len+a0;
+  e+=a2;
+  strcpy((char *)e+0x140,D_0028FAD0);
+  h=func_001DCC3C((int)(p+0x140),0x80000000,1,0,3,0x80,0);
+  a0=h;
+  if(h!=-1) {
+   result=func_001DDF0A(h,1);
+   if(result) result=func_001DDF52(a0,&D_0028FB38,p+0x244,0x80);
+   func_001DD13C(a0);
+  }
+  ((char *)e)[0x141]=0;
+ }
+ return result;
 }
 
 int __stdcall func_001DE1DF(int param1, int param2)
@@ -485,10 +465,13 @@ unsigned int __stdcall func_001DE2BB(char *root, unsigned short *name, int disp,
                 return 0x52;
             }
         }
-        if (disp != 1 && r == 0) {
-            goto done;
+        if (disp == 1) {
+            return flags;
         }
-        return flags;
+        if (r != 0) {
+            return flags;
+        }
+        goto done;
     }
     tail = path + len;
     strcpy(tail, D_0028FAD0);
@@ -506,13 +489,15 @@ unsigned int __stdcall func_001DE2BB(char *root, unsigned short *name, int disp,
     }
     func_001EAA6D(buf, 0x98, (flags & 1) ? D_0028FBD0 : D_0028FBB0, (int)&D_0000FEFF, &D_0028FB38, 0x3d, name, D_0028FB88, D_0028FB90);
     n = func_001EA410(buf) * 2;
-    while (n != 0) {
-        if (func_001DD247((int)root, buf, n, (unsigned int *)&name, 0) == 0) {
-            err = func_001DD603();
-            func_001DD13C((int)root);
-            goto fail;
-        }
-        n -= (unsigned int)name;
+    if (n != 0) {
+        do {
+            if (func_001DD247((int)root, buf, n, (unsigned int *)&name, 0) == 0) {
+                err = func_001DD603();
+                func_001DD13C((int)root);
+                goto fail;
+            }
+            n -= (unsigned int)name;
+        } while (n != 0);
     }
     func_001DD13C((int)root);
 done:

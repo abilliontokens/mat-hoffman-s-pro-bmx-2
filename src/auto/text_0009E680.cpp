@@ -177,31 +177,10 @@ int C_0009EDF0::func_0009E680(C_0009EDF0 *arg)
     fwd[1] = 0.0f;
     fwd[2] = 0.0f;
     fwd[3] = 1.0f;
-    {
-        Vec4f a = *(Vec4f *)&D_002A2528;
-        Vec4f b = *(Vec4f *)norm;
-        side[0] = a.y * b.z - a.z * b.y;
-        side[1] = a.z * b.x - a.x * b.z;
-        side[2] = a.x * b.y - a.y * b.x;
-        side[3] = b.w;
-    }
+    AsmVec3Cross(side, (const float *)&D_002A2528, norm);
     func_0009DA90(side, side);
-    {
-        Vec4f a = *(Vec4f *)side;
-        Vec4f b = *(Vec4f *)up;
-        fwd[0] = a.y * b.z - a.z * b.y;
-        fwd[1] = a.z * b.x - a.x * b.z;
-        fwd[2] = a.x * b.y - a.y * b.x;
-        fwd[3] = b.w;
-    }
-    {
-        Vec4f a = *(Vec4f *)&arg->f1fc;
-        Vec4f b = *(Vec4f *)side;
-        up[0] = a.y * b.z - a.z * b.y;
-        up[1] = a.z * b.x - a.x * b.z;
-        up[2] = a.x * b.y - a.y * b.x;
-        up[3] = b.w;
-    }
+    AsmVec3Cross(fwd, up, side);
+    AsmVec3Cross(up, (const float *)&arg->f1fc, side);
     func_0009DA90(up, side);
 
     t = len / ((float *)this)[0xe8 / 4];
@@ -209,7 +188,7 @@ int C_0009EDF0::func_0009E680(C_0009EDF0 *arg)
         return 0;
 
     arg->f1f0 = t * arg->f17c;
-    count = (int)(t * arg->f1f0);
+    AsmFloatToInt(t * arg->f1f0, &count);
     if (count < 1)
         return 0;
 
@@ -230,7 +209,7 @@ int C_0009EDF0::func_0009E680(C_0009EDF0 *arg)
             p->v10.z = start.z + side[2] * r1;
             r2 = (float)func_001E8833() * D_002754B0;
             r2 = arg->f210 * D_002755E8 - r2 * arg->f210;
-            p->f38 = (r2 + p->v10.x) ;
+            p->f38 = (r2 + p->v10.x);
             r3 = (float)func_001E8833() * D_002754B0;
             p->f2C = arg->f170 * D_002755E8 * r3;
             p->v10.x += arg->v34.x;

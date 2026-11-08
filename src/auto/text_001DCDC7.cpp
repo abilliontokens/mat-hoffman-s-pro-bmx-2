@@ -11,8 +11,6 @@ int __stdcall func_001DCDC7(int, int, int, int, int, int);
 #pragma optimize("y", on)
 __declspec(noinline) int __stdcall func_001DCDC7(int a0,int a1,volatile int a2,int a3,int a4,int a5) {
     typedef int (__stdcall *Progress)(__int64,__int64,__int64,__int64,u32,u32,u32,u32,int);
-    u32 size=(u32)&D_00010000;
-    int status;
     u32 basic[10];
     S_AnsiString str;
     __int64 allocation;
@@ -21,8 +19,9 @@ __declspec(noinline) int __stdcall func_001DCDC7(int a0,int a1,volatile int a2,i
     S_IoStatusBlock ios;
     void *buffer;
     char remove;
-    u32 input,output;
+    u32 output,input;
     __int64 offset;
+    u32 size=(u32)&D_00010000;
     oa.rootDirectory=(void *)-3; oa.attributes=0x40; oa.objectName=&str;
     buffer=_imp__MmAllocateSystemMemory(size,4);
     if(!buffer) {func_001DD62B(8);return 0;}
@@ -33,6 +32,7 @@ __declspec(noinline) int __stdcall func_001DCDC7(int a0,int a1,volatile int a2,i
     a0=_imp__NtQueryInformationFile((void *)input,&ios,info,0x38,0x22);
     if(a0<0) { _imp__NtClose((void *)input); goto openFailed; }
     init(&str,(const char *)a1);
+    int status;
     status=_imp__NtCreateFile(&output,0x40100000,&oa,&ios,&info[10],0x80,0,(a5&1)?2:5,0x64);
     if(status<0) { _imp__NtClose((void *)input); _imp__MmFreeSystemMemory(buffer,size); func_001DD659(status); return 0; }
     offset=0;

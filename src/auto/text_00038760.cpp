@@ -152,10 +152,8 @@ int C_00038760::func_00038760(float x, float y, float z, int unused, int *out)
 
 extern "C" void _ReadWriteBarrier(void);
 #pragma intrinsic(_ReadWriteBarrier)
-C_00038850_Item *C_00038760::func_00038850(void * volatile owner, float x, float y, float z, int unused, volatile int allow)
+C_00038850_Item *C_00038760::func_00038850(void *owner, float x, float y, float z, int unused, int allow)
 {
-    S_00038760_Arr *a = &arr3;
-    C_00038760 * volatile self = this;
     int ix, iy, iz;
     float v[4];
 
@@ -164,8 +162,8 @@ C_00038850_Item *C_00038760::func_00038850(void * volatile owner, float x, float
     v[0] = 0.0f;
     v[3] = 1.0f;
     _ReadWriteBarrier();
-    for (int i = 0; i < a->count; i++, a = &self->arr3) {
-        C_00038850_Item *e = (C_00038850_Item *)a->at(i);
+    for (int i = 0; i < arr3.count; i++) {
+        C_00038850_Item *e = (C_00038850_Item *)arr3.at(i);
         e->func_0019C320(v);
         Round_00038850(&ix, v[0]);
         _ReadWriteBarrier();

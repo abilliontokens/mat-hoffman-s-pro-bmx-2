@@ -424,15 +424,17 @@ void C_000847A0::func_000847A0(void) {
 
 void C_000847B0::func_000847B0(void)
 {
- C_000847B0 * volatile self=this;
  int v, hi, lo;
- int * volatile p=&v;
+ int *p = &v;
+ C_000847B0 * volatile self=this;
  int i=1;
- for(int x=4;x<=100;x+=4) {
- float t=*(volatile float *)&self->fD50 * D_00275994;
- *p=_mm_cvt_ss2si(*(__m128 *)&t);
- if(v<=x) {lo=i*5+4;hi=i*5+3;break;}
- i++;
+ int x=4;
+ while (x<=100) {
+  float t=*(volatile float *)&self->fD50 * D_00275994;
+  AsmFloatToIntRound(t, p);
+  if(v<=x) {lo=i*5+4;hi=i*5+3;break;}
+  i++;
+  x+=4;
  }
  S_000847B0_Widget *w=self->fD48;
  if(w->f2C!=0x42000000) {w->f2C=0x42000000;w->b58|=1;}

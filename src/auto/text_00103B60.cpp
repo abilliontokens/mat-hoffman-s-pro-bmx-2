@@ -409,14 +409,14 @@ int C_00104900::func_001049A0(int param_1)
     return ret;
 }
 
-void func_00104A00(V4_00104A00 *out, V3_00104A00 *src)
+V4_00104A00 func_00104A00(V3_00104A00 *src)
 {
-    V4_00104A00 r;
-    r.x = fabs_00104A00(src->x);
-    r.y = fabs_00104A00(src->y);
-    r.z = fabs_00104A00(src->z);
-    r.w = 1.0f;
-    *out = r;
+ V4_00104A00 r; volatile int t[2]; V3_00104A00 *p=src;
+ *(volatile float *)&r.w=1.0f;
+ *(volatile int *)&src=*(int *)&p->x; t[0]=*(volatile int *)&src & 0x7fffffff; *(volatile int *)&r.x=t[0];
+ *(volatile int *)&src=*(int *)&p->y; t[0]=*(volatile int *)&src & 0x7fffffff; *(volatile int *)&r.y=t[0];
+ *(volatile int *)&src=*(int *)&p->z; t[0]=*(volatile int *)&src & 0x7fffffff; *(volatile int *)&r.z=t[0];
+ return r;
 }
 
 void func_00104A90(float *out, float *in) {

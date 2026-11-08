@@ -113,6 +113,187 @@ struct BmxUIPageRiderOps {
     void func_000E5FF0();
 };
 
+int BmxUIPageRiderOps::func_000E6EF0(int a, int b)
+{
+    Ctx_000E6EF0 *c = p124;
+    Snd_000E6EF0 *s = c->p24;
+    D_002A8490->p2EC->func_0018C160((int)&D_002786A0);
+    if (c->p25C->p74->func_000301D0()) return 0;
+    if (c->p268->func_001C3F10()) return 0;
+    if (c->p268->func_001C3F30() && f29C == 0 && f2A4 == 0 && f2A0 == 0) return 0;
+    if (f4DC || f4E0) return 0;
+    if (p124->i138 == 4 || p124->i138 == 3) return 0;
+    if ((f29C || f2A4 || f2A0) && f2A8 == 0) return 0;
+    if (a != D_002A8490->p2E0->a300[f280]) return 0;
+    if (b == D_002A8490->p8->func_00136170(3, 2, 0)) {
+        if (f2AC || f508) return 0;
+        f470 = 1;
+        s->func_000B9A80(2, 1);
+        f4C8 = 1;
+        f4CC = 1;
+        f4C4 = f4C4 == 0;
+        return 1;
+    }
+    if (b == D_002A8490->p8->func_00136170(2, 2, 0)) {
+        if (f2AC || f508) return 0;
+        f470 = 1;
+        s->func_000B9A80(2, 1);
+        f4C8 = 1;
+        f4CC = 1;
+        f4C4 = f4C4 == 0;
+        return 1;
+    }
+    if (b == D_002A8490->p8->func_00136170(1, 2, 0)) {
+        if (f2AC || f508) return 0;
+        if (f4C4 == 0) {
+            if (D_002A8490->p2E0->i4 == 0) {
+                do {
+                    if (++c->i288 >= c->p27C[c->i284].n11C) c->i288 = 0;
+                } while (!func_000E5180(c->i288));
+            } else {
+                do {
+                    if (++c->i288 >= c->p27C[c->i284].n11C) c->i288 = 0;
+                } while (!D_002A8490->p2E0->p2C0->func_0005C150(c->i284, c->i288));
+            }
+            if (f4D4 == c->i288) return 0;
+            f4E0 = 1;
+        } else {
+            if (D_002A8490->p2E0->i4 == 0) {
+                do {
+                    if (++c->i28C >= c->p27C[c->i284].n110) c->i28C = 0;
+                } while (!func_000E5150(c->i28C));
+            } else {
+                do {
+                    if (++c->i28C >= c->p27C[c->i284].n110) c->i28C = 0;
+                } while (!D_002A8490->p2E0->p2C0->func_0005C190(c->i284, c->i28C));
+            }
+            if (f4D0 == c->i28C) return 0;
+            f4E4 = 1;
+        }
+        f4EC = 0;
+        f470 = 1;
+        s->func_000B9A80(2, 1);
+        return 1;
+    }
+    if (b == D_002A8490->p8->func_00136170(7, 2, 0)) {
+        if (f508) return 0;
+        if (f284 != 1) return 0;
+        if (f50C == 0) {
+            f50C = 1;
+            f2A8 = 0;
+            f290 = b;
+            f294 = a;
+            s->func_000B9A80(4, 1);
+            return 0;
+        }
+        if (f2A8 == 0) return 0;
+        if (f2AC) func_000E6D00();
+        f2A8 = 0;
+        return 1;
+    }
+    if (b == D_002A8490->p8->func_00136170(0, 2, 0)) {
+        if (f2AC || f508) return 0;
+        if (f4C4 == 0) {
+            if (D_002A8490->p2E0->i4 == 0) {
+                do {
+                    if (--c->i288 < 0) c->i288 = c->p27C[c->i284].n11C - 1;
+                } while (!func_000E5180(c->i288));
+            } else {
+                do {
+                    if (--c->i288 < 0) c->i288 = c->p27C[c->i284].n11C - 1;
+                } while (!D_002A8490->p2E0->p2C0->func_0005C150(c->i284, c->i288));
+            }
+            if (f4D4 == c->i288) return 0;
+            f470 = 1;
+            s->func_000B9A80(2, 1);
+            f4DC = 1;
+            f4EC = 0;
+            return 1;
+        } else {
+            if (D_002A8490->p2E0->i4 == 0) {
+                do {
+                    if (--c->i28C < 0) c->i28C = c->p27C[c->i284].n110 - 1;
+                } while (!func_000E5150(c->i28C));
+            } else {
+                do {
+                    if (--c->i28C < 0) c->i28C = c->p27C[c->i284].n110 - 1;
+                } while (!D_002A8490->p2E0->p2C0->func_0005C190(c->i284, c->i28C));
+            }
+            if (f4D0 == c->i28C) return 0;
+            f470 = 1;
+            s->func_000B9A80(2, 1);
+            f4E8 = 1;
+            f4EC = 0;
+            return 1;
+        }
+    }
+    if (b == D_002A8490->p8->func_00136170(6, 2, 0)) {
+        if (f2A4 == 0) s->func_000B9A80(4, 1);
+        if (f2A8 == 0) {
+            f2A4 = 1;
+            f298 = 0;
+            f290 = b;
+            f294 = a;
+            return 0;
+        }
+        if (f2AC == 0 && f508 == 0) {
+            f2AC = 1;
+            f2B0 = 0;
+            func_000E6DC0();
+            func_000E5FF0();
+            f2A4 = 0;
+            f2A8 = 0;
+            return 1;
+        }
+        f2AC = 0;
+        f508 = 0;
+        f2A4 = 0;
+        f2A8 = 0;
+        f4D8 = 1;
+        return 1;
+    }
+    if (b == D_002A8490->p8->func_00136170(4, 2, 0) || b == D_002A8490->p8->func_00136170(0x17, 2, 0)) {
+        if (f29C == 0) {
+            f46C = 1;
+            f788 = 1;
+            s->func_000B9A80(4, 1);
+        }
+        if (f2A8 == 0) {
+            f29C = 1;
+            f298 = 0;
+            f290 = b;
+            f294 = a;
+            return 0;
+        }
+        f3E8[c->i284] = c->func_000BC050();
+        f428[c->i284] = c->func_000BC130();
+        return 1;
+    }
+    if (b == D_002A8490->p8->func_00136170(5, 2, 0) || b == D_002A8490->p8->func_00136170(0x18, 2, 0)) {
+        if (f2A0 == 0) {
+            f46C = 1;
+            f788 = 1;
+            s->func_000B9A80(1, 1);
+            f2A0 = 1;
+            f298 = 0;
+            f290 = b;
+            f294 = a;
+            if (f2A8 == 0) return 0;
+        }
+        int v = f3E8[c->i284];
+        if (v != c->i28C) {
+            c->i28C = v;
+            f28C = c->func_000BDF30(1);
+        }
+        v = f428[c->i284];
+        if (v == c->i288) return 0;
+        c->i288 = v;
+        f288 = c->func_000BE020(1);
+        return 1;
+    }
+    return 0;
+}
+
 void BmxUIPageRiderOps::func_000E7820()
 {
     int ids[4];

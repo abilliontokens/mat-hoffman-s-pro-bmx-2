@@ -249,6 +249,7 @@ undefined4 C_0007C2C0::func_0007C2C0()
 {
     char buf[0x32];
     S_7C2C0_U *u;
+    S_7C2C0_T *t;
     int n, j, count, si, color, idx;
     S_7C2C0_W *w;
 
@@ -269,13 +270,33 @@ undefined4 C_0007C2C0::func_0007C2C0()
             continue;
         w = f13c[si];
         w->func_0005E840(u->f56c[j] + 0x24);
-        if (w->color != color) {
-            w->flags |= 8;
-            w->color = (w->color ^ color) & 0xffffff ^ w->color;
-        }
+        w->SetColorVar(color);
         w->func_001D6600();
         si++;
     }
+    t = f1d0->f64->f534;
+    count = t->count;
+    func_001ADCC0(buf, 0x104, D_00275678, (char *)D_002A8490->f2e8->f4->ff8, D_00279030);
+    si = AddLine(si, D_00275630, 0xffcccccc);
+    si = AddLine(si, buf, 0xffbfa35a);
+    si = AddLine(si, D_00275630, 0xffcccccc);
+    for (j = 0; j < count; j++) {
+        idx = D_002A8490->f2e0->f48 * 100 + j;
+        color = ((int *)((char *)n + 0x1318))[idx];
+        color = color ? 0xcccccc : 0xbfa35a;
+        if (strncmp(t->names[j] + 0x24, D_00275630, 1) == 0)
+            continue;
+        if (si < 0 || si >= 0x10)
+            continue;
+        w = f13c[si];
+        w->func_0005E840(t->names[j] + 0x24);
+        w->SetColorVar(color);
+        w->func_001D6600();
+        si++;
+    }
+    f24c = si - f244;
+    if (si > 0x10)
+        f208->func_001D6600();
     return 0;
 }
 

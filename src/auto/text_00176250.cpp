@@ -159,29 +159,32 @@ u32 func_00176250(u8 *dst, u8 *src, int width, int height, int dstPitch, int src
 u32 _func_00176630(u8 *src, int fmt, int width, int height, int srcWidth, int dstWidth,
                   u8 *out888, u16 *out565, u16 *out555, u8 *outPal, S_00176250_Pal *pal)
 {
-    int bpp;
-    u8 *tbl;
-    Rgb3 *colors;
-    int pitch;
-    u8 *srcRow;
     int rowBytes;
-    u16 *p555;
+    int pitch;
+    u8 idx;
+    Rgb3 *colors;
+    u8 *tbl;
     int off565;
+    u16 *p555;
     u8 *rgbRow;
+    int y;
+    u8 *p8;
+    u16 *p555w;
+    u16 *p565;
+    u8 *p888;
     u8 *palRow;
+    int eR;
+    int eG;
+    int eB;
+    int x;
+    u8 *srcRow;
+    int qB;
+    int qG;
+    int qR;
+    int bpp;
+    int *buf;
     int *cur;
     int *nxt;
-    u8 *p888;
-    u8 *p8;
-    u16 *p565;
-    u16 *p555w;
-    int x;
-    int y;
-    int qR, qG, qB;
-    int eR, eG, eB;
-    u8 idx;
-    Rgb3 c;
-    int iR, iG, iB;
     int t7;
 
     bpp = func_001B2910(fmt);
@@ -193,10 +196,11 @@ u32 _func_00176630(u8 *src, int fmt, int width, int height, int srcWidth, int ds
         if (D_002EFD1C[0] != 0)
             func_001E8390(D_002EFD1C[0]);
         D_002EFD18 = 0;
-        D_002EFD1C[0] = (int *)func_001E8AA5(width * 24);
-        if (D_002EFD1C[0] == 0)
-            return (u32)D_002EFD1C[0];
-        D_002EFD1C[1] = D_002EFD1C[0] + width * 12;
+        buf = (int *)func_001E8AA5(width * 24);
+        D_002EFD1C[0] = buf;
+        if (buf == 0)
+            return 0;
+        D_002EFD20 = buf + width * 3;
         D_002EFD18 = width;
     }
     if (fmt == 0x22b)
@@ -215,10 +219,6 @@ u32 _func_00176630(u8 *src, int fmt, int width, int height, int srcWidth, int ds
     for (y = 0; y < height; y++) {
         cur = D_002EFD1C[y % 2];
         nxt = D_002EFD1C[1 - y % 2];
-        p888 = rgbRow;
-        p8 = palRow;
-        p565 = (u16 *)((u8 *)p555 + off565);
-        p555w = p555;
         if (y != height - 1) {
             if (fmt == 0x22b)
                 func_00175210((u16 *)srcRow, height);
@@ -227,6 +227,10 @@ u32 _func_00176630(u8 *src, int fmt, int width, int height, int srcWidth, int ds
             else
                 func_001751A0(srcRow, height);
         }
+        p888 = rgbRow;
+        p8 = palRow;
+        p565 = (u16 *)((u8 *)p555 + off565);
+        p555w = p555;
         for (x = 0; x < height; x++) {
             eR = cur[2];
             if (eR < 0)
@@ -234,7 +238,7 @@ u32 _func_00176630(u8 *src, int fmt, int width, int height, int srcWidth, int ds
             else if (eR >= 0x1000000)
                 qR = 0xffffff;
             else {
-                qR = (eR + (eR >> 31 & D_0007FFFF)) >> 19 << 19;
+                qR = (eR + (eR >> 31 & D_0007FFFF)) / 0x80000 * 0x80000;
                 if (eR - qR > D_00040000)
                     qR += D_00080000;
             }
@@ -244,7 +248,7 @@ u32 _func_00176630(u8 *src, int fmt, int width, int height, int srcWidth, int ds
             else if (eG >= 0x1000000)
                 qG = 0xffffff;
             else {
-                qG = (eG + (eG >> 31 & D_0007FFFF)) >> 19 << 19;
+                qG = (eG + (eG >> 31 & D_0007FFFF)) / 0x80000 * 0x80000;
                 if (eG - qG > D_00040000)
                     qG += D_00080000;
             }
@@ -254,20 +258,20 @@ u32 _func_00176630(u8 *src, int fmt, int width, int height, int srcWidth, int ds
             else if (eB >= 0x1000000)
                 qB = 0xffffff;
             else {
-                qB = (eB + (eB >> 31 & D_0007FFFF)) >> 19 << 19;
+                qB = (eB + (eB >> 31 & D_0007FFFF)) / 0x80000 * 0x80000;
                 if (eB - qB > D_00040000)
                     qB += D_00080000;
             }
             if (pal != 0) {
-                iR = qR >= 0x1000000 ? 0xffffff : qR;
-                iG = qG >= 0x1000000 ? 0xffffff : qG;
-                iB = qB >= 0x1000000 ? 0xffffff : qB;
-                idx = tbl[(((iR >> 9) & 0xfffffc1f | iG >> 14) & D_0000FFE0) | (u16)(iB >> 19)];
-                c = colors[idx];
-                if (abs(eR - (c.r << 16)) <= 0 && abs(eG - (c.g << 16)) <= 0 && abs(eB - (c.b << 16)) <= 0) {
-                    qR = c.r << 16;
-                    qG = c.g << 16;
-                    qB = c.b << 16;
+                idx = tbl[((((qR >= 0x1000000 ? 0xffffff : qR) >> 9) & 0xfffffc1f
+                            | (qG >= 0x1000000 ? 0xffffff : qG) >> 14) & D_0000FFE0)
+                          | (u16)((qB >= 0x1000000 ? 0xffffff : qB) >> 19)];
+                if (abs(eR - (colors[idx].r << 16)) <= 0
+                    && abs(eG - (colors[idx].g << 16)) <= 0
+                    && abs(eB - (colors[idx].b << 16)) <= 0) {
+                    qR = colors[idx].r << 16;
+                    qG = colors[idx].g << 16;
+                    qB = colors[idx].b << 16;
                 }
             }
             eR -= qR;
@@ -285,12 +289,9 @@ u32 _func_00176630(u8 *src, int fmt, int width, int height, int srcWidth, int ds
                 cur[0] = 0xffffff;
                 qB = 0xffffff;
             }
-            if (qR < 0)
-                qR = 0;
-            if (qG < 0)
-                qG = 0;
-            if (qB < 0)
-                qB = 0;
+            qR = qR < 0 ? 0 : qR;
+            qG = qG < 0 ? 0 : qG;
+            qB = qB < 0 ? 0 : qB;
             cur[2] = qR;
             cur[1] = qG;
             cur[0] = qB;
@@ -309,13 +310,13 @@ u32 _func_00176630(u8 *src, int fmt, int width, int height, int srcWidth, int ds
             if (x < height - 1) {
                 t7 = eR * 7 / 16;
                 cur[5] += t7;
-                nxt[5] += -3 * eR / 16 - 5 * eR / 16 - t7 + eR;
+                nxt[5] += eR * -3 / 16 - 5 * eR / 16 - t7 + eR;
                 t7 = eG * 7 / 16;
                 cur[4] += t7;
-                nxt[4] += -3 * eG / 16 - 5 * eG / 16 - t7 + eG;
+                nxt[4] += eG * -3 / 16 - 5 * eG / 16 - t7 + eG;
                 t7 = eB * 7 / 16;
                 cur[3] += t7;
-                nxt[3] += -3 * eB / 16 - 5 * eB / 16 - t7 + eB;
+                nxt[3] += eB * -3 / 16 - 5 * eB / 16 - t7 + eB;
                 nxt[2] += 5 * eR / 16;
                 nxt[1] += 5 * eG / 16;
                 nxt[0] += 5 * eB / 16;

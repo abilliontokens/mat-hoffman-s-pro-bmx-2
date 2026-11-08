@@ -480,10 +480,10 @@ int C_001CF1B0::func_001CF1B0(int block, S_001CF1B0_Packet *packet)
 
 void XboxSoundGroup::func_001CF2A0()
 {
-    PlainElemList_001CF2A0 copy;
     int i;
     int count = 0;
     SoundElem_001CF2A0 **items = 0;
+    PlainElemList_001CF2A0 copy;
     copy.count = 0;
     copy.growBy = 0;
     copy.capacity = 0;
@@ -787,6 +787,8 @@ int XboxMusic::func_001CFB00(int arg)
     return cur;
 }
 
+extern "C" void _ReadWriteBarrier(void);
+#pragma intrinsic(_ReadWriteBarrier)
 int SoundThread_001CFDC0::func_001CFC00(void)
 {
     S_001CF1B0_Packet pkt;
@@ -847,16 +849,16 @@ int SoundThread_001CFDC0::func_001CFC00(void)
         r = func_001CF1B0(index, &pkt);
         if (r < 0) return r;
         if (pkt.size != 0) {
+            int channel = *(volatile int *)&fB0;
             pkt.rest[0] = (u32)&fD0[index];
             pkt.completed = 0;
-            int channel = fB0;
+            _ReadWriteBarrier();
             r = fB8[channel]->Process(&pkt, 0);
             if (r < 0) return r;
         }
     }
     return 0;
 }
-
 int __stdcall func_001CFDC0(SoundThread_001CFDC0 *p)
 {
     int r;

@@ -215,7 +215,7 @@ BmxSmokeParticleEmitter *BmxSmokeParticleEmitter::func_0009DB00(int param_1)
     int i = 0x40;
     f32 *p = f1F4[0];
     do {
-        int j = 4;
+        register int j = 4;
         f32 *q = p;
         p += j;
         do {
@@ -255,6 +255,38 @@ void C_0009DF90::func_0009DF90(float param_1)
   return;
 }
 
+C_0009DFC0 *C_0009DFC0::func_0009DFC0(int param_1)
+{
+    ((C_00169C50 *)this)->func_00169C50(param_1);
+    vtbl = &D_0027AAEC;
+    f600 = 0;
+    f5FC = 0;
+    f5F8 = 0;
+    f604 = 1.0f;
+    f170 = 1000.0f;
+    f178 = 0.2f;
+    f174 = 2.75f;
+    f1F0 = 0;
+    f190 = 0x80e;
+    int i = 0x40;
+    f32 *p = f1F4[0];
+    do {
+        f32 *q = p;
+        p += 4;
+        for (int j = 4; j != 0; --j) {
+            f32 v = (f32)func_001E8833() * D_002754B0;
+            *q++ = v + v + D_00275460;
+        }
+    } while (--i);
+    f5F4 = 0;
+    f1AC = 0;
+    f1A8 = 0;
+    f188 = 0;
+    f608 = 100.0f;
+    func_001ADCC0((char *)this + 0x6C, 0x104, (const char *)&D_0027AAD0, (const char *)&D_002A5558);
+    return this;
+}
+
 C_0009E0C0 *C_0009E0C0::func_0009E0C0(int a1, int a2, int a3)
 {
     ((C_0016A1D0 *)this)->func_0016A1D0(a1, a2, a3);
@@ -271,19 +303,18 @@ C_0009E0C0 *C_0009E0C0::func_0009E0C0(int a1, int a2, int a3)
 }
 
 int BmxSmokeParticleEmitter::func_0009E400(S_0009E5F0_Stream *stream) {
-    f32 *p;
-    int i;
     ((C_0016A1D0 *)this)->func_0016A3A0(stream);
-    p = f1F4[0];
-    for (i = 0x40; i != 0; i--) {
+    int i = 0x40;
+    f32 *p = f1F4[0];
+    do {
         f32 *q = p;
         int j = 4;
-        p = q + 4;
+        p += 4;
         do {
             f32 v = (f32)func_001E8833() * D_002754B0;
             *q++ = v * f174 + D_00275460;
         } while (--j);
-    }
+    } while (--i);
     return 0;
 }
 

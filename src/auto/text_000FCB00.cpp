@@ -186,16 +186,18 @@ C_000FCB00 *C_000FCB00::func_000FCB00(int a, int b, int c)
         f284[i] = (int)o;
         if (i % 2 == 0)
             o->func_001D5810(D_002786B0, 279.0f, 345.0f, 0);
-        else
+        else {
             o->func_001D5810(D_002786B0, 449.0f, 345.0f, 0);
         o = (Img_FCB00 *)f284[i];
-        o->a = 1.0f;
         o->b = 0.0f;
         o->c = 0.0f;
+        o->a = 1.0f;
         o->d = 1.0f;
         o->flags |= 4;
-        if (o->width != 170) {
-            o->width = 170;
+        }
+        o = (Img_FCB00 *)f284[i];
+        if (o->width != 0x432a0000) {
+            o->width = 0x432a0000;
             o->flags |= 1;
         }
     }
@@ -207,18 +209,21 @@ C_000FCB00 *C_000FCB00::func_000FCB00(int a, int b, int c)
         void *e = *(void **)((char *)D_002A8490->f2e8 + 4);
         void *y = *(void **)((char *)e + 0x10f8);
         o->func_001D6190(v, y, D_00278690);
+        o = f408;
         if (o->x != 154 || o->y != 228) {
             o->x = 154;
             o->y = 228;
             o->flags |= 6;
         }
+        o = f408;
         if (o->f44 != D_0028F5E0) {
             o->f44 = D_0028F5E0;
             o->flags |= 6;
         }
+        o = f408;
         if (o->f48 != 0xffcccccc) {
-            o->f48 = (o->f48 & 0xffcccccc) | 0xcccccc;
             o->flags |= 8;
+            o->f48 = (o->f48 & 0xffcccccc) | 0xcccccc;
         }
     }
 
@@ -227,12 +232,14 @@ C_000FCB00 *C_000FCB00::func_000FCB00(int a, int b, int c)
         o = o ? o->func_001D5760() : 0;
         f2044 = o;
         o->func_001D5810(D_00282544, 32.0f, 174.0f, 0);
-        if (o->f2C != 106) {
-            o->f2C = 106;
+        o = f2044;
+        if (o->f2C != 0x42d40000) {
+            o->f2C = 0x42d40000;
             o->flags |= 1;
         }
-        if (o->width != 240) {
-            o->width = 240;
+        o = f2044;
+        if (o->width != 0x43700000) {
+            o->width = 0x43700000;
             o->flags |= 1;
         }
     }

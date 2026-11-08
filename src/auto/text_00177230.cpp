@@ -271,6 +271,7 @@ u32 func_001779C0(u8 *dst, u8 *src, int width, int height, int dstPitch, int src
  return 1;
 }
 
+int func_00176630(unsigned char*, int, int, int, int, int, int, int, unsigned short*, int, int);
 int func_00177AB0(unsigned short* dst, unsigned char* src, int width, int height, int dstPitch, int srcPitch, int useBlit)
 {
     if (useBlit) {
@@ -313,7 +314,7 @@ u32 func_00177BA0(u8 *dst, u8 *src, int width, int height, int dstPitch, int src
             u16 r = q[2];
             u16 g = q[1];
             u16 b = q[0];
-            u16 t = (((r & 0xFFF8) << 5) | g) & 0xFFF8;
+            u16 t = (((r & (u16)0xFFF8) << 5) | g) & 0xFFF8;
             *p = tbl[(u16)(t << 2) | (b >> 3)];
             p++;
             q += 3;
@@ -454,7 +455,7 @@ u32 func_001780F0(u8 *dst, u8 *src, int width, int height, int dstPitch, int src
   u8 *d;
   u8 *s;
   u8 *p;
-  register u8 *q;
+  u8 *q;
   int x;
   int y;
   s = src;
@@ -477,14 +478,14 @@ u32 func_00178180(u8 *dst, u8 *src, int width, int height, int dstPitch, int src
     u16 *d = (u16 *)dst;
     int x;
     int y;
-    y = height;
-    while (y > 0) {
-        for (x = 0; x < width; x++) {
-            d[x] = (u16)(((s[x] >> 1) & 0x7fe0) | (s[x] & 0x1f));
+    for (y = height; y > 0; y--) {
+        if (width > 0) {
+            for (x = 0; x < width; x++) {
+                d[x] = (u16)(((s[x] >> 1) & 0x7fe0) | (s[x] & 0x1f));
+            }
         }
         s += srcPitch;
         d += dstPitch;
-        y--;
     }
     return 1;
 }

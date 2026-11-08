@@ -376,33 +376,34 @@ void BmxUIPageParkEditor::func_000C59C0()
     f294 = 0;
     f29C = 1;
     f2A4 = 0;
-    for (i = 0; i < 16; i++) {
+    i = 0;
+    while (i < 16) {
         if (sub->func_000BC0F0(i))
             break;
-        D_002A8490->p2E0->f2C0->func_0005C1E0(i);
+        ((C_5580_R *)D_002A8490->p2E0->f2C0)->func_0005C1E0(i);
+        i++;
     }
     for (k = 0, off = 0; off < 0x1a80; off += 0x1a8, k++) {
-        if (D_002A8490->p2E0->f2C0->func_0005C1D0(k) == 0) {
+        if (((C_5580_R *)D_002A8490->p2E0->f2C0)->func_0005C1D0(k) == 0) {
             if (off == 0x1a8 || off == 0x4f8 || off == 0x9f0 || off == 0xd40 || off == 0x13e0 || off == 0x18d8) {
                 int index = sub->f150->f484->func_0001B3C0(sub->f27c + off);
-                char *obj = (char *)sub->f150->f484->f2c->f28[index]->f1a4;
-                ((C_59C0_VB *)(obj + *(int *)(*(char **)obj + 4)))->v5();
+                ((S59_Obj *)sub->f150->f484->f2c->f28[index]->f1a4)->v5();
             }
         } else if (D_002A8490->p2E0->f4 == 0) {
             if (off == 0x1a8 || off == 0x4f8 || off == 0x9f0 || off == 0xd40 || off == 0x13e0 || off == 0x18d8) {
                 int arg = sub->f27c + off;
                 C_59C0_Tab3 *t = sub->f150->f484;
-                int index = t->func_0001B3C0(arg);
-                char *obj = (char *)sub->f150->f484->f2c->f28[index]->f1a4;
-                ((C_59C0_VB *)(obj + *(int *)(*(char **)obj + 4)))->v5();
+                int slot = t->func_0001B3C0(arg);
+                C_59C0_Res *obj = sub->f150->f484->f2c->f28[slot];
+                ((S59_Obj *)obj->f1a4)->v5();
             }
         } else {
             if (off == 0x1a8 || off == 0x4f8 || off == 0x9f0 || off == 0xd40 || off == 0x13e0 || off == 0x18d8) {
                 int arg = sub->f27c + off;
                 C_59C0_Tab3 *t = sub->f150->f484;
-                int index = t->func_0001B3C0(arg);
-                char *obj = (char *)sub->f150->f484->f2c->f28[index]->f1a4;
-                ((C_59C0_VB *)(obj + *(int *)(*(char **)obj + 4)))->v7();
+                int slot = t->func_0001B3C0(arg);
+                C_59C0_Res *obj = sub->f150->f484->f2c->f28[slot];
+                ((S59_Obj *)obj->f1a4)->v7();
             }
         }
     }
@@ -463,14 +464,16 @@ void __fastcall func_000C5E40(BmxUIPageParkEditor *self)
     D_002B91AC->f34->func_001D6600();
 }
 
+void __fastcall func_001578D0(void *self);
 void BmxUIPageParkEditor::func_000C5EA0(void)
 {
     int ids[3];
-    ids[0] = D_00278690;
-    ids[1] = D_002786A0;
-    ids[2] = D_00278678;
+    ids[0] = (int)&D_00278690;
+    ids[1] = (int)&D_002786A0;
+    ids[2] = (int)&D_00278678;
     for (int i = 0; i < 3; i++) {
-        S_C5EA0_Obj *o = ((S_C5EA0_Mgr *)D_002A8490)->f2ec->func_0018C160(ids[i]);
+        S_C5EA0_Disp *t = ((S_C5EA0_Mgr *)D_002A8490)->f2ec;
+        S_C5EA0_Obj *o = t->func_0018C160(ids[i]);
         if (o && o->f0) {
             S_C5EA0_Clamp *c = o->f0->func_0018C070();
             if (D_00275AEC > c->f10) c->f10 = 10.0f;
@@ -478,6 +481,19 @@ void BmxUIPageParkEditor::func_000C5EA0(void)
             else if (c->f14 > c->f10) c->f14 = 10.0f;
         }
     }
+    E5EA0_W **e = (E5EA0_W **)&f2D0[0];
+    int n = 4;
+    do {
+        if (*e) {
+            E5EA0_F *c = (*e)->func_001D5AA0();
+            if (D_00275AEC > c->f10) c->f10 = 10.0f;
+            if (D_00275AEC < c->f14) c->f14 = 10.0f;
+            else if (c->f14 > c->f10) c->f14 = 10.0f;
+        }
+        e++;
+        n--;
+    } while (n);
+    func_001578D0(this);
 }
 
 void BmxUIPageParkEditor::func_000C6420()

@@ -122,6 +122,21 @@ struct C_000D4280 {
     void func_000D44C0();
 };
 
+void BmxUIPageLevelSelection::func_000D3DA0() {
+const char* names[3] = {D_00278690,D_002786A0,D_00278678};
+for(int i=0;i<3;i++) {
+C_D3DA0_Manager* manager=D_002A8490->f2EC;
+C_D3DA0_Item** p=manager->func_0018C160(names[i]);
+if(p && *p) { C_D3DA0_Range* r=(*p)->func_0018C070(); if (D_00275AEC > r->f10) r->f10 = 10.0f;
+if (D_00275AEC < r->f14 || r->f14 > r->f10) r->f14 = 10.0f; }
+}
+for(int j=0;j<2;j++) { if(a284[j]) {C_D3DA0_Range* r=a284[j]->func_001D5AA0(); if (D_00275AEC > r->f10) r->f10 = 10.0f;
+if (D_00275AEC < r->f14 || r->f14 > r->f10) r->f14 = 10.0f; } }
+if(f2044) {C_D3DA0_Range* r=f2044->func_001D5AA0(); if (D_00275AEC > r->f10) r->f10 = 10.0f;
+if (D_00275AEC < r->f14 || r->f14 > r->f10) r->f14 = 10.0f; }
+func_001578D0();
+}
+
 void C_000D4280::func_000D4280()
 {
     f2A8->func_001B1980();
@@ -144,6 +159,34 @@ void C_000D4280::func_000D4280()
     func_000D24B0();
     f2B4->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, -1.0f, 0xff, 1.0f, 0, 0, 0, 0);
     f2034->func_001B1860(0, -1.0f, 0xff, 1.15f, 0, 0, -1.0f, 0xff, 1.0f, 0, 0, 0, 0);
+}
+
+void C_000D4280::func_000D44C0()
+{
+    float duration = 0.1f;
+    if (f3D8 == 0) duration = 0.25f;
+    if (D_002A8490->f2E0->f4 == 0) {
+        f2A8->func_001B1980();
+        f202C->func_001B1980();
+        func_000D2300();
+        f2A8->func_001B1860(0, -1.0f, 0, 1.15f, 0, 0, 0.0f, 255, 1.15f, 0, *(int *)&duration, 0, 0);
+        f202C->func_001B1860(0, -1.0f, 0, 1.15f, 0, 0, 0.0f, 255, 1.15f, 0, *(int *)&duration, 0, 0);
+        f2AC->func_001B1980();
+        f2038->func_001B1980();
+        func_000D25A0();
+        f2AC->func_001B1860(0, -1.0f, 0, 1.15f, 0, 0, 0.0f, 255, 1.15f, 0, *(int *)&duration, 0, 0);
+        f2038->func_001B1860(0, -1.0f, 0, 1.15f, 0, 0, 0.0f, 255, 1.15f, 0, *(int *)&duration, 0, 0);
+        f2B0->func_001B1980();
+        f2030->func_001B1980();
+        func_000D23D0();
+        f2B0->func_001B1860(0, -1.0f, 0, 1.15f, 0, 0, 0.0f, 255, 1.15f, 0, *(int *)&duration, 0, 0);
+        f2030->func_001B1860(0, -1.0f, 0, 1.15f, 0, 0, 0.0f, 255, 1.15f, 0, *(int *)&duration, 0, 0);
+        f2B4->func_001B1980();
+        f2034->func_001B1980();
+        func_000D24B0();
+        f2B4->func_001B1860(0, -1.0f, 0, 1.15f, 0, 0, 0.0f, 255, 1.15f, 0, *(int *)&duration, 0, 0);
+        f2034->func_001B1860(0, -1.0f, 0, 1.15f, 0, 0, 0.0f, 255, 1.15f, 0, *(int *)&duration, 0, 0);
+    }
 }
 
 void BmxUIPageLevelSelection::func_000D4AE0()

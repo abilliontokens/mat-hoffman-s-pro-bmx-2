@@ -425,8 +425,11 @@ void C_00102370::func_00102370(float dt)
             f388 = f364;
             f38C = 0.0f;
             f390 = 0.25f;
-            func_000EBE90();
-            f328 = 0.0f;
+            {
+                volatile int seq = 0;
+                func_000EBE90();
+                f328 = 0.0f;
+            }
         } else if (f344->func_00092A10() == 0 && f348 == 1) {
             func_000EC6F0();
             func_000ECD90();

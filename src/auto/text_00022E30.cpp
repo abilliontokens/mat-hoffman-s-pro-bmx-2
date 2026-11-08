@@ -532,27 +532,31 @@ void C_000235C0::func_000235C0()
     }
 }
 
+extern "C" void _ReadWriteBarrier(void);
+#pragma intrinsic(_ReadWriteBarrier)
 void C_000235C0::func_000239F0(float dt)
 {
     V4_00023340 v(*(float *)&f4c.x - f5c.x, *(float *)&f4c.y - f5c.y, *(float *)&f4c.z - f5c.z), out;
     func_000212C0(&v, &v);
     if (f78) {
-        float ratio = (float)(f2c->count - f34) / (float)f2c->count;
         float lim = 0.65f;
-        float s = lim < ratio ? lim : ratio;
-        s = (s + D_0027627C) * (*(float *)&f2c->f0) * dt;
-        v.x *= s; v.y *= s; v.z *= s;
+        float ratio = (float)(f2c->count - f34) / (float)f2c->count;
+        _ReadWriteBarrier();
+        float s = AsmMinF(lim, ratio);
+        s = s + D_0027627C;
+        s = s * *(float *)&f2c->f0;
+        s = s * dt;
+        v.x = s * v.x; v.y = s * v.y; v.z = s * v.z;
         out.x = v.x + f5c.x; out.y = v.y + f5c.y; out.z = v.z + f5c.z; out.w = 1.0f;
         f28->f1a4->f4->func_00199600(out);
         if (f34 == f2c->count - 3 && *(int *)((char *)f28->f1a4 + 0x18) != *(int *)(*(char **)((char *)f28 + 0x1ac) + 0xc)) func_000219E0(3);
     } else {
-        float s = dt * (*(float *)&f2c->f0);
-        v.x *= s; v.y *= s; v.z *= s;
+        float s = dt * *(float *)&f2c->f0;
+        v.x = s * v.x; v.y = s * v.y; v.z = s * v.z;
         out.x = v.x + f5c.x; out.y = v.y + f5c.y; out.z = v.z + f5c.z; out.w = 1.0f;
         f28->f1a4->f4->func_00199600(out);
     }
 }
-
 void *C_00023BE0::func_00023BE0(int flags)
 {
     vtbl = &D_00276218;

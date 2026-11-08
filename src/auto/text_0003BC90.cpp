@@ -145,10 +145,11 @@ void C_0003BC90::func_0003BC90() {
  char name[0x104];
  center.w=1;
  pos.x=(float)f444; pos.y=f440; pos.z=(float)f448;
- scale.x=0;scale.y=0;scale.z=0;scale.w=1;
+ scale.z=0;scale.y=0;scale.x=0;scale.w=1;
  a.x=1;a.y=0;a.z=0;
  b.x=0;b.y=1;b.z=0;
  V4 corner; corner.w=1;corner.x=pos.x-5.0f;corner.y=pos.y;corner.z=pos.z-5.0f;
+ V4 scratch;
  func_001ADCC0(D_002A5EA0,0x104,D_00276BB4,D_002A5870);
  func_001ADCC0(D_002A60B0,0x104,D_00276F58,D_002A5870);
  func_001ADCC0(D_002A4C10,0x104,D_00276BB4,D_002A5870);
@@ -186,7 +187,7 @@ void C_0003BC90::func_0003BC90() {
  NodeBC *text1=(NodeBC*)func_001E8A44(0x1e0);text1=text1?text1->func_00143580(1):0;
  if(text1->Load(str,0,0)){
  copyBC(text1,str);appendBC(&f5C8,text1);func_001577A0(text1,0);
- scale.x=0;scale.y=0;scale.z=1;scale.w=1;
+ scale.z=1;scale.y=0;scale.x=0;scale.w=1;
  text1->func_00199600(pos);text1->func_00198F50(&scale,&b,1,0,0);text1->func_00198390();text1->func_0019ABA0(f54C,2);
  pos.x+=20.0f;
  NodeBC *text2=(NodeBC*)func_001E8A44(0x1e0);text2=text2?text2->func_00143580(1):0;
@@ -291,7 +292,7 @@ void C_0003BC90::func_0003BC90() {
  }
  if(anim){f5DC.func_001CDE90((NodeBC*)anim);func_001577A0((NodeBC*)anim,0);}
  second_done:
- V4 v1,v2;first->func_00199B00(&v1,0);p->func_00199B00(&v2,0);
+ first->func_00199B00(&scratch,0);p->func_00199B00(&scratch,0);
  getStringBC(f64,index)->f310=p;
  if(getStringBC(f64,index)->f36C)p->func_00199600(corner);else p->func_00199600(pos);
  p->func_00198F50(&a,&b,1,0,0);p->func_00198390();p->func_0019ABA0(f54C,2);

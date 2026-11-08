@@ -3,6 +3,7 @@
 #include <string.h>
 
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 
 static __forceinline float Min_00062CD0(float a, float b) { float r; _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
 static __forceinline float MinR_00062CD0(const float &a, const float &b) { float r; _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
@@ -119,14 +120,14 @@ void func_001AC330(char *dest, char *fmt, char *arg);
 void C_00062CD0::func_00062CD0(float dt)
 {
     if (f230 != 0) {
-        float t;
+        float q = f234 / D_002A1D08;
+        float t = AsmMinF(1.0f, q);
+        Vec4_62 d1 = *(Vec4_62 *)&D_002A1DC8 - *(Vec4_62 *)&D_002A1D88;
+        Vec4_62 d2 = *(Vec4_62 *)&D_002A1E18 - *(Vec4_62 *)&D_002A1DD8;
         Vec4_62 p1, p2;
         C_Elem_62 *e;
         float z;
 
-        t = _mm_min_ss(_mm_set_ss(1.0f), _mm_set_ss(f234 / D_002A1D08)).m128_f32[0];
-        Vec4_62 d1 = *(Vec4_62 *)&D_002A1DC8 - *(Vec4_62 *)&D_002A1D88;
-        Vec4_62 d2 = *(Vec4_62 *)&D_002A1E18 - *(Vec4_62 *)&D_002A1DD8;
         if (f230 == 1) {
             p1 = *(Vec4_62 *)&D_002A1D88 + d1 * t;
             p2 = *(Vec4_62 *)&D_002A1DD8 + d2 * t;
@@ -137,11 +138,11 @@ void C_00062CD0::func_00062CD0(float dt)
 
         e = f12C[f228];
         if (e->f4 != p1.x || e->f8 != p1.y) {
-            e->f8 = p1.y;
             e->f4 = p1.x;
+            e->f8 = p1.y;
             e->f58 |= 1;
         }
-        z = p1.z * D_00278784;
+        z = p1.z * 256.0f;
         e = f12C[f228];
         if (z != e->f2C) {
             e->f2C = z;
@@ -159,7 +160,7 @@ void C_00062CD0::func_00062CD0(float dt)
             e->f8 = p2.y;
             e->f58 |= 1;
         }
-        z = p2.z * D_00278784;
+        z = p2.z * 256.0f;
         e = f1A4[f228];
         if (z != e->f2C) {
             e->f2C = z;

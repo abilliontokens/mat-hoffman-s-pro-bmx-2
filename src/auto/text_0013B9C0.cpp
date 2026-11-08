@@ -128,11 +128,11 @@ void __fastcall func_0013B9C0(C_0013B9C0 * volatile self, int dummy, S_0013B9C0_
  }
  if (extra) t->func_0013B480((char *)t + 0x2c);
  int offset = ((int *)p)[6];
- t = self;
+ C_0013B9C0 *s = self;
  if (compressed) {
   int n = *(volatile int *)&index;
   if (n > 0) {
-   unsigned short *q = t->f7C;
+   unsigned short *q = s->f7C;
    int i = 0;
    do {
     offset += *q + extra;
@@ -144,19 +144,20 @@ void __fastcall func_0013B9C0(C_0013B9C0 * volatile self, int dummy, S_0013B9C0_
  func_0014FED0(p->f10, offset, 0);
  limit = self->f70;
  remaining = (int)p->f14 - offset;
- size = remaining;
- if (remaining > limit) size = limit;
+ size = AsmMinI(remaining, limit);
  int result;
  if (extra) {
   self->f100 = 1;
-  result = self->func_0013B4C0((char *)self + 0x2c, size, p->f10);
+  t = self;
+  result = t->func_0013B4C0((char *)t + 0x2c, size, p->f10);
  } else {
   void *a = p->f10;
   int b = size;
   t = self;
   result = t->func_0013B4C0((char *)t + 0x2c, b, a);
  }
- self->f74 = *(volatile int *)&index;
+ t = self;
+ t->f74 = *(volatile int *)&index;
  if (compressed) {
   t = self;
   t->f78 = t->f74;
@@ -179,6 +180,7 @@ int C_0013B9C0::func_0013BBA0(S_0013B9C0_Ent28 *p, int a1, int a2, int a3)
 {
     S_0013B9C0_Cache *entry;
     int dest = a2;
+    int *pdest = &dest;
     int count = 0;
     int n, d, size, block, sum, extra, i;
     int pos, val;
@@ -227,7 +229,7 @@ int C_0013B9C0::func_0013BBA0(S_0013B9C0_Ent28 *p, int a1, int a2, int a3)
     memcpy((void *)dest, entry->f0, n);
     p->f8 += n;
     count = n;
-    dest += n;
+    *pdest += n;
     if (count == a3) {
         goto done;
     }
@@ -237,7 +239,7 @@ int C_0013B9C0::func_0013BBA0(S_0013B9C0_Ent28 *p, int a1, int a2, int a3)
     if (func_0014FE60(entry->f0, size, p->f10) != size) {
         return n;
     }
-    memcpy((void *)dest, entry->f0, a3 - n);
+    memcpy((void *)*pdest, entry->f0, a3 - n);
     p->f8 += a3 - n;
     return a3;
 
@@ -315,10 +317,10 @@ L617:
         d = p->f8 - entry->f8;
     }
     n = min_i(a3 - count, 0x6000 - d);
-    memcpy((void *)dest, (char *)entry->f0 + d, n);
+    memcpy((void *)*pdest, (char *)entry->f0 + d, n);
     p->f8 += n;
     count += n;
-    dest += n;
+    *pdest += n;
     if (count != a3) {
         goto main_loop;
     }

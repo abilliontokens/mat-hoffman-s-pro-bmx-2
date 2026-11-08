@@ -35,19 +35,19 @@ struct C_00113F00 {
 
 void C_00113F00::func_00113F00(float dt)
 {
-    char *self = (char *)this;
-    volatile int i125c = 0, i1260 = 0, i1268 = 0, i127c = 0;
-    volatile int s14 = 0, s18 = 0, s20 = 0, s28 = 0, s2c = 0, s30 = 0, s34 = 0;
-    volatile float s38 = 0.0f;
+    char *volatile self = (char *)this;
+    int i125c = 0, i1260 = 0, i1268 = 0, i127c = 0;
+    int s14 = 0, s18 = 0, s20 = 0, s28 = 0, s2c = 0, s30 = 0, s34 = 0;
+    float s38 = 0.0f;
     float v = *(float *)(self + 0x9f8);
     int one;
     char *q;
     int mag;
     float step;
 
-    if (v > 0.9f) {
+    if (v > D_00276E9C) {
         v = 0.9f;
-    } else if (v < -0.9f) {
+    } else if (v < D_00276E98) {
         v = -0.9f;
     }
     *(int *)(self + 0x2094) = 0;
@@ -74,12 +74,9 @@ void C_00113F00::func_00113F00(float dt)
         if (self[0x12a9] & 1) {
             *(int *)(self + 0x15f4) = *(int *)(self + 0x1294);
             if (self[0x12a9] & 2) {
-                if (*(float *)(self + 0x15f4) > D_002A3AA8) {
-                    D_002A3AA8 = *(float *)(self + 0x15f4);
-                } else {
-                    D_002A3AA8 = *(float *)(self + 0x15f4);
-                    *(float *)(self + 0x15f4) = 1.0f;
-                }
+                bool advanced = *(float *)(self + 0x15f4) > D_002A3AA8;
+                D_002A3AA8 = *(float *)(self + 0x15f4);
+                if (advanced) *(float *)(self + 0x15f4) = 1.0f;
             }
         }
         if (self[0x12a8] < 0) {
@@ -92,7 +89,7 @@ void C_00113F00::func_00113F00(float dt)
             *(float *)(self + 0x15ec) = 1.0f;
         }
         *(int *)(self + 0x126c) = *(int *)(self + 0x125c);
-        goto Lend;
+        goto Lfinal;
     }
     self[0x12a9] &= 0xfe;
     self[0x12a9] &= 0xfd;
@@ -119,7 +116,7 @@ void C_00113F00::func_00113F00(float dt)
         *(int *)(self + 0x15f4) = *(int *)(self + 0x163c);
         *(float *)(self + 0x15e4) = D_00275460 - *(float *)(self + 0x1644);
         goto Lcommon;
-    case 1:
+    case 18:
         i125c = *(int *)(self + 0x1658);
         i127c = *(int *)(self + 0x17f4);
         *(float *)(self + 0x15f4) = *(float *)(self + 0x15f4) - dt;
@@ -131,40 +128,40 @@ void C_00113F00::func_00113F00(float dt)
         self[0x12a9] |= 1;
         self[0x12a9] |= 2;
         goto Lend;
-    case 2:
+    case 3:
         i125c = *(int *)(self + 0x169c);
         i127c = *(int *)(self + 0x1838);
         *(float *)(self + 0x15f4) = D_00275460 / *(float *)(i125c + 0x38) * dt + *(float *)(self + 0x15f4);
         goto Lcommon;
-    case 3:
+    case 17:
         i125c = *(int *)(self + 0x16d0);
         i127c = *(int *)(self + 0x186c);
         *(float *)(self + 0x15f4) = D_00275460 / *(float *)(i125c + 0x38) * dt + *(float *)(self + 0x15f4);
         *(int *)(self + 0x2084) = 1;
         *(int *)(self + 0x2088) = 0;
         goto Lend;
-    case 4:
+    case 5:
         i125c = *(int *)(self + 0x16a0);
         i127c = *(int *)(self + 0x183c);
         *(float *)(self + 0x15f4) = D_00275460 / *(float *)(i125c + 0x38) * dt + *(float *)(self + 0x15f4);
         *(int *)(self + 0x2084) = 1;
         *(int *)(self + 0x2088) = 0;
         goto Lend;
-    case 5:
+    case 6:
         i125c = *(int *)(self + 0x16a4);
         i127c = *(int *)(self + 0x1840);
         *(float *)(self + 0x15f4) = D_00275460 / *(float *)(i125c + 0x38) * dt + *(float *)(self + 0x15f4);
         *(int *)(self + 0x2084) = 1;
         *(int *)(self + 0x2088) = 0;
         goto Lend;
-    case 6:
+    case 7:
         i125c = *(int *)(self + 0x16a8);
         i127c = *(int *)(self + 0x1844);
         *(float *)(self + 0x15f4) = D_00275460 / *(float *)(i125c + 0x38) * dt + *(float *)(self + 0x15f4);
         *(int *)(self + 0x2084) = 1;
         *(int *)(self + 0x2088) = 0;
         goto Lend;
-    case 7:
+    case 8:
         i125c = *(int *)(self + 0x16ac);
         i127c = *(int *)(self + 0x1848);
         if (v >= D_00275544) {
@@ -181,7 +178,57 @@ void C_00113F00::func_00113F00(float dt)
         *(int *)(self + 0x2084) = 1;
         *(int *)(self + 0x2088) = 0;
         goto Lend;
+
+    case 2:
+        i125c = *(int *)(self + 0x16c4);
+        i127c = *(int *)(self + 0x1860);
+        *(int *)(self + 0x1650) = *(int *)(i125c + 0x38);
+        *(float *)(self + 0x15f4) = D_00275460 / *(float *)(self + 0x1650) * dt + *(float *)(self + 0x15f4);
+        goto Lactive;
+    case 12:
+        i125c = *(int *)(self + 0x16d8);
+        i127c = *(int *)(self + 0x1874);
+        *(float *)(self + 0x15f4) = dt / *(float *)(i125c + 0x38) + *(float *)(self + 0x15f4);
+        s18 = !*(int *)(self + 0x6a4);
+        *(int *)(self + 0x2084) = 1;
+        *(int *)(self + 0x2088) = -1;
+        *(int *)(self + 0x790) = i127c;
+        *(int *)(self + 0x794) = s18;
+        goto Lend;
+    case 13:
+        i125c = *(int *)(self + 0x16dc);
+        i127c = *(int *)(self + 0x1878);
+        *(float *)(self + 0x15f4) = dt / *(float *)(i125c + 0x38) + *(float *)(self + 0x15f4);
+        if (!*(int *)(self + 0x6a4)) s18 = 1;
+        *(int *)(self + 0x2084) = 1;
+        *(int *)(self + 0x2088) = -1;
+        *(int *)(self + 0x790) = i127c;
+        *(int *)(self + 0x794) = s18;
+        goto Lend;
+    case 14:
+        i125c = *(int *)(self + 0x16d4);
+        i127c = *(int *)(self + 0x1870);
+        *(float *)(self + 0x15f4) = dt + *(float *)(self + 0x15f4);
+        if (*(int *)(self + 0x6a4)) s18 = 1;
+        *(int *)(self + 0x2084) = 1;
+        *(int *)(self + 0x2088) = 0;
+        goto Lend;
+    case 15:
+        if (*(float *)(self + 0x9f8) >= D_00275544) {
+            i125c = *(int *)(self + 0x16cc);
+            i127c = *(int *)(self + 0x1868);
+            *(int *)(self + 0x15f4) = *(int *)(self + 0x9f8);
+        } else {
+            i125c = *(int *)(self + 0x16c8);
+            i127c = *(int *)(self + 0x1864);
+            *(float *)(self + 0x15f4) = -*(float *)(self + 0x9f8);
+        }
+        goto Lactive;
     }
+    goto Lend;
+Lactive:
+    *(int *)(self + 0x2084) = 1;
+    *(int *)(self + 0x2088) = -1;
     goto Lend;
 Lcommon:
     q = *(char **)(self + 0x208);
@@ -239,5 +286,76 @@ Lcommon:
     *(int *)(self + 0x2084) = 1;
     *(int *)(self + 0x2088) = 0;
 Lend:
-    (void)dt;
+    *(int *)(self + 0x125c) = i125c;
+    *(int *)(self + 0x1260) = i1260;
+    *(int *)(self + 0x1264) = s2c;
+    *(int *)(self + 0x1268) = s28;
+    *(int *)(self + 0x127c) = i127c;
+    *(int *)(self + 0x1280) = s14;
+    *(int *)(self + 0x1284) = s34;
+    *(int *)(self + 0x1288) = s30;
+    *(int *)(self + 0x1290) = *(int *)(self + 0x15f4);
+    *(int *)(self + 0x1294) = *(int *)(self + 0x15f4);
+    *(int *)(self + 0x1298) = *(int *)(self + 0x15e4);
+    *(int *)(self + 0x129c) = *(int *)(self + 0x15e8);
+    *(int *)(self + 0x128c) = s20;
+    self[0x12a8] = (self[0x12a8] & ~1) | (s18 & 1);
+    *(int *)(self + 0x12a0) = *(int *)(self + 0x1614);
+    *(int *)(self + 0x12a4) = *(int *)(self + 0x1618);
+    if (*(int *)(self + 0x1604) != s18) {
+        *(int *)(self + 0x1608) = 1;
+        *(int *)(self + 0x1610) = 1;
+    }
+    *(int *)(self + 0x1604) = s18;
+    if (*(int *)(self + 0x1608) && D_002A8490->f2a4->f124 >= D_002756DC) {
+        ((C_00113F00_Fx *)*(int *)(self + 0xa00))->func_00164770();
+        ((C_00113F00_Fx *)*(int *)(self + 0xa04))->func_00164770();
+        *(int *)(self + 0x1608) = 0;
+    }
+    if (*(int *)(self + 0x1610) && D_002A8490->f2a4->f124 >= D_002756DC) {
+        *(float *)(self + 0x15ec) = 1.0f;
+        *(int *)(self + 0x1610) = 0;
+    }
+Lfinal:
+    i1268 = s28;
+    if (*(float *)(self + 0x15ec) > D_00275544)
+        *(float *)(self + 0x15ec) -= dt * D_00276DD4;
+    if (*(float *)(self + 0x15f4) > D_00275460) *(float *)(self + 0x15f4) = 1.0f;
+    else if (*(float *)(self + 0x15f4) < D_00275544) *(float *)(self + 0x15f4) = 0.0f;
+    *(int *)(self + 0x798) = *(int *)(self + 0x15f4);
+    if (*(float *)(self + 0x15e4) > D_00275460) *(float *)(self + 0x15e4) = 1.0f;
+    else if (*(float *)(self + 0x15e4) < D_00275544) *(float *)(self + 0x15e4) = 0.0f;
+    if (*(float *)(self + 0x15e8) > D_00275460) *(float *)(self + 0x15e8) = 1.0f;
+    else if (*(float *)(self + 0x15e8) < D_00275544) *(float *)(self + 0x15e8) = 0.0f;
+    if (*(float *)(self + 0x15ec) > D_00275460) *(float *)(self + 0x15ec) = 1.0f;
+    else if (*(float *)(self + 0x15ec) < D_00275544) *(float *)(self + 0x15ec) = 0.0f;
+    if (i125c) {
+        C_00113F00_Fx *fx = (C_00113F00_Fx *)*(int *)(self + 0xa00);
+        if (i1260) {
+            if (s2c && i1268)
+                fx->func_001653E0(i125c,i1260,s2c,i1268,*(float *)(self+0x15f4),*(float *)(self+0x15e8),*(float *)(self+0x15e4),s18,*(float *)(self+0x15ec));
+            else if (s20)
+                fx->func_00164F80(i125c,i1260,*(float *)(self+0x15f4),*(float *)(self+0x1614),D_00275460-*(float *)(self+0x1618),s18,s20,*(float *)(self+0x15ec));
+            else
+                fx->func_00164BA0(i125c,i1260,*(float *)(self+0x15f4),*(float *)(self+0x15e8),s18,*(float *)(self+0x15ec));
+        } else
+            fx->func_001648E0(i125c,*(float *)(self+0x15f4),s18,0,*(float *)(self+0x15ec));
+    }
+    if (i127c) {
+        C_00113F00_Fx *fx = (C_00113F00_Fx *)*(int *)(self + 0xa04);
+        if (s14) {
+            if (s34 && s30)
+                fx->func_001653E0(i127c,s14,s34,s30,*(float *)(self+0x15f4),*(float *)(self+0x15e8),*(float *)(self+0x15e4),s18,*(float *)(self+0x15ec));
+            else
+                fx->func_00164BA0(i127c,s14,*(float *)(self+0x15f4),*(float *)(self+0x15e8),s18,*(float *)(self+0x15ec));
+        } else
+            fx->func_001648E0(i127c,*(float *)(self+0x15f4),s18,0,*(float *)(self+0x15ec));
+    }
+    if (!D_002A8490->f2a4->f1c8) func_00107AE0();
+    if (*(int *)(self + 0x160c)) {
+        ((C_00113F00_Fx *)*(int *)(self + 0xa00))->func_00164770();
+        ((C_00113F00_Fx *)*(int *)(self + 0xa04))->func_00164770();
+        *(int *)(self + 0x160c) = 0;
+        *(float *)(self + 0x15ec) = 1.0f;
+    }
 }

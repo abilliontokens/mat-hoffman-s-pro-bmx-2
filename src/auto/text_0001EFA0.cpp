@@ -44,8 +44,7 @@ AirVec *func_000110E0(AirVec*,AirVec*,AirVec*);
 
 int BmxAirborneControlModel::func_0001EFA0(float dt) {
  AirVec v={0,0,0,1},w={0,0,0,1};
- int zero=0, one=1;
- f54=zero; f124=D_002A0E84;
+ f54=0; f124=D_002A0E84;
  if(active) {
  body->motion->func_00197B40(&v,&w);
  if(f38) {
@@ -55,13 +54,13 @@ int BmxAirborneControlModel::func_0001EFA0(float dt) {
  delta[1]=D_002A0E78*p->velocity.y;
  delta[2]=D_002A0E78*p->velocity.z;
  p->position.x+=delta[0]; p->position.y+=delta[1]; p->position.z+=delta[2];
- f98=zero; f118=zero; ff8=zero;
- return one;
+ f98=0; f118=0; ff8=0;
+ return 1;
  }
  if(f34 && !f50) {
- if(fe0) { fdc=one; fe4=one; fec=0; ff0=0; }
- f98=zero; ff4=zero; ff8=zero; ffc=zero; f118=zero;
- return one;
+ if(fe0) { fdc=1; fe4=1; fec=0; ff0=0; }
+ f98=0; ff4=0; ff8=0; ffc=0; f118=0;
+ return 1;
  }
  AirVec force=D_002A0E84;
  volatile float multiplier=1;
@@ -85,13 +84,13 @@ int BmxAirborneControlModel::func_0001EFA0(float dt) {
  else if(f50) {
  if(!(D_002B7E08&1)) { D_002B7E08|=1;D_002B7DF8=D_002A0E84; }
  if(f34) {
- ffc=zero;
- if(fe0) { fdc=one; fec=0; }
- rider->f490=zero;
- if(ff8) { rider->func_00027C50(0.5f);ff8=zero; }
+ ffc=0;
+ if(fe0) { fdc=1; fec=0; }
+ rider->f490=0;
+ if(ff8) { rider->func_00027C50(0.5f);ff8=0; }
  AirVec src=*(AirVec*)(rider->matrix+0x190),out;
  AirVec direction=*func_0001E9E0(&out,&src);
- if(direction.y>=D_002755F4 && direction.y>D_00275F64) { D_002B7DF8=direction;ff4=one; }
+ if(direction.y>=D_002755F4 && direction.y>D_00275F64) { D_002B7DF8=direction;ff4=1; }
  } else {
  if(!(D_002B7E08&2)) { D_002B7E08|=2;D_002B7DE8.x=D_002B7DE8.y=D_002B7DE8.z=0;D_002B7DE8.w=1; }
  if(!(D_002B7E08&4)) { D_002B7E08|=4;D_002B7DD8.x=D_002B7DD8.y=D_002B7DD8.z=0;D_002B7DD8.w=1; }
@@ -99,7 +98,7 @@ int BmxAirborneControlModel::func_0001EFA0(float dt) {
  if(ff4) {
  if(ffc<D_002A0E70) ++ffc;
  if(ffc>=D_002A0E70) {
- ff4=zero;
+ ff4=0;
  AirVec t0,t1,t2,t3;
  D_002B7DE8=*func_0001E9E0(&t1,func_0001C610(&t0,&D_002A0EA4,&D_002B7DF8));
  D_002B7DD8=*func_0001E9E0(&t3,func_0001C610(&t2,&D_002A0EA4,&D_002B7DE8));
@@ -127,7 +126,7 @@ int BmxAirborneControlModel::func_0001EFA0(float dt) {
  float back=body->direction.z*D_002B7DD8.z;
  float vertical=body->direction.y;
  D_002B7DBC=(func_00011000((2*g*D_002A0E58)/(vertical*vertical)+D_00275460)+D_00275460)*(vertical/g);
- f100=0;ff8=one;rider->f490=one;body->f258=D_002A0E84;
+ f100=0;ff8=1;rider->f490=1;body->f258=D_002A0E84;
  D_002B7DB8=((body->f210+side)*D_002B7DBC-D_002A0E54)*g*D_002755EC/(D_002B7DBC*D_002B7DBC*D_002B7DBC);
  }
  }
@@ -137,12 +136,12 @@ int BmxAirborneControlModel::func_0001EFA0(float dt) {
  }
  if(!f48&&!fac) {
  if(!f4c&&!f50) {
- if(f40) { force.y-=f90*f64; if(fe0) fdc=zero; }
- else if(f44) { force.y+=f90*f64; if(fe0) fdc=zero; }
+ if(f40) { force.y-=f90*f64; if(fe0) fdc=0; }
+ else if(f44) { force.y+=f90*f64; if(fe0) fdc=0; }
  else {
  float abs5c=f5c; *(u32*)&abs5c &= 0x7fffffff;
  if(abs5c>D_002756DC) ff0+=dt; else ff0=0;
- if(ff0>D_00275F64) fe4=zero;
+ if(ff0>D_00275F64) fe4=0;
  if(fe4 && body->speed>D_00275544)
  force.x+=(f78*body->speed-body->velocity.x)*f7c*D_00275994;
  else force.x-=f6c*f5c;
@@ -150,8 +149,8 @@ int BmxAirborneControlModel::func_0001EFA0(float dt) {
  if(abs58>D_002A0E34&&!f98) f98=f58>D_00275544?2:1;
  }
  } else {
- if(f40) { force.y-=f90*f68; if(fe0) fdc=zero; }
- else if(f44) { force.y+=f90*f68; if(fe0) fdc=zero; }
+ if(f40) { force.y-=f90*f68; if(fe0) fdc=0; }
+ else if(f44) { force.y+=f90*f68; if(fe0) fdc=0; }
  else force.y+=f68*f58;
  }
  }

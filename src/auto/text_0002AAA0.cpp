@@ -242,7 +242,6 @@ void C_0002AAA0::func_0002AAA0(float dt)
         volatile unsigned ra4;
         volatile unsigned mres;
         volatile unsigned ra3;
-        unsigned pad80;
         volatile float dy;
         volatile float dz;
     } s;

@@ -323,66 +323,65 @@ C_00146E20 *C_00146E20::func_00146E20()
 
 int C_00146E50::func_00146E50(S_1472_Config *cfg)
 {
-    int v10 = 0;
-    int v3c = 0;
-    int v38 = 6;
-    int v48 = 0;
-    int v20 = 0x2e;
-    int v44 = 1;
-    int v28 = 1;
-    int v40 = 0;
-    int v0c = 0;
-    int v14 = 0;
-    int v30 = 0;
-    int v1c;
-    int v4c = 0;
-    int v24;
-    int v2c;
-    int v34;
-    int v18 = 0;
-    char bufB[0x80];
-    char bufA[0x80];
+    struct {
+        int v0c, v10, v14, v18, v1c, v20, v24, v28, v2c, v30, v34, v38, v3c, v40, v44, v48, v4c;
+        char bufB[0x80];
+        char bufA[0x80];
+    } t;
 
     D_00011420(cfg);
-    v24 = ((unsigned char *)D_002EFDB8)[0x2e];
-    v2c = ((unsigned char *)D_002EFDB8)[0x2d];
-    v34 = D_002EFDB8->f2C & 0xff;
-    v1c = D_002EFDB8->f28;
-    cfg->func_00168BE0((const char *)&D_002862D4, &D_00275630, bufA, -1);
-    cfg->func_00168BE0((const char *)&D_002862C4, &D_00275630, bufB, -1);
-    cfg->func_00168C20(&D_002862B0, v10, &v10);
-    cfg->func_00168C20(&D_0028629C, v3c, &v3c);
-    cfg->func_00168C20(&D_00286280, v38, &v38);
-    cfg->func_00168C20(&D_00286264, v48, &v48);
-    cfg->func_00168C20(&D_0028624C, v20, &v20);
-    cfg->func_00168C20(&D_00286234, v44, &v44);
-    cfg->func_00168C20(&D_00286224, v28, &v28);
-    cfg->func_00168C20(&D_00286214, v40, &v40);
-    cfg->func_00168C20(&D_00286204, v0c, &v0c);
-    cfg->func_00168C20(&D_002861F4, v14, &v14);
-    cfg->func_00168C20(&D_002861E4, v30, &v30);
-    cfg->func_00168C50(&D_002861D8, v1c, &v1c);
-    cfg->func_00168C20(&D_002861C0, v4c, &v4c);
-    cfg->func_00168C20(&D_002861B4, v24, &v24);
-    cfg->func_00168C20(&D_002861A4, v2c, &v2c);
-    cfg->func_00168C20(&D_00286194, v34, &v34);
-    cfg->func_00168C20(&D_0028618C, v18, &v18);
-    bit0 = v18;
-    f4 = v10;
-    f8 = v3c;
-    if (bufA[0] == '&') {
-        f10 = func_00144AE0(bufA, v10, v3c, v38);
+    t.v10 = 0;
+    t.v3c = 0;
+    t.v38 = 6;
+    t.v20 = 0x2e;
+    t.v44 = 1;
+    t.v28 = 1;
+    t.v40 = 0;
+    t.v0c = 0;
+    t.v14 = 0;
+    t.v30 = 0;
+    t.v24 = ((unsigned char *)D_002EFDB8)[0x2e];
+    t.v2c = ((unsigned char *)D_002EFDB8)[0x2d];
+    t.v34 = D_002EFDB8->f2C & 0xff;
+    t.v1c = D_002EFDB8->f28;
+    t.v4c = 0;
+    t.v48 = 0;
+    t.v18 = 0;
+    cfg->func_00168BE0((const char *)&D_002862D4, &D_00275630, t.bufA, -1);
+    cfg->func_00168BE0((const char *)&D_002862C4, &D_00275630, t.bufB, -1);
+    cfg->func_00168C20(&D_002862B0, t.v10, &t.v10);
+    cfg->func_00168C20(&D_0028629C, t.v3c, &t.v3c);
+    cfg->func_00168C20(&D_00286280, t.v38, &t.v38);
+    cfg->func_00168C20(&D_00286264, t.v48, &t.v48);
+    cfg->func_00168C20(&D_0028624C, t.v20, &t.v20);
+    cfg->func_00168C20(&D_00286234, t.v44, &t.v44);
+    cfg->func_00168C20(&D_00286224, t.v28, &t.v28);
+    cfg->func_00168C20(&D_00286214, t.v40, &t.v40);
+    cfg->func_00168C20(&D_00286204, t.v0c, &t.v0c);
+    cfg->func_00168C20(&D_002861F4, t.v14, &t.v14);
+    cfg->func_00168C20(&D_002861E4, t.v30, &t.v30);
+    cfg->func_00168C50(&D_002861D8, t.v1c, &t.v1c);
+    cfg->func_00168C20(&D_002861C0, t.v4c, &t.v4c);
+    cfg->func_00168C20(&D_002861B4, t.v24, &t.v24);
+    cfg->func_00168C20(&D_002861A4, t.v2c, &t.v2c);
+    cfg->func_00168C20(&D_00286194, t.v34, &t.v34);
+    cfg->func_00168C20(&D_0028618C, t.v18, &t.v18);
+    f4 = t.v10;
+    f8 = t.v3c;
+    bit0 = t.v18;
+    if (t.bufA[0] == '&') {
+        f10 = func_00144AE0(t.bufA, t.v10, t.v3c, t.v38);
     }
-    if (bufB[0] == '&') {
-        f14 = func_00144BF0(bufB, f4, f8, v20);
-    } else if (func_001EA426(bufB, (const char *)&D_00286184) == 0) {
+    if (t.bufB[0] == '&') {
+        f14 = func_00144BF0(t.bufB, f4, f8, t.v20);
+    } else if (func_001EA426(t.bufB, (const char *)&D_00286184) == 0) {
         f14 = 0;
     }
-    f1C = (v44 != 0 ? 0xf0 : 0) | (v28 != 0 ? 3 : 0);
-    f20 = ((((v40 & 0xff) | (v30 << 8)) << 8 | (v0c & 0xff)) << 8) | (v14 & 0xff);
+    f1C = (t.v44 != 0 ? 0xf0 : 0) | (t.v28 != 0 ? 3 : 0);
+    f20 = ((((t.v40 & 0xff) | (t.v30 << 8)) << 8 | (t.v0c & 0xff)) << 8) | (t.v14 & 0xff);
     f28 = 0;
-    f24 = v1c;
-    f30 = (((unsigned char)v24 << 8 | (unsigned char)v2c) << 8) | (v34 & 0xff);
+    f24 = t.v1c;
+    f30 = (t.v24 << 16) | (t.v2c << 8) | (t.v34 & 0xff);
     return 1;
 }
 
@@ -394,6 +393,40 @@ C_00147280 *C_00147280::func_00147280()
     vtbl2 = (void *)&D_002862F0;
     unk8 = 0;
     return this;
+}
+
+int C_00147280::func_001472B0(S_1472_Config *cfg)
+{
+    int count, height, width, index, mode;
+    char name[64], key[64];
+    D_00011420(cfg);
+    width = 256; height = 256; mode = 6; index = 0; count = 1;
+    cfg->func_00168C20(&D_00286338, 0, &index);
+    cfg->func_00168C20(&D_00286280, mode, &mode);
+    cfg->func_00168C20(&D_00286328, count, &count);
+    cfg->func_00168C20(&D_002862B0, width, &width);
+    cfg->func_00168C20(&D_0028629C, height, &height);
+    func_001ADCC0(key, 64, &D_00276F28, &D_00286318);
+    cfg->func_00168BE0(key, &D_00275630, name, -1);
+    int selected;
+    if (name[0] == '&') selected = func_00144AE0(name, 0, 0, 0);
+    else selected = index;
+    if (count) {
+        if (count > 8) count = 8;
+        if (index) {
+            S_1472_Object *obj = (S_1472_Object *)func_001E8A44(244);
+            if (obj) obj = obj->func_0014A3A0(); else obj = 0;
+            unk8 = obj;
+            obj->func_00149620(D_002F0BB8, width, height, 6, count, 0);
+            obj = (S_1472_Object *)unk8;
+            obj->func_00149E70(*(int *)(*(char **)(D_002A71C0 + 20) - selected * 16 + 4), width, height);
+            S_1472_Aux *aux = (S_1472_Aux *)func_001E8A44(240);
+            if (aux) aux = aux->func_00142C70(); else aux = 0;
+            aux->func_00142C80(&D_00286304, 0);
+            ((S_1472_Object *)unk8)->fEC = aux;
+        }
+    }
+    return 1;
 }
 
 C_00147490 *C_00147490::func_00147490()

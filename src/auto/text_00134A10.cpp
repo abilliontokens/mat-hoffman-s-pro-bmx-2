@@ -269,14 +269,19 @@ struct C_00135400 {
 
 
 int func_00134A10(V4_00134DE0 *seg, void *obj, V4_00134DE0 *out, void *hit) {
-    if (!(*(unsigned char *)((char *)obj+0x21)&1)) return 0;
     char *o = (char *)obj;
+    if (!(*(unsigned char *)(o+0x21)&1)) return 0;
     V4_00134DE0 *end = seg+1;
     if (!(func_0011FDF0(o+0x28, seg, end) < *(float *)(o+0x48))) return 0;
     CollisionResult result;
     result.func_00134980();
-    result.a = D_002A4340;
-    result.b = D_002A4340;
+    V4_00134DE0 t;
+    ((int *)&t)[0] = *(int *)&D_002A4340;
+    ((int *)&t)[1] = D_002A4344;
+    ((int *)&t)[2] = D_002A4348;
+    ((int *)&t)[3] = D_002A434C;
+    result.a = t;
+    result.b = t;
     V4_00134DE0 zero = {0.0f,0.0f,0.0f,1.0f};
     result.normal = zero;
     result.fraction=1.0f;

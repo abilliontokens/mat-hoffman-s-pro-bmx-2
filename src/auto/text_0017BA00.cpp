@@ -391,7 +391,9 @@ int C_0017BDE0::func_0017BFB0(void) {
  *(f32*)((char*)(e+4)+off)=-*(f32*)((char*)e+off+4);
  ++k;
  f32 *q=e[k&3];
- if(D_00275544 < q[1] * *(f32*)((char*)(e+4)+off+4) + q[0] * *(f32*)((char*)(e+4)+off)) return 0;
+ f32 a = q[1] * *(f32*)((char*)(e+4)+off+4);
+ f32 b = q[0] * *(f32*)((char*)(e+4)+off);
+ if(D_00275544 < a + b) return 0;
  off+=8;
  }while(off<32);
  return 1;

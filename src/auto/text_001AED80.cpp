@@ -468,20 +468,19 @@ void C_001AF530::func_001AF530(int a)
     }
     self->f10 = D_002A8490->t;
     if (len > 0) {
-        float flen;
-        float r;
         dt *= self->f0;
         if (self->f4 & 4) {
             self->fC -= dt;
         } else {
             self->fC += dt;
         }
-        flen = (float)len;
+        float flen = (float)len;
         if (self->fC >= flen) {
-            r = (float)fmod(self->fC, flen);
+            float r = (float)fmod(self->fC, flen);
             if (self->f4 & 1) {
                 float lo = (float)(len - 1) - r;
-                self->fC = lo > 0.0f ? lo : 0.0f;
+                float z = 0;
+                self->fC = AsmMaxF(z, lo);
                 self->f4 |= 4;
             } else if (self->f8 != -1) {
                 self->fC = (float)fmod(r, (float)(len - self->f8)) + self->f8;
@@ -494,8 +493,7 @@ void C_001AF530::func_001AF530(int a)
         } else if (self->fC < D_00275544) {
             if (self->f4 & 1) {
                 float t = (float)fmod(self->fC, flen);
-                int bits = *(int*)&t;
-                bits &= 0x7fffffff;
+                int bits = *(int*)&t & 0x7fffffff;
                 self->fC = *(float*)&bits;
                 self->f4 &= 0xfb;
             } else if (self->f4 & 4) {

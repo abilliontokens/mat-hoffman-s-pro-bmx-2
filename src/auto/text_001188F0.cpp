@@ -105,9 +105,8 @@ void Obj::func_001188F0(int arg)
     M4 m;
     Vec4 v;
     Vec4 tmp;
-    float p18, p1c;
+    int p18, p1c;
     Node1188F0 *n;
-    Vec4 *pt = &tmp;
 
     if (*(int *)(*(int *)(t + 0x950) + 0xbc) == 0) {
         ((Cam1188F0 *)*(int *)(*(int *)(t + 0x1e0) + 0x22c))->func_00199C20(0, &m);
@@ -118,10 +117,10 @@ void Obj::func_001188F0(int arg)
         v.w = 1.0f;
         if (*(int *)(t + 0x470) != 0) {
             n = ((Node1188F0 *)*(int *)(t + 0x230))->f174;
-            v = *n->func_00197EC0(pt, &v);
+            v = *n->func_00197EC0(&tmp, &v);
             Copy_001188F0(&m, (M4 *)((char *)((Node1188F0 *)*(int *)(t + 0x230))->f174 + 0xf0));
         } else {
-            v = *((Node1188F0 *)*(int *)(t + 0x230))->func_00197EC0(pt, &v);
+            v = *((Node1188F0 *)*(int *)(t + 0x230))->func_00197EC0(&tmp, &v);
             Copy_001188F0(&m, (M4 *)(*(char **)(t + 0x230) + 0xf0));
         }
         ((float *)&m)[3] = ((float *)&m)[3] + v.x;
@@ -145,244 +144,206 @@ void Obj::func_001188F0(int arg)
     {
         Vec4 out;
         int below;
-        p1c = 0.0f;
-        p18 = 0.0f;
+        p1c = 0;
+        p18 = 0;
         ((Node1188F0 *)*(int *)(t + 0x230))->func_00198040(&out, (Vec4 *)(t + 0x9c));
         below = out.y <= D_00283D30;
         {
-            char *b = t;
-            int st = *(int *)(b + 0x15d8);
-            int &sub = *(int *)(b + 0x15dc);
+            int st = *(int *)(t + 0x15d8);
             int edx = 0;
             switch (st) {
             case 0:
-                if (sub == 0) {
-                    if (*(int *)(b + 0x1178) == 0) {
-                        sub = 8;
-                    } else if (*(int *)(b + 0x1f88) == 0 || *(float *)(b + 0x9a0) != D_00275544 || *(int *)(b + 0x20a0) != 0) {
-                        if (*(float *)(b + 0x744) < *(float *)(*(int *)(b + 0x1ec) + 0x34) * D_00279B54) {
-                            sub = 1;
+                if ((*(int *)(t + 0x15dc)) == 0) {
+                    if (*(int *)(t + 0x1178) == 0) {
+                        (*(int *)(t + 0x15dc)) = 8;
+                    } else if (*(int *)(t + 0x1f88) == 0 || *(float *)(t + 0x9a0) != D_00275544 || *(int *)(t + 0x20a0) != 0) {
+                        if (*(float *)(t + 0x744) < *(float *)(*(int *)(t + 0x1ec) + 0x34) * D_00279B54) {
+                            (*(int *)(t + 0x15dc)) = 1;
                         }
-                    } else if (*(int *)(b + 0x4f8) == 0 || (edx = *(int *)(b + 0x698), edx == 4)) {
-                        if (*(int *)(b + 0x20ac) != 0) {
-                            sub = 0x12 - (*(int *)(b + 0x9d0) != 0);
+                    } else if (*(int *)(t + 0x4f8) == 0 || (edx = *(int *)(t + 0x698), edx == 4)) {
+                        if (*(int *)(t + 0x20ac) != 0) {
+                            (*(int *)(t + 0x15dc)) = 0x12 - (*(int *)(t + 0x9d0) != 0);
                         } else {
                             if (below)
-                                sub = 6;
+                                (*(int *)(t + 0x15dc)) = 6;
                         }
                     } else {
-                        sub = (edx != 2) + 3;
+                        (*(int *)(t + 0x15dc)) = (edx != 2) + 3;
                     }
                 }
                 break;
-            case 1:
-                if (sub == 1) {
-                    if (*(int *)(b + 0x634) != 0) {
-                        sub = 0x10;
-                        *(int *)(t + 0x1130) = 0;
-                    }
-                    if (*(int *)(b + 0x1f88) != 0 && *(int *)(b + 0x20a0) == 0 && *(float *)(b + 0x9a0) == D_00275544) {
-                        sub = 2;
-                        *(int *)(t + 0x1130) = 0;
-                    }
-                    if (*(int *)(b + 0x454) != 0) {
-                        sub = 0xb;
-                    }
+            case 0x12:
+                if (*(int *)(t + 0x20ac) == 0) {
+                    (*(int *)(t + 0x15dc)) = 0;
+                } else if (*(int *)(t + 0x9d0) != 0) {
+                    (*(int *)(t + 0x15dc)) = 0x11;
                 }
                 break;
-            case 2:
-                if (sub == 2 && D_00275460 <= *(float *)(b + 0x15f4)) {
-                    sub = 0;
-                }
-                break;
-            case 3:
-                if (sub == 3) {
-                    if (D_00275460 <= *(float *)(b + 0x15f4)) {
-                        sub = (-(*(int *)(b + 0x1178) != 0) & 0xfffffffd) + 8;
-                    } else {
-                        if (below)
-                            sub = 6;
+            case 0x11:
+                if ((*(int *)(t + 0x15dc)) == 0x11 && !(*(float *)(t + 0x15f4) < D_00275460)) {
+                    *(int *)(t + 0x9d0) = 0;
+                    *(int *)(t + 0x20ac) = 0;
+                    func_0002D270();
+                    {
+                        M4 m3;
+                        func_00199C20(0, &m3);
+                        func_0019AD60(0, &m3);
                     }
-                } else if (sub == 8) {
-                    p1c = *(float *)(b + 0x9f8);
-                }
-                break;
-            case 4:
-                if (sub == 4) {
-                    if (D_00275460 <= *(float *)(b + 0x15f4) ||
-                        (*(int *)(b + 0x1178) != 0 && D_002755E8 <= *(float *)(b + 0x15f4))) {
-                        if (*(int *)(b + 0x1178) != 0) {
-                            if (*(int *)(*(int *)(b + 0x1084) + 0x2c) == -1) {
-                                sub = 5;
-                            }
-                        } else {
-                            sub = 8;
-                        }
-                    } else {
-                        if (below)
-                            sub = 6;
-                    }
-                } else if (sub == 8) {
-                    p1c = *(float *)(b + 0x9f8);
+                    (*(int *)(t + 0x15dc)) = (-(*(int *)(t + 0x1178) != 0) & 8);
                 }
                 break;
             case 5:
-                if (sub == 5) {
-                    if (*(int *)(b + 0x1174) != 0) {
-                        sub = 7;
+                if ((*(int *)(t + 0x15dc)) == 5) {
+                    if (*(int *)(t + 0x1174) != 0) {
+                        (*(int *)(t + 0x15dc)) = 7;
                     }
-                    if (D_00275460 <= *(float *)(b + 0x15f4)) {
-                        sub = (-(*(int *)(b + 0x1178) != 0) & 8);
-                    } else if (*(int *)(b + 0x20ac) != 0) {
-                        if (*(int *)(b + 0x9d0) != 0) {
-                            sub = 0x11;
+                    if (!(*(float *)(t + 0x15f4) < D_00275460)) {
+                        (*(int *)(t + 0x15dc)) = (-(*(int *)(t + 0x1178) != 0) & 8);
+                    } else if (*(int *)(t + 0x20ac) != 0) {
+                        if (*(int *)(t + 0x9d0) != 0) {
+                            (*(int *)(t + 0x15dc)) = 0x11;
                         } else if (below) {
-                            sub = 6;
+                            (*(int *)(t + 0x15dc)) = 6;
                         }
                     } else if (below) {
-                        sub = 6;
+                        (*(int *)(t + 0x15dc)) = 6;
                     }
                 }
-                if (*(int *)(b + 0x4f8) != 0 && (edx = *(int *)(b + 0x698), edx != 4)) {
-                    sub = (edx != 2) + 3;
+                if (*(int *)(t + 0x4f8) != 0 && (edx = *(int *)(t + 0x698), edx != 4)) {
+                    (*(int *)(t + 0x15dc)) = (edx != 2) + 3;
                 }
                 break;
             case 6:
-                if (sub == 6 && D_00275460 <= *(float *)(b + 0x15f4)) {
-                    sub = (*(int *)(b + 0x1178) != 0) - 1 & 8;
+                if ((*(int *)(t + 0x15dc)) == 6 && !(*(float *)(t + 0x15f4) < D_00275460)) {
+                    (*(int *)(t + 0x15dc)) = (*(int *)(t + 0x1178) != 0) - 1 & 8;
                 }
-                if (*(int *)(b + 0x4f8) != 0 && (edx = *(int *)(b + 0x698), edx != 4)) {
-                    sub = (edx != 2) + 3;
+                if (*(int *)(t + 0x4f8) != 0 && (edx = *(int *)(t + 0x698), edx != 4)) {
+                    (*(int *)(t + 0x15dc)) = (edx != 2) + 3;
                 }
                 break;
             case 7:
-                if (sub == 7) {
-                    if (D_00275460 <= *(float *)(b + 0x15f4)) {
-                        sub = (*(int *)(b + 0x1178) != 0) - 1 & 8;
-                    } else if (*(int *)(b + 0x20ac) == 0) {
+                if ((*(int *)(t + 0x15dc)) == 7) {
+                    if (!(*(float *)(t + 0x15f4) < D_00275460)) {
+                        (*(int *)(t + 0x15dc)) = (*(int *)(t + 0x1178) != 0) - 1 & 8;
+                    } else if (*(int *)(t + 0x20ac) == 0) {
                         if (below)
-                            sub = 6;
-                    } else if (*(int *)(b + 0x9d0) != 0) {
-                        sub = 0x11;
+                            (*(int *)(t + 0x15dc)) = 6;
+                    } else if (*(int *)(t + 0x9d0) != 0) {
+                        (*(int *)(t + 0x15dc)) = 0x11;
                     }
                 }
-                if (*(int *)(b + 0x4f8) != 0 && (edx = *(int *)(b + 0x698), edx != 4)) {
-                    sub = (edx != 2) + 3;
+                if (*(int *)(t + 0x4f8) != 0 && (edx = *(int *)(t + 0x698), edx != 4)) {
+                    (*(int *)(t + 0x15dc)) = (edx != 2) + 3;
+                }
+                break;
+            case 3:
+                if ((*(int *)(t + 0x15dc)) == 3) {
+                    if (!(*(float *)(t + 0x15f4) < D_00275460)) {
+                        (*(int *)(t + 0x15dc)) = (-(*(int *)(t + 0x1178) != 0) & 0xfffffffd) + 8;
+                    } else {
+                        if (below)
+                            (*(int *)(t + 0x15dc)) = 6;
+                    }
+                } else if ((*(int *)(t + 0x15dc)) == 8) {
+                    p18 = *(int *)(t + 0x9f8);
+                }
+                break;
+            case 4:
+                if ((*(int *)(t + 0x15dc)) == 4) {
+                    if (!(*(float *)(t + 0x15f4) < D_00275460) ||
+                        (*(int *)(t + 0x1178) != 0 && !(*(float *)(t + 0x15f4) < D_002755E8))) {
+                        if (*(int *)(t + 0x1178) != 0) {
+                            if (*(int *)(*(int *)(t + 0x1084) + 0x2c) == -1) {
+                                (*(int *)(t + 0x15dc)) = 5;
+                            }
+                        } else {
+                            (*(int *)(t + 0x15dc)) = 8;
+                        }
+                    } else {
+                        if (below)
+                            (*(int *)(t + 0x15dc)) = 6;
+                    }
+                } else if ((*(int *)(t + 0x15dc)) == 8) {
+                    p18 = *(int *)(t + 0x9f8);
                 }
                 break;
             case 8:
-                if (sub == 8) {
-                    if (*(int *)(b + 0x1178) == 0) {
+                if ((*(int *)(t + 0x15dc)) == 8) {
+                    if (*(int *)(t + 0x1178) == 0) {
                         if (below)
-                            sub = 6;
+                            (*(int *)(t + 0x15dc)) = 6;
                     } else {
-                        int c = *(int *)(*(int *)(b + 0x1084) + 0x2c);
+                        int c = *(int *)(*(int *)(t + 0x1084) + 0x2c);
                         if (c == -1) {
-                            sub = 5;
+                            (*(int *)(t + 0x15dc)) = 5;
                         } else {
-                            sub = (999 < c) * 2 + 9;
+                            (*(int *)(t + 0x15dc)) = (999 < c) * 2 + 9;
                         }
                     }
                 }
-                if (*(int *)(b + 0x4f8) != 0 && *(int *)(b + 0x698) != 4) {
-                    sub = (*(int *)(b + 0x698) != 2) + 3;
+                if (*(int *)(t + 0x4f8) != 0 && *(int *)(t + 0x698) != 4) {
+                    (*(int *)(t + 0x15dc)) = (*(int *)(t + 0x698) != 2) + 3;
                 }
-                if (*(int *)(b + 0x11dc) != 0) {
-                    sub = 10;
+                if (*(int *)(t + 0x11dc) != 0) {
+                    (*(int *)(t + 0x15dc)) = 10;
                     *(int *)(t + 0x1608) = 1;
                     *(int *)(t + 0x1610) = 1;
                 }
                 break;
-            case 9:
-                if (sub != 9) {
-                    *(int *)(b + 0x1110) = 0;
-                    break;
-                }
-                {
-                    int *pi = *(int **)(b + 0x1084);
-                    if (999 < pi[0xb]) {
-                        sub = 0xb;
-                        break;
-                    }
-                    int hit = 0;
-                    if (0 < *pi &&
-                        D_00275460 - *(float *)(b + 0x15f4) <=
-                            *(float *)(*(int *)(*(int *)(b + 0x24) + 0x52c) + 0x1ebc + pi[0xb] * 4)) {
-                        hit = 1;
-                    }
-                    if (D_00275460 <= *(float *)(b + 0x15f4) || hit) {
-                        pi[0xb] = -1;
-                        if (hit) {
-                            *(int *)(t + 0x1608) = 1;
-                            *(int *)(t + 0x1610) = 1;
-                            *(float *)(t + 0x15f4) = 0.0f;
-                        } else {
-                            sub = (-(*(int *)(t + 0x1178) != 0) & 0xfffffffd) + 8;
-                            *(int *)(t + 0x1110) = 0;
-                        }
-                        break;
-                    }
-                    if (*(int *)(b + 0x112c) == 0) {
-                        break;
-                    }
-                    pi[0xb] = -1;
-                    sub = 5;
-                    *(int *)(t + 0x112c) = 0;
+            case 2:
+                if ((*(int *)(t + 0x15dc)) == 2 && !(*(float *)(t + 0x15f4) < D_00275460)) {
+                    (*(int *)(t + 0x15dc)) = 0;
                 }
                 break;
-            case 10:
-                if (sub == 10) {
-                    if (*(int *)(b + 0x470) == 0) {
-                        if (*(int *)(b + 0x468) == 0) {
-                            sub = 8;
-                            *(int *)(t + 0x1608) = 1;
-                            *(int *)(t + 0x1610) = 1;
-                            *(int *)(t + 0x1628) = 1;
-                        }
-                        if (*(int *)(b + 0x4f8) != 0) {
-                            sub = (*(int *)(b + 0x698) != 2) + 3;
-                            *(int *)(t + 0x1628) = 1;
-                        }
-                    } else if (*(int *)(b + 0x47c) == 4) {
-                        func_00028070(0);
-                        *(int *)(t + 0x1610) = 1;
-                        *(int *)(t + 0x47c) = 0;
-                        if (*(int *)(*(int *)(D_002A8490 + 0x2a4) + 0x1c4) != 0) {
-                            func_001048E0();
-                        }
-                        sub = 0;
-                        *(int *)(t + 0x1628) = 1;
+            case 1:
+                if ((*(int *)(t + 0x15dc)) == 1) {
+                    if (*(int *)(t + 0x634) != 0) {
+                        (*(int *)(t + 0x15dc)) = 0x10;
+                        *(int *)(t + 0x1130) = 0;
+                    }
+                    if (*(int *)(t + 0x1f88) != 0 && *(int *)(t + 0x20a0) == 0 && *(float *)(t + 0x9a0) == D_00275544) {
+                        (*(int *)(t + 0x15dc)) = 2;
+                        *(int *)(t + 0x1130) = 0;
+                    }
+                    if (*(int *)(t + 0x454) != 0) {
+                        (*(int *)(t + 0x15dc)) = 0xb;
                     }
                 }
                 break;
-            case 0xb:
-                if (sub == 0xb) {
-                    if (*(int *)(b + 0x454) == 0) {
-                        sub = 0;
+            case 0x10:
+                if ((*(int *)(t + 0x15dc)) == 0x10) {
+                    if (!(*(float *)(t + 0x15f4) < D_00275460) || *(int *)(t + 0x20a0) != 0 || *(int *)(t + 0x634) == 0) {
+                        (*(int *)(t + 0x15dc)) = 1;
+                        p18 = 0x3f800000;
                     }
-                    if (*(int *)(b + 0x1178) != 0 && *(int *)(b + 0x117c) != 0 && *(int *)(b + 0x680) != 0) {
-                        sub = 8;
-                        func_0010DCB0();
+                    if (*(int *)(t + 0x1f88) != 0) {
+                        (*(int *)(t + 0x15dc)) = 2;
                     }
-                    if (*(int *)(b + 0x4f8) == 0 || *(int *)(b + 0x698) == 4) {
-                        break;
-                    }
-                    sub = (*(int *)(b + 0x698) != 2) + 3;
-                    func_0010DCB0();
+                }
+                break;
+            case 0xf:
+                if ((*(int *)(t + 0x15dc)) == 0xf &&
+                    (*(int *)(*(int *)(t + 0x20c) + 0x30) == 0 || *(int *)(t + 0x20a0) != 0)) {
+                    (*(int *)(t + 0x15dc)) = 1;
+                }
+                break;
+            case 0xe:
+                if ((*(int *)(t + 0x15dc)) == 0xe && *(int *)(t + 0x69c) == 0) {
+                    (*(int *)(t + 0x15dc)) = 8;
                 }
                 break;
             case 0xc:
-                if (sub == 0xc) {
-                    if (*(int *)(b + 0x1634) != 0) {
-                        sub = 8;
+                if ((*(int *)(t + 0x15dc)) == 0xc) {
+                    if (*(int *)(t + 0x1634) != 0) {
+                        (*(int *)(t + 0x15dc)) = 8;
                         if (*(int *)(*(int *)(D_002A8490 + 0x2a4) + 0x1c4) != 0) {
                             func_001048E0();
                         }
                         *(int *)(t + 0x1610) = 1;
                         *(int *)(t + 0x1634) = 0;
                     }
-                    if (D_00275460 <= *(float *)(b + 0x15f4)) {
-                        *(int *)(b + 0x704) = 0;
+                    if (!(*(float *)(t + 0x15f4) < D_00275460)) {
+                        *(int *)(t + 0x704) = 0;
                         func_00108690_4(arg);
                         if (*(int *)(*(int *)(D_002A8490 + 0x2a4) + 0x1c4) != 0) {
                             func_001048C0();
@@ -391,21 +352,21 @@ void Obj::func_001188F0(int arg)
                         *(int *)(t + 0x160c) = 1;
                         *(int *)(t + 0x1634) = 1;
                     }
-                    if (*(int *)(b + 0x4f8) == 0 || (edx = *(int *)(b + 0x698), edx == 4)) {
+                    if (*(int *)(t + 0x4f8) == 0 || (edx = *(int *)(t + 0x698), edx == 4)) {
                         break;
                     }
-                    sub = (edx != 2) + 3;
+                    (*(int *)(t + 0x15dc)) = (edx != 2) + 3;
                 }
                 break;
             case 0xd:
-                if (sub == 0xd) {
-                    if (*(int *)(b + 0x1638) != 0) {
-                        sub = 8;
+                if ((*(int *)(t + 0x15dc)) == 0xd) {
+                    if (*(int *)(t + 0x1638) != 0) {
+                        (*(int *)(t + 0x15dc)) = 8;
                         *(int *)(t + 0x1610) = 1;
                         *(int *)(t + 0x1638) = 0;
                     }
-                    if (D_00275460 <= *(float *)(b + 0x15f4)) {
-                        *(int *)(b + 0x70c) = 0;
+                    if (!(*(float *)(t + 0x15f4) < D_00275460)) {
+                        *(int *)(t + 0x70c) = 0;
                         func_00108690_4(0);
                         *(float *)(t + 0x15f4) = 0.0f;
                         *(int *)(t + 0x160c) = 1;
@@ -413,68 +374,107 @@ void Obj::func_001188F0(int arg)
                     }
                 }
                 break;
-            case 0xe:
-                if (sub == 0xe && *(int *)(b + 0x69c) == 0) {
-                    sub = 8;
+            case 9:
+                if ((*(int *)(t + 0x15dc)) != 9) {
+                    *(int *)(t + 0x1110) = 0;
+                    break;
                 }
-                break;
-            case 0xf:
-                if (sub == 0xf &&
-                    (*(int *)(*(int *)(b + 0x20c) + 0x30) == 0 || *(int *)(b + 0x20a0) != 0)) {
-                    sub = 1;
-                }
-                break;
-            case 0x10:
-                if (sub == 0x10) {
-                    if (D_00275460 <= *(float *)(b + 0x15f4) || *(int *)(b + 0x20a0) != 0 || *(int *)(b + 0x634) == 0) {
-                        sub = 1;
-                        p18 = 1.0f;
+                {
+                    int *pi = *(int **)(t + 0x1084);
+                    if (999 < pi[0xb]) {
+                        (*(int *)(t + 0x15dc)) = 0xb;
+                        break;
                     }
-                    if (*(int *)(b + 0x1f88) != 0) {
-                        sub = 2;
+                    int hit = 0;
+                    if (0 < *pi &&
+                        D_00275460 - *(float *)(t + 0x15f4) <=
+                            *(float *)(*(int *)(*(int *)(t + 0x24) + 0x52c) + 0x1ebc + pi[0xb] * 4)) {
+                        hit = 1;
                     }
+                    if (!(*(float *)(t + 0x15f4) < D_00275460) || hit) {
+                        pi[0xb] = -1;
+                        if (hit) {
+                            *(int *)(t + 0x1608) = 1;
+                            *(int *)(t + 0x1610) = 1;
+                            *(float *)(t + 0x15f4) = 0.0f;
+                        } else {
+                            (*(int *)(t + 0x15dc)) = (-(*(int *)(t + 0x1178) != 0) & 0xfffffffd) + 8;
+                            *(int *)(t + 0x1110) = 0;
+                        }
+                        break;
+                    }
+                    if (*(int *)(t + 0x112c) == 0) {
+                        break;
+                    }
+                    pi[0xb] = -1;
+                    (*(int *)(t + 0x15dc)) = 5;
+                    *(int *)(t + 0x112c) = 0;
                 }
                 break;
-            case 0x11:
-                if (sub == 0x11 && D_00275460 <= *(float *)(b + 0x15f4)) {
-                    *(int *)(b + 0x9d0) = 0;
-                    *(int *)(t + 0x20ac) = 0;
-                    func_0002D270();
-                    ((Cam1188F0 *)*(int *)(*(int *)(t + 0x1e0) + 0x22c))->func_00199C20(0, &m);
-                    ((Cam1188F0 *)*(int *)(*(int *)(t + 0xa00) + 4))->func_0019AD60(0, &m);
-                    sub = (-(*(int *)(t + 0x1178) != 0) & 8);
+            case 0xb:
+                if ((*(int *)(t + 0x15dc)) == 0xb) {
+                    if (*(int *)(t + 0x454) == 0) {
+                        (*(int *)(t + 0x15dc)) = 0;
+                    }
+                    if (*(int *)(t + 0x1178) != 0 && *(int *)(t + 0x117c) != 0 && *(int *)(t + 0x680) != 0) {
+                        (*(int *)(t + 0x15dc)) = 8;
+                        func_0010DCB0();
+                    }
+                    if (*(int *)(t + 0x4f8) == 0 || *(int *)(t + 0x698) == 4) {
+                        break;
+                    }
+                    (*(int *)(t + 0x15dc)) = (*(int *)(t + 0x698) != 2) + 3;
+                    func_0010DCB0();
                 }
                 break;
-            case 0x12:
-                if (*(int *)(b + 0x20ac) == 0) {
-                    sub = 0;
-                } else if (*(int *)(b + 0x9d0) != 0) {
-                    sub = 0x11;
+            case 10:
+                if ((*(int *)(t + 0x15dc)) == 10) {
+                    if (*(int *)(t + 0x470) == 0) {
+                        if (*(int *)(t + 0x468) == 0) {
+                            (*(int *)(t + 0x15dc)) = 8;
+                            *(int *)(t + 0x1608) = 1;
+                            *(int *)(t + 0x1610) = 1;
+                            *(int *)(t + 0x1628) = 1;
+                        }
+                        if (*(int *)(t + 0x4f8) != 0) {
+                            (*(int *)(t + 0x15dc)) = (*(int *)(t + 0x698) != 2) + 3;
+                            *(int *)(t + 0x1628) = 1;
+                        }
+                    } else if (*(int *)(t + 0x47c) == 4) {
+                        func_00028070(0);
+                        *(int *)(t + 0x1610) = 1;
+                        *(int *)(t + 0x47c) = 0;
+                        if (*(int *)(*(int *)(D_002A8490 + 0x2a4) + 0x1c4) != 0) {
+                            func_001048E0();
+                        }
+                        (*(int *)(t + 0x15dc)) = 0;
+                        *(int *)(t + 0x1628) = 1;
+                    }
                 }
                 break;
             }
             {
-                int newsub = *(int *)(b + 0x15dc);
-                int oldst = *(int *)(b + 0x15d8);
+                int newsub = *(int *)(t + 0x15dc);
+                int oldst = *(int *)(t + 0x15d8);
                 if (newsub != oldst) {
-                    if ((newsub != 10 || *(int *)(b + 0x470) == 0) &&
-                        (oldst != 10 || *(int *)(b + 0x470) == 0) &&
+                    if ((newsub != 10 || *(int *)(t + 0x470) == 0) &&
+                        (oldst != 10 || *(int *)(t + 0x470) == 0) &&
                         oldst != 0x11 && newsub != 0xc && oldst != 0xc && newsub != 0xd && oldst != 0xd) {
-                        *(int *)(b + 0x1608) = 1;
+                        *(int *)(t + 0x1608) = 1;
                         *(int *)(t + 0x1610) = 1;
                     }
-                    if (*(int *)(b + 0x15dc) == 1) {
+                    if (*(int *)(t + 0x15dc) == 1) {
                         *(int *)(t + 0x15e0) = func_00029BD0();
                     }
-                    if (*(int *)(b + 0x15dc) == 6) {
-                        int o = *(int *)*(int *)(*(int *)(D_002A8490 + 8) + 0x14 + *(int *)(b + 0x970) * 4);
+                    if (*(int *)(t + 0x15dc) == 6) {
+                        int o = *(int *)*(int *)(*(int *)(D_002A8490 + 8) + 0x14 + *(int *)(t + 0x970) * 4);
                         int (__stdcall **fp)(int, float, int) = (int (__stdcall **)(int, float, int))(*(int *)o + 0x3c);
                         (*fp)(200, 0.3f, 0);
                     }
-                    *(unsigned int *)(b + 0x15fc) = (-(*(int *)(b + 0x15d8) != 0x10) & 2);
+                    *(unsigned int *)(t + 0x15fc) = (-(*(int *)(t + 0x15d8) != 0x10) & 2);
                     *(int *)(t + 0x15d8) = *(int *)(t + 0x15dc);
-                    *(float *)(t + 0x15f4) = p18;
-                    *(float *)(t + 0x1600) = p1c;
+                    *(float *)(t + 0x15f4) = 0.0f;
+                    *(int *)(t + 0x1600) = 0;
                     *(int *)(t + 0x15e4) = 0;
                     *(int *)(t + 0x15e8) = 0;
                     *(int *)(t + 0x163c) = 0;

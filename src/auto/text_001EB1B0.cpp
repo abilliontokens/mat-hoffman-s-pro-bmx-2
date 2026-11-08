@@ -329,7 +329,8 @@ static __declspec(noinline) char *func_001EB4F7(char *buf, int ndec, int caps, S
         p++;
         *p = D_002AEA3C;
     }
-    q = p + ndec + (g_fmt == 0);
+    q = p + (g_fmt == 0);
+    q += ndec;
     *(S_ExpStr *)q = D_00295024;
     if (caps) {
         *q = 'E';

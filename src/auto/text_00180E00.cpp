@@ -511,11 +511,10 @@ RenderableObject *RenderableObject::func_001817F0(char *name, int a, int b)
     int h;
     int v18;
     int v1c;
-    int vC;
     char buf[0x104];
     char buf2[0x104];
     int arr[256];
-    char *p;
+    int i;
 
     func_001D3F50();
     other = &self;
@@ -532,7 +531,7 @@ RenderableObject *RenderableObject::func_001817F0(char *name, int a, int b)
     } else {
         strcpy(buf, name);
     }
-    for (p = buf; *p != 0; p++)
+    for (char *p = buf; *p != 0; p++)
         *p = (char)func_001E8D25(*p);
     func_00030F30(buf, D_00289328);
     strcpy((char *)&self + 0x28, buf);
@@ -550,7 +549,6 @@ RenderableObject *RenderableObject::func_001817F0(char *name, int a, int b)
     }
     if (v1c != 0) {
         RObj17 *src;
-        int i;
         self.f1A4 = (Res17 *)v1c;
         self.f1A4->s1();
         src = self.f1A4->f14;
@@ -582,6 +580,7 @@ RenderableObject *RenderableObject::func_001817F0(char *name, int a, int b)
             D_002A829C->v6((void *)self.f1B8[i], D_002AA46C);
         self.s37(src);
     } else {
+        int vC;
         D_002BEAAC->func_0013C8A0(h, &vC, 1, 4);
         D_002BEAAC->func_0013C8A0(h, buf, 4, 1);
         if (func_001EA426((char *)&vC, D_00289324) != 0 && func_001EA426((char *)&vC, D_00289320) != 0 && func_001EA426((char *)&vC, D_0028931C) == 0)

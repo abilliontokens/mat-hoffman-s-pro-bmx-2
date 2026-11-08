@@ -349,6 +349,5 @@ int C_00147890::func_00147890(char *name)
 
 void C_00148740::func_00148740(unsigned int flags)
 {
-    int off = 4;
-    ((C_001490A0 *)((int)this - off))->func_001490A0(flags);
+    ((C_001490A0 *)this - 1)->func_001490A0(flags);
 }

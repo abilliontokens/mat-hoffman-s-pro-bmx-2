@@ -256,9 +256,7 @@ C_00053DB0 *C_00053DB0::func_00053DB0()
     int i;
     func_000342C0();
     for (i = 0; i < f64->f3b4->count; i++) {
-        C_00053DB0_List *list = f64->f3b4;
-        char **items = list->items;
-        if (memcmp(items[i] + 0x18, D_00277C28, 11) == 0)
+        if (strcmp(f64->f3b4->items[i] + 0x18, "tagTrigger") == 0)
             f2c8 = i;
     }
     v40();

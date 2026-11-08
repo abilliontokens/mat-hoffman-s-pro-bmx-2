@@ -46,9 +46,8 @@ void func_00126A80(float *verts, int count, float *center, float *extent, float 
 
 void func_00126DD0(S_00126DD0_Tri *tris, int count, S_00126DD0_Vec *verts, S_00126DD0_Vec *center, S_00126DD0_Vec *extent, float *volume, float *radius, S_00126DD0_Mat *matrix)
 {
-    S_00126DD0_Vec mx = verts[tris->idx[0]];
     S_00126DD0_Vec mn = verts[tris->idx[0]];
-    S_00126DD0_Vec c;
+    S_00126DD0_Vec mx = verts[tris->idx[0]];
     int i, j;
 
     for (i = 0; i < count; i++) {
@@ -65,11 +64,14 @@ void func_00126DD0(S_00126DD0_Tri *tris, int count, S_00126DD0_Vec *verts, S_001
             if (v.z < mn.z) mn.z = v.z;
         }
     }
-    c.x = (mn.x + mx.x) * D_002755E8;
-    c.y = (mn.y + mx.y) * D_002755E8;
-    c.z = (mn.z + mx.z) * D_002755E8;
-    c.w = 1.0f;
-    *center = c;
+    {
+        S_00126DD0_Vec c;
+        c.x = (mn.x + mx.x) * D_002755E8;
+        c.y = (mn.y + mx.y) * D_002755E8;
+        c.z = (mn.z + mx.z) * D_002755E8;
+        c.w = 1.0f;
+        *center = c;
+    }
     mn.x = (mx.x - mn.x) * D_002755E8;
     mn.y = (mx.y - mn.y) * D_002755E8;
     mn.z = (mx.z - mn.z) * D_002755E8;
@@ -156,13 +158,14 @@ void func_001271E0(S_00126DD0_Tri *tris, int count, float *matrix, float *split,
             }
             func_00126770(tris, a, b, count, &na, &nb, *split, i);
             float va, vb;
+            float radius2;
             {
                 S_00126DD0_V4 center; S_00126DD0_Vec extent;
-                func_00126DD0(a, na, matrix, &center, &extent, &va, &radius, 0);
+                func_00126DD0(a, na, matrix, &center, &extent, &va, &radius2, 0);
             }
             {
                 S_00126DD0_V4 center; S_00126DD0_Vec extent;
-                func_00126DD0(b, nb, matrix, &center, &extent, &vb, &radius, 0);
+                func_00126DD0(b, nb, matrix, &center, &extent, &vb, &radius2, 0);
             }
             float sum = vb + va;
             if (sum < bestVol) {

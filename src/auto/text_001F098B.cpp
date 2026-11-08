@@ -230,9 +230,9 @@ void *func_001F0B53(S_001EF734 *out)
             return out;
         }
         case 'P': {
-            S_001EF734 tP;
+            S_001EF734 t80;
             name.func_001EF9B2(D_00295594[D_002F6A28[-1]]);
-            second.func_001EEF4F((S_001EF734 *)func_001F0B53(&tP));
+            second.func_001EEF4F((S_001EF734 *)func_001F0B53(&t80));
             if (second.func_001EF1E7() || second.func_001EF1E7())
                 goto quote;
             if (second.flags & 0x40)

@@ -136,9 +136,9 @@ C_000CB6B0 *C_000CB6B0::func_000CB6B0(int a, int b, int c)
         o = f2A0[i];
         o->f40 = 0;
         o->f44 = 0;
+        o->f58 |= 4;
         o->f3C = 0x3f800000;
         o->f48 = 0x3f800000;
-        o->f58 |= 4;
         o = f2A0[i];
         if (o->f28 != 0x435d0000) {
             o->f28 = 0x435d0000;

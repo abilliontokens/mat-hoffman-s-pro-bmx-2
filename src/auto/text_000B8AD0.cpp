@@ -187,6 +187,93 @@ void C_000B8C80::func_000B8C80(int a0) {
 
 void C_000B8C90::func_000B8C90(float dt)
 {
+    if (f28) {
+        TireBody *body=(TireBody *)f9C;
+        TireVec velocity=body->f248;
+        TireVec p=*(TireVec *)f74+body->f190;
+        TireVec q=*(TireVec *)f84+((TireBody *)f9C)->f190;
+        float sx=-45.0f,sy=-45.0f;
+        TireVec cross,v,w,angular;
+        cross.z=cross.y=cross.x=0; cross.w=1;
+        AsmVec3Cross(&cross.x,(float *)(f9C+0x268),f74);
+        v.x=velocity.x+cross.x; v.y=velocity.y+cross.y; v.z=velocity.z+cross.z;
+        AsmVec3Cross(&cross.x,(float *)(f9C+0x268),f84);
+        w.x=velocity.x+cross.x; w.y=velocity.y+cross.y; w.z=velocity.z+cross.z;
+        if(fA0) {
+            TireVec transformed=((TireBody *)f9C)->f22C->func_00197F70(p);
+            TireVec otherPos=((TireBody *)fA0)->f22C->func_00197F70(((TireBody *)fA0)->f190);
+            TireVec relative(transformed.x-otherPos.x,transformed.y-otherPos.y,transformed.z-otherPos.z);
+            ((TireBody *)fA0)->GetAngularVelocity(&angular);
+            ((TireBody *)fA0)->GetVelocity(&velocity);
+            AsmVec3Cross(&cross.x,&angular.x,&relative.x);
+            TireVec point(velocity.x+cross.x,velocity.y+cross.y,velocity.z+cross.z);
+            TireVec otherVelocity=((TireBody *)f9C)->f22C->func_00198040(point);
+            v=v-otherVelocity;
+            transformed=((TireBody *)f9C)->f22C->func_00197F70(q);
+            relative=transformed-otherPos;
+            AsmVec3Cross(&cross.x,&angular.x,&relative.x);
+            point=velocity+cross;
+            otherVelocity=((TireBody *)f9C)->f22C->func_00198040(point);
+            w=w-otherVelocity;
+        }
+        if(f30 && f2C) {
+            float scale=func_0001C870(*(float *)(f9C+0x28),0,1,10,f40);
+            sy=scale*D_00275BF4;
+            sx=scale*f44*D_00275BF4;
+        }
+        TireVec side,forward;
+        side.z=side.y=side.x=0; side.w=1;
+        forward.z=forward.y=forward.x=0; forward.w=1;
+        AsmVec3Cross(&side.x,f64,(float *)&D_002A3084);
+        func_000B8AF0(&side.x,&side.x);
+        AsmVec3Cross(&forward.x,(float *)&D_002A3084,&side.x);
+        float dot=side.dot(((TireBody *)f9C)->f238);
+        float lx=side.x*dot,ly=side.y*dot,lz=side.z*dot;
+        float length=AsmSqrtF(lx*lx+ly*ly+lz*lz);
+        float angle;
+        if(*(float *)(f9C+0x28)<=D_00275AEC) {
+            angular.z=angular.y=angular.x=0; angular.w=1;
+            ((TireBody *)f9C)->f22C->func_001994C0(0,0,&angular);
+            angle=func_0014F7E0(angular.x);
+        } else {
+            angle=(float)fabs(func_0014FB30(length/ *(float *)(f9C+0x23C)));
+        }
+        float camber=func_0014F7E0(f64[1]);
+        if(camber>fA8 && angle>fA4 && f34) {
+            ((TireBody *)f9C)->func_0001C710(TireVec(0,func_0001C870(camber,fA8,0,fAC,fB4)* *(float *)(f9C+0x210)*D_0027D5E0,0));
+            sy*=fB0; sx*=fB0;
+            ((TireBody *)f9C)->func_0001E0A0(TireVec(0,*(float *)(f9C+0x248)* *(float *)((char *)this+0xB8),0));
+        } else {
+            float mass=*(float *)(f9C+0x210)*D_00275BF8;
+            float gx=*(float *)&D_002A3084*mass,gy=*(float *)&D_002A3088*mass,gz=*(float *)&D_002A308C*mass;
+            float projection=gx*f64[0]+gy*f64[1]+gz*f64[2];
+            TireVec gravity(gx-f64[0]*projection,gy-f64[1]*projection,gz-f64[2]*projection);
+            TireVec point(0,0,0);
+            ((TireBody *)f9C)->f22C->func_001994C0(0,&point,0);
+            float projection2=point.dot(*(TireVec *)f64);
+            float ax=f64[0]*projection2,ay=f64[1]*projection2,az=f64[2]*projection2;
+            point.x-=ax; point.y-=ay; point.z-=az;
+            func_000B8AF0(&point.x,&point.x);
+            TireVec otherPos=point*gravity.dot(point);
+            TireVec relative=gravity-otherPos;
+            float scale=func_0001C870(*(float *)(f9C+0x250),0,1,20,0);
+            TireVec transformed=*(TireVec *)&D_002A3064+relative*scale;
+            if((float)fabs(*(float *)(f9C+0x250))<= *(float *)((char *)this+0x58) && *(float *)((char *)this+0x60)!=D_00275544)
+            {
+                transformed.x+=otherPos.x; transformed.y+=otherPos.y; transformed.z+=otherPos.z;
+            }
+            TireVec &accum=((TireBody *)f9C)->f130;
+            accum.x+=transformed.x; accum.y+=transformed.y; accum.z+=transformed.z;
+        }
+        float sn,cs,tmp;
+        func_0014F760(*(int *)((char *)this+0x5C),&sn,&cs,&tmp);
+        float mass=f3C*f38;
+        float force=(v.x*sn-v.z*cs)*mass;
+        float second=w.x*mass;
+        second*=sx;
+        ((TireBody *)f9C)->func_0001C750(TireVec(force*sy,0,0),p);
+        ((TireBody *)f9C)->func_0001C750(TireVec(second,0,0),q);
+    }
 }
 
 void *C_000B9A30::func_000B9A30(int flags) {

@@ -516,12 +516,9 @@ MaterialSoundEmitter::MaterialSoundEmitter(int arg0, int arg1, int arg2, int arg
 int MaterialSoundEmitter::func_001A33A0(int idx, S_001A33A0_Vec3 pos, int a4, int vol)
 {
     if (idx >= 1 && idx <= list1c0.count) {
-        volatile int lo = 0;
-        volatile int v = lo < vol ? vol : lo;
+        int v = AsmMaxI(0, vol);
         v = v;
-        volatile int hi = 100;
-        volatile int r = v > hi ? hi : v;
-        vol = r;
+        vol = AsmMinI(v, 100);
         S_001A33A0_Elem *e = list1c0.at(idx - 1);
         if (e->snd->v7() == 0) {
             e->snd->v12(vol * 100 / 100);

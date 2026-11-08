@@ -141,6 +141,7 @@ struct C_00191400 {
 
 #pragma intrinsic(strcmp)
 extern "C" int strcmp(const char *a, const char *b);
+extern char D_00275630[], D_0028A8A4[], D_0028A89C[], D_0028A8BC[], D_0028A8B4[], D_0028A8AC[], D_0028A874[], D_0028A86C[], D_0028A864[];
 #pragma optimize("y", off)
 void C_00191270::func_001904E0(S_00191270_Owner *owner, int slot, S_00191270_Node *node, int c, int d)
 {
@@ -148,9 +149,19 @@ void C_00191270::func_001904E0(S_00191270_Owner *owner, int slot, S_00191270_Nod
     C_0018F350 ctxB;
     C_0018F350 ctxC;
     S_1904E0_Rec rec;
+    S_1904E0_Rec arg;
     S_1904E0_Frame fr;
     void *frObj;
     int i;
+        S_1904E0_Entry *e;
+        unsigned int flags;
+        int hi;
+        int r;
+        int idx;
+        int sidx;
+        int tmp;
+        int objIdx;
+        void *val;
 
     if (node == 0 || c == -1 || d == -1 || owner->f28 == 1) {
         return;
@@ -159,14 +170,7 @@ void C_00191270::func_001904E0(S_00191270_Owner *owner, int slot, S_00191270_Nod
     ctxB.func_0018F350();
     ctxC.func_0018F350();
     for (i = c; i < d; i++) {
-        S_1904E0_Entry *e;
-        unsigned int flags;
-        int hi;
-        int r;
-        int idx;
-        int sidx;
-        int tmp;
-        void *val;
+
 
         rec = node->f20[i].rec;
         e = &node->f20[i];
@@ -175,9 +179,9 @@ void C_00191270::func_001904E0(S_00191270_Owner *owner, int slot, S_00191270_Nod
         r = func_0018D580(hi);
         switch (e->f4C) {
         case 8: {
-            volatile int a;
-            volatile int b;
-            volatile int m;
+            int a;
+            int b;
+            int m;
             const char *end = ctxB.f28;
             const char *s1 = end + 1;
             char ch;
@@ -188,18 +192,18 @@ void C_00191270::func_001904E0(S_00191270_Owner *owner, int slot, S_00191270_Nod
             } while (ch != 0);
             a = end - s1;
             b = 0x3f;
-            m = b > a ? a : b;
+            m = AsmMinI(b, a);
             n = m;
             func_001E8920(rec.name, ctxB.f28, n);
             rec.name[n] = 0;
             r = ctxC.f12c;
             if (rec.name[0] == '$') {
-                if (func_0018E7D0(2, rec.name, &idx) == 1) {
-                    if (f158[idx].f48 != 0 && f158[idx].f50 == 0) {
-                        sidx = f158[idx].f0;
-                    }
-                }
+                if (func_0018E7D0(2, rec.name, &idx) != 1) break;
+                if (!f158[idx].f48 || f158[idx].f50) break;
+                val = (void *)f158[idx].f0;
+                goto invoke;
             }
+            goto invokeDefault;
             break;
         }
         case 3:
@@ -214,6 +218,7 @@ void C_00191270::func_001904E0(S_00191270_Owner *owner, int slot, S_00191270_Nod
                     break;
                 }
             } else {
+                r = -1;
                 if (rec.f40 == -1) {
                     ctxB.func_0018F4D0(flags);
                     fr.count = r;
@@ -222,6 +227,27 @@ void C_00191270::func_001904E0(S_00191270_Owner *owner, int slot, S_00191270_Nod
                 }
                 val = owner;
                 sidx = f158[slot].f44;
+            }
+            {
+                int n = f164[sidx].params[rec.f40].count;
+                int end = i + 1 + n;
+                int read = 0;
+                int j;
+                for (j = i + 1; j < end; ++j) {
+                    if (j >= node->f24) break;
+                    ++read;
+                    arg = node->f20[j].rec;
+                    if (node->f20[j].f4C != 2 ||
+                        ((f164[sidx].params[rec.f40].types[n-read] ^ node->f20[j].f48) & 0xff00) ||
+                        (arg.name[0] == '$' && !func_0018E7D0(0, arg.name, &objIdx))) {
+                        ctxB.func_0018F4D0(flags);
+                        i += read;
+                        fr.count = -1;
+                        fr.flags = flags;
+                        goto next;
+                    }
+                }
+                fr.count = n;
             }
             fr.recId = rec.f40;
             fr.flags = flags;
@@ -241,11 +267,174 @@ void C_00191270::func_001904E0(S_00191270_Owner *owner, int slot, S_00191270_Nod
                 fr.count = -1;
                 break;
             }
+            if (rec.name[0] == '$') {
+                if (func_0018E7D0(0, rec.name, &objIdx) != 1) {
+                    ctxB.func_0018F4D0(fr.flags);
+                    fr.count = -1;
+                    break;
+                }
+                val = (void *)f158[objIdx].f0;
+            } else {
+                objIdx = slot;
+                val = owner;
+            }
+            if (hi) {
+                switch (flags & 0xff) {
+                case 2: {
+                    C_0018F350 *context = (C_0018F350 *)f158[objIdx].f54 + (rec.f40 & 0xff);
+                    func_0018EA50(context->f18, context->func_0018E1D0());
+                    break;
+                }
+                case 1: {
+                    int field = f158[objIdx].f44;
+                    char *desc = (char *)f164[field].fields + (rec.f40 & 0xff) * 16;
+                    val = (char *)val + *(int *)(desc + 4) + ((rec.f40 >> 16) & 0xff);
+                    func_0018EA50((flags & 0xff0000) | (hi << 8), val);
+                    break;
+                }
+                case 0:
+                    f170[r].convert(&rec, &ctxC);
+                    func_0018EA50(ctxC.f18, ctxC.func_0018E1D0());
+                    break;
+                }
+            }
+            if (tmp == 0) {
+                S_1904E0_Param *param = &f164[fr.tbl].params[fr.recId];
+                void *callee = param->callee;
+                unsigned int type = (param->flags >> 8) & 0xff;
+                fr.count = -1;
+                if (callee && frObj) {
+                    void *out = ctxB.f150.func_00191400();
+                    if (type == 1) {
+                        float value = 0.0f;
+                        value = (((S_1904E0_Native *)frObj)->*(*(float (S_1904E0_Native::**)(void *))&callee))(out);
+                        ctxB.func_0018F390(D_00275630, 0x100, &value);
+                    } else if (type == 4) {
+                        double value = 0.0;
+                        value = (((S_1904E0_Native *)frObj)->*(*(double (S_1904E0_Native::**)(void *))&callee))(out);
+                        ctxB.func_0018F390(D_00275630, 0x400, &value);
+                    } else {
+                        int value = (((S_1904E0_Native *)frObj)->*(*(int (S_1904E0_Native::**)(void *))&callee))(out);
+                        if (type != 0 && type != 9)
+                            ctxB.func_0018F390(D_00275630, type << 8, &value);
+                    }
+                    if (param->f8 == 0 && f158[objIdx].f50 == 0) {
+                        ((S_00191270_Owner *)frObj)->func_0018C820(-1.0f, node->f20[i].f0 + 1, d, node);
+                        return;
+                    }
+                }
+            } else fr.count = tmp;
+            break;
+        case 6:
+            if (f158[slot].f5C < f158[slot].f58 + 1) {
+                f158[slot].f5C = f158[slot].f58 + 10;
+                f158[slot].f54 = func_001E83E8(f158[slot].f54, f158[slot].f5C * 0x1c0);
+            }
+            if (f158[slot].f54) {
+                ((C_0018F350 *)f158[slot].f54)[f158[slot].f58].func_0018F4D0(flags);
+                ((C_0018F350 *)f158[slot].f54)[f158[slot].f58].func_0018E250(rec.name, flags);
+                ++f158[slot].f58;
+            }
+            break;
+        case 13:
+            func_001900E0(owner, D_0028A8A4, slot, &rec, flags, r, &ctxB);
+            break;
+        case 14:
+            func_001900E0(owner, D_0028A89C, slot, &rec, flags, r, &ctxC);
+            break;
+        case 16:
+            i = rec.f40 - 1;
+            break;
+        case 17:
+            if (ctxB.f12c == 1) i = rec.f40 - 1;
+            break;
+        case 18:
+            if (ctxB.f12c == 0) i = rec.f40 - 1;
+            break;
+        case 9:
+            ctxB.func_0018E250(D_00275630, flags);
+            break;
+        case 11:
+            func_00190200(owner, slot, D_0028A8B4, &ctxB, &rec, flags);
+            break;
+        case 10:
+            func_00190200(owner, slot, D_0028A8BC, &ctxB, &rec, flags);
+            break;
+        case 12:
+            func_00190200(owner, slot, D_0028A8AC, &ctxC, &rec, flags);
+            break;
+        case 15: {
+            unsigned int mask = 1U << rec.f40;
+            int result = f170[r].bit(&ctxB, &ctxC, mask);
+            ctxB.func_0018F390(D_00275630, 0x600, &result);
+            break;
+        }
+        case 22:
+            f170[r].binary(&ctxB, &ctxC, 22, &ctxB);
+            break;
+        case 23:
+            f170[r].binary(&ctxB, &ctxC, 23, &ctxB);
+            break;
+        case 24:
+            f170[r].binary(&ctxB, &ctxC, 24, &ctxB);
+            break;
+        case 25:
+            f170[r].binary(&ctxB, &ctxC, 25, &ctxB);
+            break;
+        case 19:
+            if (ctxB.f12c != 1 || ctxC.f12c != 1) ctxB.f12c = 0;
+            func_00190200(owner, slot, D_0028A874, &ctxB, &rec, flags);
+            break;
+        case 20:
+            ctxB.f12c = ctxB.f12c == 1 || ctxC.f12c == 1;
+            func_00190200(owner, slot, D_0028A86C, &ctxB, &rec, flags);
+            break;
+        case 21:
+            ctxB.f12c = ctxB.f12c != 1;
+            func_00190200(owner, slot, D_0028A864, &ctxB, &rec, flags);
             break;
         case 7:
             break;
+        case 4:
+            if (f158[slot].f50 != 0) return;
+            owner->func_0018C820(*(float *)((char *)&ctxB + 0x20), node->f20[i].f0 + 1, d, node);
+            return;
+        case 5: {
+            if (f158[slot].f50 != 0) return;
+            float low = *(float *)((char *)&ctxB + 0x20);
+            float high = *(float *)((char *)&ctxC + 0x20);
+            if (low > high) high = low;
+            owner->func_0018C820(func_00011240() * (low - high) + high, node->f20[i].f0 + 1, d, node);
+            return;
         }
+        }
+next:;
     }
+    return;
+invokeDefault:
+    val = owner;
+    idx = slot;
+invoke:
+            if (r) {
+                int *continuation = (int *)func_001E8A44(0x14);
+                continuation[0] = node->f20[i].f0 + 1;
+                continuation[1] = d;
+                continuation[2] = (int)node;
+                continuation[3] = (int)owner;
+                continuation[4] = slot;
+                func_0018DDD0((S_00191270_Owner *)val, f158[idx].f48, rec.name);
+                func_001904E0((S_00191270_Owner *)continuation[3], continuation[4], (S_00191270_Node *)continuation[2], continuation[0], continuation[1]);
+                func_001E891B(continuation);
+                return;
+            }
+            if (f158[idx].f50) return;
+            {
+                S_00191270_Node *it = f158[idx].f48->f104;
+                while (it && strcmp(rec.name, it->tag)) it = it->f2C;
+                if (it) ((S_00191270_Owner *)val)->func_0018C820(0, 0, it->f24, it);
+            }
+            return;
+
 }
 #pragma optimize("", on)
 void C_00191270::func_00191270(S_00191270_Owner *owner, int a, char *name, int b)

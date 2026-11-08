@@ -80,6 +80,12 @@ void __stdcall func_0021DB47(int a, int b, int c, int d, int e, int f, int g, in
 void __stdcall func_00201150(int a, int b);
 
 
+void XboxWater_1D8BF0::func_001D8BF0(S_001D8BF0_Arg *a)
+{
+    a->f10 = f2F0;
+    a->fC &= 0xFE;
+}
+
 int DXVSData::func_001D9760(int a1, int a2, int a3, int a4, int a5, int a6, int a7)
 {
     void *buf;

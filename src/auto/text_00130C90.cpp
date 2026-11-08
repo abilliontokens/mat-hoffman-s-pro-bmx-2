@@ -187,6 +187,7 @@ int C_00130C90::func_00130C90(char *name, int arg)
     node = 0;
     if (D_002BEAAC->func_0013D310(name, D_00275FB4, &h, &node, 1)) {
         if (node != 0) {
+cached:
             f518 = (S_00130C90_Track *)node;
             f518->refs++;
             return 1;
@@ -225,13 +226,13 @@ int C_00130C90::func_00130C90(char *name, int arg)
                     D_002BEAAC->func_0013C6E0(h, line, 0x400);
                     if (func_001E8BB0(line, D_0027626C, 5) == 0) {
                         i++;
-                        func_001E8B76(&line[0], D_00279058, big, &tmp[0]);
+                        func_001E8B76(line, D_00279058, big, &tmp[0]);
                         f32 t = (f32)tmp[0];
                         if (tmp[0] < 0) {
                             t += D_002755E4;
                         }
                         f518->keys[i].time = t;
-                    } else if (func_001E8BB0(&line[0], D_00276260, 9) == 0) {
+                    } else if (func_001E8BB0(line, D_00276260, 9) == 0) {
                         vv[1].x = vv[1].y = vv[1].z = 0;
                         vv[0].x = vv[0].y = vv[0].z = 0;
                         vv[1].w = 1.0f;
@@ -250,9 +251,7 @@ int C_00130C90::func_00130C90(char *name, int arg)
                 f404 = 1;
                 return 1;
             }
-            f518 = (S_00130C90_Track *)node;
-            f518->refs++;
-            return 1;
+            goto cached;
         }
     }
     return 0;

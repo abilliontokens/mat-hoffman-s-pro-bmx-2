@@ -82,3 +82,175 @@ struct C_001138E0 {
     void func_001138E0(float dt);
 };
 struct Q_1138E0 { char pad0[0x2C]; int f2C; int f30; int func_00109420(); };
+
+void C_001138E0::func_001138E0(float dt)
+{
+    int id;
+    int v;
+    int n;
+    int m;
+    int idle;
+    float s;
+    int slot;
+    int cls;
+    Q_1138E0 *q;
+
+    if (D_002A8490->f2A4->f1C8 != 0 || f5C8 != 0) {
+        return;
+    }
+    if ((f470 == 0 && f1084->func_00109420() != 0) || f1088 != 0) {
+        f1088 = 0;
+        f112C = 0;
+        id = f1084->f2C;
+        v = f1084->f30;
+        f11F4 = 1;
+        if (id >= 1000) {
+            f15DC = 11;
+            f1068 = 1;
+            switch (f1158) {
+            case 3:
+                f450 = 1;
+                f454 = 1;
+                break;
+            case 0:
+            case 4:
+                f44C = 1;
+                f454 = 1;
+                break;
+            case 1:
+            case 2:
+                f448 = 1;
+                f454 = 1;
+                break;
+            }
+            if (f680 != 0 && f454 != 0) {
+                fA34 = 0.5f;
+            }
+            if (f778.func_0002B1A0()) {
+                f5F0->func_00026280(1);
+            } else {
+                f5F0->func_00026280(0);
+            }
+            func_00108D10(-1, -1);
+            func_00108E30(-1, -1);
+        } else {
+            if (D_002A8490->f2A4->f170[fA2C] != 0) {
+                f1118 = 0;
+                func_00108D10(id, -1);
+                func_00108E30(id, -1);
+                n = cntBC8[id] + 1;
+                m = cntAB0[id] + 1;
+                cntBC8[id] = n;
+                cntAB0[id] = m;
+                func_0010DD90(func_00108CB0(n, (float)f24->f52C->i1B74[id]), func_00108CE0(m),
+                              f24->f52C->recs[id], id, 0, v);
+            }
+            if (f11E8 == 0) {
+                f15DC = 9;
+            }
+            return;
+        }
+    }
+    q = f1084;
+    id = q->f2C;
+    if (id != -1) {
+        if (id >= 1000) {
+            slot = f1134;
+            if (slot == -1) goto skip;
+            cls = f1158;
+            if (f1110 != 0) {
+                s = dt * f24->f52C->f5A84[cls * 16 + slot];
+            } else {
+                s = (float)f24->f52C->i5944[cls * 16 + slot] / anims[cls * 16 + slot]->f38 * dt;
+            }
+            func_0010DD90(s, 0, 0, -1, -1, 0);
+        } else {
+            if (f1110 == 0) goto skip;
+            func_0010DD90(dt * f24->f52C->f1C8C[id], 0, 0, -1, -1, 0);
+        }
+    }
+skip:
+    if (f11DC != 0) {
+        f1068 = 0;
+        if (f11E0 == 0) {
+            f11F4 = 1;
+            f960 = 0.25f;
+            f15DC = 10;
+            f1128 = 0;
+            f1078 = 0;
+        }
+    }
+    if (f704 != 0) {
+        if (f708 == 0) {
+            f11F4 = 1;
+            func_0010DD90((float)f24->f52C->i66C0, 1.0f, f24->f52C->f668C, 0, 6, 0);
+            f15DC = 12;
+        }
+        if (f15DC != 12) {
+            f704 = 0;
+        }
+    }
+    if (f70C != 0 && f710 == 0) {
+        f11F4 = 1;
+        f15DC = 13;
+    }
+    if (f20C->f30 != 0 && f1160 != 0 && f11D0 == 0) {
+        f15DC = 15;
+    }
+    if (f69C != 0) {
+        if (f11D4 == 0) {
+            f11F4 = 1;
+            if (D_002A8490->f2A4->f170[fA2C] != 0) {
+                n = fF8C + 1;
+                m = fF88 + 1;
+                fF8C = n;
+                fF88 = m;
+                func_0010DD90(func_00108CB0(n, (float)f24->f52C->i6684), func_00108CE0(m),
+                              f24->f52C->f6650, -1, 7, 0);
+            }
+            f15DC = 14;
+            return;
+        }
+        func_0010DD90(dt * f24->f52C->f6688, 0, 0, -1, -1, 0);
+    }
+    if (f1158 != -1) {
+        if (f115C != -1 && f2010 == 0 && fA38 != 0) {
+            idle = 0;
+            if (f1134 == -1) {
+                idle = 1;
+            }
+            if (fA30 == 0 && idle != 0) {
+                switch (f1158) {
+                case 3:
+                    func_0010DD90(dt * f24->f52C->f65D4, 0, 0, -1, -1, 0);
+                    break;
+                case 4:
+                    func_0010DD90(dt * f24->f52C->f65D4, 0, 0, -1, -1, 0);
+                    break;
+                case 0:
+                    func_0010DD90(dt * f24->f52C->f655C, 0, 0, -1, -1, 0);
+                    break;
+                case 2:
+                    func_0010DD90(dt * f24->f52C->f6598, 0, 0, -1, -1, 0);
+                    break;
+                case 1:
+                    func_0010DD90(dt * f24->f52C->f664C, 0, 0, -1, -1, 0);
+                    break;
+                }
+            }
+        }
+    } else {
+        f448 = 0;
+        f44C = 0;
+        f450 = 0;
+        f454 = 0;
+        fA30 = 1;
+        f1134 = -1;
+    }
+    f115C = f1158;
+    if ((f99C > D_00275544 || *(volatile float *)&f1EC->f34 * D_00279B54 <= f744) && f20A0 == 0 && f454 == 0) {
+        f1F88 = 1;
+    } else {
+        f1F88 = 0;
+    }
+}

@@ -237,50 +237,58 @@ int C_0016C870::func_0016C870(float dt)
 {
     Parent_0016D140 *parent;
     Ref_0016D140 *ref;
-    Pool_0016D140 *pool;
-    float inv, t, len, sc, clamp, fv, r0, r1, r2, x, z;
-    int n, i, idx;
+    float *out;
+    float one, d0, d1, d2, inv, v, t, len, sc, clamp, fv, r0, r1, r2, x, z;
+    int n, i, idx, k, found, j, e0, e1;
 
     if (func_00169E10(dt))
         return 1;
 
-    parent = (Parent_0016D140 *)unk68;
-    ref = parent ? parent->f18C : 0;
-    if (ref && D_002EFE50 != ref->f4->f90)
-        return 1;
-
+    one = 1.0f;
+    out = &unk54;
+    d0 = unk24 - unk34;
+    d1 = unk28 - unk38;
+    d2 = unk2c - unk3c;
     inv = D_00275460 / dt;
-    unk54 = (unk24 - unk34) * inv;
-    unk58 = (unk28 - unk38) * inv;
-    unk5c = (unk2c - unk3c) * inv;
-    unk60 = 1.0f;
+    v = d1 * inv;
+    *(u32 *)out = *(u32 *)&v;
+    v = d0 * inv;
+    *(u32 *)&out[1] = *(u32 *)&v;
+    v = d2 * inv;
+    *(u32 *)&out[2] = *(u32 *)&v;
+    *(u32 *)&out[3] = *(u32 *)&one;
 
-    _mm_store_ss(&len, _mm_sqrt_ss(_mm_set_ss(unk54 * unk54 + unk58 * unk58 + unk5c * unk5c)));
+    parent = (Parent_0016D140 *)unk68;
+    if (parent) {
+        ref = parent->f18C;
+        if (ref && D_002EFE50 != ref->f4->f90)
+            return 1;
+    }
+
+    len = AsmSqrtF(unk54 * unk54 + unk58 * unk58 + unk5c * unk5c);
     sc = len * D_002886C0;
-    _mm_store_ss(&clamp, _mm_min_ss(_mm_set_ss(1.0f), _mm_set_ss(sc)));
+    clamp = AsmMinF(one, sc);
 
     t = dt * unk17C * D_002756CC;
     if (t > D_00275460) {
-        TruncToInt(t, &n);
+        AsmFloatToInt(t, &n);
         unk214 = 0.0f;
     } else {
         unk214 += t;
         if (unk214 != D_00275544 && unk214 > D_00275460) {
-            TruncToInt(unk214, &n);
+            AsmFloatToInt(unk214, &n);
             unk214 = 0.0f;
         } else {
             n = 0;
         }
     }
-    _mm_store_ss(&fv, _mm_max_ss(_mm_set_ss(unk180), _mm_set_ss((float)n)));
-    TruncToInt(fv, &n);
+    fv = AsmMaxF(unk180, (float)n);
+    AsmFloatToInt(fv, &n);
 
     for (i = 0; i < n; i++) {
         Particle_0016D140 *p;
-        int k, found, j;
 
-        pool = (Pool_0016D140 *)unk64;
-        if (pool->count >= pool->max)
+        if (((Pool_0016D140 *)unk64)->count >= ((Pool_0016D140 *)unk64)->max)
             break;
         D_002EFB68++;
         r0 = (float)func_001E8833() * D_002754B0;
@@ -302,11 +310,11 @@ int C_0016C870::func_0016C870(float dt)
                 a++;
             }
             if (!found) {
-                RoundToInt((float)(unk1C0 - 1) * r2, &j);
+                AsmFloatToIntRound((float)(unk1C0 - 1) * r2, &j);
                 idx = unk1BC[j];
             }
         }
-        p = pool->items[pool->count];
+        p = ((Pool_0016D140 *)unk64)->items[((Pool_0016D140 *)unk64)->count];
         p->pos = *(C_Quad *)(void *)&unk34;
         p->pos.a += x;
         p->pos.c += z;
@@ -323,18 +331,20 @@ int C_0016C870::func_0016C870(float dt)
             p->f44 &= ~8;
         p->f4C = unk18C;
         p->f44 = unk190;
-        if (r0 > D_002755E8 && unk1C4)
+        e0 = r0 > D_002755E8;
+        e1 = r1 > D_002755E8;
+        if (e0 && unk1C4)
             p->f44 |= 0x4000;
         else
             p->f44 &= ~0x4000;
-        if (r1 > D_002755E8 && unk1C8)
+        if (e1 && unk1C8)
             p->f44 |= 0x8000;
         else
             p->f44 &= ~0x8000;
         p->f10 = *(C_Quad *)(void *)&unk54;
         if (unk218)
             p->f10.b += r1 * unk210;
-        pool->count++;
+        ((Pool_0016D140 *)unk64)->count++;
     }
     return 1;
 }
@@ -400,26 +410,26 @@ C_0016CF10 *C_0016CF10::func_0016CF10(void *a, char *name, void *b, u32 *c)
 
 int C_0016D140::func_0016D140(float dt)
 {
-    C_0016D140 * volatile self = this;
     Ref_0016D140 *ref;
     int n;
     int i;
+    int idx;
+    int k;
     float f;
+    float r0, r1, r2, x, z;
+    Particle_0016D140 *p;
 
-    if (((C_0016D140 *)self)->func_00169E10(dt))
+    if (func_00169E10(dt))
         return 1;
-    ref = self->f68 ? self->f68->f18C : 0;
+    ref = this->f68 ? this->f68->f18C : 0;
     if (ref && D_002EFE50 != ref->f4->f90)
         return 1;
-    RoundToInt(dt * self->f17C, &n);
-    n = n < 1 ? 1 : n;
-    _mm_store_ss(&f, _mm_max_ss(_mm_set_ss(self->f180), _mm_set_ss((float)n)));
+    RoundToInt(dt * this->f17C, &n);
+    n = AsmMaxI(1, n);
+    f = AsmMaxF(this->f180, (float)n);
     TruncToInt(f, &n);
     for (i = 0; i < n; i++) {
-        Pool_0016D140 *pool = self->f64;
-        float r0, r1, r2, x, z;
-        int idx, k;
-        Particle_0016D140 *p;
+        Pool_0016D140 *pool = this->f64;
         if (pool->count >= pool->max)
             break;
         D_002EFB6C++;
@@ -427,55 +437,55 @@ int C_0016D140::func_0016D140(float dt)
         r1 = func_001E8833() * D_002754B0;
         r2 = func_001E8833() * D_002754B0;
         idx = 0;
-        x = (self->f200[0] - self->f1F0[0]) * r0 + self->f1F0[0];
-        z = (self->f200[2] - self->f1F0[2]) * r2 + self->f1F0[2];
+        x = (this->f200[0] - this->f1F0[0]) * r0 + this->f1F0[0];
+        z = (this->f200[2] - this->f1F0[2]) * r2 + this->f1F0[2];
         if (r2 > D_002755E8)
             idx = 1;
-        if (self->f1BC) {
+        if (this->f1BC) {
             int found = 0;
-            int *a = self->f1BC;
-            for (k = self->f1C0; k > 0; k--) {
+            int *a = this->f1BC;
+            for (k = this->f1C0; k > 0; k--) {
                 if (idx == *a)
                     found = 1;
                 a++;
             }
             if (!found) {
                 int j;
-                RoundToInt((float)(self->f1C0 - 1) * r2, &j);
-                idx = self->f1BC[j];
+                RoundToInt((float)(this->f1C0 - 1) * r2, &j);
+                idx = this->f1BC[j];
             }
         }
-        p = self->f64->items[self->f64->count];
-        p->pos = self->f24;
+        p = this->f64->items[this->f64->count];
+        p->pos = this->f24;
         p->pos.a += x;
         p->pos.c += z;
-        p->f38 = self->f178;
-        p->f3C = self->f178;
-        p->f48 = (void *)self;
-        p->f30 = self->f170 - (float)(D_002EFB6C & 3) * self->f170 * D_0027AA20;
-        p->f2C = self->f198;
-        if (self->f190 & 0x400)
-            p->f28 = (int)((float)idx * self->f1B4 + self->f1A8);
+        p->f38 = this->f178;
+        p->f3C = this->f178;
+        p->f48 = (void *)this;
+        p->f30 = this->f170 - (float)(D_002EFB6C & 3) * this->f170 * D_0027AA20;
+        p->f2C = this->f198;
+        if (this->f190 & 0x400)
+            p->f28 = (int)((float)idx * this->f1B4 + this->f1A8);
         else
-            p->f28 = func_00011260(self->f1A8, self->f1AC);
+            p->f28 = func_00011260(this->f1A8, this->f1AC);
         p->f34 = D_00275460 / p->f30;
-        p->f40 = self->f174;
-        if (self->f174 != D_00275544)
+        p->f40 = this->f174;
+        if (this->f174 != D_00275544)
             p->f44 &= ~8;
-        p->f4C = self->f18C;
-        p->f44 = self->f190;
-        if (r0 > D_002755E8 && self->f1C4)
+        p->f4C = this->f18C;
+        p->f44 = this->f190;
+        if (r0 > D_002755E8 && this->f1C4)
             p->f44 |= 0x4000;
         else
             p->f44 &= ~0x4000;
-        if (r1 > D_002755E8 && self->f1C8)
+        if (r1 > D_002755E8 && this->f1C8)
             p->f44 |= 0x8000;
         else
             p->f44 &= ~0x8000;
-        p->f10 = self->f54;
-        if (self->f214)
-            p->f10.b += r1 * self->f210;
-        self->f64->count++;
+        p->f10 = this->f54;
+        if (this->f214)
+            p->f10.b += r1 * this->f210;
+        this->f64->count++;
     }
     return 1;
 }

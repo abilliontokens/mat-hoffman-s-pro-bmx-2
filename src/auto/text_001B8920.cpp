@@ -181,19 +181,27 @@ void C_1B8920_Mgr::func_001B8920(void)
                     AsmVec3Cross(&c2.x, &c3.x, &rot.x);
                     AsmVec3Normalize(&c2.x, &c2.x);
                 } else {
+                    float w1;
+                    float w2;
+                    V4_1B8920 t1;
+                    V4_1B8920 t2;
                     obj->func_001994C0(0, &axis.x, &v2.x);
                     float d = q.y * axis.y + q.x * axis.x + q.z * axis.z;
                     B = axis;
-                    axis.x -= q.x * d;
-                    axis.y -= q.y * d;
-                    axis.z -= q.z * d;
-                    axis.w = 1.0f;
+                    w1 = 1.0f;
+                    t1.x = axis.x - q.x * d;
+                    t1.y = axis.y - q.y * d;
+                    t1.z = axis.z - q.z * d;
+                    t1.w = w1;
+                    axis = t1;
                     AsmVec3Normalize(&axis.x, &axis.x);
                     float d2 = q.y * P.y + q.x * P.x + q.z * P.z;
-                    P.x -= q.x * d2;
-                    P.y -= q.y * d2;
-                    P.z -= q.z * d2;
-                    P.w = 1.0f;
+                    w2 = 1.0f;
+                    t2.x = P.x - q.x * d2;
+                    t2.y = P.y - q.y * d2;
+                    t2.z = P.z - q.z * d2;
+                    t2.w = w2;
+                    P = t2;
                     AsmVec3Normalize(&P.x, &P.x);
                     float angle = func_0014F890(axis.x * P.x + axis.y * P.y + axis.z * P.z);
                     AsmVec3Cross(&q.x, &axis.x, &P.x);
@@ -233,13 +241,17 @@ void C_1B8920_Mgr::func_001B8920(void)
 }
 
 C_001B9460 *C_001B9460::func_001B9460(void) {
- C_001B9460 * volatile self=this;
- volatile int tmp[2]; int lim,len,n;
  *(void * volatile *)&vtbl=(void *)&D_0028D0BC;
- { volatile S_001B9460_Quat *q=&self->f320; q->z=0; q->y=0; q->x=0; q->w=0x3f800000; }
- tmp[0]=sizeof(f10)-1; lim=tmp[0]; len=(int)strlen(""); lim &= (lim >> 31); tmp[1]=lim; n=tmp[1];
- func_001E8920(self->f10,(const char *)&D_00275630,n); self->f10[n]=0;
- tmp[1]=sizeof(f218)-1; lim=tmp[1]; len=(int)strlen(""); lim &= (lim >> 31); tmp[0]=lim; n=tmp[0];
- func_001E8920(self->f218,(const char *)&D_00275630,n); *(volatile char *)&self->f218[n]=0;
- *(volatile int *)&self->f31C=0; self->f320=D_002AA9F4; *(volatile int *)&self->f4=0; *(volatile int *)&self->fC=0; return self;
+ { volatile S_001B9460_Quat *q=&f320; q->z=0; q->y=0; q->x=0; q->w=0x3f800000; }
+ {
+  int lim=sizeof(f10)-1;
+  int n=AsmMinI(lim,(int)strlen(""));
+  func_001E8920(f10,(const char *)&D_00275630,n); f10[n]=0;
+ }
+ {
+  int lim=sizeof(f218)-1;
+  int n=AsmMinI(lim,(int)strlen(""));
+  func_001E8920(f218,(const char *)&D_00275630,n); *(volatile char *)&f218[n]=0;
+ }
+ *(volatile int *)&f31C=0; f320=D_002AA9F4; *(volatile int *)&f4=0; *(volatile int *)&fC=0; return this;
 }

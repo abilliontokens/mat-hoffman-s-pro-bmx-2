@@ -4,6 +4,7 @@
 #include "ghidra.h"
 #include <math.h>
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 
 extern int D_0027B1A4;
 extern int D_0027C1E4;
@@ -623,9 +624,9 @@ void func_000A7FE0(int a0, S_A7FE0_Obj *obj, S_A7FE0_Req *req, int enabled)
                             float dx = e->x - obj->x;
                             float dy = e->y - obj->y;
                             float dz = e->z - obj->z;
-                            float dist = sqrtf(dz * dz + dy * dy + dx * dx);
+                            float dist = AsmSqrtF(dz * dz + dy * dy + dx * dx);
                             if (dist <= obj->radius) {
-                                e->func_000219E0(j);
+                                D_002B7E18->f60[i]->func_000219E0(j);
                             }
                             return;
                         }

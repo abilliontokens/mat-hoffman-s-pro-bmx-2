@@ -98,15 +98,16 @@ static __forceinline void StrCopyV_0007EE80(char *dst, const char *src, int cap)
     dst[n] = 0;
 }
 
+#pragma optimize("y", on)
 void C_0007EE80::func_0007EE80(void)
 {
-    char small[0x40];
+    __declspec(align(8)) char small[0x40];
     char bufa[0x104];
     char buf1[0x104];
     char buf2[0x104];
     S_7EE80_Obj *obj = D_002A8490->f2E0->f2C0->func_0005C020(D_002A8490->f2E0->f2D8);
-    int zero = 0;
-    int id1, id2;
+    volatile int zero = 0;
+    volatile int id1, id2;
     int mode = f1d0->f1c0->func_000976A0();
     switch (mode) {
     case 0:
@@ -129,8 +130,16 @@ void C_0007EE80::func_0007EE80(void)
         id1 = 0xdc;
         id2 = 0xdd;
         if (D_002A8490->f2E0->f48 == 7) {
-            if ((obj->f5ec[0] == 1) + (obj->f5ec[1] == 1) + (obj->f5ec[2] == 1) + (obj->f5ec[3] == 1)
-              + (obj->f5ec[4] == 1) + (obj->f5ec[5] == 1) + (obj->f5ec[6] == 1) + (obj->f5ec[7] == 1) == 8) {
+            int count = zero;
+if (obj->f5ec[0] == 1) ++count;
+if (obj->f5ec[1] == 1) ++count;
+if (obj->f5ec[2] == 1) ++count;
+if (obj->f5ec[3] == 1) ++count;
+if (obj->f5ec[4] == 1) ++count;
+if (obj->f5ec[5] == 1) ++count;
+if (obj->f5ec[6] == 1) ++count;
+if (obj->f5ec[7] == 1) ++count;
+if (count == 8) {
                 obj->f5e8 = 1;
             }
         }
@@ -156,12 +165,34 @@ void C_0007EE80::func_0007EE80(void)
                 arr = f1d0->f1c0->func_00097C20();
                 StrCopyV_0007EE80(small, arr[f21c], 0x3f);
                 StrCopyV_0007EE80(bufa, buf1, 0x103);
-                f204->func_0005E840(small);
-                f204->func_001D6600();
-                f200->func_0005E840(bufa);
+            }
+            f204->func_0005E840(small);
+            f204->func_001D6600();
+            f200->func_0005E840(bufa);
+            f200->func_001D6600();
+        } else if (f1d0->f1c0->func_000976A0() == 3) {
+StrCopyV_0007EE80(bufa,D_002A8490->f2E8->f4[0xdc].s,0x103);
+StrCopyV_0007EE80(small,D_002A8490->f2E8->f4[0xdd].s,0x3f);
+f204->func_0005E840(small); f204->func_001D6600(); f200->func_0005E840(bufa); f200->func_001D6600();
+obj->f5ec[D_002A8490->f2E0->f48]=1;
+}
+        break;
+    case 1:
+        if (!f1d0->f1c0) break;
+        {
+            int n = f1d0->f1c0->func_00097C60();
+            const char **arr = f1d0->f1c0->func_00097C20();
+            f2bc = 0;
+            if (!arr) {
+                f200->func_0005E840(D_002A8490->f2E8->f4[0x1fb].s);
                 f200->func_001D6600();
+                f84->func_0005E9A0(0xff5eff5e);
+                f84->func_0005E9D0(1.0f);
+                f84->func_0005E840(D_002A8490->f2E8->f4[0xdd].s);
+                f84->func_001D6600();
             }
         }
         break;
     }
 }
+#pragma optimize("", on)

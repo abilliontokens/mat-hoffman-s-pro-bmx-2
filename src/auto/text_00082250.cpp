@@ -47,6 +47,7 @@ struct C_00082430 {
 
 extern float D_00275544;
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 extern double D_00279150;
 extern float D_00275994;
 extern char D_00279144[];
@@ -76,14 +77,14 @@ void func_00082250(char *out, float value, int fractions)
 {
     const char *text;
     float t;
-    int * volatile p;
+    int *p;
     int n;
     int a;
 
     if (value != D_00275544 && !(value > D_00279150)) {
         t = *(volatile float *)&value * D_00275994;
         p = (int *)&value;
-        *p = _mm_cvtss_si32(*(__m128 *)&t);
+        AsmFloatToIntRound(t, p);
         if (*(int *)&value < 0) {
             *out++ = '-';
         }

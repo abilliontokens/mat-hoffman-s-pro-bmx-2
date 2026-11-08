@@ -155,6 +155,8 @@ void AIPedestrian::func_000149A0(int idx, float scale)
     }
 }
 
+extern "C" void _ReadWriteBarrier(void);
+#pragma intrinsic(_ReadWriteBarrier)
 int AIPedScaredState_14B40::func_00014B40(float dt)
 {
     float dist;
@@ -165,25 +167,26 @@ int AIPedScaredState_14B40::func_00014B40(float dt)
     Vec4_149A0 *pos;
     float *m;
     float dx, dy, dz;
-    int r = 1;
 
-    if (*(int *)(*(char **)((char *)D_002A8490 + 0x2a4) + 0x1c8) == r)
-        return r;
+    if (*(int *)(*(char **)((char *)D_002A8490 + 0x2a4) + 0x1c8) == 1)
+        return 1;
     owner->func_00011BE0((float *)&idx, (int *)&dist);
     if (idx == -1)
-        return r;
-    id = *(int *)((*(char * volatile *)(D_002B9120 + 0x4e0) + idx * 4 + 0x1a8) + 0x1194);
-    if (*(int *)(*(char **)((*(char * volatile *)(D_002B9120 + 0x4e0) + idx * 4 + 0x1a8) + 0x950) + 0xbc) != 0)
+        return 1;
+    id = *(int *)((*(char **)(D_002B9120 + 0x4e0) + idx * 4 + 0x1a8) + 0x1194);
+    if (*(int *)(*(char **)((*(char * volatile *)(D_002B9120 + 0x4e0) + idx * 4 + 0x1a8) + 0x950) + 0xbc) != 0) {
+        _ReadWriteBarrier();
         v = *(*(VecSrc_14B40 **)(*(char **)((*(char * volatile *)(D_002B9120 + 0x4e0) + idx * 4 + 0x1a8) + 0xa00) + 4))->func_00199B00(&t, 0);
-    else
-        v = *(Vec4_149A0 *)((*(char * volatile *)(D_002B9120 + 0x4e0) + idx * 4 + 0x1a8) + 0x834);
+    } else {
+        v = *(Vec4_149A0 *)((*(char **)(D_002B9120 + 0x4e0) + idx * 4 + 0x1a8) + 0x834);
+    }
     pos = (Vec4_149A0 *)&owner->f3e4;
     dz = v.z - pos->z;
     dy = v.y - pos->y;
     dx = v.x - pos->x;
-    b.z = dz;
-    b.y = dy;
     b.x = dx;
+    b.y = dy;
+    b.z = dz;
     b.w = 1.0f;
     func_000111B0(&b, &b);
     m = (float *)(*(char **)(*(char **)(*(char **)(D_002B9120 + 0x588) + owner->f3b4 * 4) + 4) + owner->f3b0 * 16);
@@ -195,7 +198,7 @@ int AIPedScaredState_14B40::func_00014B40(float dt)
     a.z = dz;
     a.w = 1.0f;
     func_000111B0(&a, &a);
-    dot = a.x * b.x + a.y * b.y + a.z * b.z;
+    dot = a.y * b.y + a.x * b.x + a.z * b.z;
     if (dist <= D_002756C4) {
         if (IsLocal_151F0()) {
             owner->f3bc = 3;
@@ -225,9 +228,8 @@ int AIPedScaredState_14B40::func_00014B40(float dt)
         }
     }
     owner->func_001C6B30(v, dt * D_002756B8);
-    return r;
+    return 1;
 }
-
 void AIPedFleeState::func_00014EA0()
 {
     owner->func_001C6DA0(*(int *)((char *)owner + 0x41c), 1);

@@ -76,6 +76,24 @@ struct XboxWaterDisplacement {
     XboxWaterDisplacement *func_001DBBF0(WaterConfig *,const char *,int,int,int,unsigned int);
 };
 
+extern int D_002AB7F0;
+extern float D_002AB800, D_002F08B8, D_002F08B4;
+void XboxWaterDisplacement::func_001DB4D0(float *pos, float scale, float *v)
+{
+    if (D_002AB7F0 && *(int *)((char *)this + 0x214) < 50) {
+        int n = *(int *)((char *)this + 0x214);
+        float s = (v[0] * v[0] + v[1] * v[1] + v[2] * v[2]) * scale;
+        if (s >= D_002AB800) {
+            WEnt *e = &((WEnt *)f20C)[n];
+            *(int *)((char *)this + 0x214) = n + 1;
+            e->x = pos[0];
+            e->z = pos[2];
+            e->a = s * D_002F08B8 + D_002F08B4;
+            e->f10 = *(int *)((char *)this + 0x38);
+        }
+    }
+}
+
 void XboxWaterDisplacement::func_001DBA40(void)
 {
     int i;

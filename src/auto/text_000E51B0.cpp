@@ -234,7 +234,7 @@ for(int j=0;j<6;++j) {C_000E51B0_W *o=(C_000E51B0_W*)func_001E8A44(100); w[0x6b8
 {C_000E51B0_W *o=(C_000E51B0_W*)w[431]; ((unsigned char*)o)[0x3b]=0; ((unsigned char*)o)[0x58]|=2;}
 {C_000E51B0_W *o=(C_000E51B0_W*)w[432]; ((unsigned char*)o)[0x3b]=0; ((unsigned char*)o)[0x58]|=2;}
 {C_000E51B0_W *o=(C_000E51B0_W*)w[433]; ((unsigned char*)o)[0x3b]=0; ((unsigned char*)o)[0x58]|=2;}
-{C_000E51B0_W *o=(C_000E51B0_W*)w[434]; o->b[0x3b] = 0; o->f58 |= 2;}
+{C_000E51B0_W *o=(C_000E51B0_W*)w[434]; SetFlags2_000E51B0(o); o->b[0x3b] = 0;}
 {C_000E51B0_W *o=(C_000E51B0_W*)w[435]; ((unsigned char*)o)[0x3b]=0; ((unsigned char*)o)[0x58]|=2;}
 {RiderText *o=(RiderText*)func_001E8A44(388); w[211]=(int)(o?o->func_001B12C0(1):0);}
 ((RiderText*)w[211])->func_001B13A0(D_002786A0,D_002786A0,0,15);

@@ -817,18 +817,20 @@ void C_001D5660::func_001D5660(int count, int arg2)
     void *__stdcall func_001FF3C0(int size);
     void *func_001E8A44(int size);
     void **slot;
+    S_001D5660_Mat *q;
     int i;
 
     f8 = count;
     fC = count;
     slot = &f14;
     *slot = func_001FF3C0(f8 * 0x18);
-    f64 = (short *)func_001E8A44(2 * fC);
+    f64 = (short *)func_001E8A44(fC * 2);
     for (i = 0; i < fC; i++) {
         f64[i] = (short)i;
     }
     f10 = arg2;
-    AsmIdentityMatrix(&f20);
+    q = &f20;
+    AsmIdentityMatrix(q);
 }
 
 void C_001D5660::func_001D5720(void)

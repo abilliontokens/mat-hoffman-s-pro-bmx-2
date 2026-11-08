@@ -59,36 +59,103 @@ extern float D_002A3034;
 extern void *D_002B910C;
 int C_000B7520::func_000B7520(int a)
 {
-    S_000B7520_Vec4 v[8];
-    S_000B7520_Vec4 t;
-    S_000B7520_Vec4 r;
-    float *f88p;
-    int i;
-
     func_000B67C0();
-    for (i = 0; i < 8; i++) {
-        v[i].w = 1.0f;
-    }
-    if (f50 != 0) {
-        if (f54 == 0) {
-            if (f38 != 0 && f3c != 0) {
-                if (f40 != 0 && f44 != 0) {
-                    f88p = (float *)f88;
-                    f1a0 = f190 + f1a0;
-                    f1a4 = f194 + f1a4;
-                    f1a8 = f198 + f1a8;
-                    t.x = f1a0 * D_002755E8;
-                    t.y = f1a4 * D_002755E8;
-                    t.z = f1a8 * D_002755E8;
-                    t.w = 1.0f;
-                    v[0] = t;
-                    r.x = f1a4 * f88p[0x134 / 4] - f1a8 * f88p[0x138 / 4];
-                    r.y = f1a8 * f88p[0x130 / 4] - f1a0 * f88p[0x138 / 4];
-                    r.z = f1a0 * f88p[0x134 / 4] - f1a4 * f88p[0x130 / 4];
-                    r.w = 1.0f;
-                    AsmVec3Cross(&v[1].x, &f1a0, &r.x);
-                }
+    S_000B7520_Vec4 forward, side, front, rear, v5, v6, v7, v8;
+    S_000B7520_Vec4 &n1=*(S_000B7520_Vec4 *)&f180;
+    S_000B7520_Vec4 &n2=*(S_000B7520_Vec4 *)&f190;
+    S_000B7520_Vec4 &normal=*(S_000B7520_Vec4 *)&f1a0;
+    if ((f50 && f54) || (f38 && f3c)) {
+        if (f40 && f44) {
+            normal=S_000B7520_Vec4((f190+f180)*D_002755E8,(f184+f194)*D_002755E8,(f188+f198)*D_002755E8);
+            S_000B7520_Vec4 &vel=*(S_000B7520_Vec4 *)((char *)f88+0x130);
+            ((Body7520 *)f88)->func_0001C710(normal*(-normal.dot(vel)));
+            S_000B7520_Vec4 x,y,z,t;
+            (*(Transform7520 **)((char *)f88+0x22c))->func_001994C0(0,&x,&y);
+            cross7520(&z,&x,&y);
+            t=normal-z*z.dot(normal);
+            func_000B60D0(&t,&t);
+            cross7520(&x,&t,&z);
+            (*(Transform7520 **)((char *)f88+0x22c))->func_00199110(0,&x,&t,0,1,0);
+            S_000B7520_Vec4 p, tmp;
+            if(f48) p=*(*(Transform7520 **)((char *)f88+0x22c))->func_00197F70(&tmp,(S_000B7520_Vec4 *)((char *)this+0xa0))+S_000B7520_Vec4(0,-f7c,0);
+            else p=*(*(Transform7520 **)((char *)f88+0x22c))->func_00197F70(&tmp,(S_000B7520_Vec4 *)((char *)this+0xe0));
+            front=y*y.dot(*(S_000B7520_Vec4 *)&f120-p);
+            if(f4c) p=*(*(Transform7520 **)((char *)f88+0x22c))->func_00197F70(&tmp,(S_000B7520_Vec4 *)((char *)this+0xb0))+S_000B7520_Vec4(0,-f7c,0);
+            else p=*(*(Transform7520 **)((char *)f88+0x22c))->func_00197F70(&tmp,(S_000B7520_Vec4 *)((char *)this+0xf0));
+            rear=y*y.dot(*(S_000B7520_Vec4 *)&f130-p);
+            float frontLength=func_00011170(&front);
+            if(func_00011170(&rear)>frontLength) {
+                front=front*D_002A303C;
+                (*(Transform7520 **)((char *)f88+0x22c))->func_00199960(0,&front);
+            } else {
+                rear=rear*D_002A303C;
+                (*(Transform7520 **)((char *)f88+0x22c))->func_00199960(0,&rear);
             }
+        } else {
+            S_000B7520_Vec4 &vel=*(S_000B7520_Vec4 *)((char *)f88+0x130);
+            { float d=-n1.dot(vel); float x=d*n1.x, y=d*n1.y, z=d*n1.z; vel.x+=x; vel.y+=y; vel.z+=z; }
+            { float d=-n2.dot(vel); float x=d*n2.x, y=d*n2.y, z=d*n2.z; vel.x+=x; vel.y+=y; vel.z+=z; }
+            normal=n1;
+            S_000B7520_Vec4 p,q,tmp;
+            if(f48) p=*(*(Transform7520 **)((char *)f88+0x22c))->func_00197F70(&tmp,(S_000B7520_Vec4 *)((char *)this+0xa0))+S_000B7520_Vec4(0,-f7c,0);
+else p=*(*(Transform7520 **)((char *)f88+0x22c))->func_00197F70(&tmp,(S_000B7520_Vec4 *)((char *)this+0xe0));
+            front=n1*n1.dot(*(S_000B7520_Vec4 *)&f120-p);
+            (*(Transform7520 **)((char *)f88+0x22c))->func_00199960(0,&front);
+            if(f48) p=*(*(Transform7520 **)((char *)f88+0x22c))->func_00197F70(&tmp,(S_000B7520_Vec4 *)((char *)this+0xa0))+S_000B7520_Vec4(0,-f7c,0);
+else p=*(*(Transform7520 **)((char *)f88+0x22c))->func_00197F70(&tmp,(S_000B7520_Vec4 *)((char *)this+0xe0));
+            if(f4c) q=*(*(Transform7520 **)((char *)f88+0x22c))->func_00197F70(&tmp,(S_000B7520_Vec4 *)((char *)this+0xb0))+S_000B7520_Vec4(0,-f7c,0);
+else q=*(*(Transform7520 **)((char *)f88+0x22c))->func_00197F70(&tmp,(S_000B7520_Vec4 *)((char *)this+0xf0));
+            S_000B7520_Vec4 projected=q+n2*n2.dot(*(S_000B7520_Vec4 *)&f130-q);
+            v5=q-p;
+            v6=projected-p;
+            func_000B60D0(&v5,&v5);
+            func_000B60D0(&v6,&v6);
+            cross7520(&v7,&v6,&v5);
+            float angle=sqrtf(v7.dot(v7));
+            if(angle>0.0f) {
+                func_000B60D0(&v8,&v7);
+                v8=*(*(Transform7520 **)((char *)f88+0x22c))->func_00198040(&tmp,&v8);
+                S_000B7520_Vec4 *point=(*(Transform7520 **)((char *)f88+0x22c))->func_00198120(&tmp,(S_000B7520_Vec4 *)&f120);
+                (*(Transform7520 **)((char *)f88+0x22c))->func_00199E50(*point,v8,angle);
+            }
+        }
+    } else if(f50 || f38) {
+        S_000B7520_Vec4 &vel=*(S_000B7520_Vec4 *)((char *)f88+0x130);
+        { float d=-n1.dot(vel); float x=d*n1.x,y=d*n1.y,z=d*n1.z; vel.x+=x;vel.y+=y;vel.z+=z; }
+        normal=n1;
+        S_000B7520_Vec4 p,tmp;
+        if(f48) p=*(*(Transform7520 **)((char *)f88+0x22c))->func_00197F70(&tmp,(S_000B7520_Vec4 *)((char *)this+0xa0))+S_000B7520_Vec4(0,-f7c,0);
+else p=*(*(Transform7520 **)((char *)f88+0x22c))->func_00197F70(&tmp,(S_000B7520_Vec4 *)((char *)this+0xe0));
+        front=n1*n1.dot(*(S_000B7520_Vec4 *)&f120-p);
+        (*(Transform7520 **)((char *)f88+0x22c))->func_00199960(0,&front);
+    } else if(f54 || f3c) {
+        S_000B7520_Vec4 &vel=*(S_000B7520_Vec4 *)((char *)f88+0x130);
+        ((Body7520 *)f88)->func_0001C710(n2*(-n2.dot(vel)));
+        normal=n2;
+        S_000B7520_Vec4 q,tmp;
+        if(f4c) q=*(*(Transform7520 **)((char *)f88+0x22c))->func_00197F70(&tmp,(S_000B7520_Vec4 *)((char *)this+0xb0))+S_000B7520_Vec4(0,-f7c,0);
+else q=*(*(Transform7520 **)((char *)f88+0x22c))->func_00197F70(&tmp,(S_000B7520_Vec4 *)((char *)this+0xf0));
+        front=n2*n2.dot(*(S_000B7520_Vec4 *)&f130-q);
+        (*(Transform7520 **)((char *)f88+0x22c))->func_00199960(0,&front);
+    }
+
+    if(fabsf(f1a4)<0.15f && *(void **)((char *)this+0x1d8) &&
+        *(int *)((char *)*(void **)((char *)this+0x1d8)+0x68)!=(int)D_002B910C) {
+        f1a4=0; func_000B60D0(&normal,&normal);
+    }
+    if(f50 || f54 || f38 || f3c) {
+        S_000B7520_Vec4 &velocity=*(S_000B7520_Vec4 *)((char *)f88+0x238);
+        func_000B60D0(&forward,&velocity);
+        if(fabsf(forward.dot(normal))>0.707f) {
+            cross7520(&side,&velocity,&normal);
+            cross7520(&forward,&normal,&side);
+            func_000B60D0(&forward,&forward);
+            velocity=velocity-normal*normal.dot(velocity);
+        } else {
+            cross7520(&side,&velocity,&normal);
+            cross7520(&forward,&normal,&side);
+            func_000B60D0(&forward,&forward);
+            velocity=forward*sqrtf(velocity.dot(velocity));
         }
     }
     return 1;

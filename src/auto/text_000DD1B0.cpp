@@ -79,3 +79,102 @@ struct C_DD1B0 {
     void func_001577A0(void *obj, int a);
     C_DD1B0 *func_000DD1B0(char *name, char *file, void *input);
 };
+
+C_DD1B0 *C_DD1B0::func_000DD1B0(char *name, char *file, void *input)
+{
+    int font;
+    int *r;
+    void *mem;
+    int n;
+    S_DD1B0_Out out;
+    int i;
+    char *src;
+    char *dst;
+    char c;
+    S_DD1B0_Sprite *o;
+    unsigned char t;
+
+    func_001BE4F0(name, file, input);
+    D_002A8490->f2ec->func_0018C160(D_00278690);
+    r = D_002A8490->f2ec->func_0018C160(D_002786A0);
+    font = r ? *r : 0;
+    D_002A8490->f2ec->func_0018C160(D_00278678);
+    mem = func_001E8A44(0x184);
+    f328 = mem ? ((S_DD1B0_Text *)mem)->func_001B12C0(1) : 0;
+    f328->func_001B13A0(D_002786A0, D_002786A0, 0, 0x10);
+    f328->func_001B17D0(D_002A8490->f2e8->f4->f138);
+    f328->func_001B1A30(240.0f, 157.0f, 0.0f);
+    f328->func_001B2270(0xffbfa35a);
+    f328->func_001B19A0(D_0028F5DC);
+    f328->func_001B15F0();
+    func_001577A0(f328, -1);
+    mem = func_001E8A44(0x184);
+    f32c = mem ? ((S_DD1B0_Text *)mem)->func_001B12C0(1) : 0;
+    f32c->func_001B13A0(D_002786A0, D_002786A0, 0, 2);
+    f32c->func_001B1A30(330.0f, 157.0f, 0.0f);
+    f32c->func_001B2270(0xffbfa35a);
+    f32c->func_001B19A0(D_0028F5DC);
+    f32c->func_001B15F0();
+    func_001577A0(f32c, -1);
+    mem = func_001E8A44(0x64);
+    f2ec = mem ? ((S_DD1B0_Sprite *)mem)->func_001D5760() : 0;
+    n = f328->func_001B1800();
+    f328->func_001B1810(&out);
+    f2f0 = (float)n + out.x - D_00275AEC;
+    f32c->func_001B1C10(D_0028F5DC);
+    f32c->func_001B1A30((float)n + out.x, out.y, 0.0f);
+    f2ec->func_001D5810(D_00278C18, f2f0, 175.0f, 0);
+    o = f2ec;
+    o->f38 = (o->f38 & 0xffbfa35a) | 0xbfa35a;
+    o->f58 |= 2;
+    mem = func_001E8A44(0x60);
+    f330 = mem ? ((S_DD1B0_Font *)mem)->func_001D5E90() : 0;
+    f330->func_001D5FA0(font, D_002786A0, 0x10, 0);
+    for (i = 0; i < 2; i++) {
+        mem = func_001E8A44(0x64);
+        f340[i] = mem ? ((S_DD1B0_Sprite *)mem)->func_001D5760() : 0;
+        if (i % 2 == 0) {
+            f340[i]->func_001D5810(D_002786B0, 100.0f, 150.0f, 0);
+        } else {
+            f340[i]->func_001D5810(D_002786B0, 321.0f, 150.0f, 0);
+            o = f340[i];
+            o->f40 = 0;
+            o->f44 = 0;
+            t = o->f58 | 4;
+            o->f3C = 0x3f800000;
+            o->f48 = 0x3f800000;
+            o->f58 = t;
+        }
+        o = f340[i];
+        if (o->f28 != 0x435d0000) {
+            o->f28 = 0x435d0000;
+            o->f58 |= 1;
+        }
+    }
+    f294 = D_00278BD4;
+    f328->func_001B17D0(D_002A8490->f2e0 + 0x254);
+    src = D_002A8490->f2e0 + 0x254;
+    dst = f2c0;
+    do {
+        c = *src++;
+        *dst++ = c;
+    } while (c != 0);
+    src = f328->func_001B17F0();
+    {
+        char *e = src + 1;
+        do {
+            c = *src++;
+        } while (c != 0);
+        f2bc = src - e;
+    }
+    f32c->func_001B17D0((char *)this + 0x2bf + f2bc);
+    src = f328->func_001B17F0();
+    dst = f2c0;
+    do {
+        c = *src++;
+        *dst++ = c;
+    } while (c != 0);
+    ((char *)this)[0x2bf + f2bc] = 0;
+    f328->func_001B17D0(f2c0);
+    return this;
+}

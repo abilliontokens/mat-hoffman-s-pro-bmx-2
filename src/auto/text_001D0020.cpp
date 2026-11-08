@@ -321,6 +321,47 @@ int XboxSoundStreams_001D0020::func_001D0020(void)
     return f1A4 != 0 ? 0 : 0x80004005;
 }
 
+C_001D01A0 *C_001D01A0::func_001D01A0(int n)
+{
+    char buf[0x104];
+    int i;
+
+    f28 = n;
+    fA8 = 1;
+    fA4 = 0;
+    f34 = (Ent_1D01 *)func_001EA1A1(1, 0x44);
+    f34[fA4].names = (Name_1D01 *)func_001E8AA5(f28 * 24);
+    f34[fA4].cnt = f28;
+    Vec_1D01 *v = &f34[fA4].v;
+    v->p = (int *)func_001E8A44(4);
+    v->step = 0x10;
+    v->cap = 1;
+    v->flags |= 1;
+    for (i = 0; i < f28; i++) {
+        if (f94 == 2) {
+            func_001ADCC0(buf, 0x104, D_0028F0C0, i + 1);
+        } else {
+            func_001ADCC0(buf, 0x104, D_0028F0B0, i + 1);
+        }
+        f34[fA4].names[i].str = (char *)func_001E8AA5(strlen(buf) + 1);
+        strcpy(f34[fA4].names[i].str, buf);
+        f34[fA4].flags40 = f34[fA4].flags40 | 1;
+        f34[fA4].names[i].f4 = 0;
+        f34[fA4].v.Add(i);
+    }
+    f50.Add(fA4);
+    if (func_001CEB70() != 0) {
+        func_001CD260();
+        return 0;
+    }
+    if (((C_001D0020 *)this)->func_001D0020() != 0) {
+        func_001CD260();
+        return 0;
+    }
+    fA0 |= 1;
+    return this;
+}
+
 XboxSoundGroup_001D0870 *XboxSoundGroup_001D0870::func_001D0870(unsigned int flags)
 {
     vtbl = (void *)&D_0028F004;

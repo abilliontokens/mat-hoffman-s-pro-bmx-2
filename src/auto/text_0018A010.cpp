@@ -158,14 +158,13 @@ C_0018A210 *C_0018A210::func_0018A210() {
 
 int C_0018A210::func_0018A320(S_0018A320_W *w, S_0018A320_P *p, int level)
 {
- char name2[0x104];
- char s2[0x80];
- char s[0x80];
- char buf[0x104];
- S_0018A320_Tok tokA, tokB;
- S_0018A320_Vec tmp;
  int *pv;
  int v;
+ S_0018A320_Vec tmp;
+ char buf[0x104];
+ char s[0x80];
+ char s2[0x80];
+ char name2[0x104];
  this->f4 = level - 1;
  func_001ADCC0(this->name, 0x104, D_0028A4F4, level);
  if (!p->func_00169710(this->name)) {
@@ -174,8 +173,8 @@ int C_0018A210::func_0018A320(S_0018A320_W *w, S_0018A320_P *p, int level)
   if (!p->func_00169710(this->name)) return 0;
  }
  p->func_00168C20(D_0028A4DC, 1, &v);
- this->bit1 = v;
- this->bit2 = !memcmp(this->name, D_0028A398, 13);
+ this->bit1 = (unsigned char)v;
+ this->bit2 = memcmp(this->name, D_0028A398, 13) == 0;
  pv = &this->f10C;
  p->func_00168C20(D_0028A4C4, 0, pv);
  if (p->func_00168BE0(D_0028A4B8, D_00276844, buf, -1)) {
@@ -204,7 +203,10 @@ int C_0018A210::func_0018A320(S_0018A320_W *w, S_0018A320_P *p, int level)
    this->f118 = this->func_00185860(buf);
   }
  }
- if (!this->f114 || !this->f11C || !this->f118 || !this->f120) return 0;
+ if (!this->f114) return 0;
+ if (!this->f11C) return 0;
+ if (!this->f118) return 0;
+ if (!this->f120) return 0;
  p->func_00168C50(D_0028973C, 0, &this->f150);
  p->func_00168C50(D_00289734, 0, &this->f154);
  p->func_00168C50(D_0028972C, 0, &this->f158);
@@ -221,16 +223,19 @@ int C_0018A210::func_0018A320(S_0018A320_W *w, S_0018A320_P *p, int level)
  w->f4D8 |= 1;
  this->f128 = 0;
  if (p->func_00168BE0(D_0028A3D8, D_00275630, s, 0x80)) {
-  strcpy(s2, s);
+  int n = 0;
+  do { s2[n] = s[n]; } while (s[n++]);
+  S_0018A320_Tok tokA;
   tokA.Tokenizer_SetString(s);
   while (tokA.func_001B4A70(D_0028803C)) this->f128++;
   this->f124 = (int *)func_001E8A44(this->f128 * 4);
+  S_0018A320_Tok tokB;
   tokB.Tokenizer_SetString(s2);
-  int i = 0;
+  int *dest = this->f124;
   char *t;
   while ((t = tokB.func_001B4A70(D_0028803C)) != 0) {
-   this->f124[i] = func_001E91F4(t) - 1;
-   i++;
+   *dest = func_001E91F4(t) - 1;
+   dest++;
   }
  }
  func_001ADCC0(name2, 0x104, D_0028A4F4, level);
@@ -238,15 +243,15 @@ int C_0018A210::func_0018A320(S_0018A320_W *w, S_0018A320_P *p, int level)
   if (level != 1) return 0;
   func_001ADCC0(name2, 0x104, D_0028A3C4);
   if (!p->func_00169710(name2)) {
-   this->f110 = *pv;
    this->bit0 = 0;
+   this->f110 = *pv;
    return level;
   }
  }
  p->func_00168C20(D_0028A3A8, -1, &this->f110);
  if (this->f110 != -1) return 0;
- this->f110 = *pv;
  this->bit0 = 0;
+ this->f110 = *pv;
  return 1;
 }
 

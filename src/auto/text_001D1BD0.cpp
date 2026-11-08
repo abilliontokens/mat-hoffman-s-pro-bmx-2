@@ -90,17 +90,17 @@ int C_001D27F0::func_001D1BD0(void)
 {
     Reader1D1BD0 r;
     int i;
-    int v18, v14, v1c;
+    int v14, v18, v1c;
     float f24, a28, a2c;
     int u30, u34, u38, u3c, u40;
     char buf[0x104];
     char name[0x104];
 
     r.func_00168280();
-    if (!r.func_00169490(D_0028F430, 0) || !r.func_00169710(D_002769F8)) {
-        r.func_001691E0();
-        return 0;
-    }
+    if (!r.func_00169490(D_0028F430, 0))
+        goto fail;
+    if (!r.func_00169710(D_002769F8))
+        goto fail;
     r.func_00168C20(D_0028F420, 0, &unk4);
     r.func_00168C20(D_0028D1DC, 0, &count);
     r.func_00168C20(D_0028F410, 1, &v1c);
@@ -120,7 +120,7 @@ int C_001D27F0::func_001D1BD0(void)
         if (r.func_00169710(buf)) {
             records[i].done = 0;
             r.func_00168BE0(D_002769A8, D_002764F0, name, -1);
-            if (memcmp(name, D_002764F0, 5) == 0) {
+            if (memcmp(D_002764F0, name, 5) == 0) {
                 records[i].name = 0;
             } else {
                 records[i].name = (char *)func_001E8A44(0x104);
@@ -244,6 +244,9 @@ int C_001D27F0::func_001D1BD0(void)
     }
     r.func_001691E0();
     return 1;
+fail:
+    r.func_001691E0();
+    return 0;
 }
 
 void C_001D27F0::func_001D27F0(void)

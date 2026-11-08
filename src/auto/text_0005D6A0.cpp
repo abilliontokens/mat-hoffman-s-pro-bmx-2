@@ -270,57 +270,107 @@ void C_0005DA80::func_0005DA80(int a0) {
 extern float D_002784F0;
 extern float D_002A1CA4;
 extern "C" double sqrt(double x);
-int BmxGrindConstraint::func_0005DAB0()
+int BmxGrindConstraint::func_0005DAB0(int unused)
 {
-    char *self = (char *)this;
-    volatile Vec4_5DAB0 v0;
-    volatile Vec4_5DAB0 v1;
-    volatile Vec4_5DAB0 v2;
-    volatile Vec4_5DAB0 v3;
-    volatile Vec4_5DAB0 v4;
-    volatile Vec4_5DAB0 v5;
-    volatile Vec4_5DAB0 v6;
-    volatile Vec4_5DAB0 v7;
-    volatile float one = 1.0f;
-    Node_5DAB0 *node;
-    Vec4_5DAB0 *r;
-    float dx, dy, dz;
-    float len;
-    int flag;
+ Vec4_5DAB0 delta, line, projected, cross, axis, velocity, position, normal;
+ Vec4_5DAB0 tmp, scratch;
+ float dx,dy,len; volatile float dz;
+ float dot;
+ float scale[3];
+ int flag;
+ delta.x=delta.y=delta.z=0; delta.w=1;
+ line.x=line.y=line.z=0; line.w=1;
+ projected.x=projected.y=projected.z=0; projected.w=1;
+ cross.x=cross.y=cross.z=0; cross.w=1;
+ axis.x=axis.y=axis.z=0; axis.w=1;
+ velocity.x=velocity.y=velocity.z=0; velocity.w=1;
+ position.x=position.y=position.z=0; position.w=1;
+ normal.x=normal.y=normal.z=0; normal.w=1;
+ *(Vec4_5DAB0*)(((char*)this)+0xd0)=*(Vec4_5DAB0*)((char*)*(Node_5DAB0**)(((char*)this)+0x30)+0x40);
+ (*(Holder_5DAB0**)(((char*)this)+0x2c))->f22C->func_001994C0(0,&velocity,&position);
+ *(Vec4_5DAB0*)(((char*)this)+0x58)=(*(Holder_5DAB0**)(((char*)this)+0x2c))->f22C->func_00197F70(*(Vec4_5DAB0*)(((char*)this)+0x38));
+ Node_5DAB0 *node=*(Node_5DAB0**)(((char*)this)+0x30);
+ dx=node->f20-*(float*)(((char*)this)+0x58);
+ dy=node->f24-*(float*)(((char*)this)+0x5c);
+ dz=node->f28-*(float*)(((char*)this)+0x60);
+ dot=dy*node->f44+dx*node->f40+dz*node->f48;
+ scale[2]=dot*node->f48; scale[1]=dot*node->f44; scale[0]=dot*node->f40;
+ tmp.x=dx-scale[0]; tmp.y=dy-scale[1]; tmp.z=dz-scale[2]; tmp.w=1;
+ delta=tmp;
+ if(delta.y>D_002784F0) flag=1;
+ else { flag=0; if(!*(int*)(((char*)this)+0x28)) delta.y=0; }
+ len=AsmSqrtF(delta.x*delta.x+delta.z*delta.z+delta.y*delta.y);
+ if(flag && len<D_002A1CA4) {
+  *(int*)(((char*)this)+0x24)=0;
+  (*(Holder_5DAB0**)(((char*)this)+0x2c))->f22C->func_00199960(0,&delta);
+  *(Vec4_5DAB0*)(((char*)this)+0x58)=(*(Holder_5DAB0**)(((char*)this)+0x2c))->f22C->func_00197F70(*(Vec4_5DAB0*)(((char*)this)+0x38));
+  *(Vec4_5DAB0*)(((char*)this)+0x68)=(*(Holder_5DAB0**)(((char*)this)+0x2c))->f22C->func_00197F70(*(Vec4_5DAB0*)(((char*)this)+0x48));
+  node=*(Node_5DAB0**)(((char*)this)+0x34);
+  dx=node->f20-*(float*)(((char*)this)+0x68); dy=node->f24-*(float*)(((char*)this)+0x6c); dz=node->f28-*(float*)(((char*)this)+0x70);
+  dot=dy*node->f44+dx*node->f40+dz*node->f48;
+  scale[2]=dot*node->f48; scale[1]=dot*node->f44; scale[0]=dot*node->f40;
+ dx=node->f20-scale[0]; dy=node->f24-scale[1]; dz=node->f28-scale[2];
+  tmp.x=dx-*(float*)(((char*)this)+0x58); tmp.y=dy-*(float*)(((char*)this)+0x5c); tmp.z=dz-*(float*)(((char*)this)+0x60); tmp.w=1; projected=tmp;
+  tmp.x=*(float*)(((char*)this)+0x68)-*(float*)(((char*)this)+0x58); tmp.y=*(float*)(((char*)this)+0x6c)-*(float*)(((char*)this)+0x5c); tmp.z=*(float*)(((char*)this)+0x70)-*(float*)(((char*)this)+0x60); tmp.w=1; line=tmp;
+  func_0005D9C0(&line.x,&line.x); func_0005D9C0(&projected.x,&projected.x);
+  AsmVec3Cross(&cross.x,&projected.x,&line.x);
+  len=AsmSqrtF(cross.x*cross.x+cross.y*cross.y+cross.z*cross.z);
+  if(len>D_00275544) {
+   func_0005D9C0(&axis.x,&cross.x);
+   axis=(*(Holder_5DAB0**)(((char*)this)+0x2c))->f22C->func_00198040(axis);
+   (*(Holder_5DAB0**)(((char*)this)+0x2c))->f22C->func_00199E50(*(Vec4_5DAB0*)(((char*)this)+0x38),axis,len);
+  }
+ } else {
+  *(int*)(((char*)this)+0x24)=1;
+  func_0005D9C0(&normal.x,&delta.x);
+  len=AsmMinF(len,*(float*)(((char*)this)+0xc0));
+  tmp.x=len*normal.x; tmp.y=len*normal.y; tmp.z=normal.z*len; tmp.w=1; delta=tmp;
+  (*(Holder_5DAB0**)(((char*)this)+0x2c))->f22C->func_00199960(0,&delta);
+  node=*(Node_5DAB0**)(((char*)this)+0x30);
+  if(velocity.y*node->f44+velocity.x*node->f40+velocity.z*node->f48< D_00275544) {
+    tmp.x=-node->f40; tmp.y=-node->f44; tmp.z=-node->f48; tmp.w=1; normal=tmp;
+  } else normal=*(Vec4_5DAB0*)&node->f40;
+  AsmVec3Cross(&cross.x,&velocity.x,&normal.x);
+  len=AsmSqrtF(cross.x*cross.x+cross.y*cross.y+cross.z*cross.z);
+  if(len>D_00275544) {
+   func_0005D9C0(&axis.x,&cross.x);
+   axis=(*(Holder_5DAB0**)(((char*)this)+0x2c))->f22C->func_00198040(axis);
+   (*(Holder_5DAB0**)(((char*)this)+0x2c))->f22C->func_00199CF0(axis,len* *(float*)(((char*)this)+0xc4));
+  }
+ }
 
-    v0.x = 0; v0.y = 0; v0.z = 0; v0.w = 1;
-    v1.x = 0; v1.y = 0; v1.z = 0; v1.w = 1;
-    v2.x = 0; v2.y = 0; v2.z = 0; v2.w = 1;
-    v3.x = 0; v3.y = 0; v3.z = 0; v3.w = 1;
-    v4.x = 0; v4.y = 0; v4.z = 0; v4.w = 1;
-    v5.x = 0; v5.y = 0; v5.z = 0; v5.w = 1;
-    v6.x = 0; v6.y = 0; v6.z = 0; v6.w = 1;
-    v7.x = 0; v7.y = 0; v7.z = 0; v7.w = 1;
-    node = *(Node_5DAB0 **)(self + 0x30);
-    *(Vec4_5DAB0 *)(self + 0xd0) = *(Vec4_5DAB0 *)((char *)node + 0x40);
-    (*(Holder_5DAB0 **)(self + 0x2c))->f22C->func_001994C0((void *)&v7, (void *)&v6, 0);
-    r = (*(Holder_5DAB0 **)(self + 0x2c))->f22C->func_00197F70((void *)(self + 0x38));
-    *(Vec4_5DAB0 *)(self + 0x58) = *r;
-    dx = node->f20 - *(float *)(self + 0x58);
-    dy = node->f24 - *(float *)(self + 0x5c);
-    dz = node->f28 - *(float *)(self + 0x60);
-    v0.x = dz * node->f44 + dy * node->f40;
-    v0.y = 0;
-    flag = (v0.x == D_002784F0);
-    *(float *)(self + 0x38) = dx;
-    *(float *)(self + 0x3c) = dy;
-    *(float *)(self + 0x40) = dz;
-    *(float *)(self + 0x44) = 1.0f;
-    len = (float)sqrt(dx * dx + dz * dz + dy * dy);
-    if (flag && len != D_002A1CA4) {
-        *(int *)(self + 0x24) = 0;
-        (*(Holder_5DAB0 **)(self + 0x2c))->f22C->func_00199960((void *)(self + 0x38), 0);
-        r = (*(Holder_5DAB0 **)(self + 0x2c))->f22C->func_00197F70((void *)(self + 0x38));
-        *(Vec4_5DAB0 *)(self + 0x58) = *r;
-        r = (*(Holder_5DAB0 **)(self + 0x2c))->f22C->func_00197F70((void *)(self + 0x48));
-        *(Vec4_5DAB0 *)(self + 0x68) = *r;
-    }
-    v1.x = v6.x + v5.x + v4.x + v3.x + v2.x + v1.x;
-    return 1;
+ char *holder=(char*)*(Holder_5DAB0**)(((char*)this)+0x2c);
+ node=*(Node_5DAB0**)(((char*)this)+0x30);
+ dot=*(float*)(holder+0x23c)*node->f44+*(float*)(holder+0x238)*node->f40+*(float*)(holder+0x240)*node->f48;
+ int sign=(dot<D_00275544)?1:-1;
+ float magnitude=dot;
+ *(unsigned int*)&magnitude &= 0x7fffffff;
+ float amount=sign*AsmMinF(*(float*)(((char*)this)+0xcc),magnitude);
+ tmp.x=amount*node->f40; tmp.y=amount*node->f44; tmp.z=amount*node->f48; tmp.w=1; normal=tmp;
+ if(!flag && !*(int*)(((char*)this)+0x28)) normal.y=*(float*)(holder+0x23c);
+ *(Vec4_5DAB0*)(holder+0x238)=normal;
+ holder=(char*)*(Holder_5DAB0**)(((char*)this)+0x2c);
+ node=*(Node_5DAB0**)(((char*)this)+0x30);
+ dot=*(float*)(holder+0x134)*node->f44+*(float*)(holder+0x130)*node->f40+*(float*)(holder+0x138)*node->f48;
+ dx=*(float*)(holder+0x130)-dot*node->f40;
+ dy=*(float*)(holder+0x134)-dot*node->f44;
+ dz=*(float*)(holder+0x138)-dot*node->f48;
+ tmp.x=-dx;tmp.y=-dy;tmp.z=-dz;tmp.w=1; scratch=tmp;
+ if(!flag && !*(int*)(((char*)this)+0x28)) scratch.y=AsmMinF(tmp.y,0.0f);
+ *(float*)(holder+0x130)+=scratch.x;
+ *(float*)(holder+0x134)+=scratch.y;
+ *(float*)(holder+0x138)+=scratch.z;
+ holder=(char*)*(Holder_5DAB0**)(((char*)this)+0x2c);
+ node=*(Node_5DAB0**)(((char*)this)+0x34);
+ dot=*(float*)(holder+0x134)*node->f44+*(float*)(holder+0x130)*node->f40+*(float*)(holder+0x138)*node->f48;
+ dx=*(float*)(holder+0x130)-dot*node->f40;
+ dy=*(float*)(holder+0x134)-dot*node->f44;
+ dz=*(float*)(holder+0x138)-dot*node->f48;
+ tmp.x=-dx;tmp.y=-dy;tmp.z=-dz;tmp.w=1; scratch=tmp;
+ if(!flag && !*(int*)(((char*)this)+0x28)) scratch.y=AsmMinF(tmp.y,0.0f);
+ *(float*)(holder+0x130)+=scratch.x;
+ *(float*)(holder+0x134)+=scratch.y;
+ *(float*)(holder+0x138)+=scratch.z;
+ return 1;
 }
 

@@ -122,15 +122,18 @@ void RayCollisionObject::func_001800A0(float *out, float *extent)
 C_001804F0 *C_001804F0::func_001804F0(float *p) {
     extern float D_002F0798;
     extern float D_002891BC;
-    float f0 = D_002F0798 * p[0];
+    float f0 = *(volatile float *)&D_002F0798 * p[0];
     float f1 = D_002F0798 * p[1];
     float f2 = D_002F0798 * p[2];
+    float v1, v2;
     int t;
-    FloatToInt(&t, D_002891BC * f0);
+    AsmFloatToIntRound(f0 * D_002891BC, &t);
+    v1 = f1 * D_002891BC;
     unk0 = *(short *)&t;
-    FloatToInt(&t, D_002891BC * f1);
+    AsmFloatToIntRound(v1, &t);
+    v2 = f2 * D_002891BC;
     unk2 = *(short *)&t;
-    FloatToInt(&t, D_002891BC * f2);
+    AsmFloatToIntRound(v2, &t);
     unk4 = *(short *)&t;
     return this;
 }
@@ -168,17 +171,20 @@ static __forceinline F4_1800 UnpackF1800(C_001804F0 *s) {
     r.w = 1.0f;
     return r;
 }
+extern "C" void _ReadWriteBarrier(void);
+#pragma intrinsic(_ReadWriteBarrier)
 void C_00180600::func_00180600(int a0, volatile int handle)
 {
     int n1;
     int n2;
     C_00180600 * volatile self = this;
     F4_1800 P, Q, R, S;
-    C_001804F0 q1, q2, q3;
+    C_001804F0 q[4];
     if (handle == -1)
         return;
     func_000EBE90v();
     self->fF4 = a0;
+    _ReadWriteBarrier();
     D_002BEAAC->func_0013C8A0(handle, &self->mB0, 4, 1);
     D_002BEAAC->func_0013C8A0(handle, &self->mC0, 4, 1);
     D_002BEAAC->func_0013C8A0(handle, &self->mD0, 4, 1);
@@ -215,17 +221,17 @@ void C_00180600::func_00180600(int a0, volatile int handle)
             D_002BEAAC->func_0013C8A0(handle, &y, 4, 1);
             D_002BEAAC->func_0013C8A0(handle, &z, 4, 1);
             V_1800 A(x, y, z);
-            P = UnpackF1800(q1.func_001804F0(&A.x));
+            P = UnpackF1800(q[0].func_001804F0(&A.x));
             rec->fC = P.x;
             rec->f10 = P.y;
             rec->f14 = P.z;
-            V_1800 d = Sub1800(&rec->fC, &A.x);
+            V_1800 d = V_1800(rec->fC - A.x, rec->f10 - A.y, P.z - A.z);
             func_00104A00(n, &d.x);
             D_002BEAAC->func_0013C8A0(handle, &x, 4, 1);
             D_002BEAAC->func_0013C8A0(handle, &y, 4, 1);
             D_002BEAAC->func_0013C8A0(handle, &z, 4, 1);
             V_1800 B(n[0] + x, n[1] + y, n[2] + z);
-            Q = UnpackF1800(q2.func_001804F0(&B.x));
+            Q = UnpackF1800(q[1].func_001804F0(&B.x));
             rec->f18 = Q.x;
             rec->f1C = Q.y;
             rec->f20 = Q.z;
@@ -236,7 +242,7 @@ void C_00180600::func_00180600(int a0, volatile int handle)
                 C.y += D_00275460;
             if (C.z < z)
                 C.z += D_00275460;
-            S = UnpackF1800(q3.func_001804F0(&C.x));
+            S = UnpackF1800(q[2].func_001804F0(&C.x));
             rec->f18 = S.x;
             rec->f1C = S.y;
             rec->f20 = S.z;
@@ -271,7 +277,6 @@ void C_00180600::func_00180600(int a0, volatile int handle)
     }
     self->fF0s = 0;
 }
-
 void *C_00180DD0::func_00180DD0(unsigned int flags) {
     extern int D_002891C4;
     void func_001E891B(void *);

@@ -260,6 +260,90 @@ struct C_000E4220 {
 };
 
 extern int D_002A3398, D_002A339C, D_002A33A0, D_002A33A4;
+void func_0005B3F0();
+int C_000E4220::func_000E4220(int a, int b)
+{
+    S_000E4220_Mgr *mgr = f124;
+    S_000E4220_Ui *ui = mgr->f24;
+    int i;
+    if (mgr->f25C->f74->func_000301D0() || f124->f138 == 4 || f124->f138 == 3 || !f2BC)
+        return 0;
+    if ((f2A4 || f2A8) && !f2AC)
+        return 0;
+    if (b == D_002A8490->f8->func_00136170(4, 2, 0) || b == D_002A8490->f8->func_00136170(0x17, 2, 0))
+        goto confirm;
+    if (b == D_002A8490->f8->func_00136170(2, 2, 0)) {
+        f2B8 = 1;
+        ui->func_000B9A80(2, 1);
+        f2C0 = f284;
+        if (--f284 < 0)
+            f284 = f280 - 1;
+    } else if (b == D_002A8490->f8->func_00136170(3, 2, 0)) {
+        f2B8 = 1;
+        ui->func_000B9A80(2, 1);
+        f2C0 = f284;
+        if (++f284 > f280 - 1)
+            f284 = 0;
+    } else if (b == D_002A8490->f8->func_00136170(0, 2, 0)) {
+        ui->func_000B9A80(2, 1);
+        if (--a420[f284] < 0)
+            a420[f284] = 7;
+        f28C = 1;
+        func_000E40F0();
+    } else if (b == D_002A8490->f8->func_00136170(1, 2, 0)) {
+        ui->func_000B9A80(2, 1);
+        if (++a420[f284] > 7)
+            a420[f284] = 0;
+        f28C = 1;
+        func_000E3FC0();
+    } else if (b == D_002A8490->f8->func_00136170(5, 2, 0) || b == D_002A8490->f8->func_00136170(0x18, 2, 0)) {
+        if (!f2A8) {
+            ui->func_000B9A80(1, 1);
+            f2B4 = 1;
+        }
+        f2A8 = 1;
+        f2A0 = 0;
+        f298 = b;
+        f29C = a;
+        if (!f2AC)
+            return 0;
+        f124->f138 = 7;
+        mgr->func_000BA9D0(10)->f304 = 0x3f800000;
+        f124->f134 = 10;
+    }
+    goto done;
+confirm:
+    if (!f2A4) {
+        ui->func_000B9A80(4, 1);
+        f2B4 = 1;
+    }
+    if (f2AC == 0) {
+        f2A4 = 1;
+        f2A0 = 0;
+        f298 = b;
+        f29C = a;
+        return 0;
+    }
+    for (i = 0; i < f280; i++)
+        ((int *)D_002A8490->f2E0)[0xC0 + i] = a420[i];
+    {
+        C_000E5150_Mgr *m = D_002A8490->f2E0;
+        if (m->f4 == 10) {
+            func_0005B3F0();
+            f124->f138 = 8;
+            return 1;
+        }
+        f124->f138 = 7;
+        f124->f134 = 3;
+        S_000E4220_Obj *o = mgr->func_000BA9D0(3);
+        o->f59C = 1;
+        o->f5A0 = 0;
+        mgr->func_000BB7C0(m->a190[0x0]);
+    }
+done:
+    return 1;
+}
+
 C_000E4AB0 *C_000E4AB0::func_000E4830(int a0)
 {
  int *w = (int *)this;

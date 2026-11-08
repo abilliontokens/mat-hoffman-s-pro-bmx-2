@@ -221,6 +221,63 @@ void BmxUIPageHOF::func_000D4DD0()
     func_001BE3F0();
 }
 
+BmxUIPageHOF *BmxUIPageHOF::func_000D4E50(int a,int b,int c) {
+func_001BE4F0(a,b,c);
+char *name=D_0027958C;
+D_002A8490->res->func_0018C780(1,&name,0);
+D_002A8490->res->func_0018C160(D_00278690);
+D_002A8490->res->func_0018C160(D_002786A0);
+D_002A8490->res->func_0018C160(D_00278678);
+D_002A8490->res->func_0018C160(D_0027958C);
+char buf[5];
+for(int i=0;i<5;i++){
+S_000D5B90_Widget *w=(S_000D5B90_Widget*)func_001E8A44(0x184);
+arr2C4[i]=w?w->func_001B12C0(1):0;
+arr2C4[i]->func_001B13A0(D_002786A0,D_002786A0,0,30);
+volatile float y=i*D_0027F2BC;
+arr2C4[i]->func_001B1A30(191.0f,y+D_00279F74,0);
+arr2C4[i]->func_001B2270(0xffcccccc);
+func_001577A0(arr2C4[i],-1);
+w=(S_000D5B90_Widget*)func_001E8A44(0x184);
+arr2D8[i]=w?w->func_001B12C0(1):0;
+arr2D8[i]->func_001B13A0(D_002786A0,D_002786A0,0,50);
+arr2D8[i]->func_001B1A30(380.0f,y+D_0027F2B8,0);
+arr2D8[i]->func_001B2270(0xffcccccc);
+func_001577A0(arr2D8[i],-1);
+w=(S_000D5B90_Widget*)func_001E8A44(0x184);
+arr304[i]=w?w->func_001B12C0(1):0;
+arr304[i]->func_001B13A0(D_002786A0,D_002786A0,0,5);
+arr304[i]->func_001B1A30(175.0f,y+D_0027F2B4,0);
+arr304[i]->func_001B2270(0xffcccccc);
+func_001ADCC0(buf,5,D_0027F2AC,i+1,D_0027CEF0);
+arr304[i]->func_001B17D0(buf);
+func_001577A0(arr304[i],-1);
+}
+for(int j=0;j<2;j++){
+DelObjC_000D4DD0 *p=(DelObjC_000D4DD0*)func_001E8A44(100);
+arr2FC[j]=p?p->func_001D5760():0;
+if(j%2==0) arr2FC[j]->func_001D5810(D_0027F29C,100,145,0);
+else {arr2FC[j]->func_001D5810(D_0027F29C,321,145,0); arr2FC[j]->SetIdentity();}
+arr2FC[j]->SetX(0x435d0000);
+arr2FC[j]->SetArgbRaw(0xffbfa35a);
+}
+DelObjA_000D4DD0 *p=(DelObjA_000D4DD0*)func_001E8A44(100);
+arr2EC[0]=p?p->func_001D5760():0;
+arr2EC[0]->func_001D5810(D_00279B00,211,114,0);
+arr2EC[0]->SetArgbRaw(0xffbfa35a);
+DelObjB_000D4DD0 *q=(DelObjB_000D4DD0*)func_001E8A44(100);
+arr2F4[0]=q?q->func_001D5760():0;
+arr2F4[0]->func_001D5810(D_00279AF0,211,114,0);
+p=(DelObjA_000D4DD0*)func_001E8A44(100);
+arr2EC[1]=p?p->func_001D5760():0;
+arr2EC[1]->func_001D5810(D_00279AE0,414,114,0);
+arr2EC[1]->SetArgbRaw(0xffbfa35a);
+q=(DelObjB_000D4DD0*)func_001E8A44(100);
+arr2F4[1]=q?q->func_001D5760():0;
+arr2F4[1]->func_001D5810(D_00279AD0,414,114,0);
+return this;
+}
+
 void BmxUIPageHOF::func_000D5860()
 {
     DelObjC_000D4DD0 **ptr;

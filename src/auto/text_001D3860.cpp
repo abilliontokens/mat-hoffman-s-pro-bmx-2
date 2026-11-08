@@ -334,10 +334,8 @@ int C_001D3AB0::func_001D3860(void)
     _ReadWriteBarrier();
     S_001D3860_Coords c;
     S_001D3860_Mat mat;
-    
-    
-    
     volatile float *out;
+    int neg;
 
     c.w = p->unk70->f8;
     c.h = p->unk70->fC;
@@ -370,12 +368,15 @@ int C_001D3AB0::func_001D3860(void)
     _ReadWriteBarrier();
     c.pm->identity();
     out = (float *)func_001FF410(q->unk7C, 0);
+    neg = -1;
     out[0] = c.f[0]; out[1] = c.f[1];
     out[5] = c.f[2]; out[6] = c.f[0]; out[7] = c.f[4];
     out[12] = c.f[3]; out[13] = c.f[1];
     out[16] = c.f[5]; out[17] = c.f[2]; out[18] = c.f[3];
-    ((volatile int *)out)[3] = -1; ((int *)out)[9] = -1;
-    ((int *)out)[15] = -1; ((int *)out)[21] = -1;
+    ((volatile int *)out)[3] = neg;
+    ((volatile int *)out)[9] = neg;
+    ((volatile int *)out)[15] = neg;
+    ((volatile int *)out)[21] = neg;
     out[2] = 0; out[4] = 0; out[8] = 0; out[10] = 0;
     out[11] = 0; out[14] = 0; out[19] = c.f[4];
     out[20] = 0; out[22] = c.f[5]; out[23] = 0;
@@ -678,20 +679,17 @@ unsigned C_001D4200::func_001D4060(int a)
 int C_001D4200::func_001D40E0(int a)
 {
     char letter;
-    int port;
 
     if (a == 8) {
         unk0 = a;
         strcpy(unk4, "u:\\");
         return 1;
     }
-    if ((func_001D4060((short)a) & func_0026EBC5(&D_0026D8D0)) != 0) {
-        port = func_001D4010(a);
-        if (func_0026ED5B(port, a >= 4, &letter) >= 0) {
-            func_001ADCC0(unk4, 4, D_0028F130, letter);
-            unk0 = a;
-            return 1;
-        }
+    if ((func_001D4060((short)a) & func_0026EBC5(&D_0026D8D0)) != 0 &&
+        func_0026ED5B(func_001D4010(a), a >= 4, &letter) >= 0) {
+        func_001ADCC0(unk4, 4, D_0028F130, letter);
+        unk0 = a;
+        return 1;
     }
     return 0;
 }
@@ -737,14 +735,15 @@ int C_001D4200::func_001D4200(char *out)
     h = func_001DE51E(&unk4, &find);
     ret = 0;
     if (h != -1) {
-        found = 0;
         do {
             func_001DDE51(buf, D_0028F0A8, find.alt);
+            found = 0;
             if (func_001EA426(buf, out + 0x1f) == 0) {
                 func_001E8920(out, find.name, 30);
                 found = 1;
+                break;
             }
-        } while (!found && func_001DE625(h, &find) != 0);
+        } while (func_001DE625(h, &find) != 0);
         func_001DE66C(h);
         ret = found;
     }

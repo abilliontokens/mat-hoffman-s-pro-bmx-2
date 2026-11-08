@@ -322,86 +322,54 @@ struct DXSignatureWave {
 };
 
 
+int func_000263B0(void *dst, const void *src, void *m);
 void Alloc190::func_00142F30(int a)
 {
-    Alloc190 * volatile self = this;
     Mat_1432B0 t;
-    Mat_1432B0 * volatile p;
-    Mat_1432B0 * volatile dst;
-    const Mat_1432B0 * volatile src;
+    char *m;
     int func_000263B0(...);
     int func_00030AC0(...);
     int func_0011ACC0(...);
 
-    p = &t;
-    p->transpose((const Mat_1432B0 *)((char *)f4 + 0xf0));
+    m = (char *)a;
+    AsmTransposeMatrix((float *)&t, (const float *)((char *)f4 + 0xf0));
     {
-        Alloc190 *s = self;
-        DXRenderableObject *o = s->f4;
+        DXRenderableObject *o = f4;
         if (o->f1d4) {
-            func_000263B0((char *)s + 0x90, (char *)o + 0xf0, a + 0x290);
-            src = (const Mat_1432B0 *)(a + 0x290);
-            dst = (Mat_1432B0 *)((char *)self + 0x50);
-            Mat_Copy_1432B0(dst, src);
+            m += 0x290;
+            func_000263B0((char *)this + 0x90, (char *)o + 0xf0, (int)m);
+            AsmCopyMatrix((char *)this + 0x50, m);
         } else {
-            func_000263B0((char *)s + 0x90, (char *)o + 0xf0, a + 0x250);
-            src = (const Mat_1432B0 *)(a + 0x250);
-            dst = (Mat_1432B0 *)((char *)self + 0x50);
-            Mat_Copy_1432B0(dst, src);
+            m += 0x250;
+            func_000263B0((char *)this + 0x90, (char *)o + 0xf0, (int)m);
+            AsmCopyMatrix((char *)this + 0x50, m);
         }
     }
+    *(float *)((char *)this + 0x150) = *(float *)(a + 0x170) - *(float *)((char *)f4 + 0xfc);
+    *(float *)((char *)this + 0x154) = *(float *)(a + 0x174) - *(float *)((char *)f4 + 0x10c);
+    *(float *)((char *)this + 0x158) = *(float *)(a + 0x178) - *(float *)((char *)f4 + 0x11c);
+    AsmTransformPoint((float *)((char *)this + 0x150), (const float *)((char *)this + 0x150), (const float *)&t);
     {
-        Alloc190 *s = self;
-        *(float *)((char *)s + 0x150) = *(float *)(a + 0x170) - *(float *)((char *)s->f4 + 0xfc);
-    }
-    {
-        Alloc190 *s = self;
-        *(float *)((char *)s + 0x154) = *(float *)(a + 0x174) - *(float *)((char *)s->f4 + 0x10c);
-    }
-    {
-        Alloc190 *s = self;
-        *(float *)((char *)s + 0x158) = *(float *)(a + 0x178) - *(float *)((char *)s->f4 + 0x11c);
-    }
-    p = &t;
-    {
-        float *v = (float *)((char *)self + 0x150);
-        p->xform(v, v);
-    }
-    {
-        Alloc190 *s = self;
-        DXRenderableObject *o = s->f4;
-        if (o->f1a3 && *(int *)((char *)o + 0x18c)) {
+        DXRenderableObject *o = f4;
+        if ((o->f1a3 & 1) != 0 && *(int *)((char *)o + 0x18c) != 0) {
             D_002E2930->func_0015F880(*(int *)((char *)o + 0x18c),
                 Vec4_143660(*(float *)((char *)o + 0xbc), *(float *)((char *)o + 0xcc), *(float *)((char *)o + 0xdc), 1.0f),
-                D_002A6E78, (char *)s + 0xd0, (char *)s + 0x110, 0);
-            {
-                Alloc190 *s2 = self;
-                if (*(int *)((char *)s2->f4 + 0x190) <= 1) {
-                    char *q = (char *)s2 + 0xd0;
-                    func_00030AC0(q, q, &t);
-                    q = (char *)self + 0xe0;
-                    func_00030AC0(q, q, &t);
-                    q = (char *)self + 0xf0;
-                    func_00030AC0(q, q, &t);
-                }
+                D_002A6E78, (char *)this + 0xd0, (char *)this + 0x110, 0);
+            if (*(int *)((char *)f4 + 0x190) <= 1) {
+                func_00030AC0((char *)this + 0xd0, (char *)this + 0xd0, &t);
+                func_00030AC0((char *)this + 0xe0, (char *)this + 0xe0, &t);
+                func_00030AC0((char *)this + 0xf0, (char *)this + 0xf0, &t);
             }
         } else {
-            D_002E2930->func_0015E420((char *)s + 0xd0, (char *)s + 0x110, 0);
-            {
-                Alloc190 *s2 = self;
-                if (*(int *)((char *)s2->f4 + 0x190) <= 1) {
-                    char *q = (char *)s2 + 0xd0;
-                    func_00030AC0(q, q, &t);
-                }
+            D_002E2930->func_0015E420((char *)this + 0xd0, (char *)this + 0x110, 0);
+            if (*(int *)((char *)f4 + 0x190) <= 1) {
+                func_00030AC0((char *)this + 0xd0, (char *)this + 0xd0, &t);
             }
         }
     }
-    {
-        Alloc190 *s = self;
-        func_0011ACC0((char *)s + 0x10, (char *)s->f4 + 0xf0, a + 0xb0);
-    }
-    ((Vec4_143660 *)((char *)self + 0x170))->SetRef(*(Vec4_143660 *)(a + 0x170));
-    ((Vec4_143660 *)((char *)self + 0x180))->SetRef(*(Vec4_143660 *)((char *)D_002EFDB8 + 0x74));
+    func_0011ACC0((char *)this + 0x10, (char *)f4 + 0xf0, a + 0xb0);
+    *(Vec4_143660 *)((char *)this + 0x170) = *(Vec4_143660 *)(a + 0x170);
+    *(Vec4_143660 *)((char *)this + 0x180) = *(Vec4_143660 *)((char *)D_002EFDB8 + 0x74);
 }
 
 void Alloc190::func_001432B0()

@@ -773,7 +773,6 @@ void C_0005C390::func_0005C390(void) {
 extern "C" void * __cdecl memcpy(void *, const void *, unsigned int);
 void C_0005C3A0::func_0005C3A0(int param_1)
 {
-  undefined4 *base = (undefined4 *)this;
   int in_ECX = (int)this;
   int iVar1;
   undefined4 *puVar2;
@@ -824,7 +823,7 @@ void C_0005C3A0::func_0005C3A0(int param_1)
             *(undefined4 *)(local_a + -0x20 + in_ECX) = 1;
           }
           else {
-            base[local_18 + -8 + iVar1] = 0;
+            *(undefined4 *)(in_ECX + (local_18 + -8 + iVar1) * 4) = 0;
           }
           iVar1 = iVar1 + 1;
         } while (iVar1 < 8);
@@ -834,7 +833,7 @@ void C_0005C3A0::func_0005C3A0(int param_1)
             *(undefined4 *)(local_a + in_ECX) = 1;
           }
           else {
-            base[local_18 + iVar1] = 0;
+            *(undefined4 *)(in_ECX + (local_18 + iVar1) * 4) = 0;
           }
           iVar1 = iVar1 + 1;
         } while (iVar1 < 3);
@@ -844,7 +843,7 @@ void C_0005C3A0::func_0005C3A0(int param_1)
             *(undefined4 *)(local_a + 0xc + in_ECX) = 1;
           }
           else {
-            base[local_18 + 3 + iVar1] = 0;
+            *(undefined4 *)(in_ECX + (local_18 + 3 + iVar1) * 4) = 0;
           }
           iVar1 = iVar1 + 1;
         } while (iVar1 < 8);

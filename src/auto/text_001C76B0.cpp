@@ -142,12 +142,12 @@ void Obj::func_001C76B0(int a, int b, int c, int d, int e, int f2, int g, int h,
     s1 = f40->f170;
     s2 = s1->f170;
     node = (Node170 *)func_001E8A44(0x54);
-    f48 = node ? node->func_0019FD20(v70, f40, s1, s2) : 0;
+    f48 = node ? node->func_0019FD20(s2, s1, f40, v70) : 0;
     f48->f40 = 0;
     s1 = f44->f170;
     s2 = s1->f170;
     node = (Node170 *)func_001E8A44(0x54);
-    f4C = node ? node->func_0019FD20(vA0, f44, s1, s2) : 0;
+    f4C = node ? node->func_0019FD20(s2, s1, f44, vA0) : 0;
     f4C->f40 = 0;
     flag = 0;
     ini->func_00168A10(D_0028E808, &flag);

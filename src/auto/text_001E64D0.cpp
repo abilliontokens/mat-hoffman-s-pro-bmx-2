@@ -36,7 +36,7 @@ void func_001E64D0(float *tw, float *x)
 
 void S_func_001E6B50_this::func_001E6B50()
 {
-    float* p = (float*)&D_002755E8;
+    float* p;
     float s = unk_0x4;
     float a, b, c, d, e, f, g, h;
     float r0, r1, r2, r3, x, y, z, u, v;
@@ -239,7 +239,7 @@ static __forceinline void fft16_001E6D40(float *d, float *c)
     d[12] = p - t; d[13] = q + r2; d[14] = p + t; d[15] = q - r2;
 }
 float *__fastcall func_001E6D40(float *c, float *x);
-void __declspec(noinline) func_001E7410(int n, float *a, float *b, int k)
+void func_001E7410(int n, float *a, float *b, int k)
 {
     if (n == 0x80) {
         float *p = b + k - 8;
@@ -250,7 +250,7 @@ void __declspec(noinline) func_001E7410(int n, float *a, float *b, int k)
         return;
     }
     func_001E6B50(a, b + k - 0x10);
-    func_001E6D40(b + k - 0x10, a + 0x10);
+    func_001E6D40(a + 0x10, b);
     func_001E6B50(a + 0x20, b);
     func_001E6B50(a + 0x30, b);
 }
