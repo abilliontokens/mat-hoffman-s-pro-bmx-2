@@ -429,7 +429,6 @@ func_001D5AD0((void *)self[304/4]);
  if (self[480/4]) { func_001D5AD0((void *)self[264/4]);
  } else { func_001D5AD0((void *)self[276/4]);
  }
- func_001D5AD0((void *)self[276/4]);
  ((C_63CD0_Call *)self[280/4])->func_0005E7C0(365.0f, 388.0f);
 ((C_63CD0_Call *)self[268/4])->func_0005E7C0(365.0f, 388.0f);
  if (self[484/4]) { func_001D5AD0((void *)self[268/4]);
