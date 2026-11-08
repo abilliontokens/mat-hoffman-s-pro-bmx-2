@@ -316,7 +316,7 @@ extern char D_002A63C8[];
 extern char D_002A60B0[0x104];
 extern char D_00100000[];
 extern char D_00040000[];
-extern int D_002A64D0;
+extern char D_002A64D0[];
 extern int D_0027DB9C;
 extern void *D_002A829C;
 
@@ -602,14 +602,13 @@ void C_000BBE30::func_000BE540()
 void C_000BE640::func_000BE640(char *a, char *b, int c)
 {
     char buf[0x104];
-    int junk;
     int cap;
     int n;
     int len;
     int t;
     unsigned start;
     void *p;
-    C_001D1BB0 *ac;
+    C_000BEDC0 *q;
 
     D_002A8490->f234 = 1;
     if (D_002A8490->f2F0->f1DC) {
@@ -632,29 +631,27 @@ void C_000BE640::func_000BE640(char *a, char *b, int c)
     func_001BCC90((void *)c);
     func_000BADB0();
     D_002EFDB8->f30 = 1;
-    if (func_001E8AF0(a, D_0027D68C)) {
-        func_001ADCC0(buf, 0x104, D_0027DE0C, D_002A64D0);
-    } else {
-        func_001ADCC0(buf, 0x104, D_0027DDFC, D_002A64D0);
-    }
+    func_001ADCC0(buf, 0x104, func_001E8AF0(a, D_0027D68C) != 0 ? D_0027DE0C : D_0027DDFC, D_002A64D0);
     if (D_002BEAAC->func_0013D780(buf, 1, 0, 0, 0, 0, 0, 0) != 0) {
         D_002BEAAC->func_0013B260(1);
     }
-    ac = (C_001D1BB0 *)f2ac;
     if (D_002A8490->f2F0->f1DC) {
-        if (ac) ac->v3((int)D_00276C08, 0xc8, 0x10);
-        if (ac) ac->v2((int)D_00276C08, 0xd6, 0x187);
+        if (f2ac != 0) ((C_001D1BB0 *)f2ac)->v3((int)D_00276C08, 0xc8, 0x10);
+        if (f2ac != 0) ((C_001D1BB0 *)f2ac)->v2((int)D_00276C08, 0xd6, 0x187);
     }
     func_000BCBB0();
     if (D_002A8490->f2F0->f1DC) {
-        if (ac) ac->v3((int)D_00276C08, 0xfa, 0x10);
-        if (ac) ac->v2((int)D_00276C08, 0xef, 0x187);
+        if (f2ac != 0) ((C_001D1BB0 *)f2ac)->v3((int)D_00276C08, 0xfa, 0x10);
+        if (f2ac != 0) ((C_001D1BB0 *)f2ac)->v2((int)D_00276C08, 0xef, 0x187);
     }
-    v37(junk);
+    {
+        int junk;
+        v37(junk);
+    }
     cap = 0x103;
     if (D_002A8490->f2F0->f1DC) {
-        if (ac) ac->v3((int)D_00276C08, 0x122, 0x10);
-        if (ac) ac->v2((int)D_00276C08, cap, 0x187);
+        if (f2ac != 0) ((C_001D1BB0 *)f2ac)->v3((int)D_00276C08, 0x122, 0x10);
+        if (f2ac != 0) ((C_001D1BB0 *)f2ac)->v2((int)D_00276C08, cap, 0x187);
     }
     func_000BABF0();
     func_000BACE0();
@@ -672,8 +669,8 @@ void C_000BE640::func_000BE640(char *a, char *b, int c)
     D_002A60B0[n] = 0;
     v32();
     if (D_002A8490->f2F0->f1DC) {
-        if (ac) ac->v3((int)D_00276C08, 0x19c, 0x10);
-        if (ac) ac->v2((int)D_00276C08, 0x140, 0x187);
+        if (f2ac != 0) ((C_001D1BB0 *)f2ac)->v3((int)D_00276C08, 0x19c, 0x10);
+        if (f2ac != 0) ((C_001D1BB0 *)f2ac)->v2((int)D_00276C08, 0x140, 0x187);
     }
     D_002A8490->f2E0->func_0005C720();
     if (D_002A8490->f2E0->f2FC->func_00094F00() == 0) {
@@ -689,21 +686,17 @@ void C_000BE640::func_000BE640(char *a, char *b, int c)
     p = func_001E8A44(0x24);
     f26c = p ? ((C_000BEDC0 *)p)->func_00157600((void *)1) : 0;
     p = func_001E8A44(0x48);
-    if (p) {
-        C_000BEDC0 *q = ((C_000BEDC0 *)p)->func_00157600((void *)1);
-        q->unk0 = (int)&D_0027DB9C;
-        q->f30 = 0;
-        q->f24 = 1;
-        q->f38[0] = 0;
-        q->f28 = 0;
-        q->f38[2] = 0;
-        q->f38[3] = 1;
-        q->f38[1] = 0;
-        q->f2c = 0;
-        f270 = q;
-    } else {
-        f270 = 0;
-    }
+    f270 = p != 0 ? (q = ((C_000BEDC0 *)p)->func_00157600((void *)1),
+                     q->unk0 = (int)&D_0027DB9C,
+                     q->f30 = 0,
+                     q->f24 = 1,
+                     q->f38[0] = 0,
+                     q->f28 = 0,
+                     q->f38[2] = 0,
+                     q->f38[3] = 1,
+                     q->f38[1] = 0,
+                     q->f2c = 0,
+                     p) : 0;
     func_000BC520(0, this);
     func_000BB0C0();
     v28(c);
@@ -735,26 +728,31 @@ void C_000BE640::func_000BE640(char *a, char *b, int c)
                 p = 0;
             }
             *(int *)((char *)this + i) = (int)p;
-            if (*(int *)((char *)D_002A8490->f8 + i - 0x2bc)) {
+            if (*(int *)((char *)D_002A8490->f8 + i - 0x2bc) != 0) {
                 func_0015B060(*(void **)((char *)this + i - 0x20), 0.01f, 0.01f);
                 func_0015B060(*(void **)((char *)this + i), 0.01f, 0.01f);
             }
         }
     }
     ((C_00161870 *)D_002A829C)->func_001616F0();
-    if (f2ac) {
-        ac = (C_001D1BB0 *)f2ac;
+    if (f2ac != 0) {
         start = func_001DC974();
         while ((unsigned)func_001DC974() - start < 0x11) {
         }
-        ac->v6();
-        ((C_001D35E0 *)ac)->func_001D35E0();
-        func_001E891B(ac);
+        ((C_001D1BB0 *)f2ac)->v6();
+    }
+    {
+        C_001D1BB0 *d = (C_001D1BB0 *)f2ac;
+        if (d != 0) {
+            ((C_001D35E0 *)d)->func_001D35E0();
+            func_001E891B(d);
+        }
         f2ac = 0;
     }
     func_0012B190(0, 0, f258->f204, f258->f208);
     ((C_00092890 *)f274)->func_00012140();
     D_002A8490->f2E0->f2FC->f28->v30(D_002A8490->f2E0->f18);
+    f150->f4c0->v30(D_002A8490->f2E0->f1c);
 }
 
 undefined4 C_000BEDA0::func_000BEDA0(byte param_1)
