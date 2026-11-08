@@ -186,7 +186,7 @@ struct S_Sub2_0002A6B0 {
     void func_00025E50(float dt);
 };
 
-extern const int D_002A10F0, D_002A10F4, D_002A10F8, D_002A10FC;
+extern int D_002A10F0, D_002A10F4, D_002A10F8, D_002A10FC;
 
 struct V4i_0002A6B0 {
     int a, b, c, d;
