@@ -323,6 +323,15 @@ struct C_001C36B0 {
     C_001C36B0 *func_001C3E50(int a);
     void func_001C3EA0(int n);
 };
+struct V_80VT {
+    virtual void u0(); virtual void u1(); virtual void u2(); virtual void u3(); virtual void u4(); virtual void u5();
+    virtual void u6(); virtual void u7(); virtual void u8(); virtual void u9(); virtual void u10(); virtual void u11();
+    virtual void u12(); virtual void u13(); virtual void u14(); virtual void u15(); virtual void u16(); virtual void u17();
+    virtual void u18(); virtual void u19(); virtual void u20(); virtual void u21(); virtual void u22(); virtual void u23();
+    virtual void u24(); virtual void u25(); virtual void u26(); virtual void u27(); virtual void u28(); virtual void u29();
+    virtual void u30(); virtual void u31(); virtual void u32();
+};
+
 struct C_001C4A70 { void func_001C4A70(void); };
 struct C_001C4C30 { void func_001C4C30(void); };
 struct C_00161870 { void func_001616F0(void); };
