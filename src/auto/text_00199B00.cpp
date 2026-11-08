@@ -48,6 +48,7 @@ struct S_0019A680_V4 {
     float x, y, z, w;
     S_0019A680_V4() { z = 0.0f; y = 0.0f; x = 0.0f; w = 1.0f; }
     S_0019A680_V4(float px, float py, float pz, float pw) { x = px; y = py; z = pz; w = pw; }
+    S_0019A680_V4 &operator=(const S_0019A680_V4 &v) { ((int*)this)[0]=((const int*)&v)[0]; ((int*)this)[1]=((const int*)&v)[1]; ((int*)this)[2]=((const int*)&v)[2]; ((int*)this)[3]=((const int*)&v)[3]; return *this; }
 };
 
 static inline S_0019A680_V4 Vec_0019A680(float x, float y, float z) { return S_0019A680_V4(x, y, z, 1.0f); }
@@ -215,41 +216,31 @@ void C_00199BE0::func_00199E30(int a0, int a1, int a2, int a3, int a4)
 void C_00199BE0::func_00199E50(S_00199B00_F4 v, int a4, int a5, int a6, int a7, float angle)
 {
     S_00199B00_F4 t;
-    int k;
 
-    for (k = 0; k < 2; k++) {
-        if (k) {
-            func_00199CF0(a4, a5, a6, a7, angle);
-            v.x = -v.x;
-            v.y = -v.y;
-            v.z = -v.z;
-            v.w = 1.0f;
-        }
-        t = v;
-        t.w = 1.0f;
-        {
-            __m128 x = _mm_loadu_ps(&t.x);
-            __m128 r0 = _mm_load_ps(fB0);
-            __m128 r1 = _mm_load_ps(fB0 + 4);
-            __m128 r2 = _mm_load_ps(fB0 + 8);
-            r0 = _mm_mul_ps(r0, x);
-            r1 = _mm_mul_ps(r1, x);
-            r2 = _mm_mul_ps(r2, x);
-            __m128 a = _mm_add_ps(_mm_unpacklo_ps(r0, r1), _mm_unpackhi_ps(r0, r1));
-            __m128 b = _mm_add_ps(r2, _mm_movehl_ps(r2, r2));
-            _mm_storeu_ps(&t.x, _mm_add_ps(_mm_movelh_ps(a, b), _mm_shuffle_ps(_mm_movehl_ps(a, a), b, 0x14)));
-        }
-        t.w = 1.0f;
-        fB0[3] = t.x;
-        fB0[7] = t.y;
-        fB0[11] = t.z;
-        func_001982F0();
-        if (f180 & 1) {
-            f180 &= 0xfe;
-            if (f174 != 0) {
-                f174->func_00197B10();
-            }
-        }
+    AsmTransformPoint(&t.x, &v.x, fB0);
+    fB0[3] = t.x;
+    fB0[7] = t.y;
+    fB0[11] = t.z;
+    func_001982F0();
+    if (f180 & 1) {
+        f180 &= 0xfe;
+        if (f174) f174->func_00197B10();
+    }
+
+    func_00199CF0(a4, a5, a6, a7, angle);
+    v.x = -v.x;
+    v.y = -v.y;
+    v.z = -v.z;
+    v.w = 1.0f;
+
+    AsmTransformPoint(&t.x, &v.x, fB0);
+    fB0[3] = t.x;
+    fB0[7] = t.y;
+    fB0[11] = t.z;
+    func_001982F0();
+    if (f180 & 1) {
+        f180 &= 0xfe;
+        if (f174) f174->func_00197B10();
     }
 }
 
@@ -257,12 +248,14 @@ void C_00199BE0::func_00199E50(S_00199B00_F4 v, int a4, int a5, int a6, int a7, 
 void C_00199BE0::func_0019A0A0(float sx, float sy, float sz)
 {
     S_00199B00_F4 v;
+    S_00199B00_F4 *po = &v;
+    S_00199B00_F4 &ri = v;
 
     v.x = fB0[0];
     v.y = fB0[4];
     v.w = 1.0f;
     v.z = fB0[8];
-    func_001977B0(&v, &v);
+    func_001977B0(po, &ri);
     v.x *= sx;
     v.y *= sx;
     v.z *= sx;
@@ -273,7 +266,7 @@ void C_00199BE0::func_0019A0A0(float sx, float sy, float sz)
     v.x = fB0[1];
     v.y = fB0[5];
     v.z = fB0[9];
-    func_001977B0(&v, &v);
+    func_001977B0(po, &ri);
     v.x *= sy;
     v.y *= sy;
     v.z *= sy;
@@ -284,7 +277,7 @@ void C_00199BE0::func_0019A0A0(float sx, float sy, float sz)
     v.x = fB0[2];
     v.y = fB0[6];
     v.z = fB0[10];
-    func_001977B0(&v, &v);
+    func_001977B0(po, &ri);
     v.x *= sz;
     v.y *= sz;
     v.z *= sz;
@@ -339,13 +332,12 @@ void C_00199BE0::func_0019A2D0(void)
         func_00197AA0();
         S_0019A680_V4 a;
         float radius = 0;
-        C_00199BE0 *p;
 
         if (f180 & 4) {
             *(S_00199B00_F4 *)&a = func_00197F70((S_00199B00_F4 *)&f130);
             radius = f184;
         }
-        for (p = f174; p != 0; p = p->f178) {
+        for (C_00199BE0 *p = f174; p != 0; p = p->f178) {
             p->func_00198440((S_00199B00_F4 *)&a, &radius, 1);
         }
         f150 = func_00198120((S_00199B00_F4 *)&a);
@@ -355,22 +347,23 @@ void C_00199BE0::func_0019A2D0(void)
         f188 = radius;
     } else {
         func_00197AA0();
-        int flag = 0;
-        S_0019A680_V4 a;
         S_0019A680_V4 b;
-        C_00199BE0 *p;
+        S_0019A680_V4 a;
+        int flag = 0;
 
         if (f180 & 4) {
             flag = 1;
-            a = Sub_0019A680(f130, f140);
-            b = Add_0019A680(f130, f140);
+            b = Sub_0019A680(f130, f140);
+            a = Add_0019A680(f130, f140);
         }
-        for (p = f174; p != 0; p = p->f178) {
-            p->func_001985D0(&flag, &a, &b, fF0, 1);
+        for (C_00199BE0 *p = f174; p != 0; p = p->f178) {
+            p->func_001985D0(&flag, &b, &a, fF0, 1);
         }
-        *(S_0019A680_V4 *)&f150 = Scale_0019A680(Add_0019A680(b, a), D_002755E8);
-        *(S_0019A680_V4 *)&f160 = Scale_0019A680(Sub_0019A680(b, a), D_002755E8);
-        f188 = sqrtf(f160.x * f160.x + f160.y * f160.y + f160.z * f160.z);
+        S_0019A680_V4 t = Scale_0019A680(Add_0019A680(a, b), D_002755E8);
+        *(S_0019A680_V4 *)&f150 = t;
+        S_0019A680_V4 u = Scale_0019A680(Sub_0019A680(a, b), D_002755E8);
+        *(S_0019A680_V4 *)&f160 = u;
+        f188 = AsmSqrtF(f160.x * f160.x + f160.y * f160.y + f160.z * f160.z);
     }
     if (f188 > D_00275544) {
         f180 |= 0x40;
@@ -382,7 +375,6 @@ void C_00199BE0::func_0019A680(S_0019A680_V4 *center, S_0019A680_V4 *extent)
     func_00197AA0();
     S_0019A680_V4 a;
     S_0019A680_V4 b;
-    S_0019A680_V4 t;
     int flag = 0;
     C_00199BE0 *p;
 
@@ -395,12 +387,10 @@ void C_00199BE0::func_0019A680(S_0019A680_V4 *center, S_0019A680_V4 *extent)
         p->func_001985D0(&flag, &a, &b, fF0, 1);
     }
     if (center != 0) {
-        t = Scale_0019A680(Add_0019A680(b, a), D_002755E8);
-        *center = t;
+        *center = Scale_0019A680(Add_0019A680(b, a), D_002755E8);
     }
     if (extent != 0) {
-        t = Scale_0019A680(Sub_0019A680(b, a), D_002755E8);
-        *extent = t;
+        *extent = Scale_0019A680(Sub_0019A680(b, a), D_002755E8);
     }
 }
 
