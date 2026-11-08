@@ -104,7 +104,8 @@ static __forceinline void Cross_00160310(V4_00160310 *out, const V4_00160310 *a,
 struct C_00160310 {
     char pad0[0x28];
     float x, y, z;
-    char pad34[0x44];
+    char pad34[4];
+    V4_00160310 v38, v48, v58, v68;
     int f78;
     char pad7C[4];
     float scale;
@@ -255,7 +256,7 @@ float func_0015FF80(volatile float y, volatile float x)
     float t, s;
     unsigned int bits;
     bits = *(volatile unsigned int *)&x; tmp[0] = bits; bits = tmp[0]; bits &= 0x7fffffff; *(volatile unsigned int *)&ax = bits;
-    tmp[1] = *(volatile unsigned int *)&y; bits = tmp[1]; bits &= 0x7fffffff; *(volatile unsigned int *)&ay = bits;
+    bits = *(volatile unsigned int *)&y; tmp[1] = bits; bits = tmp[1]; bits &= 0x7fffffff; *(volatile unsigned int *)&ay = bits;
     if (ax < D_002879B8) {
     if (ay < D_002879B8) return y / x;
     if (ax < D_002879B8 && ay > D_002879B8) {
@@ -290,27 +291,29 @@ float func_0015FF80(volatile float y, volatile float x)
 
 int C_00160310::func_00160310(void)
 {
-    V4_00160310 q;
-    V4_00160310 dir;
+    void __stdcall func_0011F460(void *out, float a, float b, float c, float d);
+    C_00160310 *volatile self = this;
+    V4_00160310 q, dir, t0, t1, o84, o88, o74, o64;
+    V4_00160310 *o38, *o48, *o58, *o68;
     S_Cam_00160310 *cam;
     float dx, dy, dz, inv, d2, dist, m;
+    float a, b, c;
     int idx;
 
-    if (D_002A80C0 == 0) {
+    if (D_002A80C0 == 0)
         return 1;
-    }
     cam = D_002EFDB8->cam;
     q.x = 0.0f;
     q.y = 0.0f;
     q.z = 0.0f;
     q.w = 1.0f;
-    dir.x = cam->c8 * scale;
-    dir.y = cam->c4 * scale;
-    dir.z = cam->c0 * scale;
+    dir.x = cam->c0 * self->scale;
+    dir.y = cam->c4 * self->scale;
+    dir.z = cam->c8 * self->scale;
     dir.w = 1.0f;
-    dx = x - cam->p.x;
-    dy = y - cam->p.y;
-    dz = z - cam->p.z;
+    dx = self->x - cam->p.x;
+    dy = self->y - cam->p.y;
+    dz = self->z - cam->p.z;
     inv = 1.0f;
     if (D_002E2944) {
         d2 = dx * dx + dy * dy + dz * dz;
@@ -318,15 +321,24 @@ int C_00160310::func_00160310(void)
         m = dist * D_002A810C;
         inv = D_00275460 / Max_00160310(D_002A8110, m);
     }
-    if (f84) {
-        q.x = cam->d0;
-        q.y = cam->d4;
-        q.z = cam->d8;
-        q.w = 1.0f;
+    if (self->f84) {
+        t0.x = 0.0f;
+        t0.y = 0.0f;
+        t0.z = 0.0f;
+        t0.w = 1.0f;
+        t1.x = cam->d0;
+        t1.y = cam->d4;
+        t1.z = cam->d8;
+        t1.w = 1.0f;
+        func_00030AC0(&t0, &self->x, &cam->mat);
+        dir.x = func_0015FF80(t0.y, t0.x);
+        func_0011F460(&o84, m, q.x, q.y, dir.x);
+        func_00030AC0(&o88, &o74, &o88);
+        Cross_00160310(&o64, &o88, &o74);
     } else {
-        q.x = cam->b0 * scale;
-        q.y = cam->b4 * scale;
-        q.z = cam->b8 * scale;
+        q.x = cam->b0 * self->scale;
+        q.y = cam->b4 * self->scale;
+        q.z = cam->b8 * self->scale;
         q.w = 1.0f;
     }
     dx = q.x - dir.x;
@@ -337,7 +349,35 @@ int C_00160310::func_00160310(void)
         dy = dy * inv;
         dz = dz * inv;
     }
-    idx = *(int *)(*(int *)(f78 + 0x24) + 4);
+    a = dir.x + q.x;
+    b = dir.y + q.y;
+    c = dir.z + q.z;
+    if (D_002E2944) {
+        a = a * inv;
+        b = b * inv;
+        c = c * inv;
+    }
+    o38 = (V4_00160310 *)((char *)self + 0x38);
+    o38->x = self->x - dx;
+    o38->y = self->y - dy;
+    o38->z = self->z - dz;
+    o38->w = 1.0f;
+    o68 = (V4_00160310 *)((char *)self + 0x68);
+    o68->x = self->x + dx;
+    o68->y = self->y + dy;
+    o68->z = self->z + dz;
+    o68->w = 1.0f;
+    o48 = (V4_00160310 *)((char *)self + 0x48);
+    o48->x = self->x - a;
+    o48->y = self->y - b;
+    o48->z = self->z - c;
+    o48->w = 1.0f;
+    o58 = (V4_00160310 *)((char *)self + 0x58);
+    o58->x = self->x + a;
+    o58->y = self->y + b;
+    o58->z = self->z + c;
+    o58->w = 1.0f;
+    idx = *(int *)(*(int *)(self->f78 + 0x24) + 4);
     if (idx != -1) {
         func_001B07A0(*(void **)(*(int *)(D_002A829C + 0x14) + (idx << 4) + 4));
     }
