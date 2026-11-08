@@ -186,13 +186,9 @@ int BmxSinglePlayerInGameMenu::func_00079800(float dt)
                     unk104->f64->p4E0->arr1a8[i]->func_001067B0();
                 }
                 unk104->f64->p4C0->v31(0, 1);
-                if (unk104->f64->f594 != 0) {
-                    FPSSave_Mem *menu;
-                    if (unk104->f118 != 0)
-                        menu = D_002A8490->p2E0->p2FC;
-                    else
-                        menu = D_002A8490->p2E0->p2FC;
-                    menu->v18(0);
+                if (unk104->f64->f594 == 0 || unk104->f118 == 0) {
+                } else {
+                    D_002A8490->p2E0->p2FC->v18(0);
                 }
                 unk104->func_00032720();
                 unk104->v39();
