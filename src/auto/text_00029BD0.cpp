@@ -3,8 +3,7 @@
 #include <math.h>
 struct V4_00029BD0 {
  union { struct { float x,y,z,w; }; __int64 q[2]; };
- V4_00029BD0() {}
- V4_00029BD0 &operator=(const V4_00029BD0 &v) { q[0]=v.q[0]; q[1]=v.q[1]; return *this; }
+     V4_00029BD0() {}
 };
 struct P4_00029BD0 { float x, y, z, w; };
 struct __declspec(align(16)) M4_00029BD0 { float m[16]; };
