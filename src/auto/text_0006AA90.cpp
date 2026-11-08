@@ -3,7 +3,7 @@
 #include <string.h>
 #include "asm_helpers.h"
 
-struct Txt_6AA90 { char* str; float x; float y; char pad[0x38]; int frame; char pad2[6]; unsigned char flags; int func_001D6290(); void func_001D6600(); void func_0005E840(char*); void SetPos(float a,float b) { if(x!=a||y!=b){x=a;y=b;flags|=6;} } void SetFrame(int f) { if(frame!=f){frame=f;flags|=6;} } };
+struct Txt_6AA90 { char* str; float x; float y; char pad[0x38]; int frame; char pad2[6]; unsigned char flags; int func_001D6290(); void func_001D6600(); void func_0005E840(char*); void SetPos(float a,float b) { if(x!=a||y!=b){x=a;y=b;flags|=6;} } };
 extern int D_0028F5DC;
 inline int Min_6AA90(const int &a,const int &b) { return a<b?a:b; }
 struct Widget_6AA90 {
