@@ -173,121 +173,129 @@ struct C_000BFB70 {
 
 C_BEE30 *C_BEE30::func_000BEE30(void)
 {
-    return this;
     void *mem;
     int ids[3];
-    int v1, v2;
+    int v0, v1, v2;
     ids[0] = (int)&D_00278678;
     ids[1] = (int)&D_00278690;
     ids[2] = (int)&D_002786A0;
     ((LookupBEE *)D_002A8490->p2EC)->func_0018C780(3, ids, 0);
     {
-        int v0;
-        {
-            int *r = ((LookupBEE *)D_002A8490->p2EC)->func_0018C160(&D_00278678);
-            v0 = r ? *r : 0;
-        }
-        {
-            int *r = ((LookupBEE *)D_002A8490->p2EC)->func_0018C160(&D_00278690);
-            v1 = r ? *r : 0;
-        }
-        {
-            int *r = ((LookupBEE *)D_002A8490->p2EC)->func_0018C160(&D_002786A0);
-            v2 = r ? *r : 0;
-        }
-        mem = func_001E8A44(0x64);
-        f24 = mem ? ((ElemA_BEE *)mem)->func_001D5760() : 0;
-        f24->func_001D5810(D_00278658, 0.0f, 0.0f, 0.0f);
-        f24->Scale();
-        f24->SetF28(640.0f);
-        f24->SetF2C(50.0f);
-        mem = func_001E8A44(0x64);
-        f28 = mem ? ((ElemA_BEE *)mem)->func_001D5760() : 0;
-        f28->func_001D5810(D_00278658, 0.0f, 199.0f, 0.0f);
-        f28->Scale();
-        f28->SetF28(640.0f);
-        f28->SetF2C(50.0f);
-        mem = func_001E8A44(0x64);
-        f2C = mem ? ((ElemA_BEE *)mem)->func_001D5760() : 0;
-        f2C->func_001D5810(D_00278658, 0.0f, 50.0f, 0.0f);
-        f2C->SetF28(640.0f);
-        f2C->f58 |= 4;
-        f2C->f3C = 0.0f;
-        f2C->f40 = 5.0f;
-        f2C->f44 = 0.0f;
-        f2C->f48 = 1.0f;
-        mem = func_001E8A44(0x64);
-        f30 = mem ? ((ElemA_BEE *)mem)->func_001D5760() : 0;
-        f30->func_001D5810(D_00278658, 0.0f, 366.0f, 0.0f);
-        f30->SetF28(640.0f);
-        f30->f58 |= 4;
-        f30->f3C = 0.0f;
-        f30->f40 = 5.0f;
-        f30->f44 = 0.99000001f;
-        f30->f48 = 0.0f;
-        mem = func_001E8A44(0x60);
-        f34 = mem ? ((ElemB_BEE *)mem)->func_001D5E90() : 0;
-        f34->func_001D5FA0((void *)v0, &D_00278678, 0x1e, 0);
-        f34->SetXY4E(320.0f, 40.0f);
-        if (f34->f48 != 0xaaaaaaaa) {
-            f34->f48 = (f34->f48 & 0xffaaaaaa) | 0x00aaaaaa;
-            f34->f4E |= 8;
-        }
-        if (f34->f44 != D_0028F5E0) {
-            f34->f44 = D_0028F5E0;
-            f34->f4E |= 6;
-        }
+        int *r = ((LookupBEE *)D_002A8490->p2EC)->func_0018C160(&D_00278678);
+        v0 = r ? *r : 0;
     }
     {
-        int i;
-        for (i = 0; i < 6; i++) {
+        int *r = ((LookupBEE *)D_002A8490->p2EC)->func_0018C160(&D_00278690);
+        v1 = r ? *r : 0;
+    }
+    {
+        int *r = ((LookupBEE *)D_002A8490->p2EC)->func_0018C160(&D_002786A0);
+        v2 = r ? *r : 0;
+    }
+    mem = func_001E8A44(0x64);
+    f24 = mem ? ((ElemA_BEE *)mem)->func_001D5760() : 0;
+    f24->func_001D5810(D_00278658, 0.0f, 0.0f, 0.0f);
+    { ElemA_BEE *e = f24; float left = e->f4C * 127.0f; e->f58 |= 4; e->f3C = left; e->f40 = e->f4C * 0.5f; e->f44 = e->f50 * -1.0f; e->f48 = e->f50 * 0.5f; }
+    { ElemA_BEE *e = f24; if (*(int *)&e->f28 != 0x44200000) { *(int *)&e->f28 = 0x44200000; e->f58 |= 1; } }
+    { ElemA_BEE *e = f24; if (*(int *)&e->f2C != 0x42480000) { *(int *)&e->f2C = 0x42480000; e->f58 |= 1; } }
+    mem = func_001E8A44(0x64);
+    f28 = mem ? ((ElemA_BEE *)mem)->func_001D5760() : 0;
+    f28->func_001D5810(D_00278658, 0.0f, 398.0f, 0.0f);
+    { ElemA_BEE *e = f28; float left = e->f4C * 127.0f; e->f58 |= 4; e->f3C = left; e->f40 = e->f4C * 0.5f; e->f44 = e->f50 * -1.0f; e->f48 = e->f50 * 0.5f; }
+    { ElemA_BEE *e = f28; if (*(int *)&e->f28 != 0x44200000) { *(int *)&e->f28 = 0x44200000; e->f58 |= 1; } }
+    { ElemA_BEE *e = f28; if (*(int *)&e->f2C != 0x42480000) { *(int *)&e->f2C = 0x42480000; e->f58 |= 1; } }
+    mem = func_001E8A44(0x64);
+    f2C = mem ? ((ElemA_BEE *)mem)->func_001D5760() : 0;
+    f2C->func_001D5810(D_00278658, 0.0f, 50.0f, 0.0f);
+    { ElemA_BEE *e = f2C; if (*(int *)&e->f28 != 0x44200000) { *(int *)&e->f28 = 0x44200000; e->f58 |= 1; } }
+    { ElemA_BEE *e = f2C;
+        e->f3C = 0.0f;
+    e->f40 = 5.0f;
+    e->f44 = 0.0f;
+    e->f48 = 1.0f;
+    e->f58 |= 4;
+    }
+    mem = func_001E8A44(0x64);
+    f30 = mem ? ((ElemA_BEE *)mem)->func_001D5760() : 0;
+    f30->func_001D5810(D_00278658, 0.0f, 366.0f, 0.0f);
+    { ElemA_BEE *e = f30; if (*(int *)&e->f28 != 0x44200000) { *(int *)&e->f28 = 0x44200000; e->f58 |= 1; } }
+    { ElemA_BEE *e = f30;
+        e->f3C = 0.0f;
+    e->f40 = 5.0f;
+    e->f44 = 0.99000001f;
+    e->f48 = 0.0f;
+    e->f58 |= 4;
+    }
+    mem = func_001E8A44(0x60);
+    f34 = mem ? ((ElemB_BEE *)mem)->func_001D5E90() : 0;
+    f34->func_001D5FA0((void *)v0, &D_00278678, 0x1e, 0);
+    { ElemB_BEE *e = f34; if (*(int *)&e->x != 0x43a00000 || *(int *)&e->y != 0x42200000) { *(int *)&e->x = 0x43a00000; *(int *)&e->y = 0x42200000; e->f4E |= 6; } }
+    { ElemB_BEE *e = f34;
+    if (e->f48 != 0xaaaaaaaa) {
+        e->f4E |= 8;
+        e->f48 = (e->f48 & 0xffaaaaaa) | 0x00aaaaaa;
+    }
+    }
+    { ElemB_BEE *e = f34;
+    if (e->f44 != D_0028F5E0) {
+        e->f44 = D_0028F5E0;
+        e->f4E |= 6;
+    }
+    }
+    {
+        ElemB_BEE **pp = a38;
+        for (v0 = 6; v0 != 0; v0--) {
             mem = func_001E8A44(0x60);
-            a38[i] = mem ? ((ElemB_BEE *)mem)->func_001D5E90() : 0;
-            a38[i]->func_001D5FA0((void *)v1, &D_00278690, 0x1e, 0);
-            a38[i]->SetXY4E(530.0f, 393.0f);
-            if (a38[i]->f48 != 0xffcccccc) {
-                a38[i]->f48 = (a38[i]->f48 & 0xffcccccc) | 0x00cccccc;
-                a38[i]->f4E |= 8;
-            }
-            if (a38[i]->f44 != D_0028F5DC) {
-                a38[i]->f44 = D_0028F5DC;
-                a38[i]->f4E |= 6;
-            }
+            *pp = mem ? ((ElemB_BEE *)mem)->func_001D5E90() : 0;
+            (*pp)->func_001D5FA0((void *)v1, &D_00278690, 0x1e, 0);
+            (*pp)->SetXY4E(530.0f, 393.0f);
+            { ElemB_BEE *e = *pp;
+              unsigned int c = e->f48;
+    if (c != 0xffcccccc) {
+                e->f4E |= 8;
+                e->f48 = (c & 0xffcccccc) | 0x00cccccc;
+            } }
+            { ElemB_BEE *e = *pp;
+            if (e->f44 != D_0028F5DC) {
+                e->f44 = D_0028F5DC;
+                e->f4E |= 6;
+            } }
+            pp++;
         }
     }
     func_001ADCC0(D_002A60B0, 0x104, D_00275678, D_002A5348, D_002A5FA8);
     mem = func_001E8A44(0x64);
     a50[0] = mem ? ((ElemA_BEE *)mem)->func_001D5760() : 0;
     a50[0]->func_001D5810(D_00278648, 0.0f, 0.0f, 0.0f);
-    a50[0]->SetXY58(491.0f, 388.0f);
+    { ElemA_BEE *e = a50[0]; if (*(int *)&e->x != 0x43f58000 || *(int *)&e->y != 0x43c20000) { *(int *)&e->x = 0x43f58000; *(int *)&e->y = 0x43c20000; e->f58 |= 1; } }
     mem = func_001E8A44(0x64);
     a68[0] = mem ? ((ElemA_BEE *)mem)->func_001D5760() : 0;
     a68[0]->func_001D5810(D_00278624, 0.0f, 0.0f, 0.0f);
-    a68[0]->SetXY58(491.0f, 388.0f);
+    { ElemA_BEE *e = a68[0]; if (*(int *)&e->x != 0x43f58000 || *(int *)&e->y != 0x43c20000) { *(int *)&e->x = 0x43f58000; *(int *)&e->y = 0x43c20000; e->f58 |= 1; } }
     mem = func_001E8A44(0x64);
     a50[1] = mem ? ((ElemA_BEE *)mem)->func_001D5760() : 0;
     a50[1]->func_001D5810(D_00278638, 0.0f, 0.0f, 0.0f);
-    a50[1]->SetXY58(491.0f, 388.0f);
+    { ElemA_BEE *e = a50[1]; if (*(int *)&e->x != 0x43f58000 || *(int *)&e->y != 0x43c20000) { *(int *)&e->x = 0x43f58000; *(int *)&e->y = 0x43c20000; e->f58 |= 1; } }
     mem = func_001E8A44(0x64);
     a68[1] = mem ? ((ElemA_BEE *)mem)->func_001D5760() : 0;
     a68[1]->func_001D5810(D_00278608, 0.0f, 0.0f, 0.0f);
-    a68[1]->SetXY58(491.0f, 388.0f);
+    { ElemA_BEE *e = a68[1]; if (*(int *)&e->x != 0x43f58000 || *(int *)&e->y != 0x43c20000) { *(int *)&e->x = 0x43f58000; *(int *)&e->y = 0x43c20000; e->f58 |= 1; } }
     mem = func_001E8A44(0x64);
     a50[2] = mem ? ((ElemA_BEE *)mem)->func_001D5760() : 0;
     a50[2]->func_001D5810(D_00279008, 0.0f, 0.0f, 0.0f);
-    a50[2]->SetXY58(491.0f, 388.0f);
+    { ElemA_BEE *e = a50[2]; if (*(int *)&e->x != 0x43f58000 || *(int *)&e->y != 0x43c20000) { *(int *)&e->x = 0x43f58000; *(int *)&e->y = 0x43c20000; e->f58 |= 1; } }
     mem = func_001E8A44(0x64);
     a68[2] = mem ? ((ElemA_BEE *)mem)->func_001D5760() : 0;
     a68[2]->func_001D5810(D_00278FF0, 0.0f, 0.0f, 0.0f);
-    a68[2]->SetXY58(491.0f, 388.0f);
+    { ElemA_BEE *e = a68[2]; if (*(int *)&e->x != 0x43f58000 || *(int *)&e->y != 0x43c20000) { *(int *)&e->x = 0x43f58000; *(int *)&e->y = 0x43c20000; e->f58 |= 1; } }
     mem = func_001E8A44(0x64);
     a50[3] = mem ? ((ElemA_BEE *)mem)->func_001D5760() : 0;
     a50[3]->func_001D5810(D_00279C28, 0.0f, 0.0f, 0.0f);
-    a50[3]->SetXY58(491.0f, 388.0f);
+    { ElemA_BEE *e = a50[3]; if (*(int *)&e->x != 0x43f58000 || *(int *)&e->y != 0x43c20000) { *(int *)&e->x = 0x43f58000; *(int *)&e->y = 0x43c20000; e->f58 |= 1; } }
     mem = func_001E8A44(0x64);
     a68[3] = mem ? ((ElemA_BEE *)mem)->func_001D5760() : 0;
     a68[3]->func_001D5810(D_0027DF38, 0.0f, 0.0f, 0.0f);
-    a68[3]->SetXY58(491.0f, 388.0f);
+    { ElemA_BEE *e = a68[3]; if (*(int *)&e->x != 0x43f58000 || *(int *)&e->y != 0x43c20000) { *(int *)&e->x = 0x43f58000; *(int *)&e->y = 0x43c20000; e->f58 |= 1; } }
     {
         int k = 0;
         do { D_002A60B0[k] = D_002A63C8[k]; } while (D_002A63C8[k++] != 0);
@@ -295,46 +303,56 @@ C_BEE30 *C_BEE30::func_000BEE30(void)
     mem = func_001E8A44(0x64);
     a50[4] = mem ? ((ElemA_BEE *)mem)->func_001D5760() : 0;
     a50[4]->func_001D5810(D_00278C0C, 0.0f, 0.0f, 0.0f);
-    a50[4]->SetXY58(491.0f, 388.0f);
-    a50[4]->SetF24();
+    { ElemA_BEE *e = a50[4]; if (*(int *)&e->x != 0x43f58000 || *(int *)&e->y != 0x43c20000) { *(int *)&e->x = 0x43f58000; *(int *)&e->y = 0x43c20000; e->f58 |= 1; } }
+    { ElemA_BEE *e = a50[4]; if (*(int *)&e->f24 != 0x3f266666) { *(int *)&e->f24 = 0x3f266666; if (e->f54 != 0) { *(int *)&e->f24 = 0x3ea66666; } e->f58 |= 1; } }
     mem = func_001E8A44(0x64);
     a68[4] = mem ? ((ElemA_BEE *)mem)->func_001D5760() : 0;
     a68[4]->func_001D5810(D_00278C0C, 0.0f, 0.0f, 0.0f);
-    a68[4]->SetXY58(491.0f, 388.0f);
-    a68[4]->SetF24();
+    { ElemA_BEE *e = a68[4]; if (*(int *)&e->x != 0x43f58000 || *(int *)&e->y != 0x43c20000) { *(int *)&e->x = 0x43f58000; *(int *)&e->y = 0x43c20000; e->f58 |= 1; } }
+    { ElemA_BEE *e = a68[4]; if (*(int *)&e->f24 != 0x3f266666) { *(int *)&e->f24 = 0x3f266666; if (e->f54 != 0) { *(int *)&e->f24 = 0x3ea66666; } e->f58 |= 1; } }
     mem = func_001E8A44(0x64);
     a50[5] = mem ? ((ElemA_BEE *)mem)->func_001D5760() : 0;
     a50[5]->func_001D5810(D_00278BFC, 0.0f, 0.0f, 0.0f);
-    a50[5]->SetXY58(491.0f, 388.0f);
-    a50[5]->SetF24();
+    { ElemA_BEE *e = a50[5]; if (*(int *)&e->x != 0x43f58000 || *(int *)&e->y != 0x43c20000) { *(int *)&e->x = 0x43f58000; *(int *)&e->y = 0x43c20000; e->f58 |= 1; } }
+    { ElemA_BEE *e = a50[5]; if (*(int *)&e->f24 != 0x3f266666) { *(int *)&e->f24 = 0x3f266666; if (e->f54 != 0) { *(int *)&e->f24 = 0x3ea66666; } e->f58 |= 1; } }
     mem = func_001E8A44(0x64);
     a68[5] = mem ? ((ElemA_BEE *)mem)->func_001D5760() : 0;
     a68[5]->func_001D5810(D_00278BFC, 0.0f, 0.0f, 0.0f);
-    a68[5]->SetXY58(491.0f, 388.0f);
-    a68[5]->SetF24();
+    { ElemA_BEE *e = a68[5]; if (*(int *)&e->x != 0x43f58000 || *(int *)&e->y != 0x43c20000) { *(int *)&e->x = 0x43f58000; *(int *)&e->y = 0x43c20000; e->f58 |= 1; } }
+    { ElemA_BEE *e = a68[5]; if (*(int *)&e->f24 != 0x3f266666) { *(int *)&e->f24 = 0x3f266666; if (e->f54 != 0) { *(int *)&e->f24 = 0x3ea66666; } e->f58 |= 1; } }
+    b80 = 0;
+    b84 = 0;
     mem = func_001E8A44(0x60);
     b80 = mem ? ((ElemB_BEE *)mem)->func_001D5E90() : 0;
     b80->func_001D5FA0((void *)v2, &D_002786A0, 0x1e, 0);
-    b80->SetXY4E(62.0f, 36.0f);
-    if (b80->f48 != 0xff7d692a) {
-        b80->f48 = (b80->f48 & 0xff7d692a) | 0x007d692a;
-        b80->f4E |= 8;
+    { ElemB_BEE *e = b80; if (*(int *)&e->x != 0x42780000 || *(int *)&e->y != 0x42100000) { *(int *)&e->x = 0x42780000; *(int *)&e->y = 0x42100000; e->f4E |= 6; } }
+    { ElemB_BEE *e = b80;
+    if (e->f48 != 0xff7d692a) {
+        e->f4E |= 8;
+        e->f48 = (e->f48 & 0xff7d692a) | 0x007d692a;
     }
-    if (b80->f44 != D_0028F5DC) {
-        b80->f44 = D_0028F5DC;
-        b80->f4E |= 6;
+    }
+    { ElemB_BEE *e = b80;
+    if (e->f44 != D_0028F5DC) {
+        e->f44 = D_0028F5DC;
+        e->f4E |= 6;
+    }
     }
     mem = func_001E8A44(0x60);
     b84 = mem ? ((ElemB_BEE *)mem)->func_001D5E90() : 0;
     b84->func_001D5FA0((void *)v2, &D_002786A0, 0x1e, 0);
-    b84->SetXY4E(579.0f, 36.0f);
-    if (b84->f48 != 0xff7d692a) {
-        b84->f48 = (b84->f48 & 0xff7d692a) | 0x007d692a;
-        b84->f4E |= 8;
+    { ElemB_BEE *e = b84; if (*(int *)&e->x != 0x4410c000 || *(int *)&e->y != 0x42100000) { *(int *)&e->x = 0x4410c000; *(int *)&e->y = 0x42100000; e->f4E |= 6; } }
+    { ElemB_BEE *e = b84;
+    if (e->f48 != 0xff7d692a) {
+        e->f4E |= 8;
+        e->f48 = (e->f48 & 0xff7d692a) | 0x007d692a;
     }
-    if (b84->f44 != D_0028F5EC) {
-        b84->f44 = D_0028F5EC;
-        b84->f4E |= 6;
+    }
+    { ElemB_BEE *e = b84;
+    if (e->f44 != D_0028F5EC) {
+        e->f44 = D_0028F5EC;
+        e->f4E |= 6;
+    }
     }
     mem = func_001E8A44(0x64);
     a88[0] = mem ? ((ElemA_BEE *)mem)->func_001D5760() : 0;
@@ -348,6 +366,7 @@ C_BEE30 *C_BEE30::func_000BEE30(void)
     mem = func_001E8A44(0x64);
     a90[1] = mem ? ((ElemA_BEE *)mem)->func_001D5760() : 0;
     a90[1]->func_001D5810(D_0027DEE8, 577.0f, 28.0f, 0.0f);
+return this;
 }
 
 void C_000BF860::func_000BF860(int idx, int x, int y, int w)
