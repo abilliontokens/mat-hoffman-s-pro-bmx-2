@@ -218,13 +218,13 @@ void C_0002D730::func_0002D730(float dt)
         f5f0->func_00025E50(dt);
     func_00027D60();
     if (f69c != 0) {
-        bool moved = false;
+        int moved = 0;
         f6fc += dt;
         if (f6fc > f700) {
             float scaled[3];
-            scaled[0] = f6dc * 10.0f;
-            scaled[1] = f6e0 * 10.0f;
-            scaled[2] = f6e4 * 10.0f;
+            scaled[0] = f6dc * D_00275AEC;
+            scaled[1] = f6e0 * D_00275AEC;
+            scaled[2] = f6e4 * D_00275AEC;
             float *velocity = &f1e0->f238;
             velocity[0] += scaled[0];
             velocity[1] += scaled[1];
