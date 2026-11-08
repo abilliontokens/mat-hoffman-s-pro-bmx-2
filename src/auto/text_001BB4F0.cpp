@@ -231,10 +231,10 @@ __declspec(align(16)) struct S_001BB680_Mat {
         ((__m128 *)m)[2] = z;
         ((__m128 *)m)[3] = z;
         _ReadWriteBarrier();
-        *(volatile int *)&m[0] = one;
-        *(volatile int *)&m[5] = one;
-        *(volatile int *)&m[10] = one;
-        *(volatile int *)&m[15] = one;
+        *(int *)&m[0] = one;
+        *(int *)&m[5] = one;
+        *(int *)&m[10] = one;
+        *(int *)&m[15] = one;
     }
 };
 
@@ -570,7 +570,13 @@ C_001BBAA0 *C_001BBAA0::func_001BB680(int a)
     self->unk2EC &= 0xdf;
     self->unk2EC &= 0xbf;
     self->unk90 = 100;
-    self->f24.Set(D_002AAE04, D_002AAE08, D_002AAE0C, D_002AAE10);
+    {
+        volatile int *q = (volatile int *)&self->f24;
+        q[0] = *(int *)&D_002AAE04;
+        q[1] = *(int *)&D_002AAE08;
+        q[2] = *(int *)&D_002AAE0C;
+        q[3] = *(int *)&D_002AAE10;
+    }
     *(volatile int *)&self->unk2E0 = 0;
     p = &m;
     p->identity();
@@ -755,7 +761,7 @@ void C_001BBAA0::func_001BBE20(int a)
             } else if (x == unkD0 || ((p0 = *(int * volatile *)&unkC0)[i] != -1 && unkD0 > p0[i])) {
                 if (unkC4[i] > D_00275544) {
                     unkCC[i] = a;
-                    (*(int * volatile *)&unkC8)[i] = ((volatile int *)unkC4)[i];
+                    ((int *)unkC8)[i] = ((volatile int *)unkC4)[i];
                 } else {
                     ((void (*)(int, void *, void *, int))unkB8[i])(a, this, unkB4[i], 1);
                 }
