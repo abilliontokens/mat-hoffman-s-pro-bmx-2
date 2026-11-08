@@ -70,6 +70,7 @@ struct C_001972B0 {
     unsigned fC8;
     char *fCC;
     void func_00196290();
+    int func_001968C0();
     C_001972B0 *func_001972B0(unsigned a, unsigned b, u8 c);
 };
 
