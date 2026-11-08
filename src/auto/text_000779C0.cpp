@@ -59,7 +59,7 @@ struct Wid_779C0 {
     float f3c, f40, f44, f48, f4c, f50;
     char pad54[4];
     unsigned char b58;
-    __forceinline void SetRGB(unsigned int rgb) { unsigned int c = color & 0xff000000; b58 |= 2; color = c | rgb; }
+    __forceinline void SetRGB(unsigned int rgb) { unsigned int c = color; b58 |= 2; color = (c & 0xff000000) | rgb; }
     __forceinline void SetAlpha(unsigned int al)
     {
         unsigned char dirty = (unsigned char)(b58 | 2);
