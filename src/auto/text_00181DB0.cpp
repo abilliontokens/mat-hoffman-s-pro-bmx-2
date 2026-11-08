@@ -67,7 +67,7 @@ struct V4_00181E10 {
     float x, y, z, w;
     V4_00181E10() {}
     V4_00181E10(float a, float b, float c) { x = a; y = b; z = c; w = 1.0f; }
-    V4_00181E10 operator-(const V4_00181E10 &o) const { return V4_00181E10(x - o.x, y - o.y, z - o.z); }
+    V4_00181E10 operator-(const V4_00181E10 &o) const { V4_00181E10 r; r.x = x - o.x; r.w = 1.0f; r.y = y - o.y; r.z = z - o.z; return r; }
 };
 
 struct S_00181E10_Cam {
@@ -464,7 +464,7 @@ void C_00182750::func_00181E10(void)
  *(int *)&threshold = f190 == 1 ? *(int *)&f184 : *(int *)&f188;
  p = f190 == 1 ? &f130 : &f150;
  temp = *p - D_002EFDB8->f4->f170;
- d = temp;
+ Copy4_00181E10((int *)&d, (const int *)&temp);
  sq=(d.z+fDC)*(d.z+fDC)+(d.y+fCC)*(d.y+fCC)+(d.x+fBC)*(d.x+fBC);
  len=AsmSqrtF(sq);
  f1B0=len;
