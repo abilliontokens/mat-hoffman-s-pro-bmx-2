@@ -194,8 +194,7 @@ struct PhysicsAnimatedBody {
 V4_170DB0 PhysicsAnimatedBody::func_00170DB0()
 {
     local = getLocal();
-    V4_170DB0 input = local;
-    world = model->func_00198040(&input);
+    world = model->func_00198040(&local);
     return world;
 }
 
@@ -336,6 +335,7 @@ void C_00171BA0::func_00171BA0(float x, float y, float z, float w)
     float len=AsmSqrtF(len2);
     float zero=0.0f;
     float t=AsmMaxF(d-len, zero);
-    *(V3_00171BA0 *)&f150 += up*t+r;
+    C_00171BA0 *self=this;
+    *(V3_00171BA0 *)&self->f150 += up*t+r;
 }
 
