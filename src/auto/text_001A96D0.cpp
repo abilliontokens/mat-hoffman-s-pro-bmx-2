@@ -4,9 +4,17 @@
 #include "asm_helpers.h"
 
 struct V4_001A96D0 {
-    float x, y, z, w;
-    V4_001A96D0() { z = 0.0f; y = 0.0f; x = 0.0f; w = 1.0f; }
+float x, y, z, w;
+V4_001A96D0() { z = 0.0f; y = 0.0f; x = 0.0f; w = 1.0f; }
 };
+inline V4_001A96D0 operator*(float s, const V4_001A96D0 &v)
+{
+    V4_001A96D0 r;
+    r.x = s * v.x;
+    r.y = s * v.y;
+    r.z = s * v.z;
+    return r;
+}
 
 struct Pivot_001A96D0 {
     char pad0[0x190];
@@ -266,33 +274,30 @@ void This_001A96D0::func_001A9990(V4_001A96D0 p, Other_001A9990 *other)
 
 void This_001A9D20::func_001A9D20(float s, V4_001A96D0 v, V4_001A96D0 q, Obj_001A9D20 *other, unsigned mask)
 {
-    float f8;
     float a, b;
-    if (f4c) {
-        if (other == 0) {
-            a = fA0;
-            b = fA4;
-        } else if (f50 == 0) {
-            a = fA8;
-            b = fAC;
-        }
-    }
+    if (f4c && (other == 0 || f50 == 0)) { a = fA8; b = fAC; }
+    else { a = fA0; b = fA4; }
+    float f8;
     if (other)
-        *(volatile float *)&f8 = f24->f210 > other->f210 ? f24->f214 * other->f210 : other->f214 * f24->f210;
+        f8 = f24->f210 > other->f210 ? f24->f214 * other->f210 : other->f214 * f24->f210;
     else
-        *(volatile float *)&f8 = 1.0f;
-    float m = s < f94 ? s : f94;
-    float d = v.y * f128 + v.x * f124 + v.z * f12c;
-    float dd = d > -f98 ? d : -f98;
-    dd = dd < f98 ? dd : f98;
-    float k = m * a - dd * b;
-    k = k > 0.0f ? k : 0.0f;
+        f8 = 1.0f;
+    float m = AsmMinF(s, f94);
+    float d = v.y * f128;
+    d = d + v.x * f124;
+    d = d + v.z * f12c;
+    float nf = -f98;
+    float dd = AsmMaxF(d, nf);
+    dd = AsmMinF(dd, f98);
+    float k = AsmMaxF(m * a - dd * b, 0.0f);
     k = k * f8;
+    unsigned hit = f24->f204 & mask;
     V4_001A96D0 w;
-    w.x = v.x * k;
-    w.y = v.y * k;
-    w.z = v.z * k;
-    if (!(f24->f204 & mask))
+    w.x = k * v.x;
+    w.y = k * v.y;
+    w.z = k * v.z;
+    w.w = 1.0f;
+    if (!hit)
         func_001A96D0(f24, w, q, fb8);
     if (other && !(f7c & other->f204)) {
         V4_001A96D0 nw;
