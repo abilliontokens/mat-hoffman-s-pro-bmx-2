@@ -2,6 +2,7 @@
 #include "common.h"
 #include <xmmintrin.h>
 #include <math.h>
+#include "asm_helpers.h"
 
 struct Vec4 {
     f32 x;
@@ -91,7 +92,7 @@ static __forceinline void Xform_0014BA80(Vec4 *out, const M44_0014BA80 *mat, con
     _mm_storeu_ps(&out->x, lo);
     out->w = 1.0f;
 }
-static inline float Abs_0014BA80(float f)
+static __forceinline float Abs_0014BA80(float f)
 {
     int i = *(int *)&f & 0x7fffffff;
     return *(float *)&i;
@@ -152,26 +153,24 @@ int DynamicRayCollisionObject::func_0014B260(char *obj)
     int hit = 0;
     char *g;
     __declspec(align(16)) f32 m[16];
-    int cnt[2];
+    int cnt[5];
     int i;
-    char *t = (char *)this;
+    f32 dx, dy, dz, r;
     if (obj == 0 || !(obj[0x21] & 1))
         return 0;
-    func_00133D80(*(int *)(t + 0x54));
+    func_00133D80(*(int *)((char *)this + 0x54));
     g = D_002B92EC;
-    memset(*(void **)(g + 0x88), 0, unkA8 * 4);
-    {
-        f32 dx = *(f32 *)(t + 0xd8) - *(f32 *)(obj + 0x28);
-        f32 dy = *(f32 *)(t + 0xdc) - *(f32 *)(obj + 0x2c);
-        f32 dz = *(f32 *)(t + 0xe0) - *(f32 *)(obj + 0x30);
-        f32 r = *(f32 *)(t + 0xe8) + *(f32 *)(obj + 0x48);
-        if (dx * dx + dy * dy + dz * dz <= r * r)
-            return 0;
-    }
+    memset(*(void **)(g + 0x88), 0, *(int *)((char *)this + 0xa8) * 4);
+    dx = *(f32 *)((char *)this + 0xd8) - *(f32 *)(obj + 0x28);
+    dy = *(f32 *)((char *)this + 0xdc) - *(f32 *)(obj + 0x2c);
+    dz = *(f32 *)((char *)this + 0xe0) - *(f32 *)(obj + 0x30);
+    r = *(f32 *)((char *)this + 0xe8) + *(f32 *)(obj + 0x48);
+    if (!(dz * dz + (dx * dx + dy * dy) < r * r))
+        return 0;
     *(f32 *)(g + 0x94) = 1.0f;
     {
         f32 *p = *(f32 **)(g + 0x8c);
-        for (i = 0; i < unkA8; i++)
+        for (i = 0; i < *(int *)((char *)this + 0xa8); i++)
             *p++ = -1.0f;
     }
     *(int *)(g + 0x80) = 0;
@@ -180,19 +179,19 @@ int DynamicRayCollisionObject::func_0014B260(char *obj)
         char *src = obj + 0xb0;
         ((Mtx44 *)m)->func_000264C0((Mtx44 *)src);
         func_0011AC30(m, m);
-        for (i = 0; i < unkA8; i++) {
-            func_0001C680((Vec4 *)(*(char **)(t + 0xb8) + i * 16), *(Vec4 *)((char *)unkC4 + i * 16), (float *)m);
-            func_00030AC0(*(char **)(t + 0xb4) + i * 16, (char *)unkC0 + i * 16, m);
+        for (i = 0; i < *(int *)((char *)this + 0xa8); i++) {
+            func_0001C680((Vec4 *)(*(char **)((char *)this + 0xb8) + i * 16), *(Vec4 *)((char *)*(char **)((char *)this + 0xc4) + i * 16), (float *)m);
+            func_00030AC0(*(char **)((char *)this + 0xb4) + i * 16, (char *)*(char **)((char *)this + 0xc0) + i * 16, m);
         }
-        func_00030AC0(t + 0xc8, t + 0xd8, m);
-        cnt[0] = *(int *)(obj + 0x1c8);
-        cnt[1] = *(int *)(obj + 0x1c4);
-        func_00126740(this, 0, cnt, obj + 0x1b0, g, 1);
+        func_00030AC0((char *)this + 0xc8, (char *)this + 0xd8, m);
+        cnt[0] = *(int *)(obj + 0x1c4);
+        cnt[1] = *(int *)(obj + 0x1c8);
+        func_00126740((void *)this, 0, cnt, obj + 0x1b0, g, 1);
         {
             int *f = *(int **)(g + 0x88);
             Vec4 *a = *(Vec4 **)(g + 0x78);
             Vec4 *b = *(Vec4 **)(g + 0x74);
-            for (i = 0; i < unkA8; i++, f++, a++, b++) {
+            for (i = 0; i < *(int *)((char *)this + 0xa8); i++, f++, a++, b++) {
                 if (*f) {
                     hit = 1;
                     func_00030AC0(a, a, src);
@@ -212,35 +211,38 @@ int DynamicRayCollisionObject::func_0014B260(char *obj)
         for (int s = 0; s < nsub; s++) {
             char *sub = *(char **)(*(char **)(obj + 0x1a0) + s * 4);
             char *src = sub + 0xb0;
-            *(Mtx44 *)m = *(Mtx44 *)src;
+            AsmCopyMatrix(m, src);
             func_0011AC30(m, m);
-            for (i = 0; i < unkA8; i++) {
-                func_0001C680((Vec4 *)(*(char **)(t + 0xb8) + i * 16), *(Vec4 *)((char *)unkC4 + i * 16), (float *)m);
-                Xform_0014BA80((Vec4 *)(*(char **)(t + 0xb4) + i * 16), (M44_0014BA80 *)m, (float *)((char *)unkC0 + i * 16));
+            for (i = 0; i < *(int *)((char *)this + 0xa8); i++) {
+                func_0001C680((Vec4 *)(*(char **)((char *)this + 0xb8) + i * 16), *(Vec4 *)((char *)*(char **)((char *)this + 0xc4) + i * 16), (float *)m);
+                AsmTransformPoint((float *)(*(char **)((char *)this + 0xb4) + i * 16), (float *)((char *)*(char **)((char *)this + 0xc0) + i * 16), (float *)m);
             }
-            cnt[0] = *(int *)(sub + 0x1c8);
-            cnt[1] = *(int *)(sub + 0x1c4);
-            func_00126740(this, 0, cnt, sub + 0x1b0, g, 1);
+            cnt[0] = *(int *)(sub + 0x1c4);
+            cnt[1] = *(int *)(sub + 0x1c8);
+            func_00126740((void *)this, 0, cnt, sub + 0x1b0, g, 1);
             {
                 int *f = *(int **)(g + 0x88);
                 Vec4 *a = *(Vec4 **)(g + 0x78);
                 Vec4 *b = *(Vec4 **)(g + 0x74);
-                for (i = 0; i < unkA8; i++, f++, a++, b++) {
+                for (i = 0; i < *(int *)((char *)this + 0xa8); i++, f++, a++, b++) {
                     if (*f) {
                         hit = 1;
-                        Xform_0014BA80(a, (M44_0014BA80 *)src, (float *)a);
+                        AsmTransformPoint((float *)a, (float *)a, (float *)src);
                         func_0001C680(b, *b, (float *)src);
                     }
                 }
             }
             if (hit) {
-                Xform_0014BA80((Vec4 *)(g + 0x30), (M44_0014BA80 *)src, (float *)(g + 0x30));
+                AsmTransformPoint((float *)(g + 0x30), (float *)(g + 0x30), (float *)src);
                 func_0001C680((Vec4 *)(g + 0x20), *(Vec4 *)(g + 0x20), (float *)src);
                 func_0001C680((Vec4 *)(g + 0x40), *(Vec4 *)(g + 0x40), (float *)src);
             }
         }
         break;
     }
+    case 2:
+    case 3:
+        return hit;
     }
     return hit;
 }
@@ -283,7 +285,6 @@ void DynamicRayCollisionObject::func_0014BA40(int param_1)
 #pragma auto_inline(on)
 void DynamicRayCollisionObject::func_0014BA80(Vec4 *centre, float *extent)
 {
-    DynamicRayCollisionObject * volatile self = this;
     V4_0014BA80 axes[3];
     V4_0014BA80 c;
     V4_0014BA80 a;
@@ -291,41 +292,33 @@ void DynamicRayCollisionObject::func_0014BA80(Vec4 *centre, float *extent)
     V4_0014BA80 mn(3.4028235e+38f, 3.4028235e+38f, 3.4028235e+38f, 1.0f);
     V4_0014BA80 mx(-3.4028235e+38f, -3.4028235e+38f, -3.4028235e+38f, 1.0f);
     int i;
-    for (i = 0; i < self->unkA8; i++) {
-        S_0014BA80_Node *n = self->fAC[i].a;
+    for (i = 0; i < unkA8; i++) {
+        S_0014BA80_Node *n = fAC[i].a;
         if (n != 0) {
-            XformV4_0014BA80(&a, &n->mat, &self->fB0[i * 2].x);
+            AsmTransformPoint((float *)&a, &fB0[i * 2].x, (float *)&n->mat);
         } else {
-            a = *(V4_0014BA80 *)&self->fB0[i * 2];
+            a = *(V4_0014BA80 *)&fB0[i * 2];
         }
-        n = self->fAC[i].b;
+        n = fAC[i].b;
         if (n != 0) {
-            XformV4_0014BA80(&b, &n->mat, &self->fB0[i * 2 + 1].x);
+            AsmTransformPoint((float *)&b, &fB0[i * 2 + 1].x, (float *)&n->mat);
         } else {
-            b = *(V4_0014BA80 *)&self->fB0[i * 2 + 1];
+            b = *(V4_0014BA80 *)&fB0[i * 2 + 1];
         }
         mn = func_0011EEE0(func_0011EEE0(mn, b), a);
         mx = func_0014AA70(func_0014AA70(mx, b), a);
     }
     V4_0014BA80 h((mx.x - mn.x) * D_002755E8, (mx.y - mn.y) * D_002755E8, (mx.z - mn.z) * D_002755E8, 1.0f);
     c = V4_0014BA80((mx.x + mn.x) * D_002755E8, (mx.y + mn.y) * D_002755E8, (mx.z + mn.z) * D_002755E8, 1.0f);
-    self->f28 = *(Vec4 *)&c;
-    float rad;
-    _mm_store_ss(&rad, _mm_sqrt_ss(_mm_set_ss(h.x * h.x + h.y * h.y + h.z * h.z)));
-    self->f48 = rad;
+    f28 = *(Vec4 *)&c;
+    float rad = AsmSqrtF(h.x * h.x + h.y * h.y + h.z * h.z);
+    f48 = rad;
     M44_0014BA80 m;
-    _mm_store_ps((float *)&m.m[0], _mm_setzero_ps());
-    _mm_store_ps((float *)&m.m[1], _mm_setzero_ps());
-    _mm_store_ps((float *)&m.m[2], _mm_setzero_ps());
-    _mm_store_ps((float *)&m.m[3], _mm_setzero_ps());
-    ((float *)&m)[0] = 1.0f;
-    ((float *)&m)[5] = 1.0f;
-    ((float *)&m)[10] = 1.0f;
-    ((float *)&m)[15] = 1.0f;
+    AsmIdentityMatrix(&m);
     axes[0] = V4_0014BA80(h.x, 0.0f, 0.0f, 1.0f);
     axes[1] = V4_0014BA80(0.0f, h.y, 0.0f, 1.0f);
     axes[2] = V4_0014BA80(0.0f, 0.0f, h.z, 1.0f);
-    XformV4_0014BA80((V4_0014BA80 *)centre, &m, &c.x);
+    AsmTransformPoint((float *)centre, &c.x, (float *)&m);
     func_0001C680(&axes[0], axes[0], (float *)&m);
     func_0001C680(&axes[1], axes[1], (float *)&m);
     func_0001C680(&axes[2], axes[2], (float *)&m);
