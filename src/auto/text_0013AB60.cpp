@@ -572,32 +572,33 @@ int __stdcall func_0013B4C0(S_BufSet * volatile set, volatile int n, volatile in
 }
 
 extern "C" int func_001DC8A0(void *, void *, int);
+/* func_0013B530's four __stdcall stack arguments as one 16-byte aggregate */
+struct S_0013B530_Args {
+    int *s;
+    char *dst;
+    int size;
+    unsigned int off;
+};
 int __stdcall func_0013B530(int *s, char *dst, int size, unsigned int off)
 {
-    struct A4 { int *s; char *dst; int size; unsigned int off; };
-    A4 *A = (A4 *)&s;
     char buf[0x6000];
-    volatile int res;
-    volatile int a;
-    int idx = A->off / (unsigned)A->s[8];
+    int idx = off / (unsigned)s[8];
     int i;
     for (i = 0; i < idx; i++)
-        A->off -= A->s[8 + i];
-    if (A->size + A->off > (unsigned)A->s[8 + idx]) {
+        off -= s[8 + i];
+    if (size + off > (unsigned)s[8 + idx]) {
         char *p = buf;
-        for (i = idx; A->size > 0; i++) {
-            a = A->s[8 + i] - A->off;
-            int x = a;
-            res = x > A->size ? A->size : x;
-            int n = res;
-            memcpy(p, (char *)A->s[i] + A->off, n);
-            A->size -= n;
+        for (i = idx; size > 0; i++) {
+            int a = s[8 + i] - off;
+            int n = AsmMinI(a, size);
+            memcpy(p, (char *)s[i] + off, n);
+            size -= n;
             p += n;
-            A->off = 0;
+            off = 0;
         }
-        return func_001DC8A0(A->dst, buf, 0x6000);
+        return func_001DC8A0(dst, buf, 0x6000);
     }
-    return func_001DC8A0(A->dst, (char *)A->s[idx] + A->off, 0x6000);
+    return func_001DC8A0(dst, (char *)s[idx] + off, 0x6000);
 }
 
 void __stdcall func_0013B660(S_BufSet *set, void *dst, unsigned int off)
