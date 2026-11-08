@@ -11,6 +11,9 @@ extern char D_0027A054;
 extern char D_002786B0;
 extern char D_00278668, D_0027866C, D_00278670, D_00278674;
 extern char D_002A60B4, D_002A60B8, D_002A60BC, D_002A60C0;
+extern char _D_0027A048[];
+extern char _D_0027A03C[];
+extern char _D_0027A030[];
 void *func_001E8A44(int size);
 struct W_0008DB70 {
     char pad0[0x28];
