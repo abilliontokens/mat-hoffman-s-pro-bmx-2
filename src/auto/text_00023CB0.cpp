@@ -149,7 +149,7 @@ extern float D_0027628C, D_00276288, D_00276284, D_00276280;
 extern float D_002A0F94, D_002A0F98, D_002A0F9C;
 extern int D_002B9108, D_002B9114, D_002B9118, D_002BA160;
 void _func_00011060();
-void func_00011FF0(S_00024210_Vec *p, int a, int b, void *fn);
+void __stdcall func_00011FF0(void *p, int a, int b, void *fn);
 int func_00134DE0(S_00024210_Vec *a, S_00024210_Vec *b, S_00024210_Vec *c, int d, int e, int f, int g, int h, int i);
 S_00024210_Vec *func_0001E9E0(S_00024210_Vec *a, S_00024210_Vec *b);
 float func_00011170(S_00024210_Vec *a);
