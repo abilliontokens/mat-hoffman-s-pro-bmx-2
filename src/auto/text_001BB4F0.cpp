@@ -2,6 +2,7 @@
 #include "common.h"
 #include "ghidra.h"
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 struct C_001BC020 {
     undefined4 func_001BC020(byte param_1);
 };
@@ -221,7 +222,7 @@ extern "C" void _ReadWriteBarrier(void);
 #pragma intrinsic(_ReadWriteBarrier)
 __declspec(align(16)) struct S_001BB680_Mat {
     float m[16];
-    __forceinline void identity(void)
+    __forceinline void identity(int one = 0x3f800000)
     {
         __m128 z = _mm_setzero_ps();
 
@@ -230,10 +231,10 @@ __declspec(align(16)) struct S_001BB680_Mat {
         ((__m128 *)m)[2] = z;
         ((__m128 *)m)[3] = z;
         _ReadWriteBarrier();
-        *(volatile float *)&m[0] = 1.0f;
-        *(volatile float *)&m[5] = 1.0f;
-        *(volatile float *)&m[10] = 1.0f;
-        *(volatile float *)&m[15] = 1.0f;
+        *(volatile int *)&m[0] = one;
+        *(volatile int *)&m[5] = one;
+        *(volatile int *)&m[10] = one;
+        *(volatile int *)&m[15] = one;
     }
 };
 
@@ -661,25 +662,22 @@ void C_001BBAA0::func_001BBAA0(void *a, void *b)
     }
 }
 
+void func_000263B0(void *out, void *a, void *b);
 void C_001BBAE0::func_001BBAE0(int a)
 {
-    volatile int slot[3];
-
-    slot[0] = (int)this;
     if (unk2DC != 0) {
-        S_001BBAE0_Mat t;
-        S_001BBAE0_Mat r;
+        S_001BBAE0_Mat m[3];
 
-        unk2DC->func_00197EA0(&t);
-        r = func_000263B0((char *)slot[0] + 0x50, &t);
-        slot[1] = (int)&r;
-        slot[2] = (int)&t;
-        CopyMat_001BBAE0((S_001BBAE0_Mat *)slot[1], (S_001BBAE0_Mat *)slot[2]);
-        ((C_001BBAE0 *)slot[0])->unk2E4->v31(&t);
-        ((C_001BBAE0 *)slot[0])->unk2E4->func_00133140(a, 2);
+        unk2DC->func_00197EA0(&m[0]);
+        func_000263B0(&m[2], (char *)this + 0x50, &m[0]);
+        m[1] = m[2];
+        S_001BBAE0_Mat *st = &m[1];
+        AsmCopyMatrix(&m[0], st);
+        unk2E4->v31(&m[0]);
+        unk2E4->func_00133140(a, 2);
     } else {
         unk2E4->v31((S_001BBAE0_Mat *)((char *)this + 0x50));
-        ((C_001BBAE0 *)slot[0])->unk2E4->func_00133140(a, 1);
+        unk2E4->func_00133140(a, 1);
     }
 }
 
@@ -757,8 +755,7 @@ void C_001BBAA0::func_001BBE20(int a)
             } else if (x == unkD0 || ((p0 = *(int * volatile *)&unkC0)[i] != -1 && unkD0 > p0[i])) {
                 if (unkC4[i] > D_00275544) {
                     unkCC[i] = a;
-                    int value = ((volatile int *)(*(int * volatile *)&unkC4))[i];
-                    ((int *)unkC8)[i] = value;
+                    (*(int * volatile *)&unkC8)[i] = ((volatile int *)unkC4)[i];
                 } else {
                     ((void (*)(int, void *, void *, int))unkB8[i])(a, this, unkB4[i], 1);
                 }
