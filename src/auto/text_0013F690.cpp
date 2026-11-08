@@ -2,6 +2,7 @@
 #include "common.h"
 #include "ghidra.h"
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 struct C_0013C8A0 {
     void func_0013C8A0(int key, void *out, int size, int flag);
 };
@@ -736,44 +737,20 @@ void C_0013FCF0::func_0013FCF0()
 C_001401C0 *C_001401C0::func_0013FD50(S_001401C0_Info *info)
 {
  S_001401C0_Mat id,m;
- S_001401C0_Mat *volatile src;
- S_001401C0_Mat *volatile dst;
- C_001401C0 *volatile self=this;
- vtbl=&D_00284E94; self->vtbl=&D_00284F7C;
- unsigned int *p=(unsigned int *)self->f190;
+ *(void * volatile *)&vtbl=&D_00284E94;
+ vtbl=&D_00284F7C;
+ unsigned int *p=(unsigned int *)this->f190;
  p[2]=0;p[1]=0;p[0]=0;p[3]=0x3f800000;
- src=&id;
- __m128 z=_mm_setzero_ps();
- S_001401C0_Mat *q=src;
- *(__m128 *)(q->m)=z;*(__m128 *)(q->m+4)=z;*(__m128 *)(q->m+8)=z;*(__m128 *)(q->m+12)=z;
- q->m[0]=1.0f;q->m[5]=1.0f;q->m[10]=1.0f;q->m[15]=1.0f;
+ AsmIdentityMatrix(&id);
  m=id;
- self->f1A0=info;
-dst=(S_001401C0_Mat *)(self->f10);src=&m;
- {S_001401C0_Mat *s=src,*d=dst;
- __m128 a=*(__m128 *)(s->m),b=*(__m128 *)(s->m+4),c=*(__m128 *)(s->m+8),e=*(__m128 *)(s->m+12);
- *(__m128 *)(d->m)=a;*(__m128 *)(d->m+4)=b;*(__m128 *)(d->m+8)=c;*(__m128 *)(d->m+12)=e;}
-dst=(S_001401C0_Mat *)(self->f50);src=&m;
- {S_001401C0_Mat *s=src,*d=dst;
- __m128 a=*(__m128 *)(s->m),b=*(__m128 *)(s->m+4),c=*(__m128 *)(s->m+8),e=*(__m128 *)(s->m+12);
- *(__m128 *)(d->m)=a;*(__m128 *)(d->m+4)=b;*(__m128 *)(d->m+8)=c;*(__m128 *)(d->m+12)=e;}
-dst=(S_001401C0_Mat *)(self->f90);src=&m;
- {S_001401C0_Mat *s=src,*d=dst;
- __m128 a=*(__m128 *)(s->m),b=*(__m128 *)(s->m+4),c=*(__m128 *)(s->m+8),e=*(__m128 *)(s->m+12);
- *(__m128 *)(d->m)=a;*(__m128 *)(d->m+4)=b;*(__m128 *)(d->m+8)=c;*(__m128 *)(d->m+12)=e;}
-dst=(S_001401C0_Mat *)(self->f90 + 0x40);src=&m;
- {S_001401C0_Mat *s=src,*d=dst;
- __m128 a=*(__m128 *)(s->m),b=*(__m128 *)(s->m+4),c=*(__m128 *)(s->m+8),e=*(__m128 *)(s->m+12);
- *(__m128 *)(d->m)=a;*(__m128 *)(d->m+4)=b;*(__m128 *)(d->m+8)=c;*(__m128 *)(d->m+12)=e;}
-dst=(S_001401C0_Mat *)(self->f150);src=&m;
- {S_001401C0_Mat *s=src,*d=dst;
- __m128 a=*(__m128 *)(s->m),b=*(__m128 *)(s->m+4),c=*(__m128 *)(s->m+8),e=*(__m128 *)(s->m+12);
- *(__m128 *)(d->m)=a;*(__m128 *)(d->m+4)=b;*(__m128 *)(d->m+8)=c;*(__m128 *)(d->m+12)=e;}
-dst=(S_001401C0_Mat *)(self->f110);src=&m;
- {S_001401C0_Mat *s=src,*d=dst;
- __m128 a=*(__m128 *)(s->m),b=*(__m128 *)(s->m+4),c=*(__m128 *)(s->m+8),e=*(__m128 *)(s->m+12);
- *(__m128 *)(d->m)=a;*(__m128 *)(d->m+4)=b;*(__m128 *)(d->m+8)=c;*(__m128 *)(d->m+12)=e;}
-return self;
+ f1A0=info;
+ {S_001401C0_Mat *d=(S_001401C0_Mat *)this->f10; AsmCopyMatrix(d,&m);}
+ {S_001401C0_Mat *d=(S_001401C0_Mat *)this->f50; AsmCopyMatrix(d,&m);}
+ {S_001401C0_Mat *d=(S_001401C0_Mat *)this->f90; AsmCopyMatrix(d,&m);}
+ {S_001401C0_Mat *d=(S_001401C0_Mat *)(this->f90 + 0x40); AsmCopyMatrix(d,&m);}
+ {S_001401C0_Mat *d=(S_001401C0_Mat *)this->f150; AsmCopyMatrix(d,&m);}
+ {S_001401C0_Mat *d=(S_001401C0_Mat *)this->f110; AsmCopyMatrix(d,&m);}
+ return this;
 }
 
 void C_0013FF50::func_0013FF50(int a0)
@@ -781,13 +758,9 @@ void C_0013FF50::func_0013FF50(int a0)
     C_0013FF50 * volatile self = this;
     S_001401C0_Mat m;
     S_001401C0_Mat t;
-    S_001401C0_Mat * volatile p;
-    S_001401C0_Mat * volatile q;
 
-    p = &m;
-    p->identity();
-    p = &t;
-    p->transpose(&m);
+    AsmIdentityMatrix(&m);
+    AsmTransposeMatrix((float *)&t, (float *)&m);
     if (self->f1A0->f4C == 0) {
         func_000263B0((float *)self->f90, (float *)&m, (float *)(a0 + 0x250));
     } else {
@@ -796,13 +769,11 @@ void C_0013FF50::func_0013FF50(int a0)
     self->f190[0] = *(float *)(a0 + 0x170) - m.m[3];
     self->f190[1] = *(float *)(a0 + 0x174) - m.m[7];
     self->f190[2] = *(float *)(a0 + 0x178) - m.m[11];
-    p = &t;
-    p->xform(self->f190, self->f190);
+    AsmTransformPoint(self->f190, self->f190, (float *)&t);
     if (self->f1A0->f30 == 0) {
         func_00030AC0((float *)self->f150, (float *)self->fD0, (float *)&t);
     } else if (self->f1A0->f39 & 1) {
-        q = (S_001401C0_Mat *)self->f110;
-        q->zero();
+        AsmZeroMatrix(self->f110);
         ((float *)self->f110)[3] = self->f1A0->f50;
         ((float *)self->f110)[7] = self->f1A0->f54;
         ((float *)self->f110)[11] = self->f1A0->f58;
