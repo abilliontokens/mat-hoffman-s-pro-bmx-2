@@ -21,10 +21,10 @@ struct C_001D5760 {
     unsigned int f2C;
     char pad30[0xb];
     unsigned char f3B;
-    float f3C;
+    unsigned int f3C;
     unsigned int f40;
     unsigned int f44;
-    float f48;
+    unsigned int f48;
     char pad4C[0xc];
     unsigned char f58;
     C_001D5760 *func_001D5760();
@@ -114,6 +114,65 @@ struct C_000CC1B0 {
     C_00093120 *f2F8;
     void func_000CC1B0();
 };
+
+C_000CB6B0 *C_000CB6B0::func_000CB6B0(int a, int b, int c)
+{
+    int i;
+    int p;
+    int q;
+
+    func_001BE4F0(a, b, c);
+    D_002A8490->f2EC->func_0018C160(D_00278690);
+    D_002A8490->f2EC->func_0018C160(D_002786A0);
+    D_002A8490->f2EC->func_0018C160(D_00278678);
+    for (i = 0; i < 4; i++) {
+        void *m = func_001E8A44(0x64);
+        C_001D5760 *o = m ? ((C_001D5760 *)m)->func_001D5760() : 0;
+        f2A0[i] = o;
+        if (i % 2 == 0)
+            o->func_001D5810(D_002786B0, 100.0f, (i / 2) * D_002757F0 + D_0027E140, 0);
+        else
+            o->func_001D5810(D_002786B0, 321.0f, (i / 2) * D_002757F0 + D_0027E140, 0);
+        o = f2A0[i];
+        o->f40 = 0;
+        o->f44 = 0;
+        o->f3C = 0x3f800000;
+        o->f48 = 0x3f800000;
+        o->f58 |= 4;
+        o = f2A0[i];
+        if (o->f28 != 0x435d0000) {
+            o->f28 = 0x435d0000;
+            o->f58 |= 1;
+        }
+    }
+    void *m = func_001E8A44(0x64);
+    C_001D5760 *o = m ? ((C_001D5760 *)m)->func_001D5760() : 0;
+    f294 = o;
+    o->func_001D5810(D_0027E52C, 0, 70.0f, 0);
+    if (f294->f2C != 0x439a0000) {
+        f294->f2C = 0x439a0000;
+        f294->f58 |= 1;
+    }
+    if (f294->f28 != 0x44200000) {
+        f294->f28 = 0x44200000;
+        f294->f58 |= 1;
+    }
+    f294->f3B = 0xb2;
+    f294->f58 |= 2;
+    p = 0;
+    func_00160C20(&p, D_002A8490->f2E8->f4[0x938 / 4]);
+    func_00160C20(&q, D_002A8490->f2E8->f4[0x7a8 / 4]);
+    for (i = 0; i < 2; i++) {
+        void *w = func_001E8A44(0x184);
+        C_000CB6B0_Widget *wd = w ? ((C_000CB6B0_Widget *)w)->func_001B12C0(1) : 0;
+        f298[i] = wd;
+        wd->func_001B13A0(D_002786A0, D_002786A0, 0, p);
+        f298[i]->func_001B1A30(320.0f, i * D_002757F0 + D_0027886C, 0);
+        f298[i]->func_001B2270(0xffcccccc);
+        func_001577A0(f298[i], -1);
+    }
+    return this;
+}
 
 void C_000CC2B0::func_000CC0B0()
 {
