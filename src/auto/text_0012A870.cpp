@@ -434,29 +434,20 @@ struct C_0012AEC0 {
 extern "C" float __cdecl sqrtf(float);
 int C_0012A870::func_0012A870(int a)
 {
-    f1c0 = V4Init_0012A870(f170.x - f1a0.x, f170.y - f1a0.y, f170.z - f1a0.z, 1.0f);
-    f240 = sqrtf(f1c0.x * f1c0.x + f1c0.y * f1c0.y + f1c0.z * f1c0.z);
-    f1a0 = f170;
-    f244 = func_0014F7E0(f180.x * f1b0.x + f180.y * f1b0.y + f180.z * f1b0.z);
-    if (f244 < D_00275544) {
-        f244 = -f244;
-    }
-    f1b0 = f180;
-    if (f21 & 4) {
-        return 1;
-    }
-    if (f210 != 0) {
-        f210--;
-    }
-    if (f20c != 0) {
-        f20c--;
-    }
-    vtbl->f70(this);
-    if (f28 != 0) {
-        f28->func_00193950(&f24, &f170, &D_002A3E3C, 0);
-        f2c = f28->f4;
-    }
-    func_00157A00(a);
+ f1c0=V4Init_0012A870(f170.x-f1a0.x,f170.y-f1a0.y,f170.z-f1a0.z,1.0f);
+ f240=AsmSqrtF(f1c0.x*f1c0.x+f1c0.y*f1c0.y+f1c0.z*f1c0.z);
+ f1a0=f170;
+ float z=f180.z; z*=f1b0.z;
+ float y=f180.y; y*=f1b0.y; float x=f180.x; x*=f1b0.x;
+ y+=x; f244=func_0014F7E0(y+z);
+ if(f244<D_00275544)f244=-f244;
+ f1b0=f180;
+ if(f21&4)return 1;
+ if(f210)f210--;
+ if(f20c)f20c--;
+ vtbl->f70(this);
+ if(f28){f28->func_00193950(&f24,&f170,&D_002A3E3C,0);f2c=f28->f4;}
+ func_00157A00(a);
 }
 
 void C_0012AAB0::func_0012AAB0(float param)
@@ -466,6 +457,8 @@ void C_0012AAB0::func_0012AAB0(float param)
     }
     f210 = D_002EFDB8[4] + 1;
 }
+
+static __forceinline float GetLoBound_0012AAE0() { return D_0028403C; }
 
 void C_0012AAE0::func_0012AAE0(float param1, float param2)
 {
