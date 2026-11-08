@@ -129,11 +129,6 @@ static __forceinline void cross_179950(float *out, float *a, float *b)
     AsmVec3Cross(out, a, b);
 }
 
-static __forceinline void Cross_1793E0(float *a, float *b, float *out)
-{
-    AsmVec3Cross(out, a, b);
-}
-
 static __forceinline int edge_1793E0(Vec4 *p, Vec4 *q, Vec4 *r, Vec4 *n)
 {
     Vec4 a;
