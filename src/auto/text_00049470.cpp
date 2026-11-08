@@ -67,6 +67,8 @@ struct S_49470_VObj : virtual S_49470_VB0 {
 };
 struct S_49470_F1A4 { char pad0[4]; C_00198390 *f4; S_49470_VObj *vobj; };
 struct S_49470_F28 { char pad0[0x1a4]; S_49470_F1A4 *f1a4; };
+struct S_49470_VBase { virtual void b0(); virtual void b1(); virtual void b2(); virtual void b3(); virtual void b4(); };
+struct S_49470_F1A4V : virtual S_49470_VBase { char pad4[4]; C_00198390 *f4; };
 
 struct S_49470_F540 {
     char pad0[0x24];
@@ -325,10 +327,22 @@ void S_00049470_This::func_00049470()
     i = this->f47c;
     tab = &f->f5a4[i];
     idx = tab->f44 + this->f480;
-    a = get49470(f->f5ac, f->f5a8, idx);
-    b = get49470(f->f5ac, f->f5a8, idx);
-    c = get49470(f->f5ac, f->f5a8, idx);
-    d = get49470((S_49470_Elem **)this->f5cc, this->f5c8, idx);
+    if (f->f5a8 > 0 && f->f5ac != 0 && idx < f->f5a8)
+        a = f->f5ac[idx];
+    else
+        a = 0;
+    if (f->f5a8 > 0 && f->f5ac != 0 && idx < f->f5a8)
+        b = f->f5ac[idx];
+    else
+        b = 0;
+    if (f->f5a8 > 0 && f->f5ac != 0 && idx < f->f5a8)
+        c = f->f5ac[idx];
+    else
+        c = 0;
+    if (this->f5c8 > 0 && this->f5cc != 0 && idx < this->f5c8)
+        d = ((S_49470_Elem **)this->f5cc)[idx];
+    else
+        d = 0;
 
     av = a->f35c;
     cv = c->f360;
@@ -338,7 +352,7 @@ void S_00049470_This::func_00049470()
 
     if (d != 0) {
         V4_49470 v30 = {0,0,0,1}, v40 = {0,0,0,1}, v60 = {0,0,0,1}, v70 = {0,0,0,1}, v80 = {0,0,0,1};
-        V4_49470 v50 = {0,0,0,1};
+        V4_49470 v50;
         int m, n, t38, t3c, t40;
         double tt;
         float len;
@@ -382,6 +396,7 @@ void S_00049470_This::func_00049470()
             else n = (m > t3c) ? m : t3c;
         }
         tt = n * D_0027653C * D_002766C8;
+        v50.x = 0;
         v40.w = fy;
         v60.x = v40.x;
         v60.w = 1.0f;
@@ -533,7 +548,9 @@ void E49Fps::func_00049C90() {
 
 void BmxEventFPS::func_00049F30()
 {
- if (f2D4 == 0 && f2D8 == 0) func_00032A60();
+ bool active = f2D4 != 0;
+ if(!active) { active = f2D8 != 0; }
+ if(!active) func_00032A60();
 }
 
 int C_0004A1A0::func_0004A1A0(void)
