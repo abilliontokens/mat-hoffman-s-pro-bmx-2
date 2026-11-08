@@ -108,6 +108,7 @@ struct C_00097FD0 {
     int func_00097FD0(void);
     int func_00098080(const char *name);
     void func_000981D0(void *a, void *b, int c);
+    void func_00097770(char *name);
 };
 struct S_981D0_Host { void func_0001B820(void *a); };
 struct S_981D0_List { char pad0[0x24]; int cnt24; void **arr28; };
