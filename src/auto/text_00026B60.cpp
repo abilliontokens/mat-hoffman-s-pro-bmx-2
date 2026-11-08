@@ -10,10 +10,10 @@ struct V4_000273F0 {
     float w;
     V4_000273F0() { x = y = z = 0.0f; w = 1.0f; }
     __forceinline V4_000273F0 &operator=(const V4_000273F0 &v) {
-        ((int *)this)[0] = ((const volatile int *)&v)[0];
-        ((int *)this)[1] = ((const volatile int *)&v)[1];
-        ((int *)this)[2] = ((const volatile int *)&v)[2];
-        ((int *)this)[3] = ((const volatile int *)&v)[3];
+        ((volatile int *)this)[0] = ((const volatile int *)&v)[0];
+        ((volatile int *)this)[1] = ((const volatile int *)&v)[1];
+        ((volatile int *)this)[2] = ((const volatile int *)&v)[2];
+        ((volatile int *)this)[3] = ((const volatile int *)&v)[3];
         return *this;
     }
 };
