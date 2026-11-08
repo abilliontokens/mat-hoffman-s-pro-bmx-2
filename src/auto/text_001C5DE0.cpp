@@ -81,11 +81,13 @@ struct S_001C64A0_Node {
 static __forceinline S_001C64A0_Node *find_root(S_001C64A0_Node *&n)
 {
     S_001C64A0_Node *root = n;
-    int i;
-    for (i = 0; i < n->f1C; i++) {
-        if (n->f14[i]->f4 == 0) {
-            root = n->f14[i];
+    S_001C64A0_Node *c;
+    int i = n->f1C;
+    for (c = *n->f14; i; i--) {
+        if (c->f4 == 0) {
+            root = c;
         }
+        c = *++n->f14;
     }
     return root;
 }
@@ -390,8 +392,8 @@ void C_001C65E0::func_001C65E0(S_001C64A0_Node *obj)
 {
     Vec4 a;
     int i;
-    S_001C64A0_Node *node;
     S_001C64A0_Node *root = find_root(obj);
+    S_001C64A0_Node *node;
 
     if (obj->f2C == 0) {
         void *mem = func_001E8A44(0x18);
