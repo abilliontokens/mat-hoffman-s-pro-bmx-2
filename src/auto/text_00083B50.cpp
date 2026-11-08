@@ -425,30 +425,29 @@ void C_000847A0::func_000847A0(void) {
 void C_000847B0::func_000847B0(void)
 {
  int v, hi, lo;
- int *p = &v;
- C_000847B0 * volatile self=this;
  int i=1;
+ int *p = &v;
  int x=4;
  while (x<=100) {
-  float t=*(volatile float *)&self->fD50 * D_00275994;
+  float t=*(volatile float *)&this->fD50 * D_00275994;
   AsmFloatToIntRound(t, p);
   if(v<=x) {lo=i*5+4;hi=i*5+3;break;}
   i++;
   x+=4;
  }
- S_000847B0_Widget *w=self->fD48;
+ S_000847B0_Widget *w=this->fD48;
  if(w->f2C!=0x42000000) {w->f2C=0x42000000;w->b58|=1;}
- w=self->fD48;
+ w=this->fD48;
  if((float)lo!=w->f28) {w->f28=(float)lo;w->b58|=1;}
- w=self->fD48;
+ w=this->fD48;
  w->f3C=*(volatile float *)&w->f4C * D_00275544;
  w->b58|=4;
  w->f40=(float)hi*w->f4C;
  w->f44=*(volatile float *)&w->f50 * D_00275544;
  w->f48=*(volatile float *)&w->f50 * D_002795B8;
- w=self->fD48;
- if(self->fD64>D_00275544) {w->f38=(w->f38&0xff32a539)|0x32a539;w->b58|=2;}
- else {w->f38=(w->f38&0xff324fa5)|0x324fa5;w->b58|=2;}
+ S_000847B0_Widget *w2;
+ if(this->fD64>D_00275544) {w2=this->fD48;w2->f38=(w2->f38&0xff32a539)|0x32a539;w2->b58|=2;}
+ else {w2=this->fD48;w2->f38=(w2->f38&0xff324fa5)|0x324fa5;w2->b58|=2;}
 }
 
 void C_000848F0::func_000848F0(void)
