@@ -491,7 +491,7 @@ void C_0002D730::func_0002D730(float dt)
     }
     if (*(int *)((char *)this + 0x680) && (f1e8->f68 || f468)) {
         *(int *)((char *)this + 0x680) = 0;
-        if (!f468 && *(float *)((char *)this + 0x760) >= 0.0f)
+        if (!f468 && *(float *)((char *)this + 0x760) >= D_00275544)
             func_00027C50(1.0f);
     }
     if (!*(int *)((char *)this + 0x684) &&
