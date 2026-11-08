@@ -102,6 +102,7 @@ extern float D_00275544, D_002755E4, D_00276098;
 extern S_001AF530_Tbl *D_002AA6C0;
 extern S_001AF530_Time *D_002A8490;
 extern "C" double func_001E9092(double a, double b);
+static __forceinline float FloatFromBits_001AF530(int b) { return *(float *)&b; }
 struct C_001AF530 {
     float f0;
     unsigned char f4;
@@ -459,50 +460,49 @@ C_001AF360 *C_001AF360::func_001AF360(S_001AF360_Stream *stream, int owner, int 
 
 void C_001AF530::func_001AF530(int a)
 {
-    C_001AF530 *self = this;
-    C_001AF530 **pself = &self;
     int len = D_002AA6C0->arr[f14->v7(a)].anim->len;
     float dt = D_00275544;
-    if (self->f10 != -1) {
-        dt = (float)(D_002A8490->t - self->f10) * D_00276098;
+    if (f10 != -1) {
+        dt = (float)(D_002A8490->t - f10) * D_00276098;
     }
-    self->f10 = D_002A8490->t;
+    f10 = D_002A8490->t;
     if (len > 0) {
-        dt *= self->f0;
-        if (self->f4 & 4) {
-            self->fC -= dt;
+        dt *= f0;
+        if (f4 & 4) {
+            fC -= dt;
         } else {
-            self->fC += dt;
+            fC += dt;
         }
         float flen = (float)len;
-        if (self->fC >= flen) {
-            float r = (float)fmod(self->fC, flen);
-            if (self->f4 & 1) {
+        if (fC >= flen) {
+            float r = (float)fmod(fC, flen);
+            if (f4 & 1) {
                 float lo = (float)(len - 1) - r;
                 float z = 0;
-                self->fC = AsmMaxF(z, lo);
-                self->f4 |= 4;
-            } else if (self->f8 != -1) {
-                self->fC = (float)fmod(r, (float)(len - self->f8)) + self->f8;
+                fC = AsmMaxF(z, lo);
+                f4 |= 4;
+            } else if (f8 != -1) {
+                fC = (float)fmod(r, (float)(len - f8)) + f8;
             } else {
-                self->fC = r;
+                fC = r;
             }
-            if (!(self->f4 & 2)) {
-                self->f4 |= 8;
+            if (!(f4 & 2)) {
+                f4 |= 8;
             }
-        } else if (self->fC < D_00275544) {
-            if (self->f4 & 1) {
-                float t = (float)fmod(self->fC, flen);
+        } else if (fC < D_00275544) {
+            if (f4 & 1) {
+                float t = (float)fmod(fC, flen);
                 int bits = *(int*)&t & 0x7fffffff;
-                self->fC = *(float*)&bits;
-                self->f4 &= 0xfb;
-            } else if (self->f4 & 4) {
-                self->f4 |= 8;
+                int *pbits = &bits;
+                fC = *(float*)pbits;
+                f4 &= 0xfb;
+            } else if (f4 & 4) {
+                f4 |= 8;
             }
         }
-        if (self->f4 & 8) {
-            if (self->f4 & 4) self->fC = 0;
-            else self->fC = (float)(len - 1);
+        if (f4 & 8) {
+            if (f4 & 4) fC = 0;
+            else fC = (float)(len - 1);
         }
     }
 }
