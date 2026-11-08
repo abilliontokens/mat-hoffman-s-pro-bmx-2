@@ -154,12 +154,6 @@ int func_001E8833();
 #include "asm_helpers.h"
 extern float D_0028AF10, D_0028AF00, D_0028AEF0, D_002754B0, D_00275994;
 
-static __forceinline void SetItem_001959E0(STV_1959E0 *self, int idx)
-{
-    self->cur = idx;
-    self->f74 = 0;
-}
-
 static __forceinline float Rand01_001959E0(void)
 {
     return (float)func_001E8833() * D_002754B0;
