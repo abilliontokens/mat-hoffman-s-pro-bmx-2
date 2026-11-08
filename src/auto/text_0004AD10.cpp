@@ -181,15 +181,6 @@ extern float D_00277318, D_00277314, D_00277310, D_002755E8;
 extern int D_002A15B4, D_002A15B8, D_002A15BC;
 /* V15B0: identity colour passed by value to func_00199600 */
 extern Vec16 D_002A15B0;
-static Vec16 V15B0()
-{
-    Vec16 v;
-    v.v[0] = *(int *)&D_002A15B0;
-    v.v[1] = D_002A15B4;
-    v.v[2] = D_002A15B8;
-    v.v[3] = D_002A15BC;
-    return v;
-}
 extern char D_00049B50[];
 void func_00049A50();
 void func_00049A20();
