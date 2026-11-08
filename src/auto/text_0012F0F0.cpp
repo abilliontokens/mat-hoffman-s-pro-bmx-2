@@ -33,6 +33,7 @@ struct C_0012F460 {
 struct S_0012F518;
 
 struct V4_0012FCF0 {
+    V4_0012FCF0() {}
     f32 x;
     f32 y;
     f32 z;
