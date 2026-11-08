@@ -21,8 +21,9 @@ extern int D_00283D1C;
 
 int func_00135C70(int a, int b, int c, int d);
 
-static __forceinline float Dot3_118380(float *a, float *b, float d2)
+static __forceinline float Dot3_118380(float *a, float *b)
 {
+    float d2 = a[2] * b[2];
     return *(volatile float *)&a[0] * b[0] + a[1] * b[1] + d2;
 }
 
@@ -170,8 +171,10 @@ void C_00118380::func_001184E0(float dt)
                 func_00011110(s.x, c, func_0001C5E0(s.v, *(volatile float *)&c[0] * p[0] + p[1] * c[1] + d2, p));
             }
             func_00104A90(s.x, s.x);
-            float d2 = s.x[2] * s.w[2];
-            float ang = func_0014F7E0(s.x[0] * *(volatile float *)&s.w[0] + s.x[1] * s.w[1] + d2);
+            float *xv = s.x;
+            float *wv = s.w;
+            float d2 = xv[2] * wv[2];
+            float ang = func_0014F7E0(xv[0] * *(volatile float *)&wv[0] + xv[1] * wv[1] + d2);
             if (ang > D_002756D4) {
                 ang = D_002756D0 - ang;
             }
