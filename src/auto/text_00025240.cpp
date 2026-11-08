@@ -473,70 +473,53 @@ int C_00025240::func_00025240(void)
 
 void C_000255D0::func_000255D0(Vec4_257E0 * volatile pos, float radius, float t, int chance)
 {
-    int hits;
-    int id;
-    int i;
-    int n;
-    int k;
-    int idx[6];
-
-    if (t != D_00275544) {
-        f58 = D_002A8490->unk238 - (int)(*(volatile float *)&t * D_00276520);
-        f74 = *pos;
-        f24 = radius;
-        return;
-    }
-    hits = 0;
-    id = -1;
-    for (i = 0; i < this->f30; i++) {
-        if (this->f60[i]->f79 == 0) {
-            Vec4_257E0 *q = pos;
-            float dx = this->f60[i]->f5c - q->x;
-            float dy = this->f60[i]->f60 - q->y;
-            float dz = this->f60[i]->f64 - q->z;
-            float d2 = dx * dx + dy * dy + dz * dz;
-            float d = AsmSqrtF(d2);
-            if (d < radius) {
-                this->f60[i]->func_000235C0();
-                this->f60[i]->f34--;
-                this->f60[i]->func_00023340();
-                this->f60[i]->f79 = 1;
-                this->f60[i]->f78 = 0;
-                id = this->f60[i]->f44;
-                hits++;
-            }
-        }
-    }
-    if (hits != 0 && id != -1) {
-        n = 0;
-        for (i = 0; i < this->f40; i++) {
-            if (this->f5c[i]->id == id) {
-                idx[n++] = i;
-                if (n >= 6) {
-                    break;
-                }
-            }
-        }
-        if (chance != 0 && func_00011260(1, 100) > 50) {
-            return;
-        }
-        switch (n) {
-        case 0:
-            return;
-        case 1:
-            k = 0;
-            break;
-        default:
-            k = func_00011260(0, n - 1);
-            if (k < 0) {
-                return;
-            }
-            break;
-        }
-        k = idx[k];
-        D_002A8490->unk4->func_0001CE80(this->f5c[k]->f4, pos, D_002A0F74, 4.0f, 100.0f);
-        this->f5c[k]->f4->v5(4);
-    }
+ int hits,id,i,n,k,idx[6];
+ if(t != D_00275544) {
+ f58=D_002A8490->unk238-(int)(*(volatile float *)&t*D_00276520);
+ f74=*pos; f24=radius; return;
+ }
+ hits=0; id=-1;
+ for(i=0;i<this->f30;i++) {
+ if(this->f60[i]->f79==0) {
+ Vec4_257E0 *q=pos;
+ float dx=this->f60[i]->f5c-q->x;
+ float dy=this->f60[i]->f60-q->y;
+ float dz=this->f60[i]->f64-q->z;
+ float d2=dx*dx+dy*dy+dz*dz;
+ float d=AsmSqrtF(d2);
+ if(d<radius) {
+ this->f60[i]->func_000235C0();
+ this->f60[i]->f34--;
+ this->f60[i]->func_00023340();
+ this->f60[i]->f79=1;
+ this->f60[i]->f78=0;
+ id=this->f60[i]->f44; hits++;
+ }
+ }
+ }
+ if(hits!=0 && id!=-1) {
+ n=0;
+ for(i=0;i<this->f40;i++) {
+ if(this->f5c[i]->id==id) {
+ idx[n++]=i; if(n>=6) break;
+ }
+ }
+ if(chance!=0 && func_00011260(1,100)>50) return;
+ switch(n) {
+ case 0: return;
+ case 1: goto single;
+ default: goto multiple;
+ }
+ multiple:
+ k=func_00011260(0,n-1);
+ if(k<0) return;
+ selected:
+ k=idx[k];
+ D_002A8490->unk4->func_0001CE80(this->f5c[k]->f4,pos,D_002A0F74,4.0f,100.0f);
+ this->f5c[k]->f4->v5(4);
+ }
+ return;
+ single: k=0; goto selected;
 }
 
 #pragma intrinsic(sqrt)
