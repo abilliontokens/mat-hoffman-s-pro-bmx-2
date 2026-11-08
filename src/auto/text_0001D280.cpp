@@ -346,7 +346,7 @@ struct C_0001D450_Item {
 
 struct C_0001D450 {
     char pad0[0x70];
-    int unk70;
+    volatile int unk70;
     C_0001D450_Item **unk74;
     C_0001D450_Item *itemAt(int i) {
         if (unk70 > 0 && unk74 != 0 && i < unk70) {
@@ -534,46 +534,32 @@ C_0001D450_Item *C_0001D450::func_0001D450(const char *name)
 {
     char buf[0x104];
     char key[0x104];
-    {
-        struct { volatile int n, lim, len; } t;
-        t.len = strlen(name);
-        t.lim = 0x103;
-        int a = t.lim;
-        int b = t.len;
-        t.n = a > b ? b : a;
-        int sz = t.n;
-        func_001E8920(key, name, sz);
-        key[sz] = 0;
-    }
+    int len = strlen(name);
+    int lim = 0x103;
+    int sz = AsmMinI(lim, len);
+    func_001E8920(key, name, sz);
+    key[sz] = 0;
     char *p = func_001E8AC0(key, '.');
     if (p) memset(p, 0, strlen(p));
     for (int i = 0; i < unk70; i++) {
         C_0001D450_Item *item = itemAt(i);
         if (item) {
-            volatile int len, lim, n;
             const char *s = item->name;
-            len = strlen(s);
-            lim = 0x103;
-            int a = lim;
-            int b = len;
-            n = a > b ? b : a;
-            int sz = n;
-            func_001E8920(buf, s, sz);
-            buf[sz] = 0;
+            int len2 = strlen(s);
+            int lim2 = 0x103;
+            int n = AsmMinI(lim2, len2);
+            func_001E8920(buf, s, n);
+            buf[n] = 0;
             p = func_001E8AC0(buf, '.');
             if (p) memset(p, 0, strlen(p));
             if (func_001EA426(key, buf) == 0) return item;
             if (item->unk1BC) {
-                volatile int n3;
-                s = item->unk1BC->name;
-                len = strlen(s);
-                lim = 0x103;
-                int a = lim;
-                int b = len;
-                n3 = a > b ? b : a;
-                int sz = n3;
-                func_001E8920(buf, s, sz);
-                buf[sz] = 0;
+                const char *s3 = item->unk1BC->name;
+                int len3 = strlen(s3);
+                int lim3 = 0x103;
+                int n3 = AsmMinI(lim3, len3);
+                func_001E8920(buf, s3, n3);
+                buf[n3] = 0;
                 p = func_001E8AC0(buf, '.');
                 if (p) memset(p, 0, strlen(p));
                 if (func_001EA426(key, buf) == 0) return item;
