@@ -73,7 +73,7 @@ struct S5_0002B1C0 {
 #define V4_CPY_B(off) V4_COPY4(off, D_002A1120, D_002A1124, D_002A1128, D_002A112C)
 #define V4_CPY_C(off) V4_COPY4(off, D_002A1110, D_002A1114, D_002A1118, D_002A111C)
 
-static __forceinline void Identity_0002B1C0(S_0002B1C0_Mat *m)
+static void Identity_0002B1C0(S_0002B1C0_Mat *m)
 {
     m->r0 = _mm_setzero_ps(); m->r1 = _mm_setzero_ps(); m->r2 = _mm_setzero_ps(); m->r3 = _mm_setzero_ps();
     ((float *)m)[0] = 1.0f; ((float *)m)[5] = 1.0f; ((float *)m)[10] = 1.0f; ((float *)m)[15] = 1.0f;
