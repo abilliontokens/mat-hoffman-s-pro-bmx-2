@@ -176,7 +176,7 @@ static __forceinline V4 v4add(const V4 &a, const V4 &b) { return v4(a.x + b.x, a
 static __forceinline V4 v4scale(const V4 &a, float s) { return v4(a.x * s, a.y * s, a.z * s); }
 static inline V4 partialAdd1596(const V4 &a,const V4 &b) { V4 r; r.x=a.x+b.x;r.y=a.y+b.y;r.z=a.z+b.z;return r; }
 static inline V4 partialSub1596(const V4 &a,const V4 &b) { V4 r; r.x=a.x-b.x;r.y=a.y-b.y;r.z=a.z-b.z;return r; }
-static inline V4 partialScale1596(const V4 &a,float s) { V4 r; r.w=1; r.x=a.x*s;r.y=a.y*s;r.z=a.z*s;return r; }
+static __forceinline V4 partialScale1596(const V4 &a,const float &s) { V4 r; r.w=1; r.x=a.x*s;r.y=a.y*s;r.z=a.z*s;return r; }
 extern float D_002755E8;
 void func_001E891B(void *p);
 int func_001EA426(char *a, char *b);
