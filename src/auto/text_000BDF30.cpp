@@ -158,7 +158,7 @@ struct S_000BDF30_Audio {
     virtual void v6();
     virtual void v7(int a);
     virtual void v8();
-    char pad24[0xc];
+    char pad4[0x2c];
     int f30;
     void func_0013C1D0(int a);
     void func_0013D780(char *name, int a1, int a2, int a3, int a4, int a5, int a6, int a7);
