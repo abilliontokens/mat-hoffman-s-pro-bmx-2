@@ -131,12 +131,6 @@ C_0011EDF0 *C_0011EDF0::func_0011EDF0(s16 *p)
 
 extern "C" void _ReadWriteBarrier(void);
 #pragma intrinsic(_ReadWriteBarrier)
-static __forceinline float FabsBits_0011EE50(float v)
-{
-    volatile int t = *(volatile int *)&v & 0x7fffffff;
-    return *(float *)&t;
-}
-
 V4_0011EE50 *func_0011EE50(V4_0011EE50 *out, V4_0011EE50 *in)
 {
     volatile int tmp; volatile float v;
