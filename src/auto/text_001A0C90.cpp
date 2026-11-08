@@ -118,7 +118,7 @@ struct S_001A13F0_Obj {
     int func_001D6C40(int a, int b);
 };
 
-struct V4_001A0C90 { float x, y, z, w; };
+struct V4_001A0C90 { float x, y, z, w; V4_001A0C90() { z = 0; y = 0; x = 0; w = 1.0f; } };
 struct Mat_001A0C90 { float m[16]; };
 static inline V4_001A0C90 Sub_001A0C90(const V4_001A0C90 &a, const V4_001A0C90 &b)
 {
@@ -312,7 +312,7 @@ struct C_001A1860 {
 
 void C_001A0C90::func_001A0C90(V4_001A0C90 v)
 {
-    V4_001A0C90 b, c, d, e;
+    V4_001A0C90 a, b, c, d, e;
     __declspec(align(16)) Mat_001A0C90 mat;
     float len, t, dot, ang, sn, cs, s2, sum;
 
@@ -336,7 +336,10 @@ void C_001A0C90::func_001A0C90(V4_001A0C90 v)
         }
         D_002A7CB8->func_0019FC40(h);
     }
-    V4_001A0C90 a = { 0.0f, 0.0f, 0.0f, 1.0f };
+    a.x = 0.0f;
+    a.y = 0.0f;
+    a.z = 0.0f;
+    a.w = 1.0f;
     f0->func_00199A70(0, &a);
     b = Sub_001A0C90(v, a);
     sum = b.z * b.z + b.y * b.y + b.x * b.x;
@@ -375,7 +378,11 @@ void C_001A0C90::func_001A0C90(V4_001A0C90 v)
         float d1, d2, d3;
 
         D_002A7CB8->func_0019FC80(D_002A9D80);
-        V4_001A0C90 g_ = { 0.0f, 0.0f, 0.0f, 1.0f };
+        V4_001A0C90 g_;
+        g_.x = 0.0f;
+        g_.y = 0.0f;
+        g_.z = 0.0f;
+        g_.w = 1.0f;
         g_ = f4->func_00197EC0(&f44);
         f4->func_00199A70(0, &f_);
         g_.x = f_.x + g_.x * D_002755EC;
@@ -529,7 +536,7 @@ C_001A1680 *C_001A1680::func_001A1680(int a1, int a2, unsigned short a3, int a0)
     int t;
     func_00157600(a0);
     vtbl = (void *)&D_0028B3C4;
-    p = &w[0x28 / 4]; p[2] = zero; p[1] = zero; p[0] = zero; p[3] = one;
+    w[0x28 / 4 + 2] = zero; w[0x28 / 4 + 1] = zero; w[0x28 / 4] = zero; w[0x28 / 4 + 3] = one;
     p = &w[0x60 / 4]; p[3] = one; p[2] = zero; p[1] = zero; p[0] = zero;
     p = &w[0x70 / 4]; p[3] = one; p[2] = zero; p[1] = zero; p[0] = zero;
     p = &w[0x80 / 4]; p[3] = one; p[2] = zero; p[1] = zero; p[0] = zero;
