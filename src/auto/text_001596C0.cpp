@@ -169,7 +169,7 @@ struct GL2 {
     Sh *sh;
 };
 V4 *func_00159480(V4 *out, V4 *in);
-static __forceinline float v3abs(volatile float x) { volatile unsigned int bits = *(unsigned int *)&x & 0x7fffffff; return *(float *)&bits; }
+static __forceinline float v3abs(volatile float x) { unsigned int bits = *(volatile unsigned int *)&x & 0x7fffffff; return *(float *)&bits; }
 static __forceinline V4 v4(float x, float y, float z) { V4 r; r.x = x; r.y = y; r.z = z; r.w = 1.0f; return r; }
 static __forceinline V4 v4sub(const V4 &a, const V4 &b) { return v4(a.x - b.x, a.y - b.y, a.z - b.z); }
 static __forceinline V4 v4add(const V4 &a, const V4 &b) { return v4(a.x + b.x, a.y + b.y, a.z + b.z); }
