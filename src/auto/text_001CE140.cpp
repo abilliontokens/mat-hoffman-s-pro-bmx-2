@@ -320,22 +320,22 @@ int Voice::func_001CE140(int arg)
 int Voice::func_001CE4C0()
 {
     void (__stdcall *enter)(void *) = _imp__RtlEnterCriticalSection;
-    enter(D_002F08EC->f138->Lock());
+    enter((void *)D_002F08EC->f138->Lock());
     if (!(flags & 8)) {
         if (flags & 4) {
             if (!D_002F08EC->f138->l38.func_001CDED0((int)this)) {
-                _imp__RtlLeaveCriticalSection(D_002F08EC->f138->Lock());
+                _imp__RtlLeaveCriticalSection((void *)D_002F08EC->f138->Lock());
                 return 0;
             }
             flags = (flags & 0xef) | 0x20;
-            _imp__RtlLeaveCriticalSection(D_002F08EC->f138->Lock());
+            _imp__RtlLeaveCriticalSection((void *)D_002F08EC->f138->Lock());
             return 1;
         }
-        _imp__RtlLeaveCriticalSection(D_002F08EC->f138->Lock());
+        _imp__RtlLeaveCriticalSection((void *)D_002F08EC->f138->Lock());
         return 0;
     }
     void (__stdcall *leave)(void *) = _imp__RtlLeaveCriticalSection;
-    leave(D_002F08EC->f138->Lock());
+    leave((void *)D_002F08EC->f138->Lock());
     if (f13c) {
         if (f154) {
             flags = (flags & 0xef) | 0x20;
@@ -353,15 +353,15 @@ int Voice::func_001CE4C0()
         f120 = 0;
         return 1;
     }
-    enter(D_002F08EC->f138->Lock());
+    enter((void *)D_002F08EC->f138->Lock());
     if (f140) {
         v48(0);
-        leave(D_002F08EC->f138->Lock());
+        leave((void *)D_002F08EC->f138->Lock());
         v20(f1a0);
         f120 = 0;
         return 1;
     }
-    leave(D_002F08EC->f138->Lock());
+    leave((void *)D_002F08EC->f138->Lock());
     return 1;
 }
 
@@ -482,20 +482,18 @@ void XboxMusic::func_001CE920()
 void TrackDB::func_001CE9F0(volatile int idx, volatile int set)
 {
     TrackDB *volatile self = this;
-    int tmp;
-    volatile int lengths[2];
+    int len;
+    int n;
     char name[0x20];
     char wname[0x40];
     sets[set].recs[idx].f0 = 0;
     TrackSet *current = &self->sets[set];
     int index = idx;
-    func_001DD8C5(current->handle, index, current->recs[index].f10, &tmp, (unsigned short *)wname, 0x20);
-    lengths[0] = func_001EA410((unsigned short *)wname);
-    int length = lengths[0];
-    lengths[1] = length;
-    if (lengths[1] > 0x20) lengths[1] = 0x20;
-    int end = lengths[1] * 2;
-    for (int i = 1; i < end; i += 2) {
+    char *f10 = current->recs[index].f10;
+    func_001DD8C5(current->handle, index, f10, &len, (unsigned short *)wname, 0x20);
+    len = func_001EA410((unsigned short *)wname);
+    n = AsmMinI(len, 0x20);
+    for (int i = 1; i < n * 2; i += 2) {
         if (wname[i]) {
             wname[i - 1] = 1;
             wname[i] = 0;
@@ -513,22 +511,21 @@ void TrackDB::func_001CE9F0(volatile int idx, volatile int set)
 
 int TrackDB::func_001CEB70()
 {
-    TrackDB * volatile self = this;
     int capacity = count;
     struct { int handle; unsigned int count; int unk; unsigned short name[32]; } info;
-    volatile int h = func_001DD816(&info);
+    int h = func_001DD816(&info);
     if (h != -1) {
         do {
             if (count + 1 > capacity) {
-                int bytes=capacity*sizeof(TrackSet);
-                TrackSet *p = (TrackSet *)func_001E83E8(sets, bytes*2);
+                TrackSet *p = (TrackSet *)func_001E83E8(sets, capacity * (sizeof(TrackSet) * 2));
                 if (!p) {
                     func_001CD260();
                     func_001DE66C(h);
                     return 0x8007000e;
                 }
-                memset((char *)p+bytes,0,bytes);
-                self->sets = p;
+                int bytes = capacity * sizeof(TrackSet);
+                memset((char *)p + bytes, 0, bytes);
+                sets = p;
                 capacity *= 2;
             }
             if (info.count > 0) {
@@ -536,30 +533,30 @@ int TrackDB::func_001CEB70()
                 sets[count].handle = info.handle;
                 sets[count].count = info.count;
                 int len = func_001EA410(info.name);
-                if (len > 32) len = 32;
+                int n = AsmMinI(len, 32);
                 char *name = (char *)info.name;
-                for (int i=1;i<len*2;i+=2) {
-                    if(name[i]) { name[i-1]=1; name[i]=0; }
+                for (int i = 1; i < n * 2; i += 2) {
+                    if (name[i]) { name[i-1] = 1; name[i] = 0; }
                 }
-                func_001DDE51(sets[count].name,D_0028F0A8,info.name);
-                sets[count].recs=(TrackRec *)func_001E8AA5(sets[count].count*24);
-                IntList *list=&sets[count].ids;
-                list->data=(int *)func_001E8A44(4);
-                list->grow=16;
-                list->cap=1;
-                *(unsigned char *)(list+1) |= 1;
-                int j=0;
-                if (sets[count].count>0) do {
-                    func_001CE9F0(j,count);
+                func_001DDE51(sets[count].name, D_0028F0A8, info.name);
+                sets[count].recs = (TrackRec *)func_001E8AA5(sets[count].count * 24);
+                IntList *list = &sets[count].ids;
+                list->data = (int *)func_001E8A44(4);
+                list->grow = 16;
+                list->cap = 1;
+                *(unsigned char *)(list + 1) |= 1;
+                int j = 0;
+                if (sets[count].count > 0) do {
+                    func_001CE9F0(j, count);
                     ++j;
-                } while(j<sets[count].count);
+                } while (j < sets[count].count);
                 ids.Add(count);
                 ++count;
             }
-        } while(func_001DD7F7(h,&info));
+        } while (func_001DD7F7(h, &info));
         func_001DE66C(h);
     }
-    sets=(TrackSet *)func_001E83E8(sets,count*sizeof(TrackSet));
+    sets = (TrackSet *)func_001E83E8(sets, count * sizeof(TrackSet));
     return 0;
 }
 
