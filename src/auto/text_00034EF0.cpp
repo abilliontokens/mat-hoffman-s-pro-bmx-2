@@ -2,6 +2,7 @@
 #include "common.h"
 #include <xmmintrin.h>
 #include "asm_helpers.h"
+static __forceinline int MinT_34EF0(volatile int *a, volatile int *b) { return AsmMinI(*(int *)a, *(int *)b); }
 
 /* PreviewPane (vtable 0x276CE4), virtual slot 12: swings the page's light around its anchor. */
 struct S_34EF0_V4 {
@@ -712,9 +713,11 @@ int C_00035C10::func_00035C10(void *a1, char a2, char * volatile name, void *a4,
     t.self = this;
     t.len = strlen(name);
     t.limit = 0x31;
-    t.cnt = t.limit > t.len ? t.len : t.limit;
-    func_001E8920(buf, name, t.cnt);
-    buf[t.cnt] = 0;
+    int a = t.limit, b = t.len;
+    t.cnt = a > b ? b : a;
+    int cnt = t.cnt;
+    func_001E8920(buf, name, cnt);
+    buf[cnt] = 0;
     for (p = buf; *p != 0; p++) {
         *p = (char)func_001E8D25(*p);
     }
@@ -748,12 +751,8 @@ int C_00035C10::func_00035C10(void *a1, char a2, char * volatile name, void *a4,
     }
     if (o != 0) {
         o->f6d = a2;
-        if (a8 != 0) {
-            mode = 2;
-        } else {
-            mode = 0;
-        }
-        (*t.self->f64->f3a8)->func_001577A0(o, mode);
+        if (a8) (*t.self->f64->f3a8)->func_001577A0(o, 2);
+        else (*t.self->f64->f3a8)->func_001577A0(o, 0);
         func_000265C0(&mat, a4, a5, a6, 0, 1);
         o->func_00133EF0(&mat);
         o->func_00133140(*t.self->f64->f4ac, 2);
