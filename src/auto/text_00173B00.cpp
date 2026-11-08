@@ -58,6 +58,8 @@ static inline float Min_00173B00(float a, float b) { return AsmMinF(a, b); }
 static inline float Max_00173B00(float a, float b) { return AsmMaxF(a, b); }
 static inline float Abs_00173B00(float x) { int i = *(int *)&x & 0x7fffffff; return *(float *)&i; }
 static __forceinline float AbsV_00173B00(volatile float x) { int i = *(volatile int *)&x & 0x7fffffff; return *(float *)&i; }
+static __forceinline float MinV_00173B00(volatile float a, volatile float b) { return AsmMinF(a, b); }
+static __forceinline float MaxV_00173B00(volatile float a, volatile float b) { return AsmMaxF(a, b); }
 float func_00011170(float *v);
 
 extern Vec4 D_002EF740;
@@ -162,11 +164,11 @@ int PhObj::func_00173B00(float dt)
                     float a170, a174, a178, ab4, ab8, abc;
                     ((S_00173B00_Obj *)this)->v28(step);
                     ((S_00173B00_Obj *)fd0)->v13(step);
-                    a170 = Abs_00173B00(fc4->f170); ab4 = Abs_00173B00(fb4);
+                    a170 = AbsV_00173B00(fc4->f170); ab4 = AbsV_00173B00(fb4);
                     if (a170 > ab4) fb4 = fc4->f170;
-                    a174 = Abs_00173B00(fc4->f174); ab8 = Abs_00173B00(fb8);
+                    a174 = AbsV_00173B00(fc4->f174); ab8 = AbsV_00173B00(fb8);
                     if (a174 > ab8) fb8 = fc4->f174;
-                    a178 = Abs_00173B00(fc4->f178); abc = Abs_00173B00(fbc);
+                    a178 = AbsV_00173B00(fc4->f178); abc = AbsV_00173B00(fbc);
                     if (a178 > abc) fbc = fc4->f178;
                     ((S_00173B00_Obj *)fc4)->v13(step);
                     f124 = Max_00173B00(f124, Sqrt_001743A0(fc4->f6c.x * fc4->f6c.x + fc4->f6c.y * fc4->f6c.y + fc4->f6c.z * fc4->f6c.z));
