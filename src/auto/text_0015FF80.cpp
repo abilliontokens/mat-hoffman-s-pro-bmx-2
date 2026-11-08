@@ -91,8 +91,9 @@ float func_0015FF80(float y, float x);
 void func_001B07A0(void *p);
 void func_001578D0(void);
 #include <xmmintrin.h>
-static __forceinline float Sqrt_00160310(float x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(*(__m128 *)&x)); return r; }
-static __forceinline float Max_00160310(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(*(__m128 *)&a, *(__m128 *)&b)); return r; }
+static __forceinline float Sqrt_00160310(float x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(_mm_load_ss(&x))); return r; }
+static __forceinline float Max_00160310(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
+static __forceinline V4_00160310 Vec_00160310(float x,float y,float z) { V4_00160310 v; v.x=x;v.y=y;v.z=z;v.w=1.0f;return v; }
 static __forceinline void Cross_00160310(V4_00160310 *out, const V4_00160310 *a, const V4_00160310 *b)
 {
     __m128 va = _mm_loadu_ps(&a->x);
