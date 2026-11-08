@@ -98,7 +98,9 @@ struct C_0016EEA0 {
     float *f104;
     char pad108[0x11c - 0x108];
     int f11c;
-    char pad120[0x12c - 0x120];
+    char pad120[0x124 - 0x120];
+    int f124;
+    char pad128[0x12c - 0x128];
     Body **f12c;
     char pad130[0x148 - 0x130];
     S_16EEA0_148 *f148;
@@ -121,10 +123,7 @@ void func_0013E1F0(S_16EEA0_Log *log, int id, const char *fmt, ...);
 
 int C_0016E320::func_0016E320(float dt)
 {
-    float acc;
-    float a;
-    float r1, r2, r3;
-    float px, py, pz;
+    float acc, a;
 
     if (func_00169E10(dt) != 0) {
         f184 = f178;
@@ -156,16 +155,99 @@ int C_0016E320::func_0016E320(float dt)
         if (d < D_002A8898) a = d / D_002A8898;
     }
     acc = AsmMaxF(f180, acc);
-    if (D_00275544 >= acc) return 1;
-    r1 = (float)func_001E8833() * D_002754B0;
-    r2 = (float)func_001E8833() * D_002754B0;
-    r3 = (float)func_001E8833() * D_002754B0;
-    px = (f220 - f210) * r1 + f210;
-    py = (f224 - f214) * r2 + f214;
-    pz = (f228 - f218) * r3 + f218;
-    f34 = px + f54;
-    f38 = py + f58;
-    f3c = pz + f5c;
+    if (D_00275544 >= acc) {
+        f184 = f178;
+        f194 = 0.0f;
+        return 1;
+    }
+    int nloop = 0;
+    do {
+        float w = 1.0f;
+        float sc = 1.0f;
+        float r1 = (float)func_001E8833() * D_002754B0;
+        float r2 = (float)func_001E8833() * D_002754B0;
+        float r3 = (float)func_001E8833() * D_002754B0;
+        float px = (f220 - f210) * r1 + f210;
+        float py = (f224 - f214) * r2 + f214;
+        float pz = (f228 - f218) * r3 + f218;
+        float vx = f24 - dt * f54;
+        float vy = f28 - dt * f58;
+        float vz = f2c - dt * f5c;
+        int frame = f188;
+        float r4 = (float)func_001E8833() * D_002754B0 * f174;
+        float ga = f178;
+        float r5 = (float)func_001E8833() * D_002754B0 * f170;
+        float bx = px + f54;
+        float by = py + f58;
+        float bz = pz + f5c;
+        unsigned bflags = f190;
+        if (r1 <= D_002755E8) {
+            if (f1c4) bflags |= 0x4000u; else bflags &= ~0x4000u;
+        }
+        if (r2 <= D_002755E8) {
+            if (f1c8) bflags |= 0x8000u; else bflags &= ~0x8000u;
+        }
+        float v[4];
+        v[0] = bx; v[1] = by; v[2] = bz; v[3] = sc;
+        func_00169B90(v, v);
+        float spd = r4 * f1f8;
+        v[0] *= spd; v[1] *= spd; v[2] *= spd;
+        int k;
+        int *pk = &k;
+        if (f20c) {
+            float rr = (float)func_001E8833() * D_002754B0;
+            *pk = (int)(((f1f4 - f1f0) * rr + (f1f0 - D_00275460)) * a + D_00275460);
+        } else {
+            float rr = (float)func_001E8833() * D_002754B0;
+            *pk = (int)((f1f4 - f1f0) * rr + f1f0);
+        }
+        float kf = (float)k;
+        float inv = D_00275460 / kf;
+        float ox = bx + v[0] * kf;
+        float oy = by + v[1] * kf;
+        float oz = bz + v[2] * kf;
+        int j;
+        int *pj = &j;
+        float f01 = 0.1f;
+        int i;
+        for (i = 0; i < k; i++) {
+            *pj = (int)((f204 - f200) * i * inv + f200);
+            if (i == k - 1 && f208 != 0) j++;
+            float tt = (float)(i + 1);
+            tt = tt / k;
+            float t = AsmMaxF(f01, tt);
+            float u = D_00275460 - t;
+            int m;
+            for (m = 0; m < j; m++) {
+                C_0016EEA0 *pool = (C_0016EEA0 *)f64;
+                Body *bd = pool->f12c[pool->f11c];
+                bd->x = vx; bd->y = vy; bd->z = vz;
+                bd->pad0c = w;
+                bd->frame = frame;
+                bd->scale = r4;
+                bd->cur = 0.0f;
+                bd->gravity_acc = ga;
+                bd->owner = (Owner *)this;
+                bd->pad3c = ga;
+                bd->vx = ox; bd->vy = oy; bd->vz = oz;
+                bd->pad1c = sc;
+                float len = r5 * (D_00275460 - u * f1fc);
+                bd->len = len;
+                bd->flags = bflags;
+                bd->rate = D_00275460 / len;
+                pool->f11c++;
+            }
+            ox -= t * t * v[0];
+            oy -= t * t * v[1];
+            oz -= t * t * v[2];
+            vx += v[0];
+            vy += v[1];
+            vz += v[2];
+        }
+        f188++;
+        if (f188 > f1ac) f188 = f1a8;
+        nloop++;
+    } while ((float)nloop < acc);
     f184 = f178;
     f194 = 0.0f;
     return 1;
