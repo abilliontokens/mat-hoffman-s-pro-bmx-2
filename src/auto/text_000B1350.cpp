@@ -431,104 +431,77 @@ void C_000B1660::func_000B1660(S_000B1660_Arg *a) {
  }
 }
 
-int func_000B1740(VehicleAI *ai, S_000B1740_Panel *panel)
-{
-    volatile int a;
-    volatile int r;
-    if (D_002A8490->f2A4->f1C8 == 1) {
-        a = ai->f50;
-        r = Min_000B1740(a, 2);
-        a = r;
-        r = Max_000B1740(0, a);
-        ai->f50 = r;
-    }
-    if (panel->f0C != 0) {
-        panel->f0C->fC = (float)ai->f50;
-    }
-    if (panel->f10 != 0) {
-        panel->f10->fC = (float)ai->f50;
-    }
-    if (panel->f14 != 0) {
-        panel->f14->fC = (float)ai->f50;
-    }
-    if (panel->f18 != 0) {
-        panel->f18->fC = (float)ai->f50;
-    }
-    return 0;
+int func_000B1740(VehicleAI *ai, S_000B1740_Panel *panel) {
+ if(D_002A8490->f2A4->f1C8==1) {
+ volatile int v=ai->f50; volatile int r;
+ r=v>2?2:v; v=r; r=0<v?v:0; ai->f50=r;
+ }
+ if(panel->f0C) panel->f0C->fC=(float)ai->f50;
+ if(panel->f10) panel->f10->fC=(float)ai->f50;
+ if(panel->f14) panel->f14->fC=(float)ai->f50;
+ if(panel->f18) panel->f18->fC=(float)ai->f50;
+ return 0;
 }
 
 C_000B1860 *C_000B1860::func_000B1860(void)
 {
-    C_000B1860 * volatile self = this;
-    u32 *v = self->fC;
+    u32 *v = this->fC;
     v[2] = 0; v[1] = 0; v[0] = 0; v[3] = 0x3f800000;
-    v = self->f1C;
+    v = this->f1C;
     v[2] = 0; v[1] = 0; v[0] = 0; v[3] = 0x3f800000;
-    v = self->f2C;
+    v = this->f2C;
     v[2] = 0; v[1] = 0; v[0] = 0; v[3] = 0x3f800000;
     {
-        volatile int limit = sizeof(f3C) - 1;
-        int l = limit;
-        volatile int count = l > 4 ? 4 : l;
-        int n = count;
-        func_001E8920(self->f3C, (const char *)&D_002764F0, n);
-        self->f3C[n] = 0;
+        int limit = sizeof(f3C) - 1;
+        int count = AsmMinI(limit, 4);
+        func_001E8920(this->f3C, D_002764F0, count);
+        this->f3C[count] = 0;
     }
     {
-        volatile int limit = sizeof(f140) - 1;
-        int l = limit;
-        volatile int count = l > 4 ? 4 : l;
-        int n = count;
-        func_001E8920(self->f140, (const char *)&D_002764F0, n);
-        self->f140[n] = 0;
+        int limit = sizeof(f140) - 1;
+        int count = AsmMinI(limit, 4);
+        func_001E8920(this->f140, D_002764F0, count);
+        this->f140[count] = 0;
     }
     {
-        volatile int limit = sizeof(f244) - 1;
-        int l = limit;
-        volatile int count = l > 4 ? 4 : l;
-        int n = count;
-        func_001E8920(self->f244, (const char *)&D_002764F0, n);
-        self->f244[n] = 0;
+        int limit = sizeof(f244) - 1;
+        int count = AsmMinI(limit, 4);
+        func_001E8920(this->f244, D_002764F0, count);
+        this->f244[count] = 0;
     }
     {
-        volatile int limit = 0x3b;
-        int l = limit;
-        volatile int count = l > 6 ? 6 : l;
-        int n = count;
-        func_001E8920(self->f348, (const char *)&D_0027CED0, n);
-        self->f348[n] = 0;
+        int limit = sizeof(f348) - 1;
+        int count = AsmMinI(limit, 6);
+        func_001E8920(this->f348, D_0027CED0, count);
+        this->f348[count] = 0;
     }
-    *(VehicleV4 *)self->fC = *(VehicleV4 *)&D_002A2DC4;
-    *(VehicleV4 *)self->f1C = *(VehicleV4 *)&D_002A2DF4;
-    *(VehicleV4 *)self->f2C = *(VehicleV4 *)&D_002A2DE4;
-    self->f0 = 1;
-    self->f4 = 0;
-    self->f8 = 0;
-    return self;
+    *(VehicleV4 *)this->fC = *(VehicleV4 *)&D_002A2DC4;
+    *(VehicleV4 *)this->f1C = *(VehicleV4 *)&D_002A2DF4;
+    *(VehicleV4 *)this->f2C = *(VehicleV4 *)&D_002A2DE4;
+    this->f0 = 1;
+    this->f4 = 0;
+    this->f8 = 0;
+    return this;
 }
 
 #pragma optimize("g", on)
 void C_000B1A40::func_000B1A40(S_000B1A40_Stream * volatile stream)
 {
-    char buf[0x104];
-    int len;
-    int mb;
-    struct { C_000B1A40 * volatile self; volatile int a; volatile int cnt; } t;
-
-    t.self = this;
-    stream->func_00168BE0(D_00276310, D_002764F0, buf, 0x104);
-    t.a = func_001E9040(buf, D_0027CEF0);
-    mb = 0x32;
-    t.cnt = t.a > mb ? mb : t.a;
-    len = t.cnt;
-    func_001E8920(t.self->name, buf, len);
-    t.self->name[len] = 0;
-    stream->func_00168BE0(D_00275AE0, D_002764F0, t.self->text, 0x104);
-    stream->func_00168C20(D_00275680, 0, &t.self->f8);
-    stream->func_00168CB0(D_00275AD4, &D_002A2DC4, t.self->fC);
-    stream->func_00168CB0(D_00275AC8, &D_002A2DF4, t.self->f1C);
-    stream->func_00168CB0(D_0027CEE4, &D_002A2DE4, t.self->f2C);
-    stream->func_00168C20(D_0027CED8, 1, &t.self->f0);
+ C_000B1A40 * volatile self = this;
+ char buf[0x104];
+ int a;
+ int cnt;
+ stream->func_00168BE0(D_00276310,D_002764F0,buf,0x104);
+ a=func_001E9040(buf,D_0027CEF0);
+ cnt=AsmMinI(a,0x32);
+ func_001E8920(this->name,buf,cnt);
+ *(volatile char *)((char *)this + 0x3c + cnt)=0;
+ stream->func_00168BE0(D_00275AE0,D_002764F0,self->text,0x104);
+ stream->func_00168C20(D_00275680,0,&self->f8);
+ stream->func_00168CB0(D_00275AD4,&D_002A2DC4,self->fC);
+ stream->func_00168CB0(D_00275AC8,&D_002A2DF4,self->f1C);
+ stream->func_00168CB0(D_0027CEE4,&D_002A2DE4,self->f2C);
+ stream->func_00168C20(D_0027CED8,1,&self->f0);
 }
 void C_000B1B80::func_000B1B80(void)
 {
@@ -653,20 +626,20 @@ void func_000B2010(void) {
 
 C_000B2020 *C_000B2020::func_000B2020(void) {
     C_000B2020 * volatile self = this;
-    volatile int limit;
+    int limit;
     int count;
     ((C_001B4AF0 *)this)->func_001B4AF0();
     self->vtbl = (void *)&D_0027D004;
-    limit = sizeof(f250) - 1;
-    count = Min_000B1740(limit, 4);
+    limit = 0x103;
+    count = AsmMinI(limit, 4);
     func_001E8920(self->f250, (const char *)&D_002764F0, count);
     self->f250[count] = 0;
-    limit = sizeof(f14C) - 1;
-    count = Min_000B1740(limit, 4);
+    limit = 0x103;
+    count = AsmMinI(limit, 4);
     func_001E8920(self->f14C, (const char *)&D_002764F0, count);
     self->f14C[count] = 0;
-    limit = sizeof(f354) - 1;
-    count = Min_000B1740(limit, 4);
+    limit = 0x103;
+    count = AsmMinI(limit, 4);
     func_001E8920(self->f354, (const char *)&D_002764F0, count);
     self->f354[count] = 0;
     self->f13C = 1;
