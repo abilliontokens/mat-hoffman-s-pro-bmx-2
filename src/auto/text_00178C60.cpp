@@ -118,13 +118,9 @@ static __forceinline Vec4 vecsub2_179950(Vec4 *a, Vec4 *b)
 static __forceinline Vec4 vecsub_179950(Vec4 *a, Vec4 *b)
 {
     Vec4 r;
-    float dz = a->z - b->z;
-    float dy = a->y - b->y;
-    float dx = a->x - b->x;
-    r.x = dx;
-    r.y = dy;
-    r.z = dz;
-    r.w = 1.0f;
+    r.z = a->z - b->z;
+    r.y = a->y - b->y;
+    r.x = a->x - b->x;
     return r;
 }
 
@@ -298,7 +294,7 @@ void C_00179820::func_00179880(void) {
 
 #pragma optimize("y", on)
 void C_00179820::func_00179950(void) {
-    Vec4 b, u;
+    Vec4 u, b;
     int i;
     sub_179950(&u.x, &v24[1], &v24[0]);
     sub_179950(&b.x, &v24[2], &v24[0]);
