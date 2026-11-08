@@ -2,6 +2,7 @@
 #include "common.h"
 #include <string.h>
 #include <new>
+#include "asm_helpers.h"
 
 void func_001E891B(void *p);
 void *func_001E8920(void *, const void *, unsigned int);
@@ -60,7 +61,7 @@ struct C_00166CA0_Base {
 extern char D_002A5EA0[];
 void func_00164270(int, int, int);
 void *func_001E8A44(unsigned int);
-template <class T> inline T min_00166CA0(T a, T b) { return a > b ? b : a; }
+template <class T> inline T min_00166CA0(T a, T b) { return AsmMinI(a, b); }
 struct Str_00166CA0 {
  char s[0x104];
  void set(const char *src) {
@@ -178,45 +179,108 @@ struct C_00166E70_Outer {
 void C_00166CA0::func_001662A0(int param_1)
 {
  C_00166CA0 *volatile self = this;
+ int locals[3];
  char buf[0x104];
  char saved[0x104];
- if (f188 == 0) {
+ if (*(volatile int *)&f188 == 0) {
   strcpy(saved, D_002A5EA0);
   D_002A5EA0[0] = 0;
-  volatile int len = strlen(f190);
-  volatile int max = 0x103;
-  int a = max;
-  int b = len;
-  volatile int n = min_00166CA0<int>(a, b);
-  int m = n;
-  func_001E8920(buf, self->f190, m);
-  buf[m] = 0;
+  locals[2] = strlen(f190);
+  locals[0] = 0x103;
+  locals[1] = AsmMinI(locals[0], locals[2]);
+  func_001E8920(buf, self->f190, locals[1]);
+  buf[locals[1]] = 0;
   strcat(buf, self->f138);
  } else {
   saved[0] = 0;
-  volatile int len = strlen(f138);
-  volatile int max = 0x103;
-  int a = max;
-  int b = len;
-  volatile int n = min_00166CA0<int>(a, b);
-  int m = n;
-  func_001E8920(buf, self->f138, m);
-  buf[m] = 0;
+  locals[1] = strlen(f138);
+  locals[0] = 0x103;
+  locals[2] = AsmMinI(locals[0], locals[1]);
+  func_001E8920(buf, self->f138, locals[2]);
+  buf[locals[2]] = 0;
  }
  void *p = func_001E8A44(0x1e0);
- self->f4 = p ? new (p) C_00166CA0_Obj(*((char *)self + self->vbptr[1] + 0x21) & 1) : 0;
+ C_00166CA0 *obj;
+ C_00166CA0_Obj *created;
+ if (p) { obj = self; int flag = *((unsigned char *)obj + obj->vbptr[1] + 0x21); flag &= 1; created = new (p) C_00166CA0_Obj(flag); } else created = 0;
+ ((volatile C_00166CA0 *)self)->f4 = created;
  self->f4->v8C(buf, 1, param_1);
- ((C_00166CA0_Base *)((char *)self + self->vbptr[1]))->func_001577A0(self->f4, 0);
- self->f1E8 = self->f4->func_00198270() - 1;
- self->f1EC = (int)func_001E8A44(self->f1E8 << 6);
- func_00164270(0, self->f1EC, self->f4->f174);
- if (self->f1F4) self->func_00166190();
+ obj = self;
+ ((C_00166CA0_Base *)((char *)obj + obj->vbptr[1]))->func_001577A0(obj->f4, 0);
+ int count = self->f4->func_00198270() - 1;
+ ((volatile C_00166CA0 *)self)->f1E8 = count;
+ ((volatile C_00166CA0 *)self)->f1EC = (int)func_001E8A44(self->f1E8 << 6);
+ obj = self;
+ func_00164270(0, obj->f1EC, obj->f4->f174);
+ obj = self;
+ if (obj->f1F4) obj->func_00166190();
  self->func_00165F70();
  if (self->f188 == 0) strcpy(D_002A5EA0, saved);
 }
 
-void __stdcall func_001664C0(void *a, void *b, int flag)
+void C_166830::func_001664C0(float t, int *b, int flag)
 {
+    int i;
+    Vec4_166830 v1, v2;
+    C_166830_Item *item;
+    int *p;
+    float f;
+
+    if (f208) {
+        for (i = 0; i < f20C; i++) {
+            p = (int *)((char *)f214 + i * 16);
+            p[0] = D_002A8450;
+            p[1] = D_002A8454;
+            p[2] = D_002A8458;
+            p[3] = D_002A845C;
+        }
+        func_00165A20(f18, f34, t, b, flag);
+        func_00165A20(f1C, f38, D_00275460 - t, b, flag);
+    }
+    for (i = 0; i < f18->f20; i++) {
+        item = f18->f18[i];
+        if (flag != 0 && b[item->f4] != 0)
+            continue;
+        item->v2(f34, &v1);
+        f1C->f18[i]->v2(f38, &v2);
+        func_0015C7D0(&v2, &v1, &v1, t);
+        if (flag) {
+            if (fC == 0) {
+                v1.y = -v1.y;
+            } else if (fC == 1) {
+                v1.z = -v1.z;
+            } else if (fC == 2) {
+                v1.w = -v1.w;
+            }
+            v1.x = -v1.x;
+            item = f18->f18[i];
+            (*(C_166830_Node **)((char *)f1F0 + item->f4 * 4))->func_00199300(&v1);
+        } else {
+            item = f18->f18[i];
+            (*(C_166830_Node **)((char *)f1EC + (item->f4 << 6) + 0x34))->func_00199300(&v1);
+        }
+    }
+    f = D_00275460 - t;
+    for (i = 0; i < f18->f1C; i++) {
+        item = f18->f14[i];
+        if (flag != 0 && b[item->f4] != 0)
+            continue;
+        v1.x = 0; v1.y = 0; v1.z = 0; v1.w = 1.0f;
+        item->v3(f34, &v1);
+        v2.x = 0; v2.y = 0; v2.z = 0; v2.w = 1.0f;
+        f1C->f14[i]->v3(f38, &v2);
+        v1.x += (v2.x - v1.x) * f;
+        v1.y += (v2.y - v1.y) * f;
+        v1.z += (v2.z - v1.z) * f;
+        v1.w = 1.0f;
+        if (flag) {
+            item = f18->f14[i];
+            func_001640D0(f4, (*(C_166830_Node **)((char *)f1F0 + item->f4 * 4))->f170, fC, &v1);
+        } else {
+            item = f18->f14[i];
+            (*(C_166830_Node **)((char *)f1EC + (item->f4 << 6) + 0x34))->func_00199650(&v1);
+        }
+    }
 }
 
 void C_166830::func_00166830(float t, int *mask, int flag)
@@ -224,10 +288,11 @@ void C_166830::func_00166830(float t, int *mask, int flag)
     int i, idx;
     if (f208) {
         for (i = 0; i < f20C; i++) {
-            *(int *)&f214[i].x = D_002A8450;
-            *(int *)&f214[i].y = D_002A8454;
-            *(int *)&f214[i].z = D_002A8458;
-            *(int *)&f214[i].w = D_002A845C;
+            Vec4_166830 *v = &f214[i];
+            *(int *)&v->x = D_002A8450;
+            *(int *)&v->y = D_002A8454;
+            *(int *)&v->z = D_002A8458;
+            *(int *)&v->w = D_002A845C;
         }
     }
     func_00165A20(f18, f34, t, mask, flag);
@@ -255,7 +320,7 @@ void C_166830::func_00166830(float t, int *mask, int flag)
     }
     for (i = 0; i < f18->f1C; i++) {
         Vec4_166830 p, q;
-        float k, dx, dy, dz;
+        volatile float k, dx, dy, dz;
         if (mask && mask[f18->f14[i]->f4]) continue;
         p.x = p.y = p.z = 0.0f;
         p.w = 1.0f;
@@ -298,22 +363,21 @@ void C_00166C80::func_00166C80(S_00166C80_Arg *param_1, int param_2)
 }
 
 void C_00166CA0::func_00166CA0(C_00166CA0 *volatile src, int arg) {
- C_00166CA0 *volatile self=this;
- volatile int values[2];
  int len=strlen(src->f138);
- values[0]=len;
- values[1]=79;
- int a=values[1], b=values[0];
- int count=a>b?b:a;
- func_001E8920(self->f138,src->f138,count);
- self->f138[count]=0;
- self->f10=src->f10; self->f14=src->f14; self->f18=src->f18; self->f38=src->f38; self->f30=src->f30;
- { const char *s=src->f48; char *d=self->f48; char c; do { c=*s++; *d++=c; } while(c); } { const char *s=src->f98; char *d=self->f98; char c; do { c=*s++; *d++=c; } while(c); }
- { const char *s=src->fE8; char *d=self->fE8; char c; do { c=*s++; *d++=c; } while(c); } { const char *s=src->f190; char *d=self->f190; char c; do { c=*s++; *d++=c; } while(c); }
- self->func_001662A0(arg);
- if(!self->f1F8) self->f1F8=(S_00166CA0_Item *)func_001E8AA5(self->f1E8*64);
- for(int i=0;i<self->f1E8;i++) self->f1F8[i].func_000264C0(&src->f1F8[i]);
- self->f1FC=1; self->func_001646B0();
+ int lim=79;
+ int count=AsmMinI(lim,len);
+ func_001E8920(this->f138,src->f138,count);
+ this->f138[count]=0;
+ this->f10=src->f10; this->f14=src->f14; this->f18=src->f18; this->f38=src->f38; this->f30=src->f30;
+ { const char *s0=src->f48; char *d0=this->f48; char c0; do { c0=*s0++; *d0++=c0; } while(c0); }
+ const char *s; char *d; char c;
+ s=src->f98; d=this->f98; do { c=*s++; *d++=c; } while(c);
+ s=src->fE8; d=this->fE8; do { c=*s++; *d++=c; } while(c);
+ s=src->f190; d=this->f190; do { c=*s++; *d++=c; } while(c);
+ this->func_001662A0(arg);
+ if(!this->f1F8) this->f1F8=(S_00166CA0_Item *)func_001E8AA5(this->f1E8*64);
+ for(int i=0;i<this->f1E8;i++) this->f1F8[i].func_000264C0(&src->f1F8[i]);
+ this->f1FC=1; this->func_001646B0();
 }
 
 void *C_00166E70::func_00166E70(int flags)
@@ -331,37 +395,36 @@ void C_00166CA0::func_00166EB0(int param_1)
 {
     char buf[64];
     char buf2[64];
-    unsigned int len;
+    int len;
     f8->func_00169710(D_00287E90);
     f8->func_00168BE0(D_00277274, D_00275630, f190, -1);
     len = strlen(f190);
-    if (len == 0)
+    if (!len)
         strcpy(f190, D_002A46E8);
     f8->func_00168BE0(D_00287E84, D_00284644, f98, -1);
     f1F4 = f8->func_00168BE0(D_00287E78, D_00284644, fE8, -1) != 0;
     f8->func_00168C20(D_00277288, 0, &f14);
     f8->func_00168C20(D_00287D8C, 1, &f20);
     f8->func_00168C20(D_00287D78, 1, &f24);
-    if (f8->func_00168550(D_00287D68, buf, -1) != 0 && func_001EA426(buf, D_00287D5C) != 0)
+    if (f8->func_00168550(D_00287D68, buf, -1) && func_001EA426(buf, D_00287D5C))
         f28 = func_001EA426(buf, D_00287D50) == 0;
     else
         f28 = 0;
-    if (f8->func_00168550(D_00287D40, buf, -1) != 0) {
-        if (func_001EA426(buf, D_00287D38) == 0)
+    if (f8->func_00168550(D_00287D40, buf, -1)) {
+        if (!func_001EA426(buf, D_00287D38))
             f2C = 0;
         else {
             func_001EA426(buf, D_00287D30);
             f2C = 1;
         }
     }
-    if (f8->func_00168550(D_00287E6C, buf2, -1) != 0 && func_001EA426(buf, D_00287E64) != 0) {
-        if (func_001EA426(buf, D_00287E5C) == 0)
+    if (f8->func_00168550(D_00287E6C, buf2, -1) && func_001EA426(buf, D_00287E64)) {
+        if (!func_001EA426(buf, D_00287E5C))
             fC = 1;
-        else if (func_001EA426(buf, D_00287E54) == 0)
+        else if (!func_001EA426(buf, D_00287E54))
             fC = 2;
-    } else {
+    } else
         fC = 0;
-    }
     func_001662A0(param_1);
     func_00164700();
     func_001643A0();
