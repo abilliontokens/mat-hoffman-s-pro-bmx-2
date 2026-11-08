@@ -349,8 +349,9 @@ struct C_0001D450 {
     volatile int unk70;
     C_0001D450_Item **unk74;
     C_0001D450_Item *itemAt(int i) {
-        if (unk70 > 0 && unk74 != 0 && i < unk70) {
-            return unk74[i];
+C_0001D450 *self = this;
+if (self->unk70 > 0 && self->unk74 != 0 && i < self->unk70) {
+return self->unk74[i];
         }
         return 0;
     }
