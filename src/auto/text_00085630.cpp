@@ -170,7 +170,7 @@ struct C_00086240_Item {
     C_00086240_Item *func_001D5E90();
     void func_001D5FA0(int parent, const char *name, int size, int flags);
     void SetPos(float a, float b) {
-        if (x != a || y != b) { x = a; y = b; flags |= 6; }
+        if (a != x || b != y) { x = a; y = b; flags |= 6; }
     }
     void SetFont(int a) { if (font != a) { font = a; flags |= 6; } }
     void SetZ(float a) { if (z != a) { z = a; flags |= 4; } }
@@ -225,12 +225,12 @@ struct C_00085BD0 {
 };
 
 C_00086240 *C_00086240::func_00085630(int a, int b) {
- int i = 0;
  const char *name = D_00278690;
  C_00085630_Manager *manager = *(C_00085630_Manager **)((char *)D_002A8490 + 0x2ec);
  manager->func_0018C780(1, &name, 0);
  int *entry = (*(C_00085630_Manager **)((char *)D_002A8490 + 0x2ec))->func_0018C160(D_00278690);
- register int parent = entry ? *entry : 0;
+ int parent = entry ? *entry : 0;
+ int i = 0;
  *(int *)padC8 = a; fD0 = b;
  char buf[40];
  for (int y = 54; y < 406; y += 44) {
