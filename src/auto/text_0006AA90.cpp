@@ -30,8 +30,9 @@ struct S_6AA90 {
  char paddc[0x154-0xdc]; int selected; int previous; char pad15c[8];
  int unk164; int unk168; int unk16c; int pad170; Txt_6AA90* t174; Txt_6AA90* t178; Txt_6AA90* t17C; int pad180; int unk184;
  char pad188[0x1c0-0x188]; Txt_6AA90 *title; char pad1c4[0x1d8-0x1c4]; int state; char pad1dc[8]; int dirty; char pad1e8[0x1fc-0x1e8]; int unk1fc;
- void func_0006AA90();
-};
+    void func_0006AA90();
+   void Place(Txt_6AA90* t, float x, float y) { t->SetPos(x,y); if(t->frame!=D_0028F5DC){t->frame=D_0028F5DC;t->flags|=6;} }
+ };
 
 void S_6AA90::func_0006AA90() {
 char buf[260]; char num[24];
