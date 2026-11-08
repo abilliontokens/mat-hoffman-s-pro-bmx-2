@@ -5,7 +5,7 @@
 
 extern float D_002A14D4, D_002A14D8, D_002A14DC, D_002A14E0;
 extern float D_00275AEC, D_00275548;
-extern int D_00276CA4;
+extern float D_00276CA4;
 
 struct S_000399A0_Slot {
     int type;                 /* 0x00 */
