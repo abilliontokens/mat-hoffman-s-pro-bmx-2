@@ -190,7 +190,7 @@ extern int D_002A10F0, D_002A10F4, D_002A10F8, D_002A10FC;
 
 struct V4i_0002A6B0 {
     int a, b, c, d;
-    void Set(int x, int y, int z, int w) { a = x; b = y; c = z; d = w; }
+    void Set(int x, int y, int z, int w) { d = w; c = z; b = y; a = x; }
 };
 
 struct C_0002A6B0 {
@@ -480,7 +480,7 @@ void C_0002A250::func_0002A250(float dt)
         a.x = a.y = a.z = 0;
         a.w = 1.0f;
         func_00026340(&a, &f1e0->v170);
-        f644 = D_002756D4 - func_0014F7E0(a.x * f10c.x + a.y * f10c.y + a.z * f10c.z);
+        f644 = D_002756D4 - func_0014F7E0(a.z * f10c.z + a.y * f10c.y + a.x * f10c.x);
         b.x = b.y = b.z = 0;
         b.w = 1.0f;
         AsmVec3Cross(&b.x, &a.x, &f10c.x);
