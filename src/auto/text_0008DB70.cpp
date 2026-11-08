@@ -35,7 +35,9 @@ struct S_0008DB70 {
     int f40; int f44; char *f48;
     char pad4c[0x164 - 0x4c];
     void *f164; void *f168; void *f16c; void *f170; void *f174;
-    char pad178[0xd4c - 0x178];
+    char pad178[0xd3c - 0x178];
+    void *fd3c; void *fd40; void *fd44;
+    char padd48[0xd4c - 0xd48];
     int fd4c; int fd50; char padd54[0xd64 - 0xd54]; int fd64;
     char padd68[0xd84 - 0xd68]; void *fd84; void *fd88;
     char padd90[0xd98 - 0xd8c]; int fd98;
