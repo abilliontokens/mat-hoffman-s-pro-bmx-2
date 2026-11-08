@@ -67,7 +67,7 @@ struct C_0009EDF0 {
     f32 f1fc, f200, f204, f208;
     float f20c, f210, f214, f218;
     C_0009EDF0 *func_0009EDF0(int a);
-    int func_0009E680(C_0009EDF0 *arg);
+    int func_0009E680(float dt);
     float func_00011170(float *v);
     void func_00169C50(int a);
     C_0009EDF0 *func_0009EF00(int a, int b, int c);
@@ -122,7 +122,7 @@ struct C_0009EDB0 {
     void func_0009F4C0(char param_1);
 };
 
-int C_0009EDF0::func_0009E680(C_0009EDF0 *arg)
+int C_0009EDF0::func_0009E680(float dt)
 {
     float diff[4];
     float norm[4];
@@ -144,7 +144,7 @@ int C_0009EDF0::func_0009E680(C_0009EDF0 *arg)
         return 0;
     if (f1cc & 1) {
         f1cc &= 0xfe;
-        arg->v34 = arg->v24;
+        this->v34 = this->v24;
         return 1;
     }
 
@@ -161,7 +161,7 @@ int C_0009EDF0::func_0009E680(C_0009EDF0 *arg)
     norm[2] = diff[2];
     norm[3] = len;
     func_0009DA90(norm, diff);
-    dot = norm[0] * arg->f1fc + norm[1] * arg->f200 + len * arg->f204;
+    dot = norm[0] * this->f1fc + norm[1] * this->f200 + len * this->f204;
     dot = func_0014F7E0(dot);
     if (dot < D_00277F40)
         return 0;
@@ -170,11 +170,11 @@ int C_0009EDF0::func_0009E680(C_0009EDF0 *arg)
     up[1] = 0.0f;
     up[2] = 0.0f;
     up[3] = 1.0f;
-    func_0001EAB0(up, (float *)&arg->f1fc, up);
+    func_0001EAB0(up, (float *)&this->f1fc, up);
     func_0009DA90(up, up);
     t = D_002A24DC * up[1];
-    func_00158390(*(Vec4f *)&arg->f1fc, *(Vec4f *)up, t, (void *)&arg->f1fc);
-    func_0009DA90((float *)&arg->f1fc, (float *)&arg->f1fc);
+    func_00158390(*(Vec4f *)&this->f1fc, *(Vec4f *)up, t, (void *)&this->f1fc);
+    func_0009DA90((float *)&this->f1fc, (float *)&this->f1fc);
 
     side[0] = 0.0f;
     side[1] = 0.0f;
@@ -187,24 +187,24 @@ int C_0009EDF0::func_0009E680(C_0009EDF0 *arg)
     AsmVec3Cross(side, (const float *)&D_002A2528, norm);
     func_0009DA90(side, side);
     AsmVec3Cross(fwd, up, side);
-    AsmVec3Cross(up, (const float *)&arg->f1fc, side);
+    AsmVec3Cross(up, (const float *)&this->f1fc, side);
     func_0009DA90(up, side);
 
-    t = len / ((float *)this)[0xe8 / 4];
+    t = len / dt;
     if (t < D_002756DC)
         return 0;
 
-    arg->f1f0 = t * arg->f17c;
-    AsmFloatToInt(t * arg->f1f0, &count);
+    this->f1f0 = t * this->f17c;
+    AsmFloatToInt(dt * this->f1f0, &count);
     if (count < 1)
         return 0;
 
     {
-        Vec4f *base = func_0009DA50((float *)&arg->f64, norm, (float)count / len);
+        Vec4f *base = func_0009DA50((float *)&this->f64, norm, (float)count / len);
         Vec4f start = *base;
         float step = (float)count / len;
         for (i = 0; i < count; i++) {
-            Pool9E *pool = arg->f64;
+            Pool9E *pool = this->f64;
             Particle9E *p;
             float r1, r2;
             float s1[3];
@@ -212,11 +212,13 @@ int C_0009EDF0::func_0009E680(C_0009EDF0 *arg)
             float s3[3];
             float pos[3];
             float vel[3];
+            float fi;
             if (pool->count11C >= pool->cap124)
                 continue;
+            fi = (float)i;
             r1 = (float)func_001E8833() * D_002754B0;
             p = (Particle9E *)pool->arr12C[pool->count11C];
-            r1 = r1 * arg->f218 + arg->f20c;
+            r1 = r1 * this->f218 + this->f20c;
             s1[0] = side[0] * r1;
             s1[1] = side[1] * r1;
             s1[2] = side[2] * r1;
@@ -224,41 +226,41 @@ int C_0009EDF0::func_0009E680(C_0009EDF0 *arg)
             pos[1] = s1[1];
             pos[2] = s1[2];
             r2 = (float)func_001E8833() * D_002754B0;
-            r2 = arg->f210 * D_002755E8 - r2 * arg->f210;
+            r2 = this->f210 * D_002755E8 - r2 * this->f210;
             s2[0] = up[0] * r2;
             s2[1] = up[1] * r2;
             s2[2] = up[2] * r2;
             pos[0] += s2[0];
             pos[1] += s2[1];
             pos[2] += s2[2];
-            s3[0] = norm[0] * -(t * arg->f214);
-            s3[1] = norm[1] * -(t * arg->f214);
-            s3[2] = norm[2] * -(t * arg->f214);
+            s3[0] = norm[0] * -(t * this->f214);
+            s3[1] = norm[1] * -(t * this->f214);
+            s3[2] = norm[2] * -(t * this->f214);
             pos[0] += s3[0];
             pos[1] += s3[1];
             pos[2] += s3[2];
-            vel[0] = (pos[0] * step + start.x) * t;
-            vel[1] = (pos[1] * step + start.y) * t;
-            vel[2] = (pos[2] * step + start.z) * t;
-            p->f2C = arg->f170 * D_002755E8 * (float)func_001E8833() * D_002754B0;
-            p->v10.x = vel[0] + arg->v34.x;
-            p->v10.y = vel[1] + arg->v34.y;
-            p->v10.z = vel[2] + arg->v34.z;
+            vel[0] = (pos[0] * step + start.x) * fi;
+            vel[1] = (pos[1] * step + start.y) * fi;
+            vel[2] = (pos[2] * step + start.z) * fi;
+            p->f2C = this->f170 * D_002755E8 * (float)func_001E8833() * D_002754B0;
+            p->v10.x = vel[0] + this->v34.x;
+            p->v10.y = vel[1] + this->v34.y;
+            p->v10.z = vel[2] + this->v34.z;
             p->v10.w = 1.0f;
-            p->f28 = arg->f188;
-            p->f38 = ((float)func_001E8833() * D_002754B0 + D_00275460) * arg->f178;
-            p->f40 = arg->f174;
-            p->f48 = (int)arg;
-            p->f30 = arg->f170;
-            p->f34 = D_00275460 / arg->f170;
-            p->f44 = arg->f190;
+            p->f28 = this->f188;
+            p->f38 = ((float)func_001E8833() * D_002754B0 + D_00275460) * this->f178;
+            p->f40 = this->f174;
+            p->f48 = (int)this;
+            p->f30 = this->f170;
+            p->f34 = D_00275460 / this->f170;
+            p->f44 = this->f190;
             pool->count11C++;
-            arg->f188++;
-            if (arg->f188 >= arg->f1ac)
-                arg->f188 = arg->f1a8;
+            this->f188++;
+            if (this->f188 >= this->f1ac)
+                this->f188 = this->f1a8;
         }
     }
-    arg->f1f8 = (int)t;
+    this->f1f8 = (int)t;
     return 1;
 }
 
