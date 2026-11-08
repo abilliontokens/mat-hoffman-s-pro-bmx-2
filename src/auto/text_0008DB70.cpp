@@ -54,9 +54,12 @@ struct T_0008DB70 {
     void func_001B2270(int c);
     void func_001B19A0(int f);
     void func_001B1BF0(float s);
-    void func_001B1AB0(int a, int b);
-};
-struct S_0008DB70 {
+          void func_001B1AB0(int a, int b);
+  };
+  struct O_0008DB70 {
+      O_0008DB70 *func_001CF740(int a, int b, int c);
+  };
+  struct S_0008DB70 {
     char pad0[0x40];
     int f40; int f44; char *f48;
     char pad4c[0x164 - 0x4c];
