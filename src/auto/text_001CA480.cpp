@@ -130,7 +130,7 @@ struct WaterDisplacement {
 
 struct Vec4_001CA480 {
     float x, y, z, w;
-    Vec4_001CA480() { x = y = z = 0.0f; w = 1.0f; }
+    Vec4_001CA480() { x = 0.0f; y = 0.0f; z = 0.0f; w = 1.0f; }
     Vec4_001CA480(float a, float b, float c, float d) { x = a; y = b; z = c; w = d; }
 };
 
