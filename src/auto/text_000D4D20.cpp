@@ -55,13 +55,15 @@ struct DelObjC_000D4DD0 {
             b58 |= 1;
         }
     }
-    void SetArgbRaw(unsigned int c) {
-        f38 = (f38 & c) | (c & 0xffffff);
-        b58 |= 2;
-    }
-};
-
-struct S_000D5860_Draw {
+          void SetArgbRaw(unsigned int c) {
+          unsigned int nf = (f38 & c) | (c & 0xffffff);
+          unsigned char f = b58 | 2;
+          f38 = nf;
+          b58 = f;
+      }
+  };
+  
+  struct S_000D5860_Draw {
     void func_001D5AD0();
 };
 
