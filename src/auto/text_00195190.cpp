@@ -151,7 +151,14 @@ int func_00134DE0(V4f_001956F0 *seg, V4f_001956F0 *hitPos, V4f_001956F0 *hitNorm
 int func_001E8833();
 
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 extern float D_0028AF10, D_0028AF00, D_0028AEF0, D_002754B0, D_00275994;
+
+static __forceinline void SetItem_001959E0(STV_1959E0 *self, int idx)
+{
+    self->cur = idx;
+    self->f74 = 0;
+}
 
 static __forceinline float Rand01_001959E0(void)
 {
@@ -192,7 +199,8 @@ void SimpleTVCamera::func_00195190(float dt, int *ok, V4f_001956F0 *out, V4f_001
    float dx=current.x-previous.x;
    float dy=current.y-previous.y;
    float dz=current.z-previous.z;
-   float scale=D_00275460/dt;
+   float scale;
+   *(volatile float *)&scale=D_00275460/dt;
    velocity=V4f_001956F0(dx*scale,dy*scale,dz*scale,1.0f);
   }
   previous=current;
@@ -288,17 +296,17 @@ int STV_1959E0::func_001959E0(float dt, float *pos, Vec4_195D40 *out)
     int i;
     int hit;
 
-    best = 3.4028235e38f;
     bestIdx = cur;
+    best = 3.4028235e38f;
     for (i = 0; i < count; i++) {
         hit = 0;
         if (f70) {
             d = *(V4f_001956F0 *)pos - *(V4f_001956F0 *)&items[i];
-            Normalize_001959E0(&n.x, &d.x);
-            Sqrt_001959E0(&len, d.y * d.y + d.z * d.z + d.x * d.x);
-            n.x *= len;
-            n.y *= len;
-            n.z *= len;
+            AsmVec3Normalize(&n.x, &d.x);
+            len = AsmSqrtF(d.x * d.x + d.z * d.z + d.y * d.y);
+            n.x = n.x * len;
+            n.y = n.y * len;
+            n.z = n.z * len;
             seg[0] = *(V4f_001956F0 *)&items[i];
             seg[1] = seg[0] + n;
             if (func_00134DE0(seg, &hitPos, &hitNormal, 1, 0, 0, -1, 0, 1)) {
@@ -315,14 +323,14 @@ int STV_1959E0::func_001959E0(float dt, float *pos, Vec4_195D40 *out)
         }
     }
     if (bestIdx != cur) {
-        if (f74 < f78 && cur != -1) {
-            f74 = dt + f74;
-        } else {
+        if (f74 >= f78 || cur == -1) {
             cur = bestIdx;
             f74 = 0;
+        } else {
+            f74 = dt + f74;
         }
     }
-    *out = items[cur].a;
+    *(V4f_001956F0 *)out = *(V4f_001956F0 *)&items[cur];
     if (cur != prev) {
         prev = cur;
         if (Rand01_001959E0() * D_00275994 < items[cur].f30) {
