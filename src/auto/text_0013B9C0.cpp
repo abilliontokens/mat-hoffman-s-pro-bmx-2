@@ -108,72 +108,71 @@ struct C_0013B9C0 {
 
 void __fastcall func_0013B9C0(C_0013B9C0 * volatile self, int dummy, S_0013B9C0_Ent28 * volatile p, int index)
 {
- volatile int size;
- volatile int limit;
- volatile int remaining;
- func_00012140(p->f10);
- int flags = p->fC;
- int compressed = flags & 0x40;
- int extra = 0;
- if (flags & 0x200) extra = 1;
- C_0013B9C0 *t = self;
- if (t->f74 == -1 && compressed) {
-  if (t->f7C) func_001E8390(t->f7C);
-  self->f7C = (unsigned short *)func_001E8AA5(((int *)p)[8]);
-  S_0013B9C0_Ent28 *e = p;
-  func_0014FED0(e->f10, ((int *)e)[7], 0);
-  e = p;
-  func_0014FE60(self->f7C, ((int *)e)[8], e->f10);
-  t = self;
- }
- if (extra) t->func_0013B480((char *)t + 0x2c);
- int offset = ((int *)p)[6];
- C_0013B9C0 *s = self;
- if (compressed) {
-  int n = *(volatile int *)&index;
-  if (n > 0) {
-   unsigned short *q = s->f7C;
-   int i = 0;
-   do {
-    offset += *q + extra;
-    ++q;
-    ++i;
-   } while (i != n);
-  }
- } else offset += (extra + 0x6000) * index;
- func_0014FED0(p->f10, offset, 0);
- limit = self->f70;
- remaining = (int)p->f14 - offset;
- size = AsmMinI(remaining, limit);
- int result;
- if (extra) {
-  self->f100 = 1;
-  t = self;
-  result = t->func_0013B4C0((char *)t + 0x2c, size, p->f10);
- } else {
-  void *a = p->f10;
-  int b = size;
-  t = self;
-  result = t->func_0013B4C0((char *)t + 0x2c, b, a);
- }
- t = self;
- t->f74 = *(volatile int *)&index;
- if (compressed) {
-  t = self;
-  t->f78 = t->f74;
-  unsigned short *q = t->f7C + t->f74;
-  do {
-   result -= *q + extra;
-   ++q;
-   if (result > *q) ++t->f78;
-   t = self;
-  } while (result > 0);
- } else {
-  int block = extra + 0x6000;
-  t = self;
-  t->f78 = t->f74 + result / block;
-  if (result % block) --self->f78;
- }
+    volatile int size;
+    volatile int limit;
+    volatile int remaining;
+    func_00012140(p->f10);
+    int flags = p->fC;
+    int compressed = flags & 0x40;
+    int extra = 0;
+    if (flags & 0x200) extra = 1;
+    C_0013B9C0 *t = self;
+    if (t->f74 == -1 && compressed) {
+        if (t->f7C) func_001E8390(t->f7C);
+        self->f7C = (unsigned short *)func_001E8AA5(((int *)p)[8]);
+        S_0013B9C0_Ent28 *e = p;
+        func_0014FED0(e->f10, ((int *)e)[7], 0);
+        e = p;
+        func_0014FE60(self->f7C, ((int *)e)[8], e->f10);
+        t = self;
+    }
+    if (extra) t->func_0013B480((char *)t + 0x2c);
+    int offset = ((int *)p)[6];
+    if (compressed) {
+        int n = *(volatile int *)&index;
+        if (n > 0) {
+            unsigned short *q = t->f7C;
+            int i = 0;
+            do {
+                offset += *q + extra;
+                ++q;
+                ++i;
+            } while (i != n);
+        }
+    } else offset += (extra + 0x6000) * index;
+    func_0014FED0(p->f10, offset, 0);
+    limit = self->f70;
+    remaining = (int)p->f14 - offset;
+    size = AsmMinI(remaining, limit);
+    int result;
+    if (extra) {
+        self->f100 = 1;
+        t = self;
+        result = t->func_0013B4C0((char *)t + 0x2c, size, p->f10);
+    } else {
+        void *a = p->f10;
+        int b = size;
+        t = self;
+        result = t->func_0013B4C0((char *)t + 0x2c, b, a);
+    }
+    t = self;
+    t->f74 = *(volatile int *)&index;
+    if (compressed) {
+        t = self;
+        t->f78 = t->f74;
+        unsigned short *q = t->f7C + t->f74;
+        do {
+            result -= *q + extra;
+            ++q;
+            if (result > *q) ++t->f78;
+            t = self;
+        } while (result > 0);
+    } else {
+        int block = extra + 0x6000;
+        t = self;
+        t->f78 = t->f74 + result / block;
+        if (result % block) --self->f78;
+    }
 }
 
 int C_0013B9C0::func_0013BBA0(S_0013B9C0_Ent28 *p, int a1, int a2, int a3)
@@ -506,47 +505,47 @@ char *C_0013B9C0::func_0013C6E0(int idx, char *buf, int size)
     S_0013B9C0_Ent20 *e = &fE8[idx];
     int remain = (int)e->f14 - (int)e->f10;
     S_0013B9C0_Ent28 *t;
-    int n;
-    int lim;
-    int bound;
+    int n, pos, bound, lim;
     char *p;
-
     if (remain <= 0) {
         *buf = 0;
         return 0;
     }
     t = &fC[e->f0];
-    if (!func_0013B760(t, e->fC + (int)e->f10)) {
-        return 0;
-    }
-    bound = ((int)e->f10 / 0x6000 + 1) * 0x6000 - (int)e->f10;
-    lim = min_i(remain, size - 2);
-    n = min_i(bound, lim);
-    if (!func_0013BBA0(t, e->f4, (int)buf, n)) {
+    if (!func_0013B760(t, e->fC + (int)e->f10)) goto failure;
+    pos = (int)e->f10;
+    bound = (pos / 0x6000 + 1) * 0x6000 - pos;
+    lim = AsmMinI(remain, size - 2);
+    n = AsmMinI(bound, lim);
+    int total = n;
+    if (!func_0013BBA0(t, e->f4, (int)buf, total)) {
+failure:
         *buf = 0;
         return 0;
     }
-    buf[n] = 0;
+    buf[total] = 0;
     p = func_001E9260(buf, 10);
     if (!p && n != remain) {
-        int m = min_i(remain, size - 2) - bound;
-        if (!func_0013BBA0(t, e->f4, (int)(buf + n), m)) {
+        char *next = buf + n;
+        total = AsmMinI(remain, size - 2);
+        total -= bound;
+        if (!func_0013BBA0(t, e->f4, (int)next, total)) {
             *buf = 0;
             return 0;
         }
-        buf[n + m] = 0;
+        next[total] = 0;
+        total += n;
         p = func_001E9260(buf, 10);
-        n += m;
     }
     if (p) {
-        n = (int)(p - buf) + 1;
+        total = p - buf + 1;
         if (p > buf && p[-1] == 13) {
             p--;
             *p = 10;
         }
         p[1] = 0;
     }
-    e->f10 = (void *)((int)e->f10 + n);
+    e->f10 = (void *)((int)e->f10 + total);
     return buf;
 }
 
