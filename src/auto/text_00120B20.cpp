@@ -50,6 +50,7 @@ static __forceinline float Dot_00120FF0(S_0011F4B0_V4 *a, S_0011F4B0_V4 *b) { re
 
 int func_00120B20(S_001206E0_Tri *tri, S_00120B20_Seg *seg, float radius, int unused, float *m)
 {
+    S_0011F4B0_V4 tmp;
     S_0011F4B0_V4 e;
     S_0011F4B0_V4 n;
     S_0011F4B0_V4 d;
@@ -76,7 +77,10 @@ int func_00120B20(S_001206E0_Tri *tri, S_00120B20_Seg *seg, float radius, int un
     v2.w = 1.0f;
     func_0011F0E0(&v0, &v1, &v2, tri, D_002B92F4);
     func_0011F540(&p, seg->a, m);
-    S_0011F4B0_V4 tmp = { seg->b.x - seg->a.x, seg->b.y - seg->a.y, seg->b.z - seg->a.z, 1.0f };
+    tmp.w = 1.0f;
+    tmp.x = seg->b.x - seg->a.x;
+    tmp.y = seg->b.y - seg->a.y;
+    tmp.z = seg->b.z - seg->a.z;
     func_00030A30(&d, tmp, m);
     t = -((n.x * p.x + n.y * p.y + n.z * p.z + tri->t) / (n.x * d.x + n.y * d.y + n.z * d.z));
     t = AsmMaxF(AsmMinF(t, 1.0f), 0.0f);
@@ -120,6 +124,7 @@ int func_00120B20(S_001206E0_Tri *tri, S_00120B20_Seg *seg, float radius, int un
     return 1;
 }
 
+extern S_0011F4B0_V4 D_002B9380, D_002B9390, D_002B93A0;
 int func_00120FF0(float *p0, float *extA, float *p1, float *extB, float *m)
 {
     int i;
