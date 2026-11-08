@@ -29,7 +29,7 @@ extern TrigEntry *D_002CF6B4;
 
 struct V4x { float x, y, z, w; };
 struct ObjB700 { ObjB700 *func_0019B700(int a); void func_0019D7B0(void *a, void *b); void func_00129920(int a); void func_001334E0(int a); void func_00011FF0(void *buf, int a, int b, void *cb); void func_0019C710(void *a, void *b, int c, int d); };
-struct ObjA50 { ObjA50 *func_001A4A50(int a); void func_00129920(int a); void func_001A57E0(int a, int b, V4x v); };
+struct ObjA50 { ObjA50 *func_001A4A50(int a); void func_00129920(int a); void func_001A57E0(int a, int b, V4x v); void func_001A57E0(V4x v, int a, int b); };
 struct ObjE620 { ObjE620 *func_0017E620(int a); void func_00129920(int a); void func_0017E6F0(V4x a, V4x b, int c); };
 struct Ent14E { char p0[0x20]; int type; float f24; int f28; void func_001577A0(void *a, int b); };
 void func_00129920(int a);
