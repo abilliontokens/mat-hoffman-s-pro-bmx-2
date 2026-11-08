@@ -36,7 +36,7 @@ struct C_000399A0 {
     char pad48[0x428-0x48];
     int f428, f42c, f430;
     char pad434[0xc];
-    int f440, f444, f448, f44c;
+    float f440; int f444, f448, f44c;
     int f450, f454, f458;
     int f45C, f460;
     float f464, f468;
