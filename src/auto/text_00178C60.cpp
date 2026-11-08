@@ -124,6 +124,16 @@ static __forceinline Vec4 vecsub_179950(Vec4 *a, Vec4 *b)
     return r;
 }
 
+static __forceinline Vec4 vecsubw_179950(Vec4 *a, Vec4 *b)
+{
+    Vec4 r;
+    r.z = a->z - b->z;
+    r.y = a->y - b->y;
+    r.x = a->x - b->x;
+    r.w = 1.0f;
+    return r;
+}
+
 static __forceinline void cross_179950(float *out, float *a, float *b)
 {
     AsmVec3Cross(out, a, b);
@@ -154,11 +164,9 @@ int func_00178C60(void *a, void *b, int c, int d, int e, int f, int g, int h, in
 {
     void *dst = a;
     int flag = 0;
-    int es;
 
     if (m != 0) {
-        es = func_001B2CB0(g);
-        dst = func_001E8A44(es * d * e);
+        dst = func_001E8A44(func_001B2CB0(g) * d * e);
         if (dst == 0)
             return 0;
     }
