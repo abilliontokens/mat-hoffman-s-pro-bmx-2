@@ -313,52 +313,13 @@ C_00197EC0_Vec4 *C_00197EC0::func_00198040(C_00197EC0_Vec4 *out, C_00197EC0_Vec4
 
 C_00197EC0_Vec4 C_00197EC0::func_00198120(float *v)
 {
-    struct Slots { C_00197EC0 *self; void *dst; void *src; };
-    volatile Slots L;
     C_00197EC0_Vec4 q;
     M_00198040 m;
-    L.self = this;
     q.z = 0; q.y = 0; q.x = 0; q.w = 1.0f;
     func_00197AA0();
-    L.src = (void *)&L.self->fF0;
-    L.dst = (void *)&m;
-    {
-        __m128 *s = (__m128 *)L.src;
-        __m128 *d = (__m128 *)L.dst;
-        _ReadWriteBarrier();
-        __m128 a0 = s[0], a1 = s[1], a2 = s[2], a3 = s[3];
-        _ReadWriteBarrier();
-        d[0] = a0; d[1] = a1; d[2] = a2; d[3] = a3;
-        _ReadWriteBarrier();
-    }
+    AsmCopyMatrix(&m, &fF0);
     func_0011AC30(&m, &m);
-    _ReadWriteBarrier();
-    L.dst = (void *)&m;
-    L.src = (void *)&q;
-    {
-        float *pv = v;
-        M_00198040 *mm = (M_00198040 *)L.dst;
-        C_00197EC0_Vec4 *oo = (C_00197EC0_Vec4 *)L.src;
-        __m128 t = _mm_loadu_ps(pv);
-        _mm_storeh_pi((__m64 *)&oo->z, t);
-        oo->w = 1.0f;
-        t = _mm_loadh_pi(t, (__m64 *)&oo->z);
-        __m128 r0 = _mm_mul_ps(mm->m[0], t);
-        __m128 r1 = _mm_mul_ps(mm->m[1], t);
-        __m128 r2 = _mm_mul_ps(mm->m[2], t);
-        __m128 lo = _mm_unpacklo_ps(r0, r1);
-        __m128 hi = _mm_unpackhi_ps(r0, r1);
-        __m128 junk;
-        junk = _mm_movehl_ps(junk, r2);
-        lo = _mm_add_ps(lo, hi);
-        r2 = _mm_add_ps(r2, junk);
-        hi = _mm_movehl_ps(hi, lo);
-        lo = _mm_movelh_ps(lo, r2);
-        hi = _mm_shuffle_ps(hi, r2, 0x14);
-        lo = _mm_add_ps(lo, hi);
-        _mm_storeu_ps(&oo->x, lo);
-        oo->w = 1.0f;
-    }
+    AsmTransformPoint(&q.x, v, (float *)&m);
     return q;
 }
 
