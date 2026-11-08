@@ -61,8 +61,9 @@ static __forceinline void vec3_set(float *out, float x, float y, float z) {
     out[2] = z;
 }
 
-int __fastcall func_0009CAD0(char *self, int unused, float dt, char *a, char *b)
+int S_0009CAD0::func_0009CAD0(float dt, char *a, char *b)
 {
+    char *self = (char *)this;
     char *mgr;
     char **list;
     int count;
