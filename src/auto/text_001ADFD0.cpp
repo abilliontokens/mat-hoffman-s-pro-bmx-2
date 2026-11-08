@@ -612,6 +612,23 @@ struct C_001AE890 {
 };
 struct S_001AE890_View { int v[6]; };
 static inline void setint_1AE890(int *out, float f) { *out = (int)f; }
+static inline void Fill_1AE890(C_001AE890 *self, int *p, int i0, int top, int end)
+{
+    int i = i0;
+    for (int y = top; y < end; y++) {
+        for (int x = 0; x < 2; x++) {
+            int v = *p++; self->f18->f64[i++] = (v == 0);
+            v = *p++; self->f18->f64[i++] = (v == 0);
+            v = *p++; self->f18->f64[i++] = (v == 0);
+            v = *p++; self->f18->f64[i++] = (v == 0);
+            v = *p++; self->f18->f64[i++] = (v == 0);
+            v = *p++; self->f18->f64[i++] = (v == 0);
+            v = *p++; self->f18->f64[i++] = (v == 0);
+            v = *p++; self->f18->f64[i++] = (v == 0);
+        }
+        p += 624;
+    }
+}
 void func_001ADD80(void *);
 void __stdcall func_001FF940(void *, void *);
 void __stdcall func_00200230(void *);
@@ -861,7 +878,8 @@ C_001AE3E0 *C_001AE3E0::func_001AEBD0(int a1, int a2, float *a3, int a4, float a
     float tmp[4];
     void *mem;
     unsigned int color;
-    unsigned char rgb[3];
+    volatile unsigned char r;
+    unsigned char gb[2];
     C_001AE3E0_Sub *sub; S_001AEBD0_Ref *ref; C_001AE3E0_Entry *entry;
     f24 = a8;
     f40 = *(C_001AE3E0_Quat *)func_0001E9E0(tmp, a3);
@@ -873,10 +891,10 @@ C_001AE3E0 *C_001AE3E0::func_001AEBD0(int a1, int a2, float *a3, int a4, float a
     f54->func_001ADF30(a1, (int)this);
     f54->SetScale(f2C);
     f54->SetAlpha(0);
-    rgb[0] = (unsigned char)(int)a9;
-    rgb[1] = (unsigned char)(int)a10;
-    rgb[2] = (unsigned char)(int)a11;
-    color = MakeColor_001AEBD0(-1, rgb[0], rgb[1], rgb[2]);
+    r = (unsigned char)(int)a9;
+    gb[0] = (unsigned char)(int)a10;
+    gb[1] = (unsigned char)(int)a11;
+    color = MakeColor_001AEBD0(-1, r, gb[0], gb[1]);
     f54->col[0].rgba = color;
     f54->col[1].rgba = color;
     f54->col[2].rgba = color;
