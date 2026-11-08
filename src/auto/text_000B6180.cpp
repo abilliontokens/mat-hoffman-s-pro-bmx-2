@@ -58,8 +58,6 @@ struct C_000B6840_Arg {
     char pad0[0x4ac];
     int *f4ac;
 };
-extern "C" void _ReadWriteBarrier(void);
-#pragma intrinsic(_ReadWriteBarrier)
 extern float D_00275544;
 extern float D_00275460;
 extern char D_0027D3F0[];
