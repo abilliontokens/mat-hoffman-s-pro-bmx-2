@@ -2,6 +2,7 @@
 #include "common.h"
 #include "ghidra.h"
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 
 static __forceinline float Max_0012AAE0(float a, float b) { float r; _mm_store_ss(&r, _mm_max_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
 static __forceinline float Min_0012AAE0(float a, float b) { float r; _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
@@ -432,34 +433,38 @@ extern "C" float __cdecl sqrtf(float);
 
 void func_0012A380(S_0012AB70Vec *dst, const S_0012AB70Vec *src);
 
+struct V_0012ACC0 {
+    float right[4];
+    float delta[4];
+};
+
 int C_0012ACC0::func_0012ACC0(float x, float y, float z, float w)
 {
-    C_0012ACC0 *volatile self = this;
+    float delta[4];
     float right[4];
-    S_0012AB70Vec delta;
     if (x == pos[0] && y == pos[1] && z == pos[2]) return 0;
     right[2] = right[1] = right[0] = 0.0f;
     right[3] = 1.0f;
-    self->up[0] = 0.0f;
-    self->up[1] = 1.0f;
-    self->up[2] = 0.0f;
-    float dz = z - self->pos[2], dy = y - self->pos[1], dx = x - self->pos[0];
-    *(float *)&delta.v0 = dx;
-    *(float *)&delta.v1 = dy;
-    *(float *)&delta.v2 = dz;
-    delta.v3 = 0x3f800000;
-    func_0012A380(self->forward, (int)&delta);
-    if (x == self->pos[0] && z == self->pos[2]) {
-        *(float *)&delta.v0 = 1.0f;
-        *(float *)&delta.v1 = 0.0f;
-        *(float *)&delta.v2 = 0.0f;
-        *(float *)&delta.v3 = 1.0f;
-        memcpy(right, &delta, 16);
+    up[0] = 0.0f;
+    up[1] = 1.0f;
+    up[2] = 0.0f;
+    float dz = z - pos[2], dy = y - pos[1], dx = x - pos[0];
+    delta[0] = dx;
+    delta[1] = dy;
+    delta[2] = dz;
+    delta[3] = 1.0f;
+    func_0012A380(forward, (int)delta);
+    if (x == pos[0] && z == pos[2]) {
+        delta[0] = 1.0f;
+        delta[1] = 0.0f;
+        delta[2] = 0.0f;
+        delta[3] = 1.0f;
+        memcpy(right, delta, 16);
     } else {
-        Cross_0012ACC0(right, self->up, self->forward);
+        AsmVec3Cross(right, up, forward);
         func_0012A380(right, (int)right);
     }
-    Cross_0012ACC0(self->up, self->forward, right);
-    self->stamp = D_002EFDB8[4] + 1;
+    AsmVec3Cross(up, forward, right);
+    stamp = D_002EFDB8[4] + 1;
     return 1;
 }
