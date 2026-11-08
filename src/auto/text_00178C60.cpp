@@ -131,14 +131,10 @@ static __forceinline void cross_179950(float *out, float *a, float *b)
 
 static __forceinline int edge_1793E0(Vec4 *p, Vec4 *q, Vec4 *r, Vec4 *n)
 {
-    Vec4 t;
-    Vec4 c;
-    Vec4 b;
     Vec4 a;
-    c.x = 0.0f;
-    c.y = 0.0f;
-    c.z = 0.0f;
-    c.w = 1.0f;
+    Vec4 b;
+    Vec4 c;
+    Vec4 t;
     t.x = q->x - p->x;
     t.y = q->y - p->y;
     t.z = q->z - p->z;
