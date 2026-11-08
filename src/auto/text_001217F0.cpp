@@ -27,26 +27,6 @@ void func_0011EFA0(float *out, float *in);
 extern float D_00275544;
 extern float D_002755E8;
 
-static __forceinline V4_001225C0 operator+(const V4_001225C0 &a, const V4_001225C0 &b)
-{
-    V4_001225C0 t;
-    t.x = b.x + a.x;
-    t.y = b.y + a.y;
-    t.z = b.z + a.z;
-    t.w = 1.0f;
-    return t;
-}
-
-static __forceinline V4_001225C0 operator*(const V4_001225C0 &a, float f)
-{
-    V4_001225C0 t;
-    t.x = a.x * f;
-    t.y = a.y * f;
-    t.z = a.z * f;
-    t.w = 1.0f;
-    return t;
-}
-
 static inline float dot_001225C0(const V4_001225C0 &a, const V4_001225C0 &b)
 {
     return a.x * b.x + a.y * b.y + a.z * b.z;
