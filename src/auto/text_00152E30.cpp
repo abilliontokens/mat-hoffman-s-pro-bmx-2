@@ -6,6 +6,7 @@ void func_001E891B(void *p);
 int func_00011260(int a, int b);
 struct Q4_00152E30 { int x, y, z, w; };
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 struct V153 { float x,y,z,w; };
 static __forceinline void init153(V153 *v) {
     int *p=(int *)v; p[2]=0;p[1]=0;p[0]=0;p[3]=0x3f800000;
@@ -121,7 +122,27 @@ extern S_Global_153 *D_002A8490;
 
 struct S_In_153 { virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4(); virtual int v5(int a, int b, int c, int d); int func_00136170(int,int,int); };
 struct S_G2_153 { char pad[8]; S_In_153 *unk8; };
-struct C_00153350 { char pad[0x28]; int unk28; char pad2[0x5c8 - 0x2c]; int arr5C8[32]; void func_00153350(float dt); void func_00152BA0(); };
+struct C_00153350 {
+    char pad[0x28];
+    int unk28;
+    int f2c;
+    float f30;
+    float f34;
+    void *f38; void *f3c; void *f40; void *f44;
+    float f48; float f4c;
+    char pad50[0xb8 - 0x50];
+    float fB8;
+    char padBc[0xf8 - 0xbc];
+    V153 fF8;
+    float f108;
+    float f10c;
+    char pad110[0x588 - 0x110];
+    int f588;
+    char pad58c[0x5c8 - 0x58c];
+    int arr5C8[32];
+    void func_00153350(float dt);
+    void func_00152BA0();
+};
 
 struct C_00153D30 {
     char pad0[0x24];
@@ -245,8 +266,96 @@ void C_001532E0::func_001532E0(void)
 
 void C_00153350::func_00153350(float dt)
 {
-    for (int i = 0; i < 32; i++) {
-        arr5C8[i] = (int)(float)((S_G2_153 *)D_002A8490)->unk8->v5(i, 2, 63, unk28);
+    C_00153350 * volatile t = this;
+    float * volatile fv = (float *)this;
+    int * volatile uv = (int *)this;
+    int i;
+    int *p;
+    V153 pos, cross, up, forward, up2, cross2, forward2;
+    M153 m1,m2,m3;
+    p = t->arr5C8;
+    for (i = 0; i < 32; i++) {
+        *p++ = (int)(float)((S_G2_153 *)D_002A8490)->unk8->v5(i,2,63,t->unk28);
+    }
+    if(!uv[0x2c/4]) *(Q4_00152E30 *)&pos=D_002A789C;
+    else ((Owner153 *)uv[0x2c/4])->link->cam->func_00199B00(&pos,0);
+    init153(&cross);
+    init153(&up);
+    init153(&forward);
+    if(!uv[0x2c/4]) {
+        *(Q4_00152E30 *)&forward=D_002A78CC;
+        *(Q4_00152E30 *)&up=D_002A78BC;
+    } else ((Owner153 *)uv[0x2c/4])->link->cam->func_00197B40(&forward,&up);
+    forward.y=0;
+    AsmVec3Normalize(&forward.x,&forward.x);
+    AsmVec3Cross(&cross.x,&forward.x,&up.x);
+    {
+    float a=*(float *)(uv[0x38/4]+0x24);
+    float b=-*(float *)(uv[0x3c/4]+0x24);
+    float c=-*(float *)(uv[0x40/4]+0x24);
+    float d=*(float *)(uv[0x44/4]+0x24);
+    if(t->arr5C8[((S_G2_153 *)D_002A8490)->unk8->func_00136170(27,2,0)] && !uv[0x588/4]) t->func_00152BA0();
+    if(!uv[0x588/4]) {
+        float h=5.5f-func_0014F510(func_00016D60(fv[0x10c/4]*12.566371f))*0.5f;
+        if(fv[0x34/4]-h<=-0.2f) h=fv[0x34/4]+0.2f;
+        fv[0x34/4]=h;
+    } else {
+        if(fv[0x34/4]-1.0f<0.2f) fv[0x34/4]=1;
+        else fv[0x34/4]-=dt*7.0f;
+    }
+    *(Q4_00152E30 *)&fv[0xf8/4]=D_002A789C;
+    if(c>0.25f&&!uv[0x588/4]) {
+        V153 v; v.x=forward.x*c; v.y=c*forward.y; v.z=forward.z*c;
+        v.x*=100;v.y*=100;v.z*=100;
+        fv[0xf8/4]+=v.x;fv[0xfc/4]+=v.y;fv[0x100/4]+=v.z;
+    }
+    if(c<-0.25f&&!uv[0x588/4]) {
+        V153 v; v.x=forward.x*c; v.y=c*forward.y; v.z=forward.z*c;
+        v.x*=100;v.y*=100;v.z*=100;
+        fv[0xf8/4]+=v.x;fv[0xfc/4]+=v.y;fv[0x100/4]+=v.z;
+    }
+    if((d>0.35f&&!uv[0x588/4])||(d<-0.35&&!uv[0x588/4])) {
+        V153 v; v.x=-cross.x;v.y=-cross.y;v.z=-cross.z;
+        v.x*=d;v.y*=d;v.z*=d;v.x*=100;v.y*=100;v.z*=100;
+        fv[0xf8/4]+=v.x;fv[0xfc/4]+=v.y;fv[0x100/4]+=v.z;
+    }
+    if(fv[0x58/4]>0.25f) {
+        if((t->arr5C8[((S_G2_153 *)D_002A8490)->unk8->func_00136170(25,2,0)]||
+            t->arr5C8[((S_G2_153 *)D_002A8490)->unk8->func_00136170(26,2,0)]) &&
+            pos.y-fv[0xb8/4]-fv[0x34/4]<3.0f&&!uv[0x588/4]) fv[0x58/4]=0;
+    }
+    if(fv[0x58/4]<0.1) fv[0xfc/4]=4500;
+    if(b>0.35f) {
+        if(fv[0x48/4]>-0.785398185f&&!uv[0x588/4]) fv[0x48/4]-=D_002A7890*b*dt*3.14159274f;
+    } else if(b<-0.35f&&!uv[0x588/4]&&fv[0x48/4]<1.39626324f)
+        fv[0x48/4]-=D_002A7890*b*dt*3.14159274f;
+    if(a>0.25f&&!uv[0x588/4]) {
+        fv[0x4c/4]-=D_002A788C*a*dt*3.14159274f;
+        if(fv[0x4c/4]<-3.14159274f) fv[0x4c/4]+=6.28318548f;
+    } else if(a<-0.25f&&!uv[0x588/4]) {
+        fv[0x4c/4]-=D_002A788C*a*dt*3.14159274f;
+        if(fv[0x4c/4]>3.14159274f) fv[0x4c/4]-=6.28318548f;
+    }
+    }
+    *(Q4_00152E30 *)&forward2=D_002A78CC;
+    *(Q4_00152E30 *)&up2=D_002A78BC;
+    init153(&cross2);
+    AsmVec3Cross(&cross2.x,&forward2.x,&up2.x);
+    {
+    float angle=fv[0x48/4];
+    float z=cross2.z,y=cross2.y,x=cross2.x;
+    float sn=func_0014F510(angle),cs=func_0014F550(angle);
+    float r=func_0001E960(z*z+y*y+x*x);
+    func_0011F010(&m1,x*r,y*r,z*r,cs,sn);
+    angle=fv[0x4c/4];
+    sn=func_0014F510(angle);cs=func_0014F550(angle);
+    r=func_0001E960(1);
+    func_0011F010(&m2,0*r,r,0*r,cs,sn);
+    func_000263B0(&m3,&m1,&m2);
+    AsmTransformPoint(&forward2.x,&forward2.x,&m3.m[0]);
+    AsmTransformPoint(&up2.x,&up2.x,&m3.m[0]);
+    ((Owner153 *)uv[0x2c/4])->link->cam->func_00198F50(&forward2,&up2,0,1,0);
+    ((Owner153 *)uv[0x2c/4])->link->func_00132D20();
     }
 }
 
