@@ -12,8 +12,6 @@ struct Vec4 {
     f32 y;
     f32 z;
     f32 w;
-    Vec4() {}
-    Vec4(f32 a, f32 b, f32 c, f32 d) { x = a; y = b; z = c; w = d; }
 };
 
 extern Vec4 D_002A3A3C;
@@ -556,7 +554,7 @@ void BmxVehicle_10DA70::func_0010E2A0(void)
     *(int *)((char *)this + 0x2084) = 0;
     MEMBER_10E2A0(int, 0x2088) = -1;
     if (MEMBER_10E2A0(float, 0x11A4) <= D_00275460) {
-        func_00108510(0, Vec4(D_002A3A3C.x, D_002A3A40, D_002A3A44, D_002A3A48));
+        ((BmxVehicle_10DA70_F4 *)self)->func_00108510(0, D_002A3A3C.x, D_002A3A40, D_002A3A44, D_002A3A48);
     }
     if (MEMBER_10E2A0(int, 0x11F4) == 1) {
         MEMBER_10E2A0(int, 0x11F4) = 2;
