@@ -91,10 +91,9 @@ void func_00034820(V4_49470 *a, V4_49470 *b);
 void __stdcall func_000361F0(int a);
 static __forceinline S_49470_Elem *get49470(S_49470_Elem **arr, int count, int i)
 {
-    S_49470_Elem *result = 0;
     if (count > 0 && arr != 0 && i < count)
-        result = arr[i];
-    return result;
+        return arr[i];
+    return 0;
 }
 struct C_00162B20 { int func_00162B20(const char *, int); };
 extern C_00162B20 *D_002EF7D0;
