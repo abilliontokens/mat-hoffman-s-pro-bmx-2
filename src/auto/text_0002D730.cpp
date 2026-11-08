@@ -122,7 +122,7 @@ struct S_2D730_Node {
     virtual void slot34();
     virtual void update();
     char pad4[0x238 - 4];
-    float f238, f23C, f240;
+    float f238, f23C, f240, f244;
 };
 
 struct S_2D730_State {
