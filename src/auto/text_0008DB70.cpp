@@ -41,6 +41,7 @@ struct S_0008DB70 {
 };
 
 extern char _D_002786A0[];
+extern char _D_00278690[];
 extern char _D_0027958C[];
 extern char _D_002795B4[];
 extern int _D_0028F5EC;
