@@ -8,6 +8,7 @@ static __forceinline float Max_0011FDF0(float a, float b) { float r; _mm_store_s
 static __forceinline float Abs_0011FDF0(const float &f) { int i = *(int *)&f & 0x7fffffff; return *(float *)&i; }
 
 static __forceinline float AbsVal_00120470(float f) { int i = *(int *)&f & 0x7fffffff; return *(float *)&i; }
+struct S_0011FDF0_Q { float x, y, z, w; };
 
 extern float D_00275544;
 extern float D_002B9348;
@@ -41,27 +42,36 @@ static __forceinline void Cross_0011FF30(S_0011F4B0_V4 *out, S_0011F4B0_V4 *a, S
 
 float func_0011FDF0(float *p, float *a, float *b)
 {
-    float dx = b[0] - a[0];
-    float dy = b[1] - a[1];
-    float dz = b[2] - a[2];
-    float t = ((p[2] - a[2]) * dz + ((p[0] - a[0]) * dx + (p[1] - a[1]) * dy)) / (dy * dy + dx * dx + dz * dz);
-    float ex;
-    float ey;
-    float ez;
+    float d[3], v[3], q[3], e[3];
+    float t;
     float r;
-
-    t = Max_0011FDF0(Min_0011FDF0(t, 1.0f), 0.0f);
-    ex = p[0] - (t * dx + a[0]);
-    ey = p[1] - (dy * t + a[1]);
-    ez = p[2] - (dz * t + a[2]);
-    _mm_store_ss(&r, _mm_sqrt_ss(_mm_set_ss(ez * ez + ey * ey + ex * ex)));
-    return r;
+    float pad;
+    d[0] = b[0] - a[0];
+    d[1] = b[1] - a[1];
+    d[2] = b[2] - a[2];
+    v[0] = p[0] - a[0];
+    v[1] = p[1] - a[1];
+    v[2] = p[2] - a[2];
+    t = (v[0] * d[0] + v[1] * d[1] + v[2] * d[2]) / (d[1] * d[1] + d[0] * d[0] + d[2] * d[2]);
+    t = AsmMaxF(AsmMinF(t, 1.0f), 0.0f);
+    d[0] = t * d[0];
+    d[1] = d[1] * t;
+    d[2] = d[2] * t;
+    q[0] = d[0] + a[0];
+    q[1] = d[1] + a[1];
+    q[2] = d[2] + a[2];
+    e[0] = p[0] - q[0];
+    e[1] = p[1] - q[1];
+    e[2] = p[2] - q[2];
+    r = e[2] * e[2] + e[1] * e[1] + e[0] * e[0];
+    pad = r;
+    return AsmSqrtF(pad);
 }
 
 int func_0011FF30(S_0011F4B0_V4 *p, void *t)
 {
     short *tri = (short *)t;
-    S_0011F4B0_V4 n, a, b, c, u, v, w, x;
+    S_0011F4B0_V4 n, a, b, c, u, v, w, x, v2;
     n.x = (float)tri[6] * D_002B9348;
     n.y = (float)tri[7] * D_002B9348;
     n.z = (float)tri[8] * D_002B9348;
@@ -72,20 +82,20 @@ int func_0011FF30(S_0011F4B0_V4 *p, void *t)
     v.z = 0.0f; v.y = 0.0f; v.x = 0.0f;
     w.z = 0.0f; w.y = 0.0f; w.x = 0.0f;
     func_0011F0E0(&a, &b, &c, tri, D_002B92F4);
-    u.x = b.x - a.x; u.y = b.y - a.y; u.z = b.z - a.z; u.w = 1.0f;
-    v.x = c.x - a.x; v.y = c.y - a.y; v.z = c.z - a.z; v.w = 1.0f;
-    w.x = p->x - a.x; w.y = p->y - a.y; w.z = p->z - a.z; w.w = 1.0f;
-    x.w = 1.0f;
+    u.w = 1.0f; v.w = 1.0f; w.w = 1.0f; x.w = 1.0f;
+    u.x = b.x - a.x; u.y = b.y - a.y; u.z = b.z - a.z;
+    v.x = c.x - a.x; v.y = c.y - a.y; v.z = c.z - a.z;
+    w.x = p->x - a.x; w.y = p->y - a.y; w.z = p->z - a.z;
     AsmVec3Cross(&x.x, &u.x, &w.x);
     if (!(x.y * n.y + x.x * n.x + x.z * n.z > D_00275544)) return 0;
     AsmVec3Cross(&x.x, &w.x, &v.x);
     if (!(x.y * n.y + x.x * n.x + x.z * n.z > D_00275544)) return 0;
     u.x = c.x - b.x; u.y = c.y - b.y; u.z = c.z - b.z; u.w = 1.0f;
-    v.x = a.x - b.x; v.y = a.y - b.y; v.z = a.z - b.z; v.w = 1.0f;
+    v2.x = a.x - b.x; v2.y = a.y - b.y; v2.z = a.z - b.z; v2.w = 1.0f;
     w.x = p->x - b.x; w.y = p->y - b.y; w.z = p->z - b.z; w.w = 1.0f;
     AsmVec3Cross(&x.x, &u.x, &w.x);
     if (!(x.y * n.y + x.x * n.x + x.z * n.z > D_00275544)) return 0;
-    AsmVec3Cross(&x.x, &w.x, &v.x);
+    AsmVec3Cross(&x.x, &w.x, &v2.x);
     if (!(x.y * n.y + x.x * n.x + x.z * n.z > D_00275544)) return 0;
     return 1;
 }
@@ -149,7 +159,7 @@ int func_001206E0(short *tri, S_0011F4B0_V4 pos, float radius, int unused, float
     float scaled[4];
     float delta[4];
     float t;
-    volatile int bits;
+    struct { float d; volatile int bits; } ab;
     S_001206E0_Hit *hit;
 
     func_0011F540(&pos, pos, m);
@@ -176,22 +186,22 @@ int func_001206E0(short *tri, S_0011F4B0_V4 pos, float radius, int unused, float
     proj.w = 1.0f;
     if (func_0011FF30(&proj, tri)) goto hit;
     {
-        float d = func_0011FDF0(&pos, &v0, &v1);
+        ab.d = func_0011FDF0(&pos, &v0, &v1);
         _ReadWriteBarrier();
-        bits = *(unsigned int *)&d & 0x7fffffff;
-        if (*(float *)&bits < radius) goto hit;
+        ab.bits = *(int *)&ab.d & 0x7fffffff;
+        if (*(float *)&ab.bits < radius) goto hit;
     }
     {
-        float d = func_0011FDF0(&pos, &v1, &v2);
+        ab.d = func_0011FDF0(&pos, &v1, &v2);
         _ReadWriteBarrier();
-        bits = *(unsigned int *)&d & 0x7fffffff;
-        if (*(float *)&bits < radius) goto hit;
+        ab.bits = *(int *)&ab.d & 0x7fffffff;
+        if (*(float *)&ab.bits < radius) goto hit;
     }
     {
-        float d = func_0011FDF0(&pos, &v2, &v0);
+        ab.d = func_0011FDF0(&pos, &v2, &v0);
         _ReadWriteBarrier();
-        bits = *(unsigned int *)&d & 0x7fffffff;
-        if (!(*(float *)&bits < radius)) goto done;
+        ab.bits = *(int *)&ab.d & 0x7fffffff;
+        if (!(*(float *)&ab.bits < radius)) goto done;
     }
 hit:
     result = 1;
