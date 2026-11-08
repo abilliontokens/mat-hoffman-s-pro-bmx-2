@@ -1,6 +1,7 @@
 /* 1 function from 0x0006AA90 to 0x0006B4B0, found by Ghidra. */
 #include "common.h"
 #include <string.h>
+#include "asm_helpers.h"
 
 struct Txt_6AA90 { char* str; float x; float y; char pad[0x38]; int frame; char pad2[6]; unsigned char flags; int func_001D6290(); void func_001D6600(); void func_0005E840(char*); void SetPos(float a,float b) { if(x!=a||y!=b){x=a;y=b;flags|=6;} } };
 extern int D_0028F5DC;
@@ -12,6 +13,7 @@ struct Widget_6AA90 {
  void func_001B1860(int,float,int,float,int,int,float,int,float,int,int,float,int);
 };
 struct Entry_6AA90 { char *s; int v; };
+struct YS_6AA90 { float pad; float y; };
 struct Res_6AA90 { int pad; Entry_6AA90 *entries; };
 struct Save_6AA90 { char enabled[16]; char names[8][50]; };
 struct Player_6AA90 { char pad[0x2c8]; Save_6AA90 *save; };
@@ -33,14 +35,17 @@ struct S_6AA90 {
 };
 
 void S_6AA90::func_0006AA90() {
-char buf[260]; char num[32];
+char buf[260]; char num[24];
 if(unk168) {
  if((int)strlen(t174->str)<40) {
  int width=t174->func_001D6290();
- float pos[2];pos[0]=t174->x;pos[1]=t174->y;pos[0]+=width/2;
- if(t178->x!=pos[0]||t178->y!=pos[1]){t178->x=pos[0];t178->y=pos[1];t178->flags|=6;}
+ float x=t174->x;
+ float pos[4];
+ pos[1]=t174->y;
+ x+=width/2;
+ t178->SetPos(x,pos[1]);
  if(t178->frame!=D_0028F5DC){t178->frame=D_0028F5DC;t178->flags|=6;}
- if(t17C->x!=pos[0]||t17C->y!=pos[1]){t17C->x=pos[0];t17C->y=pos[1];t17C->flags|=6;}
+ t17C->SetPos(x,pos[1]);
  if(t17C->frame!=D_0028F5DC){t17C->frame=D_0028F5DC;t17C->flags|=6;}
  if(unk184){t17C->func_001D6600();t178->func_001D6600();}
  }
@@ -51,17 +56,17 @@ if(!unk164&&!unk168) {
  if(state<16){
  int id=D_00278978[state]; if(!id)id=0x118;else if(id>0x11d)id=0x117;
  volatile int len=(int)strlen(D_002A8490->res->entries[id].s);
- int max=259; int n=max<len?max:len;
+ int max=259; int n=AsmMinI(max,len);
  func_001E8920(buf,D_002A8490->res->entries[id].s,n);buf[n]=0;
  }else{
  volatile int len=(int)strlen(D_002A8490->res->entries[0x117].s);
- int max=259;int n=max<len?max:len;
+ int max=259;int n=AsmMinI(max,len);
  func_001E8920(buf,D_002A8490->res->entries[0x117].s,n);buf[n]=0;
  }
 }else{
  if(dirty){
  if(unk164){
- for(int i=0;i!=8;i++){
+ for(int i=0;i<8;i++){
  widgets[i]->func_001B1980();
  if(D_002A8490->player->save->enabled[i]==1)widgets[i]->func_001B17D0(D_002A8490->player->save->names[i]);
  else{func_001ADCC0(num,260,D_00277038,i+1);func_001AC330(buf,D_002A8490->res->entries[0x1da].s,num);widgets[i]->func_001B17D0(buf);}
