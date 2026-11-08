@@ -55,6 +55,7 @@ struct S_0008DB70 {
     S_0008DB70 *func_0008DB70(char *a2, int a1, int a0, int a3, int a5, int a4);
           S_0008DB70 *func_0008DB70(char *a2, int a1, int a0, int a3, int a5, int a4, int a6);
       void func_001577A0(void *w, int i);
+      void func_000843E0(int a);
   };
 
 extern char _D_002786A0[];
@@ -497,6 +498,32 @@ S_0008DB70 *S_0008DB70::func_0008DB70(char *a2, int a1, int a0, int a3, int a5, 
             fd48 = p ? ((W_0008DB70 *)p)->func_001D5760() : 0;
             ((W_0008DB70 *)fd48)->func_001D5810(_D_0027A01C, 492.0f, 91.0f, 0);
         }
+    }
+    {
+        C2EC_0008DB70 *mgr = (C2EC_0008DB70 *)P4((void *)D_002A8490, 0x2ec);
+        int c3 = mgr->func_0018C160(_D_0027958C);
+        int sel3 = c3 ? *(int *)c3 : 0;
+        p = func_001E8A44(0x60);
+        T2_0008DB70 *t4 = (T2_0008DB70 *)(p ? ((T2_0008DB70 *)p)->func_001D5E90() : 0);
+        I4(this, 0x18c) = (int)t4;
+        t4->func_001D5FA0(sel3, _D_0027958C, 0, 4);
+        t4->func_0005E840((int)_D_002795B4);
+        if (t4->f48 != 0xff326a86) { t4->f4e |= 8; t4->f48 = (t4->f48 & 0xff326a86) | 0x326a86; }
+        if (t4->f4 != 0 || t4->f8 != 388.0f) { t4->f8 = 388.0f; t4->f4e |= 6; t4->f4 = 0; }
+        if (t4->f44 != _D_0028F5DC) { t4->f44 = _D_0028F5DC; t4->f4e |= 6; }
+        if (t4->f3c != 80.0f) { t4->f4e |= 4; t4->f3c = 80.0f; }
+    }
+    {
+        p = func_001E8A44(0x184);
+        T_0008DB70 *tt = (T_0008DB70 *)(p ? ((T_0008DB70 *)p)->func_001B12C0(1) : 0);
+        I4(this, 0x178) = (int)tt;
+        tt->func_001B13A0(_D_00279FF8, _D_00279FE0, 0, 0x3c);
+        tt->func_001B1A30(0x441b0000, 0x429a0000, 0);
+        tt->func_001B2270(0xff308930);
+        tt->func_001B19A0(_D_0028F5E0);
+        tt->func_001B1BF0(5.0f);
+        tt->func_001B1AB0(0, 0);
+        func_001577A0(tt, -1);
     }
     return this;
 }
