@@ -6,6 +6,8 @@
 void func_001E891B(void *p);
 void *func_001E8A44(int size);
 
+extern char D_0027CC5C[5];
+extern char D_0027CC54[5];
 extern int D_0027C604;
 extern int D_0027C1EC;
 extern int D_0027C51C;
@@ -136,6 +138,7 @@ struct C_000AF8A0 {
 extern int D_0027CA70;
 
 #include <string.h>
+#include "asm_helpers.h"
 
 struct Vec4_000AF0D0 {
     float x, y, z, w;
@@ -337,6 +340,137 @@ int C_000AF080::func_000AF080(int a, int b, int c) {
     }
     f4e0 = p;
     p->func_000ACF30(this, a, b, c);
+    return 1;
+}
+
+int C_000AF0D0::func_000AF0D0(void)
+{
+    S_000AF0D0_Stream *stream;
+    void *mem;
+    char buf[0x104];
+    char parentNodeName[0x28];
+    char parentName[0x28];
+    char name[0x20];
+    char key2[0x20];
+    char key1[0x20];
+    char secName[0x14];
+    int count;
+    int subCount;
+    int total;
+    int i, j;
+    int len, limit, cnt, n;
+
+    if (f530 != 0) {
+        return 0;
+    }
+    len = strlen(D_002A5870);
+    limit = 0x103;
+    cnt = AsmMinI(limit, len);
+    n = cnt;
+    func_001E8920(buf, D_002A5870, n);
+    buf[n] = 0;
+    strcat(buf, f134);
+    strcat(buf, ".sgr");
+    mem = func_001E8A44(0x4CC);
+    stream = mem != 0 ? ((S_000AF0D0_Stream *)mem)->func_00168280() : 0;
+    if (stream->func_00169490(buf, 0) == 0) {
+        if (stream) {
+            stream->func_001691E0();
+            func_001E891B(stream);
+        }
+        return 0;
+    }
+    count = 0;
+    subCount = 0;
+    total = 0;
+    stream->func_00169710(D_00276DCC);
+    stream->func_00168A10(D_00276DBC, &count);
+    for (i = 0; i < count; i++) {
+        func_001ADCC0(secName, 0x14, D_00276DB0, i + 1);
+        stream->func_00169710(secName);
+        stream->func_00168A10(D_00276DA4, &subCount);
+        total += subCount - 1;
+    }
+    mem = func_001E8A44(0x80);
+    f530 = mem != 0 ? ((S_000AF0D0_Mgr *)mem)->func_00159560(1) : 0;
+    f530->func_001595A0(total, this);
+    {
+        Vec4_000AF0D0 pos0;
+        Vec4_000AF0D0 pos1;
+        for (i = 0; i < count; i++) {
+            func_001ADCC0(secName, 0x14, D_00276DB0, i + 1);
+            stream->func_00169710(secName);
+            stream->func_00168550(D_00276D98, name, -1);
+            stream->func_00168A10(D_00276DA4, &subCount);
+            for (j = 0; j < subCount - 1; j++) {
+                func_001ADCC0(key1, 0x1e, D_00276D8C, j + 1);
+                func_001ADCC0(key2, 0x1e, D_00276D8C, j + 2);
+                stream->func_00168CB0(key1, Vec4_000AF0D0(0, 0, 0, 1), pos0);
+                stream->func_00168CB0(key2, Vec4_000AF0D0(0, 0, 0, 1), pos1);
+                f530->func_00159E90(name, &pos0, &pos1, 0, 0, 0);
+            }
+        }
+        if (stream) {
+            stream->func_001691E0();
+            func_001E891B(stream);
+        }
+
+        len = strlen(D_002A5870);
+        limit = 0x103;
+        cnt = AsmMinI(limit, len);
+        n = cnt;
+        func_001E8920(buf, D_002A5870, n);
+        buf[n] = 0;
+        strcat(buf, f134);
+        strcat(buf, ".dgr");
+        mem = func_001E8A44(0x4CC);
+        stream = mem != 0 ? ((S_000AF0D0_Stream *)mem)->func_00168280() : 0;
+        if (stream->func_00169490(buf, 0) == 0) {
+            if (stream) {
+                stream->func_001691E0();
+                func_001E891B(stream);
+            }
+            stream = 0;
+        } else if (stream) {
+            count = 0;
+            subCount = 0;
+            stream->func_00169710(D_00276DCC);
+            stream->func_00168A10(D_00276DBC, &count);
+            for (i = 0; i < count; i++) {
+                func_001ADCC0(secName, 0x14, D_00276DB0, i + 1);
+                stream->func_00169710(secName);
+                stream->func_00168A10(D_00276DA4, &subCount);
+            }
+            for (i = 0; i < count; i++) {
+                func_001ADCC0(secName, 0x14, D_00276DB0, i + 1);
+                stream->func_00169710(secName);
+                stream->func_00168550(D_00276D98, name, -1);
+                stream->func_00168A10(D_00276DA4, &subCount);
+                stream->func_00168BE0("ParentName", D_00275630, parentName, -1);
+                stream->func_00168BE0("ParentNodeName", D_00275630, parentNodeName, -1);
+                for (j = 0; j < subCount - 1; j++) {
+                    func_001ADCC0(key1, 0x1e, D_00276D8C, j + 1);
+                    func_001ADCC0(key2, 0x1e, D_00276D8C, j + 2);
+                    stream->func_00168CB0(key1, Vec4_000AF0D0(0, 0, 0, 1), pos0);
+                    stream->func_00168CB0(key2, Vec4_000AF0D0(0, 0, 0, 1), pos1);
+                    f530->func_00159E90(name, &pos0, &pos1, parentName, parentNodeName, 0);
+                }
+            }
+        }
+    }
+    for (i = 0; i < f534->f24; i++) {
+        S_000AF0D0_Node *node;
+        for (j = 0; j < 6; j++) {
+            node = f534->f28[i];
+            if (node->f128[j][0] != 0) {
+                f530->func_unk(node->f128[j], node, func_000AE280);
+            }
+        }
+    }
+    if (stream) {
+        stream->func_001691E0();
+        func_001E891B(stream);
+    }
     return 1;
 }
 
