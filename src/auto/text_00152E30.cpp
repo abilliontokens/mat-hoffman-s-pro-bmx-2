@@ -129,8 +129,8 @@ struct C_00153350 {
     float f30;
     float f34;
     void *f38; void *f3c; void *f40; void *f44;
-    float f48; float f4c;
-    char pad50[0xb8 - 0x50];
+    float f48; float f4c; float f58;
+    char pad5c[0xb8 - 0x5c];
     float fB8;
     char padBc[0xf8 - 0xbc];
     V153 fF8;
