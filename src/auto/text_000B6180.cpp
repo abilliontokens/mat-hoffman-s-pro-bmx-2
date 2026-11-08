@@ -88,8 +88,9 @@ struct C_000B6640 {
     void func_000B6840(float a0, float a1, C_000B6840_Arg *a2);
     void Box(V4_000B6840 *dst, V4_000B6840 *src)
     {
-        float y = (0.0f - f7C) + src->y;
-        *dst = V4Init_000B6840(src->x, y, src->z, 1.0f);
+              float y = (0.0f - f7C) + src->y;
+      _ReadWriteBarrier();
+      *dst = V4Init_000B6840(src->x, y, src->z, 1.0f);
     }
 };
 
