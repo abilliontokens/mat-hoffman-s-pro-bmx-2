@@ -463,10 +463,10 @@ void C_00142D90::func_00142D90(int param_1)
 #pragma optimize("s", on)
 void C_00142D00::func_00142D00(void *a0)
 {
-    if (unk0 != a0) {
-        func_00201350(a0);
-        unk0 = a0;
-    }
+          if (a0 != unk0) {
+          func_00201350(a0);
+          unk0 = a0;
+      }
 }
 #pragma optimize("", on)
 void C_00142D20::func_00142D20() {
