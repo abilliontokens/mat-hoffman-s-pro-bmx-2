@@ -277,8 +277,7 @@ void C_0002D730::func_0002D730(float dt)
     *(int *)((char *)f208 + 0x38) = f468;
     *(int *)((char *)f208 + 0xac) = f69c;
     *(int *)((char *)f208 + 0xb0) = *(int *)((char *)this + 0x704) || *(int *)((char *)this + 0x70c);
-    for (int k = 0; k < 4; ++k)
-        ((int *)((char *)f208 + 0xbc))[k] = ((int *)((char *)this + 0x6cc))[k];
+    *(S_2D730_I4 *)((char *)f208 + 0xbc) = *(S_2D730_I4 *)((char *)this + 0x6cc);
     for (int l = 0; l < 4; ++l)
         ((int *)((char *)f208 + 0xcc))[l] = ((int *)((char *)this + 0x6dc))[l];
     *(int *)((char *)f208 + 0x34) = f1e8->f68;
