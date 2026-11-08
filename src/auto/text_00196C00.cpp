@@ -57,7 +57,15 @@ struct C_001975A0 {
 extern "C" void *func_001E8A44(unsigned size);
 
 struct C_001972B0 {
-    char pad0[0x50];
+    char pad0[0x24];
+    f32 f24;
+    f32 f28;
+    f32 f2C;
+    f32 f30;
+    char pad34[0xC];
+    f32 f40;
+    f32 f44;
+    char pad48[8];
     char *f50;
     char pad54[0x18];
     unsigned f6C;
