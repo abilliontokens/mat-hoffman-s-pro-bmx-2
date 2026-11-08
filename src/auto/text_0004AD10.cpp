@@ -180,6 +180,7 @@ extern char D_002A5FA8[], D_002A5870[], D_00275678[], D_002A60B0[], D_00276C58[]
 extern float D_00277318, D_00277314, D_00277310, D_002755E8;
 extern int D_002A15B4, D_002A15B8, D_002A15BC;
 /* V15B0: identity colour passed by value to func_00199600 */
+/* helper probe */
 extern Vec16 D_002A15B0;
 extern char D_00049B50[];
 void func_00049A50();
@@ -217,7 +218,7 @@ void C_0004AD10::func_0004AD10()
             char *e = *(char **)((*(char ***)(t + 0x28))[idx] + 8);
             if (e) {
                 v[0] = *(float *)(e + 0x28) - D_00277318;
-                v[3] = 1.0f;
+                *(volatile float *)&v[3] = 1.0f;
                 v[1] = *(float *)(e + 0x2c) - D_00277314;
                 v[2] = *(float *)(e + 0x30) - D_00277310;
                 if (func_00011170(v) < D_002755E8) {
@@ -231,14 +232,14 @@ void C_0004AD10::func_0004AD10()
     if (**(int **)(D8490 + 0x2e0) == 1) {
         mem = func_001E8A44(0x90);
         *(Obj **)(self + 0x2cc) = mem ? ((Obj *)mem)->func_00138800(0) : 0;
-        (*(Obj **)(self + 0x2cc))->func_00139B50(D_002772E8, D_00277300, (Obj *)D9120, *(int *)(self + 0x158), D_00276C58, *(int *)(self + 0x44), *(int *)(self + 0x24), *(int *)(D9120 + 0x488), *(int *)(D9120 + 0x4c0), 0, 0, -1, 0, 0, 0);
+        (*(Obj **)(self + 0x2cc))->func_00139B50(D_002772E8, D_00277300, (Obj *)D9120, *(int *)((char *)this + 0x158), D_00276C58, *(int *)((char *)this + 0x44), *(int *)((char *)this + 0x24), *(int *)(D9120 + 0x488), *(int *)(D9120 + 0x4c0), 0, 0, -1, 0, 0, 0);
         (*(Obj **)(self + 0x2cc))->func_00139060((void *)func_00049A50, self);
         (*(Obj **)(self + 0x2cc))->func_00139080((void *)func_00049A20, self);
         func_001577A0(*(void **)(self + 0x2cc), -1);
 
         mem = func_001E8A44(0x90);
         *(Obj **)(self + 0x2d0) = mem ? ((Obj *)mem)->func_00138800(0) : 0;
-        (*(Obj **)(self + 0x2d0))->func_00139B50(D_002772D4, D_00277300, (Obj *)D9120, *(int *)(self + 0x158), D_00276C58, *(int *)(self + 0x44), *(int *)(self + 0x24), *(int *)(D9120 + 0x488), *(int *)(D9120 + 0x4c0), 0, 0, -1, 0, 0, 0);
+        (*(Obj **)(self + 0x2d0))->func_00139B50(D_002772D4, D_00277300, (Obj *)D9120, *(int *)((char *)this + 0x158), D_00276C58, *(int *)((char *)this + 0x44), *(int *)((char *)this + 0x24), *(int *)(D9120 + 0x488), *(int *)(D9120 + 0x4c0), 0, 0, -1, 0, 0, 0);
         (*(Obj **)(self + 0x2d0))->func_00139060(D_00049B50, self);
         (*(Obj **)(self + 0x2d0))->func_00139080((void *)func_00049A20, self);
         func_001577A0(*(void **)(self + 0x2d0), -1);
