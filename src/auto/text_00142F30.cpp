@@ -336,13 +336,11 @@ void Alloc190::func_00142F30(int a)
     {
         DXRenderableObject *o = f4;
         if (o->f1d4) {
-            m += 0x290;
-            func_000263B0((char *)this + 0x90, (char *)o + 0xf0, (int)m);
-            AsmCopyMatrix((char *)this + 0x50, m);
+            func_000263B0((char *)this + 0x90, (char *)o + 0xf0, (int)m + 0x290);
+            AsmCopyMatrix((char *)this + 0x50, m + 0x290);
         } else {
-            m += 0x250;
-            func_000263B0((char *)this + 0x90, (char *)o + 0xf0, (int)m);
-            AsmCopyMatrix((char *)this + 0x50, m);
+            func_000263B0((char *)this + 0x90, (char *)o + 0xf0, (int)m + 0x250);
+            AsmCopyMatrix((char *)this + 0x50, m + 0x250);
         }
     }
     *(float *)((char *)this + 0x150) = *(float *)(a + 0x170) - *(float *)((char *)f4 + 0xfc);
