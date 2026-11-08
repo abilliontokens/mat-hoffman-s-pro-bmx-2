@@ -98,7 +98,6 @@ struct V4_000B5260 {
 
 struct Vecs_000B5260 {
     float d[4];
-    float gap1;
     float a[4];
     float b[4];
     float c[4];
