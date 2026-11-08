@@ -1,6 +1,7 @@
 /* 3 functions from 0x00026B60 to 0x00027860, found by Ghidra. */
 #include "common.h"
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 
 struct V4_000273F0 {
     float x;
@@ -87,17 +88,17 @@ extern float D_002A10F4, D_002A10F8, D_002A10FC;
 extern V4_000273F0 D_002A1110;
 void func_00026340(V4_000273F0 *out, V4_000273F0 *in);
 
+#pragma pack(push, 4)
+struct CrossPacked_000273F0 { __m128 v; };
+#pragma pack(pop)
 static __forceinline void Cross_000273F0(V4_000273F0 * volatile out, V4_000273F0 * volatile a, V4_000273F0 * volatile b)
 {
-    V4_000273F0 *pa = a, *pb = b;
-    _mm_storeu_ps(&out->x,
-        _mm_shuffle_ps(
-            _mm_sub_ps(
-                _mm_mul_ps(_mm_loadu_ps(&pa->x), _mm_shuffle_ps(_mm_loadu_ps(&pb->x), _mm_loadu_ps(&pb->x), 0xc9)),
-                _mm_mul_ps(_mm_loadu_ps(&pb->x), _mm_shuffle_ps(_mm_loadu_ps(&pa->x), _mm_loadu_ps(&pa->x), 0xc9))),
-            _mm_sub_ps(
-                _mm_mul_ps(_mm_loadu_ps(&pa->x), _mm_shuffle_ps(_mm_loadu_ps(&pb->x), _mm_loadu_ps(&pb->x), 0xc9)),
-                _mm_mul_ps(_mm_loadu_ps(&pb->x), _mm_shuffle_ps(_mm_loadu_ps(&pa->x), _mm_loadu_ps(&pa->x), 0xc9))), 0xc9));
+ CrossPacked_000273F0 x,y,sx,sy;
+ x.v=_mm_loadu_ps(&a->x);y.v=_mm_loadu_ps(&b->x);
+ sx.v=_mm_shuffle_ps(x.v,x.v,0xc9);sy.v=_mm_shuffle_ps(y.v,y.v,0xc9);
+ y.v=_mm_mul_ps(y.v,sx.v);x.v=_mm_mul_ps(x.v,sy.v);
+ x.v=_mm_sub_ps(x.v,y.v);x.v=_mm_shuffle_ps(x.v,x.v,0xc9);
+ _mm_storeu_ps(&out->x,x.v);
 }
 struct PV4_26 { float x, y, z, w; };
 struct ObjE0_26 {
@@ -384,7 +385,7 @@ int C_000273F0::func_000273F0(V4_000273F0 *a1,V4_000273F0 *a2,V4_000273F0 *a3)
  if(a2) {func_00026340(&dir,a2); self->f3C=dir;} else func_00026340(&dir,&self->f3C);
  if(a3) up=*a3; else if(self->f22C) self->f22C->func_000BA430(&ground,&up,0,0); else {ground=D_002A10F0; up=D_002A1110;}
  V4_000273F0 side;
- Cross_000273F0(&side,&up,&dir); Cross_000273F0(&dir,&side,&up);
+ AsmVec3Cross(&side.x,&up.x,&dir.x); AsmVec3Cross(&dir.x,&side.x,&up.x);
  self->f230->func_00199110(0,&dir,&up,0,1,0);
  if(ground.y>pos.y) pos=ground;
  self->f230->func_00199790(0,&pos); self->f230->func_00197AA0(); self->f67C=1;
