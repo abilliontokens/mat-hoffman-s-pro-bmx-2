@@ -150,7 +150,14 @@ static __forceinline int edge_1793E0(Vec4 *p, Vec4 *q, Vec4 *r, Vec4 *n)
     t.z = r->z - p->z;
     t.w = 1.0f;
     b = t;
-    Cross_1793E0(&a.x, &b.x, &c.x);
+    c.x = 0.0f;
+    c.y = 0.0f;
+    c.z = 0.0f;
+    c.w = 1.0f;
+    float *pa = &a.x;
+    float *pb = &b.x;
+    float *pc = &c.x;
+    Cross_1793E0(pa, pb, pc);
     float d = c.y * n->y + c.x * n->x + c.z * n->z;
     return *(int *)&d >= 0;
 }
