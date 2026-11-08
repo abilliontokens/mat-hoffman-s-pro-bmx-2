@@ -102,6 +102,7 @@ extern float D_00275544, D_002755E4, D_00276098;
 extern S_001AF530_Tbl *D_002AA6C0;
 extern S_001AF530_Time *D_002A8490;
 extern "C" double func_001E9092(double a, double b);
+static __forceinline float FloatFromBits_001AF530(int b) { return *(float *)&b; }
 struct C_001AF530 {
     float f0;
     unsigned char f4;
@@ -459,7 +460,8 @@ C_001AF360 *C_001AF360::func_001AF360(S_001AF360_Stream *stream, int owner, int 
 
 void C_001AF530::func_001AF530(int a)
 {
-    int len = D_002AA6C0->arr[f14->v7(a)].anim->len;
+    int idx = f14->v7(a);
+    int len = D_002AA6C0->arr[idx].anim->len;
     float dt = D_00275544;
     if (f10 != -1) {
         dt = (float)(D_002A8490->t - f10) * D_00276098;
@@ -474,11 +476,12 @@ void C_001AF530::func_001AF530(int a)
         }
         float flen = (float)len;
         if (fC >= flen) {
-            float r = (float)fmod(fC, flen);
+            float r;
+            r = (float)fmod(fC, flen);
             if (f4 & 1) {
                 float lo = (float)(len - 1) - r;
-                float z = 0;
-                fC = AsmMaxF(z, lo);
+                float m = AsmMaxF(0.0f, lo);
+                fC = m;
                 f4 |= 4;
             } else if (f8 != -1) {
                 fC = (float)fmod(r, (float)(len - f8)) + f8;
