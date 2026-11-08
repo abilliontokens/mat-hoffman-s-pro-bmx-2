@@ -385,7 +385,7 @@ int C_000273F0::func_000273F0(V4_000273F0 *a1,V4_000273F0 *a2,V4_000273F0 *a3)
  if(a2) {func_00026340(&dir,a2); self->f3C=dir;} else func_00026340(&dir,&self->f3C);
  if(a3) up=*a3; else if(self->f22C) self->f22C->func_000BA430(&ground,&up,0,0); else {ground=D_002A10F0; up=D_002A1110;}
  V4_000273F0 side;
- AsmVec3Cross(&side.x,&up.x,&dir.x); AsmVec3Cross(&dir.x,&side.x,&up.x);
+ Cross_000273F0(&side,&up,&dir); Cross_000273F0(&dir,&side,&up);
  self->f230->func_00199110(0,&dir,&up,0,1,0);
  if(ground.y>pos.y) pos=ground;
  self->f230->func_00199790(0,&pos); self->f230->func_00197AA0(); self->f67C=1;
