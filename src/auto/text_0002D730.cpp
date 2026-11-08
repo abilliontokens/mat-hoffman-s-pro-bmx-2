@@ -368,7 +368,7 @@ void C_0002D730::func_0002D730(float dt)
         f6a8 = 0;
         *(int *)((char *)this + 0x46c) = 0;
         *(int *)((char *)this + 0x6a0) = 0;
-        *(short *)((char *)this + 0x500) = f1e8->f1d8 ? (short)f1e8->f1d8->f68 : D_002BA160;
+        *(short *)((char *)this + 0x500) = f1e8->f1d8 ? *(short *)((char *)f1e8->f1d8 + 0x68) : *(short *)&D_002BA160;
         *(float *)((char *)this + 0x504) = 0;
         *(S_2D730_I4 *)((char *)this + 0x55c) = *(S_2D730_I4 *)&f1e0->f238;
     } else if (f468) {
