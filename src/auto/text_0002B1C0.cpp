@@ -81,9 +81,10 @@ static void Identity_0002B1C0(S_0002B1C0_Mat *m)
 
 void *C_0002C100::func_0002B1C0(int param)
 {
-    S_0002B1C0_Mat mat1;
-    S_0002B1C0_Mat mat2;
     unsigned int * volatile p = (unsigned int *)this;
+    S_0002B1C0_Mat mat[2];
+    S_0002B1C0_Mat * volatile pm;
+    V4k_0002B1C0 vtmp;
     V4_0002B1C0 *q4;
     int i;
     func_00157600(param);
@@ -131,7 +132,10 @@ void *C_0002C100::func_0002B1C0(int param)
     p[0x14d] = 0x3dcccccd; p[0x14e] = 0; p[0x13d] = 0; p[0x13e] = 0; p[0x13f] = 0;
     V4_CPY(0x53c, D_002A10F0);
     V4_CPY(0x54c, D_002A10F0);
-    p[0x15b] = 0; p[0x162] = 0; p[0x160] = 0; p[0x15c] = 0; p[0x15d] = 0; p[0x15e] = 0x459c4000; p[0x15f] = 0x3f800000; p[0x161] = 0x3e4ccccd;
+    p[0x15b] = 0; p[0x162] = 0; p[0x160] = 0;
+    vtmp.x = 0.0f; vtmp.y = 0.0f; vtmp.z = 5000.0f; vtmp.w = 1.0f;
+    *(V4k_0002B1C0 *)((char *)p + 0x570) = vtmp;
+    p[0x161] = 0x3e4ccccd;
     p[0x184] = 0x3f060a91; p[0x187] = 0x418ba057; p[0x186] = 0x418ba057; p[0x188] = 0x41200000; p[0x189] = 0; p[0x18a] = 0; p[0x18b] = 0;
     p[0x18c] = 0x40400000; p[0x18d] = 0; p[0x18e] = 0x3f060a91; p[400] = 0; p[0x191] = 0; p[0x192] = 0; p[0x185] = 0x3f490fd9;
     p[0x88] = 0; p[0x89] = 0; p[0x8a] = 0; p[0x163] = 0; p[0x164] = 0; p[0x165] = 0; p[0x166] = 0; p[0x168] = 0; p[0x169] = 0; p[0x16b] = 0; p[0x16c] = 0; p[0x16d] = 0; p[0x170] = 0;
@@ -148,14 +152,14 @@ void *C_0002C100::func_0002B1C0(int param)
     V4_CPY(0x10c, D_002A1120);
     V4_CPY(0x11c, D_002A1110);
     V4_CPY(0x12c, D_002A1110);
-    mat1.r0 = _mm_setzero_ps(); mat1.r1 = _mm_setzero_ps(); mat1.r2 = _mm_setzero_ps(); mat1.r3 = _mm_setzero_ps();
-    ((float *)&mat1)[0] = 1.0f; ((float *)&mat1)[5] = 1.0f; ((float *)&mat1)[10] = 1.0f; ((float *)&mat1)[15] = 1.0f;
-    mat2 = mat1;
-    ((C_000264C0 *)((char *)p + 0x160))->func_000264C0(&mat2);
-    mat2.r0 = _mm_setzero_ps(); mat2.r1 = _mm_setzero_ps(); mat2.r2 = _mm_setzero_ps(); mat2.r3 = _mm_setzero_ps();
-    ((float *)&mat2)[0] = 1.0f; ((float *)&mat2)[5] = 1.0f; ((float *)&mat2)[10] = 1.0f; ((float *)&mat2)[15] = 1.0f;
-    mat1 = mat2;
-    ((C_000264C0 *)((char *)p + 0x1a0))->func_000264C0(&mat1);
+    pm = &mat[0];
+    Identity_0002B1C0(pm);
+    mat[1] = mat[0];
+    ((C_000264C0 *)((char *)p + 0x160))->func_000264C0(&mat[1]);
+    pm = &mat[1];
+    Identity_0002B1C0(pm);
+    mat[0] = mat[1];
+    ((C_000264C0 *)((char *)p + 0x1a0))->func_000264C0(&mat[0]);
     V4_CPY(0x688, D_002A10F0);
     V4_CPY(0x7c, D_002A10F0);
     p[0x67c/4] = 0; p[0x680/4] = 0; p[0x684/4] = 0; p[0x490/4] = 0; p[0x5c8/4] = 0; p[0x698/4] = 0;
