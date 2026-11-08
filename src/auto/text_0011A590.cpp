@@ -230,28 +230,28 @@ Vec4 *func_0011ADD0(Vec4 *out, float *m)
     t2 = (((1.0f - m[0]) + m[5]) - m[10]) * 0.25f;
     t3 = (((1.0f - m[0]) - m[5]) + m[10]) * 0.25f;
     if (t0 > t1 && t0 > t2 && t0 > t3) {
-        s = sqrtf(t0);
+        s = AsmSqrtF(t0);
         inv = 0.25f / s;
         q.x = s;
         q.y = (m[9] - m[6]) * inv;
         q.z = (m[2] - m[8]) * inv;
         q.w = (m[4] - m[1]) * inv;
     } else if (t1 > t2 && t1 > t3) {
-        s = sqrtf(t1);
+        s = AsmSqrtF(t1);
         inv = 0.25f / s;
         q.y = s;
         q.x = (m[9] - m[6]) * inv;
         q.z = (m[4] + m[1]) * inv;
         q.w = (m[8] + m[2]) * inv;
     } else if (t2 > t3) {
-        s = sqrtf(t2);
+        s = AsmSqrtF(t2);
         inv = 0.25f / s;
         q.z = s;
         q.x = (m[2] - m[8]) * inv;
         q.y = (m[4] + m[1]) * inv;
         q.w = (m[9] + m[6]) * inv;
     } else {
-        s = sqrtf(t3);
+        s = AsmSqrtF(t3);
         inv = 0.25f / s;
         q.w = s;
         q.x = (m[4] - m[1]) * inv;
