@@ -225,14 +225,12 @@ void C_00166CA0::func_001662A0(int param_1)
 void C_166830::func_001664C0(float t, int *b, int flag)
 {
     int i;
-    Vec4_166830 v1, v2;
-    C_166830_Item *item;
-    int *p;
     float f;
+    Vec4_166830 v1, v2, res, d;
 
     if (f208) {
         for (i = 0; i < f20C; i++) {
-            p = (int *)((char *)f214 + i * 16);
+            int *p = (int *)((char *)f214 + i * 16);
             p[0] = D_002A8450;
             p[1] = D_002A8454;
             p[2] = D_002A8458;
@@ -242,49 +240,49 @@ void C_166830::func_001664C0(float t, int *b, int flag)
         func_00165A20(f1C, f38, D_00275460 - t, b, flag);
     }
     for (i = 0; i < f18->f20; i++) {
-        item = f18->f18[i];
-        if (flag != 0 && b[item->f4] != 0)
+        if (b != 0 && b[f18->f18[i]->f4] != 0)
             continue;
-        item->v2(f34, &v1);
+        f18->f18[i]->v2(f34, &v1);
         f1C->f18[i]->v2(f38, &v2);
         func_0015C7D0(&v2, &v1, &v1, t);
         if (flag) {
-            if (fC == 0) {
-                v1.y = -v1.y;
-            } else if (fC == 1) {
-                v1.z = -v1.z;
-            } else if (fC == 2) {
-                v1.w = -v1.w;
-            }
-            v1.x = -v1.x;
-            item = f18->f18[i];
-            (*(C_166830_Node **)((char *)f1F0 + item->f4 * 4))->func_00199300(&v1);
+            v1.y = fC == 0 ? v1.y : -v1.y;
+            v1.z = -v1.z;
+            v1.w = -v1.w;
+            (*(C_166830_Node **)((char *)f1F0 + f18->f18[i]->f4 * 4))->func_00199300(&v1);
         } else {
-            item = f18->f18[i];
-            (*(C_166830_Node **)((char *)f1EC + (item->f4 << 6) + 0x34))->func_00199300(&v1);
+            (*(C_166830_Node **)((char *)f1EC + (f18->f18[i]->f4 << 6) + 0x34))->func_00199300(&v1);
         }
     }
-    f = D_00275460 - t;
     for (i = 0; i < f18->f1C; i++) {
-        item = f18->f14[i];
-        if (flag != 0 && b[item->f4] != 0)
+        if (b != 0 && b[f18->f14[i]->f4] != 0)
             continue;
-        v1.x = 0; v1.y = 0; v1.z = 0; v1.w = 1.0f;
-        item->v3(f34, &v1);
-        v2.x = 0; v2.y = 0; v2.z = 0; v2.w = 1.0f;
+        v1.z = 0; v1.y = 0; v1.x = 0; v1.w = 1.0f;
+        f18->f14[i]->v3(f34, &v1);
+        v2.z = 0; v2.y = 0; v2.x = 0; v2.w = 1.0f;
         f1C->f14[i]->v3(f38, &v2);
-        v1.x += (v2.x - v1.x) * f;
-        v1.y += (v2.y - v1.y) * f;
-        v1.z += (v2.z - v1.z) * f;
-        v1.w = 1.0f;
+        d.x = v2.x - v1.x;
+        d.y = v2.y - v1.y;
+        d.z = v2.z - v1.z;
+        f = D_00275460 - t;
+        res.x = v1.x + d.x * f;
+        res.y = v1.y + d.y * f;
+        res.z = v1.z + d.z * f;
+        res.w = 1.0f;
+        v1 = res;
         if (flag) {
-            item = f18->f14[i];
-            func_001640D0(f4, (*(C_166830_Node **)((char *)f1F0 + item->f4 * 4))->f170, fC, &v1);
+            func_001640D0(f4, (*(C_166830_Node **)((char *)f1EC + *(int *)((char *)f1F0 + f18->f14[i]->f4 * 4) * 64 + 0x34))->f170, fC, &v1);
         } else {
-            item = f18->f14[i];
-            (*(C_166830_Node **)((char *)f1EC + (item->f4 << 6) + 0x34))->func_00199650(&v1);
+            (*(C_166830_Node **)((char *)f1EC + (f18->f14[i]->f4 << 6) + 0x34))->func_00199650(&v1);
         }
     }
+}
+
+static void Mirror_166830(Vec4_166830 *v, int axis)
+{
+    if (axis == 0) v->x = -v->x;
+    else if (axis == 1) v->y = -v->y;
+    else if (axis == 2) v->z = -v->z;
 }
 
 void C_166830::func_00166830(float t, int *mask, int flag)
@@ -399,41 +397,32 @@ void *C_00166E70::func_00166E70(int flags)
 
 void C_00166CA0::func_00166EB0(int param_1)
 {
-    char buf[64];
-    char buf2[64];
-    int len;
-    f8->func_00169710(D_00287E90);
-    f8->func_00168BE0(D_00277274, D_00275630, f190, -1);
-    len = strlen(f190);
-    if (!len)
-        strcpy(f190, D_002A46E8);
-    f8->func_00168BE0(D_00287E84, D_00284644, f98, -1);
-    f1F4 = f8->func_00168BE0(D_00287E78, D_00284644, fE8, -1) != 0;
-    f8->func_00168C20(D_00277288, 0, &f14);
-    f8->func_00168C20(D_00287D8C, 1, &f20);
-    f8->func_00168C20(D_00287D78, 1, &f24);
-    if (f8->func_00168550(D_00287D68, buf, -1) && func_001EA426(buf, D_00287D5C))
-        f28 = func_001EA426(buf, D_00287D50) == 0;
-    else
-        f28 = 0;
-    if (f8->func_00168550(D_00287D40, buf, -1)) {
-        if (!func_001EA426(buf, D_00287D38))
-            f2C = 0;
-        else {
-            func_001EA426(buf, D_00287D30);
-            f2C = 1;
-        }
-    }
-    if (f8->func_00168550(D_00287E6C, buf2, -1) && func_001EA426(buf, D_00287E64)) {
-        if (!func_001EA426(buf, D_00287E5C))
-            fC = 1;
-        else if (!func_001EA426(buf, D_00287E54))
-            fC = 2;
-    } else
-        fC = 0;
-    func_001662A0(param_1);
-    func_00164700();
-    func_001643A0();
-    func_001646B0();
+ char buf[64];
+ char buf2[64];
+ register unsigned int len;
+ f8->func_00169710(D_00287E90);
+ f8->func_00168BE0(D_00277274,D_00275630,f190,-1);
+ len = strlen(f190);
+ if (!len) strcpy(f190,D_002A46E8);
+ f8->func_00168BE0(D_00287E84,D_00284644,f98,-1);
+ f1F4 = f8->func_00168BE0(D_00287E78,D_00284644,fE8,-1) != 0;
+ f8->func_00168C20(D_00277288,0,&f14);
+ f8->func_00168C20(D_00287D8C,1,&f20);
+ f8->func_00168C20(D_00287D78,1,&f24);
+ if(f8->func_00168550(D_00287D68,buf,-1) && func_001EA426(buf,D_00287D5C))
+ f28 = func_001EA426(buf,D_00287D50)==0;
+ else f28=0;
+ if(f8->func_00168550(D_00287D40,buf,-1)) {
+ if(!func_001EA426(buf,D_00287D38)) f2C=0;
+ else { func_001EA426(buf,D_00287D30); f2C=1; }
+ }
+ if(f8->func_00168550(D_00287E6C,buf2,-1) && func_001EA426(buf,D_00287E64)) {
+ if(!func_001EA426(buf,D_00287E5C)) fC=1;
+ else if(!func_001EA426(buf,D_00287E54)) fC=2;
+ } else fC=0;
+ func_001662A0(param_1);
+ func_00164700();
+ func_001643A0();
+ func_001646B0();
 }
 
