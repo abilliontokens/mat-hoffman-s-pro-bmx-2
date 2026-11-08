@@ -96,6 +96,17 @@ struct V4_000B5260 {
     float x, y, z, w;
 };
 
+struct Vecs_000B5260 {
+    float d[4];
+    float a[4];
+    float b[4];
+    float c[4];
+    float e[4];
+    float local[4];
+    float scaled[4];
+    float n[4];
+};
+
 struct C_000B59E0_f30 {
     void func_00199900(float *a);
     void func_00197B40(float *a, float *b);
@@ -116,13 +127,13 @@ struct Obj_000B58B0 {
 
 int C_000B5260::func_000B5260(float dt)
 {
+    float local[4];
     float len;
     float d[4];
     float a[4];
     float b[4];
     float c[4];
     float e[4];
-    float local[4];
     float scaled[4];
     float n[4];
     float dot, ang, t, sgn, absang;
