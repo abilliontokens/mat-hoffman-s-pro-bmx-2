@@ -37,6 +37,24 @@ struct V4_0012FCF0 {
     f32 y;
     f32 z;
     f32 w;
+    V4_0012FCF0 operator*(f32 s) const
+    {
+        V4_0012FCF0 r;
+        r.x = x * s;
+        r.y = y * s;
+        r.z = z * s;
+        r.w = 1.0f;
+        return r;
+    }
+    V4_0012FCF0 operator+(const V4_0012FCF0 &b) const
+    {
+        V4_0012FCF0 r;
+        r.x = x + b.x;
+        r.y = y + b.y;
+        r.z = z + b.z;
+        r.w = 1.0f;
+        return r;
+    }
 };
 
 struct V4W_0012F0F0 {
@@ -291,12 +309,12 @@ V4_0012FCF0 C_CarProceduralExtended::func_0012F0F0(f32 t)
         ar = f518;
         cur = f4B8;
         keys = (S_0012F0F0_Key *)ar->arr;
-        k1 = (S_0012F0F0_Key *)((char *)keys + j * 0x28);
+        k1 = &keys[j];
         k0 = &keys[cur];
         const V4C_0012F0F0 &P0 = (const V4C_0012F0F0 &)k0->pos;
         const V4C_0012F0F0 &P1 = (const V4C_0012F0F0 &)k1->pos;
         V4C_0012F0F0 d1(P1.x - P0.x, P1.y - P0.y, P1.z - P0.z, 1.0f);
-        V4_0012FCF0 t0;
+        V4C_0012F0F0 t0;
         if (cur == 0) {
             t0 = d1;
         } else {
@@ -304,7 +322,7 @@ V4_0012FCF0 C_CarProceduralExtended::func_0012F0F0(f32 t)
             V4C_0012F0F0 p(P0.x - k0[-1].pos.x, P0.y - k0[-1].pos.y, P0.z - k0[-1].pos.z, 1.0f);
             t0 = (p + d1) * k;
         }
-        V4_0012FCF0 t1;
+        V4C_0012F0F0 t1;
         if (j == ar->count - 1) {
             t1 = d1;
         } else {
@@ -312,7 +330,7 @@ V4_0012FCF0 C_CarProceduralExtended::func_0012F0F0(f32 t)
             V4C_0012F0F0 p(k1[1].pos.x - P1.x, k1[1].pos.y - P1.y, k1[1].pos.z - P1.z, 1.0f);
             t1 = (p + d1) * k;
         }
-        return ((P0 * h00 + P1 * h01) + (const V4C_0012F0F0 &)t0 * h10) + (const V4C_0012F0F0 &)t1 * t;
+        return ((P0 * h00 + P1 * h01) + t0 * h10) + t1 * t;
     }
     return D_002A4130;
 }
