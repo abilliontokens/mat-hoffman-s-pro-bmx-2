@@ -4,6 +4,17 @@
 struct Vec4 { float x, y, z, w; };
 struct Res { int func_00026500(char* name, int a); };
 struct Sub { void func_00199E30(Vec4 v, float f); };
+/* func_00119680: wrap an angle into [-pi, pi] with literal constants */
+static __forceinline float Wrap_00119680(float x)
+{
+    float r = x;
+    if (x > 3.14159274f)
+        r = x - 6.28318548f;
+    else if (x < -3.14159274f)
+        r = x + 6.28318548f;
+    return r;
+}
+
 struct Obj {
     char pad0[0x5e0]; float f5e0, f5e4;
     char pad1[0x718 - 0x5e8]; int mode;
