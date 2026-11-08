@@ -309,16 +309,16 @@ void C_0002D730::func_0002D730(float dt)
         D_002B7E8C = (int)((S_2D730_Mgr *)D_002A7CB8)->func_00026500(&D_00276774, -1);
     }
     ((S_2D730_Sub *)f1ec)->func_00030CE0(dt);
-    int *floor = (int *)((char *)this + 0x8c);
-    floor[0] = D_002A10F0;
-    floor[1] = D_002A10F4;
-    floor[2] = D_002A10F8;
-    floor[3] = D_002A10FC;
-    floor = (int *)((char *)this + 0x9c);
-    floor[0] = D_002A10F0;
-    floor[1] = D_002A10F4;
-    floor[2] = D_002A10F8;
-    floor[3] = D_002A10FC;
+    int *floor8c = (int *)((char *)this + 0x8c);
+    floor8c[0] = D_002A10F0;
+    floor8c[1] = D_002A10F4;
+    floor8c[2] = D_002A10F8;
+    floor8c[3] = D_002A10FC;
+    int *floor9c = (int *)((char *)this + 0x9c);
+    floor9c[0] = D_002A10F0;
+    floor9c[1] = D_002A10F4;
+    floor9c[2] = D_002A10F8;
+    floor9c[3] = D_002A10FC;
     float step = *(float *)&D_002B7E9C * dt;
     for (int iteration = 0; iteration < D_002A1190; ++iteration) {
     if (!(D_002B7EA4 & 64)) {
@@ -423,14 +423,18 @@ void C_0002D730::func_0002D730(float dt)
     func_0002A250(dt);
     if (f468) {
         S_2D730_Node *node = f1e0;
-        V4_2D730 impulse;
-        impulse.z = -(*(float *)((char *)node + 0x250) * *(float *)((char *)this + 0x5c4));
+        float impulse[4];
+        impulse[0] = impulse[1] = impulse[2] = 0.0f;
+        impulse[3] = 1.0f;
+        impulse[2] = -(*(float *)((char *)node + 0x250) * *(float *)((char *)this + 0x5c4));
         if (*(void **)((char *)node + 0x22c)) {
-            V4_2D730 transformed;
-            ((S_2D730_Transform *)*(void **)((char *)node + 0x22c))->func_00197EC0(&transformed, &impulse);
-            *(float *)((char *)node + 0x130) += transformed.x;
-            *(float *)((char *)node + 0x134) += transformed.y;
-            *(float *)((char *)node + 0x138) += transformed.z;
+            float transformed[4];
+            transformed[0] = transformed[1] = transformed[2] = 0.0f;
+            transformed[3] = 1.0f;
+            ((S_2D730_Transform *)*(void **)((char *)node + 0x22c))->func_00197EC0(transformed, impulse);
+            *(float *)((char *)node + 0x130) += transformed[0];
+            *(float *)((char *)node + 0x134) += transformed[1];
+            *(float *)((char *)node + 0x138) += transformed[2];
         }
         ((S_2D730_Component *)f210)->tick(step);
     }
@@ -455,9 +459,11 @@ void C_0002D730::func_0002D730(float dt)
         *(float *)((char *)this + 0x120) = ((S_2D730_Transform *)*(void **)((char *)this + 0x224))->func_00026A10(*(float *)((char *)this + 0x130), dt);
         *(float *)((char *)this + 0x124) = ((S_2D730_Transform *)*(void **)((char *)this + 0x228))->func_00026A10(*(float *)((char *)this + 0x134), dt);
         func_00026340((char *)this + 0x11c, (char *)this + 0x11c);
-        V4_2D730 perpendicular;
-        AsmVec3Cross((float *)&perpendicular.x, (float *)((char *)this + 0x10c), (float *)((char *)this + 0x11c));
-        AsmVec3Cross((float *)((char *)this + 0x11c), (float *)&perpendicular.x, (float *)((char *)this + 0x10c));
+        float perpendicular[4];
+        perpendicular[0] = perpendicular[1] = perpendicular[2] = 0.0f;
+        perpendicular[3] = 1.0f;
+        AsmVec3Cross(perpendicular, (float *)((char *)this + 0x10c), (float *)((char *)this + 0x11c));
+        AsmVec3Cross((float *)((char *)this + 0x11c), perpendicular, (float *)((char *)this + 0x10c));
         ((S_2D730_Transform *)f230)->func_00199110(0, (char *)this + 0x10c, (char *)this + 0x11c, 0, 1, 0);
     } else {
         ((S_2D730_Transform *)*(void **)((char *)this + 0x220))->func_000269B0(*(float *)((char *)this + 0x11c), 3.402823466e38f, 3.402823466e38f);
@@ -477,9 +483,9 @@ void C_0002D730::func_0002D730(float dt)
         (f1e8->func_00026A70(D_002B9108) || f1e8->func_00026A70(D_002B911C))) {
         *(int *)((char *)this + 0x680) = 1;
         float *velocity = &f1e0->f238;
-        V4_2D730 projected;
-        func_0001C5E0(&projected, func_00011220(f1e8->f1a0, velocity), f1e8->f1a0);
-        ((S_2D730_Transform *)velocity)->func_0001C5B0(&projected);
+        float projected[4];
+        func_0001C5E0(projected, func_00011220(f1e8->f1a0, velocity), f1e8->f1a0);
+        ((S_2D730_Transform *)velocity)->func_0001C5B0(projected);
     }
     if (*(int *)((char *)this + 0x680) && (f1e8->f68 || f468)) {
         *(int *)((char *)this + 0x680) = 0;
