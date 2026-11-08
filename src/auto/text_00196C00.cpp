@@ -264,7 +264,7 @@ struct C_00197820 {
 
 extern int func_001968C0(void *self);
 struct Vec4_195D40 { int x, y, z, w; };
-extern Vec4_195D40 *func_00195D40(Vec4_195D40 *out, int x, int y, int z, int w);
+extern Vec4_195D40 *func_00195D40(Vec4_195D40 *out, float x, float y, float z, float w);
 extern void func_0015C7D0(float *a, float *b, float *out, float t);
 extern int func_00016CF0(float v);
 void __fastcall func_00196C00(char *self, int, float dt)
