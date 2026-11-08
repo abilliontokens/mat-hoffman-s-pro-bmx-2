@@ -166,6 +166,8 @@ struct S_000BDF30_Audio {
     void func_0013DFF0(char *p, int a);
 };
 
+extern int D_0027DB9C;
+
 extern S_000BDF30_Game *D_002A8490;
 extern S_000BDF30_Audio *D_002EFDB8;
 
