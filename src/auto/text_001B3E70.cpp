@@ -208,47 +208,40 @@ void TireTrack::func_001B3E70(V4_3E70 *a0, V4_3E70 *a1, float a2, int a3, float 
     int i;
     clamped = AsmMinF(a4, 1.0f);
     clamped = AsmMaxF(clamped, 0.0f);
-    bl = (unsigned char)func_001E8858(clamped * D_0027A060);
+    a4 = clamped;
+    bl = (unsigned char)(int)(clamped * D_0027A060);
     if (f34) {
         v40 = *a0;
         v50 = *a1;
         f34 = 0;
-        v60 = *a0;
-        v70 = *a1;
     }
-    acc = fa4 + (float)func_001E8833() * D_002754B0 * D_002755E0;
+    v60 = *a0;
+    v70 = *a1;
+    acc = fa4;
+    acc += (float)func_001E8833() * D_002754B0 * D_002755E0;
     {
+        float sq;
+        float r;
         float dx = v40.x - v60.x;
         float dy = v40.y - v60.y;
         float dz = v40.z - v60.z;
-        dist = sqrtf(dx * dx + dy * dy + dz * dz) / a2;
+        sq = dz * dz + dy * dy + dx * dx;
+        r = AsmSqrtF(sq);
+        dist = r / a2;
     }
     off = 0.0f;
     if (f30 > 0) {
         off = dist + fa0;
     }
-    n1.x = 0.0f; n1.y = 0.0f; n1.z = 0.0f; n1.w = 1.0f;
-    n2.x = 0.0f; n2.y = 0.0f; n2.z = 0.0f; n2.w = 1.0f;
-    diff.x = v40.x - v60.x;
-    diff.y = v40.y - v60.y;
-    diff.z = v40.z - v60.z;
-    diff.w = 1.0f;
-    func_001B3BA0(&n1, &diff);
-    {
-        V4_3E70 cross;
-        cross.x = n2.y * v70.z - n2.z * v70.y;
-        cross.y = n2.z * v70.x - n2.x * v70.z;
-        cross.z = n2.x * v70.y - n2.y * v70.x;
-        cross.w = 1.0f;
-        v80.x = v60.x + cross.x * acc * a2;
-        v80.y = v60.y + cross.y * acc * a2;
-        v80.z = v60.z + cross.z * acc * a2;
-        v80.w = 1.0f;
-        v90.x = v60.x + cross.x * acc * a2;
-        v90.y = v60.y + cross.y * acc * a2;
-        v90.z = v60.z + cross.z * acc * a2;
-        v90.w = 1.0f;
-    }
+    n1.x = n1.y = n1.z = 0; n1.w = 1;
+    n2.x = n2.y = n2.z = 0; n2.w = 1;
+    func_001B3BA0(&n1, &(v40 - v60));
+    AsmVec3Cross(&n2.x, &n1.x, &v70.x);
+    v80 = ((-n2) * a2 + v70 * acc) + v60;
+    v90 = (n2 * a2 + v70 * acc) + v60;
+    int first = f30;
+    int next = first + 1;
+    int end = first + 2;
     if (f30 == 0) {
         for (i = 2; i < 0x10; i += 2) {
             f24->v29(f2c, i, &v70);
@@ -260,18 +253,68 @@ void TireTrack::func_001B3E70(V4_3E70 *a0, V4_3E70 *a1, float a2, int a3, float 
         }
         f24->v29(f2c, 0, &v70);
         f24->v28(f2c, 0, &v80);
-        color = (fa8 << 24) | (bl << 16) | (fa9 << 8) | faa;
-        f24->v31(f2c, 0, color);
+        f24->v31(f2c, 0, ((((unsigned int)bl << 8) | fa8) << 8 | fa9) << 8 | faa);
         f24->v32(f2c, 0, 0, 0);
         f24->v29(f2c, 1, &v70);
         f24->v28(f2c, 1, &v90);
-        f24->v31(f2c, 1, color);
+        f24->v31(f2c, 1, ((((unsigned int)bl << 8) | fa8) << 8 | fa9) << 8 | faa);
         f24->v32(f2c, 1, 0, 0x3f800000);
         f30 += 2;
         v40 = v60;
     }
-    (void)a3;
-    (void)off;
+    else {
+        if (first == 2 && f38) {
+            V4_3E70 left = ((-n2) * a2 + v50 * acc) + v40;
+            V4_3E70 right = (n2 * a2 + v50 * acc) + v40;
+            f24->v28(f2c, 0, &left);
+            f24->v28(f2c, 1, &right);
+            f38 = 0;
+        }
+        f24->v29(f2c, first, &v70);
+        f24->v29(f2c, next, &v70);
+        f24->v28(f2c, first, &v80);
+        f24->v28(f2c, next, &v90);
+        f24->v31(f2c, first, ((((unsigned int)bl << 8) | fa8) << 8 | fa9) << 8 | faa);
+        f24->v31(f2c, next, ((((unsigned int)bl << 8) | fa8) << 8 | fa9) << 8 | faa);
+        f24->v32(f2c, first, *(int *)&off, 0);
+        f24->v32(f2c, next, *(int *)&off, 0x3f800000);
+        for (i = end; i < 16; ++i) {
+            f24->v28(f2c, i, &v60);
+            f24->v31(f2c, i, (fa8 << 16) | (fa9 << 8) | faa);
+        }
+        float dx = v40.x - v60.x;
+        float dy = v40.y - v60.y;
+        float dz = v40.z - v60.z;
+        if (AsmSqrtF(dz*dz+dy*dy+dx*dx) > *(float *)&a3) {
+            f30 += 2;
+            fa0 += dist;
+            v40 = v60;
+            v50 = v70;
+        }
+        if (f30 >= 16) {
+            f30 = 0;
+            fa0 = 0;
+            if (++f2c >= f28) f2c = 0;
+        for (i = 2; i < 0x10; i += 2) {
+            f24->v29(f2c, i, &v70);
+            f24->v28(f2c, i, &v80);
+            f24->v31(f2c, i, 0);
+            f24->v29(f2c, i + 1, &v70);
+            f24->v28(f2c, i + 1, &v90);
+            f24->v31(f2c, i + 1, 0);
+        }
+        f24->v29(f2c, 0, &v70);
+        f24->v28(f2c, 0, &v80);
+        f24->v31(f2c, 0, ((((unsigned int)bl << 8) | fa8) << 8 | fa9) << 8 | faa);
+        f24->v32(f2c, 0, 0, 0);
+        f24->v29(f2c, 1, &v70);
+        f24->v28(f2c, 1, &v90);
+        f24->v31(f2c, 1, ((((unsigned int)bl << 8) | fa8) << 8 | fa9) << 8 | faa);
+        f24->v32(f2c, 1, 0, 0x3f800000);
+
+            f30 += 2;
+        }
+    }
 }
 
 void TireTrack::func_001B4970()
@@ -334,11 +377,11 @@ char *C_001B4A70::func_001B4A70(char *delims) {
  f4++;
  c=*f4;
  if(c==0) {f4=0;return f0;}
- if(func_001E9260(delims,c)) {
  int d;
- do {
+ char *r = func_001E9260(delims,c);
+ while(r) {
  d=*(f4=f4+1);
- } while(func_001E9260(delims,d));
+ r=func_001E9260(delims,d);
  }
  }
  return f0;
@@ -388,25 +431,20 @@ C_001B4BE0 *C_001B4BE0::func_001B4BE0(void) {
 
 int C_001B4BE0::func_001B4C90(S_001B4C90_Stream * volatile stream) {
     char buf[0x104];
-    volatile int len;
-    int count;
-    C_001B4BE0 * volatile self = this;
     ((C_001B4AF0 *)this)->func_001B4B80((S_001B4B80_Stream *)stream);
     stream->func_00168BE0(D_00276310, (char *)&D_002764F0, buf, 0x104);
-    len = func_001E9040(buf, D_0027CEF0);
-    int n = len;
-    count = n > 0x32 ? 0x32 : n;
-    n = count;
-    func_001E8920((char *)self + 4, buf, n);
-    ((volatile char *)self)[n + 4] = 0;
-    stream->func_00168BE0(D_002764EC, (char *)&D_002764F0, self->f114, -1);
-    stream->func_00168C50(D_002764D8, 0, &self->f218);
-    stream->func_00168C20(D_0027D060, 0, &self->f21C);
-    stream->func_00168C20(D_0027D050, 0, &self->f220);
-    stream->func_00168C20(D_0027D044, 1, &self->f224);
-    stream->func_00168C20(D_0027D030, 1, &self->f228);
-    stream->func_00168C20(D_0027D020, 0, &self->f22C);
-    stream->func_00168C20(D_0027D008, 0, &self->f230);
+    int len = func_001E9040(buf, D_0027CEF0);
+    int count = AsmMinI(len, 0x32);
+    func_001E8920((char *)this + 4, buf, count);
+    ((char *)this)[count + 4] = 0;
+    stream->func_00168BE0(D_002764EC, (char *)&D_002764F0, this->f114, -1);
+    stream->func_00168C50(D_002764D8, 0, &this->f218);
+    stream->func_00168C20(D_0027D060, 0, &this->f21C);
+    stream->func_00168C20(D_0027D050, 0, &this->f220);
+    stream->func_00168C20(D_0027D044, 1, &this->f224);
+    stream->func_00168C20(D_0027D030, 1, &this->f228);
+    stream->func_00168C20(D_0027D020, 0, &this->f22C);
+    stream->func_00168C20(D_0027D008, 0, &this->f230);
     return 1;
 }
 
