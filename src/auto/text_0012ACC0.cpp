@@ -440,31 +440,32 @@ struct V_0012ACC0 {
 
 int C_0012ACC0::func_0012ACC0(float x, float y, float z, float w)
 {
-    float delta[4];
-    float right[4];
+    V_0012ACC0 v;
     if (x == pos[0] && y == pos[1] && z == pos[2]) return 0;
-    right[2] = right[1] = right[0] = 0.0f;
-    right[3] = 1.0f;
+    v.right[2] = 0.0f;
+    v.right[1] = 0.0f;
+    v.right[0] = 0.0f;
+    v.right[3] = 1.0f;
     up[0] = 0.0f;
     up[1] = 1.0f;
     up[2] = 0.0f;
     float dz = z - pos[2], dy = y - pos[1], dx = x - pos[0];
-    delta[0] = dx;
-    delta[1] = dy;
-    delta[2] = dz;
-    delta[3] = 1.0f;
-    func_0012A380(forward, (int)delta);
+    v.delta[0] = dx;
+    v.delta[1] = dy;
+    v.delta[2] = dz;
+    v.delta[3] = 1.0f;
+    func_0012A380(forward, (int)v.delta);
     if (x == pos[0] && z == pos[2]) {
-        delta[0] = 1.0f;
-        delta[1] = 0.0f;
-        delta[2] = 0.0f;
-        delta[3] = 1.0f;
-        memcpy(right, delta, 16);
+        v.delta[0] = 1.0f;
+        v.delta[1] = 0.0f;
+        v.delta[2] = 0.0f;
+        v.delta[3] = 1.0f;
+        memcpy(v.right, v.delta, 16);
     } else {
-        AsmVec3Cross(right, up, forward);
-        func_0012A380(right, (int)right);
+        AsmVec3Cross(v.right, up, forward);
+        func_0012A380(v.right, (int)v.right);
     }
-    AsmVec3Cross(up, forward, right);
+    AsmVec3Cross(up, forward, v.right);
     stamp = D_002EFDB8[4] + 1;
     return 1;
 }
