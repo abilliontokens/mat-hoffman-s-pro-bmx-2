@@ -4,7 +4,7 @@
 #include <xmmintrin.h>
 #include "asm_helpers.h"
 
-extern float D_00275AFC;
+extern const float D_00275AFC;
 extern float D_00275B00;
 extern float D_00275460;
 extern float D_00275544;
@@ -155,56 +155,24 @@ extern "C" int strcmp(const char *, const char *);
 extern "C" void _ReadWriteBarrier(void);
 #pragma intrinsic(_ReadWriteBarrier)
 C_0001AE60* C_0001AE60::func_0001AE60(const Vec3* volatile v) {
-    struct A { int * volatile p; float t; };
-    struct B { float t; int * volatile p; };
-    struct { int tmp; C_0001AE60 * volatile self; union { A a; B b; } u; } L;
-    int r;
-    L.self = this;
-    L.u.a.t = D_00275AFC * v->x;
-    L.u.a.p = &L.tmp;
-    r = _mm_cvtss_si32(*(__m128 *)&L.u.a.t);
-    _ReadWriteBarrier();
-    *L.u.a.p = r;
-    L.self->r = (s8)L.tmp;
-    L.u.b.t = D_00275AFC * v->y;
-    L.u.b.p = &L.tmp;
-    r = _mm_cvtss_si32(*(__m128 *)&L.u.b.t);
-    _ReadWriteBarrier();
-    *L.u.b.p = r;
-    L.self->g = (s8)L.tmp;
-    L.u.b.t = D_00275AFC * v->z;
-    L.u.b.p = &L.tmp;
-    r = _mm_cvtss_si32(*(__m128 *)&L.u.b.t);
-    _ReadWriteBarrier();
-    *L.u.b.p = r;
-    L.self->b = (s8)L.tmp;
-    return L.self;
+    int tmp;
+
+    AsmFloatToIntRound(v->x * D_00275AFC, &tmp);
+    this->r = (s8)tmp;
+    AsmFloatToIntRound(v->y * D_00275AFC, &tmp);
+    this->g = (s8)tmp;
+    AsmFloatToIntRound(v->z * D_00275AFC, &tmp);
+    this->b = (s8)tmp;
+    return this;
 }
 C_0001AF00* C_0001AF00::func_0001AF00(const Vec3* volatile v) {
-    struct A { int * volatile p; float t; };
-    struct B { float t; int * volatile p; };
-    struct { int tmp; volatile C_0001AF00 * volatile self; union { A a; B b; } u; } L;
-    int r;
-    L.self = this;
-    L.u.a.t = D_00275B00 * v->x;
-    L.u.a.p = &L.tmp;
-    r = _mm_cvtss_si32(*(__m128 *)&L.u.a.t);
-    _ReadWriteBarrier();
-    *L.u.a.p = r;
-    L.self->r = (s16)L.tmp;
-    L.u.b.t = D_00275B00 * v->y;
-    L.u.b.p = &L.tmp;
-    r = _mm_cvtss_si32(*(__m128 *)&L.u.b.t);
-    _ReadWriteBarrier();
-    *L.u.b.p = r;
-    L.self->g = (s16)L.tmp;
-    L.u.b.t = D_00275B00 * v->z;
-    L.u.b.p = &L.tmp;
-    r = _mm_cvtss_si32(*(__m128 *)&L.u.b.t);
-    _ReadWriteBarrier();
-    *L.u.b.p = r;
-    L.self->b = (s16)L.tmp;
-    return (C_0001AF00 *)L.self;
+    int tmp;
+
+    AsmFloatToIntRound(D_00275B00 * v->x, &tmp);
+    this->r = (s16)tmp, AsmFloatToIntRound(D_00275B00 * v->y, &tmp);
+    this->g = (s16)tmp, AsmFloatToIntRound(D_00275B00 * v->z, &tmp);
+    this->b = (s16)tmp;
+    return this;
 }
 
 void func_0001AFB0(float *out, float *in) {
@@ -249,21 +217,20 @@ C_0001B0A0 *C_0001B0A0::func_0001B0A0(void) {
     return this;
 }
 
+void func_0001AFB0(Vec4 *a, Vec4 *b);
 void func_0001B130(u8 *dst, Quat *q) {
-    struct { int tmp; float angle; int * volatile p; } L;
+    float angle;
+    int tmp;
     Vec4 v;
-    int r;
+
     v.z = 0.0f;
     v.y = 0.0f;
     v.x = 0.0f;
     v.w = 1.0f;
-    func_0001B020(q, &L.angle, (Vec3 *)&v);
-    func_0001AFB0((Vec3 *)&v, (Vec3 *)&v);
-    L.angle *= 40.5845108f;
-    L.p = &L.tmp;
-    r = _mm_cvtss_si32(*(__m128 *)&L.angle);
-    *L.p = r;
-    *dst++ = (u8)L.tmp;
+    func_0001B020(q, &angle, (Vec3 *)&v);
+    func_0001AFB0(&v, &v);
+    AsmFloatToIntRound(*(volatile float *)&angle * D_00275B44, &tmp);
+    *dst++ = (u8)tmp;
     *(C_0001AE60 *)dst = *C_0001AE60().func_0001AE60((Vec3 *)&v);
 }
 
@@ -279,19 +246,18 @@ void func_0001B1D0(const PackedQuat *p, Quat *q) {
     q->z = v[2] * s;
 }
 
-void func_0001B250(S_0001B250_Out * volatile out, Quat *q)
+void func_0001B250(S_0001B250_Out *out, Quat *q)
 {
-    union { float angle; C_0001AF00 col; } u;
+    float angle;
     S_0001B250_Block v;
     v.z = 0;
     v.y = 0;
     v.x = 0;
     v.w = 1.0f;
-    func_0001B020(q, &u.angle, (Vec3 *)&v);
-    func_0001AFB0((Vec3 *)&v, (Vec3 *)&v.x);
-    float t = D_002B7C80 * u.angle;
-    out->f0 = (int)t;
-    *(C_0001AF00 *)((char *)out + 2) = *u.col.func_0001AF00((Vec3 *)&v);
+    func_0001B020(q, &angle, (Vec3 *)&v);
+    func_0001AFB0((Vec3 *)(char *)&v, (Vec3 *)(char *)&v);
+    AsmFloatToInt(D_002B7C80 * angle, (int *)out);
+    *(C_0001AF00 *)((char *)out + 2) = *C_0001AF00().func_0001AF00((Vec3 *)&v);
 }
 
 void func_0001B2E0(const S_0001B2E0_In *in, S_0001B2E0_Out *out)
