@@ -380,6 +380,55 @@ C_0002F190 *C_0002F190::func_0002F190(void)
     return this;
 }
 
+extern "C" void* __cdecl memset(void*, int, unsigned int);
+void BmxCameraController_0002EF20::func_0002F1C0(int a0) {
+ if(unk6C==0) {
+ S_0002F1C0_Params p;
+ p.a=((S_0002F1C0_Input*)D_002A8490->f8)->query(30,2,63,*(int*)((char*)unk34+0x1218)-1);
+ p.b=((S_0002F1C0_Input*)D_002A8490->f8)->query(31,2,63,*(int*)((char*)unk34+0x1218)-1);
+ if(p.a!=0 && p.b!=0) p.c=1; else p.c=0;
+ p.z=-*(float*)(*(char**)((char*)unk34+0x9f0)+0x24);
+ p.w=*(float*)(*(char**)((char*)unk34+0x9f4)+0x24);
+ p.w=-p.w;
+ ((S_0002F1C0_Camera*)unk50)->func_00059290(p,a0);
+ } else if(unk6C==8) {
+ S_0002F1C0_Params p;
+ p.a=((S_0002F1C0_Input*)D_002A8490->f8)->query(30,2,63,*(int*)((char*)unk34+0x1218)-1);
+ p.b=((S_0002F1C0_Input*)D_002A8490->f8)->query(31,2,63,*(int*)((char*)unk34+0x1218)-1);
+ if(p.a!=0 && p.b!=0) p.c=1; else p.c=0;
+ p.x=-*(float*)(*(char**)((char*)unk34+0x9e8)+0x24); p.y=-*(float*)(*(char**)((char*)unk34+0x9ec)+0x24);
+ p.z=*(float*)(*(char**)((char*)unk34+0x9f0)+0x24);
+ p.z=-p.z;
+ p.w=*(float*)(*(char**)((char*)unk34+0x9f4)+0x24);
+ p.w=-p.w;
+ ((S_0002F1C0_Camera*)unk54)->func_0009FE80(p,a0);
+ } else if(unk6C==2) {
+ S_0002F1C0_Params p;
+ p.a=((S_0002F1C0_Input*)D_002A8490->f8)->query(30,2,63,0);
+ p.b=((S_0002F1C0_Input*)D_002A8490->f8)->query(31,2,63,0);
+ p.c=((S_0002F1C0_Input*)D_002A8490->f8)->query(32,2,63,0);
+ p.d=((S_0002F1C0_Input*)D_002A8490->f8)->query(33,2,63,0);
+ p.e=0;
+ if(unk34) {
+ p.x=*(float*)(*(char**)((char*)unk34+0x9e8)+0x24); p.y=*(float*)(*(char**)((char*)unk34+0x9ec)+0x24); p.z=*(float*)(*(char**)((char*)unk34+0x9f0)+0x24); p.w=-*(float*)(*(char**)((char*)unk34+0x9f4)+0x24);
+ } else {
+ p.x=*(float*)(unk40+0x24); p.y=*(float*)(unk44+0x24); p.z=*(float*)(unk48+0x24); p.w=-*(float*)(unk4C+0x24);
+ }
+ ((S_0002F1C0_Virtual*)unk58)->update(&p);
+ } else if(unk6C==7) {
+ S_0002F1C0_Params p;
+ memset(&p,0,sizeof(p));
+ p.e=0;
+ if(unk34) {
+ p.x=*(float*)(*(char**)((char*)unk34+0x9e8)+0x24); p.y=*(float*)(*(char**)((char*)unk34+0x9ec)+0x24); p.z=*(float*)(*(char**)((char*)unk34+0x9f0)+0x24); p.w=-*(float*)(*(char**)((char*)unk34+0x9f4)+0x24);
+ } else {
+ p.x=*(float*)(unk40+0x24); p.y=*(float*)(unk44+0x24); p.z=*(float*)(unk48+0x24); p.w=-*(float*)(unk4C+0x24);
+ }
+ ((S_0002F1C0_Virtual*)unk58)->update(&p);
+ }
+ func_0012B5E0(a0);
+}
+
 void C_0002F450::func_0002F450(int a0)
 {
     float m[12];
