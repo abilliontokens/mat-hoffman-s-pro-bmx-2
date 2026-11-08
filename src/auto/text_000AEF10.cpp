@@ -6,8 +6,6 @@
 void func_001E891B(void *p);
 void *func_001E8A44(int size);
 
-extern char D_0027CC5C[5];
-extern char D_0027CC54[5];
 extern int D_0027C604;
 extern int D_0027C1EC;
 extern int D_0027C51C;
