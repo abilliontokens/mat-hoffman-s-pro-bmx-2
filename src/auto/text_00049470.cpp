@@ -60,7 +60,12 @@ struct S_49470_F5C {
 };
 
 struct S_49470_F34 { char pad0[0x5c]; S_49470_F5C *f5c; };
-struct S_49470_F1A4 { char pad0[4]; C_00198390 *f4; };
+struct S_49470_VB0 { virtual void vb0(); };
+struct S_49470_VObj : virtual S_49470_VB0 {
+    virtual void w0(); virtual void w1(); virtual void w2(); virtual void w3();
+    virtual void w4(); virtual void w5(); virtual void w6();
+};
+struct S_49470_F1A4 { char pad0[4]; C_00198390 *f4; S_49470_VObj *vobj; };
 struct S_49470_F28 { char pad0[0x1a4]; S_49470_F1A4 *f1a4; };
 
 struct S_49470_F540 {
@@ -307,6 +312,8 @@ void S_00049470_This::func_00049470()
     S_49470_Table *tab;
     S_49470_Elem *a, *b, *c, *d;
     int idx, i;
+    int av, bv, cv;
+    float fy;
 
     this->f47c = 15;
     this->f480 = 0;
@@ -323,16 +330,24 @@ void S_00049470_This::func_00049470()
     c = get49470(f->f5ac, f->f5a8, idx);
     d = get49470((S_49470_Elem **)this->f5cc, this->f5c8, idx);
 
+    av = a->f35c;
+    cv = c->f360;
+    fy = *(float *)&this->f440;
+    sub = (S_49470_F540 *)this->f540;
+    bv = b->f358;
+
     if (d != 0) {
         V4_49470 v30 = {0,0,0,1}, v40 = {0,0,0,1}, v60 = {0,0,0,1}, v70 = {0,0,0,1}, v80 = {0,0,0,1};
-        V4_49470 v50;
-        int m, n;
-        float t, len, fy;
+        V4_49470 v50 = {0,0,0,1};
+        int m, n, t38, t3c, t40;
+        double tt;
+        float len;
 
-        sub = (S_49470_F540 *)this->f540;
-        fy = *(float *)&this->f440;
         D_002EFDB8->v7(1);
         D_002EFDB8->v8();
+        t38 = tab->f38;
+        t3c = tab->f3c;
+        t40 = tab->f40;
 
         if (sub->f24 != 0) {
             sub->f24->func_00198390();
@@ -351,33 +366,31 @@ void S_00049470_This::func_00049470()
             v40.z -= D_00275AEC;
         sub->f2c = 0;
 
-        if (c->f360 <= b->f358) {
-            if (b->f358 > a->f35c) m = b->f358;
-            else if (a->f35c > c->f360) m = a->f35c;
-            else m = c->f360;
+        if (cv <= bv) {
+            if (bv > av) m = bv;
+            else if (av > cv) m = av;
+            else m = cv;
         } else {
-            m = a->f35c;
+            m = av;
         }
-        if (tab->f3c <= tab->f40) {
-            if (tab->f40 <= tab->f38) n = tab->f38;
-            else n = (m > tab->f40) ? m : tab->f40;
+        if (t3c <= t40) {
+            if (t40 <= t38) n = t38;
+            else n = (m > t40) ? m : t40;
         } else {
-            if (tab->f3c <= tab->f38) n = tab->f38;
-            else n = (m > tab->f3c) ? m : tab->f3c;
+            if (t3c <= t38) n = t38;
+            else n = (m > t3c) ? m : t3c;
         }
-        t = (float)n * D_0027653C;
-        v50.x = 0.0f;
+        tt = n * D_0027653C * D_002766C8;
         v40.w = fy;
         v60.x = v40.x;
         v60.w = 1.0f;
-        v60.y = D_00276220 * (t * (float)D_002766C8) + fy;
-        v60.z = v40.z - t * D_00276D50;
+        v60.y = D_00276220 * tt + fy;
+        v60.z = v40.z - tt * D_00276D50;
         v30.x = v50.x;
         v30.w = v60.w;
         v30.y = fy - v60.y;
         v30.z = v40.z - v60.z;
-        t = v30.z * v30.z + v30.y * v30.y + v50.x * v50.x;
-        len = AsmSqrtF(t);
+        len = AsmSqrtF(v30.z * v30.z + v30.y * v30.y + v50.x * v50.x);
         *(float *)&sub->f38 = len;
         func_00034820(&v30, &v30);
         AsmVec3Cross(&v70.x, &v30.x, &D_002A14E4.x);
@@ -387,18 +400,18 @@ void S_00049470_This::func_00049470()
         sub->f34->f5c->func_00194F90(60.0f);
         sub->f34->f5c->func_00194EB0(v40);
         sub->f34->f5c->func_00194F60(v70);
+    }
 
-        if (!this->func_00042840()) {
-            func_000361F0(1);
-            return;
+    if (this->func_00042840()) {
+        if (this->f564 != 0 && ((S_49470_F564 *)this->f564)->f0 != 0) {
+            if (((S_49470_F564 *)this->f564)->f0 >= 3)
+                ((S_49470_Obj *)this->f554)->func_0008A920();
+            ((S_49470_Obj *)this->f550)->func_0008A0A0();
         }
+        ((S_49470_Obj *)this->f53c)->func_001A4100(2, 1, 0);
+        return;
     }
-    if (this->f564 != 0 && ((S_49470_F564 *)this->f564)->f0 != 0) {
-        if (((S_49470_F564 *)this->f564)->f0 >= 3)
-            ((S_49470_Obj *)this->f554)->func_0008A920();
-        ((S_49470_Obj *)this->f550)->func_0008A0A0();
-    }
-    ((S_49470_Obj *)this->f53c)->func_001A4100(2, 1, 0);
+    func_000361F0(1);
 }
 
 void func_000499B0(float *out, float *in) {
