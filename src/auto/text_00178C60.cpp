@@ -304,8 +304,7 @@ void C_00179820::func_00179950(void) {
     AsmVec3Cross(&v64.x, &u.x, &b.x);
     func_00179370(&v64, &v64);
     for (i = 0; i < 4; i++) {
-        Vec4 *n = &v24[i];
-        u = vecsub2_179950(&v24[(i + 1) % 4], n);
+        u = vecsub2_179950(&v24[(i + 1) % 4], &v24[i]);
         AsmVec3Cross(&v74[i].x, &u.x, &v64.x);
         AsmVec3Normalize(&v74[i].x, &v74[i].x);
     }
