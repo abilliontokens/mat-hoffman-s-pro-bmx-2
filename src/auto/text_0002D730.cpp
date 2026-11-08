@@ -23,6 +23,7 @@ struct S_2D730_Transform {
 void func_00026340(void *, void *);
 float func_00011220(void *, void *);
 void func_0001C5E0(void *, void *, float);
+void func_0001C5E0(void *, float, void *);
 
 struct S_2D730_Component {
     virtual void slot0();
