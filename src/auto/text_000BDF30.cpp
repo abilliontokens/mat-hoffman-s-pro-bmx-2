@@ -47,6 +47,7 @@ struct S_000BDF30_F8 {
     int arr[8];
     char pad34[0x1cc];
     int func_00135E80(int which, float v);
+    int func_00135E80(void);
 };
 
 struct V_F28obj {
@@ -631,7 +632,11 @@ void C_000BE640::func_000BE640(char *a, char *b, int c)
     func_001BCC90((void *)c);
     func_000BADB0();
     D_002EFDB8->f30 = 1;
-    func_001ADCC0(buf, 0x104, func_001E8AF0(a, D_0027D68C) != 0 ? D_0027DE0C : D_0027DDFC, D_002A64D0);
+    if (func_001E8AF0(a, D_0027D68C) != 0) {
+        func_001ADCC0(buf, 0x104, D_0027DE0C, D_002A64D0);
+    } else {
+        func_001ADCC0(buf, 0x104, D_0027DDFC, D_002A64D0);
+    }
     if (D_002BEAAC->func_0013D780(buf, 1, 0, 0, 0, 0, 0, 0) != 0) {
         D_002BEAAC->func_0013B260(1);
     }
