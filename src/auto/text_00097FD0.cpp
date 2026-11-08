@@ -296,6 +296,30 @@ static __forceinline void Refresh_000988B0(char **lp, char *a, int flag)
     }
 }
 
+static __forceinline void Refresh3_000988B0(char **lp, char *a, int flag)
+{
+    int j;
+    int k;
+
+    for (j = 0; j < *(int *)(*lp + 0x1b8); j++) {
+        if (*(int *)(*(char ***)(*lp + 0x1c8))[j] == 1) {
+            for (k = 0; k < *(int *)((*(char ***)(*lp + 0x1c8))[j] + 0x2554); k++) {
+                ((void (__fastcall *)(void *))(*(void ***)(*(char **)((*(char ***)(a + 0x28))[*(int *)((*(char ***)(*lp + 0x1c8))[j] + 0x2558 + k * 4)] + 4)))[6])(*(char **)((*(char ***)(a + 0x28))[*(int *)((*(char ***)(*lp + 0x1c8))[j] + 0x2558 + k * 4)] + 4));
+                if (!flag) {
+                    ((void (__fastcall *)(void *))(*(void ***)(*(char **)((*(char ***)(a + 0x28))[*(int *)((*(char ***)(*lp + 0x1c8))[j] + 0x2558 + k * 4)] + 4)))[4])(*(char **)((*(char ***)(a + 0x28))[*(int *)((*(char ***)(*lp + 0x1c8))[j] + 0x2558 + k * 4)] + 4));
+                }
+            }
+        } else {
+            ((void (__fastcall *)(void *))(*(void ***)(*(char **)((*(char ***)(a + 0x28))[*(int *)((*(char ***)(*lp + 0x1c8))[j] + 0x268)] + 4)))[6])(*(char **)((*(char ***)(a + 0x28))[*(int *)((*(char ***)(*lp + 0x1c8))[j] + 0x268)] + 4));
+            if (!flag) {
+                ((void (__fastcall *)(void *))(*(void ***)(*(char **)((*(char ***)(a + 0x28))[*(int *)((*(char ***)(*lp + 0x1c8))[j] + 0x268)] + 4)))[4])(*(char **)((*(char ***)(a + 0x28))[*(int *)((*(char ***)(*lp + 0x1c8))[j] + 0x268)] + 4));
+            }
+        }
+        if (*(int *)((*(char ***)(*lp + 0x1c8))[j] + 0x40) == 0)
+            flag = 0;
+    }
+}
+
 static __forceinline void Refresh2_000988B0(char *a, char **lp, int flag)
 {
     Refresh_000988B0(lp, a, flag);
@@ -400,7 +424,7 @@ int __fastcall func_000988B0(char *self, int unused, char *a, char *b)
         }
         for (p = 0; p < count; p++) {
             if (*(int *)(list[p] + 0x48e0) == 0 && *(int *)(list[p] + 0x1bc) != 0)
-                Refresh_000988B0(&list[p], a, 1);
+                Refresh2_000988B0(a, &list[p], 1);
         }
     }
     return 1;
