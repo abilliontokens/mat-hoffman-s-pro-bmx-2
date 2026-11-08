@@ -550,34 +550,32 @@ void Node_00193240::func_00193530(void *a1, void *a2, void *a3, void *a4)
 
 extern "C" double __cdecl sqrt(double);
 #pragma intrinsic(sqrt)
-void Node_00193240::func_00193600(void * volatile a1, void * volatile a2, void * volatile a3, void * volatile a4)
+void Node_00193240::func_00193600(void *a1, void *a2, void *a3, void *a4)
 {
     S_00193240_V4 *v = (S_00193240_V4 *)a2;
     float dx = v->x - f18, dy = v->y - f1C, dz = v->z - f20;
-    Node_00193240 * volatile self = this;
     void *result;
     float dist = AsmSqrtF(dz * dz + dy * dy + dx * dx);
-    Node_00193240 *s0 = self;
-    Link_00193530 *link = ((C_00192B50 *)s0->f4)->f24;
-    Handler_00193240 *h = s0->f8;
+    Link_00193530 *link = ((C_00192B50 *)f4)->f24;
+    Handler_00193240 *h = f8;
     while (link) {
         *(float *)&link->fC -= dist;
         *(float *)&link->f10 = dist + *(float *)&link->f10;
-        Node_00193240 **cursor = &self->f0;
+        Node_00193240 **cursor = &f0;
         Node_00193240 *n = *cursor;
         while (n && n->f4 != link->owner)
             n = n->f0;
         if (link->query->func_0017A1D0(a2, a4, &result)) {
-            n = self->f0;
+            n = f0;
             if (n) {
-                Handler_00193240 *h2 = n->f8;
-                int r = h2->v6(a2, a3, n->f14);
+                h = n->f8;
+                int r = h->v6(a2, a3, n->f14);
                 if (r != n->f14) {
-                    h2->v9(a1, n->f14);
-                    h2->v7(a1, r, a2, a3);
+                    h->v9(a1, n->f14);
+                    h->v7(a1, r, a2, a3);
                     n->f14 = r;
                 } else
-                    h2->v8(a1, r, a2, a3);
+                    h->v8(a1, r, a2, a3);
             } else {
                 C_00192B50 *owner = link->owner;
                 link->f10 = result;
@@ -592,8 +590,8 @@ void Node_00193240::func_00193600(void * volatile a1, void * volatile a2, void *
                     nn->f8 = h;
                     nn->fC = link->query;
                     nn->f10 = result;
-                    nn->f0 = self->f0;
-                    self->f0 = nn;
+                    nn->f0 = f0;
+                    f0 = nn;
                 }
             }
         } else if (n) {
