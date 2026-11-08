@@ -185,7 +185,7 @@ extern float D_00275AEC, D_0028491C, D_002757FC;
     if (D_002757FC < (o)->f14 || (o)->f14 > (o)->f10) (o)->f14 = 8.0f; }
 #define CELL2(n) \
     idx = (j + (n)) / 4 + j + (n); \
-    if (!((vf[idx] & vf[idx + 1] & vf[idx + 5] & vf[idx + 6]) & 0xffffffef)) { \
+    if (!((vf[idx + 6] & vf[idx + 5] & vf[idx + 1] & vf[idx]) & 0xffffffef)) { \
         *(unsigned short *)((char *)this->f28 + k * 0xfc + 0x12c) |= (unsigned short)(1 << (j + (n))); \
         o = ((S_137810_Clamp **)this->f28)[0x13 + k * 0x3f + j + (n)]; \
         if (o) CLAMP8_137810(o) \
@@ -279,7 +279,7 @@ void DrawableCube::func_00137810()
         float *vp;
         int *op;
         *(unsigned short *)((char *)this->f28 + k * 0xfc + 0x12c) = 0;
-        if (!(v.x * p[-2] + v.y * p[-1] + v.z * p[0]
+        if (!(v.y * p[-1] + v.x * p[-2] + v.z * p[0]
               > (*(float *)(D_002EFDB8->f4 + 0x1d0) - D_00275AEC) * D_0028491C)) {
             vp = &D_002BE040[k * 100];
             op = vf;
