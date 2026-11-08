@@ -135,10 +135,7 @@ int BmxSinglePlayerInGameMenu::func_00079800(float dt)
             switch (unk100) {
             case 0:
                 unk104->f64->p4C0->v31(0, 1);
-                if (unk104->f64->f594 == 0) {
-                    D_002A8490->p2E0->p2FC->v18(0);
-                    func_00060220();
-                } else if (unk104->f118 != 0) {
+                if (unk104->f64->f594 == 0 || unk104->f118 == 0) {
                     D_002A8490->p2E0->p2FC->v18(0);
                     func_00060220();
                 } else {
