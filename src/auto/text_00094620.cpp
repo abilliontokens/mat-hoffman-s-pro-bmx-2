@@ -830,30 +830,15 @@ static __forceinline void ResetList_00094F40(S_00095060_List *l)
     l->count = 0;
     l->cap = 0;
     l->grow = 0;
-    _ReadWriteBarrier();
     l->flags = t & 0xfe;
 }
 void *C_00095060::func_00094F40(void *arg)
 {
-    unsigned char m = 0xfe;
     ((C_00157600 *)this)->func_00157600(1);
     vtbl = (void *)&D_0027A23C;
     _ReadWriteBarrier();
-    unsigned char t64 = f64;
-    tracks.items = 0;
-    tracks.count = 0;
-    f5C = 0;
-    f60 = 0;
-    _ReadWriteBarrier();
-    f64 = t64 & m;
-    unsigned char t78 = f78;
-    ids.items = 0;
-    ids.count = 0;
-    f70 = 0;
-    f74 = 0;
-    _ReadWriteBarrier();
-    f78 = t78 & m;
-    _ReadWriteBarrier();
+    ResetList_00094F40((S_00095060_List *)&tracks);
+    ResetList_00094F40((S_00095060_List *)&ids);
     f30 = 5;
     f34 = 0;
     f38 = -1;
@@ -868,9 +853,10 @@ void *C_00095060::func_00094F40(void *arg)
     f60 = 1;
     f64b.b0 = 1;
     ids.items = (void **)func_001E8A44(4);
+    unsigned char t2 = f78;
     f70 = 16;
     f74 = 1;
-    f78b.b0 = 1;
+    f78 = t2 | 1;
     f7C = 0;
     f80 = arg;
     C_001CD770 *obj = (C_001CD770 *)func_001E8A44(0x4c);
