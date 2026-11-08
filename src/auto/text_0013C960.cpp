@@ -213,6 +213,16 @@ init:
 int func_0013AB60(int a);
 void *func_0014FDF0(int a, void *b);
 extern int D_00282960;
+extern int D_00275FB4;
+int func_0014FE80(void *buf, int size, int count, void *fp);
+extern "C" int D_0014FEE0(void *fp);
+int func_0014FED0(void *fp, int pos, int whence);
+int func_0014FE10(void *fp);
+unsigned short func_001DC820(void *src, void *dst, int size);
+extern "C" void *memset(void *, int, unsigned int);
+extern "C" void *memcpy(void *, const void *, unsigned int);
+extern "C" unsigned int strlen(const char *);
+extern "C" char *strcpy(char *, const char *);
 int __fastcall func_0013CC80(void *self, int edx, int a1, int a2, int a3, int a4, int a5, int a6, int a7, int a8)
 {
     char flag;
