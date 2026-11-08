@@ -39,13 +39,12 @@ char buf[260]; char num[24];
 if(unk168) {
  if((int)strlen(t174->str)<40) {
  int width=t174->func_001D6290();
- float x=t174->x;
- float pos[4];
- pos[1]=t174->y;
- x+=width/2;
- t178->SetPos(x,pos[1]);
- if(t178->frame!=D_0028F5DC){t178->frame=D_0028F5DC;t178->flags|=6;}
- t17C->SetPos(x,pos[1]);
+    float x=t174->x;
+   float y=t174->y;
+   x+=width/2;
+   t178->SetPos(x,y);
+   if(t178->frame!=D_0028F5DC){t178->frame=D_0028F5DC;t178->flags|=6;}
+   t17C->SetPos(x,y);
  if(t17C->frame!=D_0028F5DC){t17C->frame=D_0028F5DC;t17C->flags|=6;}
  if(unk184){t17C->func_001D6600();t178->func_001D6600();}
  }
