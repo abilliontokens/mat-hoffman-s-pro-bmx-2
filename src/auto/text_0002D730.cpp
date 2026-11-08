@@ -414,7 +414,7 @@ void C_0002D730::func_0002D730(float dt)
     ((S_2D730_Component *)f1f0)->tick(step);
     if (*(int *)((char *)f1f0 + 0x30) && !*(int *)((char *)this + 0x5c8))
         *(float *)((char *)this + 0x4ec) = *(float *)((char *)this + 0x4e4);
-    if (*(float *)((char *)this + 0x4ec) > 0.0f) {
+    if (*(float *)((char *)this + 0x4ec) > D_00275544) {
         *(float *)((char *)f20c + 0x3c) = *(float *)((char *)this + 0x4e8);
         *(float *)((char *)this + 0x4ec) -= step;
     } else
