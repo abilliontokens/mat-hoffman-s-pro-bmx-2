@@ -86,12 +86,17 @@ struct C_000B6640 {
     C_000B6640 *func_000B6640(int a0, int a1);
     void func_001577A0(C_000B6640_Obj *child, int a1);
     void func_000B6840(float a0, float a1, C_000B6840_Arg *a2);
-    void Box(V4_000B6840 *dst, V4_000B6840 *src)
-    {
-              float y = (0.0f - f7C) + src->y;
-      _ReadWriteBarrier();
-      *dst = V4Init_000B6840(src->x, y, src->z, 1.0f);
-    }
+          void Box(V4_000B6840 *dst, V4_000B6840 *src)
+      {
+          float y = (0.0f - f7C) + src->y;
+          *dst = V4Init_000B6840(src->x, y, src->z, 1.0f);
+      }
+      void Box1(V4_000B6840 *dst, V4_000B6840 *src)
+      {
+          float y = (0.0f - f7C) + src->y;
+          _ReadWriteBarrier();
+          *dst = V4Init_000B6840(src->x, y, src->z, 1.0f);
+      }
 };
 
 struct C_000B6810 {
