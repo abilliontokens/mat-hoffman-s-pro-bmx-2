@@ -120,8 +120,8 @@ static __forceinline Vec4 vecsub_179950(Vec4 *a, Vec4 *b)
     Vec4 r;
     r.z = a->z - b->z;
     r.y = a->y - b->y;
-    r.w = 1.0f;
     r.x = a->x - b->x;
+    r.w = 1.0f;
     return r;
 }
 
@@ -295,7 +295,7 @@ void C_00179820::func_00179880(void) {
 
 #pragma optimize("y", on)
 void C_00179820::func_00179950(void) {
-    Vec4 u, b;
+    Vec4 b, u;
     int i;
     sub_179950(&u.x, &v24[1], &v24[0]);
     sub_179950(&b.x, &v24[2], &v24[0]);
@@ -303,7 +303,7 @@ void C_00179820::func_00179950(void) {
     func_00179370(&v64, &v64);
     for (i = 0; i < 4; i++) {
         Vec4 *n = &v24[(i + 1) % 4];
-        u = vecsub_179950(n, &v24[i]);
+        u = vecsub2_179950(n, &v24[i]);
         AsmVec3Cross(&v74[i].x, &u.x, &v64.x);
         AsmVec3Normalize(&v74[i].x, &v74[i].x);
     }
