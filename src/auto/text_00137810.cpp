@@ -186,8 +186,8 @@ extern float D_00275AEC, D_0028491C, D_002757FC;
 #define CELL2(n) \
     idx = (j + (n)) / 4 + j + (n); \
     if (!((vf[idx + 5] & vf[idx + 6] & vf[idx + 1] & vf[idx]) & 0xffffffef)) { \
-        *(unsigned short *)((char *)self->f28 + k * 0xfc + 0x12c) |= (unsigned short)(1 << (j + (n))); \
-        o = ((S_137810_Clamp **)self->f28)[0x13 + k * 0x3f + j + (n)]; \
+        *(unsigned short *)((char *)this->f28 + k * 0xfc + 0x12c) |= (unsigned short)(1 << (j + (n))); \
+        o = ((S_137810_Clamp **)this->f28)[0x13 + k * 0x3f + j + (n)]; \
         if (o) CLAMP8_137810(o) \
     }
 void __fastcall func_001FD020(void *p, int v);
@@ -254,7 +254,7 @@ struct DrawableCube {
 void DrawableCube::func_00137810()
 {
     S_137F90_Mat *pm;
-    float v[4];
+    S_137810_V4 v;
     int vf[25];
     int i;
     int j;
@@ -262,9 +262,9 @@ void DrawableCube::func_00137810()
     int idx;
     S_137810_Clamp *o;
 
-    v[0] = *(float *)(D_002EFDB8->f4 + 0xd0);
-    v[1] = *(float *)(D_002EFDB8->f4 + 0xd4);
-    v[2] = *(float *)(D_002EFDB8->f4 + 0xd8);
+    v.x = *(float *)(D_002EFDB8->f4 + 0xd0);
+    v.y = *(float *)(D_002EFDB8->f4 + 0xd4);
+    v.z = *(float *)(D_002EFDB8->f4 + 0xd8);
     pm = &D_002BEA50;
     AsmIdentityMatrix(&D_002BEA50);
     pm->m[0] = 1.0f;
@@ -279,7 +279,7 @@ void DrawableCube::func_00137810()
         float *vp;
         int *op;
         *(unsigned short *)((char *)this->f28 + k * 0xfc + 0x12c) = 0;
-        if (!(v[1] * p[-1] + v[0] * p[-2] + v[2] * p[0]
+        if (!(v.y * p[-1] + v.x * p[-2] + v.z * p[0]
               > (*(float *)(D_002EFDB8->f4 + 0x1d0) - D_00275AEC) * D_0028491C)) {
             vp = &D_002BE040[k * 100];
             op = vf;
@@ -293,7 +293,7 @@ void DrawableCube::func_00137810()
             for (j = 0; j < 16; j += 8) {
 #define CELL2(n) \
                 idx = (j + (n)) / 4 + j + (n); \
-                if (!(((vf[idx + 5] & vf[idx + 6]) & (vf[idx + 1] & vf[idx])) & 0xffffffef)) { \
+                if (!((vf[idx + 5] & vf[idx + 6] & vf[idx + 1] & vf[idx]) & 0xffffffef)) { \
                     *(unsigned short *)((char *)this->f28 + k * 0xfc + 0x12c) |= (unsigned short)(1 << (j + (n))); \
                     o = ((S_137810_Clamp **)this->f28)[0x13 + k * 0x3f + j + (n)]; \
                     if (o) CLAMP8_137810(o) \
