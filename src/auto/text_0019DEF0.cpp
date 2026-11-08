@@ -156,8 +156,10 @@ struct V4_0019E860 {
 
 static inline float fabs_0019E860(float f)
 {
-    int i = *(int *)&f & 0x7fffffff;
-    return *(float *)&i;
+    union { float f; int i; } u;
+    u.f = f;
+    u.i &= 0x7fffffff;
+    return u.f;
 }
 
 extern S_0019EB10_Loader *D_002BEAAC;
@@ -222,18 +224,24 @@ void C_0019DEF0::func_0019DEF0(void)
 void SoultreeHierarchyCollisionObject::func_0019E860(float *m, float *ext)
 {
     SoultreeHierarchyCollisionObject * volatile self = this;
+    SoultreeHierarchyCollisionObject *p;
+    float r[8];
     V4_0019E860 v[3];
-    V4_0019E860 a(self->fB8, 0.0f, 0.0f, 1.0f);
-    v[1] = V4_0019E860(0.0f, self->fBC, 0.0f, 1.0f);
-    v[2] = V4_0019E860(0.0f, 0.0f, self->fC0, 1.0f);
+    p = self;
+    V4_0019E860 a(p->fB8, 0.0f, 0.0f, 1.0f);
     v[0] = a;
-    func_00030AC0(m, self->fA8, self->f130);
+    v[1] = V4_0019E860(0.0f, p->fBC, 0.0f, 1.0f);
+    v[2] = V4_0019E860(0.0f, 0.0f, p->fC0, 1.0f);
+    func_00030AC0(m, p->fA8, p->f130);
     func_0001C680(&v[0], a, self->f130);
     func_0001C680(&v[1], v[1], self->f130);
     func_0001C680(&v[2], v[2], self->f130);
-    ext[0] = fabs_0019E860(v[2].x) + fabs_0019E860(v[1].x) + fabs_0019E860(v[0].x);
-    ext[1] = fabs_0019E860(v[2].y) + fabs_0019E860(v[1].y) + fabs_0019E860(v[0].y);
-    ext[2] = fabs_0019E860(v[2].z) + fabs_0019E860(v[1].z) + fabs_0019E860(v[0].z);
+    r[0] = fabs_0019E860(v[2].x); r[1] = fabs_0019E860(v[1].x); r[2] = fabs_0019E860(v[0].x);
+    ext[0] = r[0] + r[1] + r[2];
+    r[0] = fabs_0019E860(v[2].y); r[1] = fabs_0019E860(v[1].y); r[2] = fabs_0019E860(v[0].y);
+    ext[1] = r[0] + r[1] + r[2];
+    r[0] = fabs_0019E860(v[2].z); r[1] = fabs_0019E860(v[1].z); r[2] = fabs_0019E860(v[0].z);
+    ext[2] = r[0] + r[1] + r[2];
 }
 
 void C_0019EB10::func_0019EB10(int h)
