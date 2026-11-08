@@ -71,8 +71,8 @@ extern char D_00275AD4[];
 extern char D_00275AC8[];
 extern char D_0027CEE4[];
 extern char D_0027CED8[];
-extern u32 D_002A2DF4;
-extern u32 D_002A2DE4;
+extern u32 D_002A2DF4[];
+extern u32 D_002A2DE4[];
 int func_001E9040(char *str, char *control);
 char *func_001E8920(char *dst, const char *src, int n);
 
