@@ -300,23 +300,24 @@ struct C_00049BD0 {
 extern "C" float sqrtf(float);
 void S_00049470_This::func_00049470()
 {
-    S_49470_F64 *f = (S_49470_F64 *)f64;
-    S_49470_F540 *sub = (S_49470_F540 *)f540;
+    S_00049470_This *volatile self = this;
+    S_49470_F64 *f = (S_49470_F64 *)self->f64;
+    S_49470_F540 *sub = (S_49470_F540 *)self->f540;
     S_49470_Elem *a, *b, *c, *d;
     int idx, i;
 
-    f47c = 15;
-    f480 = 0;
-    f478 = 3;
-    f474 = 3;
-    func_0003AD50();
+    self->f47c = 15;
+    self->f480 = 0;
+    self->f478 = 3;
+    self->f474 = 3;
+    self->func_0003AD50();
 
-    i = f47c;
-    idx = f->f5a4[i].f44 + f480;
+    i = self->f47c;
+    idx = f->f5a4[i].f44 + self->f480;
     a = get49470(f->f5ac, f->f5a8, idx);
     b = get49470(f->f5ac, f->f5a8, idx);
     c = get49470(f->f5ac, f->f5a8, idx);
-    d = get49470((S_49470_Elem **)f5cc, f5c8, idx);
+    d = get49470((S_49470_Elem **)self->f5cc, self->f5c8, idx);
 
     if (d != 0) {
         V4_49470 v30 = {0,0,0,1}, v40 = {0,0,0,1}, v60 = {0,0,0,1}, v70 = {0,0,0,1}, v80 = {0,0,0,1};
@@ -324,7 +325,7 @@ void S_00049470_This::func_00049470()
         int m, n;
         float t, len, fy;
 
-        fy = f440;
+        fy = *(float *)&self->f440;
         D_002EFDB8->v7(1);
         D_002EFDB8->v8();
 
@@ -364,17 +365,17 @@ void S_00049470_This::func_00049470()
         v40.w = fy;
         v60.x = v40.x;
         v60.w = 1.0f;
-        v60.y = D_00276220 * (t * D_002766C8) + fy;
+        v60.y = D_00276220 * (t * (float)D_002766C8) + fy;
         v60.z = v40.z - t * D_00276D50;
         v30.x = v50.x;
         v30.w = v60.w;
         v30.y = fy - v60.y;
         v30.z = v40.z - v60.z;
         t = v30.z * v30.z + v30.y * v30.y + v50.x * v50.x;
-        len = sqrtf(t);
+        len = AsmSqrtF(t);
         *(float *)&sub->f38 = len;
         func_00034820(&v30, &v30);
-        v70 = D_002A14E4;
+        AsmVec3Cross(&v70.x, &v30.x, &D_002A14E4.x);
 
         sub->f34->f5c->func_00194E60(v60);
         sub->f34->f5c->f4 = 0;
@@ -382,17 +383,17 @@ void S_00049470_This::func_00049470()
         sub->f34->f5c->func_00194EB0(v40);
         sub->f34->f5c->func_00194F60(v70);
 
-        if (!func_00042840()) {
+        if (!self->func_00042840()) {
             func_000361F0(1);
             return;
         }
     }
-    if (f564 != 0 && ((S_49470_F564 *)f564)->f0 != 0) {
-        if (((S_49470_F564 *)f564)->f0 >= 3)
-            ((S_49470_Obj *)f554)->func_0008A920();
-        ((S_49470_Obj *)f550)->func_0008A0A0();
+    if (self->f564 != 0 && ((S_49470_F564 *)self->f564)->f0 != 0) {
+        if (((S_49470_F564 *)self->f564)->f0 >= 3)
+            ((S_49470_Obj *)self->f554)->func_0008A920();
+        ((S_49470_Obj *)self->f550)->func_0008A0A0();
     }
-    ((S_49470_Obj *)f53c)->func_001A4100(2, 1, 0);
+    ((S_49470_Obj *)self->f53c)->func_001A4100(2, 1, 0);
 }
 
 void func_000499B0(float *out, float *in) {
@@ -513,9 +514,7 @@ void E49Fps::func_00049C90() {
 
 void BmxEventFPS::func_00049F30()
 {
-    if (f2D4 == 0 && f2D8 == 0) {
-        func_00032A60();
-    }
+ if(f2D4 == 0 && f2D8 == 0) { func_00032A60(); }
 }
 
 int C_0004A1A0::func_0004A1A0(void)
