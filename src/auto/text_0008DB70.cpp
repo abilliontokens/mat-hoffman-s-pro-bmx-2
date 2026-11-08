@@ -17,6 +17,18 @@ extern char _D_0027A030[];
 extern char _D_0027A01C[];
 extern char _D_00279FF8[];
 extern char _D_00279FE0[];
+extern char _D_00279FD0[];
+extern char _D_00279FB4[];
+extern char _D_00279FA8[];
+extern char _D_00279F98[];
+extern char _D_002A5FA8[];
+extern char _D_002A5870[];
+extern char _D_002A47F0[];
+extern char _D_002A5348[];
+extern char _D_00275678[];
+extern char _D_002A48F8[];
+void func_001ADCC0(int a, ...);
+void func_001CF740(int a, int b, int c);
 void *func_001E8A44(int size);
 struct W_0008DB70 {
     char pad0[0x28];
