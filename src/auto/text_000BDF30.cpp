@@ -262,6 +262,8 @@ struct S_000BDF30_Lookup {
 struct S_000BDF30_Names {
     char pad0[0x484];
     S_000BDF30_Lookup *f484;
+    char pad488[0x38];
+    V_F28obj *f4c0;
 };
 
 /* 0x1a8-byte element of the array at f27C */
@@ -611,18 +613,11 @@ void C_000BE640::func_000BE640(char *a, char *b, int c)
     D_002A8490->f234 = 1;
     if (D_002A8490->f2F0->f1DC) {
         p = func_001E8A44(0x54);
-        if (p) {
-            ac = ((C_001D0FD0 *)p)->func_001D1BB0();
-        } else {
-            ac = 0;
-        }
-        f2ac = ac;
-        if (ac) {
-            ac->v0((int)D_00276C90, 0);
-            ac->v5();
-        }
+        f2ac = p ? ((C_001D0FD0 *)p)->func_001D1BB0() : 0;
+        ((C_001D1BB0 *)f2ac)->v0((int)D_00276C90, 0);
+        ((C_001D1BB0 *)f2ac)->v5();
     }
-    D_002BEAAC->func_0013C1D0(0x100000);
+    D_002BEAAC->func_0013C1D0((int)D_00100000);
     func_001ADCC0(D_002A60B0, 0x104, D_00275678, D_002A5348, D_002A5FA8);
     {
         char *d = f154;
@@ -666,11 +661,7 @@ void C_000BE640::func_000BE640(char *a, char *b, int c)
     func_001E8920(D_002A60B0, D_00276C58, n);
     D_002A60B0[n] = 0;
     p = func_001E8A44(0x70);
-    if (p) {
-        f268 = ((C_001C36B0 *)p)->func_001C3E50(1);
-    } else {
-        f268 = 0;
-    }
+    f268 = p ? ((C_001C36B0 *)p)->func_001C3E50(1) : 0;
     ((C_001C36B0 *)f268)->func_001C3EA0(1);
     ((C_001C4A70 *)f268)->func_001C4A70();
     ((C_001C4C30 *)f268)->func_001C4C30();
@@ -690,20 +681,12 @@ void C_000BE640::func_000BE640(char *a, char *b, int c)
     D_002A8490->f4->vtb4->v6();
     D_002BEAAC->func_0013DFF0((char *)&t, 1);
     D_002BEAAC->func_0013B260(0);
-    D_002BEAAC->func_0013C1D0(0x40000);
+    D_002BEAAC->func_0013C1D0((int)D_00040000);
     p = func_001E8A44(0x358);
-    if (p) {
-        f274 = ((C_00092890 *)p)->func_00092890(1);
-    } else {
-        f274 = 0;
-    }
+    f274 = p ? ((C_00092890 *)p)->func_00092890(1) : 0;
     ((C_00092890 *)f274)->v10();
     p = func_001E8A44(0x24);
-    if (p) {
-        f26c = ((C_000BEDC0 *)p)->func_00157600((void *)1);
-    } else {
-        f26c = 0;
-    }
+    f26c = p ? ((C_000BEDC0 *)p)->func_00157600((void *)1) : 0;
     p = func_001E8A44(0x48);
     if (p) {
         C_000BEDC0 *q = ((C_000BEDC0 *)p)->func_00157600((void *)1);
