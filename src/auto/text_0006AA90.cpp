@@ -3,7 +3,7 @@
 #include <string.h>
 #include "asm_helpers.h"
 
-struct Txt_6AA90 { char* str; float x; float y; char pad[0x38]; int frame; char pad2[6]; unsigned char flags; int func_001D6290(); void func_001D6600(); void func_0005E840(char*); void SetPos(float a,float b) { if(x!=a||y!=b){x=a;y=b;flags|=6;} } };
+struct Txt_6AA90 { char* str; float x; float y; char pad[0x38]; int frame; char pad2[6]; unsigned char flags; int func_001D6290(); void func_001D6600(); void func_0005E840(char*); void SetPos(float a,float b) { if(x!=a||y!=b){x=a;y=b;flags|=6;} } void SetFrame(int f) { if(frame!=f){frame=f;flags|=6;} } };
 extern int D_0028F5DC;
 inline int Min_6AA90(const int &a,const int &b) { return a<b?a:b; }
 struct Widget_6AA90 {
@@ -38,12 +38,14 @@ char buf[260]; char num[24];
 if(unk168) {
  if((int)strlen(t174->str)<40) {
  int width=t174->func_001D6290();
-    float x=t174->x;
-   float y=t174->y;
-   x+=width/2;
-   t178->SetPos(x,y);
-   if(t178->frame!=D_0028F5DC){t178->frame=D_0028F5DC;t178->flags|=6;}
-   t17C->SetPos(x,y);
+ float x;
+ float y;
+ x=t174->x;
+ y=t174->y;
+ x+=width/2;
+ t178->SetPos(x,y);
+ if(t178->frame!=D_0028F5DC){t178->frame=D_0028F5DC;t178->flags|=6;}
+ t17C->SetPos(x,y);
  if(t17C->frame!=D_0028F5DC){t17C->frame=D_0028F5DC;t17C->flags|=6;}
  if(unk184){t17C->func_001D6600();t178->func_001D6600();}
  }
