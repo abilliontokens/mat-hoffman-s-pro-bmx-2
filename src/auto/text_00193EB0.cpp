@@ -454,7 +454,9 @@ void Cord_00193EB0::func_00193EB0(int a0) {
  else dir=Sub_00193EB0(*(V4_00193EB0*)(s->f10+0x1c),*(V4_00193EB0*)(s->f14+0x1c));
  V4_00193EB0 *in=&dir; V4_00193EB0 *out=&dir;
  AsmVec3Normalize(&out->x,&in->x);
- if(dir.x==*(float*)&D_002A9904 && dir.y==*(float*)&D_002A9908 && dir.z==*(float*)&D_002A990C) dir=*(V4_00193EB0*)&D_002A9924;
+ if(dir.x==*(float*)&D_002A9904 && dir.y==*(float*)&D_002A9908 && dir.z==*(float*)&D_002A990C) {
+  dir.x=D_002A9924; dir.y=D_002A9928; dir.z=D_002A992C; dir.w=D_002A9930;
+ }
  f4C[i]->func_001994C0(0,&q,0);
  f4C[i]->func_00199790(0,s->f14+0x1c);
  f4C[i]->func_00199110(0,&q,&dir,1,0,0);
