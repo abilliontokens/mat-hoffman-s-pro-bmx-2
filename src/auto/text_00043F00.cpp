@@ -38,7 +38,7 @@ void func_000265C0(void *, void *, void *, void *, int, int);
 int func_001E8AF0(char *, char *);
 void func_001ADCC0(int, int, char *, int);
 struct C_00043F00 {
-    char pad0[0x64]; Ctx43 *f64;
+    char pad0[0x24]; int f24; int f28; char pad2C[0x64 - 0x2C]; Ctx43 *f64;
     char pad68[0x288 - 0x68]; unsigned char f288; char pad289[3];
     int f28C; int f290; V4_43 f294; V4_43 f2A4; V4_43 f2B4;
     char pad2C4[0x440 - 0x2C4]; float f440;
