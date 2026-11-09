@@ -242,7 +242,7 @@ C_00073EF0 *C_00073EF0::func_00073EF0(void *a0)
     f108 = t ? t->func_001D5E90() : 0;
     f108->func_001D5FA0((int)fontB, D_00278690, 0x28, 0);
     color73(f108, 0xaaaaaaaa);
-    posy73(f108, 0x42f00000, fontA->func_0018C210() * D_00276DD4 + D_0027886C);
+    posy73(f108, 0x42f00000, fontA->func_0018C210() * 4.0f + 117.0f);
     align73(f108, D_0028F5DC);
     f108->func_0005E840(*(int *)((char *)D_002A8490->f2E8->f4 + 0x1000));
 
