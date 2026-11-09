@@ -15,18 +15,13 @@ extern char D_002A5EA0[], D_002A60B0[], D_002A45E0[], D_002A5870[], D_00275678[]
 extern char D_002A5FA8[], D_002A47F0[], D_002A48F8[], D_002A5348[];
 extern char D_002758F0[], D_002758E4[], D_002758D8[], D_002758CC[];
 
-/* the path buffers are saved and restored with a length-clamped copy; the original
-   keeps the clamp's operands and result in three stack slots (len/limit/result) */
+/* the path buffers are saved and restored with a length-clamped copy (AsmMinI) */
 static __forceinline void CopyPathP_001554D0(char *dst, const char *src);
-static __forceinline void CopyPathV_001554D0(char *dst, const char *src, volatile int &len, volatile int &lim, volatile int &res)
+static __forceinline void CopyPathV_001554D0(char *dst, const char *src)
 {
-    int ma, mb, n;
-    len = strlen(src);
-    lim = 0x103;
-    ma = lim;
-    mb = len;
-    res = ma > mb ? mb : ma;
-    n = res;
+    int slen = strlen(src);
+    int lim = 0x103;
+    int n = AsmMinI(lim, slen);
     func_001E8920(dst, src, n);
     dst[n] = 0;
 }
