@@ -14,7 +14,6 @@ struct S_151F80_Vec {
     S_151F80_Vec(float a, float b, float c) { x = a; y = b; z = c; w = 1.0f; }
     void Set(float a, float b, float c) { x = a; y = b; z = c; }
     void SetRef(const float &a, const float &b, const float &c) { x = a; y = b; z = c; }
-    void SetRef(const float &a, const float &b, const float &c, const float &d) { x = a; y = b; z = c; w = d; }
     S_151F80_Vec operator+(const S_151F80_Vec &o) const { return S_151F80_Vec(x + o.x, y + o.y, z + o.z); }
     S_151F80_Vec operator-(const S_151F80_Vec &o) const { return S_151F80_Vec(x - o.x, y - o.y, z - o.z); }
     S_151F80_Vec operator*(float s) const { return S_151F80_Vec(x * s, y * s, z * s); }
@@ -182,10 +181,11 @@ void C_00151F80::func_00152300(float dt)
         f2c->f1a4->f4->func_00199B00(&v, 0);
     }
     if (f78 != 0) {
+        float gx = D_002A789C.x;
         S_151F80_Vec *p84;
         {
             S_151F80_Vec *p = &f94;
-            p->x = D_002A789C.x; p->y = D_002A78A0; p->z = D_002A78A4; p->w = D_002A78A8;
+            p->x = gx; p->y = D_002A78A0; p->z = D_002A78A4; p->w = D_002A78A8;
         }
         p84 = &f84;
         p84->x = D_002A789C.x; p84->y = D_002A78A0; p84->z = D_002A78A4; p84->w = D_002A78A8;
@@ -223,13 +223,15 @@ void C_00151F80::func_00152300(float dt)
                 f60->func_00133F10(0);
             }
             {
-                S_151F80_Vec t, out, dst;
+                S_151F80_Vec t, out;
                 if (f60->fa7 & 0x20) {
+                    S_151F80_Vec dst;
                     t = f68;
                     if (AsmSqrtF(fe8.x * fe8.x + fe8.y * fe8.y + fe8.z * fe8.z) > D_002756DC
                         && func_00011170(&t) > D_002756DC) {
-                        S_151F80_Vec *fe8p = &fe8;
+                        S_151F80_Vec *fe8p;
                         func_00150890(&out, &t);
+                        fe8p = &fe8;
                         func_00021330(&dst, fe8p, &out);
                         *fe8p = dst;
                         v.x -= t.x;
@@ -248,8 +250,9 @@ void C_00151F80::func_00152300(float dt)
                     if (f60->fa7 & 0x20) {
                         t = f68;
                         if (func_00011170(&fe8) > D_002756DC && func_00011170(&t) > D_002756DC) {
-                            S_151F80_Vec *fe8p = &fe8;
+                            S_151F80_Vec *fe8p;
                             func_00150890(&out, &t);
+                            fe8p = &fe8;
                             func_00021330(&dst, fe8p, &out);
                             *fe8p = dst;
                             v.x -= t.x;
