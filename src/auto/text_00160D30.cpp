@@ -428,7 +428,7 @@ void func_001611C0(char *out, void *data, int size)
 {
     S_001611C0_State state;
     S_001611C0_BitReader br;
-    S_00161170 table[0x88d0];
+    S_00161170 table[0x8900];
     unsigned int code, len, c, n, idx, hi, lo;
     int first;
     state.out = out;
@@ -724,7 +724,7 @@ void func_001619D0(V3_00161930 *a, V3_00161930 *b, V3_00161930 *c, V4_00161930 *
  v2.x=b->x-a->x; v2.y=b->y-a->y; v2.z=b->z-a->z;
  AsmVec3Cross((float*)out,(float*)&v2,(float*)&v1);
  n=func_001618A0(out,out);
- if(d) { float p0=a->x*n->x; float p1=n->y*a->y; float sum=p0+p1; float p2=n->z*a->z; *d=-(sum+p2); }
+ if(d) *d=-((*(volatile float*)&n->y*a->y+*(volatile float*)&a->x*n->x)+n->z*a->z);
 }
 #pragma optimize("", on)
 S_Matrix16_00161AA0 func_00161AA0(float a1, float a2, float a3, float a4)
