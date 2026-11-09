@@ -452,7 +452,7 @@ C_00103450 *C_00103450::func_00103450(int a, S_Cfg *cfg)
         (*unk1B0)->func_001B19A0(unk178);
         (*unk1B0)->func_001B2270(unk3C0);
         (*unk1B0)->func_001B19C0(unk3C4, unk3C8, 0);
-        (*unk1B0)->func_001B1B80(D_00275998 * unk3E4, vec3D4, 0);
+        (*unk1B0)->func_001B1B80(*(volatile float *)&unk3E4 * D_00275998, vec3D4, 0);
         (*unk1B0)->func_001B1AB0(l.i1, 0);
         (*unk1B0)->func_001B1BF0(*(int *)&l.f);
     }
