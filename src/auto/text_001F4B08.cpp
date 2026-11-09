@@ -207,9 +207,9 @@ int func_001F4D18(int cp)
             retval = 0;
         }
     } __finally {
-        return retval;
+        int func_001EB302(int);
+        func_001EB302(13);
     }
-    func_001F4E30();
     return retval;
 }
 #pragma auto_inline(on)
