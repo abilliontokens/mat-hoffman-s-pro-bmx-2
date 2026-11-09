@@ -16,7 +16,6 @@ extern char D_002A5FA8[], D_002A47F0[], D_002A48F8[], D_002A5348[];
 extern char D_002758F0[], D_002758E4[], D_002758D8[], D_002758CC[];
 
 /* the path buffers are saved and restored with a length-clamped copy (AsmMinI) */
-static __forceinline void CopyPathP_001554D0(char *dst, const char *src);
 static __forceinline void CopyPathV_001554D0(char *dst, const char *src)
 {
     int slen = strlen(src);
