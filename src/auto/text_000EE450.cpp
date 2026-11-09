@@ -14,7 +14,7 @@ struct Img_EE {
     unsigned int color;
     float a, b, c, d;
     char pad4C[0xC];
-    volatile unsigned char flags;
+    unsigned char flags;
     Img_EE *func_001D5760();
     void func_001D5810(char *name, float x, float y, int z);
 };
