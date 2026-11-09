@@ -267,7 +267,7 @@ int func_00128930(S_00128930_Leaf *leaf, float *seg, short id, S_00128930_Mat *m
     d.y = q[1].y - q[0].y;
     d.z = q[1].z - q[0].z;
     t = -1.0f;
-    len = AsmSqrtF(d.z * d.z + d.y * d.y + d.x * d.x);
+    len = Sqrt_00128930(d.z * d.z + d.y * d.y + d.x * d.x);
     inv = D_00275460 / len;
     dn.x = d.x * inv;
     dn.y = d.y * inv;
@@ -296,30 +296,12 @@ int func_00128930(S_00128930_Leaf *leaf, float *seg, short id, S_00128930_Mat *m
             h->count++;
             k = dn.z * len * u * sz + len * dn.x * u * sx + dn.y * len * u * sy;
             sx = sx * k; sy = sy * k; sz = sz * k;
-            {
-                float m0 = h->minv[0];
-                h->minv[0] = AsmMinF(sx, m0);
-            }
-            {
-                float m1 = h->minv[1];
-                h->minv[1] = AsmMinF(sy, m1);
-            }
-            {
-                float m2 = h->minv[2];
-                h->minv[2] = AsmMinF(sz, m2);
-            }
-            {
-                float m0 = h->maxv[0];
-                h->maxv[0] = AsmMaxF(sx, m0);
-            }
-            {
-                float m1 = h->maxv[1];
-                h->maxv[1] = AsmMaxF(sy, m1);
-            }
-            {
-                float m2 = h->maxv[2];
-                h->maxv[2] = AsmMaxF(sz, m2);
-            }
+            h->minv[0] = AsmMinF(sx, h->minv[0]);
+            h->minv[1] = AsmMinF(sy, h->minv[1]);
+            h->minv[2] = AsmMinF(sz, h->minv[2]);
+            h->maxv[0] = AsmMaxF(sx, h->maxv[0]);
+            h->maxv[1] = AsmMaxF(sy, h->maxv[1]);
+            h->maxv[2] = AsmMaxF(sz, h->maxv[2]);
         }
         if (t <= h->t) {
             h->fl0 = 0; h->t = t;
@@ -336,7 +318,6 @@ int func_00128930(S_00128930_Leaf *leaf, float *seg, short id, S_00128930_Mat *m
     }
     return 1;
 }
-
 int func_00129050(unsigned int a0, unsigned int a1)
 {
     int func_00128930(...);
@@ -359,17 +340,17 @@ int func_001236A0(unsigned short a0, unsigned short a1);
 #pragma optimize("y", off)
 int func_00129110(unsigned short a0, unsigned short a1)
 {
-    unsigned int aLeaf = a0 & 0x8000;
-    unsigned int bLeaf = a1 & 0x8000;
+    unsigned aLeaf = a0 & 0x8000;
+    s32 bLeaf = a1 & 0x8000;
+    int r;
     S_00129110_Node *na;
     S_00129110_Node *nb;
-    int r;
 
     if (aLeaf) {
         if (bLeaf) {
             return ((int (*)(unsigned short, unsigned short))func_00129050)(a0, a1);
         }
-    } else if (!bLeaf) {
+    } else if (bLeaf == 0) {
         float aMin[4];
         float bMin[4];
         float aMax[4];
@@ -381,19 +362,24 @@ int func_00129110(unsigned short a0, unsigned short a1)
         aMin[1] = na->min[1];
         aMin[2] = na->min[2];
         aMin[3] = 1.0f;
-        aMax[0] = na->max[0];
-        aMax[1] = na->max[1];
-        aMax[2] = na->max[2];
+        unsigned t2 = ((unsigned *)na->max)[2];
+        unsigned t1 = ((unsigned *)na->max)[1];
+        unsigned t0 = ((unsigned *)na->max)[0];
+        ((unsigned *)aMax)[0] = t0;
         bMin[0] = nb->min[0];
+        ((unsigned *)aMax)[1] = t1;
         bMin[1] = nb->min[1];
+        ((unsigned *)aMax)[2] = (int)t2;
         bMin[2] = nb->min[2];
         bMin[3] = 1.0f;
-        bMax[0] = nb->max[0];
-        bMax[1] = nb->max[1];
-        bMax[2] = nb->max[2];
+        float radius = nb->f4;
+        unsigned bx = ((unsigned *)nb->max)[0], by = ((unsigned *)nb->max)[1], bz = ((unsigned *)nb->max)[2];
+        ((unsigned *)bMax)[2] = bz;
+        ((unsigned *)bMax)[1] = by;
+        ((unsigned *)bMax)[0] = bx;
         aMax[3] = 1.0f;
         bMax[3] = 1.0f;
-        if (func_00122400(aMin, aMax, bMin, nb->f4, nb->f4 * nb->f4, &D_002B92A0)) {
+        if (func_00122400(aMin, aMax, bMin, nb->f4, radius * radius, &D_002B92A0)) {
             if (func_00122400(bMin, bMax, aMin, na->f4, na->f4 * na->f4, &D_002B9300)) {
                 r = 0;
                 if (na->f0 > nb->f0) {
@@ -417,7 +403,7 @@ int func_00129110(unsigned short a0, unsigned short a1)
         return 0;
     }
     if (func_001236A0(a0, a1)) {
-        int hit;
+        unsigned hit;
         if (aLeaf) {
             hit = 0;
             nb = &((S_00129110_Node *)D_002B9290->nodes)[a1];
@@ -498,6 +484,8 @@ void func_001294E0(int a0, int a1, int a2, int a3, int a4) {
     D_002B92F4 = a4;
     func_001293F0(a0, a1, a2, a3);
 }
+
+struct S_00129510_Holes { int a, b; };
 
 void func_00129510(S_00129510_Node **a0, S_00129510_Leaf **a1, S_00129510_M44 *m, S_00129510_V4 *verts, int *tris, int ntri, int nverts)
 {
