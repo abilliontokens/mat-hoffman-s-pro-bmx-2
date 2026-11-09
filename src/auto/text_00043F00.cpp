@@ -58,7 +58,8 @@ struct C_00043F00 {
     char pad2C4[0x2D8 - 0x2C4]; int f2D8; char pad2DC[0x324 - 0x2DC]; char s324[0x32];
     char pad356[0x420 - 0x356]; int f420;
     char pad424[0x440 - 0x424]; float f440;
-          char pad444[0x474 - 0x444]; int f474; char pad478[0x48C - 0x478]; int f48C;
+          char pad444[0x474 - 0x444]; int f474; char pad478[0x47C - 0x478]; int f47C;
+          char pad480[0x48C - 0x480]; int f48C;
     char pad490[0x4CC - 0x490]; V4_43 f4CC; char pad4DC[0x51C - 0x4DC]; V4_43 f51C;
     char pad52C[0x53C - 0x52C]; Obj53C_43 *f53C;
     char pad540[0x564 - 0x540]; Obj564_43 *f564; Obj568_43 *f568; Obj568_43 *f56C; Obj568_43 *f570;
