@@ -50,7 +50,7 @@ struct C_001C4D50 {
 
 struct S_0005F3C0_2E0 {
     int f0;
-    volatile int f4;
+    int f4;
 };
 
 struct S_0005F3C0_8490 {
@@ -554,7 +554,7 @@ void BmxInGameMenu::func_00060220(void)
 void BmxInGameMenu::func_000602B0(void)
 {
     if (unk130 != 0) {
-        *(volatile int *)&D_002A8490->f2E0->f4;
+        int dead = *(volatile int *)&D_002A8490->f2E0->f4;
         unk100 = 0;
         unk110 = 1;
         unk130 = 0;
@@ -563,7 +563,7 @@ void BmxInGameMenu::func_000602B0(void)
         unk104->v35();
         unk104->unk1F4 = 1;
         unk108 = 1;
-        vf18(0);
+        vf18(dead & 0);
         unk104->unk21 &= 0xfb;
         unkFC = 1;
         unk128 = 1;
