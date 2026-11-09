@@ -281,11 +281,11 @@ void C_00097050::func_00097050(C_00097050_Arg *a)
     char buf[0x104];
     char b2[0x104];
     char b3[0x104];
-#define LIST(o) (*(char **)(*(char **)((char *)a + 0x64) + (o)))
-#define MGR (*(C_00097050_Mgr **)(*(char **)((char *)a + 0x64) + 0x484))
-#define N(m) ((char (*)[0x78])(self + 0x290 + (m)))
-#define R ((float *)(self + 0x4104 + i * 0x10))
-#define Q ((int *)(self + 0x40d0 + i * 4))
+  #define LIST(o) (*(char **)(*(char **)((char *)a + 0x64) + (o)))
+  #define MGR (*(C_00097050_Mgr **)(*(char **)((char *)a + 0x64) + 0x484))
+  #define N(m) ((char (*)[0x78])(self + 0x290 + (m)))
+  #define R ((float *)(self + 0x4104 + i * 0x10))
+  #define Q ((int *)(self + 0x40d0 + i * 4))
     for (int i = 0; i < *(int *)(self + 0x1cc); i++) {
         int j;
         for (j = 0; j < *(int *)(LIST(0x3ac) + 0x24); j++) {
@@ -333,8 +333,8 @@ void C_00097050::func_00097050(C_00097050_Arg *a)
         (*(C_00097050_Item ***)(self + 0x1c8))[n]->func_00096020(a);
     if (*(int *)(self + 0x1b0) == 0)
         return;
-#define ITEM ((*(char ***)(self + 0x1c8))[m])
-#define S(it, o) ((char *)((it) + ((o) + k * 0x78)))
+  #define ITEM ((*(char ***)(self + 0x1c8))[m])
+  #define S(it, o) (((char (*)[0x78])((it) + (o)))[k])
     for (int m = 0; m < *(int *)(self + 0x1b8); m++) {
         if (*(int *)ITEM != 1)
             continue;
@@ -374,13 +374,13 @@ void C_00097050::func_00097050(C_00097050_Arg *a)
                 ((C_00097050_Obj **)(ITEM + 0x6400))[k]->func_001B65D0();
         }
     }
-#undef S
-#undef ITEM
-#undef N
-#undef R
-#undef Q
-#undef LIST
-#undef MGR
+  #undef S
+  #undef ITEM
+  #undef N
+  #undef R
+  #undef Q
+  #undef LIST
+  #undef MGR
 }
 
 undefined4 C_000976A0::func_000976A0(void)
@@ -453,21 +453,19 @@ void __stdcall func_00097770(const char *name)
     C_00097770_List *list = D_002A8490->f2A4->f64->f3A8->f0;
     int i;
     for (i = 0; i < list->count; i++) {
-        C_00097770_Entry *&e = list->items[i];
+        C_00097770_Entry *volatile e = list->items[i];
         if (e->f4 == 2) {
             C_00097770_Obj *obj = e->f8;
             char buf[0x104];
-            const char *src = obj->f14C->name;
-            int n = min_ref((int)strlen(src), 0x103);
+            char *src = obj->f14C->name;
+            int len = (int)strlen(src);
+            int lim = 0x103;
+            int n = AsmMinI(lim, len);
             func_001E8920(buf, src, n);
             buf[n] = 0;
             char *ext = func_001E8AC0(buf, '.');
-            if (ext != 0) {
-                memset(ext, 0, strlen(ext));
-            }
-            if (func_001EA426(name, buf) == 0) {
-                obj->v4();
-            }
+            if (ext != 0) { memset(ext, 0, strlen(ext)); }
+            if (func_001EA426(name, buf) == 0) { obj->v4(); }
         }
     }
 }
@@ -476,6 +474,7 @@ void __stdcall func_00097890(const char *name)
 {
     C_00097770_List *list;
     C_00097770_Entry *e;
+    C_00097770_Entry *e2;
     C_00097770_Obj *obj;
     int len, lim;
     int res, n, i;
@@ -485,14 +484,16 @@ void __stdcall func_00097890(const char *name)
     list = D_002A8490->f2A4->f64->f3A8->f0;
     for (i = 0; i < list->count; i++) {
         e = list->items[i];
-        if (e->f4 == 2) {
+        e2 = e;
+        if (e2->f4 == 2) {
             obj = e->f8;
             const char *src = (*(C_00097770_Named **)((char *)obj + 0x14c))->name;
+            const char *src2 = src;
             len = strlen(src);
             lim = 0x103;
             res = AsmMinI(lim, len);
             n = res;
-            func_001E8920(buf, src, n);
+            func_001E8920(buf, src2, n);
             buf[n] = 0;
             char *ext = func_001E8AC0(buf, '.');
             if (ext) memset(ext, 0, strlen(ext));
