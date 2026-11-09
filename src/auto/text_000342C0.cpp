@@ -139,8 +139,10 @@ struct S_34A40_VBase {
     virtual void vb1() = 0;
     virtual void vb2() = 0;
     virtual void vb3() = 0;
-    virtual void vb4() = 0;
-};
+      virtual void vb4() = 0;
+      virtual void vb5() = 0;
+      virtual void vb6() = 0;
+  };
 struct S_34A40_VObj : virtual S_34A40_VBase {
     S_34A40_Cam *f4;
 };
@@ -303,11 +305,12 @@ int func_001DC974(void);
 void func_001E891B(void *p);
 void func_001ADCC0(char *buf, int size, const char *fmt, ...);
 
+extern int D_00020000;
 void C_000342C0::func_000342C0()
 {
     struct F4 { char pad0[0xb4]; S_342C0_1D4B *fB4; };
     C_000342C0 *volatile self;
-    volatile int len, n;
+    int n;
     char buf[0x104];
     void *p;
 
@@ -327,16 +330,18 @@ void C_000342C0::func_000342C0()
     self->func_001D3F50();
     ((S_342C0_Self *)self)->v29();
     self->func_00033680();
-    if (D_002A8490->f2e0->f4 == 0xa)
-        func_001ADCC0(buf, 0x104, D_00276C64, D_002A5870, self->f90);
-    else
+    if (D_002A8490->f2e0->f4 != 0xa)
         func_001ADCC0(buf, 0x104, D_00276C74, D_002A5870);
-    ((S_342C0_Game *)D_002BEAAC)->func_0013C1D0(0x20000);
+    else
+        func_001ADCC0(buf, 0x104, D_00276C64, D_002A5870, self->f90);
+    ((S_342C0_Game *)D_002BEAAC)->func_0013C1D0((int)&D_00020000);
     if (((S_342C0_Game *)D_002BEAAC)->func_0013D780(buf, 1, 0, 0, 0, 0, 0, 0))
         ((S_342C0_Game *)D_002BEAAC)->func_0013B260(0);
     ((S_342C0_Self *)self)->v31();
-    len = 0x103;
-    n = len > 9 ? 9 : len;
+    {
+        int len = 0x103;
+        n = AsmMinI(len, 9);
+    }
     func_001E8920(D_002A60B0, D_00276C58, n);
     D_002A60B0[n] = 0;
     p = func_001E8A44(0x70);
@@ -443,12 +448,9 @@ void func_000348B0(Vec4 *out, float t, Vec4 p0, Vec4 p1, Vec4 p2, Vec4 p3)
     Vec4 m1 = Vec3Scale(Vec3Sub(p3, p1), D_002755E8);
     Vec4 n1 = Vec3Scale(m1, d);
     Vec4 n0 = Vec3Scale(m0, c);
-    Vec4 q2;
-    q2.x = p2.x * b;
-    q2.y = p2.y * b;
+    Vec4 q2 = Vec3Scale(p2, b);
     _ReadWriteBarrier();
     out->w = 1.0f;
-    q2.z = p2.z * b;
     _ReadWriteBarrier();
     Vec4 q1 = Vec3Scale(p1, a);
     Vec4 s = Vec3Add(q1, q2);
@@ -459,7 +461,9 @@ void func_000348B0(Vec4 *out, float t, Vec4 p0, Vec4 p1, Vec4 p2, Vec4 p3)
 }
 void C_00034A40::func_00034A40(void *a1, void *a2, void *a3, S_00034A40_Tab *a4, float a5, int a6, int a7, int a8, int a9)
 {
-    Vec4 v24, v34, v54, v64, v74;
+    Vec4 v54, v24, v64, v34, tmp, v74;
+    S_00034A40_Elem *e;
+    int e3[3];
     int ex, ey, ez;
     int m;
     float t;
@@ -476,9 +480,13 @@ void C_00034A40::func_00034A40(void *a1, void *a2, void *a3, S_00034A40_Tab *a4,
     ((S_00034A40_G *)D_002EFDB8)->v7(1);
     ((S_00034A40_G *)D_002EFDB8)->v8();
 
-    ex = a4->f5a4[a6].f38;
-    ey = a4->f5a4[a6].f3c;
-    ez = a4->f5a4[a6].f40;
+    e = &a4->f5a4[a6];
+    e3[0] = e->f38;
+    e3[1] = e->f3c;
+    e3[2] = e->f40;
+    ex = e3[0];
+    ey = e3[1];
+    ez = e3[2];
 
     if (f24 != 0) {
         ((S_00034A40_Obj *)f24)->func_00198390();
@@ -502,7 +510,8 @@ void C_00034A40::func_00034A40(void *a1, void *a2, void *a3, S_00034A40_Tab *a4,
         ((S_00034A40_Obj *)*(void **)((char *)f28->f1a4 + 4))->func_0019A8C0(&v34, &v74);
         ((S_00034A40_Obj *)f28->f1a4)->func_00164820(*(void **)((char *)f28->f1ac + 4));
     } else {
-        f28 = 0;
+        f28 = (S_00034A40_28 *)a3;
+        ((S_00034A40_Obj *)f28->f1a4)->func_001983A0();
     }
     if (a2 != 0) {
         f2c = a2;
@@ -530,7 +539,11 @@ void C_00034A40::func_00034A40(void *a1, void *a2, void *a3, S_00034A40_Tab *a4,
     v54.x = v34.x;
     v54.y = D_00276220 * t + a5;
     v54.z = v34.z - D_00276D50 * t;
-    v24 = Vec4(0.0f, a5 - v54.y, v34.z - v54.z, 1.0f);
+    tmp.x = 0.0f;
+    tmp.y = a5 - v54.y;
+    tmp.z = v34.z - v54.z;
+    tmp.w = 1.0f;
+    v24 = tmp;
     float d = AsmSqrtF(v24.x * v24.x + v24.y * v24.y + v24.z * v24.z);
     this->f38 = d;
     func_00034820(&v24.x, &v24.x);
