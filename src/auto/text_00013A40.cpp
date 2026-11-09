@@ -239,7 +239,7 @@ struct C_14170 {
  char pad3c0[0xc]; float f3cc; char pad3d0[0x12]; unsigned char f3e2,f3e3;
  char pad3e4[0x20]; S_00014850_Vec4 f404;
  int f414,f418,f41c,f420,f424,f428; char f42c[0x104];
- void func_00014170(char*,unsigned char,int,int,char*,char*,float,int,int,int,S_00014850_Vec4*);
+    C_14170 *func_00014170(char*,unsigned char,int,int,char*,char*,float,int,int,int,S_00014850_Vec4*);
  void func_001C76B0(int,int,S_00014850_Vec4*,int,int,S_00014850_Vec4,S_00014850_Vec4);
  void func_001C6DA0(int,int);
 };
