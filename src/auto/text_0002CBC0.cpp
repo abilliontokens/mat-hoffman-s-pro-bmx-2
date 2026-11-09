@@ -147,18 +147,6 @@ static __forceinline V4_2D270 ColM2_2D270(const S2CBC0 *o, int c)
     return r;
 }
 
-static __forceinline V3_2D270 ScaleDiff_2D270(const V4_2D270 &a, const float *m2, float s)
-{
-    V3_2D270 r;
-    float dx = a.x - m2[3];
-    float dy = a.y - m2[7];
-    float dz = a.z - m2[11];
-    r.x = dx * s;
-    r.y = dy * s;
-    r.z = dz * s;
-    return r;
-}
-
 static __forceinline void Cross_2D270(V4_2D270 *volatile out, const V4_2D270 *volatile a, const V4_2D270 *volatile b)
 {
     __m128 va = _mm_loadu_ps(&a->x);
