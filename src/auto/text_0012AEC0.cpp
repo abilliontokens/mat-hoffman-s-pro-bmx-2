@@ -449,8 +449,8 @@ void C_0012AEC0::func_0012AEC0(void)
 
 void C_0012B000::func_0012B000(float param1, float param2)
 {
-    struct Clip2 { float a, b; };
-    *(Clip2 *)&f1fc = *(Clip2 *)&param1;
+    f1fc = param1;
+    f200 = param2;
     float f = D_00275460 / (D_00275460 - param1 / param2);
     f98 = f;
     f9c = -(f * param1);
@@ -538,21 +538,18 @@ void C_0012B1D0::func_0012B1D0(undefined4 *param_1)
 void C_0012B210::func_0012B210(int *out)
 {
     int *p;
+    int *p2;
     float f;
-
     out[0] = 0;
     p = &out[2];
-    f = (float)(int)this->f1e8;
-    if ((int)this->f1e8 < 0) f += D_002755E4;
+    f = (float)this->f1e8;
     f = f / D_002A3E34;
     AsmFloatToInt(f, p);
-
     out[1] = 0;
-    p = &out[3];
-    f = (float)(int)this->f1ec;
-    if ((int)this->f1ec < 0) f += D_002755E4;
+    p2 = &out[3];
+    f = (float)this->f1ec;
     f = f / D_002A3E38;
-    AsmFloatToInt(f, p);
+    AsmFloatToInt(f, p2);
 }
 
 void C_0012B2B0::func_0012B2B0(S_0012B2B0_Rect *in, S_0012B2B0_Rect *out)
