@@ -83,8 +83,9 @@ static __forceinline void pos6D(S_0006D750_Txt *p, int x, int y) { if (p->x != x
 static __forceinline void align6D(S_0006D750_Txt *p, int a) { if (p->align != a) { p->align = a; p->flags |= 6; } }
 static __forceinline void color6D(S_0006D750_Txt *p, unsigned int c) { if (p->color != c) { p->flags |= 8; p->color = (p->color & (c | 0xff000000)) | (c & 0xffffff); } }
 static __forceinline void uv6D(S_0006D750_Obj *p) {         float a = *(volatile float *)&p->w * D_00278654;
-    p->flags |= 4;
+    unsigned char nf = p->flags | 4;
     p->a = a;
+    p->flags = nf;
     p->b = *(volatile float *)&p->w * D_00275544;
     p->c = *(volatile float *)&p->h * D_0027653C;
     p->d = *(volatile float *)&p->h * D_00275544; }
