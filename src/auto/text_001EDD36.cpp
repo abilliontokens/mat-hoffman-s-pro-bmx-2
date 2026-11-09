@@ -530,7 +530,7 @@ int func_001EE52F(int fh, int pos, int mthd)
             retval = -1;
         }
     } __finally {
-        func_001EE5B6();
+        func_001EE782(fh);
     }
     return retval;
 }
