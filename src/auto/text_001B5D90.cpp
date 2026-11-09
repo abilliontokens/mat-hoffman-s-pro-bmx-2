@@ -356,7 +356,6 @@ C_001B5EA0* C_001B5EA0::func_001B5EA0(void) {
 }
 
 extern char D_0027AF24;
-#pragma optimize("y", off)
 int C_001B5ED0::func_001B5ED0(S_001B5ED0_Cfg *cfg, int unused)
 {
  cfg->func_00168BE0(&D_0027AF24, &D_00275630, f110, 0x77);
