@@ -29,7 +29,7 @@ struct Camera_399 {
     void func_00194EE0(S_000392B0_Vec4);
 };
 struct Holder_399 { char pad0[0x5c]; Camera_399 *camera; };
-struct Obj_399 { void func_001824E0(int, int, int, int); };
+struct Obj_399 { void func_001824E0(S_000392B0_Vec4 *, float, float, float); };
 struct C_000399A0 {
     char pad0[0x44];
     Holder_399 *f44;
