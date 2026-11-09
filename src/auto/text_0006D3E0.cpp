@@ -82,7 +82,9 @@ extern int D_0028F5EC, D_0028F5E0;
 static __forceinline void pos6D(S_0006D750_Txt *p, int x, int y) { if (p->x != x || p->y != y) { p->y = y; p->x = x; p->flags |= 6; } }
 static __forceinline void align6D(S_0006D750_Txt *p, int a) { if (p->align != a) { p->align = a; p->flags |= 6; } }
 static __forceinline void color6D(S_0006D750_Txt *p, unsigned int c) { if (p->color != c) { p->flags |= 8; p->color = (p->color & (c | 0xff000000)) | (c & 0xffffff); } }
-static __forceinline void uv6D(S_0006D750_Obj *p) { float a = *(volatile float *)&p->w * D_00278654; p->flags |= 4; p->a = a; p->b = *(volatile float *)&p->w * D_00275544; p->c = *(volatile float *)&p->h * D_0027653C; p->d = *(volatile float *)&p->h * D_00275544; }
+static __forceinline void uv6D(S_0006D750_Obj *p) {     float a = *(volatile float *)&p->w * D_00278654;
+    p->a = a;
+    p->flags |= 4; p->b = *(volatile float *)&p->w * D_00275544; p->c = *(volatile float *)&p->h * D_0027653C; p->d = *(volatile float *)&p->h * D_00275544; }
 static __forceinline void width6D(S_0006D750_Obj *p, int v) { if (p->width != v) { p->width = v; p->flags |= 1; } }
 static __forceinline void height6D(S_0006D750_Obj *p, int v) { if (p->height != v) { p->height = v; p->flags |= 1; } }
 struct C_001D5AD0 {
@@ -314,10 +316,10 @@ C_0006D590 *C_0006D590::func_0006D750(C_0006E250_E8 *arg)
 {
     int ids[3];
     int *r;
-    int font1, font2;
-    int i, j;
+    int i;
     S_0006D750_Obj *o;
     S_0006D750_Txt *t;
+    int font1, font2;
 
     unkE8 = arg;
     ids[0] = (int)&D_00278690;
@@ -381,9 +383,8 @@ C_0006D590 *C_0006D590::func_0006D750(C_0006E250_E8 *arg)
     ((S_0006D750_Obj *)unkF0)->func_001D5810(D_00278600, 0, 0, 0);
     {
         S_0006D750_Obj *p = (S_0006D750_Obj *)unkF0;
-        unsigned int c = p->color;
+        p->color = p->color & 0xff000000;
         p->flags |= 2;
-        p->color = c & 0xff000000;
     }
     {
         S_0006D750_Obj *p = (S_0006D750_Obj *)unkF0;
@@ -411,20 +412,20 @@ C_0006D590 *C_0006D590::func_0006D750(C_0006E250_E8 *arg)
     color6D((S_0006D750_Txt *)unkF4, 0xffcccccc);
     align6D((S_0006D750_Txt *)unkF4, D_0028F5E0);
 
-    for (j = 0; j < 15; j++) {
+    for (i = 0; i < 15; i++) {
         float y;
         t = (S_0006D750_Txt *)func_001E8A44(0x60);
         t = t ? t->func_001D5E90() : 0;
-        unk68[j] = (u32)t;
+        unk68[i] = (u32)t;
         t->func_001D5FA0(font1, (char *)&D_00278690, 0x2d, 0);
-        y = j * D_00275800 + D_00278AE8;
-        t = (S_0006D750_Txt *)unk68[j];
+        y = i * D_00275800 + D_00278AE8;
+        t = (S_0006D750_Txt *)unk68[i];
         if (t->x != 0x43a00000 || *(float *)&t->y != y) {
             *(float *)&t->y = y;
             t->x = 0x43a00000;
             t->flags |= 6;
         }
-        align6D((S_0006D750_Txt *)unk68[j], D_0028F5E0);
+        align6D((S_0006D750_Txt *)unk68[i], D_0028F5E0);
     }
     return this;
 }
