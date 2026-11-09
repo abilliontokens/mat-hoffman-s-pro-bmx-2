@@ -329,7 +329,7 @@ C_00073EF0 *C_00073EF0::func_00073EF0(void *a0)
         t = (Txt_73 *)func_001E8A44(0x60);
         f70[i] = t ? t->func_001D5E90() : 0;
         f70[i]->func_001D5FA0((int)fontB, D_00278690, 0x28, 0);
-        posf73(f70[i], x = j + 285.0f, fontA->func_0018C210() * 2.0f + 117.0f);
+        posf73(f70[i], x = j + D_00278DC0, fontA->func_0018C210() * 2.0f + D_0027886C);
         t = (Txt_73 *)func_001E8A44(0x60);
         f7C[i] = t ? t->func_001D5E90() : 0;
         f7C[i]->func_001D5FA0((int)fontB, D_00278690, 0x28, 0);
