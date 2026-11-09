@@ -527,76 +527,39 @@ void C_001D5E90::func_001D5F00(int param)
 
 void C_001D6190::func_001D5FA0(int a, int b, int c, int d)
 {
-    C_001D5E90 * volatile self = (C_001D5E90 *)this;
-    struct { volatile int max, len, n; } l;
-    C_001D5FA0Obj *o;
-    char *p;
-    DXVSStreams_001D5760 *s;
-
-    self->f4e |= 0x20;
-    p = self->f0;
-    if (p != 0) {
-        func_001E891B(p);
-    }
-    s = self->f5c;
-    if (s != 0) {
-        s->v0(1);
-    }
-    s = (DXVSStreams_001D5760 *)self->f58;
-    if (s != 0) {
-        s->v0(1);
-    }
-    self->f4f = (unsigned char)c;
-    self->f0 = 0;
-    self->f40 = (void *)a;
-    self->f54 = (int)self->f40 + 0x58;
-    if (b == 0) {
-        self->func_001D5F00(((int *)self->f40)[1]);
-    } else {
-        self->func_001D5F00(b);
-    }
-    if (d != 0) {
-        l.len = strlen((const char *)d);
-        l.max = self->f4f;
-        l.n = l.len < l.max ? l.len : l.max;
-        self->f50 = (unsigned char)l.n;
-        func_001E8920(self->f0, (const char *)d, self->f50);
-        self->f0[self->f50] = 0;
-    } else {
-        self->f50 = 0;
-        *self->f0 = 0;
-    }
-    self->v14.x = 0;
-    self->v14.y = 0;
-    self->v4.x = 0;
-    self->v4.y = 0;
-    self->f48 = -1;
-    self->f4c = 0xff;
-    self->f34 = 1.0f;
-    self->f38 = 0;
-    self->v24.x = 0;
-    self->v24.y = 0;
-    self->f3c = 0;
-    self->f44 = 0;
-    self->f4e |= 1;
-    self->f4e |= 2;
-    self->f4e |= 4;
-    self->f4e |= 8;
-    self->f4e &= ~0x10;
-    o = (C_001D5FA0Obj *)func_001E8A44(0x70);
-    if (o != 0) {
-        o->vtbl = &D_0028F5F4;
-        o->f8 = 0;
-        o->fC = 0;
-        o->f64 = 0;
-        o->f10 = 6;
-        o->f14 = 0;
-    } else {
-        o = 0;
-    }
-    self->f58 = (int)o;
-    ((int *)self->f5c)[4] = self->f58;
-    ((C_001D5FA0Obj *)self->f58)->func_001D5660(self->f4f * 6, 5);
+ ((C_001D5E90 *)this)->f4e |= 0x20;
+ char *p = ((C_001D5E90 *)this)->f0;
+ if (p) func_001E891B(p);
+ DXVSStreams_001D5760 *s = ((C_001D5E90 *)this)->f5c;
+ if (s) s->v0(1);
+ s = (DXVSStreams_001D5760 *)((C_001D5E90 *)this)->f58;
+ if (s) s->v0(1);
+ ((C_001D5E90 *)this)->f4f = (unsigned char)c;
+ ((C_001D5E90 *)this)->f0 = 0;
+ ((C_001D5E90 *)this)->f40 = (void *)a;
+ ((C_001D5E90 *)this)->f54 = (int)((C_001D5E90 *)this)->f40 + 0x58;
+ if (b == 0) ((C_001D5E90 *)this)->func_001D5F00(((int *)((C_001D5E90 *)this)->f40)[1]);
+ else ((C_001D5E90 *)this)->func_001D5F00(b);
+ if (d) {
+ int slen = strlen((const char *)d);
+ int lim = ((C_001D5E90 *)this)->f4f;
+ int n = AsmMinI(slen, lim);
+ ((C_001D5E90 *)this)->f50 = (unsigned char)n;
+ func_001E8920(((C_001D5E90 *)this)->f0, (const char *)d, ((C_001D5E90 *)this)->f50);
+ ((C_001D5E90 *)this)->f0[((C_001D5E90 *)this)->f50] = 0;
+ } else { ((C_001D5E90 *)this)->f50 = 0; *((C_001D5E90 *)this)->f0 = 0; }
+ ((C_001D5E90 *)this)->v14.x = 0; ((C_001D5E90 *)this)->v14.y = 0;
+ ((C_001D5E90 *)this)->v4.x = 0; ((C_001D5E90 *)this)->v4.y = 0;
+ ((C_001D5E90 *)this)->f48 = -1; ((C_001D5E90 *)this)->f4c = 0xff;
+ ((C_001D5E90 *)this)->f34 = 1.0f; ((C_001D5E90 *)this)->f38 = 0;
+ ((C_001D5E90 *)this)->v24.x = 0; ((C_001D5E90 *)this)->v24.y = 0;
+ ((C_001D5E90 *)this)->f3c = 0; ((C_001D5E90 *)this)->f44 = 0;
+ ((C_001D5E90 *)this)->f4e |= 1; ((C_001D5E90 *)this)->f4e |= 2; ((C_001D5E90 *)this)->f4e |= 4; ((C_001D5E90 *)this)->f4e |= 8; ((C_001D5E90 *)this)->f4e &= ~0x10;
+ C_001D5FA0Obj *o = (C_001D5FA0Obj *)func_001E8A44(0x70);
+ if (o) { o->vtbl = &D_0028F5F4; o->f8 = 0; o->fC = 0; o->f64 = 0; o->f10 = 6; o->f14 = 0; } else o = 0;
+ ((C_001D5E90 *)this)->f58 = (int)o;
+ ((int *)((C_001D5E90 *)this)->f5c)[4] = ((C_001D5E90 *)this)->f58;
+ ((C_001D5FA0Obj *)((C_001D5E90 *)this)->f58)->func_001D5660(((C_001D5E90 *)this)->f4f * 6, 5);
 }
 
 C_001D5E90::C_001D5E90()
@@ -653,15 +616,14 @@ int C_001D61E0::func_001D61E0(void)
 
 int C_001D6290::func_001D6290(void)
 {
-    float total = D_00275544;
     int result;
+    float total = D_00275544;
     C_001D6290Sub *last = 0;
-    int i;
 
     if (unk50 == 0) {
         return 0;
     }
-    for (i = 0; i < unk50; i++) {
+    for (int i = 0; i < unk50; i++) {
         C_001D6290Entry *e = unk40->tbl[unk0[i]];
         if (e == 0) {
             e = unk40->tbl[0];
@@ -733,8 +695,8 @@ void C_001D6410::func_001D6410(void)
 
 void C_001D5E90::func_001D6440(void)
 {
- float w, h;
  int tmp;
+ float w, h;
  if (this->f44 != 0 && *this->f0 != 0) {
  w = (float)((C_001D6290 *)this)->func_001D6290();
  h = (float)((C_001D61E0 *)this)->func_001D61E0();
