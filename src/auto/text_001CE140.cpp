@@ -320,22 +320,22 @@ int Voice::func_001CE140(int arg)
 int Voice::func_001CE4C0()
 {
     void (__stdcall *enter)(void *) = _imp__RtlEnterCriticalSection;
-    enter((void *)D_002F08EC->f138->Lock());
+    enter(D_002F08EC->f138->Lock());
     if (!(flags & 8)) {
         if (flags & 4) {
             if (!D_002F08EC->f138->l38.func_001CDED0((int)this)) {
-                _imp__RtlLeaveCriticalSection((void *)D_002F08EC->f138->Lock());
+                _imp__RtlLeaveCriticalSection(D_002F08EC->f138->Lock());
                 return 0;
             }
             flags = (flags & 0xef) | 0x20;
-            _imp__RtlLeaveCriticalSection((void *)D_002F08EC->f138->Lock());
+            _imp__RtlLeaveCriticalSection(D_002F08EC->f138->Lock());
             return 1;
         }
-        _imp__RtlLeaveCriticalSection((void *)D_002F08EC->f138->Lock());
+        _imp__RtlLeaveCriticalSection(D_002F08EC->f138->Lock());
         return 0;
     }
     void (__stdcall *leave)(void *) = _imp__RtlLeaveCriticalSection;
-    leave((void *)D_002F08EC->f138->Lock());
+    leave(D_002F08EC->f138->Lock());
     if (f13c) {
         if (f154) {
             flags = (flags & 0xef) | 0x20;
@@ -353,42 +353,36 @@ int Voice::func_001CE4C0()
         f120 = 0;
         return 1;
     }
-    enter((void *)D_002F08EC->f138->Lock());
+    enter(D_002F08EC->f138->Lock());
     if (f140) {
         v48(0);
-        leave((void *)D_002F08EC->f138->Lock());
+        leave(D_002F08EC->f138->Lock());
         v20(f1a0);
         f120 = 0;
         return 1;
     }
-    leave((void *)D_002F08EC->f138->Lock());
+    leave(D_002F08EC->f138->Lock());
     return 1;
 }
 
 int XboxSound::func_001CE660(float dt)
 {
-    XboxSound * volatile self = this;
     int x;
-    int * volatile p;
+    float m;
     float t;
-    float r;
-
-    if (f154 != 0) {
+    if (f154 != 0)
         func_001CCA10();
-    }
-    if (self->v07() != 0) {
-        self->f120 += dt;
-    }
-    if (self->f12c > D_00275544) {
-        self->f130 += dt;
-        _mm_store_ss(&r, _mm_min_ss(_mm_set_ss(self->f130), _mm_set_ss(self->f12c)));
-        t = r * self->f134;
-        p = &x;
-        *p = _mm_cvttss_si32(_mm_set_ss(t));
-        self->v09(self->f128 + x);
-        if (self->f130 >= self->f12c) {
-            self->f12c = 0;
-            self->f130 = self->f12c;
+    if (v07() != 0)
+        f120 += dt;
+    if (f12c > D_00275544) {
+        f130 += dt;
+        m = AsmMinF(f130, f12c);
+        t = m * f134;
+        AsmFloatToInt(t, &x);
+        v09(f128 + x);
+        if (f130 >= f12c) {
+            f12c = 0;
+            f130 = f12c;
         }
     }
     return 1;
@@ -396,56 +390,39 @@ int XboxSound::func_001CE660(float dt)
 
 int Voice::func_001CE770(int buf)
 {
-    int handle = -1;
-
-    if (f144 == 0) {
-        handle = D_002BEAAC->func_0013C9F0(path, &D_00275FB4);
-        if (handle == -1) {
-            return 0;
-        }
-        int r = D_002BEAAC->func_0013C8A0(handle, f158, 0x2c, 1);
-        if (r != 1) {
-            D_002BEAAC->func_0013C110(handle);
-            return 0;
-        }
-        if (f16c == 0x69) {
-            if (D_002BEAAC->func_0013C8A0(handle, f184, 0x10, 1) != 1) {
-                D_002BEAAC->func_0013C110(handle);
-                return 0;
-            }
-        }
-    }
-    if (f16c == 0x69) {
-        f118 = f190;
-    } else {
-        f118 = f180;
-    }
-    f11c = (float)f118 / (float)f174;
-    if ((f10c & 0x100) && f150) {
-        f19c = f170;
-        f1a0 = f170;
-        if (func_001CCAC0(buf, handle, 0, f118)) {
-            if (handle != -1) {
-                D_002BEAAC->func_0013C110(handle);
-            }
-            return 1;
-        }
-    } else {
-        if (func_001CCC50(&f13c, 0, f170, f17a, f178, f16c, (flags >> 1) & 1,
-                          (f10c & 8) == 8, 1, f110)) {
-            buf = f13c;
-            if (func_001CCAC0(buf, handle, 0, f118)) {
-                if (handle != -1) {
-                    D_002BEAAC->func_0013C110(handle);
-                }
-                return 1;
-            }
-        }
-    }
-    if (handle != -1) {
-        D_002BEAAC->func_0013C110(handle);
-    }
-    return 0;
+ int handle=-1;
+ if (!f144) {
+  handle=D_002BEAAC->func_0013C9F0(path,&D_00275FB4);
+  if(handle==-1) return 0;
+  if(D_002BEAAC->func_0013C8A0(handle,f158,0x2c,1)!=1 ||
+     (f16c==0x69 && D_002BEAAC->func_0013C8A0(handle,f184,0x10,1)!=1)) {
+   D_002BEAAC->func_0013C110(handle); return 0;
+  }
+ }
+ short format=f16c;
+ if(format==0x69) f118=f190; else f118=f180;
+ f11c=(float)f118/(float)f174;
+ volatile int buffer;
+ if((f10c&0x100)&&f150) {
+  buffer=buf;
+  f19c=f170; f1a0=f170;
+  if(func_001CCAC0(buffer,handle,0,f118)) {
+   if(handle!=-1) D_002BEAAC->func_0013C110(handle);
+   return 1;
+  }
+  goto fail;
+ } else {
+  if(!func_001CCC50(&f13c,0,f170,f17a,f178,format,(flags>>1)&1,(f10c&8)==8,1,f110))
+   goto fail;
+  buffer=f13c;
+ }
+ if(func_001CCAC0(buffer,handle,0,f118)) {
+  if(handle!=-1) D_002BEAAC->func_0013C110(handle);
+  return 1;
+ }
+fail:
+ if(handle!=-1) D_002BEAAC->func_0013C110(handle);
+ return 0;
 }
 
 void XboxMusic::func_001CE920()
@@ -489,8 +466,7 @@ void TrackDB::func_001CE9F0(volatile int idx, volatile int set)
     sets[set].recs[idx].f0 = 0;
     TrackSet *current = &self->sets[set];
     int index = idx;
-    char *f10 = current->recs[index].f10;
-    func_001DD8C5(current->handle, index, f10, &len, (unsigned short *)wname, 0x20);
+    func_001DD8C5(current->handle, index, current->recs[index].f10, &len, (unsigned short *)wname, 0x20);
     len = func_001EA410((unsigned short *)wname);
     n = AsmMinI(len, 0x20);
     for (int i = 1; i < n * 2; i += 2) {
