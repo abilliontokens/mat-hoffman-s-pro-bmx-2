@@ -69,6 +69,9 @@ struct C_00043F00 {
     int func_00041560();
     int func_000395A0(V4_43 v);
     int func_000392B0();
+    void func_000361F0(int a);
+    void func_00035940();
+    int func_00042840();
 };
 
 int C_00043F00::func_00043F00(int arg)
