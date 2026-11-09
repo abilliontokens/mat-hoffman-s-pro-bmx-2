@@ -301,48 +301,38 @@ void __stdcall func_00011FF0(void *p, int stride, int count, void *ctor);
 
 C_001867D0 *C_001867D0::func_001867D0()
 {
-    C_001867D0 * volatile self = this;
-    volatile int tmp[2];
-    int lim;
-    int len;
-    int n;
     int *p;
+    int lim;
+    int n;
 
     vtbl = (void *)&D_0028992C;
-    p = self->f108;
-    p[2] = 0;
-    p[1] = 0;
-    p[0] = 0;
-    p[3] = 0x3f800000;
-    tmp[0] = sizeof(f4) - 1;
-    lim = tmp[0];
-    len = (int)strlen("none");
-    tmp[1] = (lim > len) ? len : lim;
-    n = tmp[1];
-    func_001E8920(self->f4, (const char *)&D_002764F0, n);
-    self->f4[n] = 0;
-    *(S16_1A *)self->f108 = D_002A90B4;
-    self->f118 = 0;
-    self->f11C = 0;
-    self->f120 = 0;
-    self->f124 = 0;
-    self->f128 = 0;
-    self->f12C = 0;
-    self->f130 = 0;
-    self->f134 = 0;
-    self->f138 = 0;
-    memset(self->f13C, 0, sizeof(self->f13C));
-    self->f13C[0] = 0x168;
-    self->f13C[1] = 0x168;
-    self->f13C[2] = 0;
-    self->f13C[3] = 0x3f800000;
-    self->f13C[4] = 0x4e6e6b28;
-    self->f13C[5] = 0;
-    self->f13C[6] = 0x3e9c0ebf;
-    self->f13C[7] = 0x3f800000;
-    self->f13C[8] = 0x3f800000;
-    self->f160 = 10;
-    return self;
+    p = this->f108;
+    p[2]=0; p[1]=0; p[0]=0; p[3]=0x3f800000;
+    lim = sizeof(f4)-1;
+    n = AsmMinI(lim, (int)strlen("none"));
+    func_001E8920(this->f4,(const char *)&D_002764F0,n);
+    this->f4[n]=0;
+    *(S16_1A *)this->f108=D_002A90B4;
+    ((volatile C_001867D0 *)this)->f118=0;
+    ((volatile C_001867D0 *)this)->f11C=0;
+    ((volatile C_001867D0 *)this)->f120=0;
+    ((volatile C_001867D0 *)this)->f124=0;
+    ((volatile C_001867D0 *)this)->f128=0;
+    ((volatile C_001867D0 *)this)->f12C=0;
+    ((volatile C_001867D0 *)this)->f130=0;
+    ((volatile C_001867D0 *)this)->f134=0;
+    ((volatile C_001867D0 *)this)->f138=0;
+    memset(this->f13C,0,sizeof(this->f13C));
+    ((volatile C_001867D0 *)this)->f13C[0]=0x168;
+    ((volatile C_001867D0 *)this)->f13C[1]=0x168;
+    ((volatile C_001867D0 *)this)->f13C[2]=0x0;
+    ((volatile C_001867D0 *)this)->f13C[3]=0x3f800000;
+    ((volatile C_001867D0 *)this)->f13C[4]=0x4e6e6b28;
+    ((volatile C_001867D0 *)this)->f13C[5]=0x0;
+    ((volatile C_001867D0 *)this)->f13C[6]=0x3e9c0ebf;
+    ((volatile C_001867D0 *)this)->f13C[7]=0x3f800000;
+    ((volatile C_001867D0 *)this)->f13C[8]=0x3f800000;
+    ((volatile C_001867D0 *)this)->f160=10; return this;
 }
 
 int BasicSoundTempData::func_00186960(Stream_00186960 *stream)
