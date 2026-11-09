@@ -29,7 +29,7 @@ struct Camera_399 {
     void func_00194EE0(S_000392B0_Vec4);
 };
 struct Holder_399 { char pad0[0x5c]; Camera_399 *camera; };
-struct Obj_399 { void func_001824E0(S_000392B0_Vec4 *, float, float, float); };
+struct Obj_399 { void func_001824E0(int, int, int, int); };
 struct C_000399A0 {
     char pad0[0x44];
     Holder_399 *f44;
@@ -74,11 +74,13 @@ void *f10;
 void *fE8;
 void *fEC;
 int C_000399A0::func_000399A0(int mode) {
-    S_000392B0_Vec4 a, b, c, d;
+    S_000392B0_Vec4 a, b, dv;
+    Vec4_399 c, d;
     S_000392B0_Block *blk;
     int ix, iy, iz;
     int dx, dz, m;
     float t;
+    int cx, cy, cz, gx, gy, gz;
 
     a.x = D_002A14D4;
     a.y = D_002A14D8;
@@ -98,8 +100,8 @@ int C_000399A0::func_000399A0(int mode) {
             S_000399A0_Obj2 *o = (S_000399A0_Obj2 *)f564->f4;
             S_000392B0_Vec4 *pc = (S_000392B0_Vec4 *)((char *)o->fE8 + 0x24);
             S_000392B0_Vec4 *pd = (S_000392B0_Vec4 *)((char *)o->fEC + 0x24);
-            c = *pc;
-            d = *pd;
+            c = *(Vec4_399 *)pc;
+            d = *(Vec4_399 *)pd;
             if (c.x > d.x || c.z > d.z) {
                 dx = (int)(d.x - c.x);
                 dz = (int)(d.z - c.z);
@@ -162,7 +164,7 @@ int C_000399A0::func_000399A0(int mode) {
                 case 7: f4ac = a.x - f468; f4b4 = a.z; f4a8 = 0; break;
                 }
             }
-            if (f564 != 0 && (f564->type == 0 || f564->type >= 3)) {
+            if (f564->type != 0 && f564->type >= 3) {
                 blk = 0;
                 func_00038A70(&f564->obj->f28, (void **)&blk);
                 if (blk == 0) {
@@ -184,7 +186,51 @@ int C_000399A0::func_000399A0(int mode) {
                     }
                 }
             }
+            if (f564->type == 0 || f564->type >= 3) {
+                dv.x = D_002A14D4;
+                dv.y = D_002A14D8;
+                dv.z = D_002A14DC;
+                dv.w = D_002A14E0;
+                if (func_000395A0(dv) != 0) {
+                    f948 = f948;
+                }
+            }
+            f4ac = a.x - f468;
+            f4b0 = f464;
+            f4b4 = a.z;
+            c.x = 0.0f;
+            c.y = 0.0f;
+            c.z = 0.0f;
+            c.w = 1.0f;
+            this->f44->camera->func_00194F10((S_000392B0_Vec4 *)&c);
+            AsmFloatToIntRound(c.x, &cx);
+            AsmFloatToIntRound(c.y, &cy);
+            AsmFloatToIntRound(c.z, &cz);
+            AsmFloatToIntRound(f4ac, &gx);
+            AsmFloatToIntRound(f4b0, &gy);
+            AsmFloatToIntRound(f4b4, &gz);
+            if (cx == gx && cy == gy && cz == gz) {
+                this->f44->camera->func_00194EE0(a);
+                this->f44->camera->dirty = 1;
+                return 1;
+            }
+            if (mode == 0) {
+                f4b0 = AsmMaxF(f4b0, c.y);
+            }
+            if (f564 != 0 && f564->type == 1) {
+                a.y = a.y - f4c0;
+            }
+            f938 = a;
+            f928 = a;
+            f924 = 1;
+            f918 = D_00276CA4;
+            func_000363E0(*(S_000392B0_Vec4 *)((char *)this + 0x4ac));
+            this->f44->camera->dirty = 1;
+            return 1;
         }
+        this->f44->camera->dirty = 1;
+        return 1;
     }
+    this->f44->camera->dirty = 1;
     return 1;
 }
