@@ -786,30 +786,17 @@ extern "C" void _ReadWriteBarrier(void);
 #pragma intrinsic(_ReadWriteBarrier)
 void C_001401C0::func_001401C0(void)
 {
-    C_001401C0 * volatile self;
     S_001401C0_Mat m;
-    S_001401C0_Mat * volatile q;
-    S_001401C0_Mat *pm = &m;
-    _ReadWriteBarrier();
-    self = this;
-    q = pm;
-    _ReadWriteBarrier();
-    __m128 z = _mm_setzero_ps();
-    _ReadWriteBarrier();
-    __m128 *v = (__m128 *)q;
-    v[0] = z; v[1] = z; v[2] = z; v[3] = z;
-    S_001401C0_Mat *p = (S_001401C0_Mat *)v;
-    p->m[0]=1.0f; p->m[5]=1.0f; p->m[10]=1.0f; p->m[15]=1.0f;
-    _ReadWriteBarrier();
+    AsmIdentityMatrix(&m);
     S_001401C0_Mat m2 = m;
-    func_001FEC30(0x10, self->f50);
-    func_001FEC30(0x18, self->f90);
+    func_001FEC30(0x10, this->f50);
+    func_001FEC30(0x18, this->f90);
     func_001FEC30(0x1c, &m2);
-    func_001FEBD0(2, self->f190);
-    func_001FEC30(0x14, self->f10);
-    C_001401C0 *obj = self;
+    func_001FEBD0(2, this->f190);
+    func_001FEC30(0x14, this->f10);
+    C_001401C0 *obj = this;
     switch (obj->f1A0->f30) {
-    case 0: func_001FEC30(4, obj->f150); func_001FEC30(8, self->f110); return;
+    case 0: func_001FEC30(4, obj->f150); func_001FEC30(8, this->f110); return;
     case 2: func_001FEC30(8, obj->f110); return;
     }
 }
