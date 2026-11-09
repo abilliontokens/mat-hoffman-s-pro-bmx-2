@@ -185,7 +185,7 @@ struct C_000ABBC0 {
     void func_001578D0();
     void func_000ABBC0(void);
     void func_000AB4F0(C_000AADB0_Parser *);
-    void func_000AB790(S_000AB030_Arg * volatile arg);
+          void func_000AB790(S_000AB030_Arg *arg);
 };
 
 struct C_000AB340_Global {
