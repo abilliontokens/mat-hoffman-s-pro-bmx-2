@@ -133,7 +133,12 @@ struct S_00034A40_28 {
     void *f1ac;
 };
 
-struct S_34A40_Cam { void func_00198390(); };
+  struct S_34A40_Cam {
+      void func_00198390();
+      void func_001983A0();
+      void func_0019A8C0(void *a, void *b);
+      void func_00164820(void *a);
+  };
 struct S_34A40_VBase {
     virtual void vb0() = 0;
     virtual void vb1() = 0;
@@ -310,7 +315,7 @@ void C_000342C0::func_000342C0()
 {
     struct F4 { char pad0[0xb4]; S_342C0_1D4B *fB4; };
     C_000342C0 *volatile self;
-    int n;
+    int len, n;
     char buf[0x104];
     void *p;
 
@@ -338,10 +343,8 @@ void C_000342C0::func_000342C0()
     if (((S_342C0_Game *)D_002BEAAC)->func_0013D780(buf, 1, 0, 0, 0, 0, 0, 0))
         ((S_342C0_Game *)D_002BEAAC)->func_0013B260(0);
     ((S_342C0_Self *)self)->v31();
-    {
-        int len = 0x103;
-        n = AsmMinI(len, 9);
-    }
+    len = 0x103;
+    n = AsmMinI(len, 9);
     func_001E8920(D_002A60B0, D_00276C58, n);
     D_002A60B0[n] = 0;
     p = func_001E8A44(0x70);
