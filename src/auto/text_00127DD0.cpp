@@ -62,7 +62,7 @@ struct C_00128910 {
 
 #include <xmmintrin.h>
 #include "asm_helpers.h"
-extern volatile const float D_002755E8;
+extern const float D_002755E8;
 
 static inline float Sqrt_00128480(float x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(*(__m128 *)&x)); return r; }
 
