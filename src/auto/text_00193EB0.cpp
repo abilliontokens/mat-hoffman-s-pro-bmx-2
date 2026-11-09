@@ -240,6 +240,7 @@ void func_001930F0(void);
 
 void func_001E8390(void *p);
 #include <xmmintrin.h>
+#include "asm_helpers.h"
 static inline float sqrtf(float x)
 {
     float r;
@@ -435,6 +436,32 @@ struct C_00194130 {
     void func_00157600(int a0);
     C_00194130 *func_00194130(int a0);
 };
+
+#pragma optimize("y", off)
+void Cord_00193EB0::func_00193EB0(int a0) {
+ V4_00193EB0 *v;
+ f50->func_00199A70(0,&f38);
+ {
+  S_00193240_V4 tmp;
+  v=f50->func_00197EC0((V4_00193EB0*)&tmp,&f28);
+ }
+ float *acc=&f38.x;
+ acc[0]=v->x+f38.x; acc[1]=v->y+acc[1]; acc[2]=v->z+acc[2];
+ V4_00193EB0 q,dir;
+ for(int i=0;i<f24;++i) {
+ Seg_00193EB0 *s=f58->f3c[i];
+ if(s->fC) dir=Sub_00193EB0(*s->fC,*(V4_00193EB0*)(s->f14+0x1c));
+ else dir=Sub_00193EB0(*(V4_00193EB0*)(s->f10+0x1c),*(V4_00193EB0*)(s->f14+0x1c));
+ V4_00193EB0 *in=&dir; V4_00193EB0 *out=&dir;
+ AsmVec3Normalize(&out->x,&in->x);
+ if(dir.x==*(float*)&D_002A9904 && dir.y==*(float*)&D_002A9908 && dir.z==*(float*)&D_002A990C) dir=*(V4_00193EB0*)&D_002A9924;
+ f4C[i]->func_001994C0(0,&q,0);
+ f4C[i]->func_00199790(0,s->f14+0x1c);
+ f4C[i]->func_00199110(0,&q,&dir,1,0,0);
+ }
+ func_00157A00(a0);
+}
+#pragma optimize("", on)
 
 undefined4 C_00194110::func_00194110(byte param_1)
 {
