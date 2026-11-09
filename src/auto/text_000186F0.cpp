@@ -354,7 +354,7 @@ void __stdcall func_00017810(void *obj, float *pos);
 static __forceinline float wrap_angle_00016D60(float x)
 {
     int n;
-    int *p = &n;
+    int * volatile p = &n;
     float r;
 
     AsmFloatToInt(*(volatile float *)&x * D_002756EC, p);
@@ -567,46 +567,41 @@ void C_00018EB0::func_00018EB0()
 
 void C_00019070::func_00019070()
 {
-    C_00019070 * volatile self = this;
     int n = 0;
     int angle, first, step;
-    C_00019070 *cur;
     V4_00018EB0 pos;
-    if (((volatile C_00019070 *)this)->f3a4[0].fc == 0) n++;
-    if (((volatile C_00019070 *)this)->f3a4[1].fc == 0) n++;
-    if (((volatile C_00019070 *)this)->f3a4[2].fc == 0) n++;
-    if (((volatile C_00019070 *)this)->f3a4[3].fc == 0) n++;
-    if (((volatile C_00019070 *)this)->f3a4[4].fc == 0) n++;
-    if (((volatile C_00019070 *)this)->f3a4[5].fc == 0) n++;
+    if (this->f3a4[0].fc == 0) n++;
+    if (this->f3a4[1].fc == 0) n++;
+    if (this->f3a4[2].fc == 0) n++;
+    if (this->f3a4[3].fc == 0) n++;
+    if (this->f3a4[4].fc == 0) n++;
+    if (this->f3a4[5].fc == 0) n++;
     if (n > 1) {
         if (this->f398->f2c == 0) {
             *(int *)&pos.x = D_002A0718;
-            pos.y = D_002A071C;
+            *(volatile float *)&pos.y = D_002A071C;
             pos.z = D_002A0720;
             pos.w = D_002A0724;
         } else this->f398->f2c->f1a4->f4->func_00199B00(&pos.x, 0);
-        cur = self;
         step = 360 / (n - 1);
         pos.y = 500.0f;
         angle = 0;
         first = 1;
         for (int i = 0; i < 6; i++) {
-            if (cur->f3a4[i].fc != 1) {
+            if (this->f3a4[i].fc != 1) {
                 if (first == 1) {
                     first = 0;
-                    func_00017810(&cur->f3a4[i], &pos.x);
+                    func_00017810(&this->f3a4[i], &pos.x);
                     pos.x -= D_0027599C;
                     pos.z -= D_0027599C;
                 } else {
                     float rad = angle * D_00275998;
-                    float rad2 = rad;
                     pos.x = func_0014F510(wrap_angle_00016D60(rad)) * D_00275994 + pos.x;
-                    pos.z = func_0014F550(wrap_angle_00016D60(rad2)) * D_00275994 + pos.z;
-                    func_00017810(&cur->f3a4[i], &pos.x);
+                    pos.z = func_0014F550(wrap_angle_00016D60(rad)) * D_00275994 + pos.z;
+                    func_00017810(&this->f3a4[i], &pos.x);
                     angle += step;
                 }
             }
-            cur = self;
         }
     }
 }
