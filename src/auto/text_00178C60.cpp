@@ -167,13 +167,12 @@ int func_00178C60(void *a, void *b, int c, int d, int e, int f, int g, int h, in
 {
     void *dst = a;
     int flag = 0;
-
     if (m != 0) {
-        dst = func_001E8A44(func_001B2CB0(g) * d * e);
+        int es = func_001B2CB0(g);
+        dst = func_001E8A44(es * d * e);
         if (dst == 0)
             return 0;
     }
-
     switch (h) {
     case 0x235:
         switch (g) {
@@ -289,9 +288,9 @@ C_00179820 *C_00179820::func_00179820(int a0) {
 
 void C_00179820::func_00179880(void) {
  float d1[3]={v24[2].x-v24[0].x,v24[2].y-v24[0].y,v24[2].z-v24[0].z};
- float d2[3]={v24[3].x-v24[1].x,v24[3].y-v24[1].y,v24[3].z-v24[1].z};
- float a=AsmSqrtF(d1[1]*d1[1]+d1[0]*d1[0]+d1[2]*d1[2]);
- float b=AsmSqrtF(d2[1]*d2[1]+d2[0]*d2[0]+d2[2]*d2[2]);
+ float d2[4]={v24[3].x-v24[1].x,v24[3].y-v24[1].y,v24[3].z-v24[1].z,v24[3].w-v24[1].w};
+ float a=AsmSqrtF((d1[1]*d1[1]+d1[0]*d1[0])+d1[2]*d1[2]);
+ float b=AsmSqrtF((d2[1]*d2[1]+d2[0]*d2[0])+d2[2]*d2[2]);
  fB4=AsmMaxF(a,b);
 }
 
