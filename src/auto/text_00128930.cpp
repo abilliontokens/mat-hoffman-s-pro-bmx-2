@@ -485,8 +485,6 @@ void func_001294E0(int a0, int a1, int a2, int a3, int a4) {
     func_001293F0(a0, a1, a2, a3);
 }
 
-struct S_00129510_Holes { int a, b; };
-
 void func_00129510(S_00129510_Node **a0, S_00129510_Leaf **a1, S_00129510_M44 *m, S_00129510_V4 *verts, int *tris, int ntri, int nverts)
 {
     S_00129510_Tri *t;
