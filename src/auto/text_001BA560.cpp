@@ -640,7 +640,7 @@ void S_9C0_This::func_001BA9C0(S_9C0_Stream *s)
         e = (S_9C0_Elem *)func_001E8A44(0x15c);
         f28[i] = e ? e->func_001B84E0() : 0;
         len = strlen(name); lim = 0x103; r = AsmMinI(lim, len); n = r;
-        strncpy((char *)f28[i], name, n);
+        func_001E8920((char *)f28[i], name, n);
         ((char *)f28[i])[n] = 0;
         f28[i]->f104 = flag;
         f28[i]->f10c = fb;
