@@ -45,7 +45,7 @@ struct C_00131510 {
     int f64;
     int f68;
     S_Sub_00131510 *f6C;
-    int f70;
+    float f70;
     int f74;
     int f78;
     int f7C;
@@ -112,6 +112,7 @@ void C_00131510::func_00131510(float dt, int a1, int a2, int a3, float *p18, V4_
         float negC8 = -this->fC8;
         float c4 = this->fC4;
         Vec4_00131510 a;
+        V4_00131510 r, da, db, pos;
         Vec4_00131510 b;
         Cross_00131510(&a, p20, p1c);
         if (this->f9C == 0) {
@@ -136,7 +137,6 @@ void C_00131510::func_00131510(float dt, int a1, int a2, int a3, float *p18, V4_
         float s = c4 * dt;
         float s2 = negC8 * dt;
         float k = this->f5C;
-        V4_00131510 r, da, db, pos;
         da.x=a.x*s; da.y=a.y*s; da.z=a.z*s; da.w=1;
         da.x*=k; da.y*=k; da.z*=k;
         db.x=b.x*s2; db.y=b.y*s2; db.z=b.z*s2; db.w=1;
