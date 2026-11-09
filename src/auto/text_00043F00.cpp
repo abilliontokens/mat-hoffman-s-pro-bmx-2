@@ -26,7 +26,7 @@ struct G8490_43 {
 };
 struct Obj550_43 : Vt18_43 { void func_0008A080(); void func_0008A910(); void func_0008A980(); void func_0008A990(); };
 struct Obj560_43 : Vt18_43 { void func_0008B670(char *s); void func_0008B690(); };
-struct SA0_43 { int count; void **arr; void *base; int bound; char pad10[4]; Obj5B4_43 *ctl; };
+struct SA0_43 { int count; void **arr; void *base; int bound; char pad10[4]; Obj5B4_43 *ctl; int func_0015ACA0(int newCount); };
 extern int D_002A8490;
 extern char D_00277014[];
 struct Obj568_43 { void func_00133EF0(V4_43 *v); };
@@ -149,9 +149,10 @@ int C_00043F00::func_00043F00(int arg)
                 if (func_000392B0() == 0) {
                     goto shared;
                 }
+                goto do1824;
             } else {
                 f53C->func_001A4100(2, 1, 0);
-                goto done;
+                goto do1824;
             }
         } else {
             goto shared;
@@ -180,6 +181,7 @@ shared:
             }
         }
     }
+do1824:
     f564->f8->func_001824E0(&v4, 1.0f, 1.0f, 1.0f);
     if (f564->f0 == 3 || f564->f0 == 5) {
         f564->fC->func_001824E0(&v4, 1.0f, 1.0f, 1.0f);
@@ -196,6 +198,5 @@ shared:
             }
         }
     }
-done:
     return 0;
 }
