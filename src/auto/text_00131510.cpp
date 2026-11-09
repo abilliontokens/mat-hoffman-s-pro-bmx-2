@@ -100,23 +100,21 @@ static __forceinline void Cross_00131510(V4_00131510 *out, V4_00131510 *a, V4_00
 
 static __forceinline float Track_00131510(S_Node_00131510 *n, float target, float dt)
 {
-    float limit = n->f4;
-    float m = AsmMinF(dt, limit);
-    n->f8 = D_00275460 / n->f4 * m;
+    n->f8 = D_00275460 / n->f4 * AsmMinF(dt, n->f4);
     n->f0 = (target - n->f0) * n->f8 + n->f0;
     return n->f0;
 }
 
+#pragma optimize("y", on)
 void C_00131510::func_00131510(float dt, int a1, int a2, int a3, float *p18, V4_00131510 *p1c, V4_00131510 *p20, int a7)
 {
-    C_00131510* volatile self=this;
-    if (self->f74 != 0 && self->f98 != 0) {
-        float negC8 = -self->fC8;
-        float c4 = self->fC4;
+    if (this->f74 != 0 && this->f98 != 0) {
+        float negC8 = -this->fC8;
+        float c4 = this->fC4;
         Vec4_00131510 a;
         Vec4_00131510 b;
         Cross_00131510(&a, p20, p1c);
-        if (self->f9C == 0) {
+        if (this->f9C == 0) {
             a.y = 0;
         }
         func_001310E0(&a, &a);
@@ -131,39 +129,39 @@ void C_00131510::func_00131510(float dt, int a1, int a2, int a3, float *p18, V4_
             b.z = p1c->z;
             b.w = p1c->w;
         }
-        if (self->f9C == 0) {
+        if (this->f9C == 0) {
             b.y = 0;
         }
         func_001310E0(&b, &b);
         float s = c4 * dt;
         float s2 = negC8 * dt;
-        float k = self->f5C;
+        float k = this->f5C;
         V4_00131510 r, da, db, pos;
         da.x=a.x*s; da.y=a.y*s; da.z=a.z*s; da.w=1;
         da.x*=k; da.y*=k; da.z*=k;
         db.x=b.x*s2; db.y=b.y*s2; db.z=b.z*s2; db.w=1;
         db.x*=k; db.y*=k; db.z*=k;
-        pos.x=self->f14.x+db.x;pos.y=self->f14.y+db.y;pos.z=self->f14.z+db.z;pos.w=1;
+        pos.x=this->f14.x+db.x;pos.y=this->f14.y+db.y;pos.z=this->f14.z+db.z;pos.w=1;
         r.x=pos.x+da.x;r.y=pos.y+da.y;r.z=pos.z+da.z;r.w=1;
-        self->f14=r;
+        this->f14=r;
     }
 
-float d0=self->fD0;
-if(self->f98){
- if(!self->f7C){
- float ratio=(D_002A4278+*p18)/(D_002A4278+self->fA8);
- self->f4C-=self->fCC*self->f44*ratio*dt;
- self->f48+=Min_00131510(self->f44,1.57079637f)*ratio*d0*dt;
- }
- if(self->fAC)self->f14.y+=dt*self->f60;
- else if(self->fB0)self->f14.y-=dt*self->f60;
+float d0=this->fD0;
+if(this->f98){
+	if(!this->f7C){
+	float ratio=(D_002A4278+*p18)/(D_002A4278+this->fA8);
+	this->f4C-=this->fCC*this->f44*ratio*dt;
+	this->f48+=Min_00131510(this->f44,1.57079637f)*ratio*d0*dt;
+	}
+	if(this->fAC)this->f14.y+=dt*this->f60;
+	else if(this->fB0)this->f14.y-=dt*this->f60;
 }
-float angle=func_00016D60(Track_00131510(self->f90,self->f4C,dt));
-float tilt=Track_00131510(self->f8C,self->f48,dt);
-if(tilt<D_0028458C){tilt=-1.56765485f;self->f48=tilt;}
-else if(tilt>=D_00284588){tilt=1.56765485f;self->f48=tilt;}
+float angle=func_00016D60(Track_00131510(this->f90,this->f4C,dt));
+float tilt=Track_00131510(this->f8C,this->f48,dt);
+if(tilt<D_0028458C){tilt=-1.56765485f;this->f48=tilt;}
+else if(tilt>=D_00284588){tilt=1.56765485f;this->f48=tilt;}
 D_002B9D6C+=dt;
-Vec4_00131510 v,side,forward,t0,t1,up;
+Vec4_00131510 v,side,t0,t1,up;
 func_00158390(func_00016D60(tilt),D_002A4220,D_002A4240,&t0);
 func_00158390(angle,D_002A4230,t0,&t1);
 v=t1;
@@ -171,66 +169,67 @@ Cross_00131510(&side,&D_002A4230,&v);
 func_001310E0(&side,&side);
 func_001310E0(&v,&v);
 Cross_00131510(&up,&v,&side);
-self->f4.x=Track_00131510(self->f80,self->f14.x,dt);
-self->f4.y=Track_00131510(self->f84,self->f14.y,dt);
-self->f4.z=Track_00131510(self->f88,self->f14.z,dt);
+this->f4.x=Track_00131510(this->f80,this->f14.x,dt);
+this->f4.y=Track_00131510(this->f84,this->f14.y,dt);
+this->f4.z=Track_00131510(this->f88,this->f14.z,dt);
 
-if(self->f78){
- if(self->f6C){
- V4_00131510 pos=self->f4;self->f6C->func_000BA430(&pos,0,0,0);
- if(pos.y+D_00275460>self->f4.y){self->f14.y=self->f4.y=pos.y+D_00275460; self->f84->func_000269B0(self->f14.y,3.402823466e38f,3.402823466e38f);}
- }
- if(*(float*)&self->f70+D_00275460>self->f4.y){self->f14.y=self->f4.y=*(float*)&self->f70+D_00275460;self->f84->func_000269B0(self->f14.y,3.402823466e38f,3.402823466e38f);}
+if(this->f78){
+	if(this->f6C){
+	V4_00131510 pos=this->f4;this->f6C->func_000BA430(&pos,0,0,0);
+	if(pos.y+D_00275460>this->f4.y){this->f14.y=this->f4.y=pos.y+D_00275460; this->f84->func_000269B0(this->f14.y,3.402823466e38f,3.402823466e38f);}
+	}
+	if(*(float*)&this->f70+D_00275460>this->f4.y){this->f14.y=this->f4.y=*(float*)&this->f70+D_00275460;this->f84->func_000269B0(this->f14.y,3.402823466e38f,3.402823466e38f);}
 }
 Vec4_00131510 norm;
 Cross_00131510(&norm,&up,&v);
 func_001310E0(&norm,&norm);
 Cross_00131510(&up,&v,&norm);
-if(a2)*(V4_00131510*)a2=self->f4;
+if(a2)*(V4_00131510*)a2=this->f4;
 if(p1c)*p1c=v;
 if(p20)*p20=up;
-if(self->f64||self->f68){
- if(self->f7C){
- Vec4_00131510 target;
- if(self->f64){
- Vec4_00131510 vel;
- ((S_Sub_00131510*)*(int*)(self->f64+0x22c))->func_00199A70(0,&target);
- vel=*(Vec4_00131510*)(self->f64+0x238);
- vel.w=0;
- func_001310E0(&vel,&vel);
- target.x+=vel.x*D_002755EC;
- target.y+=vel.y*D_002755EC;
- target.z+=vel.z*D_002755EC;
- }else ((S_Sub_00131510*)self->f68)->func_00199A70(0,&target);
- v.x=target.x-self->f4.x;v.y=target.y-self->f4.y;v.z=target.z-self->f4.z;v.w=1;
- func_001310E0(&v,&v);
- Cross_00131510(&side,&D_002A4230,&v);
- func_001310E0(&side,&side);func_001310E0(&v,&v);
- Cross_00131510(&up,&v,&side);
- if(p1c)*p1c=v;if(p20)*p20=up;
- }else if(self->fC0){
- Vec4_00131510 target;
- ((S_Sub_00131510*)(self->f64?*(int*)(self->f64+0x22c):self->f68))->func_00199A70(0,&target);
- v.x=target.x-self->f4.x;v.y=target.y-self->f4.y;v.z=target.z-self->f4.z;v.w=1;
- func_001310E0(&v,&v);
- Cross_00131510(&side,&D_002A4230,&v);
- func_001310E0(&side,&side);func_001310E0(&v,&v);
- Cross_00131510(&up,&v,&side);
- self->f4C=func_0014FBA0(v.x,v.z);
- }
+if(this->f64||this->f68){
+	if(this->f7C){
+	Vec4_00131510 target;
+	if(this->f64){
+	Vec4_00131510 vel;
+	((S_Sub_00131510*)*(int*)(this->f64+0x22c))->func_00199A70(0,&target);
+	vel=*(Vec4_00131510*)(this->f64+0x238);
+	vel.w=0;
+	func_001310E0(&vel,&vel);
+	target.x+=vel.x*D_002755EC;
+	target.y+=vel.y*D_002755EC;
+	target.z+=vel.z*D_002755EC;
+	}else ((S_Sub_00131510*)this->f68)->func_00199A70(0,&target);
+	v.x=target.x-this->f4.x;v.y=target.y-this->f4.y;v.z=target.z-this->f4.z;v.w=1;
+	func_001310E0(&v,&v);
+	Cross_00131510(&side,&D_002A4230,&v);
+	func_001310E0(&side,&side);func_001310E0(&v,&v);
+	Cross_00131510(&up,&v,&side);
+	if(p1c)*p1c=v;if(p20)*p20=up;
+	}else if(this->fC0){
+	Vec4_00131510 target;
+	((S_Sub_00131510*)(this->f64?*(int*)(this->f64+0x22c):this->f68))->func_00199A70(0,&target);
+	v.x=target.x-this->f4.x;v.y=target.y-this->f4.y;v.z=target.z-this->f4.z;v.w=1;
+	func_001310E0(&v,&v);
+	Cross_00131510(&side,&D_002A4230,&v);
+	func_001310E0(&side,&side);func_001310E0(&v,&v);
+	Cross_00131510(&up,&v,&side);
+	this->f4C=func_0014FBA0(v.x,v.z);
+	}
 }
-if(self->fB4){self->fA0-=D_002A4274*dt;if(self->fA0<*(float*)&self->fA4)self->fA0=*(float*)&self->fA4;}
-if(self->fB8){self->fA0+=D_002A4274*dt;if(self->fA0>self->fA8)self->fA0=self->fA8;}
-if(p18)*p18=self->f94->func_00026A10(self->fA0,dt);
+if(this->fB4){this->fA0-=D_002A4274*dt;if(this->fA0<*(float*)&this->fA4)this->fA0=*(float*)&this->fA4;}
+if(this->fB8){this->fA0+=D_002A4274*dt;if(this->fA0>this->fA8)this->fA0=this->fA8;}
+if(p18)*p18=this->f94->func_00026A10(this->fA0,dt);
 *(int*)a1=0;
 void* debug=*(void**)(D_002A8490+0x18);
 if(debug){
- if(D_002A9A68<0){D_002A9A68=*(int*)((char*)debug+0x1934);++*(int*)((char*)debug+0x1934);}
- func_0013E260(*(void**)(D_002A8490+0x18),D_002A9A68,D_00284574);
- func_0013E1F0(*(void**)(D_002A8490+0x18),D_002A9A68,D_0028455C,(double)self->f4.x,(double)self->f4.y,(double)self->f4.z);
- func_0013E1F0(*(void**)(D_002A8490+0x18),D_002A9A68,D_00284544,(double)v.x,(double)v.y,(double)v.z);
- func_0013E1F0(*(void**)(D_002A8490+0x18),D_002A9A68,D_0028452C,(double)up.x,(double)up.y,(double)up.z);
- func_0013E1F0(*(void**)(D_002A8490+0x18),D_002A9A68,D_00284524,(double)self->fA0);
+	if(D_002A9A68<0){D_002A9A68=*(int*)((char*)debug+0x1934);++*(int*)((char*)debug+0x1934);}
+	func_0013E260(*(void**)(D_002A8490+0x18),D_002A9A68,D_00284574);
+	func_0013E1F0(*(void**)(D_002A8490+0x18),D_002A9A68,D_0028455C,(double)this->f4.x,(double)this->f4.y,(double)this->f4.z);
+	func_0013E1F0(*(void**)(D_002A8490+0x18),D_002A9A68,D_00284544,(double)v.x,(double)v.y,(double)v.z);
+	func_0013E1F0(*(void**)(D_002A8490+0x18),D_002A9A68,D_0028452C,(double)up.x,(double)up.y,(double)up.z);
+	func_0013E1F0(*(void**)(D_002A8490+0x18),D_002A9A68,D_00284524,(double)this->fA0);
 }
 
 }
+#pragma optimize("", on)
