@@ -5,6 +5,7 @@
 
 struct Txt_6AA90 { char* str; float x; float y; char pad[0x38]; int frame; char pad2[6]; unsigned char flags; int func_001D6290(); void func_001D6600(); void func_0005E840(char*); void SetPos(float a,float b) { if(x!=a||y!=b){x=a;y=b;flags|=6;} } };
 extern int D_0028F5DC;
+static __forceinline void PlaceAndFlag_6AA90(Txt_6AA90 *t, float x, float y) { t->SetPos(x, y); if (t->frame != D_0028F5DC) { t->frame = D_0028F5DC; t->flags |= 6; } }
 inline int Min_6AA90(const int &a,const int &b) { return a<b?a:b; }
 struct Widget_6AA90 {
  void func_001B1980(); void func_001B17D0(char*);
@@ -38,10 +39,8 @@ char buf[260]; char num[24];
 if(unk168) {
  if((int)strlen(t174->str)<40) {
  int width=t174->func_001D6290();
- float x;
- float y;
- x=t174->x;
- y=t174->y;
+ float x=t174->x;
+ float y=t174->y;
  x+=width/2;
  t178->SetPos(x,y);
  if(t178->frame!=D_0028F5DC){t178->frame=D_0028F5DC;t178->flags|=6;}
