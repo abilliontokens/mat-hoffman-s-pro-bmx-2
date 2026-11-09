@@ -354,10 +354,10 @@ void __stdcall func_00017810(void *obj, float *pos);
 static __forceinline float wrap_angle_00016D60(float x)
 {
     int n;
-    float t;
-    float r;
     int *p = &n;
     int *q = p;
+    float t;
+    float r;
 
     t = *(volatile float *)&x * D_002756EC;
     AsmFloatToInt(t, q);
