@@ -325,6 +325,8 @@ extern int D_0027CEE4;
 extern int D_0027CED8;
 extern int D_00289EB8;
 extern int D_00289EB4;
+struct S_00187F60_V4 { int x, y, z, w; };
+
 struct StaticModelTempData {
     void *vtbl;
     char f4[0x104];
@@ -372,6 +374,7 @@ struct C_00187B10 {
 
 static __forceinline int Min_00187670(int a, int b) { return a > b ? b : a; }
 
+extern "C" char *strcpy(char *, const char *);
 int C_00187670::func_00187670(C_001877F0Param *stream)
 {
     char buf[0x104];
@@ -643,6 +646,29 @@ C_00187F20 *C_00187F20::func_00187F20(void)
     vtbl = (void *)&D_00289EA4;
     f4 = 0;
     return this;
+}
+
+StaticModelTempData *StaticModelTempData::func_00187F60()
+{
+    StaticModelTempData * volatile self = this;
+    volatile int bounds[2];
+    *(void * volatile *)&vtbl = &D_00289EB4;
+    { volatile u32 *p = (volatile u32 *)((char *)self + 0x108); p[2] = 0; p[1] = 0; p[0] = 0; p[3] = 0x3f800000; }
+    { volatile u32 *p = (volatile u32 *)((char *)self + 0x118); p[2] = 0; p[1] = 0; p[0] = 0; p[3] = 0x3f800000; }
+    { volatile u32 *p = (volatile u32 *)((char *)self + 0x128); p[2] = 0; p[1] = 0; p[0] = 0; p[3] = 0x3f800000; }
+    bounds[0] = 0x103;
+    int value = bounds[0];
+    bounds[1] = value > 4 ? 4 : value;
+    int n = bounds[1];
+    func_001E8920(self->f4, (const char *)&D_002764F0, n);
+    *(volatile char *)&self->f4[n] = 0;
+    self->f108 = *(V4_00188250 *)&D_002A90B4;
+    self->f118 = *(V4_00188250 *)&D_002A90E4;
+    self->f128 = *(V4_00188250 *)&D_002A90D4;
+    *(volatile int *)&self->f138 = 1;
+    *(volatile int *)&self->f13C = 0;
+    *(volatile int *)&self->f140 = 1;
+    return self;
 }
 
 int C_001880A0::func_001880A0(S_001880A0_Stream * volatile stream)
