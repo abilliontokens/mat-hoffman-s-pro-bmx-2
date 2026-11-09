@@ -5,7 +5,7 @@
 extern short D_002EFE50;
 extern "C" float __cdecl fabsf(float);
 float sqrtf(float);
-extern float D_00278C48, D_00284ECC, D_002754B0;
+extern float D_00278C48, D_00284ECC, D_002754B0, D_00275460;
 int func_001E8833();
 int func_00011260(int a, int b);
 
@@ -150,7 +150,7 @@ int AE_Self::func_0016AE10(float dt)
         float b;
         float c;
         float fv;
-        int counti = 0;
+        int counti;
         int i;
         int n;
         float nf;
@@ -166,12 +166,7 @@ int AE_Self::func_0016AE10(float dt)
         d.w = 1.0f;
         len = AsmSqrtF(d.z * d.z + d.y * d.y + d.x * d.x);
         rate = len / dt;
-        if (len <= D_00278C48) {
-            orient.x = f54;
-            orient.y = f58;
-            orient.z = f5C;
-            orient.w = *(float *)&f60;
-        } else {
+        if (len > D_00278C48) {
             V4f_AE q;
             V4f_AE up;
             q = func_0001E9E0(&d);
@@ -189,6 +184,11 @@ int AE_Self::func_0016AE10(float dt)
             orient.y = t1.y * f54 + q2.y * f58 + t2.y * f5C;
             orient.z = t1.z * f54 + q2.z * f58 + t2.z * f5C;
             orient.w = 1.0f;
+        } else {
+            orient.x = f54;
+            orient.y = f58;
+            orient.z = f5C;
+            orient.w = *(float *)&f60;
         }
         if (f22C < rate) return 1;
         a = rate * f200;
@@ -204,6 +204,7 @@ int AE_Self::func_0016AE10(float dt)
             if (lo <= c) c = (hi < c) ? hi : c;
             else c = lo;
         }
+        counti = 0;
         fv = c * f1F4 + f1F0;
         if (fv > 1.0f) {
             AsmFloatToInt(fv, &counti);
