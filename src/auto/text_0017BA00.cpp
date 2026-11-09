@@ -2,6 +2,7 @@
 #include "common.h"
 #include "ghidra.h"
 #include "ghidra.h"
+#include "asm_helpers.h"
 #include <xmmintrin.h>
 
 extern f32 D_00275544;
@@ -337,10 +338,7 @@ void C_0017BDE0::func_0017BE40(void) {
         if ((v[1] - v[5]) * v[6] + (v[7] - v[1]) * v[4] + (v[5] - v[7]) * v[0] < D_00275544) {
             return;
         }
-        f32 s3 = (v[3] - v[7]) * v[4];
-        s3 += (v[5] - v[3]) * v[6];
-        s3 += (v[7] - v[5]) * v[2];
-        if (s3 < D_00275544) {
+        if ((v[3] - v[7]) * v[4] + (v[5] - v[3]) * v[6] + (v[7] - v[5]) * v[2] < D_00275544) {
             w[6] = t.x2;
             w[7] = t.y2;
             w[4] = t.x3;
@@ -391,9 +389,7 @@ int C_0017BDE0::func_0017BFB0(void) {
  *(f32*)((char*)(e+4)+off)=-*(f32*)((char*)e+off+4);
  ++k;
  f32 *q=e[k&3];
- f32 a = q[1] * *(f32*)((char*)(e+4)+off+4);
- f32 b = q[0] * *(f32*)((char*)(e+4)+off);
- if(D_00275544 < a + b) return 0;
+ if(D_00275544 < q[1] * *(f32*)((char*)(e+4)+off+4) + q[0] * *(f32*)((char*)(e+4)+off)) return 0;
  off+=8;
  }while(off<32);
  return 1;
@@ -434,59 +430,33 @@ void C_0017C300::func_0017C300(void) {
     unk8B0 = 0;
 }
 
-void C_0017C300::func_0017C360(f32 a, f32 b, f32 c, f32 d, f32 e)
+#pragma optimize("t", on)
+void C_0017C300::func_0017C360(volatile f32 a, volatile f32 b, volatile f32 c, volatile f32 d, volatile f32 e)
 {
-    C_0017C300 * volatile self = this;
-    C_0017C300 *p;
-    Pool_0017C360 *pool;
-    int limit;
-    int idx;
-    int step;
-    f32 x;
-    f32 y;
-    f32 m;
-
-    self->f8C = ((QuadTreeVt *)this)->v17();
-    self->f28 = (f32)(double)a;
-    self->f2C = (f32)(double)c;
-    self->f30 = (f32)(double)b;
-    self->f34 = (f32)(double)d;
-    self->f40 = c - a;
-    self->f44 = d - b;
-    *(f32 *)&self->unk8B0 = (f32)(double)e;
-    x = self->f40;
-    y = self->f44;
-    m = x > y ? x : y;
-    self->f54 = D_00289094 / m;
-    p = self;
-    D_002EFD7C = D_00275460 / p->f54;
-    limit = (int)(e * p->f54);
-    p->f4C = 0;
-    idx = self->f4C;
-    step = 0x8000;
-    do {
-        step >>= 1;
-        self->f58[idx] = step;
-        self->f4C++;
-        idx = self->f4C;
-        if (idx >= 12) {
-            break;
-        }
-    } while (step > limit);
-    self->f4C--;
-    self->f50 = self->f58[self->f4C];
-    self->fE &= 0xfe;
-    self->fC = 0;
-    self->fA0 = 0;
-    self->f9C = 0;
-    self->fA4 = 0;
-    self->fAC = 0;
-    pool = (Pool_0017C360 *)func_001E8A44(0x30);
-    self->f94 = (QuadTreeRes *)(pool != 0 ? pool->func_0001E740(8, 0x1000) : 0);
-    pool = (Pool_0017C360 *)func_001E8A44(0x30);
-    self->f90 = (QuadTreeRes *)(pool != 0 ? pool->func_0001E740(0x14, 0x1000) : 0);
+ C_0017C300 * volatile self=this;
+ C_0017C300 *p;
+ Pool_0017C360 *pool;
+ int limit,idx,step;
+ f32 x,y,m;
+ self->f8C=((QuadTreeVt*)this)->v17();
+ self->f28=a; self->f2C=c; self->f30=b; self->f34=d;
+ self->f40=c-a; self->f44=d-b;
+ *(f32*)&self->unk8B0=e;
+ y=self->f44; x=self->f40;
+ _mm_store_ss(&m, _mm_max_ss(_mm_set_ss(x), _mm_set_ss(y)));
+ self->f54=D_00289094/m;
+ p=self; D_002EFD7C=D_00275460/p->f54;
+ limit=(int)(e*p->f54);
+ p->f4C=0; idx=self->f4C; step=0x8000;
+ do {step>>=1; self->f58[idx]=step; self->f4C++; idx=self->f4C; if(idx>=12)break;}while(step>limit);
+ self->f4C--; self->f50=self->f58[self->f4C];
+ self->fE&=0xfe; self->fC=0; self->fA0=0;self->f9C=0;self->fA4=0;self->fAC=0;
+ pool=(Pool_0017C360*)func_001E8A44(0x30);
+ self->f94=(QuadTreeRes*)(pool?pool->func_0001E740(8,0x1000):0);
+ pool=(Pool_0017C360*)func_001E8A44(0x30);
+ self->f90=(QuadTreeRes*)(pool?pool->func_0001E740(0x14,0x1000):0);
 }
-
+#pragma optimize("", on)
 void C_0017C300::func_0017C520(void) {
     vtbl = (void *)&D_0028909C;
     D_002EFD80 = this;
