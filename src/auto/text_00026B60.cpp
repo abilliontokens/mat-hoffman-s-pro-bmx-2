@@ -86,6 +86,7 @@ extern char D_00276690[];
 extern V4_000273F0 D_002A10F0;
 extern float D_002A10F4, D_002A10F8, D_002A10FC;
 extern V4_000273F0 D_002A1110;
+extern float D_002A1114, D_002A1118, D_002A111C;
 void func_00026340(V4_000273F0 *out, V4_000273F0 *in);
 
 #pragma pack(push, 4)
@@ -377,20 +378,19 @@ C_00026B60 *C_00026B60::func_00026B60(char *name, V4_000273F0 a1, V4_000273F0 a2
 
 int C_000273F0::func_000273F0(V4_000273F0 *a1,V4_000273F0 *a2,V4_000273F0 *a3)
 {
- C_000273F0 * volatile self=this;
  V4_000273F0 dir,up,pos,ground,node;
- this->f230->func_00198330(D_00276690)->func_00197E70(&node);
- if(a1) {pos=*a1; self->f2C=pos;} else pos=self->f2C;
+ ((volatile C_000273F0 *)this)->f230->func_00198330(D_00276690)->func_00197E70(&node);
+ if(a1) {pos=*a1; this->f2C=pos;} else pos=this->f2C;
  ground=pos;
- if(a2) {func_00026340(&dir,a2); self->f3C=dir;} else func_00026340(&dir,&self->f3C);
- if(a3) up=*a3; else { C_000273F0_Link *link=self->f22C; if(link) link->func_000BA430(&ground,&up,0,0); else {ground=D_002A10F0; up=D_002A1110;} }
+ if(a2) {func_00026340(&dir,a2); this->f3C=dir;} else func_00026340(&dir,&this->f3C);
+ if(a3) up=*a3; else if(this->f22C) this->f22C->func_000BA430(&ground,&up,0,0); else {ground=D_002A10F0; up=D_002A1110;}
  V4_000273F0 side;
  AsmVec3Cross(&side.x,&up.x,&dir.x); AsmVec3Cross(&dir.x,&side.x,&up.x);
- self->f230->func_00199110(0,&dir,&up,0,1,0);
+ this->f230->func_00199110(0,&dir,&up,0,1,0);
  if(ground.y>pos.y) pos=ground;
- self->f230->func_00199790(0,&pos); self->f230->func_00197AA0(); self->f67C=1;
- self->f220->func_000269B0(up.x,3.402823466e38f,3.402823466e38f); self->f224->func_000269B0(up.y,3.402823466e38f,3.402823466e38f); self->f228->func_000269B0(up.z,3.402823466e38f,3.402823466e38f);
- self->f1E0->v45(); self->f13C=D_002A10F0; self->f14C=D_002A10F0; self->f1E8->func_000B6A70(0); self->f1E8->v13(0); return self->f1E8->f64!=0;
+ this->f230->func_00199790(0,&pos); this->f230->func_00197AA0(); this->f67C=1;
+ this->f220->func_000269B0(up.x,3.402823466e38f,3.402823466e38f); this->f224->func_000269B0(up.y,3.402823466e38f,3.402823466e38f); this->f228->func_000269B0(up.z,3.402823466e38f,3.402823466e38f);
+ this->f1E0->v45(); this->f13C=D_002A10F0; this->f14C=D_002A10F0; this->f1E8->func_000B6A70(0); this->f1E8->v13(0); return this->f1E8->f64!=0;
 }
 
 void C_00027850::func_00027850(int a0) {
