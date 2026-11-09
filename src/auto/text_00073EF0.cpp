@@ -114,7 +114,7 @@ static __forceinline Font_73 *find73(char *name) { Font_73 **r = D_002A8490->f2E
 static __forceinline void pos73(Txt_73 *p, int x, int y) { if (p->x != x || p->y != y) { p->y = y; p->x = x; p->flags |= 6; } }
 static __forceinline void align73(Txt_73 *p, int a) { if (p->align != a) { p->align = a; p->flags |= 6; } }
 static __forceinline void color73(Txt_73 *p, unsigned int c) { if (p->color != c) { p->flags |= 8; p->color = (p->color & (c | 0xff000000)) | (c & 0xffffff); } }
-static __forceinline void uv73(Img_73 *p) { float a = p->w * D_00278654; p->flags |= 4; p->a = a; p->b = p->w * D_00275544; p->c = p->h * D_0027653C; p->d = p->h * D_00275544; }
+static __forceinline void uv73(Img_73 *p) { float a = *(volatile float *)&p->w * D_00278654; p->flags |= 4; p->a = a; p->b = *(volatile float *)&p->w * D_00275544; p->c = *(volatile float *)&p->h * D_0027653C; p->d = *(volatile float *)&p->h * D_00275544; }
 static __forceinline void width73(Img_73 *p, int v) { if (p->width != v) { p->width = v; p->flags |= 1; } }
 static __forceinline void height73(Img_73 *p, int v) { if (p->height != v) { p->height = v; p->flags |= 1; } }
 
