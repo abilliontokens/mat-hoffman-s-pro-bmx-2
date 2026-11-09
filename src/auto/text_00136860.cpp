@@ -136,10 +136,11 @@ struct C_001376B0 {
 };
 
 struct TokenizerBuf {
-    double align;
-    void Tokenizer_SetString(int a);
-    char *func_001B4A70(const char *delims);
-};
+     double align;
+     void Tokenizer_SetString(int a);
+     void func_001B4A40(int a);
+     char *func_001B4A70(const char *delims);
+ };
 
 struct TokenEntry {
     char *name;
@@ -490,8 +491,7 @@ int C_001376B0::func_001376B0(Cube *arg)
  q+=0x90/4;
  }while(j<4);
  p=next;
- ++i;
- }while(i<4);
+ }while(++i<4);
  g++;
  }while((int)p<(int)D_002BDD3C);
  return 1;
