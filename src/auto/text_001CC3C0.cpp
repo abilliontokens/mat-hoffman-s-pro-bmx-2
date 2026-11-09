@@ -206,7 +206,10 @@ struct C_001CC3C0_154 {
 };
 
 struct S_Vec_001CC4B0;
-struct S_V4_001CCE10;
+struct S_V4_001CCE10 {
+    int x, y, z, w;
+    void Set(int a, int b, int c, int d) { x = a; y = b; z = c; w = d; }
+};
 struct C_001CC3C0 {
     virtual void v0();
     virtual void v1();
