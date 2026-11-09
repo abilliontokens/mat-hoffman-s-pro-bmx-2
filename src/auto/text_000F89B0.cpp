@@ -14,6 +14,7 @@ extern int *_D_002A8490;
 
 int RiderInputObject::_func_000F89B0(int a, int b)
 {
+    char buf[0xc04];
     int *page = (int *)data[0x124/4];
     if (page[0x138/4] == 4 || page[0x138/4] == 3) return 0;
     if (data[0x4B8/4] || data[0x4BC/4]) return 0;
