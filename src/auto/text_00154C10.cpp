@@ -450,11 +450,3 @@ void C_001554D0::func_001554D0(int a0)
     } while (off < 0x3b0);
     func_001ADCC0(D_002A48F8, 0x104, D_00275678, D_002A5348, D_002A47F0);
 }
-static __forceinline void CopyPathP_001554D0(char *dst, const char *src)
-{
-    int slen = strlen(src);
-    int lim = 0x103;
-    int n = AsmMinI(lim, slen);
-    func_001E8920(dst, src, n);
-    dst[n] = 0;
-}
