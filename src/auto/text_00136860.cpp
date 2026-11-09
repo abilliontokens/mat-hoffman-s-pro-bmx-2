@@ -230,28 +230,21 @@ void Cube::func_00136A70(void)
 Cube *Cube::func_00136AD0(void)
 {
     unsigned int *p;
-    int i;
+    unsigned int *q;
+    int n = 6;
     func_0001DFE0();
     vtbl = &D_00284860;
     p = (unsigned int *)v08;
-    p[2] = 0;
-    p[1] = 0;
-    p[0] = 0;
-    p[3] = 0x3f800000;
+    p[2] = 0; p[1] = 0; p[0] = 0; p[3] = 0x3f800000;
     p = (unsigned int *)v18;
-    p[2] = 0;
-    p[1] = 0;
-    p[0] = 0;
-    p[3] = 0x3f800000;
+    p[2] = 0; p[1] = 0; p[0] = 0; p[3] = 0x3f800000;
     p = (unsigned int *)v28;
-    p[2] = 0;
-    p[1] = 0;
-    p[0] = 0;
-    p[3] = 0x3f800000;
-    for (i = 0; i < 6; i++) {
-        groups[i].vec[0] = groups[i].vec[1] = groups[i].vec[2] = 0;
-        groups[i].vec[3] = 0x3f800000;
-    }
+    p[2] = 0; p[1] = 0; p[0] = 0; p[3] = 0x3f800000;
+    q = (unsigned int *)((char *)this + 0x134);
+    do {
+        q[1] = 0; q[0] = 0; q[-1] = 0; q[2] = 0x3f800000;
+        q += 0x3f;
+    } while (--n);
     func_001364B0();
     return this;
 }
@@ -458,58 +451,49 @@ int func_00136FE0(void)
 
 int C_001376B0::func_001376B0(Cube *arg)
 {
-    float *p;
-    int i, j;
-    f28 = arg;
-    arg->func_001369E0(f7C0);
-    if (func_001B2810(f28->unk3C)) {
-        p = D_002BA73C;
-        do {
-            for (j = 0; j < 4; j++) {
-                float *q = p;
-                p += 0x240 / 4;
-                for (i = 0; i < 4; i++, q += 0x90 / 4) {
-                    q[-1] = 0.03125f;
-                    q[0] = 0.03125f;
-                    q[5] = 0.96875f;
-                    q[6] = 0.03125f;
-                    q[0xB] = 0.96875f;
-                    q[0xC] = 0.96875f;
-                    q[0x11] = 0.03125f;
-                    q[0x12] = 0.96875f;
-                    q[0x17] = 0.03125f;
-                    q[0x18] = 0.03125f;
-                    q[0x1D] = 0.96875f;
-                    q[0x1E] = 0.96875f;
-                }
-            }
-        } while ((int)p < (int)D_002BDD3C);
-        return 1;
-    }
-    int g = 0;
-    p = D_002BA73C;
-    do {
-        for (j = 0; j < 4; j++) {
-            float *q = p;
-            p += 0x240 / 4;
-            for (i = 0; i < 4; i++, q += 0x90 / 4) {
-                float v = D_00275460 / (float)func_00136460(f28->groups[g].sizes, i, j);
-                q[-1] = v;
-                q[0] = v;
-                q[5] = D_00275460 - v;
-                q[6] = v;
-                q[0xB] = D_00275460 - v;
-                q[0xC] = D_00275460 - v;
-                q[0x11] = v;
-                q[0x12] = D_00275460 - v;
-                q[0x17] = v;
-                q[0x18] = v;
-                q[0x1D] = D_00275460 - v;
-                q[0x1E] = D_00275460 - v;
-            }
-        }
-        g++;
-    } while ((int)p < (int)D_002BDD3C);
-    return 1;
+ float *p;
+ int i,j,k;
+ f28=arg;
+ arg->func_001369E0(f7C0);
+ if(func_001B2810(f28->unk3C)) {
+ p=D_002BA73C;
+ do {
+ for(k=0;k<4;k++) {
+ float *q=p; p+=0x240/4;
+ for(j=0;j<4;j++) {
+ q[-1]=0.03125f; q[0]=0.03125f;
+ q[5]=0.96875f; q[6]=0.03125f;
+ q[11]=0.96875f; q[12]=0.96875f;
+ q[17]=0.03125f; q[18]=0.96875f;
+ q[23]=0.03125f; q[24]=0.03125f;
+ q[29]=0.96875f; q[30]=0.96875f;
+ q+=0x90/4;
+ }
+ }
+ }while((int)p<(int)D_002BDD3C);
+ return 1;
+ }
+ int g=0; p=D_002BA73C;
+ do {
+ i=0;
+ do {
+ float *q=p; p+=0x240/4; float *next=p;
+ j=0;
+ do {
+ float v=D_00275460/(float)func_00136460(f28->groups[g].sizes,j,i);
+ q[-1]=v; q[0]=v;
+ float w=D_00275460-v;
+ q[5]=w; q[6]=v;
+ q[11]=w; q[12]=w; q[17]=v; q[18]=w;
+ q[23]=v; q[24]=v; q[29]=w; q[30]=w;
+ ++j;
+ q+=0x90/4;
+ }while(j<4);
+ p=next;
+ ++i;
+ }while(i<4);
+ g++;
+ }while((int)p<(int)D_002BDD3C);
+ return 1;
 }
 
