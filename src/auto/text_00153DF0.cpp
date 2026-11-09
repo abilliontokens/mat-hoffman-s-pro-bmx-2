@@ -73,7 +73,10 @@ extern float D_002756DC, D_00286D4C, D_00286D48, D_00275AEC;
 void __cdecl func_00150890(void *, void *);
 extern int D_002A789C, D_002A78A0, D_002A78A4, D_002A78A8;
 extern float D_0027653C, D_00275544;
+extern float D_00275800, D_002756C8, D_00275AEC;
+extern "C" int __cdecl func_001E8858(float x);
 struct X153DF0_CE80 { void func_0001CE80(int a, void *b, int c, int d, int e); };
+struct X153DF0_D30 { void func_00153D30(int amt); };
 
 
 void C153DF0_Self::func_00153DF0(float dt)
@@ -101,7 +104,62 @@ void C153DF0_Self::func_00153DF0(float dt)
     }
     o->f1A0 += dt;
     if (o->f198 == 0) {
-        o->f154[0] += dt * o->f184[0]; o->f154[1] += dt * o->f184[1]; o->f154[2] += dt * o->f184[2];
+        o->f154[0] += dt * o->f184[0];
+        o->f154[1] += dt * o->f184[1];
+        o->f154[2] += dt * o->f184[2];
+        fD8 = 0;
+        fDC = 0;
+        fD8 = 0;
+        f84[0] = 0; f84[1] = 0; f84[2] = 0; f84[3] = 0x3f800000;
+        f94[0] = 0; f94[1] = 0; f94[2] = 0; f94[3] = 0x3f800000;
+        ((X153DF0_78 *)f7C)->func_00133EF0((char *)o->f150 + 0xf0);
+        ((X153DF0_78 *)f7C)->func_00133F10(0);
+        {
+            int n = *(int *)D_002A8490->f2E0;
+            if (n > 1) {
+                int j;
+                for (j = 0; j < n; j++) {
+                    if (j == f24)
+                        continue;
+                    {
+                        char *obj = *(char **)((char *)D_002B9120 + 0x4E4 + j * 4);
+                        float pos[4];
+                        if (*(int *)(obj + 0x2C) == 0) {
+                            pos[0] = *(float *)&D_002A789C;
+                            pos[1] = *(float *)&D_002A78A0;
+                            pos[2] = *(float *)&D_002A78A4;
+                            pos[3] = *(float *)&D_002A78A8;
+                        } else {
+                            ((X153DF0_9B00 *)*(int **)(*(int **)(obj + 0x1A4) + 4))->func_00199B00((void *)pos, 0);
+                        }
+                        float dx = o->f154[0] - pos[0];
+                        float dy = o->f154[1] - pos[1];
+                        float dz = o->f154[2] - pos[2];
+                        float ssq = dx * dx + dy * dy + dz * dz;
+                        float dist = AsmSqrtF(ssq);
+                        float lsq = o->f184[0] * o->f184[0] + o->f184[1] * o->f184[1] + o->f184[2] * o->f184[2];
+                        float len = AsmSqrtF(lsq);
+                        if (dist < D_0027653C) {
+                            float dot = dy * len + dx * len + dz * len;
+                            if (dot > D_00275544)
+                                fD8 = 1;
+                        }
+                    }
+                }
+            }
+        }
+        if (fD8 != 0) {
+            ((X153DF0_CE80 *)f5A4)->func_0001CE80(f5A4, (void *)o->f154, D_002A789C, 50.0f, 300.0f);
+            ((V153DF0 *)o->f1AC)->v18();
+            ((V153DF0 *)o->f1AC)->v78();
+            o->f1AC->func_0011CA60(*(Vec153DF0 *)o->f154);
+            o->f1AC->func_0011CA60(*(Vec153DF0 *)o->f154);
+            ((V153DF0 *)o->f1A8)->v18();
+            ((V153DF0 *)o->f1A8)->v78();
+            o->f1A8->func_0011CA60(*(Vec153DF0 *)o->f154);
+            o->f1A8->func_0011CA60(*(Vec153DF0 *)o->f154);
+            o->f150->func_001983A0();
+        }
         continue;
     }
     if (o->f1A0 > D_002756DC) {
