@@ -381,7 +381,6 @@ undefined4 C_001A3D80::func_001A3D80(byte param_1)
 int C_001A4590::func_001A3DA0(int volatile a0)
 {
     struct {
-        C_001A4590 * volatile self;
         union {
             int len;
             int i;
@@ -391,7 +390,6 @@ int C_001A4590::func_001A3DA0(int volatile a0)
         int a;
         int d;
         int limit;
-        int cnt;
     } t;
     struct {
         char buf2[0x104];
@@ -401,15 +399,16 @@ int C_001A4590::func_001A3DA0(int volatile a0)
     C_00168280 obj;
     int j;
     int n;
+    int cnt;
+    int pad;
 
-    t.self = this;
     obj.func_00168280();
     t.len = strlen((const char *)a0);
     t.limit = 0x103;
-    t.cnt = AsmMinI(t.limit, t.len);
-    n = t.cnt;
-    func_001E8920(t.self->name9c, (const char *)a0, n);
-    t.self->name9c[n] = 0;
+    cnt = AsmMinI(t.limit, t.len);
+    n = cnt;
+    func_001E8920(this->name9c, (const char *)a0, n);
+    this->name9c[n] = 0;
     func_001ADCC0(s.buf, 0x104, D_00275678, D_002A48F8, a0);
     if (obj.func_00169490(s.buf, 0) == 0) {
         obj.func_001691E0();
@@ -433,7 +432,7 @@ int C_001A4590::func_001A3DA0(int volatile a0)
                 item = (S_001A3DA0_Item *)func_001E8A44(0xc);
                 item->f4 = t.c;
                 item->f8 = t.d;
-                p = t.self;
+                p = this;
                 flags = 1;
                 if ((p->f1a0 & 8) == 0) {
                     flags = 9;
@@ -442,7 +441,7 @@ int C_001A4590::func_001A3DA0(int volatile a0)
                     flags |= 0x80;
                 }
                 item->f0 = p->f1a4->fb4->func_001CFE90(p->f24, (int)s.buf3, flags, 1, (int)p->f3c, 0);
-                list = (C_001A4440_List *)t.self->list1c8;
+                list = (C_001A4440_List *)this->list1c8;
                 if (list->count >= list->capacity) {
                     if (!list->func_0015ACA0(list->base + list->count)) {
                         continue;
@@ -455,16 +454,16 @@ int C_001A4590::func_001A3DA0(int volatile a0)
         for (j = 1; j <= t.b; j++) {
             func_001ADCC0(s.buf2, 0x104, D_0028B7A0, j);
             if (obj.func_00169710(s.buf2) != 0) {
-                S_001A3DA0_Rec *r = (S_001A3DA0_Rec *)((char *)t.self + 0x1d0) + j;
+                S_001A3DA0_Rec *r = (S_001A3DA0_Rec *)((char *)this + 0x1d0) + j;
 
                 obj.func_00168C20(D_0028B798, -1, &r->f0);
-                r = (S_001A3DA0_Rec *)((char *)t.self + 0x1d0) + j;
+                r = (S_001A3DA0_Rec *)((char *)this + 0x1d0) + j;
                 obj.func_00168C50(D_0028B78C, 0, &r->f4);
-                r = (S_001A3DA0_Rec *)((char *)t.self + 0x1d0) + j;
+                r = (S_001A3DA0_Rec *)((char *)this + 0x1d0) + j;
                 r->f8 = 0;
             }
         }
-        t.self->f2d4 = t.b;
+        this->f2d4 = t.b;
     }
     obj.func_001691E0();
     return 1;
@@ -666,7 +665,7 @@ void C_001A4790::func_001A4790(void *a1, u32 flags, u32 *a3, u32 *a4, int a5, in
     if (a1 == 0) {
         a1 = D_002EFE78;
     }
-    f2C = a1;
+    *(void *volatile *)&f2C = a1;
     f30 = (Mat_001A4790 *)a1;
     d = (V4_001A3BF0 *)&vec0[0];
     *d = *(V4_001A3BF0 *)a3;
