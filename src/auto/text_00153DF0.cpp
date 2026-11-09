@@ -71,6 +71,8 @@ extern "C" double sqrt(double x);
 extern float D_002756DC, D_00286D4C, D_00286D48, D_00275AEC;
 void __cdecl func_00150890(void *, void *);
 extern int D_002A789C, D_002A78A0, D_002A78A4, D_002A78A8;
+extern float D_0027653C, D_00275544;
+struct X153DF0_CE80 { void func_0001CE80(int a, void *b, int c, int d, int e); };
 
 
 void C153DF0_Self::func_00153DF0(float dt)
