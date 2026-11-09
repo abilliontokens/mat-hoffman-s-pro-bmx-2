@@ -147,6 +147,18 @@ static __forceinline V4_2D270 ColM2_2D270(const S2CBC0 *o, int c)
     return r;
 }
 
+static __forceinline V3_2D270 ScaleDiff_2D270(const V4_2D270 &a, const float *m2, float s)
+{
+    V3_2D270 r;
+    float dx = a.x - m2[3];
+    float dy = a.y - m2[7];
+    float dz = a.z - m2[11];
+    r.x = dx * s;
+    r.y = dy * s;
+    r.z = dz * s;
+    return r;
+}
+
 static __forceinline void Cross_2D270(V4_2D270 *volatile out, const V4_2D270 *volatile a, const V4_2D270 *volatile b)
 {
     __m128 va = _mm_loadu_ps(&a->x);
@@ -270,44 +282,53 @@ void S2CBC0::func_0002CBC0(float dt)
 #pragma optimize("y", on)
 void S2CBC0::func_0002D270()
 {
-    S2CBC0 *volatile self = this;
-    V4_2D270 d;
-    V4_2D270 c1, c2, c3;
-    V3_2D270 v, out1, out2;
+    V3_2D270 out1, out2;
     V3_2D270 *r;
     float s;
     __declspec(align(16)) char buf[0x40];
     __declspec(align(16)) char copy[0x40];
 
-    V4_2D270 m1w = Col3_2D270(self->m1, 3);
+    V4_2D270 m1w = ColM1_2D270(this, 3);
+    V3_2D270 d;
+    d.x = m1w.x - this->m2[3];
+    d.y = m1w.y - this->m2[7];
+    d.z = m1w.z - this->m2[11];
     s = D_002A8490->f248;
-    d.x = (m1w.x - self->m2[3]) * s;
-    d.y = (m1w.y - self->m2[7]) * s;
-    d.z = (m1w.z - self->m2[11]) * s;
-    V4_2D270 m1y = Col3_2D270(self->m1, 1);
-    V4_2D270 m2y = Col3_2D270(self->m2, 1);
-    V4_2D270 m1z = Col3_2D270(self->m1, 2);
-    V4_2D270 m2z = Col3_2D270(self->m2, 2);
+    d.x = d.x * s;
+    d.y = d.y * s;
+    d.z = d.z * s;
+    V4_2D270 m1y = ColM1_2D270(this, 1);
+    V4_2D270 m2y = ColM2_2D270(this, 1);
+    V4_2D270 m1z = ColM1_2D270(this, 2);
+    V4_2D270 m2z = ColM2_2D270(this, 2);
+    V4_2D270 c1;
     AsmVec3Cross((float *)&c1, (const float *)&m2z, (const float *)&m1z);
+    V4_2D270 c2;
     AsmVec3Cross((float *)&c2, (const float *)&m2y, (const float *)&m1y);
-    v.x = (c2.x + c1.x) * s;
-    v.y = (c2.y + c1.y) * s;
-    v.z = (c2.z + c1.z) * s;
-    AsmVec3Cross((float *)&c3, (const float *)&self->f1e0->f268, (const float *)&m1w);
-    self->f230->func_00197EC0(&out1, &d);
-    r = (V3_2D270 *)self->f230->func_00197EC0(&out2, &c3);
+    V3_2D270 t;
+    t.x = c1.x + c2.x;
+    t.y = c1.y + c2.y;
+    t.z = c1.z + c2.z;
+    V3_2D270 v;
+    v.x = t.x * s;
+    v.y = t.y * s;
+    v.z = t.z * s;
+    V4_2D270 c3;
+    AsmVec3Cross((float *)&c3, (const float *)&this->f1e0->f268, (const float *)&m1w);
+    this->f230->func_00197EC0(&out1, &d);
+    r = (V3_2D270 *)this->f230->func_00197EC0(&out2, &c3);
     out1.x += r->x;
     out1.y += r->y;
     out1.z += r->z;
-    self->f1e0->f238 += out1.x;
-    self->f1e0->f23c += out1.y;
-    self->f1e0->f240 += out1.z;
-    self->f1e0->f268 += v.x;
-    self->f1e0->f26c += v.y;
-    self->f1e0->f270 += v.z;
-    func_000263B0(buf, self->m1, self->f230->f0f0);
+    this->f1e0->f238 += out1.x;
+    this->f1e0->f23c += out1.y;
+    this->f1e0->f240 += out1.z;
+    this->f1e0->f268 += v.x;
+    this->f1e0->f26c += v.y;
+    this->f1e0->f270 += v.z;
+    func_000263B0(buf, this->m1, this->f230->f0f0);
     memcpy(copy, buf, 0x40);
-    self->f230->func_0019AD60(0, copy);
+    this->f230->func_0019AD60(0, copy);
     func_0002A7C0();
 }
 #pragma optimize("", on)
