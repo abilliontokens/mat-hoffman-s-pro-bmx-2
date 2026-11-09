@@ -8,7 +8,6 @@ static __forceinline float Max_0011FDF0(float a, float b) { float r; _mm_store_s
 static __forceinline float Abs_0011FDF0(const float &f) { int i = *(int *)&f & 0x7fffffff; return *(float *)&i; }
 
 static __forceinline float AbsVal_00120470(float f) { int i = *(int *)&f & 0x7fffffff; return *(float *)&i; }
-struct S_0011FDF0_Vars { float d[3], v[3], q[3], e[3]; };
 struct S_0011FDF0_Q { float x, y, z, w; };
 
 extern float D_00275544;
