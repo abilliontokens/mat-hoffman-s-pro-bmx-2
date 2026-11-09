@@ -132,7 +132,6 @@ struct S_00014850_Vec4 {
     f32 y;
     f32 z;
     f32 w;
-    S_00014850_Vec4 &operator=(const S_00014850_Vec4 &v) { x=v.x; y=v.y; z=v.z; w=v.w; return *this; }
 };
 
 /* a vector that starts as (0, 0, 0, 1) */
@@ -252,26 +251,25 @@ static __forceinline State_14170 *Make_14170(unsigned size, void *vt, int kind) 
 
 void C_00013F50::func_00013A40(char *path)
 {
-    int n2;
-    int n1;
-    int n3;
-    int mode;
-    int extra;
+    int n1, n2, n3, mode;
     char val[0x104];
     char name[0x104];
     char saved[0x104];
     S_00013A40_Ini *ini;
-    int i, n;
-
+    int i;
     f0++;
     if (f1c != 0 || f20 != 0 || f24 != 0) {
         return;
     }
     ini = new S_00013A40_Ini;
     if (ini->func_00169490(path, 0)) {
-        n = AsmMinI(0x103, strlen(D_002A48F8));
+        {
+        int slen = strlen(D_002A48F8);
+        int lim = 0x103;
+        int n = AsmMinI(lim, slen);
         func_001E8920(saved, D_002A48F8, n);
         saved[n] = 0;
+        }
         ini->func_00169710(D_0027568C);
         ini->func_00168C20(D_00275680, 1, &mode);
         if (mode == 1) {
@@ -321,9 +319,13 @@ void C_00013F50::func_00013A40(char *path)
             }
             fC = func_00011260(0, f18 - 1);
         }
-        n = AsmMinI(0x103, strlen(saved));
+        {
+        int slen = strlen(saved);
+        int lim = 0x103;
+        int n = AsmMinI(lim, slen);
         func_001E8920(D_002A48F8, saved, n);
         D_002A48F8[n] = 0;
+        }
     }
     delete ini;
 }
