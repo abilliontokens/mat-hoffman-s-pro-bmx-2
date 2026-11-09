@@ -355,11 +355,12 @@ static __forceinline float wrap_angle_00016D60(float x)
 {
     int n;
     int *p = &n;
+    int *q = p;
     float t;
     float r;
 
     t = *(volatile float *)&x * D_002756EC;
-    AsmFloatToInt(t, p);
+    AsmFloatToInt(t, q);
     r = x - (float)n * D_002756B8;
     if (r > D_002756D0) {
         r = r - D_002756B8;
@@ -599,7 +600,8 @@ void C_00019070::func_00019070()
                 } else {
                     float rad = angle * D_00275998;
                     pos.x = func_0014F510(wrap_angle_00016D60(rad)) * D_00275994 + pos.x;
-                    pos.z = func_0014F550(wrap_angle_00016D60(rad)) * D_00275994 + pos.z;
+                    float rad2 = rad;
+                    pos.z = func_0014F550(wrap_angle_00016D60(rad2)) * D_00275994 + pos.z;
                     func_00017810(&this->f3a4[i], &pos.x);
                     angle += step;
                 }
