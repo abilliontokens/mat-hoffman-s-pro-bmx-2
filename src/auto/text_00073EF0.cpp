@@ -157,7 +157,7 @@ C_00073EF0 *C_00073EF0::func_00073EF0(void *a0)
     fB0->func_001D5810(D_00278658, 0, 398.0f, 0);
     width73(fB0, 0x44200000);
     height73(fB0, 0x42480000);
-    { Img_73 *p = fB0; float a = p->w * 127.0f; p->flags |= 4; p->a = a; p->b = p->w * 0.0f; p->c = p->h * 15.0f; p->d = p->h * 0.0f; }
+    uv73(fB0);
 
     for (i = 0; i < 5; i++) {
         float x;
