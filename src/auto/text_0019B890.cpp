@@ -237,21 +237,21 @@ struct C_0019C320 {
 void C_0019BA70::func_0019B890(void)
 {
 float *obj=(float*)f54;
-volatile S_0019BBD0_Vec iv;
 float *sum=obj+4;
-float x, y, z;
-iv.x=0.0f; sum[0]=iv.x;
-iv.y=0.0f; sum[1]=iv.y;
-iv.z=0.0f; sum[2]=iv.z;
-iv.w=1.0f; sum[3]=iv.w;
+volatile S_0019BBD0_Vec iv;
+iv.x=0.0f; iv.y=0.0f; iv.z=0.0f; iv.w=1.0f;
+sum[0]=iv.x;
+sum[1]=iv.y;
+sum[2]=iv.z;
+sum[3]=iv.w;
 if(D_002B92E0>0) {
-const float *p=D_002B9448;
-int i;
-for(i=0;i<D_002B92E0;++i) {
-sum[0]=p[-2]+sum[0];
-sum[1]=p[-1]+sum[1];
-sum[2]=sum[2]+p[0];
-p+=4;
+const char *base=(const char*)D_002B9448;
+int off=0;
+for(int i=0;i<D_002B92E0;++i) {
+sum[0]=*(const float*)(base+off-8)+sum[0];
+sum[1]=*(const float*)(base+off-4)+sum[1];
+sum[2]=sum[2]+*(const float*)(base+off);
+off+=0x10;
 }
 float *in=sum;
 float *out=sum;
@@ -259,9 +259,9 @@ AsmVec3Normalize(out,in);
 }
 S_0019BBD0_V4 t;
 AsmVec3Normalize(&t.x,obj);
-x=*(volatile float *)&t.x*D_0028B248;
-y=*(volatile float *)&t.y*D_0028B248;
-z=*(volatile float *)&t.z*D_0028B248;
+float x=*(volatile float *)&t.x*D_0028B248;
+float y=*(volatile float *)&t.y*D_0028B248;
+float z=*(volatile float *)&t.z*D_0028B248;
 obj[0]+=x;obj[1]+=y;obj[2]+=z;
 }
 
@@ -269,18 +269,18 @@ extern "C" void _ReadWriteBarrier(void);
 #pragma intrinsic(_ReadWriteBarrier)
 void C_0019BA70::func_0019BA70()
 {
-    float *v = (float *)f54 + 4;
+    register float *v = (float *)f54 + 4;
     S_0019BBD0_V4 t;
     *(S_0019BBD0_V4 *)v = t;
     for (int i = D_002B92F0; i < D_002B92E0; ++i) {
         float *p = D_002B9448 + i * 4;
+        p += 4;
         v[0] = p[-2] + v[0];
-        float *r = p + 4;
-        v[1] = r[-5] + v[1];
-        v[2] = v[2] + r[-4];
+        v[2] = p[-4] + v[2];
+        v[1] = p[-5] + v[1];
     }
-    float *in = v;
-    float *out = v;
+    register float *in = v;
+    register float *out = v;
     AsmVec3Normalize(out, in);
     D_002B92F0 = D_002B92E0;
 }
@@ -337,7 +337,7 @@ void C_0019BBD0::func_0019BD20(unsigned short idx, S_0019BBD0_Tree *tree, void *
     } while (!(idx & 0x8000));
 
     char *leaf = tree->leaves + (idx & 0x7fff) * 20;
-    S_0019BBD0_Vec a;
+    S_0019BBD0_V4 a;
     S_0019BBD0_V4 v1, v2, v3;
     a.x = (float)*(short *)(leaf + 0xc) * D_002EFF1C;
     a.y = (float)*(short *)(leaf + 0xe) * D_002EFF1C;
@@ -412,20 +412,17 @@ static __forceinline void SetPoint_0019C210(float *d, const float *s)
     d[3] = 1.0f;
 }
 
-void SoultreeCollisionObject::func_0019C210(S_Matrix16 * volatile m)
+void SoultreeCollisionObject::func_0019C210(S_Matrix16 *m)
 {
- SoultreeCollisionObject * volatile self=this;
- SoultreeCollisionObject *s;
  float *src,*dst,*v; float x,y,z;
  ((C_000264C0*)((char*)this+0x170))->func_000264C0((char*)this+0x130);
- ((C_000264C0*)((char*)self+0x130))->func_000264C0(m);
- s=self; func_0011ACC0((float*)((char*)s+0xb0),(float*)((char*)s+0xf0),m);
- s=self; dst=(float*)((char*)s+0x28); src=(float*)((char*)s->f1C4+0xc);
+ ((C_000264C0*)((char*)this+0x130))->func_000264C0(m);
+ func_0011ACC0((float*)((char*)this+0xb0),(float*)((char*)this+0xf0),m);
+ src=(float*)((char*)this->f1C4+0xc); dst=(float*)((char*)this+0x28);
  dst[0]=src[0]; dst[1]=src[1]; dst[2]=src[2]; dst[3]=1.0f;
- s=self; v=(float*)((char*)s->f1C4+0x18); x=v[0]; y=v[1]; z=v[2];
- volatile float square=x*x+y*y+z*z; float r=sqrtf(square);
- s=self; *(float*)((char*)s+0x48)=r;
- s=self; func_00030AC0((float*)((char*)s+0x28),(float*)((char*)s+0x28),(float*)m);
+ v=(float*)((char*)this->f1C4+0x18); x=v[0]; y=v[1]; z=v[2];
+ *(float*)((char*)this+0x48)=AsmSqrtF(x*x+y*y+z*z);
+ func_00030AC0((float*)((char*)this+0x28),(float*)((char*)this+0x28),(float*)m);
 }
 
 void SoultreeCollisionObject::func_0019C2F0(void)
@@ -450,10 +447,11 @@ void C_0019C320::func_0019C320(undefined4 *param_1)
 void SoultreeCollisionObject::func_0019C350(S_0019C350_V4 *centre, float *extent)
 {
     S_0019C350_Shape *s = (S_0019C350_Shape *)f1C4;
+    float ex = s->ex, ey = s->ey;
     S_0019C350_V4 c(s->cx, s->cy, s->cz, 1.0f);
     S_0019C350_V4 axes[3];
-    S_0019C350_V4 a0(s->ex, 0.0f, 0.0f, 1.0f);
-    S_0019C350_V4 a1(0.0f, s->ey, 0.0f, 1.0f);
+    S_0019C350_V4 a0(ex, 0.0f, 0.0f, 1.0f);
+    S_0019C350_V4 a1(0.0f, ey, 0.0f, 1.0f);
     S_0019C350_V4 a2(0.0f, 0.0f, s->ez, 1.0f);
 
     axes[0] = a0;
