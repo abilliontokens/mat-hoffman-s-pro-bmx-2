@@ -85,8 +85,8 @@ static __forceinline void align6D(S_0006D750_Txt *p, int a) { if (p->align != a)
 static __forceinline void color6D(S_0006D750_Txt *p, unsigned int c) { if (p->color != c) { p->flags |= 8; p->color = (p->color & (c | 0xff000000)) | (c & 0xffffff); } }
 __forceinline void S_0006D750_Obj::Scale6D() {
     float t = *(volatile float *)&w * D_00278654;
-    flags |= 4;
     a = t;
+    flags |= 4;
     b = *(volatile float *)&w * D_00275544;
     c = *(volatile float *)&h * D_0027653C;
     d = *(volatile float *)&h * D_00275544;
