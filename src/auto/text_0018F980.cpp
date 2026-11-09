@@ -107,6 +107,7 @@ struct C_00190200 {
     void func_00190200(int a0, int a1, int a2, int a3, int a4, unsigned int a5);
 };
 #include <string.h>
+#include "asm_helpers.h"
 struct Node0018FF10 { char name[0x10c]; Node0018FF10 *next; };
 struct Ent0018FF10 { char pad[0x48]; Node0018FF10 *volatile node; char pad2[0x60 - 0x4c]; };
 struct C_0013C9F0 { int func_0013C9F0(char *, char *); };
@@ -206,93 +207,83 @@ struct C_0018F980 {
     void func_0018F980(int a1, char *str);
 };
 
-void C_0018F980::func_0018F980(int a1, char *volatile str)
+void C_0018F980::func_0018F980(int a1, char *str)
 {
-    C_0018F980 *volatile self;
-    struct {
-        volatile int a;
-        volatile int b;
-        volatile int r;
-    } t;
     C_0018F980_Obj *p;
     const char *s1;
     const char *end;
     char c;
+    int slen;
+    int lim;
     int n;
 
-    self = this;
     this->f24 = a1;
     end = str;
     s1 = end + 1;
     do {
         c = *end++;
     } while (c != 0);
-    t.a = end - s1;
-    t.b = 0x103;
-    {
-        int vb = t.b;
-        int va = t.a;
-        t.r = vb > va ? va : vb;
-    }
-    n = t.r;
-    func_001E8920((char *)self->name, str, n);
-    self->name[n] = 0;
-    self->f12c = 4;
-    self->f130 = 4;
-    self->f134 = 4;
-    self->f140 = 4;
-    self->f144 = 4;
-    self->f148 = 4;
-    self->f138 = 8;
-    self->f13c = 1;
-    self->f168 = 0;
-    { C_0018F980 *s = self; s->f16c = s->f168 + 10; }
-    self->f164 = func_001E8AA5(self->f16c * 0x38);
-    self->f15c = 0;
-    { C_0018F980 *s = self; s->f160 = s->f15c + 0x32; }
-    self->f158 = func_001E8AA5(self->f160 * 0x60);
-    self->f174 = 0;
-    { C_0018F980 *s = self; s->f178 = s->f174 + 10; }
-    self->f170 = func_001E8AA5(self->f178 * 0x24);
-    self->f180 = 0;
-    { C_0018F980 *s = self; s->f184 = s->f180 + 10; }
-    self->f17c = func_001E8AA5(self->f184 * 8);
+    slen = end - s1;
+    lim = 0x103;
+    n = AsmMinI(lim, slen);
+    func_001E8920((char *)this->name, str, n);
+    this->name[n] = 0;
+    this->f12c = 4;
+    this->f130 = 4;
+    this->f134 = 4;
+    this->f140 = 4;
+    this->f144 = 4;
+    this->f148 = 4;
+    this->f138 = 8;
+    this->f13c = 1;
+    this->f168 = 0;
+    this->f16c = this->f168 + 10;
+    this->f164 = func_001E8AA5(this->f16c * 0x38);
+    this->f15c = 0;
+    this->f160 = this->f15c + 0x32;
+    this->f158 = func_001E8AA5(this->f160 * 0x60);
+    this->f174 = 0;
+    this->f178 = this->f174 + 10;
+    this->f170 = func_001E8AA5(this->f178 * 0x24);
+    this->f180 = 0;
+    this->f184 = this->f180 + 10;
+    this->f17c = func_001E8AA5(this->f184 * 8);
     p = (C_0018F980_Obj *)func_001E8A44(0x190);
-    self->f14c = p ? p->Init() : 0;
-    self->f14c->f8 = 1;
-    self->f14c->f10 = 0;
-    self->func_0018D5C0(D_0027D1D8, 0, 0, 0, 0, (int)func_00012140, (int)func_00192300, (int)func_00012140);
-    self->func_0018D5C0(D_0027D21C, 1, 0, 4, 1, (int)func_00191610, (int)func_001916E0, (int)func_00191640);
-    self->func_0018D5C0(D_0027D240, 2, 0, 4, 1, (int)func_001917E0, (int)D_00191890, (int)func_00191810);
-    self->func_0018D5C0(D_0028A834, 3, 0, 4, 0x60, (int)D_00191950, (int)func_001919A0, (int)func_00191970);
-    self->func_0018D5C0(D_0028A82C, 4, 0, 8, 1, (int)D_00191A40, (int)D_00191B10, (int)D_00191A70);
-    self->func_0018D5C0(D_0028A824, 5, 0, 1, 0, (int)func_00191DA0, (int)D_00191E50, (int)func_00191DD0);
-    self->func_0018D5C0(D_0027D1FC, 6, 0, 4, 0, (int)func_00191F20, (int)D_00191FD0, (int)func_00191F50);
-    self->func_0018D5C0(D_0028A81C, 7, 0, 4, 0, (int)func_00191C20, (int)D_00191CD0, (int)func_00191C50);
-    self->func_0018D5C0(D_0028A810, 8, 0, 4, 0x60, (int)func_00012140, (int)D_001920A0, (int)func_00012140);
-    self->func_0018D5C0(D_0028AA6C, 9, 4, 0x10, 0, (int)D_001920E0, (int)func_00192300, (int)D_00192130);
-    self->func_0018D7B0(D_0028AA6C, 0, (int)D_0027FC6C, 1, 0);
-    self->func_0018D7B0(D_0028AA6C, 1, (int)D_0028AA68, 1, 4);
-    self->func_0018D7B0(D_0028AA6C, 2, (int)D_0028AA64, 1, 8);
-    self->func_0018D7B0(D_0028AA6C, 3, (int)D_002790E0, 1, 0xc);
-    self->func_0018D5C0(D_0028AA58, 9, 0x10, 0x40, 0, (int)func_00192310, (int)func_00192300, (int)func_00012140);
-    self->func_0018D7B0(D_0028AA58, 0, (int)D_0028AA54, 1, 0);
-    self->func_0018D7B0(D_0028AA58, 1, (int)D_0028AA50, 1, 0x10);
-    self->func_0018D7B0(D_0028AA58, 2, (int)D_0028AA4C, 1, 0x20);
-    self->func_0018D7B0(D_0028AA58, 3, (int)D_0028AA48, 1, 0x30);
-    self->func_0018D7B0(D_0028AA58, 4, (int)D_0028AA44, 1, 4);
-    self->func_0018D7B0(D_0028AA58, 5, (int)D_0028AA40, 1, 0x14);
-    self->func_0018D7B0(D_0028AA58, 6, (int)D_0028AA3C, 1, 0x24);
-    self->func_0018D7B0(D_0028AA58, 7, (int)D_0028AA38, 1, 0x34);
-    self->func_0018D7B0(D_0028AA58, 8, (int)D_0028AA34, 1, 8);
-    self->func_0018D7B0(D_0028AA58, 9, (int)D_0028AA30, 1, 0x18);
-    self->func_0018D7B0(D_0028AA58, 10, (int)D_0028AA2C, 1, 0x28);
-    self->func_0018D7B0(D_0028AA58, 11, (int)D_0028AA28, 1, 0x38);
-    self->func_0018D7B0(D_0028AA58, 12, (int)D_0028AA24, 1, 0xc);
-    self->func_0018D7B0(D_0028AA58, 13, (int)D_0028AA20, 1, 0x1c);
-    self->func_0018D7B0(D_0028AA58, 14, (int)D_0028AA1C, 1, 0x2c);
-    self->func_0018D7B0(D_0028AA58, 15, (int)D_0028AA18, 1, 0x3c);
-    self->func_001D3F50();
+    this->f14c = p ? p->Init() : 0;
+    this->f14c->f8 = 1;
+    this->f14c->f10 = 0;
+    this->func_0018D5C0(D_0027D1D8, 0, 0, 0, 0, (int)func_00012140, (int)func_00192300, (int)func_00012140);
+    this->func_0018D5C0(D_0027D21C, 1, 0, 4, 1, (int)func_00191610, (int)func_001916E0, (int)func_00191640);
+    this->func_0018D5C0(D_0027D240, 2, 0, 4, 1, (int)func_001917E0, (int)D_00191890, (int)func_00191810);
+    this->func_0018D5C0(D_0028A834, 3, 0, 4, 0x60, (int)D_00191950, (int)func_001919A0, (int)func_00191970);
+    this->func_0018D5C0(D_0028A82C, 4, 0, 8, 1, (int)D_00191A40, (int)D_00191B10, (int)D_00191A70);
+    this->func_0018D5C0(D_0028A824, 5, 0, 1, 0, (int)func_00191DA0, (int)D_00191E50, (int)func_00191DD0);
+    this->func_0018D5C0(D_0027D1FC, 6, 0, 4, 0, (int)func_00191F20, (int)D_00191FD0, (int)func_00191F50);
+    this->func_0018D5C0(D_0028A81C, 7, 0, 4, 0, (int)func_00191C20, (int)D_00191CD0, (int)func_00191C50);
+    this->func_0018D5C0(D_0028A810, 8, 0, 4, 0x60, (int)func_00012140, (int)D_001920A0, (int)func_00012140);
+    this->func_0018D5C0(D_0028AA6C, 9, 4, 0x10, 0, (int)D_001920E0, (int)func_00192300, (int)D_00192130);
+    this->func_0018D7B0(D_0028AA6C, 0, (int)D_0027FC6C, 1, 0);
+    this->func_0018D7B0(D_0028AA6C, 1, (int)D_0028AA68, 1, 4);
+    this->func_0018D7B0(D_0028AA6C, 2, (int)D_0028AA64, 1, 8);
+    this->func_0018D7B0(D_0028AA6C, 3, (int)D_002790E0, 1, 0xc);
+    this->func_0018D5C0(D_0028AA58, 9, 0x10, 0x40, 0, (int)func_00192310, (int)func_00192300, (int)func_00012140);
+    this->func_0018D7B0(D_0028AA58, 0, (int)D_0028AA54, 1, 0);
+    this->func_0018D7B0(D_0028AA58, 1, (int)D_0028AA50, 1, 0x10);
+    this->func_0018D7B0(D_0028AA58, 2, (int)D_0028AA4C, 1, 0x20);
+    this->func_0018D7B0(D_0028AA58, 3, (int)D_0028AA48, 1, 0x30);
+    this->func_0018D7B0(D_0028AA58, 4, (int)D_0028AA44, 1, 4);
+    this->func_0018D7B0(D_0028AA58, 5, (int)D_0028AA40, 1, 0x14);
+    this->func_0018D7B0(D_0028AA58, 6, (int)D_0028AA3C, 1, 0x24);
+    this->func_0018D7B0(D_0028AA58, 7, (int)D_0028AA38, 1, 0x34);
+    this->func_0018D7B0(D_0028AA58, 8, (int)D_0028AA34, 1, 8);
+    this->func_0018D7B0(D_0028AA58, 9, (int)D_0028AA30, 1, 0x18);
+    this->func_0018D7B0(D_0028AA58, 10, (int)D_0028AA2C, 1, 0x28);
+    this->func_0018D7B0(D_0028AA58, 11, (int)D_0028AA28, 1, 0x38);
+    this->func_0018D7B0(D_0028AA58, 12, (int)D_0028AA24, 1, 0xc);
+    this->func_0018D7B0(D_0028AA58, 13, (int)D_0028AA20, 1, 0x1c);
+    this->func_0018D7B0(D_0028AA58, 14, (int)D_0028AA1C, 1, 0x2c);
+    this->func_0018D7B0(D_0028AA58, 15, (int)D_0028AA18, 1, 0x3c);
+    this->func_001D3F50();
 }
 
 int C_0018FF10::func_0018FF10(char *src, char *volatile name, volatile int idx, int *volatile out)
@@ -348,23 +339,24 @@ void C_00190200::func_001900E0(int a0, int a1, int a2, C_190200_Rec *rec, unsign
   if(func_0018E7D0(0,rec,&idx)==1) tbl=named[idx].f0;
   else { ctx->func_0018F4D0(flags); return; }
  } else { tbl=a0; idx=a2; }
+ C_1900E0_Ctx *c = ctx;
  register int original=flags;
  switch(original&255) {
  case 2: {
- unsigned int offset=(unsigned int)rec->f40 >> 16;
  flags=rec->f40;
- register C_190200_Elem *base=named[idx].f54;
+ unsigned int offset=(unsigned int)rec->f40 >> 16;
+ C_190200_Elem *base=named[idx].f54;
  offset &= 255;
  char *ptr=(char *)(base+(flags&255))->func_0018E1D0()+(unsigned char)offset;
- ctx->func_0018F390((char *)D_00275630,original&0xffff00,ptr); break;
+ c->func_0018F390((char *)D_00275630,original&0xffff00,ptr); break;
  }
  case 1: {
  register flags=rec->f40;
  C_190200_Cell *cells=f164[named[idx].f44].f2c;
  char *ptr=cells[flags&255].f4+((flags>>16)&255)+tbl;
- ctx->func_0018F390((char *)D_00275630,original&0xffff00,ptr); break;
+ c->func_0018F390((char *)D_00275630,original&0xffff00,ptr); break;
  }
- case 0: f170[a5].fn(rec,ctx); break;
+ case 0: f170[a5].fn(rec,c); break;
  }
 }
 
