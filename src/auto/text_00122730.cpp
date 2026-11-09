@@ -23,8 +23,7 @@ struct S_00122810_V4 {
     float x, y, z, w;
 };
 struct S_00122810_V3 {
-    float w;
-    float x, y, z;
+    float x, y, z, w;
     S_00122810_V3() { z = 0; y = 0; x = 0; }
     S_00122810_V3(float a, float b, float c) { x = a; y = b; z = c; }
     S_00122810_V3 operator+(const S_00122810_V3 &o) const { return S_00122810_V3(x + o.x, y + o.y, z + o.z); }
