@@ -1,5 +1,6 @@
 /* 7 functions from 0x000186F0 to 0x000195B0, found by Ghidra. */
 #include "common.h"
+#include "asm_helpers.h"
 #include <string.h>
 #include <xmmintrin.h>
 struct ObjABA_186 { void func_0019ABA0(int a, int b); int func_00198330(char *s); };
@@ -571,76 +572,83 @@ void C_00019070::func_00019070()
 {
     C_00019070 * volatile self = this;
     int n = 0;
-    int i;
-    int angle;
-    int first;
-    int step;
+    int angle, first, step;
+    C_00019070 *cur;
     V4_00018EB0 pos;
-
-    if (self->f3a4[0].fc == 0) n++;
-    if (self->f3a4[1].fc == 0) n++;
-    if (self->f3a4[2].fc == 0) n++;
-    if (self->f3a4[3].fc == 0) n++;
-    if (self->f3a4[4].fc == 0) n++;
-    if (self->f3a4[5].fc == 0) n++;
+    if (((volatile C_00019070 *)this)->f3a4[0].fc == 0) n++;
+    if (((volatile C_00019070 *)this)->f3a4[1].fc == 0) n++;
+    if (((volatile C_00019070 *)this)->f3a4[2].fc == 0) n++;
+    if (((volatile C_00019070 *)this)->f3a4[3].fc == 0) n++;
+    if (((volatile C_00019070 *)this)->f3a4[4].fc == 0) n++;
+    if (((volatile C_00019070 *)this)->f3a4[5].fc == 0) n++;
     if (n > 1) {
-        if (self->f398->f2c == 0) {
-            pos = *(V4_00018EB0 *)&D_002A0718;
-        } else {
-            self->f398->f2c->f1a4->f4->func_00199B00(&pos.x, 0);
-        }
+        if (this->f398->f2c == 0) {
+            *(int *)&pos.x = D_002A0718;
+            pos.y = D_002A071C;
+            pos.z = D_002A0720;
+            pos.w = D_002A0724;
+        } else this->f398->f2c->f1a4->f4->func_00199B00(&pos.x, 0);
+        cur = self;
+        step = 360 / (n - 1);
         pos.y = 500.0f;
         angle = 0;
         first = 1;
-        step = 360 / (n - 1);
-        for (i = 0; i < 6; i++) {
-            if (self->f3a4[i].fc != 1) {
+        for (int i = 0; i < 6; i++) {
+            if (cur->f3a4[i].fc != 1) {
                 if (first == 1) {
                     first = 0;
-                    func_00017810(&self->f3a4[i], &pos.x);
+                    func_00017810(&cur->f3a4[i], &pos.x);
                     pos.x -= D_0027599C;
                     pos.z -= D_0027599C;
                 } else {
                     float rad = angle * D_00275998;
+                    float rad2 = rad;
                     pos.x = func_0014F510(wrap_angle_00016D60(rad)) * D_00275994 + pos.x;
-                    pos.z = func_0014F550(wrap_angle_00016D60(rad)) * D_00275994 + pos.z;
-                    func_00017810(&self->f3a4[i], &pos.x);
+                    pos.z = func_0014F550(wrap_angle_00016D60(rad2)) * D_00275994 + pos.z;
+                    func_00017810(&cur->f3a4[i], &pos.x);
                     angle += step;
                 }
             }
+            cur = self;
         }
     }
 }
 
 extern "C" float __cdecl sqrtf(float);
 #pragma intrinsic(sqrtf)
-int C_000192D0::func_000192D0(int volatile a, int volatile b) {
+int C_000192D0::func_000192D0(int a, int b) {
+    struct Vecs {
+        float other[4];
+        float pos[4];
+        float out[4];
+    } v;
     float d, bestd, sq;
-    float pos[4], other[4], out[4];
     int best;
-    out[0] = out[1] = out[2] = 0.0f;
-    out[3] = 1.0f;
+    v.out[0] = v.out[1] = v.out[2] = 0.0f;
+    v.out[3] = 1.0f;
     if (!f398->f2c) {
-        *(int *)&other[0] = D_002A0718;
-        other[1] = D_002A071C;
-        other[2] = D_002A0720;
-        other[3] = D_002A0724;
+        *(int *)&v.other[0] = D_002A0718;
+        v.other[1] = D_002A071C;
+        v.other[2] = D_002A0720;
+        v.other[3] = D_002A0724;
     } else {
-        f398->f2c->f1a4->f4->func_00199B00(other, 0);
+        f398->f2c->f1a4->f4->func_00199B00(v.other, 0);
     }
     bestd = 10000.0f;
     best = -1;
     for (int i = 0; i < f4d8; i++) {
         if (a == 1 && i == f4dc) continue;
-        memcpy(pos, &f49c[i].f4, 16);
-        pos[1] += D_002757FC;
-        if (b == 0 && func_00017AD0(pos, other, out, 0)) continue;
-        float z = other[2] - pos[2];
-        float y = other[1] - pos[1];
-        float x = other[0] - pos[0];
+        void *src = &f49c[i].f4;
+        memcpy(v.pos, src, 16);
+        v.pos[1] += D_002757FC;
+        if (b == 0 && func_00017AD0(v.pos, v.other, v.out, 0)) continue;
+        float x = v.other[0] - v.pos[0];
+        float y = v.other[1] - v.pos[1];
+        float z = v.other[2] - v.pos[2];
         sq = z * z + y * y + x * x;
         d = AsmSqrtF(sq);
         if (d < bestd && d > f49c[i].f0) { best = i; bestd = d; }
+        int chk = b == 0;
     }
     return best == f4dc ? -1 : best;
 }
