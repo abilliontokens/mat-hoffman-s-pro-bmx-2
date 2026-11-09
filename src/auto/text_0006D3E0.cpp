@@ -82,9 +82,12 @@ extern int D_0028F5EC, D_0028F5E0;
 static __forceinline void pos6D(S_0006D750_Txt *p, int x, int y) { if (p->x != x || p->y != y) { p->y = y; p->x = x; p->flags |= 6; } }
 static __forceinline void align6D(S_0006D750_Txt *p, int a) { if (p->align != a) { p->align = a; p->flags |= 6; } }
 static __forceinline void color6D(S_0006D750_Txt *p, unsigned int c) { if (p->color != c) { p->flags |= 8; p->color = (p->color & (c | 0xff000000)) | (c & 0xffffff); } }
-static __forceinline void uv6D(S_0006D750_Obj *p) {     float a = *(volatile float *)&p->w * D_00278654;
+static __forceinline void uv6D(S_0006D750_Obj *p) {         float a = *(volatile float *)&p->w * D_00278654;
     p->a = a;
-    p->flags |= 4; p->b = *(volatile float *)&p->w * D_00275544; p->c = *(volatile float *)&p->h * D_0027653C; p->d = *(volatile float *)&p->h * D_00275544; }
+    p->b = *(volatile float *)&p->w * D_00275544;
+    p->c = *(volatile float *)&p->h * D_0027653C;
+    p->d = *(volatile float *)&p->h * D_00275544;
+    p->flags |= 4; }
 static __forceinline void width6D(S_0006D750_Obj *p, int v) { if (p->width != v) { p->width = v; p->flags |= 1; } }
 static __forceinline void height6D(S_0006D750_Obj *p, int v) { if (p->height != v) { p->height = v; p->flags |= 1; } }
 struct C_001D5AD0 {
