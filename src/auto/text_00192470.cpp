@@ -459,6 +459,17 @@ int *C_00192470::func_001926F0(int a, int b)
     return func_00192470((int *)b);
 }
 
+int *C_00192470::func_00192700(int a, int b, int c, int d)
+{
+    return func_00192470((int*)d);
+}
+
+int *__stdcall func_001926FD(int a, int b, int *c)
+{
+    C_00192470 *self = (C_00192470 *)a;
+    return self->func_00192470(c);
+}
+
 extern "C" void _ReadWriteBarrier(void);
 #pragma intrinsic(_ReadWriteBarrier)
 C_00192470 *C_00192470::func_00192720(void)
