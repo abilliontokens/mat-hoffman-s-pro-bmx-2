@@ -24,8 +24,8 @@ struct G8490_43 {
     virtual void v12(); virtual void v13(); virtual void v14();
     virtual void v15(void *a, void *b, int c, int d);
 };
-struct Obj550_43 { void func_0008A080(); void func_0008A910(); void func_0008A980(); void func_0008A990(); };
-struct Obj560_43 { void func_0008B670(char *s); void func_0008B690(); };
+struct Obj550_43 : Vt18_43 { void func_0008A080(); void func_0008A910(); void func_0008A980(); void func_0008A990(); };
+struct Obj560_43 : Vt18_43 { void func_0008B670(char *s); void func_0008B690(); };
 struct SA0_43 { int count; void **arr; void *base; int bound; char pad10[4]; Obj5B4_43 *ctl; };
 extern int D_002A8490;
 extern char D_00277014[];
