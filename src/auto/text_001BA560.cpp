@@ -428,79 +428,121 @@ C_001BA5E0::C_001BA5E0()
 
 void __stdcall func_001BA660(int *kind, void **out)
 {
+    void *result;
     int k = *kind;
     if (k == 1) {
         T_A *p = (T_A *)func_001E8A44(0x18c);
-        if (p == 0) { *out = 0; return; }
+        if (p) {
         p->f4 = 0; p->f8 = 0; p->vtbl = &D_0028CC44; p->f10c = 0; p->f114 = 0; p->f110 = -1;
-        *out = p;
-        return;
+        } else {
+            p = 0;
+        }
+        result = p;
+        goto done;
     }
     if (k == 2) {
         T_A *p = (T_A *)func_001E8A44(0x204);
-        if (p == 0) { *out = 0; return; }
+        if (p) {
         p->f4 = 0; p->f8 = 0; p->f10c = 0; p->f114 = 0; p->f18c = 0; p->vtbl = &D_0028CC60; p->f110 = -1;
-        *out = p;
-        return;
+        } else {
+            p = 0;
+        }
+        result = p;
+        goto done;
     }
     if (k == 3) {
         T_C *p = (T_C *)func_001E8A44(0x204);
-        if (p == 0) { *out = 0; return; }
-        *out = p->func_001B5D00();
-        return;
+        if (p) {
+        p = p->func_001B5D00();
+        } else {
+            p = 0;
+        }
+        result = p;
+        goto done;
     }
     if (k == 4) {
         T_D *p = (T_D *)func_001E8A44(0x188);
-        if (p == 0) { *out = 0; return; }
-        *out = p->func_001B5EA0();
-        return;
+        if (p) {
+        p = p->func_001B5EA0();
+        } else {
+            p = 0;
+        }
+        result = p;
+        goto done;
     }
     if (k == 5) {
         T_B *p = (T_B *)func_001E8A44(0x184);
-        if (p == 0) { *out = 0; return; }
+        if (p) {
         p->f4 = 0; p->f8 = 0; p->vtbl = &D_0028CCA8; p->f10c = 0;
-        *out = p;
-        return;
+        } else {
+            p = 0;
+        }
+        result = p;
+        goto done;
     }
     if (k == 6) {
         T_F *p = (T_F *)func_001E8A44(0x290);
-        if (p == 0) { *out = 0; return; }
-        *out = p->func_001B6100();
-        return;
+        if (p) {
+        p = p->func_001B6100();
+        } else {
+            p = 0;
+        }
+        result = p;
+        goto done;
     }
     if (k == 9) {
         T_H *p = (T_H *)func_001E8A44(0x110);
-        if (p == 0) { *out = 0; return; }
+        if (p) {
         p->f4 = 0; p->f8 = 0; p->vtbl = &D_0028CCF4; p->f10c = 0;
-        *out = p;
-        return;
+        } else {
+            p = 0;
+        }
+        result = p;
+        goto done;
     }
     if (k == 7) {
         T_G *p = (T_G *)func_001E8A44(0x224);
-        if (p == 0) { *out = 0; return; }
-        *out = p->func_001B61A0();
-        return;
+        if (p) {
+        p = p->func_001B61A0();
+        } else {
+            p = 0;
+        }
+        result = p;
+        goto done;
     }
     if (k == 8) {
         T_B *p = (T_B *)func_001E8A44(0x210);
-        if (p == 0) { *out = 0; return; }
+        if (p) {
         p->f4 = 0; p->f8 = 0; p->vtbl = &D_0028CCE8; p->f10c = 0;
-        *out = p;
-        return;
+        } else {
+            p = 0;
+        }
+        result = p;
+        goto done;
     }
     if (k == 10) {
         T_I *p = (T_I *)func_001E8A44(0x148);
-        if (p == 0) { *out = 0; return; }
-        *out = p->func_001BA5E0();
-        return;
+        if (p) {
+        p = p->func_001BA5E0();
+        } else {
+            p = 0;
+        }
+        result = p;
+        goto done;
     }
     if (k == 11) {
         T_J *p = (T_J *)func_001E8A44(0x118);
-        if (p == 0) { *out = 0; return; }
-        *out = p->func_001B6410();
-        return;
+        if (p) {
+        p = p->func_001B6410();
+        } else {
+            p = 0;
+        }
+        result = p;
+        goto done;
     }
-    *out = 0;
+    return;
+done:
+    *out = result;
 }
 
 void C_001BA910::func_001BA910(void)
@@ -554,13 +596,13 @@ void S_9C0_This::func_001BA9C0(S_9C0_Stream *s)
     float fb;
     float fc;
     int len;
-    volatile int base;
     int lim, r;
     char name[0x104];
     char buf[0x104];
     S_9C0_Elem *e;
     int n;
     int i, j, limit;
+    int base;
 
     if (!s->func_00169710(D_0027CBAC))
         return;
@@ -570,15 +612,18 @@ void S_9C0_This::func_001BA9C0(S_9C0_Stream *s)
     if (f28 != 0) {
         i = f24;
         f24 += count;
-        f28 = (S_9C0_Elem **)func_001E83E8(f28, f24 * 4);
+        limit = f24;
+        f28 = (S_9C0_Elem **)func_001E83E8(f28, limit * 4);
     } else {
         i = 0;
         f24 = count;
-        f28 = (S_9C0_Elem **)func_001E8A44(f24 * 4);
+        limit = f24;
+        f28 = (S_9C0_Elem **)func_001E8A44(limit * 4);
     }
-    limit = f24;
+    if (i >= limit)
+        return;
     base = 1 - i;
-    for (; i < limit; i++) {
+    do {
         func_001ADCC0(buf, 0x104, D_0027CB78, base + i);
         if (!s->func_00169710(buf))
             continue;
@@ -613,7 +658,7 @@ void S_9C0_This::func_001BA9C0(S_9C0_Stream *s)
             for (j = 0; j < flag; j++)
                 f28[i]->f158[j] = 0;
         }
-    }
+    } while (++i < limit);
 }
 
 void C_001BB2C0::func_001BAE30(void)
