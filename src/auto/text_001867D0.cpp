@@ -296,6 +296,7 @@ extern int D_00187370;
 void *func_001E8A44(int size);
 void func_001E891B(void *p);
 extern S16_1A D_002A90B4;
+extern int D_002A90B8, D_002A90BC, D_002A90C0;
 int func_001ADCC0(char *buf, int size, const char *fmt, ...);
 void __stdcall func_00011FF0(void *p, int stride, int count, void *ctor);
 
