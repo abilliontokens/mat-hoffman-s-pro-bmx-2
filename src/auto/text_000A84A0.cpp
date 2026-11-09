@@ -177,6 +177,10 @@ struct C_000A8B70 {
     int func_000A8B70(void *param1, void *param2);
 };
 
+struct C_000A8DFC {
+    int func_000A8DFC(void *param1, S_000A8D90_Mgr *param2);
+};
+
 struct Obj_00168550 {
     void func_00168550(void *param1, void *param2, int param3);
 };
@@ -580,6 +584,13 @@ int C_000A8B70::func_000A8B70(void *param1, void *param2) {
     if (param2 == 0) return 1;
     ((S_000A8D90_Mgr *)param2)->func_001BBAA0(this, &D_000A8A60);
     return 1;
+}
+
+void func_000A8B8D(void *a, void *b, int c, int d)
+{
+    if (d != 0 && D_002A8490->f2A4->f1C8 == 0) {
+        D_002A8490->f2A4->func_000324C0(c + 0x10c);
+    }
 }
 
 C_000A8BC0 *C_000A8BC0::func_000A8BC0() {
