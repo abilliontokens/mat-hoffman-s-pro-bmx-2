@@ -398,8 +398,9 @@ void C_000B1350::func_000B1350(void)
     for (i = 0; i < f34; i++) {
         for (k = 0; k < f44[i]->f4C; k++) {
             S_000B1350_Sub *s = f44[i]->f48[k];
+            int ni = s->f0;
             int cur = (int)s->f4;
-            S_000B1350_Node *node = f4C[s->f0];
+            S_000B1350_Node *node = f4C[ni];
             if (node->f4 > 0) {
                 float t = s->f4 - (float)cur;
                 S_000B1350_Tbl *tbl = node->fC[0]->f3C->f518;
@@ -486,7 +487,6 @@ C_000B1860 *C_000B1860::func_000B1860(void)
 #pragma optimize("g", on)
 void C_000B1A40::func_000B1A40(S_000B1A40_Stream * volatile stream)
 {
- C_000B1A40 * volatile self = this;
  char buf[0x104];
  int a;
  int cnt;
@@ -495,12 +495,12 @@ void C_000B1A40::func_000B1A40(S_000B1A40_Stream * volatile stream)
  cnt=AsmMinI(a,0x32);
  func_001E8920(this->name,buf,cnt);
  *(volatile char *)((char *)this + 0x3c + cnt)=0;
- stream->func_00168BE0(D_00275AE0,D_002764F0,self->text,0x104);
- stream->func_00168C20(D_00275680,0,&self->f8);
- stream->func_00168CB0(D_00275AD4,&D_002A2DC4,self->fC);
- stream->func_00168CB0(D_00275AC8,&D_002A2DF4,self->f1C);
- stream->func_00168CB0(D_0027CEE4,&D_002A2DE4,self->f2C);
- stream->func_00168C20(D_0027CED8,1,&self->f0);
+ stream->func_00168BE0(D_00275AE0,D_002764F0,this->text,0x104);
+ stream->func_00168C20(D_00275680,0,&this->f8);
+ stream->func_00168CB0(D_00275AD4,&D_002A2DC4,this->fC);
+ stream->func_00168CB0(D_00275AC8,&D_002A2DF4,this->f1C);
+ stream->func_00168CB0(D_0027CEE4,&D_002A2DE4,this->f2C);
+ stream->func_00168C20(D_0027CED8,1,&this->f0);
 }
 void C_000B1B80::func_000B1B80(void)
 {
