@@ -542,29 +542,37 @@ void func_001EE5B6(void)
 
 int func_001EE5BE(void)
 {
-    void *func_001E8AA5(int size);
-    S_Ioinfo *p;
-    char *r;
+    int *func_001ED075(void);
+    int *func_001ED07E(void);
+    void func_001EAB1B(void);
+    *func_001ED075() = 9;
+    *func_001ED07E() = 0;
+    func_001EAB1B();
+    return -1;
+}
+
+int func_001EE5DA(void)
+{
+    S_Ioinfo *p = (S_Ioinfo *)func_001E8AA5(0x500);
     int i;
 
-    p = (S_Ioinfo *)func_001E8AA5(0x500);
-    if (p == 0) {
+    if (p == 0)
         return -1;
-    }
     D_002FB260[0] = (int *)p;
     D_002FB240 = 0x20;
-    for (; p < (S_Ioinfo *)D_002FB260[0] + 32; p++) {
+    for (; p < (S_Ioinfo *)((char *)D_002FB260[0] + 0x500); p++) {
         p->osfile = 0;
         p->osfhnd = -1;
         p->lockinitflag = 0;
         p->pipech = 10;
     }
     i = 0;
-    do {
-        r = (char *)D_002FB260[0] + i;
+    while (i < 0x78) {
+        S_Ioinfo *q = (S_Ioinfo *)D_002FB260[0];
+        q = (S_Ioinfo *)((char *)q + i);
         i += 0x28;
-        r[4] = 0xc1;
-    } while (i < 0x78);
+        q->osfile = 0xc1;
+    }
     return 0;
 }
 
