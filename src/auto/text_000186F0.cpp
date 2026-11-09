@@ -360,10 +360,10 @@ static __forceinline float wrap_angle_00016D60(float x)
     AsmFloatToInt(*(volatile float *)&x * D_002756EC, p);
     r = x - (float)n * D_002756B8;
     if (r > D_002756D0) {
-        return r - D_002756B8;
+        r = r - D_002756B8;
     }
     if (r < D_002756E8) {
-        return r + D_002756B8;
+        r = r + D_002756B8;
     }
     return r;
 }
