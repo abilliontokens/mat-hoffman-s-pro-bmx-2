@@ -14,6 +14,7 @@ struct S_151F80_Vec {
     S_151F80_Vec(float a, float b, float c) { x = a; y = b; z = c; w = 1.0f; }
     void Set(float a, float b, float c) { x = a; y = b; z = c; }
     void SetRef(const float &a, const float &b, const float &c) { x = a; y = b; z = c; }
+    void SetRef(const float &a, const float &b, const float &c, const float &d) { x = a; y = b; z = c; w = d; }
     S_151F80_Vec operator+(const S_151F80_Vec &o) const { return S_151F80_Vec(x + o.x, y + o.y, z + o.z); }
     S_151F80_Vec operator-(const S_151F80_Vec &o) const { return S_151F80_Vec(x - o.x, y - o.y, z - o.z); }
     S_151F80_Vec operator*(float s) const { return S_151F80_Vec(x * s, y * s, z * s); }
@@ -181,19 +182,15 @@ void C_00151F80::func_00152300(float dt)
         f2c->f1a4->f4->func_00199B00(&v, 0);
     }
     if (f78 != 0) {
+        S_151F80_Vec *p84;
         {
             S_151F80_Vec *p = &f94;
             p->x = D_002A789C.x; p->y = D_002A78A0; p->z = D_002A78A4; p->w = D_002A78A8;
         }
-        {
-            S_151F80_Vec *p = &f84;
-            p->x = D_002A789C.x; p->y = D_002A78A0; p->z = D_002A78A4; p->w = D_002A78A8;
-        }
+        p84 = &f84;
+        p84->x = D_002A789C.x; p84->y = D_002A78A0; p84->z = D_002A78A4; p84->w = D_002A78A8;
         fc4 = 0;
-        {
-            S_151F80_Vec *p = &f84;
-            p->x = D_002A789C.x; p->y = D_002A78A0; p->z = D_002A78A4; p->w = D_002A78A8;
-        }
+        p84->x = D_002A789C.x; p84->y = D_002A78A0; p84->z = D_002A78A4; p84->w = D_002A78A8;
         {
             S_151F80_Vec *p = &f94;
             p->x = D_002A789C.x; p->y = D_002A78A0; p->z = D_002A78A4; p->w = D_002A78A8;
@@ -231,9 +228,10 @@ void C_00151F80::func_00152300(float dt)
                     t = f68;
                     if (AsmSqrtF(fe8.x * fe8.x + fe8.y * fe8.y + fe8.z * fe8.z) > D_002756DC
                         && func_00011170(&t) > D_002756DC) {
+                        S_151F80_Vec *fe8p = &fe8;
                         func_00150890(&out, &t);
-                        func_00021330(&dst, &fe8, &out);
-                        fe8 = dst;
+                        func_00021330(&dst, fe8p, &out);
+                        *fe8p = dst;
                         v.x -= t.x;
                         v.y -= t.y;
                         v.z -= t.z;
@@ -250,9 +248,10 @@ void C_00151F80::func_00152300(float dt)
                     if (f60->fa7 & 0x20) {
                         t = f68;
                         if (func_00011170(&fe8) > D_002756DC && func_00011170(&t) > D_002756DC) {
+                            S_151F80_Vec *fe8p = &fe8;
                             func_00150890(&out, &t);
-                            func_00021330(&dst, &fe8, &out);
-                            fe8 = dst;
+                            func_00021330(&dst, fe8p, &out);
+                            *fe8p = dst;
                             v.x -= t.x;
                             v.y -= t.y;
                             v.z -= t.z;
@@ -281,8 +280,7 @@ void C_00151F80::func_001528D0(float dt)
     float sq = v.x * v.x + v.z * v.z;
     float len = AsmSqrtF(sq);
     if (len > D_002A7870) {
-        S_151F80_Vec *pv = &v;
-        func_00150890(pv, pv);
+        func_00150890(&v, &v);
         v = v * D_002A7870;
         fe8.x = v.x;
         fe8.z = v.z;
@@ -300,11 +298,11 @@ void C_00151F80::func_001528D0(float dt)
         f2c->f1a4->f4->func_00199B00(&q, 0);
     }
     S_151F80_Vec d = fe8 * dt;
-    S_1528D0_Vec dest = q;
-    dest.x += d.x;
-    dest.y += d.y;
-    dest.z += d.z;
-    f2c->f1a4->f4->func_00199600(dest);
+    S_1528D0_Vec p = q;
+    p.x += d.x;
+    p.y += d.y;
+    p.z += d.z;
+    f2c->f1a4->f4->func_00199600(p);
     f2c->f1a4->func_00132D20();
 }
 
