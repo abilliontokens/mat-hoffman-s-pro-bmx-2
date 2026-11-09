@@ -250,6 +250,11 @@ static __forceinline State_14170 *Make_14170(unsigned size, void *vt, int kind) 
 }
 extern f32 D_002A0508;
 #include <new>
+static __forceinline S_00014850_Vec4 Vec00014850(void) {
+ S_00014850_Vec4 v;
+ v.z = 0; v.y = 0; v.x = 0; v.w = 1;
+ return v;
+}
 
 void C_00013F50::func_00013A40(char *path)
 {
