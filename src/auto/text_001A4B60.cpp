@@ -168,7 +168,7 @@ struct S_001A5730_Item {
 struct S_001A53C0_V4 {
     f32 x, y, z, w;
     S_001A53C0_V4() { z = 0; y = 0; x = 0; w = 1.0f; }
-    S_001A53C0_V4(f32 a, f32 b, f32 c) { x = a; y = b; z = c; w = 1.0f; }
+          S_001A53C0_V4(f32 a, f32 b, f32 c, f32 d = 1.0f) { x = a; y = b; z = c; w = d; }
     S_001A53C0_V4(const f32 *p) { x=p[0]; y=p[1]; z=p[2]; w=1.0f; }
     void set(const f32 *p) { x=p[0]; y=p[1]; z=p[2]; w=1.0f; }
     S_001A53C0_V4 operator*(f32 s) const { return S_001A53C0_V4(x * s, y * s, z * s); }
@@ -255,36 +255,36 @@ int C_SphereCollisionObject::func_001A4B60(char *o)
     AsmTransformPoint(&c.x, (float *)&fA8, matrix);
     switch (arg->f50) {
     case 5:
-        return func_00122730((float *)(o + 0xa8), *(f32 *)&f100, matrix, (float *)(o + 0xa8), *(f32 *)(o + 0x100), (float *)(o + 0xc0));
+        return func_00122730((float *)&fA8, *(f32 *)&f100, matrix, &arg->fA8, *(f32 *)&arg->f100, &arg->fC0);
     case 6: {
         S_001A53C0_V4 a;
         a = *(S_001A53C0_V4 *)&fA8 * f10C;
         func_00030AC0(&a.x, &a.x, matrix);
-        return func_001225C0(o + 0xf0, o + 0x100, &a, f100, *(int *)((char *)this + 0x104), o + 0xb0);
+        return func_001225C0(&arg->fF0, &arg->f100, &a, f100, *(int *)((char *)this + 0x104), &arg->fB0);
     }
     case 3: {
         S_Matrix16 m;
         AsmIdentityMatrix(&m);
-        return func_00122730((float *)&fA8, *(f32 *)&f100, matrix, (float *)(o + 0x28), *(f32 *)(o + 0xe8), (float *)&m);
+        return func_00122730((float *)&fA8, *(f32 *)&f100, matrix, &arg->f28, arg->fE8, (float *)&m);
     }
     case 0: {
         S_001A53C0_V4 a(*(float **)(o + 0x1c4) + 3);
         S_001A53C0_V4 b(*(float **)(o + 0x1c4) + 6);
-        return func_001225C0(&a, &b, &c, f100, *(int *)((char *)this + 0x104), o + 0x130);
+        return func_001225C0(&a, &b, &c, f100, *(int *)((char *)this + 0x104), (char *)arg + 0x130);
     }
     case 1:
-        return func_001225C0(o + 0xa8, o + 0xb8, &c, f100, *(int *)((char *)this + 0x104), o + 0x130);
+        return func_001225C0(&arg->fA8, &arg->fB8, &c, f100, *(int *)((char *)this + 0x104), (char *)arg + 0x130);
     case 2: {
         S_001A53C0_V4 a, b;
-        if (*(float **)(o + 0xfc)) {
-            a.set(*(float **)(o + 0xfc) + 3);
-            b.set(*(float **)(o + 0xfc) + 6);
+        if (arg->fFc) {
+            a.set((float *)arg->fFc + 3);
+            b.set((float *)arg->fFc + 6);
         } else {
             float t[4], u[4], v[4], w[4];
-            a = *(S_001A53C0_V4 *)func_0001C5E0(u, 0.5f, func_000110E0(t, (float *)(*(char **)(o + 0x100) + 0x10), *(float **)(o + 0x100)));
-            b = *(S_001A53C0_V4 *)func_0001C5E0(w, 0.5f, func_00011110(v, (float *)(*(char **)(o + 0x100) + 0x10), *(float **)(o + 0x100)));
+            a = *(S_001A53C0_V4 *)func_0001C5E0(u, 0.5f, func_000110E0(t, (float *)((char *)arg->f100 + 0x10), (float *)arg->f100));
+            b = *(S_001A53C0_V4 *)func_0001C5E0(w, 0.5f, func_00011110(v, (float *)((char *)arg->f100 + 0x10), (float *)arg->f100));
         }
-        return func_001225C0(&a, &b, &c, f100, *(int *)((char *)this + 0x104), o + 0xb0);
+        return func_001225C0(&a, &b, &c, f100, *(int *)((char *)this + 0x104), &arg->fB0);
     }
     }
     return 0;
