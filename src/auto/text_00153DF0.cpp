@@ -1,6 +1,7 @@
 /* 2 functions from 0x00153DF0 to 0x00154C10, found by Ghidra. */
 #include "common.h"
 #include "ghidra.h"
+#include "asm_helpers.h"
 struct C_00154BF0 {
     undefined4 func_00154BF0(byte param_1);
 };
