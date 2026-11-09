@@ -61,13 +61,6 @@ struct S_0005F3C0_8490 {
     struct Lookup_5F *f2EC;
 };
 struct S_0005F3C0_2E8 { int f0; int *f4; };
-
-static __forceinline int Pick_5F(volatile int c, int *q)
-{
-    if (c == 0)
-        return q[0xfb8 / 4];
-    return q[0xec0 / 4];
-}
 struct Label_5F3 {
     char pad0[0x28];
     float f28;
