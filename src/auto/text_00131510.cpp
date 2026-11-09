@@ -58,7 +58,7 @@ struct C_00131510 {
     int f98;
     int f9C;
     float fA0;
-    int fA4;
+    float fA4;
     float fA8;
     int fAC;
     int fB0;
