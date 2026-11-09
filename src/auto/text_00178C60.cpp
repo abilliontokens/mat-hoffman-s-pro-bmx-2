@@ -147,9 +147,9 @@ struct S_1793E0 { Vec4 a, b, c, t; };
 static __forceinline int edge_1793E0(Vec4 *p, Vec4 *q, Vec4 *r, Vec4 *n)
 {
     S_1793E0 v;
-    v.c.x = 0.0f;
-    v.c.y = 0.0f;
     v.c.z = 0.0f;
+    v.c.y = 0.0f;
+    v.c.x = 0.0f;
     v.c.w = 1.0f;
     v.t.x = q->x - p->x;
     v.t.y = q->y - p->y;
