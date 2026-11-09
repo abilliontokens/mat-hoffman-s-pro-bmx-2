@@ -211,8 +211,8 @@ struct S_1C4560_Mgr {
 };
 extern S_1C4560_Mgr *D_002EFDB8;
 struct S_1C4560_Call {
-    void func_00157920(void);
-    void func_00157960(void);
+    int func_00157920(void);
+    int func_00157960(void);
 };
 void *func_001E8A44(int size);
 
@@ -377,7 +377,7 @@ int S_001C4560_This::func_001C4560()
     S_001C4560_This *volatile self = this;
     char *mgr;
     char *fx;
-    int rect[8];
+    int rect[6];
     int rect2[2];
     float x;
     float y;
