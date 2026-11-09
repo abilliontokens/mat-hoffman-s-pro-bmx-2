@@ -102,18 +102,6 @@ static __forceinline S_001C64A0_Node *find_root(S_001C64A0_Node **n)
     return root;
 }
 
-static __forceinline void find_root_to(S_001C64A0_Node *n, S_001C64A0_Node **out)
-{
-    S_001C64A0_Node *root = n;
-    int i;
-    for (i = 0; i < n->f1C; i++) {
-        if (n->f14[i]->f4 == 0) {
-            root = n->f14[i];
-        }
-    }
-    *out = root;
-}
-
 static __forceinline Vec4 vec3_neg(Vec4 *v)
 {
     Vec4 r;
@@ -414,7 +402,7 @@ void C_001C65E0::func_001C65E0(S_001C64A0_Node *obj)
 {
     Vec4 a;
     int i;
-    S_001C64A0_Node *root = obj->findRoot();
+    S_001C64A0_Node *root = find_root(obj);
     S_001C64A0_Node *node;
 
     if (obj->f2C == 0) {
