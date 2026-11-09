@@ -371,27 +371,6 @@ static __forceinline float wrap_angle_00016D60(float x)
     return r;
 }
 
-static __forceinline float wrap_angle_ptr_00016D60(float *xp)
-{
-    int n;
-    int *p = &n;
-    int *q = p;
-    float t;
-    float r;
-    float x = *xp;
-
-    t = *(volatile float *)&x * D_002756EC;
-    AsmFloatToInt(t, q);
-    r = x - (float)n * D_002756B8;
-    if (r > D_002756D0) {
-        r = r - D_002756B8;
-    }
-    if (r < D_002756E8) {
-        r = r + D_002756B8;
-    }
-    return r;
-}
-
 struct S_00019070_Slot {
     char pad0[0xc];
     int fc;
