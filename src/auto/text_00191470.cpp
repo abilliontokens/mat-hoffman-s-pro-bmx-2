@@ -183,20 +183,15 @@ void C_00191470::func_00191470(unsigned int a0)
     }
 }
 
-void C_00191470::func_00191510(const char * volatile a0, unsigned int a1)
+void C_00191470::func_00191510(const char *a0, unsigned int a1)
 {
- volatile int slot[4];
- int a,b,k;
- slot[0]=(int)this;
  switch ((a1>>16)&0xff) { case 0: f1C=0x10; break; case 1: f1C=0x40; break; }
- slot[1]=strlen(a0); slot[2]=0x17;
- a=slot[2]; b=slot[1];
- slot[3]=a > b ? b : a;
- k=slot[3];
- func_001E8920((void*)slot[0],a0,k);
- ((volatile char*)slot[0])[k]=0;
- C_00191470 *p=(C_00191470*)slot[0];
- p->f18=*(volatile unsigned int*)&a1;
+ int slen = strlen(a0);
+ int lim = 0x17;
+ int len = AsmMinI(lim, slen);
+ func_001E8920(this, a0, len);
+ ((char *)this)[len] = 0;
+ f18 = a1;
 }
 
 void *C_001915A0::func_001915A0(unsigned int a0, C_00191470_Vec *a1, int *a2)
