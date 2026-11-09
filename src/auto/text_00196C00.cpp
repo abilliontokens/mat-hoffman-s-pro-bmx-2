@@ -65,7 +65,8 @@ struct C_001972B0 {
     char pad34[0xC];
     f32 f40;
     f32 f44;
-    char pad48[8];
+    f32 f48;
+    char pad4C[4];
     char *f50;
     char pad54[0x18];
     unsigned f6C;
@@ -269,76 +270,102 @@ extern void func_0015C7D0(float *a, float *b, float *out, float t);
 extern int func_00016CF0(float v);
 void __fastcall func_00196C00(char *self, int, float dt)
 {
-    C_001972B0 *o = (C_001972B0 *)self;
+    C_001972B0 *o;
     unsigned i;
-
+    int off;
+    float q1[4], q2[4], q3[4];
+    float range, x;
+    int b0, b4;
+    unsigned char mask = 0x20;
     *(float *)(self + 0x2c) = *(float *)(self + 0x28);
     if (*(unsigned char *)(self + 0xc0) & 8) {
         float v = *(float *)(self + 0x28);
-        o->func_00196290();
+        ((C_001972B0 *)self)->func_00196290();
         *(float *)(self + 0x28) = v - dt * *(float *)(self + 0x44);
         *(float *)(self + 0x28) = AsmMaxF(*(float *)(self + 0x28), 0.0f);
     } else {
         *(float *)(self + 0x28) += dt * *(float *)(self + 0x44);
     }
-
-    if (*(unsigned char *)(self + 0xc0) & 0x20) return;
-
+    o = (C_001972B0 *)self;
+    if (o->fC0 & mask) return;
     do {
-        if (*(float *)(self + 0x28) >= *(float *)(self + 0x48)) {
-            int r = func_001968C0(self);
-            *(unsigned char *)(self + 0xc0) ^= (r << 5) & 0x20;
+        if (o->f28 >= *(float *)((char *)o + 0x48)) {
+            int r = o->func_001968C0();
+            unsigned char c = o->fC0;
+            o->fC0 = c ^ (((r << 5) ^ c) & mask);
         }
-    } while (!(*(unsigned char *)(self + 0xc0) & 0x20));
-
-    if (*(float *)(self + 0x48) == *(float *)(self + 0x30)) return;
-
-    float t = (*(float *)(self + 0x28) - *(float *)(self + 0x30)) /
-              (*(float *)(self + 0x48) - *(float *)(self + 0x30));
-    if (*(unsigned *)(self + 0x74) == 0) return;
-
-    for (i = 0; i < *(unsigned *)(self + 0x74); i++) {
-        char *p = ((char **)(self + 0x7c))[i];
+    } while (!(o->fC0 & mask));
+    if (*(float *)((char *)o + 0x48) == o->f30) return;
+    float t = (o->f28 - o->f30) / (*(float *)((char *)o + 0x48) - o->f30);
+    if (o->f74 == 0) return;
+    for (i = 0, off = 8; i < o->f74; i++, off += 4) {
+        char *p = (char *)o->f7C[i];
         if (p == 0) continue;
-        if (((int *)(self + 0x84))[i] == 0) continue;
-        if (((int *)(self + 0x80))[i] != 0) {
-            if (((int *)(self + 0x8c))[i] != 0) {
-                *(int *)p = ((int *)(self + 0xa0))[i];
-                continue;
+        if (o->f84[i] == 0) continue;
+        if (o->f80[i] == 0) {
+            if (o->f8C[i] != 0) { *(int *)p = o->fA0[i]; continue; }
+            int ty = o->f88[i];
+            if (ty == 3) {
+                func_00195D40((Vec4_195D40 *)q1, ((float *)o->f9C)[i], ((float *)o->f9C)[i + 1], *(float *)((char *)o->f9C + off), ((float *)o->f9C)[i + 3]);
+                func_00195D40((Vec4_195D40 *)q2, ((float *)o->fA0)[i], ((float *)o->fA0)[i + 1], *(float *)((char *)o->fA0 + off), ((float *)o->fA0)[i + 3]);
+                func_0015C7D0(q1, q2, q3, t);
+                ((float *)o->f7C[i])[0] = q3[0];
+                ((float *)o->f7C[i])[1] = q3[1];
+                ((float *)o->f7C[i])[2] = q3[2];
+                ((float *)o->f7C[i])[3] = q3[3];
+                i += 3; off += 12; continue;
             }
+            if (ty == 0) { *(float *)p = ((float *)o->f9C)[i] + (((float *)o->fA0)[i] - ((float *)o->f9C)[i]) * t; continue; }
+            if (ty == 1) {
+                if (((float *)o->fA0)[i] > ((float *)o->f9C)[i]) { *(float *)p = ((float *)o->f9C)[i] + (((float *)o->fA0)[i] - ((float *)o->f9C)[i]) * t; continue; }
+                if (((float *)o->fA0)[i] < ((float *)o->f9C)[i]) {
+                    range = ((float *)o->fA8)[i] - ((float *)o->fA4)[i];
+                    x = (range + ((float *)o->fA0)[i] - ((float *)o->f9C)[i]) * t + ((float *)o->f9C)[i];
+                    if (x > ((float *)o->fA8)[i]) x -= range;
+                    *(float *)p = x; continue;
+                }
+                *(unsigned *)p = ((unsigned *)o->fA0)[i]; continue;
+            }
+            if (ty == 2) {
+                if (((float *)o->fA0)[i] >= ((float *)o->f9C)[i]) { *(float *)p = ((float *)o->f9C)[i] + (((float *)o->fA0)[i] - ((float *)o->f9C)[i]) * t; continue; }
+                range = ((float *)o->fA8)[i] - ((float *)o->fA4)[i];
+                x = (((float *)o->fA0)[i] - ((float *)o->f9C)[i] - range) * t + ((float *)o->f9C)[i];
+                if (x < ((float *)o->fA4)[i]) x += range;
+                *(float *)p = x; continue;
+            }
+            *(unsigned *)p = ((unsigned *)o->fA0)[i];
         } else {
-            if (((int *)(self + 0x8c))[i] != 0) {
-                *(int *)p = ((int *)(self + 0xa0))[i];
-                continue;
-            }
-            {
-                int ty = ((int *)(self + 0x88))[i];
-                if (ty == 3) {
-                    int q1[4], q2[4];
-                    float q3[4];
-                    func_00195D40((Vec4_195D40 *)q1,
-                                  *(int *)&((float *)(self + 0x9c))[i * 4],
-                                  *(int *)&((float *)(self + 0x9c))[i * 4 + 1],
-                                  *(int *)&((float *)(self + 0x9c))[i * 4 + 2],
-                                  *(int *)&((float *)(self + 0x9c))[i * 4 + 3]);
-                    func_00195D40((Vec4_195D40 *)q2,
-                                  *(int *)&((float *)(self + 0xa0))[i * 4],
-                                  *(int *)&((float *)(self + 0xa0))[i * 4 + 1],
-                                  *(int *)&((float *)(self + 0xa0))[i * 4 + 2],
-                                  *(int *)&((float *)(self + 0xa0))[i * 4 + 3]);
-                    func_0015C7D0(q3, (float *)q1, (float *)q2, 0);
-                    ((float *)(self + 0x7c))[i * 4] = q3[0];
-                    continue;
-                }
-                if (ty == 0) {
-                    *(float *)p = ((float *)(self + 0xa0))[i];
-                    continue;
-                }
+            if (o->f80[i] == 1) {
+                if (o->f8C[i] != 0) { *(int *)p = o->fB4[i]; continue; }
+                int ty = o->f88[i];
+                if (ty == 0) { *(int *)o->f7C[i] = func_00016CF0(o->fB0[i] + (float)(o->fB4[i] - o->fB0[i]) * t); continue; }
+                if (ty == 1 && o->fB4[i] > o->fB0[i]) { *(int *)o->f7C[i] = func_00016CF0(o->fB0[i] + (float)(o->fB4[i] - o->fB0[i]) * t); continue; }
+                if (ty == 2 && o->fB4[i] < o->fB0[i]) { *(int *)o->f7C[i] = func_00016CF0(o->fB0[i] + (float)(o->fB4[i] - o->fB0[i]) * t); continue; }
                 if (ty == 1) {
-                    *(float *)p = ((float *)(self + 0x9c))[i] +
-                                  (((float *)(self + 0xa0))[i] - ((float *)(self + 0x9c))[i]) * t;
-                    continue;
+                    if (o->fB4[i] < o->fB0[i]) {
+                        b0 = o->fB0[i]; b4 = o->fB4[i];
+                        if (((float *)o->fA4)[i] == D_00275544 || ((float *)o->fA8)[i] == D_00275544) {
+                            range = ((float *)o->fA8)[i] - ((float *)o->fA4)[i];
+                            x = b0 + ((float)b4 + range - (float)b0) * t;
+                            if (x > ((float *)o->fA8)[i]) x -= range;
+                            *(int *)o->f7C[i] = func_00016CF0(x); continue;
+                        }
+                    }
                 }
+                if (ty == 2) {
+                    if (o->fB4[i] < o->fB0[i]) {
+                        b0 = o->fB0[i]; b4 = o->fB4[i];
+                        if (((float *)o->fA4)[i] == D_00275544 || ((float *)o->fA8)[i] == D_00275544) {
+                            range = ((float *)o->fA8)[i] - ((float *)o->fA4)[i];
+                            x = b0 + ((float)(b4 - b0) - range) * t;
+                            if (x < ((float *)o->fA4)[i]) x += range;
+                            *(int *)o->f7C[i] = func_00016CF0(x); continue;
+                        }
+                    }
+                }
+                *(int *)o->f7C[i] = func_00016CF0(o->fB0[i] + (float)(o->fB4[i] - o->fB0[i]) * t);
+            } else if (o->f80[i] == 2) {
+                *(unsigned char *)p = ((unsigned char *)o->fB8)[i];
             }
         }
     }
