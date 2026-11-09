@@ -80,7 +80,7 @@ extern int D_0028F5EC, D_0028F5E0;
 static __forceinline void pos6D(S_0006D750_Txt *p, int x, int y) { if (p->x != x || p->y != y) { p->y = y; p->x = x; p->flags |= 6; } }
 static __forceinline void align6D(S_0006D750_Txt *p, int a) { if (p->align != a) { p->align = a; p->flags |= 6; } }
 static __forceinline void color6D(S_0006D750_Txt *p, unsigned int c) { if (p->color != c) { p->flags |= 8; p->color = (p->color & (c | 0xff000000)) | (c & 0xffffff); } }
-static __forceinline void uv6D(S_0006D750_Obj *p) { float a = D_00278654 * p->w; p->flags |= 4; p->a = a; p->b = D_00275544 * p->w; p->c = D_0027653C * p->h; p->d = D_00275544 * p->h; }
+static __forceinline void uv6D(S_0006D750_Obj *p) { float a = p->w * D_00278654; p->flags |= 4; p->a = a; p->b = p->w * D_00275544; p->c = p->h * D_0027653C; p->d = p->h * D_00275544; }
 static __forceinline void width6D(S_0006D750_Obj *p, int v) { if (p->width != v) { p->width = v; p->flags |= 1; } }
 static __forceinline void height6D(S_0006D750_Obj *p, int v) { if (p->height != v) { p->height = v; p->flags |= 1; } }
 struct C_001D5AD0 {
@@ -316,9 +316,8 @@ C_0006D590 *C_0006D590::func_0006D750(C_0006E250_E8 *arg)
     int i;
     S_0006D750_Obj *o;
     S_0006D750_Txt *t;
-    C_0006D590 *self = this;
 
-    self->unkE8 = arg;
+    unkE8 = arg;
     ids[0] = (int)&D_00278690;
     ids[1] = (int)&D_002786A0;
     ids[2] = (int)&D_00278678;
@@ -335,18 +334,18 @@ C_0006D590 *C_0006D590::func_0006D750(C_0006E250_E8 *arg)
     D_002A60B0.f10 = D_00278674;
 
     o = (S_0006D750_Obj *)func_001E8A44(0x64);
-    self->unkA4 = (C_001D5AD0 *)(o ? o->func_001D5760() : 0);
-    ((S_0006D750_Obj *)self->unkA4)->func_001D5810(D_00278658, 0, 0, 0);
-    width6D((S_0006D750_Obj *)self->unkA4, 0x44200000);
-    height6D((S_0006D750_Obj *)self->unkA4, 0x42480000);
-    uv6D((S_0006D750_Obj *)self->unkA4);
+    unkA4 = (C_001D5AD0 *)(o ? o->func_001D5760() : 0);
+    ((S_0006D750_Obj *)unkA4)->func_001D5810(D_00278658, 0, 0, 0);
+    width6D((S_0006D750_Obj *)unkA4, 0x44200000);
+    height6D((S_0006D750_Obj *)unkA4, 0x42480000);
+    uv6D((S_0006D750_Obj *)unkA4);
 
     o = (S_0006D750_Obj *)func_001E8A44(0x64);
-    self->unkA8 = (C_001D5AD0 *)(o ? o->func_001D5760() : 0);
-    ((S_0006D750_Obj *)self->unkA8)->func_001D5810(D_00278658, 0, 398.0f, 0);
-    width6D((S_0006D750_Obj *)self->unkA8, 0x44200000);
-    height6D((S_0006D750_Obj *)self->unkA8, 0x42480000);
-    uv6D((S_0006D750_Obj *)self->unkA8);
+    unkA8 = (C_001D5AD0 *)(o ? o->func_001D5760() : 0);
+    ((S_0006D750_Obj *)unkA8)->func_001D5810(D_00278658, 0, 398.0f, 0);
+    width6D((S_0006D750_Obj *)unkA8, 0x44200000);
+    height6D((S_0006D750_Obj *)unkA8, 0x42480000);
+    uv6D((S_0006D750_Obj *)unkA8);
 
     for (i = 0; i < 5; i++) {
         float x;
@@ -354,12 +353,12 @@ C_0006D590 *C_0006D590::func_0006D750(C_0006E250_E8 *arg)
         o = (S_0006D750_Obj *)func_001E8A44(0x64);
         n = o ? o->func_001D5760() : 0;
         x = i * D_00278650;
-        self->unkB0[i] = (C_001D5AD0 *)n;
+        unkB0[i] = (C_001D5AD0 *)n;
         n->func_001D5810(D_00278658, x, 50.0f, 0);
         o = (S_0006D750_Obj *)func_001E8A44(0x64);
-        self->unkC4[i] = (C_001D5AD0 *)(o ? o->func_001D5760() : 0);
-        ((S_0006D750_Obj *)self->unkC4[i])->func_001D5810(D_00278658, x, 366.0f, 0);
-        o = (S_0006D750_Obj *)self->unkC4[i];
+        unkC4[i] = (C_001D5AD0 *)(o ? o->func_001D5760() : 0);
+        ((S_0006D750_Obj *)unkC4[i])->func_001D5810(D_00278658, x, 366.0f, 0);
+        o = (S_0006D750_Obj *)unkC4[i];
         o->a = 0;
         o->b = 1.0f;
         o->c = 0.99f;
@@ -368,45 +367,45 @@ C_0006D590 *C_0006D590::func_0006D750(C_0006E250_E8 *arg)
     }
 
     o = (S_0006D750_Obj *)func_001E8A44(0x64);
-    self->unkD8 = (C_001D5AD0 *)(o ? o->func_001D5760() : 0);
-    ((S_0006D750_Obj *)self->unkD8)->func_001D5810(D_00278638, 379.0f, 388.0f, 0);
+    unkD8 = (C_001D5AD0 *)(o ? o->func_001D5760() : 0);
+    ((S_0006D750_Obj *)unkD8)->func_001D5810(D_00278638, 379.0f, 388.0f, 0);
 
     o = (S_0006D750_Obj *)func_001E8A44(0x64);
-    self->unkDC = (C_001D5AD0 *)(o ? o->func_001D5760() : 0);
-    ((S_0006D750_Obj *)self->unkDC)->func_001D5810(D_00278608, 379.0f, 388.0f, 0);
+    unkDC = (C_001D5AD0 *)(o ? o->func_001D5760() : 0);
+    ((S_0006D750_Obj *)unkDC)->func_001D5810(D_00278608, 379.0f, 388.0f, 0);
 
     o = (S_0006D750_Obj *)func_001E8A44(0x64);
-    self->unkF0 = (C_001D5AD0 *)(o ? o->func_001D5760() : 0);
-    ((S_0006D750_Obj *)self->unkF0)->func_001D5810(D_00278600, 0, 0, 0);
+    unkF0 = (C_001D5AD0 *)(o ? o->func_001D5760() : 0);
+    ((S_0006D750_Obj *)unkF0)->func_001D5810(D_00278600, 0, 0, 0);
     {
-        S_0006D750_Obj *p = (S_0006D750_Obj *)self->unkF0;
+        S_0006D750_Obj *p = (S_0006D750_Obj *)unkF0;
         unsigned int c = p->color;
         p->flags |= 2;
         p->color = c & 0xff000000;
     }
     {
-        S_0006D750_Obj *p = (S_0006D750_Obj *)self->unkF0;
+        S_0006D750_Obj *p = (S_0006D750_Obj *)unkF0;
         unsigned char fl = p->flags;
         fl |= 2;
         *((unsigned char *)&p->color + 3) = 0x80;
         p->flags = fl;
     }
-    height6D((S_0006D750_Obj *)self->unkF0, 0x43e00000);
-    width6D((S_0006D750_Obj *)self->unkF0, 0x44200000);
+    height6D((S_0006D750_Obj *)unkF0, 0x43e00000);
+    width6D((S_0006D750_Obj *)unkF0, 0x44200000);
 
     func_001ADCC0((char *)&D_002A60B0, 0x104, D_00275678, D_002A5870, D_002A5FA8);
 
     t = (S_0006D750_Txt *)func_001E8A44(0x60);
-    self->unkE0 = (int)(t ? t->func_001D5E90() : 0);
-    t = (S_0006D750_Txt *)self->unkE0;
+    unkE0 = (int)(t ? t->func_001D5E90() : 0);
+    t = (S_0006D750_Txt *)unkE0;
     t->func_001D6190(font1, D_002A8490->p2E8[1][0x838 / 4], (int)&D_00278690);
     pos6D(t, 0x43ea0000, 0x43c48000);
     color6D(t, 0xffcccccc);
     align6D(t, D_0028F5EC);
 
     t = (S_0006D750_Txt *)func_001E8A44(0x60);
-    self->unkF4 = (int)(t ? t->func_001D5E90() : 0);
-    t = (S_0006D750_Txt *)self->unkF4;
+    unkF4 = (int)(t ? t->func_001D5E90() : 0);
+    t = (S_0006D750_Txt *)unkF4;
     t->func_001D5FA0(font2, (char *)&D_00278678, 0x28, 0);
     pos6D(t, 0x43a00000, 0x42200000);
     color6D(t, 0xffcccccc);
@@ -416,7 +415,7 @@ C_0006D590 *C_0006D590::func_0006D750(C_0006E250_E8 *arg)
         float y;
         t = (S_0006D750_Txt *)func_001E8A44(0x60);
         t = t ? t->func_001D5E90() : 0;
-        self->unk68[i] = (u32)t;
+        unk68[i] = (u32)t;
         t->func_001D5FA0(font1, (char *)&D_00278690, 0x2d, 0);
         y = i * D_00275800 + D_00278AE8;
         if (t->x != 0x43a00000 || *(float *)&t->y != y) {
@@ -424,10 +423,10 @@ C_0006D590 *C_0006D590::func_0006D750(C_0006E250_E8 *arg)
             t->x = 0x43a00000;
             t->flags |= 6;
         }
-        t = (S_0006D750_Txt *)self->unk68[i];
+        t = (S_0006D750_Txt *)unk68[i];
         align6D(t, D_0028F5E0);
     }
-    return self;
+    return this;
 }
 
 void C_0006D590::func_0006DD40() {
