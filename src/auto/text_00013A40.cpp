@@ -132,7 +132,6 @@ struct S_00014850_Vec4 {
     f32 y;
     f32 z;
     f32 w;
-    S_00014850_Vec4 &operator=(const S_00014850_Vec4 &v) { x=v.x; y=v.y; z=v.z; w=v.w; return *this; }
 };
 
 /* a vector that starts as (0, 0, 0, 1) */
@@ -256,6 +255,7 @@ void C_00013F50::func_00013A40(char *path)
     int n1;
     int n3;
     int mode;
+    int extra;
     char val[0x104];
     char name[0x104];
     char saved[0x104];
@@ -425,12 +425,13 @@ extern "C" char *strcpy(char*,const char*);
 #pragma intrinsic(strcpy)
 void C_14170::func_00014170(char *volatile name,unsigned char flag,int mode,int a,char *path,char *type,float value,int b,int c,int d,S_00014850_Vec4 *vec)
 {
- f404.x=vec->x; f404.y=vec->y; f404.z=vec->z; f404.w=vec->w;
+ S_00014850_Vec4 *v=&f404;
+ v->x=vec->x;v->y=vec->y;v->z=vec->z;v->w=vec->w;
  f3b8=c; f3e3=flag;
  char save0[0x104],save1[0x104];
- int limit=0x103;
- int n=AsmMinI(limit,(int)strlen(D_002A5EA0));func_001E8920(save0,D_002A5EA0,n);save0[n]=0;
- n=AsmMinI(limit,(int)strlen(D_002A60B0));func_001E8920(save1,D_002A60B0,n);save1[n]=0;
+ char limit=0x103;
+ int len=AsmMinI(limit,(int)strlen(D_002A5EA0));func_001E8920(save0,D_002A5EA0,len);save0[len]=0;
+ len=AsmMinI(limit,(int)strlen(D_002A60B0));func_001E8920(save1,D_002A60B0,len);save1[len]=0;
  if(mode==1) {
  func_001ADCC0(D_002A5EA0,0x104,D_00275678,D_002A5348,D_002A45E0);
  func_001ADCC0(D_002A60B0,0x104,D_00275678,D_002A5348,D_002A5FA8);
@@ -477,17 +478,15 @@ void C_14170::func_00014170(char *volatile name,unsigned char flag,int mode,int 
  S_00014850_Player *player=D_002A8490->f2a4;
  if(player && !player->f1c8) f3bc=0;
  f384->func_0008AB90(f388);f3bc=0;func_001C6DA0(f414,1);
- n=AsmMinI(limit,(int)strlen(save0));func_001E8920(D_002A5EA0,save0,n);D_002A5EA0[n]=0;
- n=AsmMinI(limit,(int)strlen(save1));func_001E8920(D_002A60B0,save1,n);D_002A60B0[n]=0;
+ len=AsmMinI(limit,(int)strlen(save0));func_001E8920(D_002A5EA0,save0,len);D_002A5EA0[len]=0;
+ len=AsmMinI(limit,(int)strlen(save1));func_001E8920(D_002A60B0,save1,len);D_002A60B0[len]=0;
 }
 void C_00014020::func_00014850(int arg)
 {
     S_00014850_State *st = f384->f24;
-
     if ((st == 0 || st->f4 != 7) && arg == 1) {
         int next = f3B0 + 1;
         S_00014850_Player *p;
-
         if (next >= D_002B9120->f588[f3B4]->count) {
             next = 0;
         }
