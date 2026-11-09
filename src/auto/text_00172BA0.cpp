@@ -2,6 +2,7 @@
 #include "common.h"
 #include <math.h>
 #include <string.h>
+#include "asm_helpers.h"
 
 extern float D_00275544;
 float func_0001C870(float a, float b, float c, float d, float e);
@@ -85,7 +86,7 @@ struct C_00172BA0 {
     char pad[0x38];
     int f38;
     void func_00172BA0();
-    void func_001578D0();
+    void __fastcall func_001578D0(void *self);
 };
 
 extern int D_002A8BA0;
@@ -175,26 +176,22 @@ void __fastcall func_00172BA0(int *self)
 void C_001730B0::func_001730B0(float dt)
 {
     if (f130 > D_00275544) {
-        float v;
         if ((f30 == 0 || f34 == 0) && fd0->f30 != 0) {
             f12c = dt + f12c;
-            v = f130 + f130;
-            if (f12c < v) {
-                v = f12c;
-            }
+            f12c = AsmMinF(f12c, f130 + f130);
         } else {
             f12c = f12c - dt;
-            v = 0.0f;
-            if (f12c > v) {
-                v = f12c;
-            }
+            f12c = AsmMaxF(f12c, 0.0f);
         }
-        f12c = v;
-        fe4 = func_0001C870(f12c, f130, f100, f130 + f130, f104);
-        fe0 = func_0001C870(f12c, f130, ffc, f130 + f130, f108);
+        C_001730B0 *p = this;
+        p->fe4 = func_0001C870(p->f12c, p->f130, p->f100, p->f130 + p->f130, p->f104);
+        p = this;
+        p->fe0 = func_0001C870(p->f12c, p->f130, p->ffc, p->f130 + p->f130, p->f108);
     }
     {
-        float len = (float)sqrt(fc4->f268 * fc4->f268 + fc4->f26c * fc4->f26c + fc4->f270 * fc4->f270);
+        float *v = &fc4->f268;
+        float z = v[2], y = v[1], x = v[0];
+        float len = AsmSqrtF(x*x+y*y+z*z);
         if (fc4->f28 < f134 && len < f138 && f124 < f13c && f128 < f140 && fd0->f30 != 0) {
             fc4->v34(0);
             return;
