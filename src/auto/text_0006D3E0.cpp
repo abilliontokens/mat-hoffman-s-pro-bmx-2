@@ -84,12 +84,12 @@ static __forceinline void pos6D(S_0006D750_Txt *p, int x, int y) { if (p->x != x
 static __forceinline void align6D(S_0006D750_Txt *p, int a) { if (p->align != a) { p->align = a; p->flags |= 6; } }
 static __forceinline void color6D(S_0006D750_Txt *p, unsigned int c) { if (p->color != c) { p->flags |= 8; p->color = (p->color & (c | 0xff000000)) | (c & 0xffffff); } }
 __forceinline void S_0006D750_Obj::Scale6D() {
-    float t = *(volatile float *)&w * D_00278654;
+    float t = D_00278654 * w;
     flags |= 4;
     a = t;
-    b = *(volatile float *)&w * D_00275544;
-    c = *(volatile float *)&h * D_0027653C;
-    d = *(volatile float *)&h * D_00275544;
+    b = D_00275544 * w;
+    c = D_0027653C * h;
+    d = D_00275544 * h;
 }
 static __forceinline void width6D(S_0006D750_Obj *p, int v) { if (p->width != v) { p->width = v; p->flags |= 1; } }
 static __forceinline void height6D(S_0006D750_Obj *p, int v) { if (p->height != v) { p->height = v; p->flags |= 1; } }
