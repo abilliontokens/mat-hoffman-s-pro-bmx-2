@@ -64,7 +64,7 @@ struct C_00043F00 {
     char pad52C[0x53C - 0x52C]; Obj53C_43 *f53C;
     Vt18_43 *f540; char pad544[0x550 - 0x544]; Obj550_43 *f550; Obj550_43 *f554;
     char pad558[0x560 - 0x558]; Obj560_43 *f560; Obj564_43 *f564; Obj568_43 *f568; Obj568_43 *f56C; Obj568_43 *f570;
-          char pad574[0x57C - 0x574]; void *f57C; void *f580; char pad584[0x5A0 - 0x584]; int f5A0; void *f5A4; int f5A8; int *f5AC;
+          char pad574[0x57C - 0x574]; void *f57C; void *f580; char pad584[0x5A0 - 0x584]; int f5A0; void *f5A4; int f5A8; int f5AC;
     int func_00043F00(int arg);
     int func_00041560();
     int func_000395A0(V4_43 v);
