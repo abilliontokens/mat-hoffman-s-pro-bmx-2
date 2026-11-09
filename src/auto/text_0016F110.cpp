@@ -2,7 +2,7 @@
 #include "common.h"
 #include "asm_helpers.h"
 struct Rdr6F110 {
-    char pad0[0x4d4];
+    char pad0[0x4cc];
     void func_00168280();
     void func_001691E0();
     int func_00169490(char *a, int b);
@@ -139,13 +139,13 @@ extern float D_0027A098;
 extern float D_002755E8;
 int C_0016F110::func_0016F110(char *name)
 {
-    float a, b;
-    float fa, fb, fc, fd;
+    int i;
+    volatile float a;
+    float b;
     char sbuf[0x40];
     char buf[0x104];
     Rdr6F110 rdr;
-    char buf2[0xf0];
-    int i;
+    char buf2[0xfc];
 
     rdr.func_00168280();
     strcpy(buf, D_002A5558);
@@ -158,34 +158,36 @@ int C_0016F110::func_0016F110(char *name)
         rdr.func_00168C20(D_00288A50, 0, &f138);
         rdr.func_00168C50(D_00288A44, 255.0f, &f140);
         if (f138 > 0) {
-            int *item = (int *)func_001E8A44(f138 * 12);
-            f134 = item;
+            f134 = (int *)func_001E8A44(f138 * 12);
             for (i = 0; i < f138; i++) {
                 func_001ADCC0(sbuf, 0x40, D_00288A3C, i);
                 rdr.func_00169710(sbuf);
-                rdr.func_00168A10(D_00288A34, &item[i * 3 + 0]);
-                rdr.func_00168A10(D_00288A28, &item[i * 3 + 1]);
-                rdr.func_00168A10(D_00288A1C, &item[i * 3 + 2]);
+                rdr.func_00168A10(D_00288A34, &((int *)f134)[i * 3 + 0]);
+                rdr.func_00168A10(D_00288A28, &((int *)f134)[i * 3 + 1]);
+                rdr.func_00168A10(D_00288A1C, &((int *)f134)[i * 3 + 2]);
             }
         }
         if (f14c > 0) {
-            float *q = (float *)func_001E8A44(f14c * 32);
-            f104 = q;
+            f104 = (float *)func_001E8A44(f14c * 32);
             for (i = 0; i < f14c; i++) {
+                float fb = 0;
+                float fc = 0;
+                float fd = 0;
+                float fa = 0;
                 func_001ADCC0(sbuf, 0x40, D_00288A14, i);
                 rdr.func_00169710(sbuf);
                 rdr.func_00168B90(D_00288A0C, &fa);
                 rdr.func_00168B90(D_00288A04, &fb);
                 rdr.func_00168B90(D_002889FC, &fc);
                 rdr.func_00168B90(D_002889F0, &fd);
-                q[i * 8 + 0] = fa;
-                q[i * 8 + 1] = fc;
-                q[i * 8 + 2] = fb;
-                q[i * 8 + 3] = fc;
-                q[i * 8 + 4] = fb;
-                q[i * 8 + 5] = fd;
-                q[i * 8 + 6] = fa;
-                q[i * 8 + 7] = fd;
+                ((float *)f104)[i * 8 + 0] = fa;
+                ((float *)f104)[i * 8 + 1] = fc;
+                ((float *)f104)[i * 8 + 2] = fb;
+                ((float *)f104)[i * 8 + 3] = fc;
+                ((float *)f104)[i * 8 + 4] = fb;
+                ((float *)f104)[i * 8 + 5] = fd;
+                ((float *)f104)[i * 8 + 6] = fa;
+                ((float *)f104)[i * 8 + 7] = fd;
             }
         }
         f150 = 0;
@@ -193,10 +195,10 @@ int C_0016F110::func_0016F110(char *name)
         return 1;
     }
     f14c = 0x3d;
-    f104 = func_001E8A44(0x7a0);
+    f104 = (float *)func_001E8A44(0x7a0);
     for (i = 0; i < 14; i++) {
         a = (float)(i / 4) * D_00278C48;
-        b = (float)(i % 4) * D_00278C48;
+        b = (float)(i - (i / 4) * 4) * D_00278C48;
         ((float *)f104)[i * 8 + 0] = b;
         ((float *)f104)[i * 8 + 1] = a;
         ((float *)f104)[i * 8 + 2] = b + D_00278C48;
@@ -208,7 +210,7 @@ int C_0016F110::func_0016F110(char *name)
     }
     for (i = 0xe; i < 0x12; i++) {
         a = (float)((i - 0xe) / 2) * D_0027AA20 + D_00279B54;
-        b = (float)((i - 0xe) % 2) * D_0027AA20 + D_00278C48;
+        b = (float)(i - ((i - 0xe) / 2) * 2 - 0xe) * D_0027AA20 + D_00278C48;
         ((float *)f104)[i * 8 + 0] = b;
         ((float *)f104)[i * 8 + 1] = a;
         ((float *)f104)[i * 8 + 2] = b + D_0027AA20;
@@ -220,7 +222,7 @@ int C_0016F110::func_0016F110(char *name)
     }
     for (i = 0x1d; i < 0x2d; i++) {
         a = (float)((i - 0x1d) / 4) * D_0027A098 + D_00279B54;
-        b = (float)((i - 0x1d) % 4) * D_0027A098 + D_002755E8;
+        b = (float)(i - ((i - 0x1d) / 4) * 4 - 0x1d) * D_0027A098 + D_002755E8;
         ((float *)f104)[i * 8 + 0] = b;
         ((float *)f104)[i * 8 + 1] = a;
         ((float *)f104)[i * 8 + 2] = b + D_0027A098;
@@ -232,7 +234,7 @@ int C_0016F110::func_0016F110(char *name)
     }
     for (i = 0x2d; i < 0x3d; i++) {
         a = (float)((i - 0x2d) / 4) * D_0027A098 + D_00279B54;
-        b = (float)((i - 0x2d) % 4) * D_0027A098 + D_00279B54;
+        b = (float)(i - ((i - 0x2d) / 4) * 4 - 0x2d) * D_0027A098 + D_00279B54;
         ((float *)f104)[i * 8 + 0] = b;
         ((float *)f104)[i * 8 + 1] = a;
         ((float *)f104)[i * 8 + 2] = b + D_0027A098;
@@ -269,15 +271,16 @@ void C_0016F7B0::func_0016F7B0(void)
 
 int C_0016F800::func_0016F800(void)
 {
-    S_16F800_Range *r;
     S_16F800_Obj *o;
+    S_16F800_Range *r;
     S_16F800_Part *node;
     S_16F800_Bucket *e;
+    float *pw, *pz, *px, *py;
     float scale, f, inv, d;
     float v1[4];
     float v2[4];
     __declspec(align(16)) float m[16];
-    int i, b, q;
+    int i = 0, b, q, n;
 
     this->f144 = 0;
     if (this->obj170->f) func_001D7D00();
@@ -295,16 +298,21 @@ int C_0016F800::func_0016F800(void)
     this->frame++;
     f = (float)D_002A88B8 * D_00288A7C;
     inv = D_00275460 / f;
+    pw = &r->f27c;
+    pz = &r->f278;
+    px = &r->f270;
+    py = &r->f274;
+    n = D_002A88B8;
 
-    for (i = 0; i < this->count; i++) {
+    for (; i < this->count; i++) {
         node = this->nodes[i];
-        d = node->y * r->f274 + node->z * r->f278 + node->x * r->f270 + r->f27c;
-        if (d > r->f200) continue;
-        if (d < r->f1fc) continue;
+        d = node->y * *py + node->z * *pz + node->x * *px + *pw;
+        r = (S_16F800_Range *)D_002EFDB8->obj;
+        if (d > r->f200 || d < r->f1fc) continue;
         AsmFloatToInt(d * f, &q);
         node->f24 = (float)q * inv;
-        b = func_001E8858((float)(D_002A88B8 - 1) * d * scale);
-        if (b >= D_002A88B8) continue;
+        b = (int)((float)(n - 1) * d * scale);
+        if (b >= n) continue;
         e = &this->buckets[b];
         if (e->id < this->frame) {
             e->node = node;
@@ -320,6 +328,7 @@ int C_0016F800::func_0016F800(void)
     }
     if (this->used == 0) return 1;
 
+    r = (S_16F800_Range *)D_002EFDB8->obj;
     v1[0] = r->f170 + r->f180 * D_00275994;
     v1[1] = r->f174 + r->f184 * D_00275994;
     v1[2] = r->f178 + r->f188 * D_00275994;
@@ -339,9 +348,9 @@ int C_0016F800::func_0016F800(void)
 
 void C_0016FBC0::func_0016FBC0()
 {
-    float *second;
-    float *first = (float *)func_001FF410(size1,16);
+    float * volatile second;
     float *out;
+    float *first = (float *)func_001FF410(size1,16);
     if(size2) { out=(float *)func_001FF410(size2,16); second=out; }
     else out=second;
     count2=0;
@@ -354,7 +363,7 @@ void C_0016FBC0::func_0016FBC0()
         int *b=(int *)entries;
         if(b[index*2] == id && (p=(S_0016FBC0_Node *)b[index*2+1]) != 0)
         do {
-            float alpha=1.0f;
+            float alpha=D_00275460;
             if(p->flags & 0x2000) { alpha=f140; ++count1; }
             else if(p->flags & 1) ++count1;
             else { int n=count2+1; out=first; count2=n; }
@@ -366,11 +375,11 @@ void C_0016FBC0::func_0016FBC0()
                 float y=p->y-obj[1];
                 float z=p->z-obj[2];
                 float dist=z*z+y*y+x*x;
-                float fade=1.0f-p->f34*p->f2c;
+                float fade=D_00275460-p->f34*p->f2c;
                 if(dist < *(float *)(p->owner+0x218))
                     alpha *= fade * *(float *)(p->owner+0x21c) * dist;
                 else alpha *= fade;
-            } else if(flags&2) alpha *= 1.0f-p->f34*p->f2c;
+            } else if(flags&2) alpha *= D_00275460-p->f34*p->f2c;
             else if(flags&0x1000) {
                 float a=p->f3c, b=p->f38;
                 float na=a*a, nb=b*b;
@@ -405,7 +414,10 @@ positions:
             out[8]=p->x;out[9]=p->y;out[10]=p->z;out[14]=size;out[15]=alpha;out[13]=1.0f;
             out[16]=p->x;out[17]=p->y;out[18]=p->z;out[22]=size;out[23]=alpha;out[21]=2.0f;
             out[24]=p->x;out[25]=p->y;out[26]=p->z;out[30]=size;out[31]=alpha;out[29]=3.0f;
-            if(out==second) second+=32; else first+=32;
+            {
+                float *cur = second;
+                if(out==cur) { cur+=32; second=cur; } else first+=32;
+            }
             p=p->next;
             out=second;
         } while(p);
