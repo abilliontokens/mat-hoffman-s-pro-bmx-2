@@ -67,6 +67,9 @@ struct S_0E9180_270 {
 
 #include <xmmintrin.h>
 struct Vec_0E9180 { float x,y,z,w; };
+static __forceinline Vec_0E9180 operator+(const Vec_0E9180 &a, const Vec_0E9180 &b) {
+    Vec_0E9180 r; r.x=a.x+b.x; r.y=a.y+b.y; r.z=a.z+b.z; r.w=1.0f; return r;
+}
 static __forceinline void cross_0E9180(Vec_0E9180 * volatile out,const Vec_0E9180 * volatile a,const float *b) {
     const Vec_0E9180 *pa=a;
     _mm_storeu_ps(&out->x, _mm_shuffle_ps(
