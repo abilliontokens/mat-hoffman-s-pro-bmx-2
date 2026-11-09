@@ -71,6 +71,8 @@ struct S_002A60B0 { int f0, f4, f8, fC; unsigned char f10; };
 extern S_002A60B0 D_002A60B0, D_00278664;
 extern int D_00278668, D_0027866C, D_00278670;
 extern char D_00278674;
+extern int D_002A60B4, D_002A60B8, D_002A60BC;
+extern char D_002A60C0;
 void *func_001E8A44(int size);
 extern float D_00275544, D_00278650, D_00278654, D_0027653C, D_00275800, D_00278AE8;
 extern char D_00278658[], D_00278638[], D_00278608[], D_00278600[];
