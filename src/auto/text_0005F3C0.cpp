@@ -50,7 +50,7 @@ struct C_001C4D50 {
 
 struct S_0005F3C0_2E0 {
     int f0;
-    int f4;
+    volatile int f4;
 };
 
 struct S_0005F3C0_8490 {
