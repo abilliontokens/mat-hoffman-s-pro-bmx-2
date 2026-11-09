@@ -245,9 +245,10 @@ struct C_14170 {
 };
 static __forceinline State_14170 *Make_14170(unsigned size, void *vt, int kind) {
  State_14170 *s=(State_14170*)func_001E8A44(size);
- if(s) { s->vtbl=vt;s->kind=kind;s->owner=0; }
- return s;
+ if(s) { s->vtbl=vt;s->kind=kind;s->owner=0; return s; }
+ return 0;
 }
+extern f32 D_002A0508;
 
 void C_00013F50::func_00013A40(char *path)
 {
@@ -428,13 +429,17 @@ extern "C" char *strcpy(char*,const char*);
 #pragma intrinsic(strcpy)
 void C_14170::func_00014170(char *volatile name,unsigned char flag,int mode,int a,char *path,char *type,float value,int b,int c,int d,S_00014850_Vec4 *vec)
 {
- S_00014850_Vec4 *v=&f404;
- v->x=vec->x;v->y=vec->y;v->z=vec->z;v->w=vec->w;
- f3b8=c; f3e3=flag;
  char save0[0x104],save1[0x104];
- char limit=0x103;
- int len=AsmMinI(limit,(int)strlen(D_002A5EA0));func_001E8920(save0,D_002A5EA0,len);save0[len]=0;
- len=AsmMinI(limit,(int)strlen(D_002A60B0));func_001E8920(save1,D_002A60B0,len);save1[len]=0;
+ f404 = *vec;
+ f3b8=c; f3e3=flag;
+ int slen=(int)strlen(D_002A5EA0);
+ int lim=0x103;
+ int len=AsmMinI(lim,slen);
+ func_001E8920(save0,D_002A5EA0,len);save0[len]=0;
+ slen=(int)strlen(D_002A60B0);
+ lim=0x103;
+ len=AsmMinI(lim,slen);
+ func_001E8920(save1,D_002A60B0,len);save1[len]=0;
  if(mode==1) {
  func_001ADCC0(D_002A5EA0,0x104,D_00275678,D_002A5348,D_002A45E0);
  func_001ADCC0(D_002A60B0,0x104,D_00275678,D_002A5348,D_002A5FA8);
@@ -481,8 +486,14 @@ void C_14170::func_00014170(char *volatile name,unsigned char flag,int mode,int 
  S_00014850_Player *player=D_002A8490->f2a4;
  if(player && !player->f1c8) f3bc=0;
  f384->func_0008AB90(f388);f3bc=0;func_001C6DA0(f414,1);
- len=AsmMinI(limit,(int)strlen(save0));func_001E8920(D_002A5EA0,save0,len);D_002A5EA0[len]=0;
- len=AsmMinI(limit,(int)strlen(save1));func_001E8920(D_002A60B0,save1,len);D_002A60B0[len]=0;
+ slen=(int)strlen(save0);
+ lim=0x103;
+ len=AsmMinI(lim,slen);
+ func_001E8920(D_002A5EA0,save0,len);D_002A5EA0[len]=0;
+ slen=(int)strlen(save1);
+ lim=0x103;
+ len=AsmMinI(lim,slen);
+ func_001E8920(D_002A60B0,save1,len);D_002A60B0[len]=0;
 }
 void C_00014020::func_00014850(int arg)
 {
