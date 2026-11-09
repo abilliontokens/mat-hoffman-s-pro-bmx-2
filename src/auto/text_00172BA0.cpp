@@ -166,7 +166,7 @@ struct C_00173550 {
     void *func_00173550(int flags);
 };
 
-void func_001578D0(void *);
+void __fastcall func_001578D0(void *self);
 void __fastcall func_00172BA0(int *self)
 {
     self[0x38 / 4] = 1;
