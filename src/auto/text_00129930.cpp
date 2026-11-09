@@ -44,6 +44,7 @@ struct M120FF0 { void func_00120FF0(void *a, void *b, void *c, void *d, void *e)
 struct M110E0 { void func_000110E0(void *a, void *b, void *c); };
 struct M11110 { void func_00011110(void *a, void *b, void *c); };
 struct MC5E0 { void func_001C5E0(float a, void *b); };
+struct V4_129A10 { float x, y, z, w; };
 
 extern int D_00283F64;
 void func_001E891B(void *p);
@@ -282,26 +283,68 @@ int C_00129A10::func_00129A10(S_00129A10_Arg *a)
     switch (a->f50) {
     case 5: {
         float t[4];
-        t[0] = a->f10C * a->fA8;
-        t[1] = a->f10C * a->fAC;
-        t[2] = a->f10C * a->fB0;
+        float f10c = a->f10C;
         t[3] = 1.0f;
+        t[0] = f10c * a->fA8;
+        t[1] = f10c * a->fAC;
+        t[2] = f10c * a->fB0;
         func_00030AC0(t, &t[1], (char *)a + 0xc0);
-        float s = a->f100 * a->f100;
-        func_001225C0(fF0, f100, &t[3], (void *)*(int *)&a->f100, (void *)*(int *)&s, fB0);
-        return 1;
+        {
+            float s = a->f100 * a->f100;
+            return func_001225C0(fF0, f100, &t[3], (void *)*(int *)&a->f100, (void *)*(int *)&s, fB0);
+        }
+    }
+    case 6: {
+        float m[4], n[4], r[4];
+        ((M264C0 *)m)->func_000264C0(fB0);
+        func_0011AC30(m, m);
+        func_0011ACC0(n, (char *)a + 0xb0, n);
+        return func_001225C0(fF0, f100, r, (char *)a + 0xf0, (char *)a + 0x100, n);
     }
     case 3: {
         float s = a->fE8 * a->fE8;
-        func_001225C0(fF0, f100, v2, (char *)a + 0xd8, (void *)*(int *)&a->fE8, (void *)*(int *)&s);
-        return 1;
+        return func_001225C0(fF0, f100, v2, (char *)a + 0xd8, (void *)*(int *)&a->fE8, (void *)*(int *)&s);
     }
-    case 0:
-    case 1:
-    case 2:
+    case 0: {
+        int *e = (int *)((char *)a->f1c4 + (unsigned short)a->f1bc * 36);
+        float m[4], n[4];
+        int p[4], q[4];
+        ((M264C0 *)m)->func_000264C0(fB0);
+        func_0011AC30(m, m);
+        func_0011ACC0(n, (char *)a + 0x130, n);
+        p[0] = e[3]; p[1] = e[4]; p[2] = e[5]; p[3] = 0x3f800000;
+        q[0] = e[6]; q[1] = e[7]; q[2] = e[8]; q[3] = 0x3f800000;
+        return func_001225C0(fF0, f100, (float *)p, (char *)a + 0xf0, (char *)a + 0x100, (float *)q);
+    }
+    case 1: {
+        float m[4], n[4], r[4];
+        ((M264C0 *)m)->func_000264C0(fB0);
+        func_0011AC30(m, m);
+        func_0011ACC0(n, (char *)a + 0x130, n);
+        return func_001225C0(fF0, f100, r, (char *)a + 0xa8, (char *)a + 0xb8, n);
+    }
+    case 2: {
+        float u[4], w[4], m[4], n[4], s1[4], s2[4], tmp[4];
+        if (a->fc) {
+            int *c = (int *)a->fc;
+            v2[0] = c[3]; v2[1] = c[4]; v2[2] = c[5]; v2[3] = 0x3f800000;
+            v1[0] = c[6]; v1[1] = c[7]; v1[2] = c[8]; v1[3] = 0x3f800000;
+        }
+        char *b = (char *)*(int *)&a->f100;
+        {
+            float *r1 = (float *)func_0001C5E0(s1, 0.5f, func_000110E0(tmp, b + 0x10, b));
+            u[0] = r1[0]; u[1] = r1[1]; u[2] = r1[2]; u[3] = r1[3];
+        }
+        {
+            float *r2 = (float *)func_0001C5E0(s2, 0.5f, func_00011110(tmp, &v2[1], b));
+            w[0] = r2[0]; w[1] = r2[1]; w[2] = r2[2]; w[3] = r2[3];
+        }
+        ((M264C0 *)m)->func_000264C0(fB0);
+        func_0011AC30(m, m);
+        func_0011ACC0(n, (char *)a + 0xb0, n);
+        return func_00120FF0(fF0, f100, u + 1, v2 + 2, n);
+    }
     case 4:
-    case 6:
-        return 1;
     default:
         return 0;
     }
@@ -320,7 +363,7 @@ void BoxCollisionObject::func_00129E10(void)
 void BoxCollisionObject::func_00129E20(void *src)
 {
     if (src == 0) {
-        AsmIdentityMatrix(&matrix[0]);
+        AsmIdentityMatrix(matrix);
     } else {
         ((C_000264C0_129E20 *)matrix)->func_000264C0(src);
     }
@@ -404,20 +447,25 @@ void func_0012A380(float *out, float *in) {
     AsmVec3Normalize(out, in);
 }
 
+extern "C" void _ReadWriteBarrier(void);
+#pragma intrinsic(_ReadWriteBarrier)
 Camera_12A3F0 *Camera_12A3F0::func_0012A3F0(int a)
 {
     V4_12A3F0 v;
     unsigned char *b;
     int *p;
     float t;
+    unsigned char c;
 
     func_00157600(a);
     t = D_00284038;
     b = (unsigned char *)this;
+    c = b[0x27];
     b[0x26] = 0xff;
     b += 0x24;
+    _ReadWriteBarrier();
     *(unsigned short *)b = 0;
-    b[3] &= 0xf8;
+    b[3] = c & 0xf8;
     *(int *)this = (int)&D_00284074;
     Set4_12A3F0((V4_12A3F0 *)((char *)this + 0x170));
     Set4_12A3F0((V4_12A3F0 *)((char *)this + 0x180));
@@ -454,17 +502,12 @@ Camera_12A3F0 *Camera_12A3F0::func_0012A3F0(int a)
     *(int *)((char *)this + 0x244) = 0;
     *(V4_12A3F0 *)((char *)this + 0x1b0) = *(V4_12A3F0 *)((char *)this + 0x180);
     *(V4_12A3F0 *)((char *)this + 0x1a0) = *(V4_12A3F0 *)((char *)this + 0x170);
-    p = (int *)this + 0x1c0 / 4;
-    p[0] = D_002A3E3C;
-    p[1] = D_002A3E40;
-    p[2] = D_002A3E44;
-    p[3] = D_002A3E48;
+    *(V4_12A3F0 *)((char *)this + 0x1c0) = *(V4_12A3F0 *)&D_002A3E3C;
     Ident_12A3F0((float *)((char *)this + 0x130));
     *(int *)((char *)this + 0x28) = 0;
     *(int *)((char *)this + 0x2c) = 0;
     return this;
 }
-
 void Emitter_12A770::func_0012A770(int a1, int a2)
 {
     Cam_12A770 *p = (Cam_12A770 *)func_001E8A44(0x28);
