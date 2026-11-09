@@ -172,8 +172,8 @@ void Owner10C::func_0010C210()
           *(float *)((char *)obj + 0x19c) = *(float *)(src + 0xc);
       }
       (*(VObj10 **)((char *)this + 0x1e0))->v28(v38 * D_00283A7C);
-              Q10C q1;
-        Q10C q2;
+              Q10C q2;
+        Q10C q1;
         { char *t=(char *)this; (*(Node230 **)(t + 0x230))->func_0019A680(&q1, t + 0x7c); }
       __declspec(align(16)) M44C matA;
       __declspec(align(16)) M44C matB;
