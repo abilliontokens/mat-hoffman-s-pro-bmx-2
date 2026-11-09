@@ -62,7 +62,7 @@ struct C_00128910 {
 
 #include <xmmintrin.h>
 #include "asm_helpers.h"
-extern const float D_002755E8;
+extern volatile const float D_002755E8;
 
 static inline float Sqrt_00128480(float x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(*(__m128 *)&x)); return r; }
 
@@ -149,10 +149,7 @@ void func_00127DD0(S_00127DD0_Node *node0, int *nodes, S_00127DD0_V4 *a2, S_0012
     int count = count0;
     S_00127DD0_Node *node = node0;
     while (count != 1) {
-        int *n4 = (int *)((char *)node + 4);
-        char *n8 = (char *)node + 8;
-        char *n18 = (char *)node + 0x18;
-        func_00126A80(e, count * 2, n8, n18, node, n4, 0);
+        func_00126A80(e, count * 2, (char *)node + 8, (char *)node + 0x18, node, (char *)node + 4, 0);
         func_00127980(e, pos, count, &mode, &thr);
         cntA = cntB = 0;
         bufA = (S_00127DD0_Entry *)func_001E8AA5(count << 5);
@@ -203,9 +200,9 @@ void func_00128120(int a0, int a1, int a2, M44_00128120 *mat, S_00127DD0_Entry *
 {
     V4_00128120 *mid;
     M44_00128120 m;
+    V4_00128120 *pv;
     int i;
     int n;
-    float *p;
 
     mid = (V4_00128120 *)func_001E8AA5(count << 4);
     for (i = 0; i < count; i++) {
@@ -215,10 +212,10 @@ void func_00128120(int a0, int a1, int a2, M44_00128120 *mat, S_00127DD0_Entry *
     func_0011AC30(&m, &m);
     n = count * 2;
     if (n > 0) {
-        p = (float *)e;
+        pv = (V4_00128120 *)e;
         do {
-            AsmTransformPoint(p, p, (const float *)m.m);
-            p += 4;
+            AsmTransformPoint((float *)pv, (float *)pv, (const float *)m.m);
+            pv++;
         } while (--n != 0);
     }
     func_00127DD0(a0, a1, a2, e, mid, count);
