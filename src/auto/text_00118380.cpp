@@ -27,6 +27,11 @@ static __forceinline float Dot3_118380(float *a, float *b)
     return *(volatile float *)&a[0] * b[0] + a[1] * b[1] + d2;
 }
 
+static float Dot3V_118380(float a0, float b0, float a1, float b1, float a2, float b2)
+{
+    return a0 * b0 + a1 * b1 + a2 * b2;
+}
+
 struct C_00157BF0 {
     int func_00157BF0(int a, int b);
 };
@@ -174,7 +179,7 @@ void C_00118380::func_001184E0(float dt)
             float *xv = s.x;
             float *wv = s.w;
             float d2 = xv[2] * wv[2];
-            float ang = func_0014F7E0(xv[0] * *(volatile float *)&wv[0] + xv[1] * wv[1] + d2);
+            float ang = func_0014F7E0(xv[0] * wv[0] + xv[1] * wv[1] + d2);
             if (ang > D_002756D4) {
                 ang = D_002756D0 - ang;
             }
