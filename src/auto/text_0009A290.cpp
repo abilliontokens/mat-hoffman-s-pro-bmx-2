@@ -41,6 +41,42 @@ struct C_00097A80 {
     char data[0x48e4];
     C_00097A80 *func_00097A80();
 };
+// companion object at this->f198+0x64: vtable slots used by func_0009A290
+class C_v64 {
+public:
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
+    virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11();
+    virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15();
+    virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
+    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23();
+    virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27();
+    virtual void v28(); virtual void v29(); virtual void v30(); virtual void v31();
+    virtual void v32(); virtual void v33(); virtual void v34(); virtual void v35();
+    virtual void v36(); virtual void v37(); virtual void v38(); virtual void v39();
+    virtual void v40(); virtual void v41(); virtual void v42(); virtual void v43();
+    virtual void v44(); virtual void v45(); virtual void v46(); virtual void v47();
+    virtual void v48(); virtual void v49(); virtual void v50(); virtual void v51();
+    virtual void v52(); virtual void v53(); virtual void v54(); virtual void v55();
+    virtual void v56(); virtual void v57(); virtual void v58(); virtual void v59();
+    virtual void v60(); virtual void v61(); virtual void v62(); virtual void v63();
+    virtual void v64(); virtual void v65(); virtual void v66(); virtual void v67();
+    virtual void v68(); virtual void v69(); virtual void v70(); virtual void v71();
+    virtual void v72(); virtual void v73(); virtual void v74(); virtual void v75();
+    virtual void v76(); virtual void v77(); virtual void v78(); virtual void v79();
+    virtual void v80(); virtual void v81(); virtual void v82(); virtual void v83();
+    virtual void v84(); virtual void v85(); virtual void v86(); virtual void v87();
+    virtual void v88(); virtual void v89(); virtual void v90(); virtual void v91();
+    virtual void v92(); virtual void v93();
+    virtual int v178(char *);
+    virtual void v17C();
+    virtual int v180(char *);
+    virtual int v184(char *);
+};
+struct S198 { char pad[0x64]; C_v64 *o; };
+struct Cx { int m(int a, int b); };
+void *func_001ADA43(int);
+void func_001AC58F(char *);
 void func_0009A1F0(C_00168280 *, const char *, const char *, char *, int);
 extern char D_0027A904[], D_0027A914[], D_0027A924[], D_002772CC[], D_00276980[], D_0027A8FC[], D_0027A8F0[], D_0027A8E0[], D_0027A8D8[], D_0027A8CC[], D_0027A8C4[], D_0027A8B0[], D_0027A8A4[], D_0027A894[], D_0027A888[], D_0027A878[], D_0027A85C[], D_0027A84C[], D_0027A83C[], D_0027A828[], D_0027A810[], D_0027A7F8[], D_0027A7E0[], D_0027A7CC[], D_0027A7BC[], D_0027A7A4[], D_0027A78C[], D_0027A774[], D_0027A760[], D_0027A748[], D_0027A730[], D_0027A718[];
 extern char D_0027A700[],D_0027A6E0[],D_0027A6C0[],D_0027A6A8[],D_0027A694[],D_0027A678[],D_0027A658[],D_0027A638[];
@@ -171,7 +207,6 @@ int C_0009A290::func_0009A290(int a1, char *a2, int *a3)
                     iniObj->func_00168550(format,objects[j]->data+0x2f90+k*0x78,0x77);
                     func_001ADCC0(format,0x104,D_0027A718,k+1);
                     iniObj->func_00168550(format,objects[j]->data+0x3530+k*0x78,0x77);
-
                     func_001ADCC0(format,0x104,D_0027A700,k+1);
                     iniObj->func_00168C50(format,0.0f,(float *)(objects[j]->data+0x3b00+k*4));
                     func_001ADCC0(format,0x104,D_0027A6E0,k+1);
