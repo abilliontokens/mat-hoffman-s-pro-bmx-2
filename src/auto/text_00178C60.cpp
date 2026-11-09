@@ -151,12 +151,12 @@ static __forceinline int edge_1793E0(Vec4 *p, Vec4 *q, Vec4 *r, Vec4 *n)
     v.t.y = q->y - p->y;
     v.t.z = q->z - p->z;
           v.t.w = 1.0f;
-      v.a.x = v.t.x; v.a.y = v.t.y; v.a.z = v.t.z; v.a.w = v.t.w;
+      v.a = v.t;
       v.t.x = r->x - p->x;
       v.t.y = r->y - p->y;
       v.t.z = r->z - p->z;
       v.t.w = 1.0f;
-      v.b.x = v.t.x; v.b.y = v.t.y; v.b.z = v.t.z; v.b.w = v.t.w;
+      v.b = v.t;
     cross_179950(&v.c.x, &v.a.x, &v.b.x);
     float d = v.c.y * n->y + v.c.x * n->x + v.c.z * n->z;
     return *(int *)&d >= 0;
