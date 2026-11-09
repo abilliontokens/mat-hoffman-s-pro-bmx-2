@@ -744,8 +744,9 @@ void func_001CBC10(int hr, int a, int b)
 int C_001CBCF0::func_001CBCF0(int value)
 {
     int n = count;
-    int i = 0;
-    if (n <= 0) return i;
+    int i;
+    if (n <= 0) return 0;
+    i = 0;
     do {
         if (items[i] == value) {
             items[i] = items[n - 1];
@@ -753,7 +754,7 @@ int C_001CBCF0::func_001CBCF0(int value)
             return 1;
         }
         ++i;
-    } while (i < count);
+    } while (i < *(volatile int *)&count);
     return 0;
 }
 
@@ -922,9 +923,10 @@ int C_001CC0C0::func_001CC1E0(void)
 int C_001CC0C0::func_001CC320(unsigned int v)
 {
     int r;
+    C_001CC0C0 *self = this;
 
     if (f13C != 0) {
-        if (f19C != v) {
+        if (self->f19C != v) {
             if (v < 0xbc || v > (unsigned int)&D_0002EDEF) {
                 return 0;
             }
@@ -933,10 +935,10 @@ int C_001CC0C0::func_001CC320(unsigned int v)
                 func_001CBC10(r, &D_0028EECC, 0x621);
                 return 0;
             }
-            f19C = v;
+            self->f19C = v;
         }
     } else if (f140 != 0) {
-        if (f19C != v) {
+        if (self->f19C != v) {
             if (v < 0xbc || v > (unsigned int)&D_0002EDEF) {
                 return 0;
             }
@@ -945,7 +947,7 @@ int C_001CC0C0::func_001CC320(unsigned int v)
                 func_001CBC10(r, &D_0028EECC, 0x630);
                 return 0;
             }
-            f19C = v;
+            self->f19C = v;
         }
     }
     return 1;
