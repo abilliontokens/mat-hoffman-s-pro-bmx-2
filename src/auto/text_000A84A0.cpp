@@ -163,6 +163,7 @@ struct S_000A8A60_Mgr {
     char pad128[0x1c8 - 0x128];
     int f1C8;
     void func_000323C0(C_000A88A0_Vec v, void *a, void *b);
+    void func_000324C0(int a);
 };
 
 struct S_000A8A60_Global {
@@ -491,7 +492,6 @@ extern char D_0027C2A8[];
 void C_000A88A0::func_000A8920(S_TriggerStream *a, void *b)
 {
     extern float D_002A2734;
-    extern char D_0027C2A8[];
     char buf[0x3c];
     int i;
     for (i = 0; i < 3; i++) {
@@ -577,9 +577,8 @@ C_000A8AF0 *C_000A8AF0::func_000A8AF0() {
 
 int C_000A8B70::func_000A8B70(void *param1, void *param2) {
     extern int D_000A8A60;
-    if (param2 != 0) {
-        ((S_000A8D90_Mgr *)param2)->func_001BBAA0(this, &D_000A8A60);
-    }
+    if (param2 == 0) return 1;
+    ((S_000A8D90_Mgr *)param2)->func_001BBAA0(this, &D_000A8A60);
     return 1;
 }
 
@@ -727,10 +726,8 @@ void C_000A9030::func_000A9050(S_TriggerStream *stream, void *b)
 {
     extern int D_0027C3EC;
     extern int D_0027C3F8;
-
     stream->func_00168BE0(&D_0027C3EC, &D_0027C3F8, &unk10C, 0x3b);
     func_001B5A00(stream, b);
-    return;
 }
 
 C_000A90B0 *C_000A90B0::func_000A90B0() {
@@ -744,7 +741,8 @@ C_000A90B0 *C_000A90B0::func_000A90B0() {
 void C_000A90B0::func_000A90D0(S_TriggerStream *stream, void *b)
 {
     extern int D_0027823C;
-    stream->func_00168C20(&D_0027823C, 0, &unk10C);
+    unsigned char *p = (unsigned char *)this + 0x10c;
+    stream->func_00168C20(&D_0027823C, 0, (void *)p);
     func_001B5A00(stream, b);
 }
 
