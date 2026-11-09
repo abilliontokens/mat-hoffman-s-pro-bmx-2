@@ -83,6 +83,7 @@ struct C_001C6DA0 {
     int unkCC;
     char padD0[4];
     S_001C6DA0_V4 unkD4;
+    S_001C7310_Vec arr[40];
     int func_001C6E30(const char *name);
     void func_001C6DA0(int idx, int arg);
     void func_001C6EA0(C_00198330 *obj, Vec4 *out, int unused);
