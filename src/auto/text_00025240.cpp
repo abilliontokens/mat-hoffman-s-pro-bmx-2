@@ -9,6 +9,7 @@ struct S_25240_V4 {
     S_25240_V4() {}
     S_25240_V4(const S_25240_Pt *p) { x = p->x; y = p->y; z = p->z; w = 1.0f; }
     S_25240_V4(float a, float b, float c) { x = a; y = b; z = c; w = 1.0f; }
+    S_25240_V4(float a, float b, float c, float d) { x = a; y = b; z = c; w = d; }
     S_25240_V4(const S_25240_Pt &p) { *(S_25240_V3 *)this = *(const S_25240_V3 *)&p; w = 1.0f; }
 };
 static __forceinline void SetV4_25240(S_25240_V4 *d, const S_25240_Pt *p)
@@ -413,8 +414,12 @@ int C_00025240::func_00025240(void)
             cnt = 0;
             k = 0;
             lim = func_00011260(3, 4);
-            if (f30 > 0 && cnt < lim && j < f6c[i].f4) {
-                for (; k < f30; k++) {
+            if (f30 > 0) {
+                do {
+                    if (cnt >= lim)
+                        break;
+                    if (j >= f6c[i].f4)
+                        break;
                     if (f60[k]->f7a == 1) {
                         f60[k]->f30 = f6c[i].f0;
                         f60[k]->f3c = f60[k]->f30;
@@ -434,7 +439,8 @@ int C_00025240::func_00025240(void)
                     f60[k]->f7a = 0;
                     cnt++;
                     j++;
-                }
+                    k++;
+                } while (k < f30);
             }
         }
     }
@@ -602,7 +608,6 @@ int C_00025980::func_00025980(float dt)
                     pos.z = pt->z;
                     pos.w = 1.0f;
                     func_000255D0(&pos, 32.0f, 0.0f, 1);
-                    _ReadWriteBarrier();
                     idx++;
                     if (idx >= f34) {
                         idx -= f34;
