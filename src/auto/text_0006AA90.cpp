@@ -5,7 +5,6 @@
 
 struct Txt_6AA90 { char* str; float x; float y; char pad[0x38]; int frame; char pad2[6]; unsigned char flags; int func_001D6290(); void func_001D6600(); void func_0005E840(char*); void SetPos(float a,float b) { if(x!=a||y!=b){x=a;y=b;flags|=6;} } };
 extern int D_0028F5DC;
-static __forceinline void PlaceAndFlag_6AA90(Txt_6AA90 *t, float x, float y) { t->SetPos(x, y); if (t->frame != D_0028F5DC) { t->frame = D_0028F5DC; t->flags |= 6; } }
 inline int Min_6AA90(const int &a,const int &b) { return a<b?a:b; }
 struct Widget_6AA90 {
  void func_001B1980(); void func_001B17D0(char*);
@@ -38,9 +37,9 @@ void S_6AA90::func_0006AA90() {
 char buf[260]; char num[24];
 if(unk168) {
  if((int)strlen(t174->str)<40) {
+ float y=t174->y;
  int width=t174->func_001D6290();
  float x=t174->x;
- float y=t174->y;
  x+=width/2;
  t178->SetPos(x,y);
  if(t178->frame!=D_0028F5DC){t178->frame=D_0028F5DC;t178->flags|=6;}
@@ -51,15 +50,16 @@ if(unk168) {
  t174->func_001D6600();
  for(int i=0x90;i<0x98;i+=4)(*(Txt_6AA90**)((char*)this+i))->func_001D6600();
 }
+int max=259;
 if(!unk164&&!unk168) {
  if(state<16){
  int id=D_00278978[state]; if(!id)id=0x118;else if(id>0x11d)id=0x117;
  volatile int len=(int)strlen(D_002A8490->res->entries[id].s);
- int max=259; int n=AsmMinI(max,len);
+ int n=AsmMinI(max,len);
  func_001E8920(buf,D_002A8490->res->entries[id].s,n);buf[n]=0;
  }else{
  volatile int len=(int)strlen(D_002A8490->res->entries[0x117].s);
- int max=259;int n=AsmMinI(max,len);
+ int n=AsmMinI(max,len);
  func_001E8920(buf,D_002A8490->res->entries[0x117].s,n);buf[n]=0;
  }
 }else{
