@@ -27,7 +27,7 @@ struct G8490_43 {
 struct Obj550_43 { void func_0008A080(); void func_0008A910(); void func_0008A980(); void func_0008A990(); };
 struct Obj560_43 { void func_0008B670(char *s); void func_0008B690(); };
 struct SA0_43 { int count; void **arr; void *base; int bound; char pad10[4]; Obj5B4_43 *ctl; };
-extern G8490_43 *D_002A8490;
+extern int D_002A8490;
 extern char D_00277014[];
 struct Obj568_43 { void func_00133EF0(V4_43 *v); };
 struct Ctx530_43 { void func_0015A250(int); };
