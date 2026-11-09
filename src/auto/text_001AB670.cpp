@@ -6,6 +6,7 @@
 static __forceinline float Min_001AB670(float a, float b) { float r; _mm_store_ss(&r, _mm_min_ss(_mm_load_ss(&a), _mm_load_ss(&b))); return r; }
 static inline float Dot_001AB670(const float *a, const float *b) { return a[0] * b[0] + a[1] * b[1] + a[2] * b[2]; }
 static __forceinline float Dot2_001AB670(const float *a, const float *b) { return (a[1] * b[1] + b[0] * a[0]) + a[2] * b[2]; }
+static __forceinline float Dot3_001AB670(const float *a, const float *b) { return (a[1] * b[1] + a[0] * b[0]) + a[2] * b[2]; }
 struct V4_001AB670 { float x, y, z, w; V4_001AB670() { z = 0.0f; y = 0.0f; x = 0.0f; w = 1.0f; } V4_001AB670(float a, float b, float c, float d) { x = a; y = b; z = c; w = d; } };
 struct V4P_001AB670 { float x, y, z, w; };
 struct Body_001AB670 {
@@ -217,19 +218,19 @@ extern "C" char *strcpy(char *, const char *);
 void C_001AB670::func_001AB670(float *v, int a, int b)
 {
     float zero = 0.0f;
-    float zero2 = 0.0f;
+    register float zero2 = 0.0f;
     float dot;
     float t;
     float *fv;
-    V4P_001AB670 p;
+    register V4P_001AB670 p;
 
     dot = Dot2_001AB670(field_24->n, v);
     t = -AsmMinF(dot, zero);
     p.x = t * v[0];
     p.y = t * v[1];
     p.z = t * v[2];
-    p.w = 1.0f;
     field_24->func_00030B20(*(V4_001AB670 *)&p);
+    p.w = 1.0f;
     dot = Dot2_001AB670(field_24->vel, v);
     t = -AsmMinF(dot, zero2);
     p.x = t * v[0];
