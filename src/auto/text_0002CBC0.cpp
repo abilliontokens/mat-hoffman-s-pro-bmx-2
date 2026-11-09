@@ -128,6 +128,25 @@ struct S2CBC0 {
 
 void func_000263B0(void *out, void *a, void *b);
 
+/* column c of a matrix as a point (w = 1) */
+static __forceinline V4_2D270 ColM1_2D270(const S2CBC0 *o, int c)
+{
+    V4_2D270 r;
+    r.x = o->m1[c];
+    r.y = o->m1[c + 4];
+    r.z = o->m1[c + 8];
+    return r;
+}
+
+static __forceinline V4_2D270 ColM2_2D270(const S2CBC0 *o, int c)
+{
+    V4_2D270 r;
+    r.x = o->m2[c];
+    r.y = o->m2[c + 4];
+    r.z = o->m2[c + 8];
+    return r;
+}
+
 static __forceinline void Cross_2D270(V4_2D270 *volatile out, const V4_2D270 *volatile a, const V4_2D270 *volatile b)
 {
     __m128 va = _mm_loadu_ps(&a->x);
@@ -252,9 +271,7 @@ void S2CBC0::func_0002CBC0(float dt)
 void S2CBC0::func_0002D270()
 {
     S2CBC0 *volatile self = this;
-    V4_2D270 m1w;
     V4_2D270 d;
-    V4_2D270 m1y, m2y, m1z, m2z;
     V4_2D270 c1, c2, c3;
     V3_2D270 v, out1, out2;
     V3_2D270 *r;
@@ -262,25 +279,15 @@ void S2CBC0::func_0002D270()
     __declspec(align(16)) char buf[0x40];
     __declspec(align(16)) char copy[0x40];
 
-    m1w.x = self->m1[3];
-    m1w.y = self->m1[7];
-    m1w.z = self->m1[11];
+    V4_2D270 m1w = Col3_2D270(self->m1, 3);
     s = D_002A8490->f248;
     d.x = (m1w.x - self->m2[3]) * s;
     d.y = (m1w.y - self->m2[7]) * s;
     d.z = (m1w.z - self->m2[11]) * s;
-    m1y.x = self->m1[1];
-    m1y.y = self->m1[5];
-    m1y.y = self->m1[9];
-    m2y.x = self->m2[1];
-    m2y.y = self->m2[5];
-    m2y.z = self->m2[9];
-    m1z.x = self->m1[2];
-    m1z.y = self->m1[6];
-    m1z.z = self->m1[10];
-    m2z.x = self->m2[2];
-    m2z.y = self->m2[6];
-    m2z.z = self->m2[10];
+    V4_2D270 m1y = Col3_2D270(self->m1, 1);
+    V4_2D270 m2y = Col3_2D270(self->m2, 1);
+    V4_2D270 m1z = Col3_2D270(self->m1, 2);
+    V4_2D270 m2z = Col3_2D270(self->m2, 2);
     AsmVec3Cross((float *)&c1, (const float *)&m2z, (const float *)&m1z);
     AsmVec3Cross((float *)&c2, (const float *)&m2y, (const float *)&m1y);
     v.x = (c2.x + c1.x) * s;
