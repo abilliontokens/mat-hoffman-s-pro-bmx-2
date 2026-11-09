@@ -13,6 +13,11 @@ struct V4_0012D620 {
     V4_0012D620() { x = y = z = 0.0f; w = 1.0f; }
 };
 
+// ctor-less twin: same layout, no default-init stores
+struct V4P_0012D620 {
+    float x, y, z, w;
+};
+
 static __forceinline V4_0012D620 operator*(const V4_0012D620 &a, float s)
 {
     V4_0012D620 r;
