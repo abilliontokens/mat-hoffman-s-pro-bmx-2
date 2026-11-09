@@ -34,6 +34,7 @@ extern int D_0028ED5C;
 extern int D_002F08EC;
 extern float D_002755E0;
 extern float D_0028B320;
+extern float D_00287B80;
 extern char D_002A5EA0[];
 void func_001E891B(void *);
 void func_001E8390(void *);
@@ -245,11 +246,11 @@ struct VCall_1CAFF0 {
 Ret_001CA480 WaterDisplacement::func_001CA480(Plane_001CA480 *plane, void *arg1)
 {
     CamV_001CA480 *cam = (CamV_001CA480 *)D_002EFDB8->cam;
-    Vec4_001CA480 A[4];
-    Vec4_001CA480 B[2];
     Vec4_001CA480 C[2];
-    int ret = 0;
+    Vec4_001CA480 B[2];
+    Vec4_001CA480 A[4];
     bool flip = false;
+    int ret = 0;
     if (cam->pos.y < plane->f4) flip = true;
     float T = func_0014F600(cam->fov * 0.00872664526f);
     Vec3_001CA480 P = cam->dir * cam->nearD + cam->pos;
@@ -302,9 +303,10 @@ Ret_001CA480 WaterDisplacement::func_001CA480(Plane_001CA480 *plane, void *arg1)
         Vec3_001CA480 e2 = *(Vec3_001CA480 *)&A[2] - cam->pos;
         l2 = AsmSqrtF(e2.z * e2.z + e2.y * e2.y + e2.x * e2.x);
         l1 = AsmSqrtF(e1.z * e1.z + e1.y * e1.y + e1.x * e1.x);
-        Vec4_001CA480 w = Vec4_001CA480(V2 * (l2 / l1), 1.0f);
-        *(Vec4_001CA480 *)&unk74[flip != 0] = Vec4_001CA480(A[2].x - w.x, A[2].y - w.y, A[2].z - w.z, 1.0f);
-        *(Vec4_001CA480 *)&unk74[(flip != 0) + 2] = Vec4_001CA480(A[2].x + w.x, A[2].y + w.y, A[2].z + w.z, 1.0f);
+        Vec3_001CA480 w = V2 * (l2 / l1);
+        int i0 = flip != 0;
+        *(Vec4_001CA480 *)&unk74[i0] = Vec4_001CA480(A[2].x - w.x, A[2].y - w.y, A[2].z - w.z, 1.0f);
+        *(Vec4_001CA480 *)&unk74[i0 + 2] = Vec4_001CA480(A[2].x + w.x, A[2].y + w.y, A[2].z + w.z, 1.0f);
         ret = 1;
     }
     if (r4) {
@@ -312,9 +314,10 @@ Ret_001CA480 WaterDisplacement::func_001CA480(Plane_001CA480 *plane, void *arg1)
         Vec3_001CA480 e2 = *(Vec3_001CA480 *)&A[3] - cam->pos;
         l2 = AsmSqrtF(e2.z * e2.z + e2.y * e2.y + e2.x * e2.x);
         l1 = AsmSqrtF(e1.z * e1.z + e1.y * e1.y + e1.x * e1.x);
-        Vec4_001CA480 w = Vec4_001CA480(V2 * (l2 / l1), 1.0f);
-        *(Vec4_001CA480 *)&unk74[!flip] = Vec4_001CA480(A[3].x - w.x, A[3].y - w.y, A[3].z - w.z, 1.0f);
-        *(Vec4_001CA480 *)&unk74[3 - (flip != 0)] = Vec4_001CA480(A[3].x + w.x, A[3].y + w.y, A[3].z + w.z, 1.0f);
+        Vec3_001CA480 w = V2 * (l2 / l1);
+        int i0 = !flip;
+        *(Vec4_001CA480 *)&unk74[i0] = Vec4_001CA480(A[3].x - w.x, A[3].y - w.y, A[3].z - w.z, 1.0f);
+        *(Vec4_001CA480 *)&unk74[3 - i0] = Vec4_001CA480(A[3].x + w.x, A[3].y + w.y, A[3].z + w.z, 1.0f);
         ret = 1;
     }
     return ret;
@@ -457,7 +460,6 @@ void func_001CB270(void)
 void XboxSndIf_1CB290::func_001CB290(void)
 {
     SndBank_1CB290 *p;
-
     if (f13C != 0) {
         f13C->v2();
     }
@@ -465,7 +467,6 @@ void XboxSndIf_1CB290::func_001CB290(void)
     p = p != 0 ? p->func_001AC3A0() : 0;
     f13C = p;
     p->v4();
-    return;
 }
 
 void XboxSndIf_1CB290::func_001CB2D0(void)
