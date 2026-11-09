@@ -550,8 +550,7 @@ int C_001CC3C0::func_001CCE10(S_V4_001CCE10 v)
                 return 0;
             }
         }
-        S_V4_001CCE10 t = v;
-        *(S_V4_001CCE10 *)&f1E8 = t;
+        *(S_V4_001CCE10 *)&f1E8 = v;
     }
     return 1;
 }
