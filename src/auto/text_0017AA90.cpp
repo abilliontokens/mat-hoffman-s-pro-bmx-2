@@ -240,7 +240,7 @@ struct C_0017AA90 {
     int f160;
     int func_0017AA90();
     int func_0017B800();
-    void func_0017AD20();
+        int func_0017AD20();
     void func_001D3F50();
     C_0017AA90 *func_0017ABE0(const char *name);
     C_0017AA90(const char *name);
@@ -298,7 +298,7 @@ undefined4 C_0017ABC0::func_0017ABC0(byte param_1)
   int func_0017A640(...);
   int func_001E891B(...);
   undefined4 in_ECX = (undefined4)this;
-  
+
   func_0017A640();
   if ((param_1 & 1) != 0) {
     func_001E891B(in_ECX);
@@ -332,9 +332,9 @@ C_0017AA90 *C_0017AA90::func_0017ABE0(const char *name)
     return this;
 }
 
-void C_0017AA90::func_0017AD20()
+int C_0017AA90::func_0017AD20()
 {
-    if (fF0 == 0) return;
+    if (fF0 == 0) return 1;
     V4_0017AD20 corners[3];
     V4_0017AD20 upper, lower;
     V4_0017AD20 mx, mn;
