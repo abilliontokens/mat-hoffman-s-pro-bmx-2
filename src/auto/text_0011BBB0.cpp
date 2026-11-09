@@ -28,6 +28,8 @@ struct V4_0011C3F0 {
 extern float D_00275548, D_00276278, D_00275460;
 extern V4_0011C3F0 D_002A3BDC;
 
+static __forceinline float SmootherUpdate_0011C3F0(struct S_0011C3F0_Smoother *s, float target, float dt);
+
 struct S_0011C3F0_Smoother {
     float f0;
     float f4;
@@ -36,12 +38,16 @@ struct S_0011C3F0_Smoother {
     float f10;
     __forceinline float Update(float target, float dt)
     {
-        float step = AsmMinF(dt, f4);
-        f8 = step * (D_00275460 / f4);
-        f0 = (target - f0) * f8 + f0;
-        return f0;
+        return SmootherUpdate_0011C3F0(this, target, dt);
     }
 };
+
+static __forceinline float SmootherUpdate_0011C3F0(S_0011C3F0_Smoother *s, float target, float dt)
+{
+    float step = AsmMinF(dt, s->f4);
+    s->f8 = step * (D_00275460 / s->f4);
+    return s->f0 = (target - s->f0) * s->f8 + s->f0;
+}
 
 struct S_0011C3F0_Obj54 {
     char pad0[0x40];
@@ -272,13 +278,12 @@ void C_0011BBB0::func_0011BBB0(V4_0011C3F0 a)
     fA4->v31(m);
     fA4->func_00133F10(0);
     if (fA4->fA7 & 0x20) {
-        V4_0011C3F0 p;
         V4_0011C3F0 t = *(V4_0011C3F0 *)((char *)fA4->f54 + 0x30);
         V4_0011C3F0 u = *(V4_0011C3F0 *)((char *)fA4->f54 + 0x20);
         f1B4 = f1A8;
         f1C0 = t;
         f1F0 = u;
-        p = VAdd_0011BBB0(VScale_0011BBB0(a, D_002755E8), t);
+        V4_0011C3F0 p = VAdd_0011BBB0(VScale_0011BBB0(a, D_002755E8), t);
         f108->func_001A0C90(p);
         if (f120 == 0) {
             f120 = 1;
@@ -296,7 +301,6 @@ void C_0011BBB0::func_0011BBB0(V4_0011C3F0 a)
     fA4->v31(m);
     fA4->func_00133F10(0);
     if (fA4->fA7 & 0x20) {
-        V4_0011C3F0 p;
         V4_0011C3F0 t = *(V4_0011C3F0 *)((char *)fA4->f54 + 0x30);
         V4_0011C3F0 u = *(V4_0011C3F0 *)((char *)fA4->f54 + 0x20);
         if (f1B0 == 0) {
@@ -304,7 +308,7 @@ void C_0011BBB0::func_0011BBB0(V4_0011C3F0 a)
             f1D0 = t;
             f200 = u;
         }
-        p = VAdd_0011BBB0(VScale_0011BBB0(a, D_00278C48), t);
+        V4_0011C3F0 p = VAdd_0011BBB0(VScale_0011BBB0(a, D_00278C48), t);
         fF8->func_001A0C90(p);
     } else {
         f1B8 = 0;
@@ -317,7 +321,6 @@ void C_0011BBB0::func_0011BBB0(V4_0011C3F0 a)
     fA4->v31(m);
     fA4->func_00133F10(0);
     if (fA4->fA7 & 0x20) {
-        V4_0011C3F0 p;
         V4_0011C3F0 t = *(V4_0011C3F0 *)((char *)fA4->f54 + 0x30);
         V4_0011C3F0 u = *(V4_0011C3F0 *)((char *)fA4->f54 + 0x20);
         if (f1B0 == 0) {
@@ -325,7 +328,7 @@ void C_0011BBB0::func_0011BBB0(V4_0011C3F0 a)
             f1E0 = t;
             f210 = u;
         }
-        p = VAdd_0011BBB0(VScale_0011BBB0(a, D_00278C48), t);
+        V4_0011C3F0 p = VAdd_0011BBB0(VScale_0011BBB0(a, D_00278C48), t);
         fFC->func_001A0C90(p);
     } else {
         f1BC = 0;
@@ -338,9 +341,8 @@ void C_0011BBB0::func_0011BBB0(V4_0011C3F0 a)
     fA4->v31(m);
     fA4->func_00133F10(0);
     if (fA4->fA7 & 0x20) {
-        V4_0011C3F0 p;
         V4_0011C3F0 t = *(V4_0011C3F0 *)((char *)fA4->f54 + 0x30);
-        p = VAdd_0011BBB0(VScale_0011BBB0(a, D_00278C48), t);
+        V4_0011C3F0 p = VAdd_0011BBB0(VScale_0011BBB0(a, D_00278C48), t);
         f100->func_001A0C90(p);
     }
     f118->func_00199A70(0, &pos);
@@ -351,9 +353,8 @@ void C_0011BBB0::func_0011BBB0(V4_0011C3F0 a)
     fA4->v31(m);
     fA4->func_00133F10(0);
     if (fA4->fA7 & 0x20) {
-        V4_0011C3F0 p;
         V4_0011C3F0 t = *(V4_0011C3F0 *)((char *)fA4->f54 + 0x30);
-        p = VAdd_0011BBB0(VScale_0011BBB0(a, D_00278C48), t);
+        V4_0011C3F0 p = VAdd_0011BBB0(VScale_0011BBB0(a, D_00278C48), t);
         f104->func_001A0C90(p);
     }
 }
