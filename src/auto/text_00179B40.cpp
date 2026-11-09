@@ -216,25 +216,26 @@ struct C_0017A860 {
 };
 
 
-int C_00179B40::func_00179B40(C_0017BB10 *a0, char *a1)
+int C_00179B40::func_00179B40(C_0017BB10 * volatile a0, char *a1)
 {
     V4_0017A8F0 v[10];
     C_0017B9E0 t[4];
-    C_00179B40 *volatile selfp[1];
+    C_00179B40 *volatile selfp[2];
     C_00179B40 *p;
     V4_0017A8F0 *q;
     int i, n, all, any;
+    float d;
     int ad;
-    selfp[0] = this;
+    selfp[1] = this;
     for (i = 0; i < 10; i++) { v[i].z = 0; v[i].y = 0; v[i].x = 0; v[i].w = 1.0f; }
-    p = selfp[0];
-    const float d = (p->f68 * p->f28 + p->f64 * p->f24 + p->f6c * p->f2c) - (p->f68 * *(float *)(a1 + 0x174) + p->f64 * *(float *)(a1 + 0x170) + p->f6c * *(float *)(a1 + 0x178));
+    p = selfp[1];
+    d = (p->f68 * p->f28 + p->f64 * p->f24 + p->f6c * p->f2c) - (p->f68 * *(float *)(a1 + 0x174) + p->f64 * *(float *)(a1 + 0x170) + p->f6c * *(float *)(a1 + 0x178));
     ad = *(int *)&d & 0x7fffffff;
     if (*(float *)&ad < *(float *)(a1 + 0x1fc)) {
         a0->func_0017BB10((C_0017B9E0 *)&D_002EFD38);
         return 1;
     }
-    p = selfp[0];
+    p = selfp[1];
     func_00161BE0(&v[0], &p->f24, a1 + 0xf0, 4, 16, 16);
     all = -1;
     q = v;
@@ -302,9 +303,9 @@ int C_0017A010::func_0017A010(V3_0017A010 *a, V3_0017A010 *b, C_0017A1D0_Vec4 *o
         float t = -((c + V3Dot_0017A010(*a, f64)) / V3Dot_0017A010(dv, f64));
         if (t >= D_00275544 && t <= D_00275460) {
             C_0017A1D0_Vec4 pt;
+            d.w = 1.0f;
             V3Scale_0017A010(*(V3_0017A010 *)&pt, dv, t);
             V3Add_0017A010(dv, *(V3_0017A010 *)&pt, *a);
-            d.w = 1.0f;
             pt = d;
             if (out) {
                 *out = pt;
@@ -320,13 +321,19 @@ int C_0017A1D0::func_0017A1D0(float *p, float r, float *out)
 {
     C_0017A1D0_Vec4 v;
     volatile float d;
+    volatile float scratch[2];
     int i;
     v.x = p[0] - pts[0].x;
     v.y = p[1] - pts[0].y;
     v.z = p[2] - pts[0].z;
     d = C_0017A1D0_Dot(v, normals[0]);
     if (out) {
-        *out = C_0017A1D0_AbsV(d);
+        int bits;
+        scratch[0] = d;
+        bits = *(volatile int *)&scratch[0];
+        bits &= 0x7fffffff;
+        *(volatile int *)&scratch[1] = bits;
+        *out = *(volatile float *)&scratch[1];
     }
     if (d > r || -r > d) return 0;
     if (C_0017A1D0_Dot(v, normals[1]) > r) return 0;
@@ -435,41 +442,34 @@ void C_0017A700::func_0017A700(DXRenderableObject *owner, int index)
     void *func_001E8AA5(int);
     void *func_001E83E8(void *, int);
     void *func_001E8A44(int);
-    volatile struct { volatile C_0017A700 *self; int max; int value; } L;
-    L.self = this;
     DXShadowCaster **f0 = ((volatile C_0017A700 *)this)->fF0;
     if (!f0) {
-        L.self->fF0 = (DXShadowCaster **)func_001E8AA5(4);
-        L.self->fF8 = 1;
-        volatile C_0017A700 *s = L.self;
+        ((volatile C_0017A700 *)this)->fF0 = (DXShadowCaster **)func_001E8AA5(4);
+        ((volatile C_0017A700 *)this)->fF8 = 1;
+        volatile C_0017A700 *s = this;
         s->fF0[s->fF4] = 0;
     } else if (fF8 < fF4 + 1) {
-        L.self->fF0 = (DXShadowCaster **)func_001E83E8(f0, fF4 * 4 + 4);
-        volatile C_0017A700 *s1 = L.self;
+        ((volatile C_0017A700 *)this)->fF0 = (DXShadowCaster **)func_001E83E8(f0, fF4 * 4 + 4);
+        volatile C_0017A700 *s1 = this;
         s1->fF8 = s1->fF4 + 1;
-        volatile C_0017A700 *s2 = L.self;
+        volatile C_0017A700 *s2 = this;
         s2->fF0[s2->fF4] = 0;
     }
-    volatile C_0017A700 *s3 = L.self;
-    int k = s3->fF4;
-    DXShadowCaster **a = s3->fF0;
-    DXShadowCaster *e = a[k];
+    volatile C_0017A700 *s3 = this;
+    DXShadowCaster *e = s3->fF0[s3->fF4];
     if (e) e->v2(owner);
     else {
         DXShadowCaster *p = (DXShadowCaster *)func_001E8A44(16);
         if (p) p = p->func_00143820(owner);
         else p = 0;
-        volatile C_0017A700 *s4 = L.self;
+        volatile C_0017A700 *s4 = this;
         s4->fF0[s4->fF4] = p;
     }
-    volatile C_0017A700 *s5 = L.self;
+    volatile C_0017A700 *s5 = this;
     DXShadowCaster *c = s5->fF0[s5->fF4];
-    L.max = c->f4->f1a4->count - 1;
-    int i = *(volatile int *)&index;
-    int m = L.max;
-    L.value = i > m ? m : i;
-    c->f8 = L.value;
-    ((C_0017A700 *)L.self)->fF4++;
+    int max = c->f4->f1a4->count - 1;
+    c->f8 = AsmMinI(index, max);
+    this->fF4++;
 }
 
 void C_0017A850::func_0017A850(void) {
