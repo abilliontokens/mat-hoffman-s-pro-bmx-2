@@ -79,12 +79,17 @@ static void Identity_0002B1C0(S_0002B1C0_Mat *m)
     ((float *)m)[0] = 1.0f; ((float *)m)[5] = 1.0f; ((float *)m)[10] = 1.0f; ((float *)m)[15] = 1.0f;
 }
 
+static void V4New(V4_0002B1C0 *v)
+{
+    v->x = 0.0f; v->y = 0.0f; v->z = 0.0f; v->w = 1.0f;
+}
+
 void *C_0002C100::func_0002B1C0(int param)
 {
-    unsigned int * volatile p = (unsigned int *)this;
     S_0002B1C0_Mat mat[2];
+    V4k_0002B1C0 volatile vtmp;
     S_0002B1C0_Mat * volatile pm;
-    V4k_0002B1C0 vtmp;
+    unsigned int * volatile p = (unsigned int *)this;
     V4_0002B1C0 *q4;
     int i;
     func_00157600(param);
@@ -134,7 +139,7 @@ void *C_0002C100::func_0002B1C0(int param)
     V4_CPY(0x54c, D_002A10F0);
     p[0x15b] = 0; p[0x162] = 0; p[0x160] = 0;
     vtmp.x = 0.0f; vtmp.y = 0.0f; vtmp.z = 5000.0f; vtmp.w = 1.0f;
-    *(V4k_0002B1C0 *)((char *)p + 0x570) = vtmp;
+    *(V4k_0002B1C0 *)((char *)p + 0x570) = *(V4k_0002B1C0 *)&vtmp;
     p[0x161] = 0x3e4ccccd;
     p[0x184] = 0x3f060a91; p[0x187] = 0x418ba057; p[0x186] = 0x418ba057; p[0x188] = 0x41200000; p[0x189] = 0; p[0x18a] = 0; p[0x18b] = 0;
     p[0x18c] = 0x40400000; p[0x18d] = 0; p[0x18e] = 0x3f060a91; p[400] = 0; p[0x191] = 0; p[0x192] = 0; p[0x185] = 0x3f490fd9;
