@@ -249,9 +249,7 @@ static __forceinline State_14170 *Make_14170(unsigned size, void *vt, int kind) 
  return 0;
 }
 extern f32 D_002A0508;
-static __forceinline void VecInit_14170(State_14170 *s) {
- s->vec.z=0; s->vec.y=0; s->vec.x=0; s->vec.w=1;
-}
+#include <new>
 
 void C_00013F50::func_00013A40(char *path)
 {
