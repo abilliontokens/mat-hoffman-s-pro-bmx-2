@@ -50,8 +50,9 @@ struct S_0006D750_Obj {
     float a, b, c, d;
     float w, h;
     char pad54[4];
-    unsigned char flags;
-    S_0006D750_Obj *func_001D5760();
+          unsigned char flags;
+      void Scale6D();
+      S_0006D750_Obj *func_001D5760();
     void func_001D5810(char *name, float x, float y, int z);
 };
 
