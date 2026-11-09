@@ -89,6 +89,14 @@ static __forceinline void uv6D(S_0006D750_Obj *p) {         float a = *(volatile
     p->b = *(volatile float *)&p->w * D_00275544;
     p->c = *(volatile float *)&p->h * D_0027653C;
     p->d = *(volatile float *)&p->h * D_00275544; }
+__forceinline void S_0006D750_Obj::Scale6D() {
+    float t = *(volatile float *)&w * D_00278654;
+    flags |= 4;
+    a = t;
+    b = *(volatile float *)&w * D_00275544;
+    c = *(volatile float *)&h * D_0027653C;
+    d = *(volatile float *)&h * D_00275544;
+}
 static __forceinline void width6D(S_0006D750_Obj *p, int v) { if (p->width != v) { p->width = v; p->flags |= 1; } }
 static __forceinline void height6D(S_0006D750_Obj *p, int v) { if (p->height != v) { p->height = v; p->flags |= 1; } }
 struct C_001D5AD0 {
