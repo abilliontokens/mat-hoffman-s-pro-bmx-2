@@ -29,7 +29,6 @@ struct C_001CD260 {
 void func_001E8390(void *);
 void func_001E891B(void *);
 extern "C" void * __cdecl memset(void *, int, unsigned int);
-extern "C" void * __cdecl memcpy(void *, const void *, unsigned int);
 static __forceinline void clear_001CD260(int *size) {
  memset(*(void **)(size + 1), 0, *size * 4);
  *size = 0;
