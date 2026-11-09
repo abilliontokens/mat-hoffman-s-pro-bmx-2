@@ -102,6 +102,10 @@ struct Text_5F3 {
 };
 void *func_001E8A44(unsigned int size);
 extern char D_002A60B0[];
+extern int D_002A60B4;
+extern int D_002A60B8;
+extern int D_002A60BC;
+extern char D_002A60C0;
 extern char D_002A5FA8[];
 extern char D_002A5870[];
 extern char D_00275678[];
