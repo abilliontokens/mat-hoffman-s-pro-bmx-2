@@ -51,7 +51,6 @@ extern char D_00276F9C[];
 void func_000265C0(void *, void *, void *, void *, int, int);
 int func_001E8AF0(char *, char *);
 void func_001ADCC0(int, int, char *, int);
-void func_0015ACA0(SA0_43 *s, void *arg);
 struct C_00043F00 {
     char pad0[0x24]; int f24; int f28; char pad2C[0x64 - 0x2C]; Ctx43 *f64;
     char pad68[0x288 - 0x68]; unsigned char f288; char pad289[3];
