@@ -194,8 +194,7 @@ struct PhysicsAnimatedBody {
 V4_170DB0 PhysicsAnimatedBody::func_00170DB0()
 {
     local = getLocal();
-    V4_170DB0 input = local;
-    world = model->func_00198040(&input);
+    world = model->func_00198040(&local);
     return world;
 }
 
