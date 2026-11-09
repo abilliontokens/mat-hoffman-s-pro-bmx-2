@@ -146,7 +146,7 @@ C_00073EF0 *C_00073EF0::func_00073EF0(void *a0)
     fAC->func_001D5810(D_00278658, 0, 0, 0);
     width73(fAC, 0x44200000);
     height73(fAC, 0x42480000);
-    uv73(fAC);
+    { Img_73 *p = fAC; float a = p->w * 127.0f; p->flags |= 4; p->a = a; p->b = p->w * 0.0f; p->c = p->h * 15.0f; p->d = p->h * 0.0f; }
 
     o = (Img_73 *)func_001E8A44(0x64);
     fB0 = o ? o->func_001D5760() : 0;
