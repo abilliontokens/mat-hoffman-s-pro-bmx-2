@@ -50,7 +50,6 @@ struct C_0005C020 {
 struct C_000E5150_Mgr {
     char pad0[4];
     int f4;
-    __forceinline int IsMode10() { return f4 == 10; }
     char pad8[0x190 - 8];
     int a190[(0x2C0 - 0x190) / 4];
     C_0005C020 *f2C0;
