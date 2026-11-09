@@ -857,8 +857,9 @@ void *C_00095060::func_00094F40(void *arg)
     f70 = 16;
     f74 = 1;
     f78 = t2 | 1;
-    f7C = 0;
-    f80 = arg;
+    int *p = &f7C;
+    p[0] = 0;
+    p[1] = (int)arg;
     C_001CD770 *obj = (C_001CD770 *)func_001E8A44(0x4c);
     if (obj != 0) {
         obj = obj->func_001CD770(((S_00094F40_Arg *)f80)->fB4, 1);
