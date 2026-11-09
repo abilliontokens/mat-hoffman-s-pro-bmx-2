@@ -288,43 +288,6 @@ void C_00107A40::func_00107AB0(void) {
     fa14->vf4();
 }
 
-static __forceinline void branch_107AE0(C_107AE0 * volatile self, Mat_107AE0 *mat, Vec_107AE0 *pos, Vec_107AE0 *dir)
-{
- if(self->f2094) {
-  self->f207c->func_00199A70(0,pos);
-  mat->m[3]=pos->x;mat->m[7]=pos->y;mat->m[11]=pos->z;
-  self->f11c0->vf31(mat);
-  self->f11c0->func_00133F10(0);
-  if(self->f11c0->fa4[3] & 0x20) {
-   Vec_107AE0 p=*(Vec_107AE0*)(self->f11c0->f54+0x30);
-   Vec_107AE0 *direction=(Vec_107AE0*)(self->f11c0->f54+0x20);
-   *dir=*direction;
-   Vec_107AE0 offset=scale_107AE0(*direction,D_002755E8);
-   p.x+=offset.x;p.y+=offset.y;p.z+=offset.z;
-   self->f2054->func_001A0C90(p);
-   Vec_107AE0 a,b;
-   self->f2054->f8->func_001994C0(0,&a,&b);
-   self->f2054->f8->func_00199110(0,&a,dir,1,0,0);
-  }
- } else if(self->f2098) {
-  self->f2080->func_00199A70(0,pos);
-  mat->m[3]=pos->x;mat->m[7]=pos->y;mat->m[11]=pos->z;
-  self->f11c0->vf31(mat);
-  self->f11c0->func_00133F10(0);
-  if(self->f11c0->fa4[3] & 0x20) {
-   Vec_107AE0 p=*(Vec_107AE0*)(self->f11c0->f54+0x30);
-   Vec_107AE0 *direction=(Vec_107AE0*)(self->f11c0->f54+0x20);
-   *dir=*direction;
-   Vec_107AE0 offset=scale_107AE0(*direction,D_002755E8);
-   p.x+=offset.x;p.y+=offset.y;p.z+=offset.z;
-   self->f2058->func_001A0C90(p);
-   Vec_107AE0 a,b;
-   self->f2058->f8->func_001994C0(0,&a,&b);
-   self->f2058->f8->func_00199110(0,&a,dir,1,0,0);
-  }
- }
-}
-
 void C_107AE0::func_00107AE0() {
  Vec_107AE0 pos,dir;
  __declspec(align(16)) Mat_107AE0 identity;
@@ -336,7 +299,39 @@ void C_107AE0::func_00107AE0() {
  line[1]=scale_107AE0(*(Vec_107AE0*)(self->f1e8+0x1a0),D_00282A78);
  line[0]=scale_107AE0(*(Vec_107AE0*)(self->f1e8+0x1a0),2.0f);
  self->f11c0->func_00180E00(1,line,0,0);
- branch_107AE0(self,&mat,&pos,&dir);
+ if(self->f2094) {
+ self->f207c->func_00199A70(0,&pos);
+ mat.m[3]=pos.x;mat.m[7]=pos.y;mat.m[11]=pos.z;
+ self->f11c0->vf31(&mat);
+ self->f11c0->func_00133F10(0);
+ if(self->f11c0->fa4[3] & 0x20) {
+ Vec_107AE0 p=*(Vec_107AE0*)(self->f11c0->f54+0x30);
+ Vec_107AE0 *direction=(Vec_107AE0*)(self->f11c0->f54+0x20);
+ dir=*direction;
+ Vec_107AE0 offset=scale_107AE0(*direction,D_002755E8);
+ p.x+=offset.x;p.y+=offset.y;p.z+=offset.z;
+ self->f2054->func_001A0C90(p);
+ Vec_107AE0 a,b;
+ self->f2054->f8->func_001994C0(0,&a,&b);
+ self->f2054->f8->func_00199110(0,&a,&dir,1,0,0);
+ }
+ } else if(self->f2098) {
+ self->f2080->func_00199A70(0,&pos);
+ mat.m[3]=pos.x;mat.m[7]=pos.y;mat.m[11]=pos.z;
+ self->f11c0->vf31(&mat);
+ self->f11c0->func_00133F10(0);
+ if(self->f11c0->fa4[3] & 0x20) {
+ Vec_107AE0 p=*(Vec_107AE0*)(self->f11c0->f54+0x30);
+ Vec_107AE0 *direction=(Vec_107AE0*)(self->f11c0->f54+0x20);
+ dir=*direction;
+ Vec_107AE0 offset=scale_107AE0(*direction,D_002755E8);
+ p.x+=offset.x;p.y+=offset.y;p.z+=offset.z;
+ self->f2058->func_001A0C90(p);
+ Vec_107AE0 a,b;
+ self->f2058->f8->func_001994C0(0,&a,&b);
+ self->f2058->f8->func_00199110(0,&a,&dir,1,0,0);
+ }
+ }
 }
 
 int C_00107FB0::func_00107FB0(void)
