@@ -252,13 +252,13 @@ void C_000AADB0::func_000AADB0(C_000AADB0_Parser *p)
 void C_000AADB0::func_000AB030(S_000AB030_Arg *arg)
 {
     C_000AADB0 * volatile self = this;
+    char buf[260];
+    int k;
+    int j;
     int i;
     int len;
     int res;
     int lim;
-    char buf[260];
-    int k;
-    int j;
 
     if (f24 != 0) {
         for (i = 0; i < arg->f3AC->count; i++) {
@@ -282,7 +282,7 @@ void C_000AADB0::func_000AB030(S_000AB030_Arg *arg)
             S_000AB030_ObjB *obj = (*arg->f3A8)->items[i];
             if (obj != 0 && obj->f4 == 1 && obj->f8 != 0) {
                 len = strlen(obj->f8->name);
-                lim = 0x103;
+                lim = arg->f348;
                 res = AsmMinI(lim, len);
                 func_001E8920(buf, obj->f8->name, res);
                 buf[res] = 0;
@@ -352,9 +352,12 @@ void C_000AB490::func_000AB490(void)
     ((C_00157660 *)this)->func_00157660();
 }
 
+extern "C" void _ReadWriteBarrier(void);
+#pragma intrinsic(_ReadWriteBarrier)
 void C_000ABBC0::func_000AB4F0(C_000AADB0_Parser * volatile p)
 {
     C_000ABBC0 * volatile self = this;
+    _ReadWriteBarrier();
     struct {
         int count;
         int n;
@@ -417,33 +420,25 @@ void C_000ABBC0::func_000AB4F0(C_000AADB0_Parser * volatile p)
         }
     }
 }
-
-void C_000ABBC0::func_000AB790(S_000AB030_Arg * volatile arg)
+void C_000ABBC0::func_000AB790(S_000AB030_Arg *arg)
 {
-    C_000ABBC0 * volatile self = this;
-    struct {
-        volatile int res1;
-        volatile int lim2;
-        volatile int res2;
-        volatile int len2;
-    } t;
     int i;
     int j;
     int j2;
     int k;
     int n;
     int cnt;
-    C_000ABBC0 *me;
+    int lim2;
+    int len2;
     S_000AB030_ListA *la;
     S_000AB030_ListB *lb;
     S_000AB030_Named *src;
     char buf[260];
 
-    me = this;
-    cnt = me->f24;
+    cnt = f24;
     if (cnt != 0) {
-        for (i = 0; i < cnt; i++, cnt = (me = self)->f24) {
-            C_000ABBC0_Obj *obj = me->f28[i];
+        for (i = 0; i < cnt; i++, cnt = f24) {
+            C_000ABBC0_Obj *obj = f28[i];
             k = 0;
             if (obj->f104 == 0) {
                 if (obj->f108 != 0) {
@@ -453,10 +448,10 @@ void C_000ABBC0::func_000AB790(S_000AB030_Arg * volatile arg)
                     func_001ADCC0(D_002A60B0, 0x104, D_00275678, D_002A5870, D_002A5FA8);
                     func_001ADCC0(D_002A5EA0, 0x104, D_00275678, D_002A5870, D_002A5D98);
                 }
-                func_001ADCC0(buf, 0x104, D_0027C588, self->f28[i]);
+                func_001ADCC0(buf, 0x104, D_0027C588, f28[i]);
                 void *m = func_001E8A44(0x1e0);
-                *(void * volatile *)&self->f28[i]->f110[0] = m ? ((C_00143580_000AB790 *)m)->func_00143580(1) : 0;
-                C_000ABBC0_Sub *s = (C_000ABBC0_Sub *)self->f28[i]->f110[0];
+                f28[i]->f110[0] = m ? ((C_00143580_000AB790 *)m)->func_00143580(1) : 0;
+                C_000ABBC0_Sub *s = (C_000ABBC0_Sub *)f28[i]->f110[0];
                 if (s->v35(buf, 0, 1)) {
                     j2 = strlen(buf);
                     k = 0x7f;
@@ -467,17 +462,17 @@ void C_000ABBC0::func_000AB790(S_000AB030_Arg * volatile arg)
                     s->func_00198F50(&D_002A2764, &D_002A2754, 1, 0, 0);
                     s->func_0019ABA0(D_002B9120->f4A8[arg->f348], 1);
                     D_002B9120->f3A8[arg->f348]->func_001577A0(s, 0);
-                    self->f28[i]->f104 = 1;
+                    f28[i]->f104 = 1;
                 }
             } else {
                 for (j = 0; j < (la = arg->f3AC)->count; j++) {
                     S_000AB030_ObjA *o = la->items[j];
                     if (o != 0 && o->f4 == 1) {
                         func_0014FF00(o->f1A4->f4->name, 0, 0, buf, 0);
-                        if (func_001EA426(buf, (char *)self->f28[i]) == 0) {
-                            self->f28[i]->f110[k] = o->f1A4->f4;
+                        if (func_001EA426(buf, (char *)f28[i]) == 0) {
+                            f28[i]->f110[k] = o->f1A4->f4;
                             k++;
-                            if (k >= self->f28[i]->f104) break;
+                            if (k >= f28[i]->f104) break;
                         }
                     }
                 }
@@ -485,20 +480,20 @@ void C_000ABBC0::func_000AB790(S_000AB030_Arg * volatile arg)
                     for (j2 = 0; j2 < (lb = *arg->f3A8)->count; j2++) {
                         S_000AB030_ObjB *o = lb->items[j2];
                         if (o != 0 && o->f4 == 1 && o->f8 != 0) {
-                            t.len2 = strlen(o->f8->name);
-                            t.lim2 = 0x103;
-                            n = AsmMinI(t.lim2, t.len2);
-                            src = *(S_000AB030_Named * volatile *)&o->f8;
+                            len2 = strlen(o->f8->name);
+                            lim2 = 0x103;
+                            n = AsmMinI(lim2, len2);
+                            src = o->f8;
                             func_001E8920(buf, src->name, n);
                             buf[n] = 0;
                             char *dot = func_001E8AC0(buf, '.');
                             if (dot != 0) {
                                 memset(dot, 0, strlen(dot));
                             }
-                            if (func_001EA426(buf, (char *)self->f28[i]) == 0) {
-                                self->f28[i]->f110[k] = o->f8;
+                            if (func_001EA426(buf, (char *)f28[i]) == 0) {
+                                f28[i]->f110[k] = o->f8;
                                 k++;
-                                if (k >= self->f28[i]->f104) break;
+                                if (k >= f28[i]->f104) break;
                             }
                         }
                     }
