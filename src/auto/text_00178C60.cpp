@@ -150,26 +150,26 @@ static __forceinline int edge_1793E0(Vec4 *p, Vec4 *q, Vec4 *r, Vec4 *n)
     v.t.x = q->x - p->x;
     v.t.y = q->y - p->y;
     v.t.z = q->z - p->z;
-    v.t.w = 1.0f;
-    v.a = v.t;
-    v.t.x = r->x - p->x;
-    v.t.y = r->y - p->y;
-    v.t.z = r->z - p->z;
-    v.t.w = 1.0f;
-    v.b = v.t;
+          v.t.w = 1.0f;
+      v.a.x = v.t.x; v.a.y = v.t.y; v.a.z = v.t.z; v.a.w = v.t.w;
+      v.t.x = r->x - p->x;
+      v.t.y = r->y - p->y;
+      v.t.z = r->z - p->z;
+      v.t.w = 1.0f;
+      v.b.x = v.t.x; v.b.y = v.t.y; v.b.z = v.t.z; v.b.w = v.t.w;
     cross_179950(&v.c.x, &v.a.x, &v.b.x);
     float d = v.c.y * n->y + v.c.x * n->x + v.c.z * n->z;
     return *(int *)&d >= 0;
 }
 
-int func_00178C60(void *a, void *b, int c, int d, int e, int f, int g, int h, int i, int j, int k, int l, int m)
+int func_00178C60(char *a, void *b, int c, int d, int e, int f, int g, int h, int i, int j, int k, int l, unsigned m)
 {
-    void *dst = a;
+    char *dst = a;
     int flag = 0;
-    if (m != 0) {
+    if (m) {
         int es = func_001B2CB0(g);
-        dst = func_001E8A44(es * d * e);
-        if (dst == 0)
+        dst = (char *)func_001E8A44(e * d * es);
+        if (!dst)
             return 0;
     }
     switch (h) {
@@ -181,7 +181,6 @@ int func_00178C60(void *a, void *b, int c, int d, int e, int f, int g, int h, in
         case 0x378: func_00176CD0(dst, b, c, d, e, f); break;
         case 0x613: func_00178AE0(dst, b, c, d, e, f, l); break;
         case 0x22b8: func_00177780(dst, b, c, d, e, f, l); break;
-        default: break;
         }
         break;
     case 0x22b:
@@ -192,7 +191,6 @@ int func_00178C60(void *a, void *b, int c, int d, int e, int f, int g, int h, in
         case 0x378: func_00178040(dst, b, c, d, e, f); break;
         case 0x613: func_00177F50(dst, b, c, d, e, f, l); break;
         case 0x22b8: func_00178990(dst, b, c, d, e, f, l); break;
-        default: break;
         }
         break;
     case 0x8:
@@ -201,7 +199,6 @@ int func_00178C60(void *a, void *b, int c, int d, int e, int f, int g, int h, in
         case 0x235: func_00177650(dst, b, c, d, e, 0, f, j); break;
         case 0x8: func_001782B0(dst, b, c, d, e, f, j); break;
         case 0x378: func_00178210(dst, b, c, d, e, f, j); break;
-        default: break;
         }
         break;
     case 0x378:
@@ -217,7 +214,6 @@ int func_00178C60(void *a, void *b, int c, int d, int e, int f, int g, int h, in
             break;
         case 0x613: func_00177000(dst, b, c, d, e, f, l); flag = 1; break;
         case 0x22b8: func_001785C0(dst, b, c, d, e, f, l); break;
-        default: break;
         }
         break;
     case 0x22b8:
@@ -226,16 +222,12 @@ int func_00178C60(void *a, void *b, int c, int d, int e, int f, int g, int h, in
         case 0x378: func_00178540(dst, b, c, d, e, f); break;
         case 0x115c: func_001783B0(dst, b, c, d, e, f); break;
         case 0x22b8: func_00176EA0(dst, b, c, d, e, f, 0); break;
-        default: break;
         }
         break;
     case 0x115c:
         switch (g) {
         case 0x235: func_00178890(dst, b, c, d, e, f, i, j); break;
-        default: break;
         }
-        break;
-    default:
         break;
     }
     return flag;
