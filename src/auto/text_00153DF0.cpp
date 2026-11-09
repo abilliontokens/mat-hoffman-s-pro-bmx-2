@@ -21,7 +21,7 @@ struct C153DF0_Eff {
     void func_00198F50(float *a, float *b, int c, int d, int e);
 };
 struct C153DF0_Game { char pad0[0x124]; int f124; char pad128[0x1B8]; int *f2E0; };
-struct C153DF0_17A40 { void func_00017A40(void *a); };
+struct C153DF0_17A40 { void func_00017A40(void *a); void func_0001A060(void *a, int b); char pad4[0x4D0]; int f4D4; char pad4D8[0x298]; int f770; char pad774[4]; int f778; };
 struct C153DF0_B9120 { char pad0[0x4E4]; int arr[0x11]; C153DF0_17A40 *f528; };
 struct C153DF0_2C { char pad0[0x1A4]; int *f1A4_2; };
 struct C153DF0_Self {
@@ -95,7 +95,7 @@ void C153DF0_Self::func_00153DF0(float dt)
         D_002B9120->f528->func_00017A40((void *)v4c);
     v18[0] = 0; v18[1] = 0; v18[2] = 0; v18[3] = 1;
     v4c[0] = 0; v4c[1] = 0; v4c[2] = 0; v4c[3] = 1;
-    for (int slot = 0; slot < 7; ++slot) {
+    for (int slot = 0; slot < 11; ++slot) {
     C153DF0_Self *o = (C153DF0_Self *)((char *)this + slot * 0x60);
     if (o->f194 == 0)
         continue;
@@ -103,65 +103,7 @@ void C153DF0_Self::func_00153DF0(float dt)
         vec2[i][0] = 0; vec2[i][1] = 0; vec2[i][2] = 0; vec2[i][3] = 1;
     }
     o->f1A0 += dt;
-    if (o->f198 == 0) {
-        o->f154[0] += dt * o->f184[0];
-        o->f154[1] += dt * o->f184[1];
-        o->f154[2] += dt * o->f184[2];
-        fD8 = 0;
-        fDC = 0;
-        fD8 = 0;
-        f84[0] = 0; f84[1] = 0; f84[2] = 0; f84[3] = 0x3f800000;
-        f94[0] = 0; f94[1] = 0; f94[2] = 0; f94[3] = 0x3f800000;
-        ((X153DF0_78 *)f7C)->func_00133EF0((char *)o->f150 + 0xf0);
-        ((X153DF0_78 *)f7C)->func_00133F10(0);
-        {
-            int n = *(int *)D_002A8490->f2E0;
-            if (n > 1) {
-                int j;
-                for (j = 0; j < n; j++) {
-                    if (j == f24)
-                        continue;
-                    {
-                        char *obj = *(char **)((char *)D_002B9120 + 0x4E4 + j * 4);
-                        float pos[4];
-                        if (*(int *)(obj + 0x2C) == 0) {
-                            pos[0] = *(float *)&D_002A789C;
-                            pos[1] = *(float *)&D_002A78A0;
-                            pos[2] = *(float *)&D_002A78A4;
-                            pos[3] = *(float *)&D_002A78A8;
-                        } else {
-                            ((X153DF0_9B00 *)*(int **)(*(int **)(obj + 0x1A4) + 4))->func_00199B00((void *)pos, 0);
-                        }
-                        float dx = o->f154[0] - pos[0];
-                        float dy = o->f154[1] - pos[1];
-                        float dz = o->f154[2] - pos[2];
-                        float ssq = dx * dx + dy * dy + dz * dz;
-                        float dist = AsmSqrtF(ssq);
-                        float lsq = o->f184[0] * o->f184[0] + o->f184[1] * o->f184[1] + o->f184[2] * o->f184[2];
-                        float len = AsmSqrtF(lsq);
-                        if (dist < D_0027653C) {
-                            float dot = dy * len + dx * len + dz * len;
-                            if (dot > D_00275544)
-                                fD8 = 1;
-                        }
-                    }
-                }
-            }
-        }
-        if (fD8 != 0) {
-            ((X153DF0_CE80 *)f5A4)->func_0001CE80(f5A4, (void *)o->f154, D_002A789C, 50.0f, 300.0f);
-            ((V153DF0 *)o->f1AC)->v18();
-            ((V153DF0 *)o->f1AC)->v78();
-            o->f1AC->func_0011CA60(*(Vec153DF0 *)o->f154);
-            o->f1AC->func_0011CA60(*(Vec153DF0 *)o->f154);
-            ((V153DF0 *)o->f1A8)->v18();
-            ((V153DF0 *)o->f1A8)->v78();
-            o->f1A8->func_0011CA60(*(Vec153DF0 *)o->f154);
-            o->f1A8->func_0011CA60(*(Vec153DF0 *)o->f154);
-            o->f150->func_001983A0();
-        }
-        continue;
-    }
+    if (o->f198 != 0) {
     if (o->f1A0 > D_002756DC) {
         o->f198 = 0;
         ((X153DF0_50900 *)this)->func_00150900((void *)v18, (void *)v4c);
@@ -205,6 +147,105 @@ void C153DF0_Self::func_00153DF0(float dt)
         o->f1A8->func_0011CA60(*(Vec153DF0 *)o->f154);
         o->f1A8->func_0011CA60(*(Vec153DF0 *)o->f154);
         o->f150->func_001983A0();
+    }
+    continue;
+    }
+    o->f154[0] += dt * o->f184[0];
+    o->f154[1] += dt * o->f184[1];
+    o->f154[2] += dt * o->f184[2];
+    fD8 = 0;
+    fDC = 0;
+    fD8 = 0;
+    f84[0] = 0; f84[1] = 0; f84[2] = 0; f84[3] = 0x3f800000;
+    f94[0] = 0; f94[1] = 0; f94[2] = 0; f94[3] = 0x3f800000;
+    ((X153DF0_78 *)f7C)->func_00133EF0((char *)o->f150 + 0xf0);
+    ((X153DF0_78 *)f7C)->func_00133F10(0);
+    {
+        int n = *(int *)D_002A8490->f2E0;
+        if (n > 1) {
+            int j;
+            for (j = 0; j < n; j++) {
+                if (j == f24)
+                    continue;
+                {
+                    char *obj = *(char **)((char *)D_002B9120 + 0x4E4 + j * 4);
+                    float pos[4];
+                    if (*(int *)(obj + 0x2C) == 0) {
+                        pos[0] = *(float *)&D_002A789C;
+                        pos[1] = *(float *)&D_002A78A0;
+                        pos[2] = *(float *)&D_002A78A4;
+                        pos[3] = *(float *)&D_002A78A8;
+                    } else {
+                        ((X153DF0_9B00 *)*(int **)(*(int **)(obj + 0x1A4) + 4))->func_00199B00((void *)pos, 0);
+                    }
+                    float dx = o->f154[0] - pos[0];
+                    float dy = o->f154[1] - pos[1];
+                    float dz = o->f154[2] - pos[2];
+                    float ssq = dx * dx + dy * dy + dz * dz;
+                    float dist = AsmSqrtF(ssq);
+                    float lsq = o->f184[0] * o->f184[0] + o->f184[1] * o->f184[1] + o->f184[2] * o->f184[2];
+                    float len = AsmSqrtF(lsq);
+                    if (dist < D_0027653C) {
+                        float dot = dy * len + dx * len + dz * len;
+                        if (dot > D_00275544)
+                            fD8 = 1;
+                    }
+                }
+            }
+        }
+    }
+    if (fD8 != 0) {
+        ((X153DF0_CE80 *)f5A4)->func_0001CE80(f5A4, (void *)o->f154, D_002A789C, 50.0f, 300.0f);
+    }
+    ((V153DF0 *)f5A4)->v14(4);
+    ((V153DF0 *)o->f1A4)->v7C();
+    ((V153DF0 *)o->f1A4)->v80();
+    ((V153DF0 *)o->f1A4)->v10();
+    ((V153DF0 *)o->f1A4)->v18();
+    ((V153DF0 *)o->f1A4)->v78();
+    o->f1A4->func_0011CA60(*(Vec153DF0 *)o->f154);
+    o->f1A4->func_0011CA60(*(Vec153DF0 *)o->f154);
+    {
+        int n = *(int *)D_002A8490->f2E0;
+        if (n > 0) {
+            int j;
+            for (j = 0; j < n; j++) {
+                char *obj = *(char **)((char *)D_002B9120 + 0x4E4 + j * 4);
+                float pos[4];
+                if (*(int *)(obj + 0x2C) != 0) {
+                    ((X153DF0_9B00 *)*(int **)(*(int **)(obj + 0x1A4) + 4))->func_00199B00((void *)pos, 0);
+                } else {
+                    pos[0] = *(float *)&D_002A789C;
+                    pos[1] = *(float *)&D_002A78A0;
+                    pos[2] = *(float *)&D_002A78A4;
+                    pos[3] = *(float *)&D_002A78A8;
+                }
+                float dx = o->f154[0] - pos[0];
+                float dy = o->f154[1] - pos[1];
+                float dz = o->f154[2] - pos[2];
+                float ssq = dx * dx + dy * dy + dz * dz;
+                float dist = AsmSqrtF(ssq);
+                if (dist < D_00275800) {
+                    int amt = func_001E8858((D_00275800 - dist) * D_002756C8);
+                    if (j != f24) {
+                        ((X153DF0_D30 *)obj)->func_00153D30(amt);
+                        *(int *)(obj + 0x6D0) += amt;
+                        *(int *)(obj + 0x6D8) += 1;
+                    }
+                }
+            }
+        }
+    }
+    if (o->f1A0 > D_00275AEC) {
+        o->f194 = 0;
+        o->f150->func_00198390();
+        ((V153DF0 *)o->f150)->v10();
+        ((V153DF0 *)o->f1AC)->v7C();
+        ((V153DF0 *)o->f1AC)->v10();
+        ((V153DF0 *)o->f1A8)->v7C();
+        ((V153DF0 *)o->f1A8)->v10();
+        o->f150->func_00199600(*(Vec153DF0 *)o->f154);
+        o->f150->func_0019AC50();
     }
     }
     return;
