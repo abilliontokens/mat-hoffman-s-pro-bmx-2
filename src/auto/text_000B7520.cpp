@@ -14,11 +14,11 @@ struct S_000B7520_Vec4 {
     float dot(const S_000B7520_Vec4 &b) const { return x*b.x+y*b.y+z*b.z; }
 };
 
-static __forceinline void V4Init_7520(S_000B7520_Vec4 &v) { v.y = 0.0f; v.x = 0.0f; v.z = 0.0f; v.w = 1.0f; }
-static __forceinline S_000B7520_Vec4 V4Make_7520(float a, float b, float c) { S_000B7520_Vec4 v; v.x = a; v.y = b; v.z = c; v.w = 1.0f; return v; }
-static __forceinline S_000B7520_Vec4 V4Add_7520(const S_000B7520_Vec4 &a, const S_000B7520_Vec4 &b) { S_000B7520_Vec4 r; r.x = a.x + b.x; r.y = a.y + b.y; r.z = a.z + b.z; r.w = 1.0f; return r; }
-static __forceinline S_000B7520_Vec4 V4Sub_7520(const S_000B7520_Vec4 &a, const S_000B7520_Vec4 &b) { S_000B7520_Vec4 r; r.x = a.x - b.x; r.y = a.y - b.y; r.z = a.z - b.z; r.w = 1.0f; return r; }
-static __forceinline S_000B7520_Vec4 V4Mul_7520(const S_000B7520_Vec4 &a, float s) { S_000B7520_Vec4 r; r.x = a.x * s; r.y = a.y * s; r.z = a.z * s; r.w = 1.0f; return r; }
+static __forceinline void V4Init_7520(S_000B7520_Vec4 &v) { v.y = 0.0f; v.x = 0.0f; v.z = 0.0f; *(int *)&v.w = 0x3f800000; }
+static __forceinline S_000B7520_Vec4 V4Make_7520(float a, float b, float c) { S_000B7520_Vec4 v; v.x = a; v.y = b; v.z = c; *(int *)&v.w = 0x3f800000; return v; }
+static __forceinline S_000B7520_Vec4 V4Add_7520(const S_000B7520_Vec4 &a, const S_000B7520_Vec4 &b) { S_000B7520_Vec4 r; r.x = a.x + b.x; r.y = a.y + b.y; r.z = a.z + b.z; *(int *)&r.w = 0x3f800000; return r; }
+static __forceinline S_000B7520_Vec4 V4Sub_7520(const S_000B7520_Vec4 &a, const S_000B7520_Vec4 &b) { S_000B7520_Vec4 r; r.x = a.x - b.x; r.y = a.y - b.y; r.z = a.z - b.z; *(int *)&r.w = 0x3f800000; return r; }
+static __forceinline S_000B7520_Vec4 V4Mul_7520(const S_000B7520_Vec4 &a, float s) { S_000B7520_Vec4 r; r.x = a.x * s; r.y = a.y * s; r.z = a.z * s; *(int *)&r.w = 0x3f800000; return r; }
 static __forceinline float V4Dot_7520(const S_000B7520_Vec4 &a, const S_000B7520_Vec4 &b) { return a.x * b.x + a.y * b.y + a.z * b.z; }
 
 static __forceinline void cross7520(S_000B7520_Vec4 *out,const S_000B7520_Vec4 *a,const S_000B7520_Vec4 *b) {
