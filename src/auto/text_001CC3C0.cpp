@@ -252,9 +252,7 @@ struct C_001CC3C0 {
     int func_001CC460(int param_1);
     int func_001CCA10(void);
     int func_001CC4B0(int *a, int *b, int *c, int *d);
-    int func_001CCE10(int a, int b, int c, int d);
-    int func_001CCE10(S_Vec_001CC4B0 v, int d);
- int func_001CCE10(S_V4_001CCE10 v);
+     int func_001CCE10(S_V4_001CCE10 v);
 };
 int __stdcall func_00221A71(int h, int a, int b, int c, int d);
 #include <xmmintrin.h>
@@ -535,7 +533,7 @@ int C_001CCC50::func_001CCC50(int *out, u32 bytes, u32 rate, u16 bits, u32 align
     return 1;
 }
 
-int C_001CC3C0::func_001CCE10(S_Vec_001CC4B0 v, int d)
+int C_001CC3C0::func_001CCE10(S_V4_001CCE10 v)
 {
     if (*(u8 *)((char *)this + 0x10c) & 8) {
         if (f13C != 0) {
@@ -551,8 +549,7 @@ int C_001CC3C0::func_001CCE10(S_Vec_001CC4B0 v, int d)
                 return 0;
             }
         }
-        *(S_Vec_001CC4B0 *)((char *)this + 0x1e8) = v;
-        *(int *)((char *)this + 0x1f4) = d;
+        *(S_V4_001CCE10 *)&f1E8 = v;
     }
     return 1;
 }
