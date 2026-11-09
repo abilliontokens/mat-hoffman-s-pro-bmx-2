@@ -6,19 +6,12 @@
 
 struct S_000B7520_Vec4 {
     float x, y, z, w;
-    S_000B7520_Vec4() { z = 0.0f; y = 0.0f; x = 0.0f; w = 1.0f; }
-    S_000B7520_Vec4(float a,float b,float c) : x(a),y(b),z(c),w(1.0f) {}
-    S_000B7520_Vec4 operator+(const S_000B7520_Vec4 &b) const { return S_000B7520_Vec4(x+b.x,y+b.y,z+b.z); }
-    S_000B7520_Vec4 operator-(const S_000B7520_Vec4 &b) const { return S_000B7520_Vec4(x-b.x,y-b.y,z-b.z); }
-    S_000B7520_Vec4 operator*(float s) const { return S_000B7520_Vec4(x*s,y*s,z*s); }
-    float dot(const S_000B7520_Vec4 &b) const { return x*b.x+y*b.y+z*b.z; }
 };
 
-static __forceinline void V4Init_7520(S_000B7520_Vec4 &v) { v.y = 0.0f; v.x = 0.0f; v.z = 0.0f; *(int *)&v.w = 0x3f800000; }
-static __forceinline S_000B7520_Vec4 V4Make_7520(float a, float b, float c) { S_000B7520_Vec4 v; v.x = a; v.y = b; v.z = c; *(int *)&v.w = 0x3f800000; return v; }
-static __forceinline S_000B7520_Vec4 V4Add_7520(const S_000B7520_Vec4 &a, const S_000B7520_Vec4 &b) { S_000B7520_Vec4 r; r.x = a.x + b.x; r.y = a.y + b.y; r.z = a.z + b.z; *(int *)&r.w = 0x3f800000; return r; }
-static __forceinline S_000B7520_Vec4 V4Sub_7520(const S_000B7520_Vec4 &a, const S_000B7520_Vec4 &b) { S_000B7520_Vec4 r; r.x = a.x - b.x; r.y = a.y - b.y; r.z = a.z - b.z; *(int *)&r.w = 0x3f800000; return r; }
-static __forceinline S_000B7520_Vec4 V4Mul_7520(const S_000B7520_Vec4 &a, float s) { S_000B7520_Vec4 r; r.x = a.x * s; r.y = a.y * s; r.z = a.z * s; *(int *)&r.w = 0x3f800000; return r; }
+static __forceinline S_000B7520_Vec4 V4Make_7520(float a, float b, float c) { S_000B7520_Vec4 v; v.x = a; v.y = b; v.z = c; v.w = 1.0f; return v; }
+static __forceinline S_000B7520_Vec4 V4Add_7520(const S_000B7520_Vec4 &a, const S_000B7520_Vec4 &b) { S_000B7520_Vec4 r; r.x = a.x + b.x; r.y = a.y + b.y; r.z = a.z + b.z; r.w = 1.0f; return r; }
+static __forceinline S_000B7520_Vec4 V4Sub_7520(const S_000B7520_Vec4 &a, const S_000B7520_Vec4 &b) { S_000B7520_Vec4 r; r.x = a.x - b.x; r.y = a.y - b.y; r.z = a.z - b.z; r.w = 1.0f; return r; }
+static __forceinline S_000B7520_Vec4 V4Mul_7520(const S_000B7520_Vec4 &a, float s) { S_000B7520_Vec4 r; r.x = a.x * s; r.y = a.y * s; r.z = a.z * s; r.w = 1.0f; return r; }
 static __forceinline float V4Dot_7520(const S_000B7520_Vec4 &a, const S_000B7520_Vec4 &b) { return a.x * b.x + a.y * b.y + a.z * b.z; }
 
 static __forceinline void cross7520(S_000B7520_Vec4 *out,const S_000B7520_Vec4 *a,const S_000B7520_Vec4 *b) {
@@ -67,58 +60,58 @@ extern void *D_002B910C;
 int C_000B7520::func_000B7520(int a)
 {
     func_000B67C0();
-    S_000B7520_Vec4 forward, side, front, rear, v5, v6, v7, v8;
+    S_000B7520_Vec4 forward={0,0,0,1}, side={0,0,0,1}, front={0,0,0,1}, rear={0,0,0,1}, v5={0,0,0,1}, v6={0,0,0,1}, v7={0,0,0,1}, v8={0,0,0,1};
     S_000B7520_Vec4 &n1=*(S_000B7520_Vec4 *)&f180;
     S_000B7520_Vec4 &n2=*(S_000B7520_Vec4 *)&f190;
     S_000B7520_Vec4 &normal=*(S_000B7520_Vec4 *)&f1a0;
     if ((f50 && f54) || (f38 && f3c)) {
         if (f40 && f44) {
-            normal=S_000B7520_Vec4((f190+f180)*D_002755E8,(f184+f194)*D_002755E8,(f188+f198)*D_002755E8);
+            normal=V4Make_7520((f190+f180)*D_002755E8,(f184+f194)*D_002755E8,(f188+f198)*D_002755E8);
             S_000B7520_Vec4 &vel=*(S_000B7520_Vec4 *)((char *)f88+0x130);
-            ((Body7520 *)f88)->func_0001C710(normal*(-normal.dot(vel)));
-            S_000B7520_Vec4 x,y,z,t;
+            ((Body7520 *)f88)->func_0001C710(V4Mul_7520(normal,-V4Dot_7520(normal,vel)));
+            S_000B7520_Vec4 x={0,0,0,1},y={0,0,0,1},z={0,0,0,1},t={0,0,0,1};
             (*(Transform7520 **)((char *)f88+0x22c))->func_001994C0(0,&x,&y);
             AsmVec3Cross(&z.x,&x.x,&y.x);
-            t=normal-z*z.dot(normal);
+            t=V4Sub_7520(normal,V4Mul_7520(z,V4Dot_7520(z,normal)));
             func_000B60D0(&t,&t);
             AsmVec3Cross(&x.x,&t.x,&z.x);
             (*(Transform7520 **)((char *)f88+0x22c))->func_00199110(0,&x,&t,0,1,0);
-            S_000B7520_Vec4 p, tmp;
-            if(f48) p=*(*(Transform7520 **)((char *)f88+0x22c))->func_00197F70(&tmp,(S_000B7520_Vec4 *)((char *)this+0xa0))+S_000B7520_Vec4(0,-f7c,0);
+            S_000B7520_Vec4 p={0,0,0,1}, tmp={0,0,0,1};
+            if(f48) p=V4Add_7520(*(*(Transform7520 **)((char *)f88+0x22c))->func_00197F70(&tmp,(S_000B7520_Vec4 *)((char *)this+0xa0)),V4Make_7520(0,-f7c,0));
             else p=*(*(Transform7520 **)((char *)f88+0x22c))->func_00197F70(&tmp,(S_000B7520_Vec4 *)((char *)this+0xe0));
-            front=y*y.dot(*(S_000B7520_Vec4 *)&f120-p);
-            if(f4c) p=*(*(Transform7520 **)((char *)f88+0x22c))->func_00197F70(&tmp,(S_000B7520_Vec4 *)((char *)this+0xb0))+S_000B7520_Vec4(0,-f7c,0);
+            front=V4Mul_7520(y,V4Dot_7520(y,V4Sub_7520(*(S_000B7520_Vec4 *)&f120,p)));
+            if(f4c) p=V4Add_7520(*(*(Transform7520 **)((char *)f88+0x22c))->func_00197F70(&tmp,(S_000B7520_Vec4 *)((char *)this+0xb0)),V4Make_7520(0,-f7c,0));
             else p=*(*(Transform7520 **)((char *)f88+0x22c))->func_00197F70(&tmp,(S_000B7520_Vec4 *)((char *)this+0xf0));
-            rear=y*y.dot(*(S_000B7520_Vec4 *)&f130-p);
+            rear=V4Mul_7520(y,V4Dot_7520(y,V4Sub_7520(*(S_000B7520_Vec4 *)&f130,p)));
             float frontLength=func_00011170(&front);
             if(func_00011170(&rear)>frontLength) {
-                front=front*D_002A303C;
+                front=V4Mul_7520(front,D_002A303C);
                 (*(Transform7520 **)((char *)f88+0x22c))->func_00199960(0,&front);
             } else {
-                rear=rear*D_002A303C;
+                rear=V4Mul_7520(rear,D_002A303C);
                 (*(Transform7520 **)((char *)f88+0x22c))->func_00199960(0,&rear);
             }
         } else {
             S_000B7520_Vec4 &vel=*(S_000B7520_Vec4 *)((char *)f88+0x130);
-            { float d=-n1.dot(vel); float x=d*n1.x, y=d*n1.y, z=d*n1.z; vel.x+=x; vel.y+=y; vel.z+=z; }
-            { float d=-n2.dot(vel); float x=d*n2.x, y=d*n2.y, z=d*n2.z; vel.x+=x; vel.y+=y; vel.z+=z; }
+            { float d=-V4Dot_7520(n1,vel); float x=d*n1.x, y=d*n1.y, z=d*n1.z; vel.x+=x; vel.y+=y; vel.z+=z; }
+            { float d=-V4Dot_7520(n2,vel); float x=d*n2.x, y=d*n2.y, z=d*n2.z; vel.x+=x; vel.y+=y; vel.z+=z; }
             normal=n1;
-            S_000B7520_Vec4 p,q,tmp;
-            if(f48) p=*(*(Transform7520 **)((char *)f88+0x22c))->func_00197F70(&tmp,(S_000B7520_Vec4 *)((char *)this+0xa0))+S_000B7520_Vec4(0,-f7c,0);
+            S_000B7520_Vec4 p={0,0,0,1},q={0,0,0,1},tmp={0,0,0,1};
+            if(f48) p=V4Add_7520(*(*(Transform7520 **)((char *)f88+0x22c))->func_00197F70(&tmp,(S_000B7520_Vec4 *)((char *)this+0xa0)),V4Make_7520(0,-f7c,0));
 else p=*(*(Transform7520 **)((char *)f88+0x22c))->func_00197F70(&tmp,(S_000B7520_Vec4 *)((char *)this+0xe0));
-            front=n1*n1.dot(*(S_000B7520_Vec4 *)&f120-p);
+            front=V4Mul_7520(n1,V4Dot_7520(n1,V4Sub_7520(*(S_000B7520_Vec4 *)&f120,p)));
             (*(Transform7520 **)((char *)f88+0x22c))->func_00199960(0,&front);
-            if(f48) p=*(*(Transform7520 **)((char *)f88+0x22c))->func_00197F70(&tmp,(S_000B7520_Vec4 *)((char *)this+0xa0))+S_000B7520_Vec4(0,-f7c,0);
+            if(f48) p=V4Add_7520(*(*(Transform7520 **)((char *)f88+0x22c))->func_00197F70(&tmp,(S_000B7520_Vec4 *)((char *)this+0xa0)),V4Make_7520(0,-f7c,0));
 else p=*(*(Transform7520 **)((char *)f88+0x22c))->func_00197F70(&tmp,(S_000B7520_Vec4 *)((char *)this+0xe0));
-            if(f4c) q=*(*(Transform7520 **)((char *)f88+0x22c))->func_00197F70(&tmp,(S_000B7520_Vec4 *)((char *)this+0xb0))+S_000B7520_Vec4(0,-f7c,0);
+            if(f4c) q=V4Add_7520(*(*(Transform7520 **)((char *)f88+0x22c))->func_00197F70(&tmp,(S_000B7520_Vec4 *)((char *)this+0xb0)),V4Make_7520(0,-f7c,0));
 else q=*(*(Transform7520 **)((char *)f88+0x22c))->func_00197F70(&tmp,(S_000B7520_Vec4 *)((char *)this+0xf0));
-            S_000B7520_Vec4 projected=q+n2*n2.dot(*(S_000B7520_Vec4 *)&f130-q);
-            v5=q-p;
-            v6=projected-p;
+            S_000B7520_Vec4 projected=V4Add_7520(q,V4Mul_7520(n2,V4Dot_7520(n2,V4Sub_7520(*(S_000B7520_Vec4 *)&f130,q))));
+            v5=V4Sub_7520(q,p);
+            v6=V4Sub_7520(projected,p);
             func_000B60D0(&v5,&v5);
             func_000B60D0(&v6,&v6);
             AsmVec3Cross(&v7.x,&v6.x,&v5.x);
-            float angle=sqrtf(v7.dot(v7));
+            float angle=sqrtf(V4Dot_7520(v7,v7));
             if(angle>0.0f) {
                 func_000B60D0(&v8,&v7);
                 v8=*(*(Transform7520 **)((char *)f88+0x22c))->func_00198040(&tmp,&v8);
@@ -128,21 +121,21 @@ else q=*(*(Transform7520 **)((char *)f88+0x22c))->func_00197F70(&tmp,(S_000B7520
         }
     } else if(f50 || f38) {
         S_000B7520_Vec4 &vel=*(S_000B7520_Vec4 *)((char *)f88+0x130);
-        { float d=-n1.dot(vel); float x=d*n1.x,y=d*n1.y,z=d*n1.z; vel.x+=x;vel.y+=y;vel.z+=z; }
+        { float d=-V4Dot_7520(n1,vel); float x=d*n1.x,y=d*n1.y,z=d*n1.z; vel.x+=x;vel.y+=y;vel.z+=z; }
         normal=n1;
-        S_000B7520_Vec4 p,tmp;
-        if(f48) p=*(*(Transform7520 **)((char *)f88+0x22c))->func_00197F70(&tmp,(S_000B7520_Vec4 *)((char *)this+0xa0))+S_000B7520_Vec4(0,-f7c,0);
+        S_000B7520_Vec4 p={0,0,0,1},tmp={0,0,0,1};
+        if(f48) p=V4Add_7520(*(*(Transform7520 **)((char *)f88+0x22c))->func_00197F70(&tmp,(S_000B7520_Vec4 *)((char *)this+0xa0)),V4Make_7520(0,-f7c,0));
 else p=*(*(Transform7520 **)((char *)f88+0x22c))->func_00197F70(&tmp,(S_000B7520_Vec4 *)((char *)this+0xe0));
-        front=n1*n1.dot(*(S_000B7520_Vec4 *)&f120-p);
+        front=V4Mul_7520(n1,V4Dot_7520(n1,V4Sub_7520(*(S_000B7520_Vec4 *)&f120,p)));
         (*(Transform7520 **)((char *)f88+0x22c))->func_00199960(0,&front);
     } else if(f54 || f3c) {
         S_000B7520_Vec4 &vel=*(S_000B7520_Vec4 *)((char *)f88+0x130);
-        ((Body7520 *)f88)->func_0001C710(n2*(-n2.dot(vel)));
+        ((Body7520 *)f88)->func_0001C710(V4Mul_7520(n2,-V4Dot_7520(n2,vel)));
         normal=n2;
-        S_000B7520_Vec4 q,tmp;
-        if(f4c) q=*(*(Transform7520 **)((char *)f88+0x22c))->func_00197F70(&tmp,(S_000B7520_Vec4 *)((char *)this+0xb0))+S_000B7520_Vec4(0,-f7c,0);
+        S_000B7520_Vec4 q={0,0,0,1},tmp={0,0,0,1};
+        if(f4c) q=V4Add_7520(*(*(Transform7520 **)((char *)f88+0x22c))->func_00197F70(&tmp,(S_000B7520_Vec4 *)((char *)this+0xb0)),V4Make_7520(0,-f7c,0));
 else q=*(*(Transform7520 **)((char *)f88+0x22c))->func_00197F70(&tmp,(S_000B7520_Vec4 *)((char *)this+0xf0));
-        front=n2*n2.dot(*(S_000B7520_Vec4 *)&f130-q);
+        front=V4Mul_7520(n2,V4Dot_7520(n2,V4Sub_7520(*(S_000B7520_Vec4 *)&f130,q)));
         (*(Transform7520 **)((char *)f88+0x22c))->func_00199960(0,&front);
     }
     if(fabsf(f1a4)<0.15f && *(void **)((char *)this+0x1d8) &&
@@ -152,16 +145,16 @@ else q=*(*(Transform7520 **)((char *)f88+0x22c))->func_00197F70(&tmp,(S_000B7520
     if(f50 || f54 || f38 || f3c) {
         S_000B7520_Vec4 &velocity=*(S_000B7520_Vec4 *)((char *)f88+0x238);
         func_000B60D0(&forward,&velocity);
-        if(fabsf(forward.dot(normal))>0.707f) {
+        if(fabsf(V4Dot_7520(forward,normal))>0.707f) {
             AsmVec3Cross(&side.x,&velocity.x,&normal.x);
             AsmVec3Cross(&forward.x,&normal.x,&side.x);
             func_000B60D0(&forward,&forward);
-            velocity=velocity-normal*normal.dot(velocity);
+            velocity=V4Sub_7520(velocity,V4Mul_7520(normal,V4Dot_7520(normal,velocity)));
         } else {
             AsmVec3Cross(&side.x,&velocity.x,&normal.x);
             AsmVec3Cross(&forward.x,&normal.x,&side.x);
             func_000B60D0(&forward,&forward);
-            velocity=forward*sqrtf(velocity.dot(velocity));
+            velocity=V4Mul_7520(forward,sqrtf(V4Dot_7520(velocity,velocity)));
         }
     }
     return 1;
