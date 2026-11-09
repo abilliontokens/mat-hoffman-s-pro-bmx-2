@@ -87,10 +87,8 @@ struct C_3D7B0 {
 
 int Obj3D::func_0003D220()
 {
-    Obj3D *volatile self = this;
-    *(volatile int *)&flag2cc = 1;
-    Obj3D *s = self;
-    int idx = s->f64->f5a4[s->f47c].f44 + s->f480;
+    ((volatile Obj3D *)this)->flag2cc = 1;
+    int idx = this->f64->f5a4[this->f47c].f44 + this->f480;
     Node_3D220 *node;
     Node_3D220 *m = (Node_3D220 *)func_001E8A44(0x1c);
     if (m) {
@@ -107,8 +105,8 @@ int Obj3D::func_0003D220()
     }
     Obj_3D220 *om = (Obj_3D220 *)func_001E8A44(0x1e0);
     Obj_3D220 *obj = om ? om->func_00143580(1) : 0;
-    Vec4_3D220 v = *(Vec4_3D220 *)(self->f564->f10 + 0x24);
-    switch (self->f4a8) {
+    Vec4_3D220 v = *(Vec4_3D220 *)(this->f564->f10 + 0x24);
+    switch (this->f4a8) {
     case 0: v.x -= D_00275AEC; break;
     case 1: v.x = *(volatile float *)&v.x + D_00275AEC; break;
     case 2: v.z -= D_00275AEC; break;
@@ -118,30 +116,30 @@ int Obj3D::func_0003D220()
     case 6: v.x = *(volatile float *)&v.x + D_00275AEC; v.z -= D_00275AEC; break;
     case 7: v.x = *(volatile float *)&v.x + D_00275AEC; v.z = *(volatile float *)&v.z + D_00275AEC; break;
     }
-    if (obj->v8c(self->f64->names.get(idx), 0, 1)) {
-        float a = ((self->f4bc.x > D_00275460) ? self->f4bc.x - D_00275548 : self->f4bc.x - D_00275460) * D_00275F64 + D_00275460;
-        float b = (self->f4bc.y - D_00275548) * D_00275F64 + D_00275460;
-        float c = ((self->f4bc.z > D_00275460) ? self->f4bc.z - D_00275548 : self->f4bc.z - D_00275460) * D_00275F64 + D_00275460;
-        volatile int len = strlen(self->f64->names.get(idx));
-        volatile int lim = 0x7f;
-        int n = AsmMinI(lim, len);
-        func_001E8920(obj->name, self->f64->names.get(idx), n);
+    if (obj->v8c(this->f64->names.get(idx), 0, 1)) {
+        float a = ((this->f4bc.x > D_00275460) ? this->f4bc.x - D_00275548 : this->f4bc.x - D_00275460) * D_00275F64 + D_00275460;
+        float b = (this->f4bc.y - D_00275548) * D_00275F64 + D_00275460;
+        float c = ((this->f4bc.z > D_00275460) ? this->f4bc.z - D_00275548 : this->f4bc.z - D_00275460) * D_00275F64 + D_00275460;
+        int slen = strlen(this->f64->names.get(idx));
+        int lim = 0x7f;
+        int n = AsmMinI(lim, slen);
+        func_001E8920(obj->name, this->f64->names.get(idx), n);
         obj->name[n] = 0;
-        obj->func_00198F50(&self->f4cc, &self->f4dc, 1, 0, 0);
+        obj->func_00198F50(&this->f4cc, &this->f4dc, 1, 0, 0);
         obj->f1a3 &= ~8;
-        obj->func_0019ABA0(*self->f64->f4a8, 2);
-        (*self->f64->f3a8)->func_001577A0(obj, 0);
+        obj->func_0019ABA0(*this->f64->f4a8, 2);
+        (*this->f64->f3a8)->func_001577A0(obj, 0);
         obj->func_0019A0A0(a, b, c);
         Vec4_3D220 w = v;
-        w.y = v.y - self->f4bc.y;
+        w.y = v.y - this->f4bc.y;
         obj->func_00199600(w);
         obj->func_0019AC50();
     }
     node->f8 = obj;
     Obj2_3D220 *om2 = (Obj2_3D220 *)func_001E8A44(0x2f0);
     Obj2_3D220 *obj2 = om2 ? om2->func_001BB680(1) : 0;
-    v = *(Vec4_3D220 *)(self->f564->f10 + 0x24);
-    switch (self->f4a8) {
+    v = *(Vec4_3D220 *)(this->f564->f10 + 0x24);
+    switch (this->f4a8) {
     case 0: v.x -= D_00275AEC; break;
     case 1: v.x = *(volatile float *)&v.x + D_00275AEC; break;
     case 2: v.z -= D_00275AEC; break;
@@ -151,16 +149,16 @@ int Obj3D::func_0003D220()
     case 6: v.x = *(volatile float *)&v.x + D_00275AEC; v.z -= D_00275AEC; break;
     case 7: v.x = *(volatile float *)&v.x + D_00275AEC; v.z = *(volatile float *)&v.z + D_00275AEC; break;
     }
-    if (obj2->func_001BC040(v, self->f4bc, self->f4cc, self->f4dc, 0, 0, 0x64, 0)) {
-        obj2->func_001BBAE0(*self->f64->f4ac);
-        ((Mgr_3D220 *)self->f64)->func_001577A0(obj2, -1);
+    if (obj2->func_001BC040(v, this->f4bc, this->f4cc, this->f4dc, 0, 0, 0x64, 0)) {
+        obj2->func_001BBAE0(*this->f64->f4ac);
+        ((Mgr_3D220 *)this->f64)->func_001577A0(obj2, -1);
         node->f0 = 1;
         node->f10 = obj2;
-        self->f554->func_0008A970();
-        self->f474 = 7;
-        self->f564 = (Sub_3D220 *)node;
-        self->func_000399A0(0);
-        self->func_0003AD50();
+        this->f554->func_0008A970();
+        this->f474 = 7;
+        this->f564 = (Sub_3D220 *)node;
+        this->func_000399A0(0);
+        this->func_0003AD50();
         return 1;
     }
     delete obj2;
@@ -171,9 +169,9 @@ int Obj3D::func_0003D220()
 int C_3D7B0::func_0003D7B0(S_3D7B0_Vec4 v)
 {
     S_3D7B0_Vec4 d = v;
-    int ix;
-    int iy;
     int iz;
+    int iy;
+    int ix;
 
     d.x -= (float)f428;
     d.y -= (float)f42c;
@@ -190,6 +188,6 @@ int C_3D7B0::func_0003D7B0(S_3D7B0_Vec4 v)
     int cell = f49c[(f45c * ix + iy) * f460 + iz];
     if (cell == 0)
         return 0;
-    this->f564 = func_000389C0(cell);
-    return f564 != 0;
+    f564 = func_000389C0(cell);
+    return (unsigned short)f564 != 0;
 }
