@@ -23,7 +23,8 @@ struct S_00122810_V4 {
     float x, y, z, w;
 };
 struct S_00122810_V3 {
-    float x, y, z, w;
+    float w;
+    float x, y, z;
     S_00122810_V3() { z = 0; y = 0; x = 0; }
     S_00122810_V3(float a, float b, float c) { x = a; y = b; z = c; }
     S_00122810_V3 operator+(const S_00122810_V3 &o) const { return S_00122810_V3(x + o.x, y + o.y, z + o.z); }
@@ -127,34 +128,35 @@ int func_00122810(float *p, float *half, S_00122810_Box *box, float eps, float u
     }
     S_00122810_V3 n;
     n.w = 1.0f;
+    float distance, rx, ry, rz, rh;
     {
     n.x = -unit.z; n.y = 0; n.z = unit.x;
     func_0011EFA0(&n.x, &n.x);
-    float distance = Fabs_00122810(Dot_00122810(n, c));
-    float rx = Fabs_00122810(Dot_00122810(x, n));
-    float ry = Fabs_00122810(Dot_00122810(y, n));
-    float rz = Fabs_00122810(Dot_00122810(z, n));
-    float rh = Fabs_00122810(Dot_00122810(n, h));
+    distance = Fabs_00122810(Dot_00122810(n, c));
+    rx = Fabs_00122810(Dot_00122810(x, n));
+    ry = Fabs_00122810(Dot_00122810(y, n));
+    rz = Fabs_00122810(Dot_00122810(z, n));
+    rh = Fabs_00122810(Dot_00122810(n, h));
     if (rz + ry + rx + rh + eps < distance) return 0;
     }
     {
     n.x = unit.y; n.y = -unit.x; n.z = 0;
     func_0011EFA0(&n.x, &n.x);
-    float distance = Fabs_00122810(Dot_00122810(n, c));
-    float rx = Fabs_00122810(Dot_00122810(x, n));
-    float ry = Fabs_00122810(Dot_00122810(y, n));
-    float rz = Fabs_00122810(Dot_00122810(z, n));
-    float rh = Fabs_00122810(Dot_00122810(n, h));
+    distance = Fabs_00122810(Dot_00122810(n, c));
+    rx = Fabs_00122810(Dot_00122810(x, n));
+    ry = Fabs_00122810(Dot_00122810(y, n));
+    rz = Fabs_00122810(Dot_00122810(z, n));
+    rh = Fabs_00122810(Dot_00122810(n, h));
     if (rz + ry + rx + rh + eps < distance) return 0;
     }
     {
     n.x = 0; n.y = unit.z; n.z = -unit.y;
     func_0011EFA0(&n.x, &n.x);
-    float distance = Fabs_00122810(Dot_00122810(n, c));
-    float rx = Fabs_00122810(Dot_00122810(x, n));
-    float ry = Fabs_00122810(Dot_00122810(y, n));
-    float rz = Fabs_00122810(Dot_00122810(z, n));
-    float rh = Fabs_00122810(Dot_00122810(n, h));
+    distance = Fabs_00122810(Dot_00122810(n, c));
+    rx = Fabs_00122810(Dot_00122810(x, n));
+    ry = Fabs_00122810(Dot_00122810(y, n));
+    rz = Fabs_00122810(Dot_00122810(z, n));
+    rh = Fabs_00122810(Dot_00122810(n, h));
     if (rz + ry + rx + rh + eps < distance) return 0;
     }
     S_00122810_V3 da, db;
@@ -177,11 +179,11 @@ int func_00122810(float *p, float *half, S_00122810_Box *box, float eps, float u
     }
     n.z = 0;
     func_0011EFA0(&n.x, &n.x);
-    float distance = Fabs_00122810(Dot_00122810(n, c));
-    float rx = Fabs_00122810(Dot_00122810(x, n));
-    float ry = Fabs_00122810(Dot_00122810(y, n));
-    float rz = Fabs_00122810(Dot_00122810(z, n));
-    float rh = Fabs_00122810(Dot_00122810(n, h));
+    distance = Fabs_00122810(Dot_00122810(n, c));
+    rx = Fabs_00122810(Dot_00122810(x, n));
+    ry = Fabs_00122810(Dot_00122810(y, n));
+    rz = Fabs_00122810(Dot_00122810(z, n));
+    rh = Fabs_00122810(Dot_00122810(n, h));
     if (rz + ry + rx + rh + eps < distance) return 0;
     }
     {
@@ -194,11 +196,11 @@ int func_00122810(float *p, float *half, S_00122810_Box *box, float eps, float u
     }
     n.y = 0;
     func_0011EFA0(&n.x, &n.x);
-    float distance = Fabs_00122810(Dot_00122810(n, c));
-    float rx = Fabs_00122810(Dot_00122810(x, n));
-    float ry = Fabs_00122810(Dot_00122810(y, n));
-    float rz = Fabs_00122810(Dot_00122810(z, n));
-    float rh = Fabs_00122810(Dot_00122810(n, h));
+    distance = Fabs_00122810(Dot_00122810(n, c));
+    rx = Fabs_00122810(Dot_00122810(x, n));
+    ry = Fabs_00122810(Dot_00122810(y, n));
+    rz = Fabs_00122810(Dot_00122810(z, n));
+    rh = Fabs_00122810(Dot_00122810(n, h));
     if (rz + ry + rx + rh + eps < distance) return 0;
     }
     {
@@ -211,11 +213,11 @@ int func_00122810(float *p, float *half, S_00122810_Box *box, float eps, float u
     }
     n.x = 0;
     func_0011EFA0(&n.x, &n.x);
-    float distance = Fabs_00122810(Dot_00122810(n, c));
-    float rx = Fabs_00122810(Dot_00122810(x, n));
-    float ry = Fabs_00122810(Dot_00122810(y, n));
-    float rz = Fabs_00122810(Dot_00122810(z, n));
-    float rh = Fabs_00122810(Dot_00122810(n, h));
+    distance = Fabs_00122810(Dot_00122810(n, c));
+    rx = Fabs_00122810(Dot_00122810(x, n));
+    ry = Fabs_00122810(Dot_00122810(y, n));
+    rz = Fabs_00122810(Dot_00122810(z, n));
+    rh = Fabs_00122810(Dot_00122810(n, h));
     if (rz + ry + rx + rh + eps < distance) return 0;
     }
     return 1;
