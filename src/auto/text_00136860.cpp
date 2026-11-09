@@ -138,7 +138,6 @@ struct C_001376B0 {
 struct TokenizerBuf {
      double align;
      void Tokenizer_SetString(int a);
-     void func_001B4A40(int a);
      char *func_001B4A70(const char *delims);
  };
 
