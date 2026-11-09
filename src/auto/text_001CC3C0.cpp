@@ -206,6 +206,7 @@ struct C_001CC3C0_154 {
 };
 
 struct S_Vec_001CC4B0;
+struct S_V4_001CCE10;
 struct C_001CC3C0 {
     virtual void v0();
     virtual void v1();
@@ -534,23 +535,24 @@ int C_001CCC50::func_001CCC50(int *out, u32 bytes, u32 rate, u16 bits, u32 align
     return 1;
 }
 
-int C_001CC3C0::func_001CCE10(int a, int b, int c, int d)
+int C_001CC3C0::func_001CCE10(S_Vec_001CC4B0 v, int d)
 {
     if (*(u8 *)((char *)this + 0x10c) & 8) {
         if (f13C != 0) {
-            int e = func_00221A71(f13C, a, b, c, 1);
+            int e = func_00221A71(f13C, v.x, v.y, v.z, 1);
             if (e < 0) {
                 func_001CBC10(e, &D_0028EECC, 0xa89);
                 return 0;
             }
         } else if (f140 != 0) {
-            int e = func_00221B90(f140->fC, a, b, c, 1);
+            int e = func_00221B90(f140->fC, v.x, v.y, v.z, 1);
             if (e < 0) {
                 func_001CBC10(e, &D_0028EECC, 0xa8f);
                 return 0;
             }
         }
-        ((S_V4_001CCE10 *)&f1E8)->Set(a, b, c, d);
+        *(S_Vec_001CC4B0 *)((char *)this + 0x1e8) = v;
+        *(int *)((char *)this + 0x1f4) = d;
     }
     return 1;
 }
