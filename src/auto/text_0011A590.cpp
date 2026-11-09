@@ -64,6 +64,22 @@ extern float D_00275F58;
 extern const float D_00275460;
 extern const float D_00278C48;
 
+struct V4_0011A590 {
+    float x, y, z, w;
+};
+
+struct Vecs_0011A590 {
+    float d[4];
+    float t;
+    float a[4];
+    float b[4];
+    float c[4];
+    float e[4];
+    float local[4];
+    float scaled[4];
+    float n[4];
+};
+
 struct C_0011A590_f28 {
     void func_00197F70(void *a, void *b);
     void func_00199900(void *a);
@@ -74,26 +90,30 @@ struct C_0011A590_f28 {
 float *func_0001E9E0(float *out, float *v);
 Vec4 func_0001C610(float *a, float *b);
 
+float *func_0001C610(float *out, float *a, float *b);
 int BmxWallPlantConstraint::func_0011A590(float dt)
 {
-    Vec4 local;
+    float len;
+    float ang;
+    float absang;
     Vec4 d;
-    Vec4 n;
-    Vec4 scaled;
     Vec4 a;
     Vec4 b;
     Vec4 c;
     Vec4 e;
-    Vec4 g;
-    float len;
-    float dot;
-    float ang;
+    Vec4 local;
+    Vec4 scaled;
+    Vec4 n;
 
     ((C_0011A590_f28 *)f28)->func_00197F70(&local, pad2c);
     d.x = f3c - local.x;
     d.y = f40 - local.y;
     d.z = f44 - local.z;
     d.w = 1.0f;
+    e.x = 0.0f;
+    e.y = 1.0f;
+    e.z = 0.0f;
+    e.w = 1.0f;
     a.x = 0.0f;
     a.y = 0.0f;
     a.z = 0.0f;
@@ -103,11 +123,8 @@ int BmxWallPlantConstraint::func_0011A590(float dt)
     b.z = 0.0f;
     b.w = 1.0f;
     len = AsmSqrtF(d.z * d.z + d.y * d.y + d.x * d.x);
-    if (len < f64) {
-        if (!(len > f5c)) {
-            float t = dt * f6c;
-            len = AsmMinF(len, t);
-        }
+    if (len > f64) {
+        len = len < f5c ? len : AsmMinF(len, dt * f6c);
         func_0001E9E0((float *)&n, (float *)&d);
         scaled.x = n.x * len;
         scaled.y = n.y * len;
@@ -115,17 +132,58 @@ int BmxWallPlantConstraint::func_0011A590(float dt)
         scaled.w = 1.0f;
         ((C_0011A590_f28 *)f28)->func_00199900(&scaled);
     }
-    ((C_0011A590_f28 *)f28)->func_00197B40(&b, &a);
-    dot = f4c[0] * a.x + f4c[1] * a.y + f4c[2] * a.z;
-    if (!(dot > D_00275544)) {
-        a.x *= D_00275F58;
-        a.y *= D_00275F58;
-        a.z *= D_00275F58;
+    ((C_0011A590_f28 *)f28)->func_00197B40(&a, &b);
+    d.x = f4c[0];
+    d.y = f4c[1];
+    d.z = f4c[2];
+    d.w = f4c[3];
+    if ((d.x * a.x + d.y * a.y + d.z * a.z) < D_00275544) {
+        d.x = d.x * D_00275F58;
+        d.y = d.y * D_00275F58;
+        d.z = d.z * D_00275F58;
     }
-    func_0001E9E0((float *)&c, (float *)&a);
-    func_0001E9E0((float *)&e, (float *)&b);
-    g = func_0001C610((float *)&e, (float *)&c);
-    ang = func_0014F7E0(g.x * a.x + g.y * a.y + g.z * a.z);
+    func_0001E9E0((float *)&n, (float *)&a);
+    a = n;
+    func_0001E9E0((float *)&scaled, (float *)&d);
+    d = scaled;
+    func_0001E9E0((float *)&c, func_0001C610((float *)&n, (float *)&a, (float *)&d));
+    ang = len = func_0014F7E0(d.x * a.x + d.y * a.y + d.z * a.z);
+    *(int *)&absang = *(int *)&ang & 0x7fffffff;
+    if (absang > f68) {
+        if (absang < f60) {
+            ang = ang;
+        }
+        else {
+            float sgn = ang < D_00275544 ? -1.0f : 1.0f;
+            *(int *)&len = *(int *)&ang & 0x7fffffff;
+            len = AsmMinF(len, dt * f70);
+            ang = len * sgn;
+        }
+        ((C_0011A590_f28 *)f28)->func_00198040(&d, &c);
+        ((C_0011A590_f28 *)f28)->func_00199CF0(d, ang);
+    }
+    ((C_0011A590_f28 *)f28)->func_00197B40(&a, &b);
+    func_0001E9E0((float *)&n, (float *)&b);
+    b = n;
+    func_0001E9E0((float *)&scaled, (float *)&e);
+    e = scaled;
+    func_0001E9E0((float *)&d, func_0001C610((float *)&n, (float *)&b, (float *)&e));
+    c = d;
+    ang = len = func_0014F7E0(e.x * b.x + e.y * b.y + e.z * b.z);
+    *(int *)&absang = *(int *)&ang & 0x7fffffff;
+    if (absang > f68) {
+        if (absang < f60) {
+            ang = ang;
+        }
+        else {
+            float sgn = ang < D_00275544 ? -1.0f : 1.0f;
+            *(int *)&len = *(int *)&ang & 0x7fffffff;
+            len = AsmMinF(len, dt * f70);
+            ang = len * sgn;
+        }
+        ((C_0011A590_f28 *)f28)->func_00198040(&e, &c);
+        ((C_0011A590_f28 *)f28)->func_00199CF0(e, ang);
+    }
     return 1;
 }
 
