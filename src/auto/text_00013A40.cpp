@@ -458,9 +458,9 @@ C_14170 *C_14170::func_00014170(char *volatile name,unsigned char flag,int mode,
  void *mem=func_001E8A44(0x20);
  if(mem) {
  state=(State_14170*)mem;
- state->vec.w=1;
+ S_00014850_Vec4 *v = &state->vec;
  state->vtbl=&D_002755A4;
- state->vec.z=0;state->vec.y=0;state->vec.x=0;
+ v->z=0;v->y=0;v->x=0;v->w=1;
  state->kind=3;state->owner=0;
  state->vec.x=D_002A04FC.x;state->vec.y=D_002A04FC.y;state->vec.z=D_002A04FC.z;state->vec.w=D_002A0508;
  } else {
