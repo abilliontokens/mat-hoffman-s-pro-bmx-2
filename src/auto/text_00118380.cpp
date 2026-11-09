@@ -27,11 +27,6 @@ static __forceinline float Dot3_118380(float *a, float *b)
     return *(volatile float *)&a[0] * b[0] + a[1] * b[1] + d2;
 }
 
-static float Dot3V_118380(float a0, float b0, float a1, float b1, float a2, float b2)
-{
-    return a0 * b0 + a1 * b1 + a2 * b2;
-}
-
 struct C_00157BF0 {
     int func_00157BF0(int a, int b);
 };
