@@ -23,6 +23,16 @@ static __forceinline V4_2D270 Pt_2D270(const float &x, const float &y, const flo
     return v;
 }
 
+/* column c of a 4x4 matrix stored as float[16], as a point (w = 1) */
+static __forceinline V4_2D270 Col3_2D270(const float *m, int c)
+{
+    V4_2D270 r;
+    r.x = m[c];
+    r.y = m[c + 4];
+    r.z = m[c + 8];
+    return r;
+}
+
 struct S_2D270_Body {
     char pad0[0x238];
     float f238, f23c, f240;
@@ -133,7 +143,6 @@ void S2CBC0::func_0002CBC0(float dt)
 {
     volatile V4_2CBC0 a;
     volatile V4_2CBC0 b;
-    volatile V4_2CBC0 v;
     volatile V4_2CBC0 m;
     volatile V4_2CBC0 mat;
     V4_2CBC0 *p;
@@ -158,57 +167,25 @@ void S2CBC0::func_0002CBC0(float dt)
     p = this->f230->func_00197F70((void *)&mat, this->f210->mat38);
     m.x = p->x; m.y = p->y; m.z = p->z; m.w = p->w;
     m.w = 1.0f;
-    v.x = this->f210->f30->v20[0] - m.x;
-    v.y = this->f210->f30->v20[1] - m.y;
-    v.z = this->f210->f30->v20[2] - m.z;
-    v.w = 1.0f;
-    dot = v.y * this->f210->f30->v40[1] + v.x * this->f210->f30->v40[0] + v.z * this->f210->f30->v40[2];
-    cx = this->f210->f30->v20[0] - dot * this->f210->f30->v40[0];
-    cy = this->f210->f30->v20[1] - dot * this->f210->f30->v40[1];
-    cz = this->f210->f30->v20[2] - dot * this->f210->f30->v40[2];
-    v.x = this->f210->f30->v20[0] - cx;
-    v.y = this->f210->f30->v20[1] - cy;
-    v.z = this->f210->f30->v20[2] - cz;
-    v.w = 1.0f;
-    b.x = v.x; b.y = v.y; b.z = v.z; b.w = v.w;
-    a.x = this->f210->f30->v30[0] - cx;
-    a.y = this->f210->f30->v30[1] - cy;
-    a.z = this->f210->f30->v30[2] - cz;
-    s = v.z * v.z + v.y * v.y + v.x * v.x;
-    lp = AsmSqrtF(s);
-    s = a.y * a.y + a.z * a.z + a.x * a.x;
-    la = AsmSqrtF(s);
-    t = AsmMinF(lp, la);
-    func_00026340((void *)&b, (void *)&b);
-    func_00026340((void *)&a, (void *)&a);
-    if (a.y * b.y + a.x * b.x + a.z * b.z > D_00275544 && t > this->f5bc) {
-        int r = func_00028130(this->f210->f78, 0, 0);
-        this->f210->f30->fC = 0;
-        if (r == 0) {
-            this->func_00028070();
-            return;
-        }
-        this->f724 = this->f210->f30;
-        p = this->f230->func_00197F70((void *)&mat, this->f210->mat48);
-        m.x = p->x; m.y = p->y; m.z = p->z; m.w = p->w;
-        m.w = 1.0f;
-        v.x = this->f210->f34->v20[0] - m.x;
-        v.y = this->f210->f34->v20[1] - m.y;
-        v.z = this->f210->f34->v20[2] - m.z;
+    {
+        volatile V4_2CBC0 v;
+        v.x = this->f210->f30->v20[0] - m.x;
+        v.y = this->f210->f30->v20[1] - m.y;
+        v.z = this->f210->f30->v20[2] - m.z;
         v.w = 1.0f;
-        dot = v.y * this->f210->f34->v40[1] + v.x * this->f210->f34->v40[0] + v.z * this->f210->f34->v40[2];
-        cx = this->f210->f34->v20[0] - dot * this->f210->f34->v40[0];
-        cy = this->f210->f34->v20[1] - dot * this->f210->f34->v40[1];
-        cz = this->f210->f34->v20[2] - dot * this->f210->f34->v40[2];
-        v.x = this->f210->f34->v20[0] - cx;
-        v.y = this->f210->f34->v20[1] - cy;
-        v.z = this->f210->f34->v20[2] - cz;
+        dot = v.y * this->f210->f30->v40[1] + v.x * this->f210->f30->v40[0] + v.z * this->f210->f30->v40[2];
+        cx = this->f210->f30->v20[0] - dot * this->f210->f30->v40[0];
+        cy = this->f210->f30->v20[1] - dot * this->f210->f30->v40[1];
+        cz = this->f210->f30->v20[2] - dot * this->f210->f30->v40[2];
+        v.x = this->f210->f30->v20[0] - cx;
+        v.y = this->f210->f30->v20[1] - cy;
+        v.z = this->f210->f30->v20[2] - cz;
         v.w = 1.0f;
         b.x = v.x; b.y = v.y; b.z = v.z; b.w = v.w;
-        a.x = this->f210->f34->v30[0] - cx;
-        a.y = this->f210->f34->v30[1] - cy;
-        a.z = this->f210->f34->v30[2] - cz;
-        s = v.y * v.y + v.x * v.x + v.z * v.z;
+        a.x = this->f210->f30->v30[0] - cx;
+        a.y = this->f210->f30->v30[1] - cy;
+        a.z = this->f210->f30->v30[2] - cz;
+        s = v.z * v.z + v.y * v.y + v.x * v.x;
         lp = AsmSqrtF(s);
         s = a.y * a.y + a.z * a.z + a.x * a.x;
         la = AsmSqrtF(s);
@@ -216,9 +193,44 @@ void S2CBC0::func_0002CBC0(float dt)
         func_00026340((void *)&b, (void *)&b);
         func_00026340((void *)&a, (void *)&a);
         if (a.y * b.y + a.x * b.x + a.z * b.z > D_00275544 && t > this->f5bc) {
-            if (func_00028130(this->f210->f7c, 0, 0) == 0) {
+            int r = func_00028130(this->f210->f78, 0, 0);
+            this->f210->f30->fC = 0;
+            if (r == 0) {
                 this->func_00028070();
                 return;
+            }
+            this->f724 = this->f210->f30;
+            p = this->f230->func_00197F70((void *)&mat, this->f210->mat48);
+            m.x = p->x; m.y = p->y; m.z = p->z; m.w = p->w;
+            m.w = 1.0f;
+            v.x = this->f210->f34->v20[0] - m.x;
+            v.y = this->f210->f34->v20[1] - m.y;
+            v.z = this->f210->f34->v20[2] - m.z;
+            v.w = 1.0f;
+            dot = v.y * this->f210->f34->v40[1] + v.x * this->f210->f34->v40[0] + v.z * this->f210->f34->v40[2];
+            cx = this->f210->f34->v20[0] - dot * this->f210->f34->v40[0];
+            cy = this->f210->f34->v20[1] - dot * this->f210->f34->v40[1];
+            cz = this->f210->f34->v20[2] - dot * this->f210->f34->v40[2];
+            v.x = this->f210->f34->v20[0] - cx;
+            v.y = this->f210->f34->v20[1] - cy;
+            v.z = this->f210->f34->v20[2] - cz;
+            v.w = 1.0f;
+            b.x = v.x; b.y = v.y; b.z = v.z; b.w = v.w;
+            a.x = this->f210->f34->v30[0] - cx;
+            a.y = this->f210->f34->v30[1] - cy;
+            a.z = this->f210->f34->v30[2] - cz;
+            s = v.y * v.y + v.x * v.x + v.z * v.z;
+            lp = AsmSqrtF(s);
+            s = a.y * a.y + a.z * a.z + a.x * a.x;
+            la = AsmSqrtF(s);
+            t = AsmMinF(lp, la);
+            func_00026340((void *)&b, (void *)&b);
+            func_00026340((void *)&a, (void *)&a);
+            if (a.y * b.y + a.x * b.x + a.z * b.z > D_00275544 && t > this->f5bc) {
+                if (func_00028130(this->f210->f7c, 0, 0) == 0) {
+                    this->func_00028070();
+                    return;
+                }
             }
         }
     }
@@ -236,17 +248,19 @@ void S2CBC0::func_0002CBC0(float dt)
         this->f48c = this->f48c + av * dt;
     }
 }
-#pragma optimize("", on)
+#pragma optimize("y", on)
 void S2CBC0::func_0002D270()
 {
     S2CBC0 *volatile self = this;
-    V3_2D270 out1, out2, v;
     V4_2D270 m1w;
     V4_2D270 d;
     V4_2D270 m1y, m2y, m1z, m2z;
     V4_2D270 c1, c2, c3;
+    V3_2D270 v, out1, out2;
     V3_2D270 *r;
     float s;
+    __declspec(align(16)) char buf[0x40];
+    __declspec(align(16)) char copy[0x40];
 
     m1w.x = self->m1[3];
     m1w.y = self->m1[7];
@@ -257,7 +271,7 @@ void S2CBC0::func_0002D270()
     d.z = (m1w.z - self->m2[11]) * s;
     m1y.x = self->m1[1];
     m1y.y = self->m1[5];
-    m1y.z = self->m1[9];
+    m1y.y = self->m1[9];
     m2y.x = self->m2[1];
     m2y.y = self->m2[5];
     m2y.z = self->m2[9];
@@ -267,12 +281,12 @@ void S2CBC0::func_0002D270()
     m2z.x = self->m2[2];
     m2z.y = self->m2[6];
     m2z.z = self->m2[10];
-    Cross_2D270(&c1, &m2z, &m1z);
-    Cross_2D270(&c2, &m2y, &m1y);
+    AsmVec3Cross((float *)&c1, (const float *)&m2z, (const float *)&m1z);
+    AsmVec3Cross((float *)&c2, (const float *)&m2y, (const float *)&m1y);
     v.x = (c2.x + c1.x) * s;
     v.y = (c2.y + c1.y) * s;
     v.z = (c2.z + c1.z) * s;
-    Cross_2D270(&c3, (V4_2D270 *)&self->f1e0->f268, &m1w);
+    AsmVec3Cross((float *)&c3, (const float *)&self->f1e0->f268, (const float *)&m1w);
     self->f230->func_00197EC0(&out1, &d);
     r = (V3_2D270 *)self->f230->func_00197EC0(&out2, &c3);
     out1.x += r->x;
@@ -284,13 +298,9 @@ void S2CBC0::func_0002D270()
     self->f1e0->f268 += v.x;
     self->f1e0->f26c += v.y;
     self->f1e0->f270 += v.z;
-    {
-        char buf[0x40];
-        char copy[0x40];
-        func_000263B0(buf, self->m1, self->f230->f0f0);
-        memcpy(copy, buf, 0x40);
-        self->f230->func_0019AD60(0, copy);
-    }
+    func_000263B0(buf, self->m1, self->f230->f0f0);
+    memcpy(copy, buf, 0x40);
+    self->f230->func_0019AD60(0, copy);
     func_0002A7C0();
 }
 #pragma optimize("", on)
