@@ -17,6 +17,7 @@ extern char D_002758F0[], D_002758E4[], D_002758D8[], D_002758CC[];
 
 /* the path buffers are saved and restored with a length-clamped copy; the original
    keeps the clamp's operands and result in three stack slots (len/limit/result) */
+static __forceinline void CopyPathP_001554D0(char *dst, const char *src);
 static __forceinline void CopyPathV_001554D0(char *dst, const char *src, volatile int &len, volatile int &lim, volatile int &res)
 {
     int ma, mb, n;
