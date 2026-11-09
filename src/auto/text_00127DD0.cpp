@@ -62,7 +62,7 @@ struct C_00128910 {
 
 #include <xmmintrin.h>
 #include "asm_helpers.h"
-extern const float D_002755E8;
+extern float D_002755E8;
 
 static inline float Sqrt_00128480(float x) { float r; _mm_store_ss(&r, _mm_sqrt_ss(*(__m128 *)&x)); return r; }
 
@@ -200,7 +200,7 @@ void func_00128120(int a0, int a1, int a2, M44_00128120 *mat, S_00127DD0_Entry *
 {
     V4_00128120 *mid;
     M44_00128120 m;
-    V4_00128120 *pv;
+    float *p;
     int i;
     int n;
 
@@ -212,10 +212,10 @@ void func_00128120(int a0, int a1, int a2, M44_00128120 *mat, S_00127DD0_Entry *
     func_0011AC30(&m, &m);
     n = count * 2;
     if (n > 0) {
-        pv = (V4_00128120 *)e;
+        p = (float *)e;
         do {
-            AsmTransformPoint((float *)pv, (float *)pv, (const float *)m.m);
-            pv++;
+            AsmTransformPoint(p, p, (const float *)m.m);
+            p += 4;
         } while (--n != 0);
     }
     func_00127DD0(a0, a1, a2, e, mid, count);
