@@ -139,11 +139,7 @@ C_00073EF0 *C_00073EF0::func_00073EF0(void *a0)
     r = D_002A8490->f2EC->func_0018C160((int)D_00278678);
     fontC = r ? *r : 0;
 
-    *(int *)D_002A60B0 = *(int *)D_00278664;
-    *(int *)D_002A60B4 = *(int *)D_00278668;
-    *(int *)D_002A60B8 = *(int *)D_0027866C;
-    *(int *)D_002A60BC = *(int *)D_00278670;
-    *(char *)D_002A60C0 = D_00278674;
+    memcpy(D_002A60B0, D_00278664, 17);
 
     o = (Img_73 *)func_001E8A44(0x64);
     fAC = o ? o->func_001D5760() : 0;
