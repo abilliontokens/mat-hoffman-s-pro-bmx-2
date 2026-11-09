@@ -15,6 +15,20 @@ struct Obj564_43 {
     void *f10; int f14; int *f18;
 };
 struct Obj53C_43 { void func_001A4100(int, int, int); };
+struct Obj5B4_43 { void func_001CDE90(void *a); };
+struct Vt18_43 { virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3(); virtual void v4(); virtual void v5(); virtual void v6(); };
+struct G8490_43 {
+    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
+    virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
+    virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11();
+    virtual void v12(); virtual void v13(); virtual void v14();
+    virtual void v15(void *a, void *b, int c, int d);
+};
+struct Obj550_43 { void func_0008A080(); void func_0008A910(); void func_0008A980(); void func_0008A990(); };
+struct Obj560_43 { void func_0008B670(char *s); void func_0008B690(); };
+struct SA0_43 { int count; void **arr; void *base; int bound; char pad10[4]; Obj5B4_43 *ctl; };
+extern G8490_43 *D_002A8490;
+extern char D_00277014[];
 struct Obj568_43 { void func_00133EF0(V4_43 *v); };
 struct Ctx530_43 { void func_0015A250(int); };
 struct Ctx5A4_43 { char pad0[0x47C]; int f47C; };
