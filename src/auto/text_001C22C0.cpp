@@ -46,6 +46,25 @@ struct UIWidgetSoultreeCharacter {
  void func_001577A0(void *,int);
  UIWidgetSoultreeCharacter *func_001C22C0(int,char *,Config1C22C0 *);
 };
+static __forceinline void LoadStrings1C22C0(UIWidgetSoultreeCharacter *w, Config1C22C0 *cfg, Config1C22C0 *other, char *buf)
+{
+ cfg->func_00168C20(D_0028E1F8,0,&w->count);
+ if(w->count>0){
+ w->strings=(char**)func_001E8AA5(w->count*4);
+ int i=0;
+ for(;i<w->count;){
+ w->strings[i]=(char*)func_001E8AA5(0x100);
+ int next=i+1;
+ func_001ADCC0(buf,0x100,D_0028E1E8,next);
+ if(cfg->func_00168C20(buf,0,&i)){
+ func_001ADCC0(buf,0x100,D_00277268,i);
+ other->func_00169710(buf);
+ other->func_00168550(D_0028E234,w->strings[i],0x100);
+ }
+ i=next;
+ }
+ }
+}
 extern char D_0028D75C[], D_0028D998[], D_0028E1D4[], D_0028E1C4[], D_0028E1B0[], D_0028E19C[], D_0028E18C[], D_0028E17C[], D_0028E16C[], D_0028E15C[], D_0028E14C[], D_0028E138[], D_0028E120[], D_0028E10C[], D_0028E0F8[], D_0028E0E4[], D_0028E0D4[], D_0028E0C0[], D_0028E0AC[], D_0028E09C[], D_0028E08C[], D_0028E07C[], D_0027DE44[];
 extern float D_00275544;
 extern int *D_002F07B8;
