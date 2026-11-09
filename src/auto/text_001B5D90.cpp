@@ -360,9 +360,8 @@ int C_001B5ED0::func_001B5ED0(S_001B5ED0_Cfg *cfg, int unused)
 {
  cfg->func_00168BE0(&D_0027AF24, &D_00275630, f110, 0x77);
  cfg->func_00168BE0(&D_0028CC30, &D_00275630, f8, 0x103);
- return 1;
+   return 1;
 }
-#pragma optimize("", on)
 C_001B6100* C_001B6100::func_001B6100(void) {
     extern int D_0028CCB4;
     unk4 = 0;
