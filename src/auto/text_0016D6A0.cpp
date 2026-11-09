@@ -267,6 +267,10 @@ struct C_0016D8D0 {
         }
         return &p[f1B0];
     }
+    __forceinline S_0016D8D0_Owner *Owner(void)
+    {
+        return f64;
+    }
     int func_0016D8D0(S_0016D8D0_Stream *stream);
 };
 
@@ -358,11 +362,12 @@ C_0016D6A0 *C_0016D6A0::func_0016D6A0(void *a, char *name, void *b, u32 *c)
         f210 = V4f(-1.0f, 0.0f, -1.0f, 1.0f);
         f220 = V4f(1.0f, 0.0f, 1.0f, 1.0f);
     }
-    f170 = 5000.0f;
-    f174 = 0.0f;
-    f17C = 500.0f;
-    f190 = 0x2005;
-    return this;
+    C_0016D6A0 *s = this;
+    s->f170 = 5000.0f;
+    s->f174 = 0.0f;
+    s->f17C = 500.0f;
+    s->f190 = 0x2005;
+    return s;
 }
 
 void C_0016D8A0::func_0016D8A0(C_IntQuad v)
@@ -388,8 +393,9 @@ int C_0016D8D0::func_0016D8D0(S_0016D8D0_Stream *stream)
         stream->func_00168CB0(D_00288600, D_002A8754, f220);
         stream->func_00168C20(D_00288618, 0, &f20C);
         ((C_0016A1D0 *)this)->func_0016A3A0(stream);
-        e = CurElem();
-        if (e != 0) {
+        S_0016D8D0_Owner &o = *(S_0016D8D0_Owner *)f64;
+        e = o.f134;
+        if (e != 0 && (e = &e[f1B0]) != 0) {
             f1AC = e->f8;
             v = e->f4;
         } else {
