@@ -254,6 +254,7 @@ struct C_001CC3C0 {
     int func_001CC4B0(int *a, int *b, int *c, int *d);
     int func_001CCE10(int a, int b, int c, int d);
     int func_001CCE10(S_Vec_001CC4B0 v, int d);
+ int func_001CCE10(S_V4_001CCE10 v);
 };
 int __stdcall func_00221A71(int h, int a, int b, int c, int d);
 #include <xmmintrin.h>
