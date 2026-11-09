@@ -8,7 +8,7 @@ struct Obj8_43 {
     void func_00199600(V4_43 v);
     void func_0019AC50();
     void func_001824E0(V4_43 *out, float a, float b, float c);
-    void func_00199B00(V4_43 *out, int a);
+    V4_43 *func_00199B00(V4_43 *out, int a);
 };
 struct Obj564_43 {
     int f0; char pad4[4]; Obj8_43 *f8; Obj8_43 *fC;
@@ -81,6 +81,7 @@ int C_00043F00::func_00043F00(int arg)
     V4_43 v3 = {0.0f, 0.0f, 0.0f, 1.0f};
     V4_43 v4;
     V4_43 out;
+    SA0_43 *sa = (SA0_43 *)&f5A0;
     int i;
     D_002EFDB8->v7(1);
     D_002EFDB8->v8();
@@ -197,5 +198,55 @@ do1824:
             }
         }
     }
-    return 0;
+    if (f474 != 4 && f48C == -1) {
+        if (sa->count >= f5AC) {
+            if (sa->func_0015ACA0((int)sa->base + sa->count) != 0) {
+                sa->arr[sa->count] = f564;
+                sa->count++;
+            }
+        }
+        if (f568 != 0)
+            sa->ctl->func_001CDE90(f568);
+        if ((f564->f0 == 3 || f564->f0 == 5) && f56C != 0)
+            sa->ctl->func_001CDE90(f56C);
+        if (f564->f0 >= 4 && f570 != 0)
+            sa->ctl->func_001CDE90(f570);
+    }
+    if (f474 == 3 || f474 == 4) {
+        f564 = 0;
+        f568 = 0;
+        f56C = 0;
+        f570 = 0;
+        if (f288 != 8 || f47C != 15) {
+            if (f2D8 != 0) {
+                return 0;
+            }
+            if (func_00042840() != 0) {
+                return 0;
+            }
+            f474 = 2;
+            func_000361F0(0);
+            func_00035940();
+            f550->func_0008A080();
+            f554->func_0008A910();
+            return 1;
+        }
+        f53C->func_001A4100(1, 1, 0);
+        f474 = 2;
+        func_000361F0(0);
+        f540->v6();
+        ((G8490_43 *)D_002A8490)->v15((void *)f24, (void *)f28, 0, 0);
+        if (f550 != 0) {
+            f550->v6();
+            f550->func_0008A080();
+        }
+        f554->func_0008A910();
+        return 0;
+    }
+    if (f474 == 5) {
+        f474 = 6;
+        f554->func_0008A980();
+    }
+    f57C = f564;
+    return 1;
 }
