@@ -312,7 +312,8 @@ void S_00049470_This::func_00049470()
     S_49470_F64 *f;
     S_49470_F540 *sub;
     S_49470_Table *tab;
-    S_49470_Elem *a, *b, *c, *d;
+    S_49470_Elem *c;
+    S_49470_Elem * volatile a, * volatile b, * volatile d;
     int idx, i;
     int av, bv, cv;
     float fy;
@@ -370,7 +371,7 @@ void S_00049470_This::func_00049470()
             sub->f24 = 0;
         } else if (sub->f28 != 0) {
             sub->f28->f1a4->f4->func_00198390();
-            sub->f28->f1a4->vobj->w4();
+            ((S_49470_F1A4V *)sub->f28->f1a4)->b4();
             sub->f28 = 0;
         }
         sub->f24 = (C_00198390 *)d;
@@ -548,9 +549,7 @@ void E49Fps::func_00049C90() {
 
 void BmxEventFPS::func_00049F30()
 {
- bool active = f2D4 != 0;
- if(!active) { active = f2D8 != 0; }
- if(!active) func_00032A60();
+    if (f2D4 == 0 && f2D8 == 0) func_00032A60();
 }
 
 int C_0004A1A0::func_0004A1A0(void)
