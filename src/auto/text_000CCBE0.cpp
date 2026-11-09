@@ -68,10 +68,10 @@ struct C_000CCBE0 {
     S_CCBE0_Sprite *f550;
     void func_001BE4F0(int a, int b, int c);
     void func_001577A0(void *obj, int a);
-    void func_000CCBE0(int a, int b, int c);
+    C_000CCBE0 *func_000CCBE0(int a, int b, int c);
 };
 
-void C_000CCBE0::func_000CCBE0(int a, int b, int c)
+C_000CCBE0 *C_000CCBE0::func_000CCBE0(int a, int b, int c)
 {
     void *mem;
     S_CCBE0_Sprite *o;
@@ -476,4 +476,5 @@ void C_000CCBE0::func_000CCBE0(int a, int b, int c)
     (*(S_CCBE0_Text **)((char *)this + 0x594))->func_001B17D0(*(int *)(*(char **)(settings + 4) + 0xfc8));
     func_001577A0(*(S_CCBE0_Text **)((char *)this + 0x594), -1);
     (*(S_CCBE0_Text **)((char *)this + 0x594))->func_001B1980();
+    return this;
 }
