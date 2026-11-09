@@ -29,6 +29,7 @@ struct C_001CD260 {
 void func_001E8390(void *);
 void func_001E891B(void *);
 extern "C" void * __cdecl memset(void *, int, unsigned int);
+extern "C" void * __cdecl memcpy(void *, const void *, unsigned int);
 static __forceinline void clear_001CD260(int *size) {
  memset(*(void **)(size + 1), 0, *size * 4);
  *size = 0;
@@ -549,7 +550,8 @@ int C_001CC3C0::func_001CCE10(S_V4_001CCE10 v)
                 return 0;
             }
         }
-        *(S_V4_001CCE10 *)&f1E8 = v;
+        S_V4_001CCE10 t = v;
+        *(S_V4_001CCE10 *)&f1E8 = t;
     }
     return 1;
 }
