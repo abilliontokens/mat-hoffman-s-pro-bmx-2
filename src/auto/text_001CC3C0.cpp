@@ -256,10 +256,6 @@ int __stdcall func_00221A71(int h, int a, int b, int c, int d);
 #include <xmmintrin.h>
 static __forceinline float Max_001CC4B0(float a, float b) { return _mm_max_ss(_mm_set_ss(a), _mm_set_ss(b)).m128_f32[0]; }
 struct S_Vec_001CC4B0 { int x, y, z; };
-struct S_V4_001CCE10 {
-    int x, y, z, w;
-    void Set(int a, int b, int c, int d) { x = a; y = b; z = c; w = d; }
-};
 int __stdcall func_00221A71(int h, S_Vec_001CC4B0 v, int d);
 int __stdcall func_00221B90(int h, S_Vec_001CC4B0 v, int d);
 int __stdcall func_00221BB9(int h, S_Vec_001CC4B0 v, int d);
